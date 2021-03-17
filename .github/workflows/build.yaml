@@ -1,0 +1,84 @@
+name: build
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '**/*.md'
+
+  pull_request:
+    branches:
+      - main
+    paths-ignore:
+      - '**/*.md'
+
+  workflow_dispatch:
+
+env:
+  OSS_USER: '${{ secrets.OSS_USER }}'
+  OSS_TOKEN: '${{ secrets.OSS_TOKEN }}'
+  OSS_STAGING_PROFILE_ID: '${{ secrets.OSS_STAGING_PROFILE_ID }}'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Set up Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 15
+
+      - name: Gradle cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+            ~/.konan
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/gradle.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Increment version
+        run: ./gradlew reckonTagCreate -P"reckon.stage"="final"
+
+      - name: Gradle build
+        if: ${{ always() }}
+        run: ./gradlew build -P"reckon.stage"="snapshot" -P"isSnapshot"="true"
+
+      - name: Generate code analysis reports
+        if: ${{ always() }}
+        run: ./gradlew detekt -P"reckon.stage"="snapshot" -P"isSnapshot"="true"
+
+      - name: Upload code analysis reports
+        if: ${{ always() }}
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: 'build/reports/detekt/detekt.sarif'
+
+      - name: Generate snapshot docs
+        if: ${{ (github.event_name == 'push') }}
+        run: ./gradlew dokkaHtmlMultiModule -P"reckon.stage"="snapshot" -P"isSnapshot"="true"
+
+      - name: Publish a snapshot
+        if: ${{ (github.event_name == 'push') }}
+        env:
+          ossUser: ${{ secrets.OSS_USER }}
+          ossToken: ${{ secrets.OSS_TOKEN }}
+        run: ./gradlew publishToSonatype -P"reckon.stage"="snapshot" -P"isSnapshot"="true"
+
+      - name: Deploy snapshot docs to Github Pages
+        uses: JamesIves/github-pages-deploy-action@4.1.0
+        with:
+          target-folder: 'snapshot'
+          branch: 'gh-pages'
+          folder: 'build/dokka'
+          clean: false
+          single-commit: true

@@ -9,7 +9,7 @@ plugins {
 
 val dokkaJar by tasks.creating(Jar::class) {
     archiveClassifier.set("javadoc")
-    dependsOn(tasks.named<DokkaTask>("dokkaHtml"))
+    dependsOn(tasks.named<DokkaTask>("dokkaJavadoc"))
 }
 
 configure<PublishingExtension> {

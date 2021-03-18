@@ -12,7 +12,7 @@ group = groupId
 
 val dokkaJar by tasks.creating(Jar::class) {
     archiveClassifier.set("javadoc")
-    dependsOn(tasks.dokkaHtml)
+    dependsOn(tasks.dokkaJavadoc)
 }
 
 val sourcesJar by tasks.creating(Jar::class) {
@@ -22,8 +22,7 @@ val sourcesJar by tasks.creating(Jar::class) {
 
 publishing {
     publications {
-
-        withType<MavenPublication> {
+        withType<MavenPublication>().all {
             pom {
                 name.set(property("pomName").toString())
                 description.set(property("pomDescription").toString())

@@ -1,11 +1,15 @@
-import internal.groupId
-
 plugins {
     kotlin("jvm")
     publish
 }
 
-group = groupId
+publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            from(components["java"])
+        }
+    }
+}
 
 dependencies {
     implementation(gradleApi())

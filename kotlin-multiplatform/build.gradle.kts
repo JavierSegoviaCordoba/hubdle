@@ -1,6 +1,7 @@
 plugins {
     `kotlin-dsl`
     publish
+    `plugin-publish`
     `accessors-generator`
 }
 
@@ -28,8 +29,6 @@ dependencies {
 
     api(projects.accessors)
     api(projects.core)
-
-    api(projects.codeFormatter)
 
     api(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)
 }

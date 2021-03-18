@@ -1,6 +1,7 @@
 plugins {
     `kotlin-dsl`
     publish
+    `plugin-publish`
     `accessors-generator`
 }
 

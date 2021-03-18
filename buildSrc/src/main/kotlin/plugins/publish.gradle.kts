@@ -3,7 +3,6 @@ import internal.isSignificant
 
 plugins {
     `maven-publish`
-    id("plugin-publish")
     signing
     id("docs")
 }

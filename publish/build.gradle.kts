@@ -1,6 +1,7 @@
 plugins {
     `kotlin-dsl`
     publish
+    `plugin-publish`
     `accessors-generator`
 }
 
@@ -26,7 +27,7 @@ dependencies {
     implementation(files(pluginLibs.javaClass.protectionDomain.codeSource.location))
 
     api(projects.accessors)
-    implementation(projects.core)
+    api(projects.core)
 
     implementation(gradleApi())
     api(pluginLibs.jetbrains.dokka.dokkaGradlePlugin)

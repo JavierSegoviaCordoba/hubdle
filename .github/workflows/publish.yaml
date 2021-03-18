@@ -98,7 +98,7 @@ jobs:
         shell: bash
         id: pre_release
         run: |
-          if [[ ${{ !contains(github.ref, 'alpha') && !contains(github.ref, 'beta') && !contains(github.ref, 'rc') }} ]]
+          if [[ ${{ contains(github.ref, 'alpha') || contains(github.ref, 'beta') || contains(github.ref, 'rc') }} ]]
           then
             echo ::set-output name=is_pre_release::true
           else

@@ -1,8 +1,6 @@
 import com.javiersc.plugins.core.groupId
 
-plugins {
-    kotlin("multiplatform")
-}
+plugins { kotlin("multiplatform") }
 
 group = groupId
 

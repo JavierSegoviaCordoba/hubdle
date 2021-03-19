@@ -4,6 +4,8 @@
 
 ### Added
 
+- expose `defaultLanguageSettings`
+
 ### Changed
 
 ### Deprecated
@@ -43,4 +45,3 @@
     - readme-badges-generator
 
     - versioning
-

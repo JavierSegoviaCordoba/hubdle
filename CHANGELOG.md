@@ -4,8 +4,6 @@
 
 ### Added
 
-- expose `defaultLanguageSettings`
-
 ### Changed
 
 ### Deprecated
@@ -13,6 +11,14 @@
 ### Removed
 
 ### Fixed
+
+### Updated
+
+## [0.1.0-alpha.3] - 2021-03-19
+
+### Added
+
+- expose `defaultLanguageSettings`
 
 ### Updated
 
@@ -45,3 +51,4 @@
     - readme-badges-generator
 
     - versioning
+

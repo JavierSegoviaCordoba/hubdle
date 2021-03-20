@@ -4,15 +4,25 @@
 
 ### Added
 
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Updated
+
+## [0.1.0-alpha.5] - 2021-03-20
+
+### Added
+
 - support to `com.android.library` and `version-catalog` plugins in `publish`
 
 ### Changed
 
 - Move `checkIsSignificant` Gradle task from `versioning` to `publish`
-
-### Deprecated
-
-### Removed
 
 ### Fixed
 
@@ -60,4 +70,4 @@
 
     - readme-badges-generator
 
-    - versioning
+    - versioning 

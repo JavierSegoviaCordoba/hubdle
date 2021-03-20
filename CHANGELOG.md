@@ -4,6 +4,10 @@
 
 ### Added
 
+- plugins
+    
+    - publish-gradle-plugin
+
 ### Changed
 
 ### Deprecated
@@ -28,11 +32,9 @@
 
 - `changelog` plugin was adding to the end of the file two new lines
 
-### Updated
-
 ## [0.1.0-alpha.4] - 2021-03-20
 
-### Updated
+- No changes
 
 ## [0.1.0-alpha.3] - 2021-03-19
 
@@ -40,11 +42,9 @@
 
 - expose `defaultLanguageSettings`
 
-### Updated
-
 ## [0.1.0-alpha.2] - 2021-03-18
 
-### Updated
+- No changes
 
 ## [0.1.0-alpha.1] - 2021-03-18
 

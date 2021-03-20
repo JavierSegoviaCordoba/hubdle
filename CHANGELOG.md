@@ -4,10 +4,6 @@
 
 ### Added
 
-- plugins
-    
-    - publish-gradle-plugin
-
 ### Changed
 
 ### Deprecated
@@ -15,6 +11,16 @@
 ### Removed
 
 ### Fixed
+
+### Updated
+
+## [0.1.0-alpha.6] - 2021-03-20
+
+### Added
+
+- plugins
+
+    - publish-gradle-plugin
 
 ### Updated
 

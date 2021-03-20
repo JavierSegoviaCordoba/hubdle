@@ -30,5 +30,6 @@ dependencies {
     api(projects.core)
 
     implementation(gradleApi())
+    api(pluginLibs.android.toolsBuild.gradle)
     api(pluginLibs.jetbrains.dokka.dokkaGradlePlugin)
 }

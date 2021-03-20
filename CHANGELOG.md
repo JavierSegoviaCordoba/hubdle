@@ -4,6 +4,8 @@
 
 ### Added
 
+- support to `com.android.library` and `version-catalog` plugins in `javiersc-publish`
+
 ### Changed
 
 ### Deprecated

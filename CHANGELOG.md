@@ -6,6 +6,8 @@
 
 ### Changed
 
+- Show git diff when `checkIsSignificant` is invoked in `publish` plugin
+
 ### Deprecated
 
 ### Removed

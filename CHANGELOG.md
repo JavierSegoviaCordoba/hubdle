@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- `changelog` plugin was adding to the end of the file two new lines
+
 ### Updated
 
 ## [0.1.0-alpha.4] - 2021-03-20
@@ -55,4 +57,3 @@
     - readme-badges-generator
 
     - versioning
-

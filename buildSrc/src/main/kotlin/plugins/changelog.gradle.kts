@@ -34,14 +34,15 @@ fun improveChangelog(changelogFile: File, unreleasedFlag: String) {
                 line.startsWith("###") && index < startIndex -> appendLine(line + "\n")
                 line.startsWith("###") &&
                         filteredChangelog
-                            .getOrNull(index + 1)
-                            ?.startsWith("###") == true -> Unit
+                                .getOrNull(index + 1)
+                                ?.startsWith("###") == true -> Unit
                 line.startsWith("###") &&
                         filteredChangelog
-                            .getOrNull(index + 1)
-                            ?.startsWith("###") == false -> appendLine(line + "\n")
+                                .getOrNull(index + 1)
+                                ?.startsWith("###") == false -> appendLine(line + "\n")
             }
         }
-    }
+    }.dropLastWhile { it.isWhitespace() } + " \n"
+
     changelogFile.writeText(changelogToWrite)
 }

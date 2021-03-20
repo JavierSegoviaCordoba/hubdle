@@ -100,9 +100,18 @@ configure<SigningExtension> {
     }
 }
 
-val checkIsSignificant: Task by project.tasks.creating() {
-    if (!isSignificant) {
-        error("Only significant versions can be published (current: $version)")
+project.tasks {
+    create<Exec>("gitDiff") {
+        commandLine("git", "diff")
+    }
+}
+
+val checkIsSignificant: Task by project.tasks.creating {
+    dependsOn("gitDiff")
+    doLast {
+        if (!isSignificant) {
+            error("Only significant versions can be published (current: $version)")
+        }
     }
 }
 

@@ -4,9 +4,11 @@
 
 ### Added
 
-- support to `com.android.library` and `version-catalog` plugins in `javiersc-publish`
+- support to `com.android.library` and `version-catalog` plugins in `publish`
 
 ### Changed
+
+- Move `checkIsSignificant` Gradle task from `versioning` to `publish`
 
 ### Deprecated
 

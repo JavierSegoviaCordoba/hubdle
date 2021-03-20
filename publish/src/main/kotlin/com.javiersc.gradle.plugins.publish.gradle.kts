@@ -54,7 +54,7 @@ configure<PublishingExtension> {
             }
 
             artifact(
-                    tasks.creating(Jar::class) {
+                    project.tasks.creating(Jar::class) {
                         group = "build"
                         description = "Assembles Javadoc jar file from for publishing"
                         archiveClassifier.set("javadoc")
@@ -79,7 +79,7 @@ configure<PublishingExtension> {
                         }
 
                 artifact(
-                        tasks.creating(Jar::class) {
+                        project.tasks.creating(Jar::class) {
                             group = "build"
                             description = "Assembles Sources jar file for publishing"
                             archiveClassifier.set("sources")
@@ -98,14 +98,20 @@ configure<SigningExtension> {
     }
 }
 
+val checkIsSignificant: Task by project.tasks.creating() {
+    if (!isSignificant) {
+        error("Only significant versions can be published (current: $version)")
+    }
+}
+
 rootProject.tasks {
-    getByName("initializeSonatypeStagingRepository") { dependsOn("checkIsSignificant") }
+    getByName("initializeSonatypeStagingRepository") { dependsOn(checkIsSignificant) }
 }
 
 tasks {
-    getByName("publish") { dependsOn("checkIsSignificant") }
+    getByName("publish") { dependsOn(checkIsSignificant) }
 
-    getByName("publishToSonatype") { dependsOn("checkIsSignificant") }
+    getByName("publishToSonatype") { dependsOn(checkIsSignificant) }
 
-    getByName("publishToMavenLocal") { dependsOn("checkIsSignificant") }
+    getByName("publishToMavenLocal") { dependsOn(checkIsSignificant) }
 }

@@ -11,7 +11,7 @@ group = groupId
 
 val dokkaJar by tasks.creating(Jar::class) {
     archiveClassifier.set("javadoc")
-    dependsOn(tasks.dokkaJavadoc)
+    dependsOn(tasks.dokkaHtml)
 }
 
 val sourcesJar by tasks.creating(Jar::class) {

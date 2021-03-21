@@ -15,10 +15,10 @@ pluginBundle {
 
 gradlePlugin {
     plugins {
-        named("com.javiersc.gradle.plugins.publish") {
-            id = "com.javiersc.gradle.plugins.publish"
-            displayName = "Publish"
-            description = "A custom plugin for `maven-publish` plugin with a basic setup"
+        named("com.javiersc.gradle.plugins.publish.android.library") {
+            id = "com.javiersc.gradle.plugins.publish.android.library"
+            displayName = "Publish Android Library"
+            description = "A custom plugin for `maven-publish` and `android-library` plugin with a basic setup"
         }
     }
 }

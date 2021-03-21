@@ -15,11 +15,11 @@ pluginBundle {
 
 gradlePlugin {
     plugins {
-        named("com.javiersc.gradle.plugins.publish.gradle.plugin") {
-            id = "com.javiersc.gradle.plugins.publish.gradle.plugin"
-            displayName = "Publish Gradle Pugin"
+        named("com.javiersc.gradle.plugins.publish.kotlin.multiplatform") {
+            id = "com.javiersc.gradle.plugins.publish.kotlin.multiplatform"
+            displayName = "Publish Kotlin Multiplatform"
             description =
-                "A custom plugin for `com.gradle.plugin-publish` plugin with a basic setup"
+                "A custom plugin for `maven-publish` and `kotlin-multiplatform` plugin with a basic setup"
         }
     }
 }
@@ -31,6 +31,5 @@ dependencies {
     api(projects.core)
 
     implementation(gradleApi())
-    api(pluginLibs.gradle.publish.pluginPublishPlugin)
     api(pluginLibs.jetbrains.dokka.dokkaGradlePlugin)
 }

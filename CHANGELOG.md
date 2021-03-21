@@ -6,7 +6,17 @@
 
 ### Changed
 
-- Show git diff when `checkIsSignificant` is invoked in `publish` plugin
+- Separate `publish` plugin into:
+    
+    - `publish-android-library` 
+    
+    - `publish-kotlin-jvm` 
+    
+    - `publish-kotlin-multiplatform` 
+    
+    - `publish-version-catalog` 
+
+- Show git diff when `checkIsSignificant` is invoked in all `publish` plugins
 
 ### Deprecated
 

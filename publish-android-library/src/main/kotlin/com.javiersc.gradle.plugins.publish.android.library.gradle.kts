@@ -8,25 +8,8 @@ plugins {
     id("org.jetbrains.dokka")
 }
 
-val isAndroidLibrary: Boolean
-    get() = project.plugins.hasPlugin("com.android.library")
-
-val isKotlinMultiplatform: Boolean
-    get() = project.plugins.hasPlugin("org.jetbrains.kotlin.multiplatform")
-
-val isVersionCatalog: Boolean
-    get() = project.plugins.hasPlugin("org.gradle.version-catalog")
-
 configure<PublishingExtension> {
     publications {
-        when {
-            isVersionCatalog ->
-                create<MavenPublication>("maven") { from(components["versionCatalog"]) }
-            isAndroidLibrary && !isKotlinMultiplatform ->
-                create<MavenPublication>("release") { from(components["release"]) }
-            !isKotlinMultiplatform -> create<MavenPublication>("maven") { from(components["java"]) }
-        }
-
         withType<MavenPublication> {
             pom {
                 name.set(property("pomName").toString())
@@ -64,32 +47,23 @@ configure<PublishingExtension> {
                 }
             )
 
-            if (!isKotlinMultiplatform || !isVersionCatalog) {
-                val allSource =
-                    if (isAndroidLibrary) {
+            artifact(
+                project.tasks.creating(Jar::class) {
+                    group = "build"
+                    description = "Assembles Sources jar file for publishing"
+                    archiveClassifier.set("sources")
+                    from(
                         (project.extensions.getByName("android") as LibraryExtension)
                             .sourceSets
                             .named("main")
                             .get()
                             .java
                             .srcDirs
-                    } else {
-                        (project.extensions.getByName("sourceSets") as SourceSetContainer)
-                            .named("main")
-                            .get()
-                            .allSource
-                    }
-
-                artifact(
-                    project.tasks.creating(Jar::class) {
-                        group = "build"
-                        description = "Assembles Sources jar file for publishing"
-                        archiveClassifier.set("sources")
-                        from(allSource)
-                    }
-                )
-            }
+                    )
+                }
+            )
         }
+        create<MavenPublication>("release") { from(components["release"]) }
     }
 }
 
@@ -100,11 +74,7 @@ configure<SigningExtension> {
     }
 }
 
-project.tasks {
-    create<Exec>("gitDiff") {
-        commandLine("git", "diff")
-    }
-}
+project.tasks { create<Exec>("gitDiff") { commandLine("git", "diff") } }
 
 val checkIsSignificant: Task by project.tasks.creating {
     dependsOn("gitDiff")

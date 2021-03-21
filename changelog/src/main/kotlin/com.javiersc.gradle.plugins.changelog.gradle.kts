@@ -28,9 +28,9 @@ fun improveChangelog(changelogFile: File) {
     val h3Regex = Regex("""^(###)(\s)(.*)${'$'}""")
 
     val lastReleaseIndex =
-        changelogWithoutBlankLines.indexOfFirst {
-            !unreleasedRegex.matches(it) && h2Regex.matches(it)
-        }
+            changelogWithoutBlankLines.indexOfFirst {
+                !unreleasedRegex.matches(it) && h2Regex.matches(it)
+            }.let { index -> if (index == -1) changelogWithoutBlankLines.size else index }
 
     val preReleasesChangelog = changelogWithoutBlankLines.subList(0, lastReleaseIndex)
     val releasesChangelog =

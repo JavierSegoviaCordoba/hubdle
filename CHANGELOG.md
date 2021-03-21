@@ -12,10 +12,13 @@
 
 ### Fixed
 
-- `publish-version-catalog` wasn't applying `version-catalog` plugin
-
 ### Updated
 
+
+## [0.1.0-alpha.11] - 2021-03-21
+
+### Fixed
+- `publish-version-catalog` wasn't applying `version-catalog` plugin
 
 ## [0.1.0-alpha.10] - 2021-03-21
 
@@ -84,5 +87,3 @@
     - dependency-updates
     - docs
     - kotlin-multiplatform
-    - nexus
-    - publish

@@ -3,6 +3,7 @@ import org.jetbrains.dokka.gradle.DokkaTask
 
 plugins {
     `maven-publish`
+    `version-catalog`
     signing
     id("org.jetbrains.dokka")
 }

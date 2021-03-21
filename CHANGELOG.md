@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- `publish-version-catalog` wasn't applying `version-catalog` plugin
+
 ### Updated
 
 

@@ -11,13 +11,13 @@ changelog {
     groups = listOf("Added", "Changed", "Deprecated", "Removed", "Fixed", "Updated")
 }
 
-tasks {
-    patchChangelog {
-        doLast {
-            improveChangelog(File("$projectDir/CHANGELOG.md"), "Unreleased")
-        }
-    }
-}
+//tasks {
+//    patchChangelog {
+//        doLast {
+//            improveChangelog(File("$projectDir/CHANGELOG.md"), "Unreleased")
+//        }
+//    }
+//}
 
 fun improveChangelog(changelogFile: File, unreleasedFlag: String) {
     val filteredChangelog = changelogFile
@@ -43,6 +43,8 @@ fun improveChangelog(changelogFile: File, unreleasedFlag: String) {
             }
         }
     }.dropLastWhile { it.isWhitespace() } + " \n"
+
+    println(changelogToWrite) // TODO
 
     changelogFile.writeText(changelogToWrite)
 }

@@ -2,15 +2,21 @@
 
 import org.gradle.accessors.dm.LibrariesForPluginLibs
 
-val shieldsIoUrl = "https://img.shields.io"
+val shieldsIoUrl
+    get() = "https://img.shields.io"
 
-val libGroup: String = property("libGroup")!!.toString()
-val libName: String = property("libName")!!.toString()
+val libGroup: String
+    get() = property("libGroup")!!.toString()
+val libName: String
+    get() = property("libName")!!.toString()
 
-val libFolderUrl: String = "$libGroup/$libName".replace(".", "/")
+val libFolderUrl: String
+    get() = "$libGroup/$libName".replace(".", "/")
 
-val repoUrl: String = property("pomSmcUrl")!!.toString()
-val repoWithoutUrlPrefix: String = repoUrl.replace("https://github.com/", "")
+val repoUrl: String
+    get() = property("pomSmcUrl")!!.toString()
+val repoWithoutUrlPrefix: String
+    get() = repoUrl.replace("https://github.com/", "")
 
 fun buildKotlinVersionBadge(): String {
     return "![Kotlin version]" +
@@ -104,13 +110,17 @@ fun buildReadmeBadges(): List<String> = buildList {
     add("")
 }
 
-file("${rootProject.projectDir}/README.md").apply {
-    val content: List<String> = readLines()
-    val updatedContent: List<String> = buildList {
-        addAll(buildReadmeBadges())
-        addAll(content.subList(content.indexOfFirst { it.contains("# ") }, content.lastIndex + 1))
-        add("")
-    }
+rootProject.tasks.register("generateReadmeBadges") {
+    file("${rootProject.projectDir}/README.md").apply {
+        val content: List<String> = readLines()
+        val updatedContent: List<String> = buildList {
+            addAll(buildReadmeBadges())
+            addAll(
+                content.subList(content.indexOfFirst { it.contains("# ") }, content.lastIndex + 1)
+            )
+            add("")
+        }
 
-    writeText(updatedContent.joinToString(separator = "\n"))
+        writeText(updatedContent.joinToString(separator = "\n"))
+    }
 }

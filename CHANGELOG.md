@@ -6,6 +6,8 @@
 
 ### Changed
 
+- `readme-badges-generator` registers `generateReadmeBadges` instead of generate badges when syncing
+
 ### Deprecated
 
 ### Removed
@@ -38,11 +40,9 @@
 
 - Show git diff when `checkIsSignificant` is invoked in all `publish` plugins
 
-### Updated
-
 ## [0.1.0-alpha.7] - 2021-03-20
 
-### Updated
+- No changes
 
 ## [0.1.0-alpha.6] - 2021-03-20
 

@@ -34,7 +34,7 @@ fun improveChangelog(changelogFile: File) {
 
     val preReleasesChangelog = changelogWithoutBlankLines.subList(0, lastReleaseIndex)
     val releasesChangelog =
-        changelogWithoutBlankLines.subList(lastReleaseIndex, changelogWithoutBlankLines.lastIndex)
+        changelogWithoutBlankLines.subList(lastReleaseIndex, changelogWithoutBlankLines.size)
 
     val changelogToWrite =
         buildList {
@@ -50,7 +50,6 @@ fun improveChangelog(changelogFile: File) {
 
                 releasesChangelog.onEachIndexed { index, line ->
                     when {
-                        releasesChangelog.size == index + 1 -> Unit
                         unreleasedRegex.matches(line) -> add(line)
                         h1Regex.matches(line) -> add(line)
                         h2Regex.matches(line) -> add(line)
@@ -87,8 +86,7 @@ fun improveChangelog(changelogFile: File) {
                 }
             }
             .replace("- No changes", "\n- No changes")
-            .replace("- No changes", "\n- No changes")
-            .replaceFirst("### Updated", "### Updated\n")
+            .replaceFirst("### Updated", "### Updated\n") + "\n"
 
     changelogFile.writeText(changelogToWriteWithNoChanges)
 }

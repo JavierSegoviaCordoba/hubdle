@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- `changelog` output format was incorrect
+
 ### Updated
 
 

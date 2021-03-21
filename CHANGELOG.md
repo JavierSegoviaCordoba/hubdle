@@ -87,3 +87,7 @@
     - dependency-updates
     - docs
     - kotlin-multiplatform
+    - nexus
+    - publish
+    - readme-badges-generator
+    - versioning 

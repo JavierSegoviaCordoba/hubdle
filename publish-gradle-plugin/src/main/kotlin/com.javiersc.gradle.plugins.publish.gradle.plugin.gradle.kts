@@ -8,6 +8,20 @@ plugins {
     id("org.jetbrains.dokka")
 }
 
+val docsJar by project.tasks.creating(Jar::class) {
+    group = "build"
+    description = "Assembles Sources jar file from for publishing"
+    archiveClassifier.set("sources")
+    from((project.properties["sourceSets"] as SourceSetContainer)["main"].allSource)
+}
+
+val sourcesJar by project.tasks.creating(Jar::class) {
+    group = "build"
+    description = "Assembles Javadoc jar file from for publishing"
+    archiveClassifier.set("javadoc")
+    dependsOn(tasks.named<DokkaTask>("dokkaHtml"))
+}
+
 configure<PublishingExtension> {
     publications {
         withType<MavenPublication> {
@@ -38,23 +52,9 @@ configure<PublishingExtension> {
                 }
             }
 
-            artifact(
-                project.tasks.creating(Jar::class) {
-                    group = "build"
-                    description = "Assembles Sources jar file from for publishing"
-                    archiveClassifier.set("sources")
-                    from((project.properties["sourceSets"] as SourceSetContainer)["main"].allSource)
-                }
-            )
+            artifact(docsJar)
 
-            artifact(
-                project.tasks.creating(Jar::class) {
-                    group = "build"
-                    description = "Assembles Javadoc jar file from for publishing"
-                    archiveClassifier.set("javadoc")
-                    dependsOn(tasks.named<DokkaTask>("dokkaHtml"))
-                }
-            )
+            artifact(sourcesJar)
         }
     }
 }

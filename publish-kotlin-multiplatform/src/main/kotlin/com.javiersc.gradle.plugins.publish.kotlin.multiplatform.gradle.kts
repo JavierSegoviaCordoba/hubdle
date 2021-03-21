@@ -7,6 +7,13 @@ plugins {
     id("org.jetbrains.dokka")
 }
 
+val docsJar by project.tasks.creating(Jar::class) {
+    group = "build"
+    description = "Assembles Javadoc jar file from for publishing"
+    archiveClassifier.set("javadoc")
+    dependsOn(tasks.named<DokkaTask>("dokkaHtml"))
+}
+
 configure<PublishingExtension> {
     publications {
         withType<MavenPublication> {
@@ -37,14 +44,7 @@ configure<PublishingExtension> {
                 }
             }
 
-            artifact(
-                project.tasks.creating(Jar::class) {
-                    group = "build"
-                    description = "Assembles Javadoc jar file from for publishing"
-                    archiveClassifier.set("javadoc")
-                    dependsOn(tasks.named<DokkaTask>("dokkaHtml"))
-                }
-            )
+            artifact(docsJar)
         }
     }
 }
@@ -56,11 +56,7 @@ configure<SigningExtension> {
     }
 }
 
-project.tasks {
-    create<Exec>("gitDiff") {
-        commandLine("git", "diff")
-    }
-}
+project.tasks { create<Exec>("gitDiff") { commandLine("git", "diff") } }
 
 val checkIsSignificant: Task by project.tasks.creating {
     dependsOn("gitDiff")

@@ -12,6 +12,12 @@
 
 ### Fixed
 
+### Updated
+
+## [0.1.0-alpha.9] - 2021-03-21
+
+### Fixed
+
 - `publish-*` plugins were not working
 
 ### Updated

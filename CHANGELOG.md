@@ -12,10 +12,13 @@
 
 ### Fixed
 
-- `changelog` output format was incorrect
-
 ### Updated
 
+
+## [0.1.0-alpha.12] - 2021-03-21
+
+### Fixed
+- `changelog` output format was incorrect
 
 ## [0.1.0-alpha.11] - 2021-03-21
 

@@ -14,6 +14,8 @@
 
 ### Fixed
 
+- `changelog` output format was incorrect
+
 ### Updated
 
 ## [0.1.0-alpha.9] - 2021-03-21

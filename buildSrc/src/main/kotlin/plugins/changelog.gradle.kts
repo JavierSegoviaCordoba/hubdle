@@ -1,9 +1,9 @@
+@file:OptIn(ExperimentalStdlibApi::class)
+
 import org.jetbrains.changelog.closure
 import org.jetbrains.changelog.date
 
-plugins {
-    id("org.jetbrains.changelog")
-}
+plugins { id("org.jetbrains.changelog") }
 
 changelog {
     version = "${project.version}"
@@ -11,40 +11,77 @@ changelog {
     groups = listOf("Added", "Changed", "Deprecated", "Removed", "Fixed", "Updated")
 }
 
-//tasks {
-//    patchChangelog {
-//        doLast {
-//            improveChangelog(File("$projectDir/CHANGELOG.md"), "Unreleased")
-//        }
-//    }
-//}
+tasks { patchChangelog { doLast { improveChangelog(file("$projectDir/CHANGELOG.md")) } } }
 
-fun improveChangelog(changelogFile: File, unreleasedFlag: String) {
-    val filteredChangelog = changelogFile
-        .readLines()
-        .filter { it.isNotBlank() }
+fun improveChangelog(changelogFile: File) {
+    val changelogWithoutBlankLines = changelogFile.readLines().filter { it.isNotBlank() }
 
-    val startIndex =
-        filteredChangelog.indexOfFirst { it.contains("## [") && !it.contains(unreleasedFlag) }
+    val h1Regex = Regex("""^(#)(\s)(.*)${'$'}""")
+    val unreleasedRegex = Regex("""^(##)(\s)(\[Unreleased\])(.*)${'$'}""")
+    val h2Regex = Regex("""^(##)(\s)(.*)${'$'}""")
+    val h3Regex = Regex("""^(###)(\s)(.*)${'$'}""")
 
-    val changelogToWrite = buildString {
-        filteredChangelog.onEachIndexed { index, line ->
-            when {
-                !line.startsWith("###") && line.isNotBlank() -> appendLine(line + "\n")
-                line.startsWith("###") && index < startIndex -> appendLine(line + "\n")
-                line.startsWith("###") &&
-                        filteredChangelog
-                                .getOrNull(index + 1)
-                                ?.startsWith("###") == true -> Unit
-                line.startsWith("###") &&
-                        filteredChangelog
-                                .getOrNull(index + 1)
-                                ?.startsWith("###") == false -> appendLine(line + "\n")
-            }
+    val lastReleaseIndex =
+        changelogWithoutBlankLines.indexOfFirst {
+            !unreleasedRegex.matches(it) && h2Regex.matches(it)
         }
-    }.dropLastWhile { it.isWhitespace() } + " \n"
 
-    println(changelogToWrite) // TODO
+    val preReleasesChangelog = changelogWithoutBlankLines.subList(0, lastReleaseIndex)
+    val releasesChangelog =
+        changelogWithoutBlankLines.subList(lastReleaseIndex, changelogWithoutBlankLines.lastIndex)
 
-    changelogFile.writeText(changelogToWrite)
+    val changelogToWrite =
+        buildList {
+                preReleasesChangelog.forEach { line ->
+                    when {
+                        h1Regex.matches(line) -> add(line)
+                        unreleasedRegex.matches(line) -> add(line)
+                        h2Regex.matches(line) -> add(line)
+                        h3Regex.matches(line) -> add(line)
+                        else -> add(line)
+                    }
+                }
+
+                releasesChangelog.onEachIndexed { index, line ->
+                    when {
+                        releasesChangelog.size == index + 1 -> Unit
+                        unreleasedRegex.matches(line) -> add(line)
+                        h1Regex.matches(line) -> add(line)
+                        h2Regex.matches(line) -> add(line)
+                        h3Regex.matches(line) &&
+                            (h3Regex.matches(releasesChangelog[index + 1]) ||
+                                h2Regex.matches(releasesChangelog[index + 1])) -> add("")
+                        h3Regex.matches(line) -> add(line)
+                        else -> add(line)
+                    }
+                }
+            }
+            .filter(String::isNotBlank)
+
+    val changelogToWriteWithNoChanges =
+        changelogToWrite
+            .mapIndexed { index, line ->
+                val nextLine = changelogToWrite.getOrElse(index + 1) { "" }
+                if (!unreleasedRegex.matches(line) &&
+                        h2Regex.matches(line) &&
+                        h2Regex.matches(nextLine)
+                ) {
+                    "$line\n- No changes"
+                } else {
+                    line
+                }
+            }
+            .joinToString("\n") { line ->
+                when {
+                    h1Regex.matches(line) -> line
+                    unreleasedRegex.matches(line) -> "\n$line"
+                    h2Regex.matches(line) -> "\n$line"
+                    h3Regex.matches(line) -> "\n$line"
+                    else -> line
+                }
+            }
+            .replace("- No changes", "\n- No changes")
+            .replaceFirst("### Updated", "### Updated\n")
+
+    changelogFile.writeText(changelogToWriteWithNoChanges)
 }

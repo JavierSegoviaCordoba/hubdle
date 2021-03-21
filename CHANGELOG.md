@@ -11,10 +11,14 @@
 ### Removed
 
 ### Fixed
-- `changelog` was throwing an exception when it was being used by first time
 
 ### Updated
 
+
+## [0.1.0-alpha.13] - 2021-03-21
+
+### Fixed
+- `changelog` was throwing an exception when it was being used by first time
 
 ## [0.1.0-alpha.12] - 2021-03-21
 

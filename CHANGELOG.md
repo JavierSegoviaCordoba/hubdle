@@ -11,6 +11,7 @@
 ### Removed
 
 ### Fixed
+- `changelog` was throwing an exception
 
 ### Updated
 

@@ -28,9 +28,9 @@ fun improveChangelog(changelogFile: File) {
     val h3Regex = Regex("""^(###)(\s)(.*)${'$'}""")
 
     val lastReleaseIndex =
-            changelogWithoutBlankLines.indexOfFirst {
-                !unreleasedRegex.matches(it) && h2Regex.matches(it)
-            }.let { index -> if (index == -1) changelogWithoutBlankLines.size else index }
+        changelogWithoutBlankLines.indexOfFirst {
+            !unreleasedRegex.matches(it) && h2Regex.matches(it)
+        }
 
     val preReleasesChangelog = changelogWithoutBlankLines.subList(0, lastReleaseIndex)
     val releasesChangelog =
@@ -48,18 +48,21 @@ fun improveChangelog(changelogFile: File) {
                     }
                 }
 
-                releasesChangelog.onEachIndexed { index, line ->
-                    when {
-                        unreleasedRegex.matches(line) -> add(line)
-                        h1Regex.matches(line) -> add(line)
-                        h2Regex.matches(line) -> add(line)
-                        h3Regex.matches(line) &&
-                            (h3Regex.matches(releasesChangelog[index + 1]) ||
-                                h2Regex.matches(releasesChangelog[index + 1])) -> add("")
-                        h3Regex.matches(line) -> add(line)
-                        else -> add(line)
+                runCatching {
+                    releasesChangelog.onEachIndexed { index, line ->
+                        when {
+                            unreleasedRegex.matches(line) -> add(line)
+                            h1Regex.matches(line) -> add(line)
+                            h2Regex.matches(line) -> add(line)
+                            h3Regex.matches(line) &&
+                                (h3Regex.matches(releasesChangelog[index + 1]) ||
+                                    h2Regex.matches(releasesChangelog[index + 1])) -> add("")
+                            h3Regex.matches(line) -> add(line)
+                            else -> add(line)
+                        }
                     }
                 }
+                    .onFailure { add("") }
             }
             .filter(String::isNotBlank)
 
@@ -85,7 +88,6 @@ fun improveChangelog(changelogFile: File) {
                     else -> line
                 }
             }
-            .replace("- No changes", "\n- No changes")
             .replaceFirst("### Updated", "### Updated\n") + "\n"
 
     changelogFile.writeText(changelogToWriteWithNoChanges)

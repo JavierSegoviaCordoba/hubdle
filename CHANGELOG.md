@@ -11,6 +11,7 @@
 ### Removed
 
 ### Fixed
+- `detekt` warnings
 
 ### Updated
 

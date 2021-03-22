@@ -1,4 +1,4 @@
-@file:Suppress("FunctionName")
+@file:Suppress("TopLevelPropertyNaming")
 
 import org.gradle.plugin.use.PluginDependenciesSpec
 import org.gradle.plugin.use.PluginDependencySpec

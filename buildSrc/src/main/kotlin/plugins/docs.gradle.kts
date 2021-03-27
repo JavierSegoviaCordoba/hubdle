@@ -15,9 +15,5 @@ tasks {
     withType<DokkaMultiModuleTask>().configureEach {
         val dokkaDir = buildDir.resolve("dokka")
         outputDirectory.set(dokkaDir)
-
-        doLast {
-            dokkaDir.resolve("-modules.html").renameTo(dokkaDir.resolve("index.html"))
-        }
     }
 }

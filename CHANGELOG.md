@@ -11,11 +11,15 @@
 ### Removed
 
 ### Fixed
-- `publish-android-library` doesn't found any component
-- `detekt` warnings
 
 ### Updated
 
+
+## [0.1.0-alpha.15] - 2021-04-22
+
+### Fixed
+- `publish-android-library` doesn't found any component
+- `detekt` warnings
 
 ## [0.1.0-alpha.14] - 2021-03-22
 

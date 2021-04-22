@@ -29,41 +29,43 @@ val sourcesJar by project.tasks.creating(Jar::class) {
     )
 }
 
-configure<PublishingExtension> {
-    publications {
-        withType<MavenPublication> {
-            pom {
-                name.set(property("pomName").toString())
-                description.set(property("pomDescription").toString())
-                url.set(property("pomUrl").toString())
+afterEvaluate {
+    configure<PublishingExtension> {
+        publications {
+            withType<MavenPublication> {
+                pom {
+                    name.set(property("pomName").toString())
+                    description.set(property("pomDescription").toString())
+                    url.set(property("pomUrl").toString())
 
-                licenses {
-                    license {
-                        name.set(property("pomLicenseName").toString())
-                        url.set(property("pomLicenseUrl").toString())
+                    licenses {
+                        license {
+                            name.set(property("pomLicenseName").toString())
+                            url.set(property("pomLicenseUrl").toString())
+                        }
+                    }
+
+                    developers {
+                        developer {
+                            id.set(property("pomDeveloperId").toString())
+                            name.set(property("pomDeveloperName").toString())
+                            email.set(property("pomDeveloperEmail").toString())
+                        }
+                    }
+
+                    scm {
+                        url.set(property("pomSmcUrl").toString())
+                        connection.set(property("pomSmcConnection").toString())
+                        developerConnection.set(property("pomSmcDeveloperConnection").toString())
                     }
                 }
 
-                developers {
-                    developer {
-                        id.set(property("pomDeveloperId").toString())
-                        name.set(property("pomDeveloperName").toString())
-                        email.set(property("pomDeveloperEmail").toString())
-                    }
-                }
+                artifact(docsJar)
 
-                scm {
-                    url.set(property("pomSmcUrl").toString())
-                    connection.set(property("pomSmcConnection").toString())
-                    developerConnection.set(property("pomSmcDeveloperConnection").toString())
-                }
+                artifact(sourcesJar)
             }
-
-            artifact(docsJar)
-
-            artifact(sourcesJar)
+            create<MavenPublication>("release") { from(components["release"]) }
         }
-        create<MavenPublication>("release") { from(components["release"]) }
     }
 }
 

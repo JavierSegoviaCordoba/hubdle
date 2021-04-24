@@ -11,10 +11,14 @@
 ### Removed
 
 ### Fixed
-- `publish-android-library` doesn't sign the release publication
 
 ### Updated
 
+
+## [0.1.0-alpha.16] - 2021-04-24
+
+### Fixed
+- `publish-android-library` doesn't sign the release publication
 
 ## [0.1.0-alpha.15] - 2021-04-22
 

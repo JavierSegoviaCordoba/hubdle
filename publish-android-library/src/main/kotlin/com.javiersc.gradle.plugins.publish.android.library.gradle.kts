@@ -67,12 +67,12 @@ afterEvaluate {
             create<MavenPublication>("release") { from(components["release"]) }
         }
     }
-}
 
-configure<SigningExtension> {
-    if (!project.version.toString().endsWith("-SNAPSHOT") && isSignificant) {
-        useGpgCmd()
-        sign(extensions.getByName<PublishingExtension>("publishing").publications)
+    configure<SigningExtension> {
+        if (!project.version.toString().endsWith("-SNAPSHOT") && isSignificant) {
+            useGpgCmd()
+            sign(extensions.getByName<PublishingExtension>("publishing").publications)
+        }
     }
 }
 

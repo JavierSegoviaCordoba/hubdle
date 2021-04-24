@@ -11,6 +11,7 @@
 ### Removed
 
 ### Fixed
+- `publish-android-library` doesn't sign the release publication
 
 ### Updated
 

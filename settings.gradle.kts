@@ -25,6 +25,7 @@ dependencyResolutionManagement {
 include("core")
 
 include("accessors")
+include("all-plugins")
 
 include("changelog")
 include("code-analysis")

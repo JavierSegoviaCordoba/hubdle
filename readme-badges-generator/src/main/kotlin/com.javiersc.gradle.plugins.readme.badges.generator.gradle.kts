@@ -1,7 +1,5 @@
 @file:OptIn(ExperimentalStdlibApi::class)
 
-import org.gradle.accessors.dm.LibrariesForPluginLibs
-
 val shieldsIoUrl
     get() = "https://img.shields.io"
 
@@ -19,8 +17,24 @@ val repoWithoutUrlPrefix: String
     get() = repoUrl.replace("https://github.com/", "")
 
 fun buildKotlinVersionBadge(): String {
+    val kotlinVersion =
+        allprojects
+            .asSequence()
+            .flatMap { project ->
+                project.configurations.flatMap { configuration ->
+                    configuration.dependencies.filter { dependency ->
+                        dependency.group?.contains("org.jetbrains.kotlin") == true &&
+                            dependency.name.contains("kotlin-gradle-plugin")
+                    }
+                }
+            }
+            .toSet()
+            .filterNotNull()
+            .firstOrNull()
+            ?.version
+
     return "![Kotlin version]" +
-        "($shieldsIoUrl/badge/kotlin-${the<LibrariesForPluginLibs>().versions.kotlin.get()}-blueviolet" +
+        "($shieldsIoUrl/badge/kotlin-$kotlinVersion-blueviolet" +
         "?logo=kotlin&logoColor=white)"
 }
 

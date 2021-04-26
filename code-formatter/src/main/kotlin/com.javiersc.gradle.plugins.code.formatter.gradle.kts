@@ -1,5 +1,4 @@
 import com.diffplug.gradle.spotless.SpotlessExtension
-import org.gradle.accessors.dm.LibrariesForPluginLibs
 
 plugins {
     id("com.diffplug.spotless")
@@ -8,9 +7,6 @@ plugins {
 configure<SpotlessExtension> {
     kotlin {
         target("src/**/*.kt")
-        ktfmt(ktfmtVersion).kotlinlangStyle()
+        ktfmt().kotlinlangStyle()
     }
 }
-
-internal val Project.ktfmtVersion: String
-    get() = the<LibrariesForPluginLibs>().versions.ktfmt.get()

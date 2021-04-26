@@ -1,24 +1,49 @@
 @file:OptIn(ExperimentalStdlibApi::class)
 
-val shieldsIoUrl = "https://img.shields.io"
+val shieldsIoUrl
+    get() = "https://img.shields.io"
 
-val libGroup: String = property("libGroup")!!.toString()
-val libName: String = property("libName")!!.toString()
+val libGroup: String
+    get() = property("libGroup")!!.toString()
+val libName: String
+    get() = property("libName")!!.toString()
 
-val libFolderUrl: String = "$libGroup/$libName".replace(".", "/")
+val libFolderUrl: String
+    get() = "$libGroup/$libName".replace(".", "/")
 
-val repoUrl: String = property("pomSmcUrl")!!.toString()
-val repoWithoutUrlPrefix: String = repoUrl.replace("https://github.com/", "")
+val repoUrl: String
+    get() = property("pomSmcUrl")!!.toString()
+val repoWithoutUrlPrefix: String
+    get() = repoUrl.replace("https://github.com/", "")
 
 fun buildKotlinVersionBadge(): String {
+
+    val kotlinVersion =
+        allprojects
+            .asSequence()
+            .flatMap { project ->
+                project.configurations.flatMap { configuration ->
+                    configuration.dependencies.filter { dependency ->
+                        dependency.group?.contains("org.jetbrains.kotlin") == true &&
+                            dependency.name.contains("kotlin-gradle-plugin")
+                    }
+                }
+            }
+            .toSet()
+            .filterNotNull()
+            .firstOrNull()
+            ?.version
+
+    checkNotNull(kotlinVersion) { "Kotlin Gradle plugin is not being applied to any project" }
+
     return "![Kotlin version]" +
-        "($shieldsIoUrl/badge/kotlin-${pluginLibsAccessors.versions.kotlin.get()}-blueviolet" +
+        "($shieldsIoUrl/badge/kotlin-$kotlinVersion-blueviolet" +
         "?logo=kotlin&logoColor=white)"
 }
 
 fun buildMavenRepoBadge(subproject: String, mavenRepo: MavenRepo): String {
     val label: String =
-        if (property("shouldGenerateVersionBadgePerProject")!!.toString().toBoolean()) {
+        if (properties["shouldGenerateVersionBadgePerProject"]?.toString()?.toBoolean() == true) {
             "$subproject - ${mavenRepo.name}"
         } else {
             mavenRepo.name
@@ -70,20 +95,29 @@ enum class Sonar(val label: String, val path: String) {
 fun buildReadmeBadges(): List<String> = buildList {
     add(buildKotlinVersionBadge())
 
-    if (property("shouldGenerateVersionBadgePerProject")!!.toString().toBoolean()) {
+    if (properties["shouldGenerateVersionBadgePerProject"]?.toString()?.toBoolean() == true) {
         rootProject.subprojects.onEach {
             add("")
             add(buildMavenRepoBadge(it.name, MavenRepo.MavenCentral))
             add(buildMavenRepoBadge(it.name, MavenRepo.Snapshot))
         }
     } else {
-        val mainSubProjectName: String =
-            rootProject.subprojects.find {
-                    it.name.contains(property("mainSubProject")!!.toString())
-                }!!
-                .name
-        add(buildMavenRepoBadge(mainSubProjectName, MavenRepo.MavenCentral))
-        add(buildMavenRepoBadge(mainSubProjectName, MavenRepo.Snapshot))
+
+        rootProject.subprojects.firstOrNull { project ->
+            properties["mainSubProject"]?.toString()?.let(project.name::contains) ?: false
+        }
+
+        val mainSubProjectName: String? =
+            rootProject.subprojects
+                .firstOrNull { project ->
+                    properties["mainSubProject"]?.toString()?.let(project.name::contains) ?: false
+                }
+                ?.name
+
+        if (mainSubProjectName != null) {
+            add(buildMavenRepoBadge(mainSubProjectName, MavenRepo.MavenCentral))
+            add(buildMavenRepoBadge(mainSubProjectName, MavenRepo.Snapshot))
+        } else println("mainSubProject property not found or the subproject does not exist")
     }
 
     add("")
@@ -93,13 +127,17 @@ fun buildReadmeBadges(): List<String> = buildList {
     add("")
 }
 
-file("${rootProject.projectDir}/README.md").apply {
-    val content: List<String> = readLines()
-    val updatedContent: List<String> = buildList {
-        addAll(buildReadmeBadges())
-        addAll(content.subList(content.indexOfFirst { it.contains("# ") }, content.lastIndex + 1))
-        add("")
-    }
+rootProject.tasks.register("generateReadmeBadges") {
+    file("${rootProject.projectDir}/README.md").apply {
+        val content: List<String> = readLines()
+        val updatedContent: List<String> = buildList {
+            addAll(buildReadmeBadges())
+            addAll(
+                content.subList(content.indexOfFirst { it.contains("# ") }, content.lastIndex + 1)
+            )
+            add("")
+        }
 
-    writeText(updatedContent.joinToString(separator = "\n"))
+        writeText(updatedContent.joinToString(separator = "\n"))
+    }
 }

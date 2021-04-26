@@ -4,10 +4,6 @@ plugins {
     id("io.gitlab.arturbosch.detekt")
 }
 
-dependencies {
-    detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:$detektVersion")
-}
-
 detekt {
     failFast = false
     parallel = true
@@ -31,6 +27,3 @@ tasks.withType<Detekt>().configureEach {
         xml { enabled = false }
     }
 }
-
-internal val Project.detektVersion: String
-    get() = pluginLibsAccessors.versions.detekt.get()

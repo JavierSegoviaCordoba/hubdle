@@ -6,9 +6,6 @@ plugins {
 spotless {
     kotlin {
         target("src/**/*.kt")
-        ktfmt(ktfmtVersion).kotlinlangStyle()
+        ktfmt().kotlinlangStyle()
     }
 }
-
-internal val Project.ktfmtVersion: String
-    get() = pluginLibsAccessors.versions.ktfmt.get()

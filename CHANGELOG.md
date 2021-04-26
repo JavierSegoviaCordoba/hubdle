@@ -3,11 +3,22 @@
 ## [Unreleased]
 
 ### Added
-- Add `all-plugins` module which exposes all plugins
 
 ### Changed
 
 ### Deprecated
+
+### Removed
+
+### Fixed
+
+### Updated
+
+
+## [0.1.0-alpha.18] - 2021-04-26
+
+### Added
+- Add `all-plugins` module which exposes all plugins
 
 ### Removed
 - ktfmt uses the default Spotless ktfmt version instead of indicating the last one
@@ -15,9 +26,6 @@
 
 ### Fixed
 - Kotlin version is found by checking all the projects instead of from Version Catalog
-
-### Updated
-
 
 ## [0.1.0-alpha.17] - 2021-04-26
 

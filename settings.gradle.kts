@@ -2,6 +2,7 @@
 rootProject.name = providers.gradleProperty("libName").forUseAtConfigurationTime().get()
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+enableFeaturePreview("VERSION_CATALOGS")
 
 dependencyResolutionManagement {
     repositories {
@@ -12,8 +13,12 @@ dependencyResolutionManagement {
     }
 
     versionCatalogs {
-        create("libs") { from("com.javiersc.massive-catalogs:libs-catalog:0.1.0-alpha.3") }
-        create("pluginLibs") { from("com.javiersc.massive-catalogs:plugins-catalog:0.1.0-alpha.3") }
+        val massiveCatalogs: String by settings
+
+        create("libs") { from("com.javiersc.massive-catalogs:libs-catalog:$massiveCatalogs") }
+        create("pluginLibs") {
+            from("com.javiersc.massive-catalogs:plugins-catalog:$massiveCatalogs")
+        }
     }
 }
 

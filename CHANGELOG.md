@@ -13,7 +13,7 @@
 ### Fixed
 
 ### Updated
-
+- Gradle Wrapper to 7.0
 
 ## [0.1.0-alpha.16] - 2021-04-24
 

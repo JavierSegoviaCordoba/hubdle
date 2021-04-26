@@ -16,7 +16,8 @@ dependencies {
      * (https://github.com/gradle/gradle/issues/15383) When it is fixed, remove both implementations
      * and remove `VersionCatalogExtension.kt` file
      */
-    implementation(files(pluginLibs.javaClass.protectionDomain.codeSource.location))
+    implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
+    implementation(files(pluginLibs.javaClass.superclass.protectionDomain.codeSource.location))
 
     implementation(gradleApi())
     implementation(localGroovy())

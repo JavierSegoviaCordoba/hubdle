@@ -3,7 +3,6 @@
 ## [Unreleased]
 
 ### Added
-- `readme-badges-generator` prints Kotlin version
 
 ### Changed
 
@@ -14,6 +13,12 @@
 ### Fixed
 
 ### Updated
+
+
+## [0.1.0-alpha.20] - 2021-04-27
+
+### Added
+- `readme-badges-generator` prints Kotlin version
 
 ## [0.1.0-alpha.19] - 2021-04-27
 - No changes

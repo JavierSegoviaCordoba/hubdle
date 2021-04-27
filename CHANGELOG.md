@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 ### Added
+- `readme-badges-generator` prints Kotlin version
 
 ### Changed
 

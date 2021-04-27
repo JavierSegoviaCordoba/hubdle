@@ -29,6 +29,8 @@ fun buildKotlinVersionBadge(): String {
 
     checkNotNull(kotlinVersion) { "Kotlin Gradle plugin is not being applied to any project" }
 
+    logger.info("Kotlin version: $kotlinVersion")
+
     return "![Kotlin version]" +
         "($shieldsIoUrl/badge/kotlin-$kotlinVersion-blueviolet" +
         "?logo=kotlin&logoColor=white)"

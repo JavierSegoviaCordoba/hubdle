@@ -33,5 +33,6 @@ dependencies {
     implementation(files(libs.javaClass.protectionDomain.codeSource.location))
     implementation(files(pluginLibs.javaClass.protectionDomain.codeSource.location))
 
+    implementation(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)
     api(projects.accessors)
 }

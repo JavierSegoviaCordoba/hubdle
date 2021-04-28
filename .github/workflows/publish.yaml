@@ -65,6 +65,7 @@ jobs:
         run: echo ::set-output name=version::${GITHUB_REF/refs\/tags\//}
 
       - name: Deploy release docs to Github Pages inside specific version folder
+        if: ${{ !contains(github.ref, 'alpha') && !contains(github.ref, 'beta') && !contains(github.ref, 'rc') }}
         uses: JamesIves/github-pages-deploy-action@4.1.0
         with:
           target-folder: 'versions/${{ steps.tags.outputs.version }}'

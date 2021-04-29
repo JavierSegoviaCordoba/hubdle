@@ -7,12 +7,14 @@
 - Autogenerate ktfmt IDEA plugin config in `.idea` directory
 
 ### Changed
+- Dokka is automatically applied to all projects that are applying Kotlin Gradle plugin
 
 ### Deprecated
 
 ### Removed
 
 ### Fixed
+- module docs generated hasn't `MODULE.md` info
 
 ### Updated
 

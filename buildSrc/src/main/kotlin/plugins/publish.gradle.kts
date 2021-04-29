@@ -4,7 +4,7 @@ import internal.isSignificant
 plugins {
     `maven-publish`
     signing
-    id("docs")
+    id("org.jetbrains.dokka")
 }
 
 group = groupId

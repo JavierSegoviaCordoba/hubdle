@@ -29,4 +29,5 @@ dependencies {
     api(projects.accessors)
 
     api(pluginLibs.jetbrains.dokka.dokkaGradlePlugin)
+    api(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)
 }

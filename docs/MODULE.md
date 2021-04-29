@@ -9,3 +9,18 @@ plugins {
     id("com.javiersc.gradle.plugins.docs") version "$version"
 }
 ```
+
+### FAQ
+
+- Avoid certain modules can be published
+
+```kotlin
+dokkaHtmlMultiModule {
+    removeChildTasks(
+        listOf(
+            project(":subprojectA"),
+            project(":subprojectB")
+        )
+    )
+}
+```

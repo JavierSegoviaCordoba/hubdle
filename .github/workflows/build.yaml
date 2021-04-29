@@ -46,6 +46,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
+      - name: pip cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
       - name: Increment version
         run: ./gradlew reckonTagCreate -P"reckon.stage"="final"
 
@@ -63,22 +71,24 @@ jobs:
         with:
           sarif_file: 'build/reports/detekt/detekt.sarif'
 
-      - name: Generate snapshot docs
+      - name: Generate snapshot API docs
         if: ${{ (github.event_name == 'push') || (github.event_name == 'workflow_dispatch') }}
         run: ./gradlew dokkaHtmlMultiModule -P"reckon.stage"="snapshot" -P"isSnapshot"="true"
 
-      - name: Publish a snapshot
+      - name: Publish snapshot
         if: ${{ (github.event_name == 'push') || (github.event_name == 'workflow_dispatch') }}
         env:
           ossUser: ${{ secrets.OSS_USER }}
           ossToken: ${{ secrets.OSS_TOKEN }}
         run: ./gradlew publishToSonatype -P"reckon.stage"="snapshot" -P"isSnapshot"="true"
 
+      - name: Generate Site docs
+        run: ./gradlew buildDocs -P"reckon.stage"="snapshot" -P"isSnapshot"="true"
+
       - name: Deploy snapshot docs to Github Pages
-        uses: JamesIves/github-pages-deploy-action@4.1.0
+        uses: JamesIves/github-pages-deploy-action@4.1.1
         with:
-          target-folder: 'snapshot'
           branch: 'gh-pages'
-          folder: 'build/dokka'
+          folder: 'build/docs/_site'
           clean: false
           single-commit: true

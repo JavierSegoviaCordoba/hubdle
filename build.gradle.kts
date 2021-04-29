@@ -15,4 +15,6 @@ tasks {
         useJUnitPlatform()
         useTestNG()
     }
+
+    register<Delete>("clean") { delete(rootProject.buildDir) }
 }

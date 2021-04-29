@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 ### Added
+- `javiersc-docs` can generate a complete website via mkdocs
 - Autogenerate detekt IDEA plugin config in `.idea` directory
 - Autogenerate ktfmt IDEA plugin config in `.idea` directory
 

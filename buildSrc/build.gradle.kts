@@ -36,11 +36,13 @@ dependencies {
         implementation(github.benManes.gradleVersionsPlugin)
         implementation(github.gradleNexus.publishPlugin)
         implementation(gitlab.arturboschDetekt.detektGradlePlugin)
+        implementation(javiersc.massiveCatalogs.pluginsAccessors)
         implementation(jetbrains.dokka.dokkaCore)
         implementation(jetbrains.dokka.dokkaGradlePlugin)
         implementation(jetbrains.intellijPlugins.gradleChangelogPlugin)
         implementation(jetbrains.kotlin.kotlinGradlePlugin)
         implementation(jetbrains.kotlin.kotlinSerialization)
         implementation(jetbrains.kotlinx.binaryCompatibilityValidator)
+        implementation(vyarus.gradleMkdocsPlugin)
     }
 }

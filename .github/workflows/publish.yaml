@@ -41,10 +41,18 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
+      - name: pip cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
       - name: Gradle build
         run: ./gradlew build
 
-      - name: Generate docs
+      - name: Generate API docs
         run: ./gradlew dokkaHtmlMultiModule
 
       - name: Import GPG key
@@ -60,26 +68,15 @@ jobs:
 #      - name: Publish to Gradle Plugin Portal
 #        run: ./gradlew publishPlugins -P"signing.gnupg.keyName"="${{ secrets.GPG_KEY_NAME }}" -P"signing.gnupg.passphrase"="${{ secrets.GPG_PASSPHRASE }}" -P"gradle.publish.key"="${{ secrets.GRADLE_PUBLISH_KEY }}" -P"gradle.publish.secret"="${{ secrets.GRADLE_PUBLISH_SECRET }}"
 
-      - name: Set version
-        id: tags
-        run: echo ::set-output name=version::${GITHUB_REF/refs\/tags\//}
-
-      - name: Deploy release docs to Github Pages inside specific version folder
-        if: ${{ !contains(github.ref, 'alpha') && !contains(github.ref, 'beta') && !contains(github.ref, 'rc') }}
-        uses: JamesIves/github-pages-deploy-action@4.1.0
-        with:
-          target-folder: 'versions/${{ steps.tags.outputs.version }}'
-          branch: 'gh-pages'
-          folder: 'build/dokka'
-          clean: false
-          single-commit: true
+      - name: Generate Site docs
+        run: ./gradlew buildDocs
 
       - name: Deploy release docs to Github Pages
         if: ${{ !contains(github.ref, 'alpha') && !contains(github.ref, 'beta') && !contains(github.ref, 'rc') }}
-        uses: JamesIves/github-pages-deploy-action@4.1.0
+        uses: JamesIves/github-pages-deploy-action@4.1.1
         with:
           branch: 'gh-pages'
-          folder: 'build/dokka'
+          folder: 'build/docs/_site'
           clean: false
           single-commit: true
 

@@ -6,8 +6,8 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinBasePluginWrapper
 import ru.vyarus.gradle.plugin.mkdocs.MkdocsExtension
 
 plugins {
-    dokka
-    mkdocs
+    id("org.jetbrains.dokka")
+    id("ru.vyarus.mkdocs")
 }
 
 allprojects {

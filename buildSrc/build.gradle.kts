@@ -36,7 +36,6 @@ dependencies {
         implementation(github.benManes.gradleVersionsPlugin)
         implementation(github.gradleNexus.publishPlugin)
         implementation(gitlab.arturboschDetekt.detektGradlePlugin)
-        implementation(javiersc.massiveCatalogs.pluginsAccessors)
         implementation(jetbrains.dokka.dokkaCore)
         implementation(jetbrains.dokka.dokkaGradlePlugin)
         implementation(jetbrains.intellijPlugins.gradleChangelogPlugin)

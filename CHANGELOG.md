@@ -23,6 +23,7 @@
 ## [0.1.0-alpha.20] - 2021-04-27
 
 ### Added
+- `changelog` can merge non-final versions into one final version
 - `readme-badges-generator` prints Kotlin version
 
 ## [0.1.0-alpha.19] - 2021-04-27

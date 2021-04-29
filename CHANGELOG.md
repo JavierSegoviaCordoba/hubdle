@@ -3,6 +3,8 @@
 ## [Unreleased]
 
 ### Added
+- Autogenerate detekt IDEA plugin config in `.idea` directory
+- Autogenerate ktfmt IDEA plugin config in `.idea` directory
 
 ### Changed
 

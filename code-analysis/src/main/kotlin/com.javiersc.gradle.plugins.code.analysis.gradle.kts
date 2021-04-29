@@ -25,3 +25,25 @@ tasks.withType<Detekt>().configureEach {
         xml { enabled = false }
     }
 }
+
+val ideaDir = file("$rootDir/.idea").also(File::mkdirs)
+
+file("${ideaDir.path}/detekt.xml").apply {
+    if (!exists()) {
+        createNewFile()
+        writeText(detektXmlContent)
+    }
+}
+
+val detektXmlContent: String
+    get() =
+        """
+            <?xml version="1.0" encoding="UTF-8"?>
+            <project version="4">
+              <component name="DetektProjectConfiguration">
+                <enableDetekt>true</enableDetekt>
+                <enableFormatting>true</enableFormatting>
+                <buildUponDefaultConfig>true</buildUponDefaultConfig>
+              </component>
+            </project>
+        """.trimIndent()

@@ -122,7 +122,7 @@ fun buildReadmeBadges(): List<String> = buildList {
     add("")
 }
 
-rootProject.tasks.register("generateReadmeBadges") {
+rootProject.tasks.register("buildReadmeBadges") {
     file("${rootProject.projectDir}/README.md").apply {
         val content: List<String> = readLines()
         val updatedContent: List<String> = buildList {

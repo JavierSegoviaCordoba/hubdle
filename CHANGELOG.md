@@ -8,6 +8,7 @@
 - Autogenerate ktfmt IDEA plugin config in `.idea` directory
 
 ### Changed
+- Changelog registers `mergeChangelog` task instead of merging automatically with `patchChangelog`
 - Dokka is automatically applied to all projects that are applying Kotlin Gradle plugin
 
 ### Deprecated

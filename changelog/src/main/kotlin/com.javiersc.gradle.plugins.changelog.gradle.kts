@@ -21,6 +21,11 @@ tasks {
     named<PatchChangelogTask>("patchChangelog") {
         doLast {
             improveChangelog()
+        }
+    }
+
+    register("mergeChangelog") {
+        doLast {
             if ("${project.version}".all { it.isDigit() || it == '.' }) {
                 mergeChangelog("${project.version}")
             }

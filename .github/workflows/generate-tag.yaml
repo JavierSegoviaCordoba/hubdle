@@ -90,7 +90,7 @@ jobs:
           echo "lib_version=$(cat build/versioning/version.txt)" >> $GITHUB_ENV
 
       - name: Patch Changelog and regenerate README badges
-        run: ./gradlew patchChangelog generateReadmeBadges -P"reckon.scope"="${{ github.event.inputs.scope }}" -P"reckon.stage"="${{ github.event.inputs.stage }}"
+        run: ./gradlew patchChangelog mergeChangelog generateReadmeBadges -P"reckon.scope"="${{ github.event.inputs.scope }}" -P"reckon.stage"="${{ github.event.inputs.stage }}"
 
       - name: Commit files
         run: |

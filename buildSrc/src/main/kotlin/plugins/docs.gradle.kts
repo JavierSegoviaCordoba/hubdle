@@ -51,31 +51,11 @@ tasks {
             }
         }
 
-        copyChangelogFileAndRemoveUnreleased()
+        buildChangelogInDocs()
+        buildApiDocsInDocs()
+        buildProjectsInDocs()
 
         dependsOn("mkdocsBuild")
-
-        doLast {
-            if (isSignificant) {
-                if (project.version.toString().endsWith("-SNAPSHOT")) {
-                    copy {
-                        from("$rootDir/build/dokka")
-                        into("$rootDir/build/docs/_site/api/snapshots")
-                    }
-                } else {
-                    file("$rootDir/build/docs/_site/api/index.html").apply {
-                        ensureParentDirsCreated()
-                        if (!exists()) createNewFile()
-                        writeText(indexHtmlContent)
-                    }
-
-                    copy {
-                        from("$rootDir/build/dokka")
-                        into("$rootDir/build/docs/_site/api/versions/${project.version}")
-                    }
-                }
-            }
-        }
     }
 }
 
@@ -89,7 +69,7 @@ configure<MkdocsExtension> {
     publish.docPath = "_site"
 }
 
-val indexHtmlContent: String
+val apiIndexHtmlContent: String
     get() =
         """
             <html xmlns="http://www.w3.org/1999/xhtml">
@@ -101,7 +81,54 @@ val indexHtmlContent: String
             </html>
         """.trimIndent()
 
-fun copyChangelogFileAndRemoveUnreleased() {
+@OptIn(ExperimentalStdlibApi::class)
+fun Task.buildApiDocsInDocs() {
+    val docsNavigation = getDocsNavigation()
+    val navsPlusApiDocs =
+        docsNavigation.navs +
+            """
+           |  - API docs: 
+           |        - Latest: api/
+           |        - Snapshot: api/snapshot
+        """.trimMargin()
+
+    mkdocsBuildFile.writeText(
+        buildList<String> {
+                addAll(mkdocsBuildFile.readLines())
+                removeAt(docsNavigation.index)
+                removeAll(docsNavigation.navs)
+                add("")
+                add("nav:")
+                addAll(navsPlusApiDocs)
+            }
+            .joinToString("\n")
+    )
+
+    doLast {
+        if (isSignificant) {
+            if (project.version.toString().endsWith("-SNAPSHOT")) {
+                copy {
+                    from("$rootDir/build/dokka")
+                    into("$rootDir/build/docs/_site/api/snapshot")
+                }
+            } else {
+                file("$rootDir/build/docs/_site/api/index.html").apply {
+                    ensureParentDirsCreated()
+                    if (!exists()) createNewFile()
+                    writeText(apiIndexHtmlContent)
+                }
+
+                copy {
+                    from("$rootDir/build/dokka")
+                    into("$rootDir/build/docs/_site/api/versions/${project.version}")
+                }
+            }
+        }
+    }
+}
+
+@OptIn(ExperimentalStdlibApi::class)
+fun buildChangelogInDocs() {
     if (file("$rootDir/CHANGELOG.md").exists()) {
         copy {
             from("$rootDir/CHANGELOG.md")
@@ -120,5 +147,82 @@ fun copyChangelogFileAndRemoveUnreleased() {
                     .joinToString("\n")
             writeText(contentUpdated)
         }
+
+        val docsNavigation = getDocsNavigation()
+        val navsPlusChangelog = docsNavigation.navs + "  - Changelog: CHANGELOG.md"
+
+        mkdocsBuildFile.writeText(
+            buildList<String> {
+                    addAll(mkdocsBuildFile.readLines())
+                    removeAt(docsNavigation.index)
+                    removeAll(docsNavigation.navs)
+                    add("")
+                    add("nav:")
+                    addAll(navsPlusChangelog)
+                }
+                .joinToString("\n")
+        )
     }
+}
+
+@OptIn(ExperimentalStdlibApi::class)
+fun buildProjectsInDocs() {
+    class ProjectInfo(val name: String, val mdFile: File)
+
+    val projectsInfo =
+        subprojects.map { project ->
+            val mdFiles =
+                project.projectDir.walkTopDown().maxDepth(1).filter { file ->
+                    file.name.endsWith(".md", true)
+                }
+            val mdFile =
+                mdFiles.find { file -> file.name.contains("MODULE", true) }
+                    ?: mdFiles.find { file -> file.name.contains("README", true) }
+                        ?: mdFiles.first()
+
+            ProjectInfo(project.name, mdFile)
+        }
+
+    projectsInfo.map {
+        copy {
+            from(it.mdFile)
+            into("$rootDir/build/.docs/docs/projects")
+            rename { fileName -> fileName.replace(fileName, "${it.name}.md") }
+        }
+    }
+
+    val docsNavigation = getDocsNavigation()
+    val navsPlusProjects =
+        docsNavigation.navs +
+            "  - Projects:" +
+            projectsInfo.map { "    - ${it.name}: projects/${it.name}.md" }
+
+    mkdocsBuildFile.writeText(
+        buildList<String> {
+                addAll(mkdocsBuildFile.readLines())
+                removeAt(docsNavigation.index)
+                removeAll(docsNavigation.navs)
+                add("")
+                add("nav:")
+                addAll(navsPlusProjects)
+            }
+            .joinToString("\n")
+    )
+}
+
+val mkdocsBuildFile: File
+    get() = file("$rootDir/build/.docs/mkdocs.yml")
+
+data class DocsNavigation(val index: Int, val navs: List<String>)
+
+fun getDocsNavigation(): DocsNavigation {
+    val content = mkdocsBuildFile.readLines()
+    val navIndex = content.indexOfFirst { it.replace(" ", "").startsWith("nav:", true) }
+    return DocsNavigation(
+            index = navIndex,
+            navs =
+                content.subList(navIndex + 1, content.count()).takeWhile {
+                    it.replace(" ", "").startsWith("-")
+                }
+        )
 }

@@ -7,14 +7,31 @@ public final class Com_javiersc_gradle_plugins_docsPlugin : org/gradle/api/Plugi
 public class Com_javiersc_gradle_plugins_docs_gradle : org/gradle/kotlin/dsl/precompile/v1/PrecompiledProjectScript {
 	public final field $$implicitReceiver0 Lorg/gradle/api/Project;
 	public fun <init> (Lorg/gradle/api/Project;Lorg/gradle/api/Project;)V
-	public final fun copyChangelogFileAndRemoveUnreleased ()V
-	public final fun getIndexHtmlContent ()Ljava/lang/String;
+	public final fun buildApiDocsInDocs (Lorg/gradle/api/Task;)V
+	public final fun buildChangelogInDocs ()V
+	public final fun buildProjectsInDocs ()V
+	public final fun getApiIndexHtmlContent ()Ljava/lang/String;
+	public final fun getDocsNavigation ()LCom_javiersc_gradle_plugins_docs_gradle$DocsNavigation;
+	public final fun getMkdocsBuildFile ()Ljava/io/File;
 	public static final fun main ([Ljava/lang/String;)V
 }
 
 public final class Com_javiersc_gradle_plugins_docs_gradle$2$1$inlined$sam$i$org_gradle_api_Action$0 : org/gradle/api/Action {
 	public fun <init> (Lkotlin/jvm/functions/Function1;)V
 	public final synthetic fun execute (Ljava/lang/Object;)V
+}
+
+public final class Com_javiersc_gradle_plugins_docs_gradle$DocsNavigation {
+	public fun <init> (ILjava/util/List;)V
+	public final fun component1 ()I
+	public final fun component2 ()Ljava/util/List;
+	public final fun copy (ILjava/util/List;)LCom_javiersc_gradle_plugins_docs_gradle$DocsNavigation;
+	public static synthetic fun copy$default (LCom_javiersc_gradle_plugins_docs_gradle$DocsNavigation;ILjava/util/List;ILjava/lang/Object;)LCom_javiersc_gradle_plugins_docs_gradle$DocsNavigation;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getIndex ()I
+	public final fun getNavs ()Ljava/util/List;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class Com_javiersc_gradle_plugins_docs_gradle$inlined$sam$i$org_gradle_api_Action$0 : org/gradle/api/Action {

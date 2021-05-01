@@ -4,6 +4,7 @@
 
 ### Added
 - `javiersc-docs` can generate a complete website via mkdocs
+- `javiersc-docs` autogenerate nav bar by adding Changelog, API docs and Projects
 - Autogenerate detekt IDEA plugin config in `.idea` directory
 - Autogenerate ktfmt IDEA plugin config in `.idea` directory
 

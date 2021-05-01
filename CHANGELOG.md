@@ -15,6 +15,7 @@
 ### Deprecated
 
 ### Removed
+- `jcenter()`
 
 ### Fixed
 - module docs generated hasn't `MODULE.md` info

@@ -8,7 +8,6 @@ dependencyResolutionManagement {
     repositories {
         mavenCentral()
         google()
-        jcenter()
         gradlePluginPortal()
         maven {
             setUrl("https://oss.sonatype.org/content/repositories/snapshots")

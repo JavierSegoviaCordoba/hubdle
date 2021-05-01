@@ -6,14 +6,10 @@
 [![Quality](https://img.shields.io/sonar/quality_gate/JavierSegoviaCordoba_gradle-plugins?label=Quality&logo=SonarCloud&logoColor=white&server=https%3A%2F%2Fsonarcloud.io)](https://sonarcloud.io/dashboard?id=JavierSegoviaCordoba_gradle-plugins)
 [![Tech debt](https://img.shields.io/sonar/tech_debt/JavierSegoviaCordoba_gradle-plugins?label=Tech%20debt&logo=SonarCloud&logoColor=white&server=https%3A%2F%2Fsonarcloud.io)](https://sonarcloud.io/dashboard?id=JavierSegoviaCordoba_gradle-plugins)
 
-# Massive Catalogs
+# Gradle Plugins
 
-## Usage
+## Usage and docs
 
-```
-// TODO
-```
-
-### Docs
-
-All docs are available on the [Gradle Plugins website](https://gradle-plugins.javiersc.com)
+Check the usage of each Gradle Plugin by visiting the 
+[Gradle Plugins website](https://gradle-plugins.javiersc.com) and expand the `Projects` dropdown
+menu in the navigation bar.

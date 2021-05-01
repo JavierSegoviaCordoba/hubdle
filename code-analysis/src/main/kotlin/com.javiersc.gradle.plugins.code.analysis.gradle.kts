@@ -1,7 +1,9 @@
 import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.extensions.DetektExtension
 
-plugins { id("io.gitlab.arturbosch.detekt") }
+plugins {
+    id("io.gitlab.arturbosch.detekt")
+}
 
 configure<DetektExtension> {
     failFast = false

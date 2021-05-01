@@ -1,4 +1,5 @@
 import com.diffplug.gradle.spotless.SpotlessExtension
+import org.jetbrains.kotlin.gradle.plugin.KotlinBasePluginWrapper
 
 plugins {
     id("com.diffplug.spotless")
@@ -31,3 +32,11 @@ val ktfmtXmlContent: String
               </component>
             </project>
         """.trimIndent()
+
+allprojects {
+    afterEvaluate {
+        if (plugins.asSequence().mapNotNull { (it as? KotlinBasePluginWrapper) }.count() > 0) {
+            plugins.apply("code-formatter")
+        }
+    }
+}

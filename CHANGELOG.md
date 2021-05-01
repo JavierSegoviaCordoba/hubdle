@@ -3,13 +3,14 @@
 ## [Unreleased]
 
 ### Added
-- `javiersc-docs` can generate a complete website via mkdocs
-- `javiersc-docs` autogenerate nav bar by adding Changelog, API docs and Projects
+- `docs` can generate a complete website via mkdocs
+- `docs` autogenerate nav bar by adding Changelog, API docs and Projects
 - Autogenerate detekt IDEA plugin config in `.idea` directory
 - Autogenerate ktfmt IDEA plugin config in `.idea` directory
 
 ### Changed
-- `readme-badges-generator` task `generateReadmeBadges` to `buildReadmeBadges`
+- `code-formatter` is applied to all Kotlin projects by adding it in root `build.gradle.kts`
+- `readme-badges-generator` rename `generateReadmeBadges` task to `buildReadmeBadges`
 - Changelog registers `mergeChangelog` task instead of merging automatically with `patchChangelog`
 - Dokka is automatically applied to all projects that are applying Kotlin Gradle plugin
 

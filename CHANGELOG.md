@@ -21,6 +21,7 @@
 
 ### Fixed
 - module docs generated hasn't `MODULE.md` info
+- All `publish-*` plugins have using Dokka incorrectly
 
 ### Updated
 

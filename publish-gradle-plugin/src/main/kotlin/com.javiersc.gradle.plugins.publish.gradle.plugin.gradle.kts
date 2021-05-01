@@ -1,5 +1,4 @@
 import com.javiersc.plugins.core.isSignificant
-import org.jetbrains.dokka.gradle.DokkaTask
 
 plugins {
     `maven-publish`
@@ -10,16 +9,15 @@ plugins {
 
 val docsJar by project.tasks.creating(Jar::class) {
     group = "build"
-    description = "Assembles Sources jar file from for publishing"
-    archiveClassifier.set("sources")
-    from((project.properties["sourceSets"] as SourceSetContainer)["main"].allSource)
+    description = "Assembles Javadoc jar file from for publishing"
+    archiveClassifier.set("javadoc")
 }
 
 val sourcesJar by project.tasks.creating(Jar::class) {
     group = "build"
-    description = "Assembles Javadoc jar file from for publishing"
-    archiveClassifier.set("javadoc")
-    dependsOn(tasks.named<DokkaTask>("dokkaHtml"))
+    description = "Assembles Sources jar file for publishing"
+    archiveClassifier.set("sources")
+    from((project.properties["sourceSets"] as SourceSetContainer)["main"].allSource)
 }
 
 configure<PublishingExtension> {

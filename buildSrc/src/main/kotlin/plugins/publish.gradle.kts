@@ -10,11 +10,14 @@ plugins {
 group = groupId
 
 val dokkaJar by tasks.creating(Jar::class) {
+    group = "build"
+    description = "Assembles Javadoc jar file from for publishing"
     archiveClassifier.set("javadoc")
-    dependsOn(tasks.dokkaHtml)
 }
 
 val sourcesJar by tasks.creating(Jar::class) {
+    group = "build"
+    description = "Assembles Sources jar file for publishing"
     archiveClassifier.set("sources")
     from((project.properties["sourceSets"] as SourceSetContainer)["main"].allSource)
 }

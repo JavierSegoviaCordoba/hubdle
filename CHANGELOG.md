@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 ### Added
+- `docs` plugin autogenerate `.docs` and children dirs if they don't exist
 - `docs` can generate a complete website via mkdocs
 - `docs` autogenerate nav bar by adding Changelog, API docs and Projects
 - Autogenerate detekt IDEA plugin config in `.idea` directory

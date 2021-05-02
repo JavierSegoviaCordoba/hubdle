@@ -38,23 +38,13 @@ tasks {
     }
 
     register("buildDocs") {
-        copy {
-            from("$rootDir/.docs")
-            into("$rootDir/build/.docs")
-        }
-
-        if (file("$rootDir/.docs/index.md").exists().not()) {
-            copy {
-                from("$rootDir/README.md")
-                into("$rootDir/build/.docs/docs")
-                rename { fileName -> fileName.replace(fileName, "index.md") }
-            }
-        }
-
+        buildDotDocsFolder()
+        buildBuildDotDocs()
         buildChangelogInDocs()
         buildApiDocsInDocs()
         buildProjectsInDocs()
 
+        allprojects.onEach { runCatching { dependsOn(it.tasks.getByName("dokkaHtmlMultiModule")) } }
         dependsOn("mkdocsBuild")
     }
 }
@@ -81,6 +71,121 @@ val apiIndexHtmlContent: String
             </html>
         """.trimIndent()
 
+fun buildDotDocsFolder() {
+    val dotDocsFile = file("$rootDir/.docs")
+    if (dotDocsFile.exists().not()) {
+        file("$dotDocsFile/mkdocs.yml").apply {
+            ensureParentDirsCreated()
+            createNewFile()
+            writeText(
+                """|# TODO: Change all necessary properties
+                   |site_name: NAME # TODO
+                   |site_description: DESCRIPTION # TODO
+                   |site_author: AUTHOR # TODO
+                   |remote_branch: gh-pages
+                   |
+                   |repo_name: REPO NAME # TODO
+                   |repo_url: https://github.com/USER/REPO-NAME # TODO
+                   |
+                   |copyright: 'Copyright &copy; 2021 AUTHOR' # TODO
+                   |
+                   |theme:
+                   |  name: 'material'
+                   |  language: 'en'
+                   |  # TODO favicon: 'assets/favicon-512.png'
+                   |  # TODO logo: 'assets/favicon-512.png'
+                   |  palette:
+                   |    primary: 'white'
+                   |    accent: 'white'
+                   |  font:
+                   |    text: 'Fira Sans'
+                   |    code: 'JetBrains Mono'
+                   |
+                   |nav:
+                   |  - Overview: index.md
+                   |
+                   |plugins:
+                   |  - search
+                   |
+                   |markdown_extensions:
+                   |  - admonition
+                   |  - smarty
+                   |  - codehilite:
+                   |      guess_lang: false
+                   |      linenums: True
+                   |  - footnotes
+                   |  - meta
+                   |  - toc:
+                   |      permalink: true
+                   |  - pymdownx.betterem:
+                   |      smart_enable: all
+                   |  - pymdownx.caret
+                   |  - pymdownx.details
+                   |  - pymdownx.inlinehilite
+                   |  - pymdownx.magiclink
+                   |  - pymdownx.smartsymbols
+                   |  - pymdownx.superfences
+                   |  - tables
+                   |
+                   |extra:
+                   |  social:
+                   |    - icon: fontawesome/brands/github
+                   |      link: https://github.com/USER # TODO
+                   |    - icon: fontawesome/brands/twitter
+                   |      link: https://twitter.com/USER # TODO
+                   |
+                   |extra_css:
+                   |  - css/all.css
+                   |
+                """.trimMargin()
+            )
+        }
+
+        file("$dotDocsFile/docs/css/all.css").apply {
+            ensureParentDirsCreated()
+            createNewFile()
+            writeText(
+                """
+                    code {
+                        font-weight: 600;
+                    }
+
+                    @media screen and (min-width: 76.1875em) {
+                        .md-nav--primary .md-nav__title {
+                            display: none;
+                        }
+                    }
+
+                    .md-nav__link--active {
+                        font-weight: bold;
+                    }
+
+                """.trimIndent()
+            )
+        }
+
+        file("$dotDocsFile/docs/assets/empty.file").apply {
+            ensureParentDirsCreated()
+            createNewFile()
+        }
+    }
+}
+
+fun buildBuildDotDocs() {
+    copy {
+        from("$rootDir/.docs")
+        into("$rootDir/build/.docs")
+    }
+
+    if (file("$rootDir/.docs/index.md").exists().not()) {
+        copy {
+            from("$rootDir/README.md")
+            into("$rootDir/build/.docs/docs")
+            rename { fileName -> fileName.replace(fileName, "index.md") }
+        }
+    }
+}
+
 @OptIn(ExperimentalStdlibApi::class)
 fun Task.buildApiDocsInDocs() {
     val docsNavigation = getDocsNavigation()
@@ -94,13 +199,13 @@ fun Task.buildApiDocsInDocs() {
 
     mkdocsBuildFile.writeText(
         buildList<String> {
-            addAll(mkdocsBuildFile.readLines())
-            removeAt(docsNavigation.index)
-            removeAll(docsNavigation.navs)
-            add("")
-            add("nav:")
-            addAll(navsPlusApiDocs)
-        }
+                addAll(mkdocsBuildFile.readLines())
+                removeAt(docsNavigation.index)
+                removeAll(docsNavigation.navs)
+                add("")
+                add("nav:")
+                addAll(navsPlusApiDocs)
+            }
             .joinToString("\n")
     )
 
@@ -153,13 +258,13 @@ fun buildChangelogInDocs() {
 
         mkdocsBuildFile.writeText(
             buildList<String> {
-                addAll(mkdocsBuildFile.readLines())
-                removeAt(docsNavigation.index)
-                removeAll(docsNavigation.navs)
-                add("")
-                add("nav:")
-                addAll(navsPlusChangelog)
-            }
+                    addAll(mkdocsBuildFile.readLines())
+                    removeAt(docsNavigation.index)
+                    removeAll(docsNavigation.navs)
+                    add("")
+                    add("nav:")
+                    addAll(navsPlusChangelog)
+                }
                 .joinToString("\n")
         )
     }
@@ -178,7 +283,7 @@ fun buildProjectsInDocs() {
             val mdFile =
                 mdFiles.find { file -> file.name.contains("MODULE", true) }
                     ?: mdFiles.find { file -> file.name.contains("README", true) }
-                    ?: mdFiles.first()
+                        ?: mdFiles.first()
 
             ProjectInfo(project.name, mdFile)
         }
@@ -199,13 +304,13 @@ fun buildProjectsInDocs() {
 
     mkdocsBuildFile.writeText(
         buildList<String> {
-            addAll(mkdocsBuildFile.readLines())
-            removeAt(docsNavigation.index)
-            removeAll(docsNavigation.navs)
-            add("")
-            add("nav:")
-            addAll(navsPlusProjects)
-        }
+                addAll(mkdocsBuildFile.readLines())
+                removeAt(docsNavigation.index)
+                removeAll(docsNavigation.navs)
+                add("")
+                add("nav:")
+                addAll(navsPlusProjects)
+            }
             .joinToString("\n")
     )
 }
@@ -221,8 +326,8 @@ fun getDocsNavigation(): DocsNavigation {
     return DocsNavigation(
         index = navIndex,
         navs =
-        content.subList(navIndex + 1, content.count()).takeWhile {
-            it.replace(" ", "").startsWith("-")
-        }
+            content.subList(navIndex + 1, content.count()).takeWhile {
+                it.replace(" ", "").startsWith("-")
+            }
     )
 }

@@ -71,9 +71,9 @@ jobs:
         with:
           sarif_file: 'build/reports/detekt/detekt.sarif'
 
-      - name: Generate snapshot API docs
+      - name: Generate docs
         if: ${{ (github.event_name == 'push') || (github.event_name == 'workflow_dispatch') }}
-        run: ./gradlew dokkaHtmlMultiModule -P"reckon.stage"="snapshot" -P"isSnapshot"="true"
+        run: ./gradlew buildDocs -P"reckon.stage"="snapshot" -P"isSnapshot"="true"
 
       - name: Publish snapshot
         if: ${{ (github.event_name == 'push') || (github.event_name == 'workflow_dispatch') }}
@@ -81,9 +81,6 @@ jobs:
           ossUser: ${{ secrets.OSS_USER }}
           ossToken: ${{ secrets.OSS_TOKEN }}
         run: ./gradlew publishToSonatype -P"reckon.stage"="snapshot" -P"isSnapshot"="true"
-
-      - name: Generate Site docs
-        run: ./gradlew buildDocs -P"reckon.stage"="snapshot" -P"isSnapshot"="true"
 
       - name: Deploy snapshot docs to Github Pages
         uses: JamesIves/github-pages-deploy-action@4.1.1

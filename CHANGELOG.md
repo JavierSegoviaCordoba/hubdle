@@ -3,6 +3,21 @@
 ## [Unreleased]
 
 ### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Updated
+
+
+## [0.1.0-alpha.21] - 2021-05-02
+
+### Added
 - `docs` plugin autogenerate `.docs` and children dirs if they don't exist
 - `docs` can generate a complete website via mkdocs
 - `docs` autogenerate nav bar by adding Changelog, API docs and Projects
@@ -15,17 +30,12 @@
 - Changelog registers `mergeChangelog` task instead of merging automatically with `patchChangelog`
 - Dokka is automatically applied to all projects that are applying Kotlin Gradle plugin
 
-### Deprecated
-
 ### Removed
 - `jcenter()`
 
 ### Fixed
 - module docs generated hasn't `MODULE.md` info
 - All `publish-*` plugins have using Dokka incorrectly
-
-### Updated
-
 
 ## [0.1.0-alpha.20] - 2021-04-27
 

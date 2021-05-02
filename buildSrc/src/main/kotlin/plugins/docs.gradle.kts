@@ -89,7 +89,7 @@ fun Task.buildApiDocsInDocs() {
             """
            |  - API docs: 
            |        - Latest: api/
-           |        - Snapshot: api/snapshot
+           |        - Snapshot: api/snapshot/
         """.trimMargin()
 
     mkdocsBuildFile.writeText(

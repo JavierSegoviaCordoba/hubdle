@@ -11,9 +11,14 @@
 ### Removed
 
 ### Fixed
-- Fix applying incorrect id in `code-formatter`
 
 ### Updated
+
+
+## [0.1.0-alpha.23] - 2021-05-03
+
+### Fixed
+- Fix applying incorrect id in `code-formatter`
 
 ## [0.1.0-alpha.22] - 2021-05-03
 - No changes

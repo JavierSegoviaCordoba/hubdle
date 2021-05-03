@@ -11,6 +11,7 @@
 ### Removed
 
 ### Fixed
+- Fix applying incorrect id in `code-formatter`
 
 ### Updated
 

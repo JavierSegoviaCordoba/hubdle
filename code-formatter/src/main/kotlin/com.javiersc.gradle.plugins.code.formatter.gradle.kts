@@ -36,7 +36,7 @@ val ktfmtXmlContent: String
 allprojects {
     afterEvaluate {
         if (plugins.asSequence().mapNotNull { (it as? KotlinBasePluginWrapper) }.count() > 0) {
-            plugins.apply("code-formatter")
+            plugins.apply("com.javiersc.gradle.plugins.code.formatter")
         }
     }
 }

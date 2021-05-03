@@ -24,8 +24,6 @@ gradlePlugin {
 }
 
 dependencies {
-    implementation(files(pluginLibs.javaClass.protectionDomain.codeSource.location))
-
     api(projects.accessors)
 
     api(pluginLibs.github.benManes.gradleVersionsPlugin)

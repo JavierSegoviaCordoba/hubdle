@@ -9,22 +9,9 @@ dependencyResolutionManagement {
         mavenCentral()
         google()
         gradlePluginPortal()
-        maven {
-            setUrl("https://oss.sonatype.org/content/repositories/snapshots")
-            content {
-                includeGroup("com.javiersc.massive-catalogs")
-            }
-        }
     }
 
-    versionCatalogs {
-        val massiveCatalogs: String by settings
-
-        create("libs") { from("com.javiersc.massive-catalogs:libs-catalog:$massiveCatalogs") }
-        create("pluginLibs") {
-            from("com.javiersc.massive-catalogs:plugins-catalog:$massiveCatalogs")
-        }
-    }
+    defaultLibrariesExtensionName.set("pluginLibs")
 }
 
 include("core")

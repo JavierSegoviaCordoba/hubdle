@@ -24,12 +24,9 @@ gradlePlugin {
 }
 
 dependencies {
-    implementation(files(pluginLibs.javaClass.protectionDomain.codeSource.location))
-
     api(projects.accessors)
     api(projects.core)
 
-    api(pluginLibs.javiersc.massiveCatalogs.pluginsAccessors)
     api(pluginLibs.jetbrains.dokka.dokkaGradlePlugin)
     api(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)
     api(pluginLibs.vyarus.gradleMkdocsPlugin)

@@ -11,7 +11,13 @@ dependencyResolutionManagement {
         gradlePluginPortal()
     }
 
-    defaultLibrariesExtensionName.set("pluginLibs")
+    versionCatalogs {
+        val massiveCatalogs: String by settings
+
+        create("pluginLibs") {
+            from("com.javiersc.massive-catalogs:plugins-catalog:$massiveCatalogs")
+        }
+    }
 }
 
 include("core")

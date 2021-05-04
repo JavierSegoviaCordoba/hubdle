@@ -27,6 +27,6 @@ dependencies {
     api(projects.publishKotlinJvm)
     api(projects.publishKotlinMultiplatform)
     api(projects.publishVersionCatalog)
-    api(projects.readmeBadgesGenerator)
+    api(projects.readmeBadges)
     api(projects.versioning)
 }

@@ -5,6 +5,9 @@
 ### Added
 
 ### Changed
+- `readme-badges-generator` renamed to `readme-badges`
+- `mainSubProject` property renamed to `readmeBadges.mainProject`
+- `shouldGenerateVersionBadgePerProject` renamed to `readmeBadges.allProjects`
 
 ### Deprecated
 

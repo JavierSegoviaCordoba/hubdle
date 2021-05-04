@@ -6,7 +6,7 @@ plugins {
     docs
     `binary-compatibility-validator`
     nexus
-    readme
+    `readme-badges`
 }
 
 tasks {

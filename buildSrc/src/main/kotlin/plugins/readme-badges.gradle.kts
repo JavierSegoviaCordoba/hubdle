@@ -90,29 +90,29 @@ enum class Sonar(val label: String, val path: String) {
 fun buildReadmeBadges(): List<String> = buildList {
     add(buildKotlinVersionBadge())
 
-    if (properties["shouldGenerateVersionBadgePerProject"]?.toString()?.toBoolean() == true) {
+    if (properties["readmeBadges.allProjects"]?.toString()?.toBoolean() == true) {
         rootProject.subprojects.onEach {
             add("")
             add(buildMavenRepoBadge(it.name, MavenRepo.MavenCentral))
             add(buildMavenRepoBadge(it.name, MavenRepo.Snapshot))
         }
     } else {
+        val mainProjectValue: String =
+            checkNotNull(properties["readmeBadges.mainProject"]?.toString()) {
+                "readmeBadges.mainProject is missing, add it to gradle.properties"
+            }
 
-        rootProject.subprojects.firstOrNull { project ->
-            properties["mainSubProject"]?.toString()?.let(project.name::contains) ?: false
-        }
-
-        val mainSubProjectName: String? =
-            rootProject.subprojects
-                .firstOrNull { project ->
-                    properties["mainSubProject"]?.toString()?.let(project.name::contains) ?: false
-                }
+        val mainProject: String? =
+            rootProject.allprojects
+                .firstOrNull { project -> project.name == mainProjectValue }
                 ?.name
 
-        if (mainSubProjectName != null) {
-            add(buildMavenRepoBadge(mainSubProjectName, MavenRepo.MavenCentral))
-            add(buildMavenRepoBadge(mainSubProjectName, MavenRepo.Snapshot))
-        } else println("mainSubProject property not found or the subproject does not exist")
+        checkNotNull(mainProject) {
+            "The project defined in readmeBadges.mainProject is not found, check the name of it"
+        }
+
+        add(buildMavenRepoBadge(mainProject, MavenRepo.MavenCentral))
+        add(buildMavenRepoBadge(mainProject, MavenRepo.Snapshot))
     }
 
     add("")

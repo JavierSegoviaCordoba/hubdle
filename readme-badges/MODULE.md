@@ -1,4 +1,4 @@
-# Module readme-badges-generator
+# Module readme-badges
 
 Automatically add badges to the root README file.
 
@@ -29,4 +29,11 @@ version and reflected in its respective badge.
 
 ```shell
 ./gradlew buildReadmeBadges
+```
+
+Add to `gradle.properties`
+
+```properties
+readmeBadges.mainProject=some-project
+readmeBadges.allProjects=false # false by default, true will generate badges for all projects
 ```

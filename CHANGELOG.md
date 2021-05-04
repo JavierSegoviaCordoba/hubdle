@@ -5,19 +5,25 @@
 ### Added
 
 ### Changed
-- `readme-badges-generator` renamed to `readme-badges`
-- `mainSubProject` property renamed to `readmeBadges.mainProject`
-- `shouldGenerateVersionBadgePerProject` renamed to `readmeBadges.allProjects`
 
 ### Deprecated
 
 ### Removed
 
 ### Fixed
-- `docs` forces using markdown files in all modules even if they shouldn't have docs
 
 ### Updated
 
+
+## [0.1.0-alpha.24] - 2021-05-04
+
+### Changed
+- `readme-badges-generator` renamed to `readme-badges`
+- `mainSubProject` property renamed to `readmeBadges.mainProject`
+- `shouldGenerateVersionBadgePerProject` renamed to `readmeBadges.allProjects`
+
+### Fixed
+- `docs` forces using markdown files in all modules even if they shouldn't have docs
 
 ## [0.1.0-alpha.23] - 2021-05-03
 

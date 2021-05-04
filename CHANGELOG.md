@@ -14,6 +14,7 @@
 ### Removed
 
 ### Fixed
+- `docs` forces using markdown files in all modules even if they shouldn't have docs
 
 ### Updated
 

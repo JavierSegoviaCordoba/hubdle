@@ -274,7 +274,7 @@ fun buildChangelogInDocs() {
 fun buildProjectsInDocs() {
     class ProjectInfo(val name: String, val mdFile: File)
 
-    val projectsInfo =
+    val projectsInfo: List<ProjectInfo?> =
         subprojects.map { project ->
             val mdFiles =
                 project.projectDir.walkTopDown().maxDepth(1).filter { file ->
@@ -283,16 +283,23 @@ fun buildProjectsInDocs() {
             val mdFile =
                 mdFiles.find { file -> file.name.contains("MODULE", true) }
                     ?: mdFiles.find { file -> file.name.contains("README", true) }
-                        ?: mdFiles.first()
+                        ?: mdFiles.firstOrNull()
 
-            ProjectInfo(project.name, mdFile)
+            if (mdFile != null) {
+                ProjectInfo(project.name, mdFile)
+            } else {
+                logger.info("${project.name} hasn't a markdown file, so it won't be added to docs")
+                null
+            }
         }
 
-    projectsInfo.map {
-        copy {
-            from(it.mdFile)
-            into("$rootDir/build/.docs/docs/projects")
-            rename { fileName -> fileName.replace(fileName, "${it.name}.md") }
+    projectsInfo.forEach { projectInfo ->
+        if (projectInfo != null) {
+            copy {
+                from(projectInfo.mdFile)
+                into("$rootDir/build/.docs/docs/projects")
+                rename { fileName -> fileName.replace(fileName, "${projectInfo.name}.md") }
+            }
         }
     }
 
@@ -300,7 +307,11 @@ fun buildProjectsInDocs() {
     val navsPlusProjects =
         docsNavigation.navs +
             "  - Projects:" +
-            projectsInfo.map { "    - ${it.name}: projects/${it.name}.md" }
+            projectsInfo.mapNotNull { projectInfo ->
+                if (projectInfo != null)
+                    "    - ${projectInfo.name}: projects/${projectInfo.name}.md"
+                else null
+            }
 
     mkdocsBuildFile.writeText(
         buildList<String> {

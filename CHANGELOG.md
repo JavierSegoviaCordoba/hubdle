@@ -11,6 +11,7 @@
 ### Removed
 
 ### Fixed
+- `docs` looking for an incorrect path in all `**.md` projects files
 
 ### Updated
 

@@ -308,6 +308,14 @@ fun buildProjectsInDocs() {
                 into("$rootDir/build/.docs/docs/projects")
                 rename { fileName -> fileName.replace(fileName, "${projectInfo.name}.md") }
             }
+
+            file("$rootDir/build/.docs/docs/projects/${projectInfo.name}.md").apply {
+                writeText(
+                    readLines().joinToString("\n") { line ->
+                        line.replace(".docs/docs/assets", "assets")
+                    }
+                )
+            }
         }
     }
 

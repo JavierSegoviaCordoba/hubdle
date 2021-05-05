@@ -92,8 +92,8 @@ fun buildDotDocsFolder() {
                    |theme:
                    |  name: 'material'
                    |  language: 'en'
-                   |  # TODO favicon: 'assets/favicon-512.png'
-                   |  # TODO logo: 'assets/favicon-512.png'
+                   |  # TODO favicon: 'assets/favicon.png'
+                   |  # TODO logo: 'assets/logo.svg'
                    |  palette:
                    |    primary: 'white'
                    |    accent: 'white'

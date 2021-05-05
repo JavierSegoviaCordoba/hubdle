@@ -5,6 +5,7 @@
 ### Added
 
 ### Changed
+- mkdocs template, favicon and logo properties, in `docs`
 
 ### Deprecated
 

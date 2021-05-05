@@ -53,6 +53,7 @@ jobs:
         run: ./gradlew build
 
       - name: Generate Site docs
+        if: ${{ !contains(github.ref, 'alpha') && !contains(github.ref, 'beta') && !contains(github.ref, 'rc') }}
         run: ./gradlew buildDocs
 
       - name: Import GPG key

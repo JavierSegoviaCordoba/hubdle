@@ -177,11 +177,19 @@ fun buildBuildDotDocs() {
         into("$rootDir/build/.docs")
     }
 
-    if (file("$rootDir/.docs/index.md").exists().not()) {
+    if (file("$rootDir/.docs/docs/index.md").exists().not()) {
         copy {
             from("$rootDir/README.md")
             into("$rootDir/build/.docs/docs")
             rename { fileName -> fileName.replace(fileName, "index.md") }
+        }
+
+        file("$rootDir/build/.docs/docs/index.md").apply {
+            writeText(
+                readLines().joinToString("\n") { line ->
+                    line.replace(".docs/docs/assets", "assets")
+                }
+            )
         }
     }
 }
@@ -308,9 +316,9 @@ fun buildProjectsInDocs() {
         docsNavigation.navs +
             "  - Projects:" +
             projectsInfo.mapNotNull { projectInfo ->
-                if (projectInfo != null)
+                if (projectInfo != null) {
                     "    - ${projectInfo.name}: projects/${projectInfo.name}.md"
-                else null
+                } else null
             }
 
     mkdocsBuildFile.writeText(

@@ -11,6 +11,8 @@
 ### Removed
 
 ### Fixed
+- `docs` plugin replace wrong asset path in `README.md` file 
+- `docs` looking for an incorrect `index.md` file path
 
 ### Updated
 

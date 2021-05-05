@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 ### Added
+- Add to `Test` type tasks a few improvements by default
 
 ### Changed
 
@@ -12,6 +13,7 @@
 
 ### Fixed
 - `docs` looking for an incorrect path in all `**.md` projects files
+- Fix `clean` task being registered even with it already exists
 
 ### Updated
 

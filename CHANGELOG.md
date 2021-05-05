@@ -3,13 +3,8 @@
 ## [Unreleased]
 
 ### Added
-- `all-projects`
-  - Default config like set up `group` for all projects
-  - Delete root `build` directory when `clean` task is called
 
 ### Changed
-- Rename `libGroup` to `allProjects.group`
-- Rename `libName` to `allProjects.name`
 
 ### Deprecated
 
@@ -19,6 +14,17 @@
 
 ### Updated
 
+
+## [0.1.0-alpha.25] - 2021-05-05
+
+### Added
+- `all-projects`
+  - Default config like set up `group` for all projects
+  - Delete root `build` directory when `clean` task is called
+
+### Changed
+- Rename `libGroup` to `allProjects.group`
+- Rename `libName` to `allProjects.name`
 
 ## [0.1.0-alpha.24] - 2021-05-04
 

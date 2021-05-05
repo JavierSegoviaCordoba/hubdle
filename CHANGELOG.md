@@ -5,7 +5,6 @@
 ### Added
 
 ### Changed
-- mkdocs template, favicon and logo properties, in `docs`
 
 ### Deprecated
 
@@ -15,6 +14,11 @@
 
 ### Updated
 
+
+## [0.1.0-alpha.26] - 2021-05-05
+
+### Changed
+- mkdocs template, favicon and logo properties, in `docs`
 
 ## [0.1.0-alpha.25] - 2021-05-05
 

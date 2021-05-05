@@ -14,10 +14,12 @@ publishing {
 dependencies {
     implementation(gradleApi())
     api(projects.accessors)
+    api(projects.core)
+
+    api(projects.allProjects)
     api(projects.changelog)
     api(projects.codeAnalysis)
     api(projects.codeFormatter)
-    api(projects.core)
     api(projects.dependencyUpdates)
     api(projects.docs)
     api(projects.kotlinMultiplatform)

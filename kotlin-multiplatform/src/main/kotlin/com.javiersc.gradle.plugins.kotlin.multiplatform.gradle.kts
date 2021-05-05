@@ -1,8 +1,7 @@
-import com.javiersc.plugins.core.groupId
 
-plugins { kotlin("multiplatform") }
-
-group = groupId
+plugins {
+    kotlin("multiplatform")
+}
 
 kotlin {
     sourceSets {

@@ -1,5 +1,6 @@
 plugins {
     versioning
+    `all-projects`
     changelog
     `code-analysis`
     `dependency-updates`
@@ -15,6 +16,4 @@ tasks {
         useJUnitPlatform()
         useTestNG()
     }
-
-    register<Delete>("clean") { delete(rootProject.buildDir) }
 }

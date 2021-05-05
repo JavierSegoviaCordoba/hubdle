@@ -1,5 +1,5 @@
 
-rootProject.name = providers.gradleProperty("libName").forUseAtConfigurationTime().get()
+rootProject.name = providers.gradleProperty("allProjects.name").forUseAtConfigurationTime().get()
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 enableFeaturePreview("VERSION_CATALOGS")
@@ -25,6 +25,7 @@ include("core")
 include("accessors")
 include("all-plugins")
 
+include("all-projects")
 include("changelog")
 include("code-analysis")
 include("code-formatter")

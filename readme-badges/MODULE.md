@@ -8,7 +8,7 @@ Automatically add badges to the root README file.
 // buildSrc/build.gradle.kts
 
 dependencies {
-    implementation("com.javiersc.gradle-plugins:readme-badges-generator:$version")
+    implementation("com.javiersc.gradle-plugins:readme-badges:$version")
 }
 ```
 
@@ -34,6 +34,8 @@ version and reflected in its respective badge.
 Add to `gradle.properties`
 
 ```properties
-readmeBadges.mainProject=some-project
-readmeBadges.allProjects=false # false by default, true will generate badges for all projects
+allProjects.group=com.javiersc
+allProjects.name=gradle-plugins
+readmeBadges.mainProject=versioning
+readmeBadges.allProjects=false # false by default, true generates badges for all projects
 ```

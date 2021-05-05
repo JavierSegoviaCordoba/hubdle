@@ -5,13 +5,21 @@ import org.jetbrains.kotlin.gradle.plugin.getKotlinPluginVersion
 val shieldsIoUrl
     get() = "https://img.shields.io"
 
-val libGroup: String
-    get() = property("libGroup")!!.toString()
-val libName: String
-    get() = property("libName")!!.toString()
+val projectGroup: String
+    get() =
+        checkNotNull(properties["allProjects.group"]) {
+                "allProjects.group in `gradle.properties` is missing"
+            }
+            .toString()
+val projectName: String
+    get() =
+        checkNotNull(properties["allProjects.name"]) {
+                "allProjects.name in `gradle.properties` is missing"
+            }
+            .toString()
 
 val libFolderUrl: String
-    get() = "$libGroup/$libName".replace(".", "/")
+    get() = "$projectGroup/$projectName".replace(".", "/")
 
 val repoUrl: String
     get() = property("pomSmcUrl")!!.toString()
@@ -48,13 +56,13 @@ fun buildMavenRepoBadge(subproject: String, mavenRepo: MavenRepo): String {
 
     return if (label.contains("snapshot", ignoreCase = true)) {
         "[![$label]" +
-            "($shieldsIoUrl/nexus/s/$libGroup.$libName/$subproject" +
+            "($shieldsIoUrl/nexus/s/$projectGroup.$projectName/$subproject" +
             "?server=https%3A%2F%2Foss.sonatype.org%2F" +
             "&label=$labelPath)]" +
             "(https://oss.sonatype.org/content/repositories/snapshots/$libFolderUrl/$subproject/)"
     } else {
         "[![$label]" +
-            "($shieldsIoUrl/maven-central/v/$libGroup.$libName/$subproject" +
+            "($shieldsIoUrl/maven-central/v/$projectGroup.$projectName/$subproject" +
             "?label=$labelPath)]" +
             "(https://repo1.maven.org/maven2/$libFolderUrl/$subproject/)"
     }

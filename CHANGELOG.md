@@ -5,10 +5,12 @@
 ### Added
 
 ### Changed
+- `all-projects` applies `LifecycleBasePlugin` to generate the `clean` task
 
 ### Deprecated
 
 ### Removed
+- `all-projects` clean task
 
 ### Fixed
 

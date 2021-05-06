@@ -9,11 +9,3 @@ plugins {
     nexus
     `readme-badges`
 }
-
-tasks {
-    withType<Test> {
-        maxParallelForks = Runtime.getRuntime().availableProcessors()
-        useJUnitPlatform()
-        useTestNG()
-    }
-}

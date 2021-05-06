@@ -11,6 +11,7 @@
 ### Removed
 
 ### Fixed
+- `all-project` clean task
 
 ### Updated
 

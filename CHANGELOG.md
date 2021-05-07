@@ -3,7 +3,6 @@
 ## [Unreleased]
 
 ### Added
-- `code-formatter` uses ktfmt version from Massive Catalogs
 
 ### Changed
 
@@ -15,6 +14,11 @@
 
 ### Updated
 
+
+## [0.1.0-alpha.31] - 2021-05-07
+
+### Added
+- `code-formatter` uses ktfmt version from Massive Catalogs
 
 ## [0.1.0-alpha.30] - 2021-05-06
 

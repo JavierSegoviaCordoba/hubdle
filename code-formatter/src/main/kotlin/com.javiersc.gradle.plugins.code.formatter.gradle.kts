@@ -8,7 +8,7 @@ plugins {
 configure<SpotlessExtension> {
     kotlin {
         target("src/**/*.kt")
-        ktfmt().kotlinlangStyle()
+        ktfmt(KTFMT_VERSION).kotlinlangStyle()
     }
 }
 

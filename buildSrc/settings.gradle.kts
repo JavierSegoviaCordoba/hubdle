@@ -11,15 +11,11 @@ input.close()
 val massiveCatalogs: String = properties.getProperty("massiveCatalogs")
 
 dependencyResolutionManagement {
-    repositories {
-        mavenCentral()
-        maven {
-            setUrl("https://oss.sonatype.org/content/repositories/snapshots")
-            content { includeGroup("com.javiersc.massive-catalogs") }
-        }
-    }
+    repositories { mavenCentral() }
 
     versionCatalogs {
+        create("libs") { from("com.javiersc.massive-catalogs:libs-catalog:$massiveCatalogs") }
+
         create("pluginLibs") {
             from("com.javiersc.massive-catalogs:plugins-catalog:$massiveCatalogs")
         }

@@ -7,7 +7,7 @@ plugins {
 spotless {
     kotlin {
         target("src/**/*.kt")
-        ktfmt().kotlinlangStyle()
+        ktfmt(KTFMT_VERSION).kotlinlangStyle()
     }
 }
 

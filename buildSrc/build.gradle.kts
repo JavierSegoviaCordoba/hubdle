@@ -1,4 +1,3 @@
-
 plugins {
     `kotlin-dsl`
 }
@@ -27,4 +26,14 @@ dependencies {
         implementation(jetbrains.kotlinx.binaryCompatibilityValidator)
         implementation(vyarus.gradleMkdocsPlugin)
     }
+}
+
+file("src/main/kotlin/KtfmtVersion.kt").apply {
+    if (!exists()) createNewFile()
+    writeText(
+        """
+            |internal const val KTFMT_VERSION: String = "${libs.versions.ktfmt.get()}"
+            |
+        """.trimMargin(),
+    )
 }

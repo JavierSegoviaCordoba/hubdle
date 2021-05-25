@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 ### Added
+- `kotlin-multiplatform` plugin flatten folders structure
 
 ### Changed
 

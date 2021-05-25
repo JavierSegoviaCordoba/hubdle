@@ -5,6 +5,10 @@ plugins {
 
 kotlin {
     sourceSets {
-        all { defaultLanguageSettings }
+        all {
+            defaultLanguageSettings
+            kotlin.srcDirs(name)
+            resources.srcDirs(name)
+        }
     }
 }

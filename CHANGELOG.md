@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 ### Added
+- `android-library`
 - `kotlin-multiplatform` plugin flatten folders structure
 
 ### Changed
@@ -48,7 +49,7 @@
 ## [0.1.0-alpha.27] - 2021-05-05
 
 ### Fixed
-- `docs` plugin replace wrong asset path in `README.md` file 
+- `docs` plugin replace wrong asset path in `README.md` file
 - `docs` looking for an incorrect `index.md` file path
 
 ## [0.1.0-alpha.26] - 2021-05-05
@@ -123,7 +124,7 @@
 
 ### Removed
 - ktfmt uses the default Spotless ktfmt version instead of indicating the last one
-- Detekt version is not needed 
+- Detekt version is not needed
 
 ### Fixed
 - Kotlin version is found by checking all the projects instead of from Version Catalog
@@ -181,10 +182,10 @@
 
 ### Changed
 - Separate `publish` plugin into:
-    - `publish-android-library` 
-    - `publish-kotlin-jvm` 
-    - `publish-kotlin-multiplatform` 
-    - `publish-version-catalog` 
+  - `publish-android-library`
+  - `publish-kotlin-jvm`
+  - `publish-kotlin-multiplatform`
+  - `publish-version-catalog`
 - Show git diff when `checkIsSignificant` is invoked in all `publish` plugins
 
 ## [0.1.0-alpha.7] - 2021-03-20
@@ -194,7 +195,7 @@
 
 ### Added
 - plugins
-    - publish-gradle-plugin
+  - publish-gradle-plugin
 
 ## [0.1.0-alpha.5] - 2021-03-20
 
@@ -222,13 +223,13 @@
 
 ### Added
 - plugins
-    - changelog
-    - code-analysis
-    - code-formatter
-    - dependency-updates
-    - docs
-    - kotlin-multiplatform
-    - nexus
-    - publish
-    - readme-badges-generator
-    - versioning 
+  - changelog
+  - code-analysis
+  - code-formatter
+  - dependency-updates
+  - docs
+  - kotlin-multiplatform
+  - nexus
+  - publish
+  - readme-badges-generator
+  - versioning 

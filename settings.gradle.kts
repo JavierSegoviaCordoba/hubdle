@@ -27,6 +27,7 @@ include("core")
 include("accessors")
 include("all-plugins")
 
+include("android-library")
 include("all-projects")
 include("changelog")
 include("code-analysis")

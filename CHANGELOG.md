@@ -7,6 +7,17 @@
 - `kotlin-multiplatform` plugin flatten folders structure
 
 ### Changed
+- `pomName` to `pom.name`
+- `pomDescription` to `pom.description`
+- `pomUrl` to `pom.url`
+- `pomLicenseName` to `pom.license.name`
+- `pomLicenseUrl` to `pom.license.url`
+- `pomDeveloperId` to `pom.developer.id`
+- `pomDeveloperName` to `pom.developer.name`
+- `pomDeveloperEmail` to `pom.developer.email`
+- `pom.smc.url` to `pom.smc.url`
+- `pom.smc.connection` to `pom.smc.connection`
+- `pomSmcDeveloperConnection` to `pom.smc.developerConnection`
 
 ### Deprecated
 

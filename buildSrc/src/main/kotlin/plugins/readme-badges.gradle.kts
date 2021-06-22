@@ -22,7 +22,7 @@ val libFolderUrl: String
     get() = "$projectGroup/$projectName".replace(".", "/")
 
 val repoUrl: String
-    get() = property("pomSmcUrl")!!.toString()
+    get() = property("pom.smc.url")!!.toString()
 val repoWithoutUrlPrefix: String
     get() = repoUrl.replace("https://github.com/", "")
 

@@ -4,6 +4,6 @@ plugins {
 }
 
 pluginBundle {
-    website = property("pomSmcUrl").toString()
-    vcsUrl = property("pomSmcConnection").toString()
+    website = property("pom.smc.url").toString()
+    vcsUrl = property("pom.smc.connection").toString()
 }

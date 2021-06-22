@@ -31,15 +31,15 @@ correct ones):
 ####################################################################################################
 ###                                           POM                                                ###
 ####################################################################################################
-pomName=Gradle Plugins
-pomDescription=Gradle Plugins utilities
-pomUrl=https://github.com/JavierSegoviaCordoba/gradle-plugins
-pomLicenseName=The Apache License, Version 2.0
-pomLicenseUrl="https://www.apache.org/licenses/LICENSE-2.0.txt"
-pomDeveloperId=JavierSegoviaCordoba
-pomDeveloperName=Javier Segovia Cordoba
-pomDeveloperEmail=javier@segoviacordoba.com
-pomSmcUrl=https://github.com/JavierSegoviaCordoba/gradle-plugins
-pomSmcConnection=scm:git:git@github.com:JavierSegoviaCordoba/gradle-plugins.git
-pomSmcDeveloperConnection=scm:git:git@github.com:JavierSegoviaCordoba/gradle-plugins.git
+pom.name=Gradle Plugins
+pom.description=Gradle Plugins utilities
+pom.url=https://github.com/JavierSegoviaCordoba/gradle-plugins
+pom.license.name=The Apache License, Version 2.0
+pom.license.url="https://www.apache.org/licenses/LICENSE-2.0.txt"
+pom.developer.id=JavierSegoviaCordoba
+pom.developer.name=Javier Segovia Cordoba
+pom.developer.email=javier@segoviacordoba.com
+pom.smc.url=https://github.com/JavierSegoviaCordoba/gradle-plugins
+pom.smc.connection=scm:git:git@github.com:JavierSegoviaCordoba/gradle-plugins.git
+pom.smc.developerConnection=scm:git:git@github.com:JavierSegoviaCordoba/gradle-plugins.git
 ```

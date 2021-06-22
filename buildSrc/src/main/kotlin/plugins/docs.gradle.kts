@@ -296,7 +296,7 @@ fun buildProjectsInDocs() {
             if (mdFile != null) {
                 ProjectInfo(project.name, mdFile)
             } else {
-                logger.info("${project.name} hasn't a markdown file, so it won't be added to docs")
+                logger.lifecycle("${project.name} hasn't a markdown file, so it won't be added to docs")
                 null
             }
         }

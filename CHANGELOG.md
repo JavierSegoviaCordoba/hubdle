@@ -12,6 +12,8 @@
 ### Removed
 
 ### Fixed
+- `readme-badges-generator` not printing the library
+- `docs` not printing there are no markdown files
 
 ### Updated
 

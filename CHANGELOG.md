@@ -3,6 +3,21 @@
 ## [Unreleased]
 
 ### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Updated
+
+
+## [0.1.0-alpha.32] - 2021-06-22
+
+### Added
 - `android-library`
 - `kotlin-multiplatform` plugin flatten folders structure
 
@@ -19,16 +34,9 @@
 - `pom.smc.connection` to `pom.smc.connection`
 - `pomSmcDeveloperConnection` to `pom.smc.developerConnection`
 
-### Deprecated
-
-### Removed
-
 ### Fixed
 - `readme-badges-generator` not printing the library
 - `docs` not printing there are no markdown files
-
-### Updated
-
 
 ## [0.1.0-alpha.31] - 2021-05-07
 

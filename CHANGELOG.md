@@ -3,7 +3,6 @@
 ## [Unreleased]
 
 ### Added
-- `group` to all registered Gradle tasks
 
 ### Changed
 
@@ -12,10 +11,17 @@
 ### Removed
 
 ### Fixed
-- Crash when `Changelog.md` has no initial version
 
 ### Updated
 
+
+## [0.1.0-alpha.33] - 2021-06-23
+
+### Added
+- `group` to all registered Gradle tasks
+
+### Fixed
+- Crash when `Changelog.md` has no initial version
 
 ## [0.1.0-alpha.32] - 2021-06-22
 

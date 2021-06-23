@@ -25,6 +25,8 @@ tasks {
     }
 
     register("mergeChangelog") {
+        group = "changelog"
+
         doLast {
             if ("${project.version}".all { it.isDigit() || it == '.' }) {
                 mergeChangelog("${project.version}")

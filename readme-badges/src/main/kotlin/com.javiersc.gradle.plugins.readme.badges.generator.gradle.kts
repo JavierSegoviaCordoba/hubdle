@@ -131,6 +131,8 @@ fun buildReadmeBadges(): List<String> = buildList {
 }
 
 rootProject.tasks.register("buildReadmeBadges") {
+    group = "documentation"
+
     file("${rootProject.projectDir}/README.md").apply {
         val content: List<String> = readLines()
         val updatedContent: List<String> = buildList {

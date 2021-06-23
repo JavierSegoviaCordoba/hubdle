@@ -13,6 +13,8 @@ reckon {
 rootProject.allprojects {
     tasks {
         register("checkIsSignificant") {
+            group = "verification"
+
             if (!isSignificant) {
                 error("Only significant versions can be published (current: $version)")
             }

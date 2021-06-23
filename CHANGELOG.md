@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 ### Added
+- `group` to all registered Gradle tasks
 
 ### Changed
 

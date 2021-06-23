@@ -38,6 +38,8 @@ tasks {
     }
 
     register("buildDocs") {
+        group = "documentation"
+
         buildDotDocsFolder()
         buildBuildDotDocs()
         buildChangelogInDocs()
@@ -255,10 +257,12 @@ fun buildChangelogInDocs() {
                     line.contains("## [") && !line.contains("[Unreleased]")
                 } - 1
 
-            val contentUpdated =
-                (content.subList(0, 1) + content.subList(firstVersionLine, content.count()))
-                    .joinToString("\n")
-            writeText(contentUpdated)
+            runCatching {
+                val contentUpdated =
+                    (content.subList(0, 1) + content.subList(firstVersionLine, content.count()))
+                        .joinToString("\n")
+                writeText(contentUpdated)
+            }
         }
 
         val docsNavigation = getDocsNavigation()
@@ -296,7 +300,9 @@ fun buildProjectsInDocs() {
             if (mdFile != null) {
                 ProjectInfo(project.name, mdFile)
             } else {
-                logger.lifecycle("${project.name} hasn't a markdown file, so it won't be added to docs")
+                logger.lifecycle(
+                    "${project.name} hasn't a markdown file, so it won't be added to docs"
+                )
                 null
             }
         }

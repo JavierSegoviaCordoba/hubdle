@@ -11,6 +11,7 @@
 ### Removed
 
 ### Fixed
+- Crash when `Changelog.md` has no initial version
 
 ### Updated
 

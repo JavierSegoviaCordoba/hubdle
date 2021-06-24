@@ -3,7 +3,6 @@
 ## [Unreleased]
 
 ### Added
-- `update-gradle-wrapper` plugin
 
 ### Changed
 
@@ -15,6 +14,11 @@
 
 ### Updated
 
+
+## [0.1.0-alpha.34] - 2021-06-24
+
+### Added
+- `update-gradle-wrapper` plugin
 
 ## [0.1.0-alpha.33] - 2021-06-23
 

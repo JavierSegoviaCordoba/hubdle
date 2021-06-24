@@ -1,0 +1,52 @@
+name: update-gradle-wrapper
+
+on:
+  workflow_dispatch:
+    inputs:
+      version_stage:
+        description: "Gradle Wrapper version stage, empty or one of [current, rc, nightly]"
+        required: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Set up Java
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'zulu'
+          java-version: 11
+
+      - name: Gradle cache
+        uses: actions/cache@v2.1.6
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+            ~/.konan
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/gradle.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Update Gradle Wrapper
+        run: ./gradlew updateGradlew -P"gradlew.stage"="${{ github.event.inputs.version_stage }}" --stacktrace
+
+      - name: Save Gradle Wrapper version
+        id: gradle_wrapper
+        run: echo "::set-output name=version::$(cat build/versions/gradle-wrapper.txt)"
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        continue-on-error: true
+        with:
+          token: ${{ secrets.TOKEN_GITHUB_ACTION }}
+          commit-message: "Bump Gradle Wrapper version to ${{ steps.gradle_wrapper.outputs.version }}"
+          title: "Bump Gradle Wrapper version to ${{ steps.gradle_wrapper.outputs.version }}"
+          body: "Changelog: https://docs.gradle.org/${{ steps.gradle_wrapper.outputs.version }}/release-notes.html"
+          branch: "bump-gradle-wrapper--${{ steps.gradle_wrapper.outputs.version }}"

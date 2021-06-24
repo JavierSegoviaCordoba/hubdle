@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 ### Added
+- `update-gradle-wrapper` plugin
 
 ### Changed
 

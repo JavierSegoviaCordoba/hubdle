@@ -8,4 +8,5 @@ plugins {
     `binary-compatibility-validator`
     nexus
     `readme-badges`
+    `gradle-wrapper-updater`
 }

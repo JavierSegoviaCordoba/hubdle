@@ -11,6 +11,7 @@
 ### Removed
 
 ### Fixed
+- `publishing` for `plugin-accessors`
 
 ### Updated
 

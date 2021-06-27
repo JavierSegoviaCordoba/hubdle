@@ -3,6 +3,14 @@ plugins {
     publish
 }
 
+publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            from(components["java"])
+        }
+    }
+}
+
 dependencies { implementation(gradleApi()) }
 
 file("${project.projectDir.path}/MODULE.md").apply {

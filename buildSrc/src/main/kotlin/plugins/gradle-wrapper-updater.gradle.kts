@@ -26,7 +26,11 @@ rootProject.tasks {
         }
     }
     tasks.register("updateGradlew") {
+        group = "updater"
+        description = "Check the latest Gradlew Wrapper version"
+
         dependsOn(configureWrapper)
+
         if (tasks.withType<Wrapper>().toList().all { it.gradleVersion.isNotBlank() }) {
             finalizedBy(tasks.withType<Wrapper>())
             rootProject.exec {

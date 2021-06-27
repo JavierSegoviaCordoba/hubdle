@@ -28,5 +28,5 @@ dependencies {
     api(projects.accessors)
     api(projects.core)
 
-    api(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)
+    implementation(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)
 }

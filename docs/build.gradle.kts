@@ -28,6 +28,6 @@ dependencies {
     api(projects.core)
 
     api(pluginLibs.jetbrains.dokka.dokkaGradlePlugin)
-    api(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)
+    implementation(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)
     api(pluginLibs.vyarus.gradleMkdocsPlugin)
 }

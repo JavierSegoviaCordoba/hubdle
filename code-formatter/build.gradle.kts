@@ -39,5 +39,5 @@ dependencies {
     api(projects.accessors)
 
     api(pluginLibs.diffplug.spotless.spotlessPluginGradle)
-    api(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)
+    implementation(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)
 }

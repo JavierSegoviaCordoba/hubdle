@@ -11,10 +11,14 @@
 ### Removed
 
 ### Fixed
-- `publishing` for `plugin-accessors`
 
 ### Updated
 
+
+## [0.1.0-alpha.36] - 2021-06-27
+
+### Fixed
+- `publishing` for `plugin-accessors`
 
 ## [0.1.0-alpha.35] - 2021-06-27
 

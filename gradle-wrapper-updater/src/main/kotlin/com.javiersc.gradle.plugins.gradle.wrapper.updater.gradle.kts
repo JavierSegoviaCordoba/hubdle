@@ -31,14 +31,16 @@ rootProject.tasks {
 
         dependsOn(configureWrapper)
 
-        if (tasks.withType<Wrapper>().toList().all { it.gradleVersion.isNotBlank() }) {
-            finalizedBy(tasks.withType<Wrapper>())
-            rootProject.exec {
-                workingDir = rootProject.rootDir
-                commandLine =
-                    (if (isWindows) "cmd git update-index --chmod=+x gradlew"
-                    else "git update-index --chmod=+x gradlew")
-                        .split(" ")
+        doLast {
+            if (tasks.withType<Wrapper>().toList().all { it.gradleVersion.isNotBlank() }) {
+                finalizedBy(tasks.withType<Wrapper>())
+                rootProject.exec {
+                    workingDir = rootProject.rootDir
+                    commandLine =
+                        (if (isWindows) "cmd git update-index --chmod=+x gradlew"
+                        else "git update-index --chmod=+x gradlew")
+                            .split(" ")
+                }
             }
         }
     }

@@ -19,6 +19,7 @@
 
 ### Fixed
 - `publishing` for `plugin-accessors`
+- registering tasks without `doLast`
 
 ## [0.1.0-alpha.35] - 2021-06-27
 

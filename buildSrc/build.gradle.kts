@@ -12,6 +12,9 @@ dependencies {
     implementation(gradleApi())
     implementation(localGroovy())
 
+    implementation(libs.google.codeGson.gson)
+    implementation(libs.javiersc.semanticVersioning.semanticVersioningCore)
+
     pluginLibs.apply {
         implementation(android.toolsBuild.gradle)
         implementation(ajoberstar.reckon.reckonGradle)

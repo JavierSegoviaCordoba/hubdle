@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 ### Added
+- `massive-catalogs-updater` plugin
 
 ### Changed
 

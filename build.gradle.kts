@@ -9,4 +9,5 @@ plugins {
     nexus
     `readme-badges`
     `gradle-wrapper-updater`
+    `massive-catalogs-updater`
 }

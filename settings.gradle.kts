@@ -24,23 +24,28 @@ dependencyResolutionManagement {
 
 include("core")
 
-include("accessors")
-include("all-plugins")
+include(
+    "accessors",
+    "all-plugins",
+)
 
-include("android-library")
-include("all-projects")
-include("changelog")
-include("code-analysis")
-include("code-formatter")
-include("dependency-updates")
-include("docs")
-include("gradle-wrapper-updater")
-include("kotlin-multiplatform")
-include("nexus")
-include("publish-android-library")
-include("publish-gradle-plugin")
-include("publish-kotlin-jvm")
-include("publish-kotlin-multiplatform")
-include("publish-version-catalog")
-include("readme-badges")
-include("versioning")
+include(
+    "android-library",
+    "all-projects",
+    "changelog",
+    "code-analysis",
+    "code-formatter",
+    "dependency-updates",
+    "docs",
+    "gradle-wrapper-updater",
+    "kotlin-multiplatform",
+    ":massive-catalogs-updater",
+    "nexus",
+    "publish-android-library",
+    "publish-gradle-plugin",
+    "publish-kotlin-jvm",
+    "publish-kotlin-multiplatform",
+    "publish-version-catalog",
+    "readme-badges",
+    "versioning",
+)

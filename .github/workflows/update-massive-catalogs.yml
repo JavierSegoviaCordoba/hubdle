@@ -1,0 +1,50 @@
+name: update-massive-catalogs
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Set up Java
+        uses: actions/setup-java@v2.1.0
+        with:
+          distribution: 'zulu'
+          java-version: 11
+
+      - name: Gradle cache
+        uses: actions/cache@v2.1.6
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+            ~/.konan
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/gradle.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Update Massive Catalogs
+        run: ./gradlew updateMassiveCatalogs
+
+      - name: Save Gradle Wrapper version
+        id: massive_catalogs
+        run: echo "::set-output name=version::$(cat build/versions/massive-catalogs.txt)"
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        continue-on-error: true
+        with:
+          token: ${{ secrets.TOKEN_GITHUB_ACTION }}
+          commit-message: "Bump Massive Catalogs version to ${{ steps.gradle_wrapper.outputs.version }}"
+          title: "Bump Massive Catalogs version to ${{ steps.massive_catalogs.outputs.version }}"
+          body: "Changelog: https://massive-catalogs.javiersc.com/CHANGELOG/"
+          branch: "bump-massive-catalogs--${{ steps.massive_catalogs.outputs.version }}"

@@ -3,8 +3,6 @@
 ## [Unreleased]
 
 ### Added
-- `plugin-accessors`
-- `massive-catalogs-updater` plugin
 
 ### Changed
 
@@ -16,6 +14,12 @@
 
 ### Updated
 
+
+## [0.1.0-alpha.35] - 2021-06-27
+
+### Added
+- `plugin-accessors`
+- `massive-catalogs-updater` plugin
 
 ## [0.1.0-alpha.34] - 2021-06-24
 

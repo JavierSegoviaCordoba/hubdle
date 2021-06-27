@@ -27,6 +27,7 @@ include("core")
 include(
     "accessors",
     "all-plugins",
+    "plugin-accessors",
 )
 
 include(

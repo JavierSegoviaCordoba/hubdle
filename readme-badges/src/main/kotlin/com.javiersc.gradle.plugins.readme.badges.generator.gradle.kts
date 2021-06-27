@@ -32,7 +32,6 @@ fun buildKotlinVersionBadge(): String {
             .asSequence()
             .map { project -> project.getKotlinPluginVersion() }
             .toSet()
-            .filterNotNull()
             .firstOrNull()
 
     checkNotNull(kotlinVersion) { "Kotlin Gradle plugin is not being applied to any project" }
@@ -139,7 +138,10 @@ rootProject.tasks.register("buildReadmeBadges") {
             val updatedContent: List<String> = buildList {
                 addAll(buildReadmeBadges())
                 addAll(
-                    content.subList(content.indexOfFirst { it.contains("# ") }, content.lastIndex + 1)
+                    content.subList(
+                        content.indexOfFirst { it.contains("# ") },
+                        content.lastIndex + 1
+                    )
                 )
                 add("")
             }

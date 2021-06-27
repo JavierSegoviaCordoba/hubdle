@@ -139,7 +139,10 @@ rootProject.tasks.register("buildReadmeBadges") {
             val updatedContent: List<String> = buildList {
                 addAll(buildReadmeBadges())
                 addAll(
-                    content.subList(content.indexOfFirst { it.contains("# ") }, content.lastIndex + 1)
+                    content.subList(
+                        content.indexOfFirst { it.contains("# ") },
+                        content.lastIndex + 1
+                    )
                 )
                 add("")
             }

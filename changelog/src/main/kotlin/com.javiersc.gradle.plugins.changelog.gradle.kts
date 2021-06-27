@@ -166,9 +166,9 @@ fun extractBlock(blockName: String, versionBlock: List<String>): List<String> {
     val block = mutableListOf<String>()
     block.add("### $blockName")
     val indexes =
-        versionBlock
-            .mapIndexed { index, line -> if (line.contains("### $blockName")) index else null }
-            .filterNotNull()
+        versionBlock.mapIndexedNotNull { index, line ->
+            if (line.contains("### $blockName")) index else null
+        }
 
     for (i in indexes) {
         val changes = versionBlock.subList(i + 1, versionBlock.count())

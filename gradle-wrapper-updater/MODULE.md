@@ -25,14 +25,14 @@ plugins {
 ### Usage
 
  ```shell
- ./gradlew updateGradlew
+ ./gradlew updateGradleWrapper
 
  ```
 
 #### Set the stage to get the latest Release Candidate or Nightly
 
  ```shell
-./gradlew updateGradlew -P"gradlew.stage"="rc"
+./gradlew updateGradleWrapper -P"gradlew.stage"="rc"
  ```
 
 ### Notes

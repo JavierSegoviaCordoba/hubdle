@@ -9,9 +9,9 @@ import org.jetbrains.kotlin.gradle.internal.ensureParentDirsCreated
  * ### Usage
  *
  * ```shell
- * ./gradlew updateGradlew
+ * ./gradlew updateGradleWrapper
  *
- * ./gradlew updateGradlew -P"gradlew.stage"="rc"
+ * ./gradlew updateGradleWrapper -P"gradlew.stage"="rc"
  * ```
  *
  * - If the input is not set, or it is `current`, the last stable version will be used.
@@ -25,15 +25,15 @@ rootProject.tasks {
             tasks.withType<Wrapper>().configureEach { gradleVersion = getSpecificGradleVersion() }
         }
     }
-    tasks.register("updateGradlew") {
+    tasks.register("updateGradleWrapper") {
         group = "updater"
         description = "Check the latest Gradlew Wrapper version"
 
         dependsOn(configureWrapper)
+        finalizedBy(tasks.withType<Wrapper>())
 
         doLast {
             if (tasks.withType<Wrapper>().toList().all { it.gradleVersion.isNotBlank() }) {
-                finalizedBy(tasks.withType<Wrapper>())
                 rootProject.exec {
                     workingDir = rootProject.rootDir
                     commandLine =

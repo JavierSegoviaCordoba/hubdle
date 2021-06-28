@@ -5,12 +5,14 @@
 ### Added
 
 ### Changed
+- `updateGradlew` to `updateGradleWrapper`
 
 ### Deprecated
 
 ### Removed
 
 ### Fixed
+- `gradle-wrapper-updater-task`
 
 ### Updated
 

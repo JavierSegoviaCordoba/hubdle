@@ -35,7 +35,7 @@ jobs:
       - name: Update Massive Catalogs
         run: ./gradlew updateMassiveCatalogs
 
-      - name: Save Gradle Wrapper version
+      - name: Save Gradle Massive Catalogs version
         id: massive_catalogs
         run: echo "::set-output name=version::$(cat build/versions/massive-catalogs.txt)"
 
@@ -44,7 +44,7 @@ jobs:
         continue-on-error: true
         with:
           token: ${{ secrets.TOKEN_GITHUB_ACTION }}
-          commit-message: "Bump Massive Catalogs version to ${{ steps.gradle_wrapper.outputs.version }}"
+          commit-message: "Bump Massive Catalogs version to ${{ steps.massive_catalogs.outputs.version }}"
           title: "Bump Massive Catalogs version to ${{ steps.massive_catalogs.outputs.version }}"
           body: "Changelog: https://massive-catalogs.javiersc.com/CHANGELOG/"
           branch: "bump-massive-catalogs--${{ steps.massive_catalogs.outputs.version }}"

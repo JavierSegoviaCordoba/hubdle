@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 ### Added
+- `massive-catalogs-updater` saves version in the root project `build/versions/massive-catalogs.txt`
 
 ### Changed
 

@@ -1,4 +1,5 @@
 import com.javiersc.semanticVersioning.Version
+import org.jetbrains.kotlin.gradle.internal.ensureParentDirsCreated
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Element
 import org.jsoup.select.Elements
@@ -64,5 +65,11 @@ fun writeVersionToGradleProperties(version: Version) {
                 } else line
             } + "\n"
         )
+    }
+
+    file("${rootProject.buildDir}/versions/massive-catalogs.txt").apply {
+        ensureParentDirsCreated()
+        createNewFile()
+        writeText(version.value)
     }
 }

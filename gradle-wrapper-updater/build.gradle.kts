@@ -28,5 +28,6 @@ dependencies {
     api(projects.accessors)
     api(projects.core)
 
+    implementation(libs.google.codeGson.gson)
     implementation(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)
 }

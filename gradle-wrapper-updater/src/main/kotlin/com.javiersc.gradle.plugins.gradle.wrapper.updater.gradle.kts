@@ -1,8 +1,8 @@
 @file:Suppress("MagicNumber", "SwallowedException", "TooGenericExceptionCaught")
 
+import com.google.gson.Gson
 import java.net.HttpURLConnection
 import java.net.URL
-import kotlin.streams.asSequence
 import org.jetbrains.kotlin.gradle.internal.ensureParentDirsCreated
 
 /**
@@ -91,35 +91,30 @@ fun getSpecificGradleVersion(): String {
         }
 
         inputStream.bufferedReader().use {
-            val version =
-                it.lines()
-                    .asSequence()
-                    .firstOrNull { line -> line.contains("version") }
-                    ?.replace(" ", "")
-                    ?.replace("version", "")
-                    ?.replace(":", "")
-                    ?.replace("\"", "")
-                    ?.replace(",", "")
+            val gradleVersion: GradleVersion =
+                Gson().fromJson(it.readText(), GradleVersion::class.java)
 
-            return if (version.isNullOrBlank() && stage == Stage.RC) {
-                error("${red}There is no release candidate Gradle version available$reset")
+            return if (gradleVersion.version == null) {
+                error("${red}There is no Gradle version available$reset")
             } else {
-                version?.also {
-                    File("${project.rootProject.buildDir}/versions/gradle-wrapper.txt").apply {
-                        ensureParentDirsCreated()
-                        createNewFile()
-                        writeText(version)
-                    }
-
-                    logger.lifecycle(
-                        "The last ${cyan}Gradle version$reset for the stage $yellow$stage$reset is $green$version$reset"
-                    )
+                File("${project.rootProject.buildDir}/versions/gradle-wrapper.txt").apply {
+                    ensureParentDirsCreated()
+                    createNewFile()
+                    writeText(gradleVersion.version)
                 }
-                    ?: error("${red}Gradle version not found or the service is not available$reset")
+
+                logger.lifecycle(
+                    "The latest ${cyan}Gradle version$reset for " +
+                        "the stage $yellow${stage ?: "Current"}$reset " +
+                        "is $green${gradleVersion.version}$reset"
+                )
+                gradleVersion.version
             }
         }
     }
 }
+
+data class GradleVersion(val version: String?)
 
 val isWindows: Boolean
     get() = System.getProperty("os.name").contains("windows", true)

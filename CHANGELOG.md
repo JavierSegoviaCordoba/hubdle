@@ -5,17 +5,24 @@
 ### Added
 
 ### Changed
-- `updateGradlew` to `updateGradleWrapper`
-- `massive-catalogs-updater` fetches directly from the maven repo
 
 ### Deprecated
 
 ### Removed
 
 ### Fixed
-- `gradle-wrapper-updater-task`
 
 ### Updated
+
+
+## [0.1.0-alpha.38] - 2021-06-28
+
+### Changed
+- `updateGradlew` to `updateGradleWrapper`
+- `massive-catalogs-updater` fetches directly from the maven repo
+
+### Fixed
+- `gradle-wrapper-updater-task`
 
 ## [0.1.0-alpha.37] - 2021-06-27
 - No changes

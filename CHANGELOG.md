@@ -3,7 +3,6 @@
 ## [Unreleased]
 
 ### Added
-- `massive-catalogs-updater` saves version in the root project `build/versions/massive-catalogs.txt`
 
 ### Changed
 
@@ -15,6 +14,11 @@
 
 ### Updated
 
+
+## [0.1.0-alpha.39] - 2021-06-28
+
+### Added
+- `massive-catalogs-updater` saves version in the root project `build/versions/massive-catalogs.txt`
 
 ## [0.1.0-alpha.38] - 2021-06-28
 

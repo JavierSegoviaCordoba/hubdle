@@ -6,6 +6,7 @@
 
 ### Changed
 - `updateGradlew` to `updateGradleWrapper`
+- `massive-catalogs-updater` fetches directly from the maven repo
 
 ### Deprecated
 

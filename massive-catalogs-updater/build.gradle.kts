@@ -28,7 +28,7 @@ dependencies {
     api(projects.accessors)
     api(projects.core)
 
-    implementation(libs.google.codeGson.gson)
+    implementation(libs.jsoup.jsoup)
     implementation(libs.javiersc.semanticVersioning.semanticVersioningCore)
 
     implementation(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)

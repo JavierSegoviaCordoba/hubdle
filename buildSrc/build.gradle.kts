@@ -13,6 +13,7 @@ dependencies {
     implementation(localGroovy())
 
     implementation(libs.google.codeGson.gson)
+    implementation(libs.jsoup.jsoup)
     implementation(libs.javiersc.semanticVersioning.semanticVersioningCore)
 
     pluginLibs.apply {

@@ -43,7 +43,9 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         continue-on-error: true
         with:
-          token: ${{ secrets.TOKEN_GITHUB_ACTION }}
+          token: ${{ secrets.TOKEN_GITHUB_ACTION  }}
+          author: GitHub Action <action@github.com>
+          committer: GitHub Action <action@github.com>
           commit-message: "Bump Massive Catalogs version to ${{ steps.massive_catalogs.outputs.version }}"
           title: "Bump Massive Catalogs version to ${{ steps.massive_catalogs.outputs.version }}"
           body: "Changelog: https://massive-catalogs.javiersc.com/CHANGELOG/"

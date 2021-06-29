@@ -47,7 +47,9 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         continue-on-error: true
         with:
-          token: ${{ secrets.TOKEN_GITHUB_ACTION }}
+          token: ${{ secrets.TOKEN_GITHUB_ACTION  }}
+          author: GitHub Action <action@github.com>
+          committer: GitHub Action <action@github.com>
           commit-message: "Bump Gradle Wrapper version to ${{ steps.gradle_wrapper.outputs.version }}"
           title: "Bump Gradle Wrapper version to ${{ steps.gradle_wrapper.outputs.version }}"
           body: "Changelog: https://docs.gradle.org/${{ steps.gradle_wrapper.outputs.version }}/release-notes.html"

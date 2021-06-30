@@ -11,10 +11,14 @@
 ### Removed
 
 ### Fixed
-- `plugin-accessors` can't be used if a `javiersc` plugin is present
 
 ### Updated
 
+
+## [0.1.0-alpha.40] - 2021-06-30
+
+### Fixed
+- `plugin-accessors` can't be used if a `javiersc` plugin is present
 
 ## [0.1.0-alpha.39] - 2021-06-28
 

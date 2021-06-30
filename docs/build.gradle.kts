@@ -24,7 +24,7 @@ gradlePlugin {
 }
 
 dependencies {
-    api(projects.accessors)
+    api(projects.pluginAccessors)
     api(projects.core)
 
     api(pluginLibs.jetbrains.dokka.dokkaGradlePlugin)

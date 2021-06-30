@@ -61,7 +61,7 @@ val PluginDependenciesSpec.`gradle-plugin-publish`: PluginDependencySpec
     get() = id("com.gradle.plugin-publish")
 
 infix fun PluginDependenciesSpec.`gradle-plugin-publish`(version: String): PluginDependencySpec =
-        id("com.gradle.plugin-publish").version(version)
+    id("com.gradle.plugin-publish").version(version)
 
 val PluginDependenciesSpec.`kotlin-android`: PluginDependencySpec
     get() = id("org.jetbrains.kotlin.android")

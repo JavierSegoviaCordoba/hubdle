@@ -36,7 +36,7 @@ file("src/main/kotlin/KtfmtVersion.kt").apply {
 }
 
 dependencies {
-    api(projects.accessors)
+    api(projects.pluginAccessors)
 
     api(pluginLibs.diffplug.spotless.spotlessPluginGradle)
     implementation(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)

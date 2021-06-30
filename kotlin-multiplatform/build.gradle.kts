@@ -25,7 +25,7 @@ gradlePlugin {
 }
 
 dependencies {
-    api(projects.accessors)
+    api(projects.pluginAccessors)
     api(projects.core)
 
     implementation(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)

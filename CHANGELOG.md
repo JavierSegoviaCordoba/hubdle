@@ -11,6 +11,7 @@
 ### Removed
 
 ### Fixed
+- `plugin-accessors` can't be used if a `javiersc` plugin is present
 
 ### Updated
 

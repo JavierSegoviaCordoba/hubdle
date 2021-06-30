@@ -27,7 +27,7 @@ gradlePlugin {
 }
 
 dependencies {
-    api(projects.accessors)
+    api(projects.pluginAccessors)
 
     api(pluginLibs.github.gradleNexus.publishPlugin)
 }

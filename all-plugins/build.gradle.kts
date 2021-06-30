@@ -13,7 +13,7 @@ publishing {
 
 dependencies {
     implementation(gradleApi())
-    api(projects.accessors)
+    api(projects.pluginAccessors)
     api(projects.core)
 
     api(projects.allProjects)

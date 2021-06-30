@@ -24,7 +24,7 @@ gradlePlugin {
 }
 
 dependencies {
-    api(projects.accessors)
+    api(projects.pluginAccessors)
 
     api(pluginLibs.jetbrains.intellijPlugins.gradleChangelogPlugin)
 }

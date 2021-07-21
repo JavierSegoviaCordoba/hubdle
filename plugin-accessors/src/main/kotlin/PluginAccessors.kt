@@ -39,6 +39,12 @@ val PluginDependenciesSpec.`changelog`: PluginDependencySpec
 infix fun PluginDependenciesSpec.`changelog`(version: String): PluginDependencySpec =
     id("org.jetbrains.changelog").version(version)
 
+val PluginDependenciesSpec.`compose`: PluginDependencySpec
+    get() = id("org.jetbrains.compose")
+
+infix fun PluginDependenciesSpec.`compose`(version: String): PluginDependencySpec =
+    id("org.jetbrains.compose").version(version)
+
 val PluginDependenciesSpec.`hilt-android`: PluginDependencySpec
     get() = id("dagger.hilt.android.plugin")
 

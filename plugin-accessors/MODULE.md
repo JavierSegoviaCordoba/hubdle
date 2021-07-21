@@ -36,6 +36,7 @@ plugins {
 - `auto-include`
 - `ben-manes-versions`
 - `changelog`
+- `compose`
 - `hilt-android`
 - `detekt`
 - `dokka`

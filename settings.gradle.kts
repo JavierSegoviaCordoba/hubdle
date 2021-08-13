@@ -32,6 +32,8 @@ include(
 include(
     "android-library",
     "all-projects",
+    "build-version-catalogs",
+    "build-version-catalogs-updater",
     "changelog",
     "code-analysis",
     "code-formatter",

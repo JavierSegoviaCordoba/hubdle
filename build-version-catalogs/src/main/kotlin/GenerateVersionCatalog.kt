@@ -69,7 +69,7 @@ internal fun File.generateVersionCatalog(buildDir: File) {
                 """.trimMargin()
             }
 
-        File("$buildDir/$name.toml").apply {
+        File(buildDir, "$name.toml").apply {
             parentFile.mkdirs()
             if (!exists()) createNewFile()
             writeText(catalog)

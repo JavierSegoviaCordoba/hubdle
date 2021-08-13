@@ -11,6 +11,7 @@
 ### Removed
 
 ### Fixed
+- `build-version-catalogs` wrong path in Unix based systems
 
 ### Updated
 

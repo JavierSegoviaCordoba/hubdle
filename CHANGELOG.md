@@ -11,6 +11,7 @@
 ### Removed
 
 ### Fixed
+- `build-version-catalogs` generates the version in wrong path
 
 ### Updated
 

@@ -67,7 +67,7 @@ fun writeVersionToGradleProperties(version: Version) {
         )
     }
 
-    file("${rootProject.buildDir}/versions/build-versions-catalogs.txt").apply {
+    file("${rootProject.buildDir}/versions/build-version-catalogs.txt").apply {
         ensureParentDirsCreated()
         createNewFile()
         writeText(version.value)

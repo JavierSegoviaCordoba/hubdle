@@ -3,11 +3,8 @@
 ## [Unreleased]
 
 ### Added
-- `build-version-catalogs` supports empty version
-- `build-version-catalogs` supports not setting `bundles`
 
 ### Changed
-- `build-version-catalogs` generates the catalogs in `build/catalogs` instead of `gradle/catalogs`
 
 ### Deprecated
 
@@ -16,6 +13,16 @@
 ### Fixed
 
 ### Updated
+
+
+## [0.1.0-alpha.42] - 2021-08-13
+
+### Added
+- `build-version-catalogs` supports empty version
+- `build-version-catalogs` supports not setting `bundles`
+
+### Changed
+- `build-version-catalogs` generates the catalogs in `build/catalogs` instead of `gradle/catalogs`
 
 ## [0.1.0-alpha.41] - 2021-08-13
 - No changes

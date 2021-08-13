@@ -1,6 +1,6 @@
 enableFeaturePreview("VERSION_CATALOGS")
 
-val buildDir = file("/gradle/catalogs/")
+val buildDir = file("/build/catalogs/")
 
 val projects =
     rootDir.walkTopDown().filter { file ->

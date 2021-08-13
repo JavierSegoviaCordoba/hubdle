@@ -3,8 +3,11 @@
 ## [Unreleased]
 
 ### Added
+- `build-version-catalogs` supports empty version
+- `build-version-catalogs` supports not setting `bundles`
 
 ### Changed
+- `build-version-catalogs` generates the catalogs in `build/catalogs` instead of `gradle/catalogs`
 
 ### Deprecated
 

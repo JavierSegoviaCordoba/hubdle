@@ -1,3 +1,5 @@
+@file:Suppress("SwallowedException", "TooGenericExceptionCaught", "LongMethod")
+
 import java.io.File
 
 internal fun File.generateVersionCatalog(buildDir: File) {
@@ -5,8 +7,11 @@ internal fun File.generateVersionCatalog(buildDir: File) {
         val catalogStartIndex = indexOfFirst { line -> line.contains("// catalog start") }
         val versionsIndex = indexOfFirst { line -> line.contains("// [versions]") }
         val librariesIndex = indexOfFirst { line -> line.contains("// [libraries]") }
-        val bundlesIndex = indexOfFirst { line -> line.contains("// [bundles]") }
         val catalogEndIndex = indexOfFirst { line -> line.contains("// catalog end") }
+        val bundlesIndex =
+            indexOfFirst { line -> line.contains("// [bundles]") }.run {
+                if (this > 0) this else catalogEndIndex - 1
+            }
 
         val name = extractName(get(catalogStartIndex))
 
@@ -14,6 +19,7 @@ internal fun File.generateVersionCatalog(buildDir: File) {
             subList(versionsIndex + 1, librariesIndex - 1).joinToString("\n") { version ->
                 version.replace("val ", "")
             }
+
         val libraries =
             subList(librariesIndex + 1, bundlesIndex - 1).sanitizeLibraries().joinToString("\n") {
                 library ->
@@ -21,27 +27,47 @@ internal fun File.generateVersionCatalog(buildDir: File) {
                 val module = extractModule(library)
                 val version = extractVersion(library)
 
-                """$alias = { module = "$module", version.ref = "$version" }"""
+                if (version != null) {
+                    """$alias = { module = "$module", version.ref = "$version" }"""
+                } else {
+                    """$alias = { module = "$module" }"""
+                }
             }
-        val bundles =
-            subList(bundlesIndex + 1, catalogEndIndex - 1).sanitizeBundles().joinToString("\n") {
-                bundle ->
-                val alias = extractAlias(bundle)
-                val bundles = extractBundles(bundle)
-                """$alias = [$bundles]"""
+
+        val bundles: String? =
+            try {
+                subList(bundlesIndex + 1, catalogEndIndex - 1).sanitizeBundles().joinToString(
+                    "\n"
+                ) { bundle ->
+                    val alias = extractAlias(bundle)
+                    val bundles = extractBundles(bundle)
+                    """$alias = [$bundles]"""
+                }
+            } catch (throwable: Throwable) {
+                null
             }
 
         val catalog =
-            """
-            |[versions]
-            |$versions
-            |
-            |[libraries]
-            |$libraries
-            |
-            |[bundles]
-            |$bundles
-        """.trimMargin()
+            if (bundles != null) {
+                """
+                    |[versions]
+                    |$versions
+                    |
+                    |[libraries]
+                    |$libraries
+                    |
+                    |[bundles]
+                    |$bundles
+                """.trimMargin()
+            } else {
+                """
+                    |[versions]
+                    |$versions
+                    |
+                    |[libraries]
+                    |$libraries
+                """.trimMargin()
+            }
 
         File("$buildDir/$name.toml").apply {
             parentFile.mkdirs()
@@ -64,11 +90,19 @@ internal fun extractAlias(line: String): String {
 }
 
 internal fun extractModule(line: String): String {
-    return line.replaceBefore("\"", "").replaceAfterLast(":", "").replace("\"", "").dropLast(1)
+    return if (line.contains("\$")) {
+        line.replaceBefore("\"", "").replaceAfterLast(":", "").replace("\"", "").dropLast(1)
+    } else {
+        line.replaceBefore("\"", "").replace("\"", "")
+    }
 }
 
-internal fun extractVersion(line: String): String {
-    return line.replaceBefore("\$", "").replaceAfter("\"", "").replace("\$", "").replace("\"", "")
+internal fun extractVersion(line: String): String? {
+    return if (line.contains("\$")) {
+        line.replaceBefore("\$", "").replaceAfter("\"", "").replace("\$", "").replace("\"", "")
+    } else {
+        null
+    }
 }
 
 internal fun extractBundles(line: String): String {
@@ -88,7 +122,7 @@ internal fun List<String>.sanitizeLibraries(): List<String> {
             if (line.replace(" ", "").startsWith("val")) {
                 val nextLine = this.getOrElse(index + 1) { "" }
                 if (nextLine.replace(" ", "").startsWith("val") ||
-                        nextLine.replace(" ", "").isBlank()
+                    nextLine.replace(" ", "").isBlank()
                 ) {
                     line
                 } else {

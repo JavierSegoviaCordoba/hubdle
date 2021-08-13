@@ -11,10 +11,14 @@
 ### Removed
 
 ### Fixed
-- `build-version-catalogs` generates the version in wrong path
 
 ### Updated
 
+
+## [0.1.0-alpha.43] - 2021-08-13
+
+### Fixed
+- `build-version-catalogs` generates the version in wrong path
 
 ## [0.1.0-alpha.42] - 2021-08-13
 

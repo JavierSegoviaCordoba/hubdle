@@ -11,10 +11,14 @@
 ### Removed
 
 ### Fixed
-- `build-version-catalogs` wrong path in Unix based systems
 
 ### Updated
 
+
+## [0.1.0-alpha.45] - 2021-08-14
+
+### Fixed
+- `build-version-catalogs` wrong path in Unix based systems
 
 ## [0.1.0-alpha.44] - 2021-08-13
 

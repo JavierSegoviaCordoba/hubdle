@@ -78,9 +78,6 @@ jobs:
 
       - name: Publish snapshot
         if: ${{ (github.event_name == 'push') || (github.event_name == 'workflow_dispatch') }}
-        env:
-          ossUser: ${{ secrets.OSS_USER }}
-          ossToken: ${{ secrets.OSS_TOKEN }}
         run: ./gradlew publishToSonatype -P"reckon.stage"="snapshot" -P"isSnapshot"="true"
 
       - name: Deploy snapshot docs to Github Pages

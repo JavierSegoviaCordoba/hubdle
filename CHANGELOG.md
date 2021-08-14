@@ -5,6 +5,11 @@
 ### Added
 
 ### Changed
+- `publish-*` plugins can use Gradle properties, environment variables or both mixed.
+- `publish-*` plugins will use `useInMemoryPgpKeys` as default method which fallbacks to `useGpgCmd`
+- `GPG_KEY_NAME` renamed to `SIGNING_KEY_NAME`
+- `GPG_KEY_PASSPHRASE` renamed to `SIGNING_KEY_PASSPHRASE`
+- `GPG_PRIVATE_KEY` renamed to `SIGNING_KEY`
 
 ### Deprecated
 

@@ -1,4 +1,5 @@
 import com.javiersc.plugins.core.isSignificant
+import com.javiersc.plugins.publishing.core.signPublications
 
 plugins {
     `maven-publish`
@@ -57,12 +58,7 @@ configure<PublishingExtension> {
     }
 }
 
-configure<SigningExtension> {
-    if (!project.version.toString().endsWith("-SNAPSHOT") && isSignificant) {
-        useGpgCmd()
-        sign(extensions.getByName<PublishingExtension>("publishing").publications)
-    }
-}
+configure(SigningExtension::signPublications)
 
 pluginBundle {
     website = property("pom.smc.url").toString()

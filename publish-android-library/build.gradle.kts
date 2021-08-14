@@ -26,6 +26,7 @@ gradlePlugin {
 dependencies {
     api(projects.pluginAccessors)
     api(projects.core)
+    api(projects.publishingCore)
 
     implementation(gradleApi())
     api(pluginLibs.android.toolsBuild.gradle)

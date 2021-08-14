@@ -1,5 +1,6 @@
 import com.android.build.gradle.LibraryExtension
 import com.javiersc.plugins.core.isSignificant
+import com.javiersc.plugins.publishing.core.signPublications
 
 plugins {
     `maven-publish`
@@ -23,7 +24,7 @@ val sourcesJar by project.tasks.creating(Jar::class) {
             .named("main")
             .get()
             .java
-            .srcDirs
+            .srcDirs,
     )
 }
 
@@ -66,12 +67,7 @@ afterEvaluate {
         }
     }
 
-    configure<SigningExtension> {
-        if (!project.version.toString().endsWith("-SNAPSHOT") && isSignificant) {
-            useGpgCmd()
-            sign(extensions.getByName<PublishingExtension>("publishing").publications)
-        }
-    }
+    configure(SigningExtension::signPublications)
 }
 
 project.tasks { create<Exec>("gitDiff") { commandLine("git", "diff") } }

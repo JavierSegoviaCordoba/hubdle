@@ -1,5 +1,5 @@
 import internal.groupId
-import internal.isSignificant
+import internal.signPublications
 
 plugins {
     `maven-publish`
@@ -59,10 +59,7 @@ publishing {
 }
 
 signing {
-    if (!project.version.toString().endsWith("-SNAPSHOT") && isSignificant) {
-        useGpgCmd()
-        sign(publishing.publications)
-    }
+    signPublications()
 }
 
 rootProject.tasks {

@@ -1,4 +1,3 @@
-
 rootProject.name = providers.gradleProperty("allProjects.name").forUseAtConfigurationTime().get()
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
@@ -22,7 +21,9 @@ dependencyResolutionManagement {
     }
 }
 
-include("core")
+include(
+    "core", "publishing-core",
+)
 
 include(
     "all-plugins",

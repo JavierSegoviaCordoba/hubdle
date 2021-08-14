@@ -1,6 +1,6 @@
 # Module publish-gradle-plugin
 
-A custom plugin for publishing Gradle plugins to MavenCentral and Gradle Plugin Portal which uses 
+A custom plugin for publishing Gradle plugins to MavenCentral and Gradle Plugin Portal which uses
 `maven-publish` and `id("com.gradle.plugin-publish")` under the hood.
 
 ### Download from MavenCentral

@@ -1,6 +1,6 @@
 # Module changelog
 
-A custom plugin for changelog plugin which uses 
+A custom plugin for changelog plugin which uses
 [JetBrains Changelog plugin](https://github.com/JetBrains/gradle-changelog-plugin) under the hood.
 
 ### Download from MavenCentral
@@ -31,11 +31,11 @@ Completely configured, check the original plugin for more info.
 ./gradlew mergeChangelog
 ```
 
-This task has only effect when the project version is final, and it will merge the previous 
-beta/alpha/rc versions into one when it is invoked. The date of the merged version will be the date 
+This task has only effect when the project version is final, and it will merge the previous
+beta/alpha/rc versions into one when it is invoked. The date of the merged version will be the date
 when the task is executed.
 
-The usual workflow when it is desired to merge all non-final versions into one when the final 
+The usual workflow when it is desired to merge all non-final versions into one when the final
 version is being released is to patch the changelog and then merge it:
 
 ```shell

@@ -24,5 +24,5 @@ plugins {
 
 ### Usage
 
-Just apply it, it has a series of default options enabled, for example, remove warning for some 
+Just apply it, it has a series of default options enabled, for example, remove warning for some
 experimental features.

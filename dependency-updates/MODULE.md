@@ -1,6 +1,6 @@
 # Module dependency-updates
 
-A custom plugin for to find the latest versions for all dependencies which uses 
+A custom plugin for to find the latest versions for all dependencies which uses
 [ben-manes](https://github.com/ben-manes/gradle-versions-plugin) under the hood.
 
 ### Download from MavenCentral
@@ -26,6 +26,7 @@ plugins {
 ### Usage
 
 Just run the task
+
 ```shell
 ./gradlew dependencyUpdates
 ```

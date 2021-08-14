@@ -24,8 +24,8 @@ plugins {
 
 ### Usage
 
-Run the next task so all badges are generated and/or the Kotlin version is updated to the latest 
-version and reflected in its respective badge. 
+Run the next task so all badges are generated and/or the Kotlin version is updated to the latest
+version and reflected in its respective badge.
 
 ```shell
 ./gradlew buildReadmeBadges

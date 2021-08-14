@@ -28,5 +28,5 @@ plugins {
 Check Reckon [readme](https://github.com/ajoberstar/reckon) or
 [samples](https://github.com/ajoberstar/reckon/blob/main/docs/index.md) to see how it works
 
-Check samples about how to manage the project version with GitHub Actions in 
+Check samples about how to manage the project version with GitHub Actions in
 [.github/workflows](../.github/workflows)

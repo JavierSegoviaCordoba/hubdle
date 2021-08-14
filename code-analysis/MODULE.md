@@ -1,6 +1,6 @@
 # Module code-analysis
 
-A custom plugin for code analysis which uses [Detekt](https://github.com/detekt/detekt) under the 
+A custom plugin for code analysis which uses [Detekt](https://github.com/detekt/detekt) under the
 hood.
 
 ### Download from MavenCentral

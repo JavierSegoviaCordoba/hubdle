@@ -1,6 +1,7 @@
 # Module publish-kotlin-multiplatform
 
-A custom plugin for publishing Kotlin Multiplatform projects which uses `maven-publish` under the hood.
+A custom plugin for publishing Kotlin Multiplatform projects which uses `maven-publish` under the
+hood.
 
 ### Download from MavenCentral
 

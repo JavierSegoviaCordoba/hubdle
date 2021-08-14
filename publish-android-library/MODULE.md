@@ -24,7 +24,7 @@ plugins {
 
 ### Usage
 
-Just apply it and add the next Gradle properties (replace the values of each property with the 
+Just apply it and add the next Gradle properties (replace the values of each property with the
 correct ones):
 
 ```properties

@@ -71,7 +71,7 @@ internal fun File.generateVersionCatalog(buildDir: File) {
 
         File(buildDir, "$name.toml").apply {
             parentFile.mkdirs()
-            if (!exists()) createNewFile()
+            createNewFile()
             writeText(catalog)
         }
     }

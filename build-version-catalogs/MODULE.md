@@ -34,7 +34,7 @@ plugins {
 Create a project which includes in the `build.gradle.kts`:
 
 ```kotlin
-@file:Suppress("PropertyName")
+@file:Suppress("PropertyName", "VariableNaming")
 
 // catalog start - libs
 

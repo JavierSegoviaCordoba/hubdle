@@ -9,6 +9,7 @@
 ### Deprecated
 
 ### Removed
+- unnecessary error CLI messages when using `publish-*` plugins
 
 ### Fixed
 

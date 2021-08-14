@@ -82,12 +82,6 @@ private fun SigningExtension.getSigningVariable(
                     "$environmentVariableName environment variable are missing",
             )
         }
-        property.isNullOrBlank() && environmentVariable.isNullOrBlank().not() -> {
-            errorMessage("$propertyName Gradle property is missing")
-        }
-        property.isNullOrBlank().not() && environmentVariable.isNullOrBlank() -> {
-            errorMessage("$environmentVariableName environment variable is missing")
-        }
     }
 
     return property ?: environmentVariable

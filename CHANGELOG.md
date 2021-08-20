@@ -9,12 +9,16 @@
 ### Deprecated
 
 ### Removed
-- unnecessary error CLI messages when using `publish-*` plugins
 
 ### Fixed
 
 ### Updated
 
+
+## [0.1.0-alpha.47] - 2021-08-20
+
+### Removed
+- unnecessary error CLI messages when using `publish-*` plugins
 
 ## [0.1.0-alpha.46] - 2021-08-14
 

@@ -27,4 +27,8 @@ gradlePlugin {
 dependencies {
     api(projects.pluginAccessors)
     api(projects.core)
+
+    implementation(libs.jetbrains.kotlin.kotlinTest)
+    implementation(libs.jetbrains.kotlin.kotlinTestJunit)
+    implementation(libs.kotest.kotestAssertionsCore)
 }

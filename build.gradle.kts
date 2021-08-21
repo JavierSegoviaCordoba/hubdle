@@ -11,3 +11,11 @@ plugins {
     `javiersc-gradle-wrapper-updater`
     `javiersc-build-version-catalogs-updater`
 }
+
+allprojects {
+    repositories {
+        mavenCentral()
+        google()
+        gradlePluginPortal()
+    }
+}

@@ -48,12 +48,15 @@ jobs:
             ~/.gradle/caches
             ~/.gradle/wrapper
             ~/.konan
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/gradle.properties') }}
+          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle.properties', '**/gradle-wrapper.properties') }}
           restore-keys: |
-            ${{ runner.os }}-gradle-
+            gradle-${{ runner.os }}-
 
       - name: Gradle build
         run: ./gradlew build -P"reckon.scope"="${{ github.event.inputs.scope }}" -P"reckon.stage"="${{ github.event.inputs.stage }}"
+
+      - name: Stop Gradle daemons
+        run: ./gradlew --stop
 
   generate-tag:
     runs-on: ubuntu-latest
@@ -81,9 +84,9 @@ jobs:
             ~/.gradle/caches
             ~/.gradle/wrapper
             ~/.konan
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/gradle.properties') }}
+          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle.properties', '**/gradle-wrapper.properties') }}
           restore-keys: |
-            ${{ runner.os }}-gradle-
+            gradle-${{ runner.os }}-
 
       - name: Set version
         id: versioning
@@ -109,3 +112,6 @@ jobs:
           branch: 'main'
           tags: true
           github_token: '${{ secrets.GITHUB_TOKEN }}'
+
+      - name: Stop Gradle daemons
+        run: ./gradlew --stop

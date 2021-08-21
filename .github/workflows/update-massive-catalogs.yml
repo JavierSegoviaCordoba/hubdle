@@ -28,9 +28,9 @@ jobs:
             ~/.gradle/caches
             ~/.gradle/wrapper
             ~/.konan
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/gradle.properties') }}
+          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle.properties', '**/gradle-wrapper.properties') }}
           restore-keys: |
-            ${{ runner.os }}-gradle-
+            gradle-${{ runner.os }}-
 
       - name: Update Massive Catalogs
         run: ./gradlew updateMassiveCatalogs
@@ -50,3 +50,6 @@ jobs:
           title: "Bump Massive Catalogs version to ${{ steps.massive_catalogs.outputs.version }}"
           body: "Changelog: https://massive-catalogs.javiersc.com/CHANGELOG/"
           branch: "bump-massive-catalogs--${{ steps.massive_catalogs.outputs.version }}"
+
+      - name: Stop Gradle daemons
+        run: ./gradlew --stop

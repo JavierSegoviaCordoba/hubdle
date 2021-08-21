@@ -11,6 +11,7 @@
 ### Removed
 
 ### Fixed
+- `build-version-catalogs` build files path
 
 ### Updated
 

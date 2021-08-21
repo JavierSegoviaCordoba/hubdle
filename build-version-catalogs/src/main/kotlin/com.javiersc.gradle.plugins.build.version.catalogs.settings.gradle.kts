@@ -18,7 +18,7 @@ projects.forEach { file ->
     val catalogAsText = Catalog(file.readText()).data
 
     file("$buildDir/$catalogName.toml").apply {
-        mkdirs()
+        parentFile.mkdirs()
         createNewFile()
         writeText(catalogAsText)
     }

@@ -36,7 +36,7 @@ Create a project which includes in the `build.gradle.kts`:
 ```kotlin
 @file:Suppress("PropertyName", "VariableNaming")
 
-// catalog start - libs
+// Catalog name: libs
 
 // [versions]
 val coroutines = "1.5.0"
@@ -47,8 +47,6 @@ val coroutines_android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coro
 
 // [bundles]
 val allCoroutines = coroutines_core + coroutines_android
-
-// catalog end
 ```
 
 This will auto-generate and auto-add a Version Catalog called `libs` in `build/catalogs/libs.toml`

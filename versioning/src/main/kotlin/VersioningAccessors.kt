@@ -6,5 +6,6 @@ import org.gradle.plugin.use.PluginDependencySpec
 val PluginDependenciesSpec.`javiersc-versioning`: PluginDependencySpec
     get() = javiersc("versioning")
 
-fun PluginDependenciesSpec.`javiersc-versioning`(version: String): PluginDependencySpec =
-    javiersc("versioning", version)
+fun PluginDependenciesSpec.`javiersc-versioning`(
+    version: String,
+): PluginDependencySpec = javiersc("versioning", version)

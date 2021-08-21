@@ -29,8 +29,9 @@ fun buildAccessorFile(name: String): String {
         val PluginDependenciesSpec.`javiersc-$accessor`: PluginDependencySpec
             get() = javiersc("$name")
 
-        fun PluginDependenciesSpec.`javiersc-$accessor`(version: String): PluginDependencySpec =
-            javiersc("$name", version)
+        fun PluginDependenciesSpec.`javiersc-$accessor`(
+            version: String,
+        ): PluginDependencySpec = javiersc("$name", version)
 
     """.trimIndent()
 }

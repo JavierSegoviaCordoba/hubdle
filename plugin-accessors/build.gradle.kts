@@ -1,14 +1,6 @@
 plugins {
     kotlin("jvm")
-    publish
-}
-
-publishing {
-    publications {
-        create<MavenPublication>("mavenJava") {
-            from(components["java"])
-        }
-    }
+    `javiersc-publish-kotlin-jvm`
 }
 
 dependencies { implementation(gradleApi()) }

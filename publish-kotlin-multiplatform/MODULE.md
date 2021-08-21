@@ -19,7 +19,7 @@ Add it to all Kotlin Multiplatform modules in the project that should be publish
 
 ```kotlin
 plugins {
-    `javiersc-publish-kotlin-jvm`
+    `javiersc-publish-kotlin-multiplatform`
 }
 ```
 

@@ -64,10 +64,10 @@ val SigningExtension.hasSigningKeyEnvironmentVariable: Boolean
     get() = System.getenv("SIGNING_KEY").isNullOrBlank().not()
 
 private const val RESET = "\u001B[0m"
-private const val RED = "\u001b[0;31m"
+private const val YELLOW = "\u001B[0;33m"
 
 private fun SigningExtension.errorMessage(message: String) =
-    project.logger.lifecycle("${RED}$message$RESET")
+    project.logger.lifecycle("${YELLOW}$message$RESET")
 
 private fun SigningExtension.getSigningVariable(
     propertyName: String,

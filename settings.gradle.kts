@@ -3,26 +3,40 @@ rootProject.name = providers.gradleProperty("allProjects.name").forUseAtConfigur
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 enableFeaturePreview("VERSION_CATALOGS")
 
-dependencyResolutionManagement {
+pluginManagement {
     repositories {
         mavenCentral()
         google()
         gradlePluginPortal()
     }
 
-    versionCatalogs {
-        val massiveCatalogs: String by settings
+    plugins {
+        val buildVersionCatalogs: String by settings
 
-        create("libs") { from("com.javiersc.massive-catalogs:libs-catalog:$massiveCatalogs") }
+        id("com.javiersc.gradle.plugins.build.version.catalogs") version buildVersionCatalogs
+    }
+}
 
-        create("pluginLibs") {
-            from("com.javiersc.massive-catalogs:plugins-catalog:$massiveCatalogs")
-        }
+plugins {
+    id("com.javiersc.gradle.plugins.build.version.catalogs")
+}
+
+dependencyResolutionManagement {
+    repositories {
+        mavenCentral()
+        google()
+        gradlePluginPortal()
     }
 }
 
 include(
-    "core", "publishing-core",
+    ":a--dependencies:libs",
+    ":a--dependencies:plugins",
+)
+
+include(
+    "core",
+    "publishing-core",
 )
 
 include(

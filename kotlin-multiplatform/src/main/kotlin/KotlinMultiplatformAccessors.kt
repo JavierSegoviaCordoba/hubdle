@@ -6,5 +6,6 @@ import org.gradle.plugin.use.PluginDependencySpec
 val PluginDependenciesSpec.`javiersc-kotlin-multiplatform`: PluginDependencySpec
     get() = javiersc("kotlin.multiplatform")
 
-fun PluginDependenciesSpec.`javiersc-kotlin-multiplatform`(version: String): PluginDependencySpec =
-    javiersc("kotlin.multiplatform", version)
+fun PluginDependenciesSpec.`javiersc-kotlin-multiplatform`(
+    version: String,
+): PluginDependencySpec = javiersc("kotlin.multiplatform", version)

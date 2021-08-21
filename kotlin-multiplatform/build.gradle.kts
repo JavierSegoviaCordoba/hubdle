@@ -1,7 +1,6 @@
 plugins {
     `kotlin-dsl`
-    publish
-    `plugin-publish`
+    `javiersc-publish-gradle-plugin`
     `accessors-generator`
 }
 
@@ -28,5 +27,5 @@ dependencies {
     api(projects.pluginAccessors)
     api(projects.core)
 
-    implementation(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)
+    implementation(pluginLibs.jetbrains.kotlin.kotlinGradlePluginX)
 }

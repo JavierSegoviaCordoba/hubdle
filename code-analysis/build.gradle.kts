@@ -1,7 +1,6 @@
 plugins {
     `kotlin-dsl`
-    publish
-    `plugin-publish`
+    `javiersc-publish-gradle-plugin`
     `accessors-generator`
 }
 
@@ -26,5 +25,5 @@ gradlePlugin {
 dependencies {
     api(projects.pluginAccessors)
 
-    api(pluginLibs.gitlab.arturboschDetekt.detektGradlePlugin)
+    api(pluginLibs.gitlab.arturboschDetekt.detektGradlePluginX)
 }

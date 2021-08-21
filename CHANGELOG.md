@@ -11,10 +11,14 @@
 ### Removed
 
 ### Fixed
-- `build-version-catalogs` build files path
 
 ### Updated
 
+
+## [0.1.0-alpha.48] - 2021-08-21
+
+### Fixed
+- `build-version-catalogs` build files path
 
 ## [0.1.0-alpha.47] - 2021-08-20
 

@@ -30,8 +30,8 @@ dependencyResolutionManagement {
 }
 
 include(
-    ":a--dependencies:libs",
-    ":a--dependencies:plugins",
+    ":a--catalogs:libs",
+    ":a--catalogs:plugins",
 )
 
 include(

@@ -39,6 +39,9 @@ jobs:
       - name: Update Gradle Wrapper
         run: ./gradlew updateGradleWrapper -P"gradlew.stage"="${{ github.event.inputs.version_stage }}" --stacktrace
 
+      - name: Update Gradle Wrapper 2
+        run: ./gradlew updateGradleWrapper -P"gradlew.stage"="${{ github.event.inputs.version_stage }}" --stacktrace
+
       - name: Save Gradle Wrapper version
         id: gradle_wrapper
         run: echo "::set-output name=version::$(cat build/versions/gradle-wrapper.txt)"

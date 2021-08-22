@@ -4,7 +4,7 @@
 
 // [versions]
 val coroutines = "1.5.1-native-mt"
-val gson = "2.8.7"
+val gson = "2.8.8"
 val jsoup = "1.14.2"
 val kotest = "4.6.1"
 val ktfmt = "0.27"

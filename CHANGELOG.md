@@ -9,6 +9,7 @@
 ### Deprecated
 
 ### Removed
+- `isSnapshot` and use `reckon.stage` to check if it is a snapshot
 
 ### Fixed
 

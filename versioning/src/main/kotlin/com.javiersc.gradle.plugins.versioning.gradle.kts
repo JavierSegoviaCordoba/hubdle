@@ -5,7 +5,7 @@ plugins {
 
 reckon {
     scopeFromProp()
-    if (properties["isSnapshot"]?.toString()?.toBoolean() == true) snapshotFromProp()
+    if (properties["reckon.stage"]?.toString().equals("snapshot", true)) snapshotFromProp()
     else stageFromProp("alpha", "beta", "rc", "final")
 }
 

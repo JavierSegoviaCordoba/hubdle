@@ -6,7 +6,6 @@ plugins {
 }
 
 configure<DetektExtension> {
-    failFast = false
     parallel = true
     isIgnoreFailures = true
     buildUponDefaultConfig = true

@@ -8,7 +8,7 @@ val gson = "2.8.8"
 val jsoup = "1.14.2"
 val kotest = "4.6.2"
 val ktfmt = "0.28"
-val semanticVersioning = "0.1.0-alpha.3"
+val semanticVersioning = "0.1.0-alpha.4"
 
 // [libraries]
 val facebook_ktfmt = "com.facebook:ktfmt:$ktfmt"

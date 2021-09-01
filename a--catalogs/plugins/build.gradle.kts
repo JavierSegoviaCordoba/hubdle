@@ -3,7 +3,7 @@
 // Catalog name: pluginLibs
 
 // [versions]
-val android = "4.1.3"
+val android = "7.0.2"
 val benManes = "0.39.0"
 val changelog = "1.1.2"
 val detekt = "1.18.1"

@@ -59,9 +59,9 @@ jobs:
         run: ./gradlew buildDocs
 
       - name: Import GPG key
-        uses: crazy-max/ghaction-import-gpg@v3
+        uses: crazy-max/ghaction-import-gpg@v4
         with:
-          gpg-private-key: ${{ secrets.SIGNING_KEY }}
+          gpg_private_key: ${{ secrets.SIGNING_KEY }}
           passphrase: ${{ secrets.SIGNING_KEY_PASSPHRASE }}
 
       - name: Publish to MavenCentral

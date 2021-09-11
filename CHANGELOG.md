@@ -5,6 +5,15 @@
 ### Added
 
 ### Changed
+- `android-library` improvements:
+  - `src` folder is no longer necessary
+  - new project structure:
+    - `main/AndroidManifest.xml`
+    - `main/assets`
+    - `main/java`
+    - `main/kotlin`
+    - `main/res`
+    - `main/resources`
 
 ### Deprecated
 

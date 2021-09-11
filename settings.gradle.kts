@@ -55,6 +55,7 @@ include(
     ":projects:dependency-updates",
     ":projects:docs",
     ":projects:gradle-wrapper-updater",
+    ":projects:kotlin-jvm",
     ":projects:kotlin-multiplatform",
     ":projects:massive-catalogs-updater",
     ":projects:nexus",

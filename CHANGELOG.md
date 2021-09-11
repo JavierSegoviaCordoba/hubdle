@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 ### Added
+- `kotlin-jvm`
 - `kotlin-multiplatform` accessors for all targets
 
 ### Changed

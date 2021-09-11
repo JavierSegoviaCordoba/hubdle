@@ -3,6 +3,21 @@
 ## [Unreleased]
 
 ### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Updated
+
+
+## [0.1.0-alpha.50] - 2021-09-11
+
+### Added
 - `kotlin-jvm`
 - `kotlin-multiplatform` accessors for all targets
 
@@ -22,14 +37,8 @@
     - `targetMain/kotlin`
     - `targetMain/resources`
 
-### Deprecated
-
 ### Removed
 - `isSnapshot` and use `reckon.stage` to check if it is a snapshot
-
-### Fixed
-
-### Updated
 
 ## [0.1.0-alpha.49] - 2021-08-21
 - No changes

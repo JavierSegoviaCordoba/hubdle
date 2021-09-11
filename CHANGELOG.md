@@ -11,6 +11,7 @@
 ### Removed
 
 ### Fixed
+- `code-formatting` search for `kt` files in `build` folders
 
 ### Updated
 

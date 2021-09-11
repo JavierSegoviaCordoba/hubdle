@@ -35,34 +35,34 @@ include(
 )
 
 include(
-    "core",
-    "publishing-core",
+    ":projects:core",
+    ":projects:publishing-core",
 )
 
 include(
-    "all-plugins",
-    "plugin-accessors",
+    ":projects:all-plugins",
+    ":projects:plugin-accessors",
 )
 
 include(
-    "android-library",
-    "all-projects",
-    "build-version-catalogs",
-    "build-version-catalogs-updater",
-    "changelog",
-    "code-analysis",
-    "code-formatter",
-    "dependency-updates",
-    "docs",
-    "gradle-wrapper-updater",
-    "kotlin-multiplatform",
-    ":massive-catalogs-updater",
-    "nexus",
-    "publish-android-library",
-    "publish-gradle-plugin",
-    "publish-kotlin-jvm",
-    "publish-kotlin-multiplatform",
-    "publish-version-catalog",
-    "readme-badges",
-    "versioning",
+    ":projects:android-library",
+    ":projects:all-projects",
+    ":projects:build-version-catalogs",
+    ":projects:build-version-catalogs-updater",
+    ":projects:changelog",
+    ":projects:code-analysis",
+    ":projects:code-formatter",
+    ":projects:dependency-updates",
+    ":projects:docs",
+    ":projects:gradle-wrapper-updater",
+    ":projects:kotlin-multiplatform",
+    ":projects:massive-catalogs-updater",
+    ":projects:nexus",
+    ":projects:publish-android-library",
+    ":projects:publish-gradle-plugin",
+    ":projects:publish-kotlin-jvm",
+    ":projects:publish-kotlin-multiplatform",
+    ":projects:publish-version-catalog",
+    ":projects:readme-badges",
+    ":projects:versioning",
 )

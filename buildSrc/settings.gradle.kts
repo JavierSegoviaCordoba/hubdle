@@ -1,22 +1,8 @@
 enableFeaturePreview("VERSION_CATALOGS")
 
-pluginManagement {
-    repositories {
-        mavenCentral()
-        google()
-        gradlePluginPortal()
-    }
-}
-
 dependencyResolutionManagement {
-    repositories {
-        mavenCentral()
-        google()
-        gradlePluginPortal()
-    }
-
     versionCatalogs {
-        create("libs") { from(files("../build/catalogs/libs.toml")) }
-        create("pluginLibs") { from(files("../build/catalogs/pluginLibs.toml")) }
+        create("libs") { from(files("../gradle/libs.toml")) }
+        create("pluginLibs") { from(files("../gradle/pluginLibs.toml")) }
     }
 }

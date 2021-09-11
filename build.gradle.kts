@@ -8,14 +8,4 @@ plugins {
     `kotlinx-binary-compatibility-validator`
     `javiersc-nexus`
     `javiersc-readme-badges-generator`
-    `javiersc-gradle-wrapper-updater`
-    `javiersc-build-version-catalogs-updater`
-}
-
-allprojects {
-    repositories {
-        mavenCentral()
-        google()
-        gradlePluginPortal()
-    }
 }

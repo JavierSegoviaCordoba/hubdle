@@ -11,6 +11,7 @@
 ### Removed
 
 ### Fixed
+- `code-formatter` searching Kotlin files only on `src`
 
 ### Updated
 

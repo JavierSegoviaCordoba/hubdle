@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 ### Added
+- `kotlin-multiplatform` accessors for all targets
 
 ### Changed
 - `android-library` improvements:
@@ -14,6 +15,11 @@
     - `main/kotlin`
     - `main/res`
     - `main/resources`
+- `kotlin-multiplatform` improvements:
+  - `src` fodler is no longer necessary
+  - new project structure:
+    - `targetMain/kotlin`
+    - `targetMain/resources`
 
 ### Deprecated
 

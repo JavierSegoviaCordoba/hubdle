@@ -3,14 +3,14 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 val KotlinSourceSet.defaultLanguageSettings: Unit
     get() {
         with(languageSettings) {
-            useExperimentalAnnotation("kotlin.ExperimentalStdlibApi")
-            useExperimentalAnnotation("kotlin.RequiresOptIn")
-            useExperimentalAnnotation("kotlin.time.ExperimentalTime")
-            useExperimentalAnnotation("kotlinx.coroutines.ExperimentalCoroutinesApi")
-            useExperimentalAnnotation("kotlinx.coroutines.FlowPreview")
-            useExperimentalAnnotation("kotlinx.coroutines.ObsoleteCoroutinesApi")
-            useExperimentalAnnotation("kotlinx.serialization.ExperimentalSerializationApi")
-            useExperimentalAnnotation("kotlinx.serialization.InternalSerializationApi")
-            useExperimentalAnnotation("io.ktor.util.KtorExperimentalAPI")
+            optIn("kotlin.ExperimentalStdlibApi")
+            optIn("kotlin.RequiresOptIn")
+            optIn("kotlin.time.ExperimentalTime")
+            optIn("kotlinx.coroutines.ExperimentalCoroutinesApi")
+            optIn("kotlinx.coroutines.FlowPreview")
+            optIn("kotlinx.coroutines.ObsoleteCoroutinesApi")
+            optIn("kotlinx.serialization.ExperimentalSerializationApi")
+            optIn("kotlinx.serialization.InternalSerializationApi")
+            optIn("io.ktor.util.KtorExperimentalAPI")
         }
     }

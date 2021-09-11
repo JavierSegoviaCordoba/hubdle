@@ -7,8 +7,8 @@ kotlin {
     sourceSets {
         all {
             defaultLanguageSettings
-            kotlin.srcDirs(name)
-            resources.srcDirs(name)
+            kotlin.srcDirs("$name/kotlin")
+            resources.srcDirs("$name/resources")
         }
     }
 }

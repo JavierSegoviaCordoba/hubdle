@@ -11,10 +11,14 @@
 ### Removed
 
 ### Fixed
-- `code-formatting` search for `kt` files in `build` folders
 
 ### Updated
 
+
+## [0.1.0-alpha.52] - 2021-09-11
+
+### Fixed
+- `code-formatting` search for `kt` files in `build` folders
 
 ## [0.1.0-alpha.51] - 2021-09-11
 

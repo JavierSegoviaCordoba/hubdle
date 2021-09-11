@@ -11,10 +11,14 @@
 ### Removed
 
 ### Fixed
-- `code-formatter` searching Kotlin files only on `src`
 
 ### Updated
 
+
+## [0.1.0-alpha.51] - 2021-09-11
+
+### Fixed
+- `code-formatter` searching Kotlin files only on `src`
 
 ## [0.1.0-alpha.50] - 2021-09-11
 

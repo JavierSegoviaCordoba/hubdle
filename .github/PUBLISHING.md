@@ -77,7 +77,7 @@
 The version should end with `-SNAPSHOT`
 
 ```
-./gradlew publishToSonatype -P"reckon.stage"="snapshot" -P"isSnapshot"="true"
+./gradlew publishToSonatype -P"reckon.stage"="snapshot"
 ```
 
 ### Release

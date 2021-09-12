@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 ### Added
+- `kotlin-multiplatform-no-android` without applying Android plugin
 
 ### Changed
 
@@ -369,7 +370,7 @@
 ## [0.1.0-alpha.3] - 2021-03-19
 
 ### Added
-- expose `defaultLanguageSettings`
+- expose `getDefaultLanguageSettings`
 
 ## [0.1.0-alpha.2] - 2021-03-18
 - No changes

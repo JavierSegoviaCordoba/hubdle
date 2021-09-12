@@ -17,7 +17,9 @@ dependencyResolutionManagement {
 }
 
 include(
+    ":projects:android-core",
     ":projects:core",
+    ":projects:kotlin-multiplatform-core",
     ":projects:publishing-core",
 )
 
@@ -39,6 +41,7 @@ include(
     ":projects:gradle-wrapper-updater",
     ":projects:kotlin-jvm",
     ":projects:kotlin-multiplatform",
+    ":projects:kotlin-multiplatform-no-android",
     ":projects:massive-catalogs-updater",
     ":projects:nexus",
     ":projects:publish-android-library",

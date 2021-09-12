@@ -1,13 +1,28 @@
-import com.javiersc.plugins.core.AndroidSdkVersion
+import com.javiersc.plugins.android.core.AndroidSdk
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id("com.android.library")
+    kotlin("android")
+}
+
+tasks.withType<KotlinCompile> {
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_11.toString()
+        sourceCompatibility = JavaVersion.VERSION_11.toString()
+        targetCompatibility = JavaVersion.VERSION_11.toString()
+    }
 }
 
 android {
-    compileSdkVersion(AndroidSdkVersion.compileSdkVersion)
+    compileSdk = AndroidSdk.compileSdk
 
-    defaultConfig { minSdkVersion(AndroidSdkVersion.minSdkVersion) }
+    defaultConfig { minSdk = AndroidSdk.minSdk }
+
+    compileOptions {
+        sourceCompatibility(JavaVersion.VERSION_11)
+        targetCompatibility(JavaVersion.VERSION_11)
+    }
 
     sourceSets.all {
         assets.srcDirs("$name/assets")

@@ -24,8 +24,10 @@ gradlePlugin {
 }
 
 dependencies {
-    api(projects.projects.pluginAccessors)
+    api(projects.projects.androidCore)
     api(projects.projects.core)
+    api(projects.projects.pluginAccessors)
 
     api(pluginLibs.android.toolsBuild.gradle)
+    implementation(pluginLibs.jetbrains.kotlin.kotlinGradlePluginX)
 }

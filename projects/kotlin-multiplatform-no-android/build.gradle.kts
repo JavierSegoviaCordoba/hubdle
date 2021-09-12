@@ -9,27 +9,25 @@ pluginBundle {
         listOf(
             "kotlin",
             "multiplatform",
-            "android",
         )
 }
 
 gradlePlugin {
     plugins {
-        named("com.javiersc.gradle.plugins.kotlin.multiplatform") {
-            id = "com.javiersc.gradle.plugins.kotlin.multiplatform"
-            displayName = "Kotlin Multiplatform"
+        named("com.javiersc.gradle.plugins.kotlin.multiplatform.no.android") {
+            id = "com.javiersc.gradle.plugins.kotlin.multiplatform.no.android"
+            displayName = "Kotlin Multiplatform No Android"
             description =
-                "A custom plugin for `kotlin(\"multiplatform\")` plugin with a basic setup"
+                "A custom plugin for `kotlin(\"multiplatform\")` plugin with a basic setup " +
+                    "without Android"
         }
     }
 }
 
 dependencies {
-    api(projects.projects.androidCore)
     api(projects.projects.core)
     api(projects.projects.kotlinMultiplatformCore)
     api(projects.projects.pluginAccessors)
 
-    implementation(pluginLibs.android.toolsBuild.gradle)
     implementation(pluginLibs.jetbrains.kotlin.kotlinGradlePluginX)
 }

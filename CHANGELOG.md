@@ -3,7 +3,6 @@
 ## [Unreleased]
 
 ### Added
-- `kotlin-multiplatform` applies AGP and has a default Android config
 
 ### Changed
 
@@ -15,6 +14,11 @@
 
 ### Updated
 
+
+## [0.1.0-alpha.53] - 2021-09-12
+
+### Added
+- `kotlin-multiplatform` applies AGP and has a default Android config
 
 ## [0.1.0-alpha.52] - 2021-09-11
 

@@ -24,7 +24,6 @@ include(
 )
 
 include(
-    ":projects:all-plugins",
     ":projects:plugin-accessors",
 )
 

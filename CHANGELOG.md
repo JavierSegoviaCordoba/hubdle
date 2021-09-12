@@ -10,6 +10,7 @@
 ### Deprecated
 
 ### Removed
+- `all-plugins`
 
 ### Fixed
 

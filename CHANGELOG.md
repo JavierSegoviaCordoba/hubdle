@@ -3,19 +3,25 @@
 ## [Unreleased]
 
 ### Added
-- `kotlin-multiplatform-no-android` without applying Android plugin
 
 ### Changed
 
 ### Deprecated
 
 ### Removed
-- `all-plugins`
 
 ### Fixed
 
 ### Updated
 
+
+## [0.1.0-alpha.54] - 2021-09-12
+
+### Added
+- `kotlin-multiplatform-no-android` without applying Android plugin
+
+### Removed
+- `all-plugins`
 
 ## [0.1.0-alpha.53] - 2021-09-12
 

@@ -1,12 +1,13 @@
+import com.javiersc.plugins.core.AndroidSdkVersion
 
 plugins {
     id("com.android.library")
 }
 
 android {
-    compileSdkVersion(31)
+    compileSdkVersion(AndroidSdkVersion.compileSdkVersion)
 
-    defaultConfig { minSdkVersion(21) }
+    defaultConfig { minSdkVersion(AndroidSdkVersion.minSdkVersion) }
 
     sourceSets.all {
         assets.srcDirs("$name/assets")

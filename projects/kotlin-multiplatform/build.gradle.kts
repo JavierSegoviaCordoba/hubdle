@@ -27,5 +27,6 @@ dependencies {
     api(projects.projects.pluginAccessors)
     api(projects.projects.core)
 
+    implementation(pluginLibs.android.toolsBuild.gradle)
     implementation(pluginLibs.jetbrains.kotlin.kotlinGradlePluginX)
 }

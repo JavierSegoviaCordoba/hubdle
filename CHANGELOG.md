@@ -3,7 +3,6 @@
 ## [Unreleased]
 
 ### Added
-- all plugins to Gradle Plugin Portal
 
 ### Changed
 
@@ -15,6 +14,11 @@
 
 ### Updated
 
+
+## [0.1.0-alpha.56] - 2021-09-25
+
+### Added
+- all plugins to Gradle Plugin Portal
 
 ## [0.1.0-alpha.55] - 2021-09-25
 

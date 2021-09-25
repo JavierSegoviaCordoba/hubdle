@@ -11,10 +11,14 @@
 ### Removed
 
 ### Fixed
-- plugin publications were using incorrect `website` and `vcsUrl`
 
 ### Updated
 
+
+## [0.1.0-alpha.55] - 2021-09-25
+
+### Fixed
+- plugin publications were using incorrect `website` and `vcsUrl`
 
 ## [0.1.0-alpha.54] - 2021-09-12
 

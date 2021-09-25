@@ -23,7 +23,7 @@
     1. Visit this [link](https://oss.sonatype.org/#stagingProfiles), select your profile and copy
        `SOME_NUMBER` from the url `https://oss.sonatype.org/#stagingProfiles;SOME_NUMBERS`
 8. Add KeyName (optional with `useInMemoryPgpKeys`): `signing.gnupg.keyName=[keyName]`
-9. Add KeyId (optional with `useInMemoryPgpKeys` and `useCpgCmd`): `signing.gnupg.keyName=[keyId]`
+9. Add KeyId (optional with `useInMemoryPgpKeys` and `useCpgCmd`): `signing.gnupg.keyId=[keyId]`
 10. Add Key (replace line breaks with `\n`, optional with `useGpgCmd`): `signing.gnupg.key=[key]`
 11. Add Passphrase: `signing.gnupg.passphrase=[passphrase]`
 

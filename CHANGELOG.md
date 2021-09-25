@@ -11,6 +11,7 @@
 ### Removed
 
 ### Fixed
+- plugin publications were using incorrect `website` and `vcsUrl`
 
 ### Updated
 

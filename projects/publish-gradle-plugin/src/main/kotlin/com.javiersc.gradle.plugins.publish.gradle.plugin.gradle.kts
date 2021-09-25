@@ -61,8 +61,8 @@ configure<PublishingExtension> {
 configure(SigningExtension::signPublications)
 
 pluginBundle {
-    website = property("pom.smc.url").toString()
-    vcsUrl = property("pom.smc.connection").toString()
+    website = property("pom.url").toString()
+    vcsUrl = property("pom.smc.url").toString()
 }
 
 project.tasks { create<Exec>("gitDiff") { commandLine("git", "diff") } }

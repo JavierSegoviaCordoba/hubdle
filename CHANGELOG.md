@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 ### Added
+- all plugins to Gradle Plugin Portal
 
 ### Changed
 

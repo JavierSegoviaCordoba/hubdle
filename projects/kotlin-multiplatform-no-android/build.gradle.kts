@@ -30,4 +30,5 @@ dependencies {
     api(projects.projects.pluginAccessors)
 
     compileOnly(pluginLibs.jetbrains.kotlin.kotlinGradlePluginX)
+    implementation(pluginLibs.jetbrains.kotlin.kotlinGradlePluginApi)
 }

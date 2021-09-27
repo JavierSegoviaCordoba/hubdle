@@ -28,5 +28,6 @@ dependencies {
 
     implementation(pluginLibs.jetbrains.dokka.dokkaGradlePluginX)
     compileOnly(pluginLibs.jetbrains.kotlin.kotlinGradlePluginX)
+    implementation(pluginLibs.jetbrains.kotlin.kotlinGradlePluginApi)
     implementation(pluginLibs.vyarus.gradleMkdocsPluginX)
 }

@@ -30,4 +30,5 @@ dependencies {
 
     compileOnly(pluginLibs.android.toolsBuild.gradle)
     compileOnly(pluginLibs.jetbrains.kotlin.kotlinGradlePluginX)
+    implementation(pluginLibs.jetbrains.kotlin.kotlinGradlePluginApi)
 }

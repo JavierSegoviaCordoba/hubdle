@@ -38,5 +38,4 @@ dependencies {
 
     implementation(pluginLibs.diffplug.spotless.spotlessPluginGradle)
     compileOnly(pluginLibs.jetbrains.kotlin.kotlinGradlePluginX)
-    implementation(pluginLibs.jetbrains.kotlin.kotlinGradlePluginApi)
 }

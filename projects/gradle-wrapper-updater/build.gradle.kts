@@ -29,5 +29,4 @@ dependencies {
 
     implementation(libs.google.codeGson.gson)
     compileOnly(pluginLibs.jetbrains.kotlin.kotlinGradlePluginX)
-    implementation(pluginLibs.jetbrains.kotlin.kotlinGradlePluginApi)
 }

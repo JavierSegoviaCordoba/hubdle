@@ -6,5 +6,4 @@ plugins {
 dependencies {
     implementation(gradleApi())
     compileOnly(pluginLibs.jetbrains.kotlin.kotlinGradlePluginX)
-    implementation(pluginLibs.jetbrains.kotlin.kotlinGradlePluginApi)
 }

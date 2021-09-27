@@ -31,5 +31,4 @@ dependencies {
     implementation(libs.javiersc.semanticVersioning.semanticVersioningCore)
 
     compileOnly(pluginLibs.jetbrains.kotlin.kotlinGradlePluginX)
-    implementation(pluginLibs.jetbrains.kotlin.kotlinGradlePluginApi)
 }

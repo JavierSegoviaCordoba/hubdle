@@ -5,5 +5,5 @@ plugins {
 
 dependencies {
     implementation(gradleApi())
-    implementation(pluginLibs.jetbrains.kotlin.kotlinGradlePluginX)
+    compileOnly(pluginLibs.jetbrains.kotlin.kotlinGradlePluginX)
 }

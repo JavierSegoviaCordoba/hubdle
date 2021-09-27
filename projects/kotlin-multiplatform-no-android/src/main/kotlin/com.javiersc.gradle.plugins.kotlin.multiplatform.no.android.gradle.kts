@@ -1,10 +1,11 @@
+import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("multiplatform")
 }
 
-kotlin {
+configure<KotlinMultiplatformExtension> {
     sourceSets {
         all {
             defaultLanguageSettings

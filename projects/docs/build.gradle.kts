@@ -26,7 +26,7 @@ dependencies {
     api(projects.projects.pluginAccessors)
     api(projects.projects.core)
 
-    api(pluginLibs.jetbrains.dokka.dokkaGradlePluginX)
-    implementation(pluginLibs.jetbrains.kotlin.kotlinGradlePluginX)
-    api(pluginLibs.vyarus.gradleMkdocsPluginX)
+    implementation(pluginLibs.jetbrains.dokka.dokkaGradlePluginX)
+    compileOnly(pluginLibs.jetbrains.kotlin.kotlinGradlePluginX)
+    implementation(pluginLibs.vyarus.gradleMkdocsPluginX)
 }

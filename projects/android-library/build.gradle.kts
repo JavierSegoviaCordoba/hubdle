@@ -28,6 +28,6 @@ dependencies {
     api(projects.projects.core)
     api(projects.projects.pluginAccessors)
 
-    api(pluginLibs.android.toolsBuild.gradle)
-    implementation(pluginLibs.jetbrains.kotlin.kotlinGradlePluginX)
+    compileOnly(pluginLibs.android.toolsBuild.gradle)
+    compileOnly(pluginLibs.jetbrains.kotlin.kotlinGradlePluginX)
 }

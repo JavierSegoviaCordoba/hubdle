@@ -1,4 +1,6 @@
+import com.android.build.gradle.LibraryExtension
 import com.javiersc.plugins.android.core.AndroidSdk
+import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -6,7 +8,7 @@ plugins {
     id("com.android.library")
 }
 
-kotlin {
+configure<KotlinMultiplatformExtension> {
     sourceSets {
         all {
             defaultLanguageSettings
@@ -24,7 +26,7 @@ tasks.withType<KotlinCompile> {
     }
 }
 
-android {
+configure<LibraryExtension> {
     compileSdk = AndroidSdk.compileSdk
 
     defaultConfig { minSdk = AndroidSdk.minSdk }

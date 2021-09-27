@@ -28,6 +28,6 @@ dependencies {
     api(projects.projects.publishingCore)
 
     implementation(gradleApi())
-    api(pluginLibs.android.toolsBuild.gradle)
-    api(pluginLibs.jetbrains.dokka.dokkaGradlePluginX)
+    compileOnly(pluginLibs.android.toolsBuild.gradle)
+    implementation(pluginLibs.jetbrains.dokka.dokkaGradlePluginX)
 }

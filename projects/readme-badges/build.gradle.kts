@@ -24,6 +24,7 @@ gradlePlugin {
 }
 
 dependencies {
-    implementation(pluginLibs.jetbrains.kotlin.kotlinGradlePluginX)
     api(projects.projects.pluginAccessors)
+
+    compileOnly(pluginLibs.jetbrains.kotlin.kotlinGradlePluginX)
 }

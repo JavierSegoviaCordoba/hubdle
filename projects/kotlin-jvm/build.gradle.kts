@@ -27,5 +27,5 @@ dependencies {
     api(projects.projects.pluginAccessors)
     api(projects.projects.core)
 
-    implementation(pluginLibs.jetbrains.kotlin.kotlinGradlePluginX)
+    compileOnly(pluginLibs.jetbrains.kotlin.kotlinGradlePluginX)
 }

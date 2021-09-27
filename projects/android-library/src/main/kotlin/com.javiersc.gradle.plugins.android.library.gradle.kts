@@ -1,3 +1,4 @@
+import com.android.build.gradle.LibraryExtension
 import com.javiersc.plugins.android.core.AndroidSdk
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
@@ -14,7 +15,7 @@ tasks.withType<KotlinCompile> {
     }
 }
 
-android {
+configure<LibraryExtension> {
     compileSdk = AndroidSdk.compileSdk
 
     defaultConfig { minSdk = AndroidSdk.minSdk }

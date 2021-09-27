@@ -30,5 +30,5 @@ dependencies {
     implementation(libs.jsoup.jsoup)
     implementation(libs.javiersc.semanticVersioning.semanticVersioningCore)
 
-    implementation(pluginLibs.jetbrains.kotlin.kotlinGradlePluginX)
+    compileOnly(pluginLibs.jetbrains.kotlin.kotlinGradlePluginX)
 }

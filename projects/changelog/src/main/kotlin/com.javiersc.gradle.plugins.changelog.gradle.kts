@@ -3,7 +3,6 @@
 import java.text.SimpleDateFormat
 import java.util.Date
 import org.jetbrains.changelog.ChangelogPluginExtension
-import org.jetbrains.changelog.closure
 import org.jetbrains.changelog.date
 import org.jetbrains.changelog.tasks.PatchChangelogTask
 
@@ -12,9 +11,9 @@ plugins {
 }
 
 configure<ChangelogPluginExtension> {
-    version = "${project.version}"
-    header = closure { "[$version] - ${date()}" }
-    groups = listOf("Added", "Changed", "Deprecated", "Removed", "Fixed", "Updated")
+    version.set("${project.version}")
+    header.set(provider { "[$version] - ${date()}" })
+    groups.set(listOf("Added", "Changed", "Deprecated", "Removed", "Fixed", "Updated"))
 }
 
 tasks {

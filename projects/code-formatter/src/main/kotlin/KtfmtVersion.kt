@@ -1,1 +1,1 @@
-internal const val KTFMT_VERSION: String = "0.28"
+internal const val KTFMT_VERSION: String = "0.29"

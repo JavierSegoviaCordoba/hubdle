@@ -12,7 +12,7 @@ plugins {
 
 configure<ChangelogPluginExtension> {
     version.set("${project.version}")
-    header.set("[$version] - ${date()}")
+    header.set(provider { "[${version.get()}] - ${date()}" })
     groups.set(listOf("Added", "Changed", "Deprecated", "Removed", "Fixed", "Updated"))
 }
 

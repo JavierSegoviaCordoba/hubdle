@@ -14,6 +14,9 @@
 
 ### Updated
 
+## [0.1.0-alpha.60] - 2021-10-10
+- No changes
+
 ## [0.1.0-alpha.59] - 2021-09-27
 - No changes
 

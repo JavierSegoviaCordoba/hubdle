@@ -1,4 +1,5 @@
 import com.javiersc.plugins.core.isSignificant
+import com.javiersc.plugins.publishing.core.configurePublishing
 import com.javiersc.plugins.publishing.core.signPublications
 
 plugins {
@@ -13,40 +14,7 @@ val docsJar by project.tasks.creating(Jar::class) {
     archiveClassifier.set("javadoc")
 }
 
-configure<PublishingExtension> {
-    publications {
-        withType<MavenPublication> {
-            pom {
-                name.set(property("pom.name").toString())
-                description.set(property("pom.description").toString())
-                url.set(property("pom.url").toString())
-
-                licenses {
-                    license {
-                        name.set(property("pom.license.name").toString())
-                        url.set(property("pom.license.url").toString())
-                    }
-                }
-
-                developers {
-                    developer {
-                        id.set(property("pom.developer.id").toString())
-                        name.set(property("pom.developer.name").toString())
-                        email.set(property("pom.developer.email").toString())
-                    }
-                }
-
-                scm {
-                    url.set(property("pom.smc.url").toString())
-                    connection.set(property("pom.smc.connection").toString())
-                    developerConnection.set(property("pom.smc.developerConnection").toString())
-                }
-            }
-
-            artifact(docsJar)
-        }
-    }
-}
+configurePublishing(artifacts = listOf(docsJar))
 
 configure(SigningExtension::signPublications)
 

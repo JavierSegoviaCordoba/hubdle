@@ -11,9 +11,14 @@
 ### Removed
 
 ### Fixed
-- changelog plugin `header` doesn't set the version
 
 ### Updated
+
+
+## [0.1.0-alpha.61] - 2021-10-10
+
+### Fixed
+- changelog plugin `header` doesn't set the version
 
 ## [0.1.0-alpha.60] - 2021-10-10
 - No changes

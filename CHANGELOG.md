@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 ### Added
+- `AddChangelogItemTask` to `changelog` plugin
 
 ### Changed
 

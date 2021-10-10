@@ -8,8 +8,8 @@ A custom plugin for changelog plugin which uses
 ```kotlin
 // buildSrc/build.gradle.kts
 
-dependencies { 
-    implementation("com.javiersc.gradle-plugins:changelog:$version") 
+dependencies {
+    implementation("com.javiersc.gradle-plugins:changelog:$version")
 }
 ```
 
@@ -40,6 +40,21 @@ version is being released is to patch the changelog and then merge it:
 
 ```shell
 ./gradlew patchChangelog mergeChangelog
+```
+
+- Add items via CLI
+
+It allows adding easily a new item to the any section block:
+
+```shell
+./gradlew addChangelogItem --added "some new item"
+```
+
+It supports add all dependencies from a PR created by Renovate if the body content is passed as
+argument:
+
+```shell
+./gradlew addChangelogItem --renovate "[PR BODY]"
 ```
 
 ### Samples

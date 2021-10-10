@@ -11,6 +11,7 @@
 ### Removed
 
 ### Fixed
+- changelog plugin `header` doesn't set the version
 
 ### Updated
 

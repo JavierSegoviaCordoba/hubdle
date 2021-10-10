@@ -26,4 +26,12 @@ dependencies {
     api(projects.projects.pluginAccessors)
 
     api(pluginLibs.jetbrains.intellijPlugins.gradleChangelogPluginX)
+
+    implementation(gradleApi())
+    implementation(gradleKotlinDsl())
+
+    testImplementation(libs.jetbrains.kotlin.kotlinTest)
+    testImplementation(libs.jetbrains.kotlin.kotlinTestJunit)
+    testImplementation(libs.kotest.kotestAssertionsCore)
+    testImplementation(gradleTestKit())
 }

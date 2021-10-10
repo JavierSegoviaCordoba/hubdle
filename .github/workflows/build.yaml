@@ -60,6 +60,25 @@ jobs:
           restore-keys: |
             pip-${{ runner.os }}-
 
+      - uses: jwalton/gh-find-current-pr@v1.2.0
+        if: ${{ (github.event_name == 'pull_request') && (github.event.pull_request.user.login == 'renovate-bot') }}
+        id: find_pull_request
+        with:
+          state: open
+
+      - name: Add updated dependencies to the CHANGELOG from Renovate
+        if: ${{ (github.event_name == 'pull_request') && (github.event.pull_request.user.login == 'renovate-bot') }}
+        run: ./gradlew --renovate ${{ steps.find_pull_request.outputs.body }}
+
+      - uses: EndBug/add-and-commit@v7.4.0
+        with:
+          default_author: user_info
+          author_name: 'Javier Segovia Córdoba'
+          author_email: 'javier@segoviacordoba.com'
+          committer_name: 'Javier Segovia Córdoba'
+          committer_email: 'javier@segoviacordoba.com'
+          message: 'Add updated dependencies to `CHANGELOG.md`'
+
       - name: Increment version
         run: ./gradlew reckonTagCreate -P"reckon.stage"="final"
 

@@ -1,3 +1,22 @@
+public abstract class AddChangelogItem : org/gradle/api/DefaultTask {
+	public fun <init> ()V
+	public final fun getAdded ()Ljava/lang/String;
+	public final fun getChanged ()Ljava/lang/String;
+	public final fun getDeprecated ()Ljava/lang/String;
+	public final fun getFixed ()Ljava/lang/String;
+	public final fun getRemoved ()Ljava/lang/String;
+	public final fun getRenovate ()Ljava/lang/String;
+	public final fun getUpdated ()Ljava/lang/String;
+	public final fun run ()V
+	public final fun setAdded (Ljava/lang/String;)V
+	public final fun setChanged (Ljava/lang/String;)V
+	public final fun setDeprecated (Ljava/lang/String;)V
+	public final fun setFixed (Ljava/lang/String;)V
+	public final fun setRemoved (Ljava/lang/String;)V
+	public final fun setRenovate (Ljava/lang/String;)V
+	public final fun setUpdated (Ljava/lang/String;)V
+}
+
 public final class ChangelogAccessorsKt {
 	public static final fun getJaviersc-changelog (Lorg/gradle/plugin/use/PluginDependenciesSpec;)Lorg/gradle/plugin/use/PluginDependencySpec;
 	public static final fun javiersc-changelog (Lorg/gradle/plugin/use/PluginDependenciesSpec;Ljava/lang/String;)Lorg/gradle/plugin/use/PluginDependencySpec;
@@ -13,20 +32,28 @@ public class Com_javiersc_gradle_plugins_changelog_gradle : org/gradle/kotlin/ds
 	public final field $$implicitReceiver0 Lorg/gradle/api/Project;
 	public final field $$result Lorg/gradle/api/tasks/TaskContainer;
 	public fun <init> (Lorg/gradle/api/Project;Lorg/gradle/api/Project;)V
-	public final fun addPreRelease (Ljava/util/List;I)V
-	public final fun addRelease (Ljava/util/List;I)V
-	public final fun buildChangelog ()Ljava/util/List;
-	public final fun buildChangelogAsString ()Ljava/lang/String;
-	public final fun extractAllBlocks (Ljava/util/List;)Ljava/util/List;
-	public final fun extractBlock (Ljava/lang/String;Ljava/util/List;)Ljava/util/List;
-	public final fun getChangelogFile ()Ljava/io/File;
-	public final fun getChangelogWithNoBlankLines ()Ljava/util/List;
-	public final fun getH1Regex ()Lkotlin/text/Regex;
-	public final fun getH2Regex ()Lkotlin/text/Regex;
-	public final fun getH3Regex ()Lkotlin/text/Regex;
-	public final fun getUnreleasedRegex ()Lkotlin/text/Regex;
-	public final fun improveChangelog ()V
 	public static final fun main ([Ljava/lang/String;)V
-	public final fun mergeChangelog (Ljava/lang/String;)V
+}
+
+public final class MergeChangelogTaskKt {
+	public static final fun isFinal (Lorg/gradle/api/Project;)Z
+	public static final fun mergeChangelog (Lorg/gradle/api/Project;Ljava/lang/String;)V
+}
+
+public final class PatchChangelogTaskKt {
+	public static final fun addPreRelease (Ljava/util/List;Lorg/gradle/api/Project;I)V
+	public static final fun addRelease (Ljava/util/List;Lorg/gradle/api/Project;I)V
+	public static final fun buildChangelog (Lorg/gradle/api/Project;)Ljava/util/List;
+	public static final fun buildChangelogAsString (Lorg/gradle/api/Project;)Ljava/lang/String;
+	public static final fun getChangelogWithNoBlankLines (Lorg/gradle/api/Project;)Ljava/util/List;
+	public static final fun getH1Regex ()Lkotlin/text/Regex;
+	public static final fun getH2Regex ()Lkotlin/text/Regex;
+	public static final fun getH3Regex ()Lkotlin/text/Regex;
+	public static final fun getUnreleasedRegex ()Lkotlin/text/Regex;
+	public static final fun patchChangelog (Lorg/gradle/api/Project;)V
+}
+
+public final class ProjectExtensionsKt {
+	public static final fun getChangelogFile (Lorg/gradle/api/Project;)Ljava/io/File;
 }
 

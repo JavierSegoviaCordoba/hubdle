@@ -9,32 +9,20 @@ import io.kotest.matchers.file.shouldHaveSameContentAs
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import java.io.File
+import java.text.SimpleDateFormat
+import java.util.Date
 import org.gradle.testkit.runner.GradleRunner
 import org.gradle.testkit.runner.TaskOutcome
 import org.junit.Test
 
-class AddChangelogItemTest {
+class PatchChangelogTest {
 
-    @Test fun `added 1`() = testSandbox("sandbox-added-1")
-
-    @Test fun `changed 1`() = testSandbox("sandbox-changed-1")
-
-    @Test fun `deprecated 1`() = testSandbox("sandbox-deprecated-1")
-
-    @Test fun `removed 1`() = testSandbox("sandbox-removed-1")
-
-    @Test fun `fixed 1`() = testSandbox("sandbox-fixed-1")
-
-    @Test fun `updated 1`() = testSandbox("sandbox-updated-1")
-
-    @Test fun `renovate 1`() = testSandbox("sandbox-renovate-1")
-
-    @Test fun `renovate 2`() = testSandbox("sandbox-renovate-2")
+    @Test fun `patch 1`() = testSandbox("sandbox-patch-1")
 }
 
 private fun testSandbox(name: String) {
     val testProjectDir: File = createSandboxFile()
-    "add-changelog-item/$name" copyResourceTo testProjectDir
+    "patch-changelog/$name" copyResourceTo testProjectDir
 
     with(testProjectDir) {
         val result =
@@ -44,7 +32,13 @@ private fun testSandbox(name: String) {
                 .withPluginClasspath()
                 .build()
 
-        result.task(":addChangelogItem").shouldNotBeNull().outcome shouldBe TaskOutcome.SUCCESS
+        result.task(":patchChangelog").shouldNotBeNull().outcome shouldBe TaskOutcome.SUCCESS
+
+        changelogActual.writeText(
+            changelogActual
+                .readText()
+                .replace("{{ PLACEHOLDER_DATE }}", SimpleDateFormat("yyyy-MM-dd").format(Date()))
+        )
 
         changelog.shouldHaveSameContentAs(changelogActual)
     }

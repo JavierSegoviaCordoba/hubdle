@@ -60,11 +60,11 @@ jobs:
 
       - name: Gradle build
         if: ${{ always() }}
-        run: ./gradlew build -P"reckon.stage"="snapshot"
+        run: ./gradlew build -P"reckon.stage"="snapshot" -P"reckon.scope"="patch"
 
       - name: Generate code analysis reports
         if: ${{ always() }}
-        run: ./gradlew detekt -P"reckon.stage"="snapshot"
+        run: ./gradlew detekt -P"reckon.stage"="snapshot" -P"reckon.scope"="patch"
 
       - name: Upload code analysis reports
         if: ${{ always() }}
@@ -74,11 +74,11 @@ jobs:
 
       - name: Generate docs
         if: ${{ (github.event_name == 'push') || (github.event_name == 'workflow_dispatch') }}
-        run: ./gradlew buildDocs -P"reckon.stage"="snapshot"
+        run: ./gradlew buildDocs -P"reckon.stage"="snapshot" -P"reckon.scope"="patch"
 
       - name: Publish snapshot
         if: ${{ (github.event_name == 'push') || (github.event_name == 'workflow_dispatch') }}
-        run: ./gradlew publishToSonatype -P"reckon.stage"="snapshot"
+        run: ./gradlew publishToSonatype -P"reckon.stage"="snapshot" -P"reckon.scope"="patch"
 
       - name: Deploy snapshot docs to Github Pages
         if: ${{ (github.event_name == 'push') || (github.event_name == 'workflow_dispatch') }}

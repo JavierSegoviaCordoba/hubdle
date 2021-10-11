@@ -14,6 +14,11 @@ on:
       - '**.md'
 
   workflow_dispatch:
+    inputs:
+      args:
+        description: 'Gradle args for `build` step'
+        default: ''
+        required: false
 
 env:
   OSS_USER: '${{ secrets.OSS_USER }}'
@@ -60,7 +65,7 @@ jobs:
 
       - name: Gradle build
         if: ${{ always() }}
-        run: ./gradlew build -P"reckon.stage"="snapshot" -P"reckon.scope"="patch"
+        run: ./gradlew build ${{ github.event.inputs.args }} -P"reckon.stage"="snapshot" -P"reckon.scope"="patch"
 
       - name: Generate code analysis reports
         if: ${{ always() }}

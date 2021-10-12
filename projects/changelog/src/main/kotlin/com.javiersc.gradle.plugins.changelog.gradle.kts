@@ -13,7 +13,10 @@ configure<ChangelogPluginExtension> {
 }
 
 tasks {
-    named<PatchChangelogTask>("patchChangelog") { doLast { patchChangelog() } }
+    named<PatchChangelogTask>("patchChangelog") {
+        group = "changelog"
+        doLast { patchChangelog() }
+    }
 
     register("mergeChangelog") {
         group = "changelog"

@@ -46,15 +46,7 @@ fun Project.buildChangelog(): List<String> =
         .filter(String::isNotBlank)
 
 fun MutableList<String>.addPreRelease(project: Project, lastReleaseIndex: Int) {
-    project.changelogWithNoBlankLines.subList(0, lastReleaseIndex).forEach { line ->
-        when {
-            h1Regex.matches(line) -> add(line)
-            unreleasedRegex.matches(line) -> add(line)
-            h2Regex.matches(line) -> add(line)
-            h3Regex.matches(line) -> add(line)
-            else -> add(line)
-        }
-    }
+    project.changelogWithNoBlankLines.subList(0, lastReleaseIndex).forEach(::add)
 }
 
 fun MutableList<String>.addRelease(project: Project, lastReleaseIndex: Int) {

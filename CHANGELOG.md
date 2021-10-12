@@ -3,7 +3,6 @@
 ## [Unreleased]
 
 ### Added
-- `renovatePath` and `renovateCommitTable` to `AddChangelogItemTask`
 
 ### Changed
 
@@ -15,6 +14,11 @@
 
 ### Updated
 
+
+## [0.1.0-alpha.64] - 2021-10-12
+
+### Added
+- `renovatePath` and `renovateCommitTable` to `AddChangelogItemTask`
 
 ## [0.1.0-alpha.63] - 2021-10-12
 

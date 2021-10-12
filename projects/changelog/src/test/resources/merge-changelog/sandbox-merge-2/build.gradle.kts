@@ -5,9 +5,9 @@ plugins {
 }
 
 allprojects {
-    version = "0.1.1"
+    version = "0.1.0"
 }
 
 configure<ChangelogPluginExtension> {
-    version.set("0.1.1")
+    version.set("0.1.0")
 }

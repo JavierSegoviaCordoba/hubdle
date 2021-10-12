@@ -5,7 +5,10 @@ import org.gradle.api.Project
 val Project.isFinal: Boolean
     get() = "${project.version}".all { it.isDigit() || it == '.' }
 
-fun Project.mergeChangelog(version: String) {
+@OptIn(ExperimentalStdlibApi::class)
+fun Project.mergeChangelog() {
+    val version: String = this.version.toString()
+
     if (isFinal.not()) return
 
     val changelog = changelogFile.readLines()
@@ -18,6 +21,11 @@ fun Project.mergeChangelog(version: String) {
     val firstVersionIndex = changelog.indexOfFirst { it.containVersion(version) }
     val lastVersionIndex = changelog.indexOfLast { it.containVersion(version) }
 
+    if (firstVersionIndex == -1 || lastVersionIndex == -1) {
+        logger.lifecycle("This version doesn't need to be merged")
+        return
+    }
+
     val firstOldVersion =
         changelog.subList(lastVersionIndex + 1, changelog.count()).firstOrNull {
             it.contains("## [")
@@ -25,20 +33,18 @@ fun Project.mergeChangelog(version: String) {
     val firstOldVersionIndex =
         if (firstOldVersion != null) changelog.indexOf(firstOldVersion) else changelog.count()
 
-    // TODO: Fix `if` and `else` execute the same
-    val versionBlock =
-        if (firstOldVersionIndex == -1) changelog.subList(firstVersionIndex, firstOldVersionIndex)
-        else changelog.subList(firstVersionIndex, firstOldVersionIndex)
+    val versionBlock = changelog.subList(firstVersionIndex, firstOldVersionIndex)
 
     val mergedVersion = mutableListOf<String>()
     mergedVersion.add(header)
     mergedVersion.addAll(extractAllBlocks(versionBlock))
 
-    val mergedChangelog = mutableListOf<String>()
-    mergedChangelog.addAll(changelog.subList(0, firstVersionIndex - 1))
-    mergedChangelog.add("")
-    mergedChangelog.addAll(mergedVersion)
-    mergedChangelog.addAll(changelog.subList(firstOldVersionIndex, changelog.count()))
+    val mergedChangelog = buildList {
+        addAll(changelog.subList(0, firstVersionIndex - 1).cleanUnreleasedBlock())
+        add("")
+        addAll(mergedVersion)
+        addAll(changelog.subList(firstOldVersionIndex, changelog.count()))
+    }
 
     changelogFile.writeText(mergedChangelog.joinToString("\n"))
 }
@@ -72,4 +78,8 @@ private fun extractBlock(blockName: String, versionBlock: List<String>): List<St
     block.add("")
 
     return if (block.any { it.replace(" ", "").startsWith("-") }) block else emptyList()
+}
+
+private fun List<String>.cleanUnreleasedBlock(): List<String> = mapNotNull { line ->
+    if (line.filterNot(Char::isWhitespace).startsWith("-")) null else line
 }

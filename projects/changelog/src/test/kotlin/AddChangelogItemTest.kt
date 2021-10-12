@@ -33,7 +33,7 @@ class AddChangelogItemTest {
 }
 
 private fun testSandbox(name: String) {
-    val testProjectDir: File = createSandboxFile()
+    val testProjectDir: File = createSandboxFile(name)
     "add-changelog-item/$name" copyResourceTo testProjectDir
 
     with(testProjectDir) {

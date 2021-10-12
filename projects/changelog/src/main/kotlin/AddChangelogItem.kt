@@ -180,12 +180,11 @@ private fun Project.dependenciesFromRenovatePullRequestBody(
 }
 
 private fun Project.dependenciesFromRenovateCommit(): List<String> {
+    val gitFolder = File("${rootProject.rootDir}").walkTopDown().first { it.name == ".git" }
+
     val repository: Repository =
-        FileRepositoryBuilder()
-            .setGitDir(File("$rootDir/.git"))
-            .readEnvironment()
-            .findGitDir()
-            .build()
+        FileRepositoryBuilder().setGitDir(gitFolder).readEnvironment().findGitDir().build()
+
     val head: Ref = repository.findRef(repository.fullBranch)
     val latestCommit: RevCommit = RevWalk(repository).parseCommit(head.objectId)
 

@@ -3,7 +3,6 @@
 ## [Unreleased]
 
 ### Added
-- `AddChangelogItemTask` to `changelog` plugin
 
 ### Changed
 
@@ -15,6 +14,11 @@
 
 ### Updated
 
+
+## [0.1.0-alpha.63] - 2021-10-12
+
+### Added
+- `AddChangelogItemTask` to `changelog` plugin
 
 ## [0.1.0-alpha.62] - 2021-10-10
 
@@ -428,4 +432,4 @@
   - nexus
   - publish
   - readme-badges-generator
-  - versioning 
+  - versioning

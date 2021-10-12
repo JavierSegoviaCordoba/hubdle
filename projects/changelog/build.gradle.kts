@@ -26,6 +26,7 @@ dependencies {
     api(projects.projects.pluginAccessors)
 
     api(pluginLibs.jetbrains.intellijPlugins.gradleChangelogPluginX)
+    implementation(libs.eclipse.jgit)
 
     implementation(gradleApi())
     implementation(gradleKotlinDsl())

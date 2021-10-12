@@ -1,3 +1,9 @@
+import java.io.File
+import org.eclipse.jgit.lib.Ref
+import org.eclipse.jgit.lib.Repository
+import org.eclipse.jgit.revwalk.RevCommit
+import org.eclipse.jgit.revwalk.RevWalk
+import org.eclipse.jgit.storage.file.FileRepositoryBuilder
 import org.gradle.api.DefaultTask
 import org.gradle.api.Project
 import org.gradle.api.tasks.Input
@@ -40,10 +46,29 @@ abstract class AddChangelogItem : DefaultTask() {
     @get:Input
     @set:Option(
         option = "renovate",
-        description = "Extract dependencies from the table in the PR body created by Renovate"
+        description = "Extract dependencies from the table in the PR body",
     )
     @Optional
     var renovate: String? = null
+
+    @get:Input
+    @set:Option(
+        option = "renovatePath",
+        description = "Extract dependencies from the table in the PR body from a file",
+    )
+    @Optional
+    var renovatePath: String? = null
+
+    @get:Input
+    @set:Option(
+        option = "renovateCommitTable",
+        description =
+            """
+               Extract dependencies from the table in the commit body
+               Add `"commitBodyTable": true` to the Renovate config
+            """,
+    )
+    var renovateCommitTable: Boolean = false
 
     init {
         group = "changelog"
@@ -76,13 +101,31 @@ private fun AddChangelogItem.setupSection(header: String, item: String?) =
 
 private fun AddChangelogItem.setupRenovate(): Unit =
     with(project) {
-        val dependencies: List<String> = dependenciesFromRenovatePullRequestBody(renovate)
-        if (dependencies.isNotEmpty()) {
-            logger.lifecycle("### Updated")
-            for (dependency in dependencies) {
-                logger.lifecycle("- $dependency")
+        val dependenciesFromPullRequest: List<String> =
+            dependenciesFromRenovatePullRequestBody(renovate, renovatePath)
+
+        val dependenciesFromCommit: List<String> =
+            if (renovateCommitTable) dependenciesFromRenovateCommit() else emptyList()
+
+        val updatedLabel = "### Updated"
+
+        when {
+            dependenciesFromPullRequest.isNotEmpty() -> {
+                logger.lifecycle(updatedLabel)
+                for (dependencyFromPullRequest in dependenciesFromPullRequest) {
+                    logger.lifecycle("- $dependencyFromPullRequest")
+                }
+                changelogFile.writeText(
+                    changelog.addChanges(updatedLabel, dependenciesFromPullRequest),
+                )
             }
-            changelogFile.writeText(changelog.addChanges("### Updated", dependencies))
+            dependenciesFromCommit.isNotEmpty() -> {
+                logger.lifecycle(updatedLabel)
+                for (dependencyFromCommit in dependenciesFromCommit) {
+                    logger.lifecycle("- $dependencyFromCommit")
+                }
+                changelogFile.writeText(changelog.addChanges(updatedLabel, dependenciesFromCommit))
+            }
         }
     }
 
@@ -104,9 +147,18 @@ private fun String.addChanges(header: String, changes: List<String>): String =
         }
         .joinToString("\n")
 
-private fun dependenciesFromRenovatePullRequestBody(body: String?): List<String> =
-    body?.split("""\n""")
-        .orEmpty()
+private fun Project.dependenciesFromRenovatePullRequestBody(
+    body: String?,
+    path: String?
+): List<String> {
+    val renovateLines: List<String> =
+        when {
+            body != null && body.isNotBlank() -> body.split("""\n""")
+            path != null -> File("$rootDir/$path").readText().split("\n")
+            else -> emptyList()
+        }
+
+    return renovateLines
         .asSequence()
         .filter(String::isNotBlank)
         .map { it.replace("""\n""", "\n") }
@@ -125,3 +177,26 @@ private fun dependenciesFromRenovatePullRequestBody(body: String?): List<String>
         }
         .filterNotNull()
         .toList()
+}
+
+private fun Project.dependenciesFromRenovateCommit(): List<String> {
+    val repository: Repository =
+        FileRepositoryBuilder()
+            .setGitDir(File("$rootDir/.git"))
+            .readEnvironment()
+            .findGitDir()
+            .build()
+    val head: Ref = repository.findRef(repository.fullBranch)
+    val latestCommit: RevCommit = RevWalk(repository).parseCommit(head.objectId)
+
+    return latestCommit
+        .fullMessage
+        .lines()
+        .dropWhile { it.startsWith("| ----").not() }
+        .drop(1)
+        .dropLastWhile { it.startsWith("|").not() && it.endsWith("|").not() }
+        .map {
+            val data = it.filterNot(Char::isWhitespace).split("|").drop(2).dropLast(1)
+            "`${data.first()} -> ${data.last()}`"
+        }
+}

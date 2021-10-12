@@ -60,18 +60,12 @@ jobs:
           restore-keys: |
             pip-${{ runner.os }}-
 
-      - uses: jwalton/gh-find-current-pr@v1.2.0
-        if: ${{ (github.event_name == 'pull_request') && (github.event.pull_request.user.login == 'renovate-bot') }}
-        id: find_pull_request
-        with:
-          state: open
-
       - name: Add updated dependencies to the CHANGELOG from Renovate
-        if: ${{ (github.event_name == 'pull_request') && (github.event.pull_request.user.login == 'renovate-bot') }}
-        run: ./gradlew --renovate ${{ steps.find_pull_request.outputs.body }}
+        if: ${{ (github.event_name == 'pull_request') && (github.event.pull_request.user.login == 'renovate[bot]') }}
+        run: ./gradlew addChangelogItem --renovateCommitTable
 
       - uses: EndBug/add-and-commit@v7.4.0
-        if: ${{ (github.event_name == 'pull_request') && (github.event.pull_request.user.login == 'renovate-bot') }}
+        if: ${{ (github.event_name == 'pull_request') && (github.event.pull_request.user.login == 'renovate[bot]') }}
         with:
           default_author: user_info
           author_name: 'Javier Segovia Córdoba'

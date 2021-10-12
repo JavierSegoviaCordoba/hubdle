@@ -9,6 +9,7 @@ import io.kotest.matchers.file.shouldHaveSameContentAs
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import java.io.File
+import org.eclipse.jgit.api.Git
 import org.gradle.testkit.runner.GradleRunner
 import org.gradle.testkit.runner.TaskOutcome
 import org.junit.Test
@@ -30,11 +31,32 @@ class AddChangelogItemTest {
     @Test fun `renovate 1`() = testSandbox("sandbox-renovate-1")
 
     @Test fun `renovate 2`() = testSandbox("sandbox-renovate-2")
+
+    @Test fun `renovate 3`() = testSandbox("sandbox-renovate-3")
+
+    @Test
+    fun `renovate 4`() =
+        testSandbox(
+            name = "sandbox-renovate-4",
+            commitMessage =
+                """
+                    | datasource | package                                                   | from  | to  |
+                    | ---------- | --------------------------------------------------------- | ----- | --- |
+                    | maven      | com.gradle.enterprise:com.gradle.enterprise.gradle.plugin | 3.6.4 | 3.7 |
+                """.trimIndent()
+        )
 }
 
-private fun testSandbox(name: String) {
+private fun testSandbox(name: String, commitMessage: String? = null) {
     val testProjectDir: File = createSandboxFile(name)
     "add-changelog-item/$name" copyResourceTo testProjectDir
+
+    if (commitMessage != null) {
+        val git: Git = Git.init().setDirectory(testProjectDir).call()
+        git.add().addFilepattern(".").call()
+        git.commit().setMessage(commitMessage).call()
+        git.checkout().setCreateBranch(true).setName("sandbox/changelog-items").call()
+    }
 
     with(testProjectDir) {
         val result =

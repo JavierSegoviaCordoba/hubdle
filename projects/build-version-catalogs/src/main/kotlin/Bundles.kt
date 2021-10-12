@@ -29,10 +29,7 @@ internal class Bundles(private val rawData: String) {
     private fun build(rawData: String): String {
         val section = Section.BUNDLES
 
-        val bundlesData =
-            extractSection(rawData, section).filter(String::isNotBlank).also {
-                if (it.isEmpty()) return ""
-            }
+        val bundlesData = extractSection(rawData, section).filter(String::isNotBlank)
 
         if (bundlesData.isEmpty()) return ""
 

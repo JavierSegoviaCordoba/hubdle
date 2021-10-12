@@ -20,11 +20,14 @@ import org.jetbrains.kotlin.gradle.internal.ensureParentDirsCreated
  * - If the input is `nightly`, the last nightly version will be used.
  */
 rootProject.tasks {
-    val configureWrapper by tasks.registering {
-        doLast {
-            tasks.withType<Wrapper>().configureEach { gradleVersion = getSpecificGradleVersion() }
+    val configureWrapper by
+        tasks.registering {
+            doLast {
+                tasks.withType<Wrapper>().configureEach {
+                    gradleVersion = getSpecificGradleVersion()
+                }
+            }
         }
-    }
     tasks.register("updateGradleWrapper") {
         group = "updater"
         description = "Check the latest Gradlew Wrapper version"
@@ -38,7 +41,7 @@ rootProject.tasks {
                     workingDir = rootProject.rootDir
                     commandLine =
                         (if (isWindows) "cmd git update-index --chmod=+x gradlew"
-                        else "git update-index --chmod=+x gradlew")
+                            else "git update-index --chmod=+x gradlew")
                             .split(" ")
                 }
             }
@@ -84,32 +87,30 @@ fun getSpecificGradleVersion(): String {
             }
         }
 
-    (URL(url).openConnection() as HttpURLConnection).apply {
-        requestMethod = "GET"
-        if (responseCode !in 200..299) {
-            error("There is an error getting the last Gradle version (code: $responseCode")
-        }
+    val connection = URL(url).openConnection() as HttpURLConnection
+    connection.requestMethod = "GET"
+    if (connection.responseCode !in 200..299) {
+        error("There is an error getting the last Gradle version (code: ${connection.responseCode}")
+    }
 
-        inputStream.bufferedReader().use {
-            val gradleVersion: GradleVersion =
-                Gson().fromJson(it.readText(), GradleVersion::class.java)
+    connection.inputStream.bufferedReader().use {
+        val gradleVersion: GradleVersion = Gson().fromJson(it.readText(), GradleVersion::class.java)
 
-            return if (gradleVersion.version == null) {
-                error("${red}There is no Gradle version available$reset")
-            } else {
-                File("${project.rootProject.buildDir}/versions/gradle-wrapper.txt").apply {
-                    ensureParentDirsCreated()
-                    createNewFile()
-                    writeText(gradleVersion.version)
-                }
-
-                logger.lifecycle(
-                    "The latest ${cyan}Gradle version$reset for " +
-                        "the stage $yellow${stage ?: "Current"}$reset " +
-                        "is $green${gradleVersion.version}$reset"
-                )
-                gradleVersion.version
+        return if (gradleVersion.version == null) {
+            error("${red}There is no Gradle version available$reset")
+        } else {
+            File("${project.rootProject.buildDir}/versions/gradle-wrapper.txt").apply {
+                ensureParentDirsCreated()
+                createNewFile()
+                writeText(gradleVersion.version)
             }
+
+            logger.lifecycle(
+                "The latest ${cyan}Gradle version$reset for " +
+                    "the stage $yellow${stage ?: "Current"}$reset " +
+                    "is $green${gradleVersion.version}$reset"
+            )
+            gradleVersion.version
         }
     }
 }

@@ -71,6 +71,7 @@ jobs:
         run: ./gradlew --renovate ${{ steps.find_pull_request.outputs.body }}
 
       - uses: EndBug/add-and-commit@v7.4.0
+        if: ${{ (github.event_name == 'pull_request') && (github.event.pull_request.user.login == 'renovate-bot') }}
         with:
           default_author: user_info
           author_name: 'Javier Segovia Córdoba'

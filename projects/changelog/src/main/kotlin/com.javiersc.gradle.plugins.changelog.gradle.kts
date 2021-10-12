@@ -18,7 +18,7 @@ tasks {
     register("mergeChangelog") {
         group = "changelog"
 
-        doLast { mergeChangelog("${project.version}") }
+        doLast { mergeChangelog() }
     }
 
     register<AddChangelogItem>("addChangelogItem")

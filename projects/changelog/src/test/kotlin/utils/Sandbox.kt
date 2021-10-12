@@ -10,9 +10,9 @@ internal infix fun String.copyResourceTo(destination: File) {
         .copyRecursively(destination)
 }
 
-internal fun createSandboxFile(): File {
+internal fun createSandboxFile(prefix: String): File {
     val path: Path = Paths.get("build/sandbox").apply { toFile().mkdirs() }
-    return Files.createTempDirectory(path, null).toFile()
+    return Files.createTempDirectory(path, "$prefix-").toFile()
 }
 
 internal val File.arguments: List<String>

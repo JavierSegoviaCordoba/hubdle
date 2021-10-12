@@ -15,14 +15,16 @@ import org.gradle.testkit.runner.GradleRunner
 import org.gradle.testkit.runner.TaskOutcome
 import org.junit.Test
 
-class PatchChangelogTest {
+class MergeChangelogTest {
 
-    @Test fun `patch 1`() = testSandbox("sandbox-patch-1")
+    @Test fun `merge 1`() = testSandbox("sandbox-merge-1")
+
+    @Test fun `merge 2`() = testSandbox("sandbox-merge-2")
 }
 
 private fun testSandbox(name: String) {
     val testProjectDir: File = createSandboxFile(name)
-    "patch-changelog/$name" copyResourceTo testProjectDir
+    "merge-changelog/$name" copyResourceTo testProjectDir
 
     with(testProjectDir) {
         val result =
@@ -32,7 +34,7 @@ private fun testSandbox(name: String) {
                 .withPluginClasspath()
                 .build()
 
-        result.task(":patchChangelog").shouldNotBeNull().outcome shouldBe TaskOutcome.SUCCESS
+        result.task(":mergeChangelog").shouldNotBeNull().outcome shouldBe TaskOutcome.SUCCESS
 
         changelogActual.writeText(
             changelogActual

@@ -54,6 +54,7 @@ include(
     ":plugins:version-catalogs:build-version-catalogs",
     ":plugins:version-catalogs:build-version-catalogs-updater",
     ":plugins:version-catalogs:massive-catalogs-updater",
+    ":plugins:version-catalogs:projects-version-catalog",
 )
 
 include(

@@ -1,8 +1,8 @@
 import java.io.File
-import org.eclipse.jgit.lib.Ref
+import org.eclipse.jgit.api.Git
+import org.eclipse.jgit.lib.Constants
 import org.eclipse.jgit.lib.Repository
 import org.eclipse.jgit.revwalk.RevCommit
-import org.eclipse.jgit.revwalk.RevWalk
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder
 import org.gradle.api.DefaultTask
 import org.gradle.api.Project
@@ -185,8 +185,17 @@ private fun Project.dependenciesFromRenovateCommit(): List<String> {
     val repository: Repository =
         FileRepositoryBuilder().setGitDir(gitFolder).readEnvironment().findGitDir().build()
 
-    val head: Ref = repository.findRef(repository.fullBranch)
-    val latestCommit: RevCommit = RevWalk(repository).parseCommit(head.objectId)
+    val head = repository.resolve(Constants.HEAD).name
+
+    val commits: List<RevCommit> =
+        Git(repository).log().add(repository.resolve(head)).call().toList()
+
+    val latestCommit: RevCommit =
+        commits.first { commit ->
+            listOf("datasource", "package", "from", "to").all { keyword ->
+                keyword in commit.fullMessage
+            }
+        }
 
     return latestCommit
         .fullMessage

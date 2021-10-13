@@ -11,8 +11,10 @@
 ### Removed
 
 ### Fixed
+- `renovateCommitTable` doesn't work inside GitHub Actions workflows
 
 ### Updated
+
 
 ## [0.1.0-alpha.65] - 2021-10-12
 - No changes

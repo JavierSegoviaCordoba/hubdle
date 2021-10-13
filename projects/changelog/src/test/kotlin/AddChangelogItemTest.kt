@@ -45,6 +45,20 @@ class AddChangelogItemTest {
                     | maven      | com.gradle.enterprise:com.gradle.enterprise.gradle.plugin | 3.6.4 | 3.7 |
                 """.trimIndent()
         )
+
+    @Test
+    fun `renovate 5`() =
+        testSandbox(
+            name = "sandbox-renovate-5",
+            commitMessage =
+                """
+                    | datasource | package                                                   | from  | to    |
+                    | ---------- | --------------------------------------------------------- | ----- | ----- |
+                    | maven      | com.gradle.enterprise:com.gradle.enterprise.gradle.plugin | 3.6.4 | 3.7   |
+                    | maven      | com.javiersc.mokoki:mokoki-core                           | 1.0.0 | 1.0.1 |
+                    | maven      | com.javiersc.either:either-core                           | 2.0.1 | 2.0.2 |
+                """.trimIndent()
+        )
 }
 
 private fun testSandbox(name: String, commitMessage: String? = null) {

@@ -132,13 +132,19 @@ private fun AddChangelogItem.setupRenovate(): Unit =
 @OptIn(ExperimentalStdlibApi::class)
 private fun String.addChanges(header: String, changes: List<String>): String =
     buildList {
+            val firstVersionIndex =
+                lines().indexOfFirst {
+                    it.startsWith("## [") && it.contains("[Unreleased]", true).not()
+                }
             var shouldAddUpdate = true
             lines().onEach { line ->
                 if (line.startsWith(header) && shouldAddUpdate) {
                     shouldAddUpdate = false
                     add(line)
                     for (change in changes) {
-                        add("- $change")
+                        if (lines().subList(0, firstVersionIndex).none { it.contains(change) }) {
+                            add("- $change")
+                        }
                     }
                 } else {
                     add(line)

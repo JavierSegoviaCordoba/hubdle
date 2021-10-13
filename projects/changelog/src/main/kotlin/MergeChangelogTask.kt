@@ -15,9 +15,6 @@ fun Project.mergeChangelog() {
 
     val header = "## [$version] - ${SimpleDateFormat("yyyy-MM-dd").format(Date())}\n"
 
-    fun String.containVersion(version: String): Boolean =
-        contains("## [$version-") || contains("## [$version]")
-
     val firstVersionIndex = changelog.indexOfFirst { it.containVersion(version) }
     val lastVersionIndex = changelog.indexOfLast { it.containVersion(version) }
 

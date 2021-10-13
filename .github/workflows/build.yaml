@@ -33,6 +33,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
+          ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0
 
       - name: Set up Java
@@ -62,13 +63,14 @@ jobs:
 
       - name: Add updated dependencies to the CHANGELOG from Renovate
         if: ${{ (github.event_name == 'pull_request') && (github.event.pull_request.user.login == 'renovate[bot]') }}
-        run: ./gradlew addChangelogItem --renovateCommitTable
-
-      - uses: EndBug/add-and-commit@v7.4.0
-        if: ${{ (github.event_name == 'pull_request') && (github.event.pull_request.user.login == 'renovate[bot]') }}
-        with:
-          default_author: user_info
-          message: 'Add updated dependencies to `CHANGELOG.md`'
+        run: |
+          git switch -c ${{ github.event.pull_request.head.ref }}
+          ./gradlew addChangelogItem --renovateCommitTable
+          git config --global user.email "javier@segoviacordoba.com"
+          git config --global user.name "Javier Segovia Córdoba"
+          git add .
+          git commit --amend --no-edit
+          git push --set-upstream origin try-jgit --force
 
       - name: Increment version
         run: ./gradlew reckonTagCreate -P"reckon.stage"="final"

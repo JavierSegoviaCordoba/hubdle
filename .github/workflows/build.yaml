@@ -10,6 +10,7 @@ on:
   pull_request:
     branches:
       - main
+    types: [ready_for_review, opened, synchronize, reopened]
     paths-ignore:
       - '**.md'
 
@@ -59,16 +60,6 @@ jobs:
           key: pip-${{ runner.os }}-{{ hashFiles('**/requirements.txt') }}
           restore-keys: |
             pip-${{ runner.os }}-
-
-      - name: Add updated dependencies to the CHANGELOG from Renovate
-        if: ${{ (github.event_name == 'pull_request') && (github.event.pull_request.user.login == 'renovate[bot]') }}
-        run: ./gradlew addChangelogItem --renovateCommitTable
-
-      - uses: EndBug/add-and-commit@v7.4.0
-        if: ${{ (github.event_name == 'pull_request') && (github.event.pull_request.user.login == 'renovate[bot]') }}
-        with:
-          default_author: user_info
-          message: 'Add updated dependencies to `CHANGELOG.md`'
 
       - name: Increment version
         run: ./gradlew reckonTagCreate -P"reckon.stage"="final"

@@ -5,44 +5,8 @@ on:
     branches:
       - 'renovate/**'
 
-env:
-  GITHUB_TOKEN: '${{ secrets.TOKEN_GITHUB_ACTION }}'
-
 jobs:
   add-updated-dependencies-to-changelog:
-    if: ${{ github.actor == 'renovate[bot]' }}
-
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-          token: '${{ secrets.TOKEN_GITHUB_ACTION }}'
-
-      - name: Set up Java
-        uses: actions/setup-java@v2.3.1
-        with:
-          distribution: 'zulu'
-          java-version: 11
-
-      - name: Gradle cache
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-            ~/.konan
-          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle.properties', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            gradle-${{ runner.os }}-
-
-      - name: Add updated dependencies to the CHANGELOG from Renovate
-        run: |
-          ./gradlew addChangelogItem --renovateCommitTable
-          git config --global user.email "javier@segoviacordoba.com"
-          git config --global user.name "Javier Segovia Córdoba"
-          git add .
-          git commit --amend --no-edit
-          git push --force
+    uses: JavierSegoviaCordoba/reusable-workflows/.github/workflows/build-renovate.yaml@main
+    secrets:
+      TOKEN_GITHUB_ACTION: '${{ secrets.TOKEN_GITHUB_ACTION }}'

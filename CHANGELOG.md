@@ -13,6 +13,7 @@
 ### Fixed
 
 ### Updated
+- `com.diffplug.spotless:spotless-plugin-gradle -> 5.17.0`
 - `org.jetbrains.intellij.plugins:gradle-changelog-plugin -> 1.3.1`
 
 

@@ -13,6 +13,7 @@
 ### Fixed
 
 ### Updated
+- `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.7`
 - `org.jetbrains.intellij.plugins:gradle-changelog-plugin -> 1.3.1`
 
 

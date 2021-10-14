@@ -13,6 +13,7 @@
 ### Fixed
 
 ### Updated
+- `org.jetbrains.intellij.plugins:gradle-changelog-plugin -> 1.3.1`
 
 
 ## [0.1.0-alpha.66] - 2021-10-13

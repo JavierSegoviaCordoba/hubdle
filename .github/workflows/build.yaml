@@ -43,66 +43,66 @@ jobs:
 
       - name: Echo context
         run: |
-          echo $GITHUB_CONTEXT
+          echo "$GITHUB_CONTEXT"
 
-      - name: Set up Java
-        uses: actions/setup-java@v2.3.1
-        with:
-          distribution: 'zulu'
-          java-version: 11
-
-      - name: Gradle cache
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-            ~/.konan
-          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle.properties', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            gradle-${{ runner.os }}-
-
-      - name: pip cache
-        uses: actions/cache@v2
-        with:
-          path: ~/.cache/pip
-          key: pip-${{ runner.os }}-{{ hashFiles('**/requirements.txt') }}
-          restore-keys: |
-            pip-${{ runner.os }}-
-
-      - name: Increment version
-        run: ./gradlew reckonTagCreate -P"reckon.stage"="final"
-
-      - name: Gradle build
-        if: ${{ always() }}
-        run: ./gradlew build ${{ github.event.inputs.args }} -P"reckon.stage"="snapshot" -P"reckon.scope"="patch"
-
-      - name: Generate code analysis reports
-        if: ${{ always() }}
-        run: ./gradlew detekt -P"reckon.stage"="snapshot" -P"reckon.scope"="patch"
-
-      - name: Upload code analysis reports
-        if: ${{ always() }}
-        uses: github/codeql-action/upload-sarif@v1
-        with:
-          sarif_file: 'build/reports/detekt/detekt.sarif'
-
-      - name: Generate docs
-        if: ${{ (github.event_name == 'push') || (github.event_name == 'workflow_dispatch') }}
-        run: ./gradlew buildDocs -P"reckon.stage"="snapshot" -P"reckon.scope"="patch"
-
-      - name: Publish snapshot
-        if: ${{ (github.event_name == 'push') || (github.event_name == 'workflow_dispatch') }}
-        run: ./gradlew publishToSonatype -P"reckon.stage"="snapshot" -P"reckon.scope"="patch"
-
-      - name: Deploy snapshot docs to Github Pages
-        if: ${{ (github.event_name == 'push') || (github.event_name == 'workflow_dispatch') }}
-        uses: JamesIves/github-pages-deploy-action@4.1.5
-        with:
-          branch: 'gh-pages'
-          folder: 'build/docs/_site'
-          clean: false
-          single-commit: true
-
-      - name: Stop Gradle daemons
-        run: ./gradlew --stop
+#      - name: Set up Java
+#        uses: actions/setup-java@v2.3.1
+#        with:
+#          distribution: 'zulu'
+#          java-version: 11
+#
+#      - name: Gradle cache
+#        uses: actions/cache@v2
+#        with:
+#          path: |
+#            ~/.gradle/caches
+#            ~/.gradle/wrapper
+#            ~/.konan
+#          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle.properties', '**/gradle-wrapper.properties') }}
+#          restore-keys: |
+#            gradle-${{ runner.os }}-
+#
+#      - name: pip cache
+#        uses: actions/cache@v2
+#        with:
+#          path: ~/.cache/pip
+#          key: pip-${{ runner.os }}-{{ hashFiles('**/requirements.txt') }}
+#          restore-keys: |
+#            pip-${{ runner.os }}-
+#
+#      - name: Increment version
+#        run: ./gradlew reckonTagCreate -P"reckon.stage"="final"
+#
+#      - name: Gradle build
+#        if: ${{ always() }}
+#        run: ./gradlew build ${{ github.event.inputs.args }} -P"reckon.stage"="snapshot" -P"reckon.scope"="patch"
+#
+#      - name: Generate code analysis reports
+#        if: ${{ always() }}
+#        run: ./gradlew detekt -P"reckon.stage"="snapshot" -P"reckon.scope"="patch"
+#
+#      - name: Upload code analysis reports
+#        if: ${{ always() }}
+#        uses: github/codeql-action/upload-sarif@v1
+#        with:
+#          sarif_file: 'build/reports/detekt/detekt.sarif'
+#
+#      - name: Generate docs
+#        if: ${{ (github.event_name == 'push') || (github.event_name == 'workflow_dispatch') }}
+#        run: ./gradlew buildDocs -P"reckon.stage"="snapshot" -P"reckon.scope"="patch"
+#
+#      - name: Publish snapshot
+#        if: ${{ (github.event_name == 'push') || (github.event_name == 'workflow_dispatch') }}
+#        run: ./gradlew publishToSonatype -P"reckon.stage"="snapshot" -P"reckon.scope"="patch"
+#
+#      - name: Deploy snapshot docs to Github Pages
+#        if: ${{ (github.event_name == 'push') || (github.event_name == 'workflow_dispatch') }}
+#        uses: JamesIves/github-pages-deploy-action@4.1.5
+#        with:
+#          branch: 'gh-pages'
+#          folder: 'build/docs/_site'
+#          clean: false
+#          single-commit: true
+#
+#      - name: Stop Gradle daemons
+#        run: ./gradlew --stop

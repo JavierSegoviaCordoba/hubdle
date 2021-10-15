@@ -1,4 +1,4 @@
-name: publish-artifacts
+name: publish-kotlin
 
 on:
   push:
@@ -8,7 +8,10 @@ on:
 
 jobs:
   publish:
-    uses: JavierSegoviaCordoba/reusable-workflows/.github/workflows/publish-gradle-plugins.yaml@main
+    uses: JavierSegoviaCordoba/reusable-workflows/.github/workflows/publish-kotlin.yaml@main
+    with:
+      machines: 'ubuntu-latest'
+      gradle-plugin-portal: true
     secrets:
       GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
       OSS_USER: '${{ secrets.OSS_USER }}'

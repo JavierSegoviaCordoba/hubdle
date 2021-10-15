@@ -13,9 +13,13 @@
 ### Fixed
 
 ### Updated
+
+
+## [0.1.0-alpha.67] - 2021-10-15
+
+### Updated
 - `com.diffplug.spotless:spotless-plugin-gradle -> 5.17.0`
 - `org.jetbrains.intellij.plugins:gradle-changelog-plugin -> 1.3.1`
-
 
 ## [0.1.0-alpha.66] - 2021-10-13
 

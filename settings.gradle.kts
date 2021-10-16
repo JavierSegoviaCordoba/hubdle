@@ -17,37 +17,49 @@ dependencyResolutionManagement {
 }
 
 include(
-    ":projects:android-core",
-    ":projects:core",
-    ":projects:kotlin-multiplatform-core",
-    ":projects:publishing-core",
+    ":plugins:code-enhancers-and-utils:all-projects",
+    ":plugins:code-enhancers-and-utils:code-analysis",
+    ":plugins:code-enhancers-and-utils:code-formatter",
+    ":plugins:code-enhancers-and-utils:dependency-updates",
+    ":plugins:code-enhancers-and-utils:versioning",
 )
 
 include(
-    ":projects:plugin-accessors",
+    ":plugins:documentation:changelog",
+    ":plugins:documentation:docs",
+    ":plugins:documentation:readme-badges",
 )
 
 include(
-    ":projects:android-library",
-    ":projects:all-projects",
-    ":projects:build-version-catalogs",
-    ":projects:build-version-catalogs-updater",
-    ":projects:changelog",
-    ":projects:code-analysis",
-    ":projects:code-formatter",
-    ":projects:dependency-updates",
-    ":projects:docs",
-    ":projects:gradle-wrapper-updater",
-    ":projects:kotlin-jvm",
-    ":projects:kotlin-multiplatform",
-    ":projects:kotlin-multiplatform-no-android",
-    ":projects:massive-catalogs-updater",
-    ":projects:nexus",
-    ":projects:publish-android-library",
-    ":projects:publish-gradle-plugin",
-    ":projects:publish-kotlin-jvm",
-    ":projects:publish-kotlin-multiplatform",
-    ":projects:publish-version-catalog",
-    ":projects:readme-badges",
-    ":projects:versioning",
+    ":plugins:gradle-utils:gradle-wrapper-updater",
+)
+
+include(
+    ":plugins:libraries-and-apps-config:android-library",
+    ":plugins:libraries-and-apps-config:kotlin-jvm",
+    ":plugins:libraries-and-apps-config:kotlin-multiplatform",
+    ":plugins:libraries-and-apps-config:kotlin-multiplatform-no-android",
+)
+
+include(
+    ":plugins:publish:nexus",
+    ":plugins:publish:publish-android-library",
+    ":plugins:publish:publish-gradle-plugin",
+    ":plugins:publish:publish-kotlin-jvm",
+    ":plugins:publish:publish-kotlin-multiplatform",
+    ":plugins:publish:publish-version-catalog",
+)
+
+include(
+    ":plugins:version-catalogs:build-version-catalogs",
+    ":plugins:version-catalogs:build-version-catalogs-updater",
+    ":plugins:version-catalogs:massive-catalogs-updater",
+)
+
+include(
+    ":shared:android-core",
+    ":shared:core",
+    ":shared:kotlin-multiplatform-core",
+    ":shared:plugin-accessors",
+    ":shared:publishing-core",
 )

@@ -10,14 +10,20 @@ import org.gradle.testkit.runner.BuildResult
 import org.gradle.testkit.runner.GradleRunner
 import org.gradle.testkit.runner.TaskOutcome
 
+val sandboxPath: Path = Paths.get("build/sandbox").apply { toFile().mkdirs() }
+
+val File.sandboxFile: File
+    get() = File("$this/build/sandbox")
+
+fun getResource(resource: String): File =
+    File(Thread.currentThread().contextClassLoader?.getResource(resource)?.toURI()!!)
+
 infix fun String.copyResourceTo(destination: File) {
-    File(Thread.currentThread().contextClassLoader?.getResource(this)?.toURI()!!)
-        .copyRecursively(destination)
+    getResource(this).copyRecursively(destination)
 }
 
 fun createSandboxFile(prefix: String): File {
-    val path: Path = Paths.get("build/sandbox").apply { toFile().mkdirs() }
-    return Files.createTempDirectory(path, "$prefix-").toFile()
+    return Files.createTempDirectory(sandboxPath, "$prefix-").toFile()
 }
 
 val File.arguments: List<String>

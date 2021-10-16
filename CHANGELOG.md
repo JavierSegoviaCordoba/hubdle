@@ -5,6 +5,8 @@
 ### Added
 
 ### Changed
+- `docs` plugin uses nested directories for `projects` in nav bar
+- `code-formatter` scans Kotlin files only in `kotlin` and `resource` directories
 
 ### Deprecated
 

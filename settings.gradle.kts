@@ -59,6 +59,7 @@ include(
 include(
     ":shared:android-core",
     ":shared:core",
+    ":shared:core-test",
     ":shared:kotlin-multiplatform-core",
     ":shared:plugin-accessors",
     ":shared:publishing-core",

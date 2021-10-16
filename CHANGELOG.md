@@ -6,6 +6,7 @@
 
 ### Changed
 - `code-formatter` scans Kotlin files only in `kotlin` and `resource` directories
+- `docs` plugin uses nested directories for `projects` in nav bar
 
 ### Deprecated
 

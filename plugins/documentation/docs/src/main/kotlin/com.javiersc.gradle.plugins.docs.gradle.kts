@@ -1,8 +1,9 @@
+import com.javiersc.gradle.plugins.docs.internal.hasKotlinGradlePlugin
 import com.javiersc.plugins.core.isSignificant
 import org.jetbrains.dokka.gradle.DokkaMultiModuleTask
+import org.jetbrains.dokka.gradle.DokkaPlugin
 import org.jetbrains.dokka.gradle.DokkaTaskPartial
 import org.jetbrains.kotlin.gradle.internal.ensureParentDirsCreated
-import org.jetbrains.kotlin.gradle.plugin.KotlinBasePluginWrapper
 import ru.vyarus.gradle.plugin.mkdocs.MkdocsExtension
 
 plugins {
@@ -12,8 +13,8 @@ plugins {
 
 allprojects {
     afterEvaluate {
-        if (plugins.asSequence().mapNotNull { (it as? KotlinBasePluginWrapper) }.count() > 0) {
-            plugins.apply("org.jetbrains.dokka")
+        if (hasKotlinGradlePlugin) {
+            plugins.apply(DokkaPlugin::class)
             tasks {
                 withType<DokkaTaskPartial>() {
                     dokkaSourceSets.configureEach { includes.from(listOf("MODULE.md")) }
@@ -282,12 +283,17 @@ fun buildChangelogInDocs() {
     }
 }
 
+private data class ProjectInfo(val name: String, val projectPath: String, val mdFile: File) {
+
+    val filePath: String = projectPath.split(':').filter(String::isNotEmpty).joinToString("/")
+}
+
 @OptIn(ExperimentalStdlibApi::class)
 fun buildProjectsInDocs() {
-    class ProjectInfo(val name: String, val mdFile: File)
+    val projectsPath = "$rootDir/build/.docs/docs/projects"
 
-    val projectsInfo: List<ProjectInfo?> =
-        subprojects.map { project ->
+    val projectsInfo: List<ProjectInfo> =
+        subprojects.sortedBy(Project::getPath).mapNotNull { project ->
             val mdFiles =
                 project.projectDir.walkTopDown().maxDepth(1).filter { file ->
                     file.name.endsWith(".md", true)
@@ -298,7 +304,7 @@ fun buildProjectsInDocs() {
                         ?: mdFiles.firstOrNull()
 
             if (mdFile != null) {
-                ProjectInfo(project.name, mdFile)
+                ProjectInfo(project.name, project.path, mdFile)
             } else {
                 logger.lifecycle(
                     "${project.name} hasn't a markdown file, so it won't be added to docs"
@@ -308,32 +314,54 @@ fun buildProjectsInDocs() {
         }
 
     projectsInfo.forEach { projectInfo ->
-        if (projectInfo != null) {
-            copy {
-                from(projectInfo.mdFile)
-                into("$rootDir/build/.docs/docs/projects")
-                rename { fileName -> fileName.replace(fileName, "${projectInfo.name}.md") }
-            }
+        val projectsNavPath = "$projectsPath/${projectInfo.filePath}"
 
-            file("$rootDir/build/.docs/docs/projects/${projectInfo.name}.md").apply {
-                writeText(
-                    readLines().joinToString("\n") { line ->
-                        line.replace(".docs/docs/assets", "assets")
-                    }
-                )
-            }
+        copy {
+            from(projectInfo.mdFile)
+            into(projectsNavPath)
+            rename { fileName -> fileName.replace(fileName, "${projectInfo.name}.md") }
+        }
+
+        file("$projectsNavPath/${projectInfo.name}.md").apply {
+            writeText(
+                readLines().joinToString("\n") { line ->
+                    line.replace(".docs/docs/assets", "assets")
+                }
+            )
         }
     }
 
     val docsNavigation = getDocsNavigation()
-    val navsPlusProjects =
-        docsNavigation.navs +
-            "  - Projects:" +
-            projectsInfo.mapNotNull { projectInfo ->
-                if (projectInfo != null) {
-                    "    - ${projectInfo.name}: projects/${projectInfo.name}.md"
-                } else null
+    val navProjects: List<String> =
+        buildMap<String, List<String>> {
+                projectsInfo.forEach { projectInfo ->
+                    val fullPath = "projects/${projectInfo.projectPath.drop(1).replace(":", "/")}"
+                    val parentPath = fullPath.replaceAfterLast(projectInfo.name, "")
+                    val projects = this[parentPath].orEmpty()
+                    val paths = parentPath.split("/")
+                    paths.reduce { previousPath, path ->
+                        val accumulatedPath = "$previousPath/$path"
+                        put(accumulatedPath, this[accumulatedPath].orEmpty())
+                        accumulatedPath
+                    }
+                    put(parentPath, projects + projectInfo.name)
+                }
             }
+            .flatMap { (path, projects) ->
+                val count = path.count { it == '/' } + 1
+                val indent = buildString { repeat(count) { append("  ") } }
+                buildList {
+                    add("- ${path.split('/').last()}:".prependIndent(indent))
+                    addAll(
+                        projects.map { project ->
+                            "- $project: $path/$project.md".prependIndent("$indent  ")
+                        }
+                    )
+                }
+            }
+            .cleanNavProjects()
+
+    val navsPlusProjects = docsNavigation.navs + "  - Projects:" + navProjects
 
     mkdocsBuildFile.writeText(
         buildList<String> {
@@ -364,3 +392,47 @@ fun getDocsNavigation(): DocsNavigation {
             }
     )
 }
+
+@OptIn(ExperimentalStdlibApi::class)
+fun List<String>.cleanNavProjects(): List<String> =
+    buildList<String> {
+            val lines = this@cleanNavProjects
+
+            fun String.isReference() =
+                filterNot(Char::isWhitespace).replaceBefore(":", "").drop(1).isEmpty()
+
+            fun String.isReferenceOf(reference: String) =
+                trimIndent().takeWhile { it != ':' } ==
+                    reference.trimIndent().takeWhile { it != ':' }
+
+            lines.reduce { previous, line ->
+                //        println("__________________________________________________")
+                //        println(this.joinToString("\n"))
+                //        println("**************************************************")
+                //        println("PREVIOUS: ${previous.trimIndent()}")
+                //        println("LINE:     ${line.trimIndent()}")
+                //        println(previous.isReference())
+                //        println(line.isReferenceOf(previous))
+
+                when {
+                    previous == line -> {
+                        removeLast()
+                        add(line)
+                        line
+                    }
+                    previous.isReference() && line.isReferenceOf(previous) -> {
+                        add(previous.takeWhile(Char::isWhitespace) + line.trimIndent())
+                        line
+                    }
+                    line.isReferenceOf(previous) && line.isReference() -> {
+                        add(previous)
+                        previous
+                    }
+                    else -> {
+                        add(previous)
+                        line
+                    }
+                }
+            }
+        }
+        .distinctBy(String::trimIndent)

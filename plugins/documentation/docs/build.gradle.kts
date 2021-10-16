@@ -29,4 +29,21 @@ dependencies {
     implementation(pluginLibs.jetbrains.dokka.dokkaGradlePluginX)
     compileOnly(pluginLibs.jetbrains.kotlin.kotlinGradlePluginX)
     implementation(pluginLibs.vyarus.gradleMkdocsPluginX)
+
+    implementation(gradleApi())
+    implementation(gradleKotlinDsl())
+
+    testImplementation(gradleTestKit())
+    testImplementation(projects.shared.coreTest)
+    testImplementation(libs.jetbrains.kotlin.kotlinTest)
+    testImplementation(libs.jetbrains.kotlin.kotlinTestJunit)
+    testImplementation(libs.kotest.kotestAssertionsCore)
+}
+
+tasks{
+    pluginUnderTestMetadata {
+        dependencies {
+            implementation(pluginLibs.jetbrains.kotlin.kotlinGradlePluginX)
+        }
+    }
 }

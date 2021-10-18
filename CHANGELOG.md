@@ -5,6 +5,7 @@
 ### Added
 
 ### Changed
+- `code-formatter` scans Kotlin files only in `kotlin` and `resource` directories
 
 ### Deprecated
 

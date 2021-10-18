@@ -27,6 +27,8 @@
 - `com.javiersc.gradle-plugins:all-projects -> 0.1.0-alpha.71`
 - `com.javiersc.gradle-plugins:android-library -> 0.1.0-alpha.71`
 
+## [0.1.0-alpha.71] - 2021-10-18
+- No changes
 
 ## [0.1.0-alpha.70] - 2021-10-18
 

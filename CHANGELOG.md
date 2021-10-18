@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 ### Added
+- `projects-version-catalog` plugin
 
 ### Changed
 

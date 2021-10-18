@@ -11,6 +11,7 @@
 ### Removed
 
 ### Fixed
+- `code-formatter` is not excluding some `build` dirs
 
 ### Updated
 

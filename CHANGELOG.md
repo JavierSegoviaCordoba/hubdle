@@ -5,14 +5,21 @@
 ### Added
 
 ### Changed
-- `code-formatter` scans Kotlin files only in `kotlin` and `resource` directories
-- `docs` plugin uses nested directories for `projects` in nav bar
 
 ### Deprecated
 
 ### Removed
 
 ### Fixed
+
+### Updated
+
+
+## [0.1.0-alpha.68] - 2021-10-18
+
+### Changed
+- `code-formatter` scans Kotlin files only in `kotlin` and `resource` directories
+- `docs` plugin uses nested directories for `projects` in nav bar
 
 ### Updated
 - `com.javiersc.gradle-plugins:versioning -> 0.1.0-alpha.67`
@@ -28,7 +35,6 @@
 - `com.javiersc.gradle-plugins:changelog -> 0.1.0-alpha.67`
 - `com.javiersc.gradle-plugins:all-projects -> 0.1.0-alpha.67`
 - `com.javiersc.gradle-plugins:android-library -> 0.1.0-alpha.67`
-
 
 ## [0.1.0-alpha.67] - 2021-10-15
 

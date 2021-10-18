@@ -11,10 +11,14 @@
 ### Removed
 
 ### Fixed
-- `code-formatter` is not excluding some `build` dirs
 
 ### Updated
 
+
+## [0.1.0-alpha.69] - 2021-10-18
+
+### Fixed
+- `code-formatter` is not excluding some `build` dirs
 
 ## [0.1.0-alpha.68] - 2021-10-18
 

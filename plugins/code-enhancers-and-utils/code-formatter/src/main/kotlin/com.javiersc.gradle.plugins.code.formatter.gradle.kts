@@ -7,8 +7,8 @@ plugins {
 
 configure<SpotlessExtension> {
     kotlin {
-        target("**/*.kt", "*.kt")
-        targetExclude("build/**", "**/build/**", ".gradle/**", "**/.gradle/**")
+        target("**/kotlin/**/*.kt")
+        targetExclude("build/**", ".gradle/**")
         ktfmt(KTFMT_VERSION).kotlinlangStyle()
     }
 }

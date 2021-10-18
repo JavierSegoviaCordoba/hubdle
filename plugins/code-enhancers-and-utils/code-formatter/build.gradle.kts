@@ -38,4 +38,18 @@ dependencies {
 
     implementation(pluginLibs.diffplug.spotless.spotlessPluginGradle)
     compileOnly(pluginLibs.jetbrains.kotlin.kotlinGradlePluginX)
+
+    testImplementation(gradleTestKit())
+    testImplementation(projects.shared.coreTest)
+    testImplementation(libs.jetbrains.kotlin.kotlinTest)
+    testImplementation(libs.jetbrains.kotlin.kotlinTestJunit)
+    testImplementation(libs.kotest.kotestAssertionsCore)
+}
+
+tasks{
+    pluginUnderTestMetadata {
+        dependencies {
+            implementation(pluginLibs.jetbrains.kotlin.kotlinGradlePluginX)
+        }
+    }
 }

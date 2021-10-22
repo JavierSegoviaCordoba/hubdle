@@ -3,7 +3,6 @@
 ## [Unreleased]
 
 ### Added
-- `projects-version-catalog` plugin
 
 ### Changed
 
@@ -12,6 +11,14 @@
 ### Removed
 
 ### Fixed
+
+### Updated
+
+
+## [0.1.0-alpha.72] - 2021-10-22
+
+### Added
+- `projects-version-catalog` plugin
 
 ### Updated
 - `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.7`

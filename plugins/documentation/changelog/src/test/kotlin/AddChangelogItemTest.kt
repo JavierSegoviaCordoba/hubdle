@@ -78,4 +78,21 @@ class AddChangelogItemTest {
             },
             test = ::testChangelog,
         )
+
+    @Test
+    fun `renovate 6`() =
+        testSandbox(
+            sandboxPath = "add-changelog-item/sandbox-renovate-6",
+            beforeTest = {
+                commitAndCheckout(
+                    message =
+                        """
+                            | datasource | package                                                   | from  | to    |
+                            | ---------- | --------------------------------------------------------- | ----- | ----- |
+                            | maven      | com.javiersc.mokoki:mokoki-core                           | 1.0.0 | 1.0.1 |
+                        """.trimIndent(),
+                )
+            },
+            test = ::testChangelog,
+        )
 }

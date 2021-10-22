@@ -131,7 +131,7 @@ private fun AddChangelogItem.setupRenovate(): Unit =
 
 @OptIn(ExperimentalStdlibApi::class)
 private fun String.addChanges(header: String, changes: List<String>): String =
-    buildList {
+    buildList<String> {
             val firstVersionIndex =
                 lines().indexOfFirst {
                     it.startsWith("## [") && it.contains("[Unreleased]", true).not()
@@ -148,6 +148,26 @@ private fun String.addChanges(header: String, changes: List<String>): String =
                     }
                 } else {
                     add(line)
+                }
+            }
+            runCatching {
+                forEachIndexed { index: Int, line ->
+                    val updateRegex = """(- `)(.*)( )(->)( )(.*)(`)"""
+                    if (Regex(updateRegex).matches(line)) {
+                        val module =
+                            line.filterNot(Char::isWhitespace)
+                                .replaceAfter("->", "")
+                                .replace("->", "")
+                                .drop(1)
+                        for (j in index + 1 until firstVersionIndex) {
+                            val lineToRemove = this[j]
+                            if (lineToRemove.contains(module) &&
+                                    Regex(updateRegex).matches(lineToRemove)
+                            ) {
+                                removeAt(j)
+                            }
+                        }
+                    }
                 }
             }
         }

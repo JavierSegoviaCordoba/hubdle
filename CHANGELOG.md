@@ -5,6 +5,7 @@
 ### Added
 
 ### Changed
+- `AddChangelogItem` removes duplicated dependencies with different version in `[Unreleased]`
 
 ### Deprecated
 

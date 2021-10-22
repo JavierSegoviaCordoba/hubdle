@@ -5,13 +5,20 @@
 ### Added
 
 ### Changed
-- `AddChangelogItem` removes duplicated dependencies with different version in `[Unreleased]`
 
 ### Deprecated
 
 ### Removed
 
 ### Fixed
+
+### Updated
+
+
+## [0.1.0-beta.1] - 2021-10-22
+
+### Changed
+- `AddChangelogItem` removes duplicated dependencies with different version in `[Unreleased]`
 
 ### Updated
 - `com.javiersc.gradle-plugins:versioning -> 0.1.0-alpha.72`
@@ -28,7 +35,6 @@
 - `com.javiersc.gradle-plugins:changelog -> 0.1.0-alpha.72`
 - `com.javiersc.gradle-plugins:all-projects -> 0.1.0-alpha.72`
 - `com.javiersc.gradle-plugins:android-library -> 0.1.0-alpha.72`
-
 
 ## [0.1.0-alpha.72] - 2021-10-22
 

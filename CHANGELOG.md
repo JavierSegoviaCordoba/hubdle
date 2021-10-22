@@ -13,6 +13,20 @@
 ### Fixed
 
 ### Updated
+- `com.javiersc.gradle-plugins:versioning -> 0.1.0-beta.1`
+- `com.javiersc.gradle-plugins:readme-badges -> 0.1.0-beta.1`
+- `com.javiersc.gradle-plugins:publish-version-catalog -> 0.1.0-beta.1`
+- `com.javiersc.gradle-plugins:publish-kotlin-jvm -> 0.1.0-beta.1`
+- `com.javiersc.gradle-plugins:publish-gradle-plugin -> 0.1.0-beta.1`
+- `com.javiersc.gradle-plugins:plugin-accessors -> 0.1.0-beta.1`
+- `com.javiersc.gradle-plugins:nexus -> 0.1.0-beta.1`
+- `com.javiersc.gradle-plugins:kotlin-multiplatform -> 0.1.0-beta.1`
+- `com.javiersc.gradle-plugins:docs -> 0.1.0-beta.1`
+- `com.javiersc.gradle-plugins:code-formatter -> 0.1.0-beta.1`
+- `com.javiersc.gradle-plugins:code-analysis -> 0.1.0-beta.1`
+- `com.javiersc.gradle-plugins:changelog -> 0.1.0-beta.1`
+- `com.javiersc.gradle-plugins:all-projects -> 0.1.0-beta.1`
+- `com.javiersc.gradle-plugins:android-library -> 0.1.0-beta.1`
 
 
 ## [0.1.0-beta.1] - 2021-10-22

@@ -6,7 +6,6 @@ plugins {
     `maven-publish`
     id("com.gradle.plugin-publish")
     signing
-    id("org.jetbrains.dokka")
 }
 
 val docsJar by project.tasks.creating(Jar::class) {

@@ -5,7 +5,6 @@ import com.javiersc.plugins.publishing.core.signPublications
 plugins {
     `maven-publish`
     signing
-    id("org.jetbrains.dokka")
 }
 
 val docsJar by project.tasks.creating(Jar::class) {

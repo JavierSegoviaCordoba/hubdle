@@ -30,5 +30,4 @@ dependencies {
 
     implementation(gradleApi())
     api(pluginLibs.gradle.publish.pluginPublishPluginX)
-    api(pluginLibs.jetbrains.dokka.dokkaGradlePluginX)
 }

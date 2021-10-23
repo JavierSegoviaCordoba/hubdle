@@ -29,5 +29,4 @@ dependencies {
 
     implementation(gradleApi())
     compileOnly(pluginLibs.android.toolsBuild.gradle)
-    implementation(pluginLibs.jetbrains.dokka.dokkaGradlePluginX)
 }

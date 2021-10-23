@@ -19,6 +19,14 @@ class BuildProjectsVersionCatalogTest {
     @Test
     fun `build projects version catalog 3`() =
         testSandbox(sandboxPath = "version-catalog-3", test = ::testProjectsVersionCatalog)
+
+    @Test
+    fun `build projects version catalog 4`() =
+        testSandbox(sandboxPath = "version-catalog-4", test = ::testProjectsVersionCatalog)
+
+    @Test
+    fun `build projects version catalog 5`() =
+        testSandbox(sandboxPath = "version-catalog-5", test = ::testProjectsVersionCatalog)
 }
 
 @Suppress("UNUSED_PARAMETER")

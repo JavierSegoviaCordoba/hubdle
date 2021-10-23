@@ -1,0 +1,10 @@
+[versions]
+exampleFooBar = "1.2.3"
+
+[libraries]
+jsc-libraryOne = { module = "com.example.foo-bar:library-one", version.ref = "exampleFooBar" }
+jsc-libraryTwo = { module = "com.example.foo-bar:library-two", version.ref = "exampleFooBar" }
+jsc-libraryFour = { module = "com.example.foo-bar:library-four", version.ref = "exampleFooBar" }
+
+[plugins]
+libraryOne = { id = "com.example.some.gradle.plugin", version.ref = "exampleFooBar" }

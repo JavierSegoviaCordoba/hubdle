@@ -5,6 +5,7 @@
 ### Added
 
 ### Changed
+- `buildProjectsVersionCatalog` runs before `generateCatalogAsToml` if exists, else before `build`
 
 ### Deprecated
 

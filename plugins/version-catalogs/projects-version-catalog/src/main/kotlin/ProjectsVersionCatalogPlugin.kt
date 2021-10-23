@@ -21,9 +21,16 @@ abstract class ProjectsVersionCatalogPlugin : Plugin<Project> {
                 tomlPath = extension.tomlPath.get()
             }
 
-        val warningMessage =
-            "`build` task not found, run `${BuildVersionCatalogTask.name}` to generate the catalog"
-        project.tasks.findByName("build")?.dependsOn(buildVersionCatalogTask)
-            ?: project.logger.warn(warningMessage)
+        val warningMessage = "Run `${BuildVersionCatalogTask.name}` to generate the Version Catalog"
+        val generateCatalogAsTomlTask = project.tasks.findByName("generateCatalogAsToml")
+        val assembleTask = project.tasks.findByName("assemble")
+
+        when {
+            generateCatalogAsTomlTask != null -> {
+                generateCatalogAsTomlTask.dependsOn(buildVersionCatalogTask)
+            }
+            assembleTask != null -> assembleTask.dependsOn(buildVersionCatalogTask)
+            else -> project.logger.warn(warningMessage)
+        }
     }
 }

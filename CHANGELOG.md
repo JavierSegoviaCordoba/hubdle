@@ -11,10 +11,14 @@
 ### Removed
 
 ### Fixed
-- `PluginBundleExtension` is not found
 
 ### Updated
 
+
+## [0.1.0-beta.5] - 2021-10-23
+
+### Fixed
+- `PluginBundleExtension` is not found
 
 ## [0.1.0-beta.4] - 2021-10-23
 

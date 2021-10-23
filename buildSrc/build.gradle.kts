@@ -17,9 +17,12 @@ dependencies {
     implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
     implementation(files(pluginLibs.javaClass.superclass.protectionDomain.codeSource.location))
 
-    implementation(libs.google.codeGson.gson)
-    implementation(libs.jsoup.jsoup)
-    implementation(libs.javiersc.semanticVersioning.semanticVersioningCore)
+// TODO: REMOVE IF NOT NEEDED
+//    implementation(libs.google.codeGson.gson)
+//    implementation(libs.jsoup.jsoup)
+//    implementation(libs.javiersc.semanticVersioning.semanticVersioningCore)
 
-    implementation(pluginLibs.bundles.javierscPlugins)
+    implementation(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)
+    implementation(pluginLibs.jetbrains.kotlinx.binaryCompatibilityValidator)
+    implementation(pluginLibs.javiersc.gradlePlugins.allPlugins)
 }

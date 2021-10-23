@@ -1,6 +1,6 @@
 plugins {
     kotlin("jvm")
-    `javiersc-publish-kotlin-jvm`
+    `javiersc-publish`
 }
 
 dependencies { implementation(gradleApi()) }

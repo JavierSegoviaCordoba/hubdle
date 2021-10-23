@@ -1,6 +1,6 @@
 plugins {
     `kotlin-dsl`
-    `javiersc-publish-gradle-plugin`
+    `javiersc-publish`
 }
 
 pluginBundle {
@@ -24,5 +24,5 @@ gradlePlugin {
 dependencies {
     api(projects.shared.pluginAccessors)
 
-    api(pluginLibs.github.benManes.gradleVersionsPluginX)
+    api(pluginLibs.github.benManes.gradleVersionsPlugin)
 }

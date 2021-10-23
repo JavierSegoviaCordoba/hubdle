@@ -1,6 +1,6 @@
 plugins {
     `kotlin-dsl`
-    `javiersc-publish-gradle-plugin`
+    `javiersc-publish`
 }
 
 pluginBundle {
@@ -28,5 +28,5 @@ dependencies {
     implementation(libs.jsoup.jsoup)
     implementation(libs.javiersc.semanticVersioning.semanticVersioningCore)
 
-    compileOnly(pluginLibs.jetbrains.kotlin.kotlinGradlePluginX)
+    compileOnly(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)
 }

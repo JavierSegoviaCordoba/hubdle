@@ -1,6 +1,6 @@
 plugins {
     `kotlin-dsl`
-    `javiersc-publish-gradle-plugin`
+    `javiersc-publish`
 }
 
 pluginBundle {
@@ -24,7 +24,7 @@ gradlePlugin {
 dependencies {
     api(projects.shared.pluginAccessors)
 
-    api(pluginLibs.jetbrains.intellijPlugins.gradleChangelogPluginX)
+    api(pluginLibs.jetbrains.intellijPlugins.gradleChangelogPlugin)
     implementation(libs.eclipse.jgit)
 
     implementation(gradleApi())

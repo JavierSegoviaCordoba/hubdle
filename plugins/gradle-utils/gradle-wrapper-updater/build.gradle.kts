@@ -1,6 +1,6 @@
 plugins {
     `kotlin-dsl`
-    `javiersc-publish-gradle-plugin`
+    `javiersc-publish`
 }
 
 pluginBundle {
@@ -27,5 +27,5 @@ dependencies {
     api(projects.shared.core)
 
     implementation(libs.google.codeGson.gson)
-    compileOnly(pluginLibs.jetbrains.kotlin.kotlinGradlePluginX)
+    compileOnly(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)
 }

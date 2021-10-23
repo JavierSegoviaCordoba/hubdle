@@ -1,6 +1,6 @@
 plugins {
     `kotlin-dsl`
-    `javiersc-publish-gradle-plugin`
+    `javiersc-publish`
 }
 
 pluginBundle {
@@ -36,7 +36,7 @@ dependencies {
     api(projects.shared.pluginAccessors)
 
     implementation(pluginLibs.diffplug.spotless.spotlessPluginGradle)
-    compileOnly(pluginLibs.jetbrains.kotlin.kotlinGradlePluginX)
+    compileOnly(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)
 
     testImplementation(gradleTestKit())
     testImplementation(projects.shared.coreTest)
@@ -48,7 +48,7 @@ dependencies {
 tasks{
     pluginUnderTestMetadata {
         dependencies {
-            implementation(pluginLibs.jetbrains.kotlin.kotlinGradlePluginX)
+            implementation(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)
         }
     }
 }

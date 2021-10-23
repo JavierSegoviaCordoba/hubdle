@@ -5,14 +5,21 @@
 ### Added
 
 ### Changed
-- `buildProjectsVersionCatalog` task runs before `build` task
-- `buildProjectsVersionCatalog` group to `build`
 
 ### Deprecated
 
 ### Removed
 
 ### Fixed
+
+### Updated
+
+
+## [0.1.0-beta.2] - 2021-10-23
+
+### Changed
+- `buildProjectsVersionCatalog` task runs before `build` task
+- `buildProjectsVersionCatalog` group to `build`
 
 ### Updated
 - `com.javiersc.gradle-plugins:versioning -> 0.1.0-beta.1`
@@ -29,7 +36,6 @@
 - `com.javiersc.gradle-plugins:changelog -> 0.1.0-beta.1`
 - `com.javiersc.gradle-plugins:all-projects -> 0.1.0-beta.1`
 - `com.javiersc.gradle-plugins:android-library -> 0.1.0-beta.1`
-
 
 ## [0.1.0-beta.1] - 2021-10-22
 

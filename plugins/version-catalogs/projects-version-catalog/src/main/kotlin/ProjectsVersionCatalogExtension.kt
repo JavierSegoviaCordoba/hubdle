@@ -22,7 +22,7 @@ internal val Project.projectsVersionCatalogExtension: ProjectsVersionCatalogExte
 
 internal fun Project.configureProjectsVersionCatalogExtension() {
     projectsVersionCatalogExtension.apply {
-        tomlPath.convention(PropertyDefaultValue.tomlPath)
+        tomlPath.convention(PropertyDefaultValue.tomlPath(project))
         rootProject.gradle.projectsEvaluated {
             projects.convention(PropertyDefaultValue.projects(project))
         }

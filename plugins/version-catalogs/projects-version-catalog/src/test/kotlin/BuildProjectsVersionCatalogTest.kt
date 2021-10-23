@@ -15,12 +15,16 @@ class BuildProjectsVersionCatalogTest {
     @Test
     fun `build projects version catalog 2`() =
         testSandbox(sandboxPath = "version-catalog-2", test = ::testProjectsVersionCatalog)
+
+    @Test
+    fun `build projects version catalog 3`() =
+        testSandbox(sandboxPath = "version-catalog-3", test = ::testProjectsVersionCatalog)
 }
 
 @Suppress("UNUSED_PARAMETER")
 fun testProjectsVersionCatalog(result: BuildResult, testProjectDir: File) {
-    val expect = File("$testProjectDir/gradle/projects.versions.toml")
-    val actual = File("$testProjectDir/gradle/projects.versions-actual.toml")
+    val expect = File("$testProjectDir/projects.versions.toml")
+    val actual = File("$testProjectDir/projects.versions-actual.toml")
 
     expect.shouldHaveSameContentAs(actual)
 }

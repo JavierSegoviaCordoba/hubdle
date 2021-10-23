@@ -10,13 +10,20 @@ abstract class ProjectsVersionCatalogPlugin : Plugin<Project> {
         project.createProjectsVersionCatalogExtension()
 
         val extension = project.projectsVersionCatalogExtension
+
         project.configureProjectsVersionCatalogExtension()
 
-        project.rootProject.tasks.register<BuildVersionCatalogTask>(BuildVersionCatalogTask.name) {
-            librariesPrefix = extension.librariesPrefix.get()
-            projects = extension.projects.get()
-            removeVersionAliasPrefix = extension.removeVersionAliasPrefix.get()
-            tomlPath = extension.tomlPath.get()
-        }
+        val buildVersionCatalogTask =
+            project.tasks.register<BuildVersionCatalogTask>(BuildVersionCatalogTask.name) {
+                librariesPrefix = extension.librariesPrefix.get()
+                projects = extension.projects.get()
+                removeVersionAliasPrefix = extension.removeVersionAliasPrefix.get()
+                tomlPath = extension.tomlPath.get()
+            }
+
+        val warningMessage =
+            "`build` task not found, run `${BuildVersionCatalogTask.name}` to generate the catalog"
+        project.tasks.findByName("build")?.dependsOn(buildVersionCatalogTask)
+            ?: project.logger.warn(warningMessage)
     }
 }

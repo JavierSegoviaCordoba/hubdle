@@ -5,6 +5,8 @@
 ### Added
 
 ### Changed
+- `buildProjectsVersionCatalog` task runs before `build` task
+- `buildProjectsVersionCatalog` group to `build`
 
 ### Deprecated
 

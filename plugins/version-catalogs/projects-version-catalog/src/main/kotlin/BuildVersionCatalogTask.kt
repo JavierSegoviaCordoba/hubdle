@@ -13,6 +13,10 @@ import org.gradle.api.tasks.options.Option
 
 abstract class BuildVersionCatalogTask : DefaultTask() {
 
+    init {
+        group = "build"
+    }
+
     @get:Input
     @set:Option(option = "librariesPrefix", description = "Prefix used in libraries aliases")
     @Optional
@@ -34,11 +38,11 @@ abstract class BuildVersionCatalogTask : DefaultTask() {
     @get:Input
     @set:Option(option = "tomlPath", description = "Toml file path")
     @Optional
-    var tomlPath: String = PropertyDefaultValue.tomlPath
+    var tomlPath: String = PropertyDefaultValue.tomlPath(project)
 
     @TaskAction
     fun run() {
-        File("${project.rootProject.rootDir}/$tomlPath").apply {
+        File(tomlPath).apply {
             parentFile.mkdirs()
             createNewFile()
             writeText(

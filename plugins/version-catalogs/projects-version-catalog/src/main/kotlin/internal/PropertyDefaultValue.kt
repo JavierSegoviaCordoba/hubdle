@@ -5,6 +5,6 @@ import org.gradle.api.Project
 internal object PropertyDefaultValue {
     internal const val librariesPrefix = ""
     internal const val removeVersionAliasPrefix = ""
-    internal const val tomlPath = "gradle/projects.versions.toml"
-    fun projects(project: Project): List<Project> = project.projectsWithMavenPublishPlugin
+    internal fun tomlPath(project: Project) = "${project.projectDir}/projects.versions.toml"
+    internal fun projects(project: Project): List<Project> = project.projectsWithMavenPublishPlugin
 }

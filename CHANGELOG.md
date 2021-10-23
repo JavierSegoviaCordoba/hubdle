@@ -10,6 +10,7 @@
 ### Deprecated
 
 ### Removed
+- `version-catalog` in `publish-version-catalog` plugin
 
 ### Fixed
 

@@ -4,7 +4,6 @@ import com.javiersc.plugins.publishing.core.signPublications
 
 plugins {
     `maven-publish`
-    `version-catalog`
     signing
     id("org.jetbrains.dokka")
 }

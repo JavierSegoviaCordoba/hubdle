@@ -8,4 +8,5 @@ plugins {
     `kotlinx-binary-compatibility-validator`
     `javiersc-nexus`
     `javiersc-readme-badges-generator`
+    `accessors-generator`
 }

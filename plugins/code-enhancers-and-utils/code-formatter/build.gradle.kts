@@ -1,7 +1,6 @@
 plugins {
     `kotlin-dsl`
     `javiersc-publish-gradle-plugin`
-    `accessors-generator`
 }
 
 pluginBundle {

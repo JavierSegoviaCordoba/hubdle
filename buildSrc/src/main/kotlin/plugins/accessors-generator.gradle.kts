@@ -1,20 +1,24 @@
-val names =
-    file("$projectDir/src/main/kotlin")
-        .walkTopDown()
-        .filter { it.isFile && it.name.contains("com.javiersc.gradle.plugins") }
-        .map { it.name.replace("com.javiersc.gradle.plugins.", "") }
-        .map { it.replace(".gradle.kts", "") }
-        .toList()
+import org.jetbrains.kotlin.gradle.internal.ensureParentDirsCreated
 
-names.forEach { name ->
-    val fileName =
-        "${name.split(".").joinToString { word -> word.capitalize() }.replace(",", "").replace(" ", "")}Accessors.kt"
-    file("$projectDir/src/main/kotlin/$fileName").apply {
-        if (!exists()) {
-            parentFile.mkdirs()
-            createNewFile()
+allprojects {
+    afterEvaluate {
+        val extension = extensions.findByType<GradlePluginDevelopmentExtension>()
+        val id = extension?.plugins?.asMap?.values?.map(PluginDeclaration::getId)?.firstOrNull()
+
+        if (id != null && id.startsWith("com.javiersc.gradle.plugins")) {
+            val name = id.replace("com.javiersc.gradle.plugins.", "")
+            val fileName =
+                "${name.split(".")
+                    .joinToString(transform = String::capitalize)
+                    .replace(",", "")
+                    .replace(" ", "")}Accessors.kt"
+
+            file("$projectDir/src/main/kotlin/$fileName").apply {
+                ensureParentDirsCreated()
+                createNewFile()
+                writeText(buildAccessorFile(name))
+            }
         }
-        writeText(buildAccessorFile(name))
     }
 }
 

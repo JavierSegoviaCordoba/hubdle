@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 ### Added
+- `all-plugins` project
 
 ### Changed
 - `buildProjectsVersionCatalog` runs before `generateCatalogAsToml` if exists, else before `build`

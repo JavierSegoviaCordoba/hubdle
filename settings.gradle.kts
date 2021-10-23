@@ -16,6 +16,8 @@ dependencyResolutionManagement {
     }
 }
 
+include(":all-plugins")
+
 include(
     ":plugins:code-enhancers-and-utils:all-projects",
     ":plugins:code-enhancers-and-utils:code-analysis",

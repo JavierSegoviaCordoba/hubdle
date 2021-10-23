@@ -11,10 +11,14 @@
 ### Removed
 
 ### Fixed
-- `initializeSonatypeStagingRepository` is not found
 
 ### Updated
 
+
+## [0.1.0-beta.4] - 2021-10-23
+
+### Fixed
+- `initializeSonatypeStagingRepository` is not found
 
 ## [0.1.0-beta.3] - 2021-10-23
 

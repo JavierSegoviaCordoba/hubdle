@@ -3,13 +3,26 @@
 ## [Unreleased]
 
 ### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Updated
+
+
+## [0.1.0-beta.3] - 2021-10-23
+
+### Added
 - `publish` plugin for publishing all types of projects
 - `all-plugins` project
 
 ### Changed
 - `buildProjectsVersionCatalog` runs before `generateCatalogAsToml` if exists, else before `build`
-
-### Deprecated
 
 ### Removed
 - `publish-android-library`
@@ -19,8 +32,6 @@
 - `publish-version-catalog`
 - `version-catalog` in `publish-version-catalog` plugin
 - `id("com.gradle.plugin-publish")` in `publish-gradle-plugin` plugin
-
-### Fixed
 
 ### Updated
 - `com.javiersc.gradle-plugins:versioning -> 0.1.0-beta.2`
@@ -37,7 +48,6 @@
 - `com.javiersc.gradle-plugins:changelog -> 0.1.0-beta.2`
 - `com.javiersc.gradle-plugins:all-projects -> 0.1.0-beta.2`
 - `com.javiersc.gradle-plugins:android-library -> 0.1.0-beta.2`
-
 
 ## [0.1.0-beta.2] - 2021-10-23
 

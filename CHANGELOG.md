@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 ### Added
+- `publish` plugin for publishing all types of projects
 - `all-plugins` project
 
 ### Changed
@@ -11,6 +12,11 @@
 ### Deprecated
 
 ### Removed
+- `publish-android-library`
+- `publish-gradle-plugin`
+- `publish-kotlin-jvm`
+- `publish-kotlin-multiplatform`
+- `publish-version-catalog`
 - `version-catalog` in `publish-version-catalog` plugin
 - `id("com.gradle.plugin-publish")` in `publish-gradle-plugin` plugin
 

@@ -45,11 +45,7 @@ include(
 
 include(
     ":plugins:publish:nexus",
-    ":plugins:publish:publish-android-library",
-    ":plugins:publish:publish-gradle-plugin",
-    ":plugins:publish:publish-kotlin-jvm",
-    ":plugins:publish:publish-kotlin-multiplatform",
-    ":plugins:publish:publish-version-catalog",
+    ":plugins:publish:publish",
 )
 
 include(
@@ -65,5 +61,4 @@ include(
     ":shared:core-test",
     ":shared:kotlin-multiplatform-core",
     ":shared:plugin-accessors",
-    ":shared:publishing-core",
 )

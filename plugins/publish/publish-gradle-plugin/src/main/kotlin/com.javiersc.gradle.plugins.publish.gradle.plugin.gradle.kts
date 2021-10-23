@@ -1,10 +1,10 @@
+import com.gradle.publish.PluginBundleExtension
 import com.javiersc.plugins.core.isSignificant
 import com.javiersc.plugins.publishing.core.configurePublishing
 import com.javiersc.plugins.publishing.core.signPublications
 
 plugins {
     `maven-publish`
-    id("com.gradle.plugin-publish")
     signing
 }
 
@@ -25,7 +25,7 @@ configurePublishing(artifacts = listOf(docsJar, sourcesJar))
 
 configure(SigningExtension::signPublications)
 
-pluginBundle {
+extensions.findByType<PluginBundleExtension>()?.apply {
     website = property("pom.url").toString()
     vcsUrl = property("pom.smc.url").toString()
 }

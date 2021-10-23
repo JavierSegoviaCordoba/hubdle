@@ -11,6 +11,7 @@
 
 ### Removed
 - `version-catalog` in `publish-version-catalog` plugin
+- `id("com.gradle.plugin-publish")` in `publish-gradle-plugin` plugin
 
 ### Fixed
 

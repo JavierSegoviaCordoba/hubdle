@@ -29,5 +29,5 @@ dependencies {
     api(projects.shared.publishingCore)
 
     implementation(gradleApi())
-    api(pluginLibs.gradle.publish.pluginPublishPluginX)
+    compileOnly(pluginLibs.gradle.publish.pluginPublishPluginX)
 }

@@ -24,15 +24,17 @@ internal fun Project.configurePublishOnlySignificant() {
             }
         }
 
+    rootProject.tasks {
+        findByName("initializeSonatypeStagingRepository")?.dependsOn(checkIsSignificant)
+    }
+
     tasks {
-        getByName("initializeSonatypeStagingRepository") { dependsOn(checkIsSignificant) }
+        findByName("publish")?.dependsOn(checkIsSignificant)
 
-        getByName("publish") { dependsOn(checkIsSignificant) }
+        findByName("publishToSonatype")?.dependsOn(checkIsSignificant)
 
-        getByName("publishToSonatype") { dependsOn(checkIsSignificant) }
+        findByName("publishToMavenLocal")?.dependsOn(checkIsSignificant)
 
-        getByName("publishToMavenLocal") { dependsOn(checkIsSignificant) }
-
-        getByName("publishPlugins") { dependsOn(checkIsSignificant) }
+        findByName("publishPlugins")?.dependsOn(checkIsSignificant)
     }
 }

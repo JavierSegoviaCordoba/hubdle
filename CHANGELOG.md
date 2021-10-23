@@ -11,6 +11,7 @@
 ### Removed
 
 ### Fixed
+- `initializeSonatypeStagingRepository` is not found
 
 ### Updated
 

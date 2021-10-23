@@ -11,6 +11,7 @@
 ### Removed
 
 ### Fixed
+- `PluginBundleExtension` is not found
 
 ### Updated
 

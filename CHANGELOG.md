@@ -13,6 +13,7 @@
 ### Fixed
 
 ### Updated
+- `gradle -> 7.3-rc-3`
 - `com.diffplug.spotless:spotless-plugin-gradle -> 5.17.1`
 - `com.javiersc.gradle-plugins:all-plugins -> 0.1.0-rc.1`
 

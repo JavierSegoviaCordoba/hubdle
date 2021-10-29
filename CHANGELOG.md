@@ -3,12 +3,18 @@
 ## [Unreleased]
 
 ### Added
+- `javiersc-kotlin-library`
+- `publish.onlySignificant` Gradle property to allow publishing insignificant versions
 
 ### Changed
 
 ### Deprecated
 
 ### Removed
+- `javiersc-android-library`
+- `javiersc-kotlin-jvm`
+- `javiersc-kotlin-multiplatform`
+- `javiersc-kotlin-multiplatform-no-android`
 
 ### Fixed
 

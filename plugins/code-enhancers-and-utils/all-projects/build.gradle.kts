@@ -23,5 +23,4 @@ gradlePlugin {
 
 dependencies {
     api(projects.shared.pluginAccessors)
-    api(projects.shared.core)
 }

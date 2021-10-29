@@ -37,10 +37,7 @@ include(
 )
 
 include(
-    ":plugins:libraries-and-apps-config:android-library",
-    ":plugins:libraries-and-apps-config:kotlin-jvm",
-    ":plugins:libraries-and-apps-config:kotlin-multiplatform",
-    ":plugins:libraries-and-apps-config:kotlin-multiplatform-no-android",
+    ":plugins:libraries-and-apps-config:kotlin-library",
 )
 
 include(
@@ -55,10 +52,21 @@ include(
     ":plugins:version-catalogs:projects-version-catalog",
 )
 
+val properties =
+    file("gradle.properties").inputStream().use { java.util.Properties().apply { load(it) } }
+
+if (
+    providers
+        .systemProperty("idea.active")
+        .forUseAtConfigurationTime()
+        .map(String::toBoolean)
+        .getOrElse(false)
+) {
+    includeBuild("sandbox")
+}
+
 include(
-    ":shared:android-core",
     ":shared:core",
     ":shared:core-test",
-    ":shared:kotlin-multiplatform-core",
     ":shared:plugin-accessors",
 )

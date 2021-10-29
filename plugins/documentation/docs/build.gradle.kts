@@ -23,7 +23,6 @@ gradlePlugin {
 
 dependencies {
     api(projects.shared.pluginAccessors)
-    api(projects.shared.core)
 
     implementation(pluginLibs.jetbrains.dokka.dokkaGradlePlugin)
     compileOnly(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)

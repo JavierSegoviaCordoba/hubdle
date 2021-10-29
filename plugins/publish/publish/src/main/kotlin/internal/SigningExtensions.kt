@@ -2,7 +2,7 @@
 
 package com.javiersc.gradle.plugins.publish.internal
 
-import com.javiersc.plugins.core.isSignificant
+import com.javiersc.gradle.plugins.core.isSignificant
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.kotlin.dsl.getByName
 import org.gradle.plugins.signing.SigningExtension

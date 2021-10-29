@@ -24,7 +24,6 @@ gradlePlugin {
 
 dependencies {
     api(projects.shared.pluginAccessors)
-    api(projects.shared.core)
 
     api(pluginLibs.ajoberstar.reckon.reckonGradle)
 }

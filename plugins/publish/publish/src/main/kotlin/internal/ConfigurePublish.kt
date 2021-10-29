@@ -3,12 +3,11 @@
 package com.javiersc.gradle.plugins.publish.internal
 
 import com.gradle.publish.PluginBundleExtension
-import com.javiersc.gradle.plugins.publish.isAndroidLibrary
-import com.javiersc.gradle.plugins.publish.isGradlePlugin
-import com.javiersc.gradle.plugins.publish.isKotlinJvm
-import com.javiersc.gradle.plugins.publish.isKotlinMultiplatform
-import com.javiersc.gradle.plugins.publish.isKotlinMultiplatformWithAndroid
-import com.javiersc.gradle.plugins.publish.isVersionCatalog
+import com.javiersc.gradle.plugins.core.isAndroidLibrary
+import com.javiersc.gradle.plugins.core.isGradlePlugin
+import com.javiersc.gradle.plugins.core.isKotlinJvm
+import com.javiersc.gradle.plugins.core.isKotlinMultiplatform
+import com.javiersc.gradle.plugins.core.isVersionCatalog
 import org.gradle.api.Project
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPublication
@@ -45,7 +44,7 @@ internal fun Project.configurePublish() {
                     components = mapOf("maven" to "versionCatalog"),
                 )
             }
-            isKotlinMultiplatform || isKotlinMultiplatformWithAndroid -> {
+            isKotlinMultiplatform -> {
                 configurePublishing(
                     artifacts = listOf(docsJar),
                 )

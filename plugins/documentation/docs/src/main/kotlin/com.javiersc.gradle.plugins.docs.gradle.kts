@@ -1,5 +1,4 @@
 import com.javiersc.gradle.plugins.docs.internal.hasKotlinGradlePlugin
-import com.javiersc.plugins.core.isSignificant
 import org.jetbrains.dokka.gradle.DokkaMultiModuleTask
 import org.jetbrains.dokka.gradle.DokkaPlugin
 import org.jetbrains.dokka.gradle.DokkaTaskPartial
@@ -221,23 +220,20 @@ fun Task.buildApiDocsInDocs() {
     )
 
     doLast {
-        if (isSignificant) {
-            if (project.version.toString().endsWith("-SNAPSHOT")) {
-                copy {
-                    from("$rootDir/build/dokka")
-                    into("$rootDir/build/docs/_site/api/snapshot")
-                }
-            } else {
-                file("$rootDir/build/docs/_site/api/index.html").apply {
-                    ensureParentDirsCreated()
-                    if (!exists()) createNewFile()
-                    writeText(apiIndexHtmlContent)
-                }
-
-                copy {
-                    from("$rootDir/build/dokka")
-                    into("$rootDir/build/docs/_site/api/versions/${project.version}")
-                }
+        if (project.version.toString().endsWith("-SNAPSHOT")) {
+            copy {
+                from("$rootDir/build/dokka")
+                into("$rootDir/build/docs/_site/api/snapshot")
+            }
+        } else {
+            file("$rootDir/build/docs/_site/api/index.html").apply {
+                ensureParentDirsCreated()
+                if (!exists()) createNewFile()
+                writeText(apiIndexHtmlContent)
+            }
+            copy {
+                from("$rootDir/build/dokka")
+                into("$rootDir/build/docs/_site/api/versions/${project.version}")
             }
         }
     }

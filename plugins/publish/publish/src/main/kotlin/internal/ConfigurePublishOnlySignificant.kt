@@ -2,7 +2,8 @@
 
 package com.javiersc.gradle.plugins.publish.internal
 
-import com.javiersc.plugins.core.isSignificant
+import com.javiersc.gradle.plugins.core.isSignificant
+import com.javiersc.gradle.plugins.core.onlySignificantGradleProperty
 import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.tasks.Exec
@@ -18,7 +19,7 @@ internal fun Project.configurePublishOnlySignificant() {
         project.tasks.creating {
             dependsOn("gitDiff")
             doLast {
-                if (!isSignificant) {
+                if (!isSignificant && onlySignificantGradleProperty) {
                     error("Only significant versions can be published (current: $version)")
                 }
             }

@@ -24,7 +24,6 @@ gradlePlugin {
 
 dependencies {
     api(projects.shared.pluginAccessors)
-    api(projects.shared.core)
 
     implementation(libs.google.codeGson.gson)
     compileOnly(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)

@@ -1,6 +1,6 @@
 # Module core
 
-Set of utilities for `javiersc` plugins and more
+Set of utilities for `javiersc` plugins
 
 ### Download from MavenCentral
 

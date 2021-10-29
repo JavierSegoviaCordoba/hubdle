@@ -5,5 +5,5 @@ Set of utilities for testing `javiersc` plugins
 ### Download from MavenCentral
 
 ```kotlin
-    implementation("com.javiersc.gradle-plugins:core:$version")
+    implementation("com.javiersc.gradle-plugins:core-test:$version")
 ```

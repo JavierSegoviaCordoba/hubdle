@@ -3,11 +3,11 @@
 package com.javiersc.gradle.plugins.publish.internal
 
 import com.android.build.gradle.LibraryExtension
-import com.javiersc.gradle.plugins.publish.isAndroidLibrary
-import com.javiersc.gradle.plugins.publish.isGradlePlugin
-import com.javiersc.gradle.plugins.publish.isKotlinJvm
-import com.javiersc.gradle.plugins.publish.isKotlinMultiplatformWithAndroid
-import com.javiersc.gradle.plugins.publish.isVersionCatalog
+import com.javiersc.gradle.plugins.core.isAndroidLibrary
+import com.javiersc.gradle.plugins.core.isGradlePlugin
+import com.javiersc.gradle.plugins.core.isKotlinJvm
+import com.javiersc.gradle.plugins.core.isKotlinMultiplatform
+import com.javiersc.gradle.plugins.core.isVersionCatalog
 import java.io.File
 import org.gradle.api.Project
 import org.gradle.api.tasks.SourceSetContainer
@@ -32,7 +32,7 @@ internal val Project.sourcesJar: Jar
 
             val sources: Iterable<File> =
                 when {
-                    isKotlinMultiplatformWithAndroid -> emptySet()
+                    isKotlinMultiplatform -> emptySet()
                     isKotlinJvm || isGradlePlugin -> {
                         (project.properties["sourceSets"] as SourceSetContainer)["main"].allSource
                     }

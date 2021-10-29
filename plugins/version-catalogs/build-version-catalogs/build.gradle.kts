@@ -24,7 +24,6 @@ gradlePlugin {
 
 dependencies {
     api(projects.shared.pluginAccessors)
-    api(projects.shared.core)
 
     implementation(libs.jetbrains.kotlin.kotlinTest)
     implementation(libs.jetbrains.kotlin.kotlinTestJunit)

@@ -58,6 +58,21 @@ pom.smc.connection=scm:git:git@github.com:SomeDeveloper/some-project.git
 pom.smc.developerConnection=scm:git:git@github.com:SomeDeveloper/some-project.git
 ```
 
+It is possible to publish insignificant versions by setting the Gradle
+property `publish.onlySignificant` to `false:
+
+- `gradle.properties` file:
+
+```properties
+publish.onlySignificant=false
+```
+
+- Terminal:
+
+```shell
+./gradlew publishToSonatype "-Ppublish.onlySignificant=false"
+```
+
 #### Additional config for specific projects
 
 ##### Gradle plugin

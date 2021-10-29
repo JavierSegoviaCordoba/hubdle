@@ -1,4 +1,4 @@
-import com.javiersc.plugins.core.groupId
+import com.javiersc.gradle.plugins.all.projects.groupId
 
 allprojects {
     group = groupId

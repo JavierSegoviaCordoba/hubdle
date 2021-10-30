@@ -1,7 +1,8 @@
+import java.util.Properties
+
 rootProject.name = providers.gradleProperty("allProjects.name").forUseAtConfigurationTime().get()
 
-enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
-enableFeaturePreview("VERSION_CATALOGS")
+listOf("TYPESAFE_PROJECT_ACCESSORS", "VERSION_CATALOGS").forEach(::enableFeaturePreview)
 
 dependencyResolutionManagement {
     repositories {
@@ -52,17 +53,19 @@ include(
     ":plugins:version-catalogs:projects-version-catalog",
 )
 
-val properties =
-    file("gradle.properties").inputStream().use { java.util.Properties().apply { load(it) } }
-
-if (
-    providers
-        .systemProperty("idea.active")
-        .forUseAtConfigurationTime()
-        .map(String::toBoolean)
-        .getOrElse(false)
-) {
-    includeBuild("sandbox")
+file("local.properties").apply {
+    if (exists().not()) {
+        createNewFile()
+        writeText("sandbox.enabled=false")
+    }
+    inputStream().use { fileInputStream ->
+        Properties().apply {
+            load(fileInputStream)
+            if (getProperty("sandbox.enabled")?.toString()?.toBoolean() == true) {
+                includeBuild("sandbox")
+            }
+        }
+    }
 }
 
 include(

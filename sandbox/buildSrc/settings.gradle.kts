@@ -1,4 +1,4 @@
-listOf("TYPESAFE_PROJECT_ACCESSORS", "VERSION_CATALOGS").forEach(::enableFeaturePreview)
+listOf("VERSION_CATALOGS").forEach(::enableFeaturePreview)
 
 pluginManagement {
     repositories {
@@ -29,7 +29,7 @@ dependencyResolutionManagement {
 
     versionCatalogs {
         create("pluginLibs") {
-            from(files("../gradle/pluginLibs.toml"))
+            from(files("../../gradle/pluginLibs.toml"))
             version("javierscGradlePlugins", "0.1.0-rc.2")
         }
     }

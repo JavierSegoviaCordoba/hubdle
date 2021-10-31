@@ -3,12 +3,23 @@
 ## [Unreleased]
 
 ### Added
-- `javiersc-kotlin-library`
-- `publish.onlySignificant` Gradle property to allow publishing insignificant versions
 
 ### Changed
 
 ### Deprecated
+
+### Removed
+
+### Fixed
+
+### Updated
+
+
+## [0.1.0-rc.2] - 2021-10-31
+
+### Added
+- `javiersc-kotlin-library`
+- `publish.onlySignificant` Gradle property to allow publishing insignificant versions
 
 ### Removed
 - `javiersc-android-library`
@@ -16,13 +27,10 @@
 - `javiersc-kotlin-multiplatform`
 - `javiersc-kotlin-multiplatform-no-android`
 
-### Fixed
-
 ### Updated
 - `gradle -> 7.3-rc-3`
 - `com.diffplug.spotless:spotless-plugin-gradle -> 5.17.1`
 - `com.javiersc.gradle-plugins:all-plugins -> 0.1.0-rc.1`
-
 
 ## [0.1.0-rc.1] - 2021-10-24
 

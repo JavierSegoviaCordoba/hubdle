@@ -32,11 +32,15 @@ file("src/main/kotlin/KtfmtVersion.kt").apply {
     )
 }
 
+val testPluginClasspath: Configuration by configurations.creating
+
 dependencies {
     api(projects.shared.pluginAccessors)
 
     implementation(pluginLibs.diffplug.spotless.spotlessPluginGradle)
     compileOnly(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)
+
+    testPluginClasspath(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)
 
     testImplementation(gradleTestKit())
     testImplementation(projects.shared.coreTest)
@@ -45,10 +49,8 @@ dependencies {
     testImplementation(libs.kotest.kotestAssertionsCore)
 }
 
-tasks{
+tasks {
     pluginUnderTestMetadata {
-        dependencies {
-            implementation(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)
-        }
+        pluginClasspath.from(testPluginClasspath)
     }
 }

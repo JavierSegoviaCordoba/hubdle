@@ -21,6 +21,8 @@ gradlePlugin {
     }
 }
 
+val testPluginClasspath: Configuration by configurations.creating
+
 dependencies {
     api(projects.shared.pluginAccessors)
 
@@ -31,6 +33,8 @@ dependencies {
     implementation(gradleApi())
     implementation(gradleKotlinDsl())
 
+    testPluginClasspath(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)
+
     testImplementation(gradleTestKit())
     testImplementation(projects.shared.coreTest)
     testImplementation(libs.jetbrains.kotlin.kotlinTest)
@@ -38,10 +42,8 @@ dependencies {
     testImplementation(libs.kotest.kotestAssertionsCore)
 }
 
-tasks{
+tasks {
     pluginUnderTestMetadata {
-        dependencies {
-            implementation(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)
-        }
+        pluginClasspath.from(testPluginClasspath)
     }
 }

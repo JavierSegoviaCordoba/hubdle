@@ -13,4 +13,4 @@ val Project.isSignificant: Boolean
             .matches(version.toString())
 
 val Project.onlySignificantGradleProperty: Boolean
-    get() = property("publish.onlySignificant")?.toString()?.toBoolean() ?: true
+    get() = properties["publish.onlySignificant"]?.toString()?.toBoolean() ?: true

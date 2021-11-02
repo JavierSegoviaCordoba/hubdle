@@ -2,10 +2,9 @@
 
 import com.android.build.api.dsl.LibraryExtension
 import com.javiersc.gradle.plugins.core.isAndroidLibrary
+import com.javiersc.gradle.plugins.core.isKotlinJvm
+import com.javiersc.gradle.plugins.core.isKotlinMultiplatform
 import com.javiersc.gradle.plugins.core.isKotlinMultiplatformWithAndroid
-import com.javiersc.gradle.plugins.core.withAndroidLibrary
-import com.javiersc.gradle.plugins.core.withKotlinJvm
-import com.javiersc.gradle.plugins.core.withKotlinMultiplatform
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.api.plugins.JavaPluginExtension
@@ -30,7 +29,7 @@ sealed class KotlinLibraryType {
     class Android(
         private val compileSdk: Int = AndroidSdk.compileSdk,
         private val minSdk: Int = AndroidSdk.minSdk,
-        private val isKmp: Boolean
+        private val isKmp: Boolean = true
     ) : KotlinLibraryType() {
 
         override fun configure(project: Project) {
@@ -111,18 +110,19 @@ sealed class KotlinLibraryType {
     companion object {
         fun build(project: Project): Unit =
             with(project) {
-                withKotlinMultiplatform {
-                    if (isKotlinMultiplatformWithAndroid) {
-                        KotlinMultiplatformWithAndroid.configure(project)
-                    } else {
-                        KotlinMultiplatform.configure(project)
+                when {
+                    isKotlinMultiplatformWithAndroid ->
+                        KotlinMultiplatformWithAndroid.configure(this)
+                    isKotlinMultiplatform -> {
+                        KotlinMultiplatform.configure(this)
                     }
-                }
-
-                withKotlinJvm { KotlinJVM.configure(project) }
-
-                withAndroidLibrary {
-                    if (isAndroidLibrary) Android(isKmp = false).configure(project)
+                    isKotlinJvm -> KotlinJVM.configure(this)
+                    isAndroidLibrary -> Android(isKmp = false).configure(this)
+                    else -> {
+                        errorMessage(
+                            "`javiersc-kotlin-library` doesn't support this type of project yet"
+                        )
+                    }
                 }
             }
     }
@@ -133,3 +133,8 @@ object AndroidSdk {
     const val compileSdk = 31
     const val minSdk = 21
 }
+
+internal fun Project.errorMessage(message: String) = logger.lifecycle("$YELLOW$message$RESET")
+
+private const val RESET = "\u001B[0m"
+private const val YELLOW = "\u001B[0;33m"

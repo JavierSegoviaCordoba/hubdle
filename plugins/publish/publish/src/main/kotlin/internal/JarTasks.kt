@@ -44,9 +44,6 @@ internal val Project.sourcesJar: Jar
                             .java
                             .srcDirs
                     }
-                    isGradlePlugin -> {
-                        (project.properties["sourceSets"] as SourceSetContainer)["main"].allSource
-                    }
                     isVersionCatalog -> emptySet()
                     else -> emptySet()
                 }

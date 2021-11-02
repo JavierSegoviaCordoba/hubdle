@@ -5,19 +5,19 @@ package com.javiersc.gradle.plugins.core
 import org.gradle.api.Project
 
 val Project.isAndroidLibrary: Boolean
-    get() = plugins.hasPlugin("com.android.library")
+    get() = pluginManager.hasPlugin("com.android.library") && isKotlinMultiplatform.not()
 
 val Project.isGradlePlugin: Boolean
-    get() = plugins.hasPlugin("org.gradle.java-gradle-plugin")
+    get() = pluginManager.hasPlugin("org.gradle.java-gradle-plugin")
 
 val Project.isKotlinJvm: Boolean
-    get() = plugins.hasPlugin("org.jetbrains.kotlin.jvm")
+    get() = pluginManager.hasPlugin("org.jetbrains.kotlin.jvm")
 
 val Project.isKotlinMultiplatform: Boolean
-    get() = plugins.hasPlugin("org.jetbrains.kotlin.multiplatform")
+    get() = pluginManager.hasPlugin("org.jetbrains.kotlin.multiplatform")
 
 val Project.isKotlinMultiplatformWithAndroid: Boolean
-    get() = isKotlinMultiplatform && isAndroidLibrary
+    get() = isKotlinMultiplatform && pluginManager.hasPlugin("com.android.library")
 
 val Project.isVersionCatalog: Boolean
-    get() = plugins.hasPlugin("org.gradle.version-catalog")
+    get() = pluginManager.hasPlugin("org.gradle.version-catalog")

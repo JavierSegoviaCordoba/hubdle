@@ -29,7 +29,7 @@ sealed class KotlinLibraryType {
     class Android(
         private val compileSdk: Int = AndroidSdk.compileSdk,
         private val minSdk: Int = AndroidSdk.minSdk,
-        private val isKmp: Boolean = true
+        private val isKmp: Boolean
     ) : KotlinLibraryType() {
 
         override fun configure(project: Project) {
@@ -111,8 +111,9 @@ sealed class KotlinLibraryType {
         fun build(project: Project): Unit =
             with(project) {
                 when {
-                    isKotlinMultiplatformWithAndroid ->
+                    isKotlinMultiplatformWithAndroid -> {
                         KotlinMultiplatformWithAndroid.configure(this)
+                    }
                     isKotlinMultiplatform -> {
                         KotlinMultiplatform.configure(this)
                     }

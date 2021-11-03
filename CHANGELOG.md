@@ -13,6 +13,7 @@
 ### Fixed
 
 ### Updated
+- `com.javiersc.semantic-versioning:semantic-versioning-core -> 0.1.0-beta.1`
 - `com.javiersc.gradle-plugins:all-plugins -> 0.1.0-rc.4`
 
 ## [0.1.0-rc.4] - 2021-11-02

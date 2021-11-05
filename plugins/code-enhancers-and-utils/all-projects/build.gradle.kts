@@ -23,4 +23,6 @@ gradlePlugin {
 
 dependencies {
     api(projects.shared.pluginAccessors)
+
+    implementation(pluginLibs.adarshr.gradleTestLoggerPlugin)
 }

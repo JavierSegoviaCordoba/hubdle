@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 ### Added
+- `all-projects` tests result pretty output in terminal
 
 ### Changed
 

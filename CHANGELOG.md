@@ -13,6 +13,7 @@
 ### Fixed
 
 ### Updated
+- `com.javiersc.semantic-versioning:semantic-versioning-core -> 0.1.0-beta.5`
 
 
 ## [0.1.0-rc.5] - 2021-11-08

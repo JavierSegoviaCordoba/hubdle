@@ -3,7 +3,6 @@
 ## [Unreleased]
 
 ### Added
-- `all-projects` tests result pretty output in terminal
 
 ### Changed
 
@@ -12,6 +11,14 @@
 ### Removed
 
 ### Fixed
+
+### Updated
+
+
+## [0.1.0-rc.5] - 2021-11-08
+
+### Added
+- `all-projects` tests result pretty output in terminal
 
 ### Updated
 - `com.javiersc.semantic-versioning:semantic-versioning-core -> 0.1.0-beta.4`

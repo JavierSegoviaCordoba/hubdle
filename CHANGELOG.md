@@ -13,10 +13,14 @@
 ### Fixed
 
 ### Updated
+
+
+## [0.1.0-rc.6] - 2021-11-09
+
+### Updated
 - `gradle -> 7.3-rc-5`
 - `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.8.0`
 - `com.javiersc.semantic-versioning:semantic-versioning-core -> 0.1.0-beta.5`
-
 
 ## [0.1.0-rc.5] - 2021-11-08
 

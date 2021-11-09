@@ -3,8 +3,8 @@ package com.javiersc.gradle.plugins.docs
 import com.javiersc.gradle.plugins.core.test.testSandbox
 import io.kotest.matchers.file.shouldHaveSameContentAs
 import java.io.File
+import kotlin.test.Test
 import org.gradle.testkit.runner.BuildResult
-import org.junit.Test
 
 class BuildProjectsVersionCatalogTest {
 

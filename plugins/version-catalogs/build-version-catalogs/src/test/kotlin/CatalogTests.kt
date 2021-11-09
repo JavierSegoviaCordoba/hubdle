@@ -3,7 +3,7 @@
 package com.javiersc.plugins.build.version.catalogs
 
 import io.kotest.matchers.shouldBe
-import org.junit.Test
+import kotlin.test.Test
 
 class CatalogTests {
 

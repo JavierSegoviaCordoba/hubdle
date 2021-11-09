@@ -6,8 +6,8 @@ import io.kotest.matchers.collections.shouldBeSameSizeAs
 import io.kotest.matchers.file.shouldBeADirectory
 import io.kotest.matchers.file.shouldHaveSameContentAs
 import java.io.File
+import kotlin.test.Test
 import org.gradle.testkit.runner.BuildResult
-import org.junit.Test
 
 class CodeFormatterTest {
 

@@ -38,7 +38,6 @@ dependencies {
     testImplementation(gradleTestKit())
     testImplementation(projects.shared.coreTest)
     testImplementation(libs.jetbrains.kotlin.kotlinTest)
-    testImplementation(libs.jetbrains.kotlin.kotlinTestJunit)
     testImplementation(libs.kotest.kotestAssertionsCore)
 }
 

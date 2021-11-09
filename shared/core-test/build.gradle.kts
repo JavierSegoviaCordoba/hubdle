@@ -10,6 +10,5 @@ dependencies {
     implementation(gradleTestKit())
     implementation(libs.eclipse.jgit)
     implementation(libs.jetbrains.kotlin.kotlinTest)
-    implementation(libs.jetbrains.kotlin.kotlinTestJunit)
     implementation(libs.kotest.kotestAssertionsCore)
 }

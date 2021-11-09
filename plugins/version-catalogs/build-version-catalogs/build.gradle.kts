@@ -1,5 +1,6 @@
 plugins {
     `kotlin-dsl`
+    `javiersc-kotlin-library`
     `javiersc-publish`
 }
 
@@ -26,6 +27,5 @@ dependencies {
     api(projects.shared.pluginAccessors)
 
     implementation(libs.jetbrains.kotlin.kotlinTest)
-    implementation(libs.jetbrains.kotlin.kotlinTestJunit)
     implementation(libs.kotest.kotestAssertionsCore)
 }

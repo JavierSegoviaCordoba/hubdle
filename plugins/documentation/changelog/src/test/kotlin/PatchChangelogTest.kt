@@ -2,7 +2,7 @@ package com.javiersc.gradle.plugins.changelog
 
 import com.javiersc.gradle.plugins.changelog.utils.testChangelog
 import com.javiersc.gradle.plugins.core.test.testSandbox
-import org.junit.Test
+import kotlin.test.Test
 
 class PatchChangelogTest {
 

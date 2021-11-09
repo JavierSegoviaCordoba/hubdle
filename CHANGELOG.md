@@ -9,13 +9,17 @@
 ### Deprecated
 
 ### Removed
-- `build-version-catalogs` plugin
-- `build-version-catalogs-updater` plugin
 
 ### Fixed
 
 ### Updated
 
+
+## [0.1.0-rc.8] - 2021-11-09
+
+### Removed
+- `build-version-catalogs` plugin
+- `build-version-catalogs-updater` plugin
 
 ## [0.1.0-rc.7] - 2021-11-09
 

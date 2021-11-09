@@ -9,6 +9,8 @@
 ### Deprecated
 
 ### Removed
+- `build-version-catalogs` plugin
+- `build-version-catalogs-updater` plugin
 
 ### Fixed
 

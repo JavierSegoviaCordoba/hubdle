@@ -9,6 +9,7 @@ allprojects {
 
     tasks {
         withType<Test> {
+            testLogging.showStandardStreams = true
             maxParallelForks =
                 (Runtime.getRuntime().availableProcessors() / 2).takeIf { it > 0 } ?: 1
             useJUnitPlatform()

@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 ### Added
+- `testLogging.showStandardStreams = true` to `all-projects` 
 
 ### Changed
 

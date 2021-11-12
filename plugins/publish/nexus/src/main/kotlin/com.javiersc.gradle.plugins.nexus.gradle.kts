@@ -1,4 +1,5 @@
 import io.github.gradlenexus.publishplugin.NexusPublishExtension
+import java.time.Duration
 
 plugins {
     id("io.github.gradle-nexus.publish-plugin")
@@ -14,4 +15,7 @@ configure<NexusPublishExtension> {
             )
         }
     }
+
+    connectTimeout.set(Duration.ofMinutes(30))
+    clientTimeout.set(Duration.ofMinutes(30))
 }

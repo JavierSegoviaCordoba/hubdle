@@ -1,3 +1,5 @@
+@file:Suppress("MagicNumber")
+
 import com.javiersc.gradle.plugins.all.projects.groupId
 
 plugins.apply(LifecycleBasePlugin::class)
@@ -11,7 +13,7 @@ allprojects {
         withType<Test> {
             testLogging.showStandardStreams = true
             maxParallelForks =
-                (Runtime.getRuntime().availableProcessors() / 2).takeIf { it > 0 } ?: 1
+                (Runtime.getRuntime().availableProcessors() / 3).takeIf { it > 0 } ?: 1
             useJUnitPlatform()
         }
     }

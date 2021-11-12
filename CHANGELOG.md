@@ -8,6 +8,7 @@
 - `semver` plugin accessor
 
 ### Changed
+- `all-projects` uses fewer cores to run test to avoid freezing the computer
 
 ### Deprecated
 

@@ -37,6 +37,7 @@ plugins {
 - `ben-manes-versions`
 - `changelog`
 - `compose`
+- `compose-resources`
 - `hilt-android`
 - `detekt`
 - `dokka`
@@ -54,4 +55,5 @@ plugins {
 - `mkdocs`
 - `nexus-publish`
 - `reckon`
+- `semver`
 - `spotless`

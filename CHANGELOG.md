@@ -4,6 +4,8 @@
 
 ### Added
 - `testLogging.showStandardStreams = true` to `all-projects` 
+- `compose-resources` plugin accessor
+- `semver` plugin accessor
 
 ### Changed
 

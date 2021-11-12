@@ -45,6 +45,12 @@ val PluginDependenciesSpec.`compose`: PluginDependencySpec
 infix fun PluginDependenciesSpec.`compose`(version: String): PluginDependencySpec =
     id("org.jetbrains.compose").version(version)
 
+val PluginDependenciesSpec.`compose-resources`: PluginDependencySpec
+    get() = id("com.javiersc.compose.resources")
+
+infix fun PluginDependenciesSpec.`compose-resources`(version: String): PluginDependencySpec =
+    id("com.javiersc.compose.resources").version(version)
+
 val PluginDependenciesSpec.`hilt-android`: PluginDependencySpec
     get() = id("dagger.hilt.android.plugin")
 
@@ -142,6 +148,12 @@ val PluginDependenciesSpec.`reckon`: PluginDependencySpec
 
 infix fun PluginDependenciesSpec.`reckon`(version: String): PluginDependencySpec =
     id("org.ajoberstar.reckon").version(version)
+
+val PluginDependenciesSpec.`semver`: PluginDependencySpec
+    get() = id("com.javiersc.semver.gradle.plugin")
+
+infix fun PluginDependenciesSpec.`semver`(version: String): PluginDependencySpec =
+    id("com.javiersc.semver.gradle.plugin").version(version)
 
 val PluginDependenciesSpec.`spotless`: PluginDependencySpec
     get() = id("com.diffplug.spotless")

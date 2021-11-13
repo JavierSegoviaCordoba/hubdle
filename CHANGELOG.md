@@ -10,6 +10,7 @@
 ### Changed
 - `all-projects` uses fewer cores to run test to avoid freezing the computer
 - `nexus` timeouts to 30 minutes
+- `readme-badges-generator` uses `build-kotlin` instead of `build`
 
 ### Deprecated
 

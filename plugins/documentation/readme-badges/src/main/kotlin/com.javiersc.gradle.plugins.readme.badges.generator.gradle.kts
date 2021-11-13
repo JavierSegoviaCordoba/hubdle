@@ -75,7 +75,7 @@ enum class MavenRepo {
 
 fun buildBuildBadge(): String {
     return "[![Build]" +
-        "($shieldsIoUrl/github/workflow/status/$repoWithoutUrlPrefix/build" +
+        "($shieldsIoUrl/github/workflow/status/$repoWithoutUrlPrefix/build-kotlin" +
         "?label=Build&logo=GitHub)]" +
         "($repoUrl/tree/main)"
 }

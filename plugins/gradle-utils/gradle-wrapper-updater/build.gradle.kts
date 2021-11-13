@@ -6,8 +6,7 @@ plugins {
 pluginBundle {
     tags =
         listOf(
-            "gradle",
-            "grapper",
+            "wrapper",
             "updater",
         )
 }

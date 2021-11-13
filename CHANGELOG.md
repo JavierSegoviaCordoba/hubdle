@@ -3,6 +3,21 @@
 ## [Unreleased]
 
 ### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Updated
+
+
+## [0.1.0-rc.9] - 2021-11-13
+
+### Added
 - `testLogging.showStandardStreams = true` to `all-projects` 
 - `compose-resources` plugin accessor
 - `semver` plugin accessor
@@ -12,17 +27,10 @@
 - `nexus` timeouts to 30 minutes
 - `readme-badges-generator` uses `build-kotlin` instead of `build`
 
-### Deprecated
-
-### Removed
-
-### Fixed
-
 ### Updated
 - `com.javiersc.semantic-versioning:semantic-versioning-core -> 0.1.0-beta.6`
 - `com.javiersc.gradle-plugins:all-plugins -> 0.1.0-rc.8`
 - `gradle -> 7.3`
-
 
 ## [0.1.0-rc.8] - 2021-11-09
 

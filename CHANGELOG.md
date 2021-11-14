@@ -5,7 +5,6 @@
 ### Added
 
 ### Changed
-- use `semver-gradle-version` instead of `reckon` in `versioning`
 
 ### Deprecated
 
@@ -15,6 +14,11 @@
 
 ### Updated
 
+
+## [0.1.0-rc.10] - 2021-11-14
+
+### Changed
+- use `semver-gradle-version` instead of `reckon` in `versioning`
 
 ## [0.1.0-rc.9] - 2021-11-13
 

@@ -6,7 +6,6 @@ plugins {
 pluginBundle {
     tags =
         listOf(
-            "gradle",
             "massive catalogs",
             "versions catalogs",
         )

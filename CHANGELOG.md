@@ -5,6 +5,7 @@
 ### Added
 
 ### Changed
+- use `semver-gradle-version` instead of `reckon` in `versioning`
 
 ### Deprecated
 

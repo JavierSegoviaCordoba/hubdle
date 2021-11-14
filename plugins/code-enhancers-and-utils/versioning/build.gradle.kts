@@ -7,7 +7,9 @@ pluginBundle {
     tags =
         listOf(
             "versioning",
-            "reckon",
+            "semver",
+            "semantic versioning",
+            "semantic version",
             "git",
         )
 }
@@ -17,7 +19,7 @@ gradlePlugin {
         named("com.javiersc.gradle.plugins.versioning") {
             id = "com.javiersc.gradle.plugins.versioning"
             displayName = "Versioning"
-            description = "A custom plugin for Reckon Plugin and its git versioning"
+            description = "A custom plugin for Semver Gradle Plugin for git versioning"
         }
     }
 }
@@ -25,5 +27,5 @@ gradlePlugin {
 dependencies {
     api(projects.shared.pluginAccessors)
 
-    api(pluginLibs.ajoberstar.reckon.reckonGradle)
+    api(pluginLibs.javiersc.semver.semverGradlePlugin)
 }

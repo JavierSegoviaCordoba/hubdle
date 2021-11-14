@@ -1,7 +1,7 @@
 # Module versioning
 
 A custom plugin for git tags versioning which used
-[reckon plugin](https://github.com/ajoberstar/reckon) under the hood.
+[semver Gradle plugin](https://github.com/JavierSegoviaCordoba/semver-gradle-plugin) under the hood.
 
 ### Download from MavenCentral
 
@@ -25,8 +25,8 @@ plugins {
 
 ### Usage
 
-Check Reckon [readme](https://github.com/ajoberstar/reckon) or
-[samples](https://github.com/ajoberstar/reckon/blob/main/docs/index.md) to see how it works
+Check semver Gradle plugin [readme](https://github.com/JavierSegoviaCordoba/semver-gradle-plugin) or
+[samples](https://github.com/JavierSegoviaCordoba/semver-gradle-plugin/blob/main/.docs/docs/examples/ALL_PROJECTS.md) to see how it works
 
 Check samples about how to manage the project version with GitHub Actions in
-[.github/workflows](../.github/workflows)
+[.github/workflows](../../../.github/workflows)

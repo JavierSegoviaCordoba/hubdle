@@ -1,19 +1,9 @@
-import org.ajoberstar.reckon.gradle.ReckonExtension
+import com.javiersc.semver.gradle.plugin.SemVerExtension
 
 plugins {
-    id("org.ajoberstar.reckon")
+    id("com.javiersc.semver-gradle-plugin")
 }
 
-configure<ReckonExtension> {
-    scopeFromProp()
-    if (properties["reckon.stage"]?.toString().equals("snapshot", true)) snapshotFromProp()
-    else stageFromProp("alpha", "beta", "rc", "final")
-}
-
-File("${rootProject.buildDir}/versioning/version.txt").apply {
-    if (!exists()) {
-        parentFile.mkdirs()
-        createNewFile()
-    }
-    writeText(version.toString())
+configure<SemVerExtension> {
+    tagPrefix.set("")
 }

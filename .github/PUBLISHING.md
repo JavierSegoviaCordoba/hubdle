@@ -77,11 +77,11 @@
 The version should end with `-SNAPSHOT`
 
 ```
-./gradlew publishToSonatype -P"reckon.stage"="snapshot"
+./gradlew publishToSonatype -P"semver.stage"="snapshot"
 ```
 
 ### Release
 
 ```
-./gradlew publishToSonatype -P"reckon.stage"="[stage]" -P"reckon.scope"="[scope]"
+./gradlew publishToSonatype -P"semver.stage"="[stage]" -P"semver.scope"="[scope]"
 ```

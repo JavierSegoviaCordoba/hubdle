@@ -1,9 +1,7 @@
-import com.javiersc.semver.gradle.plugin.SemVerExtension
-
 plugins {
-    id("com.javiersc.semver-gradle-plugin")
+    id("com.javiersc.semver.gradle.plugin")
 }
 
-configure<SemVerExtension> {
+semver {
     tagPrefix.set("")
 }

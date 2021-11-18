@@ -13,11 +13,15 @@
 ### Fixed
 
 ### Updated
+
+
+## [0.1.0-rc.12] - 2021-11-18
+
+### Updated
 - `com.javiersc.semver:semver-gradle-plugin -> 0.1.0-alpha.3`
 - `com.facebook:ktfmt -> 0.30`
 - `com.gradle.publish:plugin-publish-plugin -> 0.18.0`
 - `org.jetbrains.kotlin:kotlin-gradle-plugin -> 1.6.0`
-
 
 ## [0.1.0-rc.11] - 2021-11-14
 - No changes

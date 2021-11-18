@@ -2,15 +2,11 @@
 
 package com.javiersc.gradle.plugins.core
 
+import com.javiersc.semanticVersioning.Version
 import org.gradle.api.Project
 
 val Project.isSignificant: Boolean
-    get() =
-        Regex(
-                "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-]" +
-                    "[0-9a-zA-Z-]*)(?:\\.(?:[1-9]\\d*|\\d*[a-zA-Z-][0-9]*))*))?(?:\\+([0-9]))?\$",
-            )
-            .matches(version.toString())
+    get() = Version.regex.matches("$version")
 
 val Project.onlySignificantGradleProperty: Boolean
     get() = properties["publish.onlySignificant"]?.toString()?.toBoolean() ?: true

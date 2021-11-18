@@ -27,7 +27,7 @@ fun SigningExtension.signInMemory() {
 }
 
 val SigningExtension.isSnapshot: Boolean
-    get() = project.version.toString().endsWith("-SNAPSHOT")
+    get() = project.version.toString().endsWith("-SNAPSHOT", ignoreCase = true)
 
 val SigningExtension.signingKeyName: String?
     get() = project.getVariable("signing.gnupg.keyName", "SIGNING_KEY_NAME")

@@ -6,6 +6,7 @@ plugins {
 val allPluginsProject = project
 
 dependencies {
+    api(projects.shared.core)
     api(projects.shared.pluginAccessors)
 }
 

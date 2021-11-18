@@ -6,4 +6,6 @@ plugins {
 dependencies {
     implementation(gradleApi())
     implementation(gradleKotlinDsl())
+
+    implementation(libs.javiersc.semanticVersioning.semanticVersioningCore)
 }

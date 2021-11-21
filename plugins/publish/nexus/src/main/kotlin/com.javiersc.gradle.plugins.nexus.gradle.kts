@@ -6,6 +6,8 @@ plugins {
 }
 
 configure<NexusPublishExtension> {
+    repositoryDescription.set("${rootProject.group} - ${rootProject.version}")
+
     repositories {
         sonatype {
             username.set("${properties["oss.user"] ?: System.getenv("OSS_USER")}")

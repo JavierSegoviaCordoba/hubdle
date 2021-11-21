@@ -28,6 +28,7 @@ dependencies {
 
     implementation(gradleApi())
     implementation(gradleKotlinDsl())
+    implementation(libs.javiersc.kotlin.kotlinStdlib)
     compileOnly(pluginLibs.android.toolsBuild.gradle)
     compileOnly(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)
     implementation(pluginLibs.gradle.publish.pluginPublishPlugin)

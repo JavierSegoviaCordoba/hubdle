@@ -74,7 +74,7 @@ fun Project.configurePublishing(
     val publishingExtension: PublishingExtension? = extensions.findByType()
 
     if (publishingExtension == null) {
-        errorMessage("`maven-publish` plugin is not being applied")
+        warningMessage("`maven-publish` plugin is not being applied")
     } else {
         configure<PublishingExtension> {
             publications {

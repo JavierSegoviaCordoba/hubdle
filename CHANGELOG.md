@@ -5,6 +5,7 @@
 ### Added
 
 ### Changed
+- show missing variables warning message only if `publish` task is called
 
 ### Deprecated
 

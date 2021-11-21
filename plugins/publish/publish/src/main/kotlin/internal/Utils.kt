@@ -2,25 +2,25 @@
 
 package com.javiersc.gradle.plugins.publish.internal
 
+import com.javiersc.kotlin.stdlib.AnsiColor
+import com.javiersc.kotlin.stdlib.ansiColor
 import org.gradle.api.Project
 
 internal fun Project.getVariable(propertyName: String, environmentVariableName: String): String? {
     val property: String? = project.properties[propertyName]?.toString()
     val environmentVariable: String? = System.getenv(environmentVariableName)
 
-    when {
-        property.isNullOrBlank() && environmentVariable.isNullOrBlank() -> {
-            errorMessage(
-                "$propertyName Gradle property and " +
-                    "$environmentVariableName environment variable are missing",
-            )
-        }
+    if (isPublishing && property.isNullOrBlank() && environmentVariable.isNullOrBlank()) {
+        warningMessage(
+            "$propertyName Gradle property and " +
+                "$environmentVariableName environment variable are missing",
+        )
     }
-
     return property ?: environmentVariable
 }
 
-internal fun Project.errorMessage(message: String) = logger.lifecycle("$YELLOW$message$RESET")
+internal val Project.isPublishing: Boolean
+    get() = gradle.startParameter.taskNames.any { it.startsWith("publish") }
 
-private const val RESET = "\u001B[0m"
-private const val YELLOW = "\u001B[0;33m"
+internal fun Project.warningMessage(message: String) =
+    logger.lifecycle(message.ansiColor(AnsiColor.Foreground.Yellow))

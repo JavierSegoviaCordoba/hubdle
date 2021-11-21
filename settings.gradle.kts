@@ -1,6 +1,6 @@
 import java.util.Properties
 
-rootProject.name = providers.gradleProperty("allProjects.name").forUseAtConfigurationTime().get()
+rootProject.name = providers.gradleProperty("project.name").forUseAtConfigurationTime().get()
 
 listOf("TYPESAFE_PROJECT_ACCESSORS", "VERSION_CATALOGS").forEach(::enableFeaturePreview)
 

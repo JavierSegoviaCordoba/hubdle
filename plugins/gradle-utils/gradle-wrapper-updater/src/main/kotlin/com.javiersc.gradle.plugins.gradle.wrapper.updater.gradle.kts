@@ -1,6 +1,11 @@
 @file:Suppress("MagicNumber", "SwallowedException", "TooGenericExceptionCaught")
 
 import com.google.gson.Gson
+import com.javiersc.kotlin.stdlib.AnsiColor.Foreground.Cyan
+import com.javiersc.kotlin.stdlib.AnsiColor.Foreground.Green
+import com.javiersc.kotlin.stdlib.AnsiColor.Foreground.Red
+import com.javiersc.kotlin.stdlib.AnsiColor.Foreground.Yellow
+import com.javiersc.kotlin.stdlib.AnsiColor.Reset
 import java.net.HttpURLConnection
 import java.net.URL
 import org.jetbrains.kotlin.gradle.internal.ensureParentDirsCreated
@@ -54,12 +59,6 @@ private val currentUrl = "$baseUrl/current"
 private val releaseCandidateUrl = "$baseUrl/release-candidate"
 private val nightlyUrl = "https://services.gradle.org/versions/nightly"
 
-private val reset = "\u001B[0m"
-private val cyan = "\u001B[36m"
-private val yellow = "\u001B[33m"
-private val green = "\u001B[32m"
-private val red = "\u001b[31m"
-
 enum class Stage {
     Current,
     RC,
@@ -97,7 +96,7 @@ fun getSpecificGradleVersion(): String {
         val gradleVersion: GradleVersion = Gson().fromJson(it.readText(), GradleVersion::class.java)
 
         return if (gradleVersion.version == null) {
-            error("${red}There is no Gradle version available$reset")
+            error("${Red}There is no Gradle version available$Reset")
         } else {
             File("${project.rootProject.buildDir}/versions/gradle-wrapper.txt").apply {
                 ensureParentDirsCreated()
@@ -106,9 +105,9 @@ fun getSpecificGradleVersion(): String {
             }
 
             logger.lifecycle(
-                "The latest ${cyan}Gradle version$reset for " +
-                    "the stage $yellow${stage ?: "Current"}$reset " +
-                    "is $green${gradleVersion.version}$reset"
+                "The latest ${Cyan}Gradle version$Reset for " +
+                    "the stage $Yellow${stage ?: "Current"}$Reset " +
+                    "is $Green${gradleVersion.version}${Reset}"
             )
             gradleVersion.version
         }

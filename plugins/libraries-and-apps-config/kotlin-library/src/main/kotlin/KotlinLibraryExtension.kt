@@ -5,6 +5,8 @@ import com.javiersc.gradle.plugins.core.isAndroidLibrary
 import com.javiersc.gradle.plugins.core.isKotlinJvm
 import com.javiersc.gradle.plugins.core.isKotlinMultiplatform
 import com.javiersc.gradle.plugins.core.isKotlinMultiplatformWithAndroid
+import com.javiersc.kotlin.stdlib.AnsiColor
+import com.javiersc.kotlin.stdlib.ansiColor
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.api.plugins.JavaPluginExtension
@@ -135,7 +137,5 @@ object AndroidSdk {
     const val minSdk = 21
 }
 
-internal fun Project.errorMessage(message: String) = logger.lifecycle("$YELLOW$message$RESET")
-
-private const val RESET = "\u001B[0m"
-private const val YELLOW = "\u001B[0;33m"
+internal fun Project.errorMessage(message: String) =
+    logger.lifecycle(message.ansiColor(AnsiColor.Foreground.Yellow))

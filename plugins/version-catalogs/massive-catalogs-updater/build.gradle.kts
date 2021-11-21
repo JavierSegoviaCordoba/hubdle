@@ -24,6 +24,7 @@ gradlePlugin {
 dependencies {
     api(projects.shared.pluginAccessors)
 
+    implementation(libs.javiersc.kotlin.kotlinStdlib)
     implementation(libs.jsoup.jsoup)
     implementation(libs.javiersc.semanticVersioning.semanticVersioningCore)
 

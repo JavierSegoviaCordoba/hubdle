@@ -1,3 +1,7 @@
+import com.javiersc.kotlin.stdlib.AnsiColor.Foreground.Purple
+import com.javiersc.kotlin.stdlib.AnsiColor.Foreground.Red
+import com.javiersc.kotlin.stdlib.AnsiColor.Foreground.Yellow
+import com.javiersc.kotlin.stdlib.AnsiColor.Reset
 import com.javiersc.semanticVersioning.Version
 import org.jetbrains.kotlin.gradle.internal.ensureParentDirsCreated
 import org.jsoup.Jsoup
@@ -6,12 +10,7 @@ import org.jsoup.select.Elements
 
 val url = "https://repo1.maven.org/maven2/com/javiersc/massive-catalogs"
 
-val reset = "\u001B[0m"
-val magenta = "\u001b[1;35m"
-val yellow = "\u001B[0;33m"
-val red = "\u001b[0;31m"
-
-val errorMessage = "${red}There was a problem fetching Massive Catalogs version$reset"
+val errorMessage = "${Red}There was a problem fetching Massive Catalogs version$Reset"
 
 tasks.register("updateMassiveCatalogs") {
     group = "updater"
@@ -52,9 +51,7 @@ fun getProjectVersion(project: String): Version {
 }
 
 fun writeVersionToGradleProperties(version: Version) {
-    logger.lifecycle(
-        "${magenta}Latest Massive Catalogs version: $yellow${version.value}$reset"
-    )
+    logger.lifecycle("${Purple}Latest Massive Catalogs version: $Yellow${version.value}${Reset}")
     val gradleProperties: File = file("${rootProject.rootDir.path}/gradle.properties")
 
     gradleProperties.apply {

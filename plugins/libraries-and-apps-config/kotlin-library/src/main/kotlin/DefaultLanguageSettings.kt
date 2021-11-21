@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 
 fun KotlinSourceSet.addDefaultLanguageSettings() {
-    with(languageSettings) {
+    languageSettings {
         optIn("kotlin.ExperimentalStdlibApi")
         optIn("kotlin.RequiresOptIn")
         optIn("kotlin.time.ExperimentalTime")

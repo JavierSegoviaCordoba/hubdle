@@ -26,7 +26,7 @@ dependencies {
 
     implementation(libs.javiersc.kotlin.kotlinStdlib)
     implementation(libs.jsoup.jsoup)
-    implementation(libs.javiersc.semanticVersioning.semanticVersioningCore)
+    implementation(libs.javiersc.semver.semverCore)
 
     compileOnly(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)
 }

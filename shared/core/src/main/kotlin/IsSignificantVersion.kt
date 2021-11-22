@@ -2,7 +2,7 @@
 
 package com.javiersc.gradle.plugins.core
 
-import com.javiersc.semanticVersioning.Version
+import com.javiersc.semver.Version
 import org.gradle.api.Project
 
 val Project.isSignificant: Boolean

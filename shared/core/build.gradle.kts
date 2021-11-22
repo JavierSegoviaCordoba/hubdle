@@ -7,5 +7,5 @@ dependencies {
     implementation(gradleApi())
     implementation(gradleKotlinDsl())
 
-    implementation(libs.javiersc.semanticVersioning.semanticVersioningCore)
+    implementation(libs.javiersc.semver.semverCore)
 }

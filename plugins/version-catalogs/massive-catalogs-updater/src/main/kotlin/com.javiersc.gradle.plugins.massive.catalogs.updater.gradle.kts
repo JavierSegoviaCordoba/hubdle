@@ -2,7 +2,7 @@ import com.javiersc.kotlin.stdlib.AnsiColor.Foreground.Purple
 import com.javiersc.kotlin.stdlib.AnsiColor.Foreground.Red
 import com.javiersc.kotlin.stdlib.AnsiColor.Foreground.Yellow
 import com.javiersc.kotlin.stdlib.AnsiColor.Reset
-import com.javiersc.semanticVersioning.Version
+import com.javiersc.semver.Version
 import org.jetbrains.kotlin.gradle.internal.ensureParentDirsCreated
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Element

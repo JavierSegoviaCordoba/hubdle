@@ -26,10 +26,12 @@ dependencies {
     api(projects.shared.pluginAccessors)
     api(projects.shared.core)
 
+    compileOnly(pluginLibs.android.toolsBuild.gradle)
+    compileOnly(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)
+
     implementation(gradleApi())
     implementation(gradleKotlinDsl())
     implementation(libs.javiersc.kotlin.kotlinStdlib)
-    compileOnly(pluginLibs.android.toolsBuild.gradle)
-    compileOnly(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)
+    implementation(pluginLibs.github.tripletGradle.playPublisher)
     implementation(pluginLibs.gradle.publish.pluginPublishPlugin)
 }

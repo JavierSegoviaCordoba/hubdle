@@ -2,12 +2,6 @@
 
 package com.javiersc.gradle.plugins.publish.internal
 
-import com.gradle.publish.PluginBundleExtension
-import com.javiersc.gradle.plugins.core.isAndroidLibrary
-import com.javiersc.gradle.plugins.core.isGradlePlugin
-import com.javiersc.gradle.plugins.core.isKotlinJvm
-import com.javiersc.gradle.plugins.core.isKotlinMultiplatform
-import com.javiersc.gradle.plugins.core.isVersionCatalog
 import org.gradle.api.Project
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPublication
@@ -17,57 +11,8 @@ import org.gradle.kotlin.dsl.create
 import org.gradle.kotlin.dsl.findByType
 import org.gradle.kotlin.dsl.get
 import org.gradle.kotlin.dsl.withType
-import org.gradle.plugins.signing.SigningExtension
 
-internal fun Project.configurePublish() {
-    if (isGradlePlugin) {
-        val publishPluginId = "com.gradle.plugin-publish"
-        pluginManager.apply(publishPluginId)
-        pluginManager.withPlugin(publishPluginId) {
-            configure<PluginBundleExtension> {
-                website = property("pom.url").toString()
-                vcsUrl = property("pom.smc.url").toString()
-            }
-        }
-    }
-
-    afterEvaluate {
-        when {
-            isGradlePlugin -> {
-                configurePublishing(
-                    artifacts = listOf(docsJar, sourcesJar),
-                )
-            }
-            isVersionCatalog -> {
-                configurePublishing(
-                    artifacts = listOf(docsJar),
-                    components = mapOf("maven" to "versionCatalog"),
-                )
-            }
-            isKotlinMultiplatform -> {
-                configurePublishing(
-                    artifacts = listOf(docsJar),
-                )
-            }
-            isAndroidLibrary -> {
-                configurePublishing(
-                    artifacts = listOf(docsJar, sourcesJar),
-                    components = mapOf("release" to "release"),
-                )
-            }
-            isKotlinJvm ->
-                configurePublishing(
-                    artifacts = listOf(docsJar, sourcesJar),
-                    components = mapOf("maven" to "java"),
-                )
-            else -> error("This project is not supported at this moment")
-        }
-
-        configure(SigningExtension::signPublications)
-    }
-}
-
-fun Project.configurePublishing(
+fun Project.configureMavenPublication(
     artifacts: List<Jar>,
     components: Map<String, String> = emptyMap(),
 ) {
@@ -80,7 +25,7 @@ fun Project.configurePublishing(
             publications {
                 for ((name, component) in components) {
                     create<MavenPublication>(name) {
-                        from(this@configurePublishing.components[component])
+                        from(this@configureMavenPublication.components[component])
                     }
                 }
 

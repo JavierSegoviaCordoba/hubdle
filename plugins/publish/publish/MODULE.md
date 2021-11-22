@@ -2,17 +2,21 @@
 
 A Gradle plugin for publishing any type of project:
 
+- Android applications:
+    - `id("com.android.application")`
 - Android libraries:
-    - `id("com.android.library)`
+    - `id("com.android.library")`
 - Gradle plugins:
     - `java-gradle-plugin`
     - `kotlin-dsl`
+- Java Platforms:
+    - `java-platform`
 - Kotlin JVM libraries:
     - `kotlin("jvm")`
-    - `id("org.jetbrains.kotlin.jvm)`
+    - `id("org.jetbrains.kotlin.jvm")`
 - Kotlin Multiplatform libraries:
     - `kotlin("multiplatform")`
-    - `id("org.jetbrains.kotlin.multiplatform)`
+    - `id("org.jetbrains.kotlin.multiplatform")`
 - Version Catalogs:
     - `version-catalog`
 
@@ -32,7 +36,7 @@ Add it to all projects that need to be published.
 
 ```kotlin
 plugins {
-    kotlin("jvm") // or whatever Gradle plugin
+    kotlin("jvm") // or whatever plugin
     `javiersc-publish`
 }
 ```

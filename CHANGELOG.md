@@ -3,6 +3,8 @@
 ## [Unreleased]
 
 ### Added
+- publish Android applications to `publish`
+- publish Java Platforms to `publish`
 
 ### Changed
 - `nexus` repository description

@@ -3,12 +3,8 @@
 ## [Unreleased]
 
 ### Added
-- publish Android applications to `publish`
-- publish Java Platforms to `publish`
 
 ### Changed
-- `nexus` repository description
-- show missing variables warning message only if `publish` task is called
 
 ### Deprecated
 
@@ -17,9 +13,21 @@
 ### Fixed
 
 ### Updated
+
+
+## [0.1.0-rc.13] - 2021-11-22
+
+### Added
+- publish Android applications to `publish`
+- publish Java Platforms to `publish`
+
+### Changed
+- `nexus` repository description
+- show missing variables warning message only if `publish` task is called
+
+### Updated
 - `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.7.2`
 - `com.javiersc.gradle-plugins:all-plugins -> 0.1.0-rc.12`
-
 
 ## [0.1.0-rc.12] - 2021-11-18
 

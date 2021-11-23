@@ -13,6 +13,7 @@
 ### Fixed
 
 ### Updated
+- `org.jetbrains.dokka:dokka-gradle-plugin -> 1.6.0`
 
 
 ## [0.1.0-rc.13] - 2021-11-22

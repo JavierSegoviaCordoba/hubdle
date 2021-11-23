@@ -17,6 +17,7 @@
 ### Fixed
 
 ### Updated
+- `org.jetbrains.dokka:dokka-gradle-plugin -> 1.6.0`
 - `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.7.2`
 - `com.javiersc.gradle-plugins:all-plugins -> 0.1.0-rc.12`
 

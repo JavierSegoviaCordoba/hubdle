@@ -11,10 +11,14 @@
 ### Removed
 
 ### Fixed
-- Fix configuring multiple publications at same time
 
 ### Updated
 
+
+## [0.1.0-rc.14] - 2021-11-25
+
+### Fixed
+- Fix configuring multiple publications at same time
 
 ## [0.1.0-rc.13] - 2021-11-25
 

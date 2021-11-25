@@ -11,6 +11,7 @@
 ### Removed
 
 ### Fixed
+- Fix configuring multiple publications at same time
 
 ### Updated
 

@@ -12,22 +12,11 @@ import com.javiersc.gradle.plugins.core.isVersionCatalog
 import com.javiersc.gradle.plugins.publish.internal.configureMavenPublication
 import com.javiersc.gradle.plugins.publish.internal.docsJar
 import com.javiersc.gradle.plugins.publish.internal.sourcesJar
-import com.javiersc.gradle.plugins.publish.internal.warningMessage
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
 
 internal fun Project.configurePublishing() {
-    val projectSupportedPublications = allSupportedPublications.filter(Publishing::shouldConfigure)
-
-    if (projectSupportedPublications.count() > 1) {
-        warningMessage(
-            """
-                |There are multiple publishing options:
-                |${projectSupportedPublications.map(Publishing::name)}
-            """.trimMargin()
-        )
-    }
-    projectSupportedPublications.forEach(Publishing::configure)
+    allSupportedPublications.firstOrNull(Publishing::shouldConfigure)?.configure()
 }
 
 internal val Project.allSupportedPublications: List<Publishing>

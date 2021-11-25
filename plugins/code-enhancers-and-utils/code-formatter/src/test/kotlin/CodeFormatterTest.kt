@@ -19,7 +19,6 @@ fun testFormatter(result: BuildResult, testProjectDir: File) {
     val expect = File("$testProjectDir/library/")
     val actual: File = getResource("sandbox-format-1-actual/library")
 
-    // TODO: replace with `shouldHaveSameStructureAndContentAs` when Kotest 5.0.0 is released
     val expectFiles: List<File> =
         expect.walkTopDown().toList().filter { it.path.contains("spotless").not() }
     val actualFiles: List<File> =

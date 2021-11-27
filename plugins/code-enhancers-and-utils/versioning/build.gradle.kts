@@ -1,5 +1,7 @@
 plugins {
-    `kotlin-dsl`
+    `java-gradle-plugin`
+    `kotlin-jvm`
+    `javiersc-kotlin-library`
     `javiersc-publish`
 }
 
@@ -16,10 +18,11 @@ pluginBundle {
 
 gradlePlugin {
     plugins {
-        named("com.javiersc.gradle.plugins.versioning") {
+        create("com.javiersc.gradle.plugins.versioning") {
             id = "com.javiersc.gradle.plugins.versioning"
             displayName = "Versioning"
             description = "A custom plugin for Semver Gradle Plugin for git versioning"
+            implementationClass = "com.javiersc.gradle.plugins.versioning.VersioningPlugin"
         }
     }
 }

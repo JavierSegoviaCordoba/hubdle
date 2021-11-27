@@ -1,5 +1,7 @@
 plugins {
-    `kotlin-dsl`
+    `java-gradle-plugin`
+    `kotlin-jvm`
+    `javiersc-kotlin-library`
     `javiersc-publish`
 }
 
@@ -13,10 +15,11 @@ pluginBundle {
 
 gradlePlugin {
     plugins {
-        named("com.javiersc.gradle.plugins.all.projects") {
+        create("com.javiersc.gradle.plugins.all.projects") {
             id = "com.javiersc.gradle.plugins.all.projects"
             displayName = "All Projects"
             description = "A custom plugin which a default config for all projects"
+            implementationClass = "com.javiersc.gradle.plugins.all.projects.AllProjectsPlugin"
         }
     }
 }

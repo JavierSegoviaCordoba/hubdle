@@ -1,5 +1,7 @@
 plugins {
-    `kotlin-dsl`
+    `java-gradle-plugin`
+    `kotlin-jvm`
+    `javiersc-kotlin-library`
     `javiersc-publish`
 }
 
@@ -13,10 +15,11 @@ pluginBundle {
 
 gradlePlugin {
     plugins {
-        named("com.javiersc.gradle.plugins.code.analysis") {
+        create("com.javiersc.gradle.plugins.code.analysis") {
             id = "com.javiersc.gradle.plugins.code.analysis"
             displayName = "Code Analysis"
             description = "A custom plugin for Detekt Plugin with basic setup"
+            implementationClass = "com.javiersc.gradle.plugins.code.analysis.CodeAnalysisPlugin"
         }
     }
 }

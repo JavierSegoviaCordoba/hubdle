@@ -1,5 +1,7 @@
 plugins {
-    `kotlin-dsl`
+    `java-gradle-plugin`
+    `kotlin-jvm`
+    `javiersc-kotlin-library`
     `javiersc-publish`
 }
 
@@ -14,10 +16,12 @@ pluginBundle {
 
 gradlePlugin {
     plugins {
-        named("com.javiersc.gradle.plugins.readme.badges.generator") {
+        create("com.javiersc.gradle.plugins.readme.badges.generator") {
             id = "com.javiersc.gradle.plugins.readme.badges.generator"
             displayName = "README Badges Generator"
             description = "Automatically add badges to the root README file"
+            implementationClass =
+                "com.javiersc.gradle.plugins.readme.badges.generator.ReadmeBadgesGeneratorPlugin"
         }
     }
 }

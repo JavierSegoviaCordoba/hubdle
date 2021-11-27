@@ -1,5 +1,7 @@
 plugins {
-    `kotlin-dsl`
+    `java-gradle-plugin`
+    `kotlin-jvm`
+    `javiersc-kotlin-library`
     `javiersc-publish`
 }
 
@@ -13,10 +15,11 @@ pluginBundle {
 
 gradlePlugin {
     plugins {
-        named("com.javiersc.gradle.plugins.docs") {
+        create("com.javiersc.gradle.plugins.docs") {
             id = "com.javiersc.gradle.plugins.docs"
             displayName = "Docs"
             description = "A custom plugin for Dokka Plugin with basic setup"
+            implementationClass = "com.javiersc.gradle.plugins.docs.DocsPlugin"
         }
     }
 }

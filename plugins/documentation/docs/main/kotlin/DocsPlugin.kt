@@ -1,79 +1,76 @@
+package com.javiersc.gradle.plugins.docs
+
 import com.javiersc.gradle.plugins.docs.internal.hasKotlinGradlePlugin
+import java.io.File
+import org.gradle.api.Plugin
+import org.gradle.api.Project
+import org.gradle.api.Task
 import org.jetbrains.dokka.gradle.DokkaMultiModuleTask
 import org.jetbrains.dokka.gradle.DokkaPlugin
 import org.jetbrains.dokka.gradle.DokkaTaskPartial
 import org.jetbrains.kotlin.gradle.internal.ensureParentDirsCreated
 import ru.vyarus.gradle.plugin.mkdocs.MkdocsExtension
 
-plugins {
-    id("org.jetbrains.dokka")
-    id("ru.vyarus.mkdocs")
-}
+abstract class DocsPlugin : Plugin<Project> {
 
-allprojects {
-    afterEvaluate {
-        if (hasKotlinGradlePlugin) {
-            plugins.apply(DokkaPlugin::class)
-            tasks {
-                withType<DokkaTaskPartial>() {
-                    dokkaSourceSets.configureEach { includes.from(listOf("MODULE.md")) }
-                }
-                withType<DokkaMultiModuleTask>().configureEach {
-                    val dokkaDir = buildDir.resolve("dokka")
-                    outputDirectory.set(dokkaDir)
+    override fun apply(target: Project) {
+        target.pluginManager.apply("ru.vyarus.mkdocs")
+        target.pluginManager.apply("org.jetbrains.dokka")
+
+        target.extensions.findByType(MkdocsExtension::class.java)?.apply {
+            strict = false
+            sourcesDir = "${target.rootProject.rootDir}/build/.docs"
+            buildDir = "${target.rootProject.rootDir}/build/docs"
+            publish.docPath = "_site"
+        }
+
+        target.allprojects { project ->
+            project.afterEvaluate {
+                if (it.hasKotlinGradlePlugin) {
+                    it.pluginManager.apply(DokkaPlugin::class.java)
+                    it.tasks.withType(DokkaTaskPartial::class.java) { dokkaTaskPartial ->
+                        dokkaTaskPartial.dokkaSourceSets.configureEach { sourceSetBuilder ->
+                            sourceSetBuilder.includes.from(listOf("MODULE.md"))
+                        }
+                    }
+                    it.tasks.withType(DokkaMultiModuleTask::class.java) { dokkaMultiModuleTask ->
+                        val dokkaDir = dokkaMultiModuleTask.project.buildDir.resolve("dokka")
+                        dokkaMultiModuleTask.outputDirectory.set(dokkaDir)
+                    }
                 }
             }
+        }
+
+        target.tasks.register("buildDocs") { task ->
+            task.group = "documentation"
+
+            task.project.buildDotDocsFolder()
+            task.project.buildBuildDotDocs()
+            task.project.buildChangelogInDocs()
+            task.buildApiDocsInDocs()
+            task.project.buildProjectsInDocs()
+
+            task.project.allprojects.onEach {
+                runCatching { task.dependsOn(it.tasks.getByName("dokkaHtmlMultiModule")) }
+            }
+            task.dependsOn("mkdocsBuild")
         }
     }
 }
 
-tasks {
-    withType<DokkaTaskPartial>() {
-        dokkaSourceSets.configureEach { includes.from(listOf("MODULE.md")) }
-    }
-
-    withType<DokkaMultiModuleTask>().configureEach {
-        val dokkaDir = buildDir.resolve("dokka")
-        outputDirectory.set(dokkaDir)
-    }
-
-    register("buildDocs") {
-        group = "documentation"
-
-        buildDotDocsFolder()
-        buildBuildDotDocs()
-        buildChangelogInDocs()
-        buildApiDocsInDocs()
-        buildProjectsInDocs()
-
-        allprojects.onEach { runCatching { dependsOn(it.tasks.getByName("dokkaHtmlMultiModule")) } }
-        dependsOn("mkdocsBuild")
-    }
-}
-
-configure<MkdocsExtension> {
-    strict = false
-
-    sourcesDir = "$rootDir/build/.docs"
-
-    buildDir = "$rootDir/build/docs"
-
-    publish.docPath = "_site"
-}
-
-val apiIndexHtmlContent: String
+val Project.apiIndexHtmlContent: String
     get() =
         """
             <html xmlns="http://www.w3.org/1999/xhtml">
             <head>
-                <meta http-equiv="refresh" content="0;URL='versions/${project.version}'" />
+                <meta http-equiv="refresh" content="0;URL='versions/$version'" />
             </head>
             <body>
             </body>
             </html>
         """.trimIndent()
 
-fun buildDotDocsFolder() {
+fun Project.buildDotDocsFolder() {
     val dotDocsFile = file("$rootDir/.docs")
     if (dotDocsFile.exists().not()) {
         file("$dotDocsFile/mkdocs.yml").apply {
@@ -173,17 +170,17 @@ fun buildDotDocsFolder() {
     }
 }
 
-fun buildBuildDotDocs() {
+fun Project.buildBuildDotDocs() {
     copy {
-        from("$rootDir/.docs")
-        into("$rootDir/build/.docs")
+        it.from("$rootDir/.docs")
+        it.into("$rootDir/build/.docs")
     }
 
     if (file("$rootDir/.docs/docs/index.md").exists().not()) {
         copy {
-            from("$rootDir/README.md")
-            into("$rootDir/build/.docs/docs")
-            rename { fileName -> fileName.replace(fileName, "index.md") }
+            it.from("$rootDir/README.md")
+            it.into("$rootDir/build/.docs/docs")
+            it.rename { fileName -> fileName.replace(fileName, "index.md") }
         }
 
         file("$rootDir/build/.docs/docs/index.md").apply {
@@ -198,7 +195,7 @@ fun buildBuildDotDocs() {
 
 @OptIn(ExperimentalStdlibApi::class)
 fun Task.buildApiDocsInDocs() {
-    val docsNavigation = getDocsNavigation()
+    val docsNavigation = project.getDocsNavigation()
     val navsPlusApiDocs =
         docsNavigation.navs +
             """
@@ -207,9 +204,9 @@ fun Task.buildApiDocsInDocs() {
            |        - Snapshot: api/snapshot/
         """.trimMargin()
 
-    mkdocsBuildFile.writeText(
+    project.mkdocsBuildFile.writeText(
         buildList<String> {
-                addAll(mkdocsBuildFile.readLines())
+                addAll(project.mkdocsBuildFile.readLines())
                 removeAt(docsNavigation.index)
                 removeAll(docsNavigation.navs)
                 add("")
@@ -221,33 +218,35 @@ fun Task.buildApiDocsInDocs() {
 
     doLast {
         if (project.version.toString().endsWith("-SNAPSHOT")) {
-            copy {
-                from("$rootDir/build/dokka")
-                into("$rootDir/build/docs/_site/api/snapshot")
+            project.copy {
+                it.from("${project.rootProject.rootDir}/build/dokka")
+                it.into("${project.rootProject.rootDir}/build/docs/_site/api/snapshot")
             }
         } else {
-            file("$rootDir/build/docs/_site/api/index.html").apply {
-                ensureParentDirsCreated()
+            project.file("${project.rootProject.rootDir}/build/docs/_site/api/index.html").apply {
+                parentFile.mkdirs()
                 if (!exists()) createNewFile()
-                writeText(apiIndexHtmlContent)
+                writeText(project.apiIndexHtmlContent)
             }
-            copy {
-                from("$rootDir/build/dokka")
-                into("$rootDir/build/docs/_site/api/versions/${project.version}")
+            project.copy {
+                it.from("${project.rootProject.rootDir}/build/dokka")
+                it.into(
+                    "${project.rootProject.rootDir}/build/docs/_site/api/versions/${project.version}"
+                )
             }
         }
     }
 }
 
 @OptIn(ExperimentalStdlibApi::class)
-fun buildChangelogInDocs() {
+fun Project.buildChangelogInDocs() {
     if (file("$rootDir/CHANGELOG.md").exists()) {
         copy {
-            from("$rootDir/CHANGELOG.md")
-            into("$rootDir/build/.docs/docs")
+            it.from("$rootDir/CHANGELOG.md")
+            it.into("$rootDir/build/.docs/docs")
         }
 
-        File("$rootDir/build/.docs/docs/CHANGELOG.md").apply {
+        file("$rootDir/build/.docs/docs/CHANGELOG.md").apply {
             val content = readLines()
             val firstVersionLine =
                 content.indexOfFirst { line ->
@@ -285,7 +284,7 @@ private data class ProjectInfo(val name: String, val projectPath: String, val md
 }
 
 @OptIn(ExperimentalStdlibApi::class)
-fun buildProjectsInDocs() {
+fun Project.buildProjectsInDocs() {
     val projectsPath = "$rootDir/build/.docs/docs/projects"
 
     val projectsInfo: List<ProjectInfo> =
@@ -313,9 +312,9 @@ fun buildProjectsInDocs() {
         val projectsNavPath = "$projectsPath/${projectInfo.filePath}"
 
         copy {
-            from(projectInfo.mdFile)
-            into(projectsNavPath)
-            rename { fileName -> fileName.replace(fileName, "${projectInfo.name}.md") }
+            it.from(projectInfo.mdFile)
+            it.into(projectsNavPath)
+            it.rename { fileName -> fileName.replace(fileName, "${projectInfo.name}.md") }
         }
 
         file("$projectsNavPath/${projectInfo.name}.md").apply {
@@ -372,12 +371,12 @@ fun buildProjectsInDocs() {
     )
 }
 
-val mkdocsBuildFile: File
+val Project.mkdocsBuildFile: File
     get() = file("$rootDir/build/.docs/mkdocs.yml")
 
 data class DocsNavigation(val index: Int, val navs: List<String>)
 
-fun getDocsNavigation(): DocsNavigation {
+fun Project.getDocsNavigation(): DocsNavigation {
     val content = mkdocsBuildFile.readLines()
     val navIndex = content.indexOfFirst { it.replace(" ", "").startsWith("nav:", true) }
     return DocsNavigation(

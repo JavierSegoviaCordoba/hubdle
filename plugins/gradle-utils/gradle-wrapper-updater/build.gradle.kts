@@ -1,5 +1,7 @@
 plugins {
-    `kotlin-dsl`
+    `java-gradle-plugin`
+    `kotlin-jvm`
+    `javiersc-kotlin-library`
     `javiersc-publish`
 }
 
@@ -13,10 +15,12 @@ pluginBundle {
 
 gradlePlugin {
     plugins {
-        named("com.javiersc.gradle.plugins.gradle.wrapper.updater") {
+        create("com.javiersc.gradle.plugins.gradle.wrapper.updater") {
             id = "com.javiersc.gradle.plugins.gradle.wrapper.updater"
             displayName = "Gradle Wrapper Updater"
             description = "A plugin for updating the Gradle Wrapper"
+            implementationClass =
+                "com.javiersc.gradle.plugins.gradle.wrapper.updater.GradleWrapperUpdaterPlugin"
         }
     }
 }

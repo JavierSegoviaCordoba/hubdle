@@ -1,22 +1,25 @@
 plugins {
-    `kotlin-dsl`
+    `java-gradle-plugin`
+    `kotlin-jvm`
+    `javiersc-kotlin-library`
     `javiersc-publish`
 }
 
 pluginBundle {
     tags =
         listOf(
-            "docs",
-            "dokka",
+            "dependency updates",
         )
 }
 
 gradlePlugin {
     plugins {
-        named("com.javiersc.gradle.plugins.dependency.updates") {
+        create("com.javiersc.gradle.plugins.dependency.updates") {
             id = "com.javiersc.gradle.plugins.dependency.updates"
             displayName = "Dependency Updates"
             description = "A custom plugin for Ben Manes Versions plugin with basic setup"
+            implementationClass =
+                "com.javiersc.gradle.plugins.dependency.updates.DependencyUpdatesPlugin"
         }
     }
 }

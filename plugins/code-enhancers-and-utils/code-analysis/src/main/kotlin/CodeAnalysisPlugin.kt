@@ -33,7 +33,7 @@ abstract class CodeAnalysisPlugin : Plugin<Project> {
         }
 
         File("${target.rootProject.rootDir}/.idea/detekt.xml").apply {
-            mkdirs()
+            parentFile.mkdirs()
             createNewFile()
             writeText(
                 """

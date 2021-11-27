@@ -1,5 +1,7 @@
 plugins {
-    `kotlin-dsl`
+    `java-gradle-plugin`
+    `kotlin-jvm`
+    `javiersc-kotlin-library`
     `javiersc-publish`
 }
 
@@ -14,18 +16,21 @@ pluginBundle {
 
 gradlePlugin {
     plugins {
-        named("com.javiersc.gradle.plugins.code.formatter") {
+        create("com.javiersc.gradle.plugins.code.formatter") {
             id = "com.javiersc.gradle.plugins.code.formatter"
             displayName = "Code Formatter"
             description = "A custom plugin for Spotless Plugin with basic setup based on ktfmt"
+            implementationClass = "com.javiersc.gradle.plugins.code.formatter.CodeFormatterPlugin"
         }
     }
 }
 
-file("src/main/kotlin/KtfmtVersion.kt").apply {
+file("main/kotlin/KtfmtVersion.kt").apply {
     if (!exists()) createNewFile()
     writeText(
         """
+            |package com.javiersc.gradle.plugins.code.formatter
+            |
             |internal const val KTFMT_VERSION: String = "${libs.versions.ktfmt.get()}"
             |
         """.trimMargin(),
@@ -48,8 +53,4 @@ dependencies {
     testImplementation(libs.kotest.kotestAssertionsCore)
 }
 
-tasks {
-    pluginUnderTestMetadata {
-        pluginClasspath.from(testPluginClasspath)
-    }
-}
+tasks { pluginUnderTestMetadata { pluginClasspath.from(testPluginClasspath) } }

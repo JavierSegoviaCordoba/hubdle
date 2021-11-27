@@ -5,7 +5,6 @@
 ### Added
 
 ### Changed
-- `mergeChangelog` merges all versions if possible instead of only the current one
 
 ### Deprecated
 
@@ -55,7 +54,7 @@
 ## [0.1.0-rc.9] - 2021-11-13
 
 ### Added
-- `testLogging.showStandardStreams = true` to `all-projects` 
+- `testLogging.showStandardStreams = true` to `all-projects`
 - `compose-resources` plugin accessor
 - `semver` plugin accessor
 
@@ -358,19 +357,19 @@
 
 ### Changed
 - `android-library` improvements:
-  - `src` folder is no longer necessary
-  - new project structure:
-    - `main/AndroidManifest.xml`
-    - `main/assets`
-    - `main/java`
-    - `main/kotlin`
-    - `main/res`
-    - `main/resources`
+    - `src` folder is no longer necessary
+    - new project structure:
+        - `main/AndroidManifest.xml`
+        - `main/assets`
+        - `main/java`
+        - `main/kotlin`
+        - `main/res`
+        - `main/resources`
 - `kotlin-multiplatform` improvements:
-  - `src` fodler is no longer necessary
-  - new project structure:
-    - `targetMain/kotlin`
-    - `targetMain/resources`
+    - `src` fodler is no longer necessary
+    - new project structure:
+        - `targetMain/kotlin`
+        - `targetMain/resources`
 
 ### Removed
 - `isSnapshot` and use `reckon.stage` to check if it is a snapshot
@@ -536,8 +535,8 @@
 
 ### Added
 - `all-projects`
-  - Default config like set up `group` for all projects
-  - Delete root `build` directory when `clean` task is called
+    - Default config like set up `group` for all projects
+    - Delete root `build` directory when `clean` task is called
 
 ### Changed
 - Rename `libGroup` to `allProjects.group`
@@ -657,10 +656,10 @@
 
 ### Changed
 - Separate `publish` plugin into:
-  - `publish-android-library`
-  - `publish-kotlin-jvm`
-  - `publish-kotlin-multiplatform`
-  - `publish-version-catalog`
+    - `publish-android-library`
+    - `publish-kotlin-jvm`
+    - `publish-kotlin-multiplatform`
+    - `publish-version-catalog`
 - Show git diff when `checkIsSignificant` is invoked in all `publish` plugins
 
 ## [0.1.0-alpha.7] - 2021-03-20
@@ -670,7 +669,7 @@
 
 ### Added
 - plugins
-  - publish-gradle-plugin
+    - publish-gradle-plugin
 
 ## [0.1.0-alpha.5] - 2021-03-20
 
@@ -698,13 +697,13 @@
 
 ### Added
 - plugins
-  - changelog
-  - code-analysis
-  - code-formatter
-  - dependency-updates
-  - docs
-  - kotlin-multiplatform
-  - nexus
-  - publish
-  - readme-badges-generator
-  - versioning
+    - changelog
+    - code-analysis
+    - code-formatter
+    - dependency-updates
+    - docs
+    - kotlin-multiplatform
+    - nexus
+    - publish
+    - readme-badges-generator
+    - versioning

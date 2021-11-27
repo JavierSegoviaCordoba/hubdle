@@ -1,5 +1,7 @@
 plugins {
-    `kotlin-dsl`
+    `java-gradle-plugin`
+    `kotlin-jvm`
+    `javiersc-kotlin-library`
     `javiersc-publish`
 }
 
@@ -13,10 +15,11 @@ pluginBundle {
 
 gradlePlugin {
     plugins {
-        named("com.javiersc.gradle.plugins.changelog") {
+        create("com.javiersc.gradle.plugins.changelog") {
             id = "com.javiersc.gradle.plugins.changelog"
             displayName = "Changelog"
             description = "A custom plugin for Changelog plugin with basic setup"
+            implementationClass = "com.javiersc.gradle.plugins.changelog.ChangelogPlugin"
         }
     }
 }

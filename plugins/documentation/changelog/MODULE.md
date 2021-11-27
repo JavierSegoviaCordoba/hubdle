@@ -25,21 +25,18 @@ plugins {
 
 ### Usage
 
-Completely configured, check the original plugin for more info.
+#### Patch changelog
+
+```shell
+./gradlew patchChangelog
+```
+
+#### Merge changelog
+
+This task merges non-final versions into final versions if possible.
 
 ```shell
 ./gradlew mergeChangelog
-```
-
-This task has only effect when the project version is final, and it will merge the previous
-beta/alpha/rc versions into one when it is invoked. The date of the merged version will be the date
-when the task is executed.
-
-The usual workflow when it is desired to merge all non-final versions into one when the final
-version is being released is to patch the changelog and then merge it:
-
-```shell
-./gradlew patchChangelog mergeChangelog
 ```
 
 - Add items via CLI

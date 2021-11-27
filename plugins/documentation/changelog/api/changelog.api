@@ -1,4 +1,11 @@
-public abstract class AddChangelogItem : org/gradle/api/DefaultTask {
+public final class ChangelogAccessorsKt {
+	public static final fun getJaviersc-changelog (Lorg/gradle/plugin/use/PluginDependenciesSpec;)Lorg/gradle/plugin/use/PluginDependencySpec;
+	public static final fun javiersc-changelog (Lorg/gradle/plugin/use/PluginDependenciesSpec;Ljava/lang/String;)Lorg/gradle/plugin/use/PluginDependencySpec;
+}
+
+public abstract class com/javiersc/gradle/plugins/changelog/AddChangelogItem : org/gradle/api/DefaultTask {
+	public static final field Companion Lcom/javiersc/gradle/plugins/changelog/AddChangelogItem$Companion;
+	public static final field name Ljava/lang/String;
 	public fun <init> ()V
 	public final fun getAdded ()Ljava/lang/String;
 	public final fun getChanged ()Ljava/lang/String;
@@ -21,44 +28,32 @@ public abstract class AddChangelogItem : org/gradle/api/DefaultTask {
 	public final fun setUpdated (Ljava/lang/String;)V
 }
 
-public final class ChangelogAccessorsKt {
-	public static final fun getJaviersc-changelog (Lorg/gradle/plugin/use/PluginDependenciesSpec;)Lorg/gradle/plugin/use/PluginDependencySpec;
-	public static final fun javiersc-changelog (Lorg/gradle/plugin/use/PluginDependenciesSpec;Ljava/lang/String;)Lorg/gradle/plugin/use/PluginDependencySpec;
+public final class com/javiersc/gradle/plugins/changelog/AddChangelogItem$Companion {
 }
 
-public final class Com_javiersc_gradle_plugins_changelogPlugin : org/gradle/api/Plugin {
+public abstract class com/javiersc/gradle/plugins/changelog/ChangelogPlugin : org/gradle/api/Plugin {
 	public fun <init> ()V
 	public synthetic fun apply (Ljava/lang/Object;)V
 	public fun apply (Lorg/gradle/api/Project;)V
 }
 
-public class Com_javiersc_gradle_plugins_changelog_gradle : org/gradle/kotlin/dsl/precompile/v1/PrecompiledProjectScript {
-	public final field $$implicitReceiver0 Lorg/gradle/api/Project;
-	public final field $$result Lorg/gradle/api/tasks/TaskContainer;
-	public fun <init> (Lorg/gradle/api/Project;Lorg/gradle/api/Project;)V
-	public static final fun main ([Ljava/lang/String;)V
+public abstract class com/javiersc/gradle/plugins/changelog/tasks/FormatChangelogTask : org/gradle/api/DefaultTask {
+	public static final field Companion Lcom/javiersc/gradle/plugins/changelog/tasks/FormatChangelogTask$Companion;
+	public static final field name Ljava/lang/String;
+	public fun <init> ()V
+	public final fun run ()V
 }
 
-public final class ExtensionsKt {
-	public static final fun containVersion (Ljava/lang/String;Ljava/lang/String;)Z
-	public static final fun getChangelogFile (Lorg/gradle/api/Project;)Ljava/io/File;
+public final class com/javiersc/gradle/plugins/changelog/tasks/FormatChangelogTask$Companion {
 }
 
-public final class MergeChangelogTaskKt {
-	public static final fun isFinal (Lorg/gradle/api/Project;)Z
-	public static final fun mergeChangelog (Lorg/gradle/api/Project;)V
+public abstract class com/javiersc/gradle/plugins/changelog/tasks/MergeChangelogTask : org/gradle/api/DefaultTask {
+	public static final field Companion Lcom/javiersc/gradle/plugins/changelog/tasks/MergeChangelogTask$Companion;
+	public static final field name Ljava/lang/String;
+	public fun <init> ()V
+	public final fun run ()V
 }
 
-public final class PatchChangelogTaskKt {
-	public static final fun addPreRelease (Ljava/util/List;Lorg/gradle/api/Project;I)V
-	public static final fun addRelease (Ljava/util/List;Lorg/gradle/api/Project;I)V
-	public static final fun buildChangelog (Lorg/gradle/api/Project;)Ljava/util/List;
-	public static final fun buildChangelogAsString (Lorg/gradle/api/Project;)Ljava/lang/String;
-	public static final fun getChangelogWithNoBlankLines (Lorg/gradle/api/Project;)Ljava/util/List;
-	public static final fun getH1Regex ()Lkotlin/text/Regex;
-	public static final fun getH2Regex ()Lkotlin/text/Regex;
-	public static final fun getH3Regex ()Lkotlin/text/Regex;
-	public static final fun getUnreleasedRegex ()Lkotlin/text/Regex;
-	public static final fun patchChangelog (Lorg/gradle/api/Project;)V
+public final class com/javiersc/gradle/plugins/changelog/tasks/MergeChangelogTask$Companion {
 }
 

@@ -44,6 +44,7 @@ fun testSandbox(
     beforeTest(testProjectDir)
 
     GradleRunner.create()
+        .withDebug(true)
         .withProjectDir(testProjectDir)
         .withArguments(testProjectDir.arguments)
         .withPluginClasspath()

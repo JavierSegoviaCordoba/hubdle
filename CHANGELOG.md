@@ -5,6 +5,7 @@
 ### Added
 
 ### Changed
+- plugin accessors are only in `all-plugins` instead of in each plugin
 - `mergeChangelog` merges all versions if possible instead of only the current one
 
 ### Deprecated

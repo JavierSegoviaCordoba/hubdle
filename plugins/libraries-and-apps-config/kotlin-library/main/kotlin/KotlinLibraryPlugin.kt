@@ -1,8 +1,7 @@
 @file:Suppress("PackageDirectoryMismatch")
 
-package com.javiersc.gradle.plugins
+package com.javiersc.gradle.plugins.kotlin.library
 
-import KotlinLibraryType
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 

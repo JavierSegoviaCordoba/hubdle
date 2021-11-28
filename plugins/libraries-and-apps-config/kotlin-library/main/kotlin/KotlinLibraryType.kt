@@ -1,4 +1,4 @@
-@file:Suppress("PackageDirectoryMismatch")
+package com.javiersc.gradle.plugins.kotlin.library
 
 import com.android.build.api.dsl.LibraryExtension
 import com.javiersc.gradle.plugins.core.isAndroidLibrary
@@ -7,24 +7,21 @@ import com.javiersc.gradle.plugins.core.isKotlinMultiplatform
 import com.javiersc.gradle.plugins.core.isKotlinMultiplatformWithAndroid
 import com.javiersc.kotlin.stdlib.AnsiColor
 import com.javiersc.kotlin.stdlib.ansiColor
+import java.util.Locale
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.api.plugins.JavaPluginExtension
-import org.gradle.kotlin.dsl.configure
-import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-sealed class KotlinLibraryType {
+internal sealed class KotlinLibraryType {
 
     open fun configure(project: Project) {
-        project.tasks.withType<KotlinCompile> {
-            kotlinOptions {
-                jvmTarget = JavaVersion.VERSION_11.toString()
-                sourceCompatibility = JavaVersion.VERSION_11.toString()
-                targetCompatibility = JavaVersion.VERSION_11.toString()
-            }
+        project.tasks.withType(KotlinCompile::class.java) { kotlinCompile ->
+            kotlinCompile.kotlinOptions { jvmTarget = JavaVersion.VERSION_11.toString() }
+            kotlinCompile.sourceCompatibility = JavaVersion.VERSION_11.toString()
+            kotlinCompile.targetCompatibility = JavaVersion.VERSION_11.toString()
         }
     }
 
@@ -37,7 +34,7 @@ sealed class KotlinLibraryType {
         override fun configure(project: Project) {
             super.configure(project)
 
-            project.configure<LibraryExtension> {
+            project.extensions.findByType(LibraryExtension::class.java)?.apply {
                 compileSdk = this@Android.compileSdk
 
                 defaultConfig { minSdk = this@Android.minSdk }
@@ -49,11 +46,11 @@ sealed class KotlinLibraryType {
 
                 if (isKmp.not()) {
                     sourceSets.all {
-                        assets.setSrcDirs(listOf("$name/assets"))
-                        java.setSrcDirs(listOf("$name/java", "$name/kotlin"))
-                        manifest.srcFile("$name/AndroidManifest.xml")
-                        res.setSrcDirs(listOf("$name/res"))
-                        resources.setSrcDirs(listOf("$name/resources"))
+                        it.assets.setSrcDirs(listOf("${it.name}/assets"))
+                        it.java.setSrcDirs(listOf("${it.name}/java", "${it.name}/kotlin"))
+                        it.manifest.srcFile("${it.name}/AndroidManifest.xml")
+                        it.res.setSrcDirs(listOf("${it.name}/res"))
+                        it.resources.setSrcDirs(listOf("${it.name}/resources"))
                     }
                 }
             }
@@ -64,17 +61,16 @@ sealed class KotlinLibraryType {
         override fun configure(project: Project) {
             super.configure(project)
 
-            project.configure<JavaPluginExtension> {
+            project.extensions.findByType(JavaPluginExtension::class.java)?.apply {
                 sourceSets.all {
-                    java.setSrcDirs(listOf("$name/java"))
-                    resources.setSrcDirs(listOf("$name/resources"))
+                    it.java.setSrcDirs(listOf("${it.name}/java"))
+                    it.resources.setSrcDirs(listOf("${it.name}/resources"))
                 }
             }
-
-            project.configure<KotlinJvmProjectExtension> {
+            project.extensions.findByType(KotlinJvmProjectExtension::class.java)?.apply {
                 sourceSets.all {
-                    kotlin.setSrcDirs(listOf("$name/kotlin"))
-                    resources.setSrcDirs(listOf("$name/resources"))
+                    it.kotlin.setSrcDirs(listOf("${it.name}/kotlin"))
+                    it.resources.setSrcDirs(listOf("${it.name}/resources"))
                 }
             }
         }
@@ -85,11 +81,11 @@ sealed class KotlinLibraryType {
         override fun configure(project: Project) {
             super.configure(project)
 
-            project.configure<KotlinMultiplatformExtension> {
+            project.extensions.findByType(KotlinMultiplatformExtension::class.java)?.apply {
                 sourceSets.all {
-                    addDefaultLanguageSettings()
-                    kotlin.setSrcDirs(listOf("$name/kotlin"))
-                    resources.setSrcDirs(listOf("$name/resources"))
+                    it.addDefaultLanguageSettings()
+                    it.kotlin.setSrcDirs(listOf("${it.name}/kotlin"))
+                    it.resources.setSrcDirs(listOf("${it.name}/resources"))
                 }
             }
         }
@@ -101,9 +97,9 @@ sealed class KotlinLibraryType {
             KotlinMultiplatform.configure(project)
             Android(isKmp = true).configure(project)
 
-            project.configure<LibraryExtension> {
+            project.extensions.findByType(LibraryExtension::class.java)?.apply {
                 sourceSets.all {
-                    manifest.srcFile("android${name.capitalize()}/AndroidManifest.xml")
+                    it.manifest.srcFile("android${it.name.capitalize()}/AndroidManifest.xml")
                 }
             }
         }
@@ -139,3 +135,7 @@ object AndroidSdk {
 
 internal fun Project.errorMessage(message: String) =
     logger.lifecycle(message.ansiColor(AnsiColor.Foreground.Yellow))
+
+private fun String.capitalize(): String = replaceFirstChar {
+    if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
+}

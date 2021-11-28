@@ -1,6 +1,8 @@
+package com.javiersc.gradle.plugins.kotlin.library
+
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 
-fun KotlinSourceSet.addDefaultLanguageSettings() {
+internal fun KotlinSourceSet.addDefaultLanguageSettings() {
     languageSettings {
         optIn("kotlin.ExperimentalStdlibApi")
         optIn("kotlin.RequiresOptIn")

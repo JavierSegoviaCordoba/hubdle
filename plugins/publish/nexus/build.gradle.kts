@@ -1,5 +1,7 @@
 plugins {
-    `kotlin-dsl`
+    `java-gradle-plugin`
+    `kotlin-jvm`
+    `javiersc-kotlin-library`
     `javiersc-publish`
 }
 
@@ -15,11 +17,12 @@ pluginBundle {
 
 gradlePlugin {
     plugins {
-        named("com.javiersc.gradle.plugins.nexus") {
+        create("com.javiersc.gradle.plugins.nexus") {
             id = "com.javiersc.gradle.plugins.nexus"
             displayName = "Nexus"
             description =
                 "A custom plugin for `io.github.gradle-nexus.publish-plugin` plugin with a basic setup"
+            implementationClass = "com.javiersc.gradle.plugins.nexus.NexusPlugin"
         }
     }
 }

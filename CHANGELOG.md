@@ -11,6 +11,7 @@
 ### Removed
 
 ### Fixed
+- `docs` uses incorrect Dokka output directory
 
 ### Updated
 - `com.javiersc.gradle-plugins:all-plugins -> 0.1.0-rc.16`

@@ -5,7 +5,6 @@ import java.io.File
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.Task
-import org.jetbrains.dokka.gradle.DokkaMultiModuleTask
 import org.jetbrains.dokka.gradle.DokkaPlugin
 import org.jetbrains.dokka.gradle.DokkaTaskPartial
 import org.jetbrains.kotlin.gradle.internal.ensureParentDirsCreated
@@ -32,10 +31,6 @@ abstract class DocsPlugin : Plugin<Project> {
                         dokkaTaskPartial.dokkaSourceSets.configureEach { sourceSetBuilder ->
                             sourceSetBuilder.includes.from(listOf("MODULE.md"))
                         }
-                    }
-                    it.tasks.withType(DokkaMultiModuleTask::class.java) { dokkaMultiModuleTask ->
-                        val dokkaDir = dokkaMultiModuleTask.project.buildDir.resolve("dokka")
-                        dokkaMultiModuleTask.outputDirectory.set(dokkaDir)
                     }
                 }
             }
@@ -217,22 +212,22 @@ fun Task.buildApiDocsInDocs() {
     )
 
     doLast {
+        val dokkaOutputDir = File("${project.rootProject.rootDir}/build/dokka/htmlMultiModule/")
+        val apiDir = File("${project.rootProject.rootDir}/build/docs/_site/api/")
         if (project.version.toString().endsWith("-SNAPSHOT")) {
             project.copy {
-                it.from("${project.rootProject.rootDir}/build/dokka")
-                it.into("${project.rootProject.rootDir}/build/docs/_site/api/snapshot")
+                it.from(dokkaOutputDir.path)
+                it.into(File("$apiDir/snapshot").path)
             }
         } else {
-            project.file("${project.rootProject.rootDir}/build/docs/_site/api/index.html").apply {
+            project.file("$apiDir/index.html").apply {
                 parentFile.mkdirs()
                 if (!exists()) createNewFile()
                 writeText(project.apiIndexHtmlContent)
             }
             project.copy {
-                it.from("${project.rootProject.rootDir}/build/dokka")
-                it.into(
-                    "${project.rootProject.rootDir}/build/docs/_site/api/versions/${project.version}"
-                )
+                it.from(dokkaOutputDir.path)
+                it.into(File("$apiDir/versions/${project.version}").path)
             }
         }
     }

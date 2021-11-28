@@ -23,7 +23,7 @@ gradlePlugin {
             displayName = "Kotlin Library"
             description =
                 "A custom plugin which allow creating Android and Kotlin libraries easily."
-            implementationClass = "com.javiersc.gradle.plugins.KotlinLibraryPlugin"
+            implementationClass = "com.javiersc.gradle.plugins.kotlin.library.KotlinLibraryPlugin"
         }
     }
 }

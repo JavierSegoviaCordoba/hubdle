@@ -10,6 +10,7 @@ import org.gradle.kotlin.dsl.register
 import org.jetbrains.changelog.ChangelogPluginExtension
 import org.jetbrains.changelog.date
 import org.jetbrains.changelog.tasks.PatchChangelogTask
+import tasks.AddChangelogItem
 
 abstract class ChangelogPlugin : Plugin<Project> {
 

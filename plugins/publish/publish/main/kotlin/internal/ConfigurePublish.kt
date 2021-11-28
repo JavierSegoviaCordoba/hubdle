@@ -22,40 +22,40 @@ fun Project.configureMavenPublication(
         warningMessage("`maven-publish` plugin is not being applied")
     } else {
         configure<PublishingExtension> {
-            publications {
+            publications { container ->
                 for ((name, component) in components) {
-                    create<MavenPublication>(name) {
+                    container.create<MavenPublication>(name) {
                         from(this@configureMavenPublication.components[component])
                     }
                 }
 
-                withType<MavenPublication> {
+                container.withType<MavenPublication> {
                     artifacts.forEach(::artifact)
 
-                    pom {
-                        name.set(pomName)
-                        description.set(pomDescription)
-                        url.set(pomUrl)
+                    pom { pom ->
+                        pom.name.set(pomName)
+                        pom.description.set(pomDescription)
+                        pom.url.set(pomUrl)
 
-                        licenses {
-                            license {
-                                name.set(pomLicenseName)
-                                name.set(pomLicenseUrl)
+                        pom.licenses { licenses ->
+                            licenses.license { license ->
+                                license.name.set(pomLicenseName)
+                                license.name.set(pomLicenseUrl)
                             }
                         }
 
-                        developers {
-                            developer {
-                                id.set(pomDeveloperId)
-                                name.set(pomDeveloperName)
-                                email.set(pomDeveloperEmail)
+                        pom.developers { developers ->
+                            developers.developer { developer ->
+                                developer.id.set(pomDeveloperId)
+                                developer.name.set(pomDeveloperName)
+                                developer.email.set(pomDeveloperEmail)
                             }
                         }
 
-                        scm {
-                            url.set(pomSmcUrl)
-                            connection.set(pomSmcConnection)
-                            developerConnection.set(pomSmcDeveloperConnection)
+                        pom.scm { smc ->
+                            smc.url.set(pomSmcUrl)
+                            smc.connection.set(pomSmcConnection)
+                            smc.developerConnection.set(pomSmcDeveloperConnection)
                         }
                     }
                 }

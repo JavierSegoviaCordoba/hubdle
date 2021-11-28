@@ -1,4 +1,4 @@
-package internal
+package com.javiersc.gradle.plugins.publish.internal
 
 import com.github.triplet.gradle.play.PlayPublisherExtension
 import com.gradle.publish.PluginBundleExtension
@@ -9,14 +9,14 @@ import com.javiersc.gradle.plugins.core.isJavaPlatform
 import com.javiersc.gradle.plugins.core.isKotlinJvm
 import com.javiersc.gradle.plugins.core.isKotlinMultiplatform
 import com.javiersc.gradle.plugins.core.isVersionCatalog
-import com.javiersc.gradle.plugins.publish.internal.configureMavenPublication
-import com.javiersc.gradle.plugins.publish.internal.docsJar
-import com.javiersc.gradle.plugins.publish.internal.sourcesJar
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
+import org.gradle.plugins.signing.SigningExtension
 
 internal fun Project.configurePublishing() {
     allSupportedPublications.firstOrNull(Publishing::shouldConfigure)?.configure()
+
+    afterEvaluate { configure(SigningExtension::signPublications) }
 }
 
 internal val Project.allSupportedPublications: List<Publishing>

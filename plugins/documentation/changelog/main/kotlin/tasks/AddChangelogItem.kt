@@ -1,4 +1,4 @@
-package com.javiersc.gradle.plugins.changelog
+package tasks
 
 import com.javiersc.gradle.plugins.changelog.internal.Changelog
 import com.javiersc.gradle.plugins.changelog.internal.changelogFile

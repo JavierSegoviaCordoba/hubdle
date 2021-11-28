@@ -5,8 +5,6 @@
 ### Added
 
 ### Changed
-- plugin accessors are only in `all-plugins` instead of in each plugin
-- `mergeChangelog` merges all versions if possible instead of only the current one
 
 ### Deprecated
 
@@ -15,8 +13,16 @@
 ### Fixed
 
 ### Updated
-- `com.javiersc.gradle-plugins:all-plugins -> 0.1.0-rc.8`
 
+
+## [0.1.0-rc.15] - 2021-11-28
+
+### Changed
+- plugin accessors are only in `all-plugins` instead of in each plugin
+- `mergeChangelog` merges all versions if possible instead of only the current one
+
+### Updated
+- `com.javiersc.gradle-plugins:all-plugins -> 0.1.0-rc.8`
 
 ## [0.1.0-rc.14] - 2021-11-25
 

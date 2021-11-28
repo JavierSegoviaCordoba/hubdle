@@ -1,5 +1,6 @@
 plugins {
-    kotlin("jvm")
+    `kotlin-jvm`
+    `javiersc-kotlin-library`
     `javiersc-publish`
 }
 
@@ -9,7 +10,7 @@ file("${project.projectDir.path}/MODULE.md").apply {
     val listHeaderIndex = readLines().indexOfFirst { line -> line.contains("### List of plugins") }
     val filteredContent = readLines().dropLast(readLines().count() - listHeaderIndex - 1)
     val plugins =
-        file("${project.projectDir.path}/src/main/kotlin/PluginAccessors.kt")
+        file("${project.projectDir.path}/main/kotlin/PluginAccessors.kt")
             .readLines()
             .mapNotNull { line ->
                 if (line.contains("PluginDependenciesSpec.`")) {

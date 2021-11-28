@@ -1,6 +1,7 @@
 plugins {
-    `kotlin-jvm`
     `java-gradle-plugin`
+    `kotlin-jvm`
+    `javiersc-kotlin-library`
     `javiersc-publish`
 }
 
@@ -17,9 +18,9 @@ gradlePlugin {
     plugins {
         create("ProjectsVersionCatalog") {
             id = "com.javiersc.gradle.plugins.projects.version.catalog"
-            implementationClass = "com.javiersc.gradle.plugins.projects.version.catalog.ProjectsVersionCatalogPlugin"
             displayName = "Projects Version Catalog"
             description = "Autogenerate a Version Catalog with all projects"
+            implementationClass = "com.javiersc.gradle.plugins.projects.version.catalog.ProjectsVersionCatalogPlugin"
         }
     }
 }

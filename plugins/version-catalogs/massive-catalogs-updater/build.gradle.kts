@@ -1,5 +1,7 @@
 plugins {
-    `kotlin-dsl`
+    `java-gradle-plugin`
+    `kotlin-jvm`
+    `javiersc-kotlin-library`
     `javiersc-publish`
 }
 
@@ -13,10 +15,12 @@ pluginBundle {
 
 gradlePlugin {
     plugins {
-        named("com.javiersc.gradle.plugins.massive.catalogs.updater") {
+        create("com.javiersc.gradle.plugins.massive.catalogs.updater") {
             id = "com.javiersc.gradle.plugins.massive.catalogs.updater"
             displayName = "Massive Catalogs Updater"
             description = "A plugin for updating Massive Catalogs"
+            implementationClass =
+                "com.javiersc.gradle.plugins.massive.catalogs.updater.MassiveCatalogsUpdaterPlugin"
         }
     }
 }

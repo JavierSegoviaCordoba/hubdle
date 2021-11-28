@@ -17,18 +17,18 @@ abstract class CodeAnalysisPlugin : Plugin<Project> {
             basePath = target.rootProject.projectDir.path
         }
 
-        target.tasks.withType(Detekt::class.java).configureEach {
-            setSource(project.files(project.projectDir))
-            include("**/*.kt")
-            include("**/*.kts")
-            exclude("**/resources/**")
-            exclude("**/build/**")
+        target.tasks.withType(Detekt::class.java).configureEach { detekt ->
+            detekt.setSource(detekt.project.files(detekt.project.projectDir))
+            detekt.include("**/*.kt")
+            detekt.include("**/*.kts")
+            detekt.exclude("**/resources/**")
+            detekt.exclude("**/build/**")
 
-            reports {
-                html { enabled = true }
-                sarif { enabled = true }
-                txt { enabled = false }
-                xml { enabled = false }
+            detekt.reports { report ->
+                report.html { enabled = true }
+                report.sarif { enabled = true }
+                report.txt { enabled = false }
+                report.xml { enabled = false }
             }
         }
 

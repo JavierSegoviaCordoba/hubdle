@@ -6,8 +6,6 @@
 
 ### Changed
 
-- `kotlin-library` uses Java 8 instead of Java 11
-
 ### Deprecated
 
 ### Removed
@@ -15,6 +13,12 @@
 ### Fixed
 
 ### Updated
+
+## [0.1.0-rc.19] - 2021-11-29
+
+### Changed
+
+- `kotlin-library` uses Java 8 instead of Java 11
 
 ## [0.1.0-rc.18] - 2021-11-29
 

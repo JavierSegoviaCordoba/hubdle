@@ -6,6 +6,8 @@
 
 ### Changed
 
+- `kotlin-library` uses Java 8 instead of Java 11
+
 ### Deprecated
 
 ### Removed

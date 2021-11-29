@@ -19,9 +19,9 @@ internal sealed class KotlinLibraryType {
 
     open fun configure(project: Project) {
         project.tasks.withType(KotlinCompile::class.java) { kotlinCompile ->
-            kotlinCompile.kotlinOptions { jvmTarget = JavaVersion.VERSION_11.toString() }
-            kotlinCompile.sourceCompatibility = JavaVersion.VERSION_11.toString()
-            kotlinCompile.targetCompatibility = JavaVersion.VERSION_11.toString()
+            kotlinCompile.kotlinOptions { jvmTarget = JavaVersion.VERSION_1_8.toString() }
+            kotlinCompile.sourceCompatibility = JavaVersion.VERSION_1_8.toString()
+            kotlinCompile.targetCompatibility = JavaVersion.VERSION_1_8.toString()
         }
     }
 
@@ -40,8 +40,8 @@ internal sealed class KotlinLibraryType {
                 defaultConfig { minSdk = this@Android.minSdk }
 
                 compileOptions {
-                    sourceCompatibility(JavaVersion.VERSION_11)
-                    targetCompatibility(JavaVersion.VERSION_11)
+                    sourceCompatibility(JavaVersion.VERSION_1_8)
+                    targetCompatibility(JavaVersion.VERSION_1_8)
                 }
 
                 if (isKmp.not()) {

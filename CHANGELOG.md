@@ -12,6 +12,12 @@
 
 ### Fixed
 
+### Updated
+
+## [0.1.0-rc.18] - 2021-11-29
+
+### Fixed
+
 - `changelog` has duplicated dependencies in `Updated` with Renovate
 
 ### Updated

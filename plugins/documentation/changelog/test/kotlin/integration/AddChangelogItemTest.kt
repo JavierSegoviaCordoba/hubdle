@@ -73,6 +73,7 @@ class AddChangelogItemTest {
                             | maven      | com.gradle.enterprise:com.gradle.enterprise.gradle.plugin | 3.6.4 | 3.7   |
                             | maven      | com.javiersc.mokoki:mokoki-core                           | 1.0.0 | 1.0.1 |
                             | maven      | com.javiersc.either:either-core                           | 2.0.1 | 2.0.2 |
+                            | maven      | com.javiersc.either:either-core                           | 2.0.1 | 2.0.2 |
                         """.trimIndent(),
                 )
             },
@@ -90,6 +91,28 @@ class AddChangelogItemTest {
                             | datasource | package                                                   | from  | to    |
                             | ---------- | --------------------------------------------------------- | ----- | ----- |
                             | maven      | com.javiersc.mokoki:mokoki-core                           | 1.0.0 | 1.0.1 |
+                        """.trimIndent(),
+                )
+            },
+            test = ::testChangelog,
+        )
+
+    @Test
+    fun `renovate 7`() =
+        testSandbox(
+            sandboxPath = "add-changelog-item/sandbox-renovate-7",
+            beforeTest = {
+                commitAndCheckout(
+                    message =
+                        """
+                            | datasource  | package       | from   | to     |
+                            | ----------- | ------------- | ------ | ------ |
+                            | github-tags | actions/cache | v2.1.6 | v2.1.7 |
+                            | github-tags | actions/cache | v2.1.6 | v2.1.7 |
+                            | github-tags | actions/cache | v2.1.6 | v2.1.7 |
+                            | github-tags | actions/cache | v2.1.6 | v2.1.7 |
+                            | github-tags | actions/cache | v2.1.6 | v2.1.7 |
+                            | github-tags | actions/cache | v2.1.6 | v2.1.7 |
                         """.trimIndent(),
                 )
             },

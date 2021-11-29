@@ -247,4 +247,5 @@ private fun Project.dependenciesFromRenovateCommit(): List<String> {
             val data = it.filterNot(Char::isWhitespace).split("|").drop(2).dropLast(1)
             "`${data.first()} -> ${data.last()}`"
         }
+        .distinct()
 }

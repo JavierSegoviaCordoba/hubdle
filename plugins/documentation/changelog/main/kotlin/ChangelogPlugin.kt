@@ -23,16 +23,14 @@ abstract class ChangelogPlugin : Plugin<Project> {
         }
 
         target.tasks.apply {
-            named<PatchChangelogTask>("patchChangelog") {
-                group = "changelog"
-
-                finalizedBy(FormatChangelogTask.name)
-            }
+            named<PatchChangelogTask>("patchChangelog") { finalizedBy(FormatChangelogTask.name) }
             register<FormatChangelogTask>(FormatChangelogTask.name)
 
             register<MergeChangelogTask>(MergeChangelogTask.name)
 
-            register<AddChangelogItem>(AddChangelogItem.name)
+            register<AddChangelogItem>(AddChangelogItem.name) {
+                finalizedBy(FormatChangelogTask.name)
+            }
         }
     }
 }

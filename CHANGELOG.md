@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- `changelog` has duplicated dependencies in `Updated` with Renovate
+
 ### Updated
 
 - `com.javiersc.gradle-plugins:all-plugins -> 0.1.0-rc.17`

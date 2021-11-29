@@ -16,6 +16,7 @@
 
 ### Updated
 
+- `com.github.triplet.gradle:play-publisher -> 3.7.0`
 - `com.javiersc.kotlin:kotlin-stdlib -> 0.1.0-alpha.2`
 - `io.gitlab.arturbosch.detekt:detekt-gradle-plugin -> 1.19.0`
 - `com.javiersc.gradle-plugins:all-plugins -> 0.1.0-rc.17`

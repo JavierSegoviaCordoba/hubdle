@@ -24,11 +24,11 @@ abstract class CodeAnalysisPlugin : Plugin<Project> {
             detekt.exclude("**/resources/**")
             detekt.exclude("**/build/**")
 
-            detekt.reports { report ->
-                report.html { enabled = true }
-                report.sarif { enabled = true }
-                report.txt { enabled = false }
-                report.xml { enabled = false }
+            detekt.reports { reports ->
+                reports.html { report -> report.required.set(true) }
+                reports.sarif { report -> report.required.set(true) }
+                reports.txt { report -> report.required.set(false) }
+                reports.xml { report -> report.required.set(false) }
             }
         }
 

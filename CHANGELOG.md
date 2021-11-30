@@ -14,6 +14,10 @@
 
 ### Updated
 
+## [0.1.0-rc.20] - 2021-11-30
+
+### Updated
+
 - `com.javiersc.gradle-plugins:all-plugins -> 0.1.0-rc.19`
 - `com.javiersc.semver:semver-gradle-plugin -> 0.1.0-alpha.6`
 - `com.javiersc.semver:semver-core -> 0.1.0-beta.8`

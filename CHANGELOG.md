@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.javiersc.kotlin:kotlin-stdlib -> 0.1.0-alpha.3`
 - `io.kotest:kotest-assertions-core -> 5.0.1`
 - `org.eclipse.jgit:org.eclipse.jgit -> 6.0.0.202111291000-r`
 

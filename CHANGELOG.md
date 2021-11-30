@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `com.javiersc.semver:semver-gradle-plugin -> 0.1.0-alpha.5`
+- `com.javiersc.semver:semver-core -> 0.1.0-beta.8`
 - `io.kotest:kotest-assertions-core -> 5.0.1`
 - `org.eclipse.jgit:org.eclipse.jgit -> 6.0.0.202111291000-r`
 

@@ -6,8 +6,6 @@
 
 ### Changed
 
-- `kotlin-library` uses Java 11 if the consumer is a Gradle plugin
-
 ### Deprecated
 
 ### Removed
@@ -15,6 +13,12 @@
 ### Fixed
 
 ### Updated
+
+## [0.1.0-rc.21] - 2021-12-01
+
+### Changed
+
+- `kotlin-library` uses Java 11 if the consumer is a Gradle plugin
 
 ## [0.1.0-rc.20] - 2021-11-30
 

@@ -71,6 +71,8 @@ internal sealed class KotlinLibraryType {
                 """.trimMargin()
             }
 
+            project.configureJavaAndKotlinSourceSets()
+
             project.tasks.withType(KotlinCompile::class.java) { kotlinCompile ->
                 kotlinCompile.kotlinOptions { jvmTarget = JavaVersion.VERSION_11.toString() }
                 kotlinCompile.sourceCompatibility = JavaVersion.VERSION_11.toString()
@@ -84,18 +86,7 @@ internal sealed class KotlinLibraryType {
         override fun configure(project: Project) {
             super.configure(project)
 
-            project.extensions.findByType(JavaPluginExtension::class.java)?.apply {
-                sourceSets.all {
-                    it.java.setSrcDirs(listOf("${it.name}/java"))
-                    it.resources.setSrcDirs(listOf("${it.name}/resources"))
-                }
-            }
-            project.extensions.findByType(KotlinJvmProjectExtension::class.java)?.apply {
-                sourceSets.all {
-                    it.kotlin.setSrcDirs(listOf("${it.name}/kotlin"))
-                    it.resources.setSrcDirs(listOf("${it.name}/resources"))
-                }
-            }
+            project.configureJavaAndKotlinSourceSets()
         }
     }
 
@@ -104,13 +95,7 @@ internal sealed class KotlinLibraryType {
         override fun configure(project: Project) {
             super.configure(project)
 
-            project.extensions.findByType(KotlinMultiplatformExtension::class.java)?.apply {
-                sourceSets.all {
-                    it.addDefaultLanguageSettings()
-                    it.kotlin.setSrcDirs(listOf("${it.name}/kotlin"))
-                    it.resources.setSrcDirs(listOf("${it.name}/resources"))
-                }
-            }
+            project.configureJavaAndKotlinSourceSets()
         }
     }
 
@@ -162,4 +147,27 @@ internal fun Project.errorMessage(message: String) =
 
 private fun String.capitalize(): String = replaceFirstChar {
     if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
+}
+
+private fun Project.configureJavaAndKotlinSourceSets() {
+    extensions.findByType(JavaPluginExtension::class.java)?.apply {
+        sourceSets.all {
+            it.java.setSrcDirs(listOf("${it.name}/java"))
+            it.resources.setSrcDirs(listOf("${it.name}/resources"))
+        }
+    }
+    extensions.findByType(KotlinJvmProjectExtension::class.java)?.apply {
+        sourceSets.all {
+            it.kotlin.setSrcDirs(listOf("${it.name}/kotlin"))
+            it.resources.setSrcDirs(listOf("${it.name}/resources"))
+        }
+    }
+
+    extensions.findByType(KotlinMultiplatformExtension::class.java)?.apply {
+        sourceSets.all {
+            it.addDefaultLanguageSettings()
+            it.kotlin.setSrcDirs(listOf("${it.name}/kotlin"))
+            it.resources.setSrcDirs(listOf("${it.name}/resources"))
+        }
+    }
 }

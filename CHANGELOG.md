@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- `kotlin-library` source sets config in `GradlePlugin`
+
 ### Updated
 
 ## [0.1.0-rc.21] - 2021-12-01

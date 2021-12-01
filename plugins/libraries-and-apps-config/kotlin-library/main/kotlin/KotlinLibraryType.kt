@@ -2,6 +2,7 @@ package com.javiersc.gradle.plugins.kotlin.library
 
 import com.android.build.api.dsl.LibraryExtension
 import com.javiersc.gradle.plugins.core.isAndroidLibrary
+import com.javiersc.gradle.plugins.core.isGradlePlugin
 import com.javiersc.gradle.plugins.core.isKotlinJvm
 import com.javiersc.gradle.plugins.core.isKotlinMultiplatform
 import com.javiersc.gradle.plugins.core.isKotlinMultiplatformWithAndroid
@@ -56,6 +57,28 @@ internal sealed class KotlinLibraryType {
             }
         }
     }
+
+    object GradlePlugin : KotlinLibraryType() {
+        override fun configure(project: Project) {
+            super.configure(project)
+
+            check(JavaVersion.current() >= JavaVersion.VERSION_11) {
+                """   
+                    |Using `javiersc-kotlin-library` to configure Gradle plugins needs Java 11"
+                    |  - Use Java 11 to build via adding to your path or whatever other solution.
+                    |  - Projects can be still compatible with Java 8 (`KotlinCompile.jvmTarget`)
+                    |
+                """.trimMargin()
+            }
+
+            project.tasks.withType(KotlinCompile::class.java) { kotlinCompile ->
+                kotlinCompile.kotlinOptions { jvmTarget = JavaVersion.VERSION_11.toString() }
+                kotlinCompile.sourceCompatibility = JavaVersion.VERSION_11.toString()
+                kotlinCompile.targetCompatibility = JavaVersion.VERSION_11.toString()
+            }
+        }
+    }
+
     object KotlinJVM : KotlinLibraryType() {
 
         override fun configure(project: Project) {
@@ -109,6 +132,7 @@ internal sealed class KotlinLibraryType {
         fun build(project: Project): Unit =
             with(project) {
                 when {
+                    isGradlePlugin -> GradlePlugin.configure(this)
                     isKotlinMultiplatformWithAndroid -> {
                         KotlinMultiplatformWithAndroid.configure(this)
                     }

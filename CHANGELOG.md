@@ -14,9 +14,9 @@
 
 ### Updated
 
+- `ru.vyarus:gradle-mkdocs-plugin -> 2.2.0`
 - `com.diffplug.spotless:spotless-plugin-gradle -> 6.0.2`
 - `com.javiersc.gradle-plugins:all-plugins -> 0.1.0-rc.22`
-- `ru.vyarus:gradle-mkdocs-plugin -> 2.1.2`
 - `io.kotest:kotest-assertions-core -> 5.0.1`
 - `gradle -> 7.3.1`
 

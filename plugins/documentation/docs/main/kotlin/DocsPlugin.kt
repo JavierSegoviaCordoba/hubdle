@@ -88,12 +88,24 @@ fun Project.buildDotDocsFolder() {
                    |  language: 'en'
                    |  # TODO favicon: 'assets/favicon.png'
                    |  # TODO logo: 'assets/logo.svg'
-                   |  palette:
-                   |    primary: 'white'
-                   |    accent: 'white'
                    |  font:
                    |    text: 'Fira Sans'
                    |    code: 'JetBrains Mono'
+                   |  palette:
+                   |    - media: "(prefers-color-scheme: light)"
+                   |      scheme: default
+                   |      primary: 'white'
+                   |      accent: 'white'
+                   |      toggle:
+                   |        icon: material/weather-sunny
+                   |        name: Switch to dark mode
+                   |    - media: "(prefers-color-scheme: dark)"
+                   |      primary: 'indigo'
+                   |      accent: 'light blue'
+                   |      scheme: slate
+                   |      toggle:
+                   |        icon: material/weather-night
+                   |        name: Switch to light mode
                    |
                    |nav:
                    |  - Overview: index.md
@@ -194,13 +206,13 @@ fun Task.buildApiDocsInDocs() {
     val navsPlusApiDocs =
         docsNavigation.navs +
             """
-           |  - API docs: 
-           |        - Latest: api/
-           |        - Snapshot: api/snapshot/
-        """.trimMargin()
+                |  - API docs:
+                |        - Latest: api/
+                |        - Snapshot: api/snapshot/
+            """.trimMargin()
 
     project.mkdocsBuildFile.writeText(
-        buildList<String> {
+        buildList {
                 addAll(project.mkdocsBuildFile.readLines())
                 removeAt(docsNavigation.index)
                 removeAll(docsNavigation.navs)

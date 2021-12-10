@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.javiersc.semver:semver-gradle-plugin -> 0.1.0-alpha.7`
 - `com.android.tools.build:gradle -> 7.0.4`
 - `com.diffplug.spotless:spotless-plugin-gradle -> 6.0.4`
 - `ru.vyarus:gradle-mkdocs-plugin -> 2.2.0`

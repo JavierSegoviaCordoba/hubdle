@@ -6,9 +6,6 @@
 
 ### Changed
 
-- `spotless` downgrades version to 6.0.2
-- `code-formatter` can be only applied in the root project
-
 ### Deprecated
 
 ### Removed
@@ -16,6 +13,13 @@
 ### Fixed
 
 ### Updated
+
+## [0.1.0-rc.24] - 2021-12-11
+
+### Changed
+
+- `spotless` downgrades version to 6.0.2
+- `code-formatter` can be only applied in the root project
 
 ## [0.1.0-rc.23] - 2021-12-11
 

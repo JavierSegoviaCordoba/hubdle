@@ -9,22 +9,8 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinBasePluginWrapper
 abstract class CodeFormatterPlugin : Plugin<Project> {
 
     override fun apply(target: Project) {
-        target.pluginManager.apply("com.diffplug.spotless")
-
-        target.extensions.findByType(SpotlessExtension::class.java)?.apply {
-            kotlin {
-                it.target(
-                    "*/kotlin/**/*.kt",
-                    "src/*/kotlin/**/*.kt",
-                )
-                it.targetExclude(
-                    "*/resources/**/*.kt",
-                    "src/*/resources/**/*.kt",
-                    "**/build/**",
-                    "**/.gradle/**",
-                )
-                it.ktfmt(KTFMT_VERSION).kotlinlangStyle()
-            }
+        check(target == target.rootProject) {
+            "`com.javiersc.gradle.plugins.code.formatter` must be applied in the root project"
         }
 
         File("${target.rootProject.rootDir}/.idea/ktfmt.xml").apply {
@@ -43,9 +29,27 @@ abstract class CodeFormatterPlugin : Plugin<Project> {
             )
         }
 
-        target.allprojects { project ->
-            project.afterEvaluate {
-                if (it.hasKotlin) it.plugins.apply("com.javiersc.gradle.plugins.code.formatter")
+        target.allprojects { allProject ->
+            allProject.afterEvaluate { project ->
+                if (project.hasKotlin) {
+                    project.pluginManager.apply("com.diffplug.spotless")
+
+                    project.extensions.findByType(SpotlessExtension::class.java)?.apply {
+                        kotlin { kotlinExtension ->
+                            kotlinExtension.target(
+                                "*/kotlin/**/*.kt",
+                                "src/*/kotlin/**/*.kt",
+                            )
+                            kotlinExtension.targetExclude(
+                                "*/resources/**/*.kt",
+                                "src/*/resources/**/*.kt",
+                                "**/build/**",
+                                "**/.gradle/**",
+                            )
+                            kotlinExtension.ktfmt(KTFMT_VERSION).kotlinlangStyle()
+                        }
+                    }
+                }
             }
         }
     }

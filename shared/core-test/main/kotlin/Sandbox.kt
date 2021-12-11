@@ -56,7 +56,9 @@ fun testSandbox(
 }
 
 fun BuildResult.checkArgumentsTasks(testProjectDir: File) {
-    task(":${testProjectDir.arguments.first()}")?.outcome.shouldBe(TaskOutcome.SUCCESS)
+    val executedTaskName = ":${testProjectDir.arguments.first()}"
+    val task = tasks.first { buildTask -> buildTask.path.endsWith(executedTaskName) }
+    task.outcome.shouldBe(TaskOutcome.SUCCESS)
 }
 
 fun File.commitAndCheckout(message: String, branch: String = "sandbox/gradle-plugins") {

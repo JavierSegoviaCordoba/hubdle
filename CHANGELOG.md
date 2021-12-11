@@ -14,6 +14,10 @@
 
 ### Updated
 
+## [0.1.0-rc.23] - 2021-12-11
+
+### Updated
+
 - `io.kotest:kotest-assertions-core -> 5.0.2`
 - `com.javiersc.semver:semver-gradle-plugin -> 0.1.0-alpha.7`
 - `com.android.tools.build:gradle -> 7.0.4`

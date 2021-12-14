@@ -29,6 +29,11 @@ abstract class NexusPlugin : Plugin<Project> {
 
             connectTimeout.set(Duration.ofMinutes(30))
             clientTimeout.set(Duration.ofMinutes(30))
+
+            transitionCheckOptions { options ->
+                options.maxRetries.set(200)
+                options.delayBetween.set(Duration.ofSeconds(10))
+            }
         }
     }
 }

@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.kotlin:kotlin-gradle-plugin -> 1.6.10`
 - `com.javiersc.semver:semver-gradle-plugin -> 0.1.0-alpha.8`
 
 ## [0.1.0-rc.24] - 2021-12-11

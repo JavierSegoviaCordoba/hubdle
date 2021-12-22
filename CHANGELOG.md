@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx:kotlinx-coroutines-core -> 1.6.0`
 - `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.8`
 - `com.javiersc.semver:semver-gradle-plugin -> 0.1.0-alpha.10`
 - `com.javiersc.semver:semver-core -> 0.1.0-beta.10`

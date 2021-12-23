@@ -1,5 +1,9 @@
 import java.util.Properties
 
+plugins {
+    `gradle-enterprise`
+}
+
 rootProject.name = providers.gradleProperty("project.name").forUseAtConfigurationTime().get()
 
 listOf("TYPESAFE_PROJECT_ACCESSORS", "VERSION_CATALOGS").forEach(::enableFeaturePreview)
@@ -14,6 +18,13 @@ dependencyResolutionManagement {
     versionCatalogs {
         create("libs") { from(files("gradle/libs.toml")) }
         create("pluginLibs") { from(files("gradle/pluginLibs.toml")) }
+    }
+}
+
+gradleEnterprise {
+    buildScan {
+        termsOfServiceUrl = "https://gradle.com/terms-of-service"
+        termsOfServiceAgree = "yes"
     }
 }
 

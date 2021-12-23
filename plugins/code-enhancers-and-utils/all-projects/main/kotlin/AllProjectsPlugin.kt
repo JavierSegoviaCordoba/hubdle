@@ -13,13 +13,32 @@ abstract class AllProjectsPlugin : Plugin<Project> {
         target.allprojects { project ->
             project.group = project.module
 
-            project.pluginManager.apply("com.adarshr.test-logger")
+            project.configureTestLogger()
+            project.configureAllTestsTask()
+        }
+    }
+}
 
-            project.tasks.withType(Test::class.java) { test ->
-                test.testLogging.showStandardStreams = true
-                test.maxParallelForks =
-                    (Runtime.getRuntime().availableProcessors() / 3).takeIf { it > 0 } ?: 1
-                test.useJUnitPlatform()
+fun Project.configureTestLogger() {
+    pluginManager.apply("com.adarshr.test-logger")
+
+    tasks.withType(Test::class.java) { test ->
+        test.testLogging.showStandardStreams = true
+        test.maxParallelForks =
+            (Runtime.getRuntime().availableProcessors() / 3).takeIf { it > 0 } ?: 1
+        test.useJUnitPlatform()
+    }
+}
+
+fun Project.configureAllTestsTask() {
+    afterEvaluate { project ->
+        if (project.tasks.findByName("allTests") == null) {
+            project.tasks.register("allTests") { task ->
+                task.dependsOn(project.tasks.withType(Test::class.java))
+            }
+        } else {
+            project.tasks.named("allTests") { task ->
+                task.dependsOn(project.tasks.withType(Test::class.java))
             }
         }
     }

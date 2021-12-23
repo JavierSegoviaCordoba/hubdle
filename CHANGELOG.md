@@ -4,6 +4,8 @@
 
 ### Added
 
+- `all-projects` register `allTests` if it doesn't exist
+
 ### Changed
 
 ### Deprecated

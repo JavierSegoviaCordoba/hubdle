@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.diffplug.spotless:spotless-plugin-gradle -> 6.1.0`
 - `gradle -> 7.3.3`
 - `org.jetbrains.kotlinx:kotlinx-coroutines-core -> 1.6.0`
 - `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.8`

@@ -4,8 +4,6 @@
 
 ### Added
 
-- `all-projects` register `allTests` if it doesn't exist
-
 ### Changed
 
 ### Deprecated
@@ -13,6 +11,14 @@
 ### Removed
 
 ### Fixed
+
+### Updated
+
+## [0.1.0-rc.25] - 2021-12-24
+
+### Added
+
+- `all-projects` register `allTests` if it doesn't exist
 
 ### Updated
 

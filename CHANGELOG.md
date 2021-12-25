@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- wrong path in reports iframe
+
 ### Updated
 
 ## [0.1.0-rc.27] - 2021-12-25

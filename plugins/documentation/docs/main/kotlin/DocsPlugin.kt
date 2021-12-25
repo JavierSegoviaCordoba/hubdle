@@ -354,7 +354,7 @@ private fun Project.buildReportsInDocs() {
             """
                 |# $title
                 |
-                |<iframe src="reports-generated/$pathAndFileName" style="height: 100vh; width: 100vw; overflow: hidden" frameborder="0"></iframe>
+                |<iframe src="/reports-generated/$pathAndFileName" style="height: 65vh; width: 100vw; overflow: hidden" frameborder="0"></iframe>
                 |
             """.trimMargin()
 

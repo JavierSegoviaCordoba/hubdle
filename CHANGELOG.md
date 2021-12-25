@@ -4,6 +4,20 @@
 
 ### Added
 
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Updated
+
+## [0.1.0-rc.26] - 2021-12-25
+
+### Added
+
 - `docs` Reports section in navigation
 - `all-projects` supports aggregate tests report in the root project
 - `kotlin-config` supports `com.android.application`
@@ -11,12 +25,6 @@
 ### Changed
 
 - `kotlin-library` name to `kotlin-config`
-
-### Deprecated
-
-### Removed
-
-### Fixed
 
 ### Updated
 

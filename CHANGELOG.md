@@ -6,13 +6,19 @@
 
 ### Changed
 
-- `docs` reports are embedded using an iframe
-
 ### Deprecated
 
 ### Removed
 
 ### Fixed
+
+### Updated
+
+## [0.1.0-rc.27] - 2021-12-25
+
+### Changed
+
+- `docs` reports are embedded using an iframe
 
 ### Updated
 

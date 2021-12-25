@@ -4,6 +4,7 @@
 
 ### Added
 
+- `docs` Reports section in navigation
 - `all-projects` supports aggregate tests report in the root project
 - `kotlin-config` supports `com.android.application`
 

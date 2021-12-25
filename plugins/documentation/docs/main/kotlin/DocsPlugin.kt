@@ -44,6 +44,8 @@ abstract class DocsPlugin : Plugin<Project> {
             task.project.buildChangelogInDocs()
             task.buildApiDocsInDocs()
             task.project.buildProjectsInDocs()
+            task.project.buildReportsInDocs()
+            task.project.sanitizeMkdocsFile()
 
             task.project.allprojects.onEach {
                 runCatching { task.dependsOn(it.tasks.getByName("dokkaHtmlMultiModule")) }
@@ -53,7 +55,7 @@ abstract class DocsPlugin : Plugin<Project> {
     }
 }
 
-val Project.apiIndexHtmlContent: String
+private val Project.apiIndexHtmlContent: String
     get() =
         """
             <html xmlns="http://www.w3.org/1999/xhtml">
@@ -65,7 +67,7 @@ val Project.apiIndexHtmlContent: String
             </html>
         """.trimIndent()
 
-fun Project.buildDotDocsFolder() {
+private fun Project.buildDotDocsFolder() {
     val dotDocsFile = file("$rootDir/.docs")
     if (dotDocsFile.exists().not()) {
         file("$dotDocsFile/mkdocs.yml").apply {
@@ -177,7 +179,7 @@ fun Project.buildDotDocsFolder() {
     }
 }
 
-fun Project.buildBuildDotDocs() {
+private fun Project.buildBuildDotDocs() {
     copy {
         it.from("$rootDir/.docs")
         it.into("$rootDir/build/.docs")
@@ -200,28 +202,17 @@ fun Project.buildBuildDotDocs() {
     }
 }
 
-@OptIn(ExperimentalStdlibApi::class)
-fun Task.buildApiDocsInDocs() {
+private fun Task.buildApiDocsInDocs() {
     val docsNavigation = project.getDocsNavigation()
     val navsPlusApiDocs =
         docsNavigation.navs +
             """
                 |  - API docs:
-                |        - Latest: api/
-                |        - Snapshot: api/snapshot/
+                |    - Latest: api/
+                |    - Snapshot: api/snapshot/
             """.trimMargin()
 
-    project.mkdocsBuildFile.writeText(
-        buildList {
-                addAll(project.mkdocsBuildFile.readLines())
-                removeAt(docsNavigation.index)
-                removeAll(docsNavigation.navs)
-                add("")
-                add("nav:")
-                addAll(navsPlusApiDocs)
-            }
-            .joinToString("\n")
-    )
+    project.writeNavigation(navsPlusApiDocs)
 
     doLast {
         val dokkaOutputDir = File("${project.rootProject.rootDir}/build/dokka/htmlMultiModule/")
@@ -245,8 +236,7 @@ fun Task.buildApiDocsInDocs() {
     }
 }
 
-@OptIn(ExperimentalStdlibApi::class)
-fun Project.buildChangelogInDocs() {
+private fun Project.buildChangelogInDocs() {
     if (file("$rootDir/CHANGELOG.md").exists()) {
         copy {
             it.from("$rootDir/CHANGELOG.md")
@@ -271,17 +261,7 @@ fun Project.buildChangelogInDocs() {
         val docsNavigation = getDocsNavigation()
         val navsPlusChangelog = docsNavigation.navs + "  - Changelog: CHANGELOG.md"
 
-        mkdocsBuildFile.writeText(
-            buildList<String> {
-                    addAll(mkdocsBuildFile.readLines())
-                    removeAt(docsNavigation.index)
-                    removeAll(docsNavigation.navs)
-                    add("")
-                    add("nav:")
-                    addAll(navsPlusChangelog)
-                }
-                .joinToString("\n")
-        )
+        writeNavigation(navsPlusChangelog)
     }
 }
 
@@ -291,7 +271,7 @@ private data class ProjectInfo(val name: String, val projectPath: String, val md
 }
 
 @OptIn(ExperimentalStdlibApi::class)
-fun Project.buildProjectsInDocs() {
+private fun Project.buildProjectsInDocs() {
     val projectsPath = "$rootDir/build/.docs/docs/projects"
 
     val projectsInfo: List<ProjectInfo> =
@@ -365,25 +345,47 @@ fun Project.buildProjectsInDocs() {
 
     val navsPlusProjects = docsNavigation.navs + "  - Projects:" + navProjects
 
+    writeNavigation(navsPlusProjects)
+}
+
+private fun Project.buildReportsInDocs() {
+    val docsNavigation = getDocsNavigation()
+
+    val navReports: String =
+        """
+            |  - Reports:
+            |    - All tests: reports/all-tests/
+            |    - Code analysis: reports/code-analysis/
+            |    - Code quality: reports/code-quality/
+        """.trimMargin()
+
+    val navsPlusReports = docsNavigation.navs + navReports.lines()
+
+    writeNavigation(navsPlusReports)
+}
+
+private val Project.mkdocsBuildFile: File
+    get() = file("$rootDir/build/.docs/mkdocs.yml")
+
+private data class DocsNavigation(val index: Int, val navs: List<String>)
+
+@OptIn(ExperimentalStdlibApi::class)
+private fun Project.writeNavigation(newNavigations: List<String>) {
     mkdocsBuildFile.writeText(
-        buildList<String> {
+        buildList {
                 addAll(mkdocsBuildFile.readLines())
-                removeAt(docsNavigation.index)
-                removeAll(docsNavigation.navs)
+                removeAt(getDocsNavigation().index)
+                removeAll(getDocsNavigation().navs)
                 add("")
                 add("nav:")
-                addAll(navsPlusProjects)
+                addAll(newNavigations)
+                add("")
             }
             .joinToString("\n")
     )
 }
 
-val Project.mkdocsBuildFile: File
-    get() = file("$rootDir/build/.docs/mkdocs.yml")
-
-data class DocsNavigation(val index: Int, val navs: List<String>)
-
-fun Project.getDocsNavigation(): DocsNavigation {
+private fun Project.getDocsNavigation(): DocsNavigation {
     val content = mkdocsBuildFile.readLines()
     val navIndex = content.indexOfFirst { it.replace(" ", "").startsWith("nav:", true) }
     return DocsNavigation(
@@ -396,8 +398,8 @@ fun Project.getDocsNavigation(): DocsNavigation {
 }
 
 @OptIn(ExperimentalStdlibApi::class)
-fun List<String>.cleanNavProjects(): List<String> =
-    buildList<String> {
+private fun List<String>.cleanNavProjects(): List<String> =
+    buildList {
             val lines = this@cleanNavProjects
 
             fun String.isReference() =
@@ -408,14 +410,6 @@ fun List<String>.cleanNavProjects(): List<String> =
                     reference.trimIndent().takeWhile { it != ':' }
 
             lines.reduce { previous, line ->
-                //        println("__________________________________________________")
-                //        println(this.joinToString("\n"))
-                //        println("**************************************************")
-                //        println("PREVIOUS: ${previous.trimIndent()}")
-                //        println("LINE:     ${line.trimIndent()}")
-                //        println(previous.isReference())
-                //        println(line.isReferenceOf(previous))
-
                 when {
                     previous == line -> {
                         removeLast()
@@ -438,3 +432,11 @@ fun List<String>.cleanNavProjects(): List<String> =
             }
         }
         .distinctBy(String::trimIndent)
+
+private fun Project.sanitizeMkdocsFile() {
+    mkdocsBuildFile.writeText(
+        mkdocsBuildFile.readLines().reduce { acc: String, b: String ->
+            if (acc.lines().lastOrNull().isNullOrBlank() && b.isBlank()) acc else "$acc\n$b"
+        } + "\n"
+    )
+}

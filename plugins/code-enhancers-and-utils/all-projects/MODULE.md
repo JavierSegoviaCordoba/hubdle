@@ -34,3 +34,9 @@ allProjects.name=gradle-plugins
 The group for all projects will be
 
 `group = "com.javiersc.gradle-plugins`
+
+### Features
+
+- CLI pretty printing test results 
+- Add `allTests` task to all projects
+- Create a test report in `root-project/build/reports/allTests` merging all projects reports.

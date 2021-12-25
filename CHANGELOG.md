@@ -4,6 +4,7 @@
 
 ### Added
 
+- `all-projects` supports aggregate tests report in the root project
 - `kotlin-config` supports `com.android.application`
 
 ### Changed

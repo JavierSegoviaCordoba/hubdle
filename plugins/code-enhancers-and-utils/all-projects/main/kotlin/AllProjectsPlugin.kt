@@ -3,6 +3,7 @@ package com.javiersc.gradle.plugins.all.projects
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.tasks.testing.Test
+import org.gradle.api.tasks.testing.TestReport
 import org.gradle.language.base.plugins.LifecycleBasePlugin
 
 abstract class AllProjectsPlugin : Plugin<Project> {
@@ -14,12 +15,13 @@ abstract class AllProjectsPlugin : Plugin<Project> {
             project.group = project.module
 
             project.configureTestLogger()
+            project.configureAllTestsReport()
             project.configureAllTestsTask()
         }
     }
 }
 
-fun Project.configureTestLogger() {
+private fun Project.configureTestLogger() {
     pluginManager.apply("com.adarshr.test-logger")
 
     tasks.withType(Test::class.java) { test ->
@@ -30,10 +32,11 @@ fun Project.configureTestLogger() {
     }
 }
 
-fun Project.configureAllTestsTask() {
+private fun Project.configureAllTestsTask() {
     afterEvaluate { project ->
         if (project.tasks.findByName("allTests") == null) {
             project.tasks.register("allTests") { task ->
+                task.group = "verification"
                 task.dependsOn(project.tasks.withType(Test::class.java))
             }
         } else {
@@ -41,5 +44,18 @@ fun Project.configureAllTestsTask() {
                 task.dependsOn(project.tasks.withType(Test::class.java))
             }
         }
+    }
+}
+
+private fun Project.configureAllTestsReport() {
+    val testReport =
+        tasks.register("allTestsReport", TestReport::class.java) { testReport ->
+            group = "verification"
+            testReport.destinationDir = file("$buildDir/reports/allTests")
+            testReport.reportOn(allprojects.map { it.tasks.withType(Test::class.java) })
+        }
+
+    allprojects { project ->
+        project.tasks.withType(Test::class.java) { test -> test.finalizedBy(testReport) }
     }
 }

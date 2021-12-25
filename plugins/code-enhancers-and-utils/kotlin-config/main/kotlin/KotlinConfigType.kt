@@ -1,6 +1,8 @@
-package com.javiersc.gradle.plugins.kotlin.library
+package com.javiersc.gradle.plugins.kotlin.config
 
+import com.android.build.api.dsl.CommonExtension
 import com.android.build.api.dsl.LibraryExtension
+import com.javiersc.gradle.plugins.core.isAndroidApplication
 import com.javiersc.gradle.plugins.core.isAndroidLibrary
 import com.javiersc.gradle.plugins.core.isGradlePlugin
 import com.javiersc.gradle.plugins.core.isKotlinJvm
@@ -16,7 +18,7 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-internal sealed class KotlinLibraryType {
+internal sealed class KotlinConfigType {
 
     open fun configure(project: Project) {
         project.tasks.withType(KotlinCompile::class.java) { kotlinCompile ->
@@ -26,45 +28,31 @@ internal sealed class KotlinLibraryType {
         }
     }
 
-    class Android(
-        private val compileSdk: Int = AndroidSdk.compileSdk,
-        private val minSdk: Int = AndroidSdk.minSdk,
-        private val isKmp: Boolean
-    ) : KotlinLibraryType() {
+    object AndroidApplication : KotlinConfigType() {
 
         override fun configure(project: Project) {
             super.configure(project)
 
-            project.extensions.findByType(LibraryExtension::class.java)?.apply {
-                compileSdk = this@Android.compileSdk
-
-                defaultConfig { minSdk = this@Android.minSdk }
-
-                compileOptions {
-                    sourceCompatibility(JavaVersion.VERSION_1_8)
-                    targetCompatibility(JavaVersion.VERSION_1_8)
-                }
-
-                if (isKmp.not()) {
-                    sourceSets.all {
-                        it.assets.setSrcDirs(listOf("${it.name}/assets"))
-                        it.java.setSrcDirs(listOf("${it.name}/java", "${it.name}/kotlin"))
-                        it.manifest.srcFile("${it.name}/AndroidManifest.xml")
-                        it.res.setSrcDirs(listOf("${it.name}/res"))
-                        it.resources.setSrcDirs(listOf("${it.name}/resources"))
-                    }
-                }
-            }
+            project.configureAndroid(isKmp = false)
         }
     }
 
-    object GradlePlugin : KotlinLibraryType() {
+    class AndroidLibrary(private val isKmp: Boolean) : KotlinConfigType() {
+
+        override fun configure(project: Project) {
+            super.configure(project)
+
+            project.configureAndroid(isKmp)
+        }
+    }
+
+    object GradlePlugin : KotlinConfigType() {
         override fun configure(project: Project) {
             super.configure(project)
 
             check(JavaVersion.current() >= JavaVersion.VERSION_11) {
                 """   
-                    |Using `javiersc-kotlin-library` to configure Gradle plugins needs Java 11"
+                    |Using `javiersc-kotlin-config` to configure Gradle plugins needs Java 11"
                     |  - Use Java 11 to build via adding to your path or whatever other solution.
                     |  - Projects can be still compatible with Java 8 (`KotlinCompile.jvmTarget`)
                     |
@@ -81,7 +69,7 @@ internal sealed class KotlinLibraryType {
         }
     }
 
-    object KotlinJVM : KotlinLibraryType() {
+    object KotlinJVM : KotlinConfigType() {
 
         override fun configure(project: Project) {
             super.configure(project)
@@ -90,7 +78,7 @@ internal sealed class KotlinLibraryType {
         }
     }
 
-    object KotlinMultiplatform : KotlinLibraryType() {
+    object KotlinMultiplatform : KotlinConfigType() {
 
         override fun configure(project: Project) {
             super.configure(project)
@@ -99,11 +87,11 @@ internal sealed class KotlinLibraryType {
         }
     }
 
-    object KotlinMultiplatformWithAndroid : KotlinLibraryType() {
+    object KotlinMultiplatformWithAndroid : KotlinConfigType() {
 
         override fun configure(project: Project) {
             KotlinMultiplatform.configure(project)
-            Android(isKmp = true).configure(project)
+            AndroidLibrary(isKmp = true).configure(project)
 
             project.extensions.findByType(LibraryExtension::class.java)?.apply {
                 sourceSets.all {
@@ -114,21 +102,31 @@ internal sealed class KotlinLibraryType {
     }
 
     companion object {
+
         fun build(project: Project): Unit =
             with(project) {
                 when {
-                    isGradlePlugin -> GradlePlugin.configure(this)
+                    isAndroidApplication -> {
+                        AndroidApplication.configure(this)
+                    }
+                    isGradlePlugin -> {
+                        GradlePlugin.configure(this)
+                    }
                     isKotlinMultiplatformWithAndroid -> {
                         KotlinMultiplatformWithAndroid.configure(this)
                     }
                     isKotlinMultiplatform -> {
                         KotlinMultiplatform.configure(this)
                     }
-                    isKotlinJvm -> KotlinJVM.configure(this)
-                    isAndroidLibrary -> Android(isKmp = false).configure(this)
+                    isKotlinJvm -> {
+                        KotlinJVM.configure(this)
+                    }
+                    isAndroidLibrary -> {
+                        AndroidLibrary(isKmp = false).configure(this)
+                    }
                     else -> {
                         errorMessage(
-                            "`javiersc-kotlin-library` doesn't support this type of project yet"
+                            "`javiersc-kotlin-config` doesn't support this type of project yet"
                         )
                     }
                 }
@@ -168,6 +166,29 @@ private fun Project.configureJavaAndKotlinSourceSets() {
             it.addDefaultLanguageSettings()
             it.kotlin.setSrcDirs(listOf("${it.name}/kotlin"))
             it.resources.setSrcDirs(listOf("${it.name}/resources"))
+        }
+    }
+}
+
+private fun Project.configureAndroid(isKmp: Boolean) {
+    project.extensions.findByType(CommonExtension::class.java)?.apply {
+        compileSdk = AndroidSdk.compileSdk
+
+        defaultConfig { minSdk = AndroidSdk.minSdk }
+
+        compileOptions {
+            sourceCompatibility(JavaVersion.VERSION_1_8)
+            targetCompatibility(JavaVersion.VERSION_1_8)
+        }
+
+        if (isKmp.not()) {
+            sourceSets.all {
+                it.assets.setSrcDirs(listOf("${it.name}/assets"))
+                it.java.setSrcDirs(listOf("${it.name}/java", "${it.name}/kotlin"))
+                it.manifest.srcFile("${it.name}/AndroidManifest.xml")
+                it.res.setSrcDirs(listOf("${it.name}/res"))
+                it.resources.setSrcDirs(listOf("${it.name}/resources"))
+            }
         }
     }
 }

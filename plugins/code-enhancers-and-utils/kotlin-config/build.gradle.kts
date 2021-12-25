@@ -18,12 +18,12 @@ pluginBundle {
 
 gradlePlugin {
     plugins {
-        create("com.javiersc.gradle.plugins.kotlin.library") {
-            id = "com.javiersc.gradle.plugins.kotlin.library"
-            displayName = "Kotlin Library"
+        create("com.javiersc.gradle.plugins.kotlin.config") {
+            id = "com.javiersc.gradle.plugins.kotlin.config"
+            displayName = "Kotlin Config"
             description =
                 "A custom plugin which allow creating Android and Kotlin libraries easily."
-            implementationClass = "com.javiersc.gradle.plugins.kotlin.library.KotlinLibraryPlugin"
+            implementationClass = "com.javiersc.gradle.plugins.kotlin.config.KotlinConfigPlugin"
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.javiersc.gradle.plugins.kotlin.library
+package com.javiersc.gradle.plugins.kotlin.config
 
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 

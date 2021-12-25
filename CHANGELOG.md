@@ -4,7 +4,11 @@
 
 ### Added
 
+- `kotlin-config` supports `com.android.application`
+
 ### Changed
+
+- `kotlin-library` name to `kotlin-config`
 
 ### Deprecated
 

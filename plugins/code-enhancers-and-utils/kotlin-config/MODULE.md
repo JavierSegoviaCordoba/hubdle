@@ -1,6 +1,22 @@
-# Module kotlin-library
+# Module kotlin-config
 
-A custom plugin which allow creating Android and Kotlin libraries easily.
+A Gradle plugin for autoconfigure any type of project:.
+
+- Android applications:
+    - `id("com.android.application")`
+- Android libraries:
+    - `id("com.android.library")`
+- Gradle plugins:
+    - `java-gradle-plugin`
+    - `kotlin-dsl`
+- Java Platforms:
+    - `java-platform`
+- Kotlin JVM libraries:
+    - `kotlin("jvm")`
+    - `id("org.jetbrains.kotlin.jvm")`
+- Kotlin Multiplatform libraries:
+    - `kotlin("multiplatform")`
+    - `id("org.jetbrains.kotlin.multiplatform")`
 
 ### Download from MavenCentral
 
@@ -8,7 +24,7 @@ A custom plugin which allow creating Android and Kotlin libraries easily.
 // buildSrc/build.gradle.kts
 
 dependencies {
-    implementation("com.javiersc.gradle-plugins:kotlin-library:$version")
+    implementation("com.javiersc.gradle-plugins:kotlin-config:$version")
 }
 ```
 
@@ -19,7 +35,7 @@ Add it to all libraries modules in the project bellow the main plugin
 ```kotlin
 plugins {
     // ... (i.e. kotlin("jvm")
-    `javiersc-kotlin-library`
+    `javiersc-kotlin-config`
 }
 ```
 
@@ -34,7 +50,7 @@ an improved project structure without having to add the `src` dir.
 plugins {
     id("com.android.library")
     kotlin("android")
-    `javiersc-kotlin-library`
+    `javiersc-kotlin-config`
 }
 ```
 
@@ -43,7 +59,7 @@ plugins {
 ```kotlin
 plugins {
     kotlin("jvm")
-    `javiersc-kotlin-library`
+    `javiersc-kotlin-config`
 }
 ```
 
@@ -52,7 +68,7 @@ plugins {
 ```kotlin
 plugins {
     kotlin("multiplatform")
-    `javiersc-kotlin-library`
+    `javiersc-kotlin-config`
 }
 ```
 
@@ -62,6 +78,6 @@ plugins {
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
-    `javiersc-kotlin-library`
+    `javiersc-kotlin-config`
 }
 ```

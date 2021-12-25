@@ -35,6 +35,7 @@ include(
     ":plugins:code-enhancers-and-utils:code-analysis",
     ":plugins:code-enhancers-and-utils:code-formatter",
     ":plugins:code-enhancers-and-utils:dependency-updates",
+    ":plugins:code-enhancers-and-utils:kotlin-config",
     ":plugins:code-enhancers-and-utils:versioning",
 )
 
@@ -46,10 +47,6 @@ include(
 
 include(
     ":plugins:gradle-utils:gradle-wrapper-updater",
-)
-
-include(
-    ":plugins:libraries-and-apps-config:kotlin-library",
 )
 
 include(

@@ -349,14 +349,34 @@ private fun Project.buildProjectsInDocs() {
 }
 
 private fun Project.buildReportsInDocs() {
+    fun createMdReportFile(title: String, pathAndFileName: String) {
+        val content =
+            """
+                |# $title
+                |
+                |<iframe src="reports-generated/$pathAndFileName" style="height: 100vh; width: 100vw; overflow: hidden" frameborder="0"></iframe>
+                |
+            """.trimMargin()
+
+        file("$rootDir/build/.docs/docs/reports/$pathAndFileName.md").apply {
+            ensureParentDirsCreated()
+            createNewFile()
+            writeText(content)
+        }
+    }
+
+    createMdReportFile("All tests", "all-tests")
+    createMdReportFile("Code analysis", "code-analysis")
+    createMdReportFile("Code quality", "code-quality")
+
     val docsNavigation = getDocsNavigation()
 
     val navReports: String =
         """
             |  - Reports:
-            |    - All tests: reports/all-tests/
-            |    - Code analysis: reports/code-analysis/
-            |    - Code quality: reports/code-quality/
+            |    - All tests: reports/all-tests.md
+            |    - Code analysis: reports/code-analysis.md
+            |    - Code quality: reports/code-quality.md
         """.trimMargin()
 
     val navsPlusReports = docsNavigation.navs + navReports.lines()

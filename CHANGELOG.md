@@ -6,6 +6,8 @@
 
 ### Changed
 
+- `docs` reports are embedded using an iframe
+
 ### Deprecated
 
 ### Removed

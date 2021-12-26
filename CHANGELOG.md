@@ -4,11 +4,7 @@
 
 ### Added
 
-- detekt support to Sonar implementation in `code-analysis`
-
 ### Changed
-
-- enable detekt xml report
 
 ### Deprecated
 
@@ -17,6 +13,16 @@
 ### Fixed
 
 ### Updated
+
+## [0.1.0-rc.31] - 2021-12-26
+
+### Added
+
+- detekt support to Sonar implementation in `code-analysis`
+
+### Changed
+
+- enable detekt xml report
 
 ## [0.1.0-rc.30] - 2021-12-26
 

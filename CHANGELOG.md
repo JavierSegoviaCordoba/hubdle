@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- `testReport` task changes project group instead of task group
+
 ### Updated
 
 ## [0.1.0-rc.29] - 2021-12-26

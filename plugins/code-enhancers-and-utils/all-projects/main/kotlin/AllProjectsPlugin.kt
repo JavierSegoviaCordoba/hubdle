@@ -50,7 +50,7 @@ private fun Project.configureAllTestsTask() {
 private fun Project.configureAllTestsReport() {
     val testReport =
         tasks.register("allTestsReport", TestReport::class.java) { testReport ->
-            group = "verification"
+            testReport.group = "verification"
             testReport.destinationDir = file("$buildDir/reports/allTests")
             testReport.reportOn(allprojects.map { it.tasks.withType(Test::class.java) })
         }

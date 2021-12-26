@@ -4,6 +4,8 @@
 
 ### Added
 
+- Sonarqube to `code-analysis`
+
 ### Changed
 
 ### Deprecated

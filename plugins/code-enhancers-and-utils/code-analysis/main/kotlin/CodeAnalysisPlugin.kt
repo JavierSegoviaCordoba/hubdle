@@ -36,7 +36,7 @@ private fun Project.configureDetekt() {
             reports.html { report -> report.required.set(true) }
             reports.sarif { report -> report.required.set(true) }
             reports.txt { report -> report.required.set(false) }
-            reports.xml { report -> report.required.set(false) }
+            reports.xml { report -> report.required.set(true) }
         }
     }
 
@@ -78,6 +78,10 @@ private fun Project.configureSonarqube() {
                 properties["codeAnalysis.sonar.organization"] ?: ""
             )
             props.property(
+                "sonar.kotlin.detekt.reportPaths",
+                "$buildDir/reports/detekt/detekt.xml"
+            )
+            props.property(
                 "sonar.coverage.jacoco.xmlReportPaths",
                 "$buildDir/reports/kover/report.xml"
             )
@@ -89,6 +93,7 @@ private fun Project.configureSonarqube() {
             project.extensions.findByType(SonarQubeExtension::class.java)?.apply {
                 properties { properties ->
                     properties.property("sonar.sources", project.kotlinSrcDirs())
+                    properties.property("sonar.tests", project.kotlinTestsSrcDirs())
                 }
             }
         }
@@ -101,6 +106,19 @@ private fun Project.kotlinSrcDirs(): List<File> =
         ?.sourceSets
         ?.flatMap { kotlinSourceSet -> kotlinSourceSet.kotlin.srcDirs }
         ?.filterNot { file ->
+            val relativePath = file.relativeTo(projectDir)
+            val dirs = relativePath.path.split(File.separatorChar)
+            dirs.any { dir -> dir.endsWith("Test") || dir == "test" }
+        }
+        ?.filter { file -> file.exists() }
+        .orEmpty()
+
+private fun Project.kotlinTestsSrcDirs(): List<File> =
+    extensions
+        .findByType(KotlinProjectExtension::class.java)
+        ?.sourceSets
+        ?.flatMap { kotlinSourceSet -> kotlinSourceSet.kotlin.srcDirs }
+        ?.filter { file ->
             val relativePath = file.relativeTo(projectDir)
             val dirs = relativePath.path.split(File.separatorChar)
             dirs.any { dir -> dir.endsWith("Test") || dir == "test" }

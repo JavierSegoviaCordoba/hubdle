@@ -4,7 +4,11 @@
 
 ### Added
 
+- detekt support to Sonar implementation in `code-analysis`
+
 ### Changed
+
+- enable detekt xml report
 
 ### Deprecated
 

@@ -68,7 +68,10 @@ private fun Project.configureSonarqube() {
                 properties["codeAnalysis.sonar.projectKey"]
                     ?: "${group}:${properties["project.name"]}"
             )
-            props.property("sonar.login", properties["codeAnalysis.sonar.login"] ?: "")
+            props.property(
+                "sonar.login",
+                properties["codeAnalysis.sonar.login"] ?: System.getenv("SONAR_TOKEN") ?: ""
+            )
             props.property(
                 "sonar.host.url",
                 properties["codeAnalysis.sonar.host.url"] ?: "https://sonarcloud.io"
@@ -77,10 +80,7 @@ private fun Project.configureSonarqube() {
                 "sonar.organization",
                 properties["codeAnalysis.sonar.organization"] ?: ""
             )
-            props.property(
-                "sonar.kotlin.detekt.reportPaths",
-                "$buildDir/reports/detekt/detekt.xml"
-            )
+            props.property("sonar.kotlin.detekt.reportPaths", "$buildDir/reports/detekt/detekt.xml")
             props.property(
                 "sonar.coverage.jacoco.xmlReportPaths",
                 "$buildDir/reports/kover/report.xml"

@@ -40,8 +40,16 @@ Two options:
 
 ##### Sonar login token
 
+As Gradle property:
+
 ```properties
 codeAnalysis.sonar.login=token
+```
+
+As environment variable:
+
+```text
+SONAR_TOKEN
 ```
 
 Remember to change `token` with the real token.

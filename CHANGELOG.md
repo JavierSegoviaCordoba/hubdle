@@ -4,8 +4,6 @@
 
 ### Added
 
-- `sonar.login` can be passed as `SONAR_TOKEN` environment variable
-
 ### Changed
 
 ### Deprecated
@@ -15,6 +13,12 @@
 ### Fixed
 
 ### Updated
+
+## [0.1.0-rc.32] - 2021-12-26
+
+### Added
+
+- `sonar.login` can be passed as `SONAR_TOKEN` environment variable
 
 ## [0.1.0-rc.31] - 2021-12-26
 

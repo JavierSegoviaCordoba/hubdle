@@ -4,6 +4,7 @@
 
 ### Added
 
+- `code-coverage`
 - Sonarqube to `code-analysis`
 
 ### Changed

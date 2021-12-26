@@ -4,10 +4,6 @@
 
 ### Added
 
-- Code coverage section to `docs`
-- `code-coverage`
-- Sonarqube to `code-analysis`
-
 ### Changed
 
 ### Deprecated
@@ -17,6 +13,14 @@
 ### Fixed
 
 ### Updated
+
+## [0.1.0-rc.29] - 2021-12-26
+
+### Added
+
+- Code coverage section to `docs`
+- `code-coverage`
+- Sonarqube to `code-analysis`
 
 ## [0.1.0-rc.28] - 2021-12-25
 

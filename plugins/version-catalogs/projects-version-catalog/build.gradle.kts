@@ -1,7 +1,7 @@
 plugins {
     `java-gradle-plugin`
     `kotlin-jvm`
-    `javiersc-kotlin-config`
+    `javiersc-kotlin-library`
     `javiersc-publish`
 }
 

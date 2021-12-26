@@ -1,6 +1,6 @@
 plugins {
     kotlin("jvm")
-    `javiersc-kotlin-config`
+    `javiersc-kotlin-library`
     application
 }
 

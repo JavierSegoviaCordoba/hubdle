@@ -4,6 +4,8 @@
 
 ### Added
 
+- `koverReport` task to `allTests` task
+
 ### Changed
 
 ### Deprecated

@@ -38,6 +38,9 @@ private fun Project.configureAllTestsTask() {
             project.tasks.register("allTests") { task ->
                 task.group = "verification"
                 task.dependsOn(project.tasks.withType(Test::class.java))
+                project.tasks.findByName("koverReport")?.let { koverTask ->
+                    task.dependsOn(koverTask)
+                }
             }
         } else {
             project.tasks.named("allTests") { task ->

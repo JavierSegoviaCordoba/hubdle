@@ -367,6 +367,7 @@ private fun Project.buildReportsInDocs() {
 
     createMdReportFile("All tests", "all-tests")
     createMdReportFile("Code analysis", "code-analysis")
+    createMdReportFile("Code coverage", "code-coverage")
     createMdReportFile("Code quality", "code-quality")
 
     val docsNavigation = getDocsNavigation()
@@ -376,6 +377,7 @@ private fun Project.buildReportsInDocs() {
             |  - Reports:
             |    - All tests: reports/all-tests.md
             |    - Code analysis: reports/code-analysis.md
+            |    - Code coverage: reports/code-coverage.md
             |    - Code quality: reports/code-quality.md
         """.trimMargin()
 

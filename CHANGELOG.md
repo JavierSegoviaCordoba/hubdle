@@ -4,6 +4,7 @@
 
 ### Added
 
+- Code coverage section to `docs`
 - `code-coverage`
 - Sonarqube to `code-analysis`
 

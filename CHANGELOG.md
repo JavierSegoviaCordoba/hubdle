@@ -4,8 +4,6 @@
 
 ### Added
 
-- `koverReport` task to `allTests` task
-
 ### Changed
 
 ### Deprecated
@@ -14,9 +12,17 @@
 
 ### Fixed
 
-- `readme-badges-generator` analysis badges
-
 ### Updated
+
+## [0.1.0-rc.33] - 2021-12-27
+
+### Added
+
+- `koverReport` task to `allTests` task
+
+### Fixed
+
+- `readme-badges-generator` analysis badges
 
 ## [0.1.0-rc.32] - 2021-12-26
 

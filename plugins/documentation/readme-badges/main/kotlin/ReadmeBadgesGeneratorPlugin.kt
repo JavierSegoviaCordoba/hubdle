@@ -13,18 +13,21 @@ abstract class ReadmeBadgesGeneratorPlugin : Plugin<Project> {
 
         val projectGroup: String =
             checkNotNull(target.properties["allProjects.group"]) {
-                    "allProjects.group in `gradle.properties` is missing"
+                    "`allProjects.group` in `gradle.properties` is missing"
                 }
                 .toString()
         val projectName: String =
             checkNotNull(target.properties["allProjects.name"]) {
-                    "allProjects.name in `gradle.properties` is missing"
+                    "a`llProjects.name` in `gradle.properties` is missing"
                 }
                 .toString()
 
         val libFolderUrl: String = "$projectGroup/$projectName".replace(".", "/")
 
-        val repoUrl: String = target.property("pom.smc.url")!!.toString()
+        val repoUrl: String =
+            checkNotNull(target.property("pom.smc.url")?.toString()) {
+                "`pom.smc.url` in `gradle.properties` is missing"
+            }
         val repoWithoutUrlPrefix: String = repoUrl.replace("https://github.com/", "")
 
         fun buildKotlinVersionBadge(): String {
@@ -82,12 +85,14 @@ abstract class ReadmeBadgesGeneratorPlugin : Plugin<Project> {
         }
 
         fun buildAnalysisBadge(sonar: Sonar): String {
-            val projectId = repoWithoutUrlPrefix.replace("/", "_")
+            val projectKey =
+                target.properties["codeAnalysis.sonar.projectKey"]
+                    ?: "${target.group}:${target.properties["project.name"]}"
             return "[![${sonar.label}]" +
-                "($shieldsIoUrl/sonar/${sonar.path}/$projectId" +
+                "($shieldsIoUrl/sonar/${sonar.path}/$projectKey" +
                 "?label=${sonar.label.replace(" ", "%20")}&logo=SonarCloud" +
                 "&logoColor=white&server=https%3A%2F%2Fsonarcloud.io)]" +
-                "(https://sonarcloud.io/dashboard?id=$projectId)"
+                "(https://sonarcloud.io/dashboard?id=$projectKey)"
         }
 
         fun buildReadmeBadges(): List<String> = buildList {
@@ -120,6 +125,7 @@ abstract class ReadmeBadgesGeneratorPlugin : Plugin<Project> {
 
             add("")
             add(buildBuildBadge())
+            add(buildAnalysisBadge(Sonar.Coverage))
             add(buildAnalysisBadge(Sonar.Quality))
             add(buildAnalysisBadge(Sonar.TechDebt))
             add("")
@@ -156,6 +162,7 @@ private enum class MavenRepo {
 }
 
 private enum class Sonar(val label: String, val path: String) {
+    Coverage("Coverage", "coverage"),
     Quality("Quality", "quality_gate"),
-    TechDebt("Tech debt", "tech_debt")
+    TechDebt("Tech debt", "tech_debt"),
 }

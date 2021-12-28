@@ -26,8 +26,27 @@ gradlePlugin {
     }
 }
 
+val testPluginClasspath: Configuration by configurations.creating
+
 dependencies {
     api(projects.shared.pluginAccessors)
 
     compileOnly(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)
+
+    implementation(gradleKotlinDsl())
+    implementation(projects.shared.core)
+
+    // README Kotlin badge has always the next version
+    testPluginClasspath("${pluginLibs.jetbrains.kotlin.kotlinGradlePlugin.get().module}:1.5.32")
+
+    testImplementation(gradleTestKit())
+    testImplementation(projects.shared.coreTest)
+    testImplementation(libs.jetbrains.kotlin.kotlinTest)
+    testImplementation(libs.kotest.kotestAssertionsCore)
+}
+
+tasks {
+    pluginUnderTestMetadata {
+        pluginClasspath.from(testPluginClasspath)
+    }
 }

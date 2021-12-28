@@ -1,5 +1,7 @@
 package com.javiersc.gradle.plugins.docs
 
+import com.javiersc.gradle.plugins.core.endWithNewLine
+import com.javiersc.gradle.plugins.core.removeDuplicateEmptyLines
 import com.javiersc.gradle.plugins.docs.internal.hasKotlinGradlePlugin
 import java.io.File
 import org.gradle.api.Plugin
@@ -465,16 +467,6 @@ private fun List<String>.cleanNavProjects(): List<String> =
         .distinctBy(String::trimIndent)
 
 private fun Project.sanitizeMkdocsFile() {
-    val content =
-        mkdocsBuildFile
-            .readLines()
-            .reduce { acc: String, b: String ->
-                if (acc.lines().lastOrNull().isNullOrBlank() && b.isBlank()) acc else "$acc\n$b"
-            }
-            .endWithNewLine()
-
+    val content = mkdocsBuildFile.readLines().removeDuplicateEmptyLines().endWithNewLine()
     mkdocsBuildFile.writeText(content)
 }
-
-private fun String.endWithNewLine(): String =
-    if (lines().lastOrNull().isNullOrBlank()) this else "$this\n"

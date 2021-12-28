@@ -29,12 +29,15 @@ val testPluginClasspath: Configuration by configurations.creating
 dependencies {
     api(projects.shared.pluginAccessors)
 
-    implementation(pluginLibs.jetbrains.dokka.dokkaGradlePlugin)
     compileOnly(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)
-    implementation(pluginLibs.vyarus.gradleMkdocsPlugin)
 
     implementation(gradleApi())
     implementation(gradleKotlinDsl())
+
+    implementation(pluginLibs.jetbrains.dokka.dokkaGradlePlugin)
+    implementation(pluginLibs.vyarus.gradleMkdocsPlugin)
+    implementation(projects.shared.core)
+
 
     testPluginClasspath(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)
 

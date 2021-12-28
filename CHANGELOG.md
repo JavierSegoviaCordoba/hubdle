@@ -15,6 +15,8 @@
 
 ### Fixed
 
+- running `test` task runs all projects `test` tasks
+
 ### Updated
 
 - `com.javiersc.gradle-plugins:all-plugins -> 0.1.0-rc.33`

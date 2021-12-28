@@ -15,8 +15,8 @@ abstract class AllProjectsPlugin : Plugin<Project> {
             project.group = project.module
 
             project.configureTestLogger()
-            project.configureAllTestsReport()
             project.configureAllTestsTask()
+            project.configureAllTestsReport()
         }
     }
 }
@@ -58,7 +58,9 @@ private fun Project.configureAllTestsReport() {
             testReport.reportOn(allprojects.map { it.tasks.withType(Test::class.java) })
         }
 
-    allprojects { project ->
-        project.tasks.withType(Test::class.java) { test -> test.finalizedBy(testReport) }
+    if (gradle.startParameter.taskNames.any { task -> task == "allTests" }) {
+        allprojects { project ->
+            project.tasks.withType(Test::class.java) { test -> test.finalizedBy(testReport) }
+        }
     }
 }

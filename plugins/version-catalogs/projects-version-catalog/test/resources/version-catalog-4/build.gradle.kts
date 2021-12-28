@@ -1,5 +1,3 @@
-import com.javiersc.gradle.plugins.projects.version.catalog.ProjectsVersionCatalogExtension
-
 plugins {
     java
     id("com.javiersc.gradle.plugins.projects.version.catalog")
@@ -10,7 +8,7 @@ allprojects {
     version = "1.2.3"
 }
 
-configure<ProjectsVersionCatalogExtension> {
+projectsVersionCatalog {
     librariesPrefix.set("jsc")
     removeVersionAliasPrefix.set("com")
 }

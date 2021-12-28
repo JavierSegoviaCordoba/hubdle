@@ -1,7 +1,7 @@
 plugins {
     `java-gradle-plugin`
     `kotlin-jvm`
-    `javiersc-kotlin-library`
+    `javiersc-kotlin-config`
     `javiersc-publish`
 }
 
@@ -25,7 +25,7 @@ gradlePlugin {
     }
 }
 
-file("main/kotlin/KtfmtVersion.kt").apply {
+file("main/kotlin/com/javiersc/gradle/plugins/code/formatter/KtfmtVersion.kt").apply {
     if (!exists()) createNewFile()
     writeText(
         """

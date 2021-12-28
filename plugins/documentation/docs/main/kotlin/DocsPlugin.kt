@@ -16,6 +16,8 @@ abstract class DocsPlugin : Plugin<Project> {
         target.pluginManager.apply("ru.vyarus.mkdocs")
         target.pluginManager.apply("org.jetbrains.dokka")
 
+        DocsExtension.createExtension(target)
+
         target.extensions.findByType(MkdocsExtension::class.java)?.apply {
             strict = false
             sourcesDir = "${target.rootProject.rootDir}/build/.docs"
@@ -39,18 +41,24 @@ abstract class DocsPlugin : Plugin<Project> {
         target.tasks.register("buildDocs") { task ->
             task.group = "documentation"
 
-            task.project.buildDotDocsFolder()
-            task.project.buildBuildDotDocs()
-            task.project.buildChangelogInDocs()
-            task.buildApiDocsInDocs()
-            task.project.buildProjectsInDocs()
-            task.project.buildReportsInDocs()
-            task.project.sanitizeMkdocsFile()
+            task.finalizedBy("mkdocsBuild")
 
-            task.project.allprojects.onEach {
-                runCatching { task.dependsOn(it.tasks.getByName("dokkaHtmlMultiModule")) }
+            task.project.buildDotDocsFolder()
+
+            task.doFirst {
+                task.project.buildBuildDotDocs()
+                task.project.buildChangelogInDocs()
+                task.buildApiDocsInDocs()
+                task.project.buildProjectsInDocs()
+                task.project.buildReportsInDocs()
+                task.project.sanitizeMkdocsFile()
             }
-            task.dependsOn("mkdocsBuild")
+
+            task.doLast {
+                task.project.allprojects.onEach {
+                    runCatching { task.dependsOn(it.tasks.getByName("dokkaHtmlMultiModule")) }
+                }
+            }
         }
     }
 }
@@ -214,24 +222,22 @@ private fun Task.buildApiDocsInDocs() {
 
     project.writeNavigation(navsPlusApiDocs)
 
-    doLast {
-        val dokkaOutputDir = File("${project.rootProject.rootDir}/build/dokka/htmlMultiModule/")
-        val apiDir = File("${project.rootProject.rootDir}/build/docs/_site/api/")
-        if (project.version.toString().endsWith("-SNAPSHOT")) {
-            project.copy {
-                it.from(dokkaOutputDir.path)
-                it.into(File("$apiDir/snapshot").path)
-            }
-        } else {
-            project.file("$apiDir/index.html").apply {
-                parentFile.mkdirs()
-                if (!exists()) createNewFile()
-                writeText(project.apiIndexHtmlContent)
-            }
-            project.copy {
-                it.from(dokkaOutputDir.path)
-                it.into(File("$apiDir/versions/${project.version}").path)
-            }
+    val dokkaOutputDir = File("${project.rootProject.rootDir}/build/dokka/htmlMultiModule/")
+    val apiDir = File("${project.rootProject.rootDir}/build/docs/_site/api/")
+    if (project.version.toString().endsWith("-SNAPSHOT")) {
+        project.copy {
+            it.from(dokkaOutputDir.path)
+            it.into(File("$apiDir/snapshot").path)
+        }
+    } else {
+        project.file("$apiDir/index.html").apply {
+            parentFile.mkdirs()
+            if (!exists()) createNewFile()
+            writeText(project.apiIndexHtmlContent)
+        }
+        project.copy {
+            it.from(dokkaOutputDir.path)
+            it.into(File("$apiDir/versions/${project.version}").path)
         }
     }
 }
@@ -348,8 +354,14 @@ private fun Project.buildProjectsInDocs() {
     writeNavigation(navsPlusProjects)
 }
 
+@OptIn(ExperimentalStdlibApi::class)
 private fun Project.buildReportsInDocs() {
-    fun createMdReportFile(title: String, pathAndFileName: String) {
+    val allTests = docsExtension.navigation.get().reports.get().allTests.get()
+    val codeAnalysis = docsExtension.navigation.get().reports.get().codeAnalysis.get()
+    val codeCoverage = docsExtension.navigation.get().reports.get().codeCoverage.get()
+    val codeQuality = docsExtension.navigation.get().reports.get().codeQuality.get()
+
+    fun MutableList<String>.createReportSection(title: String, pathAndFileName: String) {
         val content =
             """
                 |# $title
@@ -363,23 +375,20 @@ private fun Project.buildReportsInDocs() {
             createNewFile()
             writeText(content)
         }
+        add("    - $title: reports/$pathAndFileName.md")
     }
 
-    createMdReportFile("All tests", "all-tests")
-    createMdReportFile("Code analysis", "code-analysis")
-    createMdReportFile("Code coverage", "code-coverage")
-    createMdReportFile("Code quality", "code-quality")
+    val navReports: String =
+        buildList {
+                if (allTests && codeAnalysis || codeCoverage || codeQuality) add("  - Reports:")
+                if (allTests) createReportSection("All tests", "all-tests")
+                if (codeAnalysis) createReportSection("Code analysis", "code-analysis")
+                if (codeCoverage) createReportSection("Code coverage", "code-coverage")
+                if (codeQuality) createReportSection("Code quality", "code-quality")
+            }
+            .joinToString("\n")
 
     val docsNavigation = getDocsNavigation()
-
-    val navReports: String =
-        """
-            |  - Reports:
-            |    - All tests: reports/all-tests.md
-            |    - Code analysis: reports/code-analysis.md
-            |    - Code coverage: reports/code-coverage.md
-            |    - Code quality: reports/code-quality.md
-        """.trimMargin()
 
     val navsPlusReports = docsNavigation.navs + navReports.lines()
 
@@ -456,9 +465,16 @@ private fun List<String>.cleanNavProjects(): List<String> =
         .distinctBy(String::trimIndent)
 
 private fun Project.sanitizeMkdocsFile() {
-    mkdocsBuildFile.writeText(
-        mkdocsBuildFile.readLines().reduce { acc: String, b: String ->
-            if (acc.lines().lastOrNull().isNullOrBlank() && b.isBlank()) acc else "$acc\n$b"
-        } + "\n"
-    )
+    val content =
+        mkdocsBuildFile
+            .readLines()
+            .reduce { acc: String, b: String ->
+                if (acc.lines().lastOrNull().isNullOrBlank() && b.isBlank()) acc else "$acc\n$b"
+            }
+            .endWithNewLine()
+
+    mkdocsBuildFile.writeText(content)
 }
+
+private fun String.endWithNewLine(): String =
+    if (lines().lastOrNull().isNullOrBlank()) this else "$this\n"

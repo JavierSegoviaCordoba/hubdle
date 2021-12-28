@@ -4,6 +4,8 @@
 
 ### Added
 
+- `docs/navigation/reports` extensions to `docs` to enable/disable reports
+
 ### Changed
 
 ### Deprecated

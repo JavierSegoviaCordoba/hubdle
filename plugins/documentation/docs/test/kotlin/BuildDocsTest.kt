@@ -10,13 +10,25 @@ import org.gradle.testkit.runner.BuildResult
 class BuildDocsTest {
 
     @Test
-    fun `build docs snapshot 1`() = testSandbox(sandboxPath = "docs/snapshot-1", test = ::testDocs)
-}
+    fun `build docs`() {
+        val docsDir: File = getResource("docs")
+        val sandboxDirs: List<File> =
+            checkNotNull(docsDir.listFiles()).toList().filterNot {
+                it.isFile || (it.isDirectory && it.name.endsWith("-actual"))
+            }
 
-@Suppress("UNUSED_PARAMETER")
-fun testDocs(result: BuildResult, testProjectDir: File) {
-    val expect = File("$testProjectDir/build/.docs/")
-    val actual: File = getResource("docs/snapshot-1-actual/.docs")
+        for (dir in sandboxDirs) {
+            val sandboxPath = dir.toRelativeString(docsDir.parentFile).replace("\\", "/")
+            val actualPath = "$sandboxPath-actual/.docs"
+            testSandbox(
+                sandboxPath = sandboxPath,
+                test = { _: BuildResult, testProjectDir: File ->
+                    val expect = File("$testProjectDir/build/.docs/")
+                    val actual: File = getResource(actualPath)
 
-    expect shouldHaveSameStructureAndContentAs actual
+                    expect shouldHaveSameStructureAndContentAs actual
+                }
+            )
+        }
+    }
 }

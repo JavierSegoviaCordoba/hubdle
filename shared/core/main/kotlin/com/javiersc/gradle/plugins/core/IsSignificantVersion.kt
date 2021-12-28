@@ -1,5 +1,3 @@
-@file:Suppress("PackageDirectoryMismatch")
-
 package com.javiersc.gradle.plugins.core
 
 import com.javiersc.semver.Version

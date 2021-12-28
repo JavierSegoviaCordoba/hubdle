@@ -1,4 +1,4 @@
-package com.javiersc.gradle.plugins.docs
+package com.javiersc.gradle.plugins.projects.version.catalog
 
 import com.javiersc.gradle.plugins.core.test.testSandbox
 import io.kotest.matchers.file.shouldHaveSameContentAs

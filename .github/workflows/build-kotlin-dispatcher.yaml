@@ -12,11 +12,10 @@ jobs:
   build:
     uses: JavierSegoviaCordoba/reusable-workflows/.github/workflows/build-kotlin.yaml@main
     with:
-      gradle-args: '${{ github.event.inputs.gradle-args }}'
       allow-github-actor-bots: false
-      publish-snapshot: true
-      publish-docs: true
+      gradle-args: '${{ github.event.inputs.gradle-args }}'
     secrets:
       OSS_USER: '${{ secrets.OSS_USER }}'
       OSS_TOKEN: '${{ secrets.OSS_TOKEN }}'
       OSS_STAGING_PROFILE_ID: '${{ secrets.OSS_STAGING_PROFILE_ID }}'
+      SONAR_TOKEN: '${{ secrets.SONAR_TOKEN }}'

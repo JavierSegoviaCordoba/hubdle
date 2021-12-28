@@ -27,5 +27,7 @@ gradlePlugin {
 dependencies {
     api(projects.shared.pluginAccessors)
 
+    implementation(gradleKotlinDsl())
+
     implementation(pluginLibs.adarshr.gradleTestLoggerPlugin)
 }

@@ -3,7 +3,7 @@ plugins {
     `javiersc-all-projects`
     `javiersc-changelog`
     `javiersc-code-analysis`
-    `javiersc-code-coverage`
+    id("org.jetbrains.kotlinx.kover") version "0.5.0-RC"// REMOVE THIS AND IT WORKS
     `javiersc-code-formatter`
     `javiersc-docs`
     `kotlinx-binary-compatibility-validator`

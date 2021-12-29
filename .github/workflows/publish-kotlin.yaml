@@ -9,6 +9,7 @@ jobs:
   publish:
     uses: JavierSegoviaCordoba/reusable-workflows/.github/workflows/publish-kotlin.yaml@main
     with:
+      code-coverage-report: false
       publish-gradle-plugin-portal: true
     secrets:
       OSS_USER: '${{ secrets.OSS_USER }}'

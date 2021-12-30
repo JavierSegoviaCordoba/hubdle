@@ -19,6 +19,7 @@
 
 ### Updated
 
+- `org.jetbrains.dokka:dokka-gradle-plugin -> 1.6.10`
 - `com.javiersc.gradle-plugins:all-plugins -> 0.1.0-rc.33`
 
 ## [0.1.0-rc.33] - 2021-12-27

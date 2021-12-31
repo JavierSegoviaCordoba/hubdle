@@ -11,3 +11,15 @@ plugins {
     `javiersc-readme-badges-generator`
     `accessors-generator`
 }
+
+docs {
+    navigation {
+        reports {
+            codeCoverage.set(false)
+        }
+    }
+}
+
+readmeBadges {
+    coverage.set(false)
+}

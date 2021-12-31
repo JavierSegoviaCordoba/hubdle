@@ -3,8 +3,9 @@
 [![Snapshot](https://img.shields.io/nexus/s/com.javiersc.gradle-plugins/versioning?server=https%3A%2F%2Foss.sonatype.org%2F&label=Snapshot)](https://oss.sonatype.org/content/repositories/snapshots/com/javiersc/gradle-plugins/versioning/)
 
 [![Build](https://img.shields.io/github/workflow/status/JavierSegoviaCordoba/gradle-plugins/build-kotlin?label=Build&logo=GitHub)](https://github.com/JavierSegoviaCordoba/gradle-plugins/tree/main)
-[![Quality](https://img.shields.io/sonar/quality_gate/JavierSegoviaCordoba_gradle-plugins?label=Quality&logo=SonarCloud&logoColor=white&server=https%3A%2F%2Fsonarcloud.io)](https://sonarcloud.io/dashboard?id=JavierSegoviaCordoba_gradle-plugins)
-[![Tech debt](https://img.shields.io/sonar/tech_debt/JavierSegoviaCordoba_gradle-plugins?label=Tech%20debt&logo=SonarCloud&logoColor=white&server=https%3A%2F%2Fsonarcloud.io)](https://sonarcloud.io/dashboard?id=JavierSegoviaCordoba_gradle-plugins)
+[![Coverage](https://img.shields.io/sonar/coverage/com.javiersc.gradle-plugins:gradle-plugins?label=Coverage&logo=SonarCloud&logoColor=white&server=https%3A%2F%2Fsonarcloud.io)](https://sonarcloud.io/dashboard?id=com.javiersc.gradle-plugins:gradle-plugins)
+[![Quality](https://img.shields.io/sonar/quality_gate/com.javiersc.gradle-plugins:gradle-plugins?label=Quality&logo=SonarCloud&logoColor=white&server=https%3A%2F%2Fsonarcloud.io)](https://sonarcloud.io/dashboard?id=com.javiersc.gradle-plugins:gradle-plugins)
+[![Tech debt](https://img.shields.io/sonar/tech_debt/com.javiersc.gradle-plugins:gradle-plugins?label=Tech%20debt&logo=SonarCloud&logoColor=white&server=https%3A%2F%2Fsonarcloud.io)](https://sonarcloud.io/dashboard?id=com.javiersc.gradle-plugins:gradle-plugins)
 
 # Gradle Plugins
 

@@ -4,14 +4,22 @@
 
 ### Added
 
-- `readmeBadges` extension to `readme-badges-generator` to enable/disable badges
-- `docs/navigation/reports` extensions to `docs` to enable/disable reports
-
 ### Changed
 
 ### Deprecated
 
 ### Removed
+
+### Fixed
+
+### Updated
+
+## [0.1.0-rc.34] - 2021-12-31
+
+### Added
+
+- `readmeBadges` extension to `readme-badges-generator` to enable/disable badges
+- `docs/navigation/reports` extensions to `docs` to enable/disable reports
 
 ### Fixed
 

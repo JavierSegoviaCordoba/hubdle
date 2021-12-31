@@ -1,0 +1,953 @@
+{"version":"3","listProblem":[{
+  "tool": "Code Inspection",
+  "category": "JVM languages",
+  "type": "Unstable API Usage",
+  "severity": "High",
+  "comment": "'invoke(org.gradle.api.artifacts.Configuration, org.gradle.api.provider.Provider)' is marked unstable with @Incubating",
+  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "plugins/documentation/docs/build.gradle.kts",
+      "language": "kotlin",
+      "line": 42,
+      "offset": 5,
+      "length": 19,
+      "code": {
+        "startLine": 40,
+        "length": 19,
+        "offset": 6,
+        "surroundingCode": "\n\n    testPluginClasspath(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)\n\n    testImplementation(gradleTestKit())"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.plugins.documentation.docs",
+    "inspectionName": "UnstableApiUsage"
+  },
+  "hash": "ea4defa1054970eab9ed5a787675879514fedf64a2e4c72cc7beb0335abf5e22"
+},{
+  "tool": "Code Inspection",
+  "category": "JVM languages",
+  "type": "Unstable API Usage",
+  "severity": "High",
+  "comment": "'getModule()' is declared in unstable interface 'org.gradle.api.artifacts.MinimalExternalModuleDependency' marked with @Incubating",
+  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "plugins/documentation/readme-badges/build.gradle.kts",
+      "language": "kotlin",
+      "line": 40,
+      "offset": 81,
+      "length": 6,
+      "code": {
+        "startLine": 38,
+        "length": 6,
+        "offset": 136,
+        "surroundingCode": "\n    // README Kotlin badge has always the next version\n    testPluginClasspath(\"${pluginLibs.jetbrains.kotlin.kotlinGradlePlugin.get().module}:1.5.32\")\n\n    testImplementation(gradleTestKit())"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.plugins.documentation.readme-badges",
+    "inspectionName": "UnstableApiUsage"
+  },
+  "hash": "de2721fef0d974b3cc7bf7954ce4becd906aa6bb64ab44ec641234c4825a0bd4"
+},{
+  "tool": "Code Inspection",
+  "category": "JVM languages",
+  "type": "Unstable API Usage",
+  "severity": "High",
+  "comment": "'com.android.build.api.dsl.LibraryExtension' is marked unstable with @Incubating",
+  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "plugins/code-enhancers-and-utils/kotlin-config/main/kotlin/com/javiersc/gradle/plugins/kotlin/config/KotlinConfigType.kt",
+      "language": "kotlin",
+      "line": 96,
+      "offset": 43,
+      "length": 16,
+      "code": {
+        "startLine": 94,
+        "length": 16,
+        "offset": 103,
+        "surroundingCode": "            AndroidLibrary(isKmp = true).configure(project)\n\n            project.extensions.findByType(LibraryExtension::class.java)?.apply {\n                sourceSets.all {\n                    it.manifest.srcFile(\"android${it.name.capitalize()}/AndroidManifest.xml\")"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.plugins.code-enhancers-and-utils.kotlin-config.main",
+    "inspectionName": "UnstableApiUsage"
+  },
+  "hash": "fe9fe740cc419c4980298c17a428dd4ee03a2c862cd461b47a62154b0915f619"
+},{
+  "tool": "Code Inspection",
+  "category": "JVM languages",
+  "type": "Unstable API Usage",
+  "severity": "High",
+  "comment": "'getSourceSets()' is marked unstable with @Incubating",
+  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "plugins/code-enhancers-and-utils/kotlin-config/main/kotlin/com/javiersc/gradle/plugins/kotlin/config/KotlinConfigType.kt",
+      "language": "kotlin",
+      "line": 97,
+      "offset": 17,
+      "length": 10,
+      "code": {
+        "startLine": 95,
+        "length": 10,
+        "offset": 98,
+        "surroundingCode": "\n            project.extensions.findByType(LibraryExtension::class.java)?.apply {\n                sourceSets.all {\n                    it.manifest.srcFile(\"android${it.name.capitalize()}/AndroidManifest.xml\")\n                }"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.plugins.code-enhancers-and-utils.kotlin-config.main",
+    "inspectionName": "UnstableApiUsage"
+  },
+  "hash": "d1387f043a2b31a7d6df432ff92451d8fbee1c10b352dff59bc0f74f838932dd"
+},{
+  "tool": "Code Inspection",
+  "category": "JVM languages",
+  "type": "Unstable API Usage",
+  "severity": "High",
+  "comment": "'getManifest()' is declared in unstable 'com.android.build.api.dsl.AndroidSourceSet' marked with @Incubating",
+  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "plugins/code-enhancers-and-utils/kotlin-config/main/kotlin/com/javiersc/gradle/plugins/kotlin/config/KotlinConfigType.kt",
+      "language": "kotlin",
+      "line": 98,
+      "offset": 24,
+      "length": 8,
+      "code": {
+        "startLine": 96,
+        "length": 8,
+        "offset": 137,
+        "surroundingCode": "            project.extensions.findByType(LibraryExtension::class.java)?.apply {\n                sourceSets.all {\n                    it.manifest.srcFile(\"android${it.name.capitalize()}/AndroidManifest.xml\")\n                }\n            }"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.plugins.code-enhancers-and-utils.kotlin-config.main",
+    "inspectionName": "UnstableApiUsage"
+  },
+  "hash": "9f625bb26ec72172491c390e3989f8fa0aea5de49aa1ef8bcc85643eabaec3c4"
+},{
+  "tool": "Code Inspection",
+  "category": "JVM languages",
+  "type": "Unstable API Usage",
+  "severity": "High",
+  "comment": "'srcFile(java.lang.Object)' is declared in unstable 'com.android.build.api.dsl.AndroidSourceFile' marked with @Incubating",
+  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "plugins/code-enhancers-and-utils/kotlin-config/main/kotlin/com/javiersc/gradle/plugins/kotlin/config/KotlinConfigType.kt",
+      "language": "kotlin",
+      "line": 98,
+      "offset": 33,
+      "length": 7,
+      "code": {
+        "startLine": 96,
+        "length": 7,
+        "offset": 146,
+        "surroundingCode": "            project.extensions.findByType(LibraryExtension::class.java)?.apply {\n                sourceSets.all {\n                    it.manifest.srcFile(\"android${it.name.capitalize()}/AndroidManifest.xml\")\n                }\n            }"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.plugins.code-enhancers-and-utils.kotlin-config.main",
+    "inspectionName": "UnstableApiUsage"
+  },
+  "hash": "f9922d75ff27df46e6e216d036277df4c3202227df2fc57dce8a494c23e7bede"
+},{
+  "tool": "Code Inspection",
+  "category": "JVM languages",
+  "type": "Unstable API Usage",
+  "severity": "High",
+  "comment": "'getName()' is declared in unstable 'com.android.build.api.dsl.AndroidSourceSet' marked with @Incubating",
+  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "plugins/code-enhancers-and-utils/kotlin-config/main/kotlin/com/javiersc/gradle/plugins/kotlin/config/KotlinConfigType.kt",
+      "language": "kotlin",
+      "line": 98,
+      "offset": 54,
+      "length": 4,
+      "code": {
+        "startLine": 96,
+        "length": 4,
+        "offset": 167,
+        "surroundingCode": "            project.extensions.findByType(LibraryExtension::class.java)?.apply {\n                sourceSets.all {\n                    it.manifest.srcFile(\"android${it.name.capitalize()}/AndroidManifest.xml\")\n                }\n            }"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.plugins.code-enhancers-and-utils.kotlin-config.main",
+    "inspectionName": "UnstableApiUsage"
+  },
+  "hash": "95808f028734da2c83e98610e28873af992de161c1711eb1c2e1e579724f2257"
+},{
+  "tool": "Code Inspection",
+  "category": "JVM languages",
+  "type": "Unstable API Usage",
+  "severity": "High",
+  "comment": "'com.android.build.api.dsl.CommonExtension' is unstable because its signature references unstable 'com.android.build.api.dsl.BuildFeatures' marked with @Incubating",
+  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "plugins/code-enhancers-and-utils/kotlin-config/main/kotlin/com/javiersc/gradle/plugins/kotlin/config/KotlinConfigType.kt",
+      "language": "kotlin",
+      "line": 174,
+      "offset": 35,
+      "length": 15,
+      "code": {
+        "startLine": 172,
+        "length": 15,
+        "offset": 90,
+        "surroundingCode": "\nprivate fun Project.configureAndroid(isKmp: Boolean) {\n    project.extensions.findByType(CommonExtension::class.java)?.apply {\n        compileSdk = AndroidSdk.compileSdk\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.plugins.code-enhancers-and-utils.kotlin-config.main",
+    "inspectionName": "UnstableApiUsage"
+  },
+  "hash": "96df6169302a0fd280f1a3775e4a73542929f83a8705e42179f5982a1db9578c"
+},{
+  "tool": "Code Inspection",
+  "category": "JVM languages",
+  "type": "Unstable API Usage",
+  "severity": "High",
+  "comment": "'defaultConfig(kotlin.jvm.functions.Function1)' is marked unstable with @Incubating",
+  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "plugins/code-enhancers-and-utils/kotlin-config/main/kotlin/com/javiersc/gradle/plugins/kotlin/config/KotlinConfigType.kt",
+      "language": "kotlin",
+      "line": 177,
+      "offset": 9,
+      "length": 13,
+      "code": {
+        "startLine": 175,
+        "length": 13,
+        "offset": 52,
+        "surroundingCode": "        compileSdk = AndroidSdk.compileSdk\n\n        defaultConfig { minSdk = AndroidSdk.minSdk }\n\n        compileOptions {"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.plugins.code-enhancers-and-utils.kotlin-config.main",
+    "inspectionName": "UnstableApiUsage"
+  },
+  "hash": "026acbd1603e3d2fbcebb0686ae1b0c65bc2b06ec329d94fd42804bb327916aa"
+},{
+  "tool": "Code Inspection",
+  "category": "JVM languages",
+  "type": "Unstable API Usage",
+  "severity": "High",
+  "comment": "'setMinSdk(java.lang.Integer)' is declared in unstable 'com.android.build.api.dsl.BaseFlavor' marked with @Incubating",
+  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "plugins/code-enhancers-and-utils/kotlin-config/main/kotlin/com/javiersc/gradle/plugins/kotlin/config/KotlinConfigType.kt",
+      "language": "kotlin",
+      "line": 177,
+      "offset": 25,
+      "length": 6,
+      "code": {
+        "startLine": 175,
+        "length": 6,
+        "offset": 68,
+        "surroundingCode": "        compileSdk = AndroidSdk.compileSdk\n\n        defaultConfig { minSdk = AndroidSdk.minSdk }\n\n        compileOptions {"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.plugins.code-enhancers-and-utils.kotlin-config.main",
+    "inspectionName": "UnstableApiUsage"
+  },
+  "hash": "0f6619f77686cf1e14fb0b2ac0ed5670050511c79e707d0d44dda974b43d8108"
+},{
+  "tool": "Code Inspection",
+  "category": "JVM languages",
+  "type": "Unstable API Usage",
+  "severity": "High",
+  "comment": "'sourceCompatibility(java.lang.Object)' is marked unstable with @Incubating",
+  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "plugins/code-enhancers-and-utils/kotlin-config/main/kotlin/com/javiersc/gradle/plugins/kotlin/config/KotlinConfigType.kt",
+      "language": "kotlin",
+      "line": 180,
+      "offset": 13,
+      "length": 19,
+      "code": {
+        "startLine": 178,
+        "length": 19,
+        "offset": 38,
+        "surroundingCode": "\n        compileOptions {\n            sourceCompatibility(JavaVersion.VERSION_1_8)\n            targetCompatibility(JavaVersion.VERSION_1_8)\n        }"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.plugins.code-enhancers-and-utils.kotlin-config.main",
+    "inspectionName": "UnstableApiUsage"
+  },
+  "hash": "302484169bf3aebd8e9f6e95e7e4705e448b594f36a067c50207df2b9a33a215"
+},{
+  "tool": "Code Inspection",
+  "category": "JVM languages",
+  "type": "Unstable API Usage",
+  "severity": "High",
+  "comment": "'targetCompatibility(java.lang.Object)' is marked unstable with @Incubating",
+  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "plugins/code-enhancers-and-utils/kotlin-config/main/kotlin/com/javiersc/gradle/plugins/kotlin/config/KotlinConfigType.kt",
+      "language": "kotlin",
+      "line": 181,
+      "offset": 13,
+      "length": 19,
+      "code": {
+        "startLine": 179,
+        "length": 19,
+        "offset": 94,
+        "surroundingCode": "        compileOptions {\n            sourceCompatibility(JavaVersion.VERSION_1_8)\n            targetCompatibility(JavaVersion.VERSION_1_8)\n        }\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.plugins.code-enhancers-and-utils.kotlin-config.main",
+    "inspectionName": "UnstableApiUsage"
+  },
+  "hash": "886ce0f9764e01a73ba36ff3e673e838fa7fc71ff8400e66e6ab68422d882483"
+},{
+  "tool": "Code Inspection",
+  "category": "JVM languages",
+  "type": "Unstable API Usage",
+  "severity": "High",
+  "comment": "'getSourceSets()' is marked unstable with @Incubating",
+  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "plugins/code-enhancers-and-utils/kotlin-config/main/kotlin/com/javiersc/gradle/plugins/kotlin/config/KotlinConfigType.kt",
+      "language": "kotlin",
+      "line": 185,
+      "offset": 13,
+      "length": 10,
+      "code": {
+        "startLine": 183,
+        "length": 10,
+        "offset": 40,
+        "surroundingCode": "\n        if (isKmp.not()) {\n            sourceSets.all {\n                it.assets.setSrcDirs(listOf(\"${it.name}/assets\"))\n                it.java.setSrcDirs(listOf(\"${it.name}/java\", \"${it.name}/kotlin\"))"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.plugins.code-enhancers-and-utils.kotlin-config.main",
+    "inspectionName": "UnstableApiUsage"
+  },
+  "hash": "5ae61dbcca0485e984d9240f93586b9bde98b635f5c762d40b6d3cef5b31f594"
+},{
+  "tool": "Code Inspection",
+  "category": "JVM languages",
+  "type": "Unstable API Usage",
+  "severity": "High",
+  "comment": "'getAssets()' is declared in unstable 'com.android.build.api.dsl.AndroidSourceSet' marked with @Incubating",
+  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "plugins/code-enhancers-and-utils/kotlin-config/main/kotlin/com/javiersc/gradle/plugins/kotlin/config/KotlinConfigType.kt",
+      "language": "kotlin",
+      "line": 186,
+      "offset": 20,
+      "length": 6,
+      "code": {
+        "startLine": 184,
+        "length": 6,
+        "offset": 75,
+        "surroundingCode": "        if (isKmp.not()) {\n            sourceSets.all {\n                it.assets.setSrcDirs(listOf(\"${it.name}/assets\"))\n                it.java.setSrcDirs(listOf(\"${it.name}/java\", \"${it.name}/kotlin\"))\n                it.manifest.srcFile(\"${it.name}/AndroidManifest.xml\")"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.plugins.code-enhancers-and-utils.kotlin-config.main",
+    "inspectionName": "UnstableApiUsage"
+  },
+  "hash": "c1e21b28fabfcbe1eb45952a89cbcf1989974dd2990ebc02f35ec2eae8fdbd8c"
+},{
+  "tool": "Code Inspection",
+  "category": "JVM languages",
+  "type": "Unstable API Usage",
+  "severity": "High",
+  "comment": "'setSrcDirs(java.lang.Iterable)' is declared in unstable 'com.android.build.api.dsl.AndroidSourceDirectorySet' marked with @Incubating",
+  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "plugins/code-enhancers-and-utils/kotlin-config/main/kotlin/com/javiersc/gradle/plugins/kotlin/config/KotlinConfigType.kt",
+      "language": "kotlin",
+      "line": 186,
+      "offset": 27,
+      "length": 10,
+      "code": {
+        "startLine": 184,
+        "length": 10,
+        "offset": 82,
+        "surroundingCode": "        if (isKmp.not()) {\n            sourceSets.all {\n                it.assets.setSrcDirs(listOf(\"${it.name}/assets\"))\n                it.java.setSrcDirs(listOf(\"${it.name}/java\", \"${it.name}/kotlin\"))\n                it.manifest.srcFile(\"${it.name}/AndroidManifest.xml\")"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.plugins.code-enhancers-and-utils.kotlin-config.main",
+    "inspectionName": "UnstableApiUsage"
+  },
+  "hash": "5390dd8d8839a5a0d0fcd60e954911b2b8822c701ac0e9ee22a901c346e8cdef"
+},{
+  "tool": "Code Inspection",
+  "category": "JVM languages",
+  "type": "Unstable API Usage",
+  "severity": "High",
+  "comment": "'getName()' is declared in unstable 'com.android.build.api.dsl.AndroidSourceSet' marked with @Incubating",
+  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "plugins/code-enhancers-and-utils/kotlin-config/main/kotlin/com/javiersc/gradle/plugins/kotlin/config/KotlinConfigType.kt",
+      "language": "kotlin",
+      "line": 186,
+      "offset": 51,
+      "length": 4,
+      "code": {
+        "startLine": 184,
+        "length": 4,
+        "offset": 106,
+        "surroundingCode": "        if (isKmp.not()) {\n            sourceSets.all {\n                it.assets.setSrcDirs(listOf(\"${it.name}/assets\"))\n                it.java.setSrcDirs(listOf(\"${it.name}/java\", \"${it.name}/kotlin\"))\n                it.manifest.srcFile(\"${it.name}/AndroidManifest.xml\")"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.plugins.code-enhancers-and-utils.kotlin-config.main",
+    "inspectionName": "UnstableApiUsage"
+  },
+  "hash": "7d898419de626cfe2bbbc7a82b5eee9620df64ca72d0ad4b31985494214a08a8"
+},{
+  "tool": "Code Inspection",
+  "category": "JVM languages",
+  "type": "Unstable API Usage",
+  "severity": "High",
+  "comment": "'getJava()' is declared in unstable 'com.android.build.api.dsl.AndroidSourceSet' marked with @Incubating",
+  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "plugins/code-enhancers-and-utils/kotlin-config/main/kotlin/com/javiersc/gradle/plugins/kotlin/config/KotlinConfigType.kt",
+      "language": "kotlin",
+      "line": 187,
+      "offset": 20,
+      "length": 4,
+      "code": {
+        "startLine": 185,
+        "length": 4,
+        "offset": 114,
+        "surroundingCode": "            sourceSets.all {\n                it.assets.setSrcDirs(listOf(\"${it.name}/assets\"))\n                it.java.setSrcDirs(listOf(\"${it.name}/java\", \"${it.name}/kotlin\"))\n                it.manifest.srcFile(\"${it.name}/AndroidManifest.xml\")\n                it.res.setSrcDirs(listOf(\"${it.name}/res\"))"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.plugins.code-enhancers-and-utils.kotlin-config.main",
+    "inspectionName": "UnstableApiUsage"
+  },
+  "hash": "7e1287d26ec533b66b03b3c6fab1d3a0399cb3b3a705e4656273bc80be098641"
+},{
+  "tool": "Code Inspection",
+  "category": "JVM languages",
+  "type": "Unstable API Usage",
+  "severity": "High",
+  "comment": "'setSrcDirs(java.lang.Iterable)' is declared in unstable 'com.android.build.api.dsl.AndroidSourceDirectorySet' marked with @Incubating",
+  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "plugins/code-enhancers-and-utils/kotlin-config/main/kotlin/com/javiersc/gradle/plugins/kotlin/config/KotlinConfigType.kt",
+      "language": "kotlin",
+      "line": 187,
+      "offset": 25,
+      "length": 10,
+      "code": {
+        "startLine": 185,
+        "length": 10,
+        "offset": 119,
+        "surroundingCode": "            sourceSets.all {\n                it.assets.setSrcDirs(listOf(\"${it.name}/assets\"))\n                it.java.setSrcDirs(listOf(\"${it.name}/java\", \"${it.name}/kotlin\"))\n                it.manifest.srcFile(\"${it.name}/AndroidManifest.xml\")\n                it.res.setSrcDirs(listOf(\"${it.name}/res\"))"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.plugins.code-enhancers-and-utils.kotlin-config.main",
+    "inspectionName": "UnstableApiUsage"
+  },
+  "hash": "1cca51de2a62c5b2feaeaa94f60f9854dda6cf23f570052eb194007b2a00b3d9"
+},{
+  "tool": "Code Inspection",
+  "category": "JVM languages",
+  "type": "Unstable API Usage",
+  "severity": "High",
+  "comment": "'getName()' is declared in unstable 'com.android.build.api.dsl.AndroidSourceSet' marked with @Incubating",
+  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "plugins/code-enhancers-and-utils/kotlin-config/main/kotlin/com/javiersc/gradle/plugins/kotlin/config/KotlinConfigType.kt",
+      "language": "kotlin",
+      "line": 187,
+      "offset": 49,
+      "length": 4,
+      "code": {
+        "startLine": 185,
+        "length": 4,
+        "offset": 143,
+        "surroundingCode": "            sourceSets.all {\n                it.assets.setSrcDirs(listOf(\"${it.name}/assets\"))\n                it.java.setSrcDirs(listOf(\"${it.name}/java\", \"${it.name}/kotlin\"))\n                it.manifest.srcFile(\"${it.name}/AndroidManifest.xml\")\n                it.res.setSrcDirs(listOf(\"${it.name}/res\"))"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.plugins.code-enhancers-and-utils.kotlin-config.main",
+    "inspectionName": "UnstableApiUsage"
+  },
+  "hash": "f156f369ddaccf41231338b28ca663a15bc9137aaade954bb3d3ecbd24829b42"
+},{
+  "tool": "Code Inspection",
+  "category": "JVM languages",
+  "type": "Unstable API Usage",
+  "severity": "High",
+  "comment": "'getName()' is declared in unstable 'com.android.build.api.dsl.AndroidSourceSet' marked with @Incubating",
+  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "plugins/code-enhancers-and-utils/kotlin-config/main/kotlin/com/javiersc/gradle/plugins/kotlin/config/KotlinConfigType.kt",
+      "language": "kotlin",
+      "line": 187,
+      "offset": 68,
+      "length": 4,
+      "code": {
+        "startLine": 185,
+        "length": 4,
+        "offset": 162,
+        "surroundingCode": "            sourceSets.all {\n                it.assets.setSrcDirs(listOf(\"${it.name}/assets\"))\n                it.java.setSrcDirs(listOf(\"${it.name}/java\", \"${it.name}/kotlin\"))\n                it.manifest.srcFile(\"${it.name}/AndroidManifest.xml\")\n                it.res.setSrcDirs(listOf(\"${it.name}/res\"))"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.plugins.code-enhancers-and-utils.kotlin-config.main",
+    "inspectionName": "UnstableApiUsage"
+  },
+  "hash": "df8eb34bc046d74ff4807d8128d49f274194a581912844f5969732ad92fa3698"
+},{
+  "tool": "Code Inspection",
+  "category": "JVM languages",
+  "type": "Unstable API Usage",
+  "severity": "High",
+  "comment": "'getManifest()' is declared in unstable 'com.android.build.api.dsl.AndroidSourceSet' marked with @Incubating",
+  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "plugins/code-enhancers-and-utils/kotlin-config/main/kotlin/com/javiersc/gradle/plugins/kotlin/config/KotlinConfigType.kt",
+      "language": "kotlin",
+      "line": 188,
+      "offset": 20,
+      "length": 8,
+      "code": {
+        "startLine": 186,
+        "length": 8,
+        "offset": 168,
+        "surroundingCode": "                it.assets.setSrcDirs(listOf(\"${it.name}/assets\"))\n                it.java.setSrcDirs(listOf(\"${it.name}/java\", \"${it.name}/kotlin\"))\n                it.manifest.srcFile(\"${it.name}/AndroidManifest.xml\")\n                it.res.setSrcDirs(listOf(\"${it.name}/res\"))\n                it.resources.setSrcDirs(listOf(\"${it.name}/resources\"))"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.plugins.code-enhancers-and-utils.kotlin-config.main",
+    "inspectionName": "UnstableApiUsage"
+  },
+  "hash": "c07c00fb105ccee747ab90de8df82571a86fed2f1bdaf94a8fcd64b42743886a"
+},{
+  "tool": "Code Inspection",
+  "category": "JVM languages",
+  "type": "Unstable API Usage",
+  "severity": "High",
+  "comment": "'srcFile(java.lang.Object)' is declared in unstable 'com.android.build.api.dsl.AndroidSourceFile' marked with @Incubating",
+  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "plugins/code-enhancers-and-utils/kotlin-config/main/kotlin/com/javiersc/gradle/plugins/kotlin/config/KotlinConfigType.kt",
+      "language": "kotlin",
+      "line": 188,
+      "offset": 29,
+      "length": 7,
+      "code": {
+        "startLine": 186,
+        "length": 7,
+        "offset": 177,
+        "surroundingCode": "                it.assets.setSrcDirs(listOf(\"${it.name}/assets\"))\n                it.java.setSrcDirs(listOf(\"${it.name}/java\", \"${it.name}/kotlin\"))\n                it.manifest.srcFile(\"${it.name}/AndroidManifest.xml\")\n                it.res.setSrcDirs(listOf(\"${it.name}/res\"))\n                it.resources.setSrcDirs(listOf(\"${it.name}/resources\"))"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.plugins.code-enhancers-and-utils.kotlin-config.main",
+    "inspectionName": "UnstableApiUsage"
+  },
+  "hash": "335226236d0388bbbf8ed02e36a62cafca49424dbb09b23b276a278f18fc7a06"
+},{
+  "tool": "Code Inspection",
+  "category": "JVM languages",
+  "type": "Unstable API Usage",
+  "severity": "High",
+  "comment": "'getName()' is declared in unstable 'com.android.build.api.dsl.AndroidSourceSet' marked with @Incubating",
+  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "plugins/code-enhancers-and-utils/kotlin-config/main/kotlin/com/javiersc/gradle/plugins/kotlin/config/KotlinConfigType.kt",
+      "language": "kotlin",
+      "line": 188,
+      "offset": 43,
+      "length": 4,
+      "code": {
+        "startLine": 186,
+        "length": 4,
+        "offset": 191,
+        "surroundingCode": "                it.assets.setSrcDirs(listOf(\"${it.name}/assets\"))\n                it.java.setSrcDirs(listOf(\"${it.name}/java\", \"${it.name}/kotlin\"))\n                it.manifest.srcFile(\"${it.name}/AndroidManifest.xml\")\n                it.res.setSrcDirs(listOf(\"${it.name}/res\"))\n                it.resources.setSrcDirs(listOf(\"${it.name}/resources\"))"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.plugins.code-enhancers-and-utils.kotlin-config.main",
+    "inspectionName": "UnstableApiUsage"
+  },
+  "hash": "a57f9bd606c31101401065a7f0fccb69814197619ce12d539ed12b7ea6113d45"
+},{
+  "tool": "Code Inspection",
+  "category": "JVM languages",
+  "type": "Unstable API Usage",
+  "severity": "High",
+  "comment": "'getRes()' is declared in unstable 'com.android.build.api.dsl.AndroidSourceSet' marked with @Incubating",
+  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "plugins/code-enhancers-and-utils/kotlin-config/main/kotlin/com/javiersc/gradle/plugins/kotlin/config/KotlinConfigType.kt",
+      "language": "kotlin",
+      "line": 189,
+      "offset": 20,
+      "length": 3,
+      "code": {
+        "startLine": 187,
+        "length": 3,
+        "offset": 172,
+        "surroundingCode": "                it.java.setSrcDirs(listOf(\"${it.name}/java\", \"${it.name}/kotlin\"))\n                it.manifest.srcFile(\"${it.name}/AndroidManifest.xml\")\n                it.res.setSrcDirs(listOf(\"${it.name}/res\"))\n                it.resources.setSrcDirs(listOf(\"${it.name}/resources\"))\n            }"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.plugins.code-enhancers-and-utils.kotlin-config.main",
+    "inspectionName": "UnstableApiUsage"
+  },
+  "hash": "a8b337bd1abe6f7d93150e31aacb0550218cdad31608e4304c40a6ce233634b2"
+},{
+  "tool": "Code Inspection",
+  "category": "JVM languages",
+  "type": "Unstable API Usage",
+  "severity": "High",
+  "comment": "'setSrcDirs(java.lang.Iterable)' is declared in unstable 'com.android.build.api.dsl.AndroidSourceDirectorySet' marked with @Incubating",
+  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "plugins/code-enhancers-and-utils/kotlin-config/main/kotlin/com/javiersc/gradle/plugins/kotlin/config/KotlinConfigType.kt",
+      "language": "kotlin",
+      "line": 189,
+      "offset": 24,
+      "length": 10,
+      "code": {
+        "startLine": 187,
+        "length": 10,
+        "offset": 176,
+        "surroundingCode": "                it.java.setSrcDirs(listOf(\"${it.name}/java\", \"${it.name}/kotlin\"))\n                it.manifest.srcFile(\"${it.name}/AndroidManifest.xml\")\n                it.res.setSrcDirs(listOf(\"${it.name}/res\"))\n                it.resources.setSrcDirs(listOf(\"${it.name}/resources\"))\n            }"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.plugins.code-enhancers-and-utils.kotlin-config.main",
+    "inspectionName": "UnstableApiUsage"
+  },
+  "hash": "c80e9385ecb878087bf26e126ce8e1e67b22bb3bccce4f0e86483ac709cf894f"
+},{
+  "tool": "Code Inspection",
+  "category": "JVM languages",
+  "type": "Unstable API Usage",
+  "severity": "High",
+  "comment": "'getName()' is declared in unstable 'com.android.build.api.dsl.AndroidSourceSet' marked with @Incubating",
+  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "plugins/code-enhancers-and-utils/kotlin-config/main/kotlin/com/javiersc/gradle/plugins/kotlin/config/KotlinConfigType.kt",
+      "language": "kotlin",
+      "line": 189,
+      "offset": 48,
+      "length": 4,
+      "code": {
+        "startLine": 187,
+        "length": 4,
+        "offset": 200,
+        "surroundingCode": "                it.java.setSrcDirs(listOf(\"${it.name}/java\", \"${it.name}/kotlin\"))\n                it.manifest.srcFile(\"${it.name}/AndroidManifest.xml\")\n                it.res.setSrcDirs(listOf(\"${it.name}/res\"))\n                it.resources.setSrcDirs(listOf(\"${it.name}/resources\"))\n            }"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.plugins.code-enhancers-and-utils.kotlin-config.main",
+    "inspectionName": "UnstableApiUsage"
+  },
+  "hash": "c123c54c7e37e6eac87389b07f7214235c4c908324890f0f41d5179d1766489a"
+},{
+  "tool": "Code Inspection",
+  "category": "JVM languages",
+  "type": "Unstable API Usage",
+  "severity": "High",
+  "comment": "'getResources()' is declared in unstable 'com.android.build.api.dsl.AndroidSourceSet' marked with @Incubating",
+  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "plugins/code-enhancers-and-utils/kotlin-config/main/kotlin/com/javiersc/gradle/plugins/kotlin/config/KotlinConfigType.kt",
+      "language": "kotlin",
+      "line": 190,
+      "offset": 20,
+      "length": 9,
+      "code": {
+        "startLine": 188,
+        "length": 9,
+        "offset": 149,
+        "surroundingCode": "                it.manifest.srcFile(\"${it.name}/AndroidManifest.xml\")\n                it.res.setSrcDirs(listOf(\"${it.name}/res\"))\n                it.resources.setSrcDirs(listOf(\"${it.name}/resources\"))\n            }\n        }"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.plugins.code-enhancers-and-utils.kotlin-config.main",
+    "inspectionName": "UnstableApiUsage"
+  },
+  "hash": "65dd0260fec5b1dda6db215d2a80f8d1d486055d5cc17071b66a420c82ecece3"
+},{
+  "tool": "Code Inspection",
+  "category": "JVM languages",
+  "type": "Unstable API Usage",
+  "severity": "High",
+  "comment": "'setSrcDirs(java.lang.Iterable)' is declared in unstable 'com.android.build.api.dsl.AndroidSourceDirectorySet' marked with @Incubating",
+  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "plugins/code-enhancers-and-utils/kotlin-config/main/kotlin/com/javiersc/gradle/plugins/kotlin/config/KotlinConfigType.kt",
+      "language": "kotlin",
+      "line": 190,
+      "offset": 30,
+      "length": 10,
+      "code": {
+        "startLine": 188,
+        "length": 10,
+        "offset": 159,
+        "surroundingCode": "                it.manifest.srcFile(\"${it.name}/AndroidManifest.xml\")\n                it.res.setSrcDirs(listOf(\"${it.name}/res\"))\n                it.resources.setSrcDirs(listOf(\"${it.name}/resources\"))\n            }\n        }"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.plugins.code-enhancers-and-utils.kotlin-config.main",
+    "inspectionName": "UnstableApiUsage"
+  },
+  "hash": "942821cb49c33780093e2855655de3804ac8047bf58f817dec5dfd9138dd0c6c"
+},{
+  "tool": "Code Inspection",
+  "category": "JVM languages",
+  "type": "Unstable API Usage",
+  "severity": "High",
+  "comment": "'getName()' is declared in unstable 'com.android.build.api.dsl.AndroidSourceSet' marked with @Incubating",
+  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "plugins/code-enhancers-and-utils/kotlin-config/main/kotlin/com/javiersc/gradle/plugins/kotlin/config/KotlinConfigType.kt",
+      "language": "kotlin",
+      "line": 190,
+      "offset": 54,
+      "length": 4,
+      "code": {
+        "startLine": 188,
+        "length": 4,
+        "offset": 183,
+        "surroundingCode": "                it.manifest.srcFile(\"${it.name}/AndroidManifest.xml\")\n                it.res.setSrcDirs(listOf(\"${it.name}/res\"))\n                it.resources.setSrcDirs(listOf(\"${it.name}/resources\"))\n            }\n        }"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.plugins.code-enhancers-and-utils.kotlin-config.main",
+    "inspectionName": "UnstableApiUsage"
+  },
+  "hash": "4ce718ed40053d08de2c2dd23de079ffecf6c8220aa311c46ee6c6d48883af0c"
+},{
+  "tool": "Code Inspection",
+  "category": "JVM languages",
+  "type": "Unstable API Usage",
+  "severity": "High",
+  "comment": "'invoke(org.gradle.api.artifacts.Configuration, org.gradle.api.provider.Provider)' is marked unstable with @Incubating",
+  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "plugins/code-enhancers-and-utils/code-formatter/build.gradle.kts",
+      "language": "kotlin",
+      "line": 48,
+      "offset": 5,
+      "length": 19,
+      "code": {
+        "startLine": 46,
+        "length": 19,
+        "offset": 69,
+        "surroundingCode": "    compileOnly(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)\n\n    testPluginClasspath(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)\n\n    testImplementation(gradleTestKit())"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.plugins.code-enhancers-and-utils.code-formatter",
+    "inspectionName": "UnstableApiUsage"
+  },
+  "hash": "3c331451259eb4d3889d1a229116564883b611bf960aec314a0058b2730328bd"
+},{
+  "tool": "Code Inspection",
+  "category": "JVM languages",
+  "type": "Unstable API Usage",
+  "severity": "High",
+  "comment": "'repositories(org.gradle.api.Action)' is declared in unstable interface 'org.gradle.api.initialization.resolve.DependencyResolutionManagement' marked with @Incubating",
+  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "settings.gradle.kts",
+      "language": "kotlin",
+      "line": 12,
+      "offset": 5,
+      "length": 12,
+      "code": {
+        "startLine": 10,
+        "length": 12,
+        "offset": 38,
+        "surroundingCode": "\ndependencyResolutionManagement {\n    repositories {\n        mavenCentral()\n        google()"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins",
+    "inspectionName": "UnstableApiUsage"
+  },
+  "hash": "b40dc3c671f0ebf1e5ba80bfe7fa80bf968e3387f64ea0a6959949e64b924e78"
+},{
+  "tool": "Code Inspection",
+  "category": "JVM languages",
+  "type": "Unstable API Usage",
+  "severity": "High",
+  "comment": "'versionCatalogs(org.gradle.api.Action)' is declared in unstable interface 'org.gradle.api.initialization.resolve.DependencyResolutionManagement' marked with @Incubating",
+  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "settings.gradle.kts",
+      "language": "kotlin",
+      "line": 18,
+      "offset": 5,
+      "length": 15,
+      "code": {
+        "startLine": 16,
+        "length": 15,
+        "offset": 11,
+        "surroundingCode": "    }\n\n    versionCatalogs {\n        create(\"libs\") { from(files(\"gradle/libs.toml\")) }\n        create(\"pluginLibs\") { from(files(\"gradle/pluginLibs.toml\")) }"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins",
+    "inspectionName": "UnstableApiUsage"
+  },
+  "hash": "ab44168c4d8dcb1f4d625cb7339423f1d130de4807cea601f6525d33f5eb429d"
+},{
+  "tool": "Code Inspection",
+  "category": "JVM languages",
+  "type": "Unstable API Usage",
+  "severity": "High",
+  "comment": "'from(java.lang.Object)' is declared in unstable interface 'org.gradle.api.initialization.dsl.VersionCatalogBuilder' marked with @Incubating",
+  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "settings.gradle.kts",
+      "language": "kotlin",
+      "line": 19,
+      "offset": 26,
+      "length": 4,
+      "code": {
+        "startLine": 17,
+        "length": 4,
+        "offset": 48,
+        "surroundingCode": "\n    versionCatalogs {\n        create(\"libs\") { from(files(\"gradle/libs.toml\")) }\n        create(\"pluginLibs\") { from(files(\"gradle/pluginLibs.toml\")) }\n    }"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins",
+    "inspectionName": "UnstableApiUsage"
+  },
+  "hash": "9ca82f9e499c6af6f832745b43b751261e8ef027ad64313ec11a0757cdd984ab"
+},{
+  "tool": "Code Inspection",
+  "category": "JVM languages",
+  "type": "Unstable API Usage",
+  "severity": "High",
+  "comment": "'from(java.lang.Object)' is declared in unstable interface 'org.gradle.api.initialization.dsl.VersionCatalogBuilder' marked with @Incubating",
+  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "settings.gradle.kts",
+      "language": "kotlin",
+      "line": 20,
+      "offset": 32,
+      "length": 4,
+      "code": {
+        "startLine": 18,
+        "length": 4,
+        "offset": 112,
+        "surroundingCode": "    versionCatalogs {\n        create(\"libs\") { from(files(\"gradle/libs.toml\")) }\n        create(\"pluginLibs\") { from(files(\"gradle/pluginLibs.toml\")) }\n    }\n}"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins",
+    "inspectionName": "UnstableApiUsage"
+  },
+  "hash": "64ea601534c345c53fe0bdd380cc324e8a95177d83526769e577ede93c25b5e1"
+}]}

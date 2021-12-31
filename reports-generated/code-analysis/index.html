@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>detekt report</title>
+    <style>
+h2 {
+  background-color: #666666;
+  padding: 0.2em;
+  color: #ffffff;
+}
+h3 {
+  background-color:#f8dfdf;
+  padding:0.5em;
+}
+.rule {
+  background-color: #dddddd;
+  padding: 0.3em;
+  font-weight: bold;
+}
+.description {
+  color:#000000;
+  padding:0.3em;
+}
+.location {
+  color: #690505;
+  font-family: monospace;
+  display: block;
+}
+.message {
+  font-size: 0.8em;
+  color: #444444;
+  display: block;
+  margin-top: 1pt;
+}
+.rule-container {
+  border: 0.1em dashed #dddddd;
+  padding: 0.1em;
+  line-height: 1.5em;
+  margin-bottom: 8px;
+  margin-top: 8px;
+}
+pre {
+  border: 1px solid #e0e0e0;
+  overflow: scroll;
+}
+.lineno {
+  color: #999999;
+  background-color: #f0f0f0;
+}
+.error {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AwCFR4T/3uLMgAAADxJREFUCNdNyLERQEAABMCjL4lQwIzcjErpguAL+C9AvgKJDbeD/PRpLdm35Hm+MU+cB+tCKaJW4L4YBy+CAiLJrFs9mgAAAABJRU5ErkJggg==) bottom repeat-x;
+}
+.exception {
+  color: #b60808;
+  display: inline-block;
+  background-color: #ecdada;
+  border-color: #b60808;
+  border-radius: 10px;
+  border: solid 2px;
+  padding-left: 16px;
+  padding-right: 16px;
+  margin-bottom: 16px;
+}
+</style>
+</head>
+<body>
+
+<h1>detekt report</h1>
+
+<h2>Metrics</h2>
+
+<div>
+  <ul>
+    <li>341 number of properties</li>
+    <li>205 number of functions</li>
+    <li>67 number of classes</li>
+    <li>27 number of packages</li>
+    <li>101 number of kt files</li>
+  </ul>
+</div>
+
+
+<h2>Complexity Report</h2>
+
+<div>
+  <ul>
+    <li>4,730 lines of code (loc)</li>
+    <li>3,830 source lines of code (sloc)</li>
+    <li>2,788 logical lines of code (lloc)</li>
+    <li>21 comment lines of code (cloc)</li>
+    <li>457 cyclomatic complexity (mcc)</li>
+    <li>238 cognitive complexity</li>
+    <li>23 number of total code smells</li>
+    <li>0% comment source ratio</li>
+    <li>163 mcc per 1,000 lloc</li>
+    <li>8 code smells per 1,000 lloc</li>
+  </ul>
+</div>
+
+
+<h2>Findings</h2>
+<div>Total: 23
+  <h3>complexity: 3</h3>
+  <details id="ComplexCondition" open="open">
+    <summary class="rule-container"><span class="rule">ComplexCondition: 1 </span><span class="description">Complex conditions should be simplified and extracted into well-named methods if necessary.</span></summary>
+    <ul>
+      <li><span class="location">plugins/documentation/docs/main/kotlin/com/javiersc/gradle/plugins/docs/DocsPlugin.kt:385:21</span><span class="message">This condition is too complex (4). Defined complexity threshold for conditions is set to '4'</span>
+        <pre><code><span class="lineno"> 382 </span>
+<span class="lineno"> 383 </span>    val navReports: String =
+<span class="lineno"> 384 </span>        buildList {
+<span class="lineno"> 385 </span>                if (<span class="error">allTests &amp;&amp; codeAnalysis || codeCoverage || codeQuality</span>) add(&quot;  - Reports:&quot;)
+<span class="lineno"> 386 </span>                if (allTests) createReportSection(&quot;All tests&quot;, &quot;all-tests&quot;)
+<span class="lineno"> 387 </span>                if (codeAnalysis) createReportSection(&quot;Code analysis&quot;, &quot;code-analysis&quot;)
+<span class="lineno"> 388 </span>                if (codeCoverage) createReportSection(&quot;Code coverage&quot;, &quot;code-coverage&quot;)
+</code></pre>
+      </li>
+    </ul>
+  </details>
+  <details id="LongMethod" open="open">
+    <summary class="rule-container"><span class="rule">LongMethod: 2 </span><span class="description">One method should have one responsibility. Long methods tend to handle many things at once. Prefer smaller methods to make them easier to understand.</span></summary>
+    <ul>
+      <li><span class="location">plugins/documentation/docs/main/kotlin/com/javiersc/gradle/plugins/docs/DocsPlugin.kt:80:21</span><span class="message">The function buildDotDocsFolder is too long (109). The maximum length is 60.</span>
+        <pre><code><span class="lineno">  77 </span>            &lt;/html&gt;
+<span class="lineno">  78 </span>        &quot;&quot;&quot;.trimIndent()
+<span class="lineno">  79 </span>
+<span class="lineno">  80 </span>private fun Project.<span class="error">buildDotDocsFolder</span>() {
+<span class="lineno">  81 </span>    val dotDocsFile = file(&quot;$rootDir/.docs&quot;)
+<span class="lineno">  82 </span>    if (dotDocsFile.exists().not()) {
+<span class="lineno">  83 </span>        file(&quot;$dotDocsFile/mkdocs.yml&quot;).apply {
+</code></pre>
+      </li>
+      <li><span class="location">plugins/documentation/docs/main/kotlin/com/javiersc/gradle/plugins/docs/DocsPlugin.kt:282:21</span><span class="message">The function buildProjectsInDocs is too long (68). The maximum length is 60.</span>
+        <pre><code><span class="lineno"> 279 </span>}
+<span class="lineno"> 280 </span>
+<span class="lineno"> 281 </span>@OptIn(ExperimentalStdlibApi::class)
+<span class="lineno"> 282 </span>private fun Project.<span class="error">buildProjectsInDocs</span>() {
+<span class="lineno"> 283 </span>    val projectsPath = &quot;$rootDir/build/.docs/docs/projects&quot;
+<span class="lineno"> 284 </span>
+<span class="lineno"> 285 </span>    val projectsInfo: List&lt;ProjectInfo&gt; =
+</code></pre>
+      </li>
+    </ul>
+  </details>
+  <h3>empty-blocks: 1</h3>
+  <details id="EmptyClassBlock" open="open">
+    <summary class="rule-container"><span class="rule">EmptyClassBlock: 1 </span><span class="description">Empty block of code detected. As they serve no purpose they should be removed.</span></summary>
+    <ul>
+      <li><span class="location">plugins/documentation/changelog/main/kotlin/com/javiersc/gradle/plugins/changelog/internal/Changelog.kt:23:22</span><span class="message">The class or object Companion is empty.</span>
+        <pre><code><span class="lineno">  20 </span>            .dropLastWhile(String::isBlank)
+<span class="lineno">  21 </span>            .joinToString(&quot;\n&quot;) + &quot;\n&quot;
+<span class="lineno">  22 </span>
+<span class="lineno">  23 </span>    companion object <span class="error">{}</span>
+<span class="lineno">  24 </span>
+<span class="lineno">  25 </span>    internal class Version(val value: String, vararg val groups: Group) {
+<span class="lineno">  26 </span>
+</code></pre>
+      </li>
+    </ul>
+  </details>
+  <h3>naming: 1</h3>
+  <details id="TopLevelPropertyNaming" open="open">
+    <summary class="rule-container"><span class="rule">TopLevelPropertyNaming: 1 </span><span class="description">Top level property names should follow the naming convention set in the projects configuration.</span></summary>
+    <ul>
+      <li><span class="location">plugins/documentation/readme-badges/main/kotlin/com/javiersc/gradle/plugins/readme/badges/generator/ReadmeBadgesGeneratorPlugin.kt:52:19</span><span class="message">Top level constant names should match the pattern: [A-Z][_A-Z0-9]*</span>
+        <pre><code><span class="lineno">  49 </span>    TechDebt(&quot;Tech debt&quot;, &quot;tech_debt&quot;),
+<span class="lineno">  50 </span>}
+<span class="lineno">  51 </span>
+<span class="lineno">  52 </span>private const val <span class="error">shieldsIoUrl</span> = &quot;https://img.shields.io&quot;
+<span class="lineno">  53 </span>
+<span class="lineno">  54 </span>private val Project.projectGroup: String
+<span class="lineno">  55 </span>    get() =
+</code></pre>
+      </li>
+    </ul>
+  </details>
+  <h3>performance: 7</h3>
+  <details id="SpreadOperator" open="open">
+    <summary class="rule-container"><span class="rule">SpreadOperator: 7 </span><span class="description">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span></summary>
+    <ul>
+      <li><span class="location">plugins/documentation/changelog/main/kotlin/com/javiersc/gradle/plugins/changelog/internal/Changelog.kt:72:21</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
+        <pre><code><span class="lineno">  69 </span>    val header = lines.first { it.startsWith(&quot;# &quot;) }
+<span class="lineno">  70 </span>    val versions: Array&lt;Version&gt; = buildVersions(lines)
+<span class="lineno">  71 </span>
+<span class="lineno">  72 </span>    return Changelog<span class="error">(header, *versions)</span>
+<span class="lineno">  73 </span>}
+<span class="lineno">  74 </span>
+<span class="lineno">  75 </span>@OptIn(ExperimentalStdlibApi::class)
+</code></pre>
+      </li>
+      <li><span class="location">plugins/documentation/changelog/main/kotlin/com/javiersc/gradle/plugins/changelog/internal/Changelog.kt:92:61</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
+        <pre><code><span class="lineno">  89 </span>                        }
+<span class="lineno">  90 </span>                    }
+<span class="lineno">  91 </span>                }
+<span class="lineno">  92 </span>            versions.forEach { (value, items) -&gt; add(Version<span class="error">(value, *buildGroups(items))</span>) }
+<span class="lineno">  93 </span>        }
+<span class="lineno">  94 </span>        .toTypedArray()
+<span class="lineno">  95 </span>
+</code></pre>
+      </li>
+      <li><span class="location">plugins/documentation/changelog/main/kotlin/com/javiersc/gradle/plugins/changelog/internal/Changelog.kt:113:57</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
+        <pre><code><span class="lineno"> 110 </span>                        }
+<span class="lineno"> 111 </span>                    }
+<span class="lineno"> 112 </span>                }
+<span class="lineno"> 113 </span>            groups.forEach { (value, items) -&gt; add(Group<span class="error">(value, *buildItems(items))</span>) }
+<span class="lineno"> 114 </span>        }
+<span class="lineno"> 115 </span>        .toTypedArray()
+<span class="lineno"> 116 </span>
+</code></pre>
+      </li>
+      <li><span class="location">plugins/documentation/changelog/main/kotlin/com/javiersc/gradle/plugins/changelog/internal/MergeChangelog.kt:39:78</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
+        <pre><code><span class="lineno">  36 </span>                                    .flatMap { it.items.toList() }
+<span class="lineno">  37 </span>                                    .toTypedArray()
+<span class="lineno">  38 </span>                            when {
+<span class="lineno">  39 </span>                                version.unreleased -&gt; Changelog.Version.Group<span class="error">(key, *items)</span>
+<span class="lineno">  40 </span>                                items.isNotEmpty() -&gt; Changelog.Version.Group(key, *items)
+<span class="lineno">  41 </span>                                else -&gt; null
+<span class="lineno">  42 </span>                            }
+</code></pre>
+      </li>
+      <li><span class="location">plugins/documentation/changelog/main/kotlin/com/javiersc/gradle/plugins/changelog/internal/MergeChangelog.kt:40:78</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
+        <pre><code><span class="lineno">  37 </span>                                    .toTypedArray()
+<span class="lineno">  38 </span>                            when {
+<span class="lineno">  39 </span>                                version.unreleased -&gt; Changelog.Version.Group(key, *items)
+<span class="lineno">  40 </span>                                items.isNotEmpty() -&gt; Changelog.Version.Group<span class="error">(key, *items)</span>
+<span class="lineno">  41 </span>                                else -&gt; null
+<span class="lineno">  42 </span>                            }
+<span class="lineno">  43 </span>                        }
+</code></pre>
+      </li>
+      <li><span class="location">plugins/documentation/changelog/main/kotlin/com/javiersc/gradle/plugins/changelog/internal/MergeChangelog.kt:46:34</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
+        <pre><code><span class="lineno">  43 </span>                        }
+<span class="lineno">  44 </span>                        .toTypedArray()
+<span class="lineno">  45 </span>
+<span class="lineno">  46 </span>                Changelog.Version<span class="error">(version.value, *mergedGroups)</span>
+<span class="lineno">  47 </span>            }
+<span class="lineno">  48 </span>            .toTypedArray()
+<span class="lineno">  49 </span>
+</code></pre>
+      </li>
+      <li><span class="location">plugins/documentation/changelog/main/kotlin/com/javiersc/gradle/plugins/changelog/internal/MergeChangelog.kt:50:21</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
+        <pre><code><span class="lineno">  47 </span>            }
+<span class="lineno">  48 </span>            .toTypedArray()
+<span class="lineno">  49 </span>
+<span class="lineno">  50 </span>    return Changelog<span class="error">(header, *versions)</span>
+<span class="lineno">  51 </span>}
+<span class="lineno">  52 </span>
+<span class="lineno">  53 </span>private fun Changelog.Version.extractVersionWithoutStage(): String =
+</code></pre>
+      </li>
+    </ul>
+  </details>
+  <h3>style: 11</h3>
+  <details id="ForbiddenComment" open="open">
+    <summary class="rule-container"><span class="rule">ForbiddenComment: 2 </span><span class="description">Flags a forbidden comment.</span></summary>
+    <ul>
+      <li><span class="location">buildSrc/build.gradle.kts:15:5</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
+        <pre><code><span class="lineno">  12 </span>    implementation(gradleApi())
+<span class="lineno">  13 </span>    implementation(localGroovy())
+<span class="lineno">  14 </span>
+<span class="lineno">  15 </span>    <span class="error">// TODO: remove when the next issue is fixed:</span>
+<span class="lineno">  16 </span>    //  https://github.com/gradle/gradle/issues/15383#issuecomment-779893192
+<span class="lineno">  17 </span>    implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
+<span class="lineno">  18 </span>    implementation(files(pluginLibs.javaClass.superclass.protectionDomain.codeSource.location))
+</code></pre>
+      </li>
+      <li><span class="location">shared/core/main/kotlin/com/javiersc/gradle/plugins/core/SanitizeExtensions.kt:3:1</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
+        <pre><code><span class="lineno">   1 </span>package com.javiersc.gradle.plugins.core
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span><span class="error">// TODO: delete when `javiersc-lib` adds them</span>
+<span class="lineno">   4 </span>
+<span class="lineno">   5 </span>fun List&lt;String&gt;.removeDuplicateEmptyLines(): String = reduce { acc: String, b: String -&gt;
+<span class="lineno">   6 </span>    if (acc.lines().lastOrNull().isNullOrBlank() &amp;&amp; b.isBlank()) acc else &quot;$acc\n$b&quot;
+</code></pre>
+      </li>
+    </ul>
+  </details>
+  <details id="MagicNumber" open="open">
+    <summary class="rule-container"><span class="rule">MagicNumber: 7 </span><span class="description">Report magic numbers. Magic number is a numeric literal that is not defined as a constant and hence it's unclear what the purpose of this number is. It's better to declare such numbers as constants and give them a proper name. By default, -1, 0, 1, and 2 are not considered to be magic numbers.</span></summary>
+    <ul>
+      <li><span class="location">plugins/code-enhancers-and-utils/all-projects/main/kotlin/com/javiersc/gradle/plugins/all/projects/AllProjectsPlugin.kt:30:59</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  27 </span>    tasks.withType(Test::class.java) { test -&gt;
+<span class="lineno">  28 </span>        test.testLogging.showStandardStreams = true
+<span class="lineno">  29 </span>        test.maxParallelForks =
+<span class="lineno">  30 </span>            (Runtime.getRuntime().availableProcessors() / <span class="error">3</span>).takeIf { it &gt; 0 } ?: 1
+<span class="lineno">  31 </span>        test.useJUnitPlatform()
+<span class="lineno">  32 </span>    }
+<span class="lineno">  33 </span>}
+</code></pre>
+      </li>
+      <li><span class="location">plugins/gradle-utils/gradle-wrapper-updater/main/kotlin/com/javiersc/gradle/plugins/gradle/wrapper/updater/GradleWrapperUpdaterPlugin.kt:91:37</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  88 </span>
+<span class="lineno">  89 </span>    val connection = URL(url).openConnection() as HttpURLConnection
+<span class="lineno">  90 </span>    connection.requestMethod = &quot;GET&quot;
+<span class="lineno">  91 </span>    if (connection.responseCode !in <span class="error">200</span>..299) {
+<span class="lineno">  92 </span>        error(&quot;There is an error getting the last Gradle version (code: ${connection.responseCode}&quot;)
+<span class="lineno">  93 </span>    }
+<span class="lineno">  94 </span>
+</code></pre>
+      </li>
+      <li><span class="location">plugins/gradle-utils/gradle-wrapper-updater/main/kotlin/com/javiersc/gradle/plugins/gradle/wrapper/updater/GradleWrapperUpdaterPlugin.kt:91:42</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  88 </span>
+<span class="lineno">  89 </span>    val connection = URL(url).openConnection() as HttpURLConnection
+<span class="lineno">  90 </span>    connection.requestMethod = &quot;GET&quot;
+<span class="lineno">  91 </span>    if (connection.responseCode !in 200..<span class="error">299</span>) {
+<span class="lineno">  92 </span>        error(&quot;There is an error getting the last Gradle version (code: ${connection.responseCode}&quot;)
+<span class="lineno">  93 </span>    }
+<span class="lineno">  94 </span>
+</code></pre>
+      </li>
+      <li><span class="location">plugins/publish/nexus/main/kotlin/com/javiersc/gradle/plugins/nexus/NexusPlugin.kt:30:51</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  27 </span>                }
+<span class="lineno">  28 </span>            }
+<span class="lineno">  29 </span>
+<span class="lineno">  30 </span>            connectTimeout.set(Duration.ofMinutes(<span class="error">30</span>))
+<span class="lineno">  31 </span>            clientTimeout.set(Duration.ofMinutes(30))
+<span class="lineno">  32 </span>
+<span class="lineno">  33 </span>            transitionCheckOptions { options -&gt;
+</code></pre>
+      </li>
+      <li><span class="location">plugins/publish/nexus/main/kotlin/com/javiersc/gradle/plugins/nexus/NexusPlugin.kt:31:50</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  28 </span>            }
+<span class="lineno">  29 </span>
+<span class="lineno">  30 </span>            connectTimeout.set(Duration.ofMinutes(30))
+<span class="lineno">  31 </span>            clientTimeout.set(Duration.ofMinutes(<span class="error">30</span>))
+<span class="lineno">  32 </span>
+<span class="lineno">  33 </span>            transitionCheckOptions { options -&gt;
+<span class="lineno">  34 </span>                options.maxRetries.set(200)
+</code></pre>
+      </li>
+      <li><span class="location">plugins/publish/nexus/main/kotlin/com/javiersc/gradle/plugins/nexus/NexusPlugin.kt:34:40</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  31 </span>            clientTimeout.set(Duration.ofMinutes(30))
+<span class="lineno">  32 </span>
+<span class="lineno">  33 </span>            transitionCheckOptions { options -&gt;
+<span class="lineno">  34 </span>                options.maxRetries.set(<span class="error">200</span>)
+<span class="lineno">  35 </span>                options.delayBetween.set(Duration.ofSeconds(10))
+<span class="lineno">  36 </span>            }
+<span class="lineno">  37 </span>        }
+</code></pre>
+      </li>
+      <li><span class="location">plugins/publish/nexus/main/kotlin/com/javiersc/gradle/plugins/nexus/NexusPlugin.kt:35:61</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  32 </span>
+<span class="lineno">  33 </span>            transitionCheckOptions { options -&gt;
+<span class="lineno">  34 </span>                options.maxRetries.set(200)
+<span class="lineno">  35 </span>                options.delayBetween.set(Duration.ofSeconds(<span class="error">10</span>))
+<span class="lineno">  36 </span>            }
+<span class="lineno">  37 </span>        }
+<span class="lineno">  38 </span>    }
+</code></pre>
+      </li>
+    </ul>
+  </details>
+  <details id="MaxLineLength" open="open">
+    <summary class="rule-container"><span class="rule">MaxLineLength: 1 </span><span class="description">Line detected that is longer than the defined maximum line length in the code style.</span></summary>
+    <ul>
+      <li><span class="location">plugins/documentation/docs/main/kotlin/com/javiersc/gradle/plugins/docs/DocsPlugin.kt:371:1</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 368 </span>            &quot;&quot;&quot;
+<span class="lineno"> 369 </span>                |# $title
+<span class="lineno"> 370 </span>                |
+<span class="lineno"> 371 </span><span class="error">                |&lt;iframe src=</span>&quot;/reports-generated/$pathAndFileName&quot; style=&quot;height: 65vh; width: 100vw; overflow: hidden&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
+<span class="lineno"> 372 </span>                |
+<span class="lineno"> 373 </span>            &quot;&quot;&quot;.trimMargin()
+<span class="lineno"> 374 </span>
+</code></pre>
+      </li>
+    </ul>
+  </details>
+  <details id="MayBeConst" open="open">
+    <summary class="rule-container"><span class="rule">MayBeConst: 1 </span><span class="description">Reports vals that can be const val instead.</span></summary>
+    <ul>
+      <li><span class="location">plugins/version-catalogs/massive-catalogs-updater/main/kotlin/com/javiersc/gradle/plugins/massive/catalogs/updater/MassiveCatalogsUpdaterPlugin.kt:37:13</span><span class="message">url can be a `const val`.</span>
+        <pre><code><span class="lineno">  34 </span>    }
+<span class="lineno">  35 </span>}
+<span class="lineno">  36 </span>
+<span class="lineno">  37 </span>private val <span class="error">url</span> = &quot;https://repo1.maven.org/maven2/com/javiersc/massive-catalogs&quot;
+<span class="lineno">  38 </span>
+<span class="lineno">  39 </span>private val errorMessage = &quot;${Red}There was a problem fetching Massive Catalogs version$Reset&quot;
+<span class="lineno">  40 </span>
+</code></pre>
+      </li>
+    </ul>
+  </details>
+</div>
+
+
+generated with <a href="https://detekt.github.io/">detekt version 1.19.0</a> on 2021-12-30 20:09:52 UTC.
+
+</body>
+</html>

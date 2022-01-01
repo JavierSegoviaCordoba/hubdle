@@ -12,6 +12,12 @@
 
 ### Fixed
 
+### Updated
+
+## [0.1.0-rc.35] - 2022-01-01
+
+### Fixed
+
 - docs` does not generate `api` directory
 
 ### Updated

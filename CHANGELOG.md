@@ -12,6 +12,12 @@
 
 ### Fixed
 
+### Updated
+
+## [0.1.0-rc.36] - 2022-01-01
+
+### Fixed
+
 - `docs` tasks dependencies
 
 ### Updated

@@ -72,7 +72,7 @@ pre {
 
 <div>
   <ul>
-    <li>341 number of properties</li>
+    <li>342 number of properties</li>
     <li>205 number of functions</li>
     <li>67 number of classes</li>
     <li>27 number of packages</li>
@@ -85,12 +85,12 @@ pre {
 
 <div>
   <ul>
-    <li>4,742 lines of code (loc)</li>
-    <li>3,840 source lines of code (sloc)</li>
-    <li>2,794 logical lines of code (lloc)</li>
+    <li>4,746 lines of code (loc)</li>
+    <li>3,842 source lines of code (sloc)</li>
+    <li>2,796 logical lines of code (lloc)</li>
     <li>21 comment lines of code (cloc)</li>
-    <li>457 cyclomatic complexity (mcc)</li>
-    <li>238 cognitive complexity</li>
+    <li>456 cyclomatic complexity (mcc)</li>
+    <li>235 cognitive complexity</li>
     <li>23 number of total code smells</li>
     <li>0% comment source ratio</li>
     <li>163 mcc per 1,000 lloc</li>
@@ -105,14 +105,14 @@ pre {
   <details id="ComplexCondition" open="open">
     <summary class="rule-container"><span class="rule">ComplexCondition: 1 </span><span class="description">Complex conditions should be simplified and extracted into well-named methods if necessary.</span></summary>
     <ul>
-      <li><span class="location">plugins/documentation/docs/main/kotlin/com/javiersc/gradle/plugins/docs/DocsPlugin.kt:385:21</span><span class="message">This condition is too complex (4). Defined complexity threshold for conditions is set to '4'</span>
-        <pre><code><span class="lineno"> 382 </span>
-<span class="lineno"> 383 </span>    val navReports: String =
-<span class="lineno"> 384 </span>        buildList {
-<span class="lineno"> 385 </span>                if (<span class="error">allTests &amp;&amp; codeAnalysis || codeCoverage || codeQuality</span>) add(&quot;  - Reports:&quot;)
-<span class="lineno"> 386 </span>                if (allTests) createReportSection(&quot;All tests&quot;, &quot;all-tests&quot;)
-<span class="lineno"> 387 </span>                if (codeAnalysis) createReportSection(&quot;Code analysis&quot;, &quot;code-analysis&quot;)
-<span class="lineno"> 388 </span>                if (codeCoverage) createReportSection(&quot;Code coverage&quot;, &quot;code-coverage&quot;)
+      <li><span class="location">plugins/documentation/docs/main/kotlin/com/javiersc/gradle/plugins/docs/DocsPlugin.kt:381:21</span><span class="message">This condition is too complex (4). Defined complexity threshold for conditions is set to '4'</span>
+        <pre><code><span class="lineno"> 378 </span>
+<span class="lineno"> 379 </span>    val navReports: String =
+<span class="lineno"> 380 </span>        buildList {
+<span class="lineno"> 381 </span>                if (<span class="error">allTests &amp;&amp; codeAnalysis || codeCoverage || codeQuality</span>) add(&quot;  - Reports:&quot;)
+<span class="lineno"> 382 </span>                if (allTests) createReportSection(&quot;All tests&quot;, &quot;all-tests&quot;)
+<span class="lineno"> 383 </span>                if (codeAnalysis) createReportSection(&quot;Code analysis&quot;, &quot;code-analysis&quot;)
+<span class="lineno"> 384 </span>                if (codeCoverage) createReportSection(&quot;Code coverage&quot;, &quot;code-coverage&quot;)
 </code></pre>
       </li>
     </ul>
@@ -120,24 +120,24 @@ pre {
   <details id="LongMethod" open="open">
     <summary class="rule-container"><span class="rule">LongMethod: 2 </span><span class="description">One method should have one responsibility. Long methods tend to handle many things at once. Prefer smaller methods to make them easier to understand.</span></summary>
     <ul>
-      <li><span class="location">plugins/documentation/docs/main/kotlin/com/javiersc/gradle/plugins/docs/DocsPlugin.kt:80:21</span><span class="message">The function buildDotDocsFolder is too long (109). The maximum length is 60.</span>
-        <pre><code><span class="lineno">  77 </span>            &lt;/html&gt;
-<span class="lineno">  78 </span>        &quot;&quot;&quot;.trimIndent()
-<span class="lineno">  79 </span>
-<span class="lineno">  80 </span>private fun Project.<span class="error">buildDotDocsFolder</span>() {
-<span class="lineno">  81 </span>    val dotDocsFile = file(&quot;$rootDir/.docs&quot;)
-<span class="lineno">  82 </span>    if (dotDocsFile.exists().not()) {
-<span class="lineno">  83 </span>        file(&quot;$dotDocsFile/mkdocs.yml&quot;).apply {
+      <li><span class="location">plugins/documentation/docs/main/kotlin/com/javiersc/gradle/plugins/docs/DocsPlugin.kt:77:21</span><span class="message">The function buildDotDocsFolder is too long (109). The maximum length is 60.</span>
+        <pre><code><span class="lineno">  74 </span>            &lt;/html&gt;
+<span class="lineno">  75 </span>        &quot;&quot;&quot;.trimIndent()
+<span class="lineno">  76 </span>
+<span class="lineno">  77 </span>private fun Project.<span class="error">buildDotDocsFolder</span>() {
+<span class="lineno">  78 </span>    val dotDocsFile = file(&quot;$rootDir/.docs&quot;)
+<span class="lineno">  79 </span>    if (dotDocsFile.exists().not()) {
+<span class="lineno">  80 </span>        file(&quot;$dotDocsFile/mkdocs.yml&quot;).apply {
 </code></pre>
       </li>
-      <li><span class="location">plugins/documentation/docs/main/kotlin/com/javiersc/gradle/plugins/docs/DocsPlugin.kt:282:21</span><span class="message">The function buildProjectsInDocs is too long (68). The maximum length is 60.</span>
-        <pre><code><span class="lineno"> 279 </span>}
+      <li><span class="location">plugins/documentation/docs/main/kotlin/com/javiersc/gradle/plugins/docs/DocsPlugin.kt:278:21</span><span class="message">The function buildProjectsInDocs is too long (68). The maximum length is 60.</span>
+        <pre><code><span class="lineno"> 275 </span>}
+<span class="lineno"> 276 </span>
+<span class="lineno"> 277 </span>@OptIn(ExperimentalStdlibApi::class)
+<span class="lineno"> 278 </span>private fun Project.<span class="error">buildProjectsInDocs</span>() {
+<span class="lineno"> 279 </span>    val projectsPath = &quot;$rootDir/build/.docs/docs/projects&quot;
 <span class="lineno"> 280 </span>
-<span class="lineno"> 281 </span>@OptIn(ExperimentalStdlibApi::class)
-<span class="lineno"> 282 </span>private fun Project.<span class="error">buildProjectsInDocs</span>() {
-<span class="lineno"> 283 </span>    val projectsPath = &quot;$rootDir/build/.docs/docs/projects&quot;
-<span class="lineno"> 284 </span>
-<span class="lineno"> 285 </span>    val projectsInfo: List&lt;ProjectInfo&gt; =
+<span class="lineno"> 281 </span>    val projectsInfo: List&lt;ProjectInfo&gt; =
 </code></pre>
       </li>
     </ul>
@@ -353,14 +353,14 @@ pre {
   <details id="MaxLineLength" open="open">
     <summary class="rule-container"><span class="rule">MaxLineLength: 1 </span><span class="description">Line detected that is longer than the defined maximum line length in the code style.</span></summary>
     <ul>
-      <li><span class="location">plugins/documentation/docs/main/kotlin/com/javiersc/gradle/plugins/docs/DocsPlugin.kt:371:1</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
-        <pre><code><span class="lineno"> 368 </span>            &quot;&quot;&quot;
-<span class="lineno"> 369 </span>                |# $title
-<span class="lineno"> 370 </span>                |
-<span class="lineno"> 371 </span><span class="error">                |&lt;iframe src=</span>&quot;/reports-generated/$pathAndFileName&quot; style=&quot;height: 65vh; width: 100vw; overflow: hidden&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
-<span class="lineno"> 372 </span>                |
-<span class="lineno"> 373 </span>            &quot;&quot;&quot;.trimMargin()
-<span class="lineno"> 374 </span>
+      <li><span class="location">plugins/documentation/docs/main/kotlin/com/javiersc/gradle/plugins/docs/DocsPlugin.kt:367:1</span><span class="message">Line detected that is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 364 </span>            &quot;&quot;&quot;
+<span class="lineno"> 365 </span>                |# $title
+<span class="lineno"> 366 </span>                |
+<span class="lineno"> 367 </span><span class="error">                |&lt;iframe src=</span>&quot;/reports-generated/$pathAndFileName&quot; style=&quot;height: 65vh; width: 100vw; overflow: hidden&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
+<span class="lineno"> 368 </span>                |
+<span class="lineno"> 369 </span>            &quot;&quot;&quot;.trimMargin()
+<span class="lineno"> 370 </span>
 </code></pre>
       </li>
     </ul>
@@ -383,7 +383,7 @@ pre {
 </div>
 
 
-generated with <a href="https://detekt.github.io/">detekt version 1.19.0</a> on 2021-12-31 18:11:06 UTC.
+generated with <a href="https://detekt.github.io/">detekt version 1.19.0</a> on 2022-01-01 15:52:47 UTC.
 
 </body>
 </html>

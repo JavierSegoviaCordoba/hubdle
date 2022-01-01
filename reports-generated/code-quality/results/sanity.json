@@ -14,14 +14,14 @@
       "type": "method",
       "path": "plugins/documentation/docs/main/kotlin/com/javiersc/gradle/plugins/docs/DocsPlugin.kt",
       "language": "kotlin",
-      "line": 431,
-      "offset": 4,
+      "line": 414,
+      "offset": 8,
       "length": 9,
       "code": {
-        "startLine": 429,
+        "startLine": 412,
         "length": 9,
-        "offset": 101,
-        "surroundingCode": "@OptIn(ExperimentalStdlibApi::class)\nprivate fun List<String>.cleanNavProjects(): List<String> =\n    buildList {\n            val lines = this@cleanNavProjects\n"
+        "offset": 107,
+        "surroundingCode": "private fun Project.writeNavigation(newNavigations: List<String>) {\n    mkdocsBuildFile.writeText(\n        buildList {\n                addAll(mkdocsBuildFile.readLines())\n                removeAt(getDocsNavigation().index)"
       }
     }
   ],
@@ -29,39 +29,7 @@
     "module": "gradle-plugins.plugins.documentation.docs.main",
     "inspectionName": "KotlinAnnotator"
   },
-  "hash": "-7906514393150750137"
-},{
-  "tool": "Code Inspection",
-  "category": "General",
-  "type": "Kotlin annotator",
-  "tags": [
-    "kotlin",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "[NEW_INFERENCE_NO_INFORMATION_FOR_PARAMETER] Not enough information to infer type variable T",
-  "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
-  "sources": [
-    {
-      "type": "method",
-      "path": "plugins/documentation/docs/main/kotlin/com/javiersc/gradle/plugins/docs/DocsPlugin.kt",
-      "language": "kotlin",
-      "line": 444,
-      "offset": 24,
-      "length": 10,
-      "code": {
-        "startLine": 442,
-        "length": 10,
-        "offset": 89,
-        "surroundingCode": "                when {\n                    previous == line -> {\n                        removeLast()\n                        add(line)\n                        line"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.documentation.docs.main",
-    "inspectionName": "KotlinAnnotator"
-  },
-  "hash": "7887998411220465020"
+  "hash": "8160301689924132490"
 },{
   "tool": "Code Inspection",
   "category": "General",
@@ -78,14 +46,14 @@
       "type": "method",
       "path": "plugins/documentation/docs/main/kotlin/com/javiersc/gradle/plugins/docs/DocsPlugin.kt",
       "language": "kotlin",
-      "line": 404,
-      "offset": 8,
+      "line": 441,
+      "offset": 4,
       "length": 9,
       "code": {
-        "startLine": 402,
+        "startLine": 439,
         "length": 9,
-        "offset": 107,
-        "surroundingCode": "private fun Project.writeNavigation(newNavigations: List<String>) {\n    mkdocsBuildFile.writeText(\n        buildList {\n                addAll(mkdocsBuildFile.readLines())\n                removeAt(getDocsNavigation().index)"
+        "offset": 101,
+        "surroundingCode": "@OptIn(ExperimentalStdlibApi::class)\nprivate fun List<String>.cleanNavProjects(): List<String> =\n    buildList {\n            val lines = this@cleanNavProjects\n"
       }
     }
   ],
@@ -93,5 +61,37 @@
     "module": "gradle-plugins.plugins.documentation.docs.main",
     "inspectionName": "KotlinAnnotator"
   },
-  "hash": "-600044990787465446"
+  "hash": "-8859887305177609532"
+},{
+  "tool": "Code Inspection",
+  "category": "General",
+  "type": "Kotlin annotator",
+  "tags": [
+    "kotlin",
+    "Sanity"
+  ],
+  "severity": "Critical",
+  "comment": "[NEW_INFERENCE_NO_INFORMATION_FOR_PARAMETER] Not enough information to infer type variable T",
+  "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "plugins/documentation/docs/main/kotlin/com/javiersc/gradle/plugins/docs/DocsPlugin.kt",
+      "language": "kotlin",
+      "line": 454,
+      "offset": 24,
+      "length": 10,
+      "code": {
+        "startLine": 452,
+        "length": 10,
+        "offset": 89,
+        "surroundingCode": "                when {\n                    previous == line -> {\n                        removeLast()\n                        add(line)\n                        line"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.plugins.documentation.docs.main",
+    "inspectionName": "KotlinAnnotator"
+  },
+  "hash": "5781632150801066483"
 }]}

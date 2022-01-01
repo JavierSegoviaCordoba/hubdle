@@ -34,33 +34,38 @@ private fun Project.configureTestLogger() {
 
 private fun Project.configureAllTestsTask() {
     afterEvaluate { project ->
-        if (project.tasks.findByName("allTests") == null) {
-            project.tasks.register("allTests") { task ->
-                task.group = "verification"
+        val checkTask = project.tasks.findByName("check")
+        if (project.tasks.findByName(AllTestsLabel) == null) {
+            project.tasks.register(AllTestsLabel) { task ->
+                task.group = VerificationLabel
                 task.dependsOn(project.tasks.withType(Test::class.java))
                 project.tasks.findByName("koverReport")?.let { koverTask ->
                     task.dependsOn(koverTask)
                 }
             }
         } else {
-            project.tasks.named("allTests") { task ->
+            project.tasks.named(AllTestsLabel) { task ->
                 task.dependsOn(project.tasks.withType(Test::class.java))
             }
         }
+        checkTask?.dependsOn(AllTestsLabel)
     }
 }
 
 private fun Project.configureAllTestsReport() {
     val testReport =
         tasks.register("allTestsReport", TestReport::class.java) { testReport ->
-            testReport.group = "verification"
+            testReport.group = VerificationLabel
             testReport.destinationDir = file("$buildDir/reports/allTests")
             testReport.reportOn(allprojects.map { it.tasks.withType(Test::class.java) })
         }
 
-    if (gradle.startParameter.taskNames.any { task -> task == "allTests" }) {
+    if (gradle.startParameter.taskNames.any { task -> task == AllTestsLabel }) {
         allprojects { project ->
             project.tasks.withType(Test::class.java) { test -> test.finalizedBy(testReport) }
         }
     }
 }
+
+private const val AllTestsLabel = "allTests"
+private const val VerificationLabel = "verification"

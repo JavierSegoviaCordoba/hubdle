@@ -6,6 +6,8 @@
 
 ### Changed
 
+- `check` depends on `allTests`
+
 ### Deprecated
 
 ### Removed

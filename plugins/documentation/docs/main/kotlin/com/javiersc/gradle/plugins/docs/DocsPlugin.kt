@@ -6,7 +6,6 @@ import com.javiersc.gradle.plugins.docs.internal.hasKotlinGradlePlugin
 import java.io.File
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.Task
 import org.jetbrains.dokka.gradle.DokkaPlugin
 import org.jetbrains.dokka.gradle.DokkaTaskPartial
 import org.jetbrains.kotlin.gradle.internal.ensureParentDirsCreated
@@ -40,26 +39,24 @@ abstract class DocsPlugin : Plugin<Project> {
             }
         }
 
-        target.tasks.register("buildDocs") { task ->
-            task.group = "documentation"
+        target.tasks.register("buildDocs") { buildDocs ->
+            buildDocs.group = "documentation"
 
-            task.finalizedBy("mkdocsBuild")
+            buildDocs.project.buildDotDocsFolder()
 
-            task.project.buildDotDocsFolder()
-
-            task.doFirst {
-                task.project.buildBuildDotDocs()
-                task.project.buildChangelogInDocs()
-                task.buildApiDocsInDocs()
-                task.project.buildProjectsInDocs()
-                task.project.buildReportsInDocs()
-                task.project.sanitizeMkdocsFile()
+            buildDocs.project.allprojects.onEach { project ->
+                runCatching { buildDocs.dependsOn(project.tasks.getByName("dokkaHtmlMultiModule")) }
             }
 
-            task.doLast {
-                task.project.allprojects.onEach {
-                    runCatching { task.dependsOn(it.tasks.getByName("dokkaHtmlMultiModule")) }
-                }
+            target.tasks.findByName("mkdocsBuild")?.apply { mustRunAfter(buildDocs) }
+
+            buildDocs.doLast { taskDoLast ->
+                taskDoLast.project.buildBuildDotDocs()
+                taskDoLast.project.buildChangelogInDocs()
+                taskDoLast.project.buildApiDocsInDocs()
+                taskDoLast.project.buildProjectsInDocs()
+                taskDoLast.project.buildReportsInDocs()
+                taskDoLast.project.sanitizeMkdocsFile()
             }
         }
     }
@@ -212,8 +209,8 @@ private fun Project.buildBuildDotDocs() {
     }
 }
 
-private fun Task.buildApiDocsInDocs() {
-    val docsNavigation = project.getDocsNavigation()
+private fun Project.buildApiDocsInDocs() {
+    val docsNavigation = getDocsNavigation()
     val navsPlusApiDocs =
         docsNavigation.navs +
             """
@@ -222,24 +219,23 @@ private fun Task.buildApiDocsInDocs() {
                 |    - Snapshot: api/snapshot/
             """.trimMargin()
 
-    project.writeNavigation(navsPlusApiDocs)
+    writeNavigation(navsPlusApiDocs)
 
-    val dokkaOutputDir = File("${project.rootProject.rootDir}/build/dokka/htmlMultiModule/")
-    val apiDir = File("${project.rootProject.rootDir}/build/docs/_site/api/")
-    if (project.version.toString().endsWith("-SNAPSHOT")) {
-        project.copy {
+    val dokkaOutputDir = File("${rootProject.rootDir}/build/dokka/htmlMultiModule/")
+    val apiDir = File("${rootProject.rootDir}/build/docs/_site/api/").apply(File::mkdirs)
+    if (version.toString().endsWith("-SNAPSHOT")) {
+        copy {
             it.from(dokkaOutputDir.path)
             it.into(File("$apiDir/snapshot").path)
         }
     } else {
-        project.file("$apiDir/index.html").apply {
-            parentFile.mkdirs()
-            if (!exists()) createNewFile()
-            writeText(project.apiIndexHtmlContent)
+        file("$apiDir/index.html").apply {
+            createNewFile()
+            writeText(apiIndexHtmlContent)
         }
-        project.copy {
+        copy {
             it.from(dokkaOutputDir.path)
-            it.into(File("$apiDir/versions/${project.version}").path)
+            it.into(File("$apiDir/versions/${version}").path)
         }
     }
 }

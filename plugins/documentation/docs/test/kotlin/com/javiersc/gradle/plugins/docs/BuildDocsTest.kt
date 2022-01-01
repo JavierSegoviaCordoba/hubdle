@@ -3,7 +3,7 @@ package com.javiersc.gradle.plugins.docs
 import com.javiersc.gradle.plugins.core.test.getResource
 import com.javiersc.gradle.plugins.core.test.testSandbox
 import io.kotest.matchers.file.shouldBeADirectory
-import io.kotest.matchers.file.shouldExist
+import io.kotest.matchers.file.shouldBeAFile
 import io.kotest.matchers.file.shouldHaveSameStructureAndContentAs
 import java.io.File
 import kotlin.test.Test
@@ -30,13 +30,18 @@ class BuildDocsTest {
 
                     expect shouldHaveSameStructureAndContentAs actual
 
-                    val apiDir = File("$testProjectDir/build/docs/_site/api/")
-                    apiDir.shouldExist()
+                    File("$testProjectDir/build/.docs/").shouldBeADirectory()
+                    File("$testProjectDir/build/docs/").shouldBeADirectory()
+
+                    val siteDir = File("$testProjectDir/build/docs/_site/")
+
+                    File("$siteDir/index.html").shouldBeAFile()
+                    File("$siteDir/api/").shouldBeADirectory()
 
                     if (sandboxPath.contains("snapshot")) {
-                        File("$apiDir/snapshot/").shouldBeADirectory()
+                        File("$siteDir/api/snapshot/").shouldBeADirectory()
                     } else {
-                        File("$apiDir/versions/").shouldBeADirectory()
+                        File("$siteDir/api/versions/").shouldBeADirectory()
                     }
                 }
             )

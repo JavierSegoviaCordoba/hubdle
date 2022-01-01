@@ -14,10 +14,14 @@ import ru.vyarus.gradle.plugin.mkdocs.MkdocsExtension
 abstract class DocsPlugin : Plugin<Project> {
 
     override fun apply(target: Project) {
+        check(target == target.rootProject) { "`docs` plugin must be applied in the root project" }
+
         target.pluginManager.apply("ru.vyarus.mkdocs")
         target.pluginManager.apply("org.jetbrains.dokka")
 
         DocsExtension.createExtension(target)
+
+        target.buildDotDocsFolder()
 
         target.extensions.findByType(MkdocsExtension::class.java)?.apply {
             strict = false
@@ -42,22 +46,26 @@ abstract class DocsPlugin : Plugin<Project> {
         target.tasks.register("buildDocs") { buildDocs ->
             buildDocs.group = "documentation"
 
-            buildDocs.project.buildDotDocsFolder()
+            val mkdocsBuildTask = target.tasks.named("mkdocsBuild")
+            val dokkaHtmlMultiModuleTask = target.tasks.named("dokkaHtmlMultiModule")
 
-            buildDocs.project.allprojects.onEach { project ->
-                runCatching { buildDocs.dependsOn(project.tasks.getByName("dokkaHtmlMultiModule")) }
+            buildDocs.dependsOn(mkdocsBuildTask)
+            buildDocs.dependsOn(dokkaHtmlMultiModuleTask)
+            dokkaHtmlMultiModuleTask.get().dependsOn(mkdocsBuildTask)
+
+            target.gradle.taskGraph.beforeTask { task ->
+                if (task.name == mkdocsBuildTask.name) {
+                    buildDocs.project.buildDotDocsFolder()
+                    target.buildBuildDotDocs()
+                    target.buildChangelogInDocs()
+                    target.buildApiInDocs()
+                    target.buildProjectsInDocs()
+                    target.buildReportsInDocs()
+                    target.sanitizeMkdocsFile()
+                }
             }
 
-            target.tasks.findByName("mkdocsBuild")?.apply { mustRunAfter(buildDocs) }
-
-            buildDocs.doLast { taskDoLast ->
-                taskDoLast.project.buildBuildDotDocs()
-                taskDoLast.project.buildChangelogInDocs()
-                taskDoLast.project.buildApiDocsInDocs()
-                taskDoLast.project.buildProjectsInDocs()
-                taskDoLast.project.buildReportsInDocs()
-                taskDoLast.project.sanitizeMkdocsFile()
-            }
+            buildDocs.doLast { target.moveApiDocsInToDocs() }
         }
     }
 }
@@ -209,7 +217,7 @@ private fun Project.buildBuildDotDocs() {
     }
 }
 
-private fun Project.buildApiDocsInDocs() {
+private fun Project.buildApiInDocs() {
     val docsNavigation = getDocsNavigation()
     val navsPlusApiDocs =
         docsNavigation.navs +
@@ -220,7 +228,9 @@ private fun Project.buildApiDocsInDocs() {
             """.trimMargin()
 
     writeNavigation(navsPlusApiDocs)
+}
 
+private fun Project.moveApiDocsInToDocs() {
     val dokkaOutputDir = File("${rootProject.rootDir}/build/dokka/htmlMultiModule/")
     val apiDir = File("${rootProject.rootDir}/build/docs/_site/api/").apply(File::mkdirs)
     if (version.toString().endsWith("-SNAPSHOT")) {

@@ -12,6 +12,12 @@
 
 ### Fixed
 
+### Updated
+
+## [0.1.0-rc.39] - 2022-01-02
+
+### Fixed
+
 - `all-projects` uses `useJUnitPlatform()` in Android projects instead of `useJUnit()`
 
 ### Updated

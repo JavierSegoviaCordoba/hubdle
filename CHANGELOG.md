@@ -12,6 +12,12 @@
 
 ### Fixed
 
+### Updated
+
+## [0.1.0-rc.38] - 2022-01-02
+
+### Fixed
+
 - `allTests` does not generate reports if it is run by `build` or `check`
 
 ### Updated

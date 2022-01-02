@@ -5,10 +5,15 @@ import org.gradle.api.Project
 import org.gradle.api.tasks.testing.Test
 import org.gradle.api.tasks.testing.TestReport
 import org.gradle.language.base.plugins.LifecycleBasePlugin
+import org.gradle.language.base.plugins.LifecycleBasePlugin.BUILD_TASK_NAME
+import org.gradle.language.base.plugins.LifecycleBasePlugin.CHECK_TASK_NAME
+import org.gradle.language.base.plugins.LifecycleBasePlugin.VERIFICATION_GROUP
 
 abstract class AllProjectsPlugin : Plugin<Project> {
 
     override fun apply(target: Project) {
+        check(target == target.rootProject) { "`all-projects` must be applied in the root project" }
+
         target.pluginManager.apply(LifecycleBasePlugin::class.java)
 
         target.allprojects { project ->
@@ -33,34 +38,40 @@ private fun Project.configureTestLogger() {
 }
 
 private fun Project.configureAllTestsTask() {
+    val checkTask = rootProject.tasks.named(CHECK_TASK_NAME)
+
     afterEvaluate { project ->
-        val checkTask = project.tasks.findByName("check")
         if (project.tasks.findByName(AllTestsLabel) == null) {
             project.tasks.register(AllTestsLabel) { task ->
-                task.group = VerificationLabel
+                task.group = VERIFICATION_GROUP
                 task.dependsOn(project.tasks.withType(Test::class.java))
                 project.tasks.findByName("koverReport")?.let { koverTask ->
                     task.dependsOn(koverTask)
                 }
             }
         } else {
-            project.tasks.named(AllTestsLabel) { task ->
-                task.dependsOn(project.tasks.withType(Test::class.java))
+            project.tasks.named(AllTestsLabel) { allTestsTask ->
+                allTestsTask.dependsOn(project.tasks.withType(Test::class.java))
             }
         }
-        checkTask?.dependsOn(AllTestsLabel)
+        checkTask.get().dependsOn(AllTestsLabel)
     }
 }
 
 private fun Project.configureAllTestsReport() {
     val testReport =
-        tasks.register("allTestsReport", TestReport::class.java) { testReport ->
-            testReport.group = VerificationLabel
+        tasks.register(AllTestsReportLabel, TestReport::class.java) { testReport ->
+            testReport.group = VERIFICATION_GROUP
             testReport.destinationDir = file("$buildDir/reports/allTests")
             testReport.reportOn(allprojects.map { it.tasks.withType(Test::class.java) })
         }
 
-    if (gradle.startParameter.taskNames.any { task -> task == AllTestsLabel }) {
+    val shouldRunAllTestsReport =
+        gradle.startParameter.taskNames.any { taskName ->
+            taskName in listOf(AllTestsLabel, BUILD_TASK_NAME, CHECK_TASK_NAME)
+        }
+
+    if (shouldRunAllTestsReport) {
         allprojects { project ->
             project.tasks.withType(Test::class.java) { test -> test.finalizedBy(testReport) }
         }
@@ -68,4 +79,4 @@ private fun Project.configureAllTestsReport() {
 }
 
 private const val AllTestsLabel = "allTests"
-private const val VerificationLabel = "verification"
+private const val AllTestsReportLabel = "allTestsReport"

@@ -72,7 +72,7 @@ pre {
 
 <div>
   <ul>
-    <li>347 number of properties</li>
+    <li>348 number of properties</li>
     <li>206 number of functions</li>
     <li>67 number of classes</li>
     <li>27 number of packages</li>
@@ -85,9 +85,9 @@ pre {
 
 <div>
   <ul>
-    <li>4,766 lines of code (loc)</li>
-    <li>3,857 source lines of code (sloc)</li>
-    <li>2,810 logical lines of code (lloc)</li>
+    <li>4,777 lines of code (loc)</li>
+    <li>3,865 source lines of code (sloc)</li>
+    <li>2,813 logical lines of code (lloc)</li>
     <li>21 comment lines of code (cloc)</li>
     <li>457 cyclomatic complexity (mcc)</li>
     <li>238 cognitive complexity</li>
@@ -174,21 +174,21 @@ pre {
   <details id="TopLevelPropertyNaming" open="open">
     <summary class="rule-container"><span class="rule">TopLevelPropertyNaming: 3 </span><span class="description">Top level property names should follow the naming convention set in the projects configuration.</span></summary>
     <ul>
-      <li><span class="location">plugins/code-enhancers-and-utils/all-projects/main/kotlin/com/javiersc/gradle/plugins/all/projects/AllProjectsPlugin.kt:70:19</span><span class="message">Top level constant names should match the pattern: [A-Z][_A-Z0-9]*</span>
-        <pre><code><span class="lineno">  67 </span>    }
-<span class="lineno">  68 </span>}
-<span class="lineno">  69 </span>
-<span class="lineno">  70 </span>private const val <span class="error">AllTestsLabel</span> = &quot;allTests&quot;
-<span class="lineno">  71 </span>private const val VerificationLabel = &quot;verification&quot;
-<span class="lineno">  72 </span>
+      <li><span class="location">plugins/code-enhancers-and-utils/all-projects/main/kotlin/com/javiersc/gradle/plugins/all/projects/AllProjectsPlugin.kt:81:19</span><span class="message">Top level constant names should match the pattern: [A-Z][_A-Z0-9]*</span>
+        <pre><code><span class="lineno">  78 </span>    }
+<span class="lineno">  79 </span>}
+<span class="lineno">  80 </span>
+<span class="lineno">  81 </span>private const val <span class="error">AllTestsLabel</span> = &quot;allTests&quot;
+<span class="lineno">  82 </span>private const val AllTestsReportLabel = &quot;allTestsReport&quot;
+<span class="lineno">  83 </span>
 </code></pre>
       </li>
-      <li><span class="location">plugins/code-enhancers-and-utils/all-projects/main/kotlin/com/javiersc/gradle/plugins/all/projects/AllProjectsPlugin.kt:71:19</span><span class="message">Top level constant names should match the pattern: [A-Z][_A-Z0-9]*</span>
-        <pre><code><span class="lineno">  68 </span>}
-<span class="lineno">  69 </span>
-<span class="lineno">  70 </span>private const val AllTestsLabel = &quot;allTests&quot;
-<span class="lineno">  71 </span>private const val <span class="error">VerificationLabel</span> = &quot;verification&quot;
-<span class="lineno">  72 </span>
+      <li><span class="location">plugins/code-enhancers-and-utils/all-projects/main/kotlin/com/javiersc/gradle/plugins/all/projects/AllProjectsPlugin.kt:82:19</span><span class="message">Top level constant names should match the pattern: [A-Z][_A-Z0-9]*</span>
+        <pre><code><span class="lineno">  79 </span>}
+<span class="lineno">  80 </span>
+<span class="lineno">  81 </span>private const val AllTestsLabel = &quot;allTests&quot;
+<span class="lineno">  82 </span>private const val <span class="error">AllTestsReportLabel</span> = &quot;allTestsReport&quot;
+<span class="lineno">  83 </span>
 </code></pre>
       </li>
       <li><span class="location">plugins/documentation/readme-badges/main/kotlin/com/javiersc/gradle/plugins/readme/badges/generator/ReadmeBadgesGeneratorPlugin.kt:52:19</span><span class="message">Top level constant names should match the pattern: [A-Z][_A-Z0-9]*</span>
@@ -307,14 +307,14 @@ pre {
   <details id="MagicNumber" open="open">
     <summary class="rule-container"><span class="rule">MagicNumber: 7 </span><span class="description">Report magic numbers. Magic number is a numeric literal that is not defined as a constant and hence it's unclear what the purpose of this number is. It's better to declare such numbers as constants and give them a proper name. By default, -1, 0, 1, and 2 are not considered to be magic numbers.</span></summary>
     <ul>
-      <li><span class="location">plugins/code-enhancers-and-utils/all-projects/main/kotlin/com/javiersc/gradle/plugins/all/projects/AllProjectsPlugin.kt:30:59</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
-        <pre><code><span class="lineno">  27 </span>    tasks.withType(Test::class.java) { test -&gt;
-<span class="lineno">  28 </span>        test.testLogging.showStandardStreams = true
-<span class="lineno">  29 </span>        test.maxParallelForks =
-<span class="lineno">  30 </span>            (Runtime.getRuntime().availableProcessors() / <span class="error">3</span>).takeIf { it &gt; 0 } ?: 1
-<span class="lineno">  31 </span>        test.useJUnitPlatform()
-<span class="lineno">  32 </span>    }
-<span class="lineno">  33 </span>}
+      <li><span class="location">plugins/code-enhancers-and-utils/all-projects/main/kotlin/com/javiersc/gradle/plugins/all/projects/AllProjectsPlugin.kt:35:59</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  32 </span>    tasks.withType(Test::class.java) { test -&gt;
+<span class="lineno">  33 </span>        test.testLogging.showStandardStreams = true
+<span class="lineno">  34 </span>        test.maxParallelForks =
+<span class="lineno">  35 </span>            (Runtime.getRuntime().availableProcessors() / <span class="error">3</span>).takeIf { it &gt; 0 } ?: 1
+<span class="lineno">  36 </span>        test.useJUnitPlatform()
+<span class="lineno">  37 </span>    }
+<span class="lineno">  38 </span>}
 </code></pre>
       </li>
       <li><span class="location">plugins/gradle-utils/gradle-wrapper-updater/main/kotlin/com/javiersc/gradle/plugins/gradle/wrapper/updater/GradleWrapperUpdaterPlugin.kt:91:37</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
@@ -412,7 +412,7 @@ pre {
 </div>
 
 
-generated with <a href="https://detekt.github.io/">detekt version 1.19.0</a> on 2022-01-02 00:28:05 UTC.
+generated with <a href="https://detekt.github.io/">detekt version 1.19.0</a> on 2022-01-02 01:29:52 UTC.
 
 </body>
 </html>

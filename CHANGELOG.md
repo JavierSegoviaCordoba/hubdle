@@ -6,8 +6,6 @@
 
 ### Changed
 
-- `check` depends on `allTests`
-
 ### Deprecated
 
 ### Removed
@@ -15,6 +13,12 @@
 ### Fixed
 
 ### Updated
+
+## [0.1.0-rc.37] - 2022-01-02
+
+### Changed
+
+- `check` depends on `allTests`
 
 ## [0.1.0-rc.36] - 2022-01-01
 

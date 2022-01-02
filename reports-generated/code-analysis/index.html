@@ -72,7 +72,7 @@ pre {
 
 <div>
   <ul>
-    <li>344 number of properties</li>
+    <li>347 number of properties</li>
     <li>206 number of functions</li>
     <li>67 number of classes</li>
     <li>27 number of packages</li>
@@ -85,22 +85,22 @@ pre {
 
 <div>
   <ul>
-    <li>4,761 lines of code (loc)</li>
-    <li>3,853 source lines of code (sloc)</li>
-    <li>2,806 logical lines of code (lloc)</li>
+    <li>4,766 lines of code (loc)</li>
+    <li>3,857 source lines of code (sloc)</li>
+    <li>2,810 logical lines of code (lloc)</li>
     <li>21 comment lines of code (cloc)</li>
     <li>457 cyclomatic complexity (mcc)</li>
     <li>238 cognitive complexity</li>
-    <li>24 number of total code smells</li>
+    <li>26 number of total code smells</li>
     <li>0% comment source ratio</li>
     <li>162 mcc per 1,000 lloc</li>
-    <li>8 code smells per 1,000 lloc</li>
+    <li>9 code smells per 1,000 lloc</li>
   </ul>
 </div>
 
 
 <h2>Findings</h2>
-<div>Total: 24
+<div>Total: 26
   <h3>complexity: 4</h3>
   <details id="ComplexCondition" open="open">
     <summary class="rule-container"><span class="rule">ComplexCondition: 1 </span><span class="description">Complex conditions should be simplified and extracted into well-named methods if necessary.</span></summary>
@@ -170,10 +170,27 @@ pre {
       </li>
     </ul>
   </details>
-  <h3>naming: 1</h3>
+  <h3>naming: 3</h3>
   <details id="TopLevelPropertyNaming" open="open">
-    <summary class="rule-container"><span class="rule">TopLevelPropertyNaming: 1 </span><span class="description">Top level property names should follow the naming convention set in the projects configuration.</span></summary>
+    <summary class="rule-container"><span class="rule">TopLevelPropertyNaming: 3 </span><span class="description">Top level property names should follow the naming convention set in the projects configuration.</span></summary>
     <ul>
+      <li><span class="location">plugins/code-enhancers-and-utils/all-projects/main/kotlin/com/javiersc/gradle/plugins/all/projects/AllProjectsPlugin.kt:70:19</span><span class="message">Top level constant names should match the pattern: [A-Z][_A-Z0-9]*</span>
+        <pre><code><span class="lineno">  67 </span>    }
+<span class="lineno">  68 </span>}
+<span class="lineno">  69 </span>
+<span class="lineno">  70 </span>private const val <span class="error">AllTestsLabel</span> = &quot;allTests&quot;
+<span class="lineno">  71 </span>private const val VerificationLabel = &quot;verification&quot;
+<span class="lineno">  72 </span>
+</code></pre>
+      </li>
+      <li><span class="location">plugins/code-enhancers-and-utils/all-projects/main/kotlin/com/javiersc/gradle/plugins/all/projects/AllProjectsPlugin.kt:71:19</span><span class="message">Top level constant names should match the pattern: [A-Z][_A-Z0-9]*</span>
+        <pre><code><span class="lineno">  68 </span>}
+<span class="lineno">  69 </span>
+<span class="lineno">  70 </span>private const val AllTestsLabel = &quot;allTests&quot;
+<span class="lineno">  71 </span>private const val <span class="error">VerificationLabel</span> = &quot;verification&quot;
+<span class="lineno">  72 </span>
+</code></pre>
+      </li>
       <li><span class="location">plugins/documentation/readme-badges/main/kotlin/com/javiersc/gradle/plugins/readme/badges/generator/ReadmeBadgesGeneratorPlugin.kt:52:19</span><span class="message">Top level constant names should match the pattern: [A-Z][_A-Z0-9]*</span>
         <pre><code><span class="lineno">  49 </span>    TechDebt(&quot;Tech debt&quot;, &quot;tech_debt&quot;),
 <span class="lineno">  50 </span>}
@@ -395,7 +412,7 @@ pre {
 </div>
 
 
-generated with <a href="https://detekt.github.io/">detekt version 1.19.0</a> on 2022-01-01 23:14:52 UTC.
+generated with <a href="https://detekt.github.io/">detekt version 1.19.0</a> on 2022-01-02 00:01:29 UTC.
 
 </body>
 </html>

@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- `all-projects` uses `useJUnitPlatform()` in Android projects instead of `useJUnit()`
+
 ### Updated
 
 - `com.github.ben-manes:gradle-versions-plugin -> 0.40.0`

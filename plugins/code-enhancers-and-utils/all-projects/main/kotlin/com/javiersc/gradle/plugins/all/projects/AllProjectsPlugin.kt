@@ -1,5 +1,8 @@
 package com.javiersc.gradle.plugins.all.projects
 
+import com.javiersc.gradle.plugins.core.isAndroidApplication
+import com.javiersc.gradle.plugins.core.isAndroidLibrary
+import com.javiersc.gradle.plugins.core.isKotlinMultiplatformWithAndroid
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.tasks.testing.Test
@@ -33,7 +36,13 @@ private fun Project.configureTestLogger() {
         test.testLogging.showStandardStreams = true
         test.maxParallelForks =
             (Runtime.getRuntime().availableProcessors() / 3).takeIf { it > 0 } ?: 1
-        test.useJUnitPlatform()
+
+        val hasAndroid =
+            test.project.run {
+                isAndroidApplication || isAndroidLibrary || isKotlinMultiplatformWithAndroid
+            }
+
+        if (hasAndroid) test.useJUnit() else test.useJUnitPlatform()
     }
 }
 

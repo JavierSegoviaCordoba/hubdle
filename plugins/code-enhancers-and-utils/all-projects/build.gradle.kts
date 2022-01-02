@@ -29,5 +29,6 @@ dependencies {
 
     implementation(gradleKotlinDsl())
 
+    implementation(projects.shared.core)
     implementation(pluginLibs.adarshr.gradleTestLoggerPlugin)
 }

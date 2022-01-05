@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.github.ben-manes:gradle-versions-plugin -> 0.41.0`
 - `com.javiersc.gradle-plugins:all-plugins -> 0.1.0-rc.39`
 
 ## [0.1.0-rc.39] - 2022-01-02

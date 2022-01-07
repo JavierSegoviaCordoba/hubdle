@@ -1,5 +1,11 @@
 package com.javiersc.gradle.plugins.all.projects
 
+import com.javiersc.gradle.plugins.all.projects.install.pre.commit.InstallAllTestsPreCommitTask
+import com.javiersc.gradle.plugins.all.projects.install.pre.commit.InstallApiCheckPreCommitTask
+import com.javiersc.gradle.plugins.all.projects.install.pre.commit.InstallAssemblePreCommitTask
+import com.javiersc.gradle.plugins.all.projects.install.pre.commit.InstallPreCommitTask
+import com.javiersc.gradle.plugins.all.projects.install.pre.commit.InstallSpotlessCheckPreCommitTask
+import com.javiersc.gradle.plugins.all.projects.install.pre.commit.WriteFilePreCommitTask
 import com.javiersc.gradle.plugins.core.isAndroidApplication
 import com.javiersc.gradle.plugins.core.isAndroidLibrary
 import com.javiersc.gradle.plugins.core.isKotlinMultiplatformWithAndroid
@@ -18,6 +24,15 @@ abstract class AllProjectsPlugin : Plugin<Project> {
         check(target == target.rootProject) { "`all-projects` must be applied in the root project" }
 
         target.pluginManager.apply(LifecycleBasePlugin::class.java)
+
+        AllProjectsExtension.createExtension(target)
+
+        InstallPreCommitTask.register(target)
+        InstallAllTestsPreCommitTask.register(target)
+        InstallAssemblePreCommitTask.register(target)
+        InstallApiCheckPreCommitTask.register(target)
+        InstallSpotlessCheckPreCommitTask.register(target)
+        WriteFilePreCommitTask.register(target)
 
         target.allprojects { project ->
             project.group = project.module

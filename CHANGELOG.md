@@ -4,6 +4,8 @@
 
 ### Added
 
+- install tasks for pre-commits to `all-projects`
+
 ### Changed
 
 ### Deprecated

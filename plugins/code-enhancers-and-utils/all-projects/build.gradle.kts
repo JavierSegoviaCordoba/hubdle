@@ -31,4 +31,9 @@ dependencies {
 
     implementation(projects.shared.core)
     implementation(pluginLibs.adarshr.gradleTestLoggerPlugin)
+
+    testImplementation(gradleTestKit())
+    testImplementation(projects.shared.coreTest)
+    testImplementation(libs.jetbrains.kotlin.kotlinTest)
+    testImplementation(libs.kotest.kotestAssertionsCore)
 }

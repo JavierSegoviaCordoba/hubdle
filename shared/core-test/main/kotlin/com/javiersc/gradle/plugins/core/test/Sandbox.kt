@@ -36,6 +36,7 @@ fun testSandbox(
     sandboxPath: String,
     prefix: String = sandboxPath.split("/").last(),
     beforeTest: File.() -> Unit = {},
+    taskOutcome: TaskOutcome = TaskOutcome.SUCCESS,
     test: (result: BuildResult, testProjectDir: File) -> Unit,
 ) {
     val testProjectDir: File = createSandboxFile(prefix)
@@ -50,15 +51,15 @@ fun testSandbox(
         .withPluginClasspath()
         .build()
         .run {
-            checkArgumentsTasks(testProjectDir)
+            checkArgumentsTasks(testProjectDir, taskOutcome)
             test(this, testProjectDir)
         }
 }
 
-fun BuildResult.checkArgumentsTasks(testProjectDir: File) {
+fun BuildResult.checkArgumentsTasks(testProjectDir: File, taskOutcome: TaskOutcome) {
     val executedTaskName = ":${testProjectDir.arguments.first()}"
-    val task = tasks.first { buildTask -> buildTask.path.endsWith(executedTaskName) }
-    task.outcome.shouldBe(TaskOutcome.SUCCESS)
+    val task = tasks.first { task -> task.path.endsWith(executedTaskName) }
+    task.outcome.shouldBe(taskOutcome)
 }
 
 fun File.commitAndCheckout(message: String, branch: String = "sandbox/gradle-plugins") {

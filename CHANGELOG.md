@@ -16,6 +16,7 @@
 
 ### Updated
 
+- `com.javiersc.kotlin:kotlin-stdlib -> 0.1.0-alpha.4`
 - `com.diffplug.spotless:spotless-plugin-gradle -> 6.1.2`
 - `com.github.ben-manes:gradle-versions-plugin -> 0.41.0`
 - `com.javiersc.gradle-plugins:all-plugins -> 0.1.0-rc.39`

@@ -73,10 +73,10 @@ pre {
 <div>
   <ul>
     <li>383 number of properties</li>
-    <li>226 number of functions</li>
+    <li>223 number of functions</li>
     <li>78 number of classes</li>
     <li>29 number of packages</li>
-    <li>112 number of kt files</li>
+    <li>111 number of kt files</li>
   </ul>
 </div>
 
@@ -85,22 +85,22 @@ pre {
 
 <div>
   <ul>
-    <li>5,164 lines of code (loc)</li>
-    <li>4,168 source lines of code (sloc)</li>
-    <li>2,997 logical lines of code (lloc)</li>
-    <li>21 comment lines of code (cloc)</li>
-    <li>487 cyclomatic complexity (mcc)</li>
-    <li>247 cognitive complexity</li>
-    <li>26 number of total code smells</li>
+    <li>5,154 lines of code (loc)</li>
+    <li>4,164 source lines of code (sloc)</li>
+    <li>2,995 logical lines of code (lloc)</li>
+    <li>20 comment lines of code (cloc)</li>
+    <li>481 cyclomatic complexity (mcc)</li>
+    <li>243 cognitive complexity</li>
+    <li>25 number of total code smells</li>
     <li>0% comment source ratio</li>
-    <li>162 mcc per 1,000 lloc</li>
+    <li>160 mcc per 1,000 lloc</li>
     <li>8 code smells per 1,000 lloc</li>
   </ul>
 </div>
 
 
 <h2>Findings</h2>
-<div>Total: 26
+<div>Total: 25
   <h3>complexity: 4</h3>
   <details id="ComplexCondition" open="open">
     <summary class="rule-container"><span class="rule">ComplexCondition: 1 </span><span class="description">Complex conditions should be simplified and extracted into well-named methods if necessary.</span></summary>
@@ -148,8 +148,8 @@ pre {
       <li><span class="location">plugins/documentation/docs/main/kotlin/com/javiersc/gradle/plugins/docs/DocsPlugin.kt:1:1</span><span class="message">File '/home/runner/work/gradle-plugins/gradle-plugins/plugins/documentation/docs/main/kotlin/com/javiersc/gradle/plugins/docs/DocsPlugin.kt' with '11' functions detected. Defined threshold inside files is set to '11'</span>
         <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.gradle.plugins.docs</span>
 <span class="lineno">   2 </span>
-<span class="lineno">   3 </span>import com.javiersc.gradle.plugins.core.endWithNewLine
-<span class="lineno">   4 </span>import com.javiersc.gradle.plugins.core.removeDuplicateEmptyLines
+<span class="lineno">   3 </span>import com.javiersc.gradle.plugins.docs.internal.hasKotlinGradlePlugin
+<span class="lineno">   4 </span>import com.javiersc.kotlin.stdlib.endWithNewLine
 </code></pre>
       </li>
     </ul>
@@ -279,9 +279,9 @@ pre {
       </li>
     </ul>
   </details>
-  <h3>style: 11</h3>
+  <h3>style: 10</h3>
   <details id="ForbiddenComment" open="open">
-    <summary class="rule-container"><span class="rule">ForbiddenComment: 2 </span><span class="description">Flags a forbidden comment.</span></summary>
+    <summary class="rule-container"><span class="rule">ForbiddenComment: 1 </span><span class="description">Flags a forbidden comment.</span></summary>
     <ul>
       <li><span class="location">buildSrc/build.gradle.kts:15:5</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
         <pre><code><span class="lineno">  12 </span>    implementation(gradleApi())
@@ -291,15 +291,6 @@ pre {
 <span class="lineno">  16 </span>    //  https://github.com/gradle/gradle/issues/15383#issuecomment-779893192
 <span class="lineno">  17 </span>    implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
 <span class="lineno">  18 </span>    implementation(files(pluginLibs.javaClass.superclass.protectionDomain.codeSource.location))
-</code></pre>
-      </li>
-      <li><span class="location">shared/core/main/kotlin/com/javiersc/gradle/plugins/core/SanitizeExtensions.kt:3:1</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
-        <pre><code><span class="lineno">   1 </span>package com.javiersc.gradle.plugins.core
-<span class="lineno">   2 </span>
-<span class="lineno">   3 </span><span class="error">// TODO: delete when `javiersc-lib` adds them</span>
-<span class="lineno">   4 </span>
-<span class="lineno">   5 </span>fun List&lt;String&gt;.removeDuplicateEmptyLines(): String = reduce { acc: String, b: String -&gt;
-<span class="lineno">   6 </span>    if (acc.lines().lastOrNull().isNullOrBlank() &amp;&amp; b.isBlank()) acc else &quot;$acc\n$b&quot;
 </code></pre>
       </li>
     </ul>
@@ -412,7 +403,7 @@ pre {
 </div>
 
 
-generated with <a href="https://detekt.github.io/">detekt version 1.19.0</a> on 2022-01-07 17:34:43 UTC.
+generated with <a href="https://detekt.github.io/">detekt version 1.19.0</a> on 2022-01-08 01:57:36 UTC.
 
 </body>
 </html>

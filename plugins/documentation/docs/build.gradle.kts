@@ -34,6 +34,7 @@ dependencies {
     implementation(gradleApi())
     implementation(gradleKotlinDsl())
 
+    implementation(libs.javiersc.kotlin.kotlinStdlib)
     implementation(pluginLibs.jetbrains.dokka.dokkaGradlePlugin)
     implementation(pluginLibs.vyarus.gradleMkdocsPlugin)
     implementation(projects.shared.core)

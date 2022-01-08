@@ -1,6 +1,6 @@
 package com.javiersc.gradle.plugins.readme.badges.generator
 
-import com.javiersc.gradle.plugins.core.removeDuplicateEmptyLines
+import com.javiersc.kotlin.stdlib.removeDuplicateEmptyLines
 import java.io.File
 import org.gradle.api.Plugin
 import org.gradle.api.Project

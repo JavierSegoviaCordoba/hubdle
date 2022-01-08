@@ -1,8 +1,8 @@
 package com.javiersc.gradle.plugins.docs
 
-import com.javiersc.gradle.plugins.core.endWithNewLine
-import com.javiersc.gradle.plugins.core.removeDuplicateEmptyLines
 import com.javiersc.gradle.plugins.docs.internal.hasKotlinGradlePlugin
+import com.javiersc.kotlin.stdlib.endWithNewLine
+import com.javiersc.kotlin.stdlib.removeDuplicateEmptyLines
 import java.io.File
 import org.gradle.api.Plugin
 import org.gradle.api.Project

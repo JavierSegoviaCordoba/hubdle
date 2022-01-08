@@ -34,6 +34,7 @@ dependencies {
     compileOnly(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)
 
     implementation(gradleKotlinDsl())
+    implementation(libs.javiersc.kotlin.kotlinStdlib)
     implementation(projects.shared.core)
 
     // README Kotlin badge has always the next version

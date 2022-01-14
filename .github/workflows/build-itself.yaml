@@ -1,0 +1,56 @@
+name: build-itself
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '**.md'
+
+  pull_request:
+    branches:
+      - main
+    paths-ignore:
+      - '**.md'
+
+jobs:
+  build-itself:
+    if: (!contains(github.actor, '[bot]'))
+
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ 'macos-latest', 'ubuntu-latest', 'windows-latest' ]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.4.0
+
+      - name: Set up Java
+        uses: actions/setup-java@v2.5.0
+        with:
+          distribution: 'zulu'
+          java-version: 11
+
+      - name: Run build itself
+        uses: gradle/gradle-build-action@v2.1.0
+        with:
+          arguments: |
+            buildItself
+            -Psemver.stage=snapshot
+
+      - name: Git diff and commit
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+          git diff
+          git add .
+          git commit -m "Build itself"
+
+      - name: Build
+        uses: gradle/gradle-build-action@v2.1.0
+        with:
+          arguments: |
+            build
+            -Psemver.stage=snapshot

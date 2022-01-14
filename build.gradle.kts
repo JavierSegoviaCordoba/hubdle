@@ -10,6 +10,7 @@ plugins {
     `javiersc-nexus`
     `javiersc-readme-badges-generator`
     `accessors-generator`
+    `build-itself`
 }
 
 docs {

@@ -4,8 +4,6 @@
 
 ### Added
 
-- install tasks for pre-commits to `all-projects`
-
 ### Changed
 
 ### Deprecated
@@ -13,6 +11,14 @@
 ### Removed
 
 ### Fixed
+
+### Updated
+
+## [0.1.0-rc.40] - 2022-01-14
+
+### Added
+
+- install tasks for pre-commits to `all-projects`
 
 ### Updated
 

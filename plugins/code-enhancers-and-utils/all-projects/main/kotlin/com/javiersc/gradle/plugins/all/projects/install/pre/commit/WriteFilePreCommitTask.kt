@@ -18,7 +18,7 @@ open class WriteFilePreCommitTask : DefaultTask() {
 
     @TaskAction
     fun writeFile() {
-        val currentPreCommitText = preCommitFile.readText()
+        val currentPreCommitText = preCommitFile.apply { createNewFile() }.readText()
 
         val preCommitText: String =
             installPreCommitsDir

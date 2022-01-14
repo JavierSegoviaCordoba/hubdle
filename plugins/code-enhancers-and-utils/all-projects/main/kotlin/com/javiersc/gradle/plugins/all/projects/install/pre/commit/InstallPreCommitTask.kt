@@ -49,8 +49,4 @@ internal fun InstallPreCommitTask.createInstallPreCommitGradleTask() {
 }
 
 internal val Project.preCommitFile: File
-    get() =
-        file("${rootProject.rootDir}/.git/hooks/pre-commit").apply {
-            parentFile.mkdirs()
-            createNewFile()
-        }
+    get() = file("${rootProject.rootDir}/.git/hooks/pre-commit").apply { parentFile.mkdirs() }

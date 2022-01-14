@@ -41,6 +41,8 @@ abstract class AllProjectsPlugin : Plugin<Project> {
             project.configureAllTestsTask()
             project.configureAllTestsReport()
         }
+
+        target.configureCodeCoverageMergedReport()
     }
 }
 
@@ -62,23 +64,20 @@ private fun Project.configureTestLogger() {
 }
 
 private fun Project.configureAllTestsTask() {
-    val checkTask = rootProject.tasks.named(CHECK_TASK_NAME)
-
     afterEvaluate { project ->
+        val checkTask = project.tasks.findByName(CHECK_TASK_NAME)
+
         if (project.tasks.findByName(AllTestsLabel) == null) {
             project.tasks.register(AllTestsLabel) { task ->
                 task.group = VERIFICATION_GROUP
                 task.dependsOn(project.tasks.withType(Test::class.java))
-                project.tasks.findByName("koverReport")?.let { koverTask ->
-                    task.dependsOn(koverTask)
-                }
             }
         } else {
             project.tasks.named(AllTestsLabel) { allTestsTask ->
                 allTestsTask.dependsOn(project.tasks.withType(Test::class.java))
             }
         }
-        checkTask.get().dependsOn(AllTestsLabel)
+        checkTask?.dependsOn(AllTestsLabel)
     }
 }
 
@@ -102,5 +101,24 @@ private fun Project.configureAllTestsReport() {
     }
 }
 
+private fun Project.configureCodeCoverageMergedReport() {
+    afterEvaluate {
+        val shouldMergeCodeCoverageReports =
+            gradle.startParameter.taskNames.any { taskName ->
+                taskName in listOf(AllTestsLabel, BUILD_TASK_NAME, CHECK_TASK_NAME)
+            }
+
+        if (shouldMergeCodeCoverageReports) {
+            val koverMergedReportTask = rootProject.tasks.findByName(KoverMergedReport)
+            val allTestsTask = rootProject.tasks.findByName(AllTestsLabel)
+
+            if (allTestsTask != null && koverMergedReportTask != null) {
+                allTestsTask.dependsOn(koverMergedReportTask)
+            }
+        }
+    }
+}
+
 private const val AllTestsLabel = "allTests"
 private const val AllTestsReportLabel = "allTestsReport"
+private const val KoverMergedReport = "koverMergedReport"

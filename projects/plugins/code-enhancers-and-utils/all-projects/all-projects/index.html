@@ -459,6 +459,19 @@
     Features
   </a>
   
+    <nav class="md-nav" aria-label="Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-pre-commit" class="md-nav__link">
+    Install pre-commit
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -955,20 +968,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../reports/code-coverage/" class="md-nav__link">
-        Code coverage
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../../../reports/code-quality/" class="md-nav__link">
         Code quality
       </a>
@@ -1035,6 +1034,19 @@
     Features
   </a>
   
+    <nav class="md-nav" aria-label="Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-pre-commit" class="md-nav__link">
+    Install pre-commit
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -1059,8 +1071,8 @@
 <h3 id="download-from-mavencentral">Download from MavenCentral<a class="headerlink" href="#download-from-mavencentral" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="c1">// buildSrc/build.gradle.kts</span>
 
-<span class="n">dependencies</span> <span class="p">{</span> 
-    <span class="n">implementation</span><span class="p">(</span><span class="s">&quot;com.javiersc.gradle-plugins:all-projects:</span><span class="si">$</span><span class="n">version</span><span class="s">&quot;</span><span class="p">)</span> 
+<span class="n">dependencies</span> <span class="p">{</span>
+    <span class="n">implementation</span><span class="p">(</span><span class="s">&quot;com.javiersc.gradle-plugins:all-projects:</span><span class="si">$</span><span class="n">version</span><span class="s">&quot;</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div>
 <h3 id="apply">Apply<a class="headerlink" href="#apply" title="Permanent link">&para;</a></h3>
@@ -1078,10 +1090,29 @@
 <p><code>group = "com.javiersc.gradle-plugins</code></p>
 <h3 id="features">Features<a class="headerlink" href="#features" title="Permanent link">&para;</a></h3>
 <ul>
-<li>CLI pretty printing test results </li>
+<li>CLI pretty printing test results</li>
 <li>Add <code>allTests</code> task to all projects</li>
 <li>Create a test report in <code>root-project/build/reports/allTests</code> merging all projects reports.</li>
+<li>Install pre-commits</li>
 </ul>
+<h4 id="install-pre-commit">Install pre-commit<a class="headerlink" href="#install-pre-commit" title="Permanent link">&para;</a></h4>
+<p>There are multiple tasks for installing pre-commits:</p>
+<ul>
+<li><code>installAllTestsPreCommit</code> installs <code>./gradlew allTests</code> pre-commit</li>
+<li><code>installApiCheckPreCommit</code> installs <code>./gradlew apiCheck</code> pre-commit</li>
+<li><code>installAssemblePreCommit</code> installs <code>./gradlew assemble</code> pre-commit</li>
+<li><code>installSpotlessCheckPreCommit</code> installs <code>./gradlew spotlessCheck</code> pre-commit</li>
+</ul>
+<p>All those tasks can be executed by just running <code>installPreCommit</code>.</p>
+<p>Any pre-commit installation can be disabled, for example, disabling <code>apiCheck</code>:</p>
+<div class="highlight"><pre><span></span><code>allProjectsConfig {
+    install {
+        preCommit {
+            apiCheck.set(false)
+        }
+    }
+}
+</code></pre></div>
 
               
             </article>

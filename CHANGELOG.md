@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `io.kotest:kotest-assertions-core -> 5.1.0`
 - `com.gradle.publish:plugin-publish-plugin -> 0.20.0`
 - `com.javiersc.gradle-plugins:all-plugins -> 0.1.0-rc.40`
 

@@ -12,10 +12,9 @@
 
 ### Fixed
 
-- `changelog` removes incorrect update
-
 ### Updated
 
+- `gradle -> 7.4`
 - `com.facebook:ktfmt -> 0.31`
 - `com.diffplug.spotless:spotless-plugin-gradle -> 6.2.2`
 - `com.github.ben-manes:gradle-versions-plugin -> 0.42.0`
@@ -676,19 +675,19 @@
 ### Changed
 
 - `android-library` improvements:
-    - `src` folder is no longer necessary
-    - new project structure:
-        - `main/AndroidManifest.xml`
-        - `main/assets`
-        - `main/java`
-        - `main/kotlin`
-        - `main/res`
-        - `main/resources`
+  - `src` folder is no longer necessary
+  - new project structure:
+    - `main/AndroidManifest.xml`
+    - `main/assets`
+    - `main/java`
+    - `main/kotlin`
+    - `main/res`
+    - `main/resources`
 - `kotlin-multiplatform` improvements:
-    - `src` fodler is no longer necessary
-    - new project structure:
-        - `targetMain/kotlin`
-        - `targetMain/resources`
+  - `src` fodler is no longer necessary
+  - new project structure:
+    - `targetMain/kotlin`
+    - `targetMain/resources`
 
 ### Removed
 
@@ -887,8 +886,8 @@
 ### Added
 
 - `all-projects`
-    - Default config like set up `group` for all projects
-    - Delete root `build` directory when `clean` task is called
+  - Default config like set up `group` for all projects
+  - Delete root `build` directory when `clean` task is called
 
 ### Changed
 
@@ -1033,10 +1032,10 @@
 ### Changed
 
 - Separate `publish` plugin into:
-    - `publish-android-library`
-    - `publish-kotlin-jvm`
-    - `publish-kotlin-multiplatform`
-    - `publish-version-catalog`
+  - `publish-android-library`
+  - `publish-kotlin-jvm`
+  - `publish-kotlin-multiplatform`
+  - `publish-version-catalog`
 - Show git diff when `checkIsSignificant` is invoked in all `publish` plugins
 
 ## [0.1.0-alpha.7] - 2021-03-20
@@ -1048,7 +1047,7 @@
 ### Added
 
 - plugins
-    - publish-gradle-plugin
+  - publish-gradle-plugin
 
 ## [0.1.0-alpha.5] - 2021-03-20
 
@@ -1083,13 +1082,13 @@
 ### Added
 
 - plugins
-    - changelog
-    - code-analysis
-    - code-formatter
-    - dependency-updates
-    - docs
-    - kotlin-multiplatform
-    - nexus
-    - publish
-    - readme-badges-generator
-    - versioning
+  - changelog
+  - code-analysis
+  - code-formatter
+  - dependency-updates
+  - docs
+  - kotlin-multiplatform
+  - nexus
+  - publish
+  - readme-badges-generator
+  - versioning

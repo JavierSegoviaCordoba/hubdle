@@ -167,18 +167,13 @@ private fun String.addChanges(header: String, changes: List<String>): Changelog 
                 forEachIndexed { index: Int, line ->
                     val updateRegex = """(- `)(.*)( )(->)( )(.*)(`)"""
                     if (Regex(updateRegex).matches(line)) {
-                        val module =
-                            line.filterNot(Char::isWhitespace)
-                                .replaceAfter("->", "")
-                                .replace("->", "")
-                                .drop(1)
                         for (j in index + 1 until firstVersionIndex) {
                             val lineToRemove = this[j]
-                            if (lineToRemove.contains(module) &&
+                            val shouldRemovePreviousUpdate =
+                                lineToRemove.module == line.module &&
                                     Regex(updateRegex).matches(lineToRemove)
-                            ) {
-                                removeAt(j)
-                            }
+
+                            if (shouldRemovePreviousUpdate) removeAt(j)
                         }
                     }
                 }
@@ -249,3 +244,11 @@ private fun Project.dependenciesFromRenovateCommit(): List<String> {
         }
         .distinct()
 }
+
+private val String.module: String
+    get() =
+        filterNot(Char::isWhitespace)
+            .replace("`", "")
+            .replaceAfter("->", "")
+            .replace("->", "")
+            .drop(1)

@@ -118,4 +118,21 @@ class AddChangelogItemTest {
             },
             test = ::testChangelog,
         )
+
+    @Test
+    fun `renovate 8`() =
+        testSandbox(
+            sandboxPath = "add-changelog-item/sandbox-renovate-8",
+            beforeTest = {
+                commitAndCheckout(
+                    message =
+                        """
+                            | datasource     | package | from  | to  |
+                            | -------------- | ------- | ----- | --- |
+                            | gradle-version | gradle  | 7.3.3 | 7.4 |
+                        """.trimIndent(),
+                )
+            },
+            test = ::testChangelog,
+        )
 }

@@ -14,9 +14,9 @@
 
 ### Updated
 
+- `com.diffplug.spotless:spotless-plugin-gradle -> 6.2.2`
 - `com.github.ben-manes:gradle-versions-plugin -> 0.42.0`
 - `gradle/gradle-build-action -> v2.1.3`
-- `com.diffplug.spotless:spotless-plugin-gradle -> 6.2.1`
 - `org.jetbrains.kotlinx:kover -> 0.5.0`
 - `io.kotest:kotest-assertions-core -> 5.1.0`
 - `com.gradle.publish:plugin-publish-plugin -> 0.20.0`

@@ -31,34 +31,6 @@
   "category": "JVM languages",
   "type": "Unstable API Usage",
   "severity": "High",
-  "comment": "'getModule()' is declared in unstable interface 'org.gradle.api.artifacts.MinimalExternalModuleDependency' marked with @Incubating",
-  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "plugins/documentation/readme-badges/build.gradle.kts",
-      "language": "kotlin",
-      "line": 41,
-      "offset": 81,
-      "length": 6,
-      "code": {
-        "startLine": 39,
-        "length": 6,
-        "offset": 136,
-        "surroundingCode": "\n    // README Kotlin badge has always the next version\n    testPluginClasspath(\"${pluginLibs.jetbrains.kotlin.kotlinGradlePlugin.get().module}:1.5.32\")\n\n    testImplementation(gradleTestKit())"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.documentation.readme-badges",
-    "inspectionName": "UnstableApiUsage"
-  },
-  "hash": "8cc531841d967646df346557f7450589fc6e4b4d4b54698dd98016303af9478e"
-},{
-  "tool": "Code Inspection",
-  "category": "JVM languages",
-  "type": "Unstable API Usage",
-  "severity": "High",
   "comment": "'com.android.build.api.dsl.CommonExtension' is unstable because its signature references unstable 'com.android.build.api.dsl.BuildFeatures' marked with @Incubating",
   "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
   "sources": [
@@ -894,60 +866,4 @@
     "inspectionName": "UnstableApiUsage"
   },
   "hash": "ab44168c4d8dcb1f4d625cb7339423f1d130de4807cea601f6525d33f5eb429d"
-},{
-  "tool": "Code Inspection",
-  "category": "JVM languages",
-  "type": "Unstable API Usage",
-  "severity": "High",
-  "comment": "'from(java.lang.Object)' is declared in unstable interface 'org.gradle.api.initialization.dsl.VersionCatalogBuilder' marked with @Incubating",
-  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "settings.gradle.kts",
-      "language": "kotlin",
-      "line": 19,
-      "offset": 26,
-      "length": 4,
-      "code": {
-        "startLine": 17,
-        "length": 4,
-        "offset": 48,
-        "surroundingCode": "\n    versionCatalogs {\n        create(\"libs\") { from(files(\"gradle/libs.toml\")) }\n        create(\"pluginLibs\") { from(files(\"gradle/pluginLibs.toml\")) }\n    }"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins",
-    "inspectionName": "UnstableApiUsage"
-  },
-  "hash": "9ca82f9e499c6af6f832745b43b751261e8ef027ad64313ec11a0757cdd984ab"
-},{
-  "tool": "Code Inspection",
-  "category": "JVM languages",
-  "type": "Unstable API Usage",
-  "severity": "High",
-  "comment": "'from(java.lang.Object)' is declared in unstable interface 'org.gradle.api.initialization.dsl.VersionCatalogBuilder' marked with @Incubating",
-  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "settings.gradle.kts",
-      "language": "kotlin",
-      "line": 20,
-      "offset": 32,
-      "length": 4,
-      "code": {
-        "startLine": 18,
-        "length": 4,
-        "offset": 112,
-        "surroundingCode": "    versionCatalogs {\n        create(\"libs\") { from(files(\"gradle/libs.toml\")) }\n        create(\"pluginLibs\") { from(files(\"gradle/pluginLibs.toml\")) }\n    }\n}"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins",
-    "inspectionName": "UnstableApiUsage"
-  },
-  "hash": "64ea601534c345c53fe0bdd380cc324e8a95177d83526769e577ede93c25b5e1"
 }]}

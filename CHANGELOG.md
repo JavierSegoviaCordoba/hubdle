@@ -16,6 +16,7 @@
 
 ### Updated
 
+- `gradle -> 7.4`
 - `com.facebook:ktfmt -> 0.31`
 - `com.diffplug.spotless:spotless-plugin-gradle -> 6.2.2`
 - `com.github.ben-manes:gradle-versions-plugin -> 0.42.0`

@@ -16,11 +16,11 @@
 
 ### Updated
 
+- `com.google.code.gson:gson -> 2.9.0`
 - `com.diffplug.spotless:spotless-plugin-gradle -> 6.3.0`
 - `gradle -> 7.4`
 - `com.facebook:ktfmt -> 0.31`
 - `com.github.ben-manes:gradle-versions-plugin -> 0.42.0`
-- `gradle/gradle-build-action -> v2.1.3`
 - `org.jetbrains.kotlinx:kover -> 0.5.0`
 - `io.kotest:kotest-assertions-core -> 5.1.0`
 - `com.gradle.publish:plugin-publish-plugin -> 0.20.0`

@@ -16,6 +16,7 @@
 
 ### Updated
 
+- `actions/setup-java -> v3.0.0`
 - `com.facebook:ktfmt -> 0.33`
 - `com.google.code.gson:gson -> 2.9.0`
 - `com.diffplug.spotless:spotless-plugin-gradle -> 6.3.0`

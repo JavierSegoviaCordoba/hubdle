@@ -66,6 +66,6 @@ private fun Changelog.Version.hasFinal(finalVersions: Iterable<Changelog.Version
     finalVersions.any { it.extractVersion() == extractVersionWithoutStage() }
 
 private fun Iterable<Changelog.Version>.versionKey(version: Changelog.Version): Changelog.Version? =
-        firstOrNull {
-    it.value.contains(version.extractVersionWithoutStage())
-}
+    firstOrNull {
+        it.value.contains(version.extractVersionWithoutStage())
+    }

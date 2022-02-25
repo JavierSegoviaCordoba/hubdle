@@ -1,65 +1,34 @@
 {"version":"3","listProblem":[{
   "tool": "Code Inspection",
-  "category": "Style issues",
-  "type": "Class member can have 'private' visibility",
-  "tags": [
-    "kotlin"
-  ],
-  "severity": "Info",
-  "comment": "Property 'value' could be private",
-  "detailsInfo": "Reports declarations that can be made `private` to follow the encapsulation principle.\n\n**Example:**\n\n\n    class Service(val url: String) {\n        fun connect(): URLConnection = URL(url).openConnection()\n    }\n\nAfter the quick-fix is applied (considering there are no usages of `url` outside of `Service` class):\n\n\n    class Service(private val url: String) {\n        fun connect(): URLConnection = URL(url).openConnection()\n    }\n",
-  "sources": [
-    {
-      "type": "method",
-      "path": "plugins/documentation/changelog/main/kotlin/com/javiersc/gradle/plugins/changelog/internal/Changelog.kt",
-      "language": "kotlin",
-      "line": 50,
-      "offset": 36,
-      "length": 5,
-      "code": {
-        "startLine": 48,
-        "length": 5,
-        "offset": 51,
-        "surroundingCode": "            }\n\n            internal class Item(val value: String) {\n\n                override fun toString(): String = value"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.documentation.changelog.main",
-    "inspectionName": "MemberVisibilityCanBePrivate"
-  },
-  "hash": "6653702043426251215"
-},{
-  "tool": "Code Inspection",
   "category": "Redundant constructs",
   "type": "Unused symbol",
   "tags": [
     "kotlin"
   ],
   "severity": "High",
-  "comment": "Function \"sonatypeSnapshots\" is never used",
+  "comment": "Property \"kotlin-kapt\" is never used",
   "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
   "sources": [
     {
       "type": "method",
-      "path": "shared/core/main/kotlin/com/javiersc/gradle/plugins/core/SonatypeSnapshot.kt",
+      "path": "shared/plugin-accessors/main/kotlin/PluginAccessors.kt",
       "language": "kotlin",
-      "line": 6,
-      "offset": 22,
-      "length": 17,
+      "line": 96,
+      "offset": 27,
+      "length": 13,
       "code": {
-        "startLine": 4,
-        "length": 17,
-        "offset": 58,
-        "surroundingCode": "import org.gradle.kotlin.dsl.maven\n\nfun RepositoryHandler.sonatypeSnapshots() {\n    maven(url = \"https://oss.sonatype.org/content/repositories/snapshots/\")\n}"
+        "startLine": 94,
+        "length": 13,
+        "offset": 79,
+        "surroundingCode": "    id(\"org.jetbrains.kotlin.js\").version(version)\n\nval PluginDependenciesSpec.`kotlin-kapt`: PluginDependencySpec\n    get() = id(\"org.jetbrains.kotlin.kapt\")\n"
       }
     }
   ],
   "attributes": {
-    "module": "gradle-plugins.shared.core.main",
+    "module": "gradle-plugins.shared.plugin-accessors.main",
     "inspectionName": "UnusedSymbol"
   },
-  "hash": "-2725954229123065596"
+  "hash": "4666238511710327773"
 },{
   "tool": "Code Inspection",
   "category": "Redundant constructs",
@@ -68,29 +37,29 @@
     "kotlin"
   ],
   "severity": "High",
-  "comment": "Property \"hasSigningKeyNameGradleProperty\" is never used",
+  "comment": "Property \"mkdocs\" is never used",
   "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
   "sources": [
     {
       "type": "method",
-      "path": "plugins/publish/publish/main/kotlin/com/javiersc/gradle/plugins/publish/internal/SigningExtensions.kt",
+      "path": "shared/plugin-accessors/main/kotlin/PluginAccessors.kt",
       "language": "kotlin",
-      "line": 35,
-      "offset": 30,
-      "length": 31,
+      "line": 134,
+      "offset": 27,
+      "length": 8,
       "code": {
-        "startLine": 33,
-        "length": 31,
+        "startLine": 132,
+        "length": 8,
         "offset": 108,
-        "surroundingCode": "    get() = project.getVariable(\"signing.gnupg.keyName\", \"SIGNING_KEY_NAME\")\n\ninternal val SigningExtension.hasSigningKeyNameGradleProperty: Boolean\n    get() = project.properties[\"signing.gnupg.keyName\"]?.toString().isNullOrBlank().not()\n"
+        "surroundingCode": "    id(\"org.jetbrains.kotlinx.binary-compatibility-validator\").version(version)\n\nval PluginDependenciesSpec.`mkdocs`: PluginDependencySpec\n    get() = id(\"ru.vyarus.mkdocs\")\n"
       }
     }
   ],
   "attributes": {
-    "module": "gradle-plugins.plugins.publish.publish.main",
+    "module": "gradle-plugins.shared.plugin-accessors.main",
     "inspectionName": "UnusedSymbol"
   },
-  "hash": "5227960149050490724"
+  "hash": "4352947773906271531"
 },{
   "tool": "Code Inspection",
   "category": "Redundant constructs",
@@ -99,29 +68,29 @@
     "kotlin"
   ],
   "severity": "High",
-  "comment": "Property \"hasSigningKeyEnvironmentVariable\" is never used",
+  "comment": "Property \"kotlin-parcelize\" is never used",
   "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
   "sources": [
     {
       "type": "method",
-      "path": "plugins/publish/publish/main/kotlin/com/javiersc/gradle/plugins/publish/internal/SigningExtensions.kt",
+      "path": "shared/plugin-accessors/main/kotlin/PluginAccessors.kt",
       "language": "kotlin",
-      "line": 65,
-      "offset": 30,
-      "length": 32,
+      "line": 114,
+      "offset": 27,
+      "length": 18,
       "code": {
-        "startLine": 63,
-        "length": 32,
-        "offset": 117,
-        "surroundingCode": "    get() = project.properties[\"signing.gnupg.key\"]?.toString().isNullOrBlank().not()\n\ninternal val SigningExtension.hasSigningKeyEnvironmentVariable: Boolean\n    get() = System.getenv(\"SIGNING_KEY\").isNullOrBlank().not()"
+        "startLine": 112,
+        "length": 18,
+        "offset": 90,
+        "surroundingCode": "    id(\"org.jetbrains.kotlin.multiplatform\").version(version)\n\nval PluginDependenciesSpec.`kotlin-parcelize`: PluginDependencySpec\n    get() = id(\"org.jetbrains.kotlin.plugin.parcelize\")\n"
       }
     }
   ],
   "attributes": {
-    "module": "gradle-plugins.plugins.publish.publish.main",
+    "module": "gradle-plugins.shared.plugin-accessors.main",
     "inspectionName": "UnusedSymbol"
   },
-  "hash": "6410767827223681843"
+  "hash": "4471538463961140769"
 },{
   "tool": "Code Inspection",
   "category": "Redundant constructs",
@@ -130,29 +99,29 @@
     "kotlin"
   ],
   "severity": "High",
-  "comment": "Property \"hasSigningKeyNameEnvironmentVariable\" is never used",
+  "comment": "Property \"compose-resources\" is never used",
   "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
   "sources": [
     {
       "type": "method",
-      "path": "plugins/publish/publish/main/kotlin/com/javiersc/gradle/plugins/publish/internal/SigningExtensions.kt",
+      "path": "shared/plugin-accessors/main/kotlin/PluginAccessors.kt",
       "language": "kotlin",
-      "line": 38,
-      "offset": 30,
-      "length": 36,
+      "line": 48,
+      "offset": 27,
+      "length": 19,
       "code": {
-        "startLine": 36,
-        "length": 36,
-        "offset": 121,
-        "surroundingCode": "    get() = project.properties[\"signing.gnupg.keyName\"]?.toString().isNullOrBlank().not()\n\ninternal val SigningExtension.hasSigningKeyNameEnvironmentVariable: Boolean\n    get() = System.getenv(\"SIGNING_KEY_NAME\").isNullOrBlank().not()\n"
+        "startLine": 46,
+        "length": 19,
+        "offset": 77,
+        "surroundingCode": "    id(\"org.jetbrains.compose\").version(version)\n\nval PluginDependenciesSpec.`compose-resources`: PluginDependencySpec\n    get() = id(\"com.javiersc.compose.resources\")\n"
       }
     }
   ],
   "attributes": {
-    "module": "gradle-plugins.plugins.publish.publish.main",
+    "module": "gradle-plugins.shared.plugin-accessors.main",
     "inspectionName": "UnusedSymbol"
   },
-  "hash": "1736665214696424162"
+  "hash": "-231239062572118514"
 },{
   "tool": "Code Inspection",
   "category": "Redundant constructs",
@@ -161,29 +130,29 @@
     "kotlin"
   ],
   "severity": "High",
-  "comment": "Property \"hasSigningKeyPassphraseEnvironmentVariable\" is never used",
+  "comment": "Property \"reckon\" is never used",
   "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
   "sources": [
     {
       "type": "method",
-      "path": "plugins/publish/publish/main/kotlin/com/javiersc/gradle/plugins/publish/internal/SigningExtensions.kt",
+      "path": "shared/plugin-accessors/main/kotlin/PluginAccessors.kt",
       "language": "kotlin",
-      "line": 56,
-      "offset": 30,
-      "length": 42,
+      "line": 146,
+      "offset": 27,
+      "length": 8,
       "code": {
-        "startLine": 54,
-        "length": 42,
-        "offset": 124,
-        "surroundingCode": "    get() = project.properties[\"signing.gnupg.passphrase\"]?.toString().isNullOrBlank().not()\n\ninternal val SigningExtension.hasSigningKeyPassphraseEnvironmentVariable: Boolean\n    get() = System.getenv(\"SIGNING_KEY_PASSPHRASE\").isNullOrBlank().not()\n"
+        "startLine": 144,
+        "length": 8,
+        "offset": 93,
+        "surroundingCode": "    id(\"io.github.gradle-nexus.publish-plugin\").version(version)\n\nval PluginDependenciesSpec.`reckon`: PluginDependencySpec\n    get() = id(\"org.ajoberstar.reckon\")\n"
       }
     }
   ],
   "attributes": {
-    "module": "gradle-plugins.plugins.publish.publish.main",
+    "module": "gradle-plugins.shared.plugin-accessors.main",
     "inspectionName": "UnusedSymbol"
   },
-  "hash": "-1782327754858912516"
+  "hash": "7919207833325457775"
 },{
   "tool": "Code Inspection",
   "category": "Redundant constructs",
@@ -192,29 +161,29 @@
     "kotlin"
   ],
   "severity": "High",
-  "comment": "Property \"hasSigningKeyPassphraseGradleProperty\" is never used",
+  "comment": "Function \"nexus-publish\" is never used",
   "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
   "sources": [
     {
       "type": "method",
-      "path": "plugins/publish/publish/main/kotlin/com/javiersc/gradle/plugins/publish/internal/SigningExtensions.kt",
+      "path": "shared/plugin-accessors/main/kotlin/PluginAccessors.kt",
       "language": "kotlin",
-      "line": 53,
-      "offset": 30,
-      "length": 37,
+      "line": 143,
+      "offset": 33,
+      "length": 15,
       "code": {
-        "startLine": 51,
-        "length": 37,
-        "offset": 117,
-        "surroundingCode": "    get() = project.getVariable(\"signing.gnupg.passphrase\", \"SIGNING_KEY_PASSPHRASE\")\n\ninternal val SigningExtension.hasSigningKeyPassphraseGradleProperty: Boolean\n    get() = project.properties[\"signing.gnupg.passphrase\"]?.toString().isNullOrBlank().not()\n"
+        "startLine": 141,
+        "length": 15,
+        "offset": 90,
+        "surroundingCode": "    get() = id(\"io.github.gradle-nexus.publish-plugin\")\n\ninfix fun PluginDependenciesSpec.`nexus-publish`(version: String): PluginDependencySpec =\n    id(\"io.github.gradle-nexus.publish-plugin\").version(version)\n"
       }
     }
   ],
   "attributes": {
-    "module": "gradle-plugins.plugins.publish.publish.main",
+    "module": "gradle-plugins.shared.plugin-accessors.main",
     "inspectionName": "UnusedSymbol"
   },
-  "hash": "6588520914498223560"
+  "hash": "-4324199686125135513"
 },{
   "tool": "Code Inspection",
   "category": "Redundant constructs",
@@ -223,29 +192,432 @@
     "kotlin"
   ],
   "severity": "High",
-  "comment": "Property \"signingKeyName\" is never used",
+  "comment": "Function \"kotlin-binary-compatibility-validator\" is never used",
   "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
   "sources": [
     {
       "type": "method",
-      "path": "plugins/publish/publish/main/kotlin/com/javiersc/gradle/plugins/publish/internal/SigningExtensions.kt",
+      "path": "shared/plugin-accessors/main/kotlin/PluginAccessors.kt",
       "language": "kotlin",
-      "line": 32,
-      "offset": 30,
+      "line": 129,
+      "offset": 33,
+      "length": 39,
+      "code": {
+        "startLine": 127,
+        "length": 39,
+        "offset": 105,
+        "surroundingCode": "    get() = id(\"org.jetbrains.kotlinx.binary-compatibility-validator\")\n\ninfix fun PluginDependenciesSpec.`kotlin-binary-compatibility-validator`(\n    version: String\n): PluginDependencySpec ="
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.shared.plugin-accessors.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "2539957490081102282"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Function \"kotlin-multiplatform\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "shared/plugin-accessors/main/kotlin/PluginAccessors.kt",
+      "language": "kotlin",
+      "line": 111,
+      "offset": 33,
+      "length": 22,
+      "code": {
+        "startLine": 109,
+        "length": 22,
+        "offset": 87,
+        "surroundingCode": "    get() = id(\"org.jetbrains.kotlin.multiplatform\")\n\ninfix fun PluginDependenciesSpec.`kotlin-multiplatform`(version: String): PluginDependencySpec =\n    id(\"org.jetbrains.kotlin.multiplatform\").version(version)\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.shared.plugin-accessors.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "-4511348330281582406"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Function \"mkdocs\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "shared/plugin-accessors/main/kotlin/PluginAccessors.kt",
+      "language": "kotlin",
+      "line": 137,
+      "offset": 33,
+      "length": 8,
+      "code": {
+        "startLine": 135,
+        "length": 8,
+        "offset": 69,
+        "surroundingCode": "    get() = id(\"ru.vyarus.mkdocs\")\n\ninfix fun PluginDependenciesSpec.`mkdocs`(version: String): PluginDependencySpec =\n    id(\"ru.vyarus.mkdocs\").version(version)\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.shared.plugin-accessors.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "-2343076168842552524"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Function \"kotlin-js\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "shared/plugin-accessors/main/kotlin/PluginAccessors.kt",
+      "language": "kotlin",
+      "line": 93,
+      "offset": 33,
+      "length": 11,
+      "code": {
+        "startLine": 91,
+        "length": 11,
+        "offset": 76,
+        "surroundingCode": "    get() = id(\"org.jetbrains.kotlin.js\")\n\ninfix fun PluginDependenciesSpec.`kotlin-js`(version: String): PluginDependencySpec =\n    id(\"org.jetbrains.kotlin.js\").version(version)\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.shared.plugin-accessors.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "-5662539367765969406"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Function \"kotlin-ksp\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "shared/plugin-accessors/main/kotlin/PluginAccessors.kt",
+      "language": "kotlin",
+      "line": 105,
+      "offset": 33,
+      "length": 12,
+      "code": {
+        "startLine": 103,
+        "length": 12,
+        "offset": 76,
+        "surroundingCode": "    get() = id(\"com.google.devtools.ksp\")\n\ninfix fun PluginDependenciesSpec.`kotlin-ksp`(version: String): PluginDependencySpec =\n    id(\"com.google.devtools.ksp\").version(version)\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.shared.plugin-accessors.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "1114711340905477848"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Property \"detekt\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "shared/plugin-accessors/main/kotlin/PluginAccessors.kt",
+      "language": "kotlin",
+      "line": 60,
+      "offset": 27,
+      "length": 8,
+      "code": {
+        "startLine": 58,
+        "length": 8,
+        "offset": 82,
+        "surroundingCode": "    id(\"dagger.hilt.android.plugin\").version(version)\n\nval PluginDependenciesSpec.`detekt`: PluginDependencySpec\n    get() = id(\"io.gitlab.arturbosch.detekt\")\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.shared.plugin-accessors.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "-8728384201912190352"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Property \"kotlinx-binary-compatibility-validator\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "shared/plugin-accessors/main/kotlin/PluginAccessors.kt",
+      "language": "kotlin",
+      "line": 126,
+      "offset": 27,
+      "length": 40,
+      "code": {
+        "startLine": 124,
+        "length": 40,
+        "offset": 97,
+        "surroundingCode": "    id(\"org.jetbrains.kotlin.plugin.serialization\").version(version)\n\nval PluginDependenciesSpec.`kotlinx-binary-compatibility-validator`: PluginDependencySpec\n    get() = id(\"org.jetbrains.kotlinx.binary-compatibility-validator\")\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.shared.plugin-accessors.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "-3798081746685724868"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Function \"detekt\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "shared/plugin-accessors/main/kotlin/PluginAccessors.kt",
+      "language": "kotlin",
+      "line": 63,
+      "offset": 33,
+      "length": 8,
+      "code": {
+        "startLine": 61,
+        "length": 8,
+        "offset": 80,
+        "surroundingCode": "    get() = id(\"io.gitlab.arturbosch.detekt\")\n\ninfix fun PluginDependenciesSpec.`detekt`(version: String): PluginDependencySpec =\n    id(\"io.gitlab.arturbosch.detekt\").version(version)\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.shared.plugin-accessors.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "7134837811829944319"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Function \"compose-resources\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "shared/plugin-accessors/main/kotlin/PluginAccessors.kt",
+      "language": "kotlin",
+      "line": 51,
+      "offset": 33,
+      "length": 19,
+      "code": {
+        "startLine": 49,
+        "length": 19,
+        "offset": 83,
+        "surroundingCode": "    get() = id(\"com.javiersc.compose.resources\")\n\ninfix fun PluginDependenciesSpec.`compose-resources`(version: String): PluginDependencySpec =\n    id(\"com.javiersc.compose.resources\").version(version)\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.shared.plugin-accessors.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "-5361778093203265978"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Property \"semver\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "shared/plugin-accessors/main/kotlin/PluginAccessors.kt",
+      "language": "kotlin",
+      "line": 152,
+      "offset": 27,
+      "length": 8,
+      "code": {
+        "startLine": 150,
+        "length": 8,
+        "offset": 77,
+        "surroundingCode": "    id(\"org.ajoberstar.reckon\").version(version)\n\nval PluginDependenciesSpec.`semver`: PluginDependencySpec\n    get() = id(\"com.javiersc.semver.gradle.plugin\")\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.shared.plugin-accessors.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "-5236623913191683188"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Function \"kotlin-serialization\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "shared/plugin-accessors/main/kotlin/PluginAccessors.kt",
+      "language": "kotlin",
+      "line": 123,
+      "offset": 33,
+      "length": 22,
+      "code": {
+        "startLine": 121,
+        "length": 22,
+        "offset": 94,
+        "surroundingCode": "    get() = id(\"org.jetbrains.kotlin.plugin.serialization\")\n\ninfix fun PluginDependenciesSpec.`kotlin-serialization`(version: String): PluginDependencySpec =\n    id(\"org.jetbrains.kotlin.plugin.serialization\").version(version)\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.shared.plugin-accessors.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "9087620508939498647"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Function \"ben-manes-versions\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "shared/plugin-accessors/main/kotlin/PluginAccessors.kt",
+      "language": "kotlin",
+      "line": 33,
+      "offset": 33,
+      "length": 20,
+      "code": {
+        "startLine": 31,
+        "length": 20,
+        "offset": 82,
+        "surroundingCode": "    get() = id(\"com.github.ben-manes.versions\")\n\ninfix fun PluginDependenciesSpec.`ben-manes-versions`(version: String): PluginDependencySpec =\n    id(\"com.github.ben-manes.versions\").version(version)\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.shared.plugin-accessors.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "-8051629576756442544"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Property \"kotlin-serialization\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "shared/plugin-accessors/main/kotlin/PluginAccessors.kt",
+      "language": "kotlin",
+      "line": 120,
+      "offset": 27,
+      "length": 22,
+      "code": {
+        "startLine": 118,
+        "length": 22,
+        "offset": 93,
+        "surroundingCode": "    id(\"org.jetbrains.kotlin.plugin.parcelize\").version(version)\n\nval PluginDependenciesSpec.`kotlin-serialization`: PluginDependencySpec\n    get() = id(\"org.jetbrains.kotlin.plugin.serialization\")\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.shared.plugin-accessors.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "-477942045679723072"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Function \"auto-include\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "shared/plugin-accessors/main/kotlin/PluginAccessors.kt",
+      "language": "kotlin",
+      "line": 27,
+      "offset": 33,
       "length": 14,
       "code": {
-        "startLine": 30,
+        "startLine": 25,
         "length": 14,
-        "offset": 111,
-        "surroundingCode": "    get() = project.version.toString().endsWith(\"-SNAPSHOT\", ignoreCase = true)\n\ninternal val SigningExtension.signingKeyName: String?\n    get() = project.getVariable(\"signing.gnupg.keyName\", \"SIGNING_KEY_NAME\")\n"
+        "offset": 85,
+        "surroundingCode": "    get() = id(\"com.pablisco.gradle.auto.include\")\n\ninfix fun PluginDependenciesSpec.`auto-include`(version: String): PluginDependencySpec =\n    id(\"com.pablisco.gradle.auto.include\").version(version)\n"
       }
     }
   ],
   "attributes": {
-    "module": "gradle-plugins.plugins.publish.publish.main",
+    "module": "gradle-plugins.shared.plugin-accessors.main",
     "inspectionName": "UnusedSymbol"
   },
-  "hash": "-5013644022149716800"
+  "hash": "5156303326516350114"
 },{
   "tool": "Code Inspection",
   "category": "Redundant constructs",
@@ -254,29 +626,29 @@
     "kotlin"
   ],
   "severity": "High",
-  "comment": "Property \"hasSigningKeyGradleProperty\" is never used",
+  "comment": "Function \"android-library\" is never used",
   "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
   "sources": [
     {
       "type": "method",
-      "path": "plugins/publish/publish/main/kotlin/com/javiersc/gradle/plugins/publish/internal/SigningExtensions.kt",
+      "path": "shared/plugin-accessors/main/kotlin/PluginAccessors.kt",
       "language": "kotlin",
-      "line": 62,
-      "offset": 30,
-      "length": 27,
+      "line": 15,
+      "offset": 33,
+      "length": 17,
       "code": {
-        "startLine": 60,
-        "length": 27,
-        "offset": 99,
-        "surroundingCode": "    get() = project.getVariable(\"signing.gnupg.key\", \"SIGNING_KEY\")\n\ninternal val SigningExtension.hasSigningKeyGradleProperty: Boolean\n    get() = project.properties[\"signing.gnupg.key\"]?.toString().isNullOrBlank().not()\n"
+        "startLine": 13,
+        "length": 17,
+        "offset": 72,
+        "surroundingCode": "    get() = id(\"com.android.library\")\n\ninfix fun PluginDependenciesSpec.`android-library`(version: String): PluginDependencySpec =\n    id(\"com.android.library\").version(version)\n"
       }
     }
   ],
   "attributes": {
-    "module": "gradle-plugins.plugins.publish.publish.main",
+    "module": "gradle-plugins.shared.plugin-accessors.main",
     "inspectionName": "UnusedSymbol"
   },
-  "hash": "-382433569167145878"
+  "hash": "7748537812357415580"
 },{
   "tool": "Code Inspection",
   "category": "Redundant constructs",
@@ -285,89 +657,647 @@
     "kotlin"
   ],
   "severity": "High",
-  "comment": "Class \"ReadmeBadgesGeneratorPlugin\" is never used",
+  "comment": "Function \"kotlin-parcelize\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "shared/plugin-accessors/main/kotlin/PluginAccessors.kt",
+      "language": "kotlin",
+      "line": 117,
+      "offset": 33,
+      "length": 18,
+      "code": {
+        "startLine": 115,
+        "length": 18,
+        "offset": 90,
+        "surroundingCode": "    get() = id(\"org.jetbrains.kotlin.plugin.parcelize\")\n\ninfix fun PluginDependenciesSpec.`kotlin-parcelize`(version: String): PluginDependencySpec =\n    id(\"org.jetbrains.kotlin.plugin.parcelize\").version(version)\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.shared.plugin-accessors.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "8976297605365485371"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Property \"kotlin-ksp\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "shared/plugin-accessors/main/kotlin/PluginAccessors.kt",
+      "language": "kotlin",
+      "line": 102,
+      "offset": 27,
+      "length": 12,
+      "code": {
+        "startLine": 100,
+        "length": 12,
+        "offset": 81,
+        "surroundingCode": "    id(\"org.jetbrains.kotlin.kapt\").version(version)\n\nval PluginDependenciesSpec.`kotlin-ksp`: PluginDependencySpec\n    get() = id(\"com.google.devtools.ksp\")\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.shared.plugin-accessors.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "-786521316677462960"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Property \"nexus-publish\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "shared/plugin-accessors/main/kotlin/PluginAccessors.kt",
+      "language": "kotlin",
+      "line": 140,
+      "offset": 27,
+      "length": 15,
+      "code": {
+        "startLine": 138,
+        "length": 15,
+        "offset": 72,
+        "surroundingCode": "    id(\"ru.vyarus.mkdocs\").version(version)\n\nval PluginDependenciesSpec.`nexus-publish`: PluginDependencySpec\n    get() = id(\"io.github.gradle-nexus.publish-plugin\")\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.shared.plugin-accessors.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "-8510073002276069310"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Function \"compose\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "shared/plugin-accessors/main/kotlin/PluginAccessors.kt",
+      "language": "kotlin",
+      "line": 45,
+      "offset": 33,
+      "length": 9,
+      "code": {
+        "startLine": 43,
+        "length": 9,
+        "offset": 74,
+        "surroundingCode": "    get() = id(\"org.jetbrains.compose\")\n\ninfix fun PluginDependenciesSpec.`compose`(version: String): PluginDependencySpec =\n    id(\"org.jetbrains.compose\").version(version)\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.shared.plugin-accessors.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "3668281382100763693"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Function \"semver\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "shared/plugin-accessors/main/kotlin/PluginAccessors.kt",
+      "language": "kotlin",
+      "line": 155,
+      "offset": 33,
+      "length": 8,
+      "code": {
+        "startLine": 153,
+        "length": 8,
+        "offset": 86,
+        "surroundingCode": "    get() = id(\"com.javiersc.semver.gradle.plugin\")\n\ninfix fun PluginDependenciesSpec.`semver`(version: String): PluginDependencySpec =\n    id(\"com.javiersc.semver.gradle.plugin\").version(version)\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.shared.plugin-accessors.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "4651090732038444837"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Function \"hilt-android\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "shared/plugin-accessors/main/kotlin/PluginAccessors.kt",
+      "language": "kotlin",
+      "line": 57,
+      "offset": 33,
+      "length": 14,
+      "code": {
+        "startLine": 55,
+        "length": 14,
+        "offset": 79,
+        "surroundingCode": "    get() = id(\"dagger.hilt.android.plugin\")\n\ninfix fun PluginDependenciesSpec.`hilt-android`(version: String): PluginDependencySpec =\n    id(\"dagger.hilt.android.plugin\").version(version)\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.shared.plugin-accessors.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "898390444562377402"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Property \"compose\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "shared/plugin-accessors/main/kotlin/PluginAccessors.kt",
+      "language": "kotlin",
+      "line": 42,
+      "offset": 27,
+      "length": 9,
+      "code": {
+        "startLine": 40,
+        "length": 9,
+        "offset": 79,
+        "surroundingCode": "    id(\"org.jetbrains.changelog\").version(version)\n\nval PluginDependenciesSpec.`compose`: PluginDependencySpec\n    get() = id(\"org.jetbrains.compose\")\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.shared.plugin-accessors.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "6544991508508655838"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Function \"android-application\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "shared/plugin-accessors/main/kotlin/PluginAccessors.kt",
+      "language": "kotlin",
+      "line": 21,
+      "offset": 33,
+      "length": 21,
+      "code": {
+        "startLine": 19,
+        "length": 21,
+        "offset": 76,
+        "surroundingCode": "    get() = id(\"com.android.application\")\n\ninfix fun PluginDependenciesSpec.`android-application`(version: String): PluginDependencySpec =\n    id(\"com.android.application\").version(version)\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.shared.plugin-accessors.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "-1253657965663664173"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Property \"kotlin-multiplatform\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "shared/plugin-accessors/main/kotlin/PluginAccessors.kt",
+      "language": "kotlin",
+      "line": 108,
+      "offset": 27,
+      "length": 22,
+      "code": {
+        "startLine": 106,
+        "length": 22,
+        "offset": 79,
+        "surroundingCode": "    id(\"com.google.devtools.ksp\").version(version)\n\nval PluginDependenciesSpec.`kotlin-multiplatform`: PluginDependencySpec\n    get() = id(\"org.jetbrains.kotlin.multiplatform\")\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.shared.plugin-accessors.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "436724272055777100"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Function \"kotlin-kapt\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "shared/plugin-accessors/main/kotlin/PluginAccessors.kt",
+      "language": "kotlin",
+      "line": 99,
+      "offset": 33,
+      "length": 13,
+      "code": {
+        "startLine": 97,
+        "length": 13,
+        "offset": 78,
+        "surroundingCode": "    get() = id(\"org.jetbrains.kotlin.kapt\")\n\ninfix fun PluginDependenciesSpec.`kotlin-kapt`(version: String): PluginDependencySpec =\n    id(\"org.jetbrains.kotlin.kapt\").version(version)\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.shared.plugin-accessors.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "-5436160989533829889"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Property \"ben-manes-versions\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "shared/plugin-accessors/main/kotlin/PluginAccessors.kt",
+      "language": "kotlin",
+      "line": 30,
+      "offset": 27,
+      "length": 20,
+      "code": {
+        "startLine": 28,
+        "length": 20,
+        "offset": 88,
+        "surroundingCode": "    id(\"com.pablisco.gradle.auto.include\").version(version)\n\nval PluginDependenciesSpec.`ben-manes-versions`: PluginDependencySpec\n    get() = id(\"com.github.ben-manes.versions\")\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.shared.plugin-accessors.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "528037824184569211"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Function \"dokka\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "shared/plugin-accessors/main/kotlin/PluginAccessors.kt",
+      "language": "kotlin",
+      "line": 69,
+      "offset": 33,
+      "length": 7,
+      "code": {
+        "startLine": 67,
+        "length": 7,
+        "offset": 72,
+        "surroundingCode": "    get() = id(\"org.jetbrains.dokka\")\n\ninfix fun PluginDependenciesSpec.`dokka`(version: String): PluginDependencySpec =\n    id(\"org.jetbrains.dokka\").version(version)\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.shared.plugin-accessors.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "-6638954505744194459"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Property \"dokka\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "shared/plugin-accessors/main/kotlin/PluginAccessors.kt",
+      "language": "kotlin",
+      "line": 66,
+      "offset": 27,
+      "length": 7,
+      "code": {
+        "startLine": 64,
+        "length": 7,
+        "offset": 83,
+        "surroundingCode": "    id(\"io.gitlab.arturbosch.detekt\").version(version)\n\nval PluginDependenciesSpec.`dokka`: PluginDependencySpec\n    get() = id(\"org.jetbrains.dokka\")\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.shared.plugin-accessors.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "-340217075736124358"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Property \"hilt-android\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "shared/plugin-accessors/main/kotlin/PluginAccessors.kt",
+      "language": "kotlin",
+      "line": 54,
+      "offset": 27,
+      "length": 14,
+      "code": {
+        "startLine": 52,
+        "length": 14,
+        "offset": 86,
+        "surroundingCode": "    id(\"com.javiersc.compose.resources\").version(version)\n\nval PluginDependenciesSpec.`hilt-android`: PluginDependencySpec\n    get() = id(\"dagger.hilt.android.plugin\")\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.shared.plugin-accessors.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "9129931595860743596"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Property \"kotlin-js\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "shared/plugin-accessors/main/kotlin/PluginAccessors.kt",
+      "language": "kotlin",
+      "line": 90,
+      "offset": 27,
+      "length": 11,
+      "code": {
+        "startLine": 88,
+        "length": 11,
+        "offset": 80,
+        "surroundingCode": "    id(\"org.jetbrains.kotlin.jvm\").version(version)\n\nval PluginDependenciesSpec.`kotlin-js`: PluginDependencySpec\n    get() = id(\"org.jetbrains.kotlin.js\")\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.shared.plugin-accessors.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "-6011576414968934510"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Property \"spotless\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "shared/plugin-accessors/main/kotlin/PluginAccessors.kt",
+      "language": "kotlin",
+      "line": 158,
+      "offset": 27,
+      "length": 10,
+      "code": {
+        "startLine": 156,
+        "length": 10,
+        "offset": 89,
+        "surroundingCode": "    id(\"com.javiersc.semver.gradle.plugin\").version(version)\n\nval PluginDependenciesSpec.`spotless`: PluginDependencySpec\n    get() = id(\"com.diffplug.spotless\")\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.shared.plugin-accessors.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "-3271529445796176568"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Property \"auto-include\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "shared/plugin-accessors/main/kotlin/PluginAccessors.kt",
+      "language": "kotlin",
+      "line": 24,
+      "offset": 27,
+      "length": 14,
+      "code": {
+        "startLine": 22,
+        "length": 14,
+        "offset": 79,
+        "surroundingCode": "    id(\"com.android.application\").version(version)\n\nval PluginDependenciesSpec.`auto-include`: PluginDependencySpec\n    get() = id(\"com.pablisco.gradle.auto.include\")\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.shared.plugin-accessors.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "1275309276671910841"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Function \"reckon\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "shared/plugin-accessors/main/kotlin/PluginAccessors.kt",
+      "language": "kotlin",
+      "line": 149,
+      "offset": 33,
+      "length": 8,
+      "code": {
+        "startLine": 147,
+        "length": 8,
+        "offset": 74,
+        "surroundingCode": "    get() = id(\"org.ajoberstar.reckon\")\n\ninfix fun PluginDependenciesSpec.`reckon`(version: String): PluginDependencySpec =\n    id(\"org.ajoberstar.reckon\").version(version)\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.shared.plugin-accessors.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "5665404607914659497"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Function \"spotless\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "shared/plugin-accessors/main/kotlin/PluginAccessors.kt",
+      "language": "kotlin",
+      "line": 161,
+      "offset": 33,
+      "length": 10,
+      "code": {
+        "startLine": 159,
+        "length": 10,
+        "offset": 74,
+        "surroundingCode": "    get() = id(\"com.diffplug.spotless\")\n\ninfix fun PluginDependenciesSpec.`spotless`(version: String): PluginDependencySpec =\n    id(\"com.diffplug.spotless\").version(version)"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.shared.plugin-accessors.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "8269786156710765048"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Property \"android-application\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "shared/plugin-accessors/main/kotlin/PluginAccessors.kt",
+      "language": "kotlin",
+      "line": 18,
+      "offset": 27,
+      "length": 21,
+      "code": {
+        "startLine": 16,
+        "length": 21,
+        "offset": 75,
+        "surroundingCode": "    id(\"com.android.library\").version(version)\n\nval PluginDependenciesSpec.`android-application`: PluginDependencySpec\n    get() = id(\"com.android.application\")\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.shared.plugin-accessors.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "1321028752848749142"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Class \"CodeCoveragePlugin\" is never used",
   "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
   "sources": [
     {
       "type": "class",
-      "path": "plugins/documentation/readme-badges/main/kotlin/com/javiersc/gradle/plugins/readme/badges/generator/ReadmeBadgesGeneratorPlugin.kt",
-      "language": "kotlin",
-      "line": 9,
-      "offset": 15,
-      "length": 27,
-      "code": {
-        "startLine": 7,
-        "length": 27,
-        "offset": 81,
-        "surroundingCode": "import org.jetbrains.kotlin.gradle.plugin.getKotlinPluginVersion\n\nabstract class ReadmeBadgesGeneratorPlugin : Plugin<Project> {\n\n    @OptIn(ExperimentalStdlibApi::class)"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.documentation.readme-badges.main",
-    "inspectionName": "UnusedSymbol"
-  },
-  "hash": "-5260920796929894390"
-},{
-  "tool": "Code Inspection",
-  "category": "Redundant constructs",
-  "type": "Unused symbol",
-  "tags": [
-    "kotlin"
-  ],
-  "severity": "High",
-  "comment": "Function \"javiersc-all-projects\" is never used",
-  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
-  "sources": [
-    {
-      "type": "method",
-      "path": "all-plugins/main/kotlin/AllProjectsAccessors.kt",
-      "language": "kotlin",
-      "line": 9,
-      "offset": 27,
-      "length": 23,
-      "code": {
-        "startLine": 7,
-        "length": 23,
-        "offset": 65,
-        "surroundingCode": "    get() = javiersc(\"all.projects\")\n\nfun PluginDependenciesSpec.`javiersc-all-projects`(\n    version: String,\n): PluginDependencySpec = javiersc(\"all.projects\", version)"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.all-plugins.main",
-    "inspectionName": "UnusedSymbol"
-  },
-  "hash": "-264167033525173686"
-},{
-  "tool": "Code Inspection",
-  "category": "Redundant constructs",
-  "type": "Unused symbol",
-  "tags": [
-    "kotlin"
-  ],
-  "severity": "High",
-  "comment": "Property \"javiersc-all-projects\" is never used",
-  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
-  "sources": [
-    {
-      "type": "method",
-      "path": "all-plugins/main/kotlin/AllProjectsAccessors.kt",
+      "path": "plugins/code-enhancers-and-utils/code-coverage/main/kotlin/com/javiersc/gradle/plugins/code/coverage/CodeCoveragePlugin.kt",
       "language": "kotlin",
       "line": 6,
-      "offset": 27,
-      "length": 23,
+      "offset": 15,
+      "length": 18,
       "code": {
         "startLine": 4,
-        "length": 23,
-        "offset": 78,
-        "surroundingCode": "import org.gradle.plugin.use.PluginDependencySpec\n\nval PluginDependenciesSpec.`javiersc-all-projects`: PluginDependencySpec\n    get() = javiersc(\"all.projects\")\n"
+        "length": 18,
+        "offset": 46,
+        "surroundingCode": "import org.gradle.api.Project\n\nabstract class CodeCoveragePlugin : Plugin<Project> {\n\n    override fun apply(target: Project) {"
       }
     }
   ],
   "attributes": {
-    "module": "gradle-plugins.all-plugins.main",
+    "module": "gradle-plugins.plugins.code-enhancers-and-utils.code-coverage.main",
     "inspectionName": "UnusedSymbol"
   },
-  "hash": "-7667945930272943535"
+  "hash": "-8834842940699807044"
 }]}

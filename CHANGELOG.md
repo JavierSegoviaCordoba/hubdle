@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `actions/checkout -> v3.0.0`
 - `com.adarshr:gradle-test-logger-plugin -> 3.2.0`
 - `com.javiersc.gradle-plugins:all-plugins -> 0.1.0-rc.41`
 

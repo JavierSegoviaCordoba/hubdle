@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `gradle -> 7.4.1`
 - `org.eclipse.jgit:org.eclipse.jgit -> 6.1.0.202203080745-r`
 - `actions/checkout -> v3.0.0`
 - `com.adarshr:gradle-test-logger-plugin -> 3.2.0`

@@ -6,21 +6,83 @@
     "kotlin"
   ],
   "severity": "High",
-  "comment": "Function \"javiersc-all-projects\" is never used",
+  "comment": "Function \"sonatypeSnapshots\" is never used",
   "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
   "sources": [
     {
       "type": "method",
-      "path": "all-plugins/main/kotlin/AllProjectsAccessors.kt",
+      "path": "shared/core/main/kotlin/com/javiersc/gradle/plugins/core/SonatypeSnapshot.kt",
+      "language": "kotlin",
+      "line": 6,
+      "offset": 22,
+      "length": 17,
+      "code": {
+        "startLine": 4,
+        "length": 17,
+        "offset": 58,
+        "surroundingCode": "import org.gradle.kotlin.dsl.maven\n\nfun RepositoryHandler.sonatypeSnapshots() {\n    maven(url = \"https://oss.sonatype.org/content/repositories/snapshots/\")\n}"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.shared.core.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "-2725954229123065596"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Property \"sandboxFile\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "shared/core-test/main/kotlin/com/javiersc/gradle/plugins/core/test/Sandbox.kt",
+      "language": "kotlin",
+      "line": 15,
+      "offset": 9,
+      "length": 11,
+      "code": {
+        "startLine": 13,
+        "length": 11,
+        "offset": 89,
+        "surroundingCode": "val sandboxPath: Path = Paths.get(\"build/sandbox\").apply { toFile().mkdirs() }\n\nval File.sandboxFile: File\n    get() = File(\"$this/build/sandbox\")\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.shared.core-test.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "6307441478521286739"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Function \"javiersc-code-coverage\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "all-plugins/main/kotlin/CodeCoverageAccessors.kt",
       "language": "kotlin",
       "line": 9,
       "offset": 27,
-      "length": 23,
+      "length": 24,
       "code": {
         "startLine": 7,
-        "length": 23,
-        "offset": 65,
-        "surroundingCode": "    get() = javiersc(\"all.projects\")\n\nfun PluginDependenciesSpec.`javiersc-all-projects`(\n    version: String,\n): PluginDependencySpec = javiersc(\"all.projects\", version)"
+        "length": 24,
+        "offset": 66,
+        "surroundingCode": "    get() = javiersc(\"code.coverage\")\n\nfun PluginDependenciesSpec.`javiersc-code-coverage`(\n    version: String,\n): PluginDependencySpec = javiersc(\"code.coverage\", version)"
       }
     }
   ],
@@ -28,7 +90,7 @@
     "module": "gradle-plugins.all-plugins.main",
     "inspectionName": "UnusedSymbol"
   },
-  "hash": "-264167033525173686"
+  "hash": "-7224367178001789818"
 },{
   "tool": "Code Inspection",
   "category": "Redundant constructs",
@@ -37,21 +99,21 @@
     "kotlin"
   ],
   "severity": "High",
-  "comment": "Property \"javiersc-all-projects\" is never used",
+  "comment": "Property \"javiersc-code-coverage\" is never used",
   "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
   "sources": [
     {
       "type": "method",
-      "path": "all-plugins/main/kotlin/AllProjectsAccessors.kt",
+      "path": "all-plugins/main/kotlin/CodeCoverageAccessors.kt",
       "language": "kotlin",
       "line": 6,
       "offset": 27,
-      "length": 23,
+      "length": 24,
       "code": {
         "startLine": 4,
-        "length": 23,
+        "length": 24,
         "offset": 78,
-        "surroundingCode": "import org.gradle.plugin.use.PluginDependencySpec\n\nval PluginDependenciesSpec.`javiersc-all-projects`: PluginDependencySpec\n    get() = javiersc(\"all.projects\")\n"
+        "surroundingCode": "import org.gradle.plugin.use.PluginDependencySpec\n\nval PluginDependenciesSpec.`javiersc-code-coverage`: PluginDependencySpec\n    get() = javiersc(\"code.coverage\")\n"
       }
     }
   ],
@@ -59,7 +121,7 @@
     "module": "gradle-plugins.all-plugins.main",
     "inspectionName": "UnusedSymbol"
   },
-  "hash": "-7667945930272943535"
+  "hash": "-4311220061406713443"
 },{
   "tool": "Code Inspection",
   "category": "Redundant constructs",
@@ -68,21 +130,52 @@
     "kotlin"
   ],
   "severity": "High",
-  "comment": "Function \"javiersc-readme-badges-generator\" is never used",
+  "comment": "Property \"javiersc-projects-version-catalog\" is never used",
   "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
   "sources": [
     {
       "type": "method",
-      "path": "all-plugins/main/kotlin/ReadmeBadgesGeneratorAccessors.kt",
+      "path": "all-plugins/main/kotlin/ProjectsVersionCatalogAccessors.kt",
+      "language": "kotlin",
+      "line": 6,
+      "offset": 27,
+      "length": 35,
+      "code": {
+        "startLine": 4,
+        "length": 35,
+        "offset": 78,
+        "surroundingCode": "import org.gradle.plugin.use.PluginDependencySpec\n\nval PluginDependenciesSpec.`javiersc-projects-version-catalog`: PluginDependencySpec\n    get() = javiersc(\"projects.version.catalog\")\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.all-plugins.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "-1951373214734214894"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Function \"javiersc-projects-version-catalog\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "all-plugins/main/kotlin/ProjectsVersionCatalogAccessors.kt",
       "language": "kotlin",
       "line": 9,
       "offset": 27,
-      "length": 34,
+      "length": 35,
       "code": {
         "startLine": 7,
-        "length": 34,
-        "offset": 76,
-        "surroundingCode": "    get() = javiersc(\"readme.badges.generator\")\n\nfun PluginDependenciesSpec.`javiersc-readme-badges-generator`(\n    version: String,\n): PluginDependencySpec = javiersc(\"readme.badges.generator\", version)"
+        "length": 35,
+        "offset": 77,
+        "surroundingCode": "    get() = javiersc(\"projects.version.catalog\")\n\nfun PluginDependenciesSpec.`javiersc-projects-version-catalog`(\n    version: String,\n): PluginDependencySpec = javiersc(\"projects.version.catalog\", version)"
       }
     }
   ],
@@ -90,36 +183,5 @@
     "module": "gradle-plugins.all-plugins.main",
     "inspectionName": "UnusedSymbol"
   },
-  "hash": "-6054725237346779288"
-},{
-  "tool": "Code Inspection",
-  "category": "Redundant constructs",
-  "type": "Unused symbol",
-  "tags": [
-    "kotlin"
-  ],
-  "severity": "High",
-  "comment": "Property \"javiersc-readme-badges-generator\" is never used",
-  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
-  "sources": [
-    {
-      "type": "method",
-      "path": "all-plugins/main/kotlin/ReadmeBadgesGeneratorAccessors.kt",
-      "language": "kotlin",
-      "line": 6,
-      "offset": 27,
-      "length": 34,
-      "code": {
-        "startLine": 4,
-        "length": 34,
-        "offset": 78,
-        "surroundingCode": "import org.gradle.plugin.use.PluginDependencySpec\n\nval PluginDependenciesSpec.`javiersc-readme-badges-generator`: PluginDependencySpec\n    get() = javiersc(\"readme.badges.generator\")\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.all-plugins.main",
-    "inspectionName": "UnusedSymbol"
-  },
-  "hash": "5253623321513623669"
+  "hash": "-5553950091028134697"
 }]}

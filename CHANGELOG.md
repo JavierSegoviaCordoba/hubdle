@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `gradle/gradle-build-action -> v2.1.4`
 - `io.kotest:kotest-assertions-core -> 5.2.1`
 - `com.facebook:ktfmt -> 0.34`
 - `gradle -> 7.4.1`

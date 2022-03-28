@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.diffplug.spotless:spotless-plugin-gradle -> 6.4.0`
 - `com.facebook:ktfmt -> 0.35`
 - `gradle/gradle-build-action -> v2.1.4`
 - `io.kotest:kotest-assertions-core -> 5.2.1`

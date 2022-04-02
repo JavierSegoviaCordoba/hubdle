@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.gradle.publish:plugin-publish-plugin -> 0.21.0`
 - `actions/setup-java -> v3.1.0`
 - `com.diffplug.spotless:spotless-plugin-gradle -> 6.4.1`
 - `ru.vyarus:gradle-mkdocs-plugin -> 2.3.0`

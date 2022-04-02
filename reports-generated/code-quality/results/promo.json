@@ -6,52 +6,21 @@
     "kotlin"
   ],
   "severity": "High",
-  "comment": "Class \"CodeFormatterPlugin\" is never used",
-  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
-  "sources": [
-    {
-      "type": "class",
-      "path": "plugins/code-enhancers-and-utils/code-formatter/main/kotlin/com/javiersc/gradle/plugins/code/formatter/CodeFormatterPlugin.kt",
-      "language": "kotlin",
-      "line": 9,
-      "offset": 15,
-      "length": 19,
-      "code": {
-        "startLine": 7,
-        "length": 19,
-        "offset": 82,
-        "surroundingCode": "import org.jetbrains.kotlin.gradle.plugin.KotlinBasePluginWrapper\n\nabstract class CodeFormatterPlugin : Plugin<Project> {\n\n    override fun apply(target: Project) {"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.code-enhancers-and-utils.code-formatter.main",
-    "inspectionName": "UnusedSymbol"
-  },
-  "hash": "4671914322603078398"
-},{
-  "tool": "Code Inspection",
-  "category": "Redundant constructs",
-  "type": "Unused symbol",
-  "tags": [
-    "kotlin"
-  ],
-  "severity": "High",
-  "comment": "Property \"javiersc-docs\" is never used",
+  "comment": "Property \"javiersc-projects-version-catalog\" is never used",
   "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
   "sources": [
     {
       "type": "method",
-      "path": "all-plugins/main/kotlin/DocsAccessors.kt",
+      "path": "all-plugins/main/kotlin/ProjectsVersionCatalogAccessors.kt",
       "language": "kotlin",
       "line": 6,
       "offset": 27,
-      "length": 15,
+      "length": 35,
       "code": {
         "startLine": 4,
-        "length": 15,
+        "length": 35,
         "offset": 78,
-        "surroundingCode": "import org.gradle.plugin.use.PluginDependencySpec\n\nval PluginDependenciesSpec.`javiersc-docs`: PluginDependencySpec\n    get() = javiersc(\"docs\")\n"
+        "surroundingCode": "import org.gradle.plugin.use.PluginDependencySpec\n\nval PluginDependenciesSpec.`javiersc-projects-version-catalog`: PluginDependencySpec\n    get() = javiersc(\"projects.version.catalog\")\n"
       }
     }
   ],
@@ -59,7 +28,7 @@
     "module": "gradle-plugins.all-plugins.main",
     "inspectionName": "UnusedSymbol"
   },
-  "hash": "-1022711961514484406"
+  "hash": "-1951373214734214894"
 },{
   "tool": "Code Inspection",
   "category": "Redundant constructs",
@@ -68,21 +37,21 @@
     "kotlin"
   ],
   "severity": "High",
-  "comment": "Function \"javiersc-docs\" is never used",
+  "comment": "Function \"javiersc-projects-version-catalog\" is never used",
   "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
   "sources": [
     {
       "type": "method",
-      "path": "all-plugins/main/kotlin/DocsAccessors.kt",
+      "path": "all-plugins/main/kotlin/ProjectsVersionCatalogAccessors.kt",
       "language": "kotlin",
       "line": 9,
       "offset": 27,
-      "length": 15,
+      "length": 35,
       "code": {
         "startLine": 7,
-        "length": 15,
-        "offset": 57,
-        "surroundingCode": "    get() = javiersc(\"docs\")\n\nfun PluginDependenciesSpec.`javiersc-docs`(\n    version: String,\n): PluginDependencySpec = javiersc(\"docs\", version)"
+        "length": 35,
+        "offset": 77,
+        "surroundingCode": "    get() = javiersc(\"projects.version.catalog\")\n\nfun PluginDependenciesSpec.`javiersc-projects-version-catalog`(\n    version: String,\n): PluginDependencySpec = javiersc(\"projects.version.catalog\", version)"
       }
     }
   ],
@@ -90,129 +59,5 @@
     "module": "gradle-plugins.all-plugins.main",
     "inspectionName": "UnusedSymbol"
   },
-  "hash": "1039999299035291846"
-},{
-  "tool": "Code Inspection",
-  "category": "Redundant constructs",
-  "type": "Unused symbol",
-  "tags": [
-    "kotlin"
-  ],
-  "severity": "High",
-  "comment": "Property \"javiersc-all-projects\" is never used",
-  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
-  "sources": [
-    {
-      "type": "method",
-      "path": "all-plugins/main/kotlin/AllProjectsAccessors.kt",
-      "language": "kotlin",
-      "line": 6,
-      "offset": 27,
-      "length": 23,
-      "code": {
-        "startLine": 4,
-        "length": 23,
-        "offset": 78,
-        "surroundingCode": "import org.gradle.plugin.use.PluginDependencySpec\n\nval PluginDependenciesSpec.`javiersc-all-projects`: PluginDependencySpec\n    get() = javiersc(\"all.projects\")\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.all-plugins.main",
-    "inspectionName": "UnusedSymbol"
-  },
-  "hash": "-7667945930272943535"
-},{
-  "tool": "Code Inspection",
-  "category": "Redundant constructs",
-  "type": "Unused symbol",
-  "tags": [
-    "kotlin"
-  ],
-  "severity": "High",
-  "comment": "Function \"javiersc-all-projects\" is never used",
-  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
-  "sources": [
-    {
-      "type": "method",
-      "path": "all-plugins/main/kotlin/AllProjectsAccessors.kt",
-      "language": "kotlin",
-      "line": 9,
-      "offset": 27,
-      "length": 23,
-      "code": {
-        "startLine": 7,
-        "length": 23,
-        "offset": 65,
-        "surroundingCode": "    get() = javiersc(\"all.projects\")\n\nfun PluginDependenciesSpec.`javiersc-all-projects`(\n    version: String,\n): PluginDependencySpec = javiersc(\"all.projects\", version)"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.all-plugins.main",
-    "inspectionName": "UnusedSymbol"
-  },
-  "hash": "-264167033525173686"
-},{
-  "tool": "Code Inspection",
-  "category": "Redundant constructs",
-  "type": "Unused symbol",
-  "tags": [
-    "kotlin"
-  ],
-  "severity": "High",
-  "comment": "Function \"javiersc-readme-badges-generator\" is never used",
-  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
-  "sources": [
-    {
-      "type": "method",
-      "path": "all-plugins/main/kotlin/ReadmeBadgesGeneratorAccessors.kt",
-      "language": "kotlin",
-      "line": 9,
-      "offset": 27,
-      "length": 34,
-      "code": {
-        "startLine": 7,
-        "length": 34,
-        "offset": 76,
-        "surroundingCode": "    get() = javiersc(\"readme.badges.generator\")\n\nfun PluginDependenciesSpec.`javiersc-readme-badges-generator`(\n    version: String,\n): PluginDependencySpec = javiersc(\"readme.badges.generator\", version)"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.all-plugins.main",
-    "inspectionName": "UnusedSymbol"
-  },
-  "hash": "-6054725237346779288"
-},{
-  "tool": "Code Inspection",
-  "category": "Redundant constructs",
-  "type": "Unused symbol",
-  "tags": [
-    "kotlin"
-  ],
-  "severity": "High",
-  "comment": "Property \"javiersc-readme-badges-generator\" is never used",
-  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
-  "sources": [
-    {
-      "type": "method",
-      "path": "all-plugins/main/kotlin/ReadmeBadgesGeneratorAccessors.kt",
-      "language": "kotlin",
-      "line": 6,
-      "offset": 27,
-      "length": 34,
-      "code": {
-        "startLine": 4,
-        "length": 34,
-        "offset": 78,
-        "surroundingCode": "import org.gradle.plugin.use.PluginDependencySpec\n\nval PluginDependenciesSpec.`javiersc-readme-badges-generator`: PluginDependencySpec\n    get() = javiersc(\"readme.badges.generator\")\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.all-plugins.main",
-    "inspectionName": "UnusedSymbol"
-  },
-  "hash": "5253623321513623669"
+  "hash": "-5553950091028134697"
 }]}

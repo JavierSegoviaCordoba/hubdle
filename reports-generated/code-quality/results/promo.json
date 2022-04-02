@@ -1,32 +1,63 @@
 {"version":"3","listProblem":[{
   "tool": "Code Inspection",
+  "category": "Style issues",
+  "type": "Class member can have 'private' visibility",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "Info",
+  "comment": "Property 'value' could be private",
+  "detailsInfo": "Reports declarations that can be made `private` to follow the encapsulation principle.\n\n**Example:**\n\n\n    class Service(val url: String) {\n        fun connect(): URLConnection = URL(url).openConnection()\n    }\n\nAfter the quick-fix is applied (considering there are no usages of `url` outside of `Service` class):\n\n\n    class Service(private val url: String) {\n        fun connect(): URLConnection = URL(url).openConnection()\n    }\n",
+  "sources": [
+    {
+      "type": "method",
+      "path": "plugins/documentation/changelog/main/kotlin/com/javiersc/gradle/plugins/changelog/internal/Changelog.kt",
+      "language": "kotlin",
+      "line": 50,
+      "offset": 36,
+      "length": 5,
+      "code": {
+        "startLine": 48,
+        "length": 5,
+        "offset": 51,
+        "surroundingCode": "            }\n\n            internal class Item(val value: String) {\n\n                override fun toString(): String = value"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.plugins.documentation.changelog.main",
+    "inspectionName": "MemberVisibilityCanBePrivate"
+  },
+  "hash": "6653702043426251215"
+},{
+  "tool": "Code Inspection",
   "category": "Redundant constructs",
   "type": "Unused symbol",
   "tags": [
     "kotlin"
   ],
   "severity": "High",
-  "comment": "Function \"sonatypeSnapshots\" is never used",
+  "comment": "Class \"KotlinConfigPlugin\" is never used",
   "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
   "sources": [
     {
-      "type": "method",
-      "path": "shared/core/main/kotlin/com/javiersc/gradle/plugins/core/SonatypeSnapshot.kt",
+      "type": "class",
+      "path": "plugins/code-enhancers-and-utils/kotlin-config/main/kotlin/com/javiersc/gradle/plugins/kotlin/config/KotlinConfigPlugin.kt",
       "language": "kotlin",
       "line": 6,
-      "offset": 22,
-      "length": 17,
+      "offset": 6,
+      "length": 18,
       "code": {
         "startLine": 4,
-        "length": 17,
-        "offset": 58,
-        "surroundingCode": "import org.gradle.kotlin.dsl.maven\n\nfun RepositoryHandler.sonatypeSnapshots() {\n    maven(url = \"https://oss.sonatype.org/content/repositories/snapshots/\")\n}"
+        "length": 18,
+        "offset": 37,
+        "surroundingCode": "import org.gradle.api.Project\n\nclass KotlinConfigPlugin : Plugin<Project> {\n\n    override fun apply(project: Project) {"
       }
     }
   ],
   "attributes": {
-    "module": "gradle-plugins.shared.core.main",
+    "module": "gradle-plugins.plugins.code-enhancers-and-utils.kotlin-config.main",
     "inspectionName": "UnusedSymbol"
   },
-  "hash": "-2725954229123065596"
+  "hash": "1540212358853930689"
 }]}

@@ -14,6 +14,10 @@
 
 ### Updated
 
+## [0.1.0-rc.42] - 2022-04-02
+
+### Updated
+
 - `gradle -> 7.4.2`
 - `io.kotest:kotest-assertions-core -> 5.2.2`
 - `org.jetbrains.kotlin:kotlin-gradle-plugin -> 1.6.20`

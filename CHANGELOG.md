@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `ru.vyarus:gradle-mkdocs-plugin -> 2.3.0`
 - `gradle/gradle-build-action -> v2.1.5`
 - `com.diffplug.spotless:spotless-plugin-gradle -> 6.4.0`
 - `com.facebook:ktfmt -> 0.35`

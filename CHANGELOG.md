@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `io.kotest:kotest-assertions-core -> 5.2.2`
 - `org.jetbrains.kotlin:kotlin-gradle-plugin -> 1.6.20`
 - `com.gradle.publish:plugin-publish-plugin -> 0.21.0`
 - `actions/setup-java -> v3.1.0`
@@ -21,7 +22,6 @@
 - `ru.vyarus:gradle-mkdocs-plugin -> 2.3.0`
 - `gradle/gradle-build-action -> v2.1.5`
 - `com.facebook:ktfmt -> 0.35`
-- `io.kotest:kotest-assertions-core -> 5.2.1`
 - `gradle -> 7.4.1`
 - `org.eclipse.jgit:org.eclipse.jgit -> 6.1.0.202203080745-r`
 - `actions/checkout -> v3.0.0`

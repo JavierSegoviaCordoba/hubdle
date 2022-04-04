@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx:kotlinx-coroutines-core -> 1.6.1`
 - `com.javiersc.gradle-plugins:all-plugins -> 0.1.0-rc.42`
 
 ## [0.1.0-rc.42] - 2022-04-02

@@ -1,313 +1,34 @@
 {"version":"3","listProblem":[{
   "tool": "Code Inspection",
-  "category": "Style issues",
-  "type": "Class member can have 'private' visibility",
-  "tags": [
-    "kotlin"
-  ],
-  "severity": "Info",
-  "comment": "Property 'value' could be private",
-  "detailsInfo": "Reports declarations that can be made `private` to follow the encapsulation principle.\n\n**Example:**\n\n\n    class Service(val url: String) {\n        fun connect(): URLConnection = URL(url).openConnection()\n    }\n\nAfter the quick-fix is applied (considering there are no usages of `url` outside of `Service` class):\n\n\n    class Service(private val url: String) {\n        fun connect(): URLConnection = URL(url).openConnection()\n    }\n",
-  "sources": [
-    {
-      "type": "method",
-      "path": "plugins/documentation/changelog/main/kotlin/com/javiersc/gradle/plugins/changelog/internal/Changelog.kt",
-      "language": "kotlin",
-      "line": 50,
-      "offset": 36,
-      "length": 5,
-      "code": {
-        "startLine": 48,
-        "length": 5,
-        "offset": 51,
-        "surroundingCode": "            }\n\n            internal class Item(val value: String) {\n\n                override fun toString(): String = value"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.documentation.changelog.main",
-    "inspectionName": "MemberVisibilityCanBePrivate"
-  },
-  "hash": "6653702043426251215"
-},{
-  "tool": "Code Inspection",
   "category": "Redundant constructs",
   "type": "Unused symbol",
   "tags": [
     "kotlin"
   ],
   "severity": "High",
-  "comment": "Property \"hasSigningKeyNameGradleProperty\" is never used",
-  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
-  "sources": [
-    {
-      "type": "method",
-      "path": "plugins/publish/publish/main/kotlin/com/javiersc/gradle/plugins/publish/internal/SigningExtensions.kt",
-      "language": "kotlin",
-      "line": 35,
-      "offset": 30,
-      "length": 31,
-      "code": {
-        "startLine": 33,
-        "length": 31,
-        "offset": 108,
-        "surroundingCode": "    get() = project.getVariable(\"signing.gnupg.keyName\", \"SIGNING_KEY_NAME\")\n\ninternal val SigningExtension.hasSigningKeyNameGradleProperty: Boolean\n    get() = project.properties[\"signing.gnupg.keyName\"]?.toString().isNullOrBlank().not()\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.publish.publish.main",
-    "inspectionName": "UnusedSymbol"
-  },
-  "hash": "5227960149050490724"
-},{
-  "tool": "Code Inspection",
-  "category": "Redundant constructs",
-  "type": "Unused symbol",
-  "tags": [
-    "kotlin"
-  ],
-  "severity": "High",
-  "comment": "Property \"hasSigningKeyNameEnvironmentVariable\" is never used",
-  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
-  "sources": [
-    {
-      "type": "method",
-      "path": "plugins/publish/publish/main/kotlin/com/javiersc/gradle/plugins/publish/internal/SigningExtensions.kt",
-      "language": "kotlin",
-      "line": 38,
-      "offset": 30,
-      "length": 36,
-      "code": {
-        "startLine": 36,
-        "length": 36,
-        "offset": 121,
-        "surroundingCode": "    get() = project.properties[\"signing.gnupg.keyName\"]?.toString().isNullOrBlank().not()\n\ninternal val SigningExtension.hasSigningKeyNameEnvironmentVariable: Boolean\n    get() = System.getenv(\"SIGNING_KEY_NAME\").isNullOrBlank().not()\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.publish.publish.main",
-    "inspectionName": "UnusedSymbol"
-  },
-  "hash": "1736665214696424162"
-},{
-  "tool": "Code Inspection",
-  "category": "Redundant constructs",
-  "type": "Unused symbol",
-  "tags": [
-    "kotlin"
-  ],
-  "severity": "High",
-  "comment": "Property \"hasSigningKeyPassphraseEnvironmentVariable\" is never used",
-  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
-  "sources": [
-    {
-      "type": "method",
-      "path": "plugins/publish/publish/main/kotlin/com/javiersc/gradle/plugins/publish/internal/SigningExtensions.kt",
-      "language": "kotlin",
-      "line": 56,
-      "offset": 30,
-      "length": 42,
-      "code": {
-        "startLine": 54,
-        "length": 42,
-        "offset": 124,
-        "surroundingCode": "    get() = project.properties[\"signing.gnupg.passphrase\"]?.toString().isNullOrBlank().not()\n\ninternal val SigningExtension.hasSigningKeyPassphraseEnvironmentVariable: Boolean\n    get() = System.getenv(\"SIGNING_KEY_PASSPHRASE\").isNullOrBlank().not()\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.publish.publish.main",
-    "inspectionName": "UnusedSymbol"
-  },
-  "hash": "-1782327754858912516"
-},{
-  "tool": "Code Inspection",
-  "category": "Redundant constructs",
-  "type": "Unused symbol",
-  "tags": [
-    "kotlin"
-  ],
-  "severity": "High",
-  "comment": "Property \"hasSigningKeyPassphraseGradleProperty\" is never used",
-  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
-  "sources": [
-    {
-      "type": "method",
-      "path": "plugins/publish/publish/main/kotlin/com/javiersc/gradle/plugins/publish/internal/SigningExtensions.kt",
-      "language": "kotlin",
-      "line": 53,
-      "offset": 30,
-      "length": 37,
-      "code": {
-        "startLine": 51,
-        "length": 37,
-        "offset": 117,
-        "surroundingCode": "    get() = project.getVariable(\"signing.gnupg.passphrase\", \"SIGNING_KEY_PASSPHRASE\")\n\ninternal val SigningExtension.hasSigningKeyPassphraseGradleProperty: Boolean\n    get() = project.properties[\"signing.gnupg.passphrase\"]?.toString().isNullOrBlank().not()\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.publish.publish.main",
-    "inspectionName": "UnusedSymbol"
-  },
-  "hash": "6588520914498223560"
-},{
-  "tool": "Code Inspection",
-  "category": "Redundant constructs",
-  "type": "Unused symbol",
-  "tags": [
-    "kotlin"
-  ],
-  "severity": "High",
-  "comment": "Property \"hasSigningKeyEnvironmentVariable\" is never used",
-  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
-  "sources": [
-    {
-      "type": "method",
-      "path": "plugins/publish/publish/main/kotlin/com/javiersc/gradle/plugins/publish/internal/SigningExtensions.kt",
-      "language": "kotlin",
-      "line": 65,
-      "offset": 30,
-      "length": 32,
-      "code": {
-        "startLine": 63,
-        "length": 32,
-        "offset": 117,
-        "surroundingCode": "    get() = project.properties[\"signing.gnupg.key\"]?.toString().isNullOrBlank().not()\n\ninternal val SigningExtension.hasSigningKeyEnvironmentVariable: Boolean\n    get() = System.getenv(\"SIGNING_KEY\").isNullOrBlank().not()"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.publish.publish.main",
-    "inspectionName": "UnusedSymbol"
-  },
-  "hash": "6410767827223681843"
-},{
-  "tool": "Code Inspection",
-  "category": "Redundant constructs",
-  "type": "Unused symbol",
-  "tags": [
-    "kotlin"
-  ],
-  "severity": "High",
-  "comment": "Property \"hasSigningKeyGradleProperty\" is never used",
-  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
-  "sources": [
-    {
-      "type": "method",
-      "path": "plugins/publish/publish/main/kotlin/com/javiersc/gradle/plugins/publish/internal/SigningExtensions.kt",
-      "language": "kotlin",
-      "line": 62,
-      "offset": 30,
-      "length": 27,
-      "code": {
-        "startLine": 60,
-        "length": 27,
-        "offset": 99,
-        "surroundingCode": "    get() = project.getVariable(\"signing.gnupg.key\", \"SIGNING_KEY\")\n\ninternal val SigningExtension.hasSigningKeyGradleProperty: Boolean\n    get() = project.properties[\"signing.gnupg.key\"]?.toString().isNullOrBlank().not()\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.publish.publish.main",
-    "inspectionName": "UnusedSymbol"
-  },
-  "hash": "-382433569167145878"
-},{
-  "tool": "Code Inspection",
-  "category": "Redundant constructs",
-  "type": "Unused symbol",
-  "tags": [
-    "kotlin"
-  ],
-  "severity": "High",
-  "comment": "Property \"signingKeyName\" is never used",
-  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
-  "sources": [
-    {
-      "type": "method",
-      "path": "plugins/publish/publish/main/kotlin/com/javiersc/gradle/plugins/publish/internal/SigningExtensions.kt",
-      "language": "kotlin",
-      "line": 32,
-      "offset": 30,
-      "length": 14,
-      "code": {
-        "startLine": 30,
-        "length": 14,
-        "offset": 111,
-        "surroundingCode": "    get() = project.version.toString().endsWith(\"-SNAPSHOT\", ignoreCase = true)\n\ninternal val SigningExtension.signingKeyName: String?\n    get() = project.getVariable(\"signing.gnupg.keyName\", \"SIGNING_KEY_NAME\")\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.publish.publish.main",
-    "inspectionName": "UnusedSymbol"
-  },
-  "hash": "-5013644022149716800"
-},{
-  "tool": "Code Inspection",
-  "category": "Redundant constructs",
-  "type": "Unused symbol",
-  "tags": [
-    "kotlin"
-  ],
-  "severity": "High",
-  "comment": "Class \"ChangelogPlugin\" is never used",
+  "comment": "Class \"DocsPlugin\" is never used",
   "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
   "sources": [
     {
       "type": "class",
-      "path": "plugins/documentation/changelog/main/kotlin/com/javiersc/gradle/plugins/changelog/ChangelogPlugin.kt",
+      "path": "plugins/documentation/docs/main/kotlin/com/javiersc/gradle/plugins/docs/DocsPlugin.kt",
       "language": "kotlin",
-      "line": 15,
+      "line": 14,
       "offset": 15,
-      "length": 15,
+      "length": 10,
       "code": {
-        "startLine": 13,
-        "length": 15,
-        "offset": 72,
-        "surroundingCode": "import org.jetbrains.changelog.tasks.PatchChangelogTask\n\nabstract class ChangelogPlugin : Plugin<Project> {\n\n    override fun apply(target: Project) {"
+        "startLine": 12,
+        "length": 10,
+        "offset": 70,
+        "surroundingCode": "import ru.vyarus.gradle.plugin.mkdocs.MkdocsExtension\n\nabstract class DocsPlugin : Plugin<Project> {\n\n    override fun apply(target: Project) {"
       }
     }
   ],
   "attributes": {
-    "module": "gradle-plugins.plugins.documentation.changelog.main",
+    "module": "gradle-plugins.plugins.documentation.docs.main",
     "inspectionName": "UnusedSymbol"
   },
-  "hash": "7470320533389884700"
-},{
-  "tool": "Code Inspection",
-  "category": "Redundant constructs",
-  "type": "Unused symbol",
-  "tags": [
-    "kotlin"
-  ],
-  "severity": "High",
-  "comment": "Class \"CodeCoveragePlugin\" is never used",
-  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
-  "sources": [
-    {
-      "type": "class",
-      "path": "plugins/code-enhancers-and-utils/code-coverage/main/kotlin/com/javiersc/gradle/plugins/code/coverage/CodeCoveragePlugin.kt",
-      "language": "kotlin",
-      "line": 6,
-      "offset": 15,
-      "length": 18,
-      "code": {
-        "startLine": 4,
-        "length": 18,
-        "offset": 46,
-        "surroundingCode": "import org.gradle.api.Project\n\nabstract class CodeCoveragePlugin : Plugin<Project> {\n\n    override fun apply(target: Project) {"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.code-enhancers-and-utils.code-coverage.main",
-    "inspectionName": "UnusedSymbol"
-  },
-  "hash": "-8834842940699807044"
+  "hash": "-5113524896191959798"
 },{
   "tool": "Code Inspection",
   "category": "Redundant constructs",
@@ -370,4 +91,66 @@
     "inspectionName": "UnusedSymbol"
   },
   "hash": "4333864265746367779"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Function \"javiersc-projects-version-catalog\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "all-plugins/main/kotlin/ProjectsVersionCatalogAccessors.kt",
+      "language": "kotlin",
+      "line": 9,
+      "offset": 27,
+      "length": 35,
+      "code": {
+        "startLine": 7,
+        "length": 35,
+        "offset": 77,
+        "surroundingCode": "    get() = javiersc(\"projects.version.catalog\")\n\nfun PluginDependenciesSpec.`javiersc-projects-version-catalog`(\n    version: String,\n): PluginDependencySpec = javiersc(\"projects.version.catalog\", version)"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.all-plugins.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "-5553950091028134697"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Property \"javiersc-projects-version-catalog\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "all-plugins/main/kotlin/ProjectsVersionCatalogAccessors.kt",
+      "language": "kotlin",
+      "line": 6,
+      "offset": 27,
+      "length": 35,
+      "code": {
+        "startLine": 4,
+        "length": 35,
+        "offset": 78,
+        "surroundingCode": "import org.gradle.plugin.use.PluginDependencySpec\n\nval PluginDependenciesSpec.`javiersc-projects-version-catalog`: PluginDependencySpec\n    get() = javiersc(\"projects.version.catalog\")\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.all-plugins.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "-1951373214734214894"
 }]}

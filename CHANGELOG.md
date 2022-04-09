@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `io.kotest:kotest-assertions-core -> 5.2.3`
 - `com.diffplug.spotless:spotless-plugin-gradle -> 6.4.2`
 - `org.jetbrains.kotlinx:kotlinx-coroutines-core -> 1.6.1`
 - `com.javiersc.gradle-plugins:all-plugins -> 0.1.0-rc.42`

@@ -1,26 +1,181 @@
 {"version":"3","listProblem":[{
   "tool": "Code Inspection",
   "category": "Redundant constructs",
+  "type": "Unused receiver parameter",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Receiver parameter is never used",
+  "detailsInfo": "Reports receiver parameter of extension functions and properties that is not used.\n\n**Remove redundant receiver parameter** can be used to amend the code automatically.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "plugins/publish/publish/main/kotlin/com/javiersc/gradle/plugins/publish/internal/SigningExtensions.kt",
+      "language": "kotlin",
+      "line": 56,
+      "offset": 13,
+      "length": 16,
+      "code": {
+        "startLine": 54,
+        "length": 16,
+        "offset": 107,
+        "surroundingCode": "    get() = project.properties[\"signing.gnupg.passphrase\"]?.toString().isNullOrBlank().not()\n\ninternal val SigningExtension.hasSigningKeyPassphraseEnvironmentVariable: Boolean\n    get() = System.getenv(\"SIGNING_KEY_PASSPHRASE\").isNullOrBlank().not()\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.plugins.publish.publish.main",
+    "inspectionName": "UnusedReceiverParameter"
+  },
+  "hash": "-8118152144995351515"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused receiver parameter",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Receiver parameter is never used",
+  "detailsInfo": "Reports receiver parameter of extension functions and properties that is not used.\n\n**Remove redundant receiver parameter** can be used to amend the code automatically.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "plugins/publish/publish/main/kotlin/com/javiersc/gradle/plugins/publish/internal/SigningExtensions.kt",
+      "language": "kotlin",
+      "line": 65,
+      "offset": 13,
+      "length": 16,
+      "code": {
+        "startLine": 63,
+        "length": 16,
+        "offset": 100,
+        "surroundingCode": "    get() = project.properties[\"signing.gnupg.key\"]?.toString().isNullOrBlank().not()\n\ninternal val SigningExtension.hasSigningKeyEnvironmentVariable: Boolean\n    get() = System.getenv(\"SIGNING_KEY\").isNullOrBlank().not()"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.plugins.publish.publish.main",
+    "inspectionName": "UnusedReceiverParameter"
+  },
+  "hash": "6614827840692727980"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused receiver parameter",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Receiver parameter is never used",
+  "detailsInfo": "Reports receiver parameter of extension functions and properties that is not used.\n\n**Remove redundant receiver parameter** can be used to amend the code automatically.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "plugins/publish/publish/main/kotlin/com/javiersc/gradle/plugins/publish/internal/SigningExtensions.kt",
+      "language": "kotlin",
+      "line": 47,
+      "offset": 13,
+      "length": 16,
+      "code": {
+        "startLine": 45,
+        "length": 16,
+        "offset": 102,
+        "surroundingCode": "    get() = project.properties[\"signing.gnupg.keyId\"]?.toString().isNullOrBlank().not()\n\ninternal val SigningExtension.hasSigningKeyIdEnvironmentVariable: Boolean\n    get() = System.getenv(\"SIGNING_KEY_ID\").isNullOrBlank().not()\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.plugins.publish.publish.main",
+    "inspectionName": "UnusedReceiverParameter"
+  },
+  "hash": "3637938371287820499"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused receiver parameter",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Receiver parameter is never used",
+  "detailsInfo": "Reports receiver parameter of extension functions and properties that is not used.\n\n**Remove redundant receiver parameter** can be used to amend the code automatically.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "plugins/publish/publish/main/kotlin/com/javiersc/gradle/plugins/publish/internal/SigningExtensions.kt",
+      "language": "kotlin",
+      "line": 38,
+      "offset": 13,
+      "length": 16,
+      "code": {
+        "startLine": 36,
+        "length": 16,
+        "offset": 104,
+        "surroundingCode": "    get() = project.properties[\"signing.gnupg.keyName\"]?.toString().isNullOrBlank().not()\n\ninternal val SigningExtension.hasSigningKeyNameEnvironmentVariable: Boolean\n    get() = System.getenv(\"SIGNING_KEY_NAME\").isNullOrBlank().not()\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.plugins.publish.publish.main",
+    "inspectionName": "UnusedReceiverParameter"
+  },
+  "hash": "7796472001316338549"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
   "type": "Unused symbol",
   "tags": [
     "kotlin"
   ],
   "severity": "High",
-  "comment": "Property \"javiersc-code-formatter\" is never used",
+  "comment": "Class \"KotlinConfigPlugin\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "class",
+      "path": "plugins/code-enhancers-and-utils/kotlin-config/main/kotlin/com/javiersc/gradle/plugins/kotlin/config/KotlinConfigPlugin.kt",
+      "language": "kotlin",
+      "line": 6,
+      "offset": 6,
+      "length": 18,
+      "code": {
+        "startLine": 4,
+        "length": 18,
+        "offset": 37,
+        "surroundingCode": "import org.gradle.api.Project\n\nclass KotlinConfigPlugin : Plugin<Project> {\n\n    override fun apply(project: Project) {"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.plugins.code-enhancers-and-utils.kotlin-config.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "1540212358853930689"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Property \"javiersc-nexus\" is never used",
   "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
   "sources": [
     {
       "type": "method",
-      "path": "all-plugins/main/kotlin/CodeFormatterAccessors.kt",
+      "path": "all-plugins/main/kotlin/NexusAccessors.kt",
       "language": "kotlin",
       "line": 6,
       "offset": 27,
-      "length": 25,
+      "length": 16,
       "code": {
         "startLine": 4,
-        "length": 25,
+        "length": 16,
         "offset": 78,
-        "surroundingCode": "import org.gradle.plugin.use.PluginDependencySpec\n\nval PluginDependenciesSpec.`javiersc-code-formatter`: PluginDependencySpec\n    get() = javiersc(\"code.formatter\")\n"
+        "surroundingCode": "import org.gradle.plugin.use.PluginDependencySpec\n\nval PluginDependenciesSpec.`javiersc-nexus`: PluginDependencySpec\n    get() = javiersc(\"nexus\")\n"
       }
     }
   ],
@@ -28,7 +183,7 @@
     "module": "gradle-plugins.all-plugins.main",
     "inspectionName": "UnusedSymbol"
   },
-  "hash": "4836365281438810327"
+  "hash": "-8667055439986226965"
 },{
   "tool": "Code Inspection",
   "category": "Redundant constructs",
@@ -37,21 +192,21 @@
     "kotlin"
   ],
   "severity": "High",
-  "comment": "Function \"javiersc-code-formatter\" is never used",
+  "comment": "Function \"javiersc-nexus\" is never used",
   "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
   "sources": [
     {
       "type": "method",
-      "path": "all-plugins/main/kotlin/CodeFormatterAccessors.kt",
+      "path": "all-plugins/main/kotlin/NexusAccessors.kt",
       "language": "kotlin",
       "line": 9,
       "offset": 27,
-      "length": 25,
+      "length": 16,
       "code": {
         "startLine": 7,
-        "length": 25,
-        "offset": 67,
-        "surroundingCode": "    get() = javiersc(\"code.formatter\")\n\nfun PluginDependenciesSpec.`javiersc-code-formatter`(\n    version: String,\n): PluginDependencySpec = javiersc(\"code.formatter\", version)"
+        "length": 16,
+        "offset": 58,
+        "surroundingCode": "    get() = javiersc(\"nexus\")\n\nfun PluginDependenciesSpec.`javiersc-nexus`(\n    version: String,\n): PluginDependencySpec = javiersc(\"nexus\", version)"
       }
     }
   ],
@@ -59,67 +214,5 @@
     "module": "gradle-plugins.all-plugins.main",
     "inspectionName": "UnusedSymbol"
   },
-  "hash": "-5933615803741469895"
-},{
-  "tool": "Code Inspection",
-  "category": "Redundant constructs",
-  "type": "Unused symbol",
-  "tags": [
-    "kotlin"
-  ],
-  "severity": "High",
-  "comment": "Function \"javiersc-projects-version-catalog\" is never used",
-  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
-  "sources": [
-    {
-      "type": "method",
-      "path": "all-plugins/main/kotlin/ProjectsVersionCatalogAccessors.kt",
-      "language": "kotlin",
-      "line": 9,
-      "offset": 27,
-      "length": 35,
-      "code": {
-        "startLine": 7,
-        "length": 35,
-        "offset": 77,
-        "surroundingCode": "    get() = javiersc(\"projects.version.catalog\")\n\nfun PluginDependenciesSpec.`javiersc-projects-version-catalog`(\n    version: String,\n): PluginDependencySpec = javiersc(\"projects.version.catalog\", version)"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.all-plugins.main",
-    "inspectionName": "UnusedSymbol"
-  },
-  "hash": "-5553950091028134697"
-},{
-  "tool": "Code Inspection",
-  "category": "Redundant constructs",
-  "type": "Unused symbol",
-  "tags": [
-    "kotlin"
-  ],
-  "severity": "High",
-  "comment": "Property \"javiersc-projects-version-catalog\" is never used",
-  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
-  "sources": [
-    {
-      "type": "method",
-      "path": "all-plugins/main/kotlin/ProjectsVersionCatalogAccessors.kt",
-      "language": "kotlin",
-      "line": 6,
-      "offset": 27,
-      "length": 35,
-      "code": {
-        "startLine": 4,
-        "length": 35,
-        "offset": 78,
-        "surroundingCode": "import org.gradle.plugin.use.PluginDependencySpec\n\nval PluginDependenciesSpec.`javiersc-projects-version-catalog`: PluginDependencySpec\n    get() = javiersc(\"projects.version.catalog\")\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.all-plugins.main",
-    "inspectionName": "UnusedSymbol"
-  },
-  "hash": "-1951373214734214894"
+  "hash": "-6926458526850435196"
 }]}

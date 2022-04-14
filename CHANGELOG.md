@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.dokka:dokka-gradle-plugin -> 1.6.20`
 - `actions/checkout -> v3.0.1`
 - `actions/setup-java -> v3.1.1`
 - `io.kotest:kotest-assertions-core -> 5.2.3`

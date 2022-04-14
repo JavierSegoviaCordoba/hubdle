@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `actions/checkout -> v3.0.1`
 - `actions/setup-java -> v3.1.1`
 - `io.kotest:kotest-assertions-core -> 5.2.3`
 - `com.diffplug.spotless:spotless-plugin-gradle -> 6.4.2`

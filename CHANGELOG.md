@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.kotlin:kotlin-gradle-plugin -> 1.6.21`
 - `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.9.0`
 - `io.gitlab.arturbosch.detekt:detekt-gradle-plugin -> 1.20.0`
 - `org.jetbrains.dokka:dokka-gradle-plugin -> 1.6.20`

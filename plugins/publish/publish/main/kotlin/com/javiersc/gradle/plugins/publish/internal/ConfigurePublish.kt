@@ -40,7 +40,7 @@ fun Project.configureMavenPublication(
                         pom.licenses { licenses ->
                             licenses.license { license ->
                                 license.name.set(pomLicenseName)
-                                license.name.set(pomLicenseUrl)
+                                license.url.set(pomLicenseUrl)
                             }
                         }
 

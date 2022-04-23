@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- POM license name and url are incorrect
+
 ### Updated
 
 - `actions/checkout -> v3.0.2`

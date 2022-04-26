@@ -16,13 +16,13 @@
 
 ### Updated
 
+- `actions/setup-java -> v3.2.0`
 - `org.jetbrains.dokka:dokka-gradle-plugin -> 1.6.21`
 - `com.diffplug.spotless:spotless-plugin-gradle -> 6.5.0`
 - `actions/checkout -> v3.0.2`
 - `org.jetbrains.kotlin:kotlin-gradle-plugin -> 1.6.21`
 - `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.9.0`
 - `io.gitlab.arturbosch.detekt:detekt-gradle-plugin -> 1.20.0`
-- `actions/setup-java -> v3.1.1`
 - `io.kotest:kotest-assertions-core -> 5.2.3`
 - `org.jetbrains.kotlinx:kotlinx-coroutines-core -> 1.6.1`
 - `com.javiersc.gradle-plugins:all-plugins -> 0.1.0-rc.42`

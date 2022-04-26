@@ -1,67 +1,5 @@
 {"version":"3","listProblem":[{
   "tool": "Code Inspection",
-  "category": "Style issues",
-  "type": "Class member can have 'private' visibility",
-  "tags": [
-    "kotlin"
-  ],
-  "severity": "Info",
-  "comment": "Property 'value' could be private",
-  "detailsInfo": "Reports declarations that can be made `private` to follow the encapsulation principle.\n\n**Example:**\n\n\n    class Service(val url: String) {\n        fun connect(): URLConnection = URL(url).openConnection()\n    }\n\nAfter the quick-fix is applied (considering there are no usages of `url` outside of `Service` class):\n\n\n    class Service(private val url: String) {\n        fun connect(): URLConnection = URL(url).openConnection()\n    }\n",
-  "sources": [
-    {
-      "type": "method",
-      "path": "plugins/documentation/changelog/main/kotlin/com/javiersc/gradle/plugins/changelog/internal/Changelog.kt",
-      "language": "kotlin",
-      "line": 50,
-      "offset": 36,
-      "length": 5,
-      "code": {
-        "startLine": 48,
-        "length": 5,
-        "offset": 51,
-        "surroundingCode": "            }\n\n            internal class Item(val value: String) {\n\n                override fun toString(): String = value"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.documentation.changelog.main",
-    "inspectionName": "MemberVisibilityCanBePrivate"
-  },
-  "hash": "6653702043426251215"
-},{
-  "tool": "Code Inspection",
-  "category": "Redundant constructs",
-  "type": "Unused symbol",
-  "tags": [
-    "kotlin"
-  ],
-  "severity": "High",
-  "comment": "Class \"GradleWrapperUpdaterPlugin\" is never used",
-  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
-  "sources": [
-    {
-      "type": "class",
-      "path": "plugins/gradle-utils/gradle-wrapper-updater/main/kotlin/com/javiersc/gradle/plugins/gradle/wrapper/updater/GradleWrapperUpdaterPlugin.kt",
-      "language": "kotlin",
-      "line": 26,
-      "offset": 15,
-      "length": 26,
-      "code": {
-        "startLine": 24,
-        "length": 26,
-        "offset": 90,
-        "surroundingCode": " * - If the input is `nightly`, the last nightly version will be used.\n */\nabstract class GradleWrapperUpdaterPlugin : Plugin<Project> {\n\n    override fun apply(target: Project) {"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.gradle-utils.gradle-wrapper-updater.main",
-    "inspectionName": "UnusedSymbol"
-  },
-  "hash": "7486247753909699082"
-},{
-  "tool": "Code Inspection",
   "category": "Redundant constructs",
   "type": "Unused symbol",
   "tags": [
@@ -99,29 +37,29 @@
     "kotlin"
   ],
   "severity": "High",
-  "comment": "Class \"VersioningPlugin\" is never used",
+  "comment": "Class \"ChangelogPlugin\" is never used",
   "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
   "sources": [
     {
       "type": "class",
-      "path": "plugins/code-enhancers-and-utils/versioning/main/kotlin/com/javiersc/gradle/plugins/versioning/VersioningPlugin.kt",
+      "path": "plugins/documentation/changelog/main/kotlin/com/javiersc/gradle/plugins/changelog/ChangelogPlugin.kt",
       "language": "kotlin",
-      "line": 6,
+      "line": 15,
       "offset": 15,
-      "length": 16,
+      "length": 15,
       "code": {
-        "startLine": 4,
-        "length": 16,
-        "offset": 46,
-        "surroundingCode": "import org.gradle.api.Project\n\nabstract class VersioningPlugin : Plugin<Project> {\n\n    override fun apply(target: Project) {"
+        "startLine": 13,
+        "length": 15,
+        "offset": 72,
+        "surroundingCode": "import org.jetbrains.changelog.tasks.PatchChangelogTask\n\nabstract class ChangelogPlugin : Plugin<Project> {\n\n    override fun apply(target: Project) {"
       }
     }
   ],
   "attributes": {
-    "module": "gradle-plugins.plugins.code-enhancers-and-utils.versioning.main",
+    "module": "gradle-plugins.plugins.documentation.changelog.main",
     "inspectionName": "UnusedSymbol"
   },
-  "hash": "-5378136437586799971"
+  "hash": "7470320533389884700"
 },{
   "tool": "Code Inspection",
   "category": "Redundant constructs",
@@ -130,29 +68,29 @@
     "kotlin"
   ],
   "severity": "High",
-  "comment": "Class \"CodeAnalysisPlugin\" is never used",
+  "comment": "Function \"javiersc-publish\" is never used",
   "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
   "sources": [
     {
-      "type": "class",
-      "path": "plugins/code-enhancers-and-utils/code-analysis/main/kotlin/com/javiersc/gradle/plugins/code/analysis/CodeAnalysisPlugin.kt",
+      "type": "method",
+      "path": "all-plugins/main/kotlin/PublishAccessors.kt",
       "language": "kotlin",
-      "line": 11,
-      "offset": 15,
+      "line": 9,
+      "offset": 27,
       "length": 18,
       "code": {
-        "startLine": 9,
+        "startLine": 7,
         "length": 18,
-        "offset": 63,
-        "surroundingCode": "import org.sonarqube.gradle.SonarQubeExtension\n\nabstract class CodeAnalysisPlugin : Plugin<Project> {\n\n    override fun apply(target: Project) {"
+        "offset": 60,
+        "surroundingCode": "    get() = javiersc(\"publish\")\n\nfun PluginDependenciesSpec.`javiersc-publish`(\n    version: String,\n): PluginDependencySpec = javiersc(\"publish\", version)"
       }
     }
   ],
   "attributes": {
-    "module": "gradle-plugins.plugins.code-enhancers-and-utils.code-analysis.main",
+    "module": "gradle-plugins.all-plugins.main",
     "inspectionName": "UnusedSymbol"
   },
-  "hash": "5764963385851745323"
+  "hash": "-9174145366157383724"
 },{
   "tool": "Code Inspection",
   "category": "Redundant constructs",
@@ -161,21 +99,21 @@
     "kotlin"
   ],
   "severity": "High",
-  "comment": "Property \"javiersc-nexus\" is never used",
+  "comment": "Property \"javiersc-publish\" is never used",
   "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
   "sources": [
     {
       "type": "method",
-      "path": "all-plugins/main/kotlin/NexusAccessors.kt",
+      "path": "all-plugins/main/kotlin/PublishAccessors.kt",
       "language": "kotlin",
       "line": 6,
       "offset": 27,
-      "length": 16,
+      "length": 18,
       "code": {
         "startLine": 4,
-        "length": 16,
+        "length": 18,
         "offset": 78,
-        "surroundingCode": "import org.gradle.plugin.use.PluginDependencySpec\n\nval PluginDependenciesSpec.`javiersc-nexus`: PluginDependencySpec\n    get() = javiersc(\"nexus\")\n"
+        "surroundingCode": "import org.gradle.plugin.use.PluginDependencySpec\n\nval PluginDependenciesSpec.`javiersc-publish`: PluginDependencySpec\n    get() = javiersc(\"publish\")\n"
       }
     }
   ],
@@ -183,7 +121,7 @@
     "module": "gradle-plugins.all-plugins.main",
     "inspectionName": "UnusedSymbol"
   },
-  "hash": "-8667055439986226965"
+  "hash": "-7541883095843807779"
 },{
   "tool": "Code Inspection",
   "category": "Redundant constructs",
@@ -192,83 +130,21 @@
     "kotlin"
   ],
   "severity": "High",
-  "comment": "Function \"javiersc-nexus\" is never used",
+  "comment": "Property \"javiersc-all-projects\" is never used",
   "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
   "sources": [
     {
       "type": "method",
-      "path": "all-plugins/main/kotlin/NexusAccessors.kt",
-      "language": "kotlin",
-      "line": 9,
-      "offset": 27,
-      "length": 16,
-      "code": {
-        "startLine": 7,
-        "length": 16,
-        "offset": 58,
-        "surroundingCode": "    get() = javiersc(\"nexus\")\n\nfun PluginDependenciesSpec.`javiersc-nexus`(\n    version: String,\n): PluginDependencySpec = javiersc(\"nexus\", version)"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.all-plugins.main",
-    "inspectionName": "UnusedSymbol"
-  },
-  "hash": "-6926458526850435196"
-},{
-  "tool": "Code Inspection",
-  "category": "Redundant constructs",
-  "type": "Unused symbol",
-  "tags": [
-    "kotlin"
-  ],
-  "severity": "High",
-  "comment": "Function \"javiersc-versioning\" is never used",
-  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
-  "sources": [
-    {
-      "type": "method",
-      "path": "all-plugins/main/kotlin/VersioningAccessors.kt",
-      "language": "kotlin",
-      "line": 9,
-      "offset": 27,
-      "length": 21,
-      "code": {
-        "startLine": 7,
-        "length": 21,
-        "offset": 63,
-        "surroundingCode": "    get() = javiersc(\"versioning\")\n\nfun PluginDependenciesSpec.`javiersc-versioning`(\n    version: String,\n): PluginDependencySpec = javiersc(\"versioning\", version)"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.all-plugins.main",
-    "inspectionName": "UnusedSymbol"
-  },
-  "hash": "-2745820867189421888"
-},{
-  "tool": "Code Inspection",
-  "category": "Redundant constructs",
-  "type": "Unused symbol",
-  "tags": [
-    "kotlin"
-  ],
-  "severity": "High",
-  "comment": "Property \"javiersc-versioning\" is never used",
-  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
-  "sources": [
-    {
-      "type": "method",
-      "path": "all-plugins/main/kotlin/VersioningAccessors.kt",
+      "path": "all-plugins/main/kotlin/AllProjectsAccessors.kt",
       "language": "kotlin",
       "line": 6,
       "offset": 27,
-      "length": 21,
+      "length": 23,
       "code": {
         "startLine": 4,
-        "length": 21,
+        "length": 23,
         "offset": 78,
-        "surroundingCode": "import org.gradle.plugin.use.PluginDependencySpec\n\nval PluginDependenciesSpec.`javiersc-versioning`: PluginDependencySpec\n    get() = javiersc(\"versioning\")\n"
+        "surroundingCode": "import org.gradle.plugin.use.PluginDependencySpec\n\nval PluginDependenciesSpec.`javiersc-all-projects`: PluginDependencySpec\n    get() = javiersc(\"all.projects\")\n"
       }
     }
   ],
@@ -276,5 +152,36 @@
     "module": "gradle-plugins.all-plugins.main",
     "inspectionName": "UnusedSymbol"
   },
-  "hash": "3824200909504566095"
+  "hash": "-7667945930272943535"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Function \"javiersc-all-projects\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "all-plugins/main/kotlin/AllProjectsAccessors.kt",
+      "language": "kotlin",
+      "line": 9,
+      "offset": 27,
+      "length": 23,
+      "code": {
+        "startLine": 7,
+        "length": 23,
+        "offset": 65,
+        "surroundingCode": "    get() = javiersc(\"all.projects\")\n\nfun PluginDependenciesSpec.`javiersc-all-projects`(\n    version: String,\n): PluginDependencySpec = javiersc(\"all.projects\", version)"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.all-plugins.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "-264167033525173686"
 }]}

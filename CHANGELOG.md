@@ -16,9 +16,9 @@
 
 ### Updated
 
+- `com.diffplug.spotless:spotless-plugin-gradle -> 6.5.1`
 - `actions/setup-java -> v3.2.0`
 - `org.jetbrains.dokka:dokka-gradle-plugin -> 1.6.21`
-- `com.diffplug.spotless:spotless-plugin-gradle -> 6.5.0`
 - `actions/checkout -> v3.0.2`
 - `org.jetbrains.kotlin:kotlin-gradle-plugin -> 1.6.21`
 - `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.9.0`

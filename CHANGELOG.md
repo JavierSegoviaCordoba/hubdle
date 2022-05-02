@@ -16,6 +16,7 @@
 
 ### Updated
 
+- `io.kotest:kotest-assertions-core -> 5.3.0`
 - `com.diffplug.spotless:spotless-plugin-gradle -> 6.5.1`
 - `actions/setup-java -> v3.2.0`
 - `org.jetbrains.dokka:dokka-gradle-plugin -> 1.6.21`
@@ -23,7 +24,6 @@
 - `org.jetbrains.kotlin:kotlin-gradle-plugin -> 1.6.21`
 - `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.9.0`
 - `io.gitlab.arturbosch.detekt:detekt-gradle-plugin -> 1.20.0`
-- `io.kotest:kotest-assertions-core -> 5.2.3`
 - `org.jetbrains.kotlinx:kotlinx-coroutines-core -> 1.6.1`
 - `com.javiersc.gradle-plugins:all-plugins -> 0.1.0-rc.42`
 

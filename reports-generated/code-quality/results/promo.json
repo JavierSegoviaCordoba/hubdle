@@ -1,0 +1,187 @@
+{"version":"3","listProblem":[{
+  "tool": "Code Inspection",
+  "category": "Style issues",
+  "type": "Might be 'const'",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "Moderate",
+  "comment": "Might be 'const'",
+  "detailsInfo": "Reports top-level `val` properties in objects that might be declared as `const` for better performance and Java interoperability.\n\n**Example:**\n\n\n      object A {\n          val foo = 1\n      }\n\nAfter the quick-fix is applied:\n\n\n      object A {\n          const val foo = 1\n      }\n",
+  "sources": [
+    {
+      "type": "field",
+      "path": "plugins/version-catalogs/massive-catalogs-updater/main/kotlin/com/javiersc/gradle/plugins/massive/catalogs/updater/MassiveCatalogsUpdaterPlugin.kt",
+      "language": "kotlin",
+      "line": 37,
+      "offset": 12,
+      "length": 3,
+      "code": {
+        "startLine": 35,
+        "length": 3,
+        "offset": 15,
+        "surroundingCode": "}\n\nprivate val url = \"https://repo1.maven.org/maven2/com/javiersc/massive-catalogs\"\n\nprivate val errorMessage = \"${Red}There was a problem fetching Massive Catalogs version$Reset\""
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.plugins.version-catalogs.massive-catalogs-updater.main",
+    "inspectionName": "MayBeConstant"
+  },
+  "hash": "-7447890008819058324"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Property \"sandboxFile\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "shared/core-test/main/kotlin/com/javiersc/gradle/plugins/core/test/Sandbox.kt",
+      "language": "kotlin",
+      "line": 15,
+      "offset": 9,
+      "length": 11,
+      "code": {
+        "startLine": 13,
+        "length": 11,
+        "offset": 89,
+        "surroundingCode": "val sandboxPath: Path = Paths.get(\"build/sandbox\").apply { toFile().mkdirs() }\n\nval File.sandboxFile: File\n    get() = File(\"$this/build/sandbox\")\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.shared.core-test.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "6307441478521286739"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Class \"PublishPlugin\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "class",
+      "path": "plugins/publish/publish/main/kotlin/com/javiersc/gradle/plugins/publish/PublishPlugin.kt",
+      "language": "kotlin",
+      "line": 8,
+      "offset": 15,
+      "length": 13,
+      "code": {
+        "startLine": 6,
+        "length": 13,
+        "offset": 46,
+        "surroundingCode": "import org.gradle.api.Project\n\nabstract class PublishPlugin : Plugin<Project> {\n\n    override fun apply(target: Project) {"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.plugins.publish.publish.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "1387341961954080359"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Class \"MassiveCatalogsUpdaterPlugin\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "class",
+      "path": "plugins/version-catalogs/massive-catalogs-updater/main/kotlin/com/javiersc/gradle/plugins/massive/catalogs/updater/MassiveCatalogsUpdaterPlugin.kt",
+      "language": "kotlin",
+      "line": 16,
+      "offset": 15,
+      "length": 28,
+      "code": {
+        "startLine": 14,
+        "length": 28,
+        "offset": 49,
+        "surroundingCode": "import org.jsoup.select.Elements\n\nabstract class MassiveCatalogsUpdaterPlugin : Plugin<Project> {\n\n    override fun apply(target: Project) {"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.plugins.version-catalogs.massive-catalogs-updater.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "5313548048203858934"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Class \"AllProjectsPlugin\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "class",
+      "path": "plugins/code-enhancers-and-utils/all-projects/main/kotlin/com/javiersc/gradle/plugins/all/projects/AllProjectsPlugin.kt",
+      "language": "kotlin",
+      "line": 21,
+      "offset": 15,
+      "length": 17,
+      "code": {
+        "startLine": 19,
+        "length": 17,
+        "offset": 95,
+        "surroundingCode": "import org.gradle.language.base.plugins.LifecycleBasePlugin.VERIFICATION_GROUP\n\nabstract class AllProjectsPlugin : Plugin<Project> {\n\n    override fun apply(target: Project) {"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.plugins.code-enhancers-and-utils.all-projects.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "5401921197713592287"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Class \"DependencyUpdatesPlugin\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "class",
+      "path": "plugins/code-enhancers-and-utils/dependency-updates/main/kotlin/com/javiersc/gradle/plugins/dependency/updates/DependencyUpdatesPlugin.kt",
+      "language": "kotlin",
+      "line": 7,
+      "offset": 15,
+      "length": 23,
+      "code": {
+        "startLine": 5,
+        "length": 23,
+        "offset": 46,
+        "surroundingCode": "import org.gradle.api.Project\n\nabstract class DependencyUpdatesPlugin : Plugin<Project> {\n\n    override fun apply(target: Project) {"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.plugins.code-enhancers-and-utils.dependency-updates.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "549949062082588960"
+}]}

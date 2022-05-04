@@ -16,6 +16,7 @@
 
 ### Updated
 
+- `com.android.tools.build:gradle -> 7.1.3`
 - `actions/setup-java -> v3.3.0`
 - `com.diffplug.spotless:spotless-plugin-gradle -> 6.5.2`
 - `io.kotest:kotest-assertions-core -> 5.3.0`

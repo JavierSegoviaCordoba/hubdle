@@ -42,7 +42,11 @@ abstract class WriteFilePreCommitTask : DefaultTask() {
                     if (!currentPreCommitText.contains(text)) accumulative + text else accumulative
                 }
                 .orEmpty()
-        outputPreCommitFile.writeText(currentPreCommitText + preCommitText)
+        if (currentPreCommitText.lines().firstOrNull()?.contains("#!/bin/bash") == true) {
+            outputPreCommitFile.writeText(currentPreCommitText + preCommitText)
+        } else {
+            outputPreCommitFile.writeText("#!/bin/bash\n$currentPreCommitText$preCommitText")
+        }
     }
 
     companion object {

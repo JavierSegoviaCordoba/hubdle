@@ -14,6 +14,7 @@
 ### Removed
 
 ### Fixed
+- Install pre-commit tasks does not add `"#!/bin/bash"` at the top
 
 ### Updated
 

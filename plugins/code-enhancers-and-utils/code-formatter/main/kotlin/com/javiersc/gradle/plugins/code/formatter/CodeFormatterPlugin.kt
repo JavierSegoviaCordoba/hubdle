@@ -4,6 +4,7 @@ import com.diffplug.gradle.spotless.SpotlessExtension
 import java.io.File
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.findByType
 import org.jetbrains.kotlin.gradle.plugin.KotlinBasePluginWrapper
 
 abstract class CodeFormatterPlugin : Plugin<Project> {
@@ -34,7 +35,7 @@ abstract class CodeFormatterPlugin : Plugin<Project> {
                 if (project.hasKotlin) {
                     project.pluginManager.apply("com.diffplug.spotless")
 
-                    project.extensions.findByType(SpotlessExtension::class.java)?.apply {
+                    project.extensions.findByType<SpotlessExtension>()?.apply {
                         kotlin { kotlinExtension ->
                             kotlinExtension.target(
                                 "*/kotlin/**/*.kt",

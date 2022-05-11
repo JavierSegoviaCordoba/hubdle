@@ -42,8 +42,10 @@ val testPluginClasspath: Configuration by configurations.creating
 dependencies {
     api(projects.shared.pluginAccessors)
 
-    implementation(pluginLibs.diffplug.spotless.spotlessPluginGradle)
     compileOnly(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)
+
+    implementation(gradleKotlinDsl())
+    implementation(pluginLibs.diffplug.spotless.spotlessPluginGradle)
 
     testPluginClasspath(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)
 

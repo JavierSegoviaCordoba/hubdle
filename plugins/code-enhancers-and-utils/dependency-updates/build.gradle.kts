@@ -28,4 +28,6 @@ dependencies {
     api(projects.shared.pluginAccessors)
 
     api(pluginLibs.github.benManes.gradleVersionsPlugin)
+
+    implementation(gradleKotlinDsl())
 }

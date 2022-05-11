@@ -3,14 +3,15 @@ package com.javiersc.gradle.plugins.dependency.updates
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.withType
 
 abstract class DependencyUpdatesPlugin : Plugin<Project> {
 
     override fun apply(target: Project) {
         target.pluginManager.apply("com.github.ben-manes.versions")
 
-        target.tasks.withType(DependencyUpdatesTask::class.java) { task ->
-            task.rejectVersionIf { !target.project.isStable(it.candidate.version) }
+        target.tasks.withType<DependencyUpdatesTask>() {
+            rejectVersionIf { !target.project.isStable(it.candidate.version) }
         }
     }
 }

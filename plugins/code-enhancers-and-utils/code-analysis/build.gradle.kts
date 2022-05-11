@@ -30,4 +30,6 @@ dependencies {
     api(pluginLibs.gitlab.arturboschDetekt.detektGradlePlugin)
     api(pluginLibs.sonarqube.scannerGradle.sonarqubeGradlePlugin)
     compileOnly(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)
+
+    implementation(gradleKotlinDsl())
 }

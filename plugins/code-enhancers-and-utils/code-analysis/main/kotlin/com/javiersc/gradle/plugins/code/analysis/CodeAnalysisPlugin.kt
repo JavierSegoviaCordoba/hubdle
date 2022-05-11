@@ -5,34 +5,36 @@ import io.gitlab.arturbosch.detekt.extensions.DetektExtension
 import java.io.File
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.findByType
+import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 import org.sonarqube.gradle.SonarQubeExtension
 
 abstract class CodeAnalysisPlugin : Plugin<Project> {
 
     override fun apply(target: Project) {
-        target.configureDetekt()
-        target.configureSonarqube()
+        configureDetekt(target)
+        configureSonarqube(target)
     }
 }
 
-private fun Project.configureDetekt() {
-    pluginManager.apply("io.gitlab.arturbosch.detekt")
-    extensions.findByType(DetektExtension::class.java)?.apply {
+private fun configureDetekt(target: Project) {
+    target.pluginManager.apply("io.gitlab.arturbosch.detekt")
+    target.extensions.findByType<DetektExtension>()?.apply {
         parallel = true
         isIgnoreFailures = true
         buildUponDefaultConfig = true
-        basePath = rootProject.projectDir.path
+        basePath = target.rootProject.projectDir.path
     }
 
-    tasks.withType(Detekt::class.java).configureEach { detekt ->
-        detekt.setSource(detekt.project.files(detekt.project.projectDir))
-        detekt.include("**/*.kt")
-        detekt.include("**/*.kts")
-        detekt.exclude("**/resources/**")
-        detekt.exclude("**/build/**")
+    target.tasks.withType<Detekt>() {
+        setSource(project.files(project.projectDir))
+        include("**/*.kt")
+        include("**/*.kts")
+        exclude("**/resources/**")
+        exclude("**/build/**")
 
-        detekt.reports { reports ->
+        reports { reports ->
             reports.html { report -> report.required.set(true) }
             reports.sarif { report -> report.required.set(true) }
             reports.txt { report -> report.required.set(false) }
@@ -40,7 +42,7 @@ private fun Project.configureDetekt() {
         }
     }
 
-    File("${rootProject.rootDir}/.idea/detekt.xml").apply {
+    File("${target.rootProject.rootDir}/.idea/detekt.xml").apply {
         parentFile.mkdirs()
         createNewFile()
         writeText(
@@ -58,42 +60,45 @@ private fun Project.configureDetekt() {
     }
 }
 
-private fun Project.configureSonarqube() {
-    pluginManager.apply("org.sonarqube")
+private fun configureSonarqube(target: Project) {
+    target.pluginManager.apply("org.sonarqube")
 
-    project.extensions.findByType(SonarQubeExtension::class.java)?.apply {
+    target.extensions.findByType<SonarQubeExtension>()?.apply {
         properties { props ->
             props.property(
                 "sonar.projectKey",
-                properties["codeAnalysis.sonar.projectKey"]
-                    ?: "${group}:${properties["project.name"]}"
+                target.properties["codeAnalysis.sonar.projectKey"]
+                    ?: "${target.group}:${target.properties["project.name"]}"
             )
             props.property(
                 "sonar.login",
-                properties["codeAnalysis.sonar.login"] ?: System.getenv("SONAR_TOKEN") ?: ""
+                target.properties["codeAnalysis.sonar.login"] ?: System.getenv("SONAR_TOKEN") ?: ""
             )
             props.property(
                 "sonar.host.url",
-                properties["codeAnalysis.sonar.host.url"] ?: "https://sonarcloud.io"
+                target.properties["codeAnalysis.sonar.host.url"] ?: "https://sonarcloud.io"
             )
             props.property(
                 "sonar.organization",
-                properties["codeAnalysis.sonar.organization"] ?: ""
+                target.properties["codeAnalysis.sonar.organization"] ?: ""
             )
-            props.property("sonar.kotlin.detekt.reportPaths", "$buildDir/reports/detekt/detekt.xml")
+            props.property(
+                "sonar.kotlin.detekt.reportPaths",
+                "${target.buildDir}/reports/detekt/detekt.xml"
+            )
             props.property(
                 "sonar.coverage.jacoco.xmlReportPaths",
-                "$buildDir/reports/kover/report.xml"
+                "${target.buildDir}/reports/kover/report.xml"
             )
         }
     }
 
-    allprojects { allProject ->
-        allProject.afterEvaluate { project ->
-            project.extensions.findByType(SonarQubeExtension::class.java)?.apply {
+    target.allprojects { project ->
+        project.afterEvaluate { evaluatedProject ->
+            evaluatedProject.extensions.findByType<SonarQubeExtension>()?.apply {
                 properties { properties ->
-                    properties.property("sonar.sources", project.kotlinSrcDirs())
-                    properties.property("sonar.tests", project.kotlinTestsSrcDirs())
+                    properties.property("sonar.sources", evaluatedProject.kotlinSrcDirs())
+                    properties.property("sonar.tests", evaluatedProject.kotlinTestsSrcDirs())
                 }
             }
         }
@@ -102,7 +107,7 @@ private fun Project.configureSonarqube() {
 
 private fun Project.kotlinSrcDirs(): List<File> =
     extensions
-        .findByType(KotlinProjectExtension::class.java)
+        .findByType<KotlinProjectExtension>()
         ?.sourceSets
         ?.flatMap { kotlinSourceSet -> kotlinSourceSet.kotlin.srcDirs }
         ?.filterNot { file ->
@@ -115,7 +120,7 @@ private fun Project.kotlinSrcDirs(): List<File> =
 
 private fun Project.kotlinTestsSrcDirs(): List<File> =
     extensions
-        .findByType(KotlinProjectExtension::class.java)
+        .findByType<KotlinProjectExtension>()
         ?.sourceSets
         ?.flatMap { kotlinSourceSet -> kotlinSourceSet.kotlin.srcDirs }
         ?.filter { file ->

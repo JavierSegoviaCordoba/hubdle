@@ -6,37 +6,6 @@
     "kotlin"
   ],
   "severity": "High",
-  "comment": "Property \"sandboxFile\" is never used",
-  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
-  "sources": [
-    {
-      "type": "method",
-      "path": "shared/core-test/main/kotlin/com/javiersc/gradle/plugins/core/test/Sandbox.kt",
-      "language": "kotlin",
-      "line": 15,
-      "offset": 9,
-      "length": 11,
-      "code": {
-        "startLine": 13,
-        "length": 11,
-        "offset": 89,
-        "surroundingCode": "val sandboxPath: Path = Paths.get(\"build/sandbox\").apply { toFile().mkdirs() }\n\nval File.sandboxFile: File\n    get() = File(\"$this/build/sandbox\")\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.shared.core-test.main",
-    "inspectionName": "UnusedSymbol"
-  },
-  "hash": "6307441478521286739"
-},{
-  "tool": "Code Inspection",
-  "category": "Redundant constructs",
-  "type": "Unused symbol",
-  "tags": [
-    "kotlin"
-  ],
-  "severity": "High",
   "comment": "Class \"MassiveCatalogsUpdaterPlugin\" is never used",
   "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
   "sources": [
@@ -68,29 +37,29 @@
     "kotlin"
   ],
   "severity": "High",
-  "comment": "Property \"javiersc-nexus\" is never used",
+  "comment": "Class \"VersioningPlugin\" is never used",
   "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
   "sources": [
     {
-      "type": "method",
-      "path": "all-plugins/main/kotlin/NexusAccessors.kt",
+      "type": "class",
+      "path": "plugins/code-enhancers-and-utils/versioning/main/kotlin/com/javiersc/gradle/plugins/versioning/VersioningPlugin.kt",
       "language": "kotlin",
       "line": 6,
-      "offset": 27,
+      "offset": 15,
       "length": 16,
       "code": {
         "startLine": 4,
         "length": 16,
-        "offset": 78,
-        "surroundingCode": "import org.gradle.plugin.use.PluginDependencySpec\n\nval PluginDependenciesSpec.`javiersc-nexus`: PluginDependencySpec\n    get() = javiersc(\"nexus\")\n"
+        "offset": 46,
+        "surroundingCode": "import org.gradle.api.Project\n\nabstract class VersioningPlugin : Plugin<Project> {\n\n    override fun apply(target: Project) {"
       }
     }
   ],
   "attributes": {
-    "module": "gradle-plugins.all-plugins.main",
+    "module": "gradle-plugins.plugins.code-enhancers-and-utils.versioning.main",
     "inspectionName": "UnusedSymbol"
   },
-  "hash": "-8667055439986226965"
+  "hash": "-5378136437586799971"
 },{
   "tool": "Code Inspection",
   "category": "Redundant constructs",
@@ -99,89 +68,27 @@
     "kotlin"
   ],
   "severity": "High",
-  "comment": "Function \"javiersc-nexus\" is never used",
+  "comment": "Class \"CodeCoveragePlugin\" is never used",
   "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
   "sources": [
     {
-      "type": "method",
-      "path": "all-plugins/main/kotlin/NexusAccessors.kt",
-      "language": "kotlin",
-      "line": 9,
-      "offset": 27,
-      "length": 16,
-      "code": {
-        "startLine": 7,
-        "length": 16,
-        "offset": 58,
-        "surroundingCode": "    get() = javiersc(\"nexus\")\n\nfun PluginDependenciesSpec.`javiersc-nexus`(\n    version: String,\n): PluginDependencySpec = javiersc(\"nexus\", version)"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.all-plugins.main",
-    "inspectionName": "UnusedSymbol"
-  },
-  "hash": "-6926458526850435196"
-},{
-  "tool": "Code Inspection",
-  "category": "Redundant constructs",
-  "type": "Unused symbol",
-  "tags": [
-    "kotlin"
-  ],
-  "severity": "High",
-  "comment": "Property \"javiersc-code-coverage\" is never used",
-  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
-  "sources": [
-    {
-      "type": "method",
-      "path": "all-plugins/main/kotlin/CodeCoverageAccessors.kt",
+      "type": "class",
+      "path": "plugins/code-enhancers-and-utils/code-coverage/main/kotlin/com/javiersc/gradle/plugins/code/coverage/CodeCoveragePlugin.kt",
       "language": "kotlin",
       "line": 6,
-      "offset": 27,
-      "length": 24,
+      "offset": 15,
+      "length": 18,
       "code": {
         "startLine": 4,
-        "length": 24,
-        "offset": 78,
-        "surroundingCode": "import org.gradle.plugin.use.PluginDependencySpec\n\nval PluginDependenciesSpec.`javiersc-code-coverage`: PluginDependencySpec\n    get() = javiersc(\"code.coverage\")\n"
+        "length": 18,
+        "offset": 46,
+        "surroundingCode": "import org.gradle.api.Project\n\nabstract class CodeCoveragePlugin : Plugin<Project> {\n\n    override fun apply(target: Project) {"
       }
     }
   ],
   "attributes": {
-    "module": "gradle-plugins.all-plugins.main",
+    "module": "gradle-plugins.plugins.code-enhancers-and-utils.code-coverage.main",
     "inspectionName": "UnusedSymbol"
   },
-  "hash": "-4311220061406713443"
-},{
-  "tool": "Code Inspection",
-  "category": "Redundant constructs",
-  "type": "Unused symbol",
-  "tags": [
-    "kotlin"
-  ],
-  "severity": "High",
-  "comment": "Function \"javiersc-code-coverage\" is never used",
-  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
-  "sources": [
-    {
-      "type": "method",
-      "path": "all-plugins/main/kotlin/CodeCoverageAccessors.kt",
-      "language": "kotlin",
-      "line": 9,
-      "offset": 27,
-      "length": 24,
-      "code": {
-        "startLine": 7,
-        "length": 24,
-        "offset": 66,
-        "surroundingCode": "    get() = javiersc(\"code.coverage\")\n\nfun PluginDependenciesSpec.`javiersc-code-coverage`(\n    version: String,\n): PluginDependencySpec = javiersc(\"code.coverage\", version)"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.all-plugins.main",
-    "inspectionName": "UnusedSymbol"
-  },
-  "hash": "-7224367178001789818"
+  "hash": "-8834842940699807044"
 }]}

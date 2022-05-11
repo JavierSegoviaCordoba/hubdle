@@ -11,6 +11,7 @@ jobs:
     with:
       code-coverage-report: false
       publish-gradle-plugin-portal: true
+      gradle-args-build: '--exclude-task spotlessCheck'
     secrets:
       OSS_USER: '${{ secrets.OSS_USER }}'
       OSS_TOKEN: '${{ secrets.OSS_TOKEN }}'

@@ -13,8 +13,7 @@ open class AllProjectsExtension(project: Project) {
     fun install(action: Action<in InstallOptions>) = action.execute(install.get())
 
     val install: Property<InstallOptions> =
-        project
-            .objects
+        project.objects
             .property<InstallOptions>()
             .value(project.objects.newInstance(InstallOptions::class.java))
 

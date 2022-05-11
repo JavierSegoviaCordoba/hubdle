@@ -117,8 +117,9 @@ private fun buildGroups(lines: List<String>): Array<Group> =
 @OptIn(ExperimentalStdlibApi::class)
 private fun buildItems(lines: List<String>): Array<Item> =
     buildList {
-            lines.filter(String::isNotBlank).filterNot { it.startsWith("#") }.forEach { item ->
-                add(Item(item))
-            }
+            lines
+                .filter(String::isNotBlank)
+                .filterNot { it.startsWith("#") }
+                .forEach { item -> add(Item(item)) }
         }
         .toTypedArray()

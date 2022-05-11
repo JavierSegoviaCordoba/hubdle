@@ -136,48 +136,48 @@ private fun Project.buildAnalysisBadge(sonar: Sonar): String {
 @OptIn(ExperimentalStdlibApi::class)
 private fun Project.buildReadmeBadges(): List<String> =
     buildList {
-        val kotlinBadge = readmeBadgesExtension.kotlin.get()
-        val mavenCentralBadge = readmeBadgesExtension.mavenCentral.get()
-        val snapshotsBadge = readmeBadgesExtension.snapshots.get()
-        val buildBadge = readmeBadgesExtension.build.get()
-        val coverageBadge = readmeBadgesExtension.coverage.get()
-        val qualityBadge = readmeBadgesExtension.quality.get()
-        val techDebtBadge = readmeBadgesExtension.techDebt.get()
+            val kotlinBadge = readmeBadgesExtension.kotlin.get()
+            val mavenCentralBadge = readmeBadgesExtension.mavenCentral.get()
+            val snapshotsBadge = readmeBadgesExtension.snapshots.get()
+            val buildBadge = readmeBadgesExtension.build.get()
+            val coverageBadge = readmeBadgesExtension.coverage.get()
+            val qualityBadge = readmeBadgesExtension.quality.get()
+            val techDebtBadge = readmeBadgesExtension.techDebt.get()
 
-        if (kotlinBadge) add(buildKotlinVersionBadge())
+            if (kotlinBadge) add(buildKotlinVersionBadge())
 
-        if (properties["readmeBadges.allProjects"]?.toString()?.toBoolean() == true) {
-            rootProject.subprojects.onEach {
-                add("")
-                if (mavenCentralBadge) add(buildMavenRepoBadge(it.name, MavenRepo.MavenCentral))
-                if (snapshotsBadge) add(buildMavenRepoBadge(it.name, MavenRepo.Snapshot))
-            }
-        } else {
-            val mainProjectValue: String =
-                checkNotNull(properties["readmeBadges.mainProject"]?.toString()) {
-                    "readmeBadges.mainProject is missing, add it to gradle.properties"
+            if (properties["readmeBadges.allProjects"]?.toString()?.toBoolean() == true) {
+                rootProject.subprojects.onEach {
+                    add("")
+                    if (mavenCentralBadge) add(buildMavenRepoBadge(it.name, MavenRepo.MavenCentral))
+                    if (snapshotsBadge) add(buildMavenRepoBadge(it.name, MavenRepo.Snapshot))
+                }
+            } else {
+                val mainProjectValue: String =
+                    checkNotNull(properties["readmeBadges.mainProject"]?.toString()) {
+                        "readmeBadges.mainProject is missing, add it to gradle.properties"
+                    }
+
+                val mainProject: String? =
+                    rootProject.allprojects
+                        .firstOrNull { project -> project.name == mainProjectValue }
+                        ?.name
+
+                checkNotNull(mainProject) {
+                    "The project defined in readmeBadges.mainProject is not found, check the name of it"
                 }
 
-            val mainProject: String? =
-                rootProject.allprojects
-                    .firstOrNull { project -> project.name == mainProjectValue }
-                    ?.name
-
-            checkNotNull(mainProject) {
-                "The project defined in readmeBadges.mainProject is not found, check the name of it"
+                if (mavenCentralBadge) add(buildMavenRepoBadge(mainProject, MavenRepo.MavenCentral))
+                if (snapshotsBadge) add(buildMavenRepoBadge(mainProject, MavenRepo.Snapshot))
             }
 
-            if (mavenCentralBadge) add(buildMavenRepoBadge(mainProject, MavenRepo.MavenCentral))
-            if (snapshotsBadge) add(buildMavenRepoBadge(mainProject, MavenRepo.Snapshot))
+            add("")
+            if (buildBadge) add(buildBuildBadge())
+            if (coverageBadge) add(buildAnalysisBadge(Sonar.Coverage))
+            if (qualityBadge) add(buildAnalysisBadge(Sonar.Quality))
+            if (techDebtBadge) add(buildAnalysisBadge(Sonar.TechDebt))
+            add("")
         }
-
-        add("")
-        if (buildBadge) add(buildBuildBadge())
-        if (coverageBadge) add(buildAnalysisBadge(Sonar.Coverage))
-        if (qualityBadge) add(buildAnalysisBadge(Sonar.Quality))
-        if (techDebtBadge) add(buildAnalysisBadge(Sonar.TechDebt))
-        add("")
-    }
         .removeDuplicateEmptyLines()
         .lines()
         .dropWhile(String::isBlank)

@@ -232,8 +232,7 @@ private fun Project.dependenciesFromRenovateCommit(): List<String> {
             }
         }
 
-    return latestCommit
-        .fullMessage
+    return latestCommit.fullMessage
         .lines()
         .dropWhile { it.startsWith("| ----").not() }
         .drop(1)

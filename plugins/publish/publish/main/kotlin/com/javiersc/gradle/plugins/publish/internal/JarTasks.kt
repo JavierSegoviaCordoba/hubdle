@@ -41,8 +41,7 @@ internal val Project.sourcesJar: Jar
                             .sourceSets
                             .named("main")
                             .get()
-                            .java
-                            .srcDirs
+                            .java.srcDirs
                     }
                     isVersionCatalog -> emptySet()
                     else -> emptySet()

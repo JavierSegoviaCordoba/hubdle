@@ -12,8 +12,7 @@ open class DocsExtension(project: Project) {
     fun navigation(action: Action<in NavigationOptions>) = action.execute(navigation.get())
 
     val navigation: Property<NavigationOptions> =
-        project
-            .objects
+        project.objects
             .property<NavigationOptions>()
             .value(project.objects.newInstance(NavigationOptions::class.java))
 

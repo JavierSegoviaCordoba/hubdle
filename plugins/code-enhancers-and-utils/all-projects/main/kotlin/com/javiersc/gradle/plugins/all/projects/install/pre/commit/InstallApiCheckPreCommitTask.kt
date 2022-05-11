@@ -1,19 +1,24 @@
 package com.javiersc.gradle.plugins.all.projects.install.pre.commit
 
-import com.javiersc.gradle.plugins.all.projects.allProjectsExtension
 import org.gradle.api.Project
+import org.gradle.api.provider.Property
+import org.gradle.api.tasks.CacheableTask
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.TaskAction
+import org.gradle.kotlin.dsl.register
 
-open class InstallApiCheckPreCommitTask : InstallPreCommitTask() {
+@CacheableTask
+abstract class InstallApiCheckPreCommitTask : InstallPreCommitTask() {
 
     @get:Input
     override val preCommitName: String
         get() = "apiCheck"
 
+    @get:Input abstract val apiCheck: Property<Boolean>
+
     @TaskAction
     override fun install() {
-        if (project.allProjectsExtension.install.get().preCommit.get().apiCheck.get()) {
+        if (apiCheck.get()) {
             createInstallPreCommitGradleTask()
         }
     }
@@ -21,12 +26,15 @@ open class InstallApiCheckPreCommitTask : InstallPreCommitTask() {
     companion object {
         const val name: String = "installApiCheckPreCommit"
 
-        internal fun register(project: Project) {
+        internal fun register(
+            project: Project,
+            configure: InstallApiCheckPreCommitTask.() -> Unit
+        ) {
             val installApiCheckPreCommitTask =
-                project.tasks.register(name, InstallApiCheckPreCommitTask::class.java) { task ->
-                    task.group = taskGroup
-
-                    task.finalizedBy(WriteFilePreCommitTask.getTask(project))
+                project.tasks.register<InstallApiCheckPreCommitTask>(name) {
+                    group = taskGroup
+                    configure(this)
+                    finalizedBy(WriteFilePreCommitTask.getTask(project))
                 }
             getInstallPreCommitTask(project).get().dependsOn(installApiCheckPreCommitTask)
         }

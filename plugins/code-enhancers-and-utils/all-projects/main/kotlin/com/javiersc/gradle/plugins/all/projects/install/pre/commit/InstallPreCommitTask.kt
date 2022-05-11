@@ -5,16 +5,18 @@ import java.io.File
 import org.gradle.api.DefaultTask
 import org.gradle.api.Project
 import org.gradle.api.Task
+import org.gradle.api.tasks.CacheableTask
 import org.gradle.api.tasks.Input
-import org.gradle.api.tasks.OutputDirectories
+import org.gradle.api.tasks.Internal
 import org.gradle.api.tasks.OutputFile
 import org.gradle.api.tasks.TaskProvider
 
+@CacheableTask
 abstract class InstallPreCommitTask : InstallTask, DefaultTask() {
 
     @get:Input internal abstract val preCommitName: String
 
-    @get:OutputDirectories
+    @get:Internal
     internal val preCommitOutputDir: File
         get() = project.file("${project.buildDir}/install/pre-commits/")
 
@@ -49,4 +51,10 @@ internal fun InstallPreCommitTask.createInstallPreCommitGradleTask() {
 }
 
 internal val Project.preCommitFile: File
-    get() = file("${rootProject.rootDir}/.git/hooks/pre-commit").apply { parentFile.mkdirs() }
+    get() {
+        check(this == rootProject) { "This task should be only configured in the root project" }
+        return file("${layout.projectDirectory.asFile}/.git/hooks/pre-commit").apply {
+            parentFile.mkdirs()
+            createNewFile()
+        }
+    }

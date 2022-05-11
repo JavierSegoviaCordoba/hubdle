@@ -1,32 +1,38 @@
 package com.javiersc.gradle.plugins.all.projects.install.pre.commit
 
-import com.javiersc.gradle.plugins.all.projects.allProjectsExtension
 import org.gradle.api.Project
+import org.gradle.api.provider.Property
+import org.gradle.api.tasks.CacheableTask
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.TaskAction
+import org.gradle.kotlin.dsl.register
 
-open class InstallAllTestsPreCommitTask : InstallPreCommitTask() {
+@CacheableTask
+abstract class InstallAllTestsPreCommitTask : InstallPreCommitTask() {
 
     @get:Input
     override val preCommitName: String
         get() = "allTests"
 
+    @get:Input abstract val allTests: Property<Boolean>
+
     @TaskAction
     override fun install() {
-        if (project.allProjectsExtension.install.get().preCommit.get().allTests.get()) {
-            createInstallPreCommitGradleTask()
-        }
+        if (allTests.get()) createInstallPreCommitGradleTask()
     }
 
     companion object {
         const val name: String = "installAllTestsPreCommit"
 
-        internal fun register(project: Project) {
+        internal fun register(
+            project: Project,
+            configure: InstallAllTestsPreCommitTask.() -> Unit
+        ) {
             val installAllTestsPreCommitTask =
-                project.tasks.register(name, InstallAllTestsPreCommitTask::class.java) { task ->
-                    task.group = taskGroup
-
-                    task.finalizedBy(WriteFilePreCommitTask.getTask(project))
+                project.tasks.register<InstallAllTestsPreCommitTask>(name) {
+                    group = taskGroup
+                    configure(this)
+                    finalizedBy(WriteFilePreCommitTask.getTask(project))
                 }
             getInstallPreCommitTask(project).get().dependsOn(installAllTestsPreCommitTask)
         }

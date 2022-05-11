@@ -1,19 +1,24 @@
 package com.javiersc.gradle.plugins.all.projects.install.pre.commit
 
-import com.javiersc.gradle.plugins.all.projects.allProjectsExtension
 import org.gradle.api.Project
+import org.gradle.api.provider.Property
+import org.gradle.api.tasks.CacheableTask
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.TaskAction
+import org.gradle.kotlin.dsl.register
 
-open class InstallSpotlessCheckPreCommitTask : InstallPreCommitTask() {
+@CacheableTask
+abstract class InstallSpotlessCheckPreCommitTask : InstallPreCommitTask() {
 
     @get:Input
     override val preCommitName: String
         get() = "spotlessCheck"
 
+    @get:Input abstract val spotlessCheck: Property<Boolean>
+
     @TaskAction
     override fun install() {
-        if (project.allProjectsExtension.install.get().preCommit.get().spotlessCheck.get()) {
+        if (spotlessCheck.get()) {
             createInstallPreCommitGradleTask()
         }
     }
@@ -21,13 +26,15 @@ open class InstallSpotlessCheckPreCommitTask : InstallPreCommitTask() {
     companion object {
         const val name: String = "installSpotlessCheckPreCommit"
 
-        internal fun register(project: Project) {
+        internal fun register(
+            project: Project,
+            configure: InstallSpotlessCheckPreCommitTask.() -> Unit
+        ) {
             val installApiCheckPreCommitTask =
-                project.tasks.register(name, InstallSpotlessCheckPreCommitTask::class.java) { task
-                    ->
-                    task.group = taskGroup
-
-                    task.finalizedBy(WriteFilePreCommitTask.getTask(project))
+                project.tasks.register<InstallSpotlessCheckPreCommitTask>(name) {
+                    group = taskGroup
+                    configure(this)
+                    finalizedBy(WriteFilePreCommitTask.getTask(project))
                 }
             getInstallPreCommitTask(project).get().dependsOn(installApiCheckPreCommitTask)
         }

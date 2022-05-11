@@ -8,6 +8,7 @@ import org.gradle.api.provider.Property
 import org.gradle.kotlin.dsl.property
 
 open class InstallOptions @Inject constructor(objects: ObjectFactory) {
+
     fun preCommit(action: Action<in PreCommitOptions>) = action.execute(preCommit.get())
 
     val preCommit: Property<PreCommitOptions> =

@@ -4,6 +4,9 @@
 
 ### Added
 
+- Configuration cache support to `all-projects`
+- Build cache support to `all-projects`
+
 ### Changed
 
 ### Deprecated

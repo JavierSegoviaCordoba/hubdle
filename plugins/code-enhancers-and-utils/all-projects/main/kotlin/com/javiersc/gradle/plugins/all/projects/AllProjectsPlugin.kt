@@ -13,6 +13,8 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.tasks.testing.Test
 import org.gradle.api.tasks.testing.TestReport
+import org.gradle.kotlin.dsl.register
+import org.gradle.kotlin.dsl.withType
 import org.gradle.language.base.plugins.LifecycleBasePlugin
 import org.gradle.language.base.plugins.LifecycleBasePlugin.BUILD_TASK_NAME
 import org.gradle.language.base.plugins.LifecycleBasePlugin.CHECK_TASK_NAME
@@ -28,43 +30,52 @@ abstract class AllProjectsPlugin : Plugin<Project> {
         AllProjectsExtension.createExtension(target)
 
         InstallPreCommitTask.register(target)
-        InstallAllTestsPreCommitTask.register(target)
-        InstallAssemblePreCommitTask.register(target)
-        InstallApiCheckPreCommitTask.register(target)
-        InstallSpotlessCheckPreCommitTask.register(target)
+        InstallAllTestsPreCommitTask.register(target) {
+            allTests.set(project.allProjectsExtension.install.get().preCommit.get().allTests)
+        }
+        InstallAssemblePreCommitTask.register(target) {
+            assemble.set(project.allProjectsExtension.install.get().preCommit.get().assemble)
+        }
+        InstallApiCheckPreCommitTask.register(target) {
+            apiCheck.set(project.allProjectsExtension.install.get().preCommit.get().apiCheck)
+        }
+        InstallSpotlessCheckPreCommitTask.register(target) {
+            spotlessCheck.set(
+                project.allProjectsExtension.install.get().preCommit.get().spotlessCheck
+            )
+        }
         WriteFilePreCommitTask.register(target)
 
         target.allprojects { project ->
             project.group = project.module
 
-            project.configureTestLogger()
-            project.configureAllTestsTask()
-            project.configureAllTestsReport()
+            configureTestLogger(project)
+            configureAllTestsTask(project)
+            configureAllTestsReport(project)
         }
 
         target.configureCodeCoverageMergedReport()
     }
 }
 
-private fun Project.configureTestLogger() {
-    pluginManager.apply("com.adarshr.test-logger")
+private fun configureTestLogger(target: Project) {
+    target.pluginManager.apply("com.adarshr.test-logger")
 
-    tasks.withType(Test::class.java) { test ->
-        test.testLogging.showStandardStreams = true
-        test.maxParallelForks =
-            (Runtime.getRuntime().availableProcessors() / 3).takeIf { it > 0 } ?: 1
+    target.tasks.withType<Test> {
+        testLogging.showStandardStreams = true
+        maxParallelForks = (Runtime.getRuntime().availableProcessors() / 3).takeIf { it > 0 } ?: 1
 
         val hasAndroid =
-            test.project.run {
+            project.run {
                 isAndroidApplication || isAndroidLibrary || isKotlinMultiplatformWithAndroid
             }
 
-        if (hasAndroid) test.useJUnit() else test.useJUnitPlatform()
+        if (hasAndroid) useJUnit() else useJUnitPlatform()
     }
 }
 
-private fun Project.configureAllTestsTask() {
-    afterEvaluate { project ->
+private fun configureAllTestsTask(target: Project) {
+    target.afterEvaluate { project ->
         val checkTask = project.tasks.findByName(CHECK_TASK_NAME)
 
         if (project.tasks.findByName(AllTestsLabel) == null) {
@@ -81,23 +92,21 @@ private fun Project.configureAllTestsTask() {
     }
 }
 
-private fun Project.configureAllTestsReport() {
+private fun configureAllTestsReport(target: Project) {
     val testReport =
-        tasks.register(AllTestsReportLabel, TestReport::class.java) { testReport ->
-            testReport.group = VERIFICATION_GROUP
-            testReport.destinationDir = file("$buildDir/reports/allTests")
-            testReport.reportOn(allprojects.map { it.tasks.withType(Test::class.java) })
+        target.tasks.register<TestReport>(AllTestsReportLabel) {
+            group = VERIFICATION_GROUP
+            destinationDir = project.file("${project.buildDir}/reports/allTests")
+            reportOn(project.allprojects.map { it.tasks.withType(Test::class.java) })
         }
 
     val shouldRunAllTestsReport =
-        gradle.startParameter.taskNames.any { taskName ->
+        target.gradle.startParameter.taskNames.any { taskName ->
             taskName in listOf(AllTestsLabel, BUILD_TASK_NAME, CHECK_TASK_NAME)
         }
 
     if (shouldRunAllTestsReport) {
-        allprojects { project ->
-            project.tasks.withType(Test::class.java) { test -> test.finalizedBy(testReport) }
-        }
+        target.allprojects { project -> project.tasks.withType<Test>() { finalizedBy(testReport) } }
     }
 }
 

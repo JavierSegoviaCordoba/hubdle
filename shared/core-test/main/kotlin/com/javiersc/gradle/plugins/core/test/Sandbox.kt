@@ -11,6 +11,7 @@ import org.gradle.testkit.runner.GradleRunner
 import org.gradle.testkit.runner.TaskOutcome
 
 val sandboxPath: Path = Paths.get("build/sandbox").apply { toFile().mkdirs() }
+val sandboxCachePath: Path = Paths.get("build/sandbox-cache").apply { toFile().mkdirs() }
 
 val File.sandboxFile: File
     get() = File("$this/build/sandbox")
@@ -22,9 +23,11 @@ infix fun String.copyResourceTo(destination: File) {
     getResource(this).copyRecursively(destination)
 }
 
-fun createSandboxFile(prefix: String): File {
-    return Files.createTempDirectory(sandboxPath, "$prefix-").toFile()
-}
+fun createSandboxFile(prefix: String): File =
+    Files.createTempDirectory(sandboxPath, "$prefix-").toFile()
+
+fun createSandboxCacheFile(prefix: String): File =
+    Files.createTempDirectory(sandboxCachePath, "$prefix-").toFile()
 
 val File.arguments: List<String>
     get() =
@@ -35,25 +38,32 @@ val File.arguments: List<String>
 fun testSandbox(
     sandboxPath: String,
     prefix: String = sandboxPath.split("/").last(),
-    beforeTest: File.() -> Unit = {},
+    beforeTest: File.(GradleRunner) -> Unit = {},
     taskOutcome: TaskOutcome = TaskOutcome.SUCCESS,
+    isBuildCacheTest: Boolean = false,
     test: (result: BuildResult, testProjectDir: File) -> Unit,
-) {
+): GradleRunner {
     val testProjectDir: File = createSandboxFile(prefix)
+    val testProjectCacheDir: File? = if (isBuildCacheTest) createSandboxCacheFile(prefix) else null
+
     sandboxPath copyResourceTo testProjectDir
 
-    beforeTest(testProjectDir)
-
-    GradleRunner.create()
-        .withDebug(true)
-        .withProjectDir(testProjectDir)
-        .withArguments(testProjectDir.arguments)
-        .withPluginClasspath()
-        .build()
-        .run {
-            checkArgumentsTasks(testProjectDir, taskOutcome)
-            test(this, testProjectDir)
+    val runner =
+        GradleRunner.create().apply {
+            withDebug(true)
+            withProjectDir(testProjectDir)
+            if (isBuildCacheTest) withTestKitDir(testProjectCacheDir)
+            withPluginClasspath()
         }
+
+    beforeTest(testProjectDir, runner)
+
+    runner.withArguments(testProjectDir.arguments).build().run {
+        checkArgumentsTasks(testProjectDir, taskOutcome)
+        test(this, testProjectDir)
+    }
+
+    return runner
 }
 
 fun BuildResult.checkArgumentsTasks(testProjectDir: File, taskOutcome: TaskOutcome) {

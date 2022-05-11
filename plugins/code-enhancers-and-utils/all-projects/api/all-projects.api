@@ -29,30 +29,33 @@ public abstract interface class com/javiersc/gradle/plugins/all/projects/install
 	public abstract fun install ()V
 }
 
-public class com/javiersc/gradle/plugins/all/projects/install/pre/commit/InstallAllTestsPreCommitTask : com/javiersc/gradle/plugins/all/projects/install/pre/commit/InstallPreCommitTask {
+public abstract class com/javiersc/gradle/plugins/all/projects/install/pre/commit/InstallAllTestsPreCommitTask : com/javiersc/gradle/plugins/all/projects/install/pre/commit/InstallPreCommitTask {
 	public static final field Companion Lcom/javiersc/gradle/plugins/all/projects/install/pre/commit/InstallAllTestsPreCommitTask$Companion;
 	public static final field name Ljava/lang/String;
 	public fun <init> ()V
+	public abstract fun getAllTests ()Lorg/gradle/api/provider/Property;
 	public fun install ()V
 }
 
 public final class com/javiersc/gradle/plugins/all/projects/install/pre/commit/InstallAllTestsPreCommitTask$Companion {
 }
 
-public class com/javiersc/gradle/plugins/all/projects/install/pre/commit/InstallApiCheckPreCommitTask : com/javiersc/gradle/plugins/all/projects/install/pre/commit/InstallPreCommitTask {
+public abstract class com/javiersc/gradle/plugins/all/projects/install/pre/commit/InstallApiCheckPreCommitTask : com/javiersc/gradle/plugins/all/projects/install/pre/commit/InstallPreCommitTask {
 	public static final field Companion Lcom/javiersc/gradle/plugins/all/projects/install/pre/commit/InstallApiCheckPreCommitTask$Companion;
 	public static final field name Ljava/lang/String;
 	public fun <init> ()V
+	public abstract fun getApiCheck ()Lorg/gradle/api/provider/Property;
 	public fun install ()V
 }
 
 public final class com/javiersc/gradle/plugins/all/projects/install/pre/commit/InstallApiCheckPreCommitTask$Companion {
 }
 
-public class com/javiersc/gradle/plugins/all/projects/install/pre/commit/InstallAssemblePreCommitTask : com/javiersc/gradle/plugins/all/projects/install/pre/commit/InstallPreCommitTask {
+public abstract class com/javiersc/gradle/plugins/all/projects/install/pre/commit/InstallAssemblePreCommitTask : com/javiersc/gradle/plugins/all/projects/install/pre/commit/InstallPreCommitTask {
 	public static final field Companion Lcom/javiersc/gradle/plugins/all/projects/install/pre/commit/InstallAssemblePreCommitTask$Companion;
 	public static final field name Ljava/lang/String;
 	public fun <init> ()V
+	public abstract fun getAssemble ()Lorg/gradle/api/provider/Property;
 	public fun install ()V
 }
 
@@ -68,17 +71,18 @@ public abstract class com/javiersc/gradle/plugins/all/projects/install/pre/commi
 public final class com/javiersc/gradle/plugins/all/projects/install/pre/commit/InstallPreCommitTask$Companion {
 }
 
-public class com/javiersc/gradle/plugins/all/projects/install/pre/commit/InstallSpotlessCheckPreCommitTask : com/javiersc/gradle/plugins/all/projects/install/pre/commit/InstallPreCommitTask {
+public abstract class com/javiersc/gradle/plugins/all/projects/install/pre/commit/InstallSpotlessCheckPreCommitTask : com/javiersc/gradle/plugins/all/projects/install/pre/commit/InstallPreCommitTask {
 	public static final field Companion Lcom/javiersc/gradle/plugins/all/projects/install/pre/commit/InstallSpotlessCheckPreCommitTask$Companion;
 	public static final field name Ljava/lang/String;
 	public fun <init> ()V
+	public abstract fun getSpotlessCheck ()Lorg/gradle/api/provider/Property;
 	public fun install ()V
 }
 
 public final class com/javiersc/gradle/plugins/all/projects/install/pre/commit/InstallSpotlessCheckPreCommitTask$Companion {
 }
 
-public class com/javiersc/gradle/plugins/all/projects/install/pre/commit/PreCommitOptions {
+public abstract class com/javiersc/gradle/plugins/all/projects/install/pre/commit/PreCommitOptions {
 	public fun <init> (Lorg/gradle/api/model/ObjectFactory;)V
 	public final fun getAllTests ()Lorg/gradle/api/provider/Property;
 	public final fun getApiCheck ()Lorg/gradle/api/provider/Property;
@@ -86,12 +90,13 @@ public class com/javiersc/gradle/plugins/all/projects/install/pre/commit/PreComm
 	public final fun getSpotlessCheck ()Lorg/gradle/api/provider/Property;
 }
 
-public class com/javiersc/gradle/plugins/all/projects/install/pre/commit/WriteFilePreCommitTask : org/gradle/api/DefaultTask {
+public abstract class com/javiersc/gradle/plugins/all/projects/install/pre/commit/WriteFilePreCommitTask : org/gradle/api/DefaultTask {
 	public static final field Companion Lcom/javiersc/gradle/plugins/all/projects/install/pre/commit/WriteFilePreCommitTask$Companion;
 	public static final field name Ljava/lang/String;
 	public fun <init> ()V
+	public final fun getInputPreCommitFile ()Ljava/io/File;
 	public final fun getInstallPreCommitsDir ()Ljava/io/File;
-	public final fun getPreCommitFile ()Ljava/io/File;
+	public final fun getOutputPreCommitFile ()Ljava/io/File;
 	public final fun writeFile ()V
 }
 

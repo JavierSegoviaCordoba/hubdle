@@ -16,7 +16,7 @@ import org.gradle.api.tasks.Optional
 import org.gradle.api.tasks.TaskAction
 import org.gradle.api.tasks.options.Option
 
-abstract class AddChangelogItem : DefaultTask() {
+abstract class AddChangelogItemTask : DefaultTask() {
 
     @get:Input
     @set:Option(option = "added", description = "Add an item to the `added` section")
@@ -99,7 +99,7 @@ abstract class AddChangelogItem : DefaultTask() {
 private val Project.changelog: String
     get() = changelogFile.readText()
 
-private fun AddChangelogItem.setupSection(header: String, item: String?) =
+private fun AddChangelogItemTask.setupSection(header: String, item: String?) =
     with(project) {
         item?.let { item ->
             logger.lifecycle(header)
@@ -109,7 +109,7 @@ private fun AddChangelogItem.setupSection(header: String, item: String?) =
         }
     }
 
-private fun AddChangelogItem.setupRenovate(): Unit =
+private fun AddChangelogItemTask.setupRenovate(): Unit =
     with(project) {
         val dependenciesFromPullRequest: List<String> =
             dependenciesFromRenovatePullRequestBody(renovate, renovatePath)

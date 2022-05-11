@@ -1,6 +1,6 @@
 package com.javiersc.gradle.plugins.changelog
 
-import com.javiersc.gradle.plugins.changelog.tasks.AddChangelogItem
+import com.javiersc.gradle.plugins.changelog.tasks.AddChangelogItemTask
 import com.javiersc.gradle.plugins.changelog.tasks.FormatChangelogTask
 import com.javiersc.gradle.plugins.changelog.tasks.MergeChangelogTask
 import org.gradle.api.Plugin
@@ -28,7 +28,7 @@ abstract class ChangelogPlugin : Plugin<Project> {
 
             register<MergeChangelogTask>(MergeChangelogTask.name)
 
-            register<AddChangelogItem>(AddChangelogItem.name) {
+            register<AddChangelogItemTask>(AddChangelogItemTask.name) {
                 finalizedBy(FormatChangelogTask.name)
             }
         }

@@ -4,4 +4,4 @@ import java.io.File
 import org.gradle.api.Project
 
 internal val Project.changelogFile: File
-    get() = file("$projectDir/CHANGELOG.md")
+    get() = file("${layout.projectDirectory}/CHANGELOG.md")

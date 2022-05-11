@@ -9,7 +9,10 @@ import kotlin.test.Test
 
 internal class ChangelogMergedTest {
 
-    @Test fun `changelog merged 1`() = assert(1)
+    @Test
+    fun `changelog merged 1`() {
+        assert(1)
+    }
 }
 
 private fun assert(number: Int) {

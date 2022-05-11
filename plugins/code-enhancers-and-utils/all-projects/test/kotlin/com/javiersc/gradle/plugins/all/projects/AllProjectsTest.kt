@@ -1,5 +1,7 @@
 package com.javiersc.gradle.plugins.all.projects
 
+import com.javiersc.gradle.plugins.core.test.arguments
+import com.javiersc.gradle.plugins.core.test.taskFromArguments
 import com.javiersc.gradle.plugins.core.test.testSandbox
 import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.collections.shouldNotContain
@@ -26,23 +28,24 @@ class AllProjectsTest {
 
     @Test
     fun `all projects all-tests pre-commit enabled 1 build cache`() {
-        val runner =
+        val (runner, testProjectDir) =
             testSandbox(
                 sandboxPath = "sandbox-all-projects-all-tests-pre-commit-enabled-build-cache-1",
-                beforeTest = { runner -> runner.withArguments("clean").build() },
                 isBuildCacheTest = true,
                 test = { _, testProjectDir ->
                     testProjectDir.preCommitFileLines.shouldContain("./gradlew allTests")
                 },
             )
         runner.withArguments("clean").build()
-        val result = runner.withArguments("installAllTestsPreCommit", "--info").build()
-        result.task(":installAllTestsPreCommit")?.outcome.shouldBe(TaskOutcome.FROM_CACHE)
+        val result = runner.withArguments(testProjectDir.arguments).build()
+        result
+            .task(":${testProjectDir.taskFromArguments}")
+            ?.outcome.shouldBe(TaskOutcome.FROM_CACHE)
     }
 
     @Test
     fun `all projects all pre-commits enabled 1 configuration cache`() {
-        val runner =
+        val (runner, testProjectDir) =
             testSandbox(
                 sandboxPath = "sandbox-all-projects-all-pre-commits-enabled-configuration-cache-1",
                 test = { _, testProjectDir ->
@@ -52,10 +55,12 @@ class AllProjectsTest {
                     testProjectDir.preCommitFileLines.shouldContain("./gradlew spotlessCheck")
                 },
             )
-        val result = runner.withArguments("installPreCommit", "--info").build()
+        val result = runner.withArguments(testProjectDir.arguments).build()
         println(result.output)
         result.output.shouldContain("Reusing configuration cache")
-        result.task(":installPreCommit")?.outcome.shouldBe(TaskOutcome.UP_TO_DATE)
+        result
+            .task(":${testProjectDir.taskFromArguments}")
+            ?.outcome.shouldBe(TaskOutcome.UP_TO_DATE)
     }
 
     @Test

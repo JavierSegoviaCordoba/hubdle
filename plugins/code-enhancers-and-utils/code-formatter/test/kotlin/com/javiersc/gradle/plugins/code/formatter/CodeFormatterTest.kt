@@ -11,7 +11,10 @@ import org.gradle.testkit.runner.BuildResult
 
 class CodeFormatterTest {
 
-    @Test fun `format 1`() = testSandbox(sandboxPath = "sandbox-format-1", test = ::testFormatter)
+    @Test
+    fun `format 1`() {
+        testSandbox(sandboxPath = "sandbox-format-1", test = ::testFormatter)
+    }
 }
 
 @Suppress("UNUSED_PARAMETER")

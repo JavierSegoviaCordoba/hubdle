@@ -1,50 +1,95 @@
 package com.javiersc.gradle.plugins.changelog.integration
 
 import com.javiersc.gradle.plugins.changelog.utils.testChangelog
+import com.javiersc.gradle.plugins.core.test.arguments
 import com.javiersc.gradle.plugins.core.test.commitAndCheckout
+import com.javiersc.gradle.plugins.core.test.taskFromArguments
 import com.javiersc.gradle.plugins.core.test.testSandbox
+import io.kotest.matchers.nulls.shouldNotBeNull
+import io.kotest.matchers.shouldBe
+import io.kotest.matchers.string.shouldContain
 import kotlin.test.Test
+import org.gradle.testkit.runner.TaskOutcome
 
 class AddChangelogItemTest {
 
     @Test
-    fun `added 1`() =
+    fun `added 1`() {
         testSandbox(sandboxPath = "add-changelog-item/sandbox-added-1", test = ::testChangelog)
+    }
 
     @Test
-    fun `changed 1`() =
+    fun `added configuration cache 1`() {
+        val (runner, testProjectDir) =
+            testSandbox(
+                sandboxPath = "add-changelog-item/sandbox-added-configuration-cache-1",
+                test = ::testChangelog
+            )
+        val result = runner.withArguments(testProjectDir.arguments).build()
+        result.output.shouldContain("Reusing configuration cache")
+        result
+            .task(":${testProjectDir.taskFromArguments}")
+            .shouldNotBeNull()
+            .outcome.shouldBe(TaskOutcome.SUCCESS)
+    }
+
+    @Test
+    fun `changed 1`() {
         testSandbox(sandboxPath = "add-changelog-item/sandbox-changed-1", test = ::testChangelog)
+    }
 
     @Test
-    fun `deprecated 1`() =
+    fun `deprecated 1`() {
         testSandbox(sandboxPath = "add-changelog-item/sandbox-deprecated-1", test = ::testChangelog)
+    }
 
     @Test
-    fun `removed 1`() =
+    fun `removed 1`() {
         testSandbox(sandboxPath = "add-changelog-item/sandbox-removed-1", test = ::testChangelog)
+    }
 
     @Test
-    fun `fixed 1`() =
+    fun `fixed 1`() {
         testSandbox(sandboxPath = "add-changelog-item/sandbox-fixed-1", test = ::testChangelog)
+    }
 
     @Test
-    fun `updated 1`() =
+    fun `updated 1`() {
         testSandbox(sandboxPath = "add-changelog-item/sandbox-updated-1", test = ::testChangelog)
+    }
 
     @Test
-    fun `renovate 1`() =
+    fun `renovate 1`() {
         testSandbox(sandboxPath = "add-changelog-item/sandbox-renovate-1", test = ::testChangelog)
+    }
 
     @Test
-    fun `renovate 2`() =
+    fun `renovate configuration cache 1`() {
+        val (runner, testProjectDir) =
+            testSandbox(
+                sandboxPath = "add-changelog-item/sandbox-renovate-configuration-cache-1",
+                test = ::testChangelog
+            )
+        val result = runner.withArguments(testProjectDir.arguments).build()
+        result.output.shouldContain("Reusing configuration cache")
+        result
+            .task(":${testProjectDir.taskFromArguments}")
+            .shouldNotBeNull()
+            .outcome.shouldBe(TaskOutcome.SUCCESS)
+    }
+
+    @Test
+    fun `renovate 2`() {
         testSandbox(sandboxPath = "add-changelog-item/sandbox-renovate-2", test = ::testChangelog)
+    }
 
     @Test
-    fun `renovate 3`() =
+    fun `renovate 3`() {
         testSandbox(sandboxPath = "add-changelog-item/sandbox-renovate-3", test = ::testChangelog)
+    }
 
     @Test
-    fun `renovate 4`() =
+    fun `renovate 4`() {
         testSandbox(
             sandboxPath = "add-changelog-item/sandbox-renovate-4",
             beforeTest = {
@@ -59,9 +104,10 @@ class AddChangelogItemTest {
             },
             test = ::testChangelog,
         )
+    }
 
     @Test
-    fun `renovate 5`() =
+    fun `renovate 5`() {
         testSandbox(
             sandboxPath = "add-changelog-item/sandbox-renovate-5",
             beforeTest = {
@@ -79,9 +125,10 @@ class AddChangelogItemTest {
             },
             test = ::testChangelog,
         )
+    }
 
     @Test
-    fun `renovate 6`() =
+    fun `renovate 6`() {
         testSandbox(
             sandboxPath = "add-changelog-item/sandbox-renovate-6",
             beforeTest = {
@@ -96,9 +143,10 @@ class AddChangelogItemTest {
             },
             test = ::testChangelog,
         )
+    }
 
     @Test
-    fun `renovate 7`() =
+    fun `renovate 7`() {
         testSandbox(
             sandboxPath = "add-changelog-item/sandbox-renovate-7",
             beforeTest = {
@@ -118,9 +166,10 @@ class AddChangelogItemTest {
             },
             test = ::testChangelog,
         )
+    }
 
     @Test
-    fun `renovate 8`() =
+    fun `renovate 8`() {
         testSandbox(
             sandboxPath = "add-changelog-item/sandbox-renovate-8",
             beforeTest = {
@@ -135,4 +184,5 @@ class AddChangelogItemTest {
             },
             test = ::testChangelog,
         )
+    }
 }

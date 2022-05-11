@@ -8,9 +8,15 @@ import kotlin.test.Test
 
 internal class ChangelogTest {
 
-    @Test fun `changelog to string 1`() = assert(1)
+    @Test
+    fun `changelog to string 1`() {
+        assert(1)
+    }
 
-    @Test fun `changelog to string 2`() = assert(2)
+    @Test
+    fun `changelog to string 2`() {
+        assert(2)
+    }
 }
 
 private fun assert(number: Int) {

@@ -4,8 +4,8 @@ public abstract class com/javiersc/gradle/plugins/changelog/ChangelogPlugin : or
 	public fun apply (Lorg/gradle/api/Project;)V
 }
 
-public abstract class com/javiersc/gradle/plugins/changelog/tasks/AddChangelogItem : org/gradle/api/DefaultTask {
-	public static final field Companion Lcom/javiersc/gradle/plugins/changelog/tasks/AddChangelogItem$Companion;
+public abstract class com/javiersc/gradle/plugins/changelog/tasks/AddChangelogItemTask : org/gradle/api/DefaultTask {
+	public static final field Companion Lcom/javiersc/gradle/plugins/changelog/tasks/AddChangelogItemTask$Companion;
 	public static final field name Ljava/lang/String;
 	public fun <init> ()V
 	public final fun getAdded ()Ljava/lang/String;
@@ -29,13 +29,14 @@ public abstract class com/javiersc/gradle/plugins/changelog/tasks/AddChangelogIt
 	public final fun setUpdated (Ljava/lang/String;)V
 }
 
-public final class com/javiersc/gradle/plugins/changelog/tasks/AddChangelogItem$Companion {
+public final class com/javiersc/gradle/plugins/changelog/tasks/AddChangelogItemTask$Companion {
 }
 
 public abstract class com/javiersc/gradle/plugins/changelog/tasks/FormatChangelogTask : org/gradle/api/DefaultTask {
 	public static final field Companion Lcom/javiersc/gradle/plugins/changelog/tasks/FormatChangelogTask$Companion;
 	public static final field name Ljava/lang/String;
 	public fun <init> ()V
+	public final fun getChangelogFile ()Ljava/io/File;
 	public final fun run ()V
 }
 
@@ -46,6 +47,7 @@ public abstract class com/javiersc/gradle/plugins/changelog/tasks/MergeChangelog
 	public static final field Companion Lcom/javiersc/gradle/plugins/changelog/tasks/MergeChangelogTask$Companion;
 	public static final field name Ljava/lang/String;
 	public fun <init> ()V
+	public final fun getChangelogFile ()Ljava/io/File;
 	public final fun run ()V
 }
 

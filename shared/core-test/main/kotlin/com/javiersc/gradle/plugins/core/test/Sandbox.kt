@@ -35,6 +35,15 @@ val File.arguments: List<String>
             argument.replace("\"", "")
         }
 
+val File.taskFromArguments: String
+    get() =
+        File("$this/ARGUMENTS.txt")
+            .readLines()
+            .first()
+            .split(" ", limit = 3)
+            .map { argument -> argument.replace("\"", "") }
+            .first()
+
 fun testSandbox(
     sandboxPath: String,
     prefix: String = sandboxPath.split("/").last(),
@@ -42,7 +51,7 @@ fun testSandbox(
     taskOutcome: TaskOutcome = TaskOutcome.SUCCESS,
     isBuildCacheTest: Boolean = false,
     test: (result: BuildResult, testProjectDir: File) -> Unit,
-): GradleRunner {
+): Pair<GradleRunner, File> {
     val testProjectDir: File = createSandboxFile(prefix)
     val testProjectCacheDir: File? = if (isBuildCacheTest) createSandboxCacheFile(prefix) else null
 
@@ -63,7 +72,7 @@ fun testSandbox(
         test(this, testProjectDir)
     }
 
-    return runner
+    return runner to testProjectDir
 }
 
 fun BuildResult.checkArgumentsTasks(testProjectDir: File, taskOutcome: TaskOutcome) {

@@ -157,8 +157,8 @@
 
 <div>
   <ul>
-    <li>391 number of properties</li>
-    <li>225 number of functions</li>
+    <li>407 number of properties</li>
+    <li>231 number of functions</li>
     <li>78 number of classes</li>
     <li>29 number of packages</li>
     <li>112 number of kt files</li>
@@ -170,23 +170,23 @@
 
 <div>
   <ul>
-    <li>5,222 lines of code (loc)</li>
-    <li>4,220 source lines of code (sloc)</li>
-    <li>3,024 logical lines of code (lloc)</li>
+    <li>5,473 lines of code (loc)</li>
+    <li>4,451 source lines of code (sloc)</li>
+    <li>3,167 logical lines of code (lloc)</li>
     <li>20 comment lines of code (cloc)</li>
-    <li>491 cyclomatic complexity (mcc)</li>
-    <li>249 cognitive complexity</li>
-    <li>26 number of total code smells</li>
+    <li>503 cyclomatic complexity (mcc)</li>
+    <li>253 cognitive complexity</li>
+    <li>28 number of total code smells</li>
     <li>0% comment source ratio</li>
-    <li>162 mcc per 1,000 lloc</li>
+    <li>158 mcc per 1,000 lloc</li>
     <li>8 code smells per 1,000 lloc</li>
   </ul>
 </div>
 
 
 <h2>Findings</h2>
-<div>Total: 26
-  <h3>complexity: 4</h3>
+<div>Total: 28
+  <h3>complexity: 5</h3>
   <details id="ComplexCondition" open="open">
     <summary class="rule-container"><span class="rule">ComplexCondition: 1 </span><span class="description">Complex conditions should be simplified and extracted into well-named methods if necessary.</span></summary>
     <ul>
@@ -227,6 +227,21 @@
       </li>
     </ul>
   </details>
+  <details id="LongParameterList" open="open">
+    <summary class="rule-container"><span class="rule">LongParameterList: 1 </span><span class="description">The more parameters a function has the more complex it is. Long parameter lists are often used to control complex algorithms and violate the Single Responsibility Principle. Prefer functions with short parameter lists.</span></summary>
+    <ul>
+      <li><span class="location">shared/core-test/main/kotlin/com/javiersc/gradle/plugins/core/test/Sandbox.kt:47:16</span><span class="message">The function testSandbox(sandboxPath: String, prefix: String, beforeTest: File.(GradleRunner) -&gt; Unit, taskOutcome: TaskOutcome, isBuildCacheTest: Boolean, test: (result: BuildResult, testProjectDir: File) -&gt; Unit) has too many parameters. The current threshold is set to 6.</span>
+        <pre><code><span class="lineno">  44 </span>            .map { argument -&gt; argument.replace(&quot;\&quot;&quot;, &quot;&quot;) }
+<span class="lineno">  45 </span>            .first()
+<span class="lineno">  46 </span>
+<span class="lineno">  47 </span>fun testSandbox<span class="error">(</span>
+<span class="lineno">  48 </span><span class="error">    sandboxPath: String,</span>
+<span class="lineno">  49 </span><span class="error">    prefix: String = sandboxPath.split(&quot;/&quot;).last(),</span>
+<span class="lineno">  50 </span><span class="error">    beforeTest: File.(GradleRunner) -&gt; Unit = {},</span>
+</code></pre>
+      </li>
+    </ul>
+  </details>
   <details id="TooManyFunctions" open="open">
     <summary class="rule-container"><span class="rule">TooManyFunctions: 1 </span><span class="description">Too many functions inside a/an file/class/object/interface always indicate a violation of the single responsibility principle. Maybe the file/class/object/interface wants to manage too many things at once. Extract functionality which clearly belongs together.</span></summary>
     <ul>
@@ -259,31 +274,31 @@
   <details id="TopLevelPropertyNaming" open="open">
     <summary class="rule-container"><span class="rule">TopLevelPropertyNaming: 4 </span><span class="description">Top level property names should follow the naming convention set in the projects configuration.</span></summary>
     <ul>
-      <li><span class="location">plugins/code-enhancers-and-utils/all-projects/main/kotlin/com/javiersc/gradle/plugins/all/projects/AllProjectsPlugin.kt:122:19</span><span class="message">Top level constant names should match the pattern: [A-Z][_A-Z0-9]*</span>
-        <pre><code><span class="lineno"> 119 </span>    }
-<span class="lineno"> 120 </span>}
-<span class="lineno"> 121 </span>
-<span class="lineno"> 122 </span>private const val <span class="error">AllTestsLabel</span> = &quot;allTests&quot;
-<span class="lineno"> 123 </span>private const val AllTestsReportLabel = &quot;allTestsReport&quot;
-<span class="lineno"> 124 </span>private const val KoverMergedReport = &quot;koverMergedReport&quot;
-<span class="lineno"> 125 </span>
+      <li><span class="location">plugins/code-enhancers-and-utils/all-projects/main/kotlin/com/javiersc/gradle/plugins/all/projects/AllProjectsPlugin.kt:131:19</span><span class="message">Top level constant names should match the pattern: [A-Z][_A-Z0-9]*</span>
+        <pre><code><span class="lineno"> 128 </span>    }
+<span class="lineno"> 129 </span>}
+<span class="lineno"> 130 </span>
+<span class="lineno"> 131 </span>private const val <span class="error">AllTestsLabel</span> = &quot;allTests&quot;
+<span class="lineno"> 132 </span>private const val AllTestsReportLabel = &quot;allTestsReport&quot;
+<span class="lineno"> 133 </span>private const val KoverMergedReport = &quot;koverMergedReport&quot;
+<span class="lineno"> 134 </span>
 </code></pre>
       </li>
-      <li><span class="location">plugins/code-enhancers-and-utils/all-projects/main/kotlin/com/javiersc/gradle/plugins/all/projects/AllProjectsPlugin.kt:123:19</span><span class="message">Top level constant names should match the pattern: [A-Z][_A-Z0-9]*</span>
-        <pre><code><span class="lineno"> 120 </span>}
-<span class="lineno"> 121 </span>
-<span class="lineno"> 122 </span>private const val AllTestsLabel = &quot;allTests&quot;
-<span class="lineno"> 123 </span>private const val <span class="error">AllTestsReportLabel</span> = &quot;allTestsReport&quot;
-<span class="lineno"> 124 </span>private const val KoverMergedReport = &quot;koverMergedReport&quot;
-<span class="lineno"> 125 </span>
+      <li><span class="location">plugins/code-enhancers-and-utils/all-projects/main/kotlin/com/javiersc/gradle/plugins/all/projects/AllProjectsPlugin.kt:132:19</span><span class="message">Top level constant names should match the pattern: [A-Z][_A-Z0-9]*</span>
+        <pre><code><span class="lineno"> 129 </span>}
+<span class="lineno"> 130 </span>
+<span class="lineno"> 131 </span>private const val AllTestsLabel = &quot;allTests&quot;
+<span class="lineno"> 132 </span>private const val <span class="error">AllTestsReportLabel</span> = &quot;allTestsReport&quot;
+<span class="lineno"> 133 </span>private const val KoverMergedReport = &quot;koverMergedReport&quot;
+<span class="lineno"> 134 </span>
 </code></pre>
       </li>
-      <li><span class="location">plugins/code-enhancers-and-utils/all-projects/main/kotlin/com/javiersc/gradle/plugins/all/projects/AllProjectsPlugin.kt:124:19</span><span class="message">Top level constant names should match the pattern: [A-Z][_A-Z0-9]*</span>
-        <pre><code><span class="lineno"> 121 </span>
-<span class="lineno"> 122 </span>private const val AllTestsLabel = &quot;allTests&quot;
-<span class="lineno"> 123 </span>private const val AllTestsReportLabel = &quot;allTestsReport&quot;
-<span class="lineno"> 124 </span>private const val <span class="error">KoverMergedReport</span> = &quot;koverMergedReport&quot;
-<span class="lineno"> 125 </span>
+      <li><span class="location">plugins/code-enhancers-and-utils/all-projects/main/kotlin/com/javiersc/gradle/plugins/all/projects/AllProjectsPlugin.kt:133:19</span><span class="message">Top level constant names should match the pattern: [A-Z][_A-Z0-9]*</span>
+        <pre><code><span class="lineno"> 130 </span>
+<span class="lineno"> 131 </span>private const val AllTestsLabel = &quot;allTests&quot;
+<span class="lineno"> 132 </span>private const val AllTestsReportLabel = &quot;allTestsReport&quot;
+<span class="lineno"> 133 </span>private const val <span class="error">KoverMergedReport</span> = &quot;koverMergedReport&quot;
+<span class="lineno"> 134 </span>
 </code></pre>
       </li>
       <li><span class="location">plugins/documentation/readme-badges/main/kotlin/com/javiersc/gradle/plugins/readme/badges/generator/ReadmeBadgesGeneratorPlugin.kt:52:19</span><span class="message">Top level constant names should match the pattern: [A-Z][_A-Z0-9]*</span>
@@ -374,7 +389,7 @@
       </li>
     </ul>
   </details>
-  <h3>style: 10</h3>
+  <h3>style: 11</h3>
   <details id="ForbiddenComment" open="open">
     <summary class="rule-container"><span class="rule">ForbiddenComment: 1 </span><span class="description">Flags a forbidden comment.</span></summary>
     <ul>
@@ -393,14 +408,14 @@
   <details id="MagicNumber" open="open">
     <summary class="rule-container"><span class="rule">MagicNumber: 7 </span><span class="description">Report magic numbers. Magic number is a numeric literal that is not defined as a constant and hence it's unclear what the purpose of this number is. It's better to declare such numbers as constants and give them a proper name. By default, -1, 0, 1, and 2 are not considered to be magic numbers.</span></summary>
     <ul>
-      <li><span class="location">plugins/code-enhancers-and-utils/all-projects/main/kotlin/com/javiersc/gradle/plugins/all/projects/AllProjectsPlugin.kt:55:59</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
-        <pre><code><span class="lineno">  52 </span>    tasks.withType(Test::class.java) { test -&gt;
-<span class="lineno">  53 </span>        test.testLogging.showStandardStreams = true
-<span class="lineno">  54 </span>        test.maxParallelForks =
-<span class="lineno">  55 </span>            (Runtime.getRuntime().availableProcessors() / <span class="error">3</span>).takeIf { it &gt; 0 } ?: 1
-<span class="lineno">  56 </span>
-<span class="lineno">  57 </span>        val hasAndroid =
-<span class="lineno">  58 </span>            test.project.run {
+      <li><span class="location">plugins/code-enhancers-and-utils/all-projects/main/kotlin/com/javiersc/gradle/plugins/all/projects/AllProjectsPlugin.kt:66:74</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  63 </span>
+<span class="lineno">  64 </span>    target.tasks.withType&lt;Test&gt; {
+<span class="lineno">  65 </span>        testLogging.showStandardStreams = true
+<span class="lineno">  66 </span>        maxParallelForks = (Runtime.getRuntime().availableProcessors() / <span class="error">3</span>).takeIf { it &gt; 0 } ?: 1
+<span class="lineno">  67 </span>
+<span class="lineno">  68 </span>        val hasAndroid =
+<span class="lineno">  69 </span>            project.run {
 </code></pre>
       </li>
       <li><span class="location">plugins/gradle-utils/gradle-wrapper-updater/main/kotlin/com/javiersc/gradle/plugins/gradle/wrapper/updater/GradleWrapperUpdaterPlugin.kt:91:37</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
@@ -495,10 +510,25 @@
       </li>
     </ul>
   </details>
+  <details id="UnnecessaryAbstractClass" open="open">
+    <summary class="rule-container"><span class="rule">UnnecessaryAbstractClass: 1 </span><span class="description">An abstract class is unnecessary and can be refactored. An abstract class should have both abstract and concrete properties or functions. An abstract class without a concrete member can be refactored to an interface. An abstract class without an abstract member can be refactored to a concrete class.</span></summary>
+    <ul>
+      <li><span class="location">plugins/code-enhancers-and-utils/all-projects/main/kotlin/com/javiersc/gradle/plugins/all/projects/install/pre/commit/PreCommitOptions.kt:8:1</span><span class="message">An abstract class without an abstract member can be refactored to a concrete class.</span>
+        <pre><code><span class="lineno">   5 </span>import org.gradle.api.provider.Property
+<span class="lineno">   6 </span>import org.gradle.kotlin.dsl.property
+<span class="lineno">   7 </span>
+<span class="lineno">   8 </span><span class="error">abstract class PreCommitOptions @Inject constructor(objects: ObjectFactory) {</span>
+<span class="lineno">   9 </span><span class="error"></span>
+<span class="lineno">  10 </span><span class="error">    val allTests: Property&lt;Boolean&gt; = objects.property&lt;Boolean&gt;().convention(true)</span>
+<span class="lineno">  11 </span><span class="error">    val apiCheck: Property&lt;Boolean&gt; = objects.property&lt;Boolean&gt;().convention(true)</span>
+</code></pre>
+      </li>
+    </ul>
+  </details>
 </div>
 
 
-generated with <a href="https://detekt.dev/">detekt version 1.20.0</a> on 2022-05-11 13:47:41 UTC.
+generated with <a href="https://detekt.dev/">detekt version 1.20.0</a> on 2022-05-11 23:02:04 UTC.
 
 </body>
 </html>

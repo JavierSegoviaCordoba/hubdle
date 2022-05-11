@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `com.javiersc.gradle-plugins:all-plugins -> 0.1.0-rc.43`
+
 ## [0.1.0-rc.43] - 2022-05-11
 
 ### Fixed

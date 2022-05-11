@@ -32,7 +32,10 @@ dependencies {
     api(projects.shared.pluginAccessors)
     api(projects.shared.core)
 
-    implementation(libs.javiersc.kotlin.kotlinStdlib)
     compileOnly(pluginLibs.android.toolsBuild.gradle)
     compileOnly(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)
+
+    implementation(gradleKotlinDsl())
+    implementation(libs.javiersc.kotlin.kotlinStdlib)
+
 }

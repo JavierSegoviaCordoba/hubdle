@@ -14,6 +14,8 @@ import java.util.Locale
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.api.plugins.JavaPluginExtension
+import org.gradle.kotlin.dsl.findByType
+import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
@@ -21,10 +23,10 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 internal sealed class KotlinConfigType {
 
     open fun configure(project: Project) {
-        project.tasks.withType(KotlinCompile::class.java) { kotlinCompile ->
-            kotlinCompile.kotlinOptions { jvmTarget = JavaVersion.VERSION_1_8.toString() }
-            kotlinCompile.sourceCompatibility = JavaVersion.VERSION_1_8.toString()
-            kotlinCompile.targetCompatibility = JavaVersion.VERSION_1_8.toString()
+        project.tasks.withType<KotlinCompile> {
+            kotlinOptions { jvmTarget = JavaVersion.VERSION_1_8.toString() }
+            sourceCompatibility = JavaVersion.VERSION_1_8.toString()
+            targetCompatibility = JavaVersion.VERSION_1_8.toString()
         }
     }
 
@@ -61,10 +63,10 @@ internal sealed class KotlinConfigType {
 
             project.configureJavaAndKotlinSourceSets()
 
-            project.tasks.withType(KotlinCompile::class.java) { kotlinCompile ->
-                kotlinCompile.kotlinOptions { jvmTarget = JavaVersion.VERSION_11.toString() }
-                kotlinCompile.sourceCompatibility = JavaVersion.VERSION_11.toString()
-                kotlinCompile.targetCompatibility = JavaVersion.VERSION_11.toString()
+            project.tasks.withType<KotlinCompile>() {
+                kotlinOptions { jvmTarget = JavaVersion.VERSION_11.toString() }
+                sourceCompatibility = JavaVersion.VERSION_11.toString()
+                targetCompatibility = JavaVersion.VERSION_11.toString()
             }
         }
     }
@@ -93,7 +95,7 @@ internal sealed class KotlinConfigType {
             KotlinMultiplatform.configure(project)
             AndroidLibrary(isKmp = true).configure(project)
 
-            project.extensions.findByType(LibraryExtension::class.java)?.apply {
+            project.extensions.findByType<LibraryExtension>()?.apply {
                 sourceSets.all {
                     it.manifest.srcFile("android${it.name.capitalize()}/AndroidManifest.xml")
                 }
@@ -148,20 +150,20 @@ private fun String.capitalize(): String = replaceFirstChar {
 }
 
 private fun Project.configureJavaAndKotlinSourceSets() {
-    extensions.findByType(JavaPluginExtension::class.java)?.apply {
+    extensions.findByType<JavaPluginExtension>()?.apply {
         sourceSets.all {
             it.java.setSrcDirs(listOf("${it.name}/java"))
             it.resources.setSrcDirs(listOf("${it.name}/resources"))
         }
     }
-    extensions.findByType(KotlinJvmProjectExtension::class.java)?.apply {
+    extensions.findByType<KotlinJvmProjectExtension>()?.apply {
         sourceSets.all {
             it.kotlin.setSrcDirs(listOf("${it.name}/kotlin"))
             it.resources.setSrcDirs(listOf("${it.name}/resources"))
         }
     }
 
-    extensions.findByType(KotlinMultiplatformExtension::class.java)?.apply {
+    extensions.findByType<KotlinMultiplatformExtension>()?.apply {
         sourceSets.all {
             it.addDefaultLanguageSettings()
             it.kotlin.setSrcDirs(listOf("${it.name}/kotlin"))
@@ -171,7 +173,7 @@ private fun Project.configureJavaAndKotlinSourceSets() {
 }
 
 private fun Project.configureAndroid(isKmp: Boolean) {
-    project.extensions.findByType(CommonExtension::class.java)?.apply {
+    project.extensions.findByType<CommonExtension<*, *, *, *>>()?.apply {
         compileSdk = AndroidSdk.compileSdk
 
         defaultConfig { minSdk = AndroidSdk.minSdk }

@@ -12,6 +12,12 @@
 
 ### Fixed
 
+### Updated
+
+## [0.1.0-rc.43] - 2022-05-11
+
+### Fixed
+
 - POM license name and url are incorrect
 
 ### Updated

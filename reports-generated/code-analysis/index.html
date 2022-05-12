@@ -157,11 +157,11 @@
 
 <div>
   <ul>
-    <li>420 number of properties</li>
-    <li>237 number of functions</li>
-    <li>80 number of classes</li>
-    <li>30 number of packages</li>
-    <li>115 number of kt files</li>
+    <li>429 number of properties</li>
+    <li>240 number of functions</li>
+    <li>81 number of classes</li>
+    <li>31 number of packages</li>
+    <li>118 number of kt files</li>
   </ul>
 </div>
 
@@ -170,23 +170,23 @@
 
 <div>
   <ul>
-    <li>5,721 lines of code (loc)</li>
-    <li>4,670 source lines of code (sloc)</li>
-    <li>3,310 logical lines of code (lloc)</li>
+    <li>5,873 lines of code (loc)</li>
+    <li>4,797 source lines of code (sloc)</li>
+    <li>3,394 logical lines of code (lloc)</li>
     <li>21 comment lines of code (cloc)</li>
-    <li>514 cyclomatic complexity (mcc)</li>
+    <li>520 cyclomatic complexity (mcc)</li>
     <li>250 cognitive complexity</li>
     <li>27 number of total code smells</li>
     <li>0% comment source ratio</li>
-    <li>155 mcc per 1,000 lloc</li>
-    <li>8 code smells per 1,000 lloc</li>
+    <li>153 mcc per 1,000 lloc</li>
+    <li>7 code smells per 1,000 lloc</li>
   </ul>
 </div>
 
 
 <h2>Findings</h2>
 <div>Total: 27
-  <h3>complexity: 4</h3>
+  <h3>complexity: 5</h3>
   <details id="ComplexCondition" open="open">
     <summary class="rule-container"><span class="rule">ComplexCondition: 1 </span><span class="description">Complex conditions should be simplified and extracted into well-named methods if necessary.</span></summary>
     <ul>
@@ -203,7 +203,7 @@
     </ul>
   </details>
   <details id="LongMethod" open="open">
-    <summary class="rule-container"><span class="rule">LongMethod: 1 </span><span class="description">One method should have one responsibility. Long methods tend to handle many things at once. Prefer smaller methods to make them easier to understand.</span></summary>
+    <summary class="rule-container"><span class="rule">LongMethod: 2 </span><span class="description">One method should have one responsibility. Long methods tend to handle many things at once. Prefer smaller methods to make them easier to understand.</span></summary>
     <ul>
       <li><span class="location">plugins/documentation/docs/main/kotlin/com/javiersc/gradle/plugins/docs/tasks/PreBuildDocsTask.kt:98:17</span><span class="message">The function buildDotDocsDirectory is too long (109). The maximum length is 60.</span>
         <pre><code><span class="lineno">  95 </span>            }
@@ -213,6 +213,16 @@
 <span class="lineno">  99 </span>        val mkDocsFile = File(&quot;$dotDocsDirectory/mkdocs.yml&quot;)
 <span class="lineno"> 100 </span>        if (!mkDocsFile.exists()) {
 <span class="lineno"> 101 </span>            mkDocsFile.apply {
+</code></pre>
+      </li>
+      <li><span class="location">plugins/documentation/readme-badges/main/kotlin/com/javiersc/gradle/plugins/readme/badges/generator/ReadmeBadgesGeneratorPlugin.kt:9:18</span><span class="message">The function apply is too long (67). The maximum length is 60.</span>
+        <pre><code><span class="lineno">   6 </span>
+<span class="lineno">   7 </span>abstract class ReadmeBadgesGeneratorPlugin : Plugin&lt;Project&gt; {
+<span class="lineno">   8 </span>
+<span class="lineno">   9 </span>    override fun <span class="error">apply</span>(target: Project) {
+<span class="lineno">  10 </span>        check(target == target.rootProject) {
+<span class="lineno">  11 </span>            &quot;ReadmeBadgesGenerator plugin must be applied to the root project&quot;
+<span class="lineno">  12 </span>        }
 </code></pre>
       </li>
     </ul>
@@ -263,9 +273,9 @@
       </li>
     </ul>
   </details>
-  <h3>naming: 4</h3>
+  <h3>naming: 3</h3>
   <details id="TopLevelPropertyNaming" open="open">
-    <summary class="rule-container"><span class="rule">TopLevelPropertyNaming: 4 </span><span class="description">Top level property names should follow the naming convention set in the projects configuration.</span></summary>
+    <summary class="rule-container"><span class="rule">TopLevelPropertyNaming: 3 </span><span class="description">Top level property names should follow the naming convention set in the projects configuration.</span></summary>
     <ul>
       <li><span class="location">plugins/code-enhancers-and-utils/all-projects/main/kotlin/com/javiersc/gradle/plugins/all/projects/AllProjectsPlugin.kt:132:19</span><span class="message">Top level constant names should match the pattern: [A-Z][_A-Z0-9]*</span>
         <pre><code><span class="lineno"> 129 </span>    }
@@ -292,16 +302,6 @@
 <span class="lineno"> 133 </span>private const val AllTestsReportLabel = &quot;allTestsReport&quot;
 <span class="lineno"> 134 </span>private const val <span class="error">KoverMergedReport</span> = &quot;koverMergedReport&quot;
 <span class="lineno"> 135 </span>
-</code></pre>
-      </li>
-      <li><span class="location">plugins/documentation/readme-badges/main/kotlin/com/javiersc/gradle/plugins/readme/badges/generator/ReadmeBadgesGeneratorPlugin.kt:52:19</span><span class="message">Top level constant names should match the pattern: [A-Z][_A-Z0-9]*</span>
-        <pre><code><span class="lineno">  49 </span>    TechDebt(&quot;Tech debt&quot;, &quot;tech_debt&quot;),
-<span class="lineno">  50 </span>}
-<span class="lineno">  51 </span>
-<span class="lineno">  52 </span>private const val <span class="error">shieldsIoUrl</span> = &quot;https://img.shields.io&quot;
-<span class="lineno">  53 </span>
-<span class="lineno">  54 </span>private val Project.projectGroup: String
-<span class="lineno">  55 </span>    get() =
 </code></pre>
       </li>
     </ul>
@@ -521,7 +521,7 @@
 </div>
 
 
-generated with <a href="https://detekt.dev/">detekt version 1.20.0</a> on 2022-05-12 17:42:23 UTC.
+generated with <a href="https://detekt.dev/">detekt version 1.20.0</a> on 2022-05-12 22:35:30 UTC.
 
 </body>
 </html>

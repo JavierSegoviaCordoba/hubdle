@@ -922,4 +922,60 @@
     "inspectionName": "UnstableApiUsage"
   },
   "hash": "347bdadac9ff98646c5538d10f33dfe283f0a0436f81c70746a937877bcf3aeb"
+},{
+  "tool": "Code Inspection",
+  "category": "JVM languages",
+  "type": "Unstable API Usage",
+  "severity": "High",
+  "comment": "'org.gradle.api.tasks.UntrackedTask' is marked unstable with @Incubating",
+  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "plugins/documentation/readme-badges/main/kotlin/com/javiersc/gradle/plugins/readme/badges/generator/BuildReadmeBadgesTask.kt",
+      "language": "kotlin",
+      "line": 24,
+      "offset": 2,
+      "length": 13,
+      "code": {
+        "startLine": 22,
+        "length": 13,
+        "offset": 40,
+        "surroundingCode": "import org.gradle.kotlin.dsl.register\n\n@UntrackedTask(because = \"The input and output files are the same file (README.md)\")\nabstract class BuildReadmeBadgesTask\n@Inject"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.plugins.documentation.readme-badges.main",
+    "inspectionName": "UnstableApiUsage"
+  },
+  "hash": "1d0e1b20462af4d46b2e2467c8e1231d3243ec7a7c2b6e838576adbee89ee168"
+},{
+  "tool": "Code Inspection",
+  "category": "JVM languages",
+  "type": "Unstable API Usage",
+  "severity": "High",
+  "comment": "'because' is declared in unstable annotation 'org.gradle.api.tasks.UntrackedTask' marked with @Incubating",
+  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "plugins/documentation/readme-badges/main/kotlin/com/javiersc/gradle/plugins/readme/badges/generator/BuildReadmeBadgesTask.kt",
+      "language": "kotlin",
+      "line": 24,
+      "offset": 16,
+      "length": 7,
+      "code": {
+        "startLine": 22,
+        "length": 7,
+        "offset": 54,
+        "surroundingCode": "import org.gradle.kotlin.dsl.register\n\n@UntrackedTask(because = \"The input and output files are the same file (README.md)\")\nabstract class BuildReadmeBadgesTask\n@Inject"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.plugins.documentation.readme-badges.main",
+    "inspectionName": "UnstableApiUsage"
+  },
+  "hash": "c5d2ea8b9f9d6a49f5fce69d8fb10096ab6bf5a1539faffda7dd33d8afaa9ca7"
 }]}

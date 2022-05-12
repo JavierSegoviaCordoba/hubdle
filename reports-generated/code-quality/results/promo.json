@@ -1,34 +1,65 @@
 {"version":"3","listProblem":[{
   "tool": "Code Inspection",
   "category": "Redundant constructs",
-  "type": "Unused symbol",
+  "type": "Remove unnecessary parentheses from function call with lambda",
   "tags": [
     "kotlin"
   ],
-  "severity": "High",
-  "comment": "Class \"PublishPlugin\" is never used",
-  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "severity": "Info",
+  "comment": "Remove unnecessary parentheses from function call with lambda",
+  "detailsInfo": "Reports redundant empty parentheses of function calls where the only parameter is a lambda that's outside the parentheses.\n\nUse the 'Remove unnecessary parentheses from function call with lambda' quick-fix to clean up the code.\n\n**Examples:**\n\n\n      fun foo() {\n          listOf(1).forEach() {  }\n      }\n\nAfter the quick-fix is applied:\n\n\n      fun foo() {\n          listOf(1).forEach {  }\n      }\n",
   "sources": [
     {
-      "type": "class",
-      "path": "plugins/publish/publish/main/kotlin/com/javiersc/gradle/plugins/publish/PublishPlugin.kt",
+      "type": "method",
+      "path": "plugins/code-enhancers-and-utils/code-analysis/main/kotlin/com/javiersc/gradle/plugins/code/analysis/CodeAnalysisPlugin.kt",
       "language": "kotlin",
-      "line": 8,
-      "offset": 15,
-      "length": 13,
+      "line": 30,
+      "offset": 33,
+      "length": 2,
       "code": {
-        "startLine": 6,
-        "length": 13,
-        "offset": 46,
-        "surroundingCode": "import org.gradle.api.Project\n\nabstract class PublishPlugin : Plugin<Project> {\n\n    override fun apply(target: Project) {"
+        "startLine": 28,
+        "length": 2,
+        "offset": 40,
+        "surroundingCode": "    }\n\n    target.tasks.withType<Detekt>() {\n        setSource(project.files(project.projectDir))\n        include(\"**/*.kt\")"
       }
     }
   ],
   "attributes": {
-    "module": "gradle-plugins.plugins.publish.publish.main",
-    "inspectionName": "UnusedSymbol"
+    "module": "gradle-plugins.plugins.code-enhancers-and-utils.code-analysis.main",
+    "inspectionName": "RemoveEmptyParenthesesFromLambdaCall"
   },
-  "hash": "1387341961954080359"
+  "hash": "753564623027433991"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unnecessary type argument",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "Moderate",
+  "comment": "Remove explicit type arguments",
+  "detailsInfo": "Reports function calls with type arguments that can be automatically inferred. Such type arguments are redundant and can be safely omitted.\n\nUse the 'Remove explicit type arguments' quick-fix to clean up the code.\n\n**Examples:**\n\n\n      // 'String' type can be inferred here\n      fun foo(): MutableList<String> = mutableListOf<String>()\n\n      // Here 'String' cannot be inferred, type argument is required.\n      fun bar() = mutableListOf<String>()\n\nAfter the quick-fix is applied:\n\n\n      fun foo(): MutableList<String> = mutableListOf() <== Updated\n\n      fun bar() = mutableListOf<String>()\n",
+  "sources": [
+    {
+      "type": "method",
+      "path": "plugins/documentation/changelog/main/kotlin/com/javiersc/gradle/plugins/changelog/tasks/AddChangelogItemTask.kt",
+      "language": "kotlin",
+      "line": 147,
+      "offset": 13,
+      "length": 8,
+      "code": {
+        "startLine": 145,
+        "length": 8,
+        "offset": 132,
+        "surroundingCode": "@OptIn(ExperimentalStdlibApi::class)\nprivate fun String.addChanges(header: String, changes: List<String>): Changelog =\n    buildList<String> {\n            val firstVersionIndex =\n                lines().indexOfFirst {"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.plugins.documentation.changelog.main",
+    "inspectionName": "RemoveExplicitTypeArguments"
+  },
+  "hash": "5786055335655279350"
 },{
   "tool": "Code Inspection",
   "category": "Redundant constructs",
@@ -37,21 +68,21 @@
     "kotlin"
   ],
   "severity": "High",
-  "comment": "Property \"javiersc-massive-catalogs-updater\" is never used",
+  "comment": "Property \"javiersc-nexus\" is never used",
   "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
   "sources": [
     {
       "type": "method",
-      "path": "all-plugins/main/kotlin/MassiveCatalogsUpdaterAccessors.kt",
+      "path": "all-plugins/main/kotlin/NexusAccessors.kt",
       "language": "kotlin",
       "line": 6,
       "offset": 27,
-      "length": 35,
+      "length": 16,
       "code": {
         "startLine": 4,
-        "length": 35,
+        "length": 16,
         "offset": 78,
-        "surroundingCode": "import org.gradle.plugin.use.PluginDependencySpec\n\nval PluginDependenciesSpec.`javiersc-massive-catalogs-updater`: PluginDependencySpec\n    get() = javiersc(\"massive.catalogs.updater\")\n"
+        "surroundingCode": "import org.gradle.plugin.use.PluginDependencySpec\n\nval PluginDependenciesSpec.`javiersc-nexus`: PluginDependencySpec\n    get() = javiersc(\"nexus\")\n"
       }
     }
   ],
@@ -59,7 +90,7 @@
     "module": "gradle-plugins.all-plugins.main",
     "inspectionName": "UnusedSymbol"
   },
-  "hash": "6594183200188262097"
+  "hash": "-8667055439986226965"
 },{
   "tool": "Code Inspection",
   "category": "Redundant constructs",
@@ -68,21 +99,21 @@
     "kotlin"
   ],
   "severity": "High",
-  "comment": "Function \"javiersc-massive-catalogs-updater\" is never used",
+  "comment": "Function \"javiersc-nexus\" is never used",
   "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
   "sources": [
     {
       "type": "method",
-      "path": "all-plugins/main/kotlin/MassiveCatalogsUpdaterAccessors.kt",
+      "path": "all-plugins/main/kotlin/NexusAccessors.kt",
       "language": "kotlin",
       "line": 9,
       "offset": 27,
-      "length": 35,
+      "length": 16,
       "code": {
         "startLine": 7,
-        "length": 35,
-        "offset": 77,
-        "surroundingCode": "    get() = javiersc(\"massive.catalogs.updater\")\n\nfun PluginDependenciesSpec.`javiersc-massive-catalogs-updater`(\n    version: String,\n): PluginDependencySpec = javiersc(\"massive.catalogs.updater\", version)"
+        "length": 16,
+        "offset": 58,
+        "surroundingCode": "    get() = javiersc(\"nexus\")\n\nfun PluginDependenciesSpec.`javiersc-nexus`(\n    version: String,\n): PluginDependencySpec = javiersc(\"nexus\", version)"
       }
     }
   ],
@@ -90,5 +121,67 @@
     "module": "gradle-plugins.all-plugins.main",
     "inspectionName": "UnusedSymbol"
   },
-  "hash": "-5191006376028286712"
+  "hash": "-6926458526850435196"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Function \"javiersc-all-projects\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "all-plugins/main/kotlin/AllProjectsAccessors.kt",
+      "language": "kotlin",
+      "line": 9,
+      "offset": 27,
+      "length": 23,
+      "code": {
+        "startLine": 7,
+        "length": 23,
+        "offset": 65,
+        "surroundingCode": "    get() = javiersc(\"all.projects\")\n\nfun PluginDependenciesSpec.`javiersc-all-projects`(\n    version: String,\n): PluginDependencySpec = javiersc(\"all.projects\", version)"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.all-plugins.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "-264167033525173686"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Property \"javiersc-all-projects\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "all-plugins/main/kotlin/AllProjectsAccessors.kt",
+      "language": "kotlin",
+      "line": 6,
+      "offset": 27,
+      "length": 23,
+      "code": {
+        "startLine": 4,
+        "length": 23,
+        "offset": 78,
+        "surroundingCode": "import org.gradle.plugin.use.PluginDependencySpec\n\nval PluginDependenciesSpec.`javiersc-all-projects`: PluginDependencySpec\n    get() = javiersc(\"all.projects\")\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.all-plugins.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "-7667945930272943535"
 }]}

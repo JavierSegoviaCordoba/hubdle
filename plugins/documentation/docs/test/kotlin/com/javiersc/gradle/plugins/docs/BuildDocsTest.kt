@@ -1,13 +1,20 @@
 package com.javiersc.gradle.plugins.docs
 
+import com.javiersc.gradle.plugins.core.test.arguments
 import com.javiersc.gradle.plugins.core.test.getResource
+import com.javiersc.gradle.plugins.core.test.taskFromArguments
 import com.javiersc.gradle.plugins.core.test.testSandbox
 import io.kotest.matchers.file.shouldBeADirectory
 import io.kotest.matchers.file.shouldBeAFile
 import io.kotest.matchers.file.shouldHaveSameStructureAndContentAs
+import io.kotest.matchers.nulls.shouldNotBeNull
+import io.kotest.matchers.shouldBe
+import io.kotest.matchers.string.shouldContain
 import java.io.File
+import kotlin.test.Ignore
 import kotlin.test.Test
 import org.gradle.testkit.runner.BuildResult
+import org.gradle.testkit.runner.TaskOutcome
 
 class BuildDocsTest {
 
@@ -46,5 +53,55 @@ class BuildDocsTest {
                 }
             )
         }
+    }
+
+    @Test
+    fun `build cache docs`() {
+        // to simulate IDEA sync the task is run three times
+        val (runner, testProjectDir) =
+            testSandbox(
+                sandboxPath = "docs-gradle-features/build-cache-1",
+                isBuildCacheTest = true,
+                test = { result: BuildResult, testProjectDir: File ->
+                    result
+                        .task(":${testProjectDir.taskFromArguments}")
+                        .shouldNotBeNull()
+                        .outcome.shouldBe(TaskOutcome.SUCCESS)
+                }
+            )
+
+        File("$testProjectDir/build").deleteRecursively()
+        runner.withArguments(testProjectDir.arguments).build()
+        File("$testProjectDir/build").deleteRecursively()
+        val result = runner.withArguments(testProjectDir.arguments).build()
+        result
+            .task(":${testProjectDir.taskFromArguments}")
+            .shouldNotBeNull()
+            .outcome.shouldBe(TaskOutcome.FROM_CACHE)
+    }
+
+    @Ignore("MkDocs Gradle plugin needs to be compatible with Configuration cache (grgit issue)")
+    @Test
+    fun `configuration cache docs`() {
+        val (runner, testProjectDir) =
+            testSandbox(
+                sandboxPath = "docs-gradle-features/configuration-cache-1",
+                test = { result: BuildResult, testProjectDir: File ->
+                    result
+                        .task(":${testProjectDir.taskFromArguments}")
+                        .shouldNotBeNull()
+                        .outcome.shouldBe(TaskOutcome.SUCCESS)
+                }
+            )
+
+        val result = runner.withArguments(testProjectDir.arguments + "--info").build()
+        println("----------------")
+        println(result.output)
+        println("----------------")
+        result.output.shouldContain("Reusing configuration cache")
+        result
+            .task(":${testProjectDir.taskFromArguments}")
+            .shouldNotBeNull()
+            .outcome.shouldBe(TaskOutcome.UP_TO_DATE)
     }
 }

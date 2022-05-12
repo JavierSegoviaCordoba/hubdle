@@ -13,6 +13,7 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.tasks.testing.Test
 import org.gradle.api.tasks.testing.TestReport
+import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.register
 import org.gradle.kotlin.dsl.withType
 import org.gradle.language.base.plugins.LifecycleBasePlugin
@@ -25,7 +26,7 @@ abstract class AllProjectsPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         check(target == target.rootProject) { "`all-projects` must be applied in the root project" }
 
-        target.pluginManager.apply(LifecycleBasePlugin::class.java)
+        target.pluginManager.apply(LifecycleBasePlugin::class)
 
         AllProjectsExtension.createExtension(target)
 
@@ -96,8 +97,8 @@ private fun configureAllTestsReport(target: Project) {
     val testReport =
         target.tasks.register<TestReport>(AllTestsReportLabel) {
             group = VERIFICATION_GROUP
-            destinationDir = project.file("${project.buildDir}/reports/allTests")
-            reportOn(project.allprojects.map { it.tasks.withType(Test::class.java) })
+            destinationDirectory.set(project.file("${project.buildDir}/reports/allTests"))
+            testResults.from(project.allprojects.map { it.tasks.withType(Test::class.java) })
         }
 
     val shouldRunAllTestsReport =

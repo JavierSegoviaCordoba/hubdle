@@ -6,7 +6,7 @@ plugins {
 
 rootProject.name = providers.gradleProperty("project.name").forUseAtConfigurationTime().get()
 
-listOf("TYPESAFE_PROJECT_ACCESSORS", "VERSION_CATALOGS").forEach(::enableFeaturePreview)
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 dependencyResolutionManagement {
     repositories {

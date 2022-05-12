@@ -6,6 +6,8 @@
 
 - Configuration cache support to `all-projects`
 - Build cache support to `all-projects`
+- `docs` uses IDEA Gradle plugin to trigger `preBuildDocs`
+- Build cache to `preBuildDocs` task in the `docs` plugin
 
 ### Changed
 
@@ -14,6 +16,7 @@
 ### Removed
 
 ### Fixed
+
 - Install pre-commit tasks does not add `"#!/bin/bash"` at the top
 
 ### Updated

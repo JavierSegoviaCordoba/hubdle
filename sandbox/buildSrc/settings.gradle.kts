@@ -1,5 +1,3 @@
-listOf("VERSION_CATALOGS").forEach(::enableFeaturePreview)
-
 pluginManagement {
     repositories {
         mavenLocal {

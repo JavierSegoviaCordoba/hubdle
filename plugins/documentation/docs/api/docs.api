@@ -29,3 +29,54 @@ public class com/javiersc/gradle/plugins/docs/NavigationOptions$Reports {
 	public final fun getCodeQuality ()Lorg/gradle/api/provider/Property;
 }
 
+public abstract class com/javiersc/gradle/plugins/docs/tasks/BuildDocsTask : org/gradle/api/DefaultTask {
+	public static final field Companion Lcom/javiersc/gradle/plugins/docs/tasks/BuildDocsTask$Companion;
+	public static final field name Ljava/lang/String;
+	public static final field taskGroup Ljava/lang/String;
+	public fun <init> (Lorg/gradle/api/file/ProjectLayout;Lorg/gradle/api/file/FileSystemOperations;)V
+	public final fun buildDocs ()V
+	public final fun getApiDir ()Ljava/io/File;
+	public final fun getDokkaOutputDir ()Ljava/io/File;
+	public final fun getProjectVersion ()Ljava/lang/String;
+}
+
+public final class com/javiersc/gradle/plugins/docs/tasks/BuildDocsTask$Companion {
+	public final fun register (Lorg/gradle/api/Project;Lorg/gradle/api/tasks/TaskProvider;)Lorg/gradle/api/tasks/TaskProvider;
+}
+
+public abstract class com/javiersc/gradle/plugins/docs/tasks/PreBuildDocsTask : org/gradle/api/DefaultTask {
+	public static final field Companion Lcom/javiersc/gradle/plugins/docs/tasks/PreBuildDocsTask$Companion;
+	public static final field name Ljava/lang/String;
+	public static final field taskGroup Ljava/lang/String;
+	public fun <init> (Lorg/gradle/api/file/ProjectLayout;Lorg/gradle/api/file/FileSystemOperations;)V
+	public abstract fun getAllTests ()Lorg/gradle/api/provider/Property;
+	public final fun getBuildDotDocsDirectory ()Ljava/io/File;
+	public abstract fun getCodeAnalysis ()Lorg/gradle/api/provider/Property;
+	public abstract fun getCodeCoverage ()Lorg/gradle/api/provider/Property;
+	public abstract fun getCodeQuality ()Lorg/gradle/api/provider/Property;
+	public final fun getDotDocsDirectory ()Ljava/io/File;
+	public final fun getOutputDotDocsDirectory ()Ljava/io/File;
+	public abstract fun getProjectsInfo ()Lorg/gradle/api/provider/ListProperty;
+	public final fun getRootDirectory ()Ljava/io/File;
+	public final fun run ()V
+}
+
+public final class com/javiersc/gradle/plugins/docs/tasks/PreBuildDocsTask$Companion {
+}
+
+public final class com/javiersc/gradle/plugins/docs/tasks/ProjectInfo {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/io/File;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/io/File;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/io/File;)Lcom/javiersc/gradle/plugins/docs/tasks/ProjectInfo;
+	public static synthetic fun copy$default (Lcom/javiersc/gradle/plugins/docs/tasks/ProjectInfo;Ljava/lang/String;Ljava/lang/String;Ljava/io/File;ILjava/lang/Object;)Lcom/javiersc/gradle/plugins/docs/tasks/ProjectInfo;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getFilePath ()Ljava/lang/String;
+	public final fun getMdFile ()Ljava/io/File;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getProjectPath ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+

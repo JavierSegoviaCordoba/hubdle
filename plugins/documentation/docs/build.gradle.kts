@@ -36,9 +36,9 @@ dependencies {
 
     implementation(libs.javiersc.kotlin.kotlinStdlib)
     implementation(pluginLibs.jetbrains.dokka.dokkaGradlePlugin)
+    implementation(pluginLibs.jetbrains.gradlePluginIdeaExt.gradleIdeaExt)
     implementation(pluginLibs.vyarus.gradleMkdocsPlugin)
     implementation(projects.shared.core)
-
 
     testPluginClasspath(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)
 

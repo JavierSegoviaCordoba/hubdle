@@ -157,11 +157,11 @@
 
 <div>
   <ul>
-    <li>407 number of properties</li>
-    <li>231 number of functions</li>
-    <li>78 number of classes</li>
-    <li>29 number of packages</li>
-    <li>112 number of kt files</li>
+    <li>420 number of properties</li>
+    <li>237 number of functions</li>
+    <li>80 number of classes</li>
+    <li>30 number of packages</li>
+    <li>115 number of kt files</li>
   </ul>
 </div>
 
@@ -170,59 +170,49 @@
 
 <div>
   <ul>
-    <li>5,473 lines of code (loc)</li>
-    <li>4,451 source lines of code (sloc)</li>
-    <li>3,167 logical lines of code (lloc)</li>
-    <li>20 comment lines of code (cloc)</li>
-    <li>503 cyclomatic complexity (mcc)</li>
-    <li>253 cognitive complexity</li>
-    <li>28 number of total code smells</li>
+    <li>5,721 lines of code (loc)</li>
+    <li>4,670 source lines of code (sloc)</li>
+    <li>3,310 logical lines of code (lloc)</li>
+    <li>21 comment lines of code (cloc)</li>
+    <li>514 cyclomatic complexity (mcc)</li>
+    <li>250 cognitive complexity</li>
+    <li>27 number of total code smells</li>
     <li>0% comment source ratio</li>
-    <li>158 mcc per 1,000 lloc</li>
+    <li>155 mcc per 1,000 lloc</li>
     <li>8 code smells per 1,000 lloc</li>
   </ul>
 </div>
 
 
 <h2>Findings</h2>
-<div>Total: 28
-  <h3>complexity: 5</h3>
+<div>Total: 27
+  <h3>complexity: 4</h3>
   <details id="ComplexCondition" open="open">
     <summary class="rule-container"><span class="rule">ComplexCondition: 1 </span><span class="description">Complex conditions should be simplified and extracted into well-named methods if necessary.</span></summary>
     <ul>
-      <li><span class="location">plugins/documentation/docs/main/kotlin/com/javiersc/gradle/plugins/docs/DocsPlugin.kt:391:21</span><span class="message">This condition is too complex (4). Defined complexity threshold for conditions is set to '4'</span>
-        <pre><code><span class="lineno"> 388 </span>
-<span class="lineno"> 389 </span>    val navReports: String =
-<span class="lineno"> 390 </span>        buildList {
-<span class="lineno"> 391 </span>                if (<span class="error">allTests &amp;&amp; codeAnalysis || codeCoverage || codeQuality</span>) add(&quot;  - Reports:&quot;)
-<span class="lineno"> 392 </span>                if (allTests) createReportSection(&quot;All tests&quot;, &quot;all-tests&quot;)
-<span class="lineno"> 393 </span>                if (codeAnalysis) createReportSection(&quot;Code analysis&quot;, &quot;code-analysis&quot;)
-<span class="lineno"> 394 </span>                if (codeCoverage) createReportSection(&quot;Code coverage&quot;, &quot;code-coverage&quot;)
+      <li><span class="location">plugins/documentation/docs/main/kotlin/com/javiersc/gradle/plugins/docs/tasks/PreBuildDocsTask.kt:374:25</span><span class="message">This condition is too complex (4). Defined complexity threshold for conditions is set to '4'</span>
+        <pre><code><span class="lineno"> 371 </span>
+<span class="lineno"> 372 </span>        val navReports: String =
+<span class="lineno"> 373 </span>            buildList {
+<span class="lineno"> 374 </span>                    if (<span class="error">allTests &amp;&amp; codeAnalysis || codeCoverage || codeQuality</span>) add(&quot;  - Reports:&quot;)
+<span class="lineno"> 375 </span>                    if (allTests) createReportSection(&quot;All tests&quot;, &quot;all-tests&quot;)
+<span class="lineno"> 376 </span>                    if (codeAnalysis) createReportSection(&quot;Code analysis&quot;, &quot;code-analysis&quot;)
+<span class="lineno"> 377 </span>                    if (codeCoverage) createReportSection(&quot;Code coverage&quot;, &quot;code-coverage&quot;)
 </code></pre>
       </li>
     </ul>
   </details>
   <details id="LongMethod" open="open">
-    <summary class="rule-container"><span class="rule">LongMethod: 2 </span><span class="description">One method should have one responsibility. Long methods tend to handle many things at once. Prefer smaller methods to make them easier to understand.</span></summary>
+    <summary class="rule-container"><span class="rule">LongMethod: 1 </span><span class="description">One method should have one responsibility. Long methods tend to handle many things at once. Prefer smaller methods to make them easier to understand.</span></summary>
     <ul>
-      <li><span class="location">plugins/documentation/docs/main/kotlin/com/javiersc/gradle/plugins/docs/DocsPlugin.kt:85:21</span><span class="message">The function buildDotDocsFolder is too long (109). The maximum length is 60.</span>
-        <pre><code><span class="lineno">  82 </span>            &lt;/html&gt;
-<span class="lineno">  83 </span>        &quot;&quot;&quot;.trimIndent()
-<span class="lineno">  84 </span>
-<span class="lineno">  85 </span>private fun Project.<span class="error">buildDotDocsFolder</span>() {
-<span class="lineno">  86 </span>    val dotDocsFile = file(&quot;$rootDir/.docs&quot;)
-<span class="lineno">  87 </span>    if (dotDocsFile.exists().not()) {
-<span class="lineno">  88 </span>        file(&quot;$dotDocsFile/mkdocs.yml&quot;).apply {
-</code></pre>
-      </li>
-      <li><span class="location">plugins/documentation/docs/main/kotlin/com/javiersc/gradle/plugins/docs/DocsPlugin.kt:288:21</span><span class="message">The function buildProjectsInDocs is too long (68). The maximum length is 60.</span>
-        <pre><code><span class="lineno"> 285 </span>}
-<span class="lineno"> 286 </span>
-<span class="lineno"> 287 </span>@OptIn(ExperimentalStdlibApi::class)
-<span class="lineno"> 288 </span>private fun Project.<span class="error">buildProjectsInDocs</span>() {
-<span class="lineno"> 289 </span>    val projectsPath = &quot;$rootDir/build/.docs/docs/projects&quot;
-<span class="lineno"> 290 </span>
-<span class="lineno"> 291 </span>    val projectsInfo: List&lt;ProjectInfo&gt; =
+      <li><span class="location">plugins/documentation/docs/main/kotlin/com/javiersc/gradle/plugins/docs/tasks/PreBuildDocsTask.kt:98:17</span><span class="message">The function buildDotDocsDirectory is too long (109). The maximum length is 60.</span>
+        <pre><code><span class="lineno">  95 </span>            }
+<span class="lineno">  96 </span>    }
+<span class="lineno">  97 </span>
+<span class="lineno">  98 </span>    private fun <span class="error">buildDotDocsDirectory</span>(dotDocsDirectory: File) {
+<span class="lineno">  99 </span>        val mkDocsFile = File(&quot;$dotDocsDirectory/mkdocs.yml&quot;)
+<span class="lineno"> 100 </span>        if (!mkDocsFile.exists()) {
+<span class="lineno"> 101 </span>            mkDocsFile.apply {
 </code></pre>
       </li>
     </ul>
@@ -245,11 +235,14 @@
   <details id="TooManyFunctions" open="open">
     <summary class="rule-container"><span class="rule">TooManyFunctions: 1 </span><span class="description">Too many functions inside a/an file/class/object/interface always indicate a violation of the single responsibility principle. Maybe the file/class/object/interface wants to manage too many things at once. Extract functionality which clearly belongs together.</span></summary>
     <ul>
-      <li><span class="location">plugins/documentation/docs/main/kotlin/com/javiersc/gradle/plugins/docs/DocsPlugin.kt:1:1</span><span class="message">File '/home/runner/work/gradle-plugins/gradle-plugins/plugins/documentation/docs/main/kotlin/com/javiersc/gradle/plugins/docs/DocsPlugin.kt' with '11' functions detected. Defined threshold inside files is set to '11'</span>
-        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.gradle.plugins.docs</span>
-<span class="lineno">   2 </span>
-<span class="lineno">   3 </span>import com.javiersc.gradle.plugins.docs.internal.hasKotlinGradlePlugin
-<span class="lineno">   4 </span>import com.javiersc.kotlin.stdlib.endWithNewLine
+      <li><span class="location">plugins/documentation/docs/main/kotlin/com/javiersc/gradle/plugins/docs/tasks/PreBuildDocsTask.kt:29:16</span><span class="message">Class 'PreBuildDocsTask' with '11' functions detected. Defined threshold inside classes is set to '11'</span>
+        <pre><code><span class="lineno">  26 </span>import org.jetbrains.kotlin.gradle.internal.ensureParentDirsCreated
+<span class="lineno">  27 </span>
+<span class="lineno">  28 </span>@CacheableTask
+<span class="lineno">  29 </span>abstract class <span class="error">PreBuildDocsTask</span>
+<span class="lineno">  30 </span>@Inject
+<span class="lineno">  31 </span>constructor(
+<span class="lineno">  32 </span>    private val layout: ProjectLayout,
 </code></pre>
       </li>
     </ul>
@@ -274,31 +267,31 @@
   <details id="TopLevelPropertyNaming" open="open">
     <summary class="rule-container"><span class="rule">TopLevelPropertyNaming: 4 </span><span class="description">Top level property names should follow the naming convention set in the projects configuration.</span></summary>
     <ul>
-      <li><span class="location">plugins/code-enhancers-and-utils/all-projects/main/kotlin/com/javiersc/gradle/plugins/all/projects/AllProjectsPlugin.kt:131:19</span><span class="message">Top level constant names should match the pattern: [A-Z][_A-Z0-9]*</span>
-        <pre><code><span class="lineno"> 128 </span>    }
-<span class="lineno"> 129 </span>}
-<span class="lineno"> 130 </span>
-<span class="lineno"> 131 </span>private const val <span class="error">AllTestsLabel</span> = &quot;allTests&quot;
-<span class="lineno"> 132 </span>private const val AllTestsReportLabel = &quot;allTestsReport&quot;
-<span class="lineno"> 133 </span>private const val KoverMergedReport = &quot;koverMergedReport&quot;
-<span class="lineno"> 134 </span>
-</code></pre>
-      </li>
       <li><span class="location">plugins/code-enhancers-and-utils/all-projects/main/kotlin/com/javiersc/gradle/plugins/all/projects/AllProjectsPlugin.kt:132:19</span><span class="message">Top level constant names should match the pattern: [A-Z][_A-Z0-9]*</span>
-        <pre><code><span class="lineno"> 129 </span>}
-<span class="lineno"> 130 </span>
-<span class="lineno"> 131 </span>private const val AllTestsLabel = &quot;allTests&quot;
-<span class="lineno"> 132 </span>private const val <span class="error">AllTestsReportLabel</span> = &quot;allTestsReport&quot;
-<span class="lineno"> 133 </span>private const val KoverMergedReport = &quot;koverMergedReport&quot;
-<span class="lineno"> 134 </span>
+        <pre><code><span class="lineno"> 129 </span>    }
+<span class="lineno"> 130 </span>}
+<span class="lineno"> 131 </span>
+<span class="lineno"> 132 </span>private const val <span class="error">AllTestsLabel</span> = &quot;allTests&quot;
+<span class="lineno"> 133 </span>private const val AllTestsReportLabel = &quot;allTestsReport&quot;
+<span class="lineno"> 134 </span>private const val KoverMergedReport = &quot;koverMergedReport&quot;
+<span class="lineno"> 135 </span>
 </code></pre>
       </li>
       <li><span class="location">plugins/code-enhancers-and-utils/all-projects/main/kotlin/com/javiersc/gradle/plugins/all/projects/AllProjectsPlugin.kt:133:19</span><span class="message">Top level constant names should match the pattern: [A-Z][_A-Z0-9]*</span>
-        <pre><code><span class="lineno"> 130 </span>
-<span class="lineno"> 131 </span>private const val AllTestsLabel = &quot;allTests&quot;
-<span class="lineno"> 132 </span>private const val AllTestsReportLabel = &quot;allTestsReport&quot;
-<span class="lineno"> 133 </span>private const val <span class="error">KoverMergedReport</span> = &quot;koverMergedReport&quot;
-<span class="lineno"> 134 </span>
+        <pre><code><span class="lineno"> 130 </span>}
+<span class="lineno"> 131 </span>
+<span class="lineno"> 132 </span>private const val AllTestsLabel = &quot;allTests&quot;
+<span class="lineno"> 133 </span>private const val <span class="error">AllTestsReportLabel</span> = &quot;allTestsReport&quot;
+<span class="lineno"> 134 </span>private const val KoverMergedReport = &quot;koverMergedReport&quot;
+<span class="lineno"> 135 </span>
+</code></pre>
+      </li>
+      <li><span class="location">plugins/code-enhancers-and-utils/all-projects/main/kotlin/com/javiersc/gradle/plugins/all/projects/AllProjectsPlugin.kt:134:19</span><span class="message">Top level constant names should match the pattern: [A-Z][_A-Z0-9]*</span>
+        <pre><code><span class="lineno"> 131 </span>
+<span class="lineno"> 132 </span>private const val AllTestsLabel = &quot;allTests&quot;
+<span class="lineno"> 133 </span>private const val AllTestsReportLabel = &quot;allTestsReport&quot;
+<span class="lineno"> 134 </span>private const val <span class="error">KoverMergedReport</span> = &quot;koverMergedReport&quot;
+<span class="lineno"> 135 </span>
 </code></pre>
       </li>
       <li><span class="location">plugins/documentation/readme-badges/main/kotlin/com/javiersc/gradle/plugins/readme/badges/generator/ReadmeBadgesGeneratorPlugin.kt:52:19</span><span class="message">Top level constant names should match the pattern: [A-Z][_A-Z0-9]*</span>
@@ -408,14 +401,14 @@
   <details id="MagicNumber" open="open">
     <summary class="rule-container"><span class="rule">MagicNumber: 7 </span><span class="description">Report magic numbers. Magic number is a numeric literal that is not defined as a constant and hence it's unclear what the purpose of this number is. It's better to declare such numbers as constants and give them a proper name. By default, -1, 0, 1, and 2 are not considered to be magic numbers.</span></summary>
     <ul>
-      <li><span class="location">plugins/code-enhancers-and-utils/all-projects/main/kotlin/com/javiersc/gradle/plugins/all/projects/AllProjectsPlugin.kt:66:74</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
-        <pre><code><span class="lineno">  63 </span>
-<span class="lineno">  64 </span>    target.tasks.withType&lt;Test&gt; {
-<span class="lineno">  65 </span>        testLogging.showStandardStreams = true
-<span class="lineno">  66 </span>        maxParallelForks = (Runtime.getRuntime().availableProcessors() / <span class="error">3</span>).takeIf { it &gt; 0 } ?: 1
-<span class="lineno">  67 </span>
-<span class="lineno">  68 </span>        val hasAndroid =
-<span class="lineno">  69 </span>            project.run {
+      <li><span class="location">plugins/code-enhancers-and-utils/all-projects/main/kotlin/com/javiersc/gradle/plugins/all/projects/AllProjectsPlugin.kt:67:74</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  64 </span>
+<span class="lineno">  65 </span>    target.tasks.withType&lt;Test&gt; {
+<span class="lineno">  66 </span>        testLogging.showStandardStreams = true
+<span class="lineno">  67 </span>        maxParallelForks = (Runtime.getRuntime().availableProcessors() / <span class="error">3</span>).takeIf { it &gt; 0 } ?: 1
+<span class="lineno">  68 </span>
+<span class="lineno">  69 </span>        val hasAndroid =
+<span class="lineno">  70 </span>            project.run {
 </code></pre>
       </li>
       <li><span class="location">plugins/gradle-utils/gradle-wrapper-updater/main/kotlin/com/javiersc/gradle/plugins/gradle/wrapper/updater/GradleWrapperUpdaterPlugin.kt:91:37</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
@@ -483,14 +476,14 @@
   <details id="MaxLineLength" open="open">
     <summary class="rule-container"><span class="rule">MaxLineLength: 1 </span><span class="description">Line detected, which is longer than the defined maximum line length in the code style.</span></summary>
     <ul>
-      <li><span class="location">plugins/documentation/docs/main/kotlin/com/javiersc/gradle/plugins/docs/DocsPlugin.kt:377:1</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
-        <pre><code><span class="lineno"> 374 </span>            &quot;&quot;&quot;
-<span class="lineno"> 375 </span>                |# $title
-<span class="lineno"> 376 </span>                |
-<span class="lineno"> 377 </span><span class="error">                |&lt;iframe src=</span>&quot;/reports-generated/$pathAndFileName&quot; style=&quot;height: 65vh; width: 100vw; overflow: hidden&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
-<span class="lineno"> 378 </span>                |
-<span class="lineno"> 379 </span>            &quot;&quot;&quot;.trimMargin()
-<span class="lineno"> 380 </span>
+      <li><span class="location">plugins/documentation/docs/main/kotlin/com/javiersc/gradle/plugins/docs/tasks/PreBuildDocsTask.kt:360:1</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 357 </span>                &quot;&quot;&quot;
+<span class="lineno"> 358 </span>                |# $title
+<span class="lineno"> 359 </span>                |
+<span class="lineno"> 360 </span><span class="error">                |&lt;iframe src=</span>&quot;/reports-generated/$pathAndFileName&quot; style=&quot;height: 65vh; width: 100vw; overflow: hidden&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
+<span class="lineno"> 361 </span>                |
+<span class="lineno"> 362 </span>            &quot;&quot;&quot;.trimMargin()
+<span class="lineno"> 363 </span>
 </code></pre>
       </li>
     </ul>
@@ -528,7 +521,7 @@
 </div>
 
 
-generated with <a href="https://detekt.dev/">detekt version 1.20.0</a> on 2022-05-11 23:02:04 UTC.
+generated with <a href="https://detekt.dev/">detekt version 1.20.0</a> on 2022-05-12 17:42:23 UTC.
 
 </body>
 </html>

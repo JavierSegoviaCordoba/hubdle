@@ -8,6 +8,7 @@
 - Build cache support to `all-projects`
 - `docs` uses IDEA Gradle plugin to trigger `preBuildDocs`
 - Build cache to `preBuildDocs` task in the `docs` plugin
+- Configuration cache support to `buildReadmeBadges` and `build-readme-badges-generator`
 
 ### Changed
 

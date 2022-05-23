@@ -67,7 +67,7 @@ fun testSandbox(
 
     beforeTest(testProjectDir, runner)
 
-    runner.withArguments(testProjectDir.arguments).build().run {
+    runner.withArguments(testProjectDir.arguments + "--stacktrace").build().run {
         checkArgumentsTasks(testProjectDir, taskOutcome)
         test(this, testProjectDir)
     }

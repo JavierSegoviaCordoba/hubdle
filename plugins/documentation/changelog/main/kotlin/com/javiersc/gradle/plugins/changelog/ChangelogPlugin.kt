@@ -22,15 +22,16 @@ abstract class ChangelogPlugin : Plugin<Project> {
             groups.set(listOf("Added", "Changed", "Deprecated", "Removed", "Fixed", "Updated"))
         }
 
-        target.tasks.apply {
-            named<PatchChangelogTask>("patchChangelog") { finalizedBy(FormatChangelogTask.name) }
-            register<FormatChangelogTask>(FormatChangelogTask.name)
+        target.tasks.named<PatchChangelogTask>("patchChangelog").configure {
+            it.finalizedBy(FormatChangelogTask.name)
+        }
 
-            register<MergeChangelogTask>(MergeChangelogTask.name)
+        target.tasks.register<FormatChangelogTask>(FormatChangelogTask.name)
 
-            register<AddChangelogItemTask>(AddChangelogItemTask.name) {
-                finalizedBy(FormatChangelogTask.name)
-            }
+        target.tasks.register<MergeChangelogTask>(MergeChangelogTask.name)
+
+        target.tasks.register<AddChangelogItemTask>(AddChangelogItemTask.name).configure {
+            it.finalizedBy(FormatChangelogTask.name)
         }
     }
 }

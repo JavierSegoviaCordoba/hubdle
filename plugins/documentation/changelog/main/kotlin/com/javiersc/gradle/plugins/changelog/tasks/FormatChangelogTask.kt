@@ -10,14 +10,14 @@ import org.gradle.api.tasks.TaskAction
 
 abstract class FormatChangelogTask : DefaultTask() {
 
-    @get:InputFile
-    val changelogFile: File
-        get() = project.changelogFile
+    @InputFile val changelogFile: File = project.changelogFile
+
+    init {
+        group = "changelog"
+    }
 
     @TaskAction
     fun run() {
-        group = "changelog"
-
         changelogFile.writeText(Changelog.fromFile(changelogFile).toString())
     }
 

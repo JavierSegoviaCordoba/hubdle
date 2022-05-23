@@ -1,9 +1,12 @@
+@file:OptIn(ExperimentalStdlibApi::class)
+
 package com.javiersc.gradle.plugins.changelog.tasks
 
 import com.javiersc.gradle.plugins.changelog.internal.Changelog
 import com.javiersc.gradle.plugins.changelog.internal.changelogFile
 import com.javiersc.gradle.plugins.changelog.internal.fromString
 import java.io.File
+import javax.inject.Inject
 import org.eclipse.jgit.api.Git
 import org.eclipse.jgit.lib.Constants
 import org.eclipse.jgit.lib.Repository
@@ -11,69 +14,72 @@ import org.eclipse.jgit.revwalk.RevCommit
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder
 import org.gradle.api.DefaultTask
 import org.gradle.api.Project
+import org.gradle.api.model.ObjectFactory
+import org.gradle.api.provider.Property
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.Optional
 import org.gradle.api.tasks.TaskAction
 import org.gradle.api.tasks.options.Option
+import org.gradle.kotlin.dsl.property
 
-abstract class AddChangelogItemTask : DefaultTask() {
+abstract class AddChangelogItemTask @Inject constructor(objects: ObjectFactory) : DefaultTask() {
 
-    @get:Input
-    @set:Option(option = "added", description = "Add an item to the `added` section")
+    @Input
+    @Option(option = "added", description = "Add an item to the `added` section")
     @Optional
-    var added: String? = null
+    val added: Property<String?> = objects.property()
 
-    @get:Input
-    @set:Option(option = "changed", description = "Add an item to the `changed` section")
+    @Input
+    @Option(option = "changed", description = "Add an item to the `changed` section")
     @Optional
-    var changed: String? = null
+    val changed: Property<String?> = objects.property()
 
-    @get:Input
-    @set:Option(option = "deprecated", description = "Add an item to the `deprecated` section")
+    @Input
+    @Option(option = "deprecated", description = "Add an item to the `deprecated` section")
     @Optional
-    var deprecated: String? = null
+    val deprecated: Property<String?> = objects.property()
 
-    @get:Input
-    @set:Option(option = "removed", description = "Add an item to the `removed` section")
+    @Input
+    @Option(option = "removed", description = "Add an item to the `removed` section")
     @Optional
-    var removed: String? = null
+    val removed: Property<String?> = objects.property()
 
-    @get:Input
-    @set:Option(option = "fixed", description = "Add an item to the `fixed` section")
+    @Input
+    @Option(option = "fixed", description = "Add an item to the `fixed` section")
     @Optional
-    var fixed: String? = null
+    val fixed: Property<String?> = objects.property()
 
-    @get:Input
-    @set:Option(option = "updated", description = "Add an item to the `updated` section")
+    @Input
+    @Option(option = "updated", description = "Add an item to the `updated` section")
     @Optional
-    var updated: String? = null
+    val updated: Property<String?> = objects.property()
 
-    @get:Input
-    @set:Option(
+    @Input
+    @Option(
         option = "renovate",
         description = "Extract dependencies from the table in the PR body",
     )
     @Optional
-    var renovate: String? = null
+    val renovate: Property<String?> = objects.property()
 
-    @get:Input
-    @set:Option(
+    @Input
+    @Option(
         option = "renovatePath",
         description = "Extract dependencies from the table in the PR body from a file",
     )
     @Optional
-    var renovatePath: String? = null
+    val renovatePath: Property<String?> = objects.property()
 
-    @get:Input
-    @set:Option(
+    @Input
+    @Option(
         option = "renovateCommitTable",
         description =
             """
                Extract dependencies from the table in the commit body
-               Add `"commitBodyTable": true` to the Renovate config
+               Add `"commitBodyTable": true` to Renovate config
             """,
     )
-    var renovateCommitTable: Boolean = false
+    val renovateCommitTable: Property<Boolean> = objects.property<Boolean>().convention(false)
 
     init {
         group = "changelog"
@@ -82,12 +88,12 @@ abstract class AddChangelogItemTask : DefaultTask() {
     @TaskAction
     fun run() {
         check(project.changelogFile.exists()) { "CHANGELOG.md file doesn't found" }
-        setupSection("### Added", added)
-        setupSection("### Changed", changed)
-        setupSection("### Deprecated", deprecated)
-        setupSection("### Removed", removed)
-        setupSection("### Fixed", fixed)
-        setupSection("### Updated", updated)
+        setupSection("### Added", added.orNull)
+        setupSection("### Changed", changed.orNull)
+        setupSection("### Deprecated", deprecated.orNull)
+        setupSection("### Removed", removed.orNull)
+        setupSection("### Fixed", fixed.orNull)
+        setupSection("### Updated", updated.orNull)
         setupRenovate()
     }
 
@@ -99,23 +105,24 @@ abstract class AddChangelogItemTask : DefaultTask() {
 private val Project.changelog: String
     get() = changelogFile.readText()
 
-private fun AddChangelogItemTask.setupSection(header: String, item: String?) =
-    with(project) {
-        item?.let { item ->
+private fun AddChangelogItemTask.setupSection(header: String, item: String?) {
+    if (item?.isNotBlank() == true) {
+        with(project) {
             logger.lifecycle(header)
             logger.lifecycle("- $item")
             val updatedChangelog = changelog.addChanges(header, listOf(item))
             changelogFile.writeText(updatedChangelog.toString())
         }
     }
+}
 
 private fun AddChangelogItemTask.setupRenovate(): Unit =
     with(project) {
         val dependenciesFromPullRequest: List<String> =
-            dependenciesFromRenovatePullRequestBody(renovate, renovatePath)
+            dependenciesFromRenovatePullRequestBody(renovate.orNull, renovatePath.orNull)
 
         val dependenciesFromCommit: List<String> =
-            if (renovateCommitTable) dependenciesFromRenovateCommit() else emptyList()
+            if (renovateCommitTable.get()) dependenciesFromRenovateCommit() else emptyList()
 
         val updatedLabel = "### Updated"
 
@@ -142,9 +149,8 @@ private fun AddChangelogItemTask.setupRenovate(): Unit =
         }
     }
 
-@OptIn(ExperimentalStdlibApi::class)
 private fun String.addChanges(header: String, changes: List<String>): Changelog =
-    buildList<String> {
+    buildList {
             val firstVersionIndex =
                 lines().indexOfFirst {
                     it.startsWith("## [") && it.contains("[Unreleased]", true).not()
@@ -188,8 +194,8 @@ private fun Project.dependenciesFromRenovatePullRequestBody(
 ): List<String> {
     val renovateLines: List<String> =
         when {
-            body != null && body.isNotBlank() -> body.split("""\n""")
-            path != null -> File("$rootDir/$path").readText().split("\n")
+            body?.isNotBlank() == true -> body.split("""\n""")
+            path?.isNotBlank() == true -> File("$rootDir/$path").readText().split("\n")
             else -> emptyList()
         }
 

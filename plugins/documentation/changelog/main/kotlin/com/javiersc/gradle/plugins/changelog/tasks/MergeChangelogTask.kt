@@ -11,14 +11,14 @@ import org.gradle.api.tasks.TaskAction
 
 abstract class MergeChangelogTask : DefaultTask() {
 
-    @get:InputFile
-    val changelogFile: File
-        get() = project.changelogFile
+    @InputFile val changelogFile: File = project.changelogFile
+
+    init {
+        group = "changelog"
+    }
 
     @TaskAction
     fun run() {
-        group = "changelog"
-
         val changelog: Changelog = Changelog.fromFile(changelogFile)
         changelogFile.writeText(changelog.merged().toString())
     }

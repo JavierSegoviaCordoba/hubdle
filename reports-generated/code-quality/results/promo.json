@@ -11,24 +11,117 @@
   "sources": [
     {
       "type": "field",
-      "path": "plugins/documentation/docs/main/kotlin/com/javiersc/gradle/plugins/docs/tasks/BuildDocsTask.kt",
+      "path": "plugins/documentation/readme-badges/main/kotlin/com/javiersc/gradle/plugins/readme/badges/generator/BuildReadmeBadgesTask.kt",
       "language": "kotlin",
-      "line": 41,
+      "line": 93,
       "offset": 18,
       "length": 9,
       "code": {
-        "startLine": 39,
+        "startLine": 91,
         "length": 9,
-        "offset": 78,
-        "surroundingCode": "    companion object {\n        const val name = \"buildDocs\"\n        const val taskGroup = \"documentation\"\n\n        fun register("
+        "offset": 86,
+        "surroundingCode": "    companion object {\n        const val name = \"buildReadmeBadges\"\n        const val taskGroup = \"documentation\"\n\n        fun register("
       }
     }
   ],
   "attributes": {
-    "module": "gradle-plugins.plugins.documentation.docs.main",
+    "module": "gradle-plugins.plugins.documentation.readme-badges.main",
     "inspectionName": "MemberVisibilityCanBePrivate"
   },
-  "hash": "7321964070048229052"
+  "hash": "5451047252024662653"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Remove unnecessary parentheses from function call with lambda",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "Info",
+  "comment": "Remove unnecessary parentheses from function call with lambda",
+  "detailsInfo": "Reports redundant empty parentheses of function calls where the only parameter is a lambda that's outside the parentheses.\n\nUse the 'Remove unnecessary parentheses from function call with lambda' quick-fix to clean up the code.\n\n**Examples:**\n\n\n      fun foo() {\n          listOf(1).forEach() {  }\n      }\n\nAfter the quick-fix is applied:\n\n\n      fun foo() {\n          listOf(1).forEach {  }\n      }\n",
+  "sources": [
+    {
+      "type": "method",
+      "path": "plugins/code-enhancers-and-utils/kotlin-config/main/kotlin/com/javiersc/gradle/plugins/kotlin/config/KotlinConfigType.kt",
+      "language": "kotlin",
+      "line": 66,
+      "offset": 49,
+      "length": 2,
+      "code": {
+        "startLine": 64,
+        "length": 2,
+        "offset": 105,
+        "surroundingCode": "            project.configureJavaAndKotlinSourceSets()\n\n            project.tasks.withType<KotlinCompile>() {\n                kotlinOptions { jvmTarget = JavaVersion.VERSION_11.toString() }\n                sourceCompatibility = JavaVersion.VERSION_11.toString()"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.plugins.code-enhancers-and-utils.kotlin-config.main",
+    "inspectionName": "RemoveEmptyParenthesesFromLambdaCall"
+  },
+  "hash": "3845329988822773624"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Remove unnecessary parentheses from function call with lambda",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "Info",
+  "comment": "Remove unnecessary parentheses from function call with lambda",
+  "detailsInfo": "Reports redundant empty parentheses of function calls where the only parameter is a lambda that's outside the parentheses.\n\nUse the 'Remove unnecessary parentheses from function call with lambda' quick-fix to clean up the code.\n\n**Examples:**\n\n\n      fun foo() {\n          listOf(1).forEach() {  }\n      }\n\nAfter the quick-fix is applied:\n\n\n      fun foo() {\n          listOf(1).forEach {  }\n      }\n",
+  "sources": [
+    {
+      "type": "method",
+      "path": "plugins/code-enhancers-and-utils/dependency-updates/main/kotlin/com/javiersc/gradle/plugins/dependency/updates/DependencyUpdatesPlugin.kt",
+      "language": "kotlin",
+      "line": 13,
+      "offset": 52,
+      "length": 2,
+      "code": {
+        "startLine": 11,
+        "length": 2,
+        "offset": 121,
+        "surroundingCode": "        target.pluginManager.apply(\"com.github.ben-manes.versions\")\n\n        target.tasks.withType<DependencyUpdatesTask>() {\n            rejectVersionIf { !target.project.isStable(it.candidate.version) }\n        }"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.plugins.code-enhancers-and-utils.dependency-updates.main",
+    "inspectionName": "RemoveEmptyParenthesesFromLambdaCall"
+  },
+  "hash": "-2285785234146031110"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Class \"NexusPlugin\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "class",
+      "path": "plugins/publish/nexus/main/kotlin/com/javiersc/gradle/plugins/nexus/NexusPlugin.kt",
+      "language": "kotlin",
+      "line": 8,
+      "offset": 15,
+      "length": 11,
+      "code": {
+        "startLine": 6,
+        "length": 11,
+        "offset": 46,
+        "surroundingCode": "import org.gradle.api.Project\n\nabstract class NexusPlugin : Plugin<Project> {\n\n    override fun apply(target: Project) {"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.plugins.publish.nexus.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "8626116194662664448"
 },{
   "tool": "Code Inspection",
   "category": "Redundant constructs",
@@ -68,68 +161,6 @@
     "kotlin"
   ],
   "severity": "High",
-  "comment": "Class \"GradleWrapperUpdaterPlugin\" is never used",
-  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
-  "sources": [
-    {
-      "type": "class",
-      "path": "plugins/gradle-utils/gradle-wrapper-updater/main/kotlin/com/javiersc/gradle/plugins/gradle/wrapper/updater/GradleWrapperUpdaterPlugin.kt",
-      "language": "kotlin",
-      "line": 26,
-      "offset": 15,
-      "length": 26,
-      "code": {
-        "startLine": 24,
-        "length": 26,
-        "offset": 90,
-        "surroundingCode": " * - If the input is `nightly`, the last nightly version will be used.\n */\nabstract class GradleWrapperUpdaterPlugin : Plugin<Project> {\n\n    override fun apply(target: Project) {"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.gradle-utils.gradle-wrapper-updater.main",
-    "inspectionName": "UnusedSymbol"
-  },
-  "hash": "7486247753909699082"
-},{
-  "tool": "Code Inspection",
-  "category": "Redundant constructs",
-  "type": "Unused symbol",
-  "tags": [
-    "kotlin"
-  ],
-  "severity": "High",
-  "comment": "Class \"ReadmeBadgesGeneratorPlugin\" is never used",
-  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
-  "sources": [
-    {
-      "type": "class",
-      "path": "plugins/documentation/readme-badges/main/kotlin/com/javiersc/gradle/plugins/readme/badges/generator/ReadmeBadgesGeneratorPlugin.kt",
-      "language": "kotlin",
-      "line": 7,
-      "offset": 15,
-      "length": 27,
-      "code": {
-        "startLine": 5,
-        "length": 27,
-        "offset": 81,
-        "surroundingCode": "import org.jetbrains.kotlin.gradle.plugin.getKotlinPluginVersion\n\nabstract class ReadmeBadgesGeneratorPlugin : Plugin<Project> {\n\n    override fun apply(target: Project) {"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.documentation.readme-badges.main",
-    "inspectionName": "UnusedSymbol"
-  },
-  "hash": "-691700771431600817"
-},{
-  "tool": "Code Inspection",
-  "category": "Redundant constructs",
-  "type": "Unused symbol",
-  "tags": [
-    "kotlin"
-  ],
-  "severity": "High",
   "comment": "Class \"MassiveCatalogsUpdaterPlugin\" is never used",
   "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
   "sources": [
@@ -161,91 +192,29 @@
     "kotlin"
   ],
   "severity": "High",
-  "comment": "Class \"KotlinConfigPlugin\" is never used",
+  "comment": "Class \"VersioningPlugin\" is never used",
   "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
   "sources": [
     {
       "type": "class",
-      "path": "plugins/code-enhancers-and-utils/kotlin-config/main/kotlin/com/javiersc/gradle/plugins/kotlin/config/KotlinConfigPlugin.kt",
+      "path": "plugins/code-enhancers-and-utils/versioning/main/kotlin/com/javiersc/gradle/plugins/versioning/VersioningPlugin.kt",
       "language": "kotlin",
       "line": 6,
-      "offset": 6,
-      "length": 18,
-      "code": {
-        "startLine": 4,
-        "length": 18,
-        "offset": 37,
-        "surroundingCode": "import org.gradle.api.Project\n\nclass KotlinConfigPlugin : Plugin<Project> {\n\n    override fun apply(project: Project) {"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.code-enhancers-and-utils.kotlin-config.main",
-    "inspectionName": "UnusedSymbol"
-  },
-  "hash": "1540212358853930689"
-},{
-  "tool": "Code Inspection",
-  "category": "Redundant constructs",
-  "type": "Unused symbol",
-  "tags": [
-    "kotlin"
-  ],
-  "severity": "High",
-  "comment": "Function \"javiersc-nexus\" is never used",
-  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
-  "sources": [
-    {
-      "type": "method",
-      "path": "all-plugins/main/kotlin/NexusAccessors.kt",
-      "language": "kotlin",
-      "line": 9,
-      "offset": 27,
-      "length": 16,
-      "code": {
-        "startLine": 7,
-        "length": 16,
-        "offset": 58,
-        "surroundingCode": "    get() = javiersc(\"nexus\")\n\nfun PluginDependenciesSpec.`javiersc-nexus`(\n    version: String,\n): PluginDependencySpec = javiersc(\"nexus\", version)"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.all-plugins.main",
-    "inspectionName": "UnusedSymbol"
-  },
-  "hash": "-6926458526850435196"
-},{
-  "tool": "Code Inspection",
-  "category": "Redundant constructs",
-  "type": "Unused symbol",
-  "tags": [
-    "kotlin"
-  ],
-  "severity": "High",
-  "comment": "Property \"javiersc-nexus\" is never used",
-  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
-  "sources": [
-    {
-      "type": "method",
-      "path": "all-plugins/main/kotlin/NexusAccessors.kt",
-      "language": "kotlin",
-      "line": 6,
-      "offset": 27,
+      "offset": 15,
       "length": 16,
       "code": {
         "startLine": 4,
         "length": 16,
-        "offset": 78,
-        "surroundingCode": "import org.gradle.plugin.use.PluginDependencySpec\n\nval PluginDependenciesSpec.`javiersc-nexus`: PluginDependencySpec\n    get() = javiersc(\"nexus\")\n"
+        "offset": 46,
+        "surroundingCode": "import org.gradle.api.Project\n\nabstract class VersioningPlugin : Plugin<Project> {\n\n    override fun apply(target: Project) {"
       }
     }
   ],
   "attributes": {
-    "module": "gradle-plugins.all-plugins.main",
+    "module": "gradle-plugins.plugins.code-enhancers-and-utils.versioning.main",
     "inspectionName": "UnusedSymbol"
   },
-  "hash": "-8667055439986226965"
+  "hash": "-5378136437586799971"
 },{
   "tool": "Code Inspection",
   "category": "Redundant constructs",
@@ -254,52 +223,21 @@
     "kotlin"
   ],
   "severity": "High",
-  "comment": "Property \"javiersc-readme-badges-generator\" is never used",
+  "comment": "Function \"javiersc-dependency-updates\" is never used",
   "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
   "sources": [
     {
       "type": "method",
-      "path": "all-plugins/main/kotlin/ReadmeBadgesGeneratorAccessors.kt",
-      "language": "kotlin",
-      "line": 6,
-      "offset": 27,
-      "length": 34,
-      "code": {
-        "startLine": 4,
-        "length": 34,
-        "offset": 78,
-        "surroundingCode": "import org.gradle.plugin.use.PluginDependencySpec\n\nval PluginDependenciesSpec.`javiersc-readme-badges-generator`: PluginDependencySpec\n    get() = javiersc(\"readme.badges.generator\")\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.all-plugins.main",
-    "inspectionName": "UnusedSymbol"
-  },
-  "hash": "5253623321513623669"
-},{
-  "tool": "Code Inspection",
-  "category": "Redundant constructs",
-  "type": "Unused symbol",
-  "tags": [
-    "kotlin"
-  ],
-  "severity": "High",
-  "comment": "Function \"javiersc-readme-badges-generator\" is never used",
-  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
-  "sources": [
-    {
-      "type": "method",
-      "path": "all-plugins/main/kotlin/ReadmeBadgesGeneratorAccessors.kt",
+      "path": "all-plugins/main/kotlin/DependencyUpdatesAccessors.kt",
       "language": "kotlin",
       "line": 9,
       "offset": 27,
-      "length": 34,
+      "length": 29,
       "code": {
         "startLine": 7,
-        "length": 34,
-        "offset": 76,
-        "surroundingCode": "    get() = javiersc(\"readme.badges.generator\")\n\nfun PluginDependenciesSpec.`javiersc-readme-badges-generator`(\n    version: String,\n): PluginDependencySpec = javiersc(\"readme.badges.generator\", version)"
+        "length": 29,
+        "offset": 71,
+        "surroundingCode": "    get() = javiersc(\"dependency.updates\")\n\nfun PluginDependenciesSpec.`javiersc-dependency-updates`(\n    version: String,\n): PluginDependencySpec = javiersc(\"dependency.updates\", version)"
       }
     }
   ],
@@ -307,5 +245,36 @@
     "module": "gradle-plugins.all-plugins.main",
     "inspectionName": "UnusedSymbol"
   },
-  "hash": "-6054725237346779288"
+  "hash": "-5323804202195859099"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Property \"javiersc-dependency-updates\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "all-plugins/main/kotlin/DependencyUpdatesAccessors.kt",
+      "language": "kotlin",
+      "line": 6,
+      "offset": 27,
+      "length": 29,
+      "code": {
+        "startLine": 4,
+        "length": 29,
+        "offset": 78,
+        "surroundingCode": "import org.gradle.plugin.use.PluginDependencySpec\n\nval PluginDependenciesSpec.`javiersc-dependency-updates`: PluginDependencySpec\n    get() = javiersc(\"dependency.updates\")\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "gradle-plugins.all-plugins.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "4333864265746367779"
 }]}

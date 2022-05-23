@@ -1,6 +1,7 @@
 package com.javiersc.gradle.plugins.all.projects.install.pre.commit
 
 import java.io.File
+import javax.inject.Inject
 import org.gradle.api.DefaultTask
 import org.gradle.api.Project
 import org.gradle.api.tasks.CacheableTask
@@ -11,24 +12,21 @@ import org.gradle.api.tasks.PathSensitive
 import org.gradle.api.tasks.PathSensitivity
 import org.gradle.api.tasks.TaskAction
 import org.gradle.api.tasks.TaskProvider
+import org.gradle.kotlin.dsl.named
 import org.gradle.kotlin.dsl.register
 
 @CacheableTask
-abstract class WriteFilePreCommitTask : DefaultTask() {
+abstract class WriteFilePreCommitTask @Inject constructor(project: Project) : DefaultTask() {
 
-    @get:Internal
-    val installPreCommitsDir: File
-        get() =
-            project.file("${project.rootProject.buildDir}/install/pre-commits/").apply { mkdirs() }
+    @Internal
+    val installPreCommitsDir: File =
+        project.file("${project.rootProject.buildDir}/install/pre-commits/").apply { mkdirs() }
 
-    @get:InputFile
-    @get:PathSensitive(PathSensitivity.ABSOLUTE)
-    val inputPreCommitFile: File
-        get() = project.preCommitFile
+    @InputFile
+    @PathSensitive(PathSensitivity.ABSOLUTE)
+    val inputPreCommitFile: File = project.preCommitFile
 
-    @get:OutputFile
-    val outputPreCommitFile: File
-        get() = project.preCommitFile
+    @OutputFile val outputPreCommitFile: File = project.preCommitFile
 
     @TaskAction
     fun writeFile() {
@@ -53,12 +51,10 @@ abstract class WriteFilePreCommitTask : DefaultTask() {
         const val name: String = "writeFilePreCommit"
 
         internal fun register(project: Project) {
-            project.tasks.register<WriteFilePreCommitTask>(name) {
-                group = InstallPreCommitTask.taskGroup
-            }
+            project.tasks.register<WriteFilePreCommitTask>(name)
         }
 
         internal fun getTask(project: Project): TaskProvider<WriteFilePreCommitTask> =
-            project.tasks.named(name, WriteFilePreCommitTask::class.java)
+            project.tasks.named<WriteFilePreCommitTask>(name)
     }
 }

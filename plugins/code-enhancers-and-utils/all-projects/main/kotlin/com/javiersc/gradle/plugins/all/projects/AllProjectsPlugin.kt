@@ -31,20 +31,10 @@ abstract class AllProjectsPlugin : Plugin<Project> {
         AllProjectsExtension.createExtension(target)
 
         InstallPreCommitTask.register(target)
-        InstallAllTestsPreCommitTask.register(target) {
-            allTests.set(project.allProjectsExtension.install.get().preCommit.get().allTests)
-        }
-        InstallAssemblePreCommitTask.register(target) {
-            assemble.set(project.allProjectsExtension.install.get().preCommit.get().assemble)
-        }
-        InstallApiCheckPreCommitTask.register(target) {
-            apiCheck.set(project.allProjectsExtension.install.get().preCommit.get().apiCheck)
-        }
-        InstallSpotlessCheckPreCommitTask.register(target) {
-            spotlessCheck.set(
-                project.allProjectsExtension.install.get().preCommit.get().spotlessCheck
-            )
-        }
+        InstallAllTestsPreCommitTask.register(target)
+        InstallAssemblePreCommitTask.register(target)
+        InstallApiCheckPreCommitTask.register(target)
+        InstallSpotlessCheckPreCommitTask.register(target)
         WriteFilePreCommitTask.register(target)
 
         target.allprojects { project ->
@@ -64,7 +54,7 @@ private fun configureTestLogger(target: Project) {
 
     target.tasks.withType<Test> {
         testLogging.showStandardStreams = true
-        maxParallelForks = (Runtime.getRuntime().availableProcessors() / 3).takeIf { it > 0 } ?: 1
+        maxParallelForks = (Runtime.getRuntime().availableProcessors() - 2).takeIf { it > 0 } ?: 1
 
         val hasAndroid =
             project.run {
@@ -77,29 +67,30 @@ private fun configureTestLogger(target: Project) {
 
 private fun configureAllTestsTask(target: Project) {
     target.afterEvaluate { project ->
-        val checkTask = project.tasks.findByName(CHECK_TASK_NAME)
-
-        if (project.tasks.findByName(AllTestsLabel) == null) {
-            project.tasks.register(AllTestsLabel) { task ->
-                task.group = VERIFICATION_GROUP
-                task.dependsOn(project.tasks.withType(Test::class.java))
+        if (project.tasks.names.contains(AllTestsLabel)) {
+            project.tasks.named(AllTestsLabel).configure { allTestsTask ->
+                allTestsTask.dependsOn(project.tasks.withType<Test>())
             }
         } else {
-            project.tasks.named(AllTestsLabel) { allTestsTask ->
-                allTestsTask.dependsOn(project.tasks.withType(Test::class.java))
+            project.tasks.register(AllTestsLabel).configure { allTestsTask ->
+                allTestsTask.group = VERIFICATION_GROUP
+                allTestsTask.dependsOn(project.tasks.withType<Test>())
             }
         }
-        checkTask?.dependsOn(AllTestsLabel)
+        project.tasks.configureEach { task ->
+            if (task.name == CHECK_TASK_NAME) task.dependsOn(AllTestsLabel)
+        }
     }
 }
 
 private fun configureAllTestsReport(target: Project) {
-    val testReport =
-        target.tasks.register<TestReport>(AllTestsReportLabel) {
-            group = VERIFICATION_GROUP
-            destinationDirectory.set(project.file("${project.buildDir}/reports/allTests"))
-            testResults.from(project.allprojects.map { it.tasks.withType(Test::class.java) })
-        }
+    val testReport = target.tasks.register<TestReport>(AllTestsReportLabel)
+    testReport.configure { task ->
+        val project = task.project
+        task.group = VERIFICATION_GROUP
+        task.destinationDirectory.set(project.file("${project.buildDir}/reports/allTests"))
+        task.testResults.from(project.allprojects.map { it.tasks.withType<Test>() })
+    }
 
     val shouldRunAllTestsReport =
         target.gradle.startParameter.taskNames.any { taskName ->
@@ -107,7 +98,9 @@ private fun configureAllTestsReport(target: Project) {
         }
 
     if (shouldRunAllTestsReport) {
-        target.allprojects { project -> project.tasks.withType<Test>() { finalizedBy(testReport) } }
+        target.allprojects { project ->
+            project.tasks.withType<Test>().configureEach { task -> task.finalizedBy(testReport) }
+        }
     }
 }
 
@@ -116,13 +109,13 @@ private fun Project.configureCodeCoverageMergedReport() {
         val shouldMergeCodeCoverageReports =
             gradle.startParameter.taskNames.any { taskName ->
                 taskName in listOf(AllTestsLabel, BUILD_TASK_NAME, CHECK_TASK_NAME)
-            }
+            } &&
+                rootProject.tasks.names.contains(KoverMergedReport) &&
+                rootProject.tasks.names.contains(AllTestsLabel)
 
         if (shouldMergeCodeCoverageReports) {
-            val koverMergedReportTask = rootProject.tasks.findByName(KoverMergedReport)
-            val allTestsTask = rootProject.tasks.findByName(AllTestsLabel)
-
-            if (allTestsTask != null && koverMergedReportTask != null) {
+            val koverMergedReportTask = rootProject.tasks.named(KoverMergedReport)
+            rootProject.tasks.named(AllTestsLabel).configure { allTestsTask ->
                 allTestsTask.dependsOn(koverMergedReportTask)
             }
         }

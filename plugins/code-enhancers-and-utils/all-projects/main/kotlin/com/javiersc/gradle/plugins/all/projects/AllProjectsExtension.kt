@@ -6,16 +6,17 @@ import org.gradle.api.Project
 import org.gradle.api.provider.Property
 import org.gradle.kotlin.dsl.create
 import org.gradle.kotlin.dsl.findByType
+import org.gradle.kotlin.dsl.newInstance
 import org.gradle.kotlin.dsl.property
 
 open class AllProjectsExtension(project: Project) {
 
-    fun install(action: Action<in InstallOptions>) = action.execute(install.get())
-
     val install: Property<InstallOptions> =
         project.objects
             .property<InstallOptions>()
-            .value(project.objects.newInstance(InstallOptions::class.java))
+            .convention(project.objects.newInstance<InstallOptions>())
+
+    fun install(action: Action<in InstallOptions>) = action.execute(install.get())
 
     companion object {
         const val name: String = "allProjectsConfig"
@@ -27,6 +28,4 @@ open class AllProjectsExtension(project: Project) {
 
 internal val Project.allProjectsExtension: AllProjectsExtension
     get() =
-        checkNotNull(extensions.findByType(AllProjectsExtension::class)) {
-            "`all-projects` plugin is not correctly applied"
-        }
+        checkNotNull(extensions.findByType()) { "`all-projects` plugin is not correctly applied" }

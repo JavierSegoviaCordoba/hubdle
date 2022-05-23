@@ -6,34 +6,33 @@ import org.gradle.api.DefaultTask
 import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.tasks.CacheableTask
-import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.Internal
+import org.gradle.api.tasks.OutputDirectory
 import org.gradle.api.tasks.OutputFile
 import org.gradle.api.tasks.TaskProvider
 
 @CacheableTask
-abstract class InstallPreCommitTask : InstallTask, DefaultTask() {
+abstract class InstallPreCommitTask(
+    @Internal val preCommitName: String,
+) : InstallTask, DefaultTask() {
 
-    @get:Input internal abstract val preCommitName: String
+    init {
+        group = InstallTask.taskGroup
+    }
 
-    @get:Internal
-    internal val preCommitOutputDir: File
-        get() = project.file("${project.buildDir}/install/pre-commits/")
+    @OutputDirectory
+    val preCommitOutputDir: File = project.file("${project.buildDir}/install/pre-commits/")
 
-    @get:OutputFile
-    internal val preCommitOutputFile: File
-        get() = project.file("$preCommitOutputDir/$preCommitName.pre-commit")
+    @OutputFile
+    val preCommitOutputFile: File = project.file("$preCommitOutputDir/$preCommitName.pre-commit")
 
     companion object {
-        internal const val taskGroup: String = "install"
-
         const val name: String = "installPreCommit"
 
         internal fun getInstallPreCommitTask(project: Project): TaskProvider<Task> =
             project.tasks.named(name)
 
-        internal fun register(project: Project) =
-            project.tasks.register(name) { task -> task.group = taskGroup }
+        internal fun register(project: Project) = project.tasks.register(name)
     }
 }
 

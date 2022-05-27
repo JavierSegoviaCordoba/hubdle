@@ -94,14 +94,14 @@
       "type": "file",
       "path": "plugins/code-enhancers-and-utils/all-projects/main/kotlin/com/javiersc/gradle/plugins/all/projects/AllProjectsPlugin.kt",
       "language": "kotlin",
-      "line": 90,
-      "offset": 13,
+      "line": 91,
+      "offset": 14,
       "length": 20,
       "code": {
-        "startLine": 88,
+        "startLine": 89,
         "length": 20,
-        "offset": 116,
-        "surroundingCode": "        target.tasks.register<TestReport>(AllTestsReportLabel) {\n            group = VERIFICATION_GROUP\n            destinationDirectory.set(project.file(\"${project.buildDir}/reports/allTests\"))\n            testResults.from(project.allprojects.map { it.tasks.withType(Test::class.java) })\n        }"
+        "offset": 88,
+        "surroundingCode": "        val project = task.project\n        task.group = VERIFICATION_GROUP\n        task.destinationDirectory.set(project.file(\"${project.buildDir}/reports/allTests\"))\n        task.testResults.from(project.allprojects.map { it.tasks.withType<Test>() })\n    }"
       }
     }
   ],
@@ -109,7 +109,7 @@
     "module": "gradle-plugins.plugins.code-enhancers-and-utils.all-projects.main",
     "inspectionName": "UnstableApiUsage"
   },
-  "hash": "141006eada97dad5c3706d3517d86058da03d0ff6aa48ade5848fc4eb5c718a6"
+  "hash": "9920fee99684b6598ad427211d482d7256c9079109cc76765d0d5da52b3cfc96"
 },{
   "tool": "Code Inspection",
   "category": "JVM languages",
@@ -122,14 +122,14 @@
       "type": "file",
       "path": "plugins/code-enhancers-and-utils/all-projects/main/kotlin/com/javiersc/gradle/plugins/all/projects/AllProjectsPlugin.kt",
       "language": "kotlin",
-      "line": 91,
-      "offset": 13,
+      "line": 92,
+      "offset": 14,
       "length": 11,
       "code": {
-        "startLine": 89,
+        "startLine": 90,
         "length": 11,
-        "offset": 142,
-        "surroundingCode": "            group = VERIFICATION_GROUP\n            destinationDirectory.set(project.file(\"${project.buildDir}/reports/allTests\"))\n            testResults.from(project.allprojects.map { it.tasks.withType(Test::class.java) })\n        }\n"
+        "offset": 145,
+        "surroundingCode": "        task.group = VERIFICATION_GROUP\n        task.destinationDirectory.set(project.file(\"${project.buildDir}/reports/allTests\"))\n        task.testResults.from(project.allprojects.map { it.tasks.withType<Test>() })\n    }\n"
       }
     }
   ],
@@ -137,7 +137,7 @@
     "module": "gradle-plugins.plugins.code-enhancers-and-utils.all-projects.main",
     "inspectionName": "UnstableApiUsage"
   },
-  "hash": "1e5c38ada89b8e67ce8971b735fc86cac5b9a959fff0a43d86d39046291b3fe4"
+  "hash": "35c13ef24f2f28403f9dac6009b615695e27a1166eccabb0cf216a63658bd2bd"
 },{
   "tool": "Code Inspection",
   "category": "JVM languages",

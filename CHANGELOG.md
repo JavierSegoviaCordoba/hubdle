@@ -22,7 +22,7 @@
 
 ### Updated
 
-- `gradle/gradle-build-action -> v2.1.7`
+- `gradle/gradle-build-action -> v2.2.0`
 - `org.jetbrains.kotlinx:kotlinx-coroutines-core -> 1.6.2`
 - `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.10.0`
 - `org.jsoup:jsoup -> 1.15.1`

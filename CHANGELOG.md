@@ -22,6 +22,7 @@
 
 ### Updated
 
+- `com.javiersc.semver:semver-gradle-plugin -> 0.2.0-alpha.1`
 - `gradle/gradle-build-action -> v2.2.0`
 - `org.jetbrains.kotlinx:kotlinx-coroutines-core -> 1.6.2`
 - `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.10.0`

@@ -1,4 +1,5 @@
 plugins {
+    `javiersc-versioning`
     `kotlin-jvm`
     `javiersc-kotlin-config`
     `javiersc-publish`

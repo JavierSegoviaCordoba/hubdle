@@ -12,6 +12,10 @@ dependencies {
     api(projects.shared.pluginAccessors)
 }
 
+kotlin.sourceSets.main.configure {
+    kotlin.srcDirs(buildDir.resolve("generated/main/kotlin"))
+}
+
 rootProject.gradle.projectsEvaluated {
     rootProject.allprojects {
         if ((allPluginsProject != this@allprojects) && this@allprojects.hasGradlePlugin) {

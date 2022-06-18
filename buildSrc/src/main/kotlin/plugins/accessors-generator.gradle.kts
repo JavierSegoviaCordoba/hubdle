@@ -1,6 +1,8 @@
 import org.jetbrains.kotlin.gradle.internal.ensureParentDirsCreated
 
-file("${rootProject.rootDir}/all-plugins/main/kotlin/").deleteRecursively()
+val generatedDir =
+    file("${rootProject.rootDir}/all-plugins/build/generated/main/kotlin/")
+        .apply(File::deleteRecursively)
 
 allprojects {
     afterEvaluate {
@@ -15,7 +17,7 @@ allprojects {
                     .replace(",", "")
                     .replace(" ", "")}Accessors.kt"
 
-            file("${rootProject.rootDir}/all-plugins/main/kotlin/$fileName").apply {
+            file("$generatedDir/$fileName").apply {
                 ensureParentDirsCreated()
                 createNewFile()
                 writeText(buildAccessorFile(name))

@@ -16,6 +16,7 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.10.1`
 - `com.diffplug.spotless:spotless-plugin-gradle -> 6.7.2`
 - `com.javiersc.kotlin:kotlin-stdlib -> 0.1.0-alpha.7`
 - `org.eclipse.jgit:org.eclipse.jgit -> 6.2.0.202206071550-r`

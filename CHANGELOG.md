@@ -16,6 +16,7 @@
 
 ### Updated
 
+- `org.sonarsource.scanner.gradle:sonarqube-gradle-plugin -> 3.4.0.2513`
 - `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.10.1`
 - `com.diffplug.spotless:spotless-plugin-gradle -> 6.7.2`
 - `com.javiersc.kotlin:kotlin-stdlib -> 0.1.0-alpha.7`

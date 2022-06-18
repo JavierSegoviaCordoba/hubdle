@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.android.tools.build:gradle -> 7.2.1`
 - `com.javiersc.kotlin:kotlin-stdlib -> 0.1.0-alpha.5`
 
 ## [0.1.0-rc.44] - 2022-06-15

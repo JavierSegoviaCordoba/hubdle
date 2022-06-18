@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `gradle.plugin.org.jetbrains.gradle.plugin.idea-ext:gradle-idea-ext -> 1.1.5`
 - `com.javiersc.semver:semver-gradle-plugin -> 0.2.0-alpha.2`
 - `com.javiersc.kotlin:kotlin-stdlib -> 0.1.0-alpha.5`
 

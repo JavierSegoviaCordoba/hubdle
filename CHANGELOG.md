@@ -16,6 +16,7 @@
 
 ### Updated
 
+- `ru.vyarus:gradle-mkdocs-plugin -> 2.4.0`
 - `org.sonarsource.scanner.gradle:sonarqube-gradle-plugin -> 3.4.0.2513`
 - `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.10.1`
 - `com.diffplug.spotless:spotless-plugin-gradle -> 6.7.2`

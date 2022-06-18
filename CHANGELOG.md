@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.javiersc.semver:semver-gradle-plugin -> 0.2.0-alpha.2`
 - `com.javiersc.kotlin:kotlin-stdlib -> 0.1.0-alpha.5`
 
 ## [0.1.0-rc.44] - 2022-06-15

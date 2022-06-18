@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.diffplug.spotless:spotless-plugin-gradle -> 6.7.2`
 - `com.javiersc.kotlin:kotlin-stdlib -> 0.1.0-alpha.5`
 
 ## [0.1.0-rc.44] - 2022-06-15

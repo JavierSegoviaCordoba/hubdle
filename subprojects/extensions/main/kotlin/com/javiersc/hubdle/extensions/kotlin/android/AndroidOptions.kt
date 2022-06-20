@@ -1,0 +1,17 @@
+package com.javiersc.hubdle.extensions.kotlin.android
+
+import com.android.build.api.dsl.AndroidSourceSet
+import com.javiersc.hubdle.extensions.SourceDirectoriesOptions
+import com.javiersc.hubdle.extensions.kotlin.jvm.KotlinJvmOptions
+
+public interface AndroidOptions : KotlinJvmOptions, SourceDirectoriesOptions<AndroidSourceSet> {
+
+    public var compileSdk: Int
+
+    public var minSdk: Int
+
+    public companion object {
+        public const val DefaultCompileSdk: Int = 31
+        public const val DefaultMinSdk: Int = 21
+    }
+}

@@ -1,0 +1,191 @@
+public final class com/javiersc/hubdle/extensions/CheckCompatibilityKt {
+	public static final fun checkCompatibility ()V
+}
+
+public abstract interface class com/javiersc/hubdle/extensions/DependenciesOptions {
+	public abstract fun dependencies (Lorg/gradle/api/Project;Lkotlin/jvm/functions/Function1;)V
+}
+
+public abstract class com/javiersc/hubdle/extensions/HubdleExtension {
+	public fun <init> (Lorg/gradle/api/model/ObjectFactory;)V
+	public final fun config (Lorg/gradle/api/Action;)V
+	public final fun getConfig ()Lcom/javiersc/hubdle/extensions/config/ConfigExtension;
+	public final fun getKotlin ()Lcom/javiersc/hubdle/extensions/kotlin/KotlinExtension;
+	public final fun kotlin (Lorg/gradle/api/Action;)V
+}
+
+public abstract interface class com/javiersc/hubdle/extensions/OriginalConfigOptions {
+	public abstract fun originalConfig (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
+}
+
+public final class com/javiersc/hubdle/extensions/OriginalConfigOptions$DefaultImpls {
+	public static synthetic fun originalConfig$default (Lcom/javiersc/hubdle/extensions/OriginalConfigOptions;Lorg/gradle/api/Project;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+}
+
+public abstract interface class com/javiersc/hubdle/extensions/PublishingOptions {
+	public abstract fun publishing (Lorg/gradle/api/Project;)V
+}
+
+public abstract interface class com/javiersc/hubdle/extensions/SourceDirectoriesOptions {
+	public abstract fun getSourceSets (Lorg/gradle/api/Project;)Lorg/gradle/api/NamedDomainObjectContainer;
+}
+
+public abstract class com/javiersc/hubdle/extensions/config/ConfigExtension {
+	public fun <init> (Lorg/gradle/api/model/ObjectFactory;)V
+	public final fun versioning (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)Lcom/javiersc/hubdle/extensions/config/semver/VersioningExtension;
+	public static synthetic fun versioning$default (Lcom/javiersc/hubdle/extensions/config/ConfigExtension;Lorg/gradle/api/Project;Lorg/gradle/api/Action;ILjava/lang/Object;)Lcom/javiersc/hubdle/extensions/config/semver/VersioningExtension;
+}
+
+public abstract class com/javiersc/hubdle/extensions/config/semver/VersioningExtension {
+	public fun <init> ()V
+	public final fun getTagPrefix ()Ljava/lang/String;
+	public final fun setTagPrefix (Ljava/lang/String;)V
+}
+
+public abstract class com/javiersc/hubdle/extensions/kotlin/KotlinExtension {
+	public fun <init> (Lorg/gradle/api/model/ObjectFactory;)V
+	public final fun android (Lorg/gradle/api/Action;)Lcom/javiersc/hubdle/extensions/kotlin/android/AndroidExtension;
+	public static synthetic fun android$default (Lcom/javiersc/hubdle/extensions/kotlin/KotlinExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)Lcom/javiersc/hubdle/extensions/kotlin/android/AndroidExtension;
+	public final fun explicitApi (Lorg/jetbrains/kotlin/gradle/dsl/ExplicitApiMode;)V
+	public static synthetic fun explicitApi$default (Lcom/javiersc/hubdle/extensions/kotlin/KotlinExtension;Lorg/jetbrains/kotlin/gradle/dsl/ExplicitApiMode;ILjava/lang/Object;)V
+	public final fun gradle (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)Lcom/javiersc/hubdle/extensions/kotlin/gradle/KotlinGradleExtension;
+	public static synthetic fun gradle$default (Lcom/javiersc/hubdle/extensions/kotlin/KotlinExtension;Lorg/gradle/api/Project;Lorg/gradle/api/Action;ILjava/lang/Object;)Lcom/javiersc/hubdle/extensions/kotlin/gradle/KotlinGradleExtension;
+	public final fun jvm (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)Lcom/javiersc/hubdle/extensions/kotlin/jvm/KotlinJvmExtension;
+	public static synthetic fun jvm$default (Lcom/javiersc/hubdle/extensions/kotlin/KotlinExtension;Lorg/gradle/api/Project;Lorg/gradle/api/Action;ILjava/lang/Object;)Lcom/javiersc/hubdle/extensions/kotlin/jvm/KotlinJvmExtension;
+	public final fun multiplatform (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)Lcom/javiersc/hubdle/extensions/kotlin/multiplatform/KotlinMultiplatformExtension;
+	public static synthetic fun multiplatform$default (Lcom/javiersc/hubdle/extensions/kotlin/KotlinExtension;Lorg/gradle/api/Project;Lorg/gradle/api/Action;ILjava/lang/Object;)Lcom/javiersc/hubdle/extensions/kotlin/multiplatform/KotlinMultiplatformExtension;
+	public final fun tools (Lorg/gradle/api/Action;)Lcom/javiersc/hubdle/extensions/kotlin/tools/ToolsExtension;
+	public static synthetic fun tools$default (Lcom/javiersc/hubdle/extensions/kotlin/KotlinExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)Lcom/javiersc/hubdle/extensions/kotlin/tools/ToolsExtension;
+}
+
+public abstract class com/javiersc/hubdle/extensions/kotlin/android/AndroidExtension {
+	public fun <init> (Lorg/gradle/api/model/ObjectFactory;)V
+	public final fun library (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)Lcom/javiersc/hubdle/extensions/kotlin/android/library/AndroidLibraryExtension;
+	public static synthetic fun library$default (Lcom/javiersc/hubdle/extensions/kotlin/android/AndroidExtension;Lorg/gradle/api/Project;Lorg/gradle/api/Action;ILjava/lang/Object;)Lcom/javiersc/hubdle/extensions/kotlin/android/library/AndroidLibraryExtension;
+}
+
+public abstract interface class com/javiersc/hubdle/extensions/kotlin/android/AndroidOptions : com/javiersc/hubdle/extensions/SourceDirectoriesOptions, com/javiersc/hubdle/extensions/kotlin/jvm/KotlinJvmOptions {
+	public static final field Companion Lcom/javiersc/hubdle/extensions/kotlin/android/AndroidOptions$Companion;
+	public static final field DefaultCompileSdk I
+	public static final field DefaultMinSdk I
+	public abstract fun getCompileSdk ()I
+	public abstract fun getMinSdk ()I
+	public abstract fun setCompileSdk (I)V
+	public abstract fun setMinSdk (I)V
+}
+
+public final class com/javiersc/hubdle/extensions/kotlin/android/AndroidOptions$Companion {
+	public static final field DefaultCompileSdk I
+	public static final field DefaultMinSdk I
+}
+
+public class com/javiersc/hubdle/extensions/kotlin/android/library/AndroidLibraryExtension : com/javiersc/hubdle/extensions/PublishingOptions, com/javiersc/hubdle/extensions/kotlin/android/AndroidOptions {
+	public fun <init> ()V
+	public fun getCompileSdk ()I
+	public fun getMinSdk ()I
+	public fun getSourceSets (Lorg/gradle/api/Project;)Lorg/gradle/api/NamedDomainObjectContainer;
+	public fun getTarget ()I
+	public fun publishing (Lorg/gradle/api/Project;)V
+	public fun setCompileSdk (I)V
+	public fun setMinSdk (I)V
+	public fun setTarget (I)V
+}
+
+public class com/javiersc/hubdle/extensions/kotlin/gradle/KotlinGradleExtension : com/javiersc/hubdle/extensions/DependenciesOptions, com/javiersc/hubdle/extensions/OriginalConfigOptions, com/javiersc/hubdle/extensions/PublishingOptions, com/javiersc/hubdle/extensions/SourceDirectoriesOptions, com/javiersc/hubdle/extensions/kotlin/jvm/KotlinJvmOptions {
+	public fun <init> ()V
+	public fun dependencies (Lorg/gradle/api/Project;Lkotlin/jvm/functions/Function1;)V
+	public fun getSourceSets (Lorg/gradle/api/Project;)Lorg/gradle/api/NamedDomainObjectContainer;
+	public fun getTarget ()I
+	public fun originalConfig (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
+	public fun publishing (Lorg/gradle/api/Project;)V
+	public fun setTarget (I)V
+}
+
+public class com/javiersc/hubdle/extensions/kotlin/jvm/KotlinJvmExtension : com/javiersc/hubdle/extensions/DependenciesOptions, com/javiersc/hubdle/extensions/OriginalConfigOptions, com/javiersc/hubdle/extensions/PublishingOptions, com/javiersc/hubdle/extensions/SourceDirectoriesOptions, com/javiersc/hubdle/extensions/kotlin/jvm/KotlinJvmOptions {
+	public fun <init> ()V
+	public fun dependencies (Lorg/gradle/api/Project;Lkotlin/jvm/functions/Function1;)V
+	public fun getSourceSets (Lorg/gradle/api/Project;)Lorg/gradle/api/NamedDomainObjectContainer;
+	public fun getTarget ()I
+	public fun originalConfig (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
+	public fun publishing (Lorg/gradle/api/Project;)V
+	public fun setTarget (I)V
+}
+
+public abstract interface class com/javiersc/hubdle/extensions/kotlin/jvm/KotlinJvmOptions {
+	public static final field Companion Lcom/javiersc/hubdle/extensions/kotlin/jvm/KotlinJvmOptions$Companion;
+	public static final field DefaultGradleJvmTarget I
+	public static final field DefaultJvmTarget I
+	public abstract fun getTarget ()I
+	public abstract fun setTarget (I)V
+}
+
+public final class com/javiersc/hubdle/extensions/kotlin/jvm/KotlinJvmOptions$Companion {
+	public static final field DefaultGradleJvmTarget I
+	public static final field DefaultJvmTarget I
+}
+
+public class com/javiersc/hubdle/extensions/kotlin/multiplatform/KotlinMultiplatformExtension : com/javiersc/hubdle/extensions/OriginalConfigOptions, com/javiersc/hubdle/extensions/PublishingOptions, com/javiersc/hubdle/extensions/SourceDirectoriesOptions, com/javiersc/hubdle/extensions/kotlin/jvm/KotlinJvmOptions {
+	public fun <init> (Lorg/gradle/api/model/ObjectFactory;)V
+	public final fun android (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)Lcom/javiersc/hubdle/extensions/kotlin/multiplatform/targets/KotlinMultiplatformAndroidExtension;
+	public static synthetic fun android$default (Lcom/javiersc/hubdle/extensions/kotlin/multiplatform/KotlinMultiplatformExtension;Lorg/gradle/api/Project;Lorg/gradle/api/Action;ILjava/lang/Object;)Lcom/javiersc/hubdle/extensions/kotlin/multiplatform/targets/KotlinMultiplatformAndroidExtension;
+	public final fun common (Lorg/gradle/api/Action;)Lcom/javiersc/hubdle/extensions/kotlin/multiplatform/targets/KotlinMultiplatformCommonExtension;
+	public static synthetic fun common$default (Lcom/javiersc/hubdle/extensions/kotlin/multiplatform/KotlinMultiplatformExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)Lcom/javiersc/hubdle/extensions/kotlin/multiplatform/targets/KotlinMultiplatformCommonExtension;
+	public fun getSourceSets (Lorg/gradle/api/Project;)Lorg/gradle/api/NamedDomainObjectContainer;
+	public fun getTarget ()I
+	public final fun jvm (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)Lcom/javiersc/hubdle/extensions/kotlin/multiplatform/targets/KotlinMultiplatformJvmExtension;
+	public static synthetic fun jvm$default (Lcom/javiersc/hubdle/extensions/kotlin/multiplatform/KotlinMultiplatformExtension;Lorg/gradle/api/Project;Lorg/gradle/api/Action;ILjava/lang/Object;)Lcom/javiersc/hubdle/extensions/kotlin/multiplatform/targets/KotlinMultiplatformJvmExtension;
+	public fun originalConfig (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
+	public fun publishing (Lorg/gradle/api/Project;)V
+	public fun setTarget (I)V
+}
+
+public class com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/KotlinMultiplatformAndroidExtension : com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/KotlinMultiplatformTargetOptions {
+	public fun <init> ()V
+	public fun getName ()Ljava/lang/String;
+	public fun main (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
+	public final fun publishAllLibraryVariants (Lorg/gradle/api/Project;)V
+	public final fun publishLibraryVariants (Lorg/gradle/api/Project;[Ljava/lang/String;)V
+	public fun test (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
+}
+
+public class com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/KotlinMultiplatformCommonExtension : com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/KotlinMultiplatformTargetOptions {
+	public fun <init> ()V
+	public fun getName ()Ljava/lang/String;
+	public fun main (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
+	public fun test (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
+}
+
+public class com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/KotlinMultiplatformJvmExtension : com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/KotlinMultiplatformTargetOptions {
+	public fun <init> ()V
+	public fun getName ()Ljava/lang/String;
+	public fun main (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
+	public fun test (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
+}
+
+public abstract interface class com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/KotlinMultiplatformTargetOptions {
+	public abstract fun getName ()Ljava/lang/String;
+	public abstract fun main (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
+	public abstract fun test (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
+}
+
+public final class com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/KotlinMultiplatformTargetOptions$DefaultImpls {
+	public static fun main (Lcom/javiersc/hubdle/extensions/kotlin/multiplatform/targets/KotlinMultiplatformTargetOptions;Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
+	public static synthetic fun main$default (Lcom/javiersc/hubdle/extensions/kotlin/multiplatform/targets/KotlinMultiplatformTargetOptions;Lorg/gradle/api/Project;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+	public static fun test (Lcom/javiersc/hubdle/extensions/kotlin/multiplatform/targets/KotlinMultiplatformTargetOptions;Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
+	public static synthetic fun test$default (Lcom/javiersc/hubdle/extensions/kotlin/multiplatform/targets/KotlinMultiplatformTargetOptions;Lorg/gradle/api/Project;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+}
+
+public class com/javiersc/hubdle/extensions/kotlin/tools/ToolsExtension {
+	public fun <init> (Lorg/gradle/api/model/ObjectFactory;)V
+	public final fun format (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)Lcom/javiersc/hubdle/extensions/kotlin/tools/format/FormatExtension;
+	public static synthetic fun format$default (Lcom/javiersc/hubdle/extensions/kotlin/tools/ToolsExtension;Lorg/gradle/api/Project;Lorg/gradle/api/Action;ILjava/lang/Object;)Lcom/javiersc/hubdle/extensions/kotlin/tools/format/FormatExtension;
+}
+
+public abstract class com/javiersc/hubdle/extensions/kotlin/tools/format/FormatExtension {
+	public fun <init> ()V
+	public final fun getExcludes ()Ljava/util/List;
+	public final fun getIncludes ()Ljava/util/List;
+	public final fun getKtfmtVersion ()Ljava/lang/String;
+	public final fun setKtfmtVersion (Ljava/lang/String;)V
+}
+

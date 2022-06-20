@@ -28,6 +28,13 @@ gradleEnterprise {
     }
 }
 
+include(":hubdle")
+
+include(
+    "subprojects:extensions",
+    "subprojects:properties",
+)
+
 include(":all-plugins")
 
 include(

@@ -1,9 +1,15 @@
 plugins {
-    kotlin("jvm")
-    `javiersc-kotlin-config`
-    application
+    id("com.javiersc.hubdle") version "0.1.1-SNAPSHOT"
 }
 
-application {
-    mainClass.set("com.javiersc.gradle.plugins.sandbox.MainKt")
+hubdle {
+    config {
+        versioning {
+            isEnabled = false
+        }
+    }
+
+    kotlin {
+        jvm()
+    }
 }

@@ -4,7 +4,7 @@ plugins {
     `gradle-enterprise`
 }
 
-rootProject.name = providers.gradleProperty("project.name").forUseAtConfigurationTime().get()
+rootProject.name = providers.gradleProperty("project.name").get()
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
@@ -16,8 +16,8 @@ dependencyResolutionManagement {
     }
 
     versionCatalogs {
-        create("libs") { from(files("gradle/libs.toml")) }
-        create("pluginLibs") { from(files("gradle/pluginLibs.toml")) }
+        create("hubdleLibs") { from(files("gradle/hubdle.libs.versions.toml")) }
+        create("pluginLibs") { from(files("gradle/pluginLibs.versions.toml")) }
     }
 }
 
@@ -28,37 +28,7 @@ gradleEnterprise {
     }
 }
 
-include(":all-plugins")
-
-include(
-    ":plugins:code-enhancers-and-utils:all-projects",
-    ":plugins:code-enhancers-and-utils:code-analysis",
-    ":plugins:code-enhancers-and-utils:code-coverage",
-    ":plugins:code-enhancers-and-utils:code-formatter",
-    ":plugins:code-enhancers-and-utils:dependency-updates",
-    ":plugins:code-enhancers-and-utils:kotlin-config",
-    ":plugins:code-enhancers-and-utils:versioning",
-)
-
-include(
-    ":plugins:documentation:changelog",
-    ":plugins:documentation:docs",
-    ":plugins:documentation:readme-badges",
-)
-
-include(
-    ":plugins:gradle-utils:gradle-wrapper-updater",
-)
-
-include(
-    ":plugins:publish:nexus",
-    ":plugins:publish:publish",
-)
-
-include(
-    ":plugins:version-catalogs:massive-catalogs-updater",
-    ":plugins:version-catalogs:projects-version-catalog",
-)
+include(":hubdle-gradle-plugin")
 
 file("local.properties").apply {
     if (exists().not()) {
@@ -74,9 +44,3 @@ file("local.properties").apply {
         }
     }
 }
-
-include(
-    ":shared:core",
-    ":shared:core-test",
-    ":shared:plugin-accessors",
-)

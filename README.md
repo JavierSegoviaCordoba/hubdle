@@ -6,13 +6,30 @@
 [![Quality](https://img.shields.io/sonar/quality_gate/com.javiersc.gradle-plugins:gradle-plugins?label=Quality&logo=SonarCloud&logoColor=white&server=https%3A%2F%2Fsonarcloud.io)](https://sonarcloud.io/dashboard?id=com.javiersc.gradle-plugins:gradle-plugins)
 [![Tech debt](https://img.shields.io/sonar/tech_debt/com.javiersc.gradle-plugins:gradle-plugins?label=Tech%20debt&logo=SonarCloud&logoColor=white&server=https%3A%2F%2Fsonarcloud.io)](https://sonarcloud.io/dashboard?id=com.javiersc.gradle-plugins:gradle-plugins)
 
-# Gradle Plugins
+# Hubdle
 
-## Usage and docs
+## Usage
 
-Check the usage of each Gradle Plugin by visiting the 
-[Gradle Plugins website](https://gradle-plugins.javiersc.com) and expand the `Projects` dropdown
-menu in the navigation bar.
+```kotlin
+plugins {
+    id("com.javiersc.hubdle") version "$version"
+}
+
+// basic config to get a Kotlin jvm project with coroutines
+hubdle {
+    kotlin {
+        jvm {
+            features {
+                coroutines()
+            }
+        }
+    }
+}
+```
+
+## Configurations
+
+Check [extensions](https://hubdle.javiersc.com/)
 
 ## License
 

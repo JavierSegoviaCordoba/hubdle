@@ -1,9 +1,24 @@
-plugins {
-    kotlin("jvm")
-    `javiersc-kotlin-config`
-    application
+buildscript {
+    dependencies {
+        classpath(pluginLibs.android.toolsBuild.gradle)
+        classpath(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)
+    }
 }
 
-application {
-    mainClass.set("com.javiersc.gradle.plugins.sandbox.MainKt")
+plugins {
+    id("com.javiersc.hubdle") version "0.1.1-SNAPSHOT"
 }
+
+hubdle {
+    config {
+        versioning {
+            isEnabled = false
+        }
+    }
+
+    kotlin {
+        jvm()
+    }
+}
+
+//println(hubdle.config.analysis)

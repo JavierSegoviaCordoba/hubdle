@@ -4,17 +4,21 @@
 
 ### Added
 
+- `hubdle` extension to configure everything without applying convention plugins
+
 ### Changed
+
+- Huge refactor, check the site [hubdle.javiersc.com](https://hubdle.javiersc.com)
 
 ### Deprecated
 
 ### Removed
 
+- All convention plugins to use `com.javiersc.hubdle`
+
 ### Fixed
 
 ### Updated
-
-- `com.javiersc.gradle-plugins:all-plugins -> 0.1.0-rc.45`
 
 ## [0.1.0-rc.45] - 2022-06-18
 
@@ -979,7 +983,7 @@
 ### Changed
 
 - `readme-badges-generator` renamed to `readme-badges`
-- `mainSubProject` property renamed to `readmeBadges.mainProject`
+- `mainSubProject` property renamed to `project.main.name`
 - `shouldGenerateVersionBadgePerProject` renamed to `readmeBadges.allProjects`
 
 ### Fixed

@@ -75,13 +75,7 @@ constructor(
     }
 
     private fun Project.configGradle(action: Action<in KotlinGradleExtension>) {
-        pluginManager.apply(PluginIds.Gradle.javaGradlePlugin)
-        pluginManager.apply(PluginIds.Kotlin.jvm)
         action.execute(this@KotlinExtension.gradle)
-        hubdleState.apply {
-            kotlin.gradle.isEnabled = true
-            kotlin.target = this@KotlinExtension.gradle.target
-        }
     }
 
     private fun Project.configMultiplatform(action: Action<in KotlinMultiplatformExtension>) {

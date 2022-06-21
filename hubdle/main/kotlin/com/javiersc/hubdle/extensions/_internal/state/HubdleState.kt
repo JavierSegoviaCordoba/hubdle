@@ -3,11 +3,12 @@ package com.javiersc.hubdle.extensions._internal.state
 import com.javiersc.hubdle.extensions._internal.state.config.configureVersioning
 import com.javiersc.hubdle.extensions._internal.state.config.documentation.configureChangelog
 import com.javiersc.hubdle.extensions._internal.state.kotlin.configureAndroidLibrary
-import com.javiersc.hubdle.extensions._internal.state.kotlin.configureGradle
 import com.javiersc.hubdle.extensions._internal.state.kotlin.configureJvm
 import com.javiersc.hubdle.extensions._internal.state.kotlin.configureMultiplatform
+import com.javiersc.hubdle.extensions._internal.state.kotlin.gradle.configureGradlePlugin
 import com.javiersc.hubdle.extensions._internal.state.kotlin.tools.configureAnalysis
 import com.javiersc.hubdle.extensions._internal.state.kotlin.tools.configureFormat
+import java.io.File
 import org.gradle.api.Project
 import org.jetbrains.kotlin.gradle.dsl.ExplicitApiMode
 
@@ -92,9 +93,26 @@ internal data class HubdleState(
         }
 
         data class Gradle(
-            override var isEnabled: Boolean = false,
-        ) : Enableable, Configurable {
-            override fun configure(project: Project) = configureGradle(project)
+            val plugin: Plugin = Plugin(),
+            val versionCatalog: VersionCatalog = VersionCatalog(),
+        ) : Configurable {
+
+            override fun configure(project: Project) {
+                plugin.configure(project)
+                versionCatalog.configure(project)
+            }
+
+            data class Plugin(override var isEnabled: Boolean = false) : Enableable, Configurable {
+
+                override fun configure(project: Project) = configureGradlePlugin(project)
+            }
+
+            data class VersionCatalog(
+                override var isEnabled: Boolean = false,
+                val files: MutableList<File> = mutableListOf()
+            ) : Enableable, Configurable {
+                override fun configure(project: Project) = configureVersioning(project)
+            }
         }
 
         data class Jvm(

@@ -21,6 +21,7 @@ internal object PluginIds {
 
     object Gradle {
         const val javaGradlePlugin = "java-gradle-plugin"
+        const val versionCatalog = "org.gradle.version-catalog"
     }
 
     object JavierSC {

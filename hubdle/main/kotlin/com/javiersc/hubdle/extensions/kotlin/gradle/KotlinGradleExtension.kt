@@ -1,63 +1,46 @@
 package com.javiersc.hubdle.extensions.kotlin.gradle
 
-import com.javiersc.hubdle.extensions.GradleDependenciesOptions
-import com.javiersc.hubdle.extensions.PublishingOptions
-import com.javiersc.hubdle.extensions.RawConfigOptions
-import com.javiersc.hubdle.extensions.SourceDirectoriesOptions
 import com.javiersc.hubdle.extensions._internal.PluginIds
 import com.javiersc.hubdle.extensions._internal.state.hubdleState
-import com.javiersc.hubdle.extensions.kotlin.jvm.KotlinJvmOptions
-import com.javiersc.hubdle.extensions.kotlin.jvm.kotlinJvmExtension
+import com.javiersc.hubdle.extensions.kotlin.gradle.plugin.GradlePluginExtension
+import com.javiersc.hubdle.extensions.kotlin.gradle.version.catalog.GradleVersionCatalogExtension
+import javax.inject.Inject
 import org.gradle.api.Action
-import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.Project
-import org.gradle.kotlin.dsl.the
-import org.gradle.plugin.devel.GradlePluginDevelopmentExtension
-import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
-import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
+import org.gradle.api.model.ObjectFactory
+import org.gradle.kotlin.dsl.newInstance
 
-public open class KotlinGradleExtension :
-    KotlinJvmOptions,
-    SourceDirectoriesOptions<KotlinSourceSet>,
-    RawConfigOptions<KotlinJvmProjectAndGradleExtension>,
-    GradleDependenciesOptions,
-    PublishingOptions {
+public open class KotlinGradleExtension
+@Inject
+constructor(
+    objects: ObjectFactory,
+) {
 
-    override fun Project.publishing() {
-        pluginManager.apply(PluginIds.Publishing.mavenPublish)
-        pluginManager.apply(PluginIds.Publishing.signing)
-        pluginManager.apply(PluginIds.Publishing.gradlePluginPublish)
+    private val plugin: GradlePluginExtension = objects.newInstance()
 
-        hubdleState.kotlin.isPublishingEnabled = true
+    public fun Project.plugin(action: Action<GradlePluginExtension> = Action {}) {
+        configPlugin(action)
     }
 
-    override var target: Int = KotlinJvmOptions.DefaultGradleJvmTarget
+    private val versionCatalog: GradleVersionCatalogExtension = objects.newInstance()
 
-    override val Project.sourceSets: NamedDomainObjectContainer<KotlinSourceSet>
-        get() = kotlinJvmExtension.sourceSets
-
-    public fun Project.main(action: Action<KotlinSourceSet> = Action {}) {
-        kotlinJvmExtension.sourceSets.named("main", action::execute)
+    public fun Project.versionCatalog(action: Action<GradleVersionCatalogExtension> = Action {}) {
+        configureVersionCatalog(action)
     }
 
-    public fun Project.test(action: Action<KotlinSourceSet> = Action {}) {
-        kotlinJvmExtension.sourceSets.named("test", action::execute)
+    private fun Project.configPlugin(action: Action<in GradlePluginExtension>) {
+        pluginManager.apply(PluginIds.Gradle.javaGradlePlugin)
+        pluginManager.apply(PluginIds.Kotlin.jvm)
+        action.execute(this@KotlinGradleExtension.plugin)
+        hubdleState.apply {
+            kotlin.gradle.plugin.isEnabled = true
+            kotlin.target = this@KotlinGradleExtension.plugin.target
+        }
     }
 
-    override fun Project.rawConfig(action: Action<KotlinJvmProjectAndGradleExtension>) {
-        project.pluginManager.apply(PluginIds.Kotlin.jvm)
-        project.pluginManager.apply(PluginIds.Gradle.javaGradlePlugin)
-        action.execute(the())
-    }
-}
-
-public class KotlinJvmProjectAndGradleExtension {
-
-    public fun Project.rawKotlinJvm(action: Action<KotlinJvmProjectExtension>) {
-        action.execute(the())
-    }
-
-    public fun Project.rawGradle(action: Action<GradlePluginDevelopmentExtension>) {
-        action.execute(the())
+    private fun Project.configureVersionCatalog(action: Action<in GradleVersionCatalogExtension>) {
+        pluginManager.apply(PluginIds.Gradle.versionCatalog)
+        action.execute(this@KotlinGradleExtension.versionCatalog)
+        hubdleState.apply { kotlin.gradle.versionCatalog.isEnabled = true }
     }
 }

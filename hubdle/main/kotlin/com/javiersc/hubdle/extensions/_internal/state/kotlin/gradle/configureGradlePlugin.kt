@@ -1,8 +1,10 @@
-package com.javiersc.hubdle.extensions._internal.state.kotlin
+package com.javiersc.hubdle.extensions._internal.state.kotlin.gradle
 
 import com.gradle.publish.PluginBundleExtension
 import com.javiersc.hubdle.extensions._internal.PluginIds
 import com.javiersc.hubdle.extensions._internal.state.hubdleState
+import com.javiersc.hubdle.extensions._internal.state.kotlin.configJvmTarget
+import com.javiersc.hubdle.extensions._internal.state.kotlin.configureExplicitApi
 import com.javiersc.hubdle.extensions.configureDefaultJavaSourceSets
 import com.javiersc.hubdle.extensions.configureDefaultKotlinSourceSets
 import com.javiersc.hubdle.extensions.configureJavaJarsForPublishing
@@ -16,8 +18,8 @@ import com.javiersc.hubdle.properties.getProperty
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
 
-internal fun configureGradle(project: Project) {
-    if (hubdleState.kotlin.gradle.isEnabled) {
+internal fun configureGradlePlugin(project: Project) {
+    if (hubdleState.kotlin.gradle.plugin.isEnabled) {
         project.pluginManager.apply(PluginIds.Gradle.javaGradlePlugin)
         project.pluginManager.apply(PluginIds.Kotlin.jvm)
 

@@ -36,6 +36,7 @@ internal object PluginIds {
     object Publishing {
         const val gradlePluginPublish = "com.gradle.plugin-publish"
         const val mavenPublish = "org.gradle.maven-publish"
+        const val nexusPublish = "io.github.gradle-nexus.publish-plugin"
         const val signing = "org.gradle.signing"
     }
 }

@@ -2,6 +2,7 @@ package com.javiersc.hubdle.extensions.config
 
 import com.javiersc.hubdle.extensions._internal.PluginIds
 import com.javiersc.hubdle.extensions._internal.state.hubdleState
+import com.javiersc.hubdle.extensions.config.documentation.DocumentationExtension
 import com.javiersc.hubdle.extensions.config.semver.VersioningExtension
 import javax.inject.Inject
 import org.gradle.api.Action
@@ -14,6 +15,22 @@ public abstract class ConfigExtension
 constructor(
     objects: ObjectFactory,
 ) {
+
+    private val documentation: DocumentationExtension = objects.newInstance()
+
+    public fun Project.documentation(action: Action<in DocumentationExtension> = Action {}) {
+        pluginManager.apply(PluginIds.Documentation.changelog)
+
+        action.execute(documentation)
+
+        hubdleState.config.documentation.changelog.isEnabled = true
+    }
+
+    public fun Project.nexus() {
+        pluginManager.apply(PluginIds.Publishing.nexusPublish)
+
+        hubdleState.config.nexus.isEnabled = true
+    }
 
     private val versioning: VersioningExtension = objects.newInstance()
 

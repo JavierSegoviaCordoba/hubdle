@@ -42,7 +42,6 @@ include(
     ":plugins:code-enhancers-and-utils:code-analysis",
     ":plugins:code-enhancers-and-utils:code-coverage",
     ":plugins:code-enhancers-and-utils:code-formatter",
-    ":plugins:code-enhancers-and-utils:dependency-updates",
     ":plugins:code-enhancers-and-utils:kotlin-config",
     ":plugins:code-enhancers-and-utils:versioning",
 )

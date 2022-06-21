@@ -1,10 +1,13 @@
 package com.javiersc.hubdle.properties
 
 public object PropertyKey {
-    public object Project {
-        public const val group: String = "project.group"
-        public const val name: String = "project.name"
-        public const val version: String = "project.version"
+
+    public object Nexus {
+        public const val nexusUrl: String = "nexus.url"
+        public const val ossStagingProfileId: String = "oss.stagingProfileId"
+        public const val ossToken: String = "oss.token"
+        public const val ossUser: String = "oss.user"
+        public const val snapshotRepositoryUrl: String = "nexus.snapshotRepositoryUrl"
     }
 
     public object POM {
@@ -19,6 +22,12 @@ public object PropertyKey {
         public const val scmUrl: String = "pom.scm.url"
         public const val scmConnection: String = "pom.scm.connection"
         public const val scmDeveloperConnection: String = "pom.scm.developerConnection"
+    }
+
+    public object Project {
+        public const val group: String = "project.group"
+        public const val name: String = "project.name"
+        public const val version: String = "project.version"
     }
 
     public object Signing {

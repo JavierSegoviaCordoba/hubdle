@@ -1,5 +1,6 @@
 package com.javiersc.hubdle.extensions._internal.state
 
+import com.javiersc.hubdle.extensions._internal.state.config.configureNexus
 import com.javiersc.hubdle.extensions._internal.state.config.configureVersioning
 import com.javiersc.hubdle.extensions._internal.state.config.documentation.configureChangelog
 import com.javiersc.hubdle.extensions._internal.state.kotlin.configureAndroidLibrary
@@ -26,11 +27,13 @@ internal data class HubdleState(
 
     data class Config(
         val documentation: Documentation = Documentation(),
+        val nexus: Nexus = Nexus(),
         val versioning: Versioning = Versioning(),
     ) : Configurable {
 
         override fun configure(project: Project) {
             documentation.configure(project)
+            nexus.configure(project)
             versioning.configure(project)
         }
 
@@ -45,6 +48,12 @@ internal data class HubdleState(
             ) : Enableable, Configurable {
                 override fun configure(project: Project) = configureChangelog(project)
             }
+        }
+
+        data class Nexus(
+            override var isEnabled: Boolean = false,
+        ) : Enableable, Configurable {
+            override fun configure(project: Project) = configureNexus(project)
         }
 
         data class Versioning(

@@ -43,6 +43,7 @@ dependencies {
     implementation(libs.javiersc.kotlin.kotlinStdlib)
     implementation(pluginLibs.android.toolsBuild.gradle)
     implementation(pluginLibs.diffplug.spotless.spotlessPluginGradle)
+    implementation(pluginLibs.github.gradleNexus.publishPlugin)
     implementation(pluginLibs.gitlab.arturboschDetekt.detektGradlePlugin)
     implementation(pluginLibs.gradle.publish.pluginPublishPlugin)
     implementation(pluginLibs.javiersc.semver.semverGradlePlugin)

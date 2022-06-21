@@ -1,4 +1,4 @@
-@file:OptIn(ExperimentalStdlibApi::class, ExperimentalStdlibApi::class)
+@file:OptIn(ExperimentalStdlibApi::class)
 
 package com.javiersc.hubdle.extensions.config.documentation.changelog.tasks
 

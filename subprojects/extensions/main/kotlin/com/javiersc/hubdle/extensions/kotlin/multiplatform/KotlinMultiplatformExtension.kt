@@ -4,9 +4,8 @@ import com.android.build.api.dsl.LibraryExtension
 import com.javiersc.hubdle.extensions.OriginalConfigOptions
 import com.javiersc.hubdle.extensions.PublishingOptions
 import com.javiersc.hubdle.extensions.SourceDirectoriesOptions
-import com.javiersc.hubdle.extensions.configurePublishingExtension
-import com.javiersc.hubdle.extensions.configureSigningForPublishing
-import com.javiersc.hubdle.extensions.internal.PluginIds
+import com.javiersc.hubdle.extensions._internal.PluginIds
+import com.javiersc.hubdle.extensions._internal.state.hubdleState
 import com.javiersc.hubdle.extensions.kotlin.jvm.KotlinJvmOptions
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.KotlinMultiplatformAndroidExtension
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.KotlinMultiplatformCommonExtension
@@ -36,8 +35,8 @@ constructor(
     override fun Project.publishing() {
         pluginManager.apply(PluginIds.Publishing.mavenPublish)
         pluginManager.apply(PluginIds.Publishing.signing)
-        configurePublishingExtension()
-        configureSigningForPublishing()
+
+        hubdleState.kotlin.isPublishingEnabled = true
     }
 
     override var target: Int = KotlinJvmOptions.DefaultJvmTarget

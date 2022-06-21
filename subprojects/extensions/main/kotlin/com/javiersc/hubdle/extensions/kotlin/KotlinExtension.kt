@@ -1,15 +1,10 @@
 package com.javiersc.hubdle.extensions.kotlin
 
-import com.javiersc.hubdle.extensions.configureDefaultJavaSourceSets
-import com.javiersc.hubdle.extensions.configureDefaultKotlinSourceSets
-import com.javiersc.hubdle.extensions.internal.Kotlin
-import com.javiersc.hubdle.extensions.internal.PluginIds
-import com.javiersc.hubdle.extensions.internal.extensionTracker
+import com.javiersc.hubdle.extensions._internal.PluginIds
+import com.javiersc.hubdle.extensions._internal.state.hubdleState
 import com.javiersc.hubdle.extensions.kotlin.android.AndroidExtension
 import com.javiersc.hubdle.extensions.kotlin.gradle.KotlinGradleExtension
 import com.javiersc.hubdle.extensions.kotlin.jvm.KotlinJvmExtension
-import com.javiersc.hubdle.extensions.kotlin.jvm.configJvmTarget
-import com.javiersc.hubdle.extensions.kotlin.jvm.javaExtension
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.KotlinMultiplatformExtension
 import com.javiersc.hubdle.extensions.kotlin.tools.ToolsExtension
 import javax.inject.Inject
@@ -20,7 +15,6 @@ import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.newInstance
 import org.jetbrains.kotlin.gradle.dsl.ExplicitApiMode
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
-import org.jetbrains.kotlin.gradle.dsl.kotlinExtension
 
 public abstract class KotlinExtension
 @Inject
@@ -28,113 +22,77 @@ constructor(
     objects: ObjectFactory,
 ) {
 
-    private var explicitApiMode: ExplicitApiMode = ExplicitApiMode.Disabled
-
     public fun explicitApi(explicitApiMode: ExplicitApiMode = ExplicitApiMode.Strict) {
-        this@KotlinExtension.explicitApiMode = explicitApiMode
+        hubdleState.kotlin.explicitApiMode = explicitApiMode
     }
 
     private val tools: ToolsExtension = objects.newInstance()
 
-    public fun tools(
-        action: Action<in ToolsExtension> = Action {},
-    ): ToolsExtension = configTools(action)
+    public fun tools(action: Action<in ToolsExtension> = Action {}) {
+        configTools(action)
+    }
 
     private val android: AndroidExtension = objects.newInstance()
 
-    public fun android(
-        action: Action<in AndroidExtension> = Action {},
-    ): AndroidExtension = configAndroid(action)
+    private fun android(action: Action<in AndroidExtension> = Action {}) {
+        configAndroid(action)
+    }
 
     private val gradle: KotlinGradleExtension = objects.newInstance()
 
-    public fun Project.gradle(
-        action: Action<in KotlinGradleExtension> = Action {},
-    ): KotlinGradleExtension = configGradle(action)
+    public fun Project.gradle(action: Action<in KotlinGradleExtension> = Action {}) {
+        configGradle(action)
+    }
 
     private val jvm: KotlinJvmExtension = objects.newInstance()
 
-    public fun Project.jvm(
-        action: Action<in KotlinJvmExtension> = Action {},
-    ): KotlinJvmExtension = configJvm(action)
+    public fun Project.jvm(action: Action<in KotlinJvmExtension> = Action {}) {
+        configJvm(action)
+    }
 
     private val multiplatform: KotlinMultiplatformExtension = objects.newInstance()
 
-    public fun Project.multiplatform(
-        action: Action<in KotlinMultiplatformExtension> = Action {},
-    ): KotlinMultiplatformExtension = configMultiplatform(action)
+    public fun Project.multiplatform(action: Action<in KotlinMultiplatformExtension> = Action {}) {
+        configMultiplatform(action)
+    }
 
     // Configurations
-    private fun configTools(action: Action<in ToolsExtension>): ToolsExtension {
+    private fun configTools(action: Action<in ToolsExtension>) {
         action.execute(tools)
-        return tools
     }
 
-    private fun configAndroid(action: Action<in AndroidExtension>): AndroidExtension {
+    private fun configAndroid(action: Action<in AndroidExtension>) {
         action.execute(android)
-
-        return android
     }
 
-    private fun Project.configJvm(action: Action<in KotlinJvmExtension>): KotlinJvmExtension {
+    private fun Project.configJvm(action: Action<in KotlinJvmExtension>) {
         pluginManager.apply(PluginIds.Kotlin.jvm)
-
-        extensionTracker.put(Kotlin.JVM)
-
         action.execute(jvm)
-
-        configureExplicitApi()
-
-        configJvmTarget(jvm)
-
-        javaExtension.configureDefaultJavaSourceSets()
-        kotlinExtension.configureDefaultKotlinSourceSets()
-
-        return jvm
+        hubdleState.apply {
+            kotlin.jvm.isEnabled = true
+            kotlin.target = jvm.target
+        }
     }
 
-    private fun Project.configGradle(
-        action: Action<in KotlinGradleExtension>
-    ): KotlinGradleExtension {
-        pluginManager.apply(PluginIds.Kotlin.dsl)
-
-        extensionTracker.put(Kotlin.Gradle)
-
+    private fun Project.configGradle(action: Action<in KotlinGradleExtension>) {
+        pluginManager.apply(PluginIds.Gradle.javaGradlePlugin)
+        pluginManager.apply(PluginIds.Kotlin.jvm)
         action.execute(this@KotlinExtension.gradle)
-
-        configureExplicitApi()
-
-        configJvmTarget(this@KotlinExtension.gradle)
-
-        javaExtension.configureDefaultJavaSourceSets()
-        kotlinExtension.configureDefaultKotlinSourceSets()
-
-        return this@KotlinExtension.gradle
+        hubdleState.apply {
+            kotlin.gradle.isEnabled = true
+            kotlin.target = this@KotlinExtension.gradle.target
+        }
     }
 
-    private fun Project.configMultiplatform(
-        action: Action<in KotlinMultiplatformExtension>,
-    ): KotlinMultiplatformExtension {
+    private fun Project.configMultiplatform(action: Action<in KotlinMultiplatformExtension>) {
         project.pluginManager.apply(PluginIds.Kotlin.multiplatform)
-
-        extensionTracker.put(Kotlin.Multiplatform)
-
         action.execute(multiplatform)
-
-        configureExplicitApi()
-
-        configJvmTarget(multiplatform)
-
-        javaExtension.configureDefaultJavaSourceSets()
-        kotlinExtension.configureDefaultKotlinSourceSets()
-
-        return multiplatform
-    }
-
-    private fun Project.configureExplicitApi() {
-        kotlinExtension.explicitApi = this@KotlinExtension.explicitApiMode
+        hubdleState.apply {
+            kotlin.multiplatform.isEnabled = true
+            kotlin.target = this@KotlinExtension.multiplatform.target
+        }
     }
 }
 
-private val Project.kotlinExtension: KotlinProjectExtension
+internal val Project.kotlinExtension: KotlinProjectExtension
     get() = project.extensions.getByType()

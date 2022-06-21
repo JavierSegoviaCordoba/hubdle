@@ -13,11 +13,9 @@ dependencies {
     implementation(gradleApi())
     implementation(gradleKotlinDsl())
 
-    api(projects.subprojects.configurationAccessors)
     api(projects.subprojects.properties)
     api(libs.javiersc.semver.semverCore)
 
-    implementation(libs.javiersc.gradleExtensions.gradleExt)
     implementation(libs.javiersc.kotlin.kotlinStdlib)
     implementation(pluginLibs.android.toolsBuild.gradle)
     implementation(pluginLibs.diffplug.spotless.spotlessPluginGradle)

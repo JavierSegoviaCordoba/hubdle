@@ -31,6 +31,7 @@ val testPluginClasspath: Configuration by configurations.creating
 dependencies {
     api(projects.shared.pluginAccessors)
     api(projects.shared.core)
+    api(projects.subprojects.extensions)
     api(projects.subprojects.properties)
 
 
@@ -38,8 +39,6 @@ dependencies {
     implementation(gradleApi())
     implementation(gradleKotlinDsl())
     implementation(libs.javiersc.kotlin.kotlinStdlib)
-
-    implementation(projects.subprojects.extensions)
 
     implementation(pluginLibs.android.toolsBuild.gradle)
     implementation(pluginLibs.github.tripletGradle.playPublisher)

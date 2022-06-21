@@ -1,4 +1,4 @@
-package com.javiersc.hubdle.extensions.internal
+package com.javiersc.hubdle.extensions._internal
 
 internal object PluginIds {
 
@@ -10,12 +10,15 @@ internal object PluginIds {
         const val spotless = "com.diffplug.spotless"
     }
 
+    object Gradle {
+        const val javaGradlePlugin = "java-gradle-plugin"
+    }
+
     object JavierSC {
         const val semver = "com.javiersc.semver.gradle.plugin"
     }
 
     object Kotlin {
-        const val dsl = "org.gradle.kotlin.kotlin-dsl"
         const val jvm = "org.jetbrains.kotlin.jvm"
         const val multiplatform = "org.jetbrains.kotlin.multiplatform"
     }

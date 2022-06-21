@@ -27,4 +27,11 @@ public object PropertyKey {
         public const val gnupgPassphrase: String = "signing.gnupg.passphrase"
         public const val keyId: String = "signing.keyId"
     }
+
+    public object Sonar {
+        public const val projectKey: String = "codeAnalysis.sonar.projectKey"
+        public const val login: String = "codeAnalysis.sonar.login"
+        public const val hostUrl: String = "codeAnalysis.sonar.host.url"
+        public const val organization: String = "codeAnalysis.sonar.organization"
+    }
 }

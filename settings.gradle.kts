@@ -32,7 +32,6 @@ include(":hubdle")
 
 include(
     "subprojects:configuration-accessors",
-    "subprojects:extensions",
     "subprojects:properties",
 )
 

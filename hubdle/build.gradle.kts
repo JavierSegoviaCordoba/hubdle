@@ -6,7 +6,9 @@ plugins {
     `javiersc-publish`
 }
 
-kotlin { explicitApi() }
+kotlin {
+    explicitApi()
+}
 
 pluginBundle {
     tags =
@@ -31,20 +33,22 @@ val testPluginClasspath: Configuration by configurations.creating
 dependencies {
     api(projects.shared.pluginAccessors)
     api(projects.shared.core)
-    api(projects.subprojects.extensions)
+    api(projects.subprojects.configurationAccessors)
     api(projects.subprojects.properties)
-
-
 
     implementation(gradleApi())
     implementation(gradleKotlinDsl())
+    implementation(libs.eclipse.jgit)
+    implementation(libs.javiersc.gradleExtensions.gradleExt)
     implementation(libs.javiersc.kotlin.kotlinStdlib)
-
     implementation(pluginLibs.android.toolsBuild.gradle)
-    implementation(pluginLibs.github.tripletGradle.playPublisher)
+    implementation(pluginLibs.diffplug.spotless.spotlessPluginGradle)
+    implementation(pluginLibs.gitlab.arturboschDetekt.detektGradlePlugin)
     implementation(pluginLibs.gradle.publish.pluginPublishPlugin)
-    implementation(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)
     implementation(pluginLibs.javiersc.semver.semverGradlePlugin)
+    implementation(pluginLibs.jetbrains.intellijPlugins.gradleChangelogPlugin)
+    implementation(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)
+    implementation(pluginLibs.sonarqube.scannerGradle.sonarqubeGradlePlugin)
 
     testImplementation(gradleTestKit())
     testImplementation(projects.shared.coreTest)

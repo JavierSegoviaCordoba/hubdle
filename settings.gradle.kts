@@ -62,11 +62,6 @@ include(
     ":plugins:publish:publish",
 )
 
-include(
-    ":plugins:version-catalogs:massive-catalogs-updater",
-    ":plugins:version-catalogs:projects-version-catalog",
-)
-
 file("local.properties").apply {
     if (exists().not()) {
         createNewFile()

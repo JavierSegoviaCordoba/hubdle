@@ -54,10 +54,6 @@ include(
 )
 
 include(
-    ":plugins:gradle-utils:gradle-wrapper-updater",
-)
-
-include(
     ":plugins:publish:nexus",
     ":plugins:publish:publish",
 )

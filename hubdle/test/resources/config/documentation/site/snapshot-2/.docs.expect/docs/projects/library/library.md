@@ -1,0 +1,3 @@
+# Module library
+
+Sandbox `library`

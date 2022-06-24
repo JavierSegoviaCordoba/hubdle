@@ -11,7 +11,6 @@ class GetPropertyTest {
     @Test
     fun `Property to snake case`() {
         Project.group.toSnakeCase().shouldBe("PROJECT_GROUP")
-        Project.name.toSnakeCase().shouldBe("PROJECT_NAME")
         Project.version.toSnakeCase().shouldBe("PROJECT_VERSION")
 
         POM.name.toSnakeCase().shouldBe("POM_NAME")

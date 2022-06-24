@@ -1,19 +1,22 @@
 package com.javiersc.hubdle.extensions.kotlin.multiplatform.targets
 
-import com.javiersc.hubdle.extensions.kotlin.multiplatform.kotlinMultiplatformExtension
+import com.javiersc.hubdle.extensions.kotlin.MainAndTestKotlinSourceSetsOptions
 import org.gradle.api.Action
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.the
+import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 
-public interface KotlinMultiplatformTargetOptions {
+public interface KotlinMultiplatformTargetOptions :
+    MainAndTestKotlinSourceSetsOptions<KotlinSourceSet> {
 
     public val name: String
 
-    public fun Project.main(action: Action<KotlinSourceSet> = Action {}) {
-        kotlinMultiplatformExtension.sourceSets.named("${name}Main", action::execute)
+    override fun Project.main(action: Action<KotlinSourceSet>) {
+        the<KotlinMultiplatformExtension>().sourceSets.named("${name}Main", action::execute)
     }
 
-    public fun Project.test(action: Action<KotlinSourceSet> = Action {}) {
-        kotlinMultiplatformExtension.sourceSets.named("${name}Test", action::execute)
+    override fun Project.test(action: Action<KotlinSourceSet>) {
+        the<KotlinMultiplatformExtension>().sourceSets.named("${name}Test", action::execute)
     }
 }

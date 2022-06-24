@@ -2,21 +2,21 @@ package com.javiersc.hubdle.extensions._internal.state.kotlin.tools
 
 import com.javiersc.hubdle.extensions._internal.PluginIds
 import com.javiersc.hubdle.extensions._internal.state.hubdleState
-import com.javiersc.hubdle.properties.PropertyKey
+import com.javiersc.hubdle.properties.PropertyKey.Sonar
 import com.javiersc.hubdle.properties.getProperty
 import com.javiersc.hubdle.properties.getPropertyOrNull
 import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.extensions.DetektExtension
 import java.io.File
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.findByType
-import org.gradle.kotlin.dsl.the
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 import org.sonarqube.gradle.SonarQubeExtension
 
 internal fun configureAnalysis(project: Project) {
-    if (hubdleState.kotlin.tools.analysis.isEnabled) {
+    if (project.hubdleState.kotlin.tools.analysis.isEnabled) {
         configureDetekt(project)
         configureSonarqube(project)
     }
@@ -25,12 +25,17 @@ internal fun configureAnalysis(project: Project) {
 private fun configureDetekt(project: Project) {
     project.pluginManager.apply(PluginIds.Analysis.detekt)
 
-    with(hubdleState.kotlin.tools) {
+    with(project.hubdleState.kotlin.tools) {
         project.extensions.findByType<DetektExtension>()?.apply {
             parallel = true
             isIgnoreFailures = analysis.isIgnoreFailures
             buildUponDefaultConfig = true
             basePath = project.rootProject.projectDir.path
+        }
+
+        project.tasks.register("checkAnalysis").configure {
+            it.group = "verification"
+            it.dependsOn("detekt")
         }
 
         project.tasks.withType<Detekt>().configureEach { detekt ->
@@ -51,22 +56,21 @@ private fun configureDetekt(project: Project) {
 private fun configureSonarqube(project: Project) {
     project.pluginManager.apply(PluginIds.Analysis.sonarqube)
 
-    project.the<SonarQubeExtension>().apply {
+    project.configure<SonarQubeExtension>() {
         properties { props ->
             props.property(
                 "sonar.projectKey",
-                project.getPropertyOrNull(PropertyKey.Sonar.projectKey)
-                    ?: "${project.group}:${project.properties["project.name"]}"
+                project.getPropertyOrNull(Sonar.projectKey) ?: "${project.group}:${project.name}"
             )
-            props.property("sonar.login", project.getProperty(PropertyKey.Sonar.login))
+            props.property("sonar.login", project.getProperty(Sonar.login))
             props.property(
                 "sonar.host.url",
-                project.getPropertyOrNull(PropertyKey.Sonar.hostUrl) ?: "https://sonarcloud.io"
+                project.getPropertyOrNull(Sonar.hostUrl) ?: "https://sonarcloud.io"
             )
 
             props.property(
                 "sonar.organization",
-                project.getPropertyOrNull(PropertyKey.Sonar.organization) ?: ""
+                project.getPropertyOrNull(Sonar.organization) ?: ""
             )
             props.property(
                 "sonar.kotlin.detekt.reportPaths",

@@ -29,7 +29,7 @@ dependencyResolutionManagement {
 
     versionCatalogs {
         create("pluginLibs") {
-            from(files("../gradle/pluginLibs.toml"))
+            from(files("../gradle/pluginLibs.versions.toml"))
             version("javierscGradlePlugins", "0.1.0-rc.2")
         }
     }

@@ -1,5 +1,6 @@
 package com.javiersc.hubdle.extensions.kotlin.tools
 
+import com.javiersc.hubdle.extensions.HubdleDslMarker
 import com.javiersc.hubdle.extensions._internal.PluginIds
 import com.javiersc.hubdle.extensions._internal.state.hubdleState
 import com.javiersc.hubdle.extensions.kotlin.tools.analysis.AnalysisExtension
@@ -9,7 +10,9 @@ import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.model.ObjectFactory
 import org.gradle.kotlin.dsl.newInstance
+import org.jetbrains.kotlin.gradle.dsl.ExplicitApiMode
 
+@HubdleDslMarker
 public open class ToolsExtension
 @Inject
 constructor(
@@ -18,12 +21,22 @@ constructor(
 
     private val analysis: AnalysisExtension = objects.newInstance()
 
+    @HubdleDslMarker
     public fun Project.analysis(action: Action<AnalysisExtension> = Action {}) {
         return configAnalysis(action)
     }
 
+    public fun Project.binaryCompatibilityValidator() {
+        hubdleState.kotlin.tools.binaryCompatibilityValidator = true
+    }
+
+    public fun Project.explicitApi(explicitApiMode: ExplicitApiMode = ExplicitApiMode.Strict) {
+        hubdleState.kotlin.tools.explicitApiMode = explicitApiMode
+    }
+
     private val format: FormatExtension = objects.newInstance()
 
+    @HubdleDslMarker
     public fun Project.format(action: Action<FormatExtension> = Action {}) {
         return configFormat(action)
     }

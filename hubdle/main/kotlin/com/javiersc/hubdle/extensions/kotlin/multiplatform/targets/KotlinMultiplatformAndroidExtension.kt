@@ -1,6 +1,6 @@
 package com.javiersc.hubdle.extensions.kotlin.multiplatform.targets
 
-import com.javiersc.hubdle.extensions.kotlin.multiplatform.kotlinMultiplatformExtension
+import com.javiersc.hubdle.extensions._internal.state.hubdleState
 import org.gradle.api.Project
 
 public open class KotlinMultiplatformAndroidExtension : KotlinMultiplatformTargetOptions {
@@ -8,10 +8,10 @@ public open class KotlinMultiplatformAndroidExtension : KotlinMultiplatformTarge
     public override val name: String = "android"
 
     public fun Project.publishLibraryVariants(vararg names: String) {
-        kotlinMultiplatformExtension.android { publishLibraryVariants(*names) }
+        hubdleState.kotlin.multiplatform.android.publishLibraryVariants += names
     }
 
     public fun Project.publishAllLibraryVariants() {
-        kotlinMultiplatformExtension.android { publishAllLibraryVariants() }
+        hubdleState.kotlin.multiplatform.android.allLibraryVariants = true
     }
 }

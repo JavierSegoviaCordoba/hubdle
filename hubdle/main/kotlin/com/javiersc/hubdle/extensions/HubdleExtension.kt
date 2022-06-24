@@ -7,6 +7,7 @@ import org.gradle.api.Action
 import org.gradle.api.model.ObjectFactory
 import org.gradle.kotlin.dsl.newInstance
 
+@HubdleDslMarker
 public abstract class HubdleExtension @Inject constructor(objects: ObjectFactory) {
 
     private val config: ConfigExtension = objects.newInstance()

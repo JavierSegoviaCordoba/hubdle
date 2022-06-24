@@ -1,9 +1,10 @@
 package com.javiersc.hubdle.extensions.kotlin.android
 
-import com.javiersc.hubdle.extensions.RawConfigOptions
+import com.javiersc.hubdle.extensions.HubdleDslMarker
 import com.javiersc.hubdle.extensions._internal.PluginIds
 import com.javiersc.hubdle.extensions._internal.state.hubdleState
 import com.javiersc.hubdle.extensions.kotlin.android.library.AndroidLibraryExtension
+import com.javiersc.hubdle.extensions.options.RawConfigOptions
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
@@ -12,6 +13,7 @@ import org.gradle.kotlin.dsl.newInstance
 import org.gradle.kotlin.dsl.the
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 
+@HubdleDslMarker
 public abstract class AndroidExtension
 @Inject
 constructor(

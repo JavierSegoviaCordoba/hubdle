@@ -3,29 +3,33 @@ package com.javiersc.hubdle.extensions._internal.state.kotlin
 import com.android.build.gradle.LibraryExtension
 import com.javiersc.hubdle.extensions._internal.PluginIds
 import com.javiersc.hubdle.extensions._internal.state.hubdleState
-import com.javiersc.hubdle.extensions.configDefaultAndroidSourceSets
-import com.javiersc.hubdle.extensions.configureJavaJarsForAndroidPublishing
-import com.javiersc.hubdle.extensions.configureMavenPublication
-import com.javiersc.hubdle.extensions.configurePublishingExtension
-import com.javiersc.hubdle.extensions.configureSigningForPublishing
+import com.javiersc.hubdle.extensions._internal.state.kotlin.tools.configureBinaryCompatibilityValidator
+import com.javiersc.hubdle.extensions._internal.state.kotlin.tools.configureExplicitApi
+import com.javiersc.hubdle.extensions.options.configDefaultAndroidSourceSets
+import com.javiersc.hubdle.extensions.options.configureJavaJarsForAndroidPublishing
+import com.javiersc.hubdle.extensions.options.configureMavenPublication
+import com.javiersc.hubdle.extensions.options.configurePublishingExtension
+import com.javiersc.hubdle.extensions.options.configureSigningForPublishing
 import org.gradle.api.Project
-import org.gradle.kotlin.dsl.the
+import org.gradle.kotlin.dsl.configure
 
 internal fun configureAndroidLibrary(project: Project) {
-    if (hubdleState.kotlin.android.library.isEnabled) {
+    if (project.hubdleState.kotlin.android.library.isEnabled) {
         project.pluginManager.apply(PluginIds.Kotlin.jvm)
         project.pluginManager.apply(PluginIds.Android.library)
 
+        project.configureBinaryCompatibilityValidator()
+        project.configureExplicitApi()
         project.configJvmTarget()
 
-        project.the<LibraryExtension>().apply {
-            compileSdk = hubdleState.kotlin.android.compileSdk
-            defaultConfig.minSdk = hubdleState.kotlin.android.minSdk
+        project.configure<LibraryExtension>() {
+            compileSdk = project.hubdleState.kotlin.android.compileSdk
+            defaultConfig.minSdk = project.hubdleState.kotlin.android.minSdk
 
             sourceSets.all { it.configDefaultAndroidSourceSets() }
         }
 
-        if (hubdleState.kotlin.isPublishingEnabled) {
+        if (project.hubdleState.kotlin.isPublishingEnabled) {
             project.pluginManager.apply(PluginIds.Publishing.mavenPublish)
             project.pluginManager.apply(PluginIds.Publishing.signing)
             project.configurePublishingExtension()

@@ -14,38 +14,36 @@ internal fun configureFormat(project: Project) {
 }
 
 private fun configureFormatForProject(project: Project) {
-    val format = hubdleState.kotlin.tools.format
+    val format = project.hubdleState.kotlin.tools.format
 
     if (format.isEnabled) {
         project.pluginManager.apply(PluginIds.Format.spotless)
 
-        project.tasks.register("formatCheck").configure {
+        project.tasks.register("checkFormat").configure {
             it.group = "verification"
             it.dependsOn("spotlessCheck")
-            it.dependsOn("formatKotlinCheck")
         }
 
-        project.tasks.register("formatApply").configure {
+        project.tasks.register("applyFormat").configure {
             it.group = "verification"
             it.dependsOn("spotlessApply")
-            it.dependsOn("formatKotlinApply")
         }
 
-        project.tasks.register("formatKotlinCheck").configure {
+        project.tasks.register("checkKotlinFormat").configure {
             it.group = "verification"
             it.dependsOn("spotlessKotlinCheck")
         }
 
-        project.tasks.register("formatKotlinApply").configure {
+        project.tasks.register("applyKotlinFormat").configure {
             it.group = "verification"
             it.dependsOn("spotlessKotlinApply")
         }
 
         project.configure<SpotlessExtension> {
-            kotlin { kotlinExtension ->
-                kotlinExtension.target(format.includes)
-                kotlinExtension.targetExclude(format.excludes)
-                kotlinExtension.ktfmt(format.ktfmtVersion).kotlinlangStyle()
+            kotlin {
+                it.target(format.includes)
+                it.targetExclude(format.excludes)
+                it.ktfmt(format.ktfmtVersion).kotlinlangStyle()
             }
         }
     }

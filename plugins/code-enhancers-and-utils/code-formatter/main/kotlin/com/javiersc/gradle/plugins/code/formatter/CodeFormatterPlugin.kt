@@ -36,18 +36,18 @@ abstract class CodeFormatterPlugin : Plugin<Project> {
                     project.pluginManager.apply("com.diffplug.spotless")
 
                     project.extensions.findByType<SpotlessExtension>()?.apply {
-                        kotlin { kotlinExtension ->
-                            kotlinExtension.target(
+                        kotlin {
+                            it.target(
                                 "*/kotlin/**/*.kt",
                                 "src/*/kotlin/**/*.kt",
                             )
-                            kotlinExtension.targetExclude(
+                            it.targetExclude(
                                 "*/resources/**/*.kt",
                                 "src/*/resources/**/*.kt",
                                 "**/build/**",
                                 "**/.gradle/**",
                             )
-                            kotlinExtension.ktfmt(KTFMT_VERSION).kotlinlangStyle()
+                            it.ktfmt(KTFMT_VERSION).kotlinlangStyle()
                         }
                     }
                 }

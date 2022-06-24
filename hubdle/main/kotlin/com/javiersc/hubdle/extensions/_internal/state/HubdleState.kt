@@ -3,17 +3,30 @@ package com.javiersc.hubdle.extensions._internal.state
 import com.javiersc.hubdle.extensions._internal.state.config.configureNexus
 import com.javiersc.hubdle.extensions._internal.state.config.configureVersioning
 import com.javiersc.hubdle.extensions._internal.state.config.documentation.configureChangelog
+import com.javiersc.hubdle.extensions._internal.state.config.documentation.configureReadmeBadges
+import com.javiersc.hubdle.extensions._internal.state.config.documentation.configureSite
 import com.javiersc.hubdle.extensions._internal.state.kotlin.configureAndroidLibrary
 import com.javiersc.hubdle.extensions._internal.state.kotlin.configureJvm
 import com.javiersc.hubdle.extensions._internal.state.kotlin.configureMultiplatform
+import com.javiersc.hubdle.extensions._internal.state.kotlin.configureMultiplatformAndroid
+import com.javiersc.hubdle.extensions._internal.state.kotlin.configureMultiplatformJvm
 import com.javiersc.hubdle.extensions._internal.state.kotlin.gradle.configureGradlePlugin
+import com.javiersc.hubdle.extensions._internal.state.kotlin.gradle.configureGradleVersionCatalog
 import com.javiersc.hubdle.extensions._internal.state.kotlin.tools.configureAnalysis
 import com.javiersc.hubdle.extensions._internal.state.kotlin.tools.configureFormat
 import java.io.File
 import org.gradle.api.Project
 import org.jetbrains.kotlin.gradle.dsl.ExplicitApiMode
 
-internal val hubdleState = HubdleState()
+private val hubdleStateCache: MutableMap<Project, HubdleState> = mutableMapOf()
+
+internal val Project.hubdleState: HubdleState
+    get() {
+        if (hubdleStateCache[this] == null) hubdleStateCache[this] = HubdleState()
+        return checkNotNull(hubdleStateCache[this]) {
+            "HubdleState for the project $path doesn't exist"
+        }
+    }
 
 internal data class HubdleState(
     val config: Config = Config(),
@@ -37,16 +50,50 @@ internal data class HubdleState(
             versioning.configure(project)
         }
 
-        data class Documentation(val changelog: Changelog = Changelog()) : Configurable {
+        data class Documentation(
+            val changelog: Changelog = Changelog(),
+            val readmeBadges: ReadmeBadges = ReadmeBadges(),
+            val site: Site = Site()
+        ) : Configurable {
 
             override fun configure(project: Project) {
                 changelog.configure(project)
+                readmeBadges.configure(project)
+                site.configure(project)
             }
 
             data class Changelog(
                 override var isEnabled: Boolean = false,
             ) : Enableable, Configurable {
                 override fun configure(project: Project) = configureChangelog(project)
+            }
+
+            data class ReadmeBadges(
+                override var isEnabled: Boolean = false,
+                var kotlin: Boolean = true,
+                var mavenCentral: Boolean = true,
+                var snapshots: Boolean = true,
+                var build: Boolean = true,
+                var coverage: Boolean = true,
+                var quality: Boolean = true,
+                var techDebt: Boolean = true,
+            ) : Enableable, Configurable {
+                override fun configure(project: Project) = configureReadmeBadges(project)
+            }
+
+            data class Site(
+                override var isEnabled: Boolean = false,
+                val reports: Reports = Reports(),
+            ) : Enableable, Configurable {
+
+                override fun configure(project: Project) = configureSite(project)
+
+                data class Reports(
+                    var allTests: Boolean = true,
+                    var codeAnalysis: Boolean = true,
+                    var codeCoverage: Boolean = true,
+                    var codeQuality: Boolean = true,
+                )
             }
         }
 
@@ -66,7 +113,6 @@ internal data class HubdleState(
 
     data class Kotlin(
         val android: Android = Android(),
-        var explicitApiMode: ExplicitApiMode = ExplicitApiMode.Disabled,
         val gradle: Gradle = Gradle(),
         var isPublishingEnabled: Boolean = false,
         val jvm: Jvm = Jvm(),
@@ -120,7 +166,7 @@ internal data class HubdleState(
                 override var isEnabled: Boolean = false,
                 val files: MutableList<File> = mutableListOf()
             ) : Enableable, Configurable {
-                override fun configure(project: Project) = configureVersioning(project)
+                override fun configure(project: Project) = configureGradleVersionCatalog(project)
             }
         }
 
@@ -132,16 +178,42 @@ internal data class HubdleState(
 
         data class Multiplatform(
             override var isEnabled: Boolean = false,
+            var android: Android = Android(),
+            var jvm: Jvm = Jvm(),
         ) : Enableable, Configurable {
-            override fun configure(project: Project) = configureMultiplatform(project)
+
+            override fun configure(project: Project) {
+                configureMultiplatform(project)
+                android.configure(project)
+                jvm.configure(project)
+            }
+
+            data class Android(
+                override var isEnabled: Boolean = false,
+                var allLibraryVariants: Boolean = false,
+                val publishLibraryVariants: MutableList<String> = mutableListOf(),
+            ) : Enableable, Configurable {
+
+                override fun configure(project: Project) = configureMultiplatformAndroid(project)
+            }
+
+            data class Jvm(
+                override var isEnabled: Boolean = false,
+            ) : Enableable, Configurable {
+
+                override fun configure(project: Project) = configureMultiplatformJvm(project)
+            }
         }
 
         data class Tools(
             val analysis: Analysis = Analysis(),
+            var binaryCompatibilityValidator: Boolean = false,
+            var explicitApiMode: ExplicitApiMode = ExplicitApiMode.Disabled,
             val format: Format = Format(),
         ) : Configurable {
 
             override fun configure(project: Project) {
+                analysis.configure(project)
                 format.configure(project)
             }
 

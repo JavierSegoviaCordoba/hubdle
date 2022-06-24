@@ -1,5 +1,6 @@
 package com.javiersc.hubdle.extensions.kotlin
 
+import com.javiersc.hubdle.extensions.HubdleDslMarker
 import com.javiersc.hubdle.extensions._internal.PluginIds
 import com.javiersc.hubdle.extensions._internal.state.hubdleState
 import com.javiersc.hubdle.extensions.kotlin.android.AndroidExtension
@@ -11,20 +12,14 @@ import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.model.ObjectFactory
-import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.newInstance
-import org.jetbrains.kotlin.gradle.dsl.ExplicitApiMode
-import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 
+@HubdleDslMarker
 public abstract class KotlinExtension
 @Inject
 constructor(
     objects: ObjectFactory,
 ) {
-
-    public fun explicitApi(explicitApiMode: ExplicitApiMode = ExplicitApiMode.Strict) {
-        hubdleState.kotlin.explicitApiMode = explicitApiMode
-    }
 
     private val tools: ToolsExtension = objects.newInstance()
 
@@ -40,7 +35,7 @@ constructor(
 
     private val gradle: KotlinGradleExtension = objects.newInstance()
 
-    public fun Project.gradle(action: Action<in KotlinGradleExtension> = Action {}) {
+    public fun gradle(action: Action<in KotlinGradleExtension> = Action {}) {
         configGradle(action)
     }
 
@@ -74,7 +69,7 @@ constructor(
         }
     }
 
-    private fun Project.configGradle(action: Action<in KotlinGradleExtension>) {
+    private fun configGradle(action: Action<in KotlinGradleExtension>) {
         action.execute(this@KotlinExtension.gradle)
     }
 
@@ -87,6 +82,3 @@ constructor(
         }
     }
 }
-
-internal val Project.kotlinExtension: KotlinProjectExtension
-    get() = project.extensions.getByType()

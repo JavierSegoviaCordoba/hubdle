@@ -47,9 +47,11 @@ dependencies {
     implementation(pluginLibs.gitlab.arturboschDetekt.detektGradlePlugin)
     implementation(pluginLibs.gradle.publish.pluginPublishPlugin)
     implementation(pluginLibs.javiersc.semver.semverGradlePlugin)
+    implementation(pluginLibs.jetbrains.dokka.dokkaGradlePlugin)
     implementation(pluginLibs.jetbrains.intellijPlugins.gradleChangelogPlugin)
     implementation(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)
     implementation(pluginLibs.sonarqube.scannerGradle.sonarqubeGradlePlugin)
+    implementation(pluginLibs.vyarus.gradleMkdocsPlugin)
 
     testImplementation(gradleTestKit())
     testImplementation(projects.shared.coreTest)

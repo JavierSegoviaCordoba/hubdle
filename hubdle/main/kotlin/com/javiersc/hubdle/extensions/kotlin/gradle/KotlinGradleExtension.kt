@@ -1,5 +1,6 @@
 package com.javiersc.hubdle.extensions.kotlin.gradle
 
+import com.javiersc.hubdle.extensions.HubdleDslMarker
 import com.javiersc.hubdle.extensions._internal.PluginIds
 import com.javiersc.hubdle.extensions._internal.state.hubdleState
 import com.javiersc.hubdle.extensions.kotlin.gradle.plugin.GradlePluginExtension
@@ -10,6 +11,7 @@ import org.gradle.api.Project
 import org.gradle.api.model.ObjectFactory
 import org.gradle.kotlin.dsl.newInstance
 
+@HubdleDslMarker
 public open class KotlinGradleExtension
 @Inject
 constructor(

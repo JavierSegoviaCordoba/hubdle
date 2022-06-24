@@ -1,8 +1,8 @@
 package com.javiersc.hubdle.extensions.kotlin.gradle.version.catalog
 
-import com.javiersc.hubdle.extensions.PublishingOptions
 import com.javiersc.hubdle.extensions._internal.PluginIds
 import com.javiersc.hubdle.extensions._internal.state.hubdleState
+import com.javiersc.hubdle.extensions.options.PublishingOptions
 import java.io.File
 import org.gradle.api.Project
 
@@ -15,7 +15,7 @@ public abstract class GradleVersionCatalogExtension : PublishingOptions {
         hubdleState.kotlin.isPublishingEnabled = true
     }
 
-    public fun files(files: List<File>) {
+    public fun Project.files(files: List<File>) {
         hubdleState.kotlin.gradle.versionCatalog.files += files
     }
 }

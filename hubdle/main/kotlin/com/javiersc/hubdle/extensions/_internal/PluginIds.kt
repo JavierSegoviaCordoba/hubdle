@@ -13,6 +13,7 @@ internal object PluginIds {
 
     object Documentation {
         const val changelog = "org.jetbrains.changelog"
+        const val mkdocs = "ru.vyarus.mkdocs"
     }
 
     object Format {
@@ -29,6 +30,9 @@ internal object PluginIds {
     }
 
     object Kotlin {
+        const val binaryCompatibilityValidator =
+            "org.jetbrains.kotlinx.binary-compatibility-validator"
+        const val dokka = "org.jetbrains.dokka"
         const val jvm = "org.jetbrains.kotlin.jvm"
         const val multiplatform = "org.jetbrains.kotlin.multiplatform"
     }

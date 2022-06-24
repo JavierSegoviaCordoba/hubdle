@@ -2,6 +2,10 @@ package com.javiersc.hubdle.properties
 
 public object PropertyKey {
 
+    public object Documentation {
+        public const val readmeBadgesMainProject: String = "readmeBadges.mainProject"
+    }
+
     public object Nexus {
         public const val nexusUrl: String = "nexus.url"
         public const val ossStagingProfileId: String = "oss.stagingProfileId"
@@ -26,7 +30,8 @@ public object PropertyKey {
 
     public object Project {
         public const val group: String = "project.group"
-        public const val name: String = "project.name"
+        public const val rootProjectDirName: String = "root.project.dir.name"
+        public const val rootProjectName: String = "root.project.name"
         public const val version: String = "project.version"
     }
 

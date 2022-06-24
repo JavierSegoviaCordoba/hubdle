@@ -1,5 +1,6 @@
 package com.javiersc.hubdle.extensions.config
 
+import com.javiersc.hubdle.extensions.HubdleDslMarker
 import com.javiersc.hubdle.extensions._internal.PluginIds
 import com.javiersc.hubdle.extensions._internal.state.hubdleState
 import com.javiersc.hubdle.extensions.config.documentation.DocumentationExtension
@@ -10,6 +11,7 @@ import org.gradle.api.Project
 import org.gradle.api.model.ObjectFactory
 import org.gradle.kotlin.dsl.newInstance
 
+@HubdleDslMarker
 public abstract class ConfigExtension
 @Inject
 constructor(
@@ -22,8 +24,6 @@ constructor(
         pluginManager.apply(PluginIds.Documentation.changelog)
 
         action.execute(documentation)
-
-        hubdleState.config.documentation.changelog.isEnabled = true
     }
 
     public fun Project.nexus() {

@@ -7,7 +7,7 @@ tasks.register("buildItself") {
     }
 
     doFirst {
-        file("${rootProject.rootDir}/gradle/pluginLibs.toml").apply {
+        file("${rootProject.rootDir}/gradle/pluginLibs.versions.toml").apply {
             val content =
                 readLines().joinToString("\n") { line ->
                     if (line.startsWith("""javierscGradlePlugins = """")) {

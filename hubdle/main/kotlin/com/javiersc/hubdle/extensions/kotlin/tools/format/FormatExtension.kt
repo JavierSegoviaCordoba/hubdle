@@ -1,5 +1,8 @@
 package com.javiersc.hubdle.extensions.kotlin.tools.format
 
+import com.javiersc.hubdle.extensions.HubdleDslMarker
+
+@HubdleDslMarker
 public abstract class FormatExtension {
 
     public val includes: MutableList<String> =

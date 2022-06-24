@@ -7,9 +7,10 @@ import org.gradle.api.Project
 import org.gradle.kotlin.dsl.the
 
 internal fun configureVersioning(project: Project) {
-    if (hubdleState.config.versioning.isEnabled) {
+    val versioningState = project.hubdleState.config.versioning
+    if (versioningState.isEnabled) {
         project.pluginManager.apply(PluginIds.JavierSC.semver)
 
-        project.the<SemverExtension>().tagPrefix.set(hubdleState.config.versioning.tagPrefix)
+        project.the<SemverExtension>().tagPrefix.set(versioningState.tagPrefix)
     }
 }

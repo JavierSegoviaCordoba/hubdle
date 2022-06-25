@@ -46,12 +46,6 @@ include(
 )
 
 include(
-    ":plugins:documentation:changelog",
-    ":plugins:documentation:docs",
-    ":plugins:documentation:readme-badges",
-)
-
-include(
     ":plugins:publish:nexus",
     ":plugins:publish:publish",
 )

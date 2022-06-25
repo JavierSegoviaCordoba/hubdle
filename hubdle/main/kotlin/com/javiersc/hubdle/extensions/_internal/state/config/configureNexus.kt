@@ -1,5 +1,6 @@
 package com.javiersc.hubdle.extensions._internal.state.config
 
+import com.javiersc.hubdle.extensions._internal.PluginIds
 import com.javiersc.hubdle.extensions._internal.state.hubdleState
 import com.javiersc.hubdle.properties.PropertyKey.Nexus
 import com.javiersc.hubdle.properties.getProperty
@@ -11,7 +12,7 @@ import org.gradle.kotlin.dsl.configure
 
 internal fun configureNexus(project: Project) {
     if (project.hubdleState.config.nexus.isEnabled) {
-        project.pluginManager.apply("io.github.gradle-nexus.publish-plugin")
+        project.pluginManager.apply(PluginIds.Publishing.nexusPublish)
 
         project.configure<NexusPublishExtension>() {
             repositoryDescription.set(

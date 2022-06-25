@@ -40,6 +40,7 @@ dependencies {
     implementation(libs.eclipse.jgit)
     implementation(libs.javiersc.gradleExtensions.gradleExt)
     implementation(libs.javiersc.kotlin.kotlinStdlib)
+    implementation(pluginLibs.adarshr.gradleTestLoggerPlugin)
     implementation(pluginLibs.android.toolsBuild.gradle)
     implementation(pluginLibs.diffplug.spotless.spotlessPluginGradle)
     implementation(pluginLibs.github.gradleNexus.publishPlugin)

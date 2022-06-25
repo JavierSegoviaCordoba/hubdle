@@ -1,5 +1,6 @@
 package com.javiersc.hubdle.extensions._internal.state.kotlin.tools
 
+import com.javiersc.gradle.extensions.maybeRegisterLazily
 import com.javiersc.hubdle.extensions._internal.PluginIds
 import com.javiersc.hubdle.extensions._internal.state.hubdleState
 import com.javiersc.hubdle.properties.PropertyKey.Sonar
@@ -9,6 +10,7 @@ import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.extensions.DetektExtension
 import java.io.File
 import org.gradle.api.Project
+import org.gradle.api.Task
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.findByType
 import org.gradle.kotlin.dsl.withType
@@ -33,7 +35,7 @@ private fun configureDetekt(project: Project) {
             basePath = project.rootProject.projectDir.path
         }
 
-        project.tasks.register("checkAnalysis").configure {
+        project.tasks.maybeRegisterLazily<Task>("checkAnalysis").configureEach {
             it.group = "verification"
             it.dependsOn("detekt")
         }

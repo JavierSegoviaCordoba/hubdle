@@ -34,6 +34,7 @@ internal object PluginIds {
             "org.jetbrains.kotlinx.binary-compatibility-validator"
         const val dokka = "org.jetbrains.dokka"
         const val jvm = "org.jetbrains.kotlin.jvm"
+        const val kover = "org.jetbrains.kotlinx.kover"
         const val multiplatform = "org.jetbrains.kotlin.multiplatform"
     }
 
@@ -42,5 +43,9 @@ internal object PluginIds {
         const val mavenPublish = "org.gradle.maven-publish"
         const val nexusPublish = "io.github.gradle-nexus.publish-plugin"
         const val signing = "org.gradle.signing"
+    }
+
+    object Testing {
+        const val logger = "com.adarshr.test-logger"
     }
 }

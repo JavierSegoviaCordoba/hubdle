@@ -1,5 +1,6 @@
 package com.javiersc.hubdle.extensions._internal.state
 
+import com.javiersc.hubdle.extensions._internal.state.config.configureInstall
 import com.javiersc.hubdle.extensions._internal.state.config.configureNexus
 import com.javiersc.hubdle.extensions._internal.state.config.configureVersioning
 import com.javiersc.hubdle.extensions._internal.state.config.documentation.configureChangelog
@@ -13,6 +14,7 @@ import com.javiersc.hubdle.extensions._internal.state.kotlin.configureMultiplatf
 import com.javiersc.hubdle.extensions._internal.state.kotlin.gradle.configureGradlePlugin
 import com.javiersc.hubdle.extensions._internal.state.kotlin.gradle.configureGradleVersionCatalog
 import com.javiersc.hubdle.extensions._internal.state.kotlin.tools.configureAnalysis
+import com.javiersc.hubdle.extensions._internal.state.kotlin.tools.configureCoverage
 import com.javiersc.hubdle.extensions._internal.state.kotlin.tools.configureFormat
 import java.io.File
 import org.gradle.api.Project
@@ -40,12 +42,14 @@ internal data class HubdleState(
 
     data class Config(
         val documentation: Documentation = Documentation(),
+        val install: Install = Install(),
         val nexus: Nexus = Nexus(),
         val versioning: Versioning = Versioning(),
     ) : Configurable {
 
         override fun configure(project: Project) {
             documentation.configure(project)
+            install.configure(project)
             nexus.configure(project)
             versioning.configure(project)
         }
@@ -95,6 +99,23 @@ internal data class HubdleState(
                     var codeQuality: Boolean = true,
                 )
             }
+        }
+
+        data class Install(
+            override var isEnabled: Boolean = false,
+            val preCommits: PreCommits = PreCommits(),
+        ) : Enableable, Configurable {
+
+            override fun configure(project: Project) = configureInstall(project)
+
+            data class PreCommits(
+                var allTests: Boolean = false,
+                var applyFormat: Boolean = false,
+                var assemble: Boolean = false,
+                var checkAnalysis: Boolean = false,
+                var checkFormat: Boolean = false,
+                var checkApi: Boolean = false,
+            )
         }
 
         data class Nexus(
@@ -208,12 +229,14 @@ internal data class HubdleState(
         data class Tools(
             val analysis: Analysis = Analysis(),
             var binaryCompatibilityValidator: Boolean = false,
+            var coverage: Coverage = Coverage(),
             var explicitApiMode: ExplicitApiMode = ExplicitApiMode.Disabled,
             val format: Format = Format(),
         ) : Configurable {
 
             override fun configure(project: Project) {
                 analysis.configure(project)
+                coverage.configure(project)
                 format.configure(project)
             }
 
@@ -232,6 +255,13 @@ internal data class HubdleState(
                     var txt: Boolean = false,
                     var xml: Boolean = true,
                 )
+            }
+
+            data class Coverage(
+                override var isEnabled: Boolean = false,
+            ) : Enableable, Configurable {
+
+                override fun configure(project: Project) = configureCoverage(project)
             }
 
             data class Format(

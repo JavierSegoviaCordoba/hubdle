@@ -1,0 +1,46 @@
+package com.javiersc.hubdle.extensions.config.install.commit
+
+import com.javiersc.gradle.extensions.namedLazily
+import javax.inject.Inject
+import org.gradle.api.Project
+import org.gradle.api.file.ProjectLayout
+import org.gradle.api.tasks.CacheableTask
+import org.gradle.api.tasks.Input
+import org.gradle.api.tasks.TaskAction
+import org.gradle.kotlin.dsl.register
+
+@CacheableTask
+public abstract class InstallCheckApiPreCommitTask
+@Inject
+constructor(
+    layout: ProjectLayout,
+) : InstallPreCommitTask(layout) {
+
+    init {
+        group = "install"
+    }
+
+    @Input override val preCommitName: String = "checkApi"
+
+    @TaskAction
+    override fun install() {
+        createInstallPreCommitGradleTask()
+    }
+
+    public companion object {
+        public const val name: String = "installApiCheckPreCommit"
+
+        internal fun register(project: Project) {
+            val installApiCheckPreCommitTask =
+                project.tasks.register<InstallCheckApiPreCommitTask>(name)
+
+            installApiCheckPreCommitTask.configure { task ->
+                task.finalizedBy(WriteFilePreCommitTask.getTask(project))
+            }
+
+            project.tasks
+                .namedLazily<InstallPreCommitTask>(InstallPreCommitTask.name)
+                .configureEach { it.dependsOn(installApiCheckPreCommitTask) }
+        }
+    }
+}

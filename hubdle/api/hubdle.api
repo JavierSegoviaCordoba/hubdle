@@ -189,6 +189,101 @@ public class com/javiersc/hubdle/extensions/config/documentation/site/SiteExtens
 	public final fun setCodeQuality (Z)V
 }
 
+public abstract interface class com/javiersc/hubdle/extensions/config/install/InstallTask {
+	public abstract fun install ()V
+}
+
+public abstract class com/javiersc/hubdle/extensions/config/install/commit/InstallAllTestsPreCommitTask : com/javiersc/hubdle/extensions/config/install/commit/InstallPreCommitTask {
+	public static final field Companion Lcom/javiersc/hubdle/extensions/config/install/commit/InstallAllTestsPreCommitTask$Companion;
+	public static final field name Ljava/lang/String;
+	public fun <init> (Lorg/gradle/api/file/ProjectLayout;)V
+	public fun getPreCommitName ()Ljava/lang/String;
+	public fun install ()V
+}
+
+public final class com/javiersc/hubdle/extensions/config/install/commit/InstallAllTestsPreCommitTask$Companion {
+}
+
+public abstract class com/javiersc/hubdle/extensions/config/install/commit/InstallApplyFormatPreCommitTask : com/javiersc/hubdle/extensions/config/install/commit/InstallPreCommitTask {
+	public static final field Companion Lcom/javiersc/hubdle/extensions/config/install/commit/InstallApplyFormatPreCommitTask$Companion;
+	public static final field name Ljava/lang/String;
+	public fun <init> (Lorg/gradle/api/file/ProjectLayout;)V
+	public fun getPreCommitName ()Ljava/lang/String;
+	public fun install ()V
+}
+
+public final class com/javiersc/hubdle/extensions/config/install/commit/InstallApplyFormatPreCommitTask$Companion {
+}
+
+public abstract class com/javiersc/hubdle/extensions/config/install/commit/InstallAssemblePreCommitTask : com/javiersc/hubdle/extensions/config/install/commit/InstallPreCommitTask {
+	public static final field Companion Lcom/javiersc/hubdle/extensions/config/install/commit/InstallAssemblePreCommitTask$Companion;
+	public static final field name Ljava/lang/String;
+	public fun <init> (Lorg/gradle/api/file/ProjectLayout;)V
+	public fun getPreCommitName ()Ljava/lang/String;
+	public fun install ()V
+}
+
+public final class com/javiersc/hubdle/extensions/config/install/commit/InstallAssemblePreCommitTask$Companion {
+}
+
+public abstract class com/javiersc/hubdle/extensions/config/install/commit/InstallCheckAnalysisPreCommitTask : com/javiersc/hubdle/extensions/config/install/commit/InstallPreCommitTask {
+	public static final field Companion Lcom/javiersc/hubdle/extensions/config/install/commit/InstallCheckAnalysisPreCommitTask$Companion;
+	public static final field name Ljava/lang/String;
+	public fun <init> (Lorg/gradle/api/file/ProjectLayout;)V
+	public fun getPreCommitName ()Ljava/lang/String;
+	public fun install ()V
+}
+
+public final class com/javiersc/hubdle/extensions/config/install/commit/InstallCheckAnalysisPreCommitTask$Companion {
+}
+
+public abstract class com/javiersc/hubdle/extensions/config/install/commit/InstallCheckApiPreCommitTask : com/javiersc/hubdle/extensions/config/install/commit/InstallPreCommitTask {
+	public static final field Companion Lcom/javiersc/hubdle/extensions/config/install/commit/InstallCheckApiPreCommitTask$Companion;
+	public static final field name Ljava/lang/String;
+	public fun <init> (Lorg/gradle/api/file/ProjectLayout;)V
+	public fun getPreCommitName ()Ljava/lang/String;
+	public fun install ()V
+}
+
+public final class com/javiersc/hubdle/extensions/config/install/commit/InstallCheckApiPreCommitTask$Companion {
+}
+
+public abstract class com/javiersc/hubdle/extensions/config/install/commit/InstallCheckFormatPreCommitTask : com/javiersc/hubdle/extensions/config/install/commit/InstallPreCommitTask {
+	public static final field Companion Lcom/javiersc/hubdle/extensions/config/install/commit/InstallCheckFormatPreCommitTask$Companion;
+	public static final field name Ljava/lang/String;
+	public fun <init> (Lorg/gradle/api/file/ProjectLayout;)V
+	public fun getPreCommitName ()Ljava/lang/String;
+	public fun install ()V
+}
+
+public final class com/javiersc/hubdle/extensions/config/install/commit/InstallCheckFormatPreCommitTask$Companion {
+}
+
+public abstract class com/javiersc/hubdle/extensions/config/install/commit/InstallPreCommitTask : org/gradle/api/DefaultTask, com/javiersc/hubdle/extensions/config/install/InstallTask {
+	public static final field Companion Lcom/javiersc/hubdle/extensions/config/install/commit/InstallPreCommitTask$Companion;
+	public static final field name Ljava/lang/String;
+	public fun <init> (Lorg/gradle/api/file/ProjectLayout;)V
+	public abstract fun getPreCommitName ()Ljava/lang/String;
+	public final fun getPreCommitOutputDir ()Ljava/io/File;
+	public final fun getPreCommitOutputFile ()Ljava/io/File;
+}
+
+public final class com/javiersc/hubdle/extensions/config/install/commit/InstallPreCommitTask$Companion {
+}
+
+public abstract class com/javiersc/hubdle/extensions/config/install/commit/WriteFilePreCommitTask : org/gradle/api/DefaultTask {
+	public static final field Companion Lcom/javiersc/hubdle/extensions/config/install/commit/WriteFilePreCommitTask$Companion;
+	public static final field name Ljava/lang/String;
+	public fun <init> (Lorg/gradle/api/Project;)V
+	public final fun getInputPreCommitFile ()Ljava/io/File;
+	public final fun getInstallPreCommitsDir ()Ljava/io/File;
+	public final fun getOutputPreCommitFile ()Ljava/io/File;
+	public final fun writeFile ()V
+}
+
+public final class com/javiersc/hubdle/extensions/config/install/commit/WriteFilePreCommitTask$Companion {
+}
+
 public abstract class com/javiersc/hubdle/extensions/config/semver/VersioningExtension {
 	public fun <init> ()V
 	public final fun getTagPrefix ()Ljava/lang/String;
@@ -397,10 +492,13 @@ public class com/javiersc/hubdle/extensions/kotlin/tools/ToolsExtension {
 	public final fun analysis (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
 	public static synthetic fun analysis$default (Lcom/javiersc/hubdle/extensions/kotlin/tools/ToolsExtension;Lorg/gradle/api/Project;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 	public final fun binaryCompatibilityValidator (Lorg/gradle/api/Project;)V
+	public final fun coverage (Lorg/gradle/api/Project;)V
 	public final fun explicitApi (Lorg/gradle/api/Project;Lorg/jetbrains/kotlin/gradle/dsl/ExplicitApiMode;)V
 	public static synthetic fun explicitApi$default (Lcom/javiersc/hubdle/extensions/kotlin/tools/ToolsExtension;Lorg/gradle/api/Project;Lorg/jetbrains/kotlin/gradle/dsl/ExplicitApiMode;ILjava/lang/Object;)V
 	public final fun format (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
 	public static synthetic fun format$default (Lcom/javiersc/hubdle/extensions/kotlin/tools/ToolsExtension;Lorg/gradle/api/Project;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+	public final fun install (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
+	public static synthetic fun install$default (Lcom/javiersc/hubdle/extensions/kotlin/tools/ToolsExtension;Lorg/gradle/api/Project;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 }
 
 public abstract class com/javiersc/hubdle/extensions/kotlin/tools/analysis/AnalysisExtension {
@@ -429,6 +527,26 @@ public abstract class com/javiersc/hubdle/extensions/kotlin/tools/format/FormatE
 	public final fun getIncludes ()Ljava/util/List;
 	public final fun getKtfmtVersion ()Ljava/lang/String;
 	public final fun setKtfmtVersion (Ljava/lang/String;)V
+}
+
+public abstract class com/javiersc/hubdle/extensions/kotlin/tools/install/InstallExtension {
+	public fun <init> (Lorg/gradle/api/model/ObjectFactory;)V
+	public final fun preCommits (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
+	public static synthetic fun preCommits$default (Lcom/javiersc/hubdle/extensions/kotlin/tools/install/InstallExtension;Lorg/gradle/api/Project;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+}
+
+public abstract class com/javiersc/hubdle/extensions/kotlin/tools/install/InstallExtension$PreCommitsExtension {
+	public fun <init> ()V
+	public final fun getAllTests ()Z
+	public final fun getApplyFormat ()Z
+	public final fun getAssemble ()Z
+	public final fun getCheckAnalysis ()Z
+	public final fun getCheckApi ()Z
+	public final fun setAllTests (Z)V
+	public final fun setApplyFormat (Z)V
+	public final fun setAssemble (Z)V
+	public final fun setCheckAnalysis (Z)V
+	public final fun setCheckApi (Z)V
 }
 
 public abstract interface class com/javiersc/hubdle/extensions/options/FeaturesOptions {

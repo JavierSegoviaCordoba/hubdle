@@ -5,13 +5,10 @@ import com.javiersc.hubdle.extensions._internal.PluginIds
 import com.javiersc.hubdle.extensions._internal.state.hubdleState
 import com.javiersc.hubdle.extensions.kotlin.tools.analysis.AnalysisExtension
 import com.javiersc.hubdle.extensions.kotlin.tools.format.FormatExtension
-import com.javiersc.hubdle.extensions.kotlin.tools.install.InstallExtension
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.model.ObjectFactory
-import org.gradle.api.plugins.BasePlugin
-import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.newInstance
 import org.jetbrains.kotlin.gradle.dsl.ExplicitApiMode
 
@@ -48,13 +45,6 @@ constructor(
         return configFormat(action)
     }
 
-    private val install: InstallExtension = objects.newInstance()
-
-    @HubdleDslMarker
-    public fun Project.install(action: Action<InstallExtension> = Action {}) {
-        return configInstall(action)
-    }
-
     // configurations
     private fun Project.configAnalysis(action: Action<AnalysisExtension>) {
         project.pluginManager.apply(PluginIds.Analysis.detekt)
@@ -81,11 +71,5 @@ constructor(
             excludes += format.includes
             ktfmtVersion = format.ktfmtVersion
         }
-    }
-
-    private fun Project.configInstall(action: Action<InstallExtension>) {
-        project.pluginManager.apply(BasePlugin::class)
-        action.execute(install)
-        hubdleState.config.install.isEnabled = true
     }
 }

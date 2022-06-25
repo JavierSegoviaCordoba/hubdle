@@ -4,14 +4,18 @@ import com.javiersc.gradle.extensions.namedLazily
 import javax.inject.Inject
 import org.gradle.api.Project
 import org.gradle.api.file.ProjectLayout
+import org.gradle.api.model.ObjectFactory
+import org.gradle.api.provider.Property
 import org.gradle.api.tasks.CacheableTask
 import org.gradle.api.tasks.TaskAction
+import org.gradle.kotlin.dsl.property
 import org.gradle.kotlin.dsl.register
 
 @CacheableTask
 public abstract class InstallCheckAnalysisPreCommitTask
 @Inject
 constructor(
+    objects: ObjectFactory,
     layout: ProjectLayout,
 ) : InstallPreCommitTask(layout) {
 
@@ -19,7 +23,8 @@ constructor(
         group = "install"
     }
 
-    override val preCommitName: String = "checkAnalysis"
+    override val preCommitName: Property<String> =
+        objects.property<String>().convention("checkAnalysis")
 
     @TaskAction
     public override fun install() {

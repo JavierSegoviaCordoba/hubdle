@@ -4,11 +4,14 @@ import com.javiersc.hubdle.extensions.HubdleDslMarker
 import com.javiersc.hubdle.extensions._internal.PluginIds
 import com.javiersc.hubdle.extensions._internal.state.hubdleState
 import com.javiersc.hubdle.extensions.config.documentation.DocumentationExtension
+import com.javiersc.hubdle.extensions.config.install.InstallExtension
 import com.javiersc.hubdle.extensions.config.semver.VersioningExtension
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.model.ObjectFactory
+import org.gradle.api.plugins.BasePlugin
+import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.newInstance
 
 @HubdleDslMarker
@@ -24,6 +27,17 @@ constructor(
         pluginManager.apply(PluginIds.Documentation.changelog)
 
         action.execute(documentation)
+    }
+
+    private val install: InstallExtension = objects.newInstance()
+
+    @HubdleDslMarker
+    public fun Project.install(action: Action<InstallExtension> = Action {}) {
+        project.pluginManager.apply(BasePlugin::class)
+
+        action.execute(install)
+
+        hubdleState.config.install.isEnabled = true
     }
 
     public fun Project.nexus() {

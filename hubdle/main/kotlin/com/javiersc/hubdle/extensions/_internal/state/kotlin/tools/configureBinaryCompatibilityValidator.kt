@@ -14,6 +14,10 @@ internal fun Project.configureBinaryCompatibilityValidator() {
             val apiCheckTask = allProject.tasks.namedLazily<Task>("apiCheck")
             val checkApiTask = allProject.tasks.maybeRegisterLazily<Task>("checkApi")
             checkApiTask.configureEach { task -> task.dependsOn(apiCheckTask) }
+
+            val apiDumpTask = allProject.tasks.namedLazily<Task>("apiDump")
+            val dumpApiTask = allProject.tasks.maybeRegisterLazily<Task>("dumpApi")
+            dumpApiTask.configureEach { task -> task.dependsOn(apiDumpTask) }
         }
     }
 }

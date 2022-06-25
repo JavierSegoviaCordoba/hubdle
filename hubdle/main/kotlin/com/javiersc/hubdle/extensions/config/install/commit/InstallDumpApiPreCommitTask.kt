@@ -13,7 +13,7 @@ import org.gradle.kotlin.dsl.property
 import org.gradle.kotlin.dsl.register
 
 @CacheableTask
-public abstract class InstallApplyFormatPreCommitTask
+public abstract class InstallDumpApiPreCommitTask
 @Inject
 constructor(
     objects: ObjectFactory,
@@ -25,28 +25,27 @@ constructor(
     }
 
     @Input
-    override val preCommitName: Property<String> =
-        objects.property<String>().convention("applyFormat")
+    override val preCommitName: Property<String> = objects.property<String>().convention("dumpApi")
 
     @TaskAction
-    public override fun install() {
+    override fun install() {
         createInstallPreCommitGradleTask()
     }
 
     public companion object {
-        public const val name: String = "installApplyFormatPreCommit"
+        public const val name: String = "installDumpApiPreCommit"
 
         internal fun register(project: Project) {
-            val applyFormatPreCommitTask =
-                project.tasks.register<InstallApplyFormatPreCommitTask>(name)
+            val installApiCheckPreCommitTask =
+                project.tasks.register<InstallDumpApiPreCommitTask>(name)
 
-            applyFormatPreCommitTask.configure { task ->
+            installApiCheckPreCommitTask.configure { task ->
                 task.finalizedBy(WriteFilePreCommitTask.getTask(project))
             }
 
             project.tasks
                 .namedLazily<InstallPreCommitTask>(InstallPreCommitTask.name)
-                .configureEach { it.dependsOn(applyFormatPreCommitTask) }
+                .configureEach { it.dependsOn(installApiCheckPreCommitTask) }
         }
     }
 }

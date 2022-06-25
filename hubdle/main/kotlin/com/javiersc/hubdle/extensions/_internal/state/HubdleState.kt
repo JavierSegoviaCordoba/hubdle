@@ -115,6 +115,7 @@ internal data class HubdleState(
                 var checkAnalysis: Boolean = false,
                 var checkFormat: Boolean = false,
                 var checkApi: Boolean = false,
+                var dumpApi: Boolean = false,
             )
         }
 

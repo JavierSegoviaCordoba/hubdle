@@ -1,4 +1,4 @@
-package com.javiersc.hubdle.extensions.kotlin.tools.install
+package com.javiersc.hubdle.extensions.config.install
 
 import com.javiersc.hubdle.extensions.HubdleDslMarker
 import com.javiersc.hubdle.extensions._internal.state.hubdleState
@@ -25,6 +25,8 @@ constructor(
             install.preCommits.assemble = preCommits.assemble
             install.preCommits.checkAnalysis = preCommits.checkAnalysis
             install.preCommits.checkApi = preCommits.checkApi
+            install.preCommits.checkFormat = preCommits.checkFormat
+            install.preCommits.dumpApi = preCommits.dumpApi
         }
     }
 
@@ -34,5 +36,7 @@ constructor(
         public var assemble: Boolean = false
         public var checkAnalysis: Boolean = false
         public var checkApi: Boolean = false
+        public var checkFormat: Boolean = false
+        public var dumpApi: Boolean = false
     }
 }

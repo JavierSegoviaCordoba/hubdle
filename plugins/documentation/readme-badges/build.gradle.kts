@@ -1,5 +1,4 @@
 plugins {
-    `javiersc-versioning`
     `java-gradle-plugin`
     `kotlin-jvm`
     `javiersc-kotlin-config`

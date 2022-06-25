@@ -1,11 +1,15 @@
 plugins {
-    id("com.javiersc.gradle.plugins.changelog")
+    id("com.javiersc.hubdle")
 }
 
 allprojects {
     version = "0.1.1"
 }
 
-changelog {
-    version.set("0.1.1")
+hubdle {
+    config {
+        documentation {
+            changelog()
+        }
+    }
 }

@@ -26,8 +26,10 @@ private fun assert(number: Int) {
     expectChangelog shouldBe "$actualChangelog"
 }
 
+private val basePath = "config/documentation/changelog"
+
 private fun getChangelog(number: Int): String =
-    getResource("config/documentation/changelog/$number/CHANGELOG.md").readText()
+    getResource("$basePath/changelog/$number/CHANGELOG.md").readText()
 
 private fun expectChangelog(number: Int): String =
-    getResource("config/documentation/changelog/$number/CHANGELOG_EXPECT.md").readText()
+    getResource("$basePath/changelog/$number/CHANGELOG_EXPECT.md").readText()

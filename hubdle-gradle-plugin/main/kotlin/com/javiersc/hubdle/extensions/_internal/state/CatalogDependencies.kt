@@ -53,7 +53,8 @@ internal data class HubdleCatalogsDependencies(
 }
 
 private fun String.buildDefaultMinimalDependency(): MinimalExternalModuleDependency {
-    val (group: String, name: String, version: String) = split(":")
+    val (group: String, name: String) = split(":")
+    val version: String = split(":").getOrElse(2) { "" }
     return DefaultMinimalDependency(
         DefaultModuleIdentifier.newId(group, name),
         DefaultMutableVersionConstraint.withVersion(version)

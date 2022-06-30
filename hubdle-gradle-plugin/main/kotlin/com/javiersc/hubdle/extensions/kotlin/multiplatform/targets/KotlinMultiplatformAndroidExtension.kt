@@ -5,12 +5,18 @@ import com.javiersc.hubdle.extensions.HubdleDslMarker
 import com.javiersc.hubdle.extensions._internal.state.hubdleState
 import com.javiersc.hubdle.extensions.options.EnableableOptions
 import com.javiersc.hubdle.extensions.options.RawConfigOptions
+import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
-import org.gradle.kotlin.dsl.the
+import org.gradle.api.model.ObjectFactory
+import org.gradle.kotlin.dsl.newInstance
 
 @HubdleDslMarker
-public open class KotlinMultiplatformAndroidExtension :
+public open class KotlinMultiplatformAndroidExtension
+@Inject
+constructor(
+    objects: ObjectFactory,
+) :
     EnableableOptions,
     KotlinMultiplatformTargetOptions,
     RawConfigOptions<KotlinMultiplatformAndroidExtension.RawConfigExtension> {
@@ -29,14 +35,19 @@ public open class KotlinMultiplatformAndroidExtension :
         hubdleState.kotlin.multiplatform.android.allLibraryVariants = enable
     }
 
+    override val rawConfig: RawConfigExtension = objects.newInstance()
+
     @HubdleDslMarker
     override fun Project.rawConfig(action: Action<RawConfigExtension>) {
-        afterEvaluate { action.execute(the()) }
+        action.execute(rawConfig)
     }
 
+    @HubdleDslMarker
     public open class RawConfigExtension {
-        public val Project.android: LibraryExtension
-            get() = the()
+        @HubdleDslMarker
+        public fun Project.android(action: Action<LibraryExtension>) {
+            hubdleState.kotlin.multiplatform.android.rawConfig.android = action
+        }
     }
 
     public companion object {

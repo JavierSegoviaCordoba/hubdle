@@ -14,7 +14,7 @@ hubdle {
     kotlin {
         jvm {
             features {
-                coroutines()
+                coroutines()                
             }
         }
     }

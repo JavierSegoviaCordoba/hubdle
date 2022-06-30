@@ -9,7 +9,6 @@ import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.model.ObjectFactory
 import org.gradle.kotlin.dsl.newInstance
-import org.gradle.kotlin.dsl.the
 import ru.vyarus.gradle.plugin.mkdocs.MkdocsExtension
 
 @HubdleDslMarker
@@ -46,14 +45,19 @@ constructor(
         }
     }
 
+    override val rawConfig: RawConfigExtension = objects.newInstance()
+
     @HubdleDslMarker
     override fun Project.rawConfig(action: Action<RawConfigExtension>) {
-        afterEvaluate { action.execute(the()) }
+        action.execute(rawConfig)
     }
 
+    @HubdleDslMarker
     public open class RawConfigExtension {
+
+        @HubdleDslMarker
         public fun Project.mkdocs(action: Action<MkdocsExtension>) {
-            afterEvaluate { action.execute(it.the()) }
+            hubdleState.config.documentation.site.rawConfig.mkdocs = action
         }
     }
 

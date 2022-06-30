@@ -12,7 +12,7 @@ hubdle {
     kotlin {
         jvm {
             features {
-                javierScStdlib(enabled = false)
+                extendedStdlib(false)
             }
         }
     }

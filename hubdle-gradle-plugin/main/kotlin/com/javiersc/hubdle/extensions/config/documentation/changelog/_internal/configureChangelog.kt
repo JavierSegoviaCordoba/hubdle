@@ -9,6 +9,7 @@ import com.javiersc.hubdle.extensions.config.documentation.changelog.MergeChange
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.findByType
 import org.gradle.kotlin.dsl.register
+import org.gradle.kotlin.dsl.the
 import org.jetbrains.changelog.ChangelogPluginExtension
 import org.jetbrains.changelog.date
 import org.jetbrains.changelog.tasks.PatchChangelogTask
@@ -35,4 +36,8 @@ internal fun configureChangelog(project: Project) {
             it.finalizedBy(ApplyFormatChangelogTask.name)
         }
     }
+}
+
+internal fun configureConfigDocumentationChangelogRawConfig(project: Project) {
+    project.hubdleState.config.documentation.changelog.rawConfig.changelog?.execute(project.the())
 }

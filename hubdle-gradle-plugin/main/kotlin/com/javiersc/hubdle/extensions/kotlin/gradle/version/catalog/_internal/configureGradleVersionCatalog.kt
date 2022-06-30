@@ -13,11 +13,11 @@ internal fun configureGradleVersionCatalog(project: Project) {
     if (project.hubdleState.kotlin.gradle.versionCatalog.isEnabled) {
         project.pluginManager.apply(PluginIds.Gradle.versionCatalog)
 
-        project.configure<CatalogPluginExtension>() {
+        project.configure<CatalogPluginExtension> {
             versionCatalog { it.from(project.hubdleState.kotlin.gradle.versionCatalog.catalogs) }
         }
 
-        if (project.hubdleState.kotlin.isPublishingEnabled) {
+        if (project.hubdleState.config.publishing.isEnabled) {
             project.pluginManager.apply(PluginIds.Publishing.mavenPublish)
             project.pluginManager.apply(PluginIds.Publishing.signing)
             project.configurePublishingExtension()

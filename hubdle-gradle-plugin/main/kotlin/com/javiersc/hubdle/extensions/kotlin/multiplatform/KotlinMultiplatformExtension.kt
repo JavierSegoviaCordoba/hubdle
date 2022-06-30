@@ -2,10 +2,11 @@
 
 package com.javiersc.hubdle.extensions.kotlin.multiplatform
 
-import com.android.build.api.dsl.LibraryExtension
 import com.javiersc.hubdle.extensions.HubdleDslMarker
 import com.javiersc.hubdle.extensions._internal.state.hubdleState
+import com.javiersc.hubdle.extensions.dependencies._internal.MultiplatformDependencies
 import com.javiersc.hubdle.extensions.kotlin.jvm.KotlinJvmOptions
+import com.javiersc.hubdle.extensions.kotlin.multiplatform._internal.multiplatformFeatures
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.KotlinMultiplatformAndroidExtension
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.KotlinMultiplatformCommonExtension
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.KotlinMultiplatformJsExtension
@@ -64,7 +65,8 @@ constructor(
     FeaturesOptions<KotlinMultiplatformExtension.FeaturesExtension>,
     KotlinJvmOptions,
     SourceDirectoriesOptions<KotlinSourceSet>,
-    RawConfigOptions<KotlinMultiplatformExtension.RawConfigExtension> {
+    RawConfigOptions<KotlinMultiplatformExtension.RawConfigExtension>,
+    MultiplatformDependencies {
 
     override var isEnabled: Boolean = IS_ENABLED
 
@@ -412,20 +414,15 @@ constructor(
         hubdleState.kotlin.multiplatform.watchosX86.isEnabled = watchosX86.isEnabled
     }
 
-    private val rawConfig: RawConfigExtension = objects.newInstance()
+    override val rawConfig: RawConfigExtension = objects.newInstance()
 
     @HubdleDslMarker
     override fun Project.rawConfig(action: Action<RawConfigExtension>) {
         action.execute(rawConfig)
     }
 
+    @HubdleDslMarker
     public open class RawConfigExtension {
-
-        @HubdleDslMarker
-        public fun Project.android(action: Action<LibraryExtension>) {
-            hubdleState.kotlin.multiplatform.rawConfig.android = action
-        }
-
         @HubdleDslMarker
         public fun Project.kotlin(action: Action<KotlinProjectMultiplatformExtension>) {
             hubdleState.kotlin.multiplatform.rawConfig.kotlin = action
@@ -435,22 +432,24 @@ constructor(
     @HubdleDslMarker
     public open class FeaturesExtension {
 
-        private val Project.multiplatformFeatures
-            get() = hubdleState.kotlin.multiplatform.features
-
         @HubdleDslMarker
         public fun Project.coroutines(enabled: Boolean = true) {
             multiplatformFeatures.coroutines = enabled
         }
 
         @HubdleDslMarker
-        public fun Project.javierScStdlib(enabled: Boolean = true) {
-            multiplatformFeatures.javierScStdlib = enabled
+        public fun Project.extendedStdlib(enabled: Boolean = true) {
+            multiplatformFeatures.extendedStdlib = enabled
         }
 
-        public companion object {
-            internal const val COROUTINES = false
-            internal const val JAVIERSC_STDLIB = true
+        @HubdleDslMarker
+        public fun Project.extendedTesting(enabled: Boolean = true) {
+            multiplatformFeatures.extendedTesting = enabled
+        }
+
+        @HubdleDslMarker
+        public fun Project.minimumTargetsPerOS(enabled: Boolean = true) {
+            multiplatformFeatures.minimumTargetsPerOS = enabled
         }
     }
 

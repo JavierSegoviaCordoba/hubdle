@@ -1,4 +1,5 @@
 import com.javiersc.gradle.tasks.extensions.maybeRegisterLazily
+import com.javiersc.gradle.tasks.extensions.namedLazily
 import com.javiersc.hubdle.extensions.HubdleDslMarker
 import com.javiersc.hubdle.extensions.HubdleExtension
 import com.javiersc.hubdle.extensions._internal.PluginIds
@@ -85,7 +86,7 @@ private fun configureAllTestsReport(target: Project) {
 }
 
 private fun configureCodeCoverageMergedReport(project: Project) {
-    if (project.hubdleState.kotlin.tools.coverage.isEnabled) {
+    if (project.hubdleState.config.coverage.isEnabled) {
         project.afterEvaluate {
             val shouldMergeCodeCoverageReports =
                 project.gradle.startParameter.taskNames.any { taskName ->
@@ -101,9 +102,9 @@ private fun configureCodeCoverageMergedReport(project: Project) {
 
             if (shouldMergeCodeCoverageReports) {
                 val koverMergedReportTask =
-                    project.rootProject.tasks.named(KOVER_MERGED_REPORT_TASK_NAME)
-                project.rootProject.tasks.named(ALL_TEST_TASK_NAME).configure { allTestsTask ->
-                    allTestsTask.dependsOn(koverMergedReportTask)
+                    project.rootProject.tasks.namedLazily<Task>(KOVER_MERGED_REPORT_TASK_NAME)
+                project.rootProject.tasks.namedLazily<Task>(ALL_TEST_TASK_NAME).configureEach {
+                    it.dependsOn(koverMergedReportTask)
                 }
             }
         }

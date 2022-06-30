@@ -2,6 +2,8 @@ package com.javiersc.hubdle.extensions.kotlin.gradle.plugin
 
 import com.javiersc.hubdle.extensions.HubdleDslMarker
 import com.javiersc.hubdle.extensions._internal.state.hubdleState
+import com.javiersc.hubdle.extensions.dependencies._internal.GradlePluginDependencies
+import com.javiersc.hubdle.extensions.kotlin.gradle.plugin._internal.gradlePluginFeatures
 import com.javiersc.hubdle.extensions.kotlin.jvm.KotlinJvmOptions
 import com.javiersc.hubdle.extensions.options.EnableableOptions
 import com.javiersc.hubdle.extensions.options.FeaturesOptions
@@ -30,7 +32,8 @@ constructor(
     KotlinJvmOptions,
     SourceDirectoriesOptions<KotlinSourceSet>,
     RawConfigOptions<KotlinGradlePluginExtension.RawConfigExtension>,
-    GradleDependenciesOptions {
+    GradleDependenciesOptions,
+    GradlePluginDependencies {
 
     override var isEnabled: Boolean = IS_ENABLED
 
@@ -54,50 +57,42 @@ constructor(
         the<KotlinJvmProjectExtension>().sourceSets.named("test", action::execute)
     }
 
+    override val rawConfig: RawConfigExtension = objects.newInstance()
+
     @HubdleDslMarker
     override fun Project.rawConfig(action: Action<RawConfigExtension>) {
-        afterEvaluate { action.execute(it.the()) }
-    }
-
-    @HubdleDslMarker
-    public open class RawConfigExtension {
-
-        @HubdleDslMarker
-        public fun Project.kotlin(action: Action<KotlinJvmProjectExtension>) {
-            afterEvaluate { action.execute(it.the()) }
-        }
-
-        @HubdleDslMarker
-        public fun Project.gradlePlugin(action: Action<GradlePluginDevelopmentExtension>) {
-            afterEvaluate { action.execute(it.the()) }
-        }
+        action.execute(rawConfig)
     }
 
     @HubdleDslMarker
     public open class FeaturesExtension {
 
-        private val Project.pluginFeatures
-            get() = hubdleState.kotlin.gradle.plugin.features
-
         @HubdleDslMarker
-        public fun Project.coroutines(enabled: Boolean = true) {
-            pluginFeatures.coroutines = enabled
+        public fun Project.extendedGradle(enabled: Boolean = true) {
+            gradlePluginFeatures.extendedGradle = enabled
         }
 
         @HubdleDslMarker
-        public fun Project.javierScGradleExtensions(enabled: Boolean = true) {
-            pluginFeatures.javierScGradleExtensions = enabled
+        public fun Project.extendedStdlib(enabled: Boolean = true) {
+            gradlePluginFeatures.extendedStdlib = enabled
         }
 
         @HubdleDslMarker
-        public fun Project.javierScStdlib(enabled: Boolean = true) {
-            pluginFeatures.javierScStdlib = enabled
+        public fun Project.extendedTesting(enabled: Boolean = true) {
+            gradlePluginFeatures.extendedTesting = enabled
+        }
+    }
+
+    @HubdleDslMarker
+    public open class RawConfigExtension {
+        @HubdleDslMarker
+        public fun Project.kotlin(action: Action<KotlinJvmProjectExtension>) {
+            hubdleState.kotlin.gradle.plugin.rawConfig.kotlin = action
         }
 
-        public companion object {
-            internal const val COROUTINES = false
-            internal const val JAVIERSC_GRADLE_EXTENSIONS = true
-            internal const val JAVIER_SC_STDLIB = true
+        @HubdleDslMarker
+        public fun Project.gradlePlugin(action: Action<GradlePluginDevelopmentExtension>) {
+            hubdleState.kotlin.gradle.plugin.rawConfig.gradlePlugin = action
         }
     }
 

@@ -6,7 +6,15 @@ plugins {
     `dependencies-codegen`
 }
 
-kotlin { explicitApi() }
+kotlin {
+    explicitApi()
+
+    sourceSets.all {
+        languageSettings {
+            optIn("kotlin.ExperimentalStdlibApi")
+        }
+    }
+}
 
 pluginBundle {
     tags =
@@ -29,6 +37,9 @@ gradlePlugin {
 val testPluginClasspath: Configuration by configurations.creating
 
 dependencies {
+    compileOnly(pluginLibs.android.toolsBuild.gradle)
+    compileOnly(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)
+
     implementation(gradleApi())
     implementation(gradleKotlinDsl())
     implementation(libs.eclipse.jgit)
@@ -36,7 +47,6 @@ dependencies {
     implementation(libs.javiersc.kotlin.kotlinStdlib)
     implementation(libs.javiersc.semver.semverCore)
     implementation(pluginLibs.adarshr.gradleTestLoggerPlugin)
-    implementation(pluginLibs.android.toolsBuild.gradle)
     implementation(pluginLibs.diffplug.spotless.spotlessPluginGradle)
     implementation(pluginLibs.github.gradleNexus.publishPlugin)
     implementation(pluginLibs.gitlab.arturboschDetekt.detektGradlePlugin)
@@ -44,7 +54,6 @@ dependencies {
     implementation(pluginLibs.javiersc.semver.semverGradlePlugin)
     implementation(pluginLibs.jetbrains.dokka.dokkaGradlePlugin)
     implementation(pluginLibs.jetbrains.intellijPlugins.gradleChangelogPlugin)
-    implementation(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)
     implementation(pluginLibs.jetbrains.kotlinx.binaryCompatibilityValidator)
     implementation(pluginLibs.jetbrains.kotlinx.kover)
     implementation(pluginLibs.sonarqube.scannerGradle.sonarqubeGradlePlugin)
@@ -55,8 +64,8 @@ dependencies {
     testImplementation(libs.jetbrains.kotlin.kotlinTest)
     testImplementation(libs.kotest.kotestAssertionsCore)
 
-    testPluginClasspath(pluginLibs.android.toolsBuild.gradle)
-    testPluginClasspath(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)
+    testPluginClasspath("${pluginLibs.android.toolsBuild.gradle.get().module}:7.2.1")
+    testPluginClasspath("${pluginLibs.jetbrains.kotlin.kotlinGradlePlugin.get().module}:1.6.21")
 }
 
 tasks { pluginUnderTestMetadata { pluginClasspath.from(testPluginClasspath) } }

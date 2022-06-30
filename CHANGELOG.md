@@ -4,11 +4,17 @@
 
 ### Added
 
+- `hubdle` extension to configure everything without applying convention plugins
+
 ### Changed
+
+- Huge refactor, check the site [hubdle.javiersc.com](https://hubdle.javiersc.com)
 
 ### Deprecated
 
 ### Removed
+
+- All convention plugins to use `com.javiersc.hubdle`
 
 ### Fixed
 

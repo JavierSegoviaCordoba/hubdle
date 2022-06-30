@@ -1,4 +1,3 @@
-@file:OptIn(ExperimentalStdlibApi::class)
 @file:Suppress("TooManyFunctions")
 
 package com.javiersc.hubdle.extensions.config.documentation.site

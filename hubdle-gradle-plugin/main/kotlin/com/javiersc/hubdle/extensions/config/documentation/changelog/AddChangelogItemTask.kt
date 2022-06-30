@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalStdlibApi::class)
-
 package com.javiersc.hubdle.extensions.config.documentation.changelog
 
 import com.javiersc.hubdle.extensions.config.documentation.changelog._internal.Changelog

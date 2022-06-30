@@ -82,7 +82,7 @@ internal fun Project.configurePublishingExtension() {
 }
 
 internal fun Project.configureSigningForPublishing() {
-    configure<SigningExtension>() { signPublications() }
+    configure<SigningExtension> { signPublications() }
 }
 
 private fun SigningExtension.signPublications() {

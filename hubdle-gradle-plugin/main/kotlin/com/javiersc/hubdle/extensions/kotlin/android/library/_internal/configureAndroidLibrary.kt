@@ -5,12 +5,14 @@ import com.javiersc.hubdle.extensions._internal.PluginIds
 import com.javiersc.hubdle.extensions._internal.state.HubdleState
 import com.javiersc.hubdle.extensions._internal.state.catalogImplementation
 import com.javiersc.hubdle.extensions._internal.state.hubdleState
-import com.javiersc.hubdle.extensions.dependencies._internal.COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE
-import com.javiersc.hubdle.extensions.dependencies._internal.ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_ANDROID_MODULE
-import com.javiersc.hubdle.extensions.dependencies._internal.ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_MODULE
-import com.javiersc.hubdle.extensions.dependencies._internal.ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_TEST_MODULE
+import com.javiersc.hubdle.extensions.config.explicit.api._internal.configureExplicitApi
+import com.javiersc.hubdle.extensions.dependencies._internal.constants.COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE
+import com.javiersc.hubdle.extensions.dependencies._internal.constants.IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE
+import com.javiersc.hubdle.extensions.dependencies._internal.constants.ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_ANDROID_MODULE
+import com.javiersc.hubdle.extensions.dependencies._internal.constants.ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_MODULE
+import com.javiersc.hubdle.extensions.dependencies._internal.constants.ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_TEST_MODULE
+import com.javiersc.hubdle.extensions.dependencies._internal.constants.ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE
 import com.javiersc.hubdle.extensions.kotlin._internal.configJvmTarget
-import com.javiersc.hubdle.extensions.kotlin.tools.explicit.api._internal.configureExplicitApi
 import com.javiersc.hubdle.extensions.options.configDefaultAndroidSourceSets
 import com.javiersc.hubdle.extensions.options.configureJavaJarsForAndroidPublishing
 import com.javiersc.hubdle.extensions.options.configureMavenPublication
@@ -32,14 +34,14 @@ internal fun configureAndroidLibrary(project: Project) {
 
         project.the<KotlinProjectExtension>().configureAndroidDependencies()
 
-        project.configure<LibraryExtension>() {
+        project.configure<LibraryExtension> {
             compileSdk = project.hubdleState.kotlin.android.compileSdk
             defaultConfig.minSdk = project.hubdleState.kotlin.android.minSdk
 
             sourceSets.all { it.configDefaultAndroidSourceSets() }
         }
 
-        if (project.hubdleState.kotlin.isPublishingEnabled) {
+        if (project.hubdleState.config.publishing.isEnabled) {
             project.pluginManager.apply(PluginIds.Publishing.mavenPublish)
             project.pluginManager.apply(PluginIds.Publishing.signing)
             project.configurePublishingExtension()
@@ -50,26 +52,39 @@ internal fun configureAndroidLibrary(project: Project) {
     }
 }
 
+internal val Project.androidLibraryFeatures: HubdleState.Kotlin.Android.Library.Features
+    get() = hubdleState.kotlin.android.library.features
+
+private val KotlinDependencyHandler.androidLibraryFeatures:
+    HubdleState.Kotlin.Android.Library.Features
+    get() = project.androidLibraryFeatures
+
+internal fun configureKotlinAndroidLibraryRawConfig(project: Project) {
+    project.hubdleState.kotlin.android.library.rawConfig.android?.execute(project.the())
+}
+
 private fun KotlinProjectExtension.configureAndroidDependencies() {
     sourceSets.named("main") { it.dependencies { configureMainDependencies() } }
     sourceSets.named("test") { it.dependencies { configureTestDependencies() } }
 }
 
-private val KotlinDependencyHandler.androidFeatures: HubdleState.Kotlin.Android.Features
-    get() = project.hubdleState.kotlin.android.features
-
 private fun KotlinDependencyHandler.configureMainDependencies() {
-    if (androidFeatures.coroutines) {
+    if (androidLibraryFeatures.coroutines) {
         catalogImplementation(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_ANDROID_MODULE)
         catalogImplementation(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_MODULE)
     }
-    if (androidFeatures.javierScStdlib) {
+    if (androidLibraryFeatures.extendedStdlib) {
         catalogImplementation(COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE)
     }
 }
 
 private fun KotlinDependencyHandler.configureTestDependencies() {
-    if (androidFeatures.coroutines) {
+    catalogImplementation(ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE)
+
+    if (androidLibraryFeatures.coroutines) {
         catalogImplementation(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_TEST_MODULE)
+    }
+    if (androidLibraryFeatures.extendedTesting) {
+        catalogImplementation(IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE)
     }
 }

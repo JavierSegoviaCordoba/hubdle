@@ -3,27 +3,36 @@ import org.gradle.kotlin.dsl.the
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 plugins {
-    id("com.javiersc.hubdle") version "0.1.1-SNAPSHOT"
+    id("com.javiersc.hubdle")
 }
 
 version = "7.3.4-beta.2"
 
 hubdle {
-    config { versioning { isEnabled = false } }
+    config {
+        publishing()
+
+        versioning {
+            isEnabled = false
+        }
+    }
 
     kotlin {
-        tools { publishing() }
-
         multiplatform {
-            features { javierScStdlib(false) }
+            features {
+                extendedStdlib(false)
+                minimumTargetsPerOS()
+            }
 
             rawConfig {
-                android { compileSdk = 29 }
-
                 kotlin { sourceSets.create("randomMain") }
             }
 
-            android()
+            android {
+                rawConfig {
+                    android { compileSdk = 29 }
+                }
+            }
             ios()
             iosArm32()
             iosArm64()

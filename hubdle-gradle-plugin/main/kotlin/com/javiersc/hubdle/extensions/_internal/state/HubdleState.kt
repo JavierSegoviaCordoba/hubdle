@@ -1,31 +1,54 @@
 package com.javiersc.hubdle.extensions._internal.state
 
 import com.android.build.api.dsl.LibraryExtension
+import com.diffplug.gradle.spotless.SpotlessExtension
+import com.javiersc.hubdle.extensions.config.analysis.AnalysisExtension
+import com.javiersc.hubdle.extensions.config.analysis._internal.configureAnalysis
+import com.javiersc.hubdle.extensions.config.analysis._internal.configureConfigAnalysisRawConfig
+import com.javiersc.hubdle.extensions.config.binary.compatibility.validator.BinaryCompatibilityValidatorExtension
+import com.javiersc.hubdle.extensions.config.binary.compatibility.validator._internal.configureBinaryCompatibilityValidator
+import com.javiersc.hubdle.extensions.config.binary.compatibility.validator._internal.configureConfigBinaryCompatibilityValidatorRawConfig
+import com.javiersc.hubdle.extensions.config.coverage.CoverageExtension
+import com.javiersc.hubdle.extensions.config.coverage._internal.configureCoverage
+import com.javiersc.hubdle.extensions.config.coverage._internal.configureKotlinCoverageRawConfig
 import com.javiersc.hubdle.extensions.config.documentation.changelog.ChangelogExtension
 import com.javiersc.hubdle.extensions.config.documentation.changelog._internal.configureChangelog
+import com.javiersc.hubdle.extensions.config.documentation.changelog._internal.configureConfigDocumentationChangelogRawConfig
 import com.javiersc.hubdle.extensions.config.documentation.readme.ReadmeBadgesExtension
 import com.javiersc.hubdle.extensions.config.documentation.readme._internal.configureReadmeBadges
 import com.javiersc.hubdle.extensions.config.documentation.site.SiteExtension
+import com.javiersc.hubdle.extensions.config.documentation.site._internal.configureConfigDocumentationSiteRawConfig
 import com.javiersc.hubdle.extensions.config.documentation.site._internal.configureSite
+import com.javiersc.hubdle.extensions.config.format.FormatExtension
+import com.javiersc.hubdle.extensions.config.format._internal.configureFormat
+import com.javiersc.hubdle.extensions.config.format._internal.configureKotlinFormatRawConfig
 import com.javiersc.hubdle.extensions.config.install.InstallExtension
 import com.javiersc.hubdle.extensions.config.install._internal.configureInstallPreCommits
+import com.javiersc.hubdle.extensions.config.language.settings._internal.configureConfigLanguageSettings
 import com.javiersc.hubdle.extensions.config.nexus.NexusExtension
 import com.javiersc.hubdle.extensions.config.nexus._internal.configureNexus
+import com.javiersc.hubdle.extensions.config.publishing.PublishingExtension
+import com.javiersc.hubdle.extensions.config.publishing._internal.configureKotlinPublishingRawConfig
 import com.javiersc.hubdle.extensions.config.versioning.VersioningExtension
+import com.javiersc.hubdle.extensions.config.versioning._internal.configureConfigVersioningRawConfig
 import com.javiersc.hubdle.extensions.config.versioning._internal.configureVersioning
 import com.javiersc.hubdle.extensions.kotlin.android.AndroidOptions
 import com.javiersc.hubdle.extensions.kotlin.android.library.KotlinAndroidLibraryExtension
 import com.javiersc.hubdle.extensions.kotlin.android.library._internal.configureAndroidLibrary
+import com.javiersc.hubdle.extensions.kotlin.android.library._internal.configureKotlinAndroidLibraryRawConfig
 import com.javiersc.hubdle.extensions.kotlin.gradle.plugin.KotlinGradlePluginExtension
 import com.javiersc.hubdle.extensions.kotlin.gradle.plugin._internal.configureGradlePlugin
+import com.javiersc.hubdle.extensions.kotlin.gradle.plugin._internal.configureKotlinGradlePluginRawConfig
 import com.javiersc.hubdle.extensions.kotlin.gradle.version.catalog.KotlinGradleVersionCatalogExtension
 import com.javiersc.hubdle.extensions.kotlin.gradle.version.catalog._internal.configureGradleVersionCatalog
 import com.javiersc.hubdle.extensions.kotlin.jvm.KotlinJvmExtension
 import com.javiersc.hubdle.extensions.kotlin.jvm.KotlinJvmOptions.Companion.JVM_VERSION
 import com.javiersc.hubdle.extensions.kotlin.jvm._internal.configureJvm
+import com.javiersc.hubdle.extensions.kotlin.jvm._internal.configureKotlinJvmRawConfig
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.KotlinMultiplatformExtension
 import com.javiersc.hubdle.extensions.kotlin.multiplatform._internal.configureMultiplatform
 import com.javiersc.hubdle.extensions.kotlin.multiplatform._internal.configureMultiplatformAndroid
+import com.javiersc.hubdle.extensions.kotlin.multiplatform._internal.configureMultiplatformAndroidRawConfig
 import com.javiersc.hubdle.extensions.kotlin.multiplatform._internal.configureMultiplatformIOS
 import com.javiersc.hubdle.extensions.kotlin.multiplatform._internal.configureMultiplatformIOSArm32
 import com.javiersc.hubdle.extensions.kotlin.multiplatform._internal.configureMultiplatformIOSArm64
@@ -92,20 +115,23 @@ import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.watchos.Kotli
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.watchos.KotlinMultiplatformWatchOSSimulatorArm64Extension
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.watchos.KotlinMultiplatformWatchOSX64Extension
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.watchos.KotlinMultiplatformWatchOSX86Extension
-import com.javiersc.hubdle.extensions.kotlin.tools.analysis.AnalysisExtension
-import com.javiersc.hubdle.extensions.kotlin.tools.analysis._internal.configureAnalysis
-import com.javiersc.hubdle.extensions.kotlin.tools.binary.compatibility.validator.BinaryCompatibilityValidatorExtension
-import com.javiersc.hubdle.extensions.kotlin.tools.binary.compatibility.validator._internal.configureBinaryCompatibilityValidator
-import com.javiersc.hubdle.extensions.kotlin.tools.coverage.CoverageExtension
-import com.javiersc.hubdle.extensions.kotlin.tools.coverage._internal.configureCoverage
-import com.javiersc.hubdle.extensions.kotlin.tools.format.FormatExtension
-import com.javiersc.hubdle.extensions.kotlin.tools.format._internal.configureFormat
-import com.javiersc.hubdle.extensions.kotlin.tools.publishing.PublishingExtension
+import com.javiersc.semver.gradle.plugin.SemverExtension
+import io.gitlab.arturbosch.detekt.extensions.DetektExtension
 import java.io.File
+import kotlinx.kover.api.KoverExtension
+import kotlinx.validation.ApiValidationExtension
 import org.gradle.api.Action
 import org.gradle.api.Project
+import org.gradle.api.publish.PublishingExtension as GradlePublishingExtension
+import org.gradle.internal.os.OperatingSystem
+import org.gradle.plugin.devel.GradlePluginDevelopmentExtension
+import org.gradle.plugins.signing.SigningExtension
+import org.jetbrains.changelog.ChangelogPluginExtension
 import org.jetbrains.kotlin.gradle.dsl.ExplicitApiMode
+import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension as KotlinMultiplatformProjectExtension
+import org.jetbrains.kotlin.gradle.plugin.LanguageSettingsBuilder
+import ru.vyarus.gradle.plugin.mkdocs.MkdocsExtension
 
 private val hubdleStateCache: MutableMap<Project, HubdleState> = mutableMapOf()
 
@@ -122,23 +148,104 @@ internal data class HubdleState(
     val kotlin: Kotlin = Kotlin(),
 ) : Configurable {
 
+    private val laterConfigurables: MutableList<LaterConfigurable> = mutableListOf()
+
     override fun configure(project: Project) {
         config.configure(project)
         kotlin.configure(project)
+        laterConfigurables
+            .sortedBy { it.priority.value }
+            .forEach { it.configureLater(project).invoke() }
     }
 
     data class Config(
+        val analysis: Analysis = Analysis(),
+        val binaryCompatibilityValidator: BinaryCompatibilityValidator =
+            BinaryCompatibilityValidator(),
+        val coverage: Coverage = Coverage(),
         val documentation: Documentation = Documentation(),
+        var explicitApiMode: ExplicitApiMode = ExplicitApiMode.Disabled,
+        val languageSettings: LanguageSettings = LanguageSettings(),
         val install: Install = Install(),
+        val format: Format = Format(),
         val nexus: Nexus = Nexus(),
+        val publishing: Publishing = Publishing(),
         val versioning: Versioning = Versioning(),
     ) : Configurable {
 
         override fun configure(project: Project) {
+            analysis.configure(project)
+            binaryCompatibilityValidator.configure(project)
+            coverage.configure(project)
             documentation.configure(project)
+            project.hubdleState.laterConfigurables += languageSettings
+            format.configure(project)
             install.configure(project)
             nexus.configure(project)
+            publishing.configure(project)
             versioning.configure(project)
+        }
+
+        data class Analysis(
+            override var isEnabled: Boolean = AnalysisExtension.IS_ENABLED,
+            var isIgnoreFailures: Boolean = AnalysisExtension.IGNORE_FAILURES,
+            val includes: MutableList<String> = AnalysisExtension.INCLUDES,
+            val excludes: MutableList<String> = AnalysisExtension.EXCLUDES,
+            val reports: Reports = Reports(),
+            val rawConfig: RawConfig = RawConfig(),
+        ) : Enableable, Configurable {
+
+            override fun configure(project: Project) {
+                configureAnalysis(project)
+                rawConfig.configure(project)
+            }
+
+            data class Reports(
+                var html: Boolean = AnalysisExtension.ReportsExtension.HTML,
+                var sarif: Boolean = AnalysisExtension.ReportsExtension.SARIF,
+                var txt: Boolean = AnalysisExtension.ReportsExtension.TXT,
+                var xml: Boolean = AnalysisExtension.ReportsExtension.XML,
+            )
+
+            data class RawConfig(
+                var detekt: Action<DetektExtension>? = null,
+            ) : Configurable {
+                override fun configure(project: Project) = configureConfigAnalysisRawConfig(project)
+            }
+        }
+
+        data class BinaryCompatibilityValidator(
+            override var isEnabled: Boolean = BinaryCompatibilityValidatorExtension.IS_ENABLED,
+            val rawConfig: RawConfig = RawConfig(),
+        ) : Enableable, Configurable {
+
+            override fun configure(project: Project) {
+                configureBinaryCompatibilityValidator(project)
+            }
+
+            data class RawConfig(
+                var apiValidation: Action<ApiValidationExtension>? = null,
+            ) : Configurable {
+                override fun configure(project: Project) =
+                    configureConfigBinaryCompatibilityValidatorRawConfig(project)
+            }
+        }
+
+        data class Coverage(
+            override var isEnabled: Boolean = CoverageExtension.IS_ENABLED,
+            val rawConfig: RawConfig = RawConfig(),
+        ) : Enableable, Configurable {
+
+            override fun configure(project: Project) {
+                configureCoverage(project)
+                rawConfig.configure(project)
+            }
+
+            data class RawConfig(
+                var kover: Action<KoverExtension>? = null,
+            ) : Configurable {
+                override fun configure(project: Project) = configureKotlinCoverageRawConfig(project)
+            }
         }
 
         data class Documentation(
@@ -155,11 +262,24 @@ internal data class HubdleState(
 
             data class Changelog(
                 override var isEnabled: Boolean = ChangelogExtension.IS_ENABLED,
+                val rawConfig: RawConfig = RawConfig(),
             ) : Enableable, Configurable {
-                override fun configure(project: Project) = configureChangelog(project)
+                override fun configure(project: Project) {
+                    configureChangelog(project)
+                    rawConfig.configure(project)
+                }
+
+                data class RawConfig(
+                    var changelog: Action<ChangelogPluginExtension>? = null,
+                ) : Configurable {
+                    override fun configure(project: Project) =
+                        configureConfigDocumentationChangelogRawConfig(project)
+                }
             }
 
-            data class Readme(val badges: Badges = Badges()) : Configurable {
+            data class Readme(
+                val badges: Badges = Badges(),
+            ) : Configurable {
 
                 override fun configure(project: Project) = badges.configure(project)
 
@@ -181,9 +301,13 @@ internal data class HubdleState(
             data class Site(
                 override var isEnabled: Boolean = SiteExtension.IS_ENABLED,
                 val reports: Reports = Reports(),
+                val rawConfig: RawConfig = RawConfig(),
             ) : Enableable, Configurable {
 
-                override fun configure(project: Project) = configureSite(project)
+                override fun configure(project: Project) {
+                    configureSite(project)
+                    rawConfig.configure(project)
+                }
 
                 data class Reports(
                     var allTests: Boolean = SiteExtension.ReportsExtension.ALL_TESTS,
@@ -191,7 +315,51 @@ internal data class HubdleState(
                     var codeCoverage: Boolean = SiteExtension.ReportsExtension.CODE_COVERAGE,
                     var codeQuality: Boolean = SiteExtension.ReportsExtension.CODE_QUALITY,
                 )
+
+                data class RawConfig(
+                    var mkdocs: Action<MkdocsExtension>? = null,
+                ) : Configurable {
+                    override fun configure(project: Project) =
+                        configureConfigDocumentationSiteRawConfig(project)
+                }
             }
+        }
+
+        data class Format(
+            override var isEnabled: Boolean = FormatExtension.IS_ENABlED,
+            val includes: MutableList<String> = mutableListOf(),
+            val excludes: MutableList<String> = mutableListOf(),
+            var ktfmtVersion: String = FormatExtension.KTFMT_VERSION,
+            val rawConfig: RawConfig = RawConfig(),
+        ) : Enableable, Configurable {
+
+            override fun configure(project: Project) {
+                configureFormat(project)
+                rawConfig.configure(project)
+            }
+
+            data class RawConfig(
+                var spotless: Action<SpotlessExtension>? = null,
+            ) : Configurable {
+                override fun configure(project: Project) = configureKotlinFormatRawConfig(project)
+            }
+        }
+
+        data class LanguageSettings(
+            var experimentalCoroutinesApi: Boolean = false,
+            var experimentalStdlibApi: Boolean = true,
+            var experimentalTime: Boolean = true,
+            var flowPreview: Boolean = false,
+            var requiresOptIn: Boolean = true,
+            var rawConfig: RawConfig = RawConfig(),
+        ) : LaterConfigurable {
+            override fun configureLater(project: Project): () -> Unit = {
+                configureConfigLanguageSettings(project)
+            }
+
+            data class RawConfig(
+                var languageSettings: Action<LanguageSettingsBuilder>? = null,
+            )
         }
 
         data class Install(
@@ -218,22 +386,48 @@ internal data class HubdleState(
             override fun configure(project: Project) = configureNexus(project)
         }
 
+        data class Publishing(
+            override var isEnabled: Boolean = PublishingExtension.IS_ENABLED,
+            val rawConfig: RawConfig = RawConfig(),
+        ) : Enableable, Configurable {
+            override fun configure(project: Project) {
+                rawConfig.configure(project)
+            }
+
+            data class RawConfig(
+                var publishing: Action<GradlePublishingExtension>? = null,
+                var signing: Action<SigningExtension>? = null,
+            ) : Configurable {
+                override fun configure(project: Project) =
+                    configureKotlinPublishingRawConfig(project)
+            }
+        }
+
         data class Versioning(
             override var isEnabled: Boolean = VersioningExtension.IS_ENABLED,
             var tagPrefix: String = VersioningExtension.TAG_PREFIX,
+            val rawConfig: RawConfig = RawConfig(),
         ) : Enableable, Configurable {
-            override fun configure(project: Project) = configureVersioning(project)
+            override fun configure(project: Project) {
+                configureVersioning(project)
+                rawConfig.configure(project)
+            }
+
+            data class RawConfig(
+                var semver: Action<SemverExtension>? = null,
+            ) : Configurable {
+                override fun configure(project: Project) =
+                    configureConfigVersioningRawConfig(project)
+            }
         }
     }
 
     data class Kotlin(
         val android: Android = Android(),
         val gradle: Gradle = Gradle(),
-        var isPublishingEnabled: Boolean = PublishingExtension.IS_ENABLED,
         val jvm: Jvm = Jvm(),
         val multiplatform: Multiplatform = Multiplatform(),
         var target: Int = JVM_VERSION,
-        val tools: Tools = Tools(),
     ) : Configurable {
 
         override fun configure(project: Project) {
@@ -241,14 +435,12 @@ internal data class HubdleState(
             gradle.configure(project)
             jvm.configure(project)
             multiplatform.configure(project)
-            tools.configure(project)
         }
 
         data class Android(
             var compileSdk: Int = AndroidOptions.COMPILE_SDK,
             val library: Library = Library(),
             var minSdk: Int = AndroidOptions.MIN_SDK,
-            var features: Features = Features(),
         ) : Configurable {
 
             override fun configure(project: Project) {
@@ -257,17 +449,28 @@ internal data class HubdleState(
 
             data class Library(
                 override var isEnabled: Boolean = KotlinAndroidLibraryExtension.IS_ENABLED,
+                var features: Features = Features(),
+                var rawConfig: RawConfig = RawConfig(),
             ) : Enableable, Configurable {
 
-                override fun configure(project: Project) = configureAndroidLibrary(project)
-            }
+                override fun configure(project: Project) {
+                    configureAndroidLibrary(project)
+                    rawConfig.configure(project)
+                }
 
-            data class Features(
-                var coroutines: Boolean =
-                    KotlinAndroidLibraryExtension.FeaturesExtension.COROUTINES,
-                var javierScStdlib: Boolean =
-                    KotlinAndroidLibraryExtension.FeaturesExtension.JAVIER_SC_STDLIB,
-            )
+                data class RawConfig(
+                    var android: Action<LibraryExtension>? = null,
+                ) : Configurable {
+                    override fun configure(project: Project) =
+                        configureKotlinAndroidLibraryRawConfig(project)
+                }
+
+                data class Features(
+                    var coroutines: Boolean = false,
+                    var extendedStdlib: Boolean = true,
+                    var extendedTesting: Boolean = true,
+                )
+            }
         }
 
         data class Gradle(
@@ -282,19 +485,28 @@ internal data class HubdleState(
 
             data class Plugin(
                 override var isEnabled: Boolean = KotlinGradlePluginExtension.IS_ENABLED,
-                var features: Features = Features()
+                var features: Features = Features(),
+                var rawConfig: RawConfig = RawConfig(),
             ) : Enableable, Configurable {
 
-                override fun configure(project: Project) = configureGradlePlugin(project)
+                override fun configure(project: Project) {
+                    configureGradlePlugin(project)
+                    rawConfig.configure(project)
+                }
 
                 data class Features(
-                    var coroutines: Boolean =
-                        KotlinGradlePluginExtension.FeaturesExtension.COROUTINES,
-                    var javierScGradleExtensions: Boolean =
-                        KotlinGradlePluginExtension.FeaturesExtension.JAVIERSC_GRADLE_EXTENSIONS,
-                    var javierScStdlib: Boolean =
-                        KotlinGradlePluginExtension.FeaturesExtension.JAVIER_SC_STDLIB,
+                    var extendedGradle: Boolean = true,
+                    var extendedStdlib: Boolean = true,
+                    var extendedTesting: Boolean = true,
                 )
+
+                data class RawConfig(
+                    var kotlin: Action<KotlinJvmProjectExtension>? = null,
+                    var gradlePlugin: Action<GradlePluginDevelopmentExtension>? = null,
+                ) : Configurable {
+                    override fun configure(project: Project) =
+                        configureKotlinGradlePluginRawConfig(project)
+                }
             }
 
             data class VersionCatalog(
@@ -308,15 +520,25 @@ internal data class HubdleState(
         data class Jvm(
             override var isEnabled: Boolean = KotlinJvmExtension.IS_ENABLED,
             val features: Features = Features(),
+            val rawConfig: RawConfig = RawConfig()
         ) : Enableable, Configurable {
-            override fun configure(project: Project) = configureJvm(project)
+            override fun configure(project: Project) {
+                configureJvm(project)
+                rawConfig.configure(project)
+            }
 
             data class Features(
-                var coroutines: Boolean = KotlinJvmExtension.FeaturesExtension.COROUTINES,
-                var javierScGradleExtensions: Boolean =
-                    KotlinJvmExtension.FeaturesExtension.JAVIERSC_GRADLE_EXTENSIONS,
-                var javierScStdlib: Boolean = KotlinJvmExtension.FeaturesExtension.JAVIER_SC_STDLIB,
+                var coroutines: Boolean = false,
+                var extendedStdlib: Boolean = true,
+                var extendedGradle: Boolean = false,
+                var extendedTesting: Boolean = true,
             )
+
+            data class RawConfig(
+                var kotlin: Action<KotlinJvmProjectExtension>? = null,
+            ) : Configurable {
+                override fun configure(project: Project) = configureKotlinJvmRawConfig(project)
+            }
         }
 
         data class Multiplatform(
@@ -360,42 +582,94 @@ internal data class HubdleState(
 
             override fun configure(project: Project) {
                 configureMultiplatform(project)
+
+                configureCommonsTargets(project)
+
+                if (features.minimumTargetsPerOS) {
+                    val currentOS = OperatingSystem.current()
+                    when {
+                        currentOS.isLinux -> {
+                            configureLinux(project)
+                        }
+                        currentOS.isMacOsX -> {
+                            configureIOS(project)
+                            configureMacOS(project)
+                            configureTvOS(project)
+                            configureWatchOS(project)
+                        }
+                        currentOS.isWindows -> {
+                            configureMinGW(project)
+                        }
+                    }
+                } else {
+                    configureIOS(project)
+                    configureMacOS(project)
+                    configureLinux(project)
+                    configureMinGW(project)
+                    configureTvOS(project)
+                    configureWatchOS(project)
+                }
+
+                native.configure(project)
+
+                rawConfig.configure(project)
+            }
+
+            private fun configureCommonsTargets(project: Project) {
                 android.configure(project)
+                jvm.configure(project)
+                js.configure(project)
+                configureWasm(project)
+            }
+
+            private fun configureIOS(project: Project) {
                 iosArm32.configure(project)
                 iosArm64.configure(project)
                 iosX64.configure(project)
                 iosSimulatorArm64.configure(project)
-                jvm.configure(project)
-                js.configure(project)
+                ios.configure(project)
+            }
+
+            private fun configureLinux(project: Project) {
                 linuxArm32Hfp.configure(project)
                 linuxArm64.configure(project)
                 linuxMips32.configure(project)
                 linuxMipsel32.configure(project)
                 linuxX64.configure(project)
+                linux.configure(project)
+            }
+
+            private fun configureMacOS(project: Project) {
                 macosArm64.configure(project)
                 macosX64.configure(project)
+                macos.configure(project)
+            }
+
+            private fun configureMinGW(project: Project) {
                 mingwX64.configure(project)
                 mingwX86.configure(project)
+                mingw.configure(project)
+            }
+
+            private fun configureTvOS(project: Project) {
                 tvosArm64.configure(project)
                 tvosSimulatorArm64.configure(project)
                 tvosX64.configure(project)
+                tvos.configure(project)
+            }
+
+            private fun configureWasm(project: Project) {
                 wasm32.configure(project)
+                wasm.configure(project)
+            }
+
+            private fun configureWatchOS(project: Project) {
                 watchosArm32.configure(project)
                 watchosArm64.configure(project)
                 watchosX64.configure(project)
                 watchosSimulatorArm64.configure(project)
                 watchosX86.configure(project)
-
-                ios.configure(project)
-                linux.configure(project)
-                macos.configure(project)
-                mingw.configure(project)
-                tvos.configure(project)
-                wasm.configure(project)
                 watchos.configure(project)
-                native.configure(project)
-
-                rawConfig.configure(project)
             }
 
             data class Android(
@@ -403,9 +677,20 @@ internal data class HubdleState(
                 var allLibraryVariants: Boolean =
                     KotlinMultiplatformAndroidExtension.ALL_LIBRARY_VARIANTS,
                 val publishLibraryVariants: MutableList<String> = mutableListOf(),
+                val rawConfig: RawConfig = RawConfig()
             ) : Enableable, Configurable {
 
-                override fun configure(project: Project) = configureMultiplatformAndroid(project)
+                override fun configure(project: Project) {
+                    configureMultiplatformAndroid(project)
+                    rawConfig.configure(project)
+                }
+
+                data class RawConfig(
+                    var android: Action<LibraryExtension>? = null,
+                ) : Configurable {
+                    override fun configure(project: Project) =
+                        configureMultiplatformAndroidRawConfig(project)
+                }
             }
 
             data class IOS(
@@ -627,78 +912,35 @@ internal data class HubdleState(
             }
 
             data class Features(
-                var coroutines: Boolean = KotlinMultiplatformExtension.FeaturesExtension.COROUTINES,
-                var javierScStdlib: Boolean =
-                    KotlinMultiplatformExtension.FeaturesExtension.JAVIERSC_STDLIB,
+                var coroutines: Boolean = false,
+                var extendedStdlib: Boolean = true,
+                var extendedTesting: Boolean = true,
+                var minimumTargetsPerOS: Boolean = false
             )
 
             data class RawConfig(
-                var android: Action<LibraryExtension>? = null,
                 var kotlin: Action<KotlinMultiplatformProjectExtension>? = null,
             ) : Configurable {
                 override fun configure(project: Project) = configureMultiplatformRawConfig(project)
             }
         }
-
-        data class Tools(
-            val analysis: Analysis = Analysis(),
-            val binaryCompatibilityValidator: BinaryCompatibilityValidator =
-                BinaryCompatibilityValidator(),
-            val coverage: Coverage = Coverage(),
-            var explicitApiMode: ExplicitApiMode = ExplicitApiMode.Disabled,
-            val format: Format = Format(),
-        ) : Configurable {
-
-            override fun configure(project: Project) {
-                analysis.configure(project)
-                binaryCompatibilityValidator.configure(project)
-                coverage.configure(project)
-                format.configure(project)
-            }
-
-            data class Analysis(
-                override var isEnabled: Boolean = AnalysisExtension.IS_ENABLED,
-                var isIgnoreFailures: Boolean = AnalysisExtension.IGNORE_FAILURES,
-                val includes: MutableList<String> = AnalysisExtension.INCLUDES,
-                val excludes: MutableList<String> = AnalysisExtension.EXCLUDES,
-                val reports: Reports = Reports(),
-            ) : Enableable, Configurable {
-                override fun configure(project: Project) = configureAnalysis(project)
-
-                data class Reports(
-                    var html: Boolean = AnalysisExtension.ReportsExtension.HTML,
-                    var sarif: Boolean = AnalysisExtension.ReportsExtension.SARIF,
-                    var txt: Boolean = AnalysisExtension.ReportsExtension.TXT,
-                    var xml: Boolean = AnalysisExtension.ReportsExtension.XML,
-                )
-            }
-
-            data class BinaryCompatibilityValidator(
-                override var isEnabled: Boolean = BinaryCompatibilityValidatorExtension.IS_ENABLED,
-            ) : Enableable, Configurable {
-
-                override fun configure(project: Project) =
-                    configureBinaryCompatibilityValidator(project)
-            }
-
-            data class Coverage(
-                override var isEnabled: Boolean = CoverageExtension.IS_ENABLED,
-            ) : Enableable, Configurable {
-
-                override fun configure(project: Project) = configureCoverage(project)
-            }
-
-            data class Format(
-                override var isEnabled: Boolean = FormatExtension.IS_ENABlED,
-                val includes: MutableList<String> = mutableListOf(),
-                val excludes: MutableList<String> = mutableListOf(),
-                var ktfmtVersion: String = FormatExtension.KTFMT_VERSION
-            ) : Enableable, Configurable {
-
-                override fun configure(project: Project) = configureFormat(project)
-            }
-        }
     }
+}
+
+internal interface LaterConfigurable {
+
+    enum class Priority(val value: Int) {
+        VeryHigh(1),
+        High(2),
+        Medium(3),
+        Low(4),
+        VeryLow(5)
+    }
+
+    val priority: Priority
+        get() = Priority.Medium
+
+    fun configureLater(project: Project): () -> Unit
 }
 
 internal interface Configurable {

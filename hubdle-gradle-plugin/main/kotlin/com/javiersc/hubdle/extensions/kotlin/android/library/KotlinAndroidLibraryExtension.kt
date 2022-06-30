@@ -4,8 +4,10 @@ import com.android.build.api.dsl.AndroidSourceSet
 import com.android.build.api.dsl.LibraryExtension
 import com.javiersc.hubdle.extensions.HubdleDslMarker
 import com.javiersc.hubdle.extensions._internal.state.hubdleState
+import com.javiersc.hubdle.extensions.dependencies._internal.AndroidLibraryDependencies
 import com.javiersc.hubdle.extensions.kotlin.MainAndTestKotlinSourceSetsOptions
 import com.javiersc.hubdle.extensions.kotlin.android.AndroidOptions
+import com.javiersc.hubdle.extensions.kotlin.android.library._internal.androidLibraryFeatures
 import com.javiersc.hubdle.extensions.kotlin.jvm.KotlinJvmOptions
 import com.javiersc.hubdle.extensions.options.EnableableOptions
 import com.javiersc.hubdle.extensions.options.FeaturesOptions
@@ -28,7 +30,8 @@ constructor(
     FeaturesOptions<KotlinAndroidLibraryExtension.FeaturesExtension>,
     AndroidOptions,
     RawConfigOptions<KotlinAndroidLibraryExtension.RawConfigExtension>,
-    MainAndTestKotlinSourceSetsOptions<AndroidSourceSet> {
+    MainAndTestKotlinSourceSetsOptions<AndroidSourceSet>,
+    AndroidLibraryDependencies {
 
     override var isEnabled: Boolean = IS_ENABLED
 
@@ -56,38 +59,37 @@ constructor(
         the<LibraryExtension>().sourceSets.named("test", action::execute)
     }
 
+    override val rawConfig: RawConfigExtension = objects.newInstance()
+
     @HubdleDslMarker
     override fun Project.rawConfig(action: Action<RawConfigExtension>) {
-        afterEvaluate { action.execute(the()) }
+        action.execute(rawConfig)
     }
 
+    @HubdleDslMarker
     public open class RawConfigExtension {
+        @HubdleDslMarker
         public fun Project.android(action: Action<LibraryExtension>) {
-            afterEvaluate { action.execute(it.the()) }
+            hubdleState.kotlin.android.library.rawConfig.android = action
         }
     }
 
     @HubdleDslMarker
     public open class FeaturesExtension {
 
-        private val Project.androidFeatures
-            get() = hubdleState.kotlin.android.features
-
         @HubdleDslMarker
-        public fun Project.coroutines(enable: Boolean = COROUTINES) {
-            androidFeatures.coroutines = enable
+        public fun Project.coroutines(enabled: Boolean = true) {
+            androidLibraryFeatures.coroutines = enabled
         }
 
-        public var javierScStdlib: Boolean = JAVIER_SC_STDLIB
-
         @HubdleDslMarker
-        public fun Project.javierScStdlib(enable: Boolean = JAVIER_SC_STDLIB) {
-            androidFeatures.javierScStdlib = enable
+        public fun Project.extendedStdlib(enabled: Boolean = true) {
+            androidLibraryFeatures.extendedStdlib = enabled
         }
 
-        public companion object {
-            internal const val COROUTINES = false
-            internal const val JAVIER_SC_STDLIB = true
+        @HubdleDslMarker
+        public fun Project.extendedTesting(enabled: Boolean = true) {
+            androidLibraryFeatures.extendedTesting = enabled
         }
     }
 

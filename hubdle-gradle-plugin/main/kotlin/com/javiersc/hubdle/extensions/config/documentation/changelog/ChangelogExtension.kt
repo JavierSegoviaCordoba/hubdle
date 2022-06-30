@@ -2,18 +2,24 @@ package com.javiersc.hubdle.extensions.config.documentation.changelog
 
 import com.javiersc.gradle.tasks.extensions.namedLazily
 import com.javiersc.hubdle.extensions.HubdleDslMarker
+import com.javiersc.hubdle.extensions._internal.state.hubdleState
 import com.javiersc.hubdle.extensions.options.EnableableOptions
 import com.javiersc.hubdle.extensions.options.RawConfigOptions
+import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.artifacts.ProjectDependency
-import org.gradle.kotlin.dsl.the
+import org.gradle.api.model.ObjectFactory
+import org.gradle.kotlin.dsl.newInstance
 import org.jetbrains.changelog.ChangelogPluginExtension
 import org.jetbrains.dokka.gradle.DokkaMultiModuleTask
 
 @HubdleDslMarker
-public open class ChangelogExtension :
-    EnableableOptions, RawConfigOptions<ChangelogExtension.RawConfigExtension> {
+public open class ChangelogExtension
+@Inject
+constructor(
+    objects: ObjectFactory,
+) : EnableableOptions, RawConfigOptions<ChangelogExtension.RawConfigExtension> {
 
     override var isEnabled: Boolean = IS_ENABLED
 
@@ -38,14 +44,18 @@ public open class ChangelogExtension :
         }
     }
 
+    override val rawConfig: RawConfigExtension = objects.newInstance()
+
     @HubdleDslMarker
     override fun Project.rawConfig(action: Action<RawConfigExtension>) {
-        afterEvaluate { action.execute(the()) }
+        action.execute(rawConfig)
     }
 
+    @HubdleDslMarker
     public open class RawConfigExtension {
+        @HubdleDslMarker
         public fun Project.changelog(action: Action<ChangelogPluginExtension>) {
-            afterEvaluate { action.execute(it.the()) }
+            hubdleState.config.documentation.changelog.rawConfig.changelog = action
         }
     }
 

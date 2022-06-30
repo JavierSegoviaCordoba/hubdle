@@ -1,4 +1,3 @@
-@file:OptIn(ExperimentalStdlibApi::class)
 @file:Suppress("SpreadOperator")
 
 package com.javiersc.hubdle.extensions.config.documentation.changelog._internal

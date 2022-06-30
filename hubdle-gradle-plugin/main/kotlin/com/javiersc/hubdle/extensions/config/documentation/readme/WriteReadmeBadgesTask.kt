@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalStdlibApi::class)
-
 package com.javiersc.hubdle.extensions.config.documentation.readme
 
 import com.javiersc.hubdle.extensions.config.documentation.readme._internal.models.MavenRepo

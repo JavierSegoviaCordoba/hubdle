@@ -1,5 +1,7 @@
 package com.javiersc.hubdle.extensions.config.documentation.site
 
+import com.javiersc.gradle.tasks.extensions.maybeRegisterLazily
+import com.javiersc.gradle.tasks.extensions.namedLazily
 import java.io.File
 import javax.inject.Inject
 import org.gradle.api.DefaultTask
@@ -9,8 +11,10 @@ import org.gradle.api.file.ProjectLayout
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.OutputDirectory
 import org.gradle.api.tasks.TaskAction
+import org.gradle.api.tasks.TaskCollection
 import org.gradle.api.tasks.TaskProvider
-import org.gradle.kotlin.dsl.register
+import org.jetbrains.dokka.gradle.DokkaMultiModuleTask
+import ru.vyarus.gradle.plugin.mkdocs.task.MkdocsBuildTask
 
 public abstract class BuildSiteTask
 @Inject
@@ -46,20 +50,22 @@ constructor(
         public fun register(
             project: Project,
             preBuildDocsTask: TaskProvider<PrebuildSiteTask>
-        ): TaskProvider<BuildSiteTask> {
-            val dokkaHtmlMultiModuleTask = project.tasks.named("dokkaHtmlMultiModule")
-            val mkdocsBuildTask =
-                project.tasks.named("mkdocsBuild").apply {
-                    configure { it.dependsOn(preBuildDocsTask) }
-                }
+        ): TaskCollection<BuildSiteTask> {
+            val dokkaHtmlMultiModuleTask =
+                project.tasks.namedLazily<DokkaMultiModuleTask>("dokkaHtmlMultiModule")
+            val mkdocsBuildTask = project.tasks.namedLazily<MkdocsBuildTask>("mkdocsBuild")
+            mkdocsBuildTask.configureEach { it.dependsOn(preBuildDocsTask) }
 
-            return project.tasks.register<BuildSiteTask>(name) {
-                notCompatibleWithConfigurationCache("mkDocsBuild(grgit) task is incompatible")
+            dokkaHtmlMultiModuleTask.configureEach { it.dependsOn(mkdocsBuildTask) }
 
-                dependsOn(mkdocsBuildTask)
-                dependsOn(dokkaHtmlMultiModuleTask)
-                dokkaHtmlMultiModuleTask.get().dependsOn(mkdocsBuildTask)
+            val buildSiteTask = project.tasks.maybeRegisterLazily<BuildSiteTask>(name)
+            buildSiteTask.configureEach {
+                it.notCompatibleWithConfigurationCache("mkDocsBuild(grgit) task is incompatible")
+
+                it.dependsOn(mkdocsBuildTask)
+                it.dependsOn(dokkaHtmlMultiModuleTask)
             }
+            return buildSiteTask
         }
     }
 

@@ -24,7 +24,7 @@ hubdle {
             
             features {
                 coroutines(false)
-                javierScStdlib(true)
+                extendedStdlib(true)
             }
 
             jvmVersion = 8

@@ -14,3 +14,7 @@ internal fun configureVersioning(project: Project) {
         project.the<SemverExtension>().tagPrefix.set(versioningState.tagPrefix)
     }
 }
+
+internal fun configureConfigVersioningRawConfig(project: Project) {
+    project.hubdleState.config.versioning.rawConfig.semver?.execute(project.the())
+}

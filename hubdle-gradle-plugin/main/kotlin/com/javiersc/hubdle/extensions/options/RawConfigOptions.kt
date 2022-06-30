@@ -6,5 +6,7 @@ import org.gradle.api.Project
 
 public interface RawConfigOptions<T> {
 
+    public val rawConfig: T
+
     @HubdleDslMarker public fun Project.rawConfig(action: Action<T> = Action {})
 }

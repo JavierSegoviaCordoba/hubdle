@@ -9,7 +9,6 @@ import com.javiersc.hubdle.extensions.kotlin.android.KotlinAndroidExtension
 import com.javiersc.hubdle.extensions.kotlin.gradle.KotlinGradleExtension
 import com.javiersc.hubdle.extensions.kotlin.jvm.KotlinJvmExtension
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.KotlinMultiplatformExtension
-import com.javiersc.hubdle.extensions.kotlin.tools.ToolsExtension
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
@@ -22,13 +21,6 @@ public open class KotlinExtension
 constructor(
     objects: ObjectFactory,
 ) {
-
-    private val tools: ToolsExtension = objects.newInstance()
-
-    @HubdleDslMarker
-    public fun Project.tools(action: Action<in ToolsExtension> = Action {}) {
-        configTools(action)
-    }
 
     private val android: KotlinAndroidExtension = objects.newInstance()
 
@@ -59,10 +51,6 @@ constructor(
     }
 
     // Configurations
-    private fun Project.configTools(action: Action<in ToolsExtension>) {
-        action.execute(tools)
-    }
-
     private fun Project.configAndroid(action: Action<in KotlinAndroidExtension>) {
         action.execute(android)
     }

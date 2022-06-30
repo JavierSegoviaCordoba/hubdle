@@ -7,13 +7,13 @@ import com.javiersc.hubdle.extensions._internal.PluginIds
 import com.javiersc.hubdle.extensions._internal.state.HubdleState
 import com.javiersc.hubdle.extensions._internal.state.catalogImplementation
 import com.javiersc.hubdle.extensions._internal.state.hubdleState
-import com.javiersc.hubdle.extensions.dependencies._internal.COM_JAVIERSC_GRADLE_GRADLE_EXTENSIONS_MODULE
-import com.javiersc.hubdle.extensions.dependencies._internal.COM_JAVIERSC_GRADLE_GRADLE_TEST_EXTENSIONS_MODULE
-import com.javiersc.hubdle.extensions.dependencies._internal.COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE
-import com.javiersc.hubdle.extensions.dependencies._internal.ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_MODULE
-import com.javiersc.hubdle.extensions.dependencies._internal.ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_TEST_MODULE
+import com.javiersc.hubdle.extensions.config.explicit.api._internal.configureExplicitApi
+import com.javiersc.hubdle.extensions.dependencies._internal.constants.COM_JAVIERSC_GRADLE_GRADLE_EXTENSIONS_MODULE
+import com.javiersc.hubdle.extensions.dependencies._internal.constants.COM_JAVIERSC_GRADLE_GRADLE_TEST_EXTENSIONS_MODULE
+import com.javiersc.hubdle.extensions.dependencies._internal.constants.COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE
+import com.javiersc.hubdle.extensions.dependencies._internal.constants.IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE
+import com.javiersc.hubdle.extensions.dependencies._internal.constants.ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE
 import com.javiersc.hubdle.extensions.kotlin._internal.configJvmTarget
-import com.javiersc.hubdle.extensions.kotlin.tools.explicit.api._internal.configureExplicitApi
 import com.javiersc.hubdle.extensions.options.configureDefaultJavaSourceSets
 import com.javiersc.hubdle.extensions.options.configureDefaultKotlinSourceSets
 import com.javiersc.hubdle.extensions.options.configureJavaJarsForPublishing
@@ -40,7 +40,7 @@ internal fun configureGradlePlugin(project: Project) {
         project.the<KotlinProjectExtension>().configureDefaultKotlinSourceSets()
         project.the<KotlinJvmProjectExtension>().configureGradleDependencies()
 
-        if (project.hubdleState.kotlin.isPublishingEnabled) {
+        if (project.hubdleState.config.publishing.isEnabled) {
             project.pluginManager.apply(PluginIds.Publishing.mavenPublish)
             project.pluginManager.apply(PluginIds.Publishing.signing)
             project.pluginManager.apply(PluginIds.Publishing.gradlePluginPublish)
@@ -56,36 +56,42 @@ internal fun configureGradlePlugin(project: Project) {
     }
 }
 
+internal fun configureKotlinGradlePluginRawConfig(project: Project) {
+    project.hubdleState.kotlin.gradle.plugin.rawConfig.kotlin?.execute(project.the())
+    project.hubdleState.kotlin.gradle.plugin.rawConfig.gradlePlugin?.execute(project.the())
+}
+
 private fun KotlinJvmProjectExtension.configureGradleDependencies() {
     sourceSets.named("main") { it.dependencies { configureMainDependencies() } }
     sourceSets.named("test") { it.dependencies { configureTestDependencies() } }
 }
 
+internal val Project.gradlePluginFeatures: HubdleState.Kotlin.Gradle.Plugin.Features
+    get() = hubdleState.kotlin.gradle.plugin.features
+
 private val KotlinDependencyHandler.gradlePluginFeatures: HubdleState.Kotlin.Gradle.Plugin.Features
-    get() = project.hubdleState.kotlin.gradle.plugin.features
+    get() = project.gradlePluginFeatures
 
 private fun KotlinDependencyHandler.configureMainDependencies() {
     implementation(project.dependencies.gradleApi())
     implementation(project.gradleKotlinDsl())
 
-    if (gradlePluginFeatures.javierScStdlib) {
-        catalogImplementation(COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE)
-    }
-    if (gradlePluginFeatures.javierScGradleExtensions) {
+    if (gradlePluginFeatures.extendedGradle) {
         catalogImplementation(COM_JAVIERSC_GRADLE_GRADLE_EXTENSIONS_MODULE)
     }
-    if (gradlePluginFeatures.coroutines) {
-        catalogImplementation(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_MODULE)
+    if (gradlePluginFeatures.extendedGradle) {
+        catalogImplementation(COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE)
     }
 }
 
 private fun KotlinDependencyHandler.configureTestDependencies() {
+    catalogImplementation(ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE)
     implementation(project.dependencies.gradleTestKit())
-
-    if (gradlePluginFeatures.javierScGradleExtensions) {
+    if (gradlePluginFeatures.extendedGradle) {
         catalogImplementation(COM_JAVIERSC_GRADLE_GRADLE_TEST_EXTENSIONS_MODULE)
     }
-    if (gradlePluginFeatures.coroutines) {
-        catalogImplementation(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_TEST_MODULE)
+
+    if (gradlePluginFeatures.extendedTesting) {
+        catalogImplementation(IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE)
     }
 }

@@ -7,12 +7,14 @@ import com.javiersc.hubdle.extensions._internal.PluginIds
 import com.javiersc.hubdle.extensions._internal.state.HubdleState
 import com.javiersc.hubdle.extensions._internal.state.catalogImplementation
 import com.javiersc.hubdle.extensions._internal.state.hubdleState
-import com.javiersc.hubdle.extensions.dependencies._internal.COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE
-import com.javiersc.hubdle.extensions.dependencies._internal.ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_ANDROID_MODULE
-import com.javiersc.hubdle.extensions.dependencies._internal.ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_MODULE
-import com.javiersc.hubdle.extensions.dependencies._internal.ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_TEST_MODULE
+import com.javiersc.hubdle.extensions.config.explicit.api._internal.configureExplicitApi
+import com.javiersc.hubdle.extensions.dependencies._internal.constants.COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE
+import com.javiersc.hubdle.extensions.dependencies._internal.constants.IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE
+import com.javiersc.hubdle.extensions.dependencies._internal.constants.ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_ANDROID_MODULE
+import com.javiersc.hubdle.extensions.dependencies._internal.constants.ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_MODULE
+import com.javiersc.hubdle.extensions.dependencies._internal.constants.ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_TEST_MODULE
+import com.javiersc.hubdle.extensions.dependencies._internal.constants.ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE
 import com.javiersc.hubdle.extensions.kotlin._internal.configJvmTarget
-import com.javiersc.hubdle.extensions.kotlin.tools.explicit.api._internal.configureExplicitApi
 import com.javiersc.hubdle.extensions.options.configureDefaultJavaSourceSets
 import com.javiersc.hubdle.extensions.options.configureDefaultKotlinSourceSets
 import com.javiersc.hubdle.extensions.options.configurePublishingExtension
@@ -39,7 +41,7 @@ internal fun configureMultiplatform(project: Project) {
         project.the<KotlinProjectExtension>().configureDefaultKotlinSourceSets()
         project.the<KotlinMultiplatformExtension>().configureMultiplatformDependencies()
 
-        if (project.hubdleState.kotlin.isPublishingEnabled) {
+        if (project.hubdleState.config.publishing.isEnabled) {
             project.pluginManager.apply(PluginIds.Publishing.mavenPublish)
             project.pluginManager.apply(PluginIds.Publishing.signing)
             project.configurePublishingExtension()
@@ -64,7 +66,7 @@ internal fun configureMultiplatformAndroid(project: Project) {
 
         project.configure<KotlinMultiplatformExtension> {
             android {
-                if (project.hubdleState.kotlin.isPublishingEnabled) {
+                if (project.hubdleState.config.publishing.isEnabled) {
                     when {
                         androidState.publishLibraryVariants.isNotEmpty() -> {
                             val variants = androidState.publishLibraryVariants.toTypedArray()
@@ -138,7 +140,7 @@ internal fun configureMultiplatformJs(project: Project) {
     val jsState = project.hubdleState.kotlin.multiplatform.js
     if (jsState.isEnabled) {
         project.configure<KotlinMultiplatformExtension> {
-            js() {
+            js(BOTH) {
                 if (jsState.browser) browser()
                 if (jsState.nodeJs) nodejs()
             }
@@ -497,8 +499,11 @@ internal fun configureMultiplatformWatchOSX86(project: Project) {
 }
 
 internal fun configureMultiplatformRawConfig(project: Project) {
-    project.hubdleState.kotlin.multiplatform.rawConfig.android?.execute(project.the())
     project.hubdleState.kotlin.multiplatform.rawConfig.kotlin?.execute(project.the())
+}
+
+internal fun configureMultiplatformAndroidRawConfig(project: Project) {
+    project.hubdleState.kotlin.multiplatform.android.rawConfig.android?.execute(project.the())
 }
 
 private fun KotlinMultiplatformExtension.configureMultiplatformDependencies() {
@@ -509,21 +514,28 @@ private fun KotlinMultiplatformExtension.configureMultiplatformDependencies() {
     }
 }
 
+internal val Project.multiplatformFeatures: HubdleState.Kotlin.Multiplatform.Features
+    get() = hubdleState.kotlin.multiplatform.features
+
 private val KotlinDependencyHandler.multiplatformFeatures: HubdleState.Kotlin.Multiplatform.Features
-    get() = project.hubdleState.kotlin.multiplatform.features
+    get() = project.multiplatformFeatures
 
 private fun KotlinDependencyHandler.configureCommonMainDependencies() {
-    if (multiplatformFeatures.javierScStdlib) {
-        catalogImplementation(COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE)
-    }
     if (multiplatformFeatures.coroutines) {
         catalogImplementation(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_MODULE)
+    }
+    if (multiplatformFeatures.extendedStdlib) {
+        catalogImplementation(COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE)
     }
 }
 
 private fun KotlinDependencyHandler.configureCommonTestDependencies() {
     if (multiplatformFeatures.coroutines) {
         catalogImplementation(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_TEST_MODULE)
+    }
+    catalogImplementation(ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE)
+    if (multiplatformFeatures.extendedTesting) {
+        catalogImplementation(IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE)
     }
 }
 

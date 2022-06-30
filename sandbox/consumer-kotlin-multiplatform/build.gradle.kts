@@ -1,36 +1,38 @@
-import com.android.build.api.dsl.LibraryExtension
-import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+buildscript {
+    dependencies {
+        classpath(pluginLibs.android.toolsBuild.gradle)
+        classpath(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)
+    }
+}
 
 plugins {
     id("com.javiersc.hubdle") version "0.1.1-SNAPSHOT"
 }
 
+version = "7.3.4-beta.2"
+
 hubdle {
-    config {
-        versioning {
-            isEnabled = false
-        }
-    }
+    config { versioning { isEnabled = false } }
 
     kotlin {
         multiplatform {
             features {
-                javierScStdlib(false)
+                extendedStdlib(true)
+                minimumTargetsPerOS()
             }
 
             rawConfig {
-                android {
-                    compileSdk = 29
-                }
-
-                kotlin {
-                    sourceSets.create("randomMain")
-                }
+                kotlin { sourceSets.create("randomMain") }
             }
 
-            android()
+            android {
+                rawConfig {
+                    android {
+
+                    }
+                }
+            }
             ios()
-            iosArm32()
             iosArm64()
             iosX64()
             iosSimulatorArm64()
@@ -40,26 +42,19 @@ hubdle {
                 nodeJs()
             }
             linux()
-            linuxArm32Hfp()
-            linuxArm64()
-            linuxMips32()
-            linuxMipsel32()
             linuxX64()
             macos()
             macosArm64()
             macosX64()
             mingw()
             mingwX64()
-            mingwX86()
             native()
             tvos()
             tvosArm64()
             tvosSimulatorArm64()
             tvosX64()
             wasm()
-            wasm32()
             watchos()
-            watchosArm32()
             watchosArm64()
             watchosX64()
             watchosSimulatorArm64()

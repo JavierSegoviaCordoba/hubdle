@@ -25,7 +25,7 @@ hubdle {
                 
                 features {
                     coroutines(false)
-                    javierScStdlib(true)
+                    extendedStdlib(true)
                 }
                 
                 compileSdk = 31

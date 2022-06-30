@@ -1,6 +1,5 @@
 package com.javiersc.hubdle.extensions.config.nexus._internal
 
-import com.javiersc.gradle.properties.extensions.getProperty
 import com.javiersc.gradle.properties.extensions.getPropertyOrNull
 import com.javiersc.hubdle.HubdleProperty.Nexus
 import com.javiersc.hubdle.extensions._internal.PluginIds
@@ -14,7 +13,7 @@ internal fun configureNexus(project: Project) {
     if (project.hubdleState.config.nexus.isEnabled) {
         project.pluginManager.apply(PluginIds.Publishing.nexusPublish)
 
-        project.configure<NexusPublishExtension>() {
+        project.configure<NexusPublishExtension> {
             repositoryDescription.set(
                 "${project.rootProject.group} - ${project.rootProject.version}"
             )
@@ -28,9 +27,11 @@ internal fun configureNexus(project: Project) {
                         repository.nexusUrl.set(project.uri(nexusUrl))
                         repository.snapshotRepositoryUrl.set(project.uri(snapshotRepositoryUrl))
                     }
-                    repository.username.set(project.getProperty(Nexus.ossUser))
-                    repository.password.set(project.getProperty(Nexus.ossToken))
-                    repository.stagingProfileId.set(project.getProperty(Nexus.ossStagingProfileId))
+                    repository.username.set(project.getPropertyOrNull(Nexus.nexusUser))
+                    repository.password.set(project.getPropertyOrNull(Nexus.nexusToken))
+                    repository.stagingProfileId.set(
+                        project.getPropertyOrNull(Nexus.nexusStagingProfileId)
+                    )
                 }
             }
 

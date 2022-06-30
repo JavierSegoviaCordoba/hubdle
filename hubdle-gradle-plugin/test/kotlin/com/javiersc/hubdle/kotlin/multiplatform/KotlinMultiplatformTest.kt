@@ -8,9 +8,10 @@ import io.kotest.matchers.file.shouldBeADirectory
 import io.kotest.matchers.file.shouldBeAFile
 import io.kotest.matchers.shouldBe
 import java.io.File
+import kotlin.test.AfterTest
+import kotlin.test.BeforeTest
 import kotlin.test.Test
-import org.gradle.internal.impldep.org.testng.annotations.AfterTest
-import org.gradle.internal.impldep.org.testng.annotations.BeforeTest
+import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable
 import org.junit.jupiter.api.condition.EnabledOnOs
 import org.junit.jupiter.api.condition.OS
 
@@ -22,17 +23,17 @@ internal class KotlinMultiplatformTest {
 
     @BeforeTest
     fun `clean m2_com_kotlin_multiplatform before test`() {
-        repositoryPath.resolve("com/kotlin/multiplatform").deleteRecursively()
+        repositoryPath.resolve("com/kotlin").deleteRecursively()
     }
 
     @AfterTest
     fun `clean m2_com_kotlin_multiplatform after test`() {
-        repositoryPath.resolve("com/kotlin/multiplatform").deleteRecursively()
+        repositoryPath.resolve("com/kotlin").deleteRecursively()
     }
 
     @Test
     fun `publish normal 1`() {
-        val multiplatformDir = repositoryPath.resolve("com/kotlin/multiplatform")
+        val multiplatformDir = repositoryPath.resolve("com/kotlin/normal-one")
         val sandboxProjectDir = multiplatformDir.resolve("sandbox-project")
         val androidDir = multiplatformDir.resolve("sandbox-project-android")
         val androidDebugDir = multiplatformDir.resolve("sandbox-project-android-debug")
@@ -95,9 +96,7 @@ internal class KotlinMultiplatformTest {
         gradleTestKitTest("$basePath/publishing/normal-2") {
             gradlewArgumentFromTXT()
             val multiplatformDirs: List<File> =
-                multiplatformDir.listFiles().shouldNotBeEmpty().toList()
-
-            println(multiplatformDirs)
+                multiplatformDir.listFiles().shouldNotBeEmpty().sorted()
 
             multiplatformDirs.map { it.name }.shouldBe(allLinuxCompatibleBinaries)
             multiplatformDirs.forEach { multiplatformChild ->
@@ -117,11 +116,9 @@ internal class KotlinMultiplatformTest {
         gradleTestKitTest("$basePath/publishing/normal-2") {
             gradlewArgumentFromTXT()
             val multiplatformDirs: List<File> =
-                multiplatformDir.listFiles().shouldNotBeEmpty().toList()
+                multiplatformDir.listFiles().shouldNotBeEmpty().sorted()
 
-            println(multiplatformDirs)
-
-            multiplatformDirs.map { it.name }.shouldBe(allWindowsCompatibleBinaries)
+            multiplatformDirs.map { it.name }.shouldBe(allMacCompatibleBinaries)
             multiplatformDirs.forEach { multiplatformChild ->
                 val (dir, xml) =
                     multiplatformChild.listFiles().shouldNotBeEmpty().shouldHaveSize(2).toList()
@@ -134,14 +131,13 @@ internal class KotlinMultiplatformTest {
 
     @Test
     @EnabledOnOs(value = [OS.WINDOWS])
+    @EnabledIfEnvironmentVariable(named = "CI", matches = "((false)|null)")
     fun `publish normal 2 on WINDOWS`() {
         val multiplatformDir = repositoryPath.resolve("com/kotlin/normal-two")
         gradleTestKitTest("$basePath/publishing/normal-2") {
             gradlewArgumentFromTXT()
             val multiplatformDirs: List<File> =
-                multiplatformDir.listFiles().shouldNotBeEmpty().toList()
-
-            println(multiplatformDirs)
+                multiplatformDir.listFiles().shouldNotBeEmpty().sorted()
 
             multiplatformDirs.map { it.name }.shouldBe(allWindowsCompatibleBinaries)
             multiplatformDirs.forEach { multiplatformChild ->
@@ -156,7 +152,7 @@ internal class KotlinMultiplatformTest {
 
     @Test
     fun `publish snapshot 1`() {
-        val multiplatformDir = repositoryPath.resolve("com/kotlin/multiplatform")
+        val multiplatformDir = repositoryPath.resolve("com/kotlin/snapshot-one")
         val sandboxProjectDir = multiplatformDir.resolve("sandbox-project")
         val androidDir = multiplatformDir.resolve("sandbox-project-android")
         val androidDebugDir = multiplatformDir.resolve("sandbox-project-android-debug")
@@ -216,22 +212,6 @@ internal class KotlinMultiplatformTest {
         }
     }
 
-    private val allWindowsCompatibleBinaries =
-        setOf(
-                "sandbox-project-android",
-                "sandbox-project-android-debug",
-                "sandbox-project-js",
-                "sandbox-project-jvm",
-                "sandbox-project-linuxarm32hfp",
-                "sandbox-project-linuxarm64",
-                "sandbox-project-linuxx64",
-                "sandbox-project-mingwx64",
-                "sandbox-project-mingwx86",
-                "sandbox-project-wasm32",
-                "sandbox-project",
-            )
-            .sorted()
-
     private val allLinuxCompatibleBinaries =
         setOf(
                 "sandbox-project-android",
@@ -243,6 +223,52 @@ internal class KotlinMultiplatformTest {
                 "sandbox-project-linuxmips32",
                 "sandbox-project-linuxmipsel32",
                 "sandbox-project-linuxx64",
+                // "sandbox-project-mingwx64",
+                // "sandbox-project-mingwx86",
+                "sandbox-project-wasm32",
+                "sandbox-project",
+            )
+            .sorted()
+
+    private val allMacCompatibleBinaries =
+        setOf(
+                "sandbox-project-android",
+                "sandbox-project-android-debug",
+                "sandbox-project-iosarm32",
+                "sandbox-project-iosarm64",
+                "sandbox-project-iossimulatorarm64",
+                "sandbox-project-iosx64",
+                "sandbox-project-js",
+                "sandbox-project-jvm",
+                // "sandbox-project-linuxarm32hfp",
+                // "sandbox-project-linuxarm64",
+                // "sandbox-project-linuxx64",
+                "sandbox-project-macosarm64",
+                "sandbox-project-macosx64",
+                // "sandbox-project-mingwx64",
+                // "sandbox-project-mingwx86",
+                "sandbox-project-tvosarm64",
+                "sandbox-project-tvossimulatorarm64",
+                "sandbox-project-tvosx64",
+                "sandbox-project-wasm32",
+                "sandbox-project-watchosarm32",
+                "sandbox-project-watchosarm64",
+                "sandbox-project-watchossimulatorarm64",
+                "sandbox-project-watchosx64",
+                "sandbox-project-watchosx86",
+                "sandbox-project",
+            )
+            .sorted()
+
+    private val allWindowsCompatibleBinaries =
+        setOf(
+                "sandbox-project-android",
+                "sandbox-project-android-debug",
+                "sandbox-project-js",
+                "sandbox-project-jvm",
+                // "sandbox-project-linuxarm32hfp",
+                // "sandbox-project-linuxarm64",
+                // "sandbox-project-linuxx64",
                 "sandbox-project-mingwx64",
                 "sandbox-project-mingwx86",
                 "sandbox-project-wasm32",

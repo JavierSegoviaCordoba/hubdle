@@ -6,16 +6,14 @@ version = "9.8.3-alpha.4"
 
 hubdle {
     config {
+        publishing()
+
         versioning {
             isEnabled = false
         }
     }
 
     kotlin {
-        tools {
-            publishing()
-        }
-
         multiplatform {
             android()
             jvm()

@@ -546,7 +546,7 @@
 
 ### Changed
 - `readme-badges-generator` renamed to `readme-badges`
-- `mainSubProject` property renamed to `project.main.name`
+- `mainSubProject` property renamed to `main.project.name`
 - `shouldGenerateVersionBadgePerProject` renamed to `readmeBadges.allProjects`
 
 ### Fixed

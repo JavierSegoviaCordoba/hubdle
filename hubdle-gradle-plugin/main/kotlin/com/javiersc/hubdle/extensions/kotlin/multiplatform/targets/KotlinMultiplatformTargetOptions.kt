@@ -14,13 +14,16 @@ public interface KotlinMultiplatformTargetOptions :
 
     public val name: String
 
+    private val targetName
+        get() = name
+
     @HubdleDslMarker
     override fun Project.main(action: Action<KotlinSourceSet>) {
-        the<KotlinMultiplatformExtension>().sourceSets.named("${name}Main", action::execute)
+        the<KotlinMultiplatformExtension>().sourceSets.named("${targetName}Main", action::execute)
     }
 
     @HubdleDslMarker
     override fun Project.test(action: Action<KotlinSourceSet>) {
-        the<KotlinMultiplatformExtension>().sourceSets.named("${name}Test", action::execute)
+        the<KotlinMultiplatformExtension>().sourceSets.named("${targetName}Test", action::execute)
     }
 }

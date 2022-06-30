@@ -6,16 +6,14 @@ version = "3.6.7-SNAPSHOT"
 
 hubdle {
     config {
+        publishing()
+
         versioning {
             isEnabled = false
         }
     }
 
     kotlin {
-        tools {
-            publishing()
-        }
-
         jvm()
     }
 }

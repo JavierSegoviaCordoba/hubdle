@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `com.gradle.publish:plugin-publish-plugin -> 1.0.0`
+
 ## [0.2.0-alpha.1] - 2022-07-02
 
 ### Added

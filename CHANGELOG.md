@@ -4,21 +4,29 @@
 
 ### Added
 
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Updated
+
+## [0.2.0-alpha.1] - 2022-07-02
+
+### Added
+
 - `hubdle` extension to configure everything without applying convention plugins
 
 ### Changed
 
 - Huge refactor, check the site [hubdle.javiersc.com](https://hubdle.javiersc.com)
 
-### Deprecated
-
 ### Removed
 
 - All convention plugins to use `com.javiersc.hubdle`
-
-### Fixed
-
-### Updated
 
 ## [0.1.0-rc.45] - 2022-06-18
 

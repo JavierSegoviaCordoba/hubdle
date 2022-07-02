@@ -7,29 +7,29 @@
     "Sanity"
   ],
   "severity": "Critical",
-  "comment": "Cannot access class 'org.gradle.accessors.dm.RootProjectAccessor'. Check your module classpath for missing or conflicting dependencies",
+  "comment": "Unresolved reference: dependencies",
   "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
   "sources": [
     {
       "type": "file",
-      "path": "all-plugins/build.gradle.kts",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/library/KotlinAndroidLibraryExtension.kt",
       "language": "kotlin",
-      "line": 11,
-      "offset": 8,
-      "length": 8,
+      "line": 7,
+      "offset": 38,
+      "length": 12,
       "code": {
-        "startLine": 9,
-        "length": 8,
-        "offset": 24,
-        "surroundingCode": "\ndependencies {\n    api(projects.shared.core)\n    api(projects.shared.pluginAccessors)\n}"
+        "startLine": 5,
+        "length": 12,
+        "offset": 158,
+        "surroundingCode": "import com.javiersc.hubdle.extensions.HubdleDslMarker\nimport com.javiersc.hubdle.extensions._internal.state.hubdleState\nimport com.javiersc.hubdle.extensions.dependencies._internal.AndroidLibraryDependencies\nimport com.javiersc.hubdle.extensions.kotlin.MainAndTestKotlinSourceSetsOptions\nimport com.javiersc.hubdle.extensions.kotlin.android.AndroidOptions"
       }
     }
   ],
   "attributes": {
-    "module": "gradle-plugins.all-plugins",
+    "module": "hubdle.hubdle-gradle-plugin.main",
     "inspectionName": "KotlinAnnotator"
   },
-  "hash": "-3496126442574480286"
+  "hash": "7629798058855365358"
 },{
   "tool": "Code Inspection",
   "category": "General",
@@ -39,637 +39,29 @@
     "Sanity"
   ],
   "severity": "Critical",
-  "comment": "Unresolved reference: shared",
+  "comment": "Unresolved reference: AndroidLibraryDependencies",
   "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
   "sources": [
     {
-      "type": "file",
-      "path": "all-plugins/build.gradle.kts",
-      "language": "kotlin",
-      "line": 11,
-      "offset": 17,
-      "length": 6,
-      "code": {
-        "startLine": 9,
-        "length": 6,
-        "offset": 33,
-        "surroundingCode": "\ndependencies {\n    api(projects.shared.core)\n    api(projects.shared.pluginAccessors)\n}"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.all-plugins",
-    "inspectionName": "KotlinAnnotator"
-  },
-  "hash": "-7506759713248078405"
-},{
-  "tool": "Code Inspection",
-  "category": "General",
-  "type": "Kotlin annotator",
-  "tags": [
-    "kotlin",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Cannot access class 'org.gradle.accessors.dm.RootProjectAccessor'. Check your module classpath for missing or conflicting dependencies",
-  "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "all-plugins/build.gradle.kts",
-      "language": "kotlin",
-      "line": 12,
-      "offset": 8,
-      "length": 8,
-      "code": {
-        "startLine": 10,
-        "length": 8,
-        "offset": 53,
-        "surroundingCode": "dependencies {\n    api(projects.shared.core)\n    api(projects.shared.pluginAccessors)\n}\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.all-plugins",
-    "inspectionName": "KotlinAnnotator"
-  },
-  "hash": "-3728593822434489975"
-},{
-  "tool": "Code Inspection",
-  "category": "General",
-  "type": "Kotlin annotator",
-  "tags": [
-    "kotlin",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Unresolved reference: shared",
-  "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "all-plugins/build.gradle.kts",
-      "language": "kotlin",
-      "line": 12,
-      "offset": 17,
-      "length": 6,
-      "code": {
-        "startLine": 10,
-        "length": 6,
-        "offset": 62,
-        "surroundingCode": "dependencies {\n    api(projects.shared.core)\n    api(projects.shared.pluginAccessors)\n}\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.all-plugins",
-    "inspectionName": "KotlinAnnotator"
-  },
-  "hash": "-6734386062757869366"
-},{
-  "tool": "Code Inspection",
-  "category": "General",
-  "type": "Kotlin annotator",
-  "tags": [
-    "kotlin",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Cannot access class 'org.gradle.accessors.dm.RootProjectAccessor'. Check your module classpath for missing or conflicting dependencies",
-  "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "plugins/code-enhancers-and-utils/all-projects/build.gradle.kts",
-      "language": "kotlin",
-      "line": 29,
-      "offset": 8,
-      "length": 8,
-      "code": {
-        "startLine": 27,
-        "length": 8,
-        "offset": 24,
-        "surroundingCode": "\ndependencies {\n    api(projects.shared.pluginAccessors)\n\n    implementation(gradleKotlinDsl())"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.code-enhancers-and-utils.all-projects",
-    "inspectionName": "KotlinAnnotator"
-  },
-  "hash": "6887376457396701243"
-},{
-  "tool": "Code Inspection",
-  "category": "General",
-  "type": "Kotlin annotator",
-  "tags": [
-    "kotlin",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Unresolved reference: shared",
-  "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "plugins/code-enhancers-and-utils/all-projects/build.gradle.kts",
-      "language": "kotlin",
-      "line": 29,
-      "offset": 17,
-      "length": 6,
-      "code": {
-        "startLine": 27,
-        "length": 6,
-        "offset": 33,
-        "surroundingCode": "\ndependencies {\n    api(projects.shared.pluginAccessors)\n\n    implementation(gradleKotlinDsl())"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.code-enhancers-and-utils.all-projects",
-    "inspectionName": "KotlinAnnotator"
-  },
-  "hash": "1981747506426225720"
-},{
-  "tool": "Code Inspection",
-  "category": "General",
-  "type": "Kotlin annotator",
-  "tags": [
-    "kotlin",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Cannot access class 'org.gradle.accessors.dm.RootProjectAccessor'. Check your module classpath for missing or conflicting dependencies",
-  "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "plugins/code-enhancers-and-utils/all-projects/build.gradle.kts",
-      "language": "kotlin",
-      "line": 33,
-      "offset": 19,
-      "length": 8,
-      "code": {
-        "startLine": 31,
-        "length": 8,
-        "offset": 58,
-        "surroundingCode": "    implementation(gradleKotlinDsl())\n\n    implementation(projects.shared.core)\n    implementation(pluginLibs.adarshr.gradleTestLoggerPlugin)\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.code-enhancers-and-utils.all-projects",
-    "inspectionName": "KotlinAnnotator"
-  },
-  "hash": "7955144376206129910"
-},{
-  "tool": "Code Inspection",
-  "category": "General",
-  "type": "Kotlin annotator",
-  "tags": [
-    "kotlin",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Unresolved reference: shared",
-  "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "plugins/code-enhancers-and-utils/all-projects/build.gradle.kts",
-      "language": "kotlin",
-      "line": 33,
-      "offset": 28,
-      "length": 6,
-      "code": {
-        "startLine": 31,
-        "length": 6,
-        "offset": 67,
-        "surroundingCode": "    implementation(gradleKotlinDsl())\n\n    implementation(projects.shared.core)\n    implementation(pluginLibs.adarshr.gradleTestLoggerPlugin)\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.code-enhancers-and-utils.all-projects",
-    "inspectionName": "KotlinAnnotator"
-  },
-  "hash": "-6492364792239883471"
-},{
-  "tool": "Code Inspection",
-  "category": "General",
-  "type": "Kotlin annotator",
-  "tags": [
-    "kotlin",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Cannot access class 'org.gradle.accessors.dm.RootProjectAccessor'. Check your module classpath for missing or conflicting dependencies",
-  "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "plugins/code-enhancers-and-utils/code-analysis/build.gradle.kts",
-      "language": "kotlin",
-      "line": 29,
-      "offset": 8,
-      "length": 8,
-      "code": {
-        "startLine": 27,
-        "length": 8,
-        "offset": 24,
-        "surroundingCode": "\ndependencies {\n    api(projects.shared.pluginAccessors)\n\n    api(pluginLibs.gitlab.arturboschDetekt.detektGradlePlugin)"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.code-enhancers-and-utils.code-analysis",
-    "inspectionName": "KotlinAnnotator"
-  },
-  "hash": "-7409424479376017534"
-},{
-  "tool": "Code Inspection",
-  "category": "General",
-  "type": "Kotlin annotator",
-  "tags": [
-    "kotlin",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Unresolved reference: shared",
-  "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "plugins/code-enhancers-and-utils/code-analysis/build.gradle.kts",
-      "language": "kotlin",
-      "line": 29,
-      "offset": 17,
-      "length": 6,
-      "code": {
-        "startLine": 27,
-        "length": 6,
-        "offset": 33,
-        "surroundingCode": "\ndependencies {\n    api(projects.shared.pluginAccessors)\n\n    api(pluginLibs.gitlab.arturboschDetekt.detektGradlePlugin)"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.code-enhancers-and-utils.code-analysis",
-    "inspectionName": "KotlinAnnotator"
-  },
-  "hash": "2584610137859072270"
-},{
-  "tool": "Code Inspection",
-  "category": "General",
-  "type": "Kotlin annotator",
-  "tags": [
-    "kotlin",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Cannot access class 'org.gradle.accessors.dm.RootProjectAccessor'. Check your module classpath for missing or conflicting dependencies",
-  "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "plugins/code-enhancers-and-utils/code-coverage/build.gradle.kts",
-      "language": "kotlin",
-      "line": 29,
-      "offset": 8,
-      "length": 8,
-      "code": {
-        "startLine": 27,
-        "length": 8,
-        "offset": 24,
-        "surroundingCode": "\ndependencies {\n    api(projects.shared.pluginAccessors)\n\n    api(pluginLibs.jetbrains.kotlinx.kover)"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.code-enhancers-and-utils.code-coverage",
-    "inspectionName": "KotlinAnnotator"
-  },
-  "hash": "6678765349327737640"
-},{
-  "tool": "Code Inspection",
-  "category": "General",
-  "type": "Kotlin annotator",
-  "tags": [
-    "kotlin",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Unresolved reference: shared",
-  "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "plugins/code-enhancers-and-utils/code-coverage/build.gradle.kts",
-      "language": "kotlin",
-      "line": 29,
-      "offset": 17,
-      "length": 6,
-      "code": {
-        "startLine": 27,
-        "length": 6,
-        "offset": 33,
-        "surroundingCode": "\ndependencies {\n    api(projects.shared.pluginAccessors)\n\n    api(pluginLibs.jetbrains.kotlinx.kover)"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.code-enhancers-and-utils.code-coverage",
-    "inspectionName": "KotlinAnnotator"
-  },
-  "hash": "2815862629318893843"
-},{
-  "tool": "Code Inspection",
-  "category": "General",
-  "type": "Kotlin annotator",
-  "tags": [
-    "kotlin",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Cannot access class 'org.gradle.accessors.dm.RootProjectAccessor'. Check your module classpath for missing or conflicting dependencies",
-  "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "plugins/code-enhancers-and-utils/code-formatter/build.gradle.kts",
-      "language": "kotlin",
-      "line": 44,
-      "offset": 8,
-      "length": 8,
-      "code": {
-        "startLine": 42,
-        "length": 8,
-        "offset": 24,
-        "surroundingCode": "\ndependencies {\n    api(projects.shared.pluginAccessors)\n\n    compileOnly(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.code-enhancers-and-utils.code-formatter",
-    "inspectionName": "KotlinAnnotator"
-  },
-  "hash": "-2136460505593059752"
-},{
-  "tool": "Code Inspection",
-  "category": "General",
-  "type": "Kotlin annotator",
-  "tags": [
-    "kotlin",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Unresolved reference: shared",
-  "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "plugins/code-enhancers-and-utils/code-formatter/build.gradle.kts",
-      "language": "kotlin",
-      "line": 44,
-      "offset": 17,
-      "length": 6,
-      "code": {
-        "startLine": 42,
-        "length": 6,
-        "offset": 33,
-        "surroundingCode": "\ndependencies {\n    api(projects.shared.pluginAccessors)\n\n    compileOnly(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.code-enhancers-and-utils.code-formatter",
-    "inspectionName": "KotlinAnnotator"
-  },
-  "hash": "-4436658412941070793"
-},{
-  "tool": "Code Inspection",
-  "category": "General",
-  "type": "Kotlin annotator",
-  "tags": [
-    "kotlin",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Cannot access class 'org.gradle.accessors.dm.RootProjectAccessor'. Check your module classpath for missing or conflicting dependencies",
-  "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "plugins/code-enhancers-and-utils/code-formatter/build.gradle.kts",
-      "language": "kotlin",
-      "line": 54,
-      "offset": 23,
-      "length": 8,
-      "code": {
-        "startLine": 52,
-        "length": 8,
-        "offset": 64,
-        "surroundingCode": "\n    testImplementation(gradleTestKit())\n    testImplementation(projects.shared.coreTest)\n    testImplementation(libs.jetbrains.kotlin.kotlinTest)\n    testImplementation(libs.kotest.kotestAssertionsCore)"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.code-enhancers-and-utils.code-formatter",
-    "inspectionName": "KotlinAnnotator"
-  },
-  "hash": "-6426546090609654223"
-},{
-  "tool": "Code Inspection",
-  "category": "General",
-  "type": "Kotlin annotator",
-  "tags": [
-    "kotlin",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Unresolved reference: shared",
-  "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "plugins/code-enhancers-and-utils/code-formatter/build.gradle.kts",
-      "language": "kotlin",
-      "line": 54,
-      "offset": 32,
-      "length": 6,
-      "code": {
-        "startLine": 52,
-        "length": 6,
-        "offset": 73,
-        "surroundingCode": "\n    testImplementation(gradleTestKit())\n    testImplementation(projects.shared.coreTest)\n    testImplementation(libs.jetbrains.kotlin.kotlinTest)\n    testImplementation(libs.kotest.kotestAssertionsCore)"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.code-enhancers-and-utils.code-formatter",
-    "inspectionName": "KotlinAnnotator"
-  },
-  "hash": "-6186446623657794948"
-},{
-  "tool": "Code Inspection",
-  "category": "General",
-  "type": "Kotlin annotator",
-  "tags": [
-    "kotlin",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Cannot access class 'org.gradle.accessors.dm.RootProjectAccessor'. Check your module classpath for missing or conflicting dependencies",
-  "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "plugins/code-enhancers-and-utils/dependency-updates/build.gradle.kts",
-      "language": "kotlin",
-      "line": 29,
-      "offset": 8,
-      "length": 8,
-      "code": {
-        "startLine": 27,
-        "length": 8,
-        "offset": 24,
-        "surroundingCode": "\ndependencies {\n    api(projects.shared.pluginAccessors)\n\n    api(pluginLibs.github.benManes.gradleVersionsPlugin)"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.code-enhancers-and-utils.dependency-updates",
-    "inspectionName": "KotlinAnnotator"
-  },
-  "hash": "2903270535907563268"
-},{
-  "tool": "Code Inspection",
-  "category": "General",
-  "type": "Kotlin annotator",
-  "tags": [
-    "kotlin",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Unresolved reference: shared",
-  "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "plugins/code-enhancers-and-utils/dependency-updates/build.gradle.kts",
-      "language": "kotlin",
-      "line": 29,
-      "offset": 17,
-      "length": 6,
-      "code": {
-        "startLine": 27,
-        "length": 6,
-        "offset": 33,
-        "surroundingCode": "\ndependencies {\n    api(projects.shared.pluginAccessors)\n\n    api(pluginLibs.github.benManes.gradleVersionsPlugin)"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.code-enhancers-and-utils.dependency-updates",
-    "inspectionName": "KotlinAnnotator"
-  },
-  "hash": "9111979037931074119"
-},{
-  "tool": "Code Inspection",
-  "category": "General",
-  "type": "Kotlin annotator",
-  "tags": [
-    "kotlin",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Cannot access class 'org.gradle.accessors.dm.RootProjectAccessor'. Check your module classpath for missing or conflicting dependencies",
-  "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "plugins/code-enhancers-and-utils/kotlin-config/build.gradle.kts",
-      "language": "kotlin",
-      "line": 33,
-      "offset": 8,
-      "length": 8,
-      "code": {
-        "startLine": 31,
-        "length": 8,
-        "offset": 24,
-        "surroundingCode": "\ndependencies {\n    api(projects.shared.pluginAccessors)\n    api(projects.shared.core)\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.code-enhancers-and-utils.kotlin-config",
-    "inspectionName": "KotlinAnnotator"
-  },
-  "hash": "-5290533569827304678"
-},{
-  "tool": "Code Inspection",
-  "category": "General",
-  "type": "Kotlin annotator",
-  "tags": [
-    "kotlin",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Unresolved reference: shared",
-  "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "plugins/code-enhancers-and-utils/kotlin-config/build.gradle.kts",
-      "language": "kotlin",
-      "line": 33,
-      "offset": 17,
-      "length": 6,
-      "code": {
-        "startLine": 31,
-        "length": 6,
-        "offset": 33,
-        "surroundingCode": "\ndependencies {\n    api(projects.shared.pluginAccessors)\n    api(projects.shared.core)\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.code-enhancers-and-utils.kotlin-config",
-    "inspectionName": "KotlinAnnotator"
-  },
-  "hash": "2597666284671375699"
-},{
-  "tool": "Code Inspection",
-  "category": "General",
-  "type": "Kotlin annotator",
-  "tags": [
-    "kotlin",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Cannot access class 'org.gradle.accessors.dm.RootProjectAccessor'. Check your module classpath for missing or conflicting dependencies",
-  "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "plugins/code-enhancers-and-utils/kotlin-config/build.gradle.kts",
+      "type": "class",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/library/KotlinAndroidLibraryExtension.kt",
       "language": "kotlin",
       "line": 34,
-      "offset": 8,
-      "length": 8,
+      "offset": 4,
+      "length": 26,
       "code": {
         "startLine": 32,
-        "length": 8,
-        "offset": 64,
-        "surroundingCode": "dependencies {\n    api(projects.shared.pluginAccessors)\n    api(projects.shared.core)\n\n    compileOnly(pluginLibs.android.toolsBuild.gradle)"
+        "length": 26,
+        "offset": 134,
+        "surroundingCode": "    RawConfigOptions<KotlinAndroidLibraryExtension.RawConfigExtension>,\n    MainAndTestKotlinSourceSetsOptions<AndroidSourceSet>,\n    AndroidLibraryDependencies {\n\n    override var isEnabled: Boolean = IS_ENABLED"
       }
     }
   ],
   "attributes": {
-    "module": "gradle-plugins.plugins.code-enhancers-and-utils.kotlin-config",
+    "module": "hubdle.hubdle-gradle-plugin.main",
     "inspectionName": "KotlinAnnotator"
   },
-  "hash": "2327467252535001644"
+  "hash": "5123102765965875204"
 },{
   "tool": "Code Inspection",
   "category": "General",
@@ -679,29 +71,29 @@
     "Sanity"
   ],
   "severity": "Critical",
-  "comment": "Unresolved reference: shared",
+  "comment": "Unresolved reference: COM_JAVIERSC_GRADLE_GRADLE_EXTENSIONS_MODULE",
   "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
   "sources": [
     {
-      "type": "file",
-      "path": "plugins/code-enhancers-and-utils/kotlin-config/build.gradle.kts",
+      "type": "method",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/gradle/plugin/_internal/configureGradlePlugin.kt",
       "language": "kotlin",
-      "line": 34,
-      "offset": 17,
-      "length": 6,
+      "line": 80,
+      "offset": 30,
+      "length": 44,
       "code": {
-        "startLine": 32,
-        "length": 6,
-        "offset": 73,
-        "surroundingCode": "dependencies {\n    api(projects.shared.pluginAccessors)\n    api(projects.shared.core)\n\n    compileOnly(pluginLibs.android.toolsBuild.gradle)"
+        "startLine": 78,
+        "length": 44,
+        "offset": 78,
+        "surroundingCode": "\n    if (gradlePluginFeatures.extendedGradle) {\n        catalogImplementation(COM_JAVIERSC_GRADLE_GRADLE_EXTENSIONS_MODULE)\n    }\n    if (gradlePluginFeatures.extendedGradle) {"
       }
     }
   ],
   "attributes": {
-    "module": "gradle-plugins.plugins.code-enhancers-and-utils.kotlin-config",
+    "module": "hubdle.hubdle-gradle-plugin.main",
     "inspectionName": "KotlinAnnotator"
   },
-  "hash": "-654222637249776052"
+  "hash": "-1761472155891294759"
 },{
   "tool": "Code Inspection",
   "category": "General",
@@ -711,29 +103,29 @@
     "Sanity"
   ],
   "severity": "Critical",
-  "comment": "Cannot access class 'org.gradle.accessors.dm.RootProjectAccessor'. Check your module classpath for missing or conflicting dependencies",
+  "comment": "Unresolved reference: COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE",
   "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
   "sources": [
     {
-      "type": "file",
-      "path": "plugins/code-enhancers-and-utils/versioning/build.gradle.kts",
+      "type": "method",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/gradle/plugin/_internal/configureGradlePlugin.kt",
       "language": "kotlin",
-      "line": 32,
-      "offset": 8,
-      "length": 8,
+      "line": 83,
+      "offset": 30,
+      "length": 40,
       "code": {
-        "startLine": 30,
-        "length": 8,
-        "offset": 24,
-        "surroundingCode": "\ndependencies {\n    api(projects.shared.pluginAccessors)\n\n    api(pluginLibs.javiersc.semver.semverGradlePlugin)"
+        "startLine": 81,
+        "length": 40,
+        "offset": 83,
+        "surroundingCode": "    }\n    if (gradlePluginFeatures.extendedGradle) {\n        catalogImplementation(COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE)\n    }\n}"
       }
     }
   ],
   "attributes": {
-    "module": "gradle-plugins.plugins.code-enhancers-and-utils.versioning",
+    "module": "hubdle.hubdle-gradle-plugin.main",
     "inspectionName": "KotlinAnnotator"
   },
-  "hash": "-8782066213431029850"
+  "hash": "-2533684063151462856"
 },{
   "tool": "Code Inspection",
   "category": "General",
@@ -743,29 +135,29 @@
     "Sanity"
   ],
   "severity": "Critical",
-  "comment": "Unresolved reference: shared",
+  "comment": "Unresolved reference: ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE",
   "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
   "sources": [
     {
-      "type": "file",
-      "path": "plugins/code-enhancers-and-utils/versioning/build.gradle.kts",
+      "type": "method",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/gradle/plugin/_internal/configureGradlePlugin.kt",
       "language": "kotlin",
-      "line": 32,
-      "offset": 17,
-      "length": 6,
+      "line": 88,
+      "offset": 26,
+      "length": 39,
       "code": {
-        "startLine": 30,
-        "length": 6,
-        "offset": 33,
-        "surroundingCode": "\ndependencies {\n    api(projects.shared.pluginAccessors)\n\n    api(pluginLibs.javiersc.semver.semverGradlePlugin)"
+        "startLine": 86,
+        "length": 39,
+        "offset": 93,
+        "surroundingCode": "\nprivate fun KotlinDependencyHandler.configureTestDependencies() {\n    catalogImplementation(ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE)\n    implementation(project.dependencies.gradleTestKit())\n    if (gradlePluginFeatures.extendedGradle) {"
       }
     }
   ],
   "attributes": {
-    "module": "gradle-plugins.plugins.code-enhancers-and-utils.versioning",
+    "module": "hubdle.hubdle-gradle-plugin.main",
     "inspectionName": "KotlinAnnotator"
   },
-  "hash": "7541117728995753192"
+  "hash": "7385952677941257806"
 },{
   "tool": "Code Inspection",
   "category": "General",
@@ -775,29 +167,29 @@
     "Sanity"
   ],
   "severity": "Critical",
-  "comment": "Cannot access class 'org.gradle.accessors.dm.RootProjectAccessor'. Check your module classpath for missing or conflicting dependencies",
+  "comment": "Unresolved reference: COM_JAVIERSC_GRADLE_GRADLE_TEST_EXTENSIONS_MODULE",
   "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
   "sources": [
     {
-      "type": "file",
-      "path": "plugins/documentation/changelog/build.gradle.kts",
+      "type": "method",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/gradle/plugin/_internal/configureGradlePlugin.kt",
       "language": "kotlin",
-      "line": 29,
-      "offset": 8,
-      "length": 8,
+      "line": 91,
+      "offset": 30,
+      "length": 49,
       "code": {
-        "startLine": 27,
-        "length": 8,
-        "offset": 24,
-        "surroundingCode": "\ndependencies {\n    api(projects.shared.pluginAccessors)\n\n    api(pluginLibs.jetbrains.intellijPlugins.gradleChangelogPlugin)"
+        "startLine": 89,
+        "length": 49,
+        "offset": 134,
+        "surroundingCode": "    implementation(project.dependencies.gradleTestKit())\n    if (gradlePluginFeatures.extendedGradle) {\n        catalogImplementation(COM_JAVIERSC_GRADLE_GRADLE_TEST_EXTENSIONS_MODULE)\n    }\n"
       }
     }
   ],
   "attributes": {
-    "module": "gradle-plugins.plugins.documentation.changelog",
+    "module": "hubdle.hubdle-gradle-plugin.main",
     "inspectionName": "KotlinAnnotator"
   },
-  "hash": "6496060645429559691"
+  "hash": "1614515472547268175"
 },{
   "tool": "Code Inspection",
   "category": "General",
@@ -807,29 +199,29 @@
     "Sanity"
   ],
   "severity": "Critical",
-  "comment": "Unresolved reference: shared",
+  "comment": "Unresolved reference: JvmDependencies",
   "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
   "sources": [
     {
-      "type": "file",
-      "path": "plugins/documentation/changelog/build.gradle.kts",
+      "type": "class",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/jvm/KotlinJvmExtension.kt",
       "language": "kotlin",
-      "line": 29,
-      "offset": 17,
-      "length": 6,
+      "line": 36,
+      "offset": 4,
+      "length": 15,
       "code": {
-        "startLine": 27,
-        "length": 6,
-        "offset": 33,
-        "surroundingCode": "\ndependencies {\n    api(projects.shared.pluginAccessors)\n\n    api(pluginLibs.jetbrains.intellijPlugins.gradleChangelogPlugin)"
+        "startLine": 34,
+        "length": 15,
+        "offset": 92,
+        "surroundingCode": "    MainAndTestKotlinSourceSetsOptions<KotlinSourceSet>,\n    GradleDependenciesOptions,\n    JvmDependencies {\n\n    override var isEnabled: Boolean = IS_ENABLED"
       }
     }
   ],
   "attributes": {
-    "module": "gradle-plugins.plugins.documentation.changelog",
+    "module": "hubdle.hubdle-gradle-plugin.main",
     "inspectionName": "KotlinAnnotator"
   },
-  "hash": "6954106684365292022"
+  "hash": "1484320844646548777"
 },{
   "tool": "Code Inspection",
   "category": "General",
@@ -839,29 +231,29 @@
     "Sanity"
   ],
   "severity": "Critical",
-  "comment": "Cannot access class 'org.gradle.accessors.dm.RootProjectAccessor'. Check your module classpath for missing or conflicting dependencies",
+  "comment": "Unresolved reference: dependencies",
   "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
   "sources": [
     {
       "type": "file",
-      "path": "plugins/documentation/changelog/build.gradle.kts",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/jvm/KotlinJvmExtension.kt",
       "language": "kotlin",
-      "line": 37,
-      "offset": 23,
-      "length": 8,
+      "line": 5,
+      "offset": 38,
+      "length": 12,
       "code": {
-        "startLine": 35,
-        "length": 8,
-        "offset": 62,
-        "surroundingCode": "    implementation(gradleKotlinDsl())\n\n    testImplementation(projects.shared.coreTest)\n    testImplementation(libs.jetbrains.kotlin.kotlinTest)\n    testImplementation(libs.kotest.kotestAssertionsCore)"
+        "startLine": 3,
+        "length": 12,
+        "offset": 158,
+        "surroundingCode": "import com.javiersc.hubdle.extensions.HubdleDslMarker\nimport com.javiersc.hubdle.extensions._internal.state.hubdleState\nimport com.javiersc.hubdle.extensions.dependencies._internal.JvmDependencies\nimport com.javiersc.hubdle.extensions.kotlin.MainAndTestKotlinSourceSetsOptions\nimport com.javiersc.hubdle.extensions.kotlin.jvm._internal.jvmFeatures"
       }
     }
   ],
   "attributes": {
-    "module": "gradle-plugins.plugins.documentation.changelog",
+    "module": "hubdle.hubdle-gradle-plugin.main",
     "inspectionName": "KotlinAnnotator"
   },
-  "hash": "-3563479436574974571"
+  "hash": "5596686736114731679"
 },{
   "tool": "Code Inspection",
   "category": "General",
@@ -871,29 +263,29 @@
     "Sanity"
   ],
   "severity": "Critical",
-  "comment": "Unresolved reference: shared",
+  "comment": "Unresolved reference: ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE",
   "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
   "sources": [
     {
-      "type": "file",
-      "path": "plugins/documentation/changelog/build.gradle.kts",
+      "type": "method",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/jvm/_internal/configureJvm.kt",
       "language": "kotlin",
-      "line": 37,
-      "offset": 32,
-      "length": 6,
+      "line": 82,
+      "offset": 26,
+      "length": 39,
       "code": {
-        "startLine": 35,
-        "length": 6,
-        "offset": 71,
-        "surroundingCode": "    implementation(gradleKotlinDsl())\n\n    testImplementation(projects.shared.coreTest)\n    testImplementation(libs.jetbrains.kotlin.kotlinTest)\n    testImplementation(libs.kotest.kotestAssertionsCore)"
+        "startLine": 80,
+        "length": 39,
+        "offset": 93,
+        "surroundingCode": "\nprivate fun KotlinDependencyHandler.configureTestDependencies() {\n    catalogImplementation(ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE)\n    if (jvmFeatures.coroutines) {\n        catalogImplementation(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_TEST_MODULE)"
       }
     }
   ],
   "attributes": {
-    "module": "gradle-plugins.plugins.documentation.changelog",
+    "module": "hubdle.hubdle-gradle-plugin.main",
     "inspectionName": "KotlinAnnotator"
   },
-  "hash": "-1142946672573288957"
+  "hash": "1507666833366639550"
 },{
   "tool": "Code Inspection",
   "category": "General",
@@ -903,29 +295,29 @@
     "Sanity"
   ],
   "severity": "Critical",
-  "comment": "Cannot access class 'org.gradle.accessors.dm.RootProjectAccessor'. Check your module classpath for missing or conflicting dependencies",
+  "comment": "Unresolved reference: ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_TEST_MODULE",
   "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
   "sources": [
     {
-      "type": "file",
-      "path": "plugins/documentation/docs/build.gradle.kts",
+      "type": "method",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/jvm/_internal/configureJvm.kt",
       "language": "kotlin",
-      "line": 31,
-      "offset": 8,
-      "length": 8,
+      "line": 84,
+      "offset": 30,
+      "length": 52,
       "code": {
-        "startLine": 29,
-        "length": 8,
-        "offset": 24,
-        "surroundingCode": "\ndependencies {\n    api(projects.shared.pluginAccessors)\n\n    compileOnly(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)"
+        "startLine": 82,
+        "length": 52,
+        "offset": 131,
+        "surroundingCode": "    catalogImplementation(ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE)\n    if (jvmFeatures.coroutines) {\n        catalogImplementation(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_TEST_MODULE)\n    }\n    if (jvmFeatures.extendedGradle) {"
       }
     }
   ],
   "attributes": {
-    "module": "gradle-plugins.plugins.documentation.docs",
+    "module": "hubdle.hubdle-gradle-plugin.main",
     "inspectionName": "KotlinAnnotator"
   },
-  "hash": "-1529241249210700493"
+  "hash": "-7386465434538461712"
 },{
   "tool": "Code Inspection",
   "category": "General",
@@ -935,29 +327,29 @@
     "Sanity"
   ],
   "severity": "Critical",
-  "comment": "Unresolved reference: shared",
+  "comment": "Unresolved reference: COM_JAVIERSC_GRADLE_GRADLE_TEST_EXTENSIONS_MODULE",
   "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
   "sources": [
     {
-      "type": "file",
-      "path": "plugins/documentation/docs/build.gradle.kts",
+      "type": "method",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/jvm/_internal/configureJvm.kt",
       "language": "kotlin",
-      "line": 31,
-      "offset": 17,
-      "length": 6,
+      "line": 87,
+      "offset": 30,
+      "length": 49,
       "code": {
-        "startLine": 29,
-        "length": 6,
-        "offset": 33,
-        "surroundingCode": "\ndependencies {\n    api(projects.shared.pluginAccessors)\n\n    compileOnly(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)"
+        "startLine": 85,
+        "length": 49,
+        "offset": 74,
+        "surroundingCode": "    }\n    if (jvmFeatures.extendedGradle) {\n        catalogImplementation(COM_JAVIERSC_GRADLE_GRADLE_TEST_EXTENSIONS_MODULE)\n    }\n    if (jvmFeatures.extendedTesting) {"
       }
     }
   ],
   "attributes": {
-    "module": "gradle-plugins.plugins.documentation.docs",
+    "module": "hubdle.hubdle-gradle-plugin.main",
     "inspectionName": "KotlinAnnotator"
   },
-  "hash": "4721382377889058516"
+  "hash": "-4572349389771049306"
 },{
   "tool": "Code Inspection",
   "category": "General",
@@ -967,635 +359,27 @@
     "Sanity"
   ],
   "severity": "Critical",
-  "comment": "Cannot access class 'org.gradle.accessors.dm.RootProjectAccessor'. Check your module classpath for missing or conflicting dependencies",
+  "comment": "Unresolved reference: IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE",
   "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
   "sources": [
     {
-      "type": "file",
-      "path": "plugins/documentation/docs/build.gradle.kts",
+      "type": "method",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/jvm/_internal/configureJvm.kt",
       "language": "kotlin",
-      "line": 42,
-      "offset": 19,
-      "length": 8,
+      "line": 90,
+      "offset": 30,
+      "length": 39,
       "code": {
-        "startLine": 40,
-        "length": 8,
-        "offset": 151,
-        "surroundingCode": "    implementation(pluginLibs.jetbrains.gradlePluginIdeaExt.gradleIdeaExt)\n    implementation(pluginLibs.vyarus.gradleMkdocsPlugin)\n    implementation(projects.shared.core)\n\n    testPluginClasspath(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)"
+        "startLine": 88,
+        "length": 39,
+        "offset": 75,
+        "surroundingCode": "    }\n    if (jvmFeatures.extendedTesting) {\n        catalogImplementation(IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE)\n    }\n}"
       }
     }
   ],
   "attributes": {
-    "module": "gradle-plugins.plugins.documentation.docs",
+    "module": "hubdle.hubdle-gradle-plugin.main",
     "inspectionName": "KotlinAnnotator"
   },
-  "hash": "5884453948278853043"
-},{
-  "tool": "Code Inspection",
-  "category": "General",
-  "type": "Kotlin annotator",
-  "tags": [
-    "kotlin",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Unresolved reference: shared",
-  "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "plugins/documentation/docs/build.gradle.kts",
-      "language": "kotlin",
-      "line": 42,
-      "offset": 28,
-      "length": 6,
-      "code": {
-        "startLine": 40,
-        "length": 6,
-        "offset": 160,
-        "surroundingCode": "    implementation(pluginLibs.jetbrains.gradlePluginIdeaExt.gradleIdeaExt)\n    implementation(pluginLibs.vyarus.gradleMkdocsPlugin)\n    implementation(projects.shared.core)\n\n    testPluginClasspath(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.documentation.docs",
-    "inspectionName": "KotlinAnnotator"
-  },
-  "hash": "3894657299665395451"
-},{
-  "tool": "Code Inspection",
-  "category": "General",
-  "type": "Kotlin annotator",
-  "tags": [
-    "kotlin",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Cannot access class 'org.gradle.accessors.dm.RootProjectAccessor'. Check your module classpath for missing or conflicting dependencies",
-  "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "plugins/documentation/readme-badges/build.gradle.kts",
-      "language": "kotlin",
-      "line": 33,
-      "offset": 8,
-      "length": 8,
-      "code": {
-        "startLine": 31,
-        "length": 8,
-        "offset": 24,
-        "surroundingCode": "\ndependencies {\n    api(projects.shared.pluginAccessors)\n\n    compileOnly(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.documentation.readme-badges",
-    "inspectionName": "KotlinAnnotator"
-  },
-  "hash": "1631568927528954508"
-},{
-  "tool": "Code Inspection",
-  "category": "General",
-  "type": "Kotlin annotator",
-  "tags": [
-    "kotlin",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Unresolved reference: shared",
-  "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "plugins/documentation/readme-badges/build.gradle.kts",
-      "language": "kotlin",
-      "line": 33,
-      "offset": 17,
-      "length": 6,
-      "code": {
-        "startLine": 31,
-        "length": 6,
-        "offset": 33,
-        "surroundingCode": "\ndependencies {\n    api(projects.shared.pluginAccessors)\n\n    compileOnly(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.documentation.readme-badges",
-    "inspectionName": "KotlinAnnotator"
-  },
-  "hash": "-5371322025965874762"
-},{
-  "tool": "Code Inspection",
-  "category": "General",
-  "type": "Kotlin annotator",
-  "tags": [
-    "kotlin",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Cannot access class 'org.gradle.accessors.dm.RootProjectAccessor'. Check your module classpath for missing or conflicting dependencies",
-  "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "plugins/documentation/readme-badges/build.gradle.kts",
-      "language": "kotlin",
-      "line": 39,
-      "offset": 19,
-      "length": 8,
-      "code": {
-        "startLine": 37,
-        "length": 8,
-        "offset": 111,
-        "surroundingCode": "    implementation(gradleKotlinDsl())\n    implementation(libs.javiersc.kotlin.kotlinStdlib)\n    implementation(projects.shared.core)\n\n    // README Kotlin badge has always the next version"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.documentation.readme-badges",
-    "inspectionName": "KotlinAnnotator"
-  },
-  "hash": "4047211973554925413"
-},{
-  "tool": "Code Inspection",
-  "category": "General",
-  "type": "Kotlin annotator",
-  "tags": [
-    "kotlin",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Unresolved reference: shared",
-  "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "plugins/documentation/readme-badges/build.gradle.kts",
-      "language": "kotlin",
-      "line": 39,
-      "offset": 28,
-      "length": 6,
-      "code": {
-        "startLine": 37,
-        "length": 6,
-        "offset": 120,
-        "surroundingCode": "    implementation(gradleKotlinDsl())\n    implementation(libs.javiersc.kotlin.kotlinStdlib)\n    implementation(projects.shared.core)\n\n    // README Kotlin badge has always the next version"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.documentation.readme-badges",
-    "inspectionName": "KotlinAnnotator"
-  },
-  "hash": "1776553143175664098"
-},{
-  "tool": "Code Inspection",
-  "category": "General",
-  "type": "Kotlin annotator",
-  "tags": [
-    "kotlin",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Cannot access class 'org.gradle.accessors.dm.RootProjectAccessor'. Check your module classpath for missing or conflicting dependencies",
-  "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "plugins/gradle-utils/gradle-wrapper-updater/build.gradle.kts",
-      "language": "kotlin",
-      "line": 30,
-      "offset": 8,
-      "length": 8,
-      "code": {
-        "startLine": 28,
-        "length": 8,
-        "offset": 24,
-        "surroundingCode": "\ndependencies {\n    api(projects.shared.pluginAccessors)\n\n    implementation(libs.javiersc.kotlin.kotlinStdlib)"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.gradle-utils.gradle-wrapper-updater",
-    "inspectionName": "KotlinAnnotator"
-  },
-  "hash": "-6862768496884154698"
-},{
-  "tool": "Code Inspection",
-  "category": "General",
-  "type": "Kotlin annotator",
-  "tags": [
-    "kotlin",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Unresolved reference: shared",
-  "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "plugins/gradle-utils/gradle-wrapper-updater/build.gradle.kts",
-      "language": "kotlin",
-      "line": 30,
-      "offset": 17,
-      "length": 6,
-      "code": {
-        "startLine": 28,
-        "length": 6,
-        "offset": 33,
-        "surroundingCode": "\ndependencies {\n    api(projects.shared.pluginAccessors)\n\n    implementation(libs.javiersc.kotlin.kotlinStdlib)"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.gradle-utils.gradle-wrapper-updater",
-    "inspectionName": "KotlinAnnotator"
-  },
-  "hash": "-3648115655256575568"
-},{
-  "tool": "Code Inspection",
-  "category": "General",
-  "type": "Kotlin annotator",
-  "tags": [
-    "kotlin",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Cannot access class 'org.gradle.accessors.dm.RootProjectAccessor'. Check your module classpath for missing or conflicting dependencies",
-  "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "plugins/publish/nexus/build.gradle.kts",
-      "language": "kotlin",
-      "line": 32,
-      "offset": 8,
-      "length": 8,
-      "code": {
-        "startLine": 30,
-        "length": 8,
-        "offset": 24,
-        "surroundingCode": "\ndependencies {\n    api(projects.shared.pluginAccessors)\n\n    api(pluginLibs.github.gradleNexus.publishPlugin)"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.publish.nexus",
-    "inspectionName": "KotlinAnnotator"
-  },
-  "hash": "-1073304926559405663"
-},{
-  "tool": "Code Inspection",
-  "category": "General",
-  "type": "Kotlin annotator",
-  "tags": [
-    "kotlin",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Unresolved reference: shared",
-  "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "plugins/publish/nexus/build.gradle.kts",
-      "language": "kotlin",
-      "line": 32,
-      "offset": 17,
-      "length": 6,
-      "code": {
-        "startLine": 30,
-        "length": 6,
-        "offset": 33,
-        "surroundingCode": "\ndependencies {\n    api(projects.shared.pluginAccessors)\n\n    api(pluginLibs.github.gradleNexus.publishPlugin)"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.publish.nexus",
-    "inspectionName": "KotlinAnnotator"
-  },
-  "hash": "2041223992030343816"
-},{
-  "tool": "Code Inspection",
-  "category": "General",
-  "type": "Kotlin annotator",
-  "tags": [
-    "kotlin",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Cannot access class 'org.gradle.accessors.dm.RootProjectAccessor'. Check your module classpath for missing or conflicting dependencies",
-  "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "plugins/publish/publish/build.gradle.kts",
-      "language": "kotlin",
-      "line": 30,
-      "offset": 8,
-      "length": 8,
-      "code": {
-        "startLine": 28,
-        "length": 8,
-        "offset": 24,
-        "surroundingCode": "\ndependencies {\n    api(projects.shared.pluginAccessors)\n    api(projects.shared.core)\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.publish.publish",
-    "inspectionName": "KotlinAnnotator"
-  },
-  "hash": "-4419433379131493374"
-},{
-  "tool": "Code Inspection",
-  "category": "General",
-  "type": "Kotlin annotator",
-  "tags": [
-    "kotlin",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Unresolved reference: shared",
-  "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "plugins/publish/publish/build.gradle.kts",
-      "language": "kotlin",
-      "line": 30,
-      "offset": 17,
-      "length": 6,
-      "code": {
-        "startLine": 28,
-        "length": 6,
-        "offset": 33,
-        "surroundingCode": "\ndependencies {\n    api(projects.shared.pluginAccessors)\n    api(projects.shared.core)\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.publish.publish",
-    "inspectionName": "KotlinAnnotator"
-  },
-  "hash": "-2365499259405226599"
-},{
-  "tool": "Code Inspection",
-  "category": "General",
-  "type": "Kotlin annotator",
-  "tags": [
-    "kotlin",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Cannot access class 'org.gradle.accessors.dm.RootProjectAccessor'. Check your module classpath for missing or conflicting dependencies",
-  "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "plugins/publish/publish/build.gradle.kts",
-      "language": "kotlin",
-      "line": 31,
-      "offset": 8,
-      "length": 8,
-      "code": {
-        "startLine": 29,
-        "length": 8,
-        "offset": 64,
-        "surroundingCode": "dependencies {\n    api(projects.shared.pluginAccessors)\n    api(projects.shared.core)\n\n    compileOnly(pluginLibs.android.toolsBuild.gradle)"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.publish.publish",
-    "inspectionName": "KotlinAnnotator"
-  },
-  "hash": "4157775557010463430"
-},{
-  "tool": "Code Inspection",
-  "category": "General",
-  "type": "Kotlin annotator",
-  "tags": [
-    "kotlin",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Unresolved reference: shared",
-  "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "plugins/publish/publish/build.gradle.kts",
-      "language": "kotlin",
-      "line": 31,
-      "offset": 17,
-      "length": 6,
-      "code": {
-        "startLine": 29,
-        "length": 6,
-        "offset": 73,
-        "surroundingCode": "dependencies {\n    api(projects.shared.pluginAccessors)\n    api(projects.shared.core)\n\n    compileOnly(pluginLibs.android.toolsBuild.gradle)"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.publish.publish",
-    "inspectionName": "KotlinAnnotator"
-  },
-  "hash": "-1434894364612877998"
-},{
-  "tool": "Code Inspection",
-  "category": "General",
-  "type": "Kotlin annotator",
-  "tags": [
-    "kotlin",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Cannot access class 'org.gradle.accessors.dm.RootProjectAccessor'. Check your module classpath for missing or conflicting dependencies",
-  "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "plugins/version-catalogs/massive-catalogs-updater/build.gradle.kts",
-      "language": "kotlin",
-      "line": 30,
-      "offset": 8,
-      "length": 8,
-      "code": {
-        "startLine": 28,
-        "length": 8,
-        "offset": 24,
-        "surroundingCode": "\ndependencies {\n    api(projects.shared.pluginAccessors)\n\n    implementation(libs.javiersc.kotlin.kotlinStdlib)"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.version-catalogs.massive-catalogs-updater",
-    "inspectionName": "KotlinAnnotator"
-  },
-  "hash": "-445268258600738075"
-},{
-  "tool": "Code Inspection",
-  "category": "General",
-  "type": "Kotlin annotator",
-  "tags": [
-    "kotlin",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Unresolved reference: shared",
-  "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "plugins/version-catalogs/massive-catalogs-updater/build.gradle.kts",
-      "language": "kotlin",
-      "line": 30,
-      "offset": 17,
-      "length": 6,
-      "code": {
-        "startLine": 28,
-        "length": 6,
-        "offset": 33,
-        "surroundingCode": "\ndependencies {\n    api(projects.shared.pluginAccessors)\n\n    implementation(libs.javiersc.kotlin.kotlinStdlib)"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.version-catalogs.massive-catalogs-updater",
-    "inspectionName": "KotlinAnnotator"
-  },
-  "hash": "7046870975344282657"
-},{
-  "tool": "Code Inspection",
-  "category": "General",
-  "type": "Kotlin annotator",
-  "tags": [
-    "kotlin",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Cannot access class 'org.gradle.accessors.dm.RootProjectAccessor'. Check your module classpath for missing or conflicting dependencies",
-  "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "plugins/version-catalogs/projects-version-catalog/build.gradle.kts",
-      "language": "kotlin",
-      "line": 30,
-      "offset": 8,
-      "length": 8,
-      "code": {
-        "startLine": 28,
-        "length": 8,
-        "offset": 24,
-        "surroundingCode": "\ndependencies {\n    api(projects.shared.pluginAccessors)\n\n    implementation(libs.tomlj)"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.version-catalogs.projects-version-catalog",
-    "inspectionName": "KotlinAnnotator"
-  },
-  "hash": "8567112442325633213"
-},{
-  "tool": "Code Inspection",
-  "category": "General",
-  "type": "Kotlin annotator",
-  "tags": [
-    "kotlin",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Unresolved reference: shared",
-  "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "plugins/version-catalogs/projects-version-catalog/build.gradle.kts",
-      "language": "kotlin",
-      "line": 30,
-      "offset": 17,
-      "length": 6,
-      "code": {
-        "startLine": 28,
-        "length": 6,
-        "offset": 33,
-        "surroundingCode": "\ndependencies {\n    api(projects.shared.pluginAccessors)\n\n    implementation(libs.tomlj)"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.version-catalogs.projects-version-catalog",
-    "inspectionName": "KotlinAnnotator"
-  },
-  "hash": "3612670947791896095"
-},{
-  "tool": "Code Inspection",
-  "category": "General",
-  "type": "Kotlin annotator",
-  "tags": [
-    "kotlin",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Cannot access class 'org.gradle.accessors.dm.RootProjectAccessor'. Check your module classpath for missing or conflicting dependencies",
-  "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "plugins/version-catalogs/projects-version-catalog/build.gradle.kts",
-      "language": "kotlin",
-      "line": 37,
-      "offset": 23,
-      "length": 8,
-      "code": {
-        "startLine": 35,
-        "length": 8,
-        "offset": 62,
-        "surroundingCode": "    implementation(gradleKotlinDsl())\n\n    testImplementation(projects.shared.coreTest)\n    testImplementation(libs.jetbrains.kotlin.kotlinTest)\n    testImplementation(libs.kotest.kotestAssertionsCore)"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.version-catalogs.projects-version-catalog",
-    "inspectionName": "KotlinAnnotator"
-  },
-  "hash": "1423736181444390186"
-},{
-  "tool": "Code Inspection",
-  "category": "General",
-  "type": "Kotlin annotator",
-  "tags": [
-    "kotlin",
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Unresolved reference: shared",
-  "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "plugins/version-catalogs/projects-version-catalog/build.gradle.kts",
-      "language": "kotlin",
-      "line": 37,
-      "offset": 32,
-      "length": 6,
-      "code": {
-        "startLine": 35,
-        "length": 6,
-        "offset": 71,
-        "surroundingCode": "    implementation(gradleKotlinDsl())\n\n    testImplementation(projects.shared.coreTest)\n    testImplementation(libs.jetbrains.kotlin.kotlinTest)\n    testImplementation(libs.kotest.kotestAssertionsCore)"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "gradle-plugins.plugins.version-catalogs.projects-version-catalog",
-    "inspectionName": "KotlinAnnotator"
-  },
-  "hash": "5800652512595924627"
+  "hash": "-6688866043693401067"
 }]}

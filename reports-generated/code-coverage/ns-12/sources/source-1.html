@@ -1,0 +1,169 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ConfigureReadmeKt</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.javiersc.hubdle.extensions.config.documentation.readme._internal</a>
+</div>
+
+<h1>Coverage Summary for Class: ConfigureReadmeKt (com.javiersc.hubdle.extensions.config.documentation.readme._internal)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">ConfigureReadmeKt</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/20)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/127)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.javiersc.hubdle.extensions.config.documentation.readme._internal
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import com.javiersc.gradle.properties.extensions.getProperty
+<i class="no-highlight">4</i>&nbsp;import com.javiersc.gradle.properties.extensions.getPropertyOrNull
+<i class="no-highlight">5</i>&nbsp;import com.javiersc.hubdle.HubdleProperty
+<i class="no-highlight">6</i>&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
+<i class="no-highlight">7</i>&nbsp;import com.javiersc.hubdle.extensions.config.documentation.readme.WriteReadmeBadgesTask
+<i class="no-highlight">8</i>&nbsp;import org.gradle.api.Project
+<i class="no-highlight">9</i>&nbsp;import org.gradle.kotlin.dsl.register
+<i class="no-highlight">10</i>&nbsp;import org.jetbrains.kotlin.gradle.plugin.getKotlinPluginVersion
+<i class="no-highlight">11</i>&nbsp;
+<i class="no-highlight">12</i>&nbsp;internal fun configureReadmeBadges(project: Project) {
+<b class="nc"><i class="no-highlight">13</i>&nbsp;    val readmeState = project.hubdleState.config.documentation.readme</b>
+<i class="no-highlight">14</i>&nbsp;
+<b class="nc"><i class="no-highlight">15</i>&nbsp;    if (readmeState.badges.isEnabled) {</b>
+<i class="no-highlight">16</i>&nbsp;
+<b class="nc"><i class="no-highlight">17</i>&nbsp;        val projectName =</b>
+<b class="nc"><i class="no-highlight">18</i>&nbsp;            project.getPropertyOrNull(HubdleProperty.Project.mainProjectName) ?: project.name</b>
+<i class="no-highlight">19</i>&nbsp;
+<b class="nc"><i class="no-highlight">20</i>&nbsp;        val projectKey =</b>
+<b class="nc"><i class="no-highlight">21</i>&nbsp;            with(project) {</b>
+<b class="nc"><i class="no-highlight">22</i>&nbsp;                &quot;$group:${getPropertyOrNull(HubdleProperty.Project.rootProjectDirName) ?: rootDir.name}&quot;</b>
+<i class="no-highlight">23</i>&nbsp;            }
+<i class="no-highlight">24</i>&nbsp;
+<b class="nc"><i class="no-highlight">25</i>&nbsp;        project.tasks.register&lt;WriteReadmeBadgesTask&gt;(WriteReadmeBadgesTask.name).configure {</b>
+<b class="nc"><i class="no-highlight">26</i>&nbsp;            it.projectGroup.set(project.group.toString())</b>
+<b class="nc"><i class="no-highlight">27</i>&nbsp;            it.projectName.set(projectName)</b>
+<b class="nc"><i class="no-highlight">28</i>&nbsp;            it.repoUrl.set(project.getProperty(HubdleProperty.POM.scmUrl))</b>
+<b class="nc"><i class="no-highlight">29</i>&nbsp;            it.kotlinVersion.set(project.getKotlinPluginVersion())</b>
+<b class="nc"><i class="no-highlight">30</i>&nbsp;            it.kotlinBadge.set(readmeState.badges.kotlin)</b>
+<b class="nc"><i class="no-highlight">31</i>&nbsp;            it.mavenCentralBadge.set(readmeState.badges.mavenCentral)</b>
+<b class="nc"><i class="no-highlight">32</i>&nbsp;            it.snapshotsBadge.set(readmeState.badges.snapshots)</b>
+<b class="nc"><i class="no-highlight">33</i>&nbsp;            it.buildBadge.set(readmeState.badges.build)</b>
+<b class="nc"><i class="no-highlight">34</i>&nbsp;            it.coverageBadge.set(readmeState.badges.coverage)</b>
+<b class="nc"><i class="no-highlight">35</i>&nbsp;            it.qualityBadge.set(readmeState.badges.quality)</b>
+<b class="nc"><i class="no-highlight">36</i>&nbsp;            it.techDebtBadge.set(readmeState.badges.techDebt)</b>
+<b class="nc"><i class="no-highlight">37</i>&nbsp;            it.projectKey.set(projectKey)</b>
+<i class="no-highlight">38</i>&nbsp;        }
+<i class="no-highlight">39</i>&nbsp;    }
+<i class="no-highlight">40</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-07-02 19:25</div>
+</div>
+</body>
+</html>

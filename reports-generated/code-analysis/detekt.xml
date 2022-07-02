@@ -1,51 +1,125 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="4.3">
-<file name="shared/core-test/main/kotlin/com/javiersc/gradle/plugins/core/test/Sandbox.kt">
-	<error line="47" column="16" severity="warning" message="The function testSandbox(sandboxPath: String, prefix: String, beforeTest: File.(GradleRunner) -&gt; Unit, taskOutcome: TaskOutcome, isBuildCacheTest: Boolean, test: (result: BuildResult, testProjectDir: File) -&gt; Unit) has too many parameters. The current threshold is set to 6." source="detekt.LongParameterList" />
+<file name="buildSrc/src/main/kotlin/plugins/dependencies-codegen.gradle.kts">
+	<error line="105" column="5" severity="warning" message="The function buildHubdleDependencies is too long (72). The maximum length is 60." source="detekt.LongMethod" />
+	<error line="195" column="56" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
 </file>
-<file name="plugins/documentation/docs/main/kotlin/com/javiersc/gradle/plugins/docs/tasks/PreBuildDocsTask.kt">
-	<error line="98" column="17" severity="warning" message="The function buildDotDocsDirectory is too long (109). The maximum length is 60." source="detekt.LongMethod" />
-	<error line="29" column="16" severity="warning" message="Class &apos;PreBuildDocsTask&apos; with &apos;11&apos; functions detected. Defined threshold inside classes is set to &apos;11&apos;" source="detekt.TooManyFunctions" />
-	<error line="374" column="25" severity="warning" message="This condition is too complex (4). Defined complexity threshold for conditions is set to &apos;4&apos;" source="detekt.ComplexCondition" />
-	<error line="360" column="1" severity="warning" message="Line detected, which is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/KotlinMultiplatformExtension.kt">
+	<error line="59" column="19" severity="warning" message="Class &apos;KotlinMultiplatformExtension&apos; with &apos;36&apos; functions detected. Defined threshold inside classes is set to &apos;11&apos;" source="detekt.TooManyFunctions" />
 </file>
-<file name="plugins/documentation/readme-badges/main/kotlin/com/javiersc/gradle/plugins/readme/badges/generator/ReadmeBadgesGeneratorPlugin.kt">
-	<error line="9" column="18" severity="warning" message="The function apply is too long (67). The maximum length is 60." source="detekt.LongMethod" />
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatform.kt">
+	<error line="213" column="14" severity="warning" message="The function configureMultiplatformNative is too long (78). The maximum length is 60." source="detekt.LongMethod" />
+	<error line="3" column="1" severity="warning" message="File &apos;/home/runner/work/hubdle/hubdle/hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatform.kt&apos; with &apos;40&apos; functions detected. Defined threshold inside files is set to &apos;11&apos;" source="detekt.TooManyFunctions" />
+	<error line="3" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
 </file>
-<file name="plugins/documentation/changelog/main/kotlin/com/javiersc/gradle/plugins/changelog/internal/Changelog.kt">
-	<error line="23" column="22" severity="warning" message="The class or object Companion is empty." source="detekt.EmptyClassBlock" />
-	<error line="72" column="21" severity="warning" message="In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty." source="detekt.SpreadOperator" />
-	<error line="92" column="61" severity="warning" message="In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty." source="detekt.SpreadOperator" />
-	<error line="113" column="57" severity="warning" message="In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty." source="detekt.SpreadOperator" />
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/documentation/site/PrebuildSiteTask.kt">
+	<error line="379" column="25" severity="warning" message="This condition is too complex (4). Defined complexity threshold for conditions is set to &apos;4&apos;" source="detekt.ComplexCondition" />
 </file>
-<file name="plugins/code-enhancers-and-utils/all-projects/main/kotlin/com/javiersc/gradle/plugins/all/projects/AllProjectsPlugin.kt">
-	<error line="125" column="19" severity="warning" message="Top level constant names should match the pattern: [A-Z][_A-Z0-9]*" source="detekt.TopLevelPropertyNaming" />
-	<error line="126" column="19" severity="warning" message="Top level constant names should match the pattern: [A-Z][_A-Z0-9]*" source="detekt.TopLevelPropertyNaming" />
-	<error line="127" column="19" severity="warning" message="Top level constant names should match the pattern: [A-Z][_A-Z0-9]*" source="detekt.TopLevelPropertyNaming" />
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/ConfigExtension.kt">
+	<error line="25" column="19" severity="warning" message="Class &apos;ConfigExtension&apos; with &apos;11&apos; functions detected. Defined threshold inside classes is set to &apos;11&apos;" source="detekt.TooManyFunctions" />
 </file>
-<file name="plugins/documentation/changelog/main/kotlin/com/javiersc/gradle/plugins/changelog/internal/MergeChangelog.kt">
-	<error line="39" column="78" severity="warning" message="In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty." source="detekt.SpreadOperator" />
-	<error line="40" column="78" severity="warning" message="In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty." source="detekt.SpreadOperator" />
-	<error line="46" column="34" severity="warning" message="In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty." source="detekt.SpreadOperator" />
-	<error line="50" column="21" severity="warning" message="In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty." source="detekt.SpreadOperator" />
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/options/DependenciesOptions.kt">
+	<error line="6" column="1" severity="warning" message="The file name &apos;DependenciesOptions&apos; does not match the name of the single top-level declaration &apos;GradleDependenciesOptions&apos;." source="detekt.MatchingDeclarationName" />
 </file>
-<file name="plugins/version-catalogs/massive-catalogs-updater/main/kotlin/com/javiersc/gradle/plugins/massive/catalogs/updater/MassiveCatalogsUpdaterPlugin.kt">
-	<error line="37" column="13" severity="warning" message="url can be a `const val`." source="detekt.MayBeConst" />
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/gradle/version/catalog/_internal/configureGradleVersionCatalog.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
 </file>
-<file name="plugins/gradle-utils/gradle-wrapper-updater/main/kotlin/com/javiersc/gradle/plugins/gradle/wrapper/updater/GradleWrapperUpdaterPlugin.kt">
-	<error line="91" column="37" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
-	<error line="91" column="42" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/gradle/plugin/_internal/configureGradlePlugin.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
 </file>
-<file name="plugins/publish/nexus/main/kotlin/com/javiersc/gradle/plugins/nexus/NexusPlugin.kt">
-	<error line="30" column="51" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
-	<error line="31" column="50" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
-	<error line="34" column="40" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
-	<error line="35" column="61" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/library/_internal/configureAndroidLibrary.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
 </file>
-<file name="plugins/code-enhancers-and-utils/all-projects/main/kotlin/com/javiersc/gradle/plugins/all/projects/install/pre/commit/PreCommitOptions.kt">
-	<error line="8" column="1" severity="warning" message="An abstract class without an abstract member can be refactored to a concrete class." source="detekt.UnnecessaryAbstractClass" />
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/jvm/_internal/configureJvm.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/_internal/configJvmTarget.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/macos/KotlinMultiplatformMacOSSX64Extension.kt">
+	<error line="7" column="1" severity="warning" message="The file name &apos;KotlinMultiplatformMacOSSX64Extension&apos; does not match the name of the single top-level declaration &apos;KotlinMultiplatformMacOSX64Extension&apos;." source="detekt.MatchingDeclarationName" />
+</file>
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/state/HubdleState.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="935" column="16" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
+	<error line="936" column="13" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
+	<error line="937" column="17" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
+</file>
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/state/checkCompatibility.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/state/CatalogDependencies.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/ProjectType.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/PluginIds.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/binary/compatibility/validator/_internal/configureBinaryCompatibilityValidator.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="12" column="1" severity="warning" message="This comment contains &apos;TODO:&apos; that has been defined as forbidden in detekt." source="detekt.ForbiddenComment" />
+</file>
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/documentation/site/_internal/configureSite.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/documentation/changelog/_internal/Extensions.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/documentation/changelog/_internal/Changelog.kt">
+	<error line="3" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/documentation/changelog/_internal/configureChangelog.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/documentation/changelog/_internal/MergeChangelog.kt">
+	<error line="3" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/documentation/readme/_internal/models/Sonar.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/documentation/readme/_internal/models/MavenRepo.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/documentation/readme/_internal/configureReadme.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/versioning/_internal/configureVersioning.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/publishing/_internal/configurePublishing.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/explicit/api/_internal/configureExplicitApi.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/_internal/hasKotlinGradlePlugin.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/coverage/_internal/configureCoverage.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/install/_internal/configureInstall.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/analysis/_internal/configureAnalysis.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/format/_internal/configureFormat.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/language/settings/_internal/configureConfigLanguageSettings.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/nexus/_internal/configureNexus.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
 </file>
 <file name="buildSrc/build.gradle.kts">
 	<error line="15" column="5" severity="warning" message="This comment contains &apos;TODO:&apos; that has been defined as forbidden in detekt." source="detekt.ForbiddenComment" />
+</file>
+<file name="hubdle-gradle-plugin/test/kotlin/com/javiersc/hubdle/kotlin/jvm/features/KotlinJvmFeaturesTest.kt">
+	<error line="36" column="1" severity="warning" message="Line detected, which is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
+	<error line="60" column="1" severity="warning" message="Line detected, which is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
 </file>
 </checkstyle>

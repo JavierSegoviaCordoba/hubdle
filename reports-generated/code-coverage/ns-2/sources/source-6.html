@@ -69,86 +69,83 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">25</i>&nbsp;
 <i class="no-highlight">26</i>&nbsp;        target.extensions.create&lt;HubdleSettingsExtension&gt;(&quot;hubdle&quot;)
 <i class="no-highlight">27</i>&nbsp;
-<i class="no-highlight">28</i>&nbsp;        target.gradle.settingsEvaluated {
-<i class="no-highlight">29</i>&nbsp;            it.configureGradleEnterprise()
-<i class="no-highlight">30</i>&nbsp;            it.configureAutoInclude()
-<i class="no-highlight">31</i>&nbsp;            it.configureAutoIncludeVersionCatalogs(objects)
-<i class="no-highlight">32</i>&nbsp;        }
-<i class="no-highlight">33</i>&nbsp;    }
-<i class="no-highlight">34</i>&nbsp;}
-<i class="no-highlight">35</i>&nbsp;
-<i class="no-highlight">36</i>&nbsp;@DslMarker public annotation class HubdleSettingsDslMarker
+<i class="no-highlight">28</i>&nbsp;        target.configureAutoIncludeVersionCatalogs(objects)
+<i class="no-highlight">29</i>&nbsp;        target.configureGradleEnterprise()
+<i class="no-highlight">30</i>&nbsp;    }
+<i class="no-highlight">31</i>&nbsp;}
+<i class="no-highlight">32</i>&nbsp;
+<i class="no-highlight">33</i>&nbsp;@DslMarker public annotation class HubdleSettingsDslMarker
+<i class="no-highlight">34</i>&nbsp;
+<i class="no-highlight">35</i>&nbsp;internal val Settings.hubdle: HubdleSettingsExtension
+<i class="no-highlight">36</i>&nbsp;    get() = checkNotNull(extensions.findByType())
 <i class="no-highlight">37</i>&nbsp;
-<i class="no-highlight">38</i>&nbsp;internal val Settings.hubdle: HubdleSettingsExtension
-<i class="no-highlight">39</i>&nbsp;    get() = checkNotNull(extensions.findByType())
+<i class="no-highlight">38</i>&nbsp;internal fun Settings.configureAutoInclude() {
+<i class="no-highlight">39</i>&nbsp;    val autoInclude = hubdle.autoInclude
 <i class="no-highlight">40</i>&nbsp;
-<i class="no-highlight">41</i>&nbsp;internal fun Settings.configureAutoInclude() {
-<i class="no-highlight">42</i>&nbsp;    val autoInclude = hubdle.autoInclude
+<i class="no-highlight">41</i>&nbsp;    if (autoInclude.isEnabled) {
+<i class="no-highlight">42</i>&nbsp;        println(extractedProjects())
 <i class="no-highlight">43</i>&nbsp;
-<i class="no-highlight">44</i>&nbsp;    if (autoInclude.isEnabled) {
-<i class="no-highlight">45</i>&nbsp;        println(extractedProjects())
+<i class="no-highlight">44</i>&nbsp;        autoInclude.includes(*extractedProjects().toTypedArray())
+<i class="no-highlight">45</i>&nbsp;        autoInclude.includedBuilds(*extractedBuildProjects().toTypedArray())
 <i class="no-highlight">46</i>&nbsp;
-<i class="no-highlight">47</i>&nbsp;        autoInclude.includes(*extractedProjects().toTypedArray())
-<i class="no-highlight">48</i>&nbsp;        autoInclude.includedBuilds(*extractedBuildProjects().toTypedArray())
-<i class="no-highlight">49</i>&nbsp;
-<i class="no-highlight">50</i>&nbsp;        for (include in autoInclude.includableProjects) {
-<i class="no-highlight">51</i>&nbsp;            include(include)
-<i class="no-highlight">52</i>&nbsp;        }
-<i class="no-highlight">53</i>&nbsp;
-<i class="no-highlight">54</i>&nbsp;        for (includeBuild in autoInclude.includableBuilds) {
-<i class="no-highlight">55</i>&nbsp;            includeBuild(includeBuild)
-<i class="no-highlight">56</i>&nbsp;        }
-<i class="no-highlight">57</i>&nbsp;    }
-<i class="no-highlight">58</i>&nbsp;}
+<i class="no-highlight">47</i>&nbsp;        for (include in autoInclude.includableProjects) {
+<i class="no-highlight">48</i>&nbsp;            include(include)
+<i class="no-highlight">49</i>&nbsp;        }
+<i class="no-highlight">50</i>&nbsp;
+<i class="no-highlight">51</i>&nbsp;        for (includeBuild in autoInclude.includableBuilds) {
+<i class="no-highlight">52</i>&nbsp;            includeBuild(includeBuild)
+<i class="no-highlight">53</i>&nbsp;        }
+<i class="no-highlight">54</i>&nbsp;    }
+<i class="no-highlight">55</i>&nbsp;}
+<i class="no-highlight">56</i>&nbsp;
+<i class="no-highlight">57</i>&nbsp;private fun Settings.configureGradleEnterprise() {
+<i class="no-highlight">58</i>&nbsp;    pluginManager.apply(&quot;com.gradle.enterprise&quot;)
 <i class="no-highlight">59</i>&nbsp;
-<i class="no-highlight">60</i>&nbsp;private fun Settings.configureGradleEnterprise() {
-<i class="no-highlight">61</i>&nbsp;    pluginManager.apply(&quot;com.gradle.enterprise&quot;)
-<i class="no-highlight">62</i>&nbsp;
-<i class="no-highlight">63</i>&nbsp;    configure&lt;GradleEnterpriseExtension&gt; {
-<i class="no-highlight">64</i>&nbsp;        buildScan {
-<i class="no-highlight">65</i>&nbsp;            it.termsOfServiceUrl = &quot;https://gradle.com/terms-of-service&quot;
-<i class="no-highlight">66</i>&nbsp;            it.termsOfServiceAgree = &quot;yes&quot;
-<i class="no-highlight">67</i>&nbsp;        }
-<i class="no-highlight">68</i>&nbsp;    }
-<i class="no-highlight">69</i>&nbsp;}
-<i class="no-highlight">70</i>&nbsp;
-<i class="no-highlight">71</i>&nbsp;private fun Settings.configureAutoIncludeVersionCatalogs(objects: ObjectFactory) {
-<i class="no-highlight">72</i>&nbsp;    dependencyResolutionManagement { management -&gt;
-<i class="no-highlight">73</i>&nbsp;        management.versionCatalogs { container -&gt;
-<i class="no-highlight">74</i>&nbsp;            val catalogs: Map&lt;String, File&gt; = tomlFileInGradleDirs.getCatalogs()
-<i class="no-highlight">75</i>&nbsp;            for ((name, file) in catalogs) {
-<i class="no-highlight">76</i>&nbsp;                container.create(name) { it.from(objects.fileCollection().from(file.absolutePath)) }
-<i class="no-highlight">77</i>&nbsp;            }
-<i class="no-highlight">78</i>&nbsp;        }
-<i class="no-highlight">79</i>&nbsp;    }
-<i class="no-highlight">80</i>&nbsp;}
-<i class="no-highlight">81</i>&nbsp;
-<i class="no-highlight">82</i>&nbsp;private val Settings.tomlFileInGradleDirs: Set&lt;File&gt;
-<i class="no-highlight">83</i>&nbsp;    get() =
-<i class="no-highlight">84</i>&nbsp;        (rootDir.resolve(&quot;gradle&quot;).listFiles().orEmpty().toSet() +
-<i class="no-highlight">85</i>&nbsp;                settingsDir.resolve(&quot;gradle&quot;).listFiles().orEmpty().toSet())
-<i class="no-highlight">86</i>&nbsp;            .filter { it.extension == &quot;toml&quot; }
-<i class="no-highlight">87</i>&nbsp;            .toSet()
-<i class="no-highlight">88</i>&nbsp;
-<i class="no-highlight">89</i>&nbsp;private fun Set&lt;File&gt;.getCatalogs(): Map&lt;String, File&gt; =
-<i class="no-highlight">90</i>&nbsp;    mapNotNull { file -&gt; if (file.isCatalog) file else null }
-<i class="no-highlight">91</i>&nbsp;        .mapNotNull { catalog -&gt;
-<i class="no-highlight">92</i>&nbsp;            val catalogName =
-<i class="no-highlight">93</i>&nbsp;                when {
-<i class="no-highlight">94</i>&nbsp;                    catalog.name.contains(&quot;-libs&quot;) -&gt; catalog.name.substringBefore(&quot;-&quot;)
-<i class="no-highlight">95</i>&nbsp;                    catalog.name.contains(&quot;.libs&quot;) -&gt; catalog.name.substringBefore(&quot;.&quot;)
-<i class="no-highlight">96</i>&nbsp;                    else -&gt; null
-<i class="no-highlight">97</i>&nbsp;                }
-<i class="no-highlight">98</i>&nbsp;            when {
-<i class="no-highlight">99</i>&nbsp;                catalog.name == &quot;libs.versions.catalog&quot; -&gt; null
-<i class="no-highlight">100</i>&nbsp;                catalogName?.isNotBlank() == true -&gt; &quot;${catalogName}Libs&quot; to catalog
-<i class="no-highlight">101</i>&nbsp;                else -&gt; null
-<i class="no-highlight">102</i>&nbsp;            }
-<i class="no-highlight">103</i>&nbsp;        }
-<i class="no-highlight">104</i>&nbsp;        .toMap()
-<i class="no-highlight">105</i>&nbsp;
-<i class="no-highlight">106</i>&nbsp;private val File.isCatalog: Boolean
-<i class="no-highlight">107</i>&nbsp;    get() = name.endsWith(&quot;libs.versions.toml&quot;)
+<i class="no-highlight">60</i>&nbsp;    configure&lt;GradleEnterpriseExtension&gt; {
+<i class="no-highlight">61</i>&nbsp;        buildScan {
+<i class="no-highlight">62</i>&nbsp;            it.termsOfServiceUrl = &quot;https://gradle.com/terms-of-service&quot;
+<i class="no-highlight">63</i>&nbsp;            it.termsOfServiceAgree = &quot;yes&quot;
+<i class="no-highlight">64</i>&nbsp;        }
+<i class="no-highlight">65</i>&nbsp;    }
+<i class="no-highlight">66</i>&nbsp;}
+<i class="no-highlight">67</i>&nbsp;
+<i class="no-highlight">68</i>&nbsp;private fun Settings.configureAutoIncludeVersionCatalogs(objects: ObjectFactory) {
+<i class="no-highlight">69</i>&nbsp;    dependencyResolutionManagement { management -&gt;
+<i class="no-highlight">70</i>&nbsp;        management.versionCatalogs { container -&gt;
+<i class="no-highlight">71</i>&nbsp;            val catalogs: Map&lt;String, File&gt; = tomlFileInGradleDirs.getCatalogs()
+<i class="no-highlight">72</i>&nbsp;            for ((name, file) in catalogs) {
+<i class="no-highlight">73</i>&nbsp;                container.create(name) { it.from(objects.fileCollection().from(file.absolutePath)) }
+<i class="no-highlight">74</i>&nbsp;            }
+<i class="no-highlight">75</i>&nbsp;        }
+<i class="no-highlight">76</i>&nbsp;    }
+<i class="no-highlight">77</i>&nbsp;}
+<i class="no-highlight">78</i>&nbsp;
+<i class="no-highlight">79</i>&nbsp;private val Settings.tomlFileInGradleDirs: Set&lt;File&gt;
+<i class="no-highlight">80</i>&nbsp;    get() =
+<i class="no-highlight">81</i>&nbsp;        (rootDir.resolve(&quot;gradle&quot;).listFiles().orEmpty().toSet() +
+<i class="no-highlight">82</i>&nbsp;                settingsDir.resolve(&quot;gradle&quot;).listFiles().orEmpty().toSet())
+<i class="no-highlight">83</i>&nbsp;            .filter { it.extension == &quot;toml&quot; }
+<i class="no-highlight">84</i>&nbsp;            .toSet()
+<i class="no-highlight">85</i>&nbsp;
+<i class="no-highlight">86</i>&nbsp;private fun Set&lt;File&gt;.getCatalogs(): Map&lt;String, File&gt; =
+<i class="no-highlight">87</i>&nbsp;    mapNotNull { file -&gt; if (file.isCatalog) file else null }
+<i class="no-highlight">88</i>&nbsp;        .mapNotNull { catalog -&gt;
+<i class="no-highlight">89</i>&nbsp;            val catalogName =
+<i class="no-highlight">90</i>&nbsp;                when {
+<i class="no-highlight">91</i>&nbsp;                    catalog.name.contains(&quot;-libs&quot;) -&gt; catalog.name.substringBefore(&quot;-&quot;)
+<i class="no-highlight">92</i>&nbsp;                    catalog.name.contains(&quot;.libs&quot;) -&gt; catalog.name.substringBefore(&quot;.&quot;)
+<i class="no-highlight">93</i>&nbsp;                    else -&gt; null
+<i class="no-highlight">94</i>&nbsp;                }
+<i class="no-highlight">95</i>&nbsp;            when {
+<i class="no-highlight">96</i>&nbsp;                catalog.name == &quot;libs.versions.catalog&quot; -&gt; null
+<i class="no-highlight">97</i>&nbsp;                catalogName?.isNotBlank() == true -&gt; &quot;${catalogName}Libs&quot; to catalog
+<i class="no-highlight">98</i>&nbsp;                else -&gt; null
+<i class="no-highlight">99</i>&nbsp;            }
+<i class="no-highlight">100</i>&nbsp;        }
+<i class="no-highlight">101</i>&nbsp;        .toMap()
+<i class="no-highlight">102</i>&nbsp;
+<i class="no-highlight">103</i>&nbsp;private val File.isCatalog: Boolean
+<i class="no-highlight">104</i>&nbsp;    get() = name.endsWith(&quot;libs.versions.toml&quot;)
 </div>
 </pre>
 </div>
@@ -175,7 +172,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-03 22:52</div>
+    <div style="float:right;">generated on 2022-07-03 22:47</div>
 </div>
 </body>
 </html>

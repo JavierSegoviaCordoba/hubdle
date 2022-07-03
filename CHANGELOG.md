@@ -4,13 +4,21 @@
 
 ### Added
 
-- `com.javiersc.hubdle.settings` plugin
-
 ### Changed
 
 ### Deprecated
 
 ### Removed
+
+### Fixed
+
+### Updated
+
+## [0.2.0-alpha.2] - 2022-07-03
+
+### Added
+
+- `com.javiersc.hubdle.settings` plugin
 
 ### Fixed
 

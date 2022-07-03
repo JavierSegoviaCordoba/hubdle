@@ -171,8 +171,8 @@
 <div>
   <ul>
     <li>9,529 lines of code (loc)</li>
-    <li>7,802 source lines of code (sloc)</li>
-    <li>5,241 logical lines of code (lloc)</li>
+    <li>7,803 source lines of code (sloc)</li>
+    <li>5,242 logical lines of code (lloc)</li>
     <li>29 comment lines of code (cloc)</li>
     <li>797 cyclomatic complexity (mcc)</li>
     <li>402 cognitive complexity</li>
@@ -522,24 +522,24 @@
   <details id="SpreadOperator" open="open">
     <summary class="rule-container"><span class="rule">SpreadOperator: 2 </span><span class="description">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span></summary>
     <ul>
-      <li><span class="location">hubdle-settings-gradle-plugin/main/kotlin/com/javiersc/hubdle/HubdleSettingsPlugin.kt:44:29</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
-        <pre><code><span class="lineno">  41 </span>    if (autoInclude.isEnabled) {
-<span class="lineno">  42 </span>        println(extractedProjects())
-<span class="lineno">  43 </span>
-<span class="lineno">  44 </span>        autoInclude.includes<span class="error">(*extractedProjects().toTypedArray())</span>
-<span class="lineno">  45 </span>        autoInclude.includedBuilds(*extractedBuildProjects().toTypedArray())
+      <li><span class="location">hubdle-settings-gradle-plugin/main/kotlin/com/javiersc/hubdle/HubdleSettingsPlugin.kt:47:29</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
+        <pre><code><span class="lineno">  44 </span>    if (autoInclude.isEnabled) {
+<span class="lineno">  45 </span>        println(extractedProjects())
 <span class="lineno">  46 </span>
-<span class="lineno">  47 </span>        for (include in autoInclude.includableProjects) {
+<span class="lineno">  47 </span>        autoInclude.includes<span class="error">(*extractedProjects().toTypedArray())</span>
+<span class="lineno">  48 </span>        autoInclude.includedBuilds(*extractedBuildProjects().toTypedArray())
+<span class="lineno">  49 </span>
+<span class="lineno">  50 </span>        for (include in autoInclude.includableProjects) {
 </code></pre>
       </li>
-      <li><span class="location">hubdle-settings-gradle-plugin/main/kotlin/com/javiersc/hubdle/HubdleSettingsPlugin.kt:45:35</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
-        <pre><code><span class="lineno">  42 </span>        println(extractedProjects())
-<span class="lineno">  43 </span>
-<span class="lineno">  44 </span>        autoInclude.includes(*extractedProjects().toTypedArray())
-<span class="lineno">  45 </span>        autoInclude.includedBuilds<span class="error">(*extractedBuildProjects().toTypedArray())</span>
+      <li><span class="location">hubdle-settings-gradle-plugin/main/kotlin/com/javiersc/hubdle/HubdleSettingsPlugin.kt:48:35</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
+        <pre><code><span class="lineno">  45 </span>        println(extractedProjects())
 <span class="lineno">  46 </span>
-<span class="lineno">  47 </span>        for (include in autoInclude.includableProjects) {
-<span class="lineno">  48 </span>            include(include)
+<span class="lineno">  47 </span>        autoInclude.includes(*extractedProjects().toTypedArray())
+<span class="lineno">  48 </span>        autoInclude.includedBuilds<span class="error">(*extractedBuildProjects().toTypedArray())</span>
+<span class="lineno">  49 </span>
+<span class="lineno">  50 </span>        for (include in autoInclude.includableProjects) {
+<span class="lineno">  51 </span>            include(include)
 </code></pre>
       </li>
     </ul>
@@ -643,7 +643,7 @@
 </div>
 
 
-generated with <a href="https://detekt.dev/">detekt version 1.20.0</a> on 2022-07-03 22:33:28 UTC.
+generated with <a href="https://detekt.dev/">detekt version 1.20.0</a> on 2022-07-03 22:52:09 UTC.
 
 </body>
 </html>

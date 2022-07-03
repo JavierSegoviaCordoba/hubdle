@@ -49,6 +49,7 @@ internal fun configureGradlePlugin(project: Project) {
             project.configureMavenPublication("java")
             project.configureSigningForPublishing()
             project.configure<PluginBundleExtension> {
+                tags = project.hubdleState.kotlin.gradle.plugin.tags
                 website = project.getProperty(HubdleProperty.POM.url)
                 vcsUrl = project.getProperty(HubdleProperty.POM.scmUrl)
             }

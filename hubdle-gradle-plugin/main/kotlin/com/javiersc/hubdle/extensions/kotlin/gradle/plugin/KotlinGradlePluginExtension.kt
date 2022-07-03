@@ -48,6 +48,11 @@ constructor(
         get() = the<KotlinJvmProjectExtension>().sourceSets
 
     @HubdleDslMarker
+    public fun Project.tags(vararg tags: String) {
+        hubdleState.kotlin.gradle.plugin.tags += tags
+    }
+
+    @HubdleDslMarker
     public fun Project.main(action: Action<KotlinSourceSet> = Action {}) {
         the<KotlinJvmProjectExtension>().sourceSets.named("main", action::execute)
     }

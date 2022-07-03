@@ -17,7 +17,7 @@ dependencyResolutionManagement {
 
     versionCatalogs {
         create("hubdleLibs") { from(files("gradle/hubdle.libs.versions.toml")) }
-        create("pluginLibs") { from(files("gradle/pluginLibs.versions.toml")) }
+        create("pluginLibs") { from(files("gradle/plugin.libs.versions.toml")) }
     }
 }
 
@@ -28,7 +28,10 @@ gradleEnterprise {
     }
 }
 
-include(":hubdle-gradle-plugin")
+include(
+    ":hubdle-gradle-plugin",
+    ":hubdle-settings-gradle-plugin",
+)
 
 file("local.properties").apply {
     if (exists().not()) {

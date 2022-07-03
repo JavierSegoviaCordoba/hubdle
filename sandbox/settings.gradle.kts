@@ -21,10 +21,11 @@ dependencyResolutionManagement {
 
     versionCatalogs {
         create("pluginLibs") {
-            from(files("../gradle/pluginLibs.versions.toml"))
+            from(files("../gradle/plugin.libs.versions.toml"))
         }
     }
 }
 
 include(":consumer-kotlin-jvm")
 include(":consumer-kotlin-multiplatform")
+includeBuild("consumer-settings")

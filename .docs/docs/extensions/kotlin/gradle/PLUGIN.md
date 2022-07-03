@@ -31,6 +31,8 @@ hubdle {
 
                 jvmVersion = 8
                 
+                tags("hubdle", "...")
+                
                 main {
                     dependencies {
                         implementation(libs.some.lib)

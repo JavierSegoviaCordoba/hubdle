@@ -1,4 +1,4 @@
-# Module hubdle
+# Module hubdle-gradle-plugin
 
 # Hubdle
 

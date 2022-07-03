@@ -4,6 +4,8 @@
 
 ### Added
 
+- `com.javiersc.hubdle.settings` plugin
+
 ### Changed
 
 ### Deprecated
@@ -11,6 +13,8 @@
 ### Removed
 
 ### Fixed
+
+- a feature can add a dependency which can be the project itself
 
 ### Updated
 

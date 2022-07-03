@@ -2,6 +2,7 @@ package com.javiersc.hubdle.extensions._internal.state
 
 import com.javiersc.gradle.extensions.version.catalogs.catalogNamesWithLibsAtFirst
 import com.javiersc.gradle.extensions.version.catalogs.getLibraries
+import com.javiersc.gradle.project.extensions.module
 import com.javiersc.hubdle.extensions.dependencies._internal.hubdleDependencies
 import org.gradle.api.Project
 import org.gradle.api.artifacts.Dependency
@@ -18,10 +19,15 @@ internal val userCatalogsDependencies: UserCatalogsDependencies = UserCatalogsDe
 internal val hubdleCatalogsDependencies: HubdleCatalogsDependencies = HubdleCatalogsDependencies()
 
 internal fun KotlinDependencyHandler.catalogApi(module: String): Dependency? =
-    api(getCatalogsDependency(module))
+    getDependency(module)?.let(::api)
 
 internal fun KotlinDependencyHandler.catalogImplementation(module: String): Dependency? =
-    implementation(getCatalogsDependency(module))
+    getDependency(module)?.let(::implementation)
+
+private fun KotlinDependencyHandler.getDependency(
+    module: String
+): MinimalExternalModuleDependency? =
+    getCatalogsDependency(module).takeIf { project.module != "${it.module}" }
 
 private fun getCatalogsDependency(module: String): MinimalExternalModuleDependency {
     check(module.split(":").count() == 2) { "The module provided is not correct" }

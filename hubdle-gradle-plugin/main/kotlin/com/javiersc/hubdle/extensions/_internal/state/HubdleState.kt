@@ -485,8 +485,9 @@ internal data class HubdleState(
 
             data class Plugin(
                 override var isEnabled: Boolean = KotlinGradlePluginExtension.IS_ENABLED,
+                val tags: MutableList<String> = mutableListOf(),
                 var features: Features = Features(),
-                var rawConfig: RawConfig = RawConfig(),
+                var rawConfig: RawConfig = RawConfig()
             ) : Enableable, Configurable {
 
                 override fun configure(project: Project) {

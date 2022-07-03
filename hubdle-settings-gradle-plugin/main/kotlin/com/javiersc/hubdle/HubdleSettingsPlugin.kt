@@ -25,8 +25,11 @@ constructor(
 
         target.extensions.create<HubdleSettingsExtension>("hubdle")
 
-        target.configureAutoIncludeVersionCatalogs(objects)
-        target.configureGradleEnterprise()
+        target.gradle.settingsEvaluated {
+            it.configureGradleEnterprise()
+            it.configureAutoInclude()
+            it.configureAutoIncludeVersionCatalogs(objects)
+        }
     }
 }
 

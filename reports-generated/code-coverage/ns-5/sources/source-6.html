@@ -621,471 +621,472 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">485</i>&nbsp;
 <i class="no-highlight">486</i>&nbsp;            data class Plugin(
 <i class="no-highlight">487</i>&nbsp;                override var isEnabled: Boolean = KotlinGradlePluginExtension.IS_ENABLED,
-<i class="no-highlight">488</i>&nbsp;                var features: Features = Features(),
-<i class="no-highlight">489</i>&nbsp;                var rawConfig: RawConfig = RawConfig(),
-<i class="no-highlight">490</i>&nbsp;            ) : Enableable, Configurable {
-<i class="no-highlight">491</i>&nbsp;
-<i class="no-highlight">492</i>&nbsp;                override fun configure(project: Project) {
-<i class="no-highlight">493</i>&nbsp;                    configureGradlePlugin(project)
-<i class="no-highlight">494</i>&nbsp;                    rawConfig.configure(project)
-<i class="no-highlight">495</i>&nbsp;                }
-<i class="no-highlight">496</i>&nbsp;
-<i class="no-highlight">497</i>&nbsp;                data class Features(
-<i class="no-highlight">498</i>&nbsp;                    var extendedGradle: Boolean = true,
-<i class="no-highlight">499</i>&nbsp;                    var extendedStdlib: Boolean = true,
-<i class="no-highlight">500</i>&nbsp;                    var extendedTesting: Boolean = true,
-<i class="no-highlight">501</i>&nbsp;                )
-<i class="no-highlight">502</i>&nbsp;
-<i class="no-highlight">503</i>&nbsp;                data class RawConfig(
-<i class="no-highlight">504</i>&nbsp;                    var kotlin: Action&lt;KotlinJvmProjectExtension&gt;? = null,
-<i class="no-highlight">505</i>&nbsp;                    var gradlePlugin: Action&lt;GradlePluginDevelopmentExtension&gt;? = null,
-<i class="no-highlight">506</i>&nbsp;                ) : Configurable {
-<i class="no-highlight">507</i>&nbsp;                    override fun configure(project: Project) =
-<i class="no-highlight">508</i>&nbsp;                        configureKotlinGradlePluginRawConfig(project)
-<i class="no-highlight">509</i>&nbsp;                }
-<i class="no-highlight">510</i>&nbsp;            }
-<i class="no-highlight">511</i>&nbsp;
-<i class="no-highlight">512</i>&nbsp;            data class VersionCatalog(
-<i class="no-highlight">513</i>&nbsp;                override var isEnabled: Boolean = KotlinGradleVersionCatalogExtension.IS_ENABLED,
-<i class="no-highlight">514</i>&nbsp;                val catalogs: MutableList&lt;File&gt; = mutableListOf()
-<i class="no-highlight">515</i>&nbsp;            ) : Enableable, Configurable {
-<i class="no-highlight">516</i>&nbsp;                override fun configure(project: Project) = configureGradleVersionCatalog(project)
-<i class="no-highlight">517</i>&nbsp;            }
-<i class="no-highlight">518</i>&nbsp;        }
-<i class="no-highlight">519</i>&nbsp;
-<i class="no-highlight">520</i>&nbsp;        data class Jvm(
-<i class="no-highlight">521</i>&nbsp;            override var isEnabled: Boolean = KotlinJvmExtension.IS_ENABLED,
-<i class="no-highlight">522</i>&nbsp;            val features: Features = Features(),
-<i class="no-highlight">523</i>&nbsp;            val rawConfig: RawConfig = RawConfig()
-<i class="no-highlight">524</i>&nbsp;        ) : Enableable, Configurable {
-<i class="no-highlight">525</i>&nbsp;            override fun configure(project: Project) {
-<i class="no-highlight">526</i>&nbsp;                configureJvm(project)
-<i class="no-highlight">527</i>&nbsp;                rawConfig.configure(project)
-<i class="no-highlight">528</i>&nbsp;            }
-<i class="no-highlight">529</i>&nbsp;
-<i class="no-highlight">530</i>&nbsp;            data class Features(
-<i class="no-highlight">531</i>&nbsp;                var coroutines: Boolean = false,
-<i class="no-highlight">532</i>&nbsp;                var extendedStdlib: Boolean = true,
-<i class="no-highlight">533</i>&nbsp;                var extendedGradle: Boolean = false,
-<i class="no-highlight">534</i>&nbsp;                var extendedTesting: Boolean = true,
-<i class="no-highlight">535</i>&nbsp;            )
-<i class="no-highlight">536</i>&nbsp;
-<i class="no-highlight">537</i>&nbsp;            data class RawConfig(
-<i class="no-highlight">538</i>&nbsp;                var kotlin: Action&lt;KotlinJvmProjectExtension&gt;? = null,
-<i class="no-highlight">539</i>&nbsp;            ) : Configurable {
-<i class="no-highlight">540</i>&nbsp;                override fun configure(project: Project) = configureKotlinJvmRawConfig(project)
-<i class="no-highlight">541</i>&nbsp;            }
-<i class="no-highlight">542</i>&nbsp;        }
-<i class="no-highlight">543</i>&nbsp;
-<i class="no-highlight">544</i>&nbsp;        data class Multiplatform(
-<i class="no-highlight">545</i>&nbsp;            override var isEnabled: Boolean = KotlinMultiplatformExtension.IS_ENABLED,
-<i class="no-highlight">546</i>&nbsp;            val android: Android = Android(),
-<i class="no-highlight">547</i>&nbsp;            val ios: IOS = IOS(),
-<i class="no-highlight">548</i>&nbsp;            val iosArm32: IOSArm32 = IOSArm32(),
-<i class="no-highlight">549</i>&nbsp;            val iosArm64: IOSArm64 = IOSArm64(),
-<i class="no-highlight">550</i>&nbsp;            val iosX64: IOSX64 = IOSX64(),
-<i class="no-highlight">551</i>&nbsp;            val iosSimulatorArm64: IOSSimulatorArm64 = IOSSimulatorArm64(),
-<i class="no-highlight">552</i>&nbsp;            val jvm: Jvm = Jvm(),
-<i class="no-highlight">553</i>&nbsp;            val js: Js = Js(),
-<i class="no-highlight">554</i>&nbsp;            val linux: Linux = Linux(),
-<i class="no-highlight">555</i>&nbsp;            val linuxArm32Hfp: LinuxArm32Hfp = LinuxArm32Hfp(),
-<i class="no-highlight">556</i>&nbsp;            val linuxArm64: LinuxArm64 = LinuxArm64(),
-<i class="no-highlight">557</i>&nbsp;            val linuxMips32: LinuxMips32 = LinuxMips32(),
-<i class="no-highlight">558</i>&nbsp;            val linuxMipsel32: LinuxMipsel32 = LinuxMipsel32(),
-<i class="no-highlight">559</i>&nbsp;            val linuxX64: LinuxX64 = LinuxX64(),
-<i class="no-highlight">560</i>&nbsp;            val macos: MacOS = MacOS(),
-<i class="no-highlight">561</i>&nbsp;            val macosArm64: MacOSArm64 = MacOSArm64(),
-<i class="no-highlight">562</i>&nbsp;            val macosX64: MacOSX64 = MacOSX64(),
-<i class="no-highlight">563</i>&nbsp;            val mingw: MinGW = MinGW(),
-<i class="no-highlight">564</i>&nbsp;            val mingwX64: MinGWX64 = MinGWX64(),
-<i class="no-highlight">565</i>&nbsp;            val mingwX86: MinGWX86 = MinGWX86(),
-<i class="no-highlight">566</i>&nbsp;            val native: Native = Native(),
-<i class="no-highlight">567</i>&nbsp;            val tvos: TvOS = TvOS(),
-<i class="no-highlight">568</i>&nbsp;            val tvosArm64: TvOSArm64 = TvOSArm64(),
-<i class="no-highlight">569</i>&nbsp;            val tvosSimulatorArm64: TvOSSimulatorArm64 = TvOSSimulatorArm64(),
-<i class="no-highlight">570</i>&nbsp;            val tvosX64: TvOSX64 = TvOSX64(),
-<i class="no-highlight">571</i>&nbsp;            val wasm: WAsm = WAsm(),
-<i class="no-highlight">572</i>&nbsp;            val wasm32: WAsm32 = WAsm32(),
-<i class="no-highlight">573</i>&nbsp;            val watchos: WatchOS = WatchOS(),
-<i class="no-highlight">574</i>&nbsp;            val watchosArm32: WatchOSArm32 = WatchOSArm32(),
-<i class="no-highlight">575</i>&nbsp;            val watchosArm64: WatchOSArm64 = WatchOSArm64(),
-<i class="no-highlight">576</i>&nbsp;            val watchosX64: WatchOSX64 = WatchOSX64(),
-<i class="no-highlight">577</i>&nbsp;            val watchosSimulatorArm64: WatchOSSimulatorArm64 = WatchOSSimulatorArm64(),
-<i class="no-highlight">578</i>&nbsp;            val watchosX86: WatchOSX86 = WatchOSX86(),
-<i class="no-highlight">579</i>&nbsp;            val features: Features = Features(),
-<i class="no-highlight">580</i>&nbsp;            val rawConfig: RawConfig = RawConfig(),
-<i class="no-highlight">581</i>&nbsp;        ) : Enableable, Configurable {
-<i class="no-highlight">582</i>&nbsp;
-<i class="no-highlight">583</i>&nbsp;            override fun configure(project: Project) {
-<i class="no-highlight">584</i>&nbsp;                configureMultiplatform(project)
-<i class="no-highlight">585</i>&nbsp;
-<i class="no-highlight">586</i>&nbsp;                configureCommonsTargets(project)
-<i class="no-highlight">587</i>&nbsp;
-<i class="no-highlight">588</i>&nbsp;                if (features.minimumTargetsPerOS) {
-<i class="no-highlight">589</i>&nbsp;                    val currentOS = OperatingSystem.current()
-<i class="no-highlight">590</i>&nbsp;                    when {
-<i class="no-highlight">591</i>&nbsp;                        currentOS.isLinux -&gt; {
-<i class="no-highlight">592</i>&nbsp;                            configureLinux(project)
-<i class="no-highlight">593</i>&nbsp;                        }
-<i class="no-highlight">594</i>&nbsp;                        currentOS.isMacOsX -&gt; {
-<i class="no-highlight">595</i>&nbsp;                            configureIOS(project)
-<i class="no-highlight">596</i>&nbsp;                            configureMacOS(project)
-<i class="no-highlight">597</i>&nbsp;                            configureTvOS(project)
-<i class="no-highlight">598</i>&nbsp;                            configureWatchOS(project)
-<i class="no-highlight">599</i>&nbsp;                        }
-<i class="no-highlight">600</i>&nbsp;                        currentOS.isWindows -&gt; {
-<i class="no-highlight">601</i>&nbsp;                            configureMinGW(project)
-<i class="no-highlight">602</i>&nbsp;                        }
-<i class="no-highlight">603</i>&nbsp;                    }
-<i class="no-highlight">604</i>&nbsp;                } else {
-<i class="no-highlight">605</i>&nbsp;                    configureIOS(project)
-<i class="no-highlight">606</i>&nbsp;                    configureMacOS(project)
-<i class="no-highlight">607</i>&nbsp;                    configureLinux(project)
-<i class="no-highlight">608</i>&nbsp;                    configureMinGW(project)
-<i class="no-highlight">609</i>&nbsp;                    configureTvOS(project)
-<i class="no-highlight">610</i>&nbsp;                    configureWatchOS(project)
-<i class="no-highlight">611</i>&nbsp;                }
-<i class="no-highlight">612</i>&nbsp;
-<i class="no-highlight">613</i>&nbsp;                native.configure(project)
-<i class="no-highlight">614</i>&nbsp;
-<i class="no-highlight">615</i>&nbsp;                rawConfig.configure(project)
-<i class="no-highlight">616</i>&nbsp;            }
-<i class="no-highlight">617</i>&nbsp;
-<i class="no-highlight">618</i>&nbsp;            private fun configureCommonsTargets(project: Project) {
-<i class="no-highlight">619</i>&nbsp;                android.configure(project)
-<i class="no-highlight">620</i>&nbsp;                jvm.configure(project)
-<i class="no-highlight">621</i>&nbsp;                js.configure(project)
-<i class="no-highlight">622</i>&nbsp;                configureWasm(project)
-<i class="no-highlight">623</i>&nbsp;            }
-<i class="no-highlight">624</i>&nbsp;
-<i class="no-highlight">625</i>&nbsp;            private fun configureIOS(project: Project) {
-<i class="no-highlight">626</i>&nbsp;                iosArm32.configure(project)
-<i class="no-highlight">627</i>&nbsp;                iosArm64.configure(project)
-<i class="no-highlight">628</i>&nbsp;                iosX64.configure(project)
-<i class="no-highlight">629</i>&nbsp;                iosSimulatorArm64.configure(project)
-<i class="no-highlight">630</i>&nbsp;                ios.configure(project)
-<i class="no-highlight">631</i>&nbsp;            }
-<i class="no-highlight">632</i>&nbsp;
-<i class="no-highlight">633</i>&nbsp;            private fun configureLinux(project: Project) {
-<i class="no-highlight">634</i>&nbsp;                linuxArm32Hfp.configure(project)
-<i class="no-highlight">635</i>&nbsp;                linuxArm64.configure(project)
-<i class="no-highlight">636</i>&nbsp;                linuxMips32.configure(project)
-<i class="no-highlight">637</i>&nbsp;                linuxMipsel32.configure(project)
-<i class="no-highlight">638</i>&nbsp;                linuxX64.configure(project)
-<i class="no-highlight">639</i>&nbsp;                linux.configure(project)
-<i class="no-highlight">640</i>&nbsp;            }
-<i class="no-highlight">641</i>&nbsp;
-<i class="no-highlight">642</i>&nbsp;            private fun configureMacOS(project: Project) {
-<i class="no-highlight">643</i>&nbsp;                macosArm64.configure(project)
-<i class="no-highlight">644</i>&nbsp;                macosX64.configure(project)
-<i class="no-highlight">645</i>&nbsp;                macos.configure(project)
-<i class="no-highlight">646</i>&nbsp;            }
-<i class="no-highlight">647</i>&nbsp;
-<i class="no-highlight">648</i>&nbsp;            private fun configureMinGW(project: Project) {
-<i class="no-highlight">649</i>&nbsp;                mingwX64.configure(project)
-<i class="no-highlight">650</i>&nbsp;                mingwX86.configure(project)
-<i class="no-highlight">651</i>&nbsp;                mingw.configure(project)
-<i class="no-highlight">652</i>&nbsp;            }
-<i class="no-highlight">653</i>&nbsp;
-<i class="no-highlight">654</i>&nbsp;            private fun configureTvOS(project: Project) {
-<i class="no-highlight">655</i>&nbsp;                tvosArm64.configure(project)
-<i class="no-highlight">656</i>&nbsp;                tvosSimulatorArm64.configure(project)
-<i class="no-highlight">657</i>&nbsp;                tvosX64.configure(project)
-<i class="no-highlight">658</i>&nbsp;                tvos.configure(project)
-<i class="no-highlight">659</i>&nbsp;            }
-<i class="no-highlight">660</i>&nbsp;
-<i class="no-highlight">661</i>&nbsp;            private fun configureWasm(project: Project) {
-<i class="no-highlight">662</i>&nbsp;                wasm32.configure(project)
-<i class="no-highlight">663</i>&nbsp;                wasm.configure(project)
-<i class="no-highlight">664</i>&nbsp;            }
-<i class="no-highlight">665</i>&nbsp;
-<i class="no-highlight">666</i>&nbsp;            private fun configureWatchOS(project: Project) {
-<i class="no-highlight">667</i>&nbsp;                watchosArm32.configure(project)
-<i class="no-highlight">668</i>&nbsp;                watchosArm64.configure(project)
-<i class="no-highlight">669</i>&nbsp;                watchosX64.configure(project)
-<i class="no-highlight">670</i>&nbsp;                watchosSimulatorArm64.configure(project)
-<i class="no-highlight">671</i>&nbsp;                watchosX86.configure(project)
-<i class="no-highlight">672</i>&nbsp;                watchos.configure(project)
-<i class="no-highlight">673</i>&nbsp;            }
-<i class="no-highlight">674</i>&nbsp;
-<i class="no-highlight">675</i>&nbsp;            data class Android(
-<i class="no-highlight">676</i>&nbsp;                override var isEnabled: Boolean = KotlinMultiplatformAndroidExtension.IS_ENABLED,
-<i class="no-highlight">677</i>&nbsp;                var allLibraryVariants: Boolean =
-<i class="no-highlight">678</i>&nbsp;                    KotlinMultiplatformAndroidExtension.ALL_LIBRARY_VARIANTS,
-<i class="no-highlight">679</i>&nbsp;                val publishLibraryVariants: MutableList&lt;String&gt; = mutableListOf(),
-<i class="no-highlight">680</i>&nbsp;                val rawConfig: RawConfig = RawConfig()
-<i class="no-highlight">681</i>&nbsp;            ) : Enableable, Configurable {
-<i class="no-highlight">682</i>&nbsp;
-<i class="no-highlight">683</i>&nbsp;                override fun configure(project: Project) {
-<i class="no-highlight">684</i>&nbsp;                    configureMultiplatformAndroid(project)
-<i class="no-highlight">685</i>&nbsp;                    rawConfig.configure(project)
-<i class="no-highlight">686</i>&nbsp;                }
-<i class="no-highlight">687</i>&nbsp;
-<i class="no-highlight">688</i>&nbsp;                data class RawConfig(
-<i class="no-highlight">689</i>&nbsp;                    var android: Action&lt;LibraryExtension&gt;? = null,
-<i class="no-highlight">690</i>&nbsp;                ) : Configurable {
-<i class="no-highlight">691</i>&nbsp;                    override fun configure(project: Project) =
-<i class="no-highlight">692</i>&nbsp;                        configureMultiplatformAndroidRawConfig(project)
-<i class="no-highlight">693</i>&nbsp;                }
-<i class="no-highlight">694</i>&nbsp;            }
-<i class="no-highlight">695</i>&nbsp;
-<i class="no-highlight">696</i>&nbsp;            data class IOS(
-<i class="no-highlight">697</i>&nbsp;                override var isEnabled: Boolean = KotlinMultiplatformiOSExtension.IS_ENABLED,
-<i class="no-highlight">698</i>&nbsp;            ) : Enableable, Configurable {
-<i class="no-highlight">699</i>&nbsp;
-<i class="no-highlight">700</i>&nbsp;                override fun configure(project: Project) = configureMultiplatformIOS(project)
-<i class="no-highlight">701</i>&nbsp;            }
-<i class="no-highlight">702</i>&nbsp;
-<i class="no-highlight">703</i>&nbsp;            data class IOSArm32(
-<i class="no-highlight">704</i>&nbsp;                override var isEnabled: Boolean = KotlinMultiplatformiOSArm32Extension.IS_ENABLED,
-<i class="no-highlight">705</i>&nbsp;            ) : Enableable, Configurable {
-<i class="no-highlight">706</i>&nbsp;
-<i class="no-highlight">707</i>&nbsp;                override fun configure(project: Project) = configureMultiplatformIOSArm32(project)
-<i class="no-highlight">708</i>&nbsp;            }
-<i class="no-highlight">709</i>&nbsp;
-<i class="no-highlight">710</i>&nbsp;            data class IOSArm64(
-<i class="no-highlight">711</i>&nbsp;                override var isEnabled: Boolean = KotlinMultiplatformiOSArm64Extension.IS_ENABLED,
-<i class="no-highlight">712</i>&nbsp;            ) : Enableable, Configurable {
-<i class="no-highlight">713</i>&nbsp;
-<i class="no-highlight">714</i>&nbsp;                override fun configure(project: Project) = configureMultiplatformIOSArm64(project)
-<i class="no-highlight">715</i>&nbsp;            }
-<i class="no-highlight">716</i>&nbsp;
-<i class="no-highlight">717</i>&nbsp;            data class IOSX64(
-<i class="no-highlight">718</i>&nbsp;                override var isEnabled: Boolean = KotlinMultiplatformiOSX64Extension.IS_ENABLED,
-<i class="no-highlight">719</i>&nbsp;            ) : Enableable, Configurable {
-<i class="no-highlight">720</i>&nbsp;
-<i class="no-highlight">721</i>&nbsp;                override fun configure(project: Project) = configureMultiplatformIOSX64(project)
-<i class="no-highlight">722</i>&nbsp;            }
-<i class="no-highlight">723</i>&nbsp;
-<i class="no-highlight">724</i>&nbsp;            data class IOSSimulatorArm64(
-<i class="no-highlight">725</i>&nbsp;                override var isEnabled: Boolean =
-<i class="no-highlight">726</i>&nbsp;                    KotlinMultiplatformiOSSimulatorArm64Extension.IS_ENABLED,
-<i class="no-highlight">727</i>&nbsp;            ) : Enableable, Configurable {
-<i class="no-highlight">728</i>&nbsp;
-<i class="no-highlight">729</i>&nbsp;                override fun configure(project: Project) =
-<i class="no-highlight">730</i>&nbsp;                    configureMultiplatformIOSSimulatorArm64(project)
-<i class="no-highlight">731</i>&nbsp;            }
-<i class="no-highlight">732</i>&nbsp;
-<i class="no-highlight">733</i>&nbsp;            data class Jvm(
-<i class="no-highlight">734</i>&nbsp;                override var isEnabled: Boolean = KotlinMultiplatformJvmExtension.IS_ENABLED,
-<i class="no-highlight">735</i>&nbsp;            ) : Enableable, Configurable {
-<i class="no-highlight">736</i>&nbsp;
-<i class="no-highlight">737</i>&nbsp;                override fun configure(project: Project) = configureMultiplatformJvm(project)
-<i class="no-highlight">738</i>&nbsp;            }
-<i class="no-highlight">739</i>&nbsp;
-<i class="no-highlight">740</i>&nbsp;            data class Js(
-<i class="no-highlight">741</i>&nbsp;                override var isEnabled: Boolean = KotlinMultiplatformJsExtension.IS_ENABLED,
-<i class="no-highlight">742</i>&nbsp;                var browser: Boolean = KotlinMultiplatformJsExtension.BROWSER,
-<i class="no-highlight">743</i>&nbsp;                var nodeJs: Boolean = KotlinMultiplatformJsExtension.NODE_JS
-<i class="no-highlight">744</i>&nbsp;            ) : Enableable, Configurable {
-<i class="no-highlight">745</i>&nbsp;
-<i class="no-highlight">746</i>&nbsp;                override fun configure(project: Project) = configureMultiplatformJs(project)
-<i class="no-highlight">747</i>&nbsp;            }
-<i class="no-highlight">748</i>&nbsp;
-<i class="no-highlight">749</i>&nbsp;            data class Linux(
-<i class="no-highlight">750</i>&nbsp;                override var isEnabled: Boolean = KotlinMultiplatformLinuxExtension.IS_ENABLED,
-<i class="no-highlight">751</i>&nbsp;            ) : Enableable, Configurable {
-<i class="no-highlight">752</i>&nbsp;                override fun configure(project: Project) = configureMultiplatformLinux(project)
-<i class="no-highlight">753</i>&nbsp;            }
-<i class="no-highlight">754</i>&nbsp;
-<i class="no-highlight">755</i>&nbsp;            data class LinuxArm32Hfp(
-<i class="no-highlight">756</i>&nbsp;                override var isEnabled: Boolean =
-<i class="no-highlight">757</i>&nbsp;                    KotlinMultiplatformLinuxArm32HfpExtension.IS_ENABLED,
-<i class="no-highlight">758</i>&nbsp;            ) : Enableable, Configurable {
-<i class="no-highlight">759</i>&nbsp;                override fun configure(project: Project) =
-<i class="no-highlight">760</i>&nbsp;                    configureMultiplatformLinuxArm32Hfp(project)
-<i class="no-highlight">761</i>&nbsp;            }
-<i class="no-highlight">762</i>&nbsp;
-<i class="no-highlight">763</i>&nbsp;            data class LinuxArm64(
-<i class="no-highlight">764</i>&nbsp;                override var isEnabled: Boolean = KotlinMultiplatformLinuxArm64Extension.IS_ENABLED,
-<i class="no-highlight">765</i>&nbsp;            ) : Enableable, Configurable {
-<i class="no-highlight">766</i>&nbsp;                override fun configure(project: Project) = configureMultiplatformLinuxArm64(project)
-<i class="no-highlight">767</i>&nbsp;            }
-<i class="no-highlight">768</i>&nbsp;
-<i class="no-highlight">769</i>&nbsp;            data class LinuxMips32(
-<i class="no-highlight">770</i>&nbsp;                override var isEnabled: Boolean =
-<i class="no-highlight">771</i>&nbsp;                    KotlinMultiplatformLinuxMips32Extension.IS_ENABLED,
-<i class="no-highlight">772</i>&nbsp;            ) : Enableable, Configurable {
-<i class="no-highlight">773</i>&nbsp;                override fun configure(project: Project) =
-<i class="no-highlight">774</i>&nbsp;                    configureMultiplatformLinuxMips32(project)
-<i class="no-highlight">775</i>&nbsp;            }
-<i class="no-highlight">776</i>&nbsp;
-<i class="no-highlight">777</i>&nbsp;            data class LinuxMipsel32(
-<i class="no-highlight">778</i>&nbsp;                override var isEnabled: Boolean =
-<i class="no-highlight">779</i>&nbsp;                    KotlinMultiplatformLinuxMipsel32Extension.IS_ENABLED,
-<i class="no-highlight">780</i>&nbsp;            ) : Enableable, Configurable {
-<i class="no-highlight">781</i>&nbsp;                override fun configure(project: Project) =
-<i class="no-highlight">782</i>&nbsp;                    configureMultiplatformLinuxMipsel32(project)
-<i class="no-highlight">783</i>&nbsp;            }
-<i class="no-highlight">784</i>&nbsp;
-<i class="no-highlight">785</i>&nbsp;            data class LinuxX64(
-<i class="no-highlight">786</i>&nbsp;                override var isEnabled: Boolean = KotlinMultiplatformLinuxX64Extension.IS_ENABLED,
-<i class="no-highlight">787</i>&nbsp;            ) : Enableable, Configurable {
-<i class="no-highlight">788</i>&nbsp;                override fun configure(project: Project) = configureMultiplatformLinuxX64(project)
-<i class="no-highlight">789</i>&nbsp;            }
-<i class="no-highlight">790</i>&nbsp;
-<i class="no-highlight">791</i>&nbsp;            data class MacOS(
-<i class="no-highlight">792</i>&nbsp;                override var isEnabled: Boolean = KotlinMultiplatformMacOSExtension.IS_ENABLED,
-<i class="no-highlight">793</i>&nbsp;            ) : Enableable, Configurable {
-<i class="no-highlight">794</i>&nbsp;                override fun configure(project: Project) = configureMultiplatformMacOS(project)
-<i class="no-highlight">795</i>&nbsp;            }
-<i class="no-highlight">796</i>&nbsp;
-<i class="no-highlight">797</i>&nbsp;            data class MacOSX64(
-<i class="no-highlight">798</i>&nbsp;                override var isEnabled: Boolean = KotlinMultiplatformMacOSX64Extension.IS_ENABLED,
-<i class="no-highlight">799</i>&nbsp;            ) : Enableable, Configurable {
-<i class="no-highlight">800</i>&nbsp;                override fun configure(project: Project) = configureMultiplatformMacOSX64(project)
-<i class="no-highlight">801</i>&nbsp;            }
-<i class="no-highlight">802</i>&nbsp;
-<i class="no-highlight">803</i>&nbsp;            data class MacOSArm64(
-<i class="no-highlight">804</i>&nbsp;                override var isEnabled: Boolean = KotlinMultiplatformMacOSArm64Extension.IS_ENABLED,
-<i class="no-highlight">805</i>&nbsp;            ) : Enableable, Configurable {
-<i class="no-highlight">806</i>&nbsp;                override fun configure(project: Project) = configureMultiplatformMacOSArm64(project)
-<i class="no-highlight">807</i>&nbsp;            }
-<i class="no-highlight">808</i>&nbsp;
-<i class="no-highlight">809</i>&nbsp;            data class MinGW(
-<i class="no-highlight">810</i>&nbsp;                override var isEnabled: Boolean = KotlinMultiplatformMinGWExtension.IS_ENABLED,
-<i class="no-highlight">811</i>&nbsp;            ) : Enableable, Configurable {
-<i class="no-highlight">812</i>&nbsp;                override fun configure(project: Project) = configureMultiplatformMinGW(project)
-<i class="no-highlight">813</i>&nbsp;            }
-<i class="no-highlight">814</i>&nbsp;
-<i class="no-highlight">815</i>&nbsp;            data class MinGWX64(
-<i class="no-highlight">816</i>&nbsp;                override var isEnabled: Boolean = KotlinMultiplatformMinGWX64Extension.IS_ENABLED,
-<i class="no-highlight">817</i>&nbsp;            ) : Enableable, Configurable {
-<i class="no-highlight">818</i>&nbsp;                override fun configure(project: Project) = configureMultiplatformMinGWX64(project)
-<i class="no-highlight">819</i>&nbsp;            }
-<i class="no-highlight">820</i>&nbsp;
-<i class="no-highlight">821</i>&nbsp;            data class MinGWX86(
-<i class="no-highlight">822</i>&nbsp;                override var isEnabled: Boolean = KotlinMultiplatformMinGWX86Extension.IS_ENABLED,
-<i class="no-highlight">823</i>&nbsp;            ) : Enableable, Configurable {
-<i class="no-highlight">824</i>&nbsp;                override fun configure(project: Project) = configureMultiplatformMinGWX86(project)
-<i class="no-highlight">825</i>&nbsp;            }
-<i class="no-highlight">826</i>&nbsp;
-<i class="no-highlight">827</i>&nbsp;            data class Native(
-<i class="no-highlight">828</i>&nbsp;                override var isEnabled: Boolean = KotlinMultiplatformNativeExtension.IS_ENABLED,
-<i class="no-highlight">829</i>&nbsp;            ) : Enableable, Configurable {
-<i class="no-highlight">830</i>&nbsp;
-<i class="no-highlight">831</i>&nbsp;                override fun configure(project: Project) = configureMultiplatformNative(project)
-<i class="no-highlight">832</i>&nbsp;            }
-<i class="no-highlight">833</i>&nbsp;
-<i class="no-highlight">834</i>&nbsp;            data class TvOS(
-<i class="no-highlight">835</i>&nbsp;                override var isEnabled: Boolean = KotlinMultiplatformTvOSExtension.IS_ENABLED,
-<i class="no-highlight">836</i>&nbsp;            ) : Enableable, Configurable {
-<i class="no-highlight">837</i>&nbsp;                override fun configure(project: Project) = configureMultiplatformTvOS(project)
-<i class="no-highlight">838</i>&nbsp;            }
-<i class="no-highlight">839</i>&nbsp;
-<i class="no-highlight">840</i>&nbsp;            data class TvOSArm64(
-<i class="no-highlight">841</i>&nbsp;                override var isEnabled: Boolean = KotlinMultiplatformTvOSArm64Extension.IS_ENABLED,
-<i class="no-highlight">842</i>&nbsp;            ) : Enableable, Configurable {
-<i class="no-highlight">843</i>&nbsp;                override fun configure(project: Project) = configureMultiplatformTvOSArm64(project)
-<i class="no-highlight">844</i>&nbsp;            }
-<i class="no-highlight">845</i>&nbsp;
-<i class="no-highlight">846</i>&nbsp;            data class TvOSSimulatorArm64(
-<i class="no-highlight">847</i>&nbsp;                override var isEnabled: Boolean =
-<i class="no-highlight">848</i>&nbsp;                    KotlinMultiplatformTvOSSimulatorArm64Extension.IS_ENABLED,
-<i class="no-highlight">849</i>&nbsp;            ) : Enableable, Configurable {
-<i class="no-highlight">850</i>&nbsp;                override fun configure(project: Project) =
-<i class="no-highlight">851</i>&nbsp;                    configureMultiplatformTvOSSimulatorArm64(project)
-<i class="no-highlight">852</i>&nbsp;            }
-<i class="no-highlight">853</i>&nbsp;
-<i class="no-highlight">854</i>&nbsp;            data class TvOSX64(
-<i class="no-highlight">855</i>&nbsp;                override var isEnabled: Boolean = KotlinMultiplatformTvOSX64Extension.IS_ENABLED,
-<i class="no-highlight">856</i>&nbsp;            ) : Enableable, Configurable {
-<i class="no-highlight">857</i>&nbsp;                override fun configure(project: Project) = configureMultiplatformTvOSX64(project)
-<i class="no-highlight">858</i>&nbsp;            }
-<i class="no-highlight">859</i>&nbsp;
-<i class="no-highlight">860</i>&nbsp;            data class WAsm(
-<i class="no-highlight">861</i>&nbsp;                override var isEnabled: Boolean = KotlinMultiplatformWAsmExtension.IS_ENABLED,
-<i class="no-highlight">862</i>&nbsp;            ) : Enableable, Configurable {
-<i class="no-highlight">863</i>&nbsp;                override fun configure(project: Project) = configureMultiplatformWAsm(project)
-<i class="no-highlight">864</i>&nbsp;            }
-<i class="no-highlight">865</i>&nbsp;
-<i class="no-highlight">866</i>&nbsp;            data class WAsm32(
-<i class="no-highlight">867</i>&nbsp;                override var isEnabled: Boolean = KotlinMultiplatformWAsm32Extension.IS_ENABLED,
-<i class="no-highlight">868</i>&nbsp;            ) : Enableable, Configurable {
-<i class="no-highlight">869</i>&nbsp;                override fun configure(project: Project) = configureMultiplatformWAsm32(project)
-<i class="no-highlight">870</i>&nbsp;            }
-<i class="no-highlight">871</i>&nbsp;
-<i class="no-highlight">872</i>&nbsp;            data class WatchOS(
-<i class="no-highlight">873</i>&nbsp;                override var isEnabled: Boolean = KotlinMultiplatformWatchOSExtension.IS_ENABLED,
-<i class="no-highlight">874</i>&nbsp;            ) : Enableable, Configurable {
-<i class="no-highlight">875</i>&nbsp;                override fun configure(project: Project) = configureMultiplatformWatchOS(project)
-<i class="no-highlight">876</i>&nbsp;            }
-<i class="no-highlight">877</i>&nbsp;
-<i class="no-highlight">878</i>&nbsp;            data class WatchOSArm32(
-<i class="no-highlight">879</i>&nbsp;                override var isEnabled: Boolean =
-<i class="no-highlight">880</i>&nbsp;                    KotlinMultiplatformWatchOSArm32Extension.IS_ENABLED,
-<i class="no-highlight">881</i>&nbsp;            ) : Enableable, Configurable {
-<i class="no-highlight">882</i>&nbsp;                override fun configure(project: Project) =
-<i class="no-highlight">883</i>&nbsp;                    configureMultiplatformWatchOSArm32(project)
-<i class="no-highlight">884</i>&nbsp;            }
-<i class="no-highlight">885</i>&nbsp;
-<i class="no-highlight">886</i>&nbsp;            data class WatchOSArm64(
-<i class="no-highlight">887</i>&nbsp;                override var isEnabled: Boolean =
-<i class="no-highlight">888</i>&nbsp;                    KotlinMultiplatformWatchOSArm64Extension.IS_ENABLED,
-<i class="no-highlight">889</i>&nbsp;            ) : Enableable, Configurable {
-<i class="no-highlight">890</i>&nbsp;                override fun configure(project: Project) =
-<i class="no-highlight">891</i>&nbsp;                    configureMultiplatformWatchOSArm64(project)
-<i class="no-highlight">892</i>&nbsp;            }
-<i class="no-highlight">893</i>&nbsp;
-<i class="no-highlight">894</i>&nbsp;            data class WatchOSSimulatorArm64(
-<i class="no-highlight">895</i>&nbsp;                override var isEnabled: Boolean =
-<i class="no-highlight">896</i>&nbsp;                    KotlinMultiplatformWatchOSSimulatorArm64Extension.IS_ENABLED,
-<i class="no-highlight">897</i>&nbsp;            ) : Enableable, Configurable {
-<i class="no-highlight">898</i>&nbsp;                override fun configure(project: Project) =
-<i class="no-highlight">899</i>&nbsp;                    configureMultiplatformWatchOSSimulatorArm64(project)
-<i class="no-highlight">900</i>&nbsp;            }
-<i class="no-highlight">901</i>&nbsp;
-<i class="no-highlight">902</i>&nbsp;            data class WatchOSX64(
-<i class="no-highlight">903</i>&nbsp;                override var isEnabled: Boolean = KotlinMultiplatformWatchOSX64Extension.IS_ENABLED,
-<i class="no-highlight">904</i>&nbsp;            ) : Enableable, Configurable {
-<i class="no-highlight">905</i>&nbsp;                override fun configure(project: Project) = configureMultiplatformWatchOSX64(project)
-<i class="no-highlight">906</i>&nbsp;            }
-<i class="no-highlight">907</i>&nbsp;
-<i class="no-highlight">908</i>&nbsp;            data class WatchOSX86(
-<i class="no-highlight">909</i>&nbsp;                override var isEnabled: Boolean = KotlinMultiplatformWatchOSX86Extension.IS_ENABLED,
-<i class="no-highlight">910</i>&nbsp;            ) : Enableable, Configurable {
-<i class="no-highlight">911</i>&nbsp;                override fun configure(project: Project) = configureMultiplatformWatchOSX86(project)
-<i class="no-highlight">912</i>&nbsp;            }
-<i class="no-highlight">913</i>&nbsp;
-<i class="no-highlight">914</i>&nbsp;            data class Features(
-<i class="no-highlight">915</i>&nbsp;                var coroutines: Boolean = false,
-<i class="no-highlight">916</i>&nbsp;                var extendedStdlib: Boolean = true,
-<i class="no-highlight">917</i>&nbsp;                var extendedTesting: Boolean = true,
-<i class="no-highlight">918</i>&nbsp;                var minimumTargetsPerOS: Boolean = false
-<i class="no-highlight">919</i>&nbsp;            )
-<i class="no-highlight">920</i>&nbsp;
-<i class="no-highlight">921</i>&nbsp;            data class RawConfig(
-<i class="no-highlight">922</i>&nbsp;                var kotlin: Action&lt;KotlinMultiplatformProjectExtension&gt;? = null,
-<i class="no-highlight">923</i>&nbsp;            ) : Configurable {
-<i class="no-highlight">924</i>&nbsp;                override fun configure(project: Project) = configureMultiplatformRawConfig(project)
-<i class="no-highlight">925</i>&nbsp;            }
-<i class="no-highlight">926</i>&nbsp;        }
-<i class="no-highlight">927</i>&nbsp;    }
-<i class="no-highlight">928</i>&nbsp;}
-<i class="no-highlight">929</i>&nbsp;
-<i class="no-highlight">930</i>&nbsp;internal interface LaterConfigurable {
-<i class="no-highlight">931</i>&nbsp;
-<b class="nc"><i class="no-highlight">932</i>&nbsp;    enum class Priority(val value: Int) {</b>
-<b class="nc"><i class="no-highlight">933</i>&nbsp;        VeryHigh(1),</b>
-<b class="nc"><i class="no-highlight">934</i>&nbsp;        High(2),</b>
-<b class="nc"><i class="no-highlight">935</i>&nbsp;        Medium(3),</b>
-<b class="nc"><i class="no-highlight">936</i>&nbsp;        Low(4),</b>
-<b class="nc"><i class="no-highlight">937</i>&nbsp;        VeryLow(5)</b>
-<i class="no-highlight">938</i>&nbsp;    }
-<i class="no-highlight">939</i>&nbsp;
-<i class="no-highlight">940</i>&nbsp;    val priority: Priority
-<b class="nc"><i class="no-highlight">941</i>&nbsp;        get() = Priority.Medium</b>
-<i class="no-highlight">942</i>&nbsp;
-<i class="no-highlight">943</i>&nbsp;    fun configureLater(project: Project): () -&gt; Unit
-<i class="no-highlight">944</i>&nbsp;}
-<i class="no-highlight">945</i>&nbsp;
-<i class="no-highlight">946</i>&nbsp;internal interface Configurable {
-<i class="no-highlight">947</i>&nbsp;    fun configure(project: Project)
-<i class="no-highlight">948</i>&nbsp;}
-<i class="no-highlight">949</i>&nbsp;
-<i class="no-highlight">950</i>&nbsp;internal interface Enableable {
-<i class="no-highlight">951</i>&nbsp;    var isEnabled: Boolean
-<i class="no-highlight">952</i>&nbsp;}
+<i class="no-highlight">488</i>&nbsp;                val tags: MutableList&lt;String&gt; = mutableListOf(),
+<i class="no-highlight">489</i>&nbsp;                var features: Features = Features(),
+<i class="no-highlight">490</i>&nbsp;                var rawConfig: RawConfig = RawConfig()
+<i class="no-highlight">491</i>&nbsp;            ) : Enableable, Configurable {
+<i class="no-highlight">492</i>&nbsp;
+<i class="no-highlight">493</i>&nbsp;                override fun configure(project: Project) {
+<i class="no-highlight">494</i>&nbsp;                    configureGradlePlugin(project)
+<i class="no-highlight">495</i>&nbsp;                    rawConfig.configure(project)
+<i class="no-highlight">496</i>&nbsp;                }
+<i class="no-highlight">497</i>&nbsp;
+<i class="no-highlight">498</i>&nbsp;                data class Features(
+<i class="no-highlight">499</i>&nbsp;                    var extendedGradle: Boolean = true,
+<i class="no-highlight">500</i>&nbsp;                    var extendedStdlib: Boolean = true,
+<i class="no-highlight">501</i>&nbsp;                    var extendedTesting: Boolean = true,
+<i class="no-highlight">502</i>&nbsp;                )
+<i class="no-highlight">503</i>&nbsp;
+<i class="no-highlight">504</i>&nbsp;                data class RawConfig(
+<i class="no-highlight">505</i>&nbsp;                    var kotlin: Action&lt;KotlinJvmProjectExtension&gt;? = null,
+<i class="no-highlight">506</i>&nbsp;                    var gradlePlugin: Action&lt;GradlePluginDevelopmentExtension&gt;? = null,
+<i class="no-highlight">507</i>&nbsp;                ) : Configurable {
+<i class="no-highlight">508</i>&nbsp;                    override fun configure(project: Project) =
+<i class="no-highlight">509</i>&nbsp;                        configureKotlinGradlePluginRawConfig(project)
+<i class="no-highlight">510</i>&nbsp;                }
+<i class="no-highlight">511</i>&nbsp;            }
+<i class="no-highlight">512</i>&nbsp;
+<i class="no-highlight">513</i>&nbsp;            data class VersionCatalog(
+<i class="no-highlight">514</i>&nbsp;                override var isEnabled: Boolean = KotlinGradleVersionCatalogExtension.IS_ENABLED,
+<i class="no-highlight">515</i>&nbsp;                val catalogs: MutableList&lt;File&gt; = mutableListOf()
+<i class="no-highlight">516</i>&nbsp;            ) : Enableable, Configurable {
+<i class="no-highlight">517</i>&nbsp;                override fun configure(project: Project) = configureGradleVersionCatalog(project)
+<i class="no-highlight">518</i>&nbsp;            }
+<i class="no-highlight">519</i>&nbsp;        }
+<i class="no-highlight">520</i>&nbsp;
+<i class="no-highlight">521</i>&nbsp;        data class Jvm(
+<i class="no-highlight">522</i>&nbsp;            override var isEnabled: Boolean = KotlinJvmExtension.IS_ENABLED,
+<i class="no-highlight">523</i>&nbsp;            val features: Features = Features(),
+<i class="no-highlight">524</i>&nbsp;            val rawConfig: RawConfig = RawConfig()
+<i class="no-highlight">525</i>&nbsp;        ) : Enableable, Configurable {
+<i class="no-highlight">526</i>&nbsp;            override fun configure(project: Project) {
+<i class="no-highlight">527</i>&nbsp;                configureJvm(project)
+<i class="no-highlight">528</i>&nbsp;                rawConfig.configure(project)
+<i class="no-highlight">529</i>&nbsp;            }
+<i class="no-highlight">530</i>&nbsp;
+<i class="no-highlight">531</i>&nbsp;            data class Features(
+<i class="no-highlight">532</i>&nbsp;                var coroutines: Boolean = false,
+<i class="no-highlight">533</i>&nbsp;                var extendedStdlib: Boolean = true,
+<i class="no-highlight">534</i>&nbsp;                var extendedGradle: Boolean = false,
+<i class="no-highlight">535</i>&nbsp;                var extendedTesting: Boolean = true,
+<i class="no-highlight">536</i>&nbsp;            )
+<i class="no-highlight">537</i>&nbsp;
+<i class="no-highlight">538</i>&nbsp;            data class RawConfig(
+<i class="no-highlight">539</i>&nbsp;                var kotlin: Action&lt;KotlinJvmProjectExtension&gt;? = null,
+<i class="no-highlight">540</i>&nbsp;            ) : Configurable {
+<i class="no-highlight">541</i>&nbsp;                override fun configure(project: Project) = configureKotlinJvmRawConfig(project)
+<i class="no-highlight">542</i>&nbsp;            }
+<i class="no-highlight">543</i>&nbsp;        }
+<i class="no-highlight">544</i>&nbsp;
+<i class="no-highlight">545</i>&nbsp;        data class Multiplatform(
+<i class="no-highlight">546</i>&nbsp;            override var isEnabled: Boolean = KotlinMultiplatformExtension.IS_ENABLED,
+<i class="no-highlight">547</i>&nbsp;            val android: Android = Android(),
+<i class="no-highlight">548</i>&nbsp;            val ios: IOS = IOS(),
+<i class="no-highlight">549</i>&nbsp;            val iosArm32: IOSArm32 = IOSArm32(),
+<i class="no-highlight">550</i>&nbsp;            val iosArm64: IOSArm64 = IOSArm64(),
+<i class="no-highlight">551</i>&nbsp;            val iosX64: IOSX64 = IOSX64(),
+<i class="no-highlight">552</i>&nbsp;            val iosSimulatorArm64: IOSSimulatorArm64 = IOSSimulatorArm64(),
+<i class="no-highlight">553</i>&nbsp;            val jvm: Jvm = Jvm(),
+<i class="no-highlight">554</i>&nbsp;            val js: Js = Js(),
+<i class="no-highlight">555</i>&nbsp;            val linux: Linux = Linux(),
+<i class="no-highlight">556</i>&nbsp;            val linuxArm32Hfp: LinuxArm32Hfp = LinuxArm32Hfp(),
+<i class="no-highlight">557</i>&nbsp;            val linuxArm64: LinuxArm64 = LinuxArm64(),
+<i class="no-highlight">558</i>&nbsp;            val linuxMips32: LinuxMips32 = LinuxMips32(),
+<i class="no-highlight">559</i>&nbsp;            val linuxMipsel32: LinuxMipsel32 = LinuxMipsel32(),
+<i class="no-highlight">560</i>&nbsp;            val linuxX64: LinuxX64 = LinuxX64(),
+<i class="no-highlight">561</i>&nbsp;            val macos: MacOS = MacOS(),
+<i class="no-highlight">562</i>&nbsp;            val macosArm64: MacOSArm64 = MacOSArm64(),
+<i class="no-highlight">563</i>&nbsp;            val macosX64: MacOSX64 = MacOSX64(),
+<i class="no-highlight">564</i>&nbsp;            val mingw: MinGW = MinGW(),
+<i class="no-highlight">565</i>&nbsp;            val mingwX64: MinGWX64 = MinGWX64(),
+<i class="no-highlight">566</i>&nbsp;            val mingwX86: MinGWX86 = MinGWX86(),
+<i class="no-highlight">567</i>&nbsp;            val native: Native = Native(),
+<i class="no-highlight">568</i>&nbsp;            val tvos: TvOS = TvOS(),
+<i class="no-highlight">569</i>&nbsp;            val tvosArm64: TvOSArm64 = TvOSArm64(),
+<i class="no-highlight">570</i>&nbsp;            val tvosSimulatorArm64: TvOSSimulatorArm64 = TvOSSimulatorArm64(),
+<i class="no-highlight">571</i>&nbsp;            val tvosX64: TvOSX64 = TvOSX64(),
+<i class="no-highlight">572</i>&nbsp;            val wasm: WAsm = WAsm(),
+<i class="no-highlight">573</i>&nbsp;            val wasm32: WAsm32 = WAsm32(),
+<i class="no-highlight">574</i>&nbsp;            val watchos: WatchOS = WatchOS(),
+<i class="no-highlight">575</i>&nbsp;            val watchosArm32: WatchOSArm32 = WatchOSArm32(),
+<i class="no-highlight">576</i>&nbsp;            val watchosArm64: WatchOSArm64 = WatchOSArm64(),
+<i class="no-highlight">577</i>&nbsp;            val watchosX64: WatchOSX64 = WatchOSX64(),
+<i class="no-highlight">578</i>&nbsp;            val watchosSimulatorArm64: WatchOSSimulatorArm64 = WatchOSSimulatorArm64(),
+<i class="no-highlight">579</i>&nbsp;            val watchosX86: WatchOSX86 = WatchOSX86(),
+<i class="no-highlight">580</i>&nbsp;            val features: Features = Features(),
+<i class="no-highlight">581</i>&nbsp;            val rawConfig: RawConfig = RawConfig(),
+<i class="no-highlight">582</i>&nbsp;        ) : Enableable, Configurable {
+<i class="no-highlight">583</i>&nbsp;
+<i class="no-highlight">584</i>&nbsp;            override fun configure(project: Project) {
+<i class="no-highlight">585</i>&nbsp;                configureMultiplatform(project)
+<i class="no-highlight">586</i>&nbsp;
+<i class="no-highlight">587</i>&nbsp;                configureCommonsTargets(project)
+<i class="no-highlight">588</i>&nbsp;
+<i class="no-highlight">589</i>&nbsp;                if (features.minimumTargetsPerOS) {
+<i class="no-highlight">590</i>&nbsp;                    val currentOS = OperatingSystem.current()
+<i class="no-highlight">591</i>&nbsp;                    when {
+<i class="no-highlight">592</i>&nbsp;                        currentOS.isLinux -&gt; {
+<i class="no-highlight">593</i>&nbsp;                            configureLinux(project)
+<i class="no-highlight">594</i>&nbsp;                        }
+<i class="no-highlight">595</i>&nbsp;                        currentOS.isMacOsX -&gt; {
+<i class="no-highlight">596</i>&nbsp;                            configureIOS(project)
+<i class="no-highlight">597</i>&nbsp;                            configureMacOS(project)
+<i class="no-highlight">598</i>&nbsp;                            configureTvOS(project)
+<i class="no-highlight">599</i>&nbsp;                            configureWatchOS(project)
+<i class="no-highlight">600</i>&nbsp;                        }
+<i class="no-highlight">601</i>&nbsp;                        currentOS.isWindows -&gt; {
+<i class="no-highlight">602</i>&nbsp;                            configureMinGW(project)
+<i class="no-highlight">603</i>&nbsp;                        }
+<i class="no-highlight">604</i>&nbsp;                    }
+<i class="no-highlight">605</i>&nbsp;                } else {
+<i class="no-highlight">606</i>&nbsp;                    configureIOS(project)
+<i class="no-highlight">607</i>&nbsp;                    configureMacOS(project)
+<i class="no-highlight">608</i>&nbsp;                    configureLinux(project)
+<i class="no-highlight">609</i>&nbsp;                    configureMinGW(project)
+<i class="no-highlight">610</i>&nbsp;                    configureTvOS(project)
+<i class="no-highlight">611</i>&nbsp;                    configureWatchOS(project)
+<i class="no-highlight">612</i>&nbsp;                }
+<i class="no-highlight">613</i>&nbsp;
+<i class="no-highlight">614</i>&nbsp;                native.configure(project)
+<i class="no-highlight">615</i>&nbsp;
+<i class="no-highlight">616</i>&nbsp;                rawConfig.configure(project)
+<i class="no-highlight">617</i>&nbsp;            }
+<i class="no-highlight">618</i>&nbsp;
+<i class="no-highlight">619</i>&nbsp;            private fun configureCommonsTargets(project: Project) {
+<i class="no-highlight">620</i>&nbsp;                android.configure(project)
+<i class="no-highlight">621</i>&nbsp;                jvm.configure(project)
+<i class="no-highlight">622</i>&nbsp;                js.configure(project)
+<i class="no-highlight">623</i>&nbsp;                configureWasm(project)
+<i class="no-highlight">624</i>&nbsp;            }
+<i class="no-highlight">625</i>&nbsp;
+<i class="no-highlight">626</i>&nbsp;            private fun configureIOS(project: Project) {
+<i class="no-highlight">627</i>&nbsp;                iosArm32.configure(project)
+<i class="no-highlight">628</i>&nbsp;                iosArm64.configure(project)
+<i class="no-highlight">629</i>&nbsp;                iosX64.configure(project)
+<i class="no-highlight">630</i>&nbsp;                iosSimulatorArm64.configure(project)
+<i class="no-highlight">631</i>&nbsp;                ios.configure(project)
+<i class="no-highlight">632</i>&nbsp;            }
+<i class="no-highlight">633</i>&nbsp;
+<i class="no-highlight">634</i>&nbsp;            private fun configureLinux(project: Project) {
+<i class="no-highlight">635</i>&nbsp;                linuxArm32Hfp.configure(project)
+<i class="no-highlight">636</i>&nbsp;                linuxArm64.configure(project)
+<i class="no-highlight">637</i>&nbsp;                linuxMips32.configure(project)
+<i class="no-highlight">638</i>&nbsp;                linuxMipsel32.configure(project)
+<i class="no-highlight">639</i>&nbsp;                linuxX64.configure(project)
+<i class="no-highlight">640</i>&nbsp;                linux.configure(project)
+<i class="no-highlight">641</i>&nbsp;            }
+<i class="no-highlight">642</i>&nbsp;
+<i class="no-highlight">643</i>&nbsp;            private fun configureMacOS(project: Project) {
+<i class="no-highlight">644</i>&nbsp;                macosArm64.configure(project)
+<i class="no-highlight">645</i>&nbsp;                macosX64.configure(project)
+<i class="no-highlight">646</i>&nbsp;                macos.configure(project)
+<i class="no-highlight">647</i>&nbsp;            }
+<i class="no-highlight">648</i>&nbsp;
+<i class="no-highlight">649</i>&nbsp;            private fun configureMinGW(project: Project) {
+<i class="no-highlight">650</i>&nbsp;                mingwX64.configure(project)
+<i class="no-highlight">651</i>&nbsp;                mingwX86.configure(project)
+<i class="no-highlight">652</i>&nbsp;                mingw.configure(project)
+<i class="no-highlight">653</i>&nbsp;            }
+<i class="no-highlight">654</i>&nbsp;
+<i class="no-highlight">655</i>&nbsp;            private fun configureTvOS(project: Project) {
+<i class="no-highlight">656</i>&nbsp;                tvosArm64.configure(project)
+<i class="no-highlight">657</i>&nbsp;                tvosSimulatorArm64.configure(project)
+<i class="no-highlight">658</i>&nbsp;                tvosX64.configure(project)
+<i class="no-highlight">659</i>&nbsp;                tvos.configure(project)
+<i class="no-highlight">660</i>&nbsp;            }
+<i class="no-highlight">661</i>&nbsp;
+<i class="no-highlight">662</i>&nbsp;            private fun configureWasm(project: Project) {
+<i class="no-highlight">663</i>&nbsp;                wasm32.configure(project)
+<i class="no-highlight">664</i>&nbsp;                wasm.configure(project)
+<i class="no-highlight">665</i>&nbsp;            }
+<i class="no-highlight">666</i>&nbsp;
+<i class="no-highlight">667</i>&nbsp;            private fun configureWatchOS(project: Project) {
+<i class="no-highlight">668</i>&nbsp;                watchosArm32.configure(project)
+<i class="no-highlight">669</i>&nbsp;                watchosArm64.configure(project)
+<i class="no-highlight">670</i>&nbsp;                watchosX64.configure(project)
+<i class="no-highlight">671</i>&nbsp;                watchosSimulatorArm64.configure(project)
+<i class="no-highlight">672</i>&nbsp;                watchosX86.configure(project)
+<i class="no-highlight">673</i>&nbsp;                watchos.configure(project)
+<i class="no-highlight">674</i>&nbsp;            }
+<i class="no-highlight">675</i>&nbsp;
+<i class="no-highlight">676</i>&nbsp;            data class Android(
+<i class="no-highlight">677</i>&nbsp;                override var isEnabled: Boolean = KotlinMultiplatformAndroidExtension.IS_ENABLED,
+<i class="no-highlight">678</i>&nbsp;                var allLibraryVariants: Boolean =
+<i class="no-highlight">679</i>&nbsp;                    KotlinMultiplatformAndroidExtension.ALL_LIBRARY_VARIANTS,
+<i class="no-highlight">680</i>&nbsp;                val publishLibraryVariants: MutableList&lt;String&gt; = mutableListOf(),
+<i class="no-highlight">681</i>&nbsp;                val rawConfig: RawConfig = RawConfig()
+<i class="no-highlight">682</i>&nbsp;            ) : Enableable, Configurable {
+<i class="no-highlight">683</i>&nbsp;
+<i class="no-highlight">684</i>&nbsp;                override fun configure(project: Project) {
+<i class="no-highlight">685</i>&nbsp;                    configureMultiplatformAndroid(project)
+<i class="no-highlight">686</i>&nbsp;                    rawConfig.configure(project)
+<i class="no-highlight">687</i>&nbsp;                }
+<i class="no-highlight">688</i>&nbsp;
+<i class="no-highlight">689</i>&nbsp;                data class RawConfig(
+<i class="no-highlight">690</i>&nbsp;                    var android: Action&lt;LibraryExtension&gt;? = null,
+<i class="no-highlight">691</i>&nbsp;                ) : Configurable {
+<i class="no-highlight">692</i>&nbsp;                    override fun configure(project: Project) =
+<i class="no-highlight">693</i>&nbsp;                        configureMultiplatformAndroidRawConfig(project)
+<i class="no-highlight">694</i>&nbsp;                }
+<i class="no-highlight">695</i>&nbsp;            }
+<i class="no-highlight">696</i>&nbsp;
+<i class="no-highlight">697</i>&nbsp;            data class IOS(
+<i class="no-highlight">698</i>&nbsp;                override var isEnabled: Boolean = KotlinMultiplatformiOSExtension.IS_ENABLED,
+<i class="no-highlight">699</i>&nbsp;            ) : Enableable, Configurable {
+<i class="no-highlight">700</i>&nbsp;
+<i class="no-highlight">701</i>&nbsp;                override fun configure(project: Project) = configureMultiplatformIOS(project)
+<i class="no-highlight">702</i>&nbsp;            }
+<i class="no-highlight">703</i>&nbsp;
+<i class="no-highlight">704</i>&nbsp;            data class IOSArm32(
+<i class="no-highlight">705</i>&nbsp;                override var isEnabled: Boolean = KotlinMultiplatformiOSArm32Extension.IS_ENABLED,
+<i class="no-highlight">706</i>&nbsp;            ) : Enableable, Configurable {
+<i class="no-highlight">707</i>&nbsp;
+<i class="no-highlight">708</i>&nbsp;                override fun configure(project: Project) = configureMultiplatformIOSArm32(project)
+<i class="no-highlight">709</i>&nbsp;            }
+<i class="no-highlight">710</i>&nbsp;
+<i class="no-highlight">711</i>&nbsp;            data class IOSArm64(
+<i class="no-highlight">712</i>&nbsp;                override var isEnabled: Boolean = KotlinMultiplatformiOSArm64Extension.IS_ENABLED,
+<i class="no-highlight">713</i>&nbsp;            ) : Enableable, Configurable {
+<i class="no-highlight">714</i>&nbsp;
+<i class="no-highlight">715</i>&nbsp;                override fun configure(project: Project) = configureMultiplatformIOSArm64(project)
+<i class="no-highlight">716</i>&nbsp;            }
+<i class="no-highlight">717</i>&nbsp;
+<i class="no-highlight">718</i>&nbsp;            data class IOSX64(
+<i class="no-highlight">719</i>&nbsp;                override var isEnabled: Boolean = KotlinMultiplatformiOSX64Extension.IS_ENABLED,
+<i class="no-highlight">720</i>&nbsp;            ) : Enableable, Configurable {
+<i class="no-highlight">721</i>&nbsp;
+<i class="no-highlight">722</i>&nbsp;                override fun configure(project: Project) = configureMultiplatformIOSX64(project)
+<i class="no-highlight">723</i>&nbsp;            }
+<i class="no-highlight">724</i>&nbsp;
+<i class="no-highlight">725</i>&nbsp;            data class IOSSimulatorArm64(
+<i class="no-highlight">726</i>&nbsp;                override var isEnabled: Boolean =
+<i class="no-highlight">727</i>&nbsp;                    KotlinMultiplatformiOSSimulatorArm64Extension.IS_ENABLED,
+<i class="no-highlight">728</i>&nbsp;            ) : Enableable, Configurable {
+<i class="no-highlight">729</i>&nbsp;
+<i class="no-highlight">730</i>&nbsp;                override fun configure(project: Project) =
+<i class="no-highlight">731</i>&nbsp;                    configureMultiplatformIOSSimulatorArm64(project)
+<i class="no-highlight">732</i>&nbsp;            }
+<i class="no-highlight">733</i>&nbsp;
+<i class="no-highlight">734</i>&nbsp;            data class Jvm(
+<i class="no-highlight">735</i>&nbsp;                override var isEnabled: Boolean = KotlinMultiplatformJvmExtension.IS_ENABLED,
+<i class="no-highlight">736</i>&nbsp;            ) : Enableable, Configurable {
+<i class="no-highlight">737</i>&nbsp;
+<i class="no-highlight">738</i>&nbsp;                override fun configure(project: Project) = configureMultiplatformJvm(project)
+<i class="no-highlight">739</i>&nbsp;            }
+<i class="no-highlight">740</i>&nbsp;
+<i class="no-highlight">741</i>&nbsp;            data class Js(
+<i class="no-highlight">742</i>&nbsp;                override var isEnabled: Boolean = KotlinMultiplatformJsExtension.IS_ENABLED,
+<i class="no-highlight">743</i>&nbsp;                var browser: Boolean = KotlinMultiplatformJsExtension.BROWSER,
+<i class="no-highlight">744</i>&nbsp;                var nodeJs: Boolean = KotlinMultiplatformJsExtension.NODE_JS
+<i class="no-highlight">745</i>&nbsp;            ) : Enableable, Configurable {
+<i class="no-highlight">746</i>&nbsp;
+<i class="no-highlight">747</i>&nbsp;                override fun configure(project: Project) = configureMultiplatformJs(project)
+<i class="no-highlight">748</i>&nbsp;            }
+<i class="no-highlight">749</i>&nbsp;
+<i class="no-highlight">750</i>&nbsp;            data class Linux(
+<i class="no-highlight">751</i>&nbsp;                override var isEnabled: Boolean = KotlinMultiplatformLinuxExtension.IS_ENABLED,
+<i class="no-highlight">752</i>&nbsp;            ) : Enableable, Configurable {
+<i class="no-highlight">753</i>&nbsp;                override fun configure(project: Project) = configureMultiplatformLinux(project)
+<i class="no-highlight">754</i>&nbsp;            }
+<i class="no-highlight">755</i>&nbsp;
+<i class="no-highlight">756</i>&nbsp;            data class LinuxArm32Hfp(
+<i class="no-highlight">757</i>&nbsp;                override var isEnabled: Boolean =
+<i class="no-highlight">758</i>&nbsp;                    KotlinMultiplatformLinuxArm32HfpExtension.IS_ENABLED,
+<i class="no-highlight">759</i>&nbsp;            ) : Enableable, Configurable {
+<i class="no-highlight">760</i>&nbsp;                override fun configure(project: Project) =
+<i class="no-highlight">761</i>&nbsp;                    configureMultiplatformLinuxArm32Hfp(project)
+<i class="no-highlight">762</i>&nbsp;            }
+<i class="no-highlight">763</i>&nbsp;
+<i class="no-highlight">764</i>&nbsp;            data class LinuxArm64(
+<i class="no-highlight">765</i>&nbsp;                override var isEnabled: Boolean = KotlinMultiplatformLinuxArm64Extension.IS_ENABLED,
+<i class="no-highlight">766</i>&nbsp;            ) : Enableable, Configurable {
+<i class="no-highlight">767</i>&nbsp;                override fun configure(project: Project) = configureMultiplatformLinuxArm64(project)
+<i class="no-highlight">768</i>&nbsp;            }
+<i class="no-highlight">769</i>&nbsp;
+<i class="no-highlight">770</i>&nbsp;            data class LinuxMips32(
+<i class="no-highlight">771</i>&nbsp;                override var isEnabled: Boolean =
+<i class="no-highlight">772</i>&nbsp;                    KotlinMultiplatformLinuxMips32Extension.IS_ENABLED,
+<i class="no-highlight">773</i>&nbsp;            ) : Enableable, Configurable {
+<i class="no-highlight">774</i>&nbsp;                override fun configure(project: Project) =
+<i class="no-highlight">775</i>&nbsp;                    configureMultiplatformLinuxMips32(project)
+<i class="no-highlight">776</i>&nbsp;            }
+<i class="no-highlight">777</i>&nbsp;
+<i class="no-highlight">778</i>&nbsp;            data class LinuxMipsel32(
+<i class="no-highlight">779</i>&nbsp;                override var isEnabled: Boolean =
+<i class="no-highlight">780</i>&nbsp;                    KotlinMultiplatformLinuxMipsel32Extension.IS_ENABLED,
+<i class="no-highlight">781</i>&nbsp;            ) : Enableable, Configurable {
+<i class="no-highlight">782</i>&nbsp;                override fun configure(project: Project) =
+<i class="no-highlight">783</i>&nbsp;                    configureMultiplatformLinuxMipsel32(project)
+<i class="no-highlight">784</i>&nbsp;            }
+<i class="no-highlight">785</i>&nbsp;
+<i class="no-highlight">786</i>&nbsp;            data class LinuxX64(
+<i class="no-highlight">787</i>&nbsp;                override var isEnabled: Boolean = KotlinMultiplatformLinuxX64Extension.IS_ENABLED,
+<i class="no-highlight">788</i>&nbsp;            ) : Enableable, Configurable {
+<i class="no-highlight">789</i>&nbsp;                override fun configure(project: Project) = configureMultiplatformLinuxX64(project)
+<i class="no-highlight">790</i>&nbsp;            }
+<i class="no-highlight">791</i>&nbsp;
+<i class="no-highlight">792</i>&nbsp;            data class MacOS(
+<i class="no-highlight">793</i>&nbsp;                override var isEnabled: Boolean = KotlinMultiplatformMacOSExtension.IS_ENABLED,
+<i class="no-highlight">794</i>&nbsp;            ) : Enableable, Configurable {
+<i class="no-highlight">795</i>&nbsp;                override fun configure(project: Project) = configureMultiplatformMacOS(project)
+<i class="no-highlight">796</i>&nbsp;            }
+<i class="no-highlight">797</i>&nbsp;
+<i class="no-highlight">798</i>&nbsp;            data class MacOSX64(
+<i class="no-highlight">799</i>&nbsp;                override var isEnabled: Boolean = KotlinMultiplatformMacOSX64Extension.IS_ENABLED,
+<i class="no-highlight">800</i>&nbsp;            ) : Enableable, Configurable {
+<i class="no-highlight">801</i>&nbsp;                override fun configure(project: Project) = configureMultiplatformMacOSX64(project)
+<i class="no-highlight">802</i>&nbsp;            }
+<i class="no-highlight">803</i>&nbsp;
+<i class="no-highlight">804</i>&nbsp;            data class MacOSArm64(
+<i class="no-highlight">805</i>&nbsp;                override var isEnabled: Boolean = KotlinMultiplatformMacOSArm64Extension.IS_ENABLED,
+<i class="no-highlight">806</i>&nbsp;            ) : Enableable, Configurable {
+<i class="no-highlight">807</i>&nbsp;                override fun configure(project: Project) = configureMultiplatformMacOSArm64(project)
+<i class="no-highlight">808</i>&nbsp;            }
+<i class="no-highlight">809</i>&nbsp;
+<i class="no-highlight">810</i>&nbsp;            data class MinGW(
+<i class="no-highlight">811</i>&nbsp;                override var isEnabled: Boolean = KotlinMultiplatformMinGWExtension.IS_ENABLED,
+<i class="no-highlight">812</i>&nbsp;            ) : Enableable, Configurable {
+<i class="no-highlight">813</i>&nbsp;                override fun configure(project: Project) = configureMultiplatformMinGW(project)
+<i class="no-highlight">814</i>&nbsp;            }
+<i class="no-highlight">815</i>&nbsp;
+<i class="no-highlight">816</i>&nbsp;            data class MinGWX64(
+<i class="no-highlight">817</i>&nbsp;                override var isEnabled: Boolean = KotlinMultiplatformMinGWX64Extension.IS_ENABLED,
+<i class="no-highlight">818</i>&nbsp;            ) : Enableable, Configurable {
+<i class="no-highlight">819</i>&nbsp;                override fun configure(project: Project) = configureMultiplatformMinGWX64(project)
+<i class="no-highlight">820</i>&nbsp;            }
+<i class="no-highlight">821</i>&nbsp;
+<i class="no-highlight">822</i>&nbsp;            data class MinGWX86(
+<i class="no-highlight">823</i>&nbsp;                override var isEnabled: Boolean = KotlinMultiplatformMinGWX86Extension.IS_ENABLED,
+<i class="no-highlight">824</i>&nbsp;            ) : Enableable, Configurable {
+<i class="no-highlight">825</i>&nbsp;                override fun configure(project: Project) = configureMultiplatformMinGWX86(project)
+<i class="no-highlight">826</i>&nbsp;            }
+<i class="no-highlight">827</i>&nbsp;
+<i class="no-highlight">828</i>&nbsp;            data class Native(
+<i class="no-highlight">829</i>&nbsp;                override var isEnabled: Boolean = KotlinMultiplatformNativeExtension.IS_ENABLED,
+<i class="no-highlight">830</i>&nbsp;            ) : Enableable, Configurable {
+<i class="no-highlight">831</i>&nbsp;
+<i class="no-highlight">832</i>&nbsp;                override fun configure(project: Project) = configureMultiplatformNative(project)
+<i class="no-highlight">833</i>&nbsp;            }
+<i class="no-highlight">834</i>&nbsp;
+<i class="no-highlight">835</i>&nbsp;            data class TvOS(
+<i class="no-highlight">836</i>&nbsp;                override var isEnabled: Boolean = KotlinMultiplatformTvOSExtension.IS_ENABLED,
+<i class="no-highlight">837</i>&nbsp;            ) : Enableable, Configurable {
+<i class="no-highlight">838</i>&nbsp;                override fun configure(project: Project) = configureMultiplatformTvOS(project)
+<i class="no-highlight">839</i>&nbsp;            }
+<i class="no-highlight">840</i>&nbsp;
+<i class="no-highlight">841</i>&nbsp;            data class TvOSArm64(
+<i class="no-highlight">842</i>&nbsp;                override var isEnabled: Boolean = KotlinMultiplatformTvOSArm64Extension.IS_ENABLED,
+<i class="no-highlight">843</i>&nbsp;            ) : Enableable, Configurable {
+<i class="no-highlight">844</i>&nbsp;                override fun configure(project: Project) = configureMultiplatformTvOSArm64(project)
+<i class="no-highlight">845</i>&nbsp;            }
+<i class="no-highlight">846</i>&nbsp;
+<i class="no-highlight">847</i>&nbsp;            data class TvOSSimulatorArm64(
+<i class="no-highlight">848</i>&nbsp;                override var isEnabled: Boolean =
+<i class="no-highlight">849</i>&nbsp;                    KotlinMultiplatformTvOSSimulatorArm64Extension.IS_ENABLED,
+<i class="no-highlight">850</i>&nbsp;            ) : Enableable, Configurable {
+<i class="no-highlight">851</i>&nbsp;                override fun configure(project: Project) =
+<i class="no-highlight">852</i>&nbsp;                    configureMultiplatformTvOSSimulatorArm64(project)
+<i class="no-highlight">853</i>&nbsp;            }
+<i class="no-highlight">854</i>&nbsp;
+<i class="no-highlight">855</i>&nbsp;            data class TvOSX64(
+<i class="no-highlight">856</i>&nbsp;                override var isEnabled: Boolean = KotlinMultiplatformTvOSX64Extension.IS_ENABLED,
+<i class="no-highlight">857</i>&nbsp;            ) : Enableable, Configurable {
+<i class="no-highlight">858</i>&nbsp;                override fun configure(project: Project) = configureMultiplatformTvOSX64(project)
+<i class="no-highlight">859</i>&nbsp;            }
+<i class="no-highlight">860</i>&nbsp;
+<i class="no-highlight">861</i>&nbsp;            data class WAsm(
+<i class="no-highlight">862</i>&nbsp;                override var isEnabled: Boolean = KotlinMultiplatformWAsmExtension.IS_ENABLED,
+<i class="no-highlight">863</i>&nbsp;            ) : Enableable, Configurable {
+<i class="no-highlight">864</i>&nbsp;                override fun configure(project: Project) = configureMultiplatformWAsm(project)
+<i class="no-highlight">865</i>&nbsp;            }
+<i class="no-highlight">866</i>&nbsp;
+<i class="no-highlight">867</i>&nbsp;            data class WAsm32(
+<i class="no-highlight">868</i>&nbsp;                override var isEnabled: Boolean = KotlinMultiplatformWAsm32Extension.IS_ENABLED,
+<i class="no-highlight">869</i>&nbsp;            ) : Enableable, Configurable {
+<i class="no-highlight">870</i>&nbsp;                override fun configure(project: Project) = configureMultiplatformWAsm32(project)
+<i class="no-highlight">871</i>&nbsp;            }
+<i class="no-highlight">872</i>&nbsp;
+<i class="no-highlight">873</i>&nbsp;            data class WatchOS(
+<i class="no-highlight">874</i>&nbsp;                override var isEnabled: Boolean = KotlinMultiplatformWatchOSExtension.IS_ENABLED,
+<i class="no-highlight">875</i>&nbsp;            ) : Enableable, Configurable {
+<i class="no-highlight">876</i>&nbsp;                override fun configure(project: Project) = configureMultiplatformWatchOS(project)
+<i class="no-highlight">877</i>&nbsp;            }
+<i class="no-highlight">878</i>&nbsp;
+<i class="no-highlight">879</i>&nbsp;            data class WatchOSArm32(
+<i class="no-highlight">880</i>&nbsp;                override var isEnabled: Boolean =
+<i class="no-highlight">881</i>&nbsp;                    KotlinMultiplatformWatchOSArm32Extension.IS_ENABLED,
+<i class="no-highlight">882</i>&nbsp;            ) : Enableable, Configurable {
+<i class="no-highlight">883</i>&nbsp;                override fun configure(project: Project) =
+<i class="no-highlight">884</i>&nbsp;                    configureMultiplatformWatchOSArm32(project)
+<i class="no-highlight">885</i>&nbsp;            }
+<i class="no-highlight">886</i>&nbsp;
+<i class="no-highlight">887</i>&nbsp;            data class WatchOSArm64(
+<i class="no-highlight">888</i>&nbsp;                override var isEnabled: Boolean =
+<i class="no-highlight">889</i>&nbsp;                    KotlinMultiplatformWatchOSArm64Extension.IS_ENABLED,
+<i class="no-highlight">890</i>&nbsp;            ) : Enableable, Configurable {
+<i class="no-highlight">891</i>&nbsp;                override fun configure(project: Project) =
+<i class="no-highlight">892</i>&nbsp;                    configureMultiplatformWatchOSArm64(project)
+<i class="no-highlight">893</i>&nbsp;            }
+<i class="no-highlight">894</i>&nbsp;
+<i class="no-highlight">895</i>&nbsp;            data class WatchOSSimulatorArm64(
+<i class="no-highlight">896</i>&nbsp;                override var isEnabled: Boolean =
+<i class="no-highlight">897</i>&nbsp;                    KotlinMultiplatformWatchOSSimulatorArm64Extension.IS_ENABLED,
+<i class="no-highlight">898</i>&nbsp;            ) : Enableable, Configurable {
+<i class="no-highlight">899</i>&nbsp;                override fun configure(project: Project) =
+<i class="no-highlight">900</i>&nbsp;                    configureMultiplatformWatchOSSimulatorArm64(project)
+<i class="no-highlight">901</i>&nbsp;            }
+<i class="no-highlight">902</i>&nbsp;
+<i class="no-highlight">903</i>&nbsp;            data class WatchOSX64(
+<i class="no-highlight">904</i>&nbsp;                override var isEnabled: Boolean = KotlinMultiplatformWatchOSX64Extension.IS_ENABLED,
+<i class="no-highlight">905</i>&nbsp;            ) : Enableable, Configurable {
+<i class="no-highlight">906</i>&nbsp;                override fun configure(project: Project) = configureMultiplatformWatchOSX64(project)
+<i class="no-highlight">907</i>&nbsp;            }
+<i class="no-highlight">908</i>&nbsp;
+<i class="no-highlight">909</i>&nbsp;            data class WatchOSX86(
+<i class="no-highlight">910</i>&nbsp;                override var isEnabled: Boolean = KotlinMultiplatformWatchOSX86Extension.IS_ENABLED,
+<i class="no-highlight">911</i>&nbsp;            ) : Enableable, Configurable {
+<i class="no-highlight">912</i>&nbsp;                override fun configure(project: Project) = configureMultiplatformWatchOSX86(project)
+<i class="no-highlight">913</i>&nbsp;            }
+<i class="no-highlight">914</i>&nbsp;
+<i class="no-highlight">915</i>&nbsp;            data class Features(
+<i class="no-highlight">916</i>&nbsp;                var coroutines: Boolean = false,
+<i class="no-highlight">917</i>&nbsp;                var extendedStdlib: Boolean = true,
+<i class="no-highlight">918</i>&nbsp;                var extendedTesting: Boolean = true,
+<i class="no-highlight">919</i>&nbsp;                var minimumTargetsPerOS: Boolean = false
+<i class="no-highlight">920</i>&nbsp;            )
+<i class="no-highlight">921</i>&nbsp;
+<i class="no-highlight">922</i>&nbsp;            data class RawConfig(
+<i class="no-highlight">923</i>&nbsp;                var kotlin: Action&lt;KotlinMultiplatformProjectExtension&gt;? = null,
+<i class="no-highlight">924</i>&nbsp;            ) : Configurable {
+<i class="no-highlight">925</i>&nbsp;                override fun configure(project: Project) = configureMultiplatformRawConfig(project)
+<i class="no-highlight">926</i>&nbsp;            }
+<i class="no-highlight">927</i>&nbsp;        }
+<i class="no-highlight">928</i>&nbsp;    }
+<i class="no-highlight">929</i>&nbsp;}
+<i class="no-highlight">930</i>&nbsp;
+<i class="no-highlight">931</i>&nbsp;internal interface LaterConfigurable {
+<i class="no-highlight">932</i>&nbsp;
+<b class="nc"><i class="no-highlight">933</i>&nbsp;    enum class Priority(val value: Int) {</b>
+<b class="nc"><i class="no-highlight">934</i>&nbsp;        VeryHigh(1),</b>
+<b class="nc"><i class="no-highlight">935</i>&nbsp;        High(2),</b>
+<b class="nc"><i class="no-highlight">936</i>&nbsp;        Medium(3),</b>
+<b class="nc"><i class="no-highlight">937</i>&nbsp;        Low(4),</b>
+<b class="nc"><i class="no-highlight">938</i>&nbsp;        VeryLow(5)</b>
+<i class="no-highlight">939</i>&nbsp;    }
+<i class="no-highlight">940</i>&nbsp;
+<i class="no-highlight">941</i>&nbsp;    val priority: Priority
+<b class="nc"><i class="no-highlight">942</i>&nbsp;        get() = Priority.Medium</b>
+<i class="no-highlight">943</i>&nbsp;
+<i class="no-highlight">944</i>&nbsp;    fun configureLater(project: Project): () -&gt; Unit
+<i class="no-highlight">945</i>&nbsp;}
+<i class="no-highlight">946</i>&nbsp;
+<i class="no-highlight">947</i>&nbsp;internal interface Configurable {
+<i class="no-highlight">948</i>&nbsp;    fun configure(project: Project)
+<i class="no-highlight">949</i>&nbsp;}
+<i class="no-highlight">950</i>&nbsp;
+<i class="no-highlight">951</i>&nbsp;internal interface Enableable {
+<i class="no-highlight">952</i>&nbsp;    var isEnabled: Boolean
+<i class="no-highlight">953</i>&nbsp;}
 </div>
 </pre>
 </div>
@@ -1112,7 +1113,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-03 09:03</div>
+    <div style="float:right;">generated on 2022-07-03 21:19</div>
 </div>
 </body>
 </html>

@@ -1,0 +1,105 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > HubdleDslMarker</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.javiersc.hubdle.extensions</a>
+</div>
+
+<h1>Coverage Summary for Class: HubdleDslMarker (com.javiersc.hubdle.extensions)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+</tr>
+<tr>
+  <td class="name">HubdleDslMarker</td>
+    <td class="coverageStat"/>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;@file:Suppress(&quot;UnusedReceiverParameter&quot;)
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;package com.javiersc.hubdle.extensions
+<i class="no-highlight">4</i>&nbsp;
+<i class="no-highlight">5</i>&nbsp;import com.javiersc.hubdle.extensions.config.ConfigExtension
+<i class="no-highlight">6</i>&nbsp;import com.javiersc.hubdle.extensions.kotlin.KotlinExtension
+<i class="no-highlight">7</i>&nbsp;import javax.inject.Inject
+<i class="no-highlight">8</i>&nbsp;import org.gradle.api.Action
+<i class="no-highlight">9</i>&nbsp;import org.gradle.api.Project
+<i class="no-highlight">10</i>&nbsp;import org.gradle.api.model.ObjectFactory
+<i class="no-highlight">11</i>&nbsp;import org.gradle.kotlin.dsl.newInstance
+<i class="no-highlight">12</i>&nbsp;
+<i class="no-highlight">13</i>&nbsp;@HubdleDslMarker
+<i class="no-highlight">14</i>&nbsp;public open class HubdleExtension @Inject constructor(objects: ObjectFactory) {
+<i class="no-highlight">15</i>&nbsp;
+<i class="no-highlight">16</i>&nbsp;    private val config: ConfigExtension = objects.newInstance()
+<i class="no-highlight">17</i>&nbsp;
+<i class="no-highlight">18</i>&nbsp;    @HubdleDslMarker
+<i class="no-highlight">19</i>&nbsp;    public fun Project.config(action: Action&lt;in ConfigExtension&gt;) {
+<i class="no-highlight">20</i>&nbsp;        action.execute(config)
+<i class="no-highlight">21</i>&nbsp;    }
+<i class="no-highlight">22</i>&nbsp;
+<i class="no-highlight">23</i>&nbsp;    private val kotlin: KotlinExtension = objects.newInstance()
+<i class="no-highlight">24</i>&nbsp;
+<i class="no-highlight">25</i>&nbsp;    @HubdleDslMarker
+<i class="no-highlight">26</i>&nbsp;    public fun Project.kotlin(action: Action&lt;in KotlinExtension&gt;) {
+<i class="no-highlight">27</i>&nbsp;        action.execute(kotlin)
+<i class="no-highlight">28</i>&nbsp;    }
+<i class="no-highlight">29</i>&nbsp;}
+<i class="no-highlight">30</i>&nbsp;
+<i class="no-highlight">31</i>&nbsp;@DslMarker public annotation class HubdleDslMarker
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-07-03 21:19</div>
+</div>
+</body>
+</html>

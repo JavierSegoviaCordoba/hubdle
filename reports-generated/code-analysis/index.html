@@ -157,11 +157,11 @@
 
 <div>
   <ul>
-    <li>814 number of properties</li>
-    <li>469 number of functions</li>
-    <li>223 number of classes</li>
+    <li>835 number of properties</li>
+    <li>486 number of functions</li>
+    <li>227 number of classes</li>
     <li>70 number of packages</li>
-    <li>173 number of kt files</li>
+    <li>181 number of kt files</li>
   </ul>
 </div>
 
@@ -170,22 +170,22 @@
 
 <div>
   <ul>
-    <li>9,214 lines of code (loc)</li>
-    <li>7,553 source lines of code (sloc)</li>
-    <li>5,062 logical lines of code (lloc)</li>
-    <li>27 comment lines of code (cloc)</li>
-    <li>757 cyclomatic complexity (mcc)</li>
-    <li>382 cognitive complexity</li>
-    <li>46 number of total code smells</li>
+    <li>9,529 lines of code (loc)</li>
+    <li>7,802 source lines of code (sloc)</li>
+    <li>5,241 logical lines of code (lloc)</li>
+    <li>29 comment lines of code (cloc)</li>
+    <li>797 cyclomatic complexity (mcc)</li>
+    <li>402 cognitive complexity</li>
+    <li>49 number of total code smells</li>
     <li>0% comment source ratio</li>
-    <li>149 mcc per 1,000 lloc</li>
+    <li>152 mcc per 1,000 lloc</li>
     <li>9 code smells per 1,000 lloc</li>
   </ul>
 </div>
 
 
 <h2>Findings</h2>
-<div>Total: 46
+<div>Total: 49
   <h3>complexity: 6</h3>
   <details id="ComplexCondition" open="open">
     <summary class="rule-container"><span class="rule">ComplexCondition: 1 </span><span class="description">Complex conditions should be simplified and extracted into well-named methods if necessary.</span></summary>
@@ -257,6 +257,16 @@
 <span class="lineno">   4 </span>
 <span class="lineno">   5 </span>import com.android.build.api.dsl.LibraryExtension
 <span class="lineno">   6 </span>import com.javiersc.hubdle.extensions._internal.PluginIds
+</code></pre>
+      </li>
+    </ul>
+  </details>
+  <h3>empty-blocks: 1</h3>
+  <details id="EmptyKtFile" open="open">
+    <summary class="rule-container"><span class="rule">EmptyKtFile: 1 </span><span class="description">Empty block of code detected. As they serve no purpose they should be removed.</span></summary>
+    <ul>
+      <li><span class="location">sandbox/consumer-settings/included-library/settings.gradle.kts:1:1</span><span class="message">The empty Kotlin file /home/runner/work/hubdle/hubdle/sandbox/consumer-settings/included-library/settings.gradle.kts can be removed.</span>
+        <pre><code><span class="lineno">   1 </span>
 </code></pre>
       </li>
     </ul>
@@ -508,6 +518,32 @@
       </li>
     </ul>
   </details>
+  <h3>performance: 2</h3>
+  <details id="SpreadOperator" open="open">
+    <summary class="rule-container"><span class="rule">SpreadOperator: 2 </span><span class="description">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span></summary>
+    <ul>
+      <li><span class="location">hubdle-settings-gradle-plugin/main/kotlin/com/javiersc/hubdle/HubdleSettingsPlugin.kt:44:29</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
+        <pre><code><span class="lineno">  41 </span>    if (autoInclude.isEnabled) {
+<span class="lineno">  42 </span>        println(extractedProjects())
+<span class="lineno">  43 </span>
+<span class="lineno">  44 </span>        autoInclude.includes<span class="error">(*extractedProjects().toTypedArray())</span>
+<span class="lineno">  45 </span>        autoInclude.includedBuilds(*extractedBuildProjects().toTypedArray())
+<span class="lineno">  46 </span>
+<span class="lineno">  47 </span>        for (include in autoInclude.includableProjects) {
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-settings-gradle-plugin/main/kotlin/com/javiersc/hubdle/HubdleSettingsPlugin.kt:45:35</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
+        <pre><code><span class="lineno">  42 </span>        println(extractedProjects())
+<span class="lineno">  43 </span>
+<span class="lineno">  44 </span>        autoInclude.includes(*extractedProjects().toTypedArray())
+<span class="lineno">  45 </span>        autoInclude.includedBuilds<span class="error">(*extractedBuildProjects().toTypedArray())</span>
+<span class="lineno">  46 </span>
+<span class="lineno">  47 </span>        for (include in autoInclude.includableProjects) {
+<span class="lineno">  48 </span>            include(include)
+</code></pre>
+      </li>
+    </ul>
+  </details>
   <h3>style: 8</h3>
   <details id="ForbiddenComment" open="open">
     <summary class="rule-container"><span class="rule">ForbiddenComment: 2 </span><span class="description">Flags a forbidden comment.</span></summary>
@@ -547,34 +583,34 @@
 <span class="lineno"> 198 </span>    get() = module.name.startsWith(module.group.substringAfterLast(&quot;.&quot;))
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/state/HubdleState.kt:935:16</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
-        <pre><code><span class="lineno"> 932 </span>    enum class Priority(val value: Int) {
-<span class="lineno"> 933 </span>        VeryHigh(1),
-<span class="lineno"> 934 </span>        High(2),
-<span class="lineno"> 935 </span>        Medium(<span class="error">3</span>),
-<span class="lineno"> 936 </span>        Low(4),
-<span class="lineno"> 937 </span>        VeryLow(5)
-<span class="lineno"> 938 </span>    }
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/state/HubdleState.kt:936:16</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno"> 933 </span>    enum class Priority(val value: Int) {
+<span class="lineno"> 934 </span>        VeryHigh(1),
+<span class="lineno"> 935 </span>        High(2),
+<span class="lineno"> 936 </span>        Medium(<span class="error">3</span>),
+<span class="lineno"> 937 </span>        Low(4),
+<span class="lineno"> 938 </span>        VeryLow(5)
+<span class="lineno"> 939 </span>    }
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/state/HubdleState.kt:936:13</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
-        <pre><code><span class="lineno"> 933 </span>        VeryHigh(1),
-<span class="lineno"> 934 </span>        High(2),
-<span class="lineno"> 935 </span>        Medium(3),
-<span class="lineno"> 936 </span>        Low(<span class="error">4</span>),
-<span class="lineno"> 937 </span>        VeryLow(5)
-<span class="lineno"> 938 </span>    }
-<span class="lineno"> 939 </span>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/state/HubdleState.kt:937:13</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno"> 934 </span>        VeryHigh(1),
+<span class="lineno"> 935 </span>        High(2),
+<span class="lineno"> 936 </span>        Medium(3),
+<span class="lineno"> 937 </span>        Low(<span class="error">4</span>),
+<span class="lineno"> 938 </span>        VeryLow(5)
+<span class="lineno"> 939 </span>    }
+<span class="lineno"> 940 </span>
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/state/HubdleState.kt:937:17</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
-        <pre><code><span class="lineno"> 934 </span>        High(2),
-<span class="lineno"> 935 </span>        Medium(3),
-<span class="lineno"> 936 </span>        Low(4),
-<span class="lineno"> 937 </span>        VeryLow(<span class="error">5</span>)
-<span class="lineno"> 938 </span>    }
-<span class="lineno"> 939 </span>
-<span class="lineno"> 940 </span>    val priority: Priority
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/state/HubdleState.kt:938:17</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno"> 935 </span>        High(2),
+<span class="lineno"> 936 </span>        Medium(3),
+<span class="lineno"> 937 </span>        Low(4),
+<span class="lineno"> 938 </span>        VeryLow(<span class="error">5</span>)
+<span class="lineno"> 939 </span>    }
+<span class="lineno"> 940 </span>
+<span class="lineno"> 941 </span>    val priority: Priority
 </code></pre>
       </li>
     </ul>
@@ -607,7 +643,7 @@
 </div>
 
 
-generated with <a href="https://detekt.dev/">detekt version 1.20.0</a> on 2022-07-02 22:13:49 UTC.
+generated with <a href="https://detekt.dev/">detekt version 1.20.0</a> on 2022-07-03 21:05:11 UTC.
 
 </body>
 </html>

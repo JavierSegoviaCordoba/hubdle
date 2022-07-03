@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `com.javiersc.semver:semver-gradle-plugin -> 0.3.0-alpha.1`
+
 ## [0.2.0-alpha.2] - 2022-07-03
 
 ### Added

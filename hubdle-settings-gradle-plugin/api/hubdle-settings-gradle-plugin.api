@@ -1,25 +1,30 @@
-public final class HubdleKt {
-	public static final fun hubdle (Lorg/gradle/api/initialization/Settings;Lorg/gradle/api/Action;)V
-	public static synthetic fun hubdle$default (Lorg/gradle/api/initialization/Settings;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+public final class HubdleSettingsPlugin_accessorKt {
+	public static final fun hubdleSettings (Lorg/gradle/api/initialization/Settings;Lorg/gradle/api/Action;)V
+	public static synthetic fun hubdleSettings$default (Lorg/gradle/api/initialization/Settings;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 }
 
-public abstract interface annotation class com/javiersc/hubdle/HubdleSettingsDslMarker : java/lang/annotation/Annotation {
+public abstract interface annotation class com/javiersc/hubdle/settings/HubdleSettingsDslMarker : java/lang/annotation/Annotation {
 }
 
-public class com/javiersc/hubdle/HubdleSettingsExtension {
+public class com/javiersc/hubdle/settings/HubdleSettingsExtension {
 	public fun <init> (Lorg/gradle/api/model/ObjectFactory;)V
 	public final fun autoInclude (Lorg/gradle/api/Action;)V
-	public static synthetic fun autoInclude$default (Lcom/javiersc/hubdle/HubdleSettingsExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
-	public final fun getAutoInclude ()Lcom/javiersc/hubdle/extensions/AutoIncludeExtension;
+	public static synthetic fun autoInclude$default (Lcom/javiersc/hubdle/settings/HubdleSettingsExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+	public final fun getAutoInclude ()Lcom/javiersc/hubdle/settings/extensions/AutoIncludeExtension;
 }
 
-public class com/javiersc/hubdle/HubdleSettingsPlugin : org/gradle/api/Plugin {
+public class com/javiersc/hubdle/settings/HubdleSettingsPlugin : org/gradle/api/Plugin {
 	public fun <init> (Lorg/gradle/api/model/ObjectFactory;)V
 	public synthetic fun apply (Ljava/lang/Object;)V
 	public fun apply (Lorg/gradle/api/initialization/Settings;)V
 }
 
-public class com/javiersc/hubdle/extensions/AutoIncludeExtension {
+public final class com/javiersc/hubdle/settings/RepositoriesKt {
+	public static final fun sonatypeSnapshot (Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Lorg/gradle/api/Action;)V
+	public static synthetic fun sonatypeSnapshot$default (Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+}
+
+public class com/javiersc/hubdle/settings/extensions/AutoIncludeExtension {
 	public fun <init> ()V
 	public final fun excludedBuilds ([Ljava/lang/String;)V
 	public final fun excludes ([Ljava/lang/String;)V

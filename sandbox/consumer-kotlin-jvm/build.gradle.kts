@@ -20,5 +20,3 @@ hubdle {
         jvm()
     }
 }
-
-//println(hubdle.config.analysis)

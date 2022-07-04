@@ -1,12 +1,13 @@
-package com.javiersc.hubdle
+package com.javiersc.hubdle.settings
 
 import com.gradle.enterprise.gradleplugin.GradleEnterpriseExtension
 import com.javiersc.gradle.properties.extensions.getProperty
-import com.javiersc.hubdle.extensions.extractedBuildProjects
-import com.javiersc.hubdle.extensions.extractedProjects
+import com.javiersc.hubdle.settings.extensions.extractedBuildProjects
+import com.javiersc.hubdle.settings.extensions.extractedProjects
 import java.io.File
 import javax.inject.Inject
 import org.gradle.api.Plugin
+import org.gradle.api.artifacts.dsl.RepositoryHandler
 import org.gradle.api.initialization.Settings
 import org.gradle.api.model.ObjectFactory
 import org.gradle.kotlin.dsl.configure
@@ -23,7 +24,9 @@ constructor(
         target.rootProject.name = target.getProperty("root.project.name")
         target.enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
-        target.extensions.create<HubdleSettingsExtension>("hubdle")
+        target.extensions.create<HubdleSettingsExtension>("hubdleSettings")
+
+        target.configureRepositories()
 
         target.gradle.settingsEvaluated {
             it.configureGradleEnterprise()
@@ -35,15 +38,19 @@ constructor(
 
 @DslMarker public annotation class HubdleSettingsDslMarker
 
-internal val Settings.hubdle: HubdleSettingsExtension
+internal val Settings.hubdleSettings: HubdleSettingsExtension
     get() = checkNotNull(extensions.findByType())
 
-internal fun Settings.configureAutoInclude() {
-    val autoInclude = hubdle.autoInclude
+private fun Settings.configureRepositories() {
+    dependencyResolutionManagement { management ->
+        management.repositories { repos: RepositoryHandler -> repos.mavenCentral() }
+    }
+}
+
+private fun Settings.configureAutoInclude() {
+    val autoInclude = hubdleSettings.autoInclude
 
     if (autoInclude.isEnabled) {
-        println(extractedProjects())
-
         autoInclude.includes(*extractedProjects().toTypedArray())
         autoInclude.includedBuilds(*extractedBuildProjects().toTypedArray())
 

@@ -1,6 +1,6 @@
-package com.javiersc.hubdle.extensions
+package com.javiersc.hubdle.settings.extensions
 
-import com.javiersc.hubdle.HubdleSettingsDslMarker
+import com.javiersc.hubdle.settings.HubdleSettingsDslMarker
 import java.io.File
 import org.gradle.api.initialization.Settings
 
@@ -28,7 +28,7 @@ public open class AutoIncludeExtension {
 
     @HubdleSettingsDslMarker
     public fun excludes(vararg paths: String) {
-        excludes += paths.map(String::toProjectPath).also { println(it) }
+        excludes += paths.map(String::toProjectPath)
     }
 
     @HubdleSettingsDslMarker

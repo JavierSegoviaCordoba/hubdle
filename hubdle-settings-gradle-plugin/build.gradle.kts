@@ -18,7 +18,7 @@ kotlin {
 pluginBundle {
     tags =
         listOf(
-            "hubdle",
+            "hubdle settings",
         )
 }
 
@@ -26,9 +26,9 @@ gradlePlugin {
     plugins {
         create("com.javiersc.hubdle.settings") {
             id = "com.javiersc.hubdle.settings"
-            displayName = "Hubdle"
+            displayName = "Hubdle settings"
             description = "Easy settings setup"
-            implementationClass = "com.javiersc.hubdle.HubdleSettingsPlugin"
+            implementationClass = "com.javiersc.hubdle.settings.HubdleSettingsPlugin"
         }
     }
 }
@@ -42,7 +42,6 @@ dependencies {
     implementation(pluginLibs.gradle.enterprise.comGradleEnterpriseGradlePlugin)
 
     testImplementation(gradleTestKit())
-    testImplementation(libs.javiersc.gradle.gradleTestExtensions)
     testImplementation(libs.jetbrains.kotlin.kotlinTest)
     testImplementation(libs.kotest.kotestAssertionsCore)
 }

@@ -1,6 +1,6 @@
-package com.javiersc.hubdle
+package com.javiersc.hubdle.settings
 
-import com.javiersc.hubdle.extensions.AutoIncludeExtension
+import com.javiersc.hubdle.settings.extensions.AutoIncludeExtension
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.model.ObjectFactory

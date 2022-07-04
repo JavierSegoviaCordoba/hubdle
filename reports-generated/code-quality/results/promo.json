@@ -1,156 +1,63 @@
 {"version":"3","listProblem":[{
   "tool": "Code Inspection",
   "category": "Redundant constructs",
-  "type": "Remove unnecessary parentheses from function call with lambda",
+  "type": "Unused receiver parameter",
   "tags": [
     "kotlin"
   ],
-  "severity": "Info",
-  "comment": "Remove unnecessary parentheses from function call with lambda",
-  "detailsInfo": "Reports redundant empty parentheses of function calls where the only parameter is a lambda that's outside the parentheses.\n\nUse the 'Remove unnecessary parentheses from function call with lambda' quick-fix to clean up the code.\n\n**Examples:**\n\n\n      fun foo() {\n          listOf(1).forEach() {  }\n      }\n\nAfter the quick-fix is applied:\n\n\n      fun foo() {\n          listOf(1).forEach {  }\n      }\n",
+  "severity": "High",
+  "comment": "Receiver parameter is never used",
+  "detailsInfo": "Reports receiver parameter of extension functions and properties that is not used.\n\n**Remove redundant receiver parameter** can be used to amend the code automatically.",
   "sources": [
     {
       "type": "method",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/options/PublishingOptions.kt",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/HubdleExtension.kt",
       "language": "kotlin",
-      "line": 55,
-      "offset": 48,
-      "length": 2,
-      "code": {
-        "startLine": 53,
-        "length": 2,
-        "offset": 121,
-        "surroundingCode": "    configure<PublishingExtension> {\n        publications { container ->\n            container.withType<MavenPublication>() {\n                pom.name.set(getProperty(POM.name))\n                pom.description.set(getProperty(POM.description))"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "hubdle.hubdle-gradle-plugin.main",
-    "inspectionName": "RemoveEmptyParenthesesFromLambdaCall"
-  },
-  "hash": "-5045856086870973285"
-},{
-  "tool": "Code Inspection",
-  "category": "Redundant constructs",
-  "type": "Unused symbol",
-  "tags": [
-    "kotlin"
-  ],
-  "severity": "High",
-  "comment": "Class \"VeryHigh\" is never used",
-  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
-  "sources": [
-    {
-      "type": "field",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/state/HubdleState.kt",
-      "language": "kotlin",
-      "line": 934,
-      "offset": 8,
-      "length": 8,
-      "code": {
-        "startLine": 932,
-        "length": 8,
-        "offset": 51,
-        "surroundingCode": "\n    enum class Priority(val value: Int) {\n        VeryHigh(1),\n        High(2),\n        Medium(3),"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "hubdle.hubdle-gradle-plugin.main",
-    "inspectionName": "UnusedSymbol"
-  },
-  "hash": "-8766550128209271693"
-},{
-  "tool": "Code Inspection",
-  "category": "Redundant constructs",
-  "type": "Unused symbol",
-  "tags": [
-    "kotlin"
-  ],
-  "severity": "High",
-  "comment": "Class \"VeryLow\" is never used",
-  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
-  "sources": [
-    {
-      "type": "field",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/state/HubdleState.kt",
-      "language": "kotlin",
-      "line": 938,
-      "offset": 8,
+      "line": 19,
+      "offset": 15,
       "length": 7,
       "code": {
-        "startLine": 936,
+        "startLine": 17,
         "length": 7,
-        "offset": 43,
-        "surroundingCode": "        Medium(3),\n        Low(4),\n        VeryLow(5)\n    }\n"
+        "offset": 37,
+        "surroundingCode": "\n    @HubdleDslMarker\n    public fun Project.config(action: Action<in ConfigExtension>) {\n        action.execute(config)\n    }"
       }
     }
   ],
   "attributes": {
     "module": "hubdle.hubdle-gradle-plugin.main",
-    "inspectionName": "UnusedSymbol"
+    "inspectionName": "UnusedReceiverParameter"
   },
-  "hash": "-5961443228933725513"
+  "hash": "6365189784766549069"
 },{
   "tool": "Code Inspection",
   "category": "Redundant constructs",
-  "type": "Unused symbol",
+  "type": "Unused receiver parameter",
   "tags": [
     "kotlin"
   ],
   "severity": "High",
-  "comment": "Class \"Low\" is never used",
-  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "comment": "Receiver parameter is never used",
+  "detailsInfo": "Reports receiver parameter of extension functions and properties that is not used.\n\n**Remove redundant receiver parameter** can be used to amend the code automatically.",
   "sources": [
     {
-      "type": "field",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/state/HubdleState.kt",
+      "type": "method",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/HubdleExtension.kt",
       "language": "kotlin",
-      "line": 937,
-      "offset": 8,
-      "length": 3,
+      "line": 26,
+      "offset": 15,
+      "length": 7,
       "code": {
-        "startLine": 935,
-        "length": 3,
-        "offset": 44,
-        "surroundingCode": "        High(2),\n        Medium(3),\n        Low(4),\n        VeryLow(5)\n    }"
+        "startLine": 24,
+        "length": 7,
+        "offset": 37,
+        "surroundingCode": "\n    @HubdleDslMarker\n    public fun Project.kotlin(action: Action<in KotlinExtension>) {\n        action.execute(kotlin)\n    }"
       }
     }
   ],
   "attributes": {
     "module": "hubdle.hubdle-gradle-plugin.main",
-    "inspectionName": "UnusedSymbol"
+    "inspectionName": "UnusedReceiverParameter"
   },
-  "hash": "8213665875338891376"
-},{
-  "tool": "Code Inspection",
-  "category": "Redundant constructs",
-  "type": "Unused symbol",
-  "tags": [
-    "kotlin"
-  ],
-  "severity": "High",
-  "comment": "Class \"High\" is never used",
-  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
-  "sources": [
-    {
-      "type": "field",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/state/HubdleState.kt",
-      "language": "kotlin",
-      "line": 935,
-      "offset": 8,
-      "length": 4,
-      "code": {
-        "startLine": 933,
-        "length": 4,
-        "offset": 71,
-        "surroundingCode": "    enum class Priority(val value: Int) {\n        VeryHigh(1),\n        High(2),\n        Medium(3),\n        Low(4),"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "hubdle.hubdle-gradle-plugin.main",
-    "inspectionName": "UnusedSymbol"
-  },
-  "hash": "7511957155618341093"
+  "hash": "-1926134180766942646"
 }]}

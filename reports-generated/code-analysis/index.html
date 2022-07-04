@@ -158,10 +158,10 @@
 <div>
   <ul>
     <li>835 number of properties</li>
-    <li>486 number of functions</li>
+    <li>488 number of functions</li>
     <li>227 number of classes</li>
-    <li>70 number of packages</li>
-    <li>181 number of kt files</li>
+    <li>72 number of packages</li>
+    <li>182 number of kt files</li>
   </ul>
 </div>
 
@@ -170,11 +170,11 @@
 
 <div>
   <ul>
-    <li>9,529 lines of code (loc)</li>
-    <li>7,803 source lines of code (sloc)</li>
-    <li>5,242 logical lines of code (lloc)</li>
-    <li>29 comment lines of code (cloc)</li>
-    <li>797 cyclomatic complexity (mcc)</li>
+    <li>9,544 lines of code (loc)</li>
+    <li>7,816 source lines of code (sloc)</li>
+    <li>5,247 logical lines of code (lloc)</li>
+    <li>28 comment lines of code (cloc)</li>
+    <li>798 cyclomatic complexity (mcc)</li>
     <li>402 cognitive complexity</li>
     <li>49 number of total code smells</li>
     <li>0% comment source ratio</li>
@@ -522,24 +522,24 @@
   <details id="SpreadOperator" open="open">
     <summary class="rule-container"><span class="rule">SpreadOperator: 2 </span><span class="description">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span></summary>
     <ul>
-      <li><span class="location">hubdle-settings-gradle-plugin/main/kotlin/com/javiersc/hubdle/HubdleSettingsPlugin.kt:47:29</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
-        <pre><code><span class="lineno">  44 </span>    if (autoInclude.isEnabled) {
-<span class="lineno">  45 </span>        println(extractedProjects())
-<span class="lineno">  46 </span>
-<span class="lineno">  47 </span>        autoInclude.includes<span class="error">(*extractedProjects().toTypedArray())</span>
-<span class="lineno">  48 </span>        autoInclude.includedBuilds(*extractedBuildProjects().toTypedArray())
-<span class="lineno">  49 </span>
-<span class="lineno">  50 </span>        for (include in autoInclude.includableProjects) {
+      <li><span class="location">hubdle-settings-gradle-plugin/main/kotlin/com/javiersc/hubdle/settings/HubdleSettingsPlugin.kt:54:29</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
+        <pre><code><span class="lineno">  51 </span>    val autoInclude = hubdleSettings.autoInclude
+<span class="lineno">  52 </span>
+<span class="lineno">  53 </span>    if (autoInclude.isEnabled) {
+<span class="lineno">  54 </span>        autoInclude.includes<span class="error">(*extractedProjects().toTypedArray())</span>
+<span class="lineno">  55 </span>        autoInclude.includedBuilds(*extractedBuildProjects().toTypedArray())
+<span class="lineno">  56 </span>
+<span class="lineno">  57 </span>        for (include in autoInclude.includableProjects) {
 </code></pre>
       </li>
-      <li><span class="location">hubdle-settings-gradle-plugin/main/kotlin/com/javiersc/hubdle/HubdleSettingsPlugin.kt:48:35</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
-        <pre><code><span class="lineno">  45 </span>        println(extractedProjects())
-<span class="lineno">  46 </span>
-<span class="lineno">  47 </span>        autoInclude.includes(*extractedProjects().toTypedArray())
-<span class="lineno">  48 </span>        autoInclude.includedBuilds<span class="error">(*extractedBuildProjects().toTypedArray())</span>
-<span class="lineno">  49 </span>
-<span class="lineno">  50 </span>        for (include in autoInclude.includableProjects) {
-<span class="lineno">  51 </span>            include(include)
+      <li><span class="location">hubdle-settings-gradle-plugin/main/kotlin/com/javiersc/hubdle/settings/HubdleSettingsPlugin.kt:55:35</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
+        <pre><code><span class="lineno">  52 </span>
+<span class="lineno">  53 </span>    if (autoInclude.isEnabled) {
+<span class="lineno">  54 </span>        autoInclude.includes(*extractedProjects().toTypedArray())
+<span class="lineno">  55 </span>        autoInclude.includedBuilds<span class="error">(*extractedBuildProjects().toTypedArray())</span>
+<span class="lineno">  56 </span>
+<span class="lineno">  57 </span>        for (include in autoInclude.includableProjects) {
+<span class="lineno">  58 </span>            include(include)
 </code></pre>
       </li>
     </ul>
@@ -643,7 +643,7 @@
 </div>
 
 
-generated with <a href="https://detekt.dev/">detekt version 1.20.0</a> on 2022-07-03 22:52:09 UTC.
+generated with <a href="https://detekt.dev/">detekt version 1.20.0</a> on 2022-07-04 00:44:32 UTC.
 
 </body>
 </html>

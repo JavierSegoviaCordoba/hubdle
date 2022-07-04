@@ -1,34 +1,34 @@
 {"version":"3","listProblem":[{
   "tool": "Code Inspection",
-  "category": "Style issues",
-  "type": "Class member can have 'private' visibility",
+  "category": "Redundant constructs",
+  "type": "Unused receiver parameter",
   "tags": [
     "kotlin"
   ],
-  "severity": "Info",
-  "comment": "Property 'value' could be private",
-  "detailsInfo": "Reports declarations that can be made `private` to follow the encapsulation principle.\n\n**Example:**\n\n\n    class Service(val url: String) {\n        fun connect(): URLConnection = URL(url).openConnection()\n    }\n\nAfter the quick-fix is applied (considering there are no usages of `url` outside of `Service` class):\n\n\n    class Service(private val url: String) {\n        fun connect(): URLConnection = URL(url).openConnection()\n    }\n",
+  "severity": "High",
+  "comment": "Receiver parameter is never used",
+  "detailsInfo": "Reports receiver parameter of extension functions and properties that is not used.\n\n**Remove redundant receiver parameter** can be used to amend the code automatically.",
   "sources": [
     {
       "type": "method",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/documentation/changelog/_internal/Changelog.kt",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/KotlinExtension.kt",
       "language": "kotlin",
-      "line": 50,
-      "offset": 36,
-      "length": 5,
+      "line": 54,
+      "offset": 16,
+      "length": 7,
       "code": {
-        "startLine": 48,
-        "length": 5,
-        "offset": 51,
-        "surroundingCode": "            }\n\n            internal class Item(val value: String) {\n\n                override fun toString(): String = value"
+        "startLine": 52,
+        "length": 7,
+        "offset": 39,
+        "surroundingCode": "\n    // Configurations\n    private fun Project.configAndroid(action: Action<in KotlinAndroidExtension>) {\n        action.execute(android)\n    }"
       }
     }
   ],
   "attributes": {
     "module": "hubdle.hubdle-gradle-plugin.main",
-    "inspectionName": "MemberVisibilityCanBePrivate"
+    "inspectionName": "UnusedReceiverParameter"
   },
-  "hash": "-2883541929111991545"
+  "hash": "8899256365959888624"
 },{
   "tool": "Code Inspection",
   "category": "Redundant constructs",
@@ -42,16 +42,16 @@
   "sources": [
     {
       "type": "method",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/HubdleExtension.kt",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/KotlinExtension.kt",
       "language": "kotlin",
-      "line": 26,
-      "offset": 15,
+      "line": 66,
+      "offset": 16,
       "length": 7,
       "code": {
-        "startLine": 24,
+        "startLine": 64,
         "length": 7,
-        "offset": 37,
-        "surroundingCode": "\n    @HubdleDslMarker\n    public fun Project.kotlin(action: Action<in KotlinExtension>) {\n        action.execute(kotlin)\n    }"
+        "offset": 23,
+        "surroundingCode": "    }\n\n    private fun Project.configGradle(action: Action<in KotlinGradleExtension>) {\n        action.execute(this@KotlinExtension.gradle)\n    }"
       }
     }
   ],
@@ -59,36 +59,5 @@
     "module": "hubdle.hubdle-gradle-plugin.main",
     "inspectionName": "UnusedReceiverParameter"
   },
-  "hash": "-1926134180766942646"
-},{
-  "tool": "Code Inspection",
-  "category": "Redundant constructs",
-  "type": "Unused receiver parameter",
-  "tags": [
-    "kotlin"
-  ],
-  "severity": "High",
-  "comment": "Receiver parameter is never used",
-  "detailsInfo": "Reports receiver parameter of extension functions and properties that is not used.\n\n**Remove redundant receiver parameter** can be used to amend the code automatically.",
-  "sources": [
-    {
-      "type": "method",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/HubdleExtension.kt",
-      "language": "kotlin",
-      "line": 19,
-      "offset": 15,
-      "length": 7,
-      "code": {
-        "startLine": 17,
-        "length": 7,
-        "offset": 37,
-        "surroundingCode": "\n    @HubdleDslMarker\n    public fun Project.config(action: Action<in ConfigExtension>) {\n        action.execute(config)\n    }"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "hubdle.hubdle-gradle-plugin.main",
-    "inspectionName": "UnusedReceiverParameter"
-  },
-  "hash": "6365189784766549069"
+  "hash": "-6663043606270904617"
 }]}

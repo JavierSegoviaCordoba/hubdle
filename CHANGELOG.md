@@ -4,9 +4,6 @@
 
 ### Added
 
-- ignore repositories if they are added by a project by Hubdle Settings
-- `RepositoryHandler.sonatypeSnapshot` function by Hubdle Settings
-
 ### Changed
 
 ### Deprecated
@@ -15,9 +12,18 @@
 
 ### Fixed
 
-- a crash when both, project and settings plugin are applied
-
 ### Updated
+
+## [0.2.0-alpha.4] - 2022-07-04
+
+### Added
+
+- ignore repositories if they are added by a project by Hubdle Settings
+- `RepositoryHandler.sonatypeSnapshot` function by Hubdle Settings
+
+### Fixed
+
+- a crash when both, project and settings plugin are applied
 
 ## [0.2.0-alpha.3] - 2022-07-03
 

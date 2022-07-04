@@ -95,11 +95,17 @@ private fun SigningExtension.signPublications() {
 
 private fun SigningExtension.signInMemory() {
     val keyId = project.getPropertyOrNull(HubdleProperty.Signing.keyId)
-    val gnupgKey = project.getProperty(HubdleProperty.Signing.gnupgKey).replace("\\n", "\n")
-    val gnupgPassphrase = project.getProperty(HubdleProperty.Signing.gnupgPassphrase)
+    val gnupgKey = project.getPropertyOrNull(HubdleProperty.Signing.gnupgKey)?.replace("\\n", "\n")
+    val gnupgPassphrase = project.getPropertyOrNull(HubdleProperty.Signing.gnupgPassphrase)
 
-    if (keyId != null) useInMemoryPgpKeys(keyId, gnupgKey, gnupgPassphrase)
-    else useInMemoryPgpKeys(gnupgKey, gnupgPassphrase)
+    when {
+        keyId != null && gnupgKey != null && gnupgPassphrase != null -> {
+            useInMemoryPgpKeys(keyId, gnupgKey, gnupgPassphrase)
+        }
+        gnupgKey != null && gnupgPassphrase != null -> {
+            useInMemoryPgpKeys(gnupgKey, gnupgPassphrase)
+        }
+    }
 }
 
 private fun Project.configurePublishOnlySemver() {

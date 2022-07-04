@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- crash if signing properties are not set
+
 ### Updated
 
 ## [0.2.0-alpha.6] - 2022-07-04

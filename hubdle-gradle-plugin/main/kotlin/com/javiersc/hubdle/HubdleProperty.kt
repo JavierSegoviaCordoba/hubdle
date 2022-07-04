@@ -47,7 +47,6 @@ public object HubdleProperty {
 
     public object Signing {
         public const val gnupgKey: String = "signing.gnupg.key"
-        public const val gnupgKeyname: String = "signing.gnupg.keyName"
         public const val gnupgPassphrase: String = "signing.gnupg.passphrase"
         public const val keyId: String = "signing.keyId"
     }

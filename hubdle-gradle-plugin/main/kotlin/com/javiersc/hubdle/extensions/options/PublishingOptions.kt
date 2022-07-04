@@ -88,18 +88,14 @@ internal fun Project.configureSigningForPublishing() {
 private fun SigningExtension.signPublications() {
     val shouldSign = project.getPropertyOrNull(HubdleProperty.Publishing.sign)?.toBoolean() ?: true
     if (project.isNotSnapshot && project.isSemver && shouldSign) {
-        try {
-            signInMemory()
-        } catch (_: Throwable) {
-            useGpgCmd()
-        }
+        signInMemory()
         sign(project.the<PublishingExtension>().publications)
     }
 }
 
 private fun SigningExtension.signInMemory() {
     val keyId = project.getPropertyOrNull(HubdleProperty.Signing.keyId)
-    val gnupgKey = project.getProperty(HubdleProperty.Signing.gnupgKey)
+    val gnupgKey = project.getProperty(HubdleProperty.Signing.gnupgKey).replace("\\n", "\n")
     val gnupgPassphrase = project.getProperty(HubdleProperty.Signing.gnupgPassphrase)
 
     if (keyId != null) useInMemoryPgpKeys(keyId, gnupgKey, gnupgPassphrase)

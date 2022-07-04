@@ -33,7 +33,7 @@ internal class KotlinJvmTest {
             withArgumentsFromTXT()
             buildAndFail()
                 .output.shouldContain(
-                    "A problem was found with the configuration of task ':signJavaPublication'"
+                    "Error while evaluating property 'signatory' of task ':signJavaPublication'"
                 )
         }
     }

@@ -7,7 +7,7 @@ import com.javiersc.hubdle.extensions.config.documentation.changelog.AddChangelo
 import com.javiersc.hubdle.extensions.config.documentation.changelog.ApplyFormatChangelogTask
 import com.javiersc.hubdle.extensions.config.documentation.changelog.MergeChangelogTask
 import org.gradle.api.Project
-import org.gradle.kotlin.dsl.findByType
+import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.register
 import org.gradle.kotlin.dsl.the
 import org.jetbrains.changelog.ChangelogPluginExtension
@@ -18,9 +18,9 @@ internal fun configureChangelog(project: Project) {
     if (project.hubdleState.config.documentation.changelog.isEnabled) {
         project.pluginManager.apply(PluginIds.Documentation.changelog)
 
-        project.extensions.findByType<ChangelogPluginExtension>()?.apply {
+        project.configure<ChangelogPluginExtension> {
             version.set("${project.version}")
-            header.set(project.provider { "[${version.get()}] - ${date()}" })
+            header.set(project.provider { "[${project.version}] - ${date()}" })
             groups.set(listOf("Added", "Changed", "Deprecated", "Removed", "Fixed", "Updated"))
         }
 

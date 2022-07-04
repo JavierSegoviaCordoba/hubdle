@@ -174,16 +174,16 @@ internal data class HubdleState(
     ) : Configurable {
 
         override fun configure(project: Project) {
+            versioning.configure(project)
             analysis.configure(project)
             binaryCompatibilityValidator.configure(project)
             coverage.configure(project)
             documentation.configure(project)
-            project.hubdleState.laterConfigurables += languageSettings
             format.configure(project)
             install.configure(project)
             nexus.configure(project)
             publishing.configure(project)
-            versioning.configure(project)
+            project.hubdleState.laterConfigurables += languageSettings
         }
 
         data class Analysis(

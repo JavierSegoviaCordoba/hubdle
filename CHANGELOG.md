@@ -12,9 +12,13 @@
 
 ### Fixed
 
-- private key can't be read on Mac
-
 ### Updated
+
+## [0.2.0-alpha.6] - 2022-07-04
+
+### Fixed
+
+- private key can't be read on Mac
 
 ## [0.2.0-alpha.5] - 2022-07-04
 

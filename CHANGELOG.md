@@ -12,9 +12,13 @@
 
 ### Fixed
 
-- changelog has unspecified version
-
 ### Updated
+
+## [0.2.0-alpha.5] - 2022-07-04
+
+### Fixed
+
+- changelog has unspecified version
 
 ## [0.2.0-alpha.4] - 2022-07-04
 

@@ -16,6 +16,8 @@
 
 ### Updated
 
+- `actions/setup-java -> v3.4.0`
+
 ## [0.2.0-alpha.8] - 2022-07-05
 
 ### Fixed

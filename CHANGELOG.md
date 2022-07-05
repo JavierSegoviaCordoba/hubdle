@@ -16,12 +16,14 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx:kotlinx-coroutines-core -> 1.6.3`
+- `io.kotest:kotest-assertions-core -> 5.3.2`
+- `com.diffplug.spotless:spotless-plugin-gradle -> 6.8.0`
 - `gradle/gradle-build-action -> v2.2.1`
 - `actions/setup-java -> v3.4.0`
 - `ru.vyarus:gradle-mkdocs-plugin -> 2.4.0`
 - `org.sonarsource.scanner.gradle:sonarqube-gradle-plugin -> 3.4.0.2513`
 - `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.10.1`
-- `com.diffplug.spotless:spotless-plugin-gradle -> 6.7.2`
 - `com.javiersc.kotlin:kotlin-stdlib -> 0.1.0-alpha.7`
 - `org.eclipse.jgit:org.eclipse.jgit -> 6.2.0.202206071550-r`
 - `com.javiersc.gradle:gradle-test-extensions -> 1.0.0-alpha.26`

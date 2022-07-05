@@ -157,9 +157,9 @@
 
 <div>
   <ul>
-    <li>838 number of properties</li>
-    <li>489 number of functions</li>
-    <li>227 number of classes</li>
+    <li>846 number of properties</li>
+    <li>495 number of functions</li>
+    <li>222 number of classes</li>
     <li>72 number of packages</li>
     <li>182 number of kt files</li>
   </ul>
@@ -170,15 +170,15 @@
 
 <div>
   <ul>
-    <li>9,565 lines of code (loc)</li>
-    <li>7,834 source lines of code (sloc)</li>
-    <li>5,258 logical lines of code (lloc)</li>
+    <li>9,623 lines of code (loc)</li>
+    <li>7,880 source lines of code (sloc)</li>
+    <li>5,297 logical lines of code (lloc)</li>
     <li>28 comment lines of code (cloc)</li>
-    <li>801 cyclomatic complexity (mcc)</li>
-    <li>402 cognitive complexity</li>
+    <li>815 cyclomatic complexity (mcc)</li>
+    <li>404 cognitive complexity</li>
     <li>49 number of total code smells</li>
     <li>0% comment source ratio</li>
-    <li>152 mcc per 1,000 lloc</li>
+    <li>153 mcc per 1,000 lloc</li>
     <li>9 code smells per 1,000 lloc</li>
   </ul>
 </div>
@@ -583,34 +583,34 @@
 <span class="lineno"> 198 </span>    get() = module.name.startsWith(module.group.substringAfterLast(&quot;.&quot;))
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/state/HubdleState.kt:936:16</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
-        <pre><code><span class="lineno"> 933 </span>    enum class Priority(val value: Int) {
-<span class="lineno"> 934 </span>        VeryHigh(1),
-<span class="lineno"> 935 </span>        High(2),
-<span class="lineno"> 936 </span>        Medium(<span class="error">3</span>),
-<span class="lineno"> 937 </span>        Low(4),
-<span class="lineno"> 938 </span>        VeryLow(5)
-<span class="lineno"> 939 </span>    }
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/state/HubdleState.kt:954:34</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno"> 951 </span>        object High : Priority(2) {
+<span class="lineno"> 952 </span>            override fun toString(): String = &quot;High&quot;
+<span class="lineno"> 953 </span>        }
+<span class="lineno"> 954 </span>        object Medium : Priority(<span class="error">3</span>) {
+<span class="lineno"> 955 </span>            override fun toString(): String = &quot;Medium&quot;
+<span class="lineno"> 956 </span>        }
+<span class="lineno"> 957 </span>        object Low : Priority(4) {
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/state/HubdleState.kt:937:13</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
-        <pre><code><span class="lineno"> 934 </span>        VeryHigh(1),
-<span class="lineno"> 935 </span>        High(2),
-<span class="lineno"> 936 </span>        Medium(3),
-<span class="lineno"> 937 </span>        Low(<span class="error">4</span>),
-<span class="lineno"> 938 </span>        VeryLow(5)
-<span class="lineno"> 939 </span>    }
-<span class="lineno"> 940 </span>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/state/HubdleState.kt:957:31</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno"> 954 </span>        object Medium : Priority(3) {
+<span class="lineno"> 955 </span>            override fun toString(): String = &quot;Medium&quot;
+<span class="lineno"> 956 </span>        }
+<span class="lineno"> 957 </span>        object Low : Priority(<span class="error">4</span>) {
+<span class="lineno"> 958 </span>            override fun toString(): String = &quot;Low&quot;
+<span class="lineno"> 959 </span>        }
+<span class="lineno"> 960 </span>        object VeryLow : Priority(5) {
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/state/HubdleState.kt:938:17</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
-        <pre><code><span class="lineno"> 935 </span>        High(2),
-<span class="lineno"> 936 </span>        Medium(3),
-<span class="lineno"> 937 </span>        Low(4),
-<span class="lineno"> 938 </span>        VeryLow(<span class="error">5</span>)
-<span class="lineno"> 939 </span>    }
-<span class="lineno"> 940 </span>
-<span class="lineno"> 941 </span>    val priority: Priority
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/state/HubdleState.kt:960:35</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno"> 957 </span>        object Low : Priority(4) {
+<span class="lineno"> 958 </span>            override fun toString(): String = &quot;Low&quot;
+<span class="lineno"> 959 </span>        }
+<span class="lineno"> 960 </span>        object VeryLow : Priority(<span class="error">5</span>) {
+<span class="lineno"> 961 </span>            override fun toString(): String = &quot;VeryLow&quot;
+<span class="lineno"> 962 </span>        }
+<span class="lineno"> 963 </span>
 </code></pre>
       </li>
     </ul>
@@ -643,7 +643,7 @@
 </div>
 
 
-generated with <a href="https://detekt.dev/">detekt version 1.20.0</a> on 2022-07-05 08:12:27 UTC.
+generated with <a href="https://detekt.dev/">detekt version 1.20.0</a> on 2022-07-05 15:20:03 UTC.
 
 </body>
 </html>

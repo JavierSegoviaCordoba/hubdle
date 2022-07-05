@@ -16,6 +16,7 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx:kotlinx-coroutines-core -> 1.6.3`
 - `gradle/gradle-build-action -> v2.2.1`
 - `actions/setup-java -> v3.4.0`
 - `ru.vyarus:gradle-mkdocs-plugin -> 2.4.0`

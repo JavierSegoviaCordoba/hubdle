@@ -21,19 +21,9 @@ constructor(
 
     override var isEnabled: Boolean = IS_ENABlED
 
-    public val includes: MutableList<String> =
-        mutableListOf(
-            "*/kotlin/**/*.kt",
-            "src/*/kotlin/**/*.kt",
-        )
+    public val includes: MutableList<String> = INCLUDES.toMutableList()
 
-    public val excludes: MutableList<String> =
-        mutableListOf(
-            "*/resources/**/*.kt",
-            "src/*/resources/**/*.kt",
-            "**/build/**",
-            "**/.gradle/**",
-        )
+    public val excludes: MutableList<String> = EXCLUDES.toMutableList()
 
     public var ktfmtVersion: String = KTFMT_VERSION
 
@@ -55,6 +45,20 @@ constructor(
 
     public companion object {
         internal const val IS_ENABlED = true
+
+        internal val INCLUDES: List<String> =
+            listOf(
+                "*/kotlin/**/*.kt",
+                "src/*/kotlin/**/*.kt",
+            )
+
+        internal val EXCLUDES: List<String> =
+            listOf(
+                "*/resources/**/*.kt",
+                "src/*/resources/**/*.kt",
+                "**/build/**",
+                "**/.gradle/**",
+            )
         internal const val KTFMT_VERSION = COM_FACEBOOK_KTFMT_VERSION
     }
 }

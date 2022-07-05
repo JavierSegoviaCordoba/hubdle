@@ -13,6 +13,7 @@
 ### Fixed
 
 - Multiplatform publication hasn't an empty javadoc
+- Format default includes/excludes can be empty
 
 ### Updated
 

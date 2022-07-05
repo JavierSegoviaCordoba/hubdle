@@ -2,6 +2,7 @@ package com.javiersc.hubdle.extensions._internal.state
 
 import com.android.build.api.dsl.LibraryExtension
 import com.diffplug.gradle.spotless.SpotlessExtension
+import com.javiersc.hubdle.extensions._internal.state.LaterConfigurable.Priority
 import com.javiersc.hubdle.extensions.config.analysis.AnalysisExtension
 import com.javiersc.hubdle.extensions.config.analysis._internal.configureAnalysis
 import com.javiersc.hubdle.extensions.config.analysis._internal.configureConfigAnalysisRawConfig
@@ -153,9 +154,9 @@ internal data class HubdleState(
     override fun configure(project: Project) {
         config.configure(project)
         kotlin.configure(project)
-        laterConfigurables
-            .sortedBy { it.priority.value }
-            .forEach { it.configureLater(project).invoke() }
+        laterConfigurables.sortedBy(LaterConfigurable::priority).forEach {
+            it.configureLater().configure(project)
+        }
     }
 
     data class Config(
@@ -179,10 +180,10 @@ internal data class HubdleState(
             binaryCompatibilityValidator.configure(project)
             coverage.configure(project)
             documentation.configure(project)
-            format.configure(project)
             install.configure(project)
             nexus.configure(project)
             publishing.configure(project)
+            project.hubdleState.laterConfigurables += format
             project.hubdleState.laterConfigurables += languageSettings
         }
 
@@ -331,11 +332,13 @@ internal data class HubdleState(
             val excludes: MutableList<String> = FormatExtension.EXCLUDES,
             var ktfmtVersion: String = FormatExtension.KTFMT_VERSION,
             val rawConfig: RawConfig = RawConfig(),
-        ) : Enableable, Configurable {
+        ) : Enableable, LaterConfigurable {
 
-            override fun configure(project: Project) {
-                configureFormat(project)
-                rawConfig.configure(project)
+            override val priority: Priority = Priority.VeryLow
+
+            override fun configureLater(): Configurable = Configurable {
+                configureFormat(it)
+                rawConfig.configure(it)
             }
 
             data class RawConfig(
@@ -353,8 +356,8 @@ internal data class HubdleState(
             var requiresOptIn: Boolean = true,
             var rawConfig: RawConfig = RawConfig(),
         ) : LaterConfigurable {
-            override fun configureLater(project: Project): () -> Unit = {
-                configureConfigLanguageSettings(project)
+            override fun configureLater(): Configurable = Configurable {
+                configureConfigLanguageSettings(it)
             }
 
             data class RawConfig(
@@ -430,6 +433,10 @@ internal data class HubdleState(
         var target: Int = JVM_VERSION,
     ) : Configurable {
 
+        val isEnabled: Boolean
+            get() =
+                android.isEnabled || gradle.isEnabled || jvm.isEnabled || multiplatform.isEnabled
+
         override fun configure(project: Project) {
             android.library.configure(project)
             gradle.configure(project)
@@ -442,6 +449,9 @@ internal data class HubdleState(
             val library: Library = Library(),
             var minSdk: Int = AndroidOptions.MIN_SDK,
         ) : Configurable {
+
+            val isEnabled: Boolean
+                get() = library.isEnabled
 
             override fun configure(project: Project) {
                 library.configure(project)
@@ -477,6 +487,9 @@ internal data class HubdleState(
             val plugin: Plugin = Plugin(),
             val versionCatalog: VersionCatalog = VersionCatalog(),
         ) : Configurable {
+
+            val isEnabled: Boolean
+                get() = plugin.isEnabled || versionCatalog.isEnabled
 
             override fun configure(project: Project) {
                 plugin.configure(project)
@@ -928,23 +941,41 @@ internal data class HubdleState(
     }
 }
 
-internal interface LaterConfigurable {
+internal fun interface LaterConfigurable {
 
-    enum class Priority(val value: Int) {
-        VeryHigh(1),
-        High(2),
-        Medium(3),
-        Low(4),
-        VeryLow(5)
+    sealed class Priority(private val value: Int) : Comparable<Priority> {
+
+        object VeryHigh : Priority(1) {
+            override fun toString(): String = "VeryHigh"
+        }
+        object High : Priority(2) {
+            override fun toString(): String = "High"
+        }
+        object Medium : Priority(3) {
+            override fun toString(): String = "Medium"
+        }
+        object Low : Priority(4) {
+            override fun toString(): String = "Low"
+        }
+        object VeryLow : Priority(5) {
+            override fun toString(): String = "VeryLow"
+        }
+
+        override fun compareTo(other: Priority): Int =
+            when {
+                value > other.value -> 1
+                value == other.value -> 0
+                else -> -1
+            }
     }
 
     val priority: Priority
         get() = Priority.Medium
 
-    fun configureLater(project: Project): () -> Unit
+    fun configureLater(): Configurable
 }
 
-internal interface Configurable {
+internal fun interface Configurable {
     fun configure(project: Project)
 }
 

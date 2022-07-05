@@ -46,19 +46,10 @@ constructor(
     public companion object {
         internal const val IS_ENABlED = true
 
-        internal val INCLUDES: MutableList<String> =
-            mutableListOf(
-                "*/kotlin/**/*.kt",
-                "src/*/kotlin/**/*.kt",
-            )
+        internal val INCLUDES: MutableList<String> = mutableListOf()
 
-        internal val EXCLUDES: MutableList<String> =
-            mutableListOf(
-                "*/resources/**/*.kt",
-                "src/*/resources/**/*.kt",
-                "**/build/**",
-                "**/.gradle/**",
-            )
+        internal val EXCLUDES: MutableList<String> = mutableListOf()
+
         internal const val KTFMT_VERSION = COM_FACEBOOK_KTFMT_VERSION
     }
 }

@@ -6,6 +6,8 @@
 
 ### Changed
 
+- Format includes/excludes use specific source sets
+
 ### Deprecated
 
 ### Removed

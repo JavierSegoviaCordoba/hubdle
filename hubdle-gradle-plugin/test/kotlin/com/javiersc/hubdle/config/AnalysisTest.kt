@@ -1,12 +1,11 @@
 package com.javiersc.hubdle.config
 
-import com.javiersc.gradle.testkit.test.extensions.gradleTestKitTest
-import com.javiersc.gradle.testkit.test.extensions.gradlewArgumentFromTXT
+import com.javiersc.gradle.testkit.test.extensions.GradleTest
 import io.kotest.matchers.file.shouldBeADirectory
 import io.kotest.matchers.file.shouldBeAFile
 import kotlin.test.Test
 
-internal class AnalysisTest {
+internal class AnalysisTest : GradleTest() {
 
     private val basePath = "config/analysis"
 

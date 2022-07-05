@@ -1,13 +1,12 @@
 package com.javiersc.hubdle.config.documentation.readme
 
-import com.javiersc.gradle.testkit.test.extensions.gradleTestKitTest
+import com.javiersc.gradle.testkit.test.extensions.GradleTest
 import com.javiersc.gradle.testkit.test.extensions.resourceFile
-import com.javiersc.gradle.testkit.test.extensions.withArgumentsFromTXT
-import io.kotest.matchers.file.shouldHaveSameStructureAndContentAs
+import io.kotest.matchers.shouldBe
 import java.io.File
 import kotlin.test.Test
 
-internal class ReadmeTest {
+internal class ReadmeTest : GradleTest() {
 
     @Test
     fun `readme badges`() {
@@ -33,7 +32,7 @@ internal class ReadmeTest {
                     val updatedText = readText().replace("{VERSION}", actualKotlinVersion)
                     writeText(updatedText)
                 }
-                expect shouldHaveSameStructureAndContentAs actual
+                expect.readText().shouldBe(actual.readText())
             }
         }
     }

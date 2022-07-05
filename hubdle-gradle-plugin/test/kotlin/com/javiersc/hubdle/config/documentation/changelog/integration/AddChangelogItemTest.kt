@@ -1,32 +1,29 @@
 package com.javiersc.hubdle.config.documentation.changelog.integration
 
-import com.javiersc.gradle.testkit.test.extensions.gradleTestKitTest
-import com.javiersc.gradle.testkit.test.extensions.gradlewArgumentFromTXT
-import com.javiersc.gradle.testkit.test.extensions.testConfigurationCache
-import com.javiersc.gradle.testkit.test.extensions.withArgumentsFromTXT
+import com.javiersc.gradle.testkit.test.extensions.GradleTest
 import com.javiersc.hubdle.commitAndCheckout
 import com.javiersc.hubdle.config.documentation.changelog.utils.testChangelog
 import kotlin.test.Test
 import org.gradle.testkit.runner.TaskOutcome
 
-internal class AddChangelogItemTest {
+internal class AddChangelogItemTest : GradleTest() {
 
     private val basePath = "config/documentation/changelog/add-changelog-item"
 
     @Test
     fun `added 1`() {
         gradleTestKitTest("$basePath/sandbox-added-1") {
-            val result = gradlewArgumentFromTXT()
-            testChangelog(result, projectDir)
+            gradlewArgumentFromTXT()
+            projectDir.testChangelog()
         }
     }
 
     @Test
     fun `added configuration cache 1`() {
-        gradleTestKitTest("$basePath/sandbox-added-configuration-cache-1", isolated = true) {
+        gradleTestKitTest("$basePath/sandbox-added-configuration-cache-1") {
             withArgumentsFromTXT()
-            val result = build()
-            testChangelog(result, projectDir)
+            build()
+            projectDir.testChangelog()
             testConfigurationCache(expectTaskOutcome = TaskOutcome.SUCCESS)
         }
     }
@@ -34,57 +31,57 @@ internal class AddChangelogItemTest {
     @Test
     fun `changed 1`() {
         gradleTestKitTest("$basePath/sandbox-changed-1") {
-            val result = gradlewArgumentFromTXT()
-            testChangelog(result, projectDir)
+            gradlewArgumentFromTXT()
+            projectDir.testChangelog()
         }
     }
 
     @Test
     fun `deprecated 1`() {
         gradleTestKitTest("$basePath/sandbox-deprecated-1") {
-            val result = gradlewArgumentFromTXT()
-            testChangelog(result, projectDir)
+            gradlewArgumentFromTXT()
+            projectDir.testChangelog()
         }
     }
 
     @Test
     fun `removed 1`() {
         gradleTestKitTest("$basePath/sandbox-removed-1") {
-            val result = gradlewArgumentFromTXT()
-            testChangelog(result, projectDir)
+            gradlewArgumentFromTXT()
+            projectDir.testChangelog()
         }
     }
 
     @Test
     fun `fixed 1`() {
         gradleTestKitTest("$basePath/sandbox-fixed-1") {
-            val result = gradlewArgumentFromTXT()
-            testChangelog(result, projectDir)
+            gradlewArgumentFromTXT()
+            projectDir.testChangelog()
         }
     }
 
     @Test
     fun `updated 1`() {
         gradleTestKitTest("$basePath/sandbox-updated-1") {
-            val result = gradlewArgumentFromTXT()
-            testChangelog(result, projectDir)
+            gradlewArgumentFromTXT()
+            projectDir.testChangelog()
         }
     }
 
     @Test
     fun `renovate 1`() {
         gradleTestKitTest("$basePath/sandbox-renovate-1") {
-            val result = gradlewArgumentFromTXT()
-            testChangelog(result, projectDir)
+            gradlewArgumentFromTXT()
+            projectDir.testChangelog()
         }
     }
 
     @Test
     fun `renovate configuration cache 1`() {
-        gradleTestKitTest("$basePath/sandbox-renovate-configuration-cache-1", isolated = true) {
+        gradleTestKitTest("$basePath/sandbox-renovate-configuration-cache-1") {
             withArgumentsFromTXT()
-            val result = build()
-            testChangelog(result, projectDir)
+            build()
+            projectDir.testChangelog()
             testConfigurationCache(expectTaskOutcome = TaskOutcome.SUCCESS)
         }
     }
@@ -92,16 +89,16 @@ internal class AddChangelogItemTest {
     @Test
     fun `renovate 2`() {
         gradleTestKitTest("$basePath/sandbox-renovate-2") {
-            val result = gradlewArgumentFromTXT()
-            testChangelog(result, projectDir)
+            gradlewArgumentFromTXT()
+            projectDir.testChangelog()
         }
     }
 
     @Test
     fun `renovate 3`() {
         gradleTestKitTest("$basePath/sandbox-renovate-3") {
-            val result = gradlewArgumentFromTXT()
-            testChangelog(result, projectDir)
+            gradlewArgumentFromTXT()
+            projectDir.testChangelog()
         }
     }
 
@@ -116,8 +113,8 @@ internal class AddChangelogItemTest {
                     | maven      | com.gradle.enterprise:com.gradle.enterprise.gradle.plugin | 3.6.4 | 3.7 |
                 """.trimIndent(),
             )
-            val result = gradlewArgumentFromTXT()
-            testChangelog(result, projectDir)
+            gradlewArgumentFromTXT()
+            projectDir.testChangelog()
         }
     }
 
@@ -135,8 +132,8 @@ internal class AddChangelogItemTest {
                     | maven      | com.javiersc.either:either-core                           | 2.0.1 | 2.0.2 |
                 """.trimIndent(),
             )
-            val result = gradlewArgumentFromTXT()
-            testChangelog(result, projectDir)
+            gradlewArgumentFromTXT()
+            projectDir.testChangelog()
         }
     }
 
@@ -151,8 +148,8 @@ internal class AddChangelogItemTest {
                     | maven      | com.javiersc.mokoki:mokoki-core                           | 1.0.0 | 1.0.1 |
                 """.trimIndent(),
             )
-            val result = gradlewArgumentFromTXT()
-            testChangelog(result, projectDir)
+            gradlewArgumentFromTXT()
+            projectDir.testChangelog()
         }
     }
 
@@ -172,8 +169,8 @@ internal class AddChangelogItemTest {
                         | github-tags | actions/cache | v2.1.6 | v2.1.7 |
                     """.trimIndent(),
             )
-            val result = gradlewArgumentFromTXT()
-            testChangelog(result, projectDir)
+            gradlewArgumentFromTXT()
+            projectDir.testChangelog()
         }
     }
 
@@ -188,8 +185,8 @@ internal class AddChangelogItemTest {
                         | gradle-version | gradle  | 7.3.3 | 7.4 |
                     """.trimIndent(),
             )
-            val result = gradlewArgumentFromTXT()
-            testChangelog(result, projectDir)
+            gradlewArgumentFromTXT()
+            projectDir.testChangelog()
         }
     }
 }

@@ -1,17 +1,13 @@
 package com.javiersc.hubdle.config.install.preCommits
 
-import com.javiersc.gradle.testkit.test.extensions.cleanBuildDirectory
-import com.javiersc.gradle.testkit.test.extensions.gradleTestKitTest
-import com.javiersc.gradle.testkit.test.extensions.gradlewArgumentFromTXT
-import com.javiersc.gradle.testkit.test.extensions.testConfigurationCache
-import com.javiersc.gradle.testkit.test.extensions.withArgumentsFromTXT
+import com.javiersc.gradle.testkit.test.extensions.GradleTest
 import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.collections.shouldNotContain
 import kotlin.test.Test
 import org.gradle.testkit.runner.GradleRunner
 
-class PreCommitsTests {
+class PreCommitsTests : GradleTest() {
 
     private val basePath = "config/install/pre-commits"
 
@@ -32,7 +28,7 @@ class PreCommitsTests {
 
     @Test
     fun `all projects all pre-commits enabled 1 configuration cache`() {
-        gradleTestKitTest("$basePath/enabled-configuration-cache-1", isolated = true) {
+        gradleTestKitTest("$basePath/enabled-configuration-cache-1") {
             withArgumentsFromTXT()
             build()
             preCommitFileLines.shouldContain("./gradlew allTests")

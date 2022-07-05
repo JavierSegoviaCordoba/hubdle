@@ -1,10 +1,10 @@
 package com.javiersc.hubdle
 
-import com.javiersc.gradle.testkit.test.extensions.gradleTestKitTest
+import com.javiersc.gradle.testkit.test.extensions.GradleTest
 import io.kotest.matchers.string.shouldContain
 import kotlin.test.Test
 
-class CheckCompatibilityTest {
+class CheckCompatibilityTest : GradleTest() {
 
     @Test
     fun `check compatibility`() {

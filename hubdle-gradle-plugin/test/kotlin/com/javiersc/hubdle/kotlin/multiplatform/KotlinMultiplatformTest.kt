@@ -1,7 +1,6 @@
 package com.javiersc.hubdle.kotlin.multiplatform
 
-import com.javiersc.gradle.testkit.test.extensions.gradleTestKitTest
-import com.javiersc.gradle.testkit.test.extensions.gradlewArgumentFromTXT
+import com.javiersc.gradle.testkit.test.extensions.GradleTest
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.collections.shouldNotBeEmpty
 import io.kotest.matchers.file.shouldBeADirectory
@@ -15,7 +14,7 @@ import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable
 import org.junit.jupiter.api.condition.EnabledOnOs
 import org.junit.jupiter.api.condition.OS
 
-internal class KotlinMultiplatformTest {
+internal class KotlinMultiplatformTest : GradleTest() {
 
     private val basePath = "kotlin/multiplatform"
 

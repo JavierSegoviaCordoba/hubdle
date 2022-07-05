@@ -1,8 +1,6 @@
 package com.javiersc.hubdle.kotlin.jvm
 
-import com.javiersc.gradle.testkit.test.extensions.gradleTestKitTest
-import com.javiersc.gradle.testkit.test.extensions.gradlewArgumentFromTXT
-import com.javiersc.gradle.testkit.test.extensions.withArgumentsFromTXT
+import com.javiersc.gradle.testkit.test.extensions.GradleTest
 import io.kotest.matchers.file.shouldBeADirectory
 import io.kotest.matchers.file.shouldBeAFile
 import io.kotest.matchers.string.shouldContain
@@ -11,7 +9,7 @@ import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 
-internal class KotlinJvmTest {
+internal class KotlinJvmTest : GradleTest() {
 
     private val basePath = "kotlin/jvm"
 

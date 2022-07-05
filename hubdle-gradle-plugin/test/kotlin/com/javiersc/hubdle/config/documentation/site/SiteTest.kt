@@ -1,17 +1,18 @@
 package com.javiersc.hubdle.config.documentation.site
 
-import com.javiersc.gradle.testkit.test.extensions.gradleTestKitTest
+import com.javiersc.gradle.testkit.test.extensions.GradleTest
 import com.javiersc.gradle.testkit.test.extensions.resourceFile
-import com.javiersc.gradle.testkit.test.extensions.withArgumentsFromTXT
 import io.kotest.matchers.file.shouldBeADirectory
 import io.kotest.matchers.file.shouldBeAFile
 import io.kotest.matchers.file.shouldHaveSameStructureAndContentAs
 import java.io.File
+import kotlin.test.Ignore
 import kotlin.test.Test
 
-internal class SiteTest {
+internal class SiteTest : GradleTest() {
 
     @Test
+    @Ignore(value = "https://github.com/kotest/kotest/pull/3091")
     fun `site docs`() {
         val rootDir: File = resourceFile("config")
         val readmeDir: File = resourceFile("config/documentation/site")

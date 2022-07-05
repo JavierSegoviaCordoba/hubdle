@@ -1,19 +1,17 @@
 package com.javiersc.hubdle.config.documentation.changelog.utils
 
-import io.kotest.matchers.file.shouldHaveSameContentAs
+import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldNotBeBlank
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
-import org.gradle.testkit.runner.BuildResult
 
-@Suppress("UNUSED_PARAMETER")
-internal fun testChangelog(result: BuildResult, testProjectDir: File) {
-    with(testProjectDir) {
+internal fun File.testChangelog() {
+    with(this) {
         updateChangelogActualDate()
         changelog.readText().shouldNotBeBlank()
         changelogActual.readText().shouldNotBeBlank()
-        changelog.shouldHaveSameContentAs(changelogActual)
+        changelog.readText().shouldBe(changelogActual.readText())
     }
 }
 

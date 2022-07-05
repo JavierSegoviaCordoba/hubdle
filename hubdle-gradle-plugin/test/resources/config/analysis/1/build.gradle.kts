@@ -8,6 +8,10 @@ hubdle {
     config {
         analysis()
 
+        format {
+            isEnabled = false
+        }
+
         versioning {
             isEnabled = false
         }

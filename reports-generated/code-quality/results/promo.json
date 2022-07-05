@@ -1,0 +1,156 @@
+{"version":"3","listProblem":[{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused receiver parameter",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Receiver parameter is never used",
+  "detailsInfo": "Reports receiver parameter of extension functions and properties that is not used.\n\n**Remove redundant receiver parameter** can be used to amend the code automatically.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/HubdleExtension.kt",
+      "language": "kotlin",
+      "line": 26,
+      "offset": 15,
+      "length": 7,
+      "code": {
+        "startLine": 24,
+        "length": 7,
+        "offset": 37,
+        "surroundingCode": "\n    @HubdleDslMarker\n    public fun Project.kotlin(action: Action<in KotlinExtension>) {\n        action.execute(kotlin)\n    }"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-gradle-plugin.main",
+    "inspectionName": "UnusedReceiverParameter"
+  },
+  "hash": "-1926134180766942646"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused receiver parameter",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Receiver parameter is never used",
+  "detailsInfo": "Reports receiver parameter of extension functions and properties that is not used.\n\n**Remove redundant receiver parameter** can be used to amend the code automatically.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/HubdleExtension.kt",
+      "language": "kotlin",
+      "line": 19,
+      "offset": 15,
+      "length": 7,
+      "code": {
+        "startLine": 17,
+        "length": 7,
+        "offset": 37,
+        "surroundingCode": "\n    @HubdleDslMarker\n    public fun Project.config(action: Action<in ConfigExtension>) {\n        action.execute(config)\n    }"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-gradle-plugin.main",
+    "inspectionName": "UnusedReceiverParameter"
+  },
+  "hash": "6365189784766549069"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Object \"High\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "class",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/state/HubdleState.kt",
+      "language": "kotlin",
+      "line": 951,
+      "offset": 15,
+      "length": 4,
+      "code": {
+        "startLine": 949,
+        "length": 4,
+        "offset": 82,
+        "surroundingCode": "            override fun toString(): String = \"VeryHigh\"\n        }\n        object High : Priority(2) {\n            override fun toString(): String = \"High\"\n        }"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-gradle-plugin.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "3842421845793236514"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Object \"VeryHigh\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "class",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/state/HubdleState.kt",
+      "language": "kotlin",
+      "line": 948,
+      "offset": 15,
+      "length": 8,
+      "code": {
+        "startLine": 946,
+        "length": 8,
+        "offset": 91,
+        "surroundingCode": "    sealed class Priority(private val value: Int) : Comparable<Priority> {\n\n        object VeryHigh : Priority(1) {\n            override fun toString(): String = \"VeryHigh\"\n        }"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-gradle-plugin.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "6358418214092846078"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Object \"Low\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "class",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/state/HubdleState.kt",
+      "language": "kotlin",
+      "line": 957,
+      "offset": 15,
+      "length": 3,
+      "code": {
+        "startLine": 955,
+        "length": 3,
+        "offset": 80,
+        "surroundingCode": "            override fun toString(): String = \"Medium\"\n        }\n        object Low : Priority(4) {\n            override fun toString(): String = \"Low\"\n        }"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-gradle-plugin.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "4331618348775206786"
+}]}

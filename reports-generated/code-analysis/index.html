@@ -157,11 +157,11 @@
 
 <div>
   <ul>
-    <li>846 number of properties</li>
+    <li>823 number of properties</li>
     <li>495 number of functions</li>
-    <li>222 number of classes</li>
+    <li>223 number of classes</li>
     <li>72 number of packages</li>
-    <li>182 number of kt files</li>
+    <li>183 number of kt files</li>
   </ul>
 </div>
 
@@ -170,13 +170,13 @@
 
 <div>
   <ul>
-    <li>9,623 lines of code (loc)</li>
-    <li>7,880 source lines of code (sloc)</li>
-    <li>5,297 logical lines of code (lloc)</li>
+    <li>9,611 lines of code (loc)</li>
+    <li>7,866 source lines of code (sloc)</li>
+    <li>5,296 logical lines of code (lloc)</li>
     <li>28 comment lines of code (cloc)</li>
     <li>815 cyclomatic complexity (mcc)</li>
     <li>404 cognitive complexity</li>
-    <li>49 number of total code smells</li>
+    <li>51 number of total code smells</li>
     <li>0% comment source ratio</li>
     <li>153 mcc per 1,000 lloc</li>
     <li>9 code smells per 1,000 lloc</li>
@@ -185,7 +185,7 @@
 
 
 <h2>Findings</h2>
-<div>Total: 49
+<div>Total: 51
   <h3>complexity: 6</h3>
   <details id="ComplexCondition" open="open">
     <summary class="rule-container"><span class="rule">ComplexCondition: 1 </span><span class="description">Complex conditions should be simplified and extracted into well-named methods if necessary.</span></summary>
@@ -544,7 +544,7 @@
       </li>
     </ul>
   </details>
-  <h3>style: 8</h3>
+  <h3>style: 10</h3>
   <details id="ForbiddenComment" open="open">
     <summary class="rule-container"><span class="rule">ForbiddenComment: 2 </span><span class="description">Flags a forbidden comment.</span></summary>
     <ul>
@@ -616,26 +616,46 @@
     </ul>
   </details>
   <details id="MaxLineLength" open="open">
-    <summary class="rule-container"><span class="rule">MaxLineLength: 2 </span><span class="description">Line detected, which is longer than the defined maximum line length in the code style.</span></summary>
+    <summary class="rule-container"><span class="rule">MaxLineLength: 4 </span><span class="description">Line detected, which is longer than the defined maximum line length in the code style.</span></summary>
     <ul>
-      <li><span class="location">hubdle-gradle-plugin/test/kotlin/com/javiersc/hubdle/kotlin/jvm/features/KotlinJvmFeaturesTest.kt:36:1</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
+      <li><span class="location">hubdle-gradle-plugin/test/kotlin/com/javiersc/hubdle/kotlin/jvm/features/KotlinJvmFeaturesHubdleCatalogTest.kt:30:1</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  27 </span>                .shouldContain(
+<span class="lineno">  28 </span>                    &quot;&quot;&quot;
+<span class="lineno">  29 </span>                        implementation - Implementation only dependencies for compilation 'main' (target  (jvm)). (n)
+<span class="lineno">  30 </span><span class="error">                        +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:</span>$ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_VERSION (n)
+<span class="lineno">  31 </span>                        \--- com.javiersc.kotlin:kotlin-stdlib:$COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_VERSION (n)
+<span class="lineno">  32 </span>                    &quot;&quot;&quot;.trimIndent()
+<span class="lineno">  33 </span>                )
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-gradle-plugin/test/kotlin/com/javiersc/hubdle/kotlin/jvm/features/KotlinJvmFeaturesHubdleCatalogTest.kt:36:1</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
         <pre><code><span class="lineno">  33 </span>                )
 <span class="lineno">  34 </span>                .shouldContain(
 <span class="lineno">  35 </span>                    &quot;&quot;&quot;
 <span class="lineno">  36 </span><span class="error">                        testImplementation - Implementation only dependencies for compilation 'test' (target  (jvm)). (n)</span>
-<span class="lineno">  37 </span>                        +--- org.jetbrains.kotlin:kotlin-test:1.6.21 (n)
-<span class="lineno">  38 </span>                        +--- org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.3 (n)
-<span class="lineno">  39 </span>                        +--- io.kotest:kotest-assertions-core:5.3.2 (n)
+<span class="lineno">  37 </span>                        +--- org.jetbrains.kotlin:kotlin-test:$ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_VERSION (n)
+<span class="lineno">  38 </span>                        +--- org.jetbrains.kotlinx:kotlinx-coroutines-test:$ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_VERSION (n)
+<span class="lineno">  39 </span>                        +--- io.kotest:kotest-assertions-core:$IO_KOTEST_KOTEST_ASSERTIONS_CORE_VERSION (n)
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/test/kotlin/com/javiersc/hubdle/kotlin/jvm/features/KotlinJvmFeaturesTest.kt:60:1</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
-        <pre><code><span class="lineno">  57 </span>                )
-<span class="lineno">  58 </span>                .shouldContain(
-<span class="lineno">  59 </span>                    &quot;&quot;&quot;
-<span class="lineno">  60 </span><span class="error">                        testImplementation - Implementation only dependencies for compilation 'test' (target  (jvm)). (n)</span>
-<span class="lineno">  61 </span>                        +--- org.jetbrains.kotlin:kotlin-test:1.6.21 (n)
-<span class="lineno">  62 </span>                        +--- org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.1 (n)
-<span class="lineno">  63 </span>                        +--- io.kotest:kotest-assertions-core:5.3.2 (n)
+      <li><span class="location">hubdle-gradle-plugin/test/kotlin/com/javiersc/hubdle/kotlin/jvm/features/KotlinJvmFeaturesHubdleCatalogTest.kt:38:1</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  35 </span>                    &quot;&quot;&quot;
+<span class="lineno">  36 </span>                        testImplementation - Implementation only dependencies for compilation 'test' (target  (jvm)). (n)
+<span class="lineno">  37 </span>                        +--- org.jetbrains.kotlin:kotlin-test:$ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_VERSION (n)
+<span class="lineno">  38 </span><span class="error">                        +--- org.jetbrains.kotlinx:kotlinx-coroutines-test:</span>$ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_VERSION (n)
+<span class="lineno">  39 </span>                        +--- io.kotest:kotest-assertions-core:$IO_KOTEST_KOTEST_ASSERTIONS_CORE_VERSION (n)
+<span class="lineno">  40 </span>                        \--- org.jetbrains.kotlin:kotlin-test:$ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_VERSION (n)
+<span class="lineno">  41 </span>                    &quot;&quot;&quot;.trimIndent()
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-gradle-plugin/test/kotlin/com/javiersc/hubdle/kotlin/jvm/features/KotlinJvmFeaturesUserCatalogTest.kt:23:1</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  20 </span>                )
+<span class="lineno">  21 </span>                .shouldContain(
+<span class="lineno">  22 </span>                    &quot;&quot;&quot;
+<span class="lineno">  23 </span><span class="error">                        testImplementation - Implementation only dependencies for compilation 'test' (target  (jvm)). (n)</span>
+<span class="lineno">  24 </span>                        +--- org.jetbrains.kotlin:kotlin-test:1.6.21 (n)
+<span class="lineno">  25 </span>                        +--- org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.1 (n)
+<span class="lineno">  26 </span>                        +--- io.kotest:kotest-assertions-core:5.3.2 (n)
 </code></pre>
       </li>
     </ul>
@@ -643,7 +663,7 @@
 </div>
 
 
-generated with <a href="https://detekt.dev/">detekt version 1.20.0</a> on 2022-07-05 15:20:03 UTC.
+generated with <a href="https://detekt.dev/">detekt version 1.20.0</a> on 2022-07-05 21:22:30 UTC.
 
 </body>
 </html>

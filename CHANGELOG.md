@@ -16,6 +16,8 @@
 
 ### Updated
 
+- `org.jsoup:jsoup -> 1.15.2`
+
 ## [0.2.0-alpha.8] - 2022-07-05
 
 ### Fixed

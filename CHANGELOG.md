@@ -12,10 +12,14 @@
 
 ### Fixed
 
+### Updated
+
+## [0.2.0-alpha.8] - 2022-07-05
+
+### Fixed
+
 - Multiplatform publication hasn't an empty javadoc
 - Format default includes/excludes can be empty
-
-### Updated
 
 ## [0.2.0-alpha.7] - 2022-07-04
 

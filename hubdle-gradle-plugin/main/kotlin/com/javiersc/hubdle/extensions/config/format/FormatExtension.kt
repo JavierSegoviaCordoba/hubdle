@@ -21,9 +21,9 @@ constructor(
 
     override var isEnabled: Boolean = IS_ENABlED
 
-    public val includes: MutableList<String> = INCLUDES.toMutableList()
+    public val includes: MutableList<String> = INCLUDES
 
-    public val excludes: MutableList<String> = EXCLUDES.toMutableList()
+    public val excludes: MutableList<String> = EXCLUDES
 
     public var ktfmtVersion: String = KTFMT_VERSION
 
@@ -46,14 +46,14 @@ constructor(
     public companion object {
         internal const val IS_ENABlED = true
 
-        internal val INCLUDES: List<String> =
-            listOf(
+        internal val INCLUDES: MutableList<String> =
+            mutableListOf(
                 "*/kotlin/**/*.kt",
                 "src/*/kotlin/**/*.kt",
             )
 
-        internal val EXCLUDES: List<String> =
-            listOf(
+        internal val EXCLUDES: MutableList<String> =
+            mutableListOf(
                 "*/resources/**/*.kt",
                 "src/*/resources/**/*.kt",
                 "**/build/**",

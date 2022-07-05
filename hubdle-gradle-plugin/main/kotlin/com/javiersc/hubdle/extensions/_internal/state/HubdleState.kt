@@ -327,8 +327,8 @@ internal data class HubdleState(
 
         data class Format(
             override var isEnabled: Boolean = FormatExtension.IS_ENABlED,
-            val includes: MutableList<String> = FormatExtension.INCLUDES.toMutableList(),
-            val excludes: MutableList<String> = FormatExtension.EXCLUDES.toMutableList(),
+            val includes: MutableList<String> = FormatExtension.INCLUDES,
+            val excludes: MutableList<String> = FormatExtension.EXCLUDES,
             var ktfmtVersion: String = FormatExtension.KTFMT_VERSION,
             val rawConfig: RawConfig = RawConfig(),
         ) : Enableable, Configurable {

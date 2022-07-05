@@ -54,8 +54,8 @@ private fun configureDetekt(project: Project) {
 
         project.tasks.withType<Detekt>().configureEach { detekt ->
             detekt.setSource(project.files(project.rootDir))
-            detekt.include(analysis.includes)
-            detekt.exclude(analysis.excludes)
+            detekt.include(analysis.includes.distinct())
+            detekt.exclude(analysis.excludes.distinct())
 
             detekt.reports { reports ->
                 reports.html { report -> report.required.set(analysis.reports.html) }

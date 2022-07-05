@@ -47,8 +47,8 @@ internal fun configureFormat(project: Project) {
 
         project.configure<SpotlessExtension> {
             kotlin {
-                it.target(format.includes)
-                it.targetExclude(format.excludes)
+                it.target(format.includes.distinct())
+                it.targetExclude(format.excludes.distinct())
                 it.ktfmt(format.ktfmtVersion).kotlinlangStyle()
             }
         }

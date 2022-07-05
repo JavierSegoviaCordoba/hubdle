@@ -16,6 +16,7 @@
 
 ### Updated
 
+- `org.eclipse.jgit:org.eclipse.jgit -> 6.2.0.202206071550-r`
 - `com.javiersc.gradle:gradle-test-extensions -> 1.0.0-alpha.26`
 - `com.javiersc.gradle:gradle-extensions -> 1.0.0-alpha.26`
 

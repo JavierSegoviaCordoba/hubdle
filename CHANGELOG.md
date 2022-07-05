@@ -16,6 +16,7 @@
 
 ### Updated
 
+- `actions/setup-java -> v3.4.0`
 - `ru.vyarus:gradle-mkdocs-plugin -> 2.4.0`
 - `org.sonarsource.scanner.gradle:sonarqube-gradle-plugin -> 3.4.0.2513`
 - `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.10.1`

@@ -16,6 +16,7 @@
 
 ### Updated
 
+- `gradle/gradle-build-action -> v2.2.1`
 - `actions/setup-java -> v3.4.0`
 - `ru.vyarus:gradle-mkdocs-plugin -> 2.4.0`
 - `org.sonarsource.scanner.gradle:sonarqube-gradle-plugin -> 3.4.0.2513`

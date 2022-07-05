@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- Multiplatform publication hasn't an empty javadoc
+
 ### Updated
 
 ## [0.2.0-alpha.7] - 2022-07-04

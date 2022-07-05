@@ -16,6 +16,7 @@ import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.api.tasks.TaskCollection
+import org.gradle.jvm.tasks.Jar
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.create
 import org.gradle.kotlin.dsl.get
@@ -52,7 +53,7 @@ internal fun Project.configureJavaJarsForPublishing() {
 internal fun Project.configurePublishingExtension() {
     configure<PublishingExtension> {
         publications { container ->
-            container.withType<MavenPublication>() {
+            container.withType<MavenPublication> {
                 pom.name.set(getProperty(POM.name))
                 pom.description.set(getProperty(POM.description))
                 pom.url.set(getProperty(POM.url))
@@ -79,6 +80,19 @@ internal fun Project.configurePublishingExtension() {
     }
 
     configurePublishOnlySemver()
+}
+
+internal fun Project.configureEmptyJavadocs() {
+    val emptyJavadocsJarTask: TaskCollection<Jar> = tasks.maybeRegisterLazily("emptyJavadocsJar")
+    emptyJavadocsJarTask.configureEach {
+        it.group = "build"
+        it.description = "Assembles an empty Javadoc jar file for publishing"
+        it.archiveClassifier.set("javadoc")
+    }
+    val emptyJavadocsJar: Jar = emptyJavadocsJarTask.first()
+    the<PublishingExtension>().publications.withType<MavenPublication> {
+        artifact(emptyJavadocsJar)
+    }
 }
 
 internal fun Project.configureSigningForPublishing() {

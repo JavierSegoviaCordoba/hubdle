@@ -17,6 +17,7 @@ import com.javiersc.hubdle.extensions.dependencies._internal.constants.ORG_JETBR
 import com.javiersc.hubdle.extensions.kotlin._internal.configJvmTarget
 import com.javiersc.hubdle.extensions.options.configureDefaultJavaSourceSets
 import com.javiersc.hubdle.extensions.options.configureDefaultKotlinSourceSets
+import com.javiersc.hubdle.extensions.options.configureEmptyJavadocs
 import com.javiersc.hubdle.extensions.options.configurePublishingExtension
 import com.javiersc.hubdle.extensions.options.configureSigningForPublishing
 import org.gradle.api.Project
@@ -46,6 +47,7 @@ internal fun configureMultiplatform(project: Project) {
             project.pluginManager.apply(PluginIds.Publishing.signing)
             project.configurePublishingExtension()
             project.configureSigningForPublishing()
+            project.configureEmptyJavadocs()
         }
     }
 }

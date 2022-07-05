@@ -16,7 +16,7 @@
 
 ### Updated
 
-- `com.diffplug.spotless:spotless-plugin-gradle -> 6.7.2`
+- `com.diffplug.spotless:spotless-plugin-gradle -> 6.8.0`
 - `com.javiersc.kotlin:kotlin-stdlib -> 0.1.0-alpha.7`
 - `org.eclipse.jgit:org.eclipse.jgit -> 6.2.0.202206071550-r`
 - `com.javiersc.gradle:gradle-test-extensions -> 1.0.0-alpha.26`

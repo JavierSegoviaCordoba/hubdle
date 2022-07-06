@@ -53,6 +53,7 @@ constructor(
 
     @HubdleDslMarker
     public open class RawConfigExtension {
+
         @HubdleDslMarker
         public fun Project.changelog(action: Action<ChangelogPluginExtension>) {
             hubdleState.config.documentation.changelog.rawConfig.changelog = action

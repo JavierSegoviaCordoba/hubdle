@@ -29,6 +29,7 @@ constructor(
 
     @HubdleDslMarker
     public open class RawConfigExtension {
+
         @HubdleDslMarker
         public fun Project.apiValidation(action: Action<ApiValidationExtension>) {
             hubdleState.config.binaryCompatibilityValidator.rawConfig.apiValidation = action

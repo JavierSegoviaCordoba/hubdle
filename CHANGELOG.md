@@ -12,9 +12,13 @@
 
 ### Fixed
 
-- applying signing plugin too early and with incorrect conditions
-
 ### Updated
+
+## [0.2.0-alpha.11] - 2022-07-06
+
+### Fixed
+
+- applying signing plugin too early and with incorrect conditions
 
 ## [0.2.0-alpha.10] - 2022-07-06
 

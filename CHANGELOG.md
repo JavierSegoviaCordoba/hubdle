@@ -6,8 +6,6 @@
 
 ### Changed
 
-- plugin dependencies from `implementation` to `api`
-
 ### Deprecated
 
 ### Removed
@@ -15,6 +13,12 @@
 ### Fixed
 
 ### Updated
+
+## [0.2.0-alpha.10] - 2022-07-06
+
+### Changed
+
+- plugin dependencies from `implementation` to `api`
 
 ## [0.2.0-alpha.9] - 2022-07-06
 

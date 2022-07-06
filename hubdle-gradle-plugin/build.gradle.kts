@@ -37,6 +37,19 @@ gradlePlugin {
 val testPluginClasspath: Configuration by configurations.creating
 
 dependencies {
+    api(pluginLibs.adarshr.gradleTestLoggerPlugin)
+    api(pluginLibs.diffplug.spotless.spotlessPluginGradle)
+    api(pluginLibs.github.gradleNexus.publishPlugin)
+    api(pluginLibs.gitlab.arturboschDetekt.detektGradlePlugin)
+    api(pluginLibs.gradle.publish.pluginPublishPlugin)
+    api(pluginLibs.javiersc.semver.semverGradlePlugin)
+    api(pluginLibs.jetbrains.dokka.dokkaGradlePlugin)
+    api(pluginLibs.jetbrains.intellijPlugins.gradleChangelogPlugin)
+    api(pluginLibs.jetbrains.kotlinx.binaryCompatibilityValidator)
+    api(pluginLibs.jetbrains.kotlinx.kover)
+    api(pluginLibs.sonarqube.scannerGradle.sonarqubeGradlePlugin)
+    api(pluginLibs.vyarus.gradleMkdocsPlugin)
+
     compileOnly(pluginLibs.android.toolsBuild.gradle)
     compileOnly(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)
 
@@ -46,18 +59,6 @@ dependencies {
     implementation(libs.javiersc.gradle.gradleExtensions)
     implementation(libs.javiersc.kotlin.kotlinStdlib)
     implementation(libs.javiersc.semver.semverCore)
-    implementation(pluginLibs.adarshr.gradleTestLoggerPlugin)
-    implementation(pluginLibs.diffplug.spotless.spotlessPluginGradle)
-    implementation(pluginLibs.github.gradleNexus.publishPlugin)
-    implementation(pluginLibs.gitlab.arturboschDetekt.detektGradlePlugin)
-    implementation(pluginLibs.gradle.publish.pluginPublishPlugin)
-    implementation(pluginLibs.javiersc.semver.semverGradlePlugin)
-    implementation(pluginLibs.jetbrains.dokka.dokkaGradlePlugin)
-    implementation(pluginLibs.jetbrains.intellijPlugins.gradleChangelogPlugin)
-    implementation(pluginLibs.jetbrains.kotlinx.binaryCompatibilityValidator)
-    implementation(pluginLibs.jetbrains.kotlinx.kover)
-    implementation(pluginLibs.sonarqube.scannerGradle.sonarqubeGradlePlugin)
-    implementation(pluginLibs.vyarus.gradleMkdocsPlugin)
 
     testImplementation(gradleTestKit())
     testImplementation(libs.javiersc.gradle.gradleTestExtensions)

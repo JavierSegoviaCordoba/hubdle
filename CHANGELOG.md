@@ -6,6 +6,8 @@
 
 ### Changed
 
+- plugin dependencies from `implementation` to `api`
+
 ### Deprecated
 
 ### Removed

@@ -4,10 +4,6 @@
 
 ### Added
 
-- `excludes` function to exclude the generation of API docs in those projects
-- `gradlePlugin` to `KotlinGradlePluginExtension`
-- `pluginUnderTestDependencies` to `KotlinGradlePluginExtension`
-
 ### Changed
 
 ### Deprecated
@@ -17,6 +13,14 @@
 ### Fixed
 
 ### Updated
+
+## [0.2.0-alpha.12] - 2022-07-06
+
+### Added
+
+- `excludes` function to exclude the generation of API docs in those projects
+- `gradlePlugin` to `KotlinGradlePluginExtension`
+- `pluginUnderTestDependencies` to `KotlinGradlePluginExtension`
 
 ## [0.2.0-alpha.11] - 2022-07-06
 

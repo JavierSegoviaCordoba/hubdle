@@ -6,12 +6,20 @@
 
 ### Changed
 
-- Format includes/excludes use specific source sets
-- Provided dependencies are not null 
-
 ### Deprecated
 
 ### Removed
+
+### Fixed
+
+### Updated
+
+## [0.2.0-alpha.9] - 2022-07-06
+
+### Changed
+
+- Format includes/excludes use specific source sets
+- Provided dependencies are not null 
 
 ### Fixed
 

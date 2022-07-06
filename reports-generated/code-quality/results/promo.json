@@ -11,16 +11,16 @@
   "sources": [
     {
       "type": "method",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/KotlinMultiplatformExtension.kt",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/HubdleExtension.kt",
       "language": "kotlin",
-      "line": 86,
+      "line": 19,
       "offset": 15,
       "length": 7,
       "code": {
-        "startLine": 84,
+        "startLine": 17,
         "length": 7,
         "offset": 37,
-        "surroundingCode": "\n    @HubdleDslMarker\n    public fun Project.common(action: Action<KotlinMultiplatformCommonExtension> = Action {}) {\n        action.execute(common)\n    }"
+        "surroundingCode": "\n    @HubdleDslMarker\n    public fun Project.config(action: Action<in ConfigExtension>) {\n        action.execute(config)\n    }"
       }
     }
   ],
@@ -28,5 +28,36 @@
     "module": "hubdle.hubdle-gradle-plugin.main",
     "inspectionName": "UnusedReceiverParameter"
   },
-  "hash": "-839016239370810582"
+  "hash": "6365189784766549069"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused receiver parameter",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Receiver parameter is never used",
+  "detailsInfo": "Reports receiver parameter of extension functions and properties that is not used.\n\n**Remove redundant receiver parameter** can be used to amend the code automatically.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/HubdleExtension.kt",
+      "language": "kotlin",
+      "line": 26,
+      "offset": 15,
+      "length": 7,
+      "code": {
+        "startLine": 24,
+        "length": 7,
+        "offset": 37,
+        "surroundingCode": "\n    @HubdleDslMarker\n    public fun Project.kotlin(action: Action<in KotlinExtension>) {\n        action.execute(kotlin)\n    }"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-gradle-plugin.main",
+    "inspectionName": "UnusedReceiverParameter"
+  },
+  "hash": "-1926134180766942646"
 }]}

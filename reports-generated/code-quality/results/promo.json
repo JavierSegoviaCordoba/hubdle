@@ -1,34 +1,34 @@
 {"version":"3","listProblem":[{
   "tool": "Code Inspection",
   "category": "Redundant constructs",
-  "type": "Unused symbol",
+  "type": "Unused receiver parameter",
   "tags": [
     "kotlin"
   ],
   "severity": "High",
-  "comment": "Property \"isKotlinJvm\" is never used",
-  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "comment": "Receiver parameter is never used",
+  "detailsInfo": "Reports receiver parameter of extension functions and properties that is not used.\n\n**Remove redundant receiver parameter** can be used to amend the code automatically.",
   "sources": [
     {
       "type": "method",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/ProjectType.kt",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/KotlinMultiplatformExtension.kt",
       "language": "kotlin",
-      "line": 17,
-      "offset": 21,
-      "length": 11,
+      "line": 86,
+      "offset": 15,
+      "length": 7,
       "code": {
-        "startLine": 15,
-        "length": 11,
-        "offset": 86,
-        "surroundingCode": "    get() = pluginManager.hasPlugin(\"org.gradle.java-platform\")\n\ninternal val Project.isKotlinJvm: Boolean\n    get() = pluginManager.hasPlugin(\"org.jetbrains.kotlin.jvm\")\n"
+        "startLine": 84,
+        "length": 7,
+        "offset": 37,
+        "surroundingCode": "\n    @HubdleDslMarker\n    public fun Project.common(action: Action<KotlinMultiplatformCommonExtension> = Action {}) {\n        action.execute(common)\n    }"
       }
     }
   ],
   "attributes": {
     "module": "hubdle.hubdle-gradle-plugin.main",
-    "inspectionName": "UnusedSymbol"
+    "inspectionName": "UnusedReceiverParameter"
   },
-  "hash": "-7241173465044545141"
+  "hash": "-839016239370810582"
 },{
   "tool": "Code Inspection",
   "category": "Redundant constructs",
@@ -122,4 +122,35 @@
     "inspectionName": "UnusedSymbol"
   },
   "hash": "6397707730116880300"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "Property \"isKotlinJvm\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "method",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/ProjectType.kt",
+      "language": "kotlin",
+      "line": 17,
+      "offset": 21,
+      "length": 11,
+      "code": {
+        "startLine": 15,
+        "length": 11,
+        "offset": 86,
+        "surroundingCode": "    get() = pluginManager.hasPlugin(\"org.gradle.java-platform\")\n\ninternal val Project.isKotlinJvm: Boolean\n    get() = pluginManager.hasPlugin(\"org.jetbrains.kotlin.jvm\")\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-gradle-plugin.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "-7241173465044545141"
 }]}

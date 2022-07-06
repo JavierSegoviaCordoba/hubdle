@@ -66,7 +66,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/35)
+    (0/34)
   </span>
 </td>
 <td class="coverageStat">
@@ -74,7 +74,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/194)
+    (0/190)
   </span>
 </td>
 </tr>
@@ -261,7 +261,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/40)
+    (0/39)
   </span>
 </td>
 <td class="coverageStat">
@@ -269,7 +269,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/220)
+    (0/216)
   </span>
 </td>
 </tr>
@@ -324,60 +324,59 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">42</i>&nbsp;
 <b class="nc"><i class="no-highlight">43</i>&nbsp;        if (project.hubdleState.config.publishing.isEnabled) {</b>
 <b class="nc"><i class="no-highlight">44</i>&nbsp;            project.pluginManager.apply(PluginIds.Publishing.mavenPublish)</b>
-<b class="nc"><i class="no-highlight">45</i>&nbsp;            project.pluginManager.apply(PluginIds.Publishing.signing)</b>
-<b class="nc"><i class="no-highlight">46</i>&nbsp;            project.pluginManager.apply(PluginIds.Publishing.gradlePluginPublish)</b>
-<b class="nc"><i class="no-highlight">47</i>&nbsp;            project.configureJavaJarsForPublishing()</b>
-<b class="nc"><i class="no-highlight">48</i>&nbsp;            project.configurePublishingExtension()</b>
-<b class="nc"><i class="no-highlight">49</i>&nbsp;            project.configureMavenPublication(&quot;java&quot;)</b>
-<b class="nc"><i class="no-highlight">50</i>&nbsp;            project.configureSigningForPublishing()</b>
-<b class="nc"><i class="no-highlight">51</i>&nbsp;            project.configure&lt;PluginBundleExtension&gt; {</b>
-<b class="nc"><i class="no-highlight">52</i>&nbsp;                tags = project.hubdleState.kotlin.gradle.plugin.tags</b>
-<b class="nc"><i class="no-highlight">53</i>&nbsp;                website = project.getProperty(HubdleProperty.POM.url)</b>
-<b class="nc"><i class="no-highlight">54</i>&nbsp;                vcsUrl = project.getProperty(HubdleProperty.POM.scmUrl)</b>
-<i class="no-highlight">55</i>&nbsp;            }
-<i class="no-highlight">56</i>&nbsp;        }
-<i class="no-highlight">57</i>&nbsp;    }
-<i class="no-highlight">58</i>&nbsp;}
-<i class="no-highlight">59</i>&nbsp;
-<i class="no-highlight">60</i>&nbsp;internal fun configureKotlinGradlePluginRawConfig(project: Project) {
-<b class="nc"><i class="no-highlight">61</i>&nbsp;    project.hubdleState.kotlin.gradle.plugin.rawConfig.kotlin?.execute(project.the())</b>
-<b class="nc"><i class="no-highlight">62</i>&nbsp;    project.hubdleState.kotlin.gradle.plugin.rawConfig.gradlePlugin?.execute(project.the())</b>
-<i class="no-highlight">63</i>&nbsp;}
-<i class="no-highlight">64</i>&nbsp;
-<i class="no-highlight">65</i>&nbsp;private fun KotlinJvmProjectExtension.configureGradleDependencies() {
-<b class="nc"><i class="no-highlight">66</i>&nbsp;    sourceSets.named(&quot;main&quot;) { it.dependencies { configureMainDependencies() } }</b>
-<b class="nc"><i class="no-highlight">67</i>&nbsp;    sourceSets.named(&quot;test&quot;) { it.dependencies { configureTestDependencies() } }</b>
-<i class="no-highlight">68</i>&nbsp;}
-<i class="no-highlight">69</i>&nbsp;
-<i class="no-highlight">70</i>&nbsp;internal val Project.gradlePluginFeatures: HubdleState.Kotlin.Gradle.Plugin.Features
-<b class="nc"><i class="no-highlight">71</i>&nbsp;    get() = hubdleState.kotlin.gradle.plugin.features</b>
-<i class="no-highlight">72</i>&nbsp;
-<i class="no-highlight">73</i>&nbsp;private val KotlinDependencyHandler.gradlePluginFeatures: HubdleState.Kotlin.Gradle.Plugin.Features
-<b class="nc"><i class="no-highlight">74</i>&nbsp;    get() = project.gradlePluginFeatures</b>
-<i class="no-highlight">75</i>&nbsp;
-<i class="no-highlight">76</i>&nbsp;private fun KotlinDependencyHandler.configureMainDependencies() {
-<b class="nc"><i class="no-highlight">77</i>&nbsp;    implementation(project.dependencies.gradleApi())</b>
-<b class="nc"><i class="no-highlight">78</i>&nbsp;    implementation(project.gradleKotlinDsl())</b>
-<i class="no-highlight">79</i>&nbsp;
-<b class="nc"><i class="no-highlight">80</i>&nbsp;    if (gradlePluginFeatures.extendedGradle) {</b>
-<b class="nc"><i class="no-highlight">81</i>&nbsp;        catalogImplementation(COM_JAVIERSC_GRADLE_GRADLE_EXTENSIONS_MODULE)</b>
-<i class="no-highlight">82</i>&nbsp;    }
-<b class="nc"><i class="no-highlight">83</i>&nbsp;    if (gradlePluginFeatures.extendedGradle) {</b>
-<b class="nc"><i class="no-highlight">84</i>&nbsp;        catalogImplementation(COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE)</b>
-<i class="no-highlight">85</i>&nbsp;    }
-<i class="no-highlight">86</i>&nbsp;}
-<i class="no-highlight">87</i>&nbsp;
-<i class="no-highlight">88</i>&nbsp;private fun KotlinDependencyHandler.configureTestDependencies() {
-<b class="nc"><i class="no-highlight">89</i>&nbsp;    catalogImplementation(ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE)</b>
-<b class="nc"><i class="no-highlight">90</i>&nbsp;    implementation(project.dependencies.gradleTestKit())</b>
-<b class="nc"><i class="no-highlight">91</i>&nbsp;    if (gradlePluginFeatures.extendedGradle) {</b>
-<b class="nc"><i class="no-highlight">92</i>&nbsp;        catalogImplementation(COM_JAVIERSC_GRADLE_GRADLE_TEST_EXTENSIONS_MODULE)</b>
-<i class="no-highlight">93</i>&nbsp;    }
-<i class="no-highlight">94</i>&nbsp;
-<b class="nc"><i class="no-highlight">95</i>&nbsp;    if (gradlePluginFeatures.extendedTesting) {</b>
-<b class="nc"><i class="no-highlight">96</i>&nbsp;        catalogImplementation(IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE)</b>
-<i class="no-highlight">97</i>&nbsp;    }
-<i class="no-highlight">98</i>&nbsp;}
+<b class="nc"><i class="no-highlight">45</i>&nbsp;            project.pluginManager.apply(PluginIds.Publishing.gradlePluginPublish)</b>
+<b class="nc"><i class="no-highlight">46</i>&nbsp;            project.configureJavaJarsForPublishing()</b>
+<b class="nc"><i class="no-highlight">47</i>&nbsp;            project.configurePublishingExtension()</b>
+<b class="nc"><i class="no-highlight">48</i>&nbsp;            project.configureMavenPublication(&quot;java&quot;)</b>
+<b class="nc"><i class="no-highlight">49</i>&nbsp;            project.configureSigningForPublishing()</b>
+<b class="nc"><i class="no-highlight">50</i>&nbsp;            project.configure&lt;PluginBundleExtension&gt; {</b>
+<b class="nc"><i class="no-highlight">51</i>&nbsp;                tags = project.hubdleState.kotlin.gradle.plugin.tags</b>
+<b class="nc"><i class="no-highlight">52</i>&nbsp;                website = project.getProperty(HubdleProperty.POM.url)</b>
+<b class="nc"><i class="no-highlight">53</i>&nbsp;                vcsUrl = project.getProperty(HubdleProperty.POM.scmUrl)</b>
+<i class="no-highlight">54</i>&nbsp;            }
+<i class="no-highlight">55</i>&nbsp;        }
+<i class="no-highlight">56</i>&nbsp;    }
+<i class="no-highlight">57</i>&nbsp;}
+<i class="no-highlight">58</i>&nbsp;
+<i class="no-highlight">59</i>&nbsp;internal fun configureKotlinGradlePluginRawConfig(project: Project) {
+<b class="nc"><i class="no-highlight">60</i>&nbsp;    project.hubdleState.kotlin.gradle.plugin.rawConfig.kotlin?.execute(project.the())</b>
+<b class="nc"><i class="no-highlight">61</i>&nbsp;    project.hubdleState.kotlin.gradle.plugin.rawConfig.gradlePlugin?.execute(project.the())</b>
+<i class="no-highlight">62</i>&nbsp;}
+<i class="no-highlight">63</i>&nbsp;
+<i class="no-highlight">64</i>&nbsp;private fun KotlinJvmProjectExtension.configureGradleDependencies() {
+<b class="nc"><i class="no-highlight">65</i>&nbsp;    sourceSets.named(&quot;main&quot;) { it.dependencies { configureMainDependencies() } }</b>
+<b class="nc"><i class="no-highlight">66</i>&nbsp;    sourceSets.named(&quot;test&quot;) { it.dependencies { configureTestDependencies() } }</b>
+<i class="no-highlight">67</i>&nbsp;}
+<i class="no-highlight">68</i>&nbsp;
+<i class="no-highlight">69</i>&nbsp;internal val Project.gradlePluginFeatures: HubdleState.Kotlin.Gradle.Plugin.Features
+<b class="nc"><i class="no-highlight">70</i>&nbsp;    get() = hubdleState.kotlin.gradle.plugin.features</b>
+<i class="no-highlight">71</i>&nbsp;
+<i class="no-highlight">72</i>&nbsp;private val KotlinDependencyHandler.gradlePluginFeatures: HubdleState.Kotlin.Gradle.Plugin.Features
+<b class="nc"><i class="no-highlight">73</i>&nbsp;    get() = project.gradlePluginFeatures</b>
+<i class="no-highlight">74</i>&nbsp;
+<i class="no-highlight">75</i>&nbsp;private fun KotlinDependencyHandler.configureMainDependencies() {
+<b class="nc"><i class="no-highlight">76</i>&nbsp;    implementation(project.dependencies.gradleApi())</b>
+<b class="nc"><i class="no-highlight">77</i>&nbsp;    implementation(project.gradleKotlinDsl())</b>
+<i class="no-highlight">78</i>&nbsp;
+<b class="nc"><i class="no-highlight">79</i>&nbsp;    if (gradlePluginFeatures.extendedGradle) {</b>
+<b class="nc"><i class="no-highlight">80</i>&nbsp;        catalogImplementation(COM_JAVIERSC_GRADLE_GRADLE_EXTENSIONS_MODULE)</b>
+<i class="no-highlight">81</i>&nbsp;    }
+<b class="nc"><i class="no-highlight">82</i>&nbsp;    if (gradlePluginFeatures.extendedGradle) {</b>
+<b class="nc"><i class="no-highlight">83</i>&nbsp;        catalogImplementation(COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE)</b>
+<i class="no-highlight">84</i>&nbsp;    }
+<i class="no-highlight">85</i>&nbsp;}
+<i class="no-highlight">86</i>&nbsp;
+<i class="no-highlight">87</i>&nbsp;private fun KotlinDependencyHandler.configureTestDependencies() {
+<b class="nc"><i class="no-highlight">88</i>&nbsp;    catalogImplementation(ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE)</b>
+<b class="nc"><i class="no-highlight">89</i>&nbsp;    implementation(project.dependencies.gradleTestKit())</b>
+<b class="nc"><i class="no-highlight">90</i>&nbsp;    if (gradlePluginFeatures.extendedGradle) {</b>
+<b class="nc"><i class="no-highlight">91</i>&nbsp;        catalogImplementation(COM_JAVIERSC_GRADLE_GRADLE_TEST_EXTENSIONS_MODULE)</b>
+<i class="no-highlight">92</i>&nbsp;    }
+<i class="no-highlight">93</i>&nbsp;
+<b class="nc"><i class="no-highlight">94</i>&nbsp;    if (gradlePluginFeatures.extendedTesting) {</b>
+<b class="nc"><i class="no-highlight">95</i>&nbsp;        catalogImplementation(IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE)</b>
+<i class="no-highlight">96</i>&nbsp;    }
+<i class="no-highlight">97</i>&nbsp;}
 </div>
 </pre>
 </div>
@@ -404,7 +403,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-06 02:20</div>
+    <div style="float:right;">generated on 2022-07-06 03:04</div>
 </div>
 </body>
 </html>

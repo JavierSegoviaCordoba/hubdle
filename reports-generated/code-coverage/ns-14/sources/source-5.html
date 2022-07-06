@@ -50,7 +50,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/4)
+    (0/5)
   </span>
 </td>
     <td class="coverageStat"/>
@@ -59,7 +59,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/10)
+    (0/11)
   </span>
 </td>
 <td class="coverageStat">
@@ -67,7 +67,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/75)
+    (0/87)
   </span>
 </td>
 </tr>
@@ -190,7 +190,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/9)
+    (0/10)
   </span>
 </td>
     <td class="coverageStat"/>
@@ -199,7 +199,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/19)
+    (0/20)
   </span>
 </td>
 <td class="coverageStat">
@@ -207,7 +207,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/123)
+    (0/135)
   </span>
 </td>
 </tr>
@@ -227,64 +227,70 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">7</i>&nbsp;import javax.inject.Inject
 <i class="no-highlight">8</i>&nbsp;import org.gradle.api.Action
 <i class="no-highlight">9</i>&nbsp;import org.gradle.api.Project
-<i class="no-highlight">10</i>&nbsp;import org.gradle.api.model.ObjectFactory
-<i class="no-highlight">11</i>&nbsp;import org.gradle.kotlin.dsl.newInstance
-<i class="no-highlight">12</i>&nbsp;import ru.vyarus.gradle.plugin.mkdocs.MkdocsExtension
-<i class="no-highlight">13</i>&nbsp;
-<b class="nc"><i class="no-highlight">14</i>&nbsp;@HubdleDslMarker</b>
-<i class="no-highlight">15</i>&nbsp;public open class SiteExtension
-<i class="no-highlight">16</i>&nbsp;@Inject
-<i class="no-highlight">17</i>&nbsp;constructor(
-<i class="no-highlight">18</i>&nbsp;    objects: ObjectFactory,
-<i class="no-highlight">19</i>&nbsp;) : EnableableOptions, RawConfigOptions&lt;SiteExtension.RawConfigExtension&gt; {
-<i class="no-highlight">20</i>&nbsp;
-<b class="nc"><i class="no-highlight">21</i>&nbsp;    override var isEnabled: Boolean = IS_ENABLED</b>
-<i class="no-highlight">22</i>&nbsp;
-<b class="nc"><i class="no-highlight">23</i>&nbsp;    private val reports: ReportsExtension = objects.newInstance()</b>
-<i class="no-highlight">24</i>&nbsp;
-<i class="no-highlight">25</i>&nbsp;    @HubdleDslMarker
-<i class="no-highlight">26</i>&nbsp;    public fun Project.reports(action: Action&lt;ReportsExtension&gt;) {
-<b class="nc"><i class="no-highlight">27</i>&nbsp;        action.execute(reports)</b>
-<b class="nc"><i class="no-highlight">28</i>&nbsp;        hubdleState.config.documentation.site.reports.allTests = reports.allTests</b>
-<b class="nc"><i class="no-highlight">29</i>&nbsp;        hubdleState.config.documentation.site.reports.codeAnalysis = reports.codeAnalysis</b>
-<b class="nc"><i class="no-highlight">30</i>&nbsp;        hubdleState.config.documentation.site.reports.codeCoverage = reports.codeCoverage</b>
-<b class="nc"><i class="no-highlight">31</i>&nbsp;        hubdleState.config.documentation.site.reports.codeQuality = reports.codeQuality</b>
-<i class="no-highlight">32</i>&nbsp;    }
-<i class="no-highlight">33</i>&nbsp;
-<b class="nc"><i class="no-highlight">34</i>&nbsp;    public open class ReportsExtension {</b>
-<b class="nc"><i class="no-highlight">35</i>&nbsp;        public var allTests: Boolean = ALL_TESTS</b>
-<b class="nc"><i class="no-highlight">36</i>&nbsp;        public var codeAnalysis: Boolean = CODE_ANALYSIS</b>
-<b class="nc"><i class="no-highlight">37</i>&nbsp;        public var codeCoverage: Boolean = CODE_COVERAGE</b>
-<b class="nc"><i class="no-highlight">38</i>&nbsp;        public var codeQuality: Boolean = CODE_QUALITY</b>
+<i class="no-highlight">10</i>&nbsp;import org.gradle.api.artifacts.ProjectDependency
+<i class="no-highlight">11</i>&nbsp;import org.gradle.api.model.ObjectFactory
+<i class="no-highlight">12</i>&nbsp;import org.gradle.kotlin.dsl.newInstance
+<i class="no-highlight">13</i>&nbsp;import ru.vyarus.gradle.plugin.mkdocs.MkdocsExtension
+<i class="no-highlight">14</i>&nbsp;
+<b class="nc"><i class="no-highlight">15</i>&nbsp;@HubdleDslMarker</b>
+<i class="no-highlight">16</i>&nbsp;public open class SiteExtension
+<i class="no-highlight">17</i>&nbsp;@Inject
+<i class="no-highlight">18</i>&nbsp;constructor(
+<i class="no-highlight">19</i>&nbsp;    objects: ObjectFactory,
+<i class="no-highlight">20</i>&nbsp;) : EnableableOptions, RawConfigOptions&lt;SiteExtension.RawConfigExtension&gt; {
+<i class="no-highlight">21</i>&nbsp;
+<b class="nc"><i class="no-highlight">22</i>&nbsp;    override var isEnabled: Boolean = IS_ENABLED</b>
+<i class="no-highlight">23</i>&nbsp;
+<b class="nc"><i class="no-highlight">24</i>&nbsp;    private val reports: ReportsExtension = objects.newInstance()</b>
+<i class="no-highlight">25</i>&nbsp;
+<i class="no-highlight">26</i>&nbsp;    @HubdleDslMarker
+<i class="no-highlight">27</i>&nbsp;    public fun Project.excludes(vararg excludes: ProjectDependency) {
+<b class="nc"><i class="no-highlight">28</i>&nbsp;        hubdleState.config.documentation.site.excludes += excludes</b>
+<i class="no-highlight">29</i>&nbsp;    }
+<i class="no-highlight">30</i>&nbsp;
+<i class="no-highlight">31</i>&nbsp;    @HubdleDslMarker
+<i class="no-highlight">32</i>&nbsp;    public fun Project.reports(action: Action&lt;ReportsExtension&gt;) {
+<b class="nc"><i class="no-highlight">33</i>&nbsp;        action.execute(reports)</b>
+<b class="nc"><i class="no-highlight">34</i>&nbsp;        hubdleState.config.documentation.site.reports.allTests = reports.allTests</b>
+<b class="nc"><i class="no-highlight">35</i>&nbsp;        hubdleState.config.documentation.site.reports.codeAnalysis = reports.codeAnalysis</b>
+<b class="nc"><i class="no-highlight">36</i>&nbsp;        hubdleState.config.documentation.site.reports.codeCoverage = reports.codeCoverage</b>
+<b class="nc"><i class="no-highlight">37</i>&nbsp;        hubdleState.config.documentation.site.reports.codeQuality = reports.codeQuality</b>
+<i class="no-highlight">38</i>&nbsp;    }
 <i class="no-highlight">39</i>&nbsp;
-<b class="nc"><i class="no-highlight">40</i>&nbsp;        public companion object {</b>
-<i class="no-highlight">41</i>&nbsp;            internal const val ALL_TESTS = true
-<i class="no-highlight">42</i>&nbsp;            internal const val CODE_ANALYSIS = true
-<i class="no-highlight">43</i>&nbsp;            internal const val CODE_COVERAGE = true
-<i class="no-highlight">44</i>&nbsp;            internal const val CODE_QUALITY = true
-<i class="no-highlight">45</i>&nbsp;        }
-<i class="no-highlight">46</i>&nbsp;    }
-<i class="no-highlight">47</i>&nbsp;
-<b class="nc"><i class="no-highlight">48</i>&nbsp;    override val rawConfig: RawConfigExtension = objects.newInstance()</b>
-<i class="no-highlight">49</i>&nbsp;
-<i class="no-highlight">50</i>&nbsp;    @HubdleDslMarker
-<i class="no-highlight">51</i>&nbsp;    override fun Project.rawConfig(action: Action&lt;RawConfigExtension&gt;) {
-<b class="nc"><i class="no-highlight">52</i>&nbsp;        action.execute(rawConfig)</b>
-<i class="no-highlight">53</i>&nbsp;    }
-<i class="no-highlight">54</i>&nbsp;
-<b class="nc"><i class="no-highlight">55</i>&nbsp;    @HubdleDslMarker</b>
-<i class="no-highlight">56</i>&nbsp;    public open class RawConfigExtension {
-<i class="no-highlight">57</i>&nbsp;
-<i class="no-highlight">58</i>&nbsp;        @HubdleDslMarker
-<i class="no-highlight">59</i>&nbsp;        public fun Project.mkdocs(action: Action&lt;MkdocsExtension&gt;) {
-<b class="nc"><i class="no-highlight">60</i>&nbsp;            hubdleState.config.documentation.site.rawConfig.mkdocs = action</b>
-<i class="no-highlight">61</i>&nbsp;        }
-<i class="no-highlight">62</i>&nbsp;    }
+<b class="nc"><i class="no-highlight">40</i>&nbsp;    public open class ReportsExtension {</b>
+<b class="nc"><i class="no-highlight">41</i>&nbsp;        public var allTests: Boolean = ALL_TESTS</b>
+<b class="nc"><i class="no-highlight">42</i>&nbsp;        public var codeAnalysis: Boolean = CODE_ANALYSIS</b>
+<b class="nc"><i class="no-highlight">43</i>&nbsp;        public var codeCoverage: Boolean = CODE_COVERAGE</b>
+<b class="nc"><i class="no-highlight">44</i>&nbsp;        public var codeQuality: Boolean = CODE_QUALITY</b>
+<i class="no-highlight">45</i>&nbsp;
+<b class="nc"><i class="no-highlight">46</i>&nbsp;        public companion object {</b>
+<i class="no-highlight">47</i>&nbsp;            internal const val ALL_TESTS = true
+<i class="no-highlight">48</i>&nbsp;            internal const val CODE_ANALYSIS = true
+<i class="no-highlight">49</i>&nbsp;            internal const val CODE_COVERAGE = true
+<i class="no-highlight">50</i>&nbsp;            internal const val CODE_QUALITY = true
+<i class="no-highlight">51</i>&nbsp;        }
+<i class="no-highlight">52</i>&nbsp;    }
+<i class="no-highlight">53</i>&nbsp;
+<b class="nc"><i class="no-highlight">54</i>&nbsp;    override val rawConfig: RawConfigExtension = objects.newInstance()</b>
+<i class="no-highlight">55</i>&nbsp;
+<i class="no-highlight">56</i>&nbsp;    @HubdleDslMarker
+<i class="no-highlight">57</i>&nbsp;    override fun Project.rawConfig(action: Action&lt;RawConfigExtension&gt;) {
+<b class="nc"><i class="no-highlight">58</i>&nbsp;        action.execute(rawConfig)</b>
+<i class="no-highlight">59</i>&nbsp;    }
+<i class="no-highlight">60</i>&nbsp;
+<b class="nc"><i class="no-highlight">61</i>&nbsp;    @HubdleDslMarker</b>
+<i class="no-highlight">62</i>&nbsp;    public open class RawConfigExtension {
 <i class="no-highlight">63</i>&nbsp;
-<b class="nc"><i class="no-highlight">64</i>&nbsp;    public companion object {</b>
-<i class="no-highlight">65</i>&nbsp;        internal const val IS_ENABLED = false
-<i class="no-highlight">66</i>&nbsp;    }
-<i class="no-highlight">67</i>&nbsp;}
+<i class="no-highlight">64</i>&nbsp;        @HubdleDslMarker
+<i class="no-highlight">65</i>&nbsp;        public fun Project.mkdocs(action: Action&lt;MkdocsExtension&gt;) {
+<b class="nc"><i class="no-highlight">66</i>&nbsp;            hubdleState.config.documentation.site.rawConfig.mkdocs = action</b>
+<i class="no-highlight">67</i>&nbsp;        }
+<i class="no-highlight">68</i>&nbsp;    }
+<i class="no-highlight">69</i>&nbsp;
+<b class="nc"><i class="no-highlight">70</i>&nbsp;    public companion object {</b>
+<i class="no-highlight">71</i>&nbsp;        internal const val IS_ENABLED = false
+<i class="no-highlight">72</i>&nbsp;    }
+<i class="no-highlight">73</i>&nbsp;}
 </div>
 </pre>
 </div>
@@ -311,7 +317,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-06 15:16</div>
+    <div style="float:right;">generated on 2022-07-06 15:45</div>
 </div>
 </body>
 </html>

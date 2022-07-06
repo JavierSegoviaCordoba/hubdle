@@ -8,9 +8,11 @@ import com.javiersc.hubdle.extensions.config.documentation.site.BuildSiteTask
 import com.javiersc.hubdle.extensions.config.documentation.site.PrebuildSiteTask
 import com.javiersc.hubdle.extensions.config.documentation.site.projectsInfo
 import org.gradle.api.Project
+import org.gradle.api.artifacts.ProjectDependency
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.the
 import org.gradle.kotlin.dsl.withType
+import org.jetbrains.dokka.gradle.DokkaMultiModuleTask
 import org.jetbrains.dokka.gradle.DokkaTaskPartial
 import ru.vyarus.gradle.plugin.mkdocs.MkdocsExtension
 
@@ -25,6 +27,14 @@ internal fun configureSite(project: Project) {
 
         project.pluginManager.apply(PluginIds.Kotlin.dokka)
         project.pluginManager.apply(PluginIds.Documentation.mkdocs)
+
+        project.tasks.withType<DokkaMultiModuleTask>().configureEach {
+            val excludedProjects =
+                project.hubdleState.config.documentation.site.excludes.map(
+                    ProjectDependency::getDependencyProject
+                )
+            it.removeChildTasks(excludedProjects)
+        }
 
         project.configure<MkdocsExtension> {
             strict = false

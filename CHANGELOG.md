@@ -4,6 +4,7 @@
 
 ### Added
 
+- `excludes` function to exclude the generation of API docs in those projects
 - `gradlePlugin` to `KotlinGradlePluginExtension`
 - `pluginUnderTestDependencies` to `KotlinGradlePluginExtension`
 

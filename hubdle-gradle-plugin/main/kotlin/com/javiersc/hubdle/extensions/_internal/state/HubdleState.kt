@@ -124,6 +124,7 @@ import kotlinx.validation.ApiValidationExtension
 import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.artifacts.MinimalExternalModuleDependency
+import org.gradle.api.artifacts.ProjectDependency
 import org.gradle.api.provider.Provider
 import org.gradle.api.publish.PublishingExtension as GradlePublishingExtension
 import org.gradle.internal.os.OperatingSystem
@@ -303,6 +304,7 @@ internal data class HubdleState(
 
             data class Site(
                 override var isEnabled: Boolean = SiteExtension.IS_ENABLED,
+                val excludes: MutableList<ProjectDependency> = mutableListOf(),
                 val reports: Reports = Reports(),
                 val rawConfig: RawConfig = RawConfig(),
             ) : Enableable, Configurable {

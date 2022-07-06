@@ -7,6 +7,7 @@ import com.javiersc.hubdle.extensions.options.RawConfigOptions
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
+import org.gradle.api.artifacts.ProjectDependency
 import org.gradle.api.model.ObjectFactory
 import org.gradle.kotlin.dsl.newInstance
 import ru.vyarus.gradle.plugin.mkdocs.MkdocsExtension
@@ -21,6 +22,11 @@ constructor(
     override var isEnabled: Boolean = IS_ENABLED
 
     private val reports: ReportsExtension = objects.newInstance()
+
+    @HubdleDslMarker
+    public fun Project.excludes(vararg excludes: ProjectDependency) {
+        hubdleState.config.documentation.site.excludes += excludes
+    }
 
     @HubdleDslMarker
     public fun Project.reports(action: Action<ReportsExtension>) {

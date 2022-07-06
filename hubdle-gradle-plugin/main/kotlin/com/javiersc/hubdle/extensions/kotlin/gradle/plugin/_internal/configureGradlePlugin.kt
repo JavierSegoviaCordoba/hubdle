@@ -20,14 +20,28 @@ import com.javiersc.hubdle.extensions.options.configureJavaJarsForPublishing
 import com.javiersc.hubdle.extensions.options.configureMavenPublication
 import com.javiersc.hubdle.extensions.options.configurePublishingExtension
 import com.javiersc.hubdle.extensions.options.configureSigningForPublishing
+import com.javiersc.semver.Version
 import org.gradle.api.Project
+import org.gradle.api.artifacts.Configuration
+import org.gradle.api.attributes.Category.CATEGORY_ATTRIBUTE
+import org.gradle.api.attributes.Category.LIBRARY
+import org.gradle.api.attributes.Usage.JAVA_RUNTIME
+import org.gradle.api.attributes.Usage.USAGE_ATTRIBUTE
+import org.gradle.api.attributes.plugin.GradlePluginApiVersion.GRADLE_PLUGIN_API_VERSION_ATTRIBUTE
 import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.kotlin.dsl.configure
+import org.gradle.kotlin.dsl.creating
+import org.gradle.kotlin.dsl.dependencies
+import org.gradle.kotlin.dsl.getValue
 import org.gradle.kotlin.dsl.gradleKotlinDsl
+import org.gradle.kotlin.dsl.named
 import org.gradle.kotlin.dsl.the
+import org.gradle.kotlin.dsl.withType
+import org.gradle.plugin.devel.tasks.PluginUnderTestMetadata
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
+import org.jetbrains.kotlin.gradle.plugin.getKotlinPluginVersion
 
 internal fun configureGradlePlugin(project: Project) {
     if (project.hubdleState.kotlin.gradle.plugin.isEnabled) {
@@ -39,6 +53,9 @@ internal fun configureGradlePlugin(project: Project) {
         project.the<JavaPluginExtension>().configureDefaultJavaSourceSets()
         project.the<KotlinProjectExtension>().configureDefaultKotlinSourceSets()
         project.the<KotlinJvmProjectExtension>().configureGradleDependencies()
+        project.hubdleState.kotlin.gradle.plugin.gradlePlugin?.execute(project.the())
+
+        project.configurePluginUnderTestDependencies()
 
         if (project.hubdleState.config.publishing.isEnabled) {
             project.pluginManager.apply(PluginIds.Publishing.mavenPublish)
@@ -52,6 +69,33 @@ internal fun configureGradlePlugin(project: Project) {
                 website = project.getProperty(HubdleProperty.POM.url)
                 vcsUrl = project.getProperty(HubdleProperty.POM.scmUrl)
             }
+        }
+    }
+}
+
+private fun Project.configurePluginUnderTestDependencies() {
+    val pluginUnderTestDependencies =
+        hubdleState.kotlin.gradle.plugin.pluginUnderTestDependencies.toList()
+    if (pluginUnderTestDependencies.isNotEmpty()) {
+        val testPluginClasspath: Configuration by
+            configurations.creating {
+                val kotlinVersion = Version.safe(project.getKotlinPluginVersion()).getOrNull()
+                if (kotlinVersion != null && kotlinVersion >= Version("1.7.0"))
+                    attributes {
+                        it.attribute(USAGE_ATTRIBUTE, objects.named(JAVA_RUNTIME))
+                        it.attribute(CATEGORY_ATTRIBUTE, objects.named(LIBRARY))
+                        it.attribute(GRADLE_PLUGIN_API_VERSION_ATTRIBUTE, objects.named("7.0"))
+                    }
+            }
+
+        dependencies {
+            for (dependency in pluginUnderTestDependencies) {
+                testPluginClasspath(dependency)
+            }
+        }
+
+        tasks.withType<PluginUnderTestMetadata>().configureEach {
+            it.pluginClasspath.from(testPluginClasspath)
         }
     }
 }

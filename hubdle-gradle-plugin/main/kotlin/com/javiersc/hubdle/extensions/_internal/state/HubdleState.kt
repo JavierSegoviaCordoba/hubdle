@@ -123,6 +123,8 @@ import kotlinx.kover.api.KoverExtension
 import kotlinx.validation.ApiValidationExtension
 import org.gradle.api.Action
 import org.gradle.api.Project
+import org.gradle.api.artifacts.MinimalExternalModuleDependency
+import org.gradle.api.provider.Provider
 import org.gradle.api.publish.PublishingExtension as GradlePublishingExtension
 import org.gradle.internal.os.OperatingSystem
 import org.gradle.plugin.devel.GradlePluginDevelopmentExtension
@@ -499,6 +501,10 @@ internal data class HubdleState(
             data class Plugin(
                 override var isEnabled: Boolean = KotlinGradlePluginExtension.IS_ENABLED,
                 val tags: MutableList<String> = mutableListOf(),
+                var gradlePlugin: Action<GradlePluginDevelopmentExtension>? = null,
+                var pluginUnderTestDependencies:
+                    MutableList<Provider<MinimalExternalModuleDependency>> =
+                    mutableListOf(),
                 var features: Features = Features(),
                 var rawConfig: RawConfig = RawConfig()
             ) : Enableable, Configurable {

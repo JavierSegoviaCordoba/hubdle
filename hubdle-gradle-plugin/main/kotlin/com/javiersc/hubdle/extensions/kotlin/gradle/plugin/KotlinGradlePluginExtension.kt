@@ -14,7 +14,9 @@ import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.Project
+import org.gradle.api.artifacts.MinimalExternalModuleDependency
 import org.gradle.api.model.ObjectFactory
+import org.gradle.api.provider.Provider
 import org.gradle.kotlin.dsl.newInstance
 import org.gradle.kotlin.dsl.the
 import org.gradle.plugin.devel.GradlePluginDevelopmentExtension
@@ -53,6 +55,11 @@ constructor(
     }
 
     @HubdleDslMarker
+    public fun Project.gradlePlugin(action: Action<GradlePluginDevelopmentExtension>) {
+        hubdleState.kotlin.gradle.plugin.gradlePlugin = action
+    }
+
+    @HubdleDslMarker
     public fun Project.main(action: Action<KotlinSourceSet> = Action {}) {
         the<KotlinJvmProjectExtension>().sourceSets.named("main", action::execute)
     }
@@ -60,6 +67,13 @@ constructor(
     @HubdleDslMarker
     public fun Project.test(action: Action<KotlinSourceSet> = Action {}) {
         the<KotlinJvmProjectExtension>().sourceSets.named("test", action::execute)
+    }
+
+    @HubdleDslMarker
+    public fun Project.pluginUnderTestDependencies(
+        vararg pluginUnderTestDependencies: Provider<MinimalExternalModuleDependency>,
+    ) {
+        hubdleState.kotlin.gradle.plugin.pluginUnderTestDependencies += pluginUnderTestDependencies
     }
 
     override val rawConfig: RawConfigExtension = objects.newInstance()

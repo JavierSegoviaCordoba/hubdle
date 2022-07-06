@@ -4,6 +4,9 @@
 
 ### Added
 
+- `gradlePlugin` to `KotlinGradlePluginExtension`
+- `pluginUnderTestDependencies` to `KotlinGradlePluginExtension`
+
 ### Changed
 
 ### Deprecated

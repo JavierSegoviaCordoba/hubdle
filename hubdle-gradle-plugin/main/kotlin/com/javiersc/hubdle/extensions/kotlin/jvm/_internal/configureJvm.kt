@@ -39,7 +39,6 @@ internal fun configureJvm(project: Project) {
 
         if (project.hubdleState.config.publishing.isEnabled) {
             project.pluginManager.apply(PluginIds.Publishing.mavenPublish)
-            project.pluginManager.apply(PluginIds.Publishing.signing)
             project.configurePublishingExtension()
             project.configureMavenPublication("java")
             project.configureJavaJarsForPublishing()

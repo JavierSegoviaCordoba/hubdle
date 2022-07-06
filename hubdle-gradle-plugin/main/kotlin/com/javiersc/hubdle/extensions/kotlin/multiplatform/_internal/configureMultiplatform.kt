@@ -44,7 +44,6 @@ internal fun configureMultiplatform(project: Project) {
 
         if (project.hubdleState.config.publishing.isEnabled) {
             project.pluginManager.apply(PluginIds.Publishing.mavenPublish)
-            project.pluginManager.apply(PluginIds.Publishing.signing)
             project.configurePublishingExtension()
             project.configureSigningForPublishing()
             project.configureEmptyJavadocs()

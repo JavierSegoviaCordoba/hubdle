@@ -9,6 +9,7 @@ import com.javiersc.gradle.tasks.extensions.maybeRegisterLazily
 import com.javiersc.gradle.tasks.extensions.namedLazily
 import com.javiersc.hubdle.HubdleProperty
 import com.javiersc.hubdle.HubdleProperty.POM
+import com.javiersc.hubdle.extensions._internal.PluginIds
 import com.javiersc.semver.Version
 import org.gradle.api.Project
 import org.gradle.api.Task
@@ -96,15 +97,16 @@ internal fun Project.configureEmptyJavadocs() {
 }
 
 internal fun Project.configureSigningForPublishing() {
-    configure<SigningExtension> { signPublications() }
+    val shouldSign = project.getPropertyOrNull(HubdleProperty.Publishing.sign)?.toBoolean() ?: true
+    if (project.isNotSnapshot && project.isSemver && shouldSign) {
+        project.pluginManager.apply(PluginIds.Publishing.signing)
+        configure<SigningExtension> { signPublications() }
+    }
 }
 
 private fun SigningExtension.signPublications() {
-    val shouldSign = project.getPropertyOrNull(HubdleProperty.Publishing.sign)?.toBoolean() ?: true
-    if (project.isNotSnapshot && project.isSemver && shouldSign) {
-        signInMemory()
-        sign(project.the<PublishingExtension>().publications)
-    }
+    signInMemory()
+    sign(project.the<PublishingExtension>().publications)
 }
 
 private fun SigningExtension.signInMemory() {

@@ -42,7 +42,6 @@ internal fun configureGradlePlugin(project: Project) {
 
         if (project.hubdleState.config.publishing.isEnabled) {
             project.pluginManager.apply(PluginIds.Publishing.mavenPublish)
-            project.pluginManager.apply(PluginIds.Publishing.signing)
             project.pluginManager.apply(PluginIds.Publishing.gradlePluginPublish)
             project.configureJavaJarsForPublishing()
             project.configurePublishingExtension()

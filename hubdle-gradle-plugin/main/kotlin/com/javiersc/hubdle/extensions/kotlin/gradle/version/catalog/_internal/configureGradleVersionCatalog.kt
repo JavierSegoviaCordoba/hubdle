@@ -19,7 +19,6 @@ internal fun configureGradleVersionCatalog(project: Project) {
 
         if (project.hubdleState.config.publishing.isEnabled) {
             project.pluginManager.apply(PluginIds.Publishing.mavenPublish)
-            project.pluginManager.apply(PluginIds.Publishing.signing)
             project.configurePublishingExtension()
             project.configureMavenPublication("versionCatalog")
             project.configureSigningForPublishing()

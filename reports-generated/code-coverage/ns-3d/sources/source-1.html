@@ -144,43 +144,55 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">45</i>&nbsp;internal fun Settings.extractedProjects(): Set&lt;String&gt; =
 <i class="no-highlight">46</i>&nbsp;    settingsDir
 <i class="no-highlight">47</i>&nbsp;        .walkTopDown()
-<i class="no-highlight">48</i>&nbsp;        .onEnter(File::shouldKeepVisiting)
-<i class="no-highlight">49</i>&nbsp;        .mapNotNull { if (it.isProject) it.relativeTo(settingsDir).path else null }
-<i class="no-highlight">50</i>&nbsp;        .toSet()
-<i class="no-highlight">51</i>&nbsp;
-<i class="no-highlight">52</i>&nbsp;internal fun Settings.extractedBuildProjects(): Set&lt;String&gt; =
-<i class="no-highlight">53</i>&nbsp;    settingsDir
-<i class="no-highlight">54</i>&nbsp;        .walkTopDown()
-<i class="no-highlight">55</i>&nbsp;        .onEnter(File::shouldKeepVisiting)
-<i class="no-highlight">56</i>&nbsp;        .mapNotNull { if (it.isSettingsProject) it.relativeTo(settingsDir).path else null }
-<i class="no-highlight">57</i>&nbsp;        .toSet()
-<i class="no-highlight">58</i>&nbsp;
-<i class="no-highlight">59</i>&nbsp;private val File.shouldKeepVisiting: Boolean
-<i class="no-highlight">60</i>&nbsp;    get() = !isProject || !isSettingsProject
-<i class="no-highlight">61</i>&nbsp;
-<i class="no-highlight">62</i>&nbsp;private val File.isProject: Boolean
-<i class="no-highlight">63</i>&nbsp;    get() = hasBuildGradle &amp;&amp; !isSettingsProject
+<i class="no-highlight">48</i>&nbsp;        .onEnter { file -&gt; file.shouldContinueVisiting(settings) }
+<i class="no-highlight">49</i>&nbsp;        .flatMap { file -&gt;
+<i class="no-highlight">50</i>&nbsp;            val children = file.listFiles()?.filter { child -&gt; child.isProject }
+<i class="no-highlight">51</i>&nbsp;            children?.map { child -&gt; child.relativeTo(settingsDir).path }.orEmpty()
+<i class="no-highlight">52</i>&nbsp;        }
+<i class="no-highlight">53</i>&nbsp;        .toSet()
+<i class="no-highlight">54</i>&nbsp;
+<i class="no-highlight">55</i>&nbsp;internal fun Settings.extractedBuildProjects(): Set&lt;String&gt; =
+<i class="no-highlight">56</i>&nbsp;    settingsDir
+<i class="no-highlight">57</i>&nbsp;        .walkTopDown()
+<i class="no-highlight">58</i>&nbsp;        .onEnter { file -&gt; file.shouldContinueVisiting(settings) }
+<i class="no-highlight">59</i>&nbsp;        .flatMap { file -&gt;
+<i class="no-highlight">60</i>&nbsp;            val children = file.listFiles()?.filter { child -&gt; child.isSettingsProject }
+<i class="no-highlight">61</i>&nbsp;            children?.map { child -&gt; child.relativeTo(settingsDir).path }.orEmpty()
+<i class="no-highlight">62</i>&nbsp;        }
+<i class="no-highlight">63</i>&nbsp;        .toSet()
 <i class="no-highlight">64</i>&nbsp;
-<i class="no-highlight">65</i>&nbsp;private val File.isSettingsProject: Boolean
-<i class="no-highlight">66</i>&nbsp;    get() = hasSettingsGradle
+<i class="no-highlight">65</i>&nbsp;private fun File.shouldContinueVisiting(settings: Settings): Boolean =
+<i class="no-highlight">66</i>&nbsp;    if (isRootDir(settings)) true else !isProject &amp;&amp; !isSettingsProject &amp;&amp; !isSpecialDirectory
 <i class="no-highlight">67</i>&nbsp;
-<i class="no-highlight">68</i>&nbsp;private val File.hasBuildGradle: Boolean
-<i class="no-highlight">69</i>&nbsp;    get() = listFiles()?.any { it.name == &quot;build.gradle.kts&quot; || it.name == &quot;build.gradle&quot; } ?: false
+<i class="no-highlight">68</i>&nbsp;private val File.isSpecialDirectory: Boolean
+<i class="no-highlight">69</i>&nbsp;    get() = name.startsWith(&quot;.&quot;) || name.startsWith(&quot;build&quot;) || name == &quot;gradle&quot;
 <i class="no-highlight">70</i>&nbsp;
-<i class="no-highlight">71</i>&nbsp;private val File.hasSettingsGradle: Boolean
-<i class="no-highlight">72</i>&nbsp;    get() =
-<i class="no-highlight">73</i>&nbsp;        listFiles()?.any { it.name == &quot;settings.gradle.kts&quot; || it.name == &quot;settings.gradle&quot; }
-<i class="no-highlight">74</i>&nbsp;            ?: false
-<i class="no-highlight">75</i>&nbsp;
-<i class="no-highlight">76</i>&nbsp;private fun String.toProjectPath(): String {
-<i class="no-highlight">77</i>&nbsp;    val project = replace(File.separator, &quot;:&quot;).replace(&quot;/&quot;, &quot;:&quot;).replace(&quot;\\&quot;, &quot;:&quot;)
-<i class="no-highlight">78</i>&nbsp;    return if (project.startsWith(&quot;:&quot;)) project else &quot;:$project&quot;
-<i class="no-highlight">79</i>&nbsp;}
-<i class="no-highlight">80</i>&nbsp;
-<i class="no-highlight">81</i>&nbsp;private fun String.toIncludedBuildPath(): String =
-<i class="no-highlight">82</i>&nbsp;    replace(File.separator, &quot;/&quot;).replace(&quot;:&quot;, &quot;/&quot;).replace(&quot;\\&quot;, &quot;:&quot;).dropWhile {
-<i class="no-highlight">83</i>&nbsp;        it == File.separatorChar || it == &#39;/&#39; || it == &#39;\\&#39;
-<i class="no-highlight">84</i>&nbsp;    }
+<i class="no-highlight">71</i>&nbsp;private fun File.isRootDir(settings: Settings): Boolean =
+<i class="no-highlight">72</i>&nbsp;    absoluteFile == settings.settingsDir.absoluteFile
+<i class="no-highlight">73</i>&nbsp;
+<i class="no-highlight">74</i>&nbsp;private val File.isProject: Boolean
+<i class="no-highlight">75</i>&nbsp;    get() = hasBuildGradle &amp;&amp; !isSettingsProject
+<i class="no-highlight">76</i>&nbsp;
+<i class="no-highlight">77</i>&nbsp;private val File.isSettingsProject: Boolean
+<i class="no-highlight">78</i>&nbsp;    get() = hasSettingsGradle
+<i class="no-highlight">79</i>&nbsp;
+<i class="no-highlight">80</i>&nbsp;private val File.hasBuildGradle: Boolean
+<i class="no-highlight">81</i>&nbsp;    get() = listFiles()?.any { it.name == &quot;build.gradle.kts&quot; || it.name == &quot;build.gradle&quot; } ?: false
+<i class="no-highlight">82</i>&nbsp;
+<i class="no-highlight">83</i>&nbsp;private val File.hasSettingsGradle: Boolean
+<i class="no-highlight">84</i>&nbsp;    get() =
+<i class="no-highlight">85</i>&nbsp;        listFiles()?.any { it.name == &quot;settings.gradle.kts&quot; || it.name == &quot;settings.gradle&quot; }
+<i class="no-highlight">86</i>&nbsp;            ?: false
+<i class="no-highlight">87</i>&nbsp;
+<i class="no-highlight">88</i>&nbsp;private fun String.toProjectPath(): String {
+<i class="no-highlight">89</i>&nbsp;    val project = replace(File.separator, &quot;:&quot;).replace(&quot;/&quot;, &quot;:&quot;).replace(&quot;\\&quot;, &quot;:&quot;)
+<i class="no-highlight">90</i>&nbsp;    return if (project.startsWith(&quot;:&quot;)) project else &quot;:$project&quot;
+<i class="no-highlight">91</i>&nbsp;}
+<i class="no-highlight">92</i>&nbsp;
+<i class="no-highlight">93</i>&nbsp;private fun String.toIncludedBuildPath(): String =
+<i class="no-highlight">94</i>&nbsp;    replace(File.separator, &quot;/&quot;).replace(&quot;:&quot;, &quot;/&quot;).replace(&quot;\\&quot;, &quot;:&quot;).dropWhile {
+<i class="no-highlight">95</i>&nbsp;        it == File.separatorChar || it == &#39;/&#39; || it == &#39;\\&#39;
+<i class="no-highlight">96</i>&nbsp;    }
 </div>
 </pre>
 </div>
@@ -207,7 +219,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-05 22:38</div>
+    <div style="float:right;">generated on 2022-07-06 01:00</div>
 </div>
 </body>
 </html>

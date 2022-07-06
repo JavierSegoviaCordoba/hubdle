@@ -148,7 +148,7 @@ fun buildHubdleDependencies() {
                                 val nameSanitized = module.name.groupOrNameSanitized().capitalized()
                                 val dependencyName = "$groupSanitized$nameSanitized".decapitalize()
                                 """
-                                |    public fun KotlinDependencyHandler.$dependencyName(): Dependency? =
+                                |    public fun KotlinDependencyHandler.$dependencyName(): Dependency =
                                 |        catalogImplementation(${dependencyVariableName}_MODULE)
                             """
                             }

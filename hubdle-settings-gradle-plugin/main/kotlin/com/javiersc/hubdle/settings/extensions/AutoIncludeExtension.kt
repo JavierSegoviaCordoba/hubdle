@@ -45,19 +45,31 @@ public open class AutoIncludeExtension {
 internal fun Settings.extractedProjects(): Set<String> =
     settingsDir
         .walkTopDown()
-        .onEnter(File::shouldKeepVisiting)
-        .mapNotNull { if (it.isProject) it.relativeTo(settingsDir).path else null }
+        .onEnter { file -> file.shouldContinueVisiting(settings) }
+        .flatMap { file ->
+            val children = file.listFiles()?.filter { child -> child.isProject }
+            children?.map { child -> child.relativeTo(settingsDir).path }.orEmpty()
+        }
         .toSet()
 
 internal fun Settings.extractedBuildProjects(): Set<String> =
     settingsDir
         .walkTopDown()
-        .onEnter(File::shouldKeepVisiting)
-        .mapNotNull { if (it.isSettingsProject) it.relativeTo(settingsDir).path else null }
+        .onEnter { file -> file.shouldContinueVisiting(settings) }
+        .flatMap { file ->
+            val children = file.listFiles()?.filter { child -> child.isSettingsProject }
+            children?.map { child -> child.relativeTo(settingsDir).path }.orEmpty()
+        }
         .toSet()
 
-private val File.shouldKeepVisiting: Boolean
-    get() = !isProject || !isSettingsProject
+private fun File.shouldContinueVisiting(settings: Settings): Boolean =
+    if (isRootDir(settings)) true else !isProject && !isSettingsProject && !isSpecialDirectory
+
+private val File.isSpecialDirectory: Boolean
+    get() = name.startsWith(".") || name.startsWith("build") || name == "gradle"
+
+private fun File.isRootDir(settings: Settings): Boolean =
+    absoluteFile == settings.settingsDir.absoluteFile
 
 private val File.isProject: Boolean
     get() = hasBuildGradle && !isSettingsProject

@@ -1,6 +1,7 @@
 package com.javiersc.hubdle.extensions.kotlin.android
 
 import com.javiersc.hubdle.extensions.HubdleDslMarker
+import com.javiersc.hubdle.extensions._internal.PluginIds
 import com.javiersc.hubdle.extensions._internal.state.hubdleState
 import com.javiersc.hubdle.extensions.kotlin.android.library.KotlinAndroidLibraryExtension
 import javax.inject.Inject
@@ -20,6 +21,8 @@ constructor(
 
     @HubdleDslMarker
     public fun Project.library(action: Action<in KotlinAndroidLibraryExtension> = Action {}) {
+        pluginManager.apply(PluginIds.Android.library)
+        pluginManager.apply(PluginIds.Android.kotlin)
         library.isEnabled = true
         action.execute(library)
         hubdleState.kotlin.android.library.isEnabled = library.isEnabled

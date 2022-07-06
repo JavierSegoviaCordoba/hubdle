@@ -7,12 +7,16 @@
 ### Changed
 
 - Format includes/excludes use specific source sets
+- Provided dependencies are not null 
 
 ### Deprecated
 
 ### Removed
 
 ### Fixed
+
+- AutoInclude adding incorrect included builds and projects
+- Applying necessary plugins too late 
 
 ### Updated
 

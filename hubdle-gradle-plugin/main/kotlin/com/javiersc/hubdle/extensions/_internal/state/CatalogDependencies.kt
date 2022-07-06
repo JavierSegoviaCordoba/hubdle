@@ -18,11 +18,10 @@ internal val userCatalogsDependencies: UserCatalogsDependencies = UserCatalogsDe
 
 internal val hubdleCatalogsDependencies: HubdleCatalogsDependencies = HubdleCatalogsDependencies()
 
-internal fun KotlinDependencyHandler.catalogApi(module: String): Dependency? =
-    getDependency(module)?.let(::api)
-
-internal fun KotlinDependencyHandler.catalogImplementation(module: String): Dependency? =
-    getDependency(module)?.let(::implementation)
+internal fun KotlinDependencyHandler.catalogImplementation(module: String): Dependency =
+    checkNotNull(getDependency(module)?.let(::implementation)) {
+        "The dependency $module has not been found in any catalog"
+    }
 
 private fun KotlinDependencyHandler.getDependency(
     module: String

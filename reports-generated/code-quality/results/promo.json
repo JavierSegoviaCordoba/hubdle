@@ -1,29 +1,29 @@
 {"version":"3","listProblem":[{
   "tool": "Code Inspection",
   "category": "Redundant constructs",
-  "type": "Unused receiver parameter",
+  "type": "Unused import directive",
   "severity": "High",
-  "comment": "Receiver parameter is never used",
-  "detailsInfo": "Reports receiver parameter of extension functions and properties that is not used.\n\n**Remove redundant receiver parameter** can be used to amend the code automatically.",
+  "comment": "Unused import directive",
+  "detailsInfo": "Reports redundant `import` statements.\n\nDefault and unused imports can be safely removed.\n\n**Example:**\n\n\n      import kotlin.*\n      import kotlin.collections.*\n      import kotlin.comparisons.*\n      import kotlin.io.*\n      import kotlin.ranges.*\n      import kotlin.sequences.*\n      import kotlin.text.*\n\n      // jvm specific\n      import java.lang.*\n      import kotlin.jvm.*\n\n      // js specific\n      import kotlin.js.*\n\n      import java.io.* // this import is unused and could be removed\n      import java.util.*\n\n      fun foo(list: ArrayList<String>) {\n          list.add(\"\")\n      }\n",
   "sources": [
     {
       "type": "file",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/documentation/DocumentationExtension.kt",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/gradle/plugin/_internal/configureGradlePlugin.kt",
       "language": "kotlin",
-      "line": 35,
-      "offset": 16,
-      "length": 7,
+      "line": 32,
+      "offset": 1,
+      "length": 34,
       "code": {
-        "startLine": 33,
-        "length": 7,
-        "offset": 37,
-        "surroundingCode": "\n    @HubdleDslMarker\n    public fun Project.readme(action: Action<ReadmeExtension> = Action {}) {\n        action.execute(readme)\n    }"
+        "startLine": 30,
+        "length": 34,
+        "offset": 149,
+        "surroundingCode": "import org.gradle.api.attributes.plugin.GradlePluginApiVersion.GRADLE_PLUGIN_API_VERSION_ATTRIBUTE\nimport org.gradle.api.plugins.JavaPluginExtension\nimport org.gradle.kotlin.dsl.apply\nimport org.gradle.kotlin.dsl.configure\nimport org.gradle.kotlin.dsl.creating"
       }
     }
   ],
   "attributes": {
     "module": "hubdle.hubdle-gradle-plugin.main",
-    "inspectionName": "UnusedReceiverParameter"
+    "inspectionName": "KotlinUnusedImport"
   },
-  "hash": "1199704dde9f7a15c1114083ce3b9761ef85c1c348d0b58a7f747d7feb86139b"
+  "hash": "12974a2dc4470a6bd6755eb1b9b2afb99c98f2b596acdc803b84a9e1feaaddd4"
 }]}

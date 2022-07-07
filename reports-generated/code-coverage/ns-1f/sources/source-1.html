@@ -97,7 +97,63 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/4)
+    (0/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/46)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">ConfigureNexusKt$configureNexus$1$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/8)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">ConfigureNexusKt$configureNexus$1$1$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
   </span>
 </td>
 <td class="coverageStat">
@@ -113,7 +169,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/19)
+    (0/9)
   </span>
 </td>
 <td class="coverageStat">
@@ -121,7 +177,35 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/87)
+    (0/63)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">ConfigureNexusKt$configureNexus$1$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/10)
   </span>
 </td>
   </tr>
@@ -152,7 +236,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/22)
+    (0/21)
   </span>
 </td>
 <td class="coverageStat">
@@ -160,7 +244,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/107)
+    (0/147)
   </span>
 </td>
 </tr>
@@ -191,38 +275,36 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="nc"><i class="no-highlight">18</i>&nbsp;                &quot;${project.rootProject.group} - ${project.rootProject.version}&quot;</b>
 <i class="no-highlight">19</i>&nbsp;            )
 <i class="no-highlight">20</i>&nbsp;
-<b class="nc"><i class="no-highlight">21</i>&nbsp;            repositories { container -&gt;</b>
-<b class="nc"><i class="no-highlight">22</i>&nbsp;                container.sonatype { repository -&gt;</b>
+<b class="nc"><i class="no-highlight">21</i>&nbsp;            repositories {</b>
+<b class="nc"><i class="no-highlight">22</i>&nbsp;                sonatype {</b>
 <b class="nc"><i class="no-highlight">23</i>&nbsp;                    val nexusUrl = project.getPropertyOrNull(Nexus.nexusUrl)</b>
 <b class="nc"><i class="no-highlight">24</i>&nbsp;                    val snapshotRepositoryUrl =</b>
 <b class="nc"><i class="no-highlight">25</i>&nbsp;                        project.getPropertyOrNull(Nexus.nexusSnapshotRepositoryUrl)</b>
 <b class="nc"><i class="no-highlight">26</i>&nbsp;                    if (nexusUrl != null &amp;&amp; snapshotRepositoryUrl != null) {</b>
-<b class="nc"><i class="no-highlight">27</i>&nbsp;                        repository.nexusUrl.set(project.uri(nexusUrl))</b>
-<b class="nc"><i class="no-highlight">28</i>&nbsp;                        repository.snapshotRepositoryUrl.set(project.uri(snapshotRepositoryUrl))</b>
+<b class="nc"><i class="no-highlight">27</i>&nbsp;                        this.nexusUrl.set(project.uri(nexusUrl))</b>
+<b class="nc"><i class="no-highlight">28</i>&nbsp;                        this.snapshotRepositoryUrl.set(project.uri(snapshotRepositoryUrl))</b>
 <i class="no-highlight">29</i>&nbsp;                    }
-<b class="nc"><i class="no-highlight">30</i>&nbsp;                    repository.username.set(project.getPropertyOrNull(Nexus.nexusUser))</b>
-<b class="nc"><i class="no-highlight">31</i>&nbsp;                    repository.password.set(project.getPropertyOrNull(Nexus.nexusToken))</b>
-<b class="nc"><i class="no-highlight">32</i>&nbsp;                    repository.stagingProfileId.set(</b>
-<b class="nc"><i class="no-highlight">33</i>&nbsp;                        project.getPropertyOrNull(Nexus.nexusStagingProfileId)</b>
-<i class="no-highlight">34</i>&nbsp;                    )
-<i class="no-highlight">35</i>&nbsp;                }
-<i class="no-highlight">36</i>&nbsp;            }
-<i class="no-highlight">37</i>&nbsp;
-<b class="nc"><i class="no-highlight">38</i>&nbsp;            connectTimeout.set(Duration.ofMinutes(DEFAULT_CONNECT_TIMEOUT))</b>
-<b class="nc"><i class="no-highlight">39</i>&nbsp;            clientTimeout.set(Duration.ofMinutes(DEFAULT_CLIENT_TIMEOUT))</b>
-<i class="no-highlight">40</i>&nbsp;
-<b class="nc"><i class="no-highlight">41</i>&nbsp;            transitionCheckOptions { options -&gt;</b>
-<b class="nc"><i class="no-highlight">42</i>&nbsp;                options.maxRetries.set(DEFAULT_MAX_RETRIES)</b>
-<b class="nc"><i class="no-highlight">43</i>&nbsp;                options.delayBetween.set(Duration.ofSeconds(DEFAULT_DELAY_BETWEEN))</b>
-<i class="no-highlight">44</i>&nbsp;            }
-<i class="no-highlight">45</i>&nbsp;        }
-<i class="no-highlight">46</i>&nbsp;    }
-<i class="no-highlight">47</i>&nbsp;}
-<i class="no-highlight">48</i>&nbsp;
-<i class="no-highlight">49</i>&nbsp;private const val DEFAULT_CONNECT_TIMEOUT = 30L
-<i class="no-highlight">50</i>&nbsp;private const val DEFAULT_CLIENT_TIMEOUT = 30L
-<i class="no-highlight">51</i>&nbsp;private const val DEFAULT_MAX_RETRIES = 200
-<i class="no-highlight">52</i>&nbsp;private const val DEFAULT_DELAY_BETWEEN = 10L
+<b class="nc"><i class="no-highlight">30</i>&nbsp;                    username.set(project.getPropertyOrNull(Nexus.nexusUser))</b>
+<b class="nc"><i class="no-highlight">31</i>&nbsp;                    password.set(project.getPropertyOrNull(Nexus.nexusToken))</b>
+<b class="nc"><i class="no-highlight">32</i>&nbsp;                    stagingProfileId.set(project.getPropertyOrNull(Nexus.nexusStagingProfileId))</b>
+<i class="no-highlight">33</i>&nbsp;                }
+<i class="no-highlight">34</i>&nbsp;            }
+<i class="no-highlight">35</i>&nbsp;
+<b class="nc"><i class="no-highlight">36</i>&nbsp;            connectTimeout.set(Duration.ofMinutes(DEFAULT_CONNECT_TIMEOUT))</b>
+<b class="nc"><i class="no-highlight">37</i>&nbsp;            clientTimeout.set(Duration.ofMinutes(DEFAULT_CLIENT_TIMEOUT))</b>
+<i class="no-highlight">38</i>&nbsp;
+<b class="nc"><i class="no-highlight">39</i>&nbsp;            transitionCheckOptions {</b>
+<b class="nc"><i class="no-highlight">40</i>&nbsp;                maxRetries.set(DEFAULT_MAX_RETRIES)</b>
+<b class="nc"><i class="no-highlight">41</i>&nbsp;                delayBetween.set(Duration.ofSeconds(DEFAULT_DELAY_BETWEEN))</b>
+<i class="no-highlight">42</i>&nbsp;            }
+<i class="no-highlight">43</i>&nbsp;        }
+<i class="no-highlight">44</i>&nbsp;    }
+<i class="no-highlight">45</i>&nbsp;}
+<i class="no-highlight">46</i>&nbsp;
+<i class="no-highlight">47</i>&nbsp;private const val DEFAULT_CONNECT_TIMEOUT = 30L
+<i class="no-highlight">48</i>&nbsp;private const val DEFAULT_CLIENT_TIMEOUT = 30L
+<i class="no-highlight">49</i>&nbsp;private const val DEFAULT_MAX_RETRIES = 200
+<i class="no-highlight">50</i>&nbsp;private const val DEFAULT_DELAY_BETWEEN = 10L
 </div>
 </pre>
 </div>
@@ -249,7 +331,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-06 16:08</div>
+    <div style="float:right;">generated on 2022-07-07 23:09</div>
 </div>
 </body>
 </html>

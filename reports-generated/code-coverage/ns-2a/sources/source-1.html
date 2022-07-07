@@ -23,12 +23,9 @@ Current scope:     <a href="../../index.html">all classes</a>
 <h1>Coverage Summary for Class: KotlinGradleExtension (com.javiersc.hubdle.extensions.kotlin.gradle)</h1>
 
 <table class="coverageStats">
+
 <tr>
   <th class="name">Class</th>
-<th class="coverageStat 
-">
-  Class, %
-</th>
 <th class="coverageStat 
 ">
   Method, %
@@ -53,7 +50,16 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/1)
+    (0/5)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/14)
   </span>
 </td>
 <td class="coverageStat">
@@ -61,7 +67,58 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/5)
+    (0/85)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">KotlinGradleExtension$plugin$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">KotlinGradleExtension$versionCatalog$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/7)
   </span>
 </td>
     <td class="coverageStat"/>
@@ -78,11 +135,10 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/108)
+    (0/85)
   </span>
 </td>
 </tr>
-
 </table>
 
 <br/>
@@ -103,10 +159,10 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">11</i>&nbsp;import org.gradle.api.model.ObjectFactory
 <i class="no-highlight">12</i>&nbsp;import org.gradle.kotlin.dsl.newInstance
 <i class="no-highlight">13</i>&nbsp;
-<b class="nc"><i class="no-highlight">14</i>&nbsp;@HubdleDslMarker</b>
+<i class="no-highlight">14</i>&nbsp;@HubdleDslMarker
 <i class="no-highlight">15</i>&nbsp;public open class KotlinGradleExtension
 <i class="no-highlight">16</i>&nbsp;@Inject
-<i class="no-highlight">17</i>&nbsp;constructor(
+<b class="nc"><i class="no-highlight">17</i>&nbsp;constructor(</b>
 <i class="no-highlight">18</i>&nbsp;    objects: ObjectFactory,
 <i class="no-highlight">19</i>&nbsp;) {
 <i class="no-highlight">20</i>&nbsp;
@@ -114,26 +170,25 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">22</i>&nbsp;
 <i class="no-highlight">23</i>&nbsp;    @HubdleDslMarker
 <b class="nc"><i class="no-highlight">24</i>&nbsp;    public fun Project.plugin(action: Action&lt;KotlinGradlePluginExtension&gt; = Action {}) {</b>
-<b class="nc"><i class="no-highlight">25</i>&nbsp;        pluginManager.apply(PluginIds.Gradle.javaGradlePlugin)</b>
-<b class="nc"><i class="no-highlight">26</i>&nbsp;        pluginManager.apply(PluginIds.Kotlin.jvm)</b>
-<b class="nc"><i class="no-highlight">27</i>&nbsp;        plugin.isEnabled = true</b>
-<b class="nc"><i class="no-highlight">28</i>&nbsp;        action.execute(plugin)</b>
-<b class="nc"><i class="no-highlight">29</i>&nbsp;        hubdleState.kotlin.gradle.plugin.isEnabled = plugin.isEnabled</b>
-<b class="nc"><i class="no-highlight">30</i>&nbsp;        hubdleState.kotlin.target = plugin.jvmVersion</b>
-<i class="no-highlight">31</i>&nbsp;    }
-<i class="no-highlight">32</i>&nbsp;
-<b class="nc"><i class="no-highlight">33</i>&nbsp;    private val versionCatalog: KotlinGradleVersionCatalogExtension = objects.newInstance()</b>
-<i class="no-highlight">34</i>&nbsp;
-<i class="no-highlight">35</i>&nbsp;    @HubdleDslMarker
-<b class="nc"><i class="no-highlight">36</i>&nbsp;    public fun Project.versionCatalog(</b>
-<b class="nc"><i class="no-highlight">37</i>&nbsp;        action: Action&lt;KotlinGradleVersionCatalogExtension&gt; = Action {}</b>
-<i class="no-highlight">38</i>&nbsp;    ) {
-<b class="nc"><i class="no-highlight">39</i>&nbsp;        project.pluginManager.apply(PluginIds.Gradle.versionCatalog)</b>
-<b class="nc"><i class="no-highlight">40</i>&nbsp;        versionCatalog.isEnabled = true</b>
-<b class="nc"><i class="no-highlight">41</i>&nbsp;        action.execute(versionCatalog)</b>
-<b class="nc"><i class="no-highlight">42</i>&nbsp;        hubdleState.kotlin.gradle.versionCatalog.isEnabled = versionCatalog.isEnabled</b>
-<i class="no-highlight">43</i>&nbsp;    }
-<i class="no-highlight">44</i>&nbsp;}
+<b class="nc"><i class="no-highlight">25</i>&nbsp;        pluginManager.apply(PluginIds.Gradle.kotlinDsl)</b>
+<b class="nc"><i class="no-highlight">26</i>&nbsp;        plugin.isEnabled = true</b>
+<b class="nc"><i class="no-highlight">27</i>&nbsp;        action.execute(plugin)</b>
+<b class="nc"><i class="no-highlight">28</i>&nbsp;        hubdleState.kotlin.gradle.plugin.isEnabled = plugin.isEnabled</b>
+<b class="nc"><i class="no-highlight">29</i>&nbsp;        hubdleState.kotlin.target = plugin.jvmVersion</b>
+<i class="no-highlight">30</i>&nbsp;    }
+<i class="no-highlight">31</i>&nbsp;
+<b class="nc"><i class="no-highlight">32</i>&nbsp;    private val versionCatalog: KotlinGradleVersionCatalogExtension = objects.newInstance()</b>
+<i class="no-highlight">33</i>&nbsp;
+<i class="no-highlight">34</i>&nbsp;    @HubdleDslMarker
+<i class="no-highlight">35</i>&nbsp;    public fun Project.versionCatalog(
+<b class="nc"><i class="no-highlight">36</i>&nbsp;        action: Action&lt;KotlinGradleVersionCatalogExtension&gt; = Action {}</b>
+<i class="no-highlight">37</i>&nbsp;    ) {
+<b class="nc"><i class="no-highlight">38</i>&nbsp;        project.pluginManager.apply(PluginIds.Gradle.versionCatalog)</b>
+<b class="nc"><i class="no-highlight">39</i>&nbsp;        versionCatalog.isEnabled = true</b>
+<b class="nc"><i class="no-highlight">40</i>&nbsp;        action.execute(versionCatalog)</b>
+<b class="nc"><i class="no-highlight">41</i>&nbsp;        hubdleState.kotlin.gradle.versionCatalog.isEnabled = versionCatalog.isEnabled</b>
+<i class="no-highlight">42</i>&nbsp;    }
+<i class="no-highlight">43</i>&nbsp;}
 </div>
 </pre>
 </div>
@@ -160,7 +215,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-06 16:08</div>
+    <div style="float:right;">generated on 2022-07-07 23:09</div>
 </div>
 </body>
 </html>

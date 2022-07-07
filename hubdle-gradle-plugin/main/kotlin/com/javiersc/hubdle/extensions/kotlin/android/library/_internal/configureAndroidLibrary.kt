@@ -26,7 +26,7 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
 
 internal fun configureAndroidLibrary(project: Project) {
     if (project.hubdleState.kotlin.android.library.isEnabled) {
-        project.pluginManager.apply(PluginIds.Kotlin.jvm)
+        project.pluginManager.apply(PluginIds.Android.kotlin)
         project.pluginManager.apply(PluginIds.Android.library)
 
         project.configureExplicitApi()
@@ -38,7 +38,7 @@ internal fun configureAndroidLibrary(project: Project) {
             compileSdk = project.hubdleState.kotlin.android.compileSdk
             defaultConfig.minSdk = project.hubdleState.kotlin.android.minSdk
 
-            sourceSets.all { it.configDefaultAndroidSourceSets() }
+            sourceSets.all { configDefaultAndroidSourceSets() }
         }
 
         if (project.hubdleState.config.publishing.isEnabled) {
@@ -63,8 +63,8 @@ internal fun configureKotlinAndroidLibraryRawConfig(project: Project) {
 }
 
 private fun KotlinProjectExtension.configureAndroidDependencies() {
-    sourceSets.named("main") { it.dependencies { configureMainDependencies() } }
-    sourceSets.named("test") { it.dependencies { configureTestDependencies() } }
+    sourceSets.named("main") { dependencies { configureMainDependencies() } }
+    sourceSets.named("test") { dependencies { configureTestDependencies() } }
 }
 
 private fun KotlinDependencyHandler.configureMainDependencies() {

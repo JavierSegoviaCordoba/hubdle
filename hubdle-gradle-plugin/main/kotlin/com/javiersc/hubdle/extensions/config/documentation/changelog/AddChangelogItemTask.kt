@@ -150,7 +150,7 @@ private fun AddChangelogItemTask.setupRenovate(): Unit =
     }
 
 private fun String.addChanges(header: String, changes: List<String>): Changelog =
-    buildList {
+    buildList<String> {
             val firstVersionIndex =
                 lines().indexOfFirst {
                     it.startsWith("## [") && it.contains("[Unreleased]", true).not()

@@ -22,8 +22,7 @@ constructor(
 
     @HubdleDslMarker
     public fun Project.plugin(action: Action<KotlinGradlePluginExtension> = Action {}) {
-        pluginManager.apply(PluginIds.Gradle.javaGradlePlugin)
-        pluginManager.apply(PluginIds.Kotlin.jvm)
+        pluginManager.apply(PluginIds.Gradle.kotlinDsl)
         plugin.isEnabled = true
         action.execute(plugin)
         hubdleState.kotlin.gradle.plugin.isEnabled = plugin.isEnabled

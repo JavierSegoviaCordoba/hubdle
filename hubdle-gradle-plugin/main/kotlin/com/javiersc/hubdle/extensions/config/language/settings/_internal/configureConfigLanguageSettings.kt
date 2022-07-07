@@ -10,7 +10,7 @@ internal fun configureConfigLanguageSettings(project: Project) {
     if (project.hasKotlinGradlePlugin) {
         with(project.hubdleState.config.languageSettings) {
             project.the<KotlinProjectExtension>().sourceSets.all {
-                it.languageSettings {
+                languageSettings {
                     if (experimentalCoroutinesApi)
                         optIn("kotlinx.coroutines.ExperimentalCoroutinesApi")
                     if (experimentalStdlibApi) optIn("kotlin.ExperimentalStdlibApi")
@@ -19,7 +19,7 @@ internal fun configureConfigLanguageSettings(project: Project) {
                     if (requiresOptIn) optIn("kotlin.RequiresOptIn")
                 }
 
-                rawConfig.languageSettings?.execute(it.languageSettings)
+                rawConfig.languageSettings?.execute(languageSettings)
             }
         }
     }

@@ -22,29 +22,29 @@ internal fun configureFormat(project: Project) {
 
         val checkFormat = project.tasks.maybeRegisterLazily<Task>("checkFormat")
         checkFormat.configureEach {
-            it.group = "verification"
-            it.dependsOn("spotlessCheck")
+            group = "verification"
+            dependsOn("spotlessCheck")
         }
 
-        checkTask.configureEach { it.dependsOn(checkFormat) }
+        checkTask.configureEach { dependsOn(checkFormat) }
 
         val applyFormat = project.tasks.maybeRegisterLazily<Task>("applyFormat")
         applyFormat.configureEach {
-            it.group = "verification"
-            it.dependsOn("spotlessApply")
+            group = "verification"
+            dependsOn("spotlessApply")
         }
 
         val checkKotlinFormat = project.tasks.maybeRegisterLazily<Task>("checkKotlinFormat")
         checkKotlinFormat.configureEach {
-            it.group = "verification"
-            it.dependsOn("spotlessKotlinCheck")
+            group = "verification"
+            dependsOn("spotlessKotlinCheck")
         }
 
-        checkTask.configureEach { it.dependsOn(checkKotlinFormat) }
+        checkTask.configureEach { dependsOn(checkKotlinFormat) }
 
         project.tasks.maybeRegisterLazily<Task>("applyKotlinFormat").configureEach {
-            it.group = "verification"
-            it.dependsOn("spotlessKotlinApply")
+            group = "verification"
+            dependsOn("spotlessKotlinApply")
         }
 
         format.includes += project.includedKotlinSourceSetDirs
@@ -52,9 +52,9 @@ internal fun configureFormat(project: Project) {
 
         project.configure<SpotlessExtension> {
             kotlin {
-                it.target(format.includes.distinct())
-                it.targetExclude(format.excludes.distinct())
-                it.ktfmt(format.ktfmtVersion).kotlinlangStyle()
+                target(format.includes.distinct())
+                targetExclude(format.excludes.distinct())
+                ktfmt(format.ktfmtVersion).kotlinlangStyle()
             }
         }
     }

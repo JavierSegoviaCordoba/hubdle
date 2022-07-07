@@ -26,21 +26,21 @@ constructor(
     @HubdleDslMarker
     public fun Project.removeProjects(vararg paths: String) {
         tasks.namedLazily<DokkaMultiModuleTask>("dokkaHtmlMultiModule").configureEach {
-            it.removeChildTasks(paths.map(::project))
+            removeChildTasks(paths.map(::project))
         }
     }
 
     @HubdleDslMarker
     public fun Project.removeProjects(vararg projects: Project) {
         tasks.namedLazily<DokkaMultiModuleTask>("dokkaHtmlMultiModule").configureEach {
-            it.removeChildTasks(projects.toList())
+            removeChildTasks(projects.toList())
         }
     }
 
     @HubdleDslMarker
     public fun Project.removeProjects(vararg projects: ProjectDependency) {
         tasks.namedLazily<DokkaMultiModuleTask>("dokkaHtmlMultiModule").configureEach {
-            it.removeChildTasks(projects.map(ProjectDependency::getDependencyProject))
+            removeChildTasks(projects.map(ProjectDependency::getDependencyProject))
         }
     }
 

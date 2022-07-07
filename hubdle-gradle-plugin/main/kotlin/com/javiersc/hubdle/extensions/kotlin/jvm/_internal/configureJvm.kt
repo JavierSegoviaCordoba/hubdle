@@ -52,8 +52,8 @@ internal fun configureKotlinJvmRawConfig(project: Project) {
 }
 
 private fun KotlinJvmProjectExtension.configureJvmDependencies() {
-    sourceSets.named("main") { it.dependencies { configureMainDependencies() } }
-    sourceSets.named("test") { it.dependencies { configureTestDependencies() } }
+    sourceSets.named("main") { dependencies { configureMainDependencies() } }
+    sourceSets.named("test") { dependencies { configureTestDependencies() } }
 }
 
 internal val Project.jvmFeatures: HubdleState.Kotlin.Jvm.Features

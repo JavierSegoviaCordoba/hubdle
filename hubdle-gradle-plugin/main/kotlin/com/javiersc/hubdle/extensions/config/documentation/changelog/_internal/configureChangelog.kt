@@ -25,7 +25,7 @@ internal fun configureChangelog(project: Project) {
         }
 
         project.tasks.namedLazily<PatchChangelogTask>("patchChangelog").configureEach {
-            it.finalizedBy(ApplyFormatChangelogTask.name)
+            finalizedBy(ApplyFormatChangelogTask.name)
         }
 
         project.tasks.register<ApplyFormatChangelogTask>(ApplyFormatChangelogTask.name)
@@ -33,7 +33,7 @@ internal fun configureChangelog(project: Project) {
         project.tasks.register<MergeChangelogTask>(MergeChangelogTask.name)
 
         project.tasks.register<AddChangelogItemTask>(AddChangelogItemTask.name).configure {
-            it.finalizedBy(ApplyFormatChangelogTask.name)
+            finalizedBy(ApplyFormatChangelogTask.name)
         }
     }
 }

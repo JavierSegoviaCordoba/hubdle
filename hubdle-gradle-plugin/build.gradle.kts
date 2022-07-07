@@ -1,6 +1,5 @@
 plugins {
-    `java-gradle-plugin`
-    `kotlin-jvm`
+    `kotlin-dsl`
     `javiersc-kotlin-config`
     `javiersc-publish`
     `dependencies-codegen`
@@ -41,6 +40,7 @@ dependencies {
     api(pluginLibs.diffplug.spotless.spotlessPluginGradle)
     api(pluginLibs.github.gradleNexus.publishPlugin)
     api(pluginLibs.gitlab.arturboschDetekt.detektGradlePlugin)
+    api(pluginLibs.gradle.kotlin.gradleKotlinDslPlugins)
     api(pluginLibs.gradle.publish.pluginPublishPlugin)
     api(pluginLibs.javiersc.semver.semverGradlePlugin)
     api(pluginLibs.jetbrains.dokka.dokkaGradlePlugin)

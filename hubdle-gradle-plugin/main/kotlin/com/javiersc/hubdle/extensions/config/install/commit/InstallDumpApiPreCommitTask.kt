@@ -39,13 +39,13 @@ constructor(
             val installApiCheckPreCommitTask =
                 project.tasks.register<InstallDumpApiPreCommitTask>(name)
 
-            installApiCheckPreCommitTask.configure { task ->
-                task.finalizedBy(WriteFilePreCommitTask.getTask(project))
+            installApiCheckPreCommitTask.configure {
+                finalizedBy(WriteFilePreCommitTask.getTask(project))
             }
 
             project.tasks
                 .namedLazily<InstallPreCommitTask>(InstallPreCommitTask.name)
-                .configureEach { it.dependsOn(installApiCheckPreCommitTask) }
+                .configureEach { dependsOn(installApiCheckPreCommitTask) }
         }
     }
 }

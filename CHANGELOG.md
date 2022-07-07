@@ -6,6 +6,8 @@
 
 ### Changed
 
+- `java-gradle-plugin` and `kotlin("jvm")` with `kotlin-dsl` in `KotlinGradleExtension`
+
 ### Deprecated
 
 ### Removed

@@ -23,18 +23,18 @@ internal fun configureReadmeBadges(project: Project) {
             }
 
         project.tasks.register<WriteReadmeBadgesTask>(WriteReadmeBadgesTask.name).configure {
-            it.projectGroup.set(project.group.toString())
-            it.projectName.set(projectName)
-            it.repoUrl.set(project.getProperty(HubdleProperty.POM.scmUrl))
-            it.kotlinVersion.set(project.getKotlinPluginVersion())
-            it.kotlinBadge.set(readmeState.badges.kotlin)
-            it.mavenCentralBadge.set(readmeState.badges.mavenCentral)
-            it.snapshotsBadge.set(readmeState.badges.snapshots)
-            it.buildBadge.set(readmeState.badges.build)
-            it.coverageBadge.set(readmeState.badges.coverage)
-            it.qualityBadge.set(readmeState.badges.quality)
-            it.techDebtBadge.set(readmeState.badges.techDebt)
-            it.projectKey.set(projectKey)
+            this.projectGroup.set(project.group.toString())
+            this.projectName.set(projectName)
+            this.repoUrl.set(project.getProperty(HubdleProperty.POM.scmUrl))
+            this.kotlinVersion.set(project.getKotlinPluginVersion())
+            this.kotlinBadge.set(readmeState.badges.kotlin)
+            this.mavenCentralBadge.set(readmeState.badges.mavenCentral)
+            this.snapshotsBadge.set(readmeState.badges.snapshots)
+            this.buildBadge.set(readmeState.badges.build)
+            this.coverageBadge.set(readmeState.badges.coverage)
+            this.qualityBadge.set(readmeState.badges.quality)
+            this.techDebtBadge.set(readmeState.badges.techDebt)
+            this.projectKey.set(projectKey)
         }
     }
 }

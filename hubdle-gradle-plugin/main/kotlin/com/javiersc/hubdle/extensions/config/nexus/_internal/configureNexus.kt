@@ -18,29 +18,27 @@ internal fun configureNexus(project: Project) {
                 "${project.rootProject.group} - ${project.rootProject.version}"
             )
 
-            repositories { container ->
-                container.sonatype { repository ->
+            repositories {
+                sonatype {
                     val nexusUrl = project.getPropertyOrNull(Nexus.nexusUrl)
                     val snapshotRepositoryUrl =
                         project.getPropertyOrNull(Nexus.nexusSnapshotRepositoryUrl)
                     if (nexusUrl != null && snapshotRepositoryUrl != null) {
-                        repository.nexusUrl.set(project.uri(nexusUrl))
-                        repository.snapshotRepositoryUrl.set(project.uri(snapshotRepositoryUrl))
+                        this.nexusUrl.set(project.uri(nexusUrl))
+                        this.snapshotRepositoryUrl.set(project.uri(snapshotRepositoryUrl))
                     }
-                    repository.username.set(project.getPropertyOrNull(Nexus.nexusUser))
-                    repository.password.set(project.getPropertyOrNull(Nexus.nexusToken))
-                    repository.stagingProfileId.set(
-                        project.getPropertyOrNull(Nexus.nexusStagingProfileId)
-                    )
+                    username.set(project.getPropertyOrNull(Nexus.nexusUser))
+                    password.set(project.getPropertyOrNull(Nexus.nexusToken))
+                    stagingProfileId.set(project.getPropertyOrNull(Nexus.nexusStagingProfileId))
                 }
             }
 
             connectTimeout.set(Duration.ofMinutes(DEFAULT_CONNECT_TIMEOUT))
             clientTimeout.set(Duration.ofMinutes(DEFAULT_CLIENT_TIMEOUT))
 
-            transitionCheckOptions { options ->
-                options.maxRetries.set(DEFAULT_MAX_RETRIES)
-                options.delayBetween.set(Duration.ofSeconds(DEFAULT_DELAY_BETWEEN))
+            transitionCheckOptions {
+                maxRetries.set(DEFAULT_MAX_RETRIES)
+                delayBetween.set(Duration.ofSeconds(DEFAULT_DELAY_BETWEEN))
             }
         }
     }

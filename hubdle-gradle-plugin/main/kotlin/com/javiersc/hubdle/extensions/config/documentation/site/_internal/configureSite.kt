@@ -33,7 +33,7 @@ internal fun configureSite(project: Project) {
                 project.hubdleState.config.documentation.site.excludes.map(
                     ProjectDependency::getDependencyProject
                 )
-            it.removeChildTasks(excludedProjects)
+            removeChildTasks(excludedProjects)
         }
 
         project.configure<MkdocsExtension> {
@@ -43,22 +43,22 @@ internal fun configureSite(project: Project) {
             publish.docPath = "_site"
         }
 
-        project.allprojects { allproject ->
-            allproject.afterEvaluate {
-                if (it.hasKotlinGradlePlugin) {
-                    it.pluginManager.apply(PluginIds.Kotlin.dokka)
-                    it.tasks.withType<DokkaTaskPartial>() {
-                        dokkaSourceSets.configureEach { sourceSetBuilder ->
+        project.allprojects {
+            afterEvaluate {
+                if (hasKotlinGradlePlugin) {
+                    pluginManager.apply(PluginIds.Kotlin.dokka)
+                    tasks.withType<DokkaTaskPartial> {
+                        dokkaSourceSets.configureEach {
                             val includes: List<String> = buildList {
-                                if (allproject.projectDir.resolve("MODULE.md").exists()) {
+                                if (projectDir.resolve("MODULE.md").exists()) {
                                     add("MODULE.md")
                                 }
-                                if (allproject.projectDir.resolve("README.md").exists()) {
+                                if (projectDir.resolve("README.md").exists()) {
                                     add("README.md")
                                 }
                             }
 
-                            if (includes.isNotEmpty()) sourceSetBuilder.includes.from(includes)
+                            if (includes.isNotEmpty()) this.includes.from(includes)
                         }
                     }
                 }

@@ -54,16 +54,16 @@ constructor(
             val dokkaHtmlMultiModuleTask =
                 project.tasks.namedLazily<DokkaMultiModuleTask>("dokkaHtmlMultiModule")
             val mkdocsBuildTask = project.tasks.namedLazily<MkdocsBuildTask>("mkdocsBuild")
-            mkdocsBuildTask.configureEach { it.dependsOn(preBuildDocsTask) }
+            mkdocsBuildTask.configureEach { dependsOn(preBuildDocsTask) }
 
-            dokkaHtmlMultiModuleTask.configureEach { it.dependsOn(mkdocsBuildTask) }
+            dokkaHtmlMultiModuleTask.configureEach { dependsOn(mkdocsBuildTask) }
 
             val buildSiteTask = project.tasks.maybeRegisterLazily<BuildSiteTask>(name)
             buildSiteTask.configureEach {
-                it.notCompatibleWithConfigurationCache("mkDocsBuild(grgit) task is incompatible")
+                notCompatibleWithConfigurationCache("mkDocsBuild(grgit) task is incompatible")
 
-                it.dependsOn(mkdocsBuildTask)
-                it.dependsOn(dokkaHtmlMultiModuleTask)
+                dependsOn(mkdocsBuildTask)
+                dependsOn(dokkaHtmlMultiModuleTask)
             }
             return buildSiteTask
         }
@@ -73,8 +73,8 @@ constructor(
         with(fileSystemOperations) {
             if (projectVersion.endsWith("-SNAPSHOT")) {
                 copy {
-                    it.from(dokkaOutputDir.path)
-                    it.into(File("$apiDir/snapshot").path)
+                    from(dokkaOutputDir.path)
+                    into(File("$apiDir/snapshot").path)
                 }
             } else {
                 File("$apiDir/index.html").apply {
@@ -82,8 +82,8 @@ constructor(
                     writeText(apiIndexHtmlContent)
                 }
                 copy {
-                    it.from(dokkaOutputDir.path)
-                    it.into(File("$apiDir/versions/$projectVersion").path)
+                    from(dokkaOutputDir.path)
+                    into(File("$apiDir/versions/$projectVersion").path)
                 }
             }
         }

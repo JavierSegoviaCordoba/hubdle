@@ -49,23 +49,22 @@ private fun configureTestLogger(target: Project) {
 
 private fun configureAllTestsTask(target: Project) {
     target.tasks
-        .maybeRegisterLazily<Task>(ALL_TEST_TASK_NAME) { allTestsTask ->
-            allTestsTask.group = LifecycleBasePlugin.VERIFICATION_GROUP
+        .maybeRegisterLazily<Task>(ALL_TEST_TASK_NAME) {
+            group = LifecycleBasePlugin.VERIFICATION_GROUP
         }
-        .configureEach { allTestsTask -> allTestsTask.dependsOn(target.tasks.withType<Test>()) }
+        .configureEach { dependsOn(target.tasks.withType<Test>()) }
 
-    target.tasks.configureEach { task ->
-        if (task.name == LifecycleBasePlugin.CHECK_TASK_NAME) task.dependsOn(ALL_TEST_TASK_NAME)
+    target.tasks.configureEach {
+        if (name == LifecycleBasePlugin.CHECK_TASK_NAME) dependsOn(ALL_TEST_TASK_NAME)
     }
 }
 
 private fun configureAllTestsReport(target: Project) {
     val testReport = target.tasks.maybeRegisterLazily<TestReport>(ALL_TEST_REPORT_TASK_NAME)
-    testReport.configureEach { task ->
-        val project = task.project
-        task.group = LifecycleBasePlugin.VERIFICATION_GROUP
-        task.destinationDirectory.set(project.file("${project.buildDir}/reports/allTests"))
-        task.testResults.from(project.allprojects.map { it.tasks.withType<Test>() })
+    testReport.configureEach {
+        group = LifecycleBasePlugin.VERIFICATION_GROUP
+        destinationDirectory.set(project.file("${project.buildDir}/reports/allTests"))
+        testResults.from(project.allprojects.map { it.tasks.withType<Test>() })
     }
 
     val shouldRunAllTestsReport =
@@ -79,8 +78,8 @@ private fun configureAllTestsReport(target: Project) {
         }
 
     if (shouldRunAllTestsReport) {
-        target.allprojects { project ->
-            project.tasks.withType<Test>().configureEach { task -> task.finalizedBy(testReport) }
+        target.allprojects {
+            project.tasks.withType<Test>().configureEach { finalizedBy(testReport) }
         }
     }
 }
@@ -104,7 +103,7 @@ private fun configureCodeCoverageMergedReport(project: Project) {
                 val koverMergedReportTask =
                     project.rootProject.tasks.namedLazily<Task>(KOVER_MERGED_REPORT_TASK_NAME)
                 project.rootProject.tasks.namedLazily<Task>(ALL_TEST_TASK_NAME).configureEach {
-                    it.dependsOn(koverMergedReportTask)
+                    dependsOn(koverMergedReportTask)
                 }
             }
         }

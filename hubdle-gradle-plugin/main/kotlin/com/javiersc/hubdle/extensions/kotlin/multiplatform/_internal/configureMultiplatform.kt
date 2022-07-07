@@ -60,9 +60,7 @@ internal fun configureMultiplatformAndroid(project: Project) {
             compileSdk = project.hubdleState.kotlin.android.compileSdk
             defaultConfig.minSdk = project.hubdleState.kotlin.android.minSdk
 
-            sourceSets.all {
-                it.manifest.srcFile("android${it.name.capitalized()}/AndroidManifest.xml")
-            }
+            sourceSets.all { manifest.srcFile("android${name.capitalized()}/AndroidManifest.xml") }
         }
 
         project.configure<KotlinMultiplatformExtension> {
@@ -508,8 +506,8 @@ internal fun configureMultiplatformAndroidRawConfig(project: Project) {
 }
 
 private fun KotlinMultiplatformExtension.configureMultiplatformDependencies() {
-    sourceSets.getByName("commonMain") { it.dependencies { configureCommonMainDependencies() } }
-    sourceSets.getByName("commonTest") { it.dependencies { configureCommonTestDependencies() } }
+    sourceSets.getByName("commonMain") { dependencies { configureCommonMainDependencies() } }
+    sourceSets.getByName("commonTest") { dependencies { configureCommonTestDependencies() } }
     sourceSets.findByName("androidMain")?.apply {
         dependencies { configureAndroidMainDependencies() }
     }

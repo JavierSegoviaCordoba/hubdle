@@ -27,8 +27,8 @@ internal fun configureAnalysis(project: Project) {
             """Hubdle `analysis()` must be only configured in the root project"""
         }
         val checkAnalysisTask = project.tasks.maybeRegisterLazily<Task>("checkAnalysis")
-        checkAnalysisTask.configureEach { it.group = "verification" }
-        project.tasks.namedLazily<Task>("check").configureEach { it.dependsOn(checkAnalysisTask) }
+        checkAnalysisTask.configureEach { group = "verification" }
+        project.tasks.namedLazily<Task>("check").configureEach { dependsOn(checkAnalysisTask) }
 
         configureDetekt(project)
         configureSonarqube(project)
@@ -50,18 +50,18 @@ private fun configureDetekt(project: Project) {
             basePath = project.rootProject.projectDir.path
         }
 
-        project.tasks.namedLazily<Task>("checkAnalysis").configureEach { it.dependsOn("detekt") }
+        project.tasks.namedLazily<Task>("checkAnalysis").configureEach { dependsOn("detekt") }
 
-        project.tasks.withType<Detekt>().configureEach { detekt ->
-            detekt.setSource(project.files(project.rootDir))
-            detekt.include(analysis.includes.distinct())
-            detekt.exclude(analysis.excludes.distinct())
+        project.tasks.withType<Detekt>().configureEach {
+            setSource(project.files(project.rootDir))
+            include(analysis.includes.distinct())
+            exclude(analysis.excludes.distinct())
 
-            detekt.reports { reports ->
-                reports.html { report -> report.required.set(analysis.reports.html) }
-                reports.sarif { report -> report.required.set(analysis.reports.sarif) }
-                reports.txt { report -> report.required.set(analysis.reports.txt) }
-                reports.xml { report -> report.required.set(analysis.reports.xml) }
+            reports {
+                html.required.set(analysis.reports.html)
+                sarif.required.set(analysis.reports.sarif)
+                txt.required.set(analysis.reports.txt)
+                xml.required.set(analysis.reports.xml)
             }
         }
     }
@@ -75,49 +75,46 @@ private fun configureSonarqube(project: Project) {
     // project.tasks.namedLazily<Task>("checkAnalysis").configureEach { it.dependsOn("sonarqube") }
 
     project.configure<SonarQubeExtension> {
-        properties { props ->
-            props.property(
+        properties {
+            property(
                 "sonar.projectName",
                 project.getPropertyOrNull(Analysis.projectName)
                     ?: project.getPropertyOrNull(HubdleProperty.Project.rootProjectDirName)
                         ?: project.name
             )
-            props.property(
+            property(
                 "sonar.projectKey",
                 project.getPropertyOrNull(Analysis.projectKey)
                     ?: project.getPropertyOrNull(HubdleProperty.Project.rootProjectDirName)
                         ?: "${project.group}:${project.name}"
             )
-            props.property(
+            property(
                 "sonar.login",
                 project.getProperty(Analysis.login),
             )
-            props.property(
+            property(
                 "sonar.host.url",
                 project.getPropertyOrNull(Analysis.hostUrl) ?: "https://sonarcloud.io"
             )
 
-            props.property(
-                "sonar.organization",
-                project.getPropertyOrNull(Analysis.organization) ?: ""
-            )
-            props.property(
+            property("sonar.organization", project.getPropertyOrNull(Analysis.organization) ?: "")
+            property(
                 "sonar.kotlin.detekt.reportPaths",
                 "${project.buildDir}/reports/detekt/detekt.xml"
             )
-            props.property(
+            property(
                 "sonar.coverage.jacoco.xmlReportPaths",
                 "${project.buildDir}/reports/kover/report.xml"
             )
         }
     }
 
-    project.allprojects { proj ->
-        proj.afterEvaluate { evaluatedProject ->
-            evaluatedProject.extensions.findByType<SonarQubeExtension>()?.apply {
-                properties { properties ->
-                    properties.property("sonar.sources", evaluatedProject.kotlinSrcDirs())
-                    properties.property("sonar.tests", evaluatedProject.kotlinTestsSrcDirs())
+    project.allprojects {
+        afterEvaluate {
+            extensions.findByType<SonarQubeExtension>()?.apply {
+                properties {
+                    property("sonar.sources", kotlinSrcDirs())
+                    property("sonar.tests", kotlinTestsSrcDirs())
                 }
             }
         }

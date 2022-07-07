@@ -46,7 +46,7 @@ constructor(
 
         internal fun register(project: Project) =
             project.tasks.maybeRegisterLazily<InstallPreCommitTask>(name).configureEach {
-                it.preCommitName.set("")
+                preCommitName.set("")
             }
     }
 }

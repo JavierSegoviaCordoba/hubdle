@@ -216,15 +216,15 @@ constructor(
         buildDotDocsDirectory: File,
     ) {
         copy {
-            it.from(dotDocsDirectory)
-            it.into(buildDotDocsDirectory)
+            from(dotDocsDirectory)
+            into(buildDotDocsDirectory)
         }
 
         if (File("$dotDocsDirectory/docs/index.md").exists().not()) {
             copy {
-                it.from("$rootDirectory/README.md")
-                it.into("$rootDirectory/build/.docs/docs")
-                it.rename { fileName -> fileName.replace(fileName, "index.md") }
+                from("$rootDirectory/README.md")
+                into("$rootDirectory/build/.docs/docs")
+                rename { fileName -> fileName.replace(fileName, "index.md") }
             }
 
             File("$rootDirectory/build/.docs/docs/index.md").apply {
@@ -257,8 +257,8 @@ constructor(
         with(fileSystemOperations) {
             if (File("$rootDirectory/CHANGELOG.md").exists()) {
                 copy {
-                    it.from("$rootDirectory/CHANGELOG.md")
-                    it.into("$rootDirectory/build/.docs/docs")
+                    from("$rootDirectory/CHANGELOG.md")
+                    into("$rootDirectory/build/.docs/docs")
                 }
 
                 File("$rootDirectory/build/.docs/docs/CHANGELOG.md").apply {
@@ -297,9 +297,9 @@ constructor(
                 val projectsNavPath = "$projectsPath/${projectInfo.filePath}"
 
                 copy {
-                    it.from(projectInfo.mdFile)
-                    it.into(projectsNavPath)
-                    it.rename { fileName -> fileName.replace(fileName, "${projectInfo.name}.md") }
+                    from(projectInfo.mdFile)
+                    into(projectsNavPath)
+                    rename { fileName -> fileName.replace(fileName, "${projectInfo.name}.md") }
                 }
 
                 File("$projectsNavPath/${projectInfo.name}.md").apply {
@@ -402,7 +402,7 @@ constructor(
 
     private fun writeNavigation(newNavigations: List<String>) {
         mkDocsBuildFile.writeText(
-            buildList {
+            buildList<String> {
                     addAll(mkDocsBuildFile.readLines())
                     removeAt(getDocsNavigation().index)
                     removeAll(getDocsNavigation().navs)
@@ -428,7 +428,7 @@ constructor(
     }
 
     private fun List<String>.cleanNavProjects(): List<String> =
-        buildList {
+        buildList<String> {
                 val lines = this@cleanNavProjects
 
                 fun String.isReference() =

@@ -91,6 +91,12 @@ constructor(
         public fun Project.extendedTesting(enabled: Boolean = true) {
             androidLibraryFeatures.extendedTesting = enabled
         }
+
+        @HubdleDslMarker
+        public fun Project.serialization(enabled: Boolean = true, useJson: Boolean = true) {
+            androidLibraryFeatures.serialization.isEnabled = enabled
+            androidLibraryFeatures.serialization.useJson = useJson
+        }
     }
 
     public companion object {

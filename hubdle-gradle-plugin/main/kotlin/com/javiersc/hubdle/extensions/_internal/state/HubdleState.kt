@@ -358,6 +358,7 @@ internal data class HubdleState(
             var experimentalStdlibApi: Boolean = true,
             var experimentalTime: Boolean = true,
             var flowPreview: Boolean = false,
+            val optIns: MutableList<String> = mutableListOf(),
             var requiresOptIn: Boolean = true,
             var rawConfig: RawConfig = RawConfig(),
         ) : LaterConfigurable {
@@ -484,7 +485,13 @@ internal data class HubdleState(
                     var coroutines: Boolean = false,
                     var extendedStdlib: Boolean = true,
                     var extendedTesting: Boolean = true,
-                )
+                    val serialization: Serialization = Serialization(),
+                ) {
+                    data class Serialization(
+                        override var isEnabled: Boolean = false,
+                        var useJson: Boolean = false,
+                    ) : Enableable
+                }
             }
         }
 
@@ -543,7 +550,7 @@ internal data class HubdleState(
         data class Jvm(
             override var isEnabled: Boolean = KotlinJvmExtension.IS_ENABLED,
             val features: Features = Features(),
-            val rawConfig: RawConfig = RawConfig()
+            val rawConfig: RawConfig = RawConfig(),
         ) : Enableable, Configurable {
             override fun configure(project: Project) {
                 configureJvm(project)
@@ -555,7 +562,13 @@ internal data class HubdleState(
                 var extendedStdlib: Boolean = true,
                 var extendedGradle: Boolean = false,
                 var extendedTesting: Boolean = true,
-            )
+                val serialization: Serialization = Serialization(),
+            ) {
+                data class Serialization(
+                    override var isEnabled: Boolean = false,
+                    var useJson: Boolean = false,
+                ) : Enableable
+            }
 
             data class RawConfig(
                 var kotlin: Action<KotlinJvmProjectExtension>? = null,
@@ -938,8 +951,14 @@ internal data class HubdleState(
                 var coroutines: Boolean = false,
                 var extendedStdlib: Boolean = true,
                 var extendedTesting: Boolean = true,
-                var minimumTargetsPerOS: Boolean = false
-            )
+                var minimumTargetsPerOS: Boolean = false,
+                val serialization: Serialization = Serialization(),
+            ) {
+                data class Serialization(
+                    override var isEnabled: Boolean = false,
+                    var useJson: Boolean = false,
+                ) : Enableable
+            }
 
             data class RawConfig(
                 var kotlin: Action<KotlinMultiplatformProjectExtension>? = null,

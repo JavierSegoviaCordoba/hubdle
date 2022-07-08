@@ -37,6 +37,16 @@ public open class LanguageSettingsExtension @Inject constructor(objects: ObjectF
     }
 
     @HubdleDslMarker
+    public fun Project.optIn(annotationName: String) {
+        hubdleState.config.languageSettings.optIns += annotationName
+    }
+
+    @HubdleDslMarker
+    public fun Project.optIn(vararg annotationNames: String) {
+        hubdleState.config.languageSettings.optIns += annotationNames
+    }
+
+    @HubdleDslMarker
     public fun Project.requiresOptIn(enabled: Boolean = true) {
         hubdleState.config.languageSettings.requiresOptIn = enabled
     }

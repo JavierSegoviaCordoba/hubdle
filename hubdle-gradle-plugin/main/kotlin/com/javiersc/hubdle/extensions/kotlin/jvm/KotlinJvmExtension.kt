@@ -86,6 +86,12 @@ constructor(
         public fun Project.extendedTesting(enabled: Boolean = true) {
             jvmFeatures.extendedTesting = enabled
         }
+
+        @HubdleDslMarker
+        public fun Project.serialization(enabled: Boolean = true, useJson: Boolean = true) {
+            jvmFeatures.serialization.isEnabled = enabled
+            jvmFeatures.serialization.useJson = useJson
+        }
     }
 
     @HubdleDslMarker

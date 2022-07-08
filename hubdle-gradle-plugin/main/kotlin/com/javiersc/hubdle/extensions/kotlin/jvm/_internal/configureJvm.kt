@@ -11,6 +11,8 @@ import com.javiersc.hubdle.extensions.dependencies._internal.constants.COM_JAVIE
 import com.javiersc.hubdle.extensions.dependencies._internal.constants.IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE
 import com.javiersc.hubdle.extensions.dependencies._internal.constants.ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_MODULE
 import com.javiersc.hubdle.extensions.dependencies._internal.constants.ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_TEST_MODULE
+import com.javiersc.hubdle.extensions.dependencies._internal.constants.ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_CORE_MODULE
+import com.javiersc.hubdle.extensions.dependencies._internal.constants.ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_JSON_MODULE
 import com.javiersc.hubdle.extensions.dependencies._internal.constants.ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE
 import com.javiersc.hubdle.extensions.kotlin._internal.configJvmTarget
 import com.javiersc.hubdle.extensions.options.configureDefaultJavaSourceSets
@@ -74,6 +76,14 @@ private fun KotlinDependencyHandler.configureMainDependencies() {
     }
     if (jvmFeatures.extendedStdlib) {
         catalogImplementation(COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE)
+    }
+
+    if (jvmFeatures.serialization.isEnabled) {
+        project.pluginManager.apply(PluginIds.Kotlin.serialization)
+        catalogImplementation(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_CORE_MODULE)
+        if (jvmFeatures.serialization.useJson) {
+            catalogImplementation(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_JSON_MODULE)
+        }
     }
 }
 

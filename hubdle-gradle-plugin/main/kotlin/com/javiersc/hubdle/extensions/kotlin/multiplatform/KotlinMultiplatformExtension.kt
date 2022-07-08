@@ -451,6 +451,12 @@ constructor(
         public fun Project.minimumTargetsPerOS(enabled: Boolean = true) {
             multiplatformFeatures.minimumTargetsPerOS = enabled
         }
+
+        @HubdleDslMarker
+        public fun Project.serialization(enabled: Boolean = true, useJson: Boolean = true) {
+            multiplatformFeatures.serialization.isEnabled = enabled
+            multiplatformFeatures.serialization.useJson = useJson
+        }
     }
 
     public companion object {

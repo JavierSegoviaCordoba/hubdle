@@ -38,6 +38,7 @@ internal object PluginIds {
         const val jvm = "org.jetbrains.kotlin.jvm"
         const val kover = "org.jetbrains.kotlinx.kover"
         const val multiplatform = "org.jetbrains.kotlin.multiplatform"
+        const val serialization = "org.jetbrains.kotlin.plugin.serialization"
     }
 
     object Publishing {

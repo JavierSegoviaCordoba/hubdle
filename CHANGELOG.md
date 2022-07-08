@@ -4,6 +4,8 @@
 
 ### Added
 
+- `serialization` feature to `AndroidLibrary`, `KotlinJvm` and `KotlinMultiplatform`
+- `optIn` functions to `LanguageSettingsExtension`
 - more dependencies to `hubdle.libs.versions.toml`
 - `experimentalContracts` to `LanguageSettingsExtension`
 

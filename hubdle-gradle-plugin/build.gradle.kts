@@ -47,6 +47,7 @@ dependencies {
     api(pluginLibs.jetbrains.intellijPlugins.gradleChangelogPlugin)
     api(pluginLibs.jetbrains.kotlinx.binaryCompatibilityValidator)
     api(pluginLibs.jetbrains.kotlinx.kover)
+    api(pluginLibs.jetbrains.kotlinx.serialization)
     api(pluginLibs.sonarqube.scannerGradle.sonarqubeGradlePlugin)
     api(pluginLibs.vyarus.gradleMkdocsPlugin)
 

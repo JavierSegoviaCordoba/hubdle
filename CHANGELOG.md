@@ -4,22 +4,28 @@
 
 ### Added
 
-- `serialization` feature to `AndroidLibrary`, `KotlinJvm` and `KotlinMultiplatform`
-- `optIn` functions to `LanguageSettingsExtension`
-- more dependencies to `hubdle.libs.versions.toml`
-- `experimentalContracts` to `LanguageSettingsExtension`
-
 ### Changed
 
 ### Deprecated
 
 ### Removed
 
-- `@HubdleDslMarker` from every `RawConfigExtension` function
-
 ### Fixed
 
 ### Updated
+
+## [0.2.0-alpha.14] - 2022-07-08
+
+### Added
+
+- `serialization` feature to `AndroidLibrary`, `KotlinJvm` and `KotlinMultiplatform`
+- `optIn` functions to `LanguageSettingsExtension`
+- more dependencies to `hubdle.libs.versions.toml`
+- `experimentalContracts` to `LanguageSettingsExtension`
+
+### Removed
+
+- `@HubdleDslMarker` from every `RawConfigExtension` function
 
 ## [0.2.0-alpha.13] - 2022-07-07
 

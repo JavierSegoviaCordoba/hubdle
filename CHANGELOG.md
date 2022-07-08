@@ -4,6 +4,8 @@
 
 ### Added
 
+- `experimentalContracts` to `LanguageSettingsExtension`
+
 ### Changed
 
 ### Deprecated

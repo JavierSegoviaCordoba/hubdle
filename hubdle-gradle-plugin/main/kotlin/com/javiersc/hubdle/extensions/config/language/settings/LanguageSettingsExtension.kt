@@ -12,6 +12,11 @@ import org.jetbrains.kotlin.gradle.plugin.LanguageSettingsBuilder
 public open class LanguageSettingsExtension @Inject constructor(objects: ObjectFactory) {
 
     @HubdleDslMarker
+    public fun Project.experimentalContracts(enabled: Boolean = true) {
+        hubdleState.config.languageSettings.experimentalContracts = enabled
+    }
+
+    @HubdleDslMarker
     public fun Project.experimentalCoroutinesApi(enabled: Boolean = true) {
         hubdleState.config.languageSettings.experimentalCoroutinesApi = enabled
     }

@@ -157,8 +157,8 @@
 
 <div>
   <ul>
-    <li>830 number of properties</li>
-    <li>498 number of functions</li>
+    <li>831 number of properties</li>
+    <li>500 number of functions</li>
     <li>223 number of classes</li>
     <li>72 number of packages</li>
     <li>183 number of kt files</li>
@@ -170,15 +170,15 @@
 
 <div>
   <ul>
-    <li>9,705 lines of code (loc)</li>
-    <li>7,944 source lines of code (sloc)</li>
-    <li>5,335 logical lines of code (lloc)</li>
+    <li>9,701 lines of code (loc)</li>
+    <li>7,938 source lines of code (sloc)</li>
+    <li>5,326 logical lines of code (lloc)</li>
     <li>28 comment lines of code (cloc)</li>
-    <li>825 cyclomatic complexity (mcc)</li>
-    <li>411 cognitive complexity</li>
+    <li>828 cyclomatic complexity (mcc)</li>
+    <li>398 cognitive complexity</li>
     <li>50 number of total code smells</li>
     <li>0% comment source ratio</li>
-    <li>154 mcc per 1,000 lloc</li>
+    <li>155 mcc per 1,000 lloc</li>
     <li>9 code smells per 1,000 lloc</li>
   </ul>
 </div>
@@ -437,8 +437,8 @@
       <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/language/settings/_internal/configureConfigLanguageSettings.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
         <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.config.language.settings._internal</span>
 <span class="lineno">   2 </span>
-<span class="lineno">   3 </span>import com.javiersc.hubdle.extensions._internal.state.hubdleState
-<span class="lineno">   4 </span>import com.javiersc.hubdle.extensions.config._internal.hasKotlinGradlePlugin
+<span class="lineno">   3 </span>import com.javiersc.hubdle.extensions._internal.state.HubdleState.Config.LanguageSettings
+<span class="lineno">   4 </span>import com.javiersc.hubdle.extensions._internal.state.hubdleState
 </code></pre>
       </li>
       <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/nexus/_internal/configureNexus.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
@@ -573,34 +573,34 @@
 <span class="lineno"> 198 </span>    get() = module.name.startsWith(module.group.substringAfterLast(&quot;.&quot;))
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/state/HubdleState.kt:962:34</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
-        <pre><code><span class="lineno"> 959 </span>        object High : Priority(2) {
-<span class="lineno"> 960 </span>            override fun toString(): String = &quot;High&quot;
-<span class="lineno"> 961 </span>        }
-<span class="lineno"> 962 </span>        object Medium : Priority(<span class="error">3</span>) {
-<span class="lineno"> 963 </span>            override fun toString(): String = &quot;Medium&quot;
-<span class="lineno"> 964 </span>        }
-<span class="lineno"> 965 </span>        object Low : Priority(4) {
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/state/HubdleState.kt:963:34</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno"> 960 </span>        object High : Priority(2) {
+<span class="lineno"> 961 </span>            override fun toString(): String = &quot;High&quot;
+<span class="lineno"> 962 </span>        }
+<span class="lineno"> 963 </span>        object Medium : Priority(<span class="error">3</span>) {
+<span class="lineno"> 964 </span>            override fun toString(): String = &quot;Medium&quot;
+<span class="lineno"> 965 </span>        }
+<span class="lineno"> 966 </span>        object Low : Priority(4) {
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/state/HubdleState.kt:965:31</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
-        <pre><code><span class="lineno"> 962 </span>        object Medium : Priority(3) {
-<span class="lineno"> 963 </span>            override fun toString(): String = &quot;Medium&quot;
-<span class="lineno"> 964 </span>        }
-<span class="lineno"> 965 </span>        object Low : Priority(<span class="error">4</span>) {
-<span class="lineno"> 966 </span>            override fun toString(): String = &quot;Low&quot;
-<span class="lineno"> 967 </span>        }
-<span class="lineno"> 968 </span>        object VeryLow : Priority(5) {
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/state/HubdleState.kt:966:31</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno"> 963 </span>        object Medium : Priority(3) {
+<span class="lineno"> 964 </span>            override fun toString(): String = &quot;Medium&quot;
+<span class="lineno"> 965 </span>        }
+<span class="lineno"> 966 </span>        object Low : Priority(<span class="error">4</span>) {
+<span class="lineno"> 967 </span>            override fun toString(): String = &quot;Low&quot;
+<span class="lineno"> 968 </span>        }
+<span class="lineno"> 969 </span>        object VeryLow : Priority(5) {
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/state/HubdleState.kt:968:35</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
-        <pre><code><span class="lineno"> 965 </span>        object Low : Priority(4) {
-<span class="lineno"> 966 </span>            override fun toString(): String = &quot;Low&quot;
-<span class="lineno"> 967 </span>        }
-<span class="lineno"> 968 </span>        object VeryLow : Priority(<span class="error">5</span>) {
-<span class="lineno"> 969 </span>            override fun toString(): String = &quot;VeryLow&quot;
-<span class="lineno"> 970 </span>        }
-<span class="lineno"> 971 </span>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/state/HubdleState.kt:969:35</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno"> 966 </span>        object Low : Priority(4) {
+<span class="lineno"> 967 </span>            override fun toString(): String = &quot;Low&quot;
+<span class="lineno"> 968 </span>        }
+<span class="lineno"> 969 </span>        object VeryLow : Priority(<span class="error">5</span>) {
+<span class="lineno"> 970 </span>            override fun toString(): String = &quot;VeryLow&quot;
+<span class="lineno"> 971 </span>        }
+<span class="lineno"> 972 </span>
 </code></pre>
       </li>
     </ul>
@@ -653,7 +653,7 @@
 </div>
 
 
-generated with <a href="https://detekt.dev/">detekt version 1.20.0</a> on 2022-07-07 23:20:31 UTC.
+generated with <a href="https://detekt.dev/">detekt version 1.20.0</a> on 2022-07-08 12:15:11 UTC.
 
 </body>
 </html>

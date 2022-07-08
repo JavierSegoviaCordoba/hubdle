@@ -4,6 +4,7 @@
 
 ### Added
 
+- more dependencies to `hubdle.libs.versions.toml`
 - `experimentalContracts` to `LanguageSettingsExtension`
 
 ### Changed

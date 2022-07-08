@@ -32,7 +32,6 @@ constructor(
     @HubdleDslMarker
     public open class RawConfigExtension {
 
-        @HubdleDslMarker
         public fun Project.semver(action: Action<SemverExtension>) {
             hubdleState.config.versioning.rawConfig.semver = action
         }

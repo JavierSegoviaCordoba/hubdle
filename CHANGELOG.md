@@ -12,6 +12,8 @@
 
 ### Removed
 
+- `@HubdleDslMarker` from every `RawConfigExtension` function
+
 ### Fixed
 
 ### Updated

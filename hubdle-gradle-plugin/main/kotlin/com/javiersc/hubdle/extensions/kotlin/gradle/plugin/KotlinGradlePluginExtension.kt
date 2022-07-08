@@ -105,12 +105,10 @@ constructor(
     @HubdleDslMarker
     public open class RawConfigExtension {
 
-        @HubdleDslMarker
         public fun Project.kotlin(action: Action<KotlinJvmProjectExtension>) {
             hubdleState.kotlin.gradle.plugin.rawConfig.kotlin = action
         }
 
-        @HubdleDslMarker
         public fun Project.gradlePlugin(action: Action<GradlePluginDevelopmentExtension>) {
             hubdleState.kotlin.gradle.plugin.rawConfig.gradlePlugin = action
         }

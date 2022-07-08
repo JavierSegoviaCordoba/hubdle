@@ -30,7 +30,6 @@ constructor(
     @HubdleDslMarker
     public open class RawConfigExtension {
 
-        @HubdleDslMarker
         public fun Project.kover(action: Action<KoverExtension>) {
             hubdleState.config.coverage.rawConfig.kover = action
         }

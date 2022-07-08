@@ -37,7 +37,6 @@ constructor(
     @HubdleDslMarker
     public open class RawConfigExtension {
 
-        @HubdleDslMarker
         public fun Project.spotless(action: Action<SpotlessExtension>) {
             hubdleState.config.format.rawConfig.spotless = action
         }

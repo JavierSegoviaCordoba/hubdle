@@ -62,7 +62,6 @@ constructor(
     @HubdleDslMarker
     public open class RawConfigExtension {
 
-        @HubdleDslMarker
         public fun Project.detekt(action: Action<DetektExtension>) {
             hubdleState.config.analysis.rawConfig.detekt = action
         }

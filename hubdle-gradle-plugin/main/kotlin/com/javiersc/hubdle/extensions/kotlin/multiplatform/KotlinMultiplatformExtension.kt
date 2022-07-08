@@ -424,7 +424,6 @@ constructor(
     @HubdleDslMarker
     public open class RawConfigExtension {
 
-        @HubdleDslMarker
         public fun Project.kotlin(action: Action<KotlinProjectMultiplatformExtension>) {
             hubdleState.kotlin.multiplatform.rawConfig.kotlin = action
         }

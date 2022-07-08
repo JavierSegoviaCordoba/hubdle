@@ -31,12 +31,10 @@ constructor(
     @HubdleDslMarker
     public open class RawConfigExtension {
 
-        @HubdleDslMarker
         public fun Project.publishing(action: Action<MavenPublishingExtension>) {
             hubdleState.config.publishing.rawConfig.publishing = action
         }
 
-        @HubdleDslMarker
         public fun Project.signing(action: Action<SigningExtension>) {
             hubdleState.config.publishing.rawConfig.signing = action
         }

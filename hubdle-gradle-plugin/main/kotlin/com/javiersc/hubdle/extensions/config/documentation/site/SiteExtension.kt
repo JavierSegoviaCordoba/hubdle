@@ -61,7 +61,6 @@ constructor(
     @HubdleDslMarker
     public open class RawConfigExtension {
 
-        @HubdleDslMarker
         public fun Project.mkdocs(action: Action<MkdocsExtension>) {
             hubdleState.config.documentation.site.rawConfig.mkdocs = action
         }

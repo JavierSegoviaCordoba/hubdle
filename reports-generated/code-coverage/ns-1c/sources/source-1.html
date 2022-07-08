@@ -50,7 +50,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/15)
+    (0/17)
   </span>
 </td>
     <td class="coverageStat"/>
@@ -59,7 +59,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/16)
+    (0/18)
   </span>
 </td>
 <td class="coverageStat">
@@ -67,7 +67,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/92)
+    (0/114)
   </span>
 </td>
 </tr>
@@ -146,7 +146,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/20)
+    (0/22)
   </span>
 </td>
     <td class="coverageStat"/>
@@ -155,7 +155,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/21)
+    (0/23)
   </span>
 </td>
 <td class="coverageStat">
@@ -163,7 +163,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/108)
+    (0/130)
   </span>
 </td>
 </tr>
@@ -213,25 +213,35 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">37</i>&nbsp;    }
 <i class="no-highlight">38</i>&nbsp;
 <i class="no-highlight">39</i>&nbsp;    @HubdleDslMarker
-<b class="nc"><i class="no-highlight">40</i>&nbsp;    public fun Project.requiresOptIn(enabled: Boolean = true) {</b>
-<b class="nc"><i class="no-highlight">41</i>&nbsp;        hubdleState.config.languageSettings.requiresOptIn = enabled</b>
+<i class="no-highlight">40</i>&nbsp;    public fun Project.optIn(annotationName: String) {
+<b class="nc"><i class="no-highlight">41</i>&nbsp;        hubdleState.config.languageSettings.optIns += annotationName</b>
 <i class="no-highlight">42</i>&nbsp;    }
 <i class="no-highlight">43</i>&nbsp;
-<b class="nc"><i class="no-highlight">44</i>&nbsp;    private val rawConfig: RawConfig = objects.newInstance()</b>
-<i class="no-highlight">45</i>&nbsp;
-<i class="no-highlight">46</i>&nbsp;    @HubdleDslMarker
-<b class="nc"><i class="no-highlight">47</i>&nbsp;    public fun rawConfig(action: Action&lt;RawConfig&gt; = Action {}) {</b>
-<b class="nc"><i class="no-highlight">48</i>&nbsp;        action.execute(rawConfig)</b>
-<i class="no-highlight">49</i>&nbsp;    }
-<i class="no-highlight">50</i>&nbsp;
-<b class="nc"><i class="no-highlight">51</i>&nbsp;    public open class RawConfig {</b>
-<i class="no-highlight">52</i>&nbsp;
-<i class="no-highlight">53</i>&nbsp;        @HubdleDslMarker
-<b class="nc"><i class="no-highlight">54</i>&nbsp;        public fun Project.languageSettings(action: Action&lt;LanguageSettingsBuilder&gt; = Action {}) {</b>
-<b class="nc"><i class="no-highlight">55</i>&nbsp;            hubdleState.config.languageSettings.rawConfig.languageSettings = action</b>
-<i class="no-highlight">56</i>&nbsp;        }
-<i class="no-highlight">57</i>&nbsp;    }
-<i class="no-highlight">58</i>&nbsp;}
+<i class="no-highlight">44</i>&nbsp;    @HubdleDslMarker
+<i class="no-highlight">45</i>&nbsp;    public fun Project.optIn(vararg annotationNames: String) {
+<b class="nc"><i class="no-highlight">46</i>&nbsp;        hubdleState.config.languageSettings.optIns += annotationNames</b>
+<i class="no-highlight">47</i>&nbsp;    }
+<i class="no-highlight">48</i>&nbsp;
+<i class="no-highlight">49</i>&nbsp;    @HubdleDslMarker
+<b class="nc"><i class="no-highlight">50</i>&nbsp;    public fun Project.requiresOptIn(enabled: Boolean = true) {</b>
+<b class="nc"><i class="no-highlight">51</i>&nbsp;        hubdleState.config.languageSettings.requiresOptIn = enabled</b>
+<i class="no-highlight">52</i>&nbsp;    }
+<i class="no-highlight">53</i>&nbsp;
+<b class="nc"><i class="no-highlight">54</i>&nbsp;    private val rawConfig: RawConfig = objects.newInstance()</b>
+<i class="no-highlight">55</i>&nbsp;
+<i class="no-highlight">56</i>&nbsp;    @HubdleDslMarker
+<b class="nc"><i class="no-highlight">57</i>&nbsp;    public fun rawConfig(action: Action&lt;RawConfig&gt; = Action {}) {</b>
+<b class="nc"><i class="no-highlight">58</i>&nbsp;        action.execute(rawConfig)</b>
+<i class="no-highlight">59</i>&nbsp;    }
+<i class="no-highlight">60</i>&nbsp;
+<b class="nc"><i class="no-highlight">61</i>&nbsp;    public open class RawConfig {</b>
+<i class="no-highlight">62</i>&nbsp;
+<i class="no-highlight">63</i>&nbsp;        @HubdleDslMarker
+<b class="nc"><i class="no-highlight">64</i>&nbsp;        public fun Project.languageSettings(action: Action&lt;LanguageSettingsBuilder&gt; = Action {}) {</b>
+<b class="nc"><i class="no-highlight">65</i>&nbsp;            hubdleState.config.languageSettings.rawConfig.languageSettings = action</b>
+<i class="no-highlight">66</i>&nbsp;        }
+<i class="no-highlight">67</i>&nbsp;    }
+<i class="no-highlight">68</i>&nbsp;}
 </div>
 </pre>
 </div>
@@ -258,7 +268,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-08 12:18</div>
+    <div style="float:right;">generated on 2022-07-08 14:27</div>
 </div>
 </body>
 </html>

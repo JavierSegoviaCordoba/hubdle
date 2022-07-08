@@ -87,34 +87,6 @@
   "category": "JVM languages",
   "type": "Unstable type is used in signature",
   "severity": "High",
-  "comment": "Method must be marked with '@org.gradle.api.Incubating' annotation because its signature references unstable type 'com.android.build.api.dsl.AndroidSourceDirectorySet'",
-  "detailsInfo": "Reports declarations of classes, methods, and fields that reference an unstable API type in the signature, but are not marked with the same unstable annotation.\n\n\nThis inspection ensures that the signatures of a public API do not expose any *unstable* (internal, experimental) types.\nFor example, if a method returns an *experimental* class, the method itself is considered *experimental*\nbecause incompatible changes of the type (deletion or move to another package) lead to incompatible method signature changes.\n\nUse the list below to specify which annotations mark an unstable API.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/options/SourceDirectoriesOptions.kt",
-      "language": "kotlin",
-      "line": 50,
-      "offset": 20,
-      "length": 31,
-      "code": {
-        "startLine": 48,
-        "length": 31,
-        "offset": 22,
-        "surroundingCode": "}\n\ninternal fun Named.configAndroidSourceDirectorySet(\n    sourceSetToName: Pair<AndroidSourceDirectorySet, String>\n) {"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "hubdle.hubdle-gradle-plugin.main",
-    "inspectionName": "UnstableTypeUsedInSignature"
-  },
-  "hash": "d9365e550851fd76b902127bf541bab4274c72b5f7f1b2abe0c88b7080350092"
-},{
-  "tool": "Code Inspection",
-  "category": "JVM languages",
-  "type": "Unstable type is used in signature",
-  "severity": "High",
   "comment": "Method must be marked with '@org.gradle.api.Incubating' annotation because its signature references unstable type 'com.android.build.api.dsl.AndroidSourceSet'",
   "detailsInfo": "Reports declarations of classes, methods, and fields that reference an unstable API type in the signature, but are not marked with the same unstable annotation.\n\n\nThis inspection ensures that the signatures of a public API do not expose any *unstable* (internal, experimental) types.\nFor example, if a method returns an *experimental* class, the method itself is considered *experimental*\nbecause incompatible changes of the type (deletion or move to another package) lead to incompatible method signature changes.\n\nUse the list below to specify which annotations mark an unstable API.",
   "sources": [
@@ -138,6 +110,34 @@
     "inspectionName": "UnstableTypeUsedInSignature"
   },
   "hash": "56ead141749a0fbc4cf653803b5158b83f5138dbd393c068a94fb80e6c02fca1"
+},{
+  "tool": "Code Inspection",
+  "category": "JVM languages",
+  "type": "Unstable type is used in signature",
+  "severity": "High",
+  "comment": "Method must be marked with '@org.gradle.api.Incubating' annotation because its signature references unstable type 'com.android.build.api.dsl.AndroidSourceDirectorySet'",
+  "detailsInfo": "Reports declarations of classes, methods, and fields that reference an unstable API type in the signature, but are not marked with the same unstable annotation.\n\n\nThis inspection ensures that the signatures of a public API do not expose any *unstable* (internal, experimental) types.\nFor example, if a method returns an *experimental* class, the method itself is considered *experimental*\nbecause incompatible changes of the type (deletion or move to another package) lead to incompatible method signature changes.\n\nUse the list below to specify which annotations mark an unstable API.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/options/SourceDirectoriesOptions.kt",
+      "language": "kotlin",
+      "line": 50,
+      "offset": 20,
+      "length": 31,
+      "code": {
+        "startLine": 48,
+        "length": 31,
+        "offset": 22,
+        "surroundingCode": "}\n\ninternal fun Named.configAndroidSourceDirectorySet(\n    sourceSetToName: Pair<AndroidSourceDirectorySet, String>\n) {"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-gradle-plugin.main",
+    "inspectionName": "UnstableTypeUsedInSignature"
+  },
+  "hash": "d9365e550851fd76b902127bf541bab4274c72b5f7f1b2abe0c88b7080350092"
 },{
   "tool": "Code Inspection",
   "category": "JVM languages",
@@ -318,6 +318,34 @@
       "type": "file",
       "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/library/KotlinAndroidLibraryExtension.kt",
       "language": "kotlin",
+      "line": 33,
+      "offset": 40,
+      "length": 16,
+      "code": {
+        "startLine": 31,
+        "length": 16,
+        "offset": 131,
+        "surroundingCode": "    AndroidOptions,\n    RawConfigOptions<KotlinAndroidLibraryExtension.RawConfigExtension>,\n    MainAndTestKotlinSourceSetsOptions<AndroidSourceSet>,\n    AndroidLibraryDependencies {\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-gradle-plugin.main",
+    "inspectionName": "UnstableApiUsage"
+  },
+  "hash": "396c0d8e059199f3e5d58fe006736d9e8895e26b793812f3924d15aa6ae16975"
+},{
+  "tool": "Code Inspection",
+  "category": "JVM languages",
+  "type": "Unstable API Usage",
+  "severity": "High",
+  "comment": "'com.android.build.api.dsl.AndroidSourceSet' is marked unstable with @Incubating",
+  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/library/KotlinAndroidLibraryExtension.kt",
+      "language": "kotlin",
       "line": 58,
       "offset": 46,
       "length": 16,
@@ -362,34 +390,6 @@
     "inspectionName": "UnstableApiUsage"
   },
   "hash": "e0b54acde84ef52661c7163e72253ef8796d7a19313fe31a02b75d2e9919819e"
-},{
-  "tool": "Code Inspection",
-  "category": "JVM languages",
-  "type": "Unstable API Usage",
-  "severity": "High",
-  "comment": "'com.android.build.api.dsl.AndroidSourceSet' is marked unstable with @Incubating",
-  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/library/KotlinAndroidLibraryExtension.kt",
-      "language": "kotlin",
-      "line": 33,
-      "offset": 40,
-      "length": 16,
-      "code": {
-        "startLine": 31,
-        "length": 16,
-        "offset": 131,
-        "surroundingCode": "    AndroidOptions,\n    RawConfigOptions<KotlinAndroidLibraryExtension.RawConfigExtension>,\n    MainAndTestKotlinSourceSetsOptions<AndroidSourceSet>,\n    AndroidLibraryDependencies {\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "hubdle.hubdle-gradle-plugin.main",
-    "inspectionName": "UnstableApiUsage"
-  },
-  "hash": "396c0d8e059199f3e5d58fe006736d9e8895e26b793812f3924d15aa6ae16975"
 },{
   "tool": "Code Inspection",
   "category": "JVM languages",
@@ -502,62 +502,6 @@
     "inspectionName": "UnstableApiUsage"
   },
   "hash": "439f2b6fcf6f770a5ae5773c353d71ea581eda21de3b1ee75016151d07d3baf7"
-},{
-  "tool": "Code Inspection",
-  "category": "JVM languages",
-  "type": "Unstable API Usage",
-  "severity": "High",
-  "comment": "'com.android.build.api.dsl.AndroidSourceDirectorySet' is marked unstable with @Incubating",
-  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/options/SourceDirectoriesOptions.kt",
-      "language": "kotlin",
-      "line": 51,
-      "offset": 27,
-      "length": 25,
-      "code": {
-        "startLine": 49,
-        "length": 25,
-        "offset": 79,
-        "surroundingCode": "\ninternal fun Named.configAndroidSourceDirectorySet(\n    sourceSetToName: Pair<AndroidSourceDirectorySet, String>\n) {\n    val (sourceSet, name) = sourceSetToName"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "hubdle.hubdle-gradle-plugin.main",
-    "inspectionName": "UnstableApiUsage"
-  },
-  "hash": "87bb78edba92271c3551d36d299d02af95a1f131eff0884f71f98bdc6bff77e3"
-},{
-  "tool": "Code Inspection",
-  "category": "JVM languages",
-  "type": "Unstable API Usage",
-  "severity": "High",
-  "comment": "'setSrcDirs(java.lang.Iterable)' is declared in unstable 'com.android.build.api.dsl.AndroidSourceDirectorySet' marked with @Incubating",
-  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/options/SourceDirectoriesOptions.kt",
-      "language": "kotlin",
-      "line": 54,
-      "offset": 15,
-      "length": 10,
-      "code": {
-        "startLine": 52,
-        "length": 10,
-        "offset": 62,
-        "surroundingCode": ") {\n    val (sourceSet, name) = sourceSetToName\n    sourceSet.setSrcDirs(listOf(\"${this.name}/$name\"))\n}\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "hubdle.hubdle-gradle-plugin.main",
-    "inspectionName": "UnstableApiUsage"
-  },
-  "hash": "16b1e826098adab742381a077db043f02a28504134209820a21f2afdcfb10608"
 },{
   "tool": "Code Inspection",
   "category": "JVM languages",
@@ -731,6 +675,62 @@
   "category": "JVM languages",
   "type": "Unstable API Usage",
   "severity": "High",
+  "comment": "'com.android.build.api.dsl.AndroidSourceDirectorySet' is marked unstable with @Incubating",
+  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/options/SourceDirectoriesOptions.kt",
+      "language": "kotlin",
+      "line": 51,
+      "offset": 27,
+      "length": 25,
+      "code": {
+        "startLine": 49,
+        "length": 25,
+        "offset": 79,
+        "surroundingCode": "\ninternal fun Named.configAndroidSourceDirectorySet(\n    sourceSetToName: Pair<AndroidSourceDirectorySet, String>\n) {\n    val (sourceSet, name) = sourceSetToName"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-gradle-plugin.main",
+    "inspectionName": "UnstableApiUsage"
+  },
+  "hash": "87bb78edba92271c3551d36d299d02af95a1f131eff0884f71f98bdc6bff77e3"
+},{
+  "tool": "Code Inspection",
+  "category": "JVM languages",
+  "type": "Unstable API Usage",
+  "severity": "High",
+  "comment": "'setSrcDirs(java.lang.Iterable)' is declared in unstable 'com.android.build.api.dsl.AndroidSourceDirectorySet' marked with @Incubating",
+  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/options/SourceDirectoriesOptions.kt",
+      "language": "kotlin",
+      "line": 54,
+      "offset": 15,
+      "length": 10,
+      "code": {
+        "startLine": 52,
+        "length": 10,
+        "offset": 62,
+        "surroundingCode": ") {\n    val (sourceSet, name) = sourceSetToName\n    sourceSet.setSrcDirs(listOf(\"${this.name}/$name\"))\n}\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-gradle-plugin.main",
+    "inspectionName": "UnstableApiUsage"
+  },
+  "hash": "16b1e826098adab742381a077db043f02a28504134209820a21f2afdcfb10608"
+},{
+  "tool": "Code Inspection",
+  "category": "JVM languages",
+  "type": "Unstable API Usage",
+  "severity": "High",
   "comment": "'com.android.build.api.dsl.AndroidSourceFile' is marked unstable with @Incubating",
   "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
   "sources": [
@@ -850,11 +850,11 @@
       "type": "file",
       "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatform.kt",
       "language": "kotlin",
-      "line": 61,
+      "line": 63,
       "offset": 27,
       "length": 6,
       "code": {
-        "startLine": 59,
+        "startLine": 61,
         "length": 6,
         "offset": 143,
         "surroundingCode": "        project.configure<LibraryExtension> {\n            compileSdk = project.hubdleState.kotlin.android.compileSdk\n            defaultConfig.minSdk = project.hubdleState.kotlin.android.minSdk\n\n            sourceSets.all { manifest.srcFile(\"android${name.capitalized()}/AndroidManifest.xml\") }"
@@ -865,7 +865,7 @@
     "module": "hubdle.hubdle-gradle-plugin.main",
     "inspectionName": "UnstableApiUsage"
   },
-  "hash": "542206c1953f721e96f12f104b909570cc8bfc7c91b30f05e7cba560f1693f26"
+  "hash": "9de100b4e710bc3de838375bd97aa5be704e4eb716e78a3eb04b6075375abd57"
 },{
   "tool": "Code Inspection",
   "category": "JVM languages",
@@ -878,11 +878,11 @@
       "type": "file",
       "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatform.kt",
       "language": "kotlin",
-      "line": 63,
+      "line": 65,
       "offset": 13,
       "length": 10,
       "code": {
-        "startLine": 61,
+        "startLine": 63,
         "length": 10,
         "offset": 90,
         "surroundingCode": "            defaultConfig.minSdk = project.hubdleState.kotlin.android.minSdk\n\n            sourceSets.all { manifest.srcFile(\"android${name.capitalized()}/AndroidManifest.xml\") }\n        }\n"
@@ -893,7 +893,7 @@
     "module": "hubdle.hubdle-gradle-plugin.main",
     "inspectionName": "UnstableApiUsage"
   },
-  "hash": "569a98ed27c3927bf9fb8e7bc3a9062cdd1009a852ce9a364924a503b713ea8c"
+  "hash": "e27bdc93ae1988befdac7ccf672b61f79a7a8188808d47ade887e48519dd9916"
 },{
   "tool": "Code Inspection",
   "category": "JVM languages",
@@ -906,11 +906,11 @@
       "type": "file",
       "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatform.kt",
       "language": "kotlin",
-      "line": 63,
+      "line": 65,
       "offset": 30,
       "length": 8,
       "code": {
-        "startLine": 61,
+        "startLine": 63,
         "length": 8,
         "offset": 107,
         "surroundingCode": "            defaultConfig.minSdk = project.hubdleState.kotlin.android.minSdk\n\n            sourceSets.all { manifest.srcFile(\"android${name.capitalized()}/AndroidManifest.xml\") }\n        }\n"
@@ -921,7 +921,7 @@
     "module": "hubdle.hubdle-gradle-plugin.main",
     "inspectionName": "UnstableApiUsage"
   },
-  "hash": "6597b6cb8e390eb06095f7780fbdff6b2011e776a8f157f84dc7598ed5c4f026"
+  "hash": "38e984de657a311aa9d888886c91068f4f9adbe349188e0a76f2e9624d1b45b6"
 },{
   "tool": "Code Inspection",
   "category": "JVM languages",
@@ -934,11 +934,11 @@
       "type": "file",
       "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatform.kt",
       "language": "kotlin",
-      "line": 63,
+      "line": 65,
       "offset": 39,
       "length": 7,
       "code": {
-        "startLine": 61,
+        "startLine": 63,
         "length": 7,
         "offset": 116,
         "surroundingCode": "            defaultConfig.minSdk = project.hubdleState.kotlin.android.minSdk\n\n            sourceSets.all { manifest.srcFile(\"android${name.capitalized()}/AndroidManifest.xml\") }\n        }\n"
@@ -949,7 +949,7 @@
     "module": "hubdle.hubdle-gradle-plugin.main",
     "inspectionName": "UnstableApiUsage"
   },
-  "hash": "b5f47b8ef54f3743c917fdd1264b4b188e23f553a0a9316dcd61cbad3c95c6e2"
+  "hash": "447772a07cd09f9b29ea11398458ed6d39fe9c59965bfe7e4565ea637a8f22fc"
 },{
   "tool": "Code Inspection",
   "category": "JVM languages",
@@ -962,11 +962,11 @@
       "type": "file",
       "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatform.kt",
       "language": "kotlin",
-      "line": 63,
+      "line": 65,
       "offset": 57,
       "length": 4,
       "code": {
-        "startLine": 61,
+        "startLine": 63,
         "length": 4,
         "offset": 134,
         "surroundingCode": "            defaultConfig.minSdk = project.hubdleState.kotlin.android.minSdk\n\n            sourceSets.all { manifest.srcFile(\"android${name.capitalized()}/AndroidManifest.xml\") }\n        }\n"
@@ -977,63 +977,7 @@
     "module": "hubdle.hubdle-gradle-plugin.main",
     "inspectionName": "UnstableApiUsage"
   },
-  "hash": "77b25cd161f2a4b66322552ca0722a314a2d2e4549e9f416cdeff9c8608f254d"
-},{
-  "tool": "Code Inspection",
-  "category": "JVM languages",
-  "type": "Unstable API Usage",
-  "severity": "High",
-  "comment": "'dependencyResolutionManagement(org.gradle.api.Action)' is marked unstable with @Incubating",
-  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "hubdle-settings-gradle-plugin/main/kotlin/com/javiersc/hubdle/settings/HubdleSettingsPlugin.kt",
-      "language": "kotlin",
-      "line": 79,
-      "offset": 5,
-      "length": 30,
-      "code": {
-        "startLine": 77,
-        "length": 30,
-        "offset": 88,
-        "surroundingCode": "\nprivate fun Settings.configureAutoIncludeVersionCatalogs(objects: ObjectFactory) {\n    dependencyResolutionManagement { management ->\n        management.versionCatalogs { container ->\n            val catalogs: Map<String, File> = tomlFileInGradleDirs.getCatalogs()"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "hubdle.hubdle-settings-gradle-plugin.main",
-    "inspectionName": "UnstableApiUsage"
-  },
-  "hash": "eaed6c2c9974b7b0eafa736b9f2816e2df7c8663cec802b681c5bf52e86a2a63"
-},{
-  "tool": "Code Inspection",
-  "category": "JVM languages",
-  "type": "Unstable API Usage",
-  "severity": "High",
-  "comment": "'versionCatalogs(org.gradle.api.Action)' is declared in unstable interface 'org.gradle.api.initialization.resolve.DependencyResolutionManagement' marked with @Incubating",
-  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "hubdle-settings-gradle-plugin/main/kotlin/com/javiersc/hubdle/settings/HubdleSettingsPlugin.kt",
-      "language": "kotlin",
-      "line": 80,
-      "offset": 20,
-      "length": 15,
-      "code": {
-        "startLine": 78,
-        "length": 15,
-        "offset": 153,
-        "surroundingCode": "private fun Settings.configureAutoIncludeVersionCatalogs(objects: ObjectFactory) {\n    dependencyResolutionManagement { management ->\n        management.versionCatalogs { container ->\n            val catalogs: Map<String, File> = tomlFileInGradleDirs.getCatalogs()\n            for ((name, file) in catalogs) {"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "hubdle.hubdle-settings-gradle-plugin.main",
-    "inspectionName": "UnstableApiUsage"
-  },
-  "hash": "5a8fbbe82f622d6dd9caccdd78d128e936fd317060d8e9321894a27a55b4468e"
+  "hash": "949327294c2dee9a6dcdb25c76bd20c72ec28278aa9de4c49f52a954fd86e79c"
 },{
   "tool": "Code Inspection",
   "category": "JVM languages",
@@ -1090,4 +1034,60 @@
     "inspectionName": "UnstableApiUsage"
   },
   "hash": "8ff4c1b3a97a3e9ea7316ca8d0113a9a388f8aceec6c50315d5fb3294950aa59"
+},{
+  "tool": "Code Inspection",
+  "category": "JVM languages",
+  "type": "Unstable API Usage",
+  "severity": "High",
+  "comment": "'dependencyResolutionManagement(org.gradle.api.Action)' is marked unstable with @Incubating",
+  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "hubdle-settings-gradle-plugin/main/kotlin/com/javiersc/hubdle/settings/HubdleSettingsPlugin.kt",
+      "language": "kotlin",
+      "line": 79,
+      "offset": 5,
+      "length": 30,
+      "code": {
+        "startLine": 77,
+        "length": 30,
+        "offset": 88,
+        "surroundingCode": "\nprivate fun Settings.configureAutoIncludeVersionCatalogs(objects: ObjectFactory) {\n    dependencyResolutionManagement { management ->\n        management.versionCatalogs { container ->\n            val catalogs: Map<String, File> = tomlFileInGradleDirs.getCatalogs()"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-settings-gradle-plugin.main",
+    "inspectionName": "UnstableApiUsage"
+  },
+  "hash": "eaed6c2c9974b7b0eafa736b9f2816e2df7c8663cec802b681c5bf52e86a2a63"
+},{
+  "tool": "Code Inspection",
+  "category": "JVM languages",
+  "type": "Unstable API Usage",
+  "severity": "High",
+  "comment": "'versionCatalogs(org.gradle.api.Action)' is declared in unstable interface 'org.gradle.api.initialization.resolve.DependencyResolutionManagement' marked with @Incubating",
+  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "hubdle-settings-gradle-plugin/main/kotlin/com/javiersc/hubdle/settings/HubdleSettingsPlugin.kt",
+      "language": "kotlin",
+      "line": 80,
+      "offset": 20,
+      "length": 15,
+      "code": {
+        "startLine": 78,
+        "length": 15,
+        "offset": 153,
+        "surroundingCode": "private fun Settings.configureAutoIncludeVersionCatalogs(objects: ObjectFactory) {\n    dependencyResolutionManagement { management ->\n        management.versionCatalogs { container ->\n            val catalogs: Map<String, File> = tomlFileInGradleDirs.getCatalogs()\n            for ((name, file) in catalogs) {"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-settings-gradle-plugin.main",
+    "inspectionName": "UnstableApiUsage"
+  },
+  "hash": "5a8fbbe82f622d6dd9caccdd78d128e936fd317060d8e9321894a27a55b4468e"
 }]}

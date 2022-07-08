@@ -3,21 +3,21 @@
   "category": "Redundant constructs",
   "type": "Unused symbol",
   "severity": "High",
-  "comment": "Property \"isJavaPlatform\" is never used",
+  "comment": "Property \"isGradlePlugin\" is never used",
   "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
   "sources": [
     {
       "type": "file",
       "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/ProjectType.kt",
       "language": "kotlin",
-      "line": 14,
+      "line": 11,
       "offset": 22,
       "length": 14,
       "code": {
-        "startLine": 12,
+        "startLine": 9,
         "length": 14,
-        "offset": 91,
-        "surroundingCode": "    get() = pluginManager.hasPlugin(\"org.gradle.java-gradle-plugin\")\n\ninternal val Project.isJavaPlatform: Boolean\n    get() = pluginManager.hasPlugin(\"org.gradle.java-platform\")\n"
+        "offset": 112,
+        "surroundingCode": "    get() = pluginManager.hasPlugin(\"com.android.library\") && isKotlinMultiplatform.not()\n\ninternal val Project.isGradlePlugin: Boolean\n    get() = pluginManager.hasPlugin(\"org.gradle.java-gradle-plugin\")\n"
       }
     }
   ],
@@ -25,7 +25,7 @@
     "module": "hubdle.hubdle-gradle-plugin.main",
     "inspectionName": "UnusedSymbol"
   },
-  "hash": "bec6df99036d3e8572619e0933aa694a10e154ccdc68f4ea7b5dfc2545f5e8e3"
+  "hash": "503c2ae7cdbf52045e0f30966ca3cd9032628ff7e56fdbc27c172f493388703b"
 },{
   "tool": "Code Inspection",
   "category": "Redundant constructs",
@@ -59,21 +59,21 @@
   "category": "Redundant constructs",
   "type": "Unused symbol",
   "severity": "High",
-  "comment": "Property \"isGradlePlugin\" is never used",
+  "comment": "Property \"isJavaPlatform\" is never used",
   "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
   "sources": [
     {
       "type": "file",
       "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/ProjectType.kt",
       "language": "kotlin",
-      "line": 11,
+      "line": 14,
       "offset": 22,
       "length": 14,
       "code": {
-        "startLine": 9,
+        "startLine": 12,
         "length": 14,
-        "offset": 112,
-        "surroundingCode": "    get() = pluginManager.hasPlugin(\"com.android.library\") && isKotlinMultiplatform.not()\n\ninternal val Project.isGradlePlugin: Boolean\n    get() = pluginManager.hasPlugin(\"org.gradle.java-gradle-plugin\")\n"
+        "offset": 91,
+        "surroundingCode": "    get() = pluginManager.hasPlugin(\"org.gradle.java-gradle-plugin\")\n\ninternal val Project.isJavaPlatform: Boolean\n    get() = pluginManager.hasPlugin(\"org.gradle.java-platform\")\n"
       }
     }
   ],
@@ -81,7 +81,7 @@
     "module": "hubdle.hubdle-gradle-plugin.main",
     "inspectionName": "UnusedSymbol"
   },
-  "hash": "503c2ae7cdbf52045e0f30966ca3cd9032628ff7e56fdbc27c172f493388703b"
+  "hash": "bec6df99036d3e8572619e0933aa694a10e154ccdc68f4ea7b5dfc2545f5e8e3"
 },{
   "tool": "Code Inspection",
   "category": "Redundant constructs",

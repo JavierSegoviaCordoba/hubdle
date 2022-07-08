@@ -135,6 +135,8 @@ import org.jetbrains.kotlin.gradle.dsl.ExplicitApiMode
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension as KotlinMultiplatformProjectExtension
 import org.jetbrains.kotlin.gradle.plugin.LanguageSettingsBuilder
+import org.jetbrains.kotlin.gradle.targets.js.dsl.KotlinJsBrowserDsl
+import org.jetbrains.kotlin.gradle.targets.js.dsl.KotlinJsNodeDsl
 import ru.vyarus.gradle.plugin.mkdocs.MkdocsExtension
 
 private val hubdleStateCache: MutableMap<Project, HubdleState> = mutableMapOf()
@@ -775,9 +777,19 @@ internal data class HubdleState(
 
             data class Js(
                 override var isEnabled: Boolean = KotlinMultiplatformJsExtension.IS_ENABLED,
-                var browser: Boolean = KotlinMultiplatformJsExtension.BROWSER,
-                var nodeJs: Boolean = KotlinMultiplatformJsExtension.NODE_JS
+                var browser: Browser = Browser(),
+                var nodejs: NodeJS = NodeJS(),
             ) : Enableable, Configurable {
+
+                data class Browser(
+                    override var isEnabled: Boolean = KotlinMultiplatformJsExtension.BROWSER,
+                    var action: Action<KotlinJsBrowserDsl>? = null
+                ) : Enableable
+
+                data class NodeJS(
+                    override var isEnabled: Boolean = KotlinMultiplatformJsExtension.NODE_JS,
+                    var action: Action<KotlinJsNodeDsl>? = null
+                ) : Enableable
 
                 override fun configure(project: Project) = configureMultiplatformJs(project)
             }

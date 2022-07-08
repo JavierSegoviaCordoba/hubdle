@@ -2,7 +2,7 @@ package com.javiersc.hubdle.extensions.options
 
 import org.gradle.api.Action
 
-public interface FeaturesOptions<T> {
+public interface FeaturesOptions<T : Any> {
 
     public val features: T
 

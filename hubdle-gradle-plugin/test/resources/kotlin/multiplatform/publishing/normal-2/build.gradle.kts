@@ -41,7 +41,7 @@ hubdle {
             jvm()
             js {
                 browser()
-                nodeJs()
+                nodejs()
             }
             linux()
             linuxArm32Hfp()

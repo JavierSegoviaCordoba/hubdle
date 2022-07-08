@@ -142,8 +142,12 @@ internal fun configureMultiplatformJs(project: Project) {
     if (jsState.isEnabled) {
         project.configure<KotlinMultiplatformExtension> {
             js(BOTH) {
-                if (jsState.browser) browser()
-                if (jsState.nodeJs) nodejs()
+                if (jsState.browser.isEnabled) {
+                    browser { jsState.browser.action?.execute(this) }
+                }
+                if (jsState.nodejs.isEnabled) {
+                    nodejs { jsState.nodejs.action?.execute(this) }
+                }
             }
         }
     }

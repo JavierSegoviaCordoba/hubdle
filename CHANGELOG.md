@@ -4,6 +4,8 @@
 
 ### Added
 
+- `KotlinJsBrowserDsl` and `KotlinJsNodeDsl` actions to Multiplatform Javascript target
+
 ### Changed
 
 ### Deprecated

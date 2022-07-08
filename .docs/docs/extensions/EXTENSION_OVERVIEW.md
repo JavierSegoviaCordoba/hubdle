@@ -89,6 +89,15 @@
       - versionCatalog
         - isEnabled: Boolean
         - catalogs: Unit
+    - intellijPlugin
+      - features
+      - jvmVersion
+      - intellij
+      - patchPluginXml
+      - publishPlugin
+      - signPlugin
+      - rawConfig
+        - kotlin
     - jvm
       - isEnabled: Boolean
       - jvmVersion: Int

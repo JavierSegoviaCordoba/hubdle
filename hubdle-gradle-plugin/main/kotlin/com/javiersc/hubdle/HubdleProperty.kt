@@ -10,6 +10,23 @@ public object HubdleProperty {
         public const val projectName: String = "analysis.sonar.projectName"
     }
 
+    public object JetBrains {
+        public const val marketplaceCertificateChain: String =
+            "jetbrains.marketplace.certificateChain"
+        public const val marketplaceKey: String = "jetbrains.marketplace.key"
+        public const val marketplaceKeyPassphrase: String = "jetbrains.marketplace.keyPassphrase"
+    }
+
+    public object IntelliJ {
+        public const val downloadSources: String = "intellij.downloadSources"
+        public const val publishToken: String = "intellij.publishToken"
+        public const val type: String = "intellij.type"
+        public const val sinceBuild: String = "intellij.sinceBuild"
+        public const val untilBuild: String = "intellij.untilBuild"
+        public const val updateSinceUntilBuild: String = "intellij.updateSinceUntilBuild"
+        public const val version: String = "intellij.version"
+    }
+
     public object Nexus {
         public const val nexusSnapshotRepositoryUrl: String = "nexus.snapshotRepositoryUrl"
         public const val nexusStagingProfileId: String = "nexus.stagingProfileId"

@@ -31,6 +31,10 @@ internal object PluginIds {
         const val semver = "com.javiersc.semver.gradle.plugin"
     }
 
+    object JetBrains {
+        const val intellij = "org.jetbrains.intellij"
+    }
+
     object Kotlin {
         const val binaryCompatibilityValidator =
             "org.jetbrains.kotlinx.binary-compatibility-validator"

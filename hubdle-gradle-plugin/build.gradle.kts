@@ -45,6 +45,7 @@ dependencies {
     api(pluginLibs.javiersc.semver.semverGradlePlugin)
     api(pluginLibs.jetbrains.dokka.dokkaGradlePlugin)
     api(pluginLibs.jetbrains.intellijPlugins.gradleChangelogPlugin)
+    api(pluginLibs.jetbrains.intellijPlugins.gradleIntellijPlugin)
     api(pluginLibs.jetbrains.kotlinx.binaryCompatibilityValidator)
     api(pluginLibs.jetbrains.kotlinx.kover)
     api(pluginLibs.jetbrains.kotlinx.serialization)

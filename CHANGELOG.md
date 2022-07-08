@@ -4,6 +4,7 @@
 
 ### Added
 
+- `intellij` extension to Kotlin, so it is possible to create IntelliJ plugins
 - `KotlinJsBrowserDsl` and `KotlinJsNodeDsl` actions to Multiplatform Javascript target
 
 ### Changed

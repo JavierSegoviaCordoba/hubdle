@@ -22,6 +22,24 @@ public final class com/javiersc/hubdle/HubdleProperty$Analysis {
 	public static final field projectName Ljava/lang/String;
 }
 
+public final class com/javiersc/hubdle/HubdleProperty$IntelliJ {
+	public static final field INSTANCE Lcom/javiersc/hubdle/HubdleProperty$IntelliJ;
+	public static final field downloadSources Ljava/lang/String;
+	public static final field publishToken Ljava/lang/String;
+	public static final field sinceBuild Ljava/lang/String;
+	public static final field type Ljava/lang/String;
+	public static final field untilBuild Ljava/lang/String;
+	public static final field updateSinceUntilBuild Ljava/lang/String;
+	public static final field version Ljava/lang/String;
+}
+
+public final class com/javiersc/hubdle/HubdleProperty$JetBrains {
+	public static final field INSTANCE Lcom/javiersc/hubdle/HubdleProperty$JetBrains;
+	public static final field marketplaceCertificateChain Ljava/lang/String;
+	public static final field marketplaceKey Ljava/lang/String;
+	public static final field marketplaceKeyPassphrase Ljava/lang/String;
+}
+
 public final class com/javiersc/hubdle/HubdleProperty$Nexus {
 	public static final field INSTANCE Lcom/javiersc/hubdle/HubdleProperty$Nexus;
 	public static final field nexusSnapshotRepositoryUrl Ljava/lang/String;
@@ -241,6 +259,18 @@ public final class com/javiersc/hubdle/extensions/config/documentation/changelog
 public class com/javiersc/hubdle/extensions/config/documentation/changelog/ChangelogExtension$RawConfigExtension {
 	public fun <init> ()V
 	public final fun changelog (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
+}
+
+public abstract class com/javiersc/hubdle/extensions/config/documentation/changelog/GenerateChangelogHtmlTask : org/gradle/api/DefaultTask {
+	public static final field Companion Lcom/javiersc/hubdle/extensions/config/documentation/changelog/GenerateChangelogHtmlTask$Companion;
+	public static final field name Ljava/lang/String;
+	public fun <init> (Lorg/gradle/api/model/ObjectFactory;Lorg/gradle/api/file/ProjectLayout;)V
+	public abstract fun getHtml ()Lorg/gradle/api/provider/Property;
+	public final fun getHtmlFile ()Lorg/gradle/api/file/RegularFileProperty;
+	public final fun run ()V
+}
+
+public final class com/javiersc/hubdle/extensions/config/documentation/changelog/GenerateChangelogHtmlTask$Companion {
 }
 
 public abstract class com/javiersc/hubdle/extensions/config/documentation/changelog/MergeChangelogTask : org/gradle/api/DefaultTask {
@@ -727,6 +757,8 @@ public class com/javiersc/hubdle/extensions/kotlin/KotlinExtension {
 	public static synthetic fun android$default (Lcom/javiersc/hubdle/extensions/kotlin/KotlinExtension;Lorg/gradle/api/Project;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 	public final fun gradle (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
 	public static synthetic fun gradle$default (Lcom/javiersc/hubdle/extensions/kotlin/KotlinExtension;Lorg/gradle/api/Project;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+	public final fun intellijPlugin (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
+	public static synthetic fun intellijPlugin$default (Lcom/javiersc/hubdle/extensions/kotlin/KotlinExtension;Lorg/gradle/api/Project;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 	public final fun jvm (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
 	public static synthetic fun jvm$default (Lcom/javiersc/hubdle/extensions/kotlin/KotlinExtension;Lorg/gradle/api/Project;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 	public final fun multiplatform (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
@@ -863,6 +895,54 @@ public class com/javiersc/hubdle/extensions/kotlin/gradle/version/catalog/Kotlin
 }
 
 public final class com/javiersc/hubdle/extensions/kotlin/gradle/version/catalog/KotlinGradleVersionCatalogExtension$Companion {
+}
+
+public class com/javiersc/hubdle/extensions/kotlin/intellij/IntellijExtension : com/javiersc/hubdle/extensions/dependencies/_internal/JvmDependencies, com/javiersc/hubdle/extensions/kotlin/MainAndTestKotlinSourceSetsOptions, com/javiersc/hubdle/extensions/kotlin/jvm/KotlinJvmOptions, com/javiersc/hubdle/extensions/options/EnableableOptions, com/javiersc/hubdle/extensions/options/FeaturesOptions, com/javiersc/hubdle/extensions/options/GradleDependenciesOptions, com/javiersc/hubdle/extensions/options/RawConfigOptions, com/javiersc/hubdle/extensions/options/SourceDirectoriesOptions {
+	public static final field Companion Lcom/javiersc/hubdle/extensions/kotlin/intellij/IntellijExtension$Companion;
+	public fun <init> (Lorg/gradle/api/model/ObjectFactory;)V
+	public fun features (Lorg/gradle/api/Action;)V
+	public fun getFeatures ()Lcom/javiersc/hubdle/extensions/kotlin/intellij/IntellijExtension$FeaturesExtension;
+	public synthetic fun getFeatures ()Ljava/lang/Object;
+	public fun getJvmVersion ()I
+	public fun getRawConfig ()Lcom/javiersc/hubdle/extensions/kotlin/intellij/IntellijExtension$RawConfigExtension;
+	public synthetic fun getRawConfig ()Ljava/lang/Object;
+	public fun getSourceSets (Lorg/gradle/api/Project;)Lorg/gradle/api/NamedDomainObjectContainer;
+	public final fun intellij (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
+	public static synthetic fun intellij$default (Lcom/javiersc/hubdle/extensions/kotlin/intellij/IntellijExtension;Lorg/gradle/api/Project;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+	public fun isEnabled ()Z
+	public fun main (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
+	public final fun patchPluginXml (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
+	public static synthetic fun patchPluginXml$default (Lcom/javiersc/hubdle/extensions/kotlin/intellij/IntellijExtension;Lorg/gradle/api/Project;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+	public final fun publishPlugin (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
+	public static synthetic fun publishPlugin$default (Lcom/javiersc/hubdle/extensions/kotlin/intellij/IntellijExtension;Lorg/gradle/api/Project;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+	public fun rawConfig (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
+	public fun setEnabled (Z)V
+	public fun setJvmVersion (I)V
+	public final fun signPlugin (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
+	public static synthetic fun signPlugin$default (Lcom/javiersc/hubdle/extensions/kotlin/intellij/IntellijExtension;Lorg/gradle/api/Project;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+	public fun test (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
+}
+
+public final class com/javiersc/hubdle/extensions/kotlin/intellij/IntellijExtension$Companion {
+}
+
+public class com/javiersc/hubdle/extensions/kotlin/intellij/IntellijExtension$FeaturesExtension {
+	public fun <init> ()V
+	public final fun coroutines (Lorg/gradle/api/Project;Z)V
+	public static synthetic fun coroutines$default (Lcom/javiersc/hubdle/extensions/kotlin/intellij/IntellijExtension$FeaturesExtension;Lorg/gradle/api/Project;ZILjava/lang/Object;)V
+	public final fun extendedGradle (Lorg/gradle/api/Project;Z)V
+	public static synthetic fun extendedGradle$default (Lcom/javiersc/hubdle/extensions/kotlin/intellij/IntellijExtension$FeaturesExtension;Lorg/gradle/api/Project;ZILjava/lang/Object;)V
+	public final fun extendedStdlib (Lorg/gradle/api/Project;Z)V
+	public static synthetic fun extendedStdlib$default (Lcom/javiersc/hubdle/extensions/kotlin/intellij/IntellijExtension$FeaturesExtension;Lorg/gradle/api/Project;ZILjava/lang/Object;)V
+	public final fun extendedTesting (Lorg/gradle/api/Project;Z)V
+	public static synthetic fun extendedTesting$default (Lcom/javiersc/hubdle/extensions/kotlin/intellij/IntellijExtension$FeaturesExtension;Lorg/gradle/api/Project;ZILjava/lang/Object;)V
+	public final fun serialization (Lorg/gradle/api/Project;ZZ)V
+	public static synthetic fun serialization$default (Lcom/javiersc/hubdle/extensions/kotlin/intellij/IntellijExtension$FeaturesExtension;Lorg/gradle/api/Project;ZZILjava/lang/Object;)V
+}
+
+public class com/javiersc/hubdle/extensions/kotlin/intellij/IntellijExtension$RawConfigExtension {
+	public fun <init> ()V
+	public final fun kotlin (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
 }
 
 public class com/javiersc/hubdle/extensions/kotlin/jvm/KotlinJvmExtension : com/javiersc/hubdle/extensions/dependencies/_internal/JvmDependencies, com/javiersc/hubdle/extensions/kotlin/MainAndTestKotlinSourceSetsOptions, com/javiersc/hubdle/extensions/kotlin/jvm/KotlinJvmOptions, com/javiersc/hubdle/extensions/options/EnableableOptions, com/javiersc/hubdle/extensions/options/FeaturesOptions, com/javiersc/hubdle/extensions/options/GradleDependenciesOptions, com/javiersc/hubdle/extensions/options/RawConfigOptions, com/javiersc/hubdle/extensions/options/SourceDirectoriesOptions {

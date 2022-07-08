@@ -42,6 +42,9 @@ import com.javiersc.hubdle.extensions.kotlin.gradle.plugin._internal.configureGr
 import com.javiersc.hubdle.extensions.kotlin.gradle.plugin._internal.configureKotlinGradlePluginRawConfig
 import com.javiersc.hubdle.extensions.kotlin.gradle.version.catalog.KotlinGradleVersionCatalogExtension
 import com.javiersc.hubdle.extensions.kotlin.gradle.version.catalog._internal.configureGradleVersionCatalog
+import com.javiersc.hubdle.extensions.kotlin.intellij.IntellijExtension
+import com.javiersc.hubdle.extensions.kotlin.intellij._internal.configureIntelliJ
+import com.javiersc.hubdle.extensions.kotlin.intellij._internal.configureKotlinIntellijRawConfig
 import com.javiersc.hubdle.extensions.kotlin.jvm.KotlinJvmExtension
 import com.javiersc.hubdle.extensions.kotlin.jvm.KotlinJvmOptions.Companion.JVM_VERSION
 import com.javiersc.hubdle.extensions.kotlin.jvm._internal.configureJvm
@@ -131,6 +134,10 @@ import org.gradle.internal.os.OperatingSystem
 import org.gradle.plugin.devel.GradlePluginDevelopmentExtension
 import org.gradle.plugins.signing.SigningExtension
 import org.jetbrains.changelog.ChangelogPluginExtension
+import org.jetbrains.intellij.IntelliJPluginExtension
+import org.jetbrains.intellij.tasks.PatchPluginXmlTask
+import org.jetbrains.intellij.tasks.PublishPluginTask
+import org.jetbrains.intellij.tasks.SignPluginTask
 import org.jetbrains.kotlin.gradle.dsl.ExplicitApiMode
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension as KotlinMultiplatformProjectExtension
@@ -436,6 +443,7 @@ internal data class HubdleState(
     data class Kotlin(
         val android: Android = Android(),
         val gradle: Gradle = Gradle(),
+        val intellij: IntelliJ = IntelliJ(),
         val jvm: Jvm = Jvm(),
         val multiplatform: Multiplatform = Multiplatform(),
         var target: Int = JVM_VERSION,
@@ -448,6 +456,7 @@ internal data class HubdleState(
         override fun configure(project: Project) {
             android.library.configure(project)
             gradle.configure(project)
+            intellij.configure(project)
             jvm.configure(project)
             multiplatform.configure(project)
         }
@@ -546,6 +555,40 @@ internal data class HubdleState(
                 val catalogs: MutableList<File> = mutableListOf()
             ) : Enableable, Configurable {
                 override fun configure(project: Project) = configureGradleVersionCatalog(project)
+            }
+        }
+
+        data class IntelliJ(
+            override var isEnabled: Boolean = IntellijExtension.IS_ENABLED,
+            var intellij: Action<IntelliJPluginExtension>? = null,
+            var patchPluginXml: Action<PatchPluginXmlTask>? = null,
+            var publishPlugin: Action<PublishPluginTask>? = null,
+            var signPlugin: Action<SignPluginTask>? = null,
+            val features: Features = Features(),
+            val rawConfig: RawConfig = RawConfig(),
+        ) : Enableable, Configurable {
+            override fun configure(project: Project) {
+                configureIntelliJ(project)
+                rawConfig.configure(project)
+            }
+
+            data class Features(
+                var coroutines: Boolean = false,
+                var extendedStdlib: Boolean = true,
+                var extendedGradle: Boolean = false,
+                var extendedTesting: Boolean = true,
+                val serialization: Serialization = Serialization(),
+            ) {
+                data class Serialization(
+                    override var isEnabled: Boolean = false,
+                    var useJson: Boolean = false,
+                ) : Enableable
+            }
+
+            data class RawConfig(
+                var kotlin: Action<KotlinJvmProjectExtension>? = null,
+            ) : Configurable {
+                override fun configure(project: Project) = configureKotlinIntellijRawConfig(project)
             }
         }
 

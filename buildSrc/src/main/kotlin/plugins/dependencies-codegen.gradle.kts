@@ -116,43 +116,49 @@ fun buildHubdleDependencies() {
                 .map { bundleAlias -> bundleAlias to catalog.findBundle(bundleAlias).get().get() }
                 .forEach { (bundleAlias: String, bundle: ExternalModuleDependencyBundle) ->
                     val dependencyVariableNames =
-                        bundle.map { dependency: MinimalExternalModuleDependency ->
-                            with(dependency) {
-                                val fileName = module.toString().replace(":", "_")
-                                val dependencyVariableName = fileName.buildDependencyVariableName()
+                        bundle
+                            .sortedBy { dependency -> dependency.module.toString() }
+                            .map { dependency: MinimalExternalModuleDependency ->
+                                with(dependency) {
+                                    val fileName = module.toString().replace(":", "_")
+                                    val dependencyVariableName =
+                                        fileName.buildDependencyVariableName()
 
-                                val groupSanitized =
-                                    if (hasCommonEndingDomain) {
-                                        val group =
-                                            when {
-                                                onlyDomain && endAndStartWithSameName -> {
-                                                    ""
+                                    val groupSanitized =
+                                        if (hasCommonEndingDomain) {
+                                            val group =
+                                                when {
+                                                    onlyDomain && endAndStartWithSameName -> {
+                                                        ""
+                                                    }
+                                                    endAndStartWithSameName -> {
+                                                        module.group.substringBeforeLast(".")
+                                                    }
+                                                    else -> module.group
                                                 }
-                                                endAndStartWithSameName -> {
+
+                                            group.substringAfter(".").groupOrNameSanitized()
+                                        } else {
+                                            val group =
+                                                if (endAndStartWithSameName) {
                                                     module.group.substringBeforeLast(".")
+                                                } else {
+                                                    module.group
                                                 }
-                                                else -> module.group
-                                            }
+                                            group.groupOrNameSanitized()
+                                        }
 
-                                        group.substringAfter(".").groupOrNameSanitized()
-                                    } else {
-                                        val group =
-                                            if (endAndStartWithSameName) {
-                                                module.group.substringBeforeLast(".")
-                                            } else {
-                                                module.group
-                                            }
-                                        group.groupOrNameSanitized()
-                                    }
-
-                                val nameSanitized = module.name.groupOrNameSanitized().capitalized()
-                                val dependencyName = "$groupSanitized$nameSanitized".decapitalize()
-                                """
-                                |    public fun KotlinDependencyHandler.$dependencyName(): Dependency =
-                                |        catalogImplementation(${dependencyVariableName}_MODULE)
-                            """
+                                    val nameSanitized =
+                                        module.name.groupOrNameSanitized().capitalized()
+                                    val dependencyName =
+                                        "$groupSanitized$nameSanitized".decapitalize()
+                                    """
+                                        |    @HubdleDslMarker
+                                        |    public fun KotlinDependencyHandler.$dependencyName(): Dependency =
+                                        |        catalogImplementation(${dependencyVariableName}_MODULE)
+                                    """
+                                }
                             }
-                        }
 
                     writeText(
                         readText() +
@@ -168,10 +174,11 @@ fun buildHubdleDependencies() {
                 """
                        |package com.javiersc.hubdle.extensions.dependencies._internal
                        |
-                       |import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
+                       |import com.javiersc.hubdle.extensions.HubdleDslMarker
                        |import com.javiersc.hubdle.extensions._internal.state.catalogImplementation
                        |import com.javiersc.hubdle.extensions.dependencies._internal.constants.*
                        |import org.gradle.api.artifacts.Dependency
+                       |import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
                        |
                     """.trimMargin() +
                     readText()

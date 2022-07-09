@@ -3,6 +3,7 @@ package com.javiersc.hubdle.extensions.kotlin.multiplatform.targets
 import com.android.build.api.dsl.LibraryExtension
 import com.javiersc.hubdle.extensions.HubdleDslMarker
 import com.javiersc.hubdle.extensions._internal.state.hubdleState
+import com.javiersc.hubdle.extensions.kotlin.android.AndroidSdkOptions
 import com.javiersc.hubdle.extensions.options.EnableableOptions
 import com.javiersc.hubdle.extensions.options.RawConfigOptions
 import javax.inject.Inject
@@ -17,11 +18,14 @@ public open class KotlinMultiplatformAndroidExtension
 constructor(
     objects: ObjectFactory,
 ) :
+    AndroidSdkOptions,
     EnableableOptions,
     KotlinMultiplatformTargetOptions,
     RawConfigOptions<KotlinMultiplatformAndroidExtension.RawConfigExtension> {
 
-    override var isEnabled: Boolean = IS_ENABLED
+    override var Project.isEnabled: Boolean
+        get() = hubdleState.kotlin.multiplatform.android.isEnabled
+        set(value) = hubdleState.kotlin.multiplatform.android.run { isEnabled = value }
 
     public override val name: String = "android"
 
@@ -48,10 +52,5 @@ constructor(
         public fun Project.android(action: Action<LibraryExtension>) {
             hubdleState.kotlin.multiplatform.android.rawConfig.android = action
         }
-    }
-
-    public companion object {
-        internal const val IS_ENABLED = false
-        internal const val ALL_LIBRARY_VARIANTS = true
     }
 }

@@ -12,7 +12,9 @@ import org.jetbrains.kotlin.gradle.targets.js.dsl.KotlinJsNodeDsl
 public open class KotlinMultiplatformJsExtension :
     EnableableOptions, KotlinMultiplatformTargetOptions {
 
-    override var isEnabled: Boolean = IS_ENABLED
+    override var Project.isEnabled: Boolean
+        get() = hubdleState.kotlin.multiplatform.js.isEnabled
+        set(value) = hubdleState.kotlin.multiplatform.js.run { isEnabled = value }
 
     public override val name: String = "js"
 
@@ -29,7 +31,6 @@ public open class KotlinMultiplatformJsExtension :
     }
 
     public companion object {
-        internal const val IS_ENABLED = false
         internal const val BROWSER = false
         internal const val NODE_JS = false
     }

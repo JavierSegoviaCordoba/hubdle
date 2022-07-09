@@ -19,7 +19,9 @@ constructor(
     objects: ObjectFactory,
 ) : EnableableOptions, RawConfigOptions<PublishingExtension.RawConfigExtension> {
 
-    override var isEnabled: Boolean = IS_ENABLED
+    override var Project.isEnabled: Boolean
+        get() = hubdleState.config.publishing.isEnabled
+        set(value) = hubdleState.config.publishing.run { isEnabled = value }
 
     override val rawConfig: RawConfigExtension = objects.newInstance()
 
@@ -38,9 +40,5 @@ constructor(
         public fun Project.signing(action: Action<SigningExtension>) {
             hubdleState.config.publishing.rawConfig.signing = action
         }
-    }
-
-    public companion object {
-        internal const val IS_ENABLED = false
     }
 }

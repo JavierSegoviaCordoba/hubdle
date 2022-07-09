@@ -8,7 +8,6 @@ import com.javiersc.hubdle.extensions.dependencies._internal.AndroidLibraryDepen
 import com.javiersc.hubdle.extensions.kotlin.MainAndTestKotlinSourceSetsOptions
 import com.javiersc.hubdle.extensions.kotlin.android.AndroidOptions
 import com.javiersc.hubdle.extensions.kotlin.android.library._internal.androidLibraryFeatures
-import com.javiersc.hubdle.extensions.kotlin.jvm.KotlinJvmOptions
 import com.javiersc.hubdle.extensions.options.EnableableOptions
 import com.javiersc.hubdle.extensions.options.FeaturesOptions
 import com.javiersc.hubdle.extensions.options.RawConfigOptions
@@ -33,18 +32,14 @@ constructor(
     MainAndTestKotlinSourceSetsOptions<AndroidSourceSet>,
     AndroidLibraryDependencies {
 
-    override var isEnabled: Boolean = IS_ENABLED
+    override var Project.isEnabled: Boolean
+        get() = hubdleState.kotlin.android.library.isEnabled
+        set(value) = hubdleState.kotlin.android.library.run { isEnabled = value }
 
     override val features: FeaturesExtension = objects.newInstance()
 
     @HubdleDslMarker
     override fun features(action: Action<FeaturesExtension>): Unit = super.features(action)
-
-    override var compileSdk: Int = AndroidOptions.COMPILE_SDK
-
-    override var minSdk: Int = AndroidOptions.MIN_SDK
-
-    override var jvmVersion: Int = KotlinJvmOptions.JVM_VERSION
 
     override val Project.sourceSets: NamedDomainObjectContainer<out AndroidSourceSet>
         get() = the<LibraryExtension>().sourceSets
@@ -97,9 +92,5 @@ constructor(
             androidLibraryFeatures.serialization.isEnabled = enabled
             androidLibraryFeatures.serialization.useJson = useJson
         }
-    }
-
-    public companion object {
-        internal const val IS_ENABLED = false
     }
 }

@@ -4,7 +4,6 @@ package com.javiersc.hubdle.extensions.kotlin
 
 import com.javiersc.hubdle.extensions.HubdleDslMarker
 import com.javiersc.hubdle.extensions._internal.PluginIds
-import com.javiersc.hubdle.extensions._internal.state.hubdleState
 import com.javiersc.hubdle.extensions.kotlin.android.KotlinAndroidExtension
 import com.javiersc.hubdle.extensions.kotlin.gradle.KotlinGradleExtension
 import com.javiersc.hubdle.extensions.kotlin.intellij.IntellijExtension
@@ -42,10 +41,8 @@ constructor(
     @HubdleDslMarker
     public fun Project.intellijPlugin(action: Action<in IntellijExtension> = Action {}) {
         project.pluginManager.apply(PluginIds.JetBrains.intellij)
-        hubdleState.kotlin.target = intellijPlugin.jvmVersion
-        intellijPlugin.isEnabled = true
+        intellijPlugin.run { isEnabled = true }
         action.execute(intellijPlugin)
-        hubdleState.kotlin.intellij.isEnabled = intellijPlugin.isEnabled
     }
 
     private val jvm: KotlinJvmExtension = objects.newInstance()
@@ -53,10 +50,8 @@ constructor(
     @HubdleDslMarker
     public fun Project.jvm(action: Action<in KotlinJvmExtension> = Action {}) {
         pluginManager.apply(PluginIds.Kotlin.jvm)
-        jvm.isEnabled = true
+        jvm.run { isEnabled = true }
         action.execute(jvm)
-        hubdleState.kotlin.jvm.isEnabled = jvm.isEnabled
-        hubdleState.kotlin.target = jvm.jvmVersion
     }
 
     private val multiplatform: KotlinMultiplatformExtension = objects.newInstance()
@@ -64,9 +59,7 @@ constructor(
     @HubdleDslMarker
     public fun Project.multiplatform(action: Action<in KotlinMultiplatformExtension> = Action {}) {
         project.pluginManager.apply(PluginIds.Kotlin.multiplatform)
-        multiplatform.isEnabled = true
+        multiplatform.run { isEnabled = true }
         action.execute(multiplatform)
-        hubdleState.kotlin.multiplatform.isEnabled = multiplatform.isEnabled
-        hubdleState.kotlin.target = multiplatform.jvmVersion
     }
 }

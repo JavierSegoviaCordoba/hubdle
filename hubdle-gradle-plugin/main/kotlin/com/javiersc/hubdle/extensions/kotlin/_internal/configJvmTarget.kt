@@ -8,7 +8,7 @@ import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 internal fun Project.configJvmTarget() {
-    val target = hubdleState.kotlin.target
+    val target = hubdleState.kotlin.jvmVersion
     tasks.withType<JavaCompile>().configureEach {
         targetCompatibility = "${JavaVersion.toVersion(target)}"
         sourceCompatibility = "${JavaVersion.toVersion(target)}"

@@ -18,9 +18,13 @@ constructor(
     objects: ObjectFactory,
 ) : EnableableOptions, RawConfigOptions<VersioningExtension.RawConfigExtension> {
 
-    override var isEnabled: Boolean = IS_ENABLED
+    override var Project.isEnabled: Boolean
+        get() = hubdleState.config.versioning.isEnabled
+        set(value) = hubdleState.config.versioning.run { isEnabled = value }
 
-    public var tagPrefix: String = TAG_PREFIX
+    public var Project.tagPrefix: String
+        get() = hubdleState.config.versioning.tagPrefix
+        set(value) = hubdleState.config.versioning.run { tagPrefix = value }
 
     override val rawConfig: RawConfigExtension = objects.newInstance()
 
@@ -35,10 +39,5 @@ constructor(
         public fun Project.semver(action: Action<SemverExtension>) {
             hubdleState.config.versioning.rawConfig.semver = action
         }
-    }
-
-    public companion object {
-        internal const val IS_ENABLED = true
-        internal const val TAG_PREFIX = ""
     }
 }

@@ -1,3 +1,5 @@
+@file:Suppress("UnusedReceiverParameter")
+
 package com.javiersc.hubdle.extensions.config.documentation.site
 
 import com.javiersc.hubdle.extensions.HubdleDslMarker
@@ -19,7 +21,9 @@ constructor(
     objects: ObjectFactory,
 ) : EnableableOptions, RawConfigOptions<SiteExtension.RawConfigExtension> {
 
-    override var isEnabled: Boolean = IS_ENABLED
+    override var Project.isEnabled: Boolean
+        get() = hubdleState.config.documentation.site.isEnabled
+        set(value) = hubdleState.config.documentation.site.run { isEnabled = value }
 
     private val reports: ReportsExtension = objects.newInstance()
 
@@ -31,24 +35,24 @@ constructor(
     @HubdleDslMarker
     public fun Project.reports(action: Action<ReportsExtension>) {
         action.execute(reports)
-        hubdleState.config.documentation.site.reports.allTests = reports.allTests
-        hubdleState.config.documentation.site.reports.codeAnalysis = reports.codeAnalysis
-        hubdleState.config.documentation.site.reports.codeCoverage = reports.codeCoverage
-        hubdleState.config.documentation.site.reports.codeQuality = reports.codeQuality
     }
 
     public open class ReportsExtension {
-        public var allTests: Boolean = ALL_TESTS
-        public var codeAnalysis: Boolean = CODE_ANALYSIS
-        public var codeCoverage: Boolean = CODE_COVERAGE
-        public var codeQuality: Boolean = CODE_QUALITY
+        public var Project.allTests: Boolean
+            get() = hubdleState.config.documentation.site.reports.allTests
+            set(value) = hubdleState.config.documentation.site.reports.run { allTests = value }
 
-        public companion object {
-            internal const val ALL_TESTS = true
-            internal const val CODE_ANALYSIS = true
-            internal const val CODE_COVERAGE = true
-            internal const val CODE_QUALITY = true
-        }
+        public var Project.codeAnalysis: Boolean
+            get() = hubdleState.config.documentation.site.reports.codeAnalysis
+            set(value) = hubdleState.config.documentation.site.reports.run { codeAnalysis = value }
+
+        public var Project.codeCoverage: Boolean
+            get() = hubdleState.config.documentation.site.reports.codeCoverage
+            set(value) = hubdleState.config.documentation.site.reports.run { codeCoverage = value }
+
+        public var Project.codeQuality: Boolean
+            get() = hubdleState.config.documentation.site.reports.codeQuality
+            set(value) = hubdleState.config.documentation.site.reports.run { codeQuality = value }
     }
 
     override val rawConfig: RawConfigExtension = objects.newInstance()
@@ -64,9 +68,5 @@ constructor(
         public fun Project.mkdocs(action: Action<MkdocsExtension>) {
             hubdleState.config.documentation.site.rawConfig.mkdocs = action
         }
-    }
-
-    public companion object {
-        internal const val IS_ENABLED = false
     }
 }

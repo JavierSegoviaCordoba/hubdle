@@ -32,11 +32,8 @@ constructor(
 
     @HubdleDslMarker
     public fun Project.analysis(action: Action<AnalysisExtension> = Action {}) {
-        analysis.isEnabled = true
+        analysis.run { isEnabled = true }
         action.execute(analysis)
-        hubdleState.config.analysis.isEnabled = analysis.isEnabled
-        hubdleState.config.analysis.includes += analysis.includes
-        hubdleState.config.analysis.excludes += analysis.excludes
     }
 
     private val binaryCompatibilityValidator: BinaryCompatibilityValidatorExtension =
@@ -44,18 +41,15 @@ constructor(
 
     @HubdleDslMarker
     public fun Project.binaryCompatibilityValidator() {
-        binaryCompatibilityValidator.isEnabled = true
-        hubdleState.config.binaryCompatibilityValidator.isEnabled =
-            binaryCompatibilityValidator.isEnabled
+        binaryCompatibilityValidator.run { isEnabled = true }
     }
 
     private val coverage: CoverageExtension = objects.newInstance()
 
     @HubdleDslMarker
     public fun Project.coverage(action: Action<CoverageExtension> = Action {}) {
-        coverage.isEnabled = true
+        coverage.run { isEnabled = true }
         action.execute(coverage)
-        hubdleState.config.coverage.isEnabled = coverage.isEnabled
     }
 
     private val documentation: DocumentationExtension = objects.newInstance()
@@ -74,12 +68,8 @@ constructor(
 
     @HubdleDslMarker
     public fun Project.format(action: Action<FormatExtension> = Action {}) {
-        format.isEnabled = true
+        format.run { isEnabled = true }
         action.execute(format)
-        hubdleState.config.format.isEnabled = format.isEnabled
-        hubdleState.config.format.includes += format.includes
-        hubdleState.config.format.excludes += format.excludes
-        hubdleState.config.format.ktfmtVersion = format.ktfmtVersion
     }
 
     private val languageSettings: LanguageSettingsExtension = objects.newInstance()
@@ -100,27 +90,23 @@ constructor(
 
     @HubdleDslMarker
     public fun Project.nexus(action: Action<NexusExtension> = Action {}) {
-        nexus.isEnabled = true
+        nexus.run { isEnabled = true }
         action.execute(nexus)
-        hubdleState.config.nexus.isEnabled = nexus.isEnabled
     }
 
     private val publishing: PublishingExtension = objects.newInstance()
 
     @HubdleDslMarker
     public fun Project.publishing(action: Action<PublishingExtension> = Action {}) {
-        publishing.isEnabled = true
+        publishing.run { isEnabled = true }
         action.execute(publishing)
-        hubdleState.config.publishing.isEnabled = publishing.isEnabled
     }
 
     private val versioning: VersioningExtension = objects.newInstance()
 
     @HubdleDslMarker
     public fun Project.versioning(action: Action<in VersioningExtension> = Action {}) {
-        versioning.isEnabled = true
+        versioning.run { isEnabled = true }
         action.execute(versioning)
-        hubdleState.config.versioning.isEnabled = versioning.isEnabled
-        hubdleState.config.versioning.tagPrefix = versioning.tagPrefix
     }
 }

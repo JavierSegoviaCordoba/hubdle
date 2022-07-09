@@ -1,3 +1,5 @@
+@file:Suppress("UnusedReceiverParameter")
+
 package com.javiersc.hubdle.extensions.config.analysis
 
 import com.javiersc.hubdle.extensions.HubdleDslMarker
@@ -18,38 +20,46 @@ constructor(
     objects: ObjectFactory,
 ) : EnableableOptions, RawConfigOptions<AnalysisExtension.RawConfigExtension> {
 
-    override var isEnabled: Boolean = IS_ENABLED
+    override var Project.isEnabled: Boolean
+        get() = hubdleState.config.analysis.isEnabled
+        set(value) = hubdleState.config.analysis.run { isEnabled = value }
 
-    public var ignoreFailures: Boolean = IGNORE_FAILURES
+    public var Project.ignoreFailures: Boolean
+        get() = hubdleState.config.analysis.ignoreFailures
+        set(value) = hubdleState.config.analysis.run { ignoreFailures = value }
 
-    public val includes: MutableList<String> = INCLUDES
+    public fun Project.includes(vararg includes: String) {
+        hubdleState.config.analysis.includes += includes
+    }
 
-    public val excludes: MutableList<String> = EXCLUDES
+    public fun Project.excludes(vararg excludes: String) {
+        hubdleState.config.analysis.excludes += excludes
+    }
 
     private val reports: ReportsExtension = objects.newInstance()
 
     @HubdleDslMarker
     public fun Project.reports(action: Action<ReportsExtension> = Action {}) {
         action.execute(reports)
-
-        hubdleState.config.analysis.reports.html = reports.html
-        hubdleState.config.analysis.reports.sarif = reports.sarif
-        hubdleState.config.analysis.reports.txt = reports.txt
-        hubdleState.config.analysis.reports.xml = reports.xml
     }
 
     public open class ReportsExtension {
-        public var html: Boolean = HTML
-        public var sarif: Boolean = SARIF
-        public var txt: Boolean = TXT
-        public var xml: Boolean = XML
 
-        public companion object {
-            internal const val HTML = true
-            internal const val SARIF = true
-            internal const val TXT = false
-            internal const val XML = true
-        }
+        public var Project.html: Boolean
+            get() = hubdleState.config.analysis.reports.html
+            set(value) = hubdleState.config.analysis.reports.run { html = value }
+
+        public var Project.sarif: Boolean
+            get() = hubdleState.config.analysis.reports.sarif
+            set(value) = hubdleState.config.analysis.reports.run { sarif = value }
+
+        public var Project.txt: Boolean
+            get() = hubdleState.config.analysis.reports.txt
+            set(value) = hubdleState.config.analysis.reports.run { txt = value }
+
+        public var Project.xml: Boolean
+            get() = hubdleState.config.analysis.reports.xml
+            set(value) = hubdleState.config.analysis.reports.run { xml = value }
     }
 
     override val rawConfig: RawConfigExtension = objects.newInstance()
@@ -65,12 +75,5 @@ constructor(
         public fun Project.detekt(action: Action<DetektExtension>) {
             hubdleState.config.analysis.rawConfig.detekt = action
         }
-    }
-
-    public companion object {
-        internal const val IS_ENABLED = false
-        internal const val IGNORE_FAILURES = true
-        internal val INCLUDES = mutableListOf("**/*.kt", "**/*.kts")
-        internal val EXCLUDES = mutableListOf("**/resources/**", "**/build/**")
     }
 }

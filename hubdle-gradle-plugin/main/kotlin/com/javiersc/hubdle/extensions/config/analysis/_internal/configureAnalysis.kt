@@ -45,7 +45,7 @@ private fun configureDetekt(project: Project) {
     with(project.hubdleState.config) {
         project.extensions.findByType<DetektExtension>()?.apply {
             parallel = true
-            isIgnoreFailures = analysis.isIgnoreFailures
+            isIgnoreFailures = analysis.ignoreFailures
             buildUponDefaultConfig = true
             basePath = project.rootProject.projectDir.path
         }

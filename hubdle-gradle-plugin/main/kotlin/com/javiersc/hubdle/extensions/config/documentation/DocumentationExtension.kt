@@ -3,7 +3,6 @@
 package com.javiersc.hubdle.extensions.config.documentation
 
 import com.javiersc.hubdle.extensions.HubdleDslMarker
-import com.javiersc.hubdle.extensions._internal.state.hubdleState
 import com.javiersc.hubdle.extensions.config.documentation.changelog.ChangelogExtension
 import com.javiersc.hubdle.extensions.config.documentation.readme.ReadmeExtension
 import com.javiersc.hubdle.extensions.config.documentation.site.SiteExtension
@@ -24,9 +23,8 @@ constructor(
 
     @HubdleDslMarker
     public fun Project.changelog(action: Action<ChangelogExtension> = Action {}) {
-        changelog.isEnabled = true
+        changelog.run { isEnabled = true }
         action.execute(changelog)
-        hubdleState.config.documentation.changelog.isEnabled = changelog.isEnabled
     }
 
     private val readme: ReadmeExtension = objects.newInstance()
@@ -40,8 +38,7 @@ constructor(
 
     @HubdleDslMarker
     public fun Project.site(action: Action<SiteExtension> = Action {}) {
-        site.isEnabled = true
+        site.run { isEnabled = true }
         action.execute(site)
-        hubdleState.config.documentation.site.isEnabled = site.isEnabled
     }
 }

@@ -18,7 +18,9 @@ constructor(
     objects: ObjectFactory,
 ) : EnableableOptions, RawConfigOptions<BinaryCompatibilityValidatorExtension.RawConfigExtension> {
 
-    override var isEnabled: Boolean = IS_ENABLED
+    override var Project.isEnabled: Boolean
+        get() = hubdleState.config.binaryCompatibilityValidator.isEnabled
+        set(value) = hubdleState.config.binaryCompatibilityValidator.run { isEnabled = value }
 
     override val rawConfig: RawConfigExtension = objects.newInstance()
 
@@ -33,9 +35,5 @@ constructor(
         public fun Project.apiValidation(action: Action<ApiValidationExtension>) {
             hubdleState.config.binaryCompatibilityValidator.rawConfig.apiValidation = action
         }
-    }
-
-    public companion object {
-        internal const val IS_ENABLED = false
     }
 }

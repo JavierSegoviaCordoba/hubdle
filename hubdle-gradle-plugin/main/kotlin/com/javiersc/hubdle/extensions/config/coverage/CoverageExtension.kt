@@ -18,7 +18,9 @@ constructor(
     objects: ObjectFactory,
 ) : EnableableOptions, RawConfigOptions<CoverageExtension.RawConfigExtension> {
 
-    override var isEnabled: Boolean = IS_ENABLED
+    override var Project.isEnabled: Boolean
+        get() = hubdleState.config.coverage.isEnabled
+        set(value) = hubdleState.config.coverage.run { isEnabled = value }
 
     override val rawConfig: RawConfigExtension = objects.newInstance()
 
@@ -33,9 +35,5 @@ constructor(
         public fun Project.kover(action: Action<KoverExtension>) {
             hubdleState.config.coverage.rawConfig.kover = action
         }
-    }
-
-    public companion object {
-        internal const val IS_ENABLED = false
     }
 }

@@ -20,37 +20,41 @@ constructor(
 
     @HubdleDslMarker
     public fun Project.preCommits(action: Action<PreCommitsExtension> = Action {}) {
-        preCommits.isEnabled = true
+        preCommits.run { isEnabled = true }
         action.execute(preCommits)
-        hubdleState.config.install.preCommits.isEnabled = preCommits.allTests
-        hubdleState.config.install.preCommits.allTests = preCommits.allTests
-        hubdleState.config.install.preCommits.applyFormat = preCommits.applyFormat
-        hubdleState.config.install.preCommits.assemble = preCommits.assemble
-        hubdleState.config.install.preCommits.checkAnalysis = preCommits.checkAnalysis
-        hubdleState.config.install.preCommits.checkApi = preCommits.checkApi
-        hubdleState.config.install.preCommits.checkFormat = preCommits.checkFormat
-        hubdleState.config.install.preCommits.dumpApi = preCommits.dumpApi
     }
 
     public open class PreCommitsExtension : EnableableOptions {
-        override var isEnabled: Boolean = IS_ENABLED
-        public var allTests: Boolean = ALL_TESTS
-        public var applyFormat: Boolean = APPLY_FORMAT
-        public var assemble: Boolean = ASSEMBLE
-        public var checkAnalysis: Boolean = CHECK_ANALYSIS
-        public var checkApi: Boolean = CHECK_API
-        public var checkFormat: Boolean = CHECK_FORMAT
-        public var dumpApi: Boolean = DUMP_API
+        override var Project.isEnabled: Boolean
+            get() = hubdleState.config.install.preCommits.isEnabled
+            set(value) = hubdleState.config.install.preCommits.run { isEnabled = value }
 
-        public companion object {
-            internal const val IS_ENABLED = false
-            internal const val ALL_TESTS = false
-            internal const val APPLY_FORMAT = false
-            internal const val ASSEMBLE = false
-            internal const val CHECK_ANALYSIS = false
-            internal const val CHECK_API = false
-            internal const val CHECK_FORMAT = false
-            internal const val DUMP_API = false
-        }
+        public var Project.allTests: Boolean
+            get() = hubdleState.config.install.preCommits.allTests
+            set(value) = hubdleState.config.install.preCommits.run { allTests = value }
+
+        public var Project.applyFormat: Boolean
+            get() = hubdleState.config.install.preCommits.applyFormat
+            set(value) = hubdleState.config.install.preCommits.run { applyFormat = value }
+
+        public var Project.assemble: Boolean
+            get() = hubdleState.config.install.preCommits.assemble
+            set(value) = hubdleState.config.install.preCommits.run { assemble = value }
+
+        public var Project.checkAnalysis: Boolean
+            get() = hubdleState.config.install.preCommits.checkAnalysis
+            set(value) = hubdleState.config.install.preCommits.run { checkAnalysis = value }
+
+        public var Project.checkApi: Boolean
+            get() = hubdleState.config.install.preCommits.checkApi
+            set(value) = hubdleState.config.install.preCommits.run { checkApi = value }
+
+        public var Project.checkFormat: Boolean
+            get() = hubdleState.config.install.preCommits.checkFormat
+            set(value) = hubdleState.config.install.preCommits.run { checkFormat = value }
+
+        public var Project.dumpApi: Boolean
+            get() = hubdleState.config.install.preCommits.dumpApi
+            set(value) = hubdleState.config.install.preCommits.run { dumpApi = value }
     }
 }

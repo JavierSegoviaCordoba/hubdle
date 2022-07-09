@@ -2,7 +2,6 @@ package com.javiersc.hubdle.extensions.kotlin.gradle
 
 import com.javiersc.hubdle.extensions.HubdleDslMarker
 import com.javiersc.hubdle.extensions._internal.PluginIds
-import com.javiersc.hubdle.extensions._internal.state.hubdleState
 import com.javiersc.hubdle.extensions.kotlin.gradle.plugin.KotlinGradlePluginExtension
 import com.javiersc.hubdle.extensions.kotlin.gradle.version.catalog.KotlinGradleVersionCatalogExtension
 import javax.inject.Inject
@@ -23,10 +22,8 @@ constructor(
     @HubdleDslMarker
     public fun Project.plugin(action: Action<KotlinGradlePluginExtension> = Action {}) {
         pluginManager.apply(PluginIds.Gradle.kotlinDsl)
-        plugin.isEnabled = true
+        plugin.run { isEnabled = true }
         action.execute(plugin)
-        hubdleState.kotlin.gradle.plugin.isEnabled = plugin.isEnabled
-        hubdleState.kotlin.target = plugin.jvmVersion
     }
 
     private val versionCatalog: KotlinGradleVersionCatalogExtension = objects.newInstance()
@@ -36,8 +33,7 @@ constructor(
         action: Action<KotlinGradleVersionCatalogExtension> = Action {}
     ) {
         project.pluginManager.apply(PluginIds.Gradle.versionCatalog)
-        versionCatalog.isEnabled = true
+        versionCatalog.run { isEnabled = true }
         action.execute(versionCatalog)
-        hubdleState.kotlin.gradle.versionCatalog.isEnabled = versionCatalog.isEnabled
     }
 }

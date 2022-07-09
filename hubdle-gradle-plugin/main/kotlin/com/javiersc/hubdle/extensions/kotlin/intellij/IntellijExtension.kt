@@ -40,14 +40,14 @@ constructor(
     GradleDependenciesOptions,
     JvmDependencies {
 
-    override var isEnabled: Boolean = IS_ENABLED
+    override var Project.isEnabled: Boolean
+        get() = hubdleState.kotlin.intellij.isEnabled
+        set(value) = hubdleState.kotlin.intellij.run { isEnabled = value }
 
     override val features: FeaturesExtension = objects.newInstance()
 
     @HubdleDslMarker
     override fun features(action: Action<FeaturesExtension>): Unit = super.features(action)
-
-    override var jvmVersion: Int = KotlinJvmOptions.JVM_VERSION
 
     override val Project.sourceSets: NamedDomainObjectContainer<KotlinSourceSet>
         get() = the<KotlinJvmProjectExtension>().sourceSets
@@ -125,9 +125,5 @@ constructor(
         public fun Project.kotlin(action: Action<KotlinJvmProjectExtension>) {
             hubdleState.kotlin.jvm.rawConfig.kotlin = action
         }
-    }
-
-    public companion object {
-        internal const val IS_ENABLED = false
     }
 }

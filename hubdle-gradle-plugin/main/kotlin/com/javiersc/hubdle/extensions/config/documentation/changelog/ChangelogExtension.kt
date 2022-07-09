@@ -21,7 +21,9 @@ constructor(
     objects: ObjectFactory,
 ) : EnableableOptions, RawConfigOptions<ChangelogExtension.RawConfigExtension> {
 
-    override var isEnabled: Boolean = IS_ENABLED
+    override var Project.isEnabled: Boolean
+        get() = hubdleState.config.documentation.changelog.isEnabled
+        set(value) = hubdleState.config.documentation.changelog.run { isEnabled = value }
 
     @HubdleDslMarker
     public fun Project.removeProjects(vararg paths: String) {
@@ -57,9 +59,5 @@ constructor(
         public fun Project.changelog(action: Action<ChangelogPluginExtension>) {
             hubdleState.config.documentation.changelog.rawConfig.changelog = action
         }
-    }
-
-    public companion object {
-        internal const val IS_ENABLED = false
     }
 }

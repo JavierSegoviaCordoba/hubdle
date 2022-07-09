@@ -9,14 +9,12 @@ import org.gradle.api.Project
 @HubdleDslMarker
 public open class KotlinGradleVersionCatalogExtension : EnableableOptions {
 
-    override var isEnabled: Boolean = IS_ENABLED
+    override var Project.isEnabled: Boolean
+        get() = hubdleState.kotlin.gradle.versionCatalog.isEnabled
+        set(value) = hubdleState.kotlin.gradle.versionCatalog.run { isEnabled = value }
 
     @HubdleDslMarker
     public fun Project.catalogs(vararg files: File) {
         hubdleState.kotlin.gradle.versionCatalog.catalogs += files
-    }
-
-    public companion object {
-        internal const val IS_ENABLED = false
     }
 }

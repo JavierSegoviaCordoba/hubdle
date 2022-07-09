@@ -4,11 +4,7 @@
 
 ### Added
 
-- `google()` repository to Hubdle Settings plugin
-
 ### Changed
-
-- dependencies don't need to be imported
 
 ### Deprecated
 
@@ -17,6 +13,16 @@
 ### Fixed
 
 ### Updated
+
+## [0.2.0-alpha.18] - 2022-07-09
+
+### Added
+
+- `google()` repository to Hubdle Settings plugin
+
+### Changed
+
+- dependencies don't need to be imported
 
 ## [0.2.0-alpha.17] - 2022-07-09
 

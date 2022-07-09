@@ -264,96 +264,94 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">4</i>&nbsp;import com.android.build.api.dsl.LibraryExtension
 <i class="no-highlight">5</i>&nbsp;import com.javiersc.hubdle.extensions.HubdleDslMarker
 <i class="no-highlight">6</i>&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
-<i class="no-highlight">7</i>&nbsp;import com.javiersc.hubdle.extensions.dependencies._internal.AndroidLibraryDependencies
-<i class="no-highlight">8</i>&nbsp;import com.javiersc.hubdle.extensions.kotlin.MainAndTestKotlinSourceSetsOptions
-<i class="no-highlight">9</i>&nbsp;import com.javiersc.hubdle.extensions.kotlin.android.AndroidOptions
-<i class="no-highlight">10</i>&nbsp;import com.javiersc.hubdle.extensions.kotlin.android.library._internal.androidLibraryFeatures
-<i class="no-highlight">11</i>&nbsp;import com.javiersc.hubdle.extensions.options.EnableableOptions
-<i class="no-highlight">12</i>&nbsp;import com.javiersc.hubdle.extensions.options.FeaturesOptions
-<i class="no-highlight">13</i>&nbsp;import com.javiersc.hubdle.extensions.options.RawConfigOptions
-<i class="no-highlight">14</i>&nbsp;import javax.inject.Inject
-<i class="no-highlight">15</i>&nbsp;import org.gradle.api.Action
-<i class="no-highlight">16</i>&nbsp;import org.gradle.api.NamedDomainObjectContainer
-<i class="no-highlight">17</i>&nbsp;import org.gradle.api.Project
-<i class="no-highlight">18</i>&nbsp;import org.gradle.api.model.ObjectFactory
-<i class="no-highlight">19</i>&nbsp;import org.gradle.kotlin.dsl.newInstance
-<i class="no-highlight">20</i>&nbsp;import org.gradle.kotlin.dsl.the
-<i class="no-highlight">21</i>&nbsp;
-<i class="no-highlight">22</i>&nbsp;@HubdleDslMarker
-<i class="no-highlight">23</i>&nbsp;public open class KotlinAndroidLibraryExtension
-<i class="no-highlight">24</i>&nbsp;@Inject
-<b class="nc"><i class="no-highlight">25</i>&nbsp;constructor(</b>
-<i class="no-highlight">26</i>&nbsp;    objects: ObjectFactory,
-<i class="no-highlight">27</i>&nbsp;) :
-<i class="no-highlight">28</i>&nbsp;    EnableableOptions,
-<i class="no-highlight">29</i>&nbsp;    FeaturesOptions&lt;KotlinAndroidLibraryExtension.FeaturesExtension&gt;,
-<i class="no-highlight">30</i>&nbsp;    AndroidOptions,
-<i class="no-highlight">31</i>&nbsp;    RawConfigOptions&lt;KotlinAndroidLibraryExtension.RawConfigExtension&gt;,
-<i class="no-highlight">32</i>&nbsp;    MainAndTestKotlinSourceSetsOptions&lt;AndroidSourceSet&gt;,
-<i class="no-highlight">33</i>&nbsp;    AndroidLibraryDependencies {
-<i class="no-highlight">34</i>&nbsp;
-<i class="no-highlight">35</i>&nbsp;    override var Project.isEnabled: Boolean
-<b class="nc"><i class="no-highlight">36</i>&nbsp;        get() = hubdleState.kotlin.android.library.isEnabled</b>
-<b class="nc"><i class="no-highlight">37</i>&nbsp;        set(value) = hubdleState.kotlin.android.library.run { isEnabled = value }</b>
+<i class="no-highlight">7</i>&nbsp;import com.javiersc.hubdle.extensions.kotlin.MainAndTestKotlinSourceSetsOptions
+<i class="no-highlight">8</i>&nbsp;import com.javiersc.hubdle.extensions.kotlin.android.AndroidOptions
+<i class="no-highlight">9</i>&nbsp;import com.javiersc.hubdle.extensions.kotlin.android.library._internal.androidLibraryFeatures
+<i class="no-highlight">10</i>&nbsp;import com.javiersc.hubdle.extensions.options.EnableableOptions
+<i class="no-highlight">11</i>&nbsp;import com.javiersc.hubdle.extensions.options.FeaturesOptions
+<i class="no-highlight">12</i>&nbsp;import com.javiersc.hubdle.extensions.options.RawConfigOptions
+<i class="no-highlight">13</i>&nbsp;import javax.inject.Inject
+<i class="no-highlight">14</i>&nbsp;import org.gradle.api.Action
+<i class="no-highlight">15</i>&nbsp;import org.gradle.api.NamedDomainObjectContainer
+<i class="no-highlight">16</i>&nbsp;import org.gradle.api.Project
+<i class="no-highlight">17</i>&nbsp;import org.gradle.api.model.ObjectFactory
+<i class="no-highlight">18</i>&nbsp;import org.gradle.kotlin.dsl.newInstance
+<i class="no-highlight">19</i>&nbsp;import org.gradle.kotlin.dsl.the
+<i class="no-highlight">20</i>&nbsp;
+<i class="no-highlight">21</i>&nbsp;@HubdleDslMarker
+<i class="no-highlight">22</i>&nbsp;public open class KotlinAndroidLibraryExtension
+<i class="no-highlight">23</i>&nbsp;@Inject
+<b class="nc"><i class="no-highlight">24</i>&nbsp;constructor(</b>
+<i class="no-highlight">25</i>&nbsp;    objects: ObjectFactory,
+<i class="no-highlight">26</i>&nbsp;) :
+<i class="no-highlight">27</i>&nbsp;    EnableableOptions,
+<i class="no-highlight">28</i>&nbsp;    FeaturesOptions&lt;KotlinAndroidLibraryExtension.FeaturesExtension&gt;,
+<i class="no-highlight">29</i>&nbsp;    AndroidOptions,
+<i class="no-highlight">30</i>&nbsp;    RawConfigOptions&lt;KotlinAndroidLibraryExtension.RawConfigExtension&gt;,
+<i class="no-highlight">31</i>&nbsp;    MainAndTestKotlinSourceSetsOptions&lt;AndroidSourceSet&gt; {
+<i class="no-highlight">32</i>&nbsp;
+<i class="no-highlight">33</i>&nbsp;    override var Project.isEnabled: Boolean
+<b class="nc"><i class="no-highlight">34</i>&nbsp;        get() = hubdleState.kotlin.android.library.isEnabled</b>
+<b class="nc"><i class="no-highlight">35</i>&nbsp;        set(value) = hubdleState.kotlin.android.library.run { isEnabled = value }</b>
+<i class="no-highlight">36</i>&nbsp;
+<b class="nc"><i class="no-highlight">37</i>&nbsp;    override val features: FeaturesExtension = objects.newInstance()</b>
 <i class="no-highlight">38</i>&nbsp;
-<b class="nc"><i class="no-highlight">39</i>&nbsp;    override val features: FeaturesExtension = objects.newInstance()</b>
-<i class="no-highlight">40</i>&nbsp;
-<i class="no-highlight">41</i>&nbsp;    @HubdleDslMarker
-<b class="nc"><i class="no-highlight">42</i>&nbsp;    override fun features(action: Action&lt;FeaturesExtension&gt;): Unit = super.features(action)</b>
-<i class="no-highlight">43</i>&nbsp;
-<i class="no-highlight">44</i>&nbsp;    override val Project.sourceSets: NamedDomainObjectContainer&lt;out AndroidSourceSet&gt;
-<b class="nc"><i class="no-highlight">45</i>&nbsp;        get() = the&lt;LibraryExtension&gt;().sourceSets</b>
-<i class="no-highlight">46</i>&nbsp;
-<i class="no-highlight">47</i>&nbsp;    @HubdleDslMarker
-<i class="no-highlight">48</i>&nbsp;    override fun Project.main(action: Action&lt;AndroidSourceSet&gt;) {
-<b class="nc"><i class="no-highlight">49</i>&nbsp;        the&lt;LibraryExtension&gt;().sourceSets.named(&quot;main&quot;, action::execute)</b>
-<i class="no-highlight">50</i>&nbsp;    }
-<i class="no-highlight">51</i>&nbsp;
-<i class="no-highlight">52</i>&nbsp;    @HubdleDslMarker
-<i class="no-highlight">53</i>&nbsp;    override fun Project.test(action: Action&lt;AndroidSourceSet&gt;) {
-<b class="nc"><i class="no-highlight">54</i>&nbsp;        the&lt;LibraryExtension&gt;().sourceSets.named(&quot;test&quot;, action::execute)</b>
-<i class="no-highlight">55</i>&nbsp;    }
+<i class="no-highlight">39</i>&nbsp;    @HubdleDslMarker
+<b class="nc"><i class="no-highlight">40</i>&nbsp;    override fun features(action: Action&lt;FeaturesExtension&gt;): Unit = super.features(action)</b>
+<i class="no-highlight">41</i>&nbsp;
+<i class="no-highlight">42</i>&nbsp;    override val Project.sourceSets: NamedDomainObjectContainer&lt;out AndroidSourceSet&gt;
+<b class="nc"><i class="no-highlight">43</i>&nbsp;        get() = the&lt;LibraryExtension&gt;().sourceSets</b>
+<i class="no-highlight">44</i>&nbsp;
+<i class="no-highlight">45</i>&nbsp;    @HubdleDslMarker
+<i class="no-highlight">46</i>&nbsp;    override fun Project.main(action: Action&lt;AndroidSourceSet&gt;) {
+<b class="nc"><i class="no-highlight">47</i>&nbsp;        the&lt;LibraryExtension&gt;().sourceSets.named(&quot;main&quot;, action::execute)</b>
+<i class="no-highlight">48</i>&nbsp;    }
+<i class="no-highlight">49</i>&nbsp;
+<i class="no-highlight">50</i>&nbsp;    @HubdleDslMarker
+<i class="no-highlight">51</i>&nbsp;    override fun Project.test(action: Action&lt;AndroidSourceSet&gt;) {
+<b class="nc"><i class="no-highlight">52</i>&nbsp;        the&lt;LibraryExtension&gt;().sourceSets.named(&quot;test&quot;, action::execute)</b>
+<i class="no-highlight">53</i>&nbsp;    }
+<i class="no-highlight">54</i>&nbsp;
+<b class="nc"><i class="no-highlight">55</i>&nbsp;    override val rawConfig: RawConfigExtension = objects.newInstance()</b>
 <i class="no-highlight">56</i>&nbsp;
-<b class="nc"><i class="no-highlight">57</i>&nbsp;    override val rawConfig: RawConfigExtension = objects.newInstance()</b>
-<i class="no-highlight">58</i>&nbsp;
-<i class="no-highlight">59</i>&nbsp;    @HubdleDslMarker
-<i class="no-highlight">60</i>&nbsp;    override fun Project.rawConfig(action: Action&lt;RawConfigExtension&gt;) {
-<b class="nc"><i class="no-highlight">61</i>&nbsp;        action.execute(rawConfig)</b>
-<i class="no-highlight">62</i>&nbsp;    }
-<i class="no-highlight">63</i>&nbsp;
-<i class="no-highlight">64</i>&nbsp;    @HubdleDslMarker
-<b class="nc"><i class="no-highlight">65</i>&nbsp;    public open class RawConfigExtension {</b>
-<i class="no-highlight">66</i>&nbsp;
-<i class="no-highlight">67</i>&nbsp;        public fun Project.android(action: Action&lt;LibraryExtension&gt;) {
-<b class="nc"><i class="no-highlight">68</i>&nbsp;            hubdleState.kotlin.android.library.rawConfig.android = action</b>
-<i class="no-highlight">69</i>&nbsp;        }
-<i class="no-highlight">70</i>&nbsp;    }
-<i class="no-highlight">71</i>&nbsp;
-<i class="no-highlight">72</i>&nbsp;    @HubdleDslMarker
-<b class="nc"><i class="no-highlight">73</i>&nbsp;    public open class FeaturesExtension {</b>
-<i class="no-highlight">74</i>&nbsp;
-<i class="no-highlight">75</i>&nbsp;        @HubdleDslMarker
-<b class="nc"><i class="no-highlight">76</i>&nbsp;        public fun Project.coroutines(enabled: Boolean = true) {</b>
-<b class="nc"><i class="no-highlight">77</i>&nbsp;            androidLibraryFeatures.coroutines = enabled</b>
-<i class="no-highlight">78</i>&nbsp;        }
-<i class="no-highlight">79</i>&nbsp;
-<i class="no-highlight">80</i>&nbsp;        @HubdleDslMarker
-<b class="nc"><i class="no-highlight">81</i>&nbsp;        public fun Project.extendedStdlib(enabled: Boolean = true) {</b>
-<b class="nc"><i class="no-highlight">82</i>&nbsp;            androidLibraryFeatures.extendedStdlib = enabled</b>
-<i class="no-highlight">83</i>&nbsp;        }
-<i class="no-highlight">84</i>&nbsp;
-<i class="no-highlight">85</i>&nbsp;        @HubdleDslMarker
-<b class="nc"><i class="no-highlight">86</i>&nbsp;        public fun Project.extendedTesting(enabled: Boolean = true) {</b>
-<b class="nc"><i class="no-highlight">87</i>&nbsp;            androidLibraryFeatures.extendedTesting = enabled</b>
-<i class="no-highlight">88</i>&nbsp;        }
-<i class="no-highlight">89</i>&nbsp;
-<i class="no-highlight">90</i>&nbsp;        @HubdleDslMarker
-<b class="nc"><i class="no-highlight">91</i>&nbsp;        public fun Project.serialization(enabled: Boolean = true, useJson: Boolean = true) {</b>
-<b class="nc"><i class="no-highlight">92</i>&nbsp;            androidLibraryFeatures.serialization.isEnabled = enabled</b>
-<b class="nc"><i class="no-highlight">93</i>&nbsp;            androidLibraryFeatures.serialization.useJson = useJson</b>
-<i class="no-highlight">94</i>&nbsp;        }
-<i class="no-highlight">95</i>&nbsp;    }
-<i class="no-highlight">96</i>&nbsp;}
+<i class="no-highlight">57</i>&nbsp;    @HubdleDslMarker
+<i class="no-highlight">58</i>&nbsp;    override fun Project.rawConfig(action: Action&lt;RawConfigExtension&gt;) {
+<b class="nc"><i class="no-highlight">59</i>&nbsp;        action.execute(rawConfig)</b>
+<i class="no-highlight">60</i>&nbsp;    }
+<i class="no-highlight">61</i>&nbsp;
+<i class="no-highlight">62</i>&nbsp;    @HubdleDslMarker
+<b class="nc"><i class="no-highlight">63</i>&nbsp;    public open class RawConfigExtension {</b>
+<i class="no-highlight">64</i>&nbsp;
+<i class="no-highlight">65</i>&nbsp;        public fun Project.android(action: Action&lt;LibraryExtension&gt;) {
+<b class="nc"><i class="no-highlight">66</i>&nbsp;            hubdleState.kotlin.android.library.rawConfig.android = action</b>
+<i class="no-highlight">67</i>&nbsp;        }
+<i class="no-highlight">68</i>&nbsp;    }
+<i class="no-highlight">69</i>&nbsp;
+<i class="no-highlight">70</i>&nbsp;    @HubdleDslMarker
+<b class="nc"><i class="no-highlight">71</i>&nbsp;    public open class FeaturesExtension {</b>
+<i class="no-highlight">72</i>&nbsp;
+<i class="no-highlight">73</i>&nbsp;        @HubdleDslMarker
+<b class="nc"><i class="no-highlight">74</i>&nbsp;        public fun Project.coroutines(enabled: Boolean = true) {</b>
+<b class="nc"><i class="no-highlight">75</i>&nbsp;            androidLibraryFeatures.coroutines = enabled</b>
+<i class="no-highlight">76</i>&nbsp;        }
+<i class="no-highlight">77</i>&nbsp;
+<i class="no-highlight">78</i>&nbsp;        @HubdleDslMarker
+<b class="nc"><i class="no-highlight">79</i>&nbsp;        public fun Project.extendedStdlib(enabled: Boolean = true) {</b>
+<b class="nc"><i class="no-highlight">80</i>&nbsp;            androidLibraryFeatures.extendedStdlib = enabled</b>
+<i class="no-highlight">81</i>&nbsp;        }
+<i class="no-highlight">82</i>&nbsp;
+<i class="no-highlight">83</i>&nbsp;        @HubdleDslMarker
+<b class="nc"><i class="no-highlight">84</i>&nbsp;        public fun Project.extendedTesting(enabled: Boolean = true) {</b>
+<b class="nc"><i class="no-highlight">85</i>&nbsp;            androidLibraryFeatures.extendedTesting = enabled</b>
+<i class="no-highlight">86</i>&nbsp;        }
+<i class="no-highlight">87</i>&nbsp;
+<i class="no-highlight">88</i>&nbsp;        @HubdleDslMarker
+<b class="nc"><i class="no-highlight">89</i>&nbsp;        public fun Project.serialization(enabled: Boolean = true, useJson: Boolean = true) {</b>
+<b class="nc"><i class="no-highlight">90</i>&nbsp;            androidLibraryFeatures.serialization.isEnabled = enabled</b>
+<b class="nc"><i class="no-highlight">91</i>&nbsp;            androidLibraryFeatures.serialization.useJson = useJson</b>
+<i class="no-highlight">92</i>&nbsp;        }
+<i class="no-highlight">93</i>&nbsp;    }
+<i class="no-highlight">94</i>&nbsp;}
 </div>
 </pre>
 </div>
@@ -380,7 +378,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-09 05:37</div>
+    <div style="float:right;">generated on 2022-07-09 11:23</div>
 </div>
 </body>
 </html>

@@ -39,7 +39,7 @@ dependencies {
     implementation(gradleApi())
     implementation(gradleKotlinDsl())
     api(libs.javiersc.gradle.gradleExtensions)
-    implementation(pluginLibs.gradle.enterprise.comGradleEnterpriseGradlePlugin)
+    api(pluginLibs.gradle.enterprise.comGradleEnterpriseGradlePlugin)
 
     testImplementation(gradleTestKit())
     testImplementation(libs.jetbrains.kotlin.kotlinTest)

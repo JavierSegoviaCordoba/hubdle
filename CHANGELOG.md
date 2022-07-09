@@ -4,6 +4,8 @@
 
 ### Added
 
+- `google()` repository to Hubdle Settings plugin
+
 ### Changed
 
 - dependencies don't need to be imported

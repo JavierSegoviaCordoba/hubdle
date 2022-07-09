@@ -43,7 +43,10 @@ internal val Settings.hubdleSettings: HubdleSettingsExtension
 
 private fun Settings.configureRepositories() {
     dependencyResolutionManagement { management ->
-        management.repositories { repos: RepositoryHandler -> repos.mavenCentral() }
+        management.repositories { repos: RepositoryHandler ->
+            repos.mavenCentral()
+            repos.google()
+        }
     }
 }
 

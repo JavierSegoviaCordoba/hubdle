@@ -170,9 +170,9 @@
 
 <div>
   <ul>
-    <li>10,145 lines of code (loc)</li>
-    <li>8,340 source lines of code (sloc)</li>
-    <li>5,590 logical lines of code (lloc)</li>
+    <li>10,152 lines of code (loc)</li>
+    <li>8,347 source lines of code (sloc)</li>
+    <li>5,597 logical lines of code (lloc)</li>
     <li>27 comment lines of code (cloc)</li>
     <li>1,017 cyclomatic complexity (mcc)</li>
     <li>423 cognitive complexity</li>
@@ -205,7 +205,7 @@
   <details id="LongMethod" open="open">
     <summary class="rule-container"><span class="rule">LongMethod: 2 </span><span class="description">One method should have one responsibility. Long methods tend to handle many things at once. Prefer smaller methods to make them easier to understand.</span></summary>
     <ul>
-      <li><span class="location">buildSrc/src/main/kotlin/plugins/dependencies-codegen.gradle.kts:105:5</span><span class="message">The function buildHubdleDependencies is too long (72). The maximum length is 60.</span>
+      <li><span class="location">buildSrc/src/main/kotlin/plugins/dependencies-codegen.gradle.kts:105:5</span><span class="message">The function buildHubdleDependencies is too long (79). The maximum length is 60.</span>
         <pre><code><span class="lineno"> 102 </span>        }
 <span class="lineno"> 103 </span>}
 <span class="lineno"> 104 </span>
@@ -570,14 +570,14 @@
   <details id="MagicNumber" open="open">
     <summary class="rule-container"><span class="rule">MagicNumber: 4 </span><span class="description">Report magic numbers. Magic number is a numeric literal that is not defined as a constant and hence it's unclear what the purpose of this number is. It's better to declare such numbers as constants and give them a proper name. By default, -1, 0, 1, and 2 are not considered to be magic numbers.</span></summary>
     <ul>
-      <li><span class="location">buildSrc/src/main/kotlin/plugins/dependencies-codegen.gradle.kts:195:56</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
-        <pre><code><span class="lineno"> 192 </span>    replace(&quot;.&quot;, &quot;_&quot;).replace(&quot;-&quot;, &quot;_&quot;).toUpperCase(Locale.getDefault())
-<span class="lineno"> 193 </span>
-<span class="lineno"> 194 </span>val MinimalExternalModuleDependency.hasCommonEndingDomain: Boolean
-<span class="lineno"> 195 </span>    get() = module.group.split(&quot;.&quot;).first().count() &lt;= <span class="error">3</span>
-<span class="lineno"> 196 </span>
-<span class="lineno"> 197 </span>val MinimalExternalModuleDependency.endAndStartWithSameName: Boolean
-<span class="lineno"> 198 </span>    get() = module.name.startsWith(module.group.substringAfterLast(&quot;.&quot;))
+      <li><span class="location">buildSrc/src/main/kotlin/plugins/dependencies-codegen.gradle.kts:202:56</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno"> 199 </span>    replace(&quot;.&quot;, &quot;_&quot;).replace(&quot;-&quot;, &quot;_&quot;).toUpperCase(Locale.getDefault())
+<span class="lineno"> 200 </span>
+<span class="lineno"> 201 </span>val MinimalExternalModuleDependency.hasCommonEndingDomain: Boolean
+<span class="lineno"> 202 </span>    get() = module.group.split(&quot;.&quot;).first().count() &lt;= <span class="error">3</span>
+<span class="lineno"> 203 </span>
+<span class="lineno"> 204 </span>val MinimalExternalModuleDependency.endAndStartWithSameName: Boolean
+<span class="lineno"> 205 </span>    get() = module.name.startsWith(module.group.substringAfterLast(&quot;.&quot;))
 </code></pre>
       </li>
       <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/state/HubdleState.kt:981:34</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
@@ -660,7 +660,7 @@
 </div>
 
 
-generated with <a href="https://detekt.dev/">detekt version 1.20.0</a> on 2022-07-09 04:24:45 UTC.
+generated with <a href="https://detekt.dev/">detekt version 1.20.0</a> on 2022-07-09 05:32:37 UTC.
 
 </body>
 </html>

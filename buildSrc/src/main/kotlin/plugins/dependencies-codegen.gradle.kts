@@ -105,70 +105,63 @@ fun buildHubdleDependenciesList() {
 }
 
 fun buildHubdleDependencies() {
-    buildDir
-        .resolve(
-            "generated/main/kotlin/" +
-                "com/javiersc/hubdle/extensions/dependencies/_internal/hubdle_dependencies.kt",
-        )
-        .apply {
-            parentFile.mkdirs()
-            createNewFile()
-            writeText("")
-            catalog.libraryAliases
-                .map { libraryAlias -> catalog.findLibrary(libraryAlias).get().get() }
-                .sortedBy { library -> library.module.toString() }
-                .toSet()
-                .forEach { library: MinimalExternalModuleDependency ->
-                    val dependencyVariableNames =
-                        with(library) {
-                                val fileName = module.toString().replace(":", "_")
-                                val dependencyVariableName = fileName.buildDependencyVariableName()
+    buildDir.resolve("generated/main/kotlin/hubdle_dependencies.kt").apply {
+        parentFile.mkdirs()
+        createNewFile()
+        writeText("")
+        catalog.libraryAliases
+            .map { libraryAlias -> catalog.findLibrary(libraryAlias).get().get() }
+            .sortedBy { library -> library.module.toString() }
+            .toSet()
+            .forEach { library: MinimalExternalModuleDependency ->
+                val dependencyVariableNames =
+                    with(library) {
+                            val fileName = module.toString().replace(":", "_")
+                            val dependencyVariableName = fileName.buildDependencyVariableName()
 
-                                val groupSanitized =
-                                    if (hasCommonEndingDomain) {
-                                        val group =
-                                            when {
-                                                onlyDomain && endAndStartWithSameName -> {
-                                                    ""
-                                                }
-                                                endAndStartWithSameName -> {
-                                                    module.group.substringBeforeLast(".")
-                                                }
-                                                else -> module.group
+                            val groupSanitized =
+                                if (hasCommonEndingDomain) {
+                                    val group =
+                                        when {
+                                            onlyDomain && endAndStartWithSameName -> {
+                                                ""
                                             }
-
-                                        group.substringAfter(".").groupOrNameSanitized()
-                                    } else {
-                                        val group =
-                                            if (endAndStartWithSameName) {
+                                            endAndStartWithSameName -> {
                                                 module.group.substringBeforeLast(".")
-                                            } else {
-                                                module.group
                                             }
-                                        group.groupOrNameSanitized()
-                                    }
+                                            else -> module.group
+                                        }
 
-                                val nameSanitized = module.name.groupOrNameSanitized().capitalized()
-                                val dependencyName = "$groupSanitized$nameSanitized".decapitalize()
-                                """
+                                    group.substringAfter(".").groupOrNameSanitized()
+                                } else {
+                                    val group =
+                                        if (endAndStartWithSameName) {
+                                            module.group.substringBeforeLast(".")
+                                        } else {
+                                            module.group
+                                        }
+                                    group.groupOrNameSanitized()
+                                }
+
+                            val nameSanitized = module.name.groupOrNameSanitized().capitalized()
+                            val dependencyName = "$groupSanitized$nameSanitized".decapitalize()
+                            """
                                     |@HubdleDslMarker
                                     |public fun KotlinDependencyHandler.$dependencyName(): Dependency =
                                     |    catalogImplementation(${dependencyVariableName}_MODULE)
                                 """
-                            }
-                            .lines()
+                        }
+                        .lines()
 
-                    writeText(
-                        readText() +
-                            """ ${dependencyVariableNames.joinToString("\n")}
+                writeText(
+                    readText() +
+                        """ ${dependencyVariableNames.joinToString("\n")}
                                 |
                             """.trimMargin()
-                    )
-                }
-            writeText(
-                """
-                        |package com.javiersc.hubdle.extensions.dependencies._internal
-                        |
+                )
+            }
+        writeText(
+            """
                         |import com.javiersc.hubdle.extensions.HubdleDslMarker
                         |import com.javiersc.hubdle.extensions._internal.state.catalogImplementation
                         |import com.javiersc.hubdle.extensions.dependencies._internal.constants.*
@@ -177,9 +170,9 @@ fun buildHubdleDependencies() {
                         |
                         |
                     """.trimMargin() +
-                    readText().removeDuplicateEmptyLines().endWithNewLine()
-            )
-        }
+                readText().removeDuplicateEmptyLines().endWithNewLine()
+        )
+    }
 }
 
 fun String.groupOrNameSanitized(): String =

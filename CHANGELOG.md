@@ -6,6 +6,8 @@
 
 ### Changed
 
+- dependencies don't need to be imported
+
 ### Deprecated
 
 ### Removed

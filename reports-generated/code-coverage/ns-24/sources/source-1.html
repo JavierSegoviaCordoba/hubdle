@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html id="htmlId">
 <head>
-  <title>Coverage Report > Hubdle_dependenciesKt</title>
+  <title>Coverage Report > Hubdle_dependencies_listKt</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/highlight-idea.css";
@@ -20,7 +20,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     <a href="../index.html">com.javiersc.hubdle.extensions.dependencies._internal</a>
 </div>
 
-<h1>Coverage Summary for Class: Hubdle_dependenciesKt (com.javiersc.hubdle.extensions.dependencies._internal)</h1>
+<h1>Coverage Summary for Class: Hubdle_dependencies_listKt (com.javiersc.hubdle.extensions.dependencies._internal)</h1>
 
 <table class="coverageStats">
 <tr>
@@ -47,7 +47,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 </th>
 </tr>
 <tr>
-  <td class="name">Hubdle_dependenciesKt</td>
+  <td class="name">Hubdle_dependencies_listKt</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -61,7 +61,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/31)
+    (0/2)
   </span>
 </td>
     <td class="coverageStat"/>
@@ -70,7 +70,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/31)
+    (0/33)
   </span>
 </td>
 <td class="coverageStat">
@@ -78,7 +78,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/93)
+    (0/129)
   </span>
 </td>
 </tr>
@@ -92,136 +92,41 @@ Current scope:     <a href="../../index.html">all classes</a>
 <pre>
 <div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.javiersc.hubdle.extensions.dependencies._internal
 <i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;import com.javiersc.hubdle.extensions.HubdleDslMarker
-<i class="no-highlight">4</i>&nbsp;import com.javiersc.hubdle.extensions._internal.state.catalogImplementation
-<i class="no-highlight">5</i>&nbsp;import com.javiersc.hubdle.extensions.dependencies._internal.constants.*
-<i class="no-highlight">6</i>&nbsp;import org.gradle.api.artifacts.Dependency
-<i class="no-highlight">7</i>&nbsp;import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
-<i class="no-highlight">8</i>&nbsp;
-<i class="no-highlight">9</i>&nbsp;@HubdleDslMarker
-<i class="no-highlight">10</i>&nbsp;public fun KotlinDependencyHandler.androidxActivityKtx(): Dependency =
-<b class="nc"><i class="no-highlight">11</i>&nbsp;    catalogImplementation(ANDROIDX_ACTIVITY_ACTIVITY_KTX_MODULE)</b>
-<i class="no-highlight">12</i>&nbsp;                                
-<i class="no-highlight">13</i>&nbsp;@HubdleDslMarker
-<i class="no-highlight">14</i>&nbsp;public fun KotlinDependencyHandler.androidxCoreKtx(): Dependency =
-<b class="nc"><i class="no-highlight">15</i>&nbsp;    catalogImplementation(ANDROIDX_CORE_CORE_KTX_MODULE)</b>
-<i class="no-highlight">16</i>&nbsp;                                
-<i class="no-highlight">17</i>&nbsp;@HubdleDslMarker
-<i class="no-highlight">18</i>&nbsp;public fun KotlinDependencyHandler.cashTurbine(): Dependency =
-<b class="nc"><i class="no-highlight">19</i>&nbsp;    catalogImplementation(APP_CASH_TURBINE_TURBINE_MODULE)</b>
-<i class="no-highlight">20</i>&nbsp;                                
-<i class="no-highlight">21</i>&nbsp;@HubdleDslMarker
-<i class="no-highlight">22</i>&nbsp;public fun KotlinDependencyHandler.facebookKtfmt(): Dependency =
-<b class="nc"><i class="no-highlight">23</i>&nbsp;    catalogImplementation(COM_FACEBOOK_KTFMT_MODULE)</b>
-<i class="no-highlight">24</i>&nbsp;                                
-<i class="no-highlight">25</i>&nbsp;@HubdleDslMarker
-<i class="no-highlight">26</i>&nbsp;public fun KotlinDependencyHandler.jakewhartonRetrofit2KotlinxSerializationConverter(): Dependency =
-<b class="nc"><i class="no-highlight">27</i>&nbsp;    catalogImplementation(COM_JAKEWHARTON_RETROFIT_RETROFIT2_KOTLINX_SERIALIZATION_CONVERTER_MODULE)</b>
-<i class="no-highlight">28</i>&nbsp;                                
-<i class="no-highlight">29</i>&nbsp;@HubdleDslMarker
-<i class="no-highlight">30</i>&nbsp;public fun KotlinDependencyHandler.javierscGradleExtensions(): Dependency =
-<b class="nc"><i class="no-highlight">31</i>&nbsp;    catalogImplementation(COM_JAVIERSC_GRADLE_GRADLE_EXTENSIONS_MODULE)</b>
-<i class="no-highlight">32</i>&nbsp;                                
-<i class="no-highlight">33</i>&nbsp;@HubdleDslMarker
-<i class="no-highlight">34</i>&nbsp;public fun KotlinDependencyHandler.javierscGradleTestExtensions(): Dependency =
-<b class="nc"><i class="no-highlight">35</i>&nbsp;    catalogImplementation(COM_JAVIERSC_GRADLE_GRADLE_TEST_EXTENSIONS_MODULE)</b>
-<i class="no-highlight">36</i>&nbsp;                                
-<i class="no-highlight">37</i>&nbsp;@HubdleDslMarker
-<i class="no-highlight">38</i>&nbsp;public fun KotlinDependencyHandler.javierscKotlinStdlib(): Dependency =
-<b class="nc"><i class="no-highlight">39</i>&nbsp;    catalogImplementation(COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE)</b>
-<i class="no-highlight">40</i>&nbsp;                                
-<i class="no-highlight">41</i>&nbsp;@HubdleDslMarker
-<i class="no-highlight">42</i>&nbsp;public fun KotlinDependencyHandler.javierscMokokiCore(): Dependency =
-<b class="nc"><i class="no-highlight">43</i>&nbsp;    catalogImplementation(COM_JAVIERSC_MOKOKI_MOKOKI_CORE_MODULE)</b>
-<i class="no-highlight">44</i>&nbsp;                                
-<i class="no-highlight">45</i>&nbsp;@HubdleDslMarker
-<i class="no-highlight">46</i>&nbsp;public fun KotlinDependencyHandler.javierscMokokiSerialization(): Dependency =
-<b class="nc"><i class="no-highlight">47</i>&nbsp;    catalogImplementation(COM_JAVIERSC_MOKOKI_MOKOKI_SERIALIZATION_MODULE)</b>
-<i class="no-highlight">48</i>&nbsp;                                
-<i class="no-highlight">49</i>&nbsp;@HubdleDslMarker
-<i class="no-highlight">50</i>&nbsp;public fun KotlinDependencyHandler.squareupMoshi(): Dependency =
-<b class="nc"><i class="no-highlight">51</i>&nbsp;    catalogImplementation(COM_SQUAREUP_MOSHI_MOSHI_MODULE)</b>
-<i class="no-highlight">52</i>&nbsp;                                
-<i class="no-highlight">53</i>&nbsp;@HubdleDslMarker
-<i class="no-highlight">54</i>&nbsp;public fun KotlinDependencyHandler.squareupOkhttp3Mockwebserver(): Dependency =
-<b class="nc"><i class="no-highlight">55</i>&nbsp;    catalogImplementation(COM_SQUAREUP_OKHTTP3_MOCKWEBSERVER_MODULE)</b>
-<i class="no-highlight">56</i>&nbsp;                                
-<i class="no-highlight">57</i>&nbsp;@HubdleDslMarker
-<i class="no-highlight">58</i>&nbsp;public fun KotlinDependencyHandler.squareupOkhttp3Okhttp(): Dependency =
-<b class="nc"><i class="no-highlight">59</i>&nbsp;    catalogImplementation(COM_SQUAREUP_OKHTTP3_OKHTTP_MODULE)</b>
-<i class="no-highlight">60</i>&nbsp;                                
-<i class="no-highlight">61</i>&nbsp;@HubdleDslMarker
-<i class="no-highlight">62</i>&nbsp;public fun KotlinDependencyHandler.squareupOkio(): Dependency =
-<b class="nc"><i class="no-highlight">63</i>&nbsp;    catalogImplementation(COM_SQUAREUP_OKIO_OKIO_MODULE)</b>
-<i class="no-highlight">64</i>&nbsp;                                
-<i class="no-highlight">65</i>&nbsp;@HubdleDslMarker
-<i class="no-highlight">66</i>&nbsp;public fun KotlinDependencyHandler.squareupRetrofit2Retrofit(): Dependency =
-<b class="nc"><i class="no-highlight">67</i>&nbsp;    catalogImplementation(COM_SQUAREUP_RETROFIT2_RETROFIT_MODULE)</b>
-<i class="no-highlight">68</i>&nbsp;                                
-<i class="no-highlight">69</i>&nbsp;@HubdleDslMarker
-<i class="no-highlight">70</i>&nbsp;public fun KotlinDependencyHandler.arrowKtArrowCore(): Dependency =
-<b class="nc"><i class="no-highlight">71</i>&nbsp;    catalogImplementation(IO_ARROW_KT_ARROW_CORE_MODULE)</b>
-<i class="no-highlight">72</i>&nbsp;                                
-<i class="no-highlight">73</i>&nbsp;@HubdleDslMarker
-<i class="no-highlight">74</i>&nbsp;public fun KotlinDependencyHandler.kotestAssertionsCore(): Dependency =
-<b class="nc"><i class="no-highlight">75</i>&nbsp;    catalogImplementation(IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE)</b>
-<i class="no-highlight">76</i>&nbsp;                                
-<i class="no-highlight">77</i>&nbsp;@HubdleDslMarker
-<i class="no-highlight">78</i>&nbsp;public fun KotlinDependencyHandler.kotestProperty(): Dependency =
-<b class="nc"><i class="no-highlight">79</i>&nbsp;    catalogImplementation(IO_KOTEST_KOTEST_PROPERTY_MODULE)</b>
-<i class="no-highlight">80</i>&nbsp;                                
-<i class="no-highlight">81</i>&nbsp;@HubdleDslMarker
-<i class="no-highlight">82</i>&nbsp;public fun KotlinDependencyHandler.ktorClientCio(): Dependency =
-<b class="nc"><i class="no-highlight">83</i>&nbsp;    catalogImplementation(IO_KTOR_KTOR_CLIENT_CIO_MODULE)</b>
-<i class="no-highlight">84</i>&nbsp;                                
-<i class="no-highlight">85</i>&nbsp;@HubdleDslMarker
-<i class="no-highlight">86</i>&nbsp;public fun KotlinDependencyHandler.ktorClientContentNegotiation(): Dependency =
-<b class="nc"><i class="no-highlight">87</i>&nbsp;    catalogImplementation(IO_KTOR_KTOR_CLIENT_CONTENT_NEGOTIATION_MODULE)</b>
-<i class="no-highlight">88</i>&nbsp;                                
-<i class="no-highlight">89</i>&nbsp;@HubdleDslMarker
-<i class="no-highlight">90</i>&nbsp;public fun KotlinDependencyHandler.ktorClientCore(): Dependency =
-<b class="nc"><i class="no-highlight">91</i>&nbsp;    catalogImplementation(IO_KTOR_KTOR_CLIENT_CORE_MODULE)</b>
-<i class="no-highlight">92</i>&nbsp;                                
-<i class="no-highlight">93</i>&nbsp;@HubdleDslMarker
-<i class="no-highlight">94</i>&nbsp;public fun KotlinDependencyHandler.ktorClientMock(): Dependency =
-<b class="nc"><i class="no-highlight">95</i>&nbsp;    catalogImplementation(IO_KTOR_KTOR_CLIENT_MOCK_MODULE)</b>
-<i class="no-highlight">96</i>&nbsp;                                
-<i class="no-highlight">97</i>&nbsp;@HubdleDslMarker
-<i class="no-highlight">98</i>&nbsp;public fun KotlinDependencyHandler.ktorClientOkhttp(): Dependency =
-<b class="nc"><i class="no-highlight">99</i>&nbsp;    catalogImplementation(IO_KTOR_KTOR_CLIENT_OKHTTP_MODULE)</b>
-<i class="no-highlight">100</i>&nbsp;                                
-<i class="no-highlight">101</i>&nbsp;@HubdleDslMarker
-<i class="no-highlight">102</i>&nbsp;public fun KotlinDependencyHandler.ktorSerializationKotlinxJson(): Dependency =
-<b class="nc"><i class="no-highlight">103</i>&nbsp;    catalogImplementation(IO_KTOR_KTOR_SERIALIZATION_KOTLINX_JSON_MODULE)</b>
-<i class="no-highlight">104</i>&nbsp;                                
-<i class="no-highlight">105</i>&nbsp;@HubdleDslMarker
-<i class="no-highlight">106</i>&nbsp;public fun KotlinDependencyHandler.jetbrainsKotlinTest(): Dependency =
-<b class="nc"><i class="no-highlight">107</i>&nbsp;    catalogImplementation(ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE)</b>
-<i class="no-highlight">108</i>&nbsp;                                
-<i class="no-highlight">109</i>&nbsp;@HubdleDslMarker
-<i class="no-highlight">110</i>&nbsp;public fun KotlinDependencyHandler.jetbrainsKotlinxCoroutinesAndroid(): Dependency =
-<b class="nc"><i class="no-highlight">111</i>&nbsp;    catalogImplementation(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_ANDROID_MODULE)</b>
-<i class="no-highlight">112</i>&nbsp;                                
-<i class="no-highlight">113</i>&nbsp;@HubdleDslMarker
-<i class="no-highlight">114</i>&nbsp;public fun KotlinDependencyHandler.jetbrainsKotlinxCoroutinesCore(): Dependency =
-<b class="nc"><i class="no-highlight">115</i>&nbsp;    catalogImplementation(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_MODULE)</b>
-<i class="no-highlight">116</i>&nbsp;                                
-<i class="no-highlight">117</i>&nbsp;@HubdleDslMarker
-<i class="no-highlight">118</i>&nbsp;public fun KotlinDependencyHandler.jetbrainsKotlinxCoroutinesTest(): Dependency =
-<b class="nc"><i class="no-highlight">119</i>&nbsp;    catalogImplementation(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_TEST_MODULE)</b>
-<i class="no-highlight">120</i>&nbsp;                                
-<i class="no-highlight">121</i>&nbsp;@HubdleDslMarker
-<i class="no-highlight">122</i>&nbsp;public fun KotlinDependencyHandler.jetbrainsKotlinxDatetime(): Dependency =
-<b class="nc"><i class="no-highlight">123</i>&nbsp;    catalogImplementation(ORG_JETBRAINS_KOTLINX_KOTLINX_DATETIME_MODULE)</b>
-<i class="no-highlight">124</i>&nbsp;                                
-<i class="no-highlight">125</i>&nbsp;@HubdleDslMarker
-<i class="no-highlight">126</i>&nbsp;public fun KotlinDependencyHandler.jetbrainsKotlinxSerializationCore(): Dependency =
-<b class="nc"><i class="no-highlight">127</i>&nbsp;    catalogImplementation(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_CORE_MODULE)</b>
-<i class="no-highlight">128</i>&nbsp;                                
-<i class="no-highlight">129</i>&nbsp;@HubdleDslMarker
-<i class="no-highlight">130</i>&nbsp;public fun KotlinDependencyHandler.jetbrainsKotlinxSerializationJson(): Dependency =
-<b class="nc"><i class="no-highlight">131</i>&nbsp;    catalogImplementation(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_JSON_MODULE)</b>
-<i class="no-highlight">132</i>&nbsp;                                
+<b class="nc"><i class="no-highlight">3</i>&nbsp;internal val hubdleDependencies: List&lt;String&gt; =</b>
+<b class="nc"><i class="no-highlight">4</i>&nbsp;    listOf(</b>
+<b class="nc"><i class="no-highlight">5</i>&nbsp;        &quot;androidx.activity:activity-ktx:1.5.0&quot;,</b>
+<b class="nc"><i class="no-highlight">6</i>&nbsp;        &quot;androidx.core:core-ktx:1.8.0&quot;,</b>
+<b class="nc"><i class="no-highlight">7</i>&nbsp;        &quot;app.cash.turbine:turbine:0.8.0&quot;,</b>
+<b class="nc"><i class="no-highlight">8</i>&nbsp;        &quot;com.facebook:ktfmt:0.39&quot;,</b>
+<b class="nc"><i class="no-highlight">9</i>&nbsp;        &quot;com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0&quot;,</b>
+<b class="nc"><i class="no-highlight">10</i>&nbsp;        &quot;com.javiersc.gradle:gradle-extensions:1.0.0-alpha.26&quot;,</b>
+<b class="nc"><i class="no-highlight">11</i>&nbsp;        &quot;com.javiersc.gradle:gradle-test-extensions:1.0.0-alpha.26&quot;,</b>
+<b class="nc"><i class="no-highlight">12</i>&nbsp;        &quot;com.javiersc.kotlin:kotlin-stdlib:0.1.0-alpha.7&quot;,</b>
+<b class="nc"><i class="no-highlight">13</i>&nbsp;        &quot;com.javiersc.mokoki:mokoki-core:0.1.0-alpha.9&quot;,</b>
+<b class="nc"><i class="no-highlight">14</i>&nbsp;        &quot;com.javiersc.mokoki:mokoki-serialization:0.1.0-alpha.9&quot;,</b>
+<b class="nc"><i class="no-highlight">15</i>&nbsp;        &quot;com.squareup.moshi:moshi:1.13.0&quot;,</b>
+<b class="nc"><i class="no-highlight">16</i>&nbsp;        &quot;com.squareup.okhttp3:mockwebserver:4.10.0&quot;,</b>
+<b class="nc"><i class="no-highlight">17</i>&nbsp;        &quot;com.squareup.okhttp3:okhttp:4.10.0&quot;,</b>
+<b class="nc"><i class="no-highlight">18</i>&nbsp;        &quot;com.squareup.okio:okio:3.2.0&quot;,</b>
+<b class="nc"><i class="no-highlight">19</i>&nbsp;        &quot;com.squareup.retrofit2:retrofit:2.9.0&quot;,</b>
+<b class="nc"><i class="no-highlight">20</i>&nbsp;        &quot;io.arrow-kt:arrow-core:1.1.2&quot;,</b>
+<b class="nc"><i class="no-highlight">21</i>&nbsp;        &quot;io.kotest:kotest-assertions-core:5.3.2&quot;,</b>
+<b class="nc"><i class="no-highlight">22</i>&nbsp;        &quot;io.kotest:kotest-property:5.3.2&quot;,</b>
+<b class="nc"><i class="no-highlight">23</i>&nbsp;        &quot;io.ktor:ktor-client-cio:2.0.4&quot;,</b>
+<b class="nc"><i class="no-highlight">24</i>&nbsp;        &quot;io.ktor:ktor-client-content-negotiation:2.0.4&quot;,</b>
+<b class="nc"><i class="no-highlight">25</i>&nbsp;        &quot;io.ktor:ktor-client-core:2.0.4&quot;,</b>
+<b class="nc"><i class="no-highlight">26</i>&nbsp;        &quot;io.ktor:ktor-client-mock:2.0.4&quot;,</b>
+<b class="nc"><i class="no-highlight">27</i>&nbsp;        &quot;io.ktor:ktor-client-okhttp:2.0.4&quot;,</b>
+<b class="nc"><i class="no-highlight">28</i>&nbsp;        &quot;io.ktor:ktor-serialization-kotlinx-json:2.0.4&quot;,</b>
+<b class="nc"><i class="no-highlight">29</i>&nbsp;        &quot;org.jetbrains.kotlin:kotlin-test:1.6.21&quot;,</b>
+<b class="nc"><i class="no-highlight">30</i>&nbsp;        &quot;org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.3&quot;,</b>
+<b class="nc"><i class="no-highlight">31</i>&nbsp;        &quot;org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.3&quot;,</b>
+<b class="nc"><i class="no-highlight">32</i>&nbsp;        &quot;org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.3&quot;,</b>
+<b class="nc"><i class="no-highlight">33</i>&nbsp;        &quot;org.jetbrains.kotlinx:kotlinx-datetime:0.4.0&quot;,</b>
+<b class="nc"><i class="no-highlight">34</i>&nbsp;        &quot;org.jetbrains.kotlinx:kotlinx-serialization-core:1.3.3&quot;,</b>
+<b class="nc"><i class="no-highlight">35</i>&nbsp;        &quot;org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.3&quot;,</b>
+<i class="no-highlight">36</i>&nbsp;    )
+<i class="no-highlight">37</i>&nbsp;    
 </div>
 </pre>
 </div>
@@ -248,7 +153,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-09 11:39</div>
+    <div style="float:right;">generated on 2022-07-09 13:42</div>
 </div>
 </body>
 </html>

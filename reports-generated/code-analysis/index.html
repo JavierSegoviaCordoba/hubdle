@@ -170,9 +170,9 @@
 
 <div>
   <ul>
-    <li>10,136 lines of code (loc)</li>
-    <li>8,331 source lines of code (sloc)</li>
-    <li>5,584 logical lines of code (lloc)</li>
+    <li>10,132 lines of code (loc)</li>
+    <li>8,327 source lines of code (sloc)</li>
+    <li>5,581 logical lines of code (lloc)</li>
     <li>27 comment lines of code (cloc)</li>
     <li>1,017 cyclomatic complexity (mcc)</li>
     <li>420 cognitive complexity</li>
@@ -205,14 +205,14 @@
   <details id="LongMethod" open="open">
     <summary class="rule-container"><span class="rule">LongMethod: 2 </span><span class="description">One method should have one responsibility. Long methods tend to handle many things at once. Prefer smaller methods to make them easier to understand.</span></summary>
     <ul>
-      <li><span class="location">buildSrc/src/main/kotlin/plugins/dependencies-codegen.gradle.kts:107:5</span><span class="message">The function buildHubdleDependencies is too long (73). The maximum length is 60.</span>
+      <li><span class="location">buildSrc/src/main/kotlin/plugins/dependencies-codegen.gradle.kts:107:5</span><span class="message">The function buildHubdleDependencies is too long (66). The maximum length is 60.</span>
         <pre><code><span class="lineno"> 104 </span>        }
 <span class="lineno"> 105 </span>}
 <span class="lineno"> 106 </span>
 <span class="lineno"> 107 </span>fun <span class="error">buildHubdleDependencies</span>() {
-<span class="lineno"> 108 </span>    buildDir
-<span class="lineno"> 109 </span>        .resolve(
-<span class="lineno"> 110 </span>            &quot;generated/main/kotlin/&quot; +
+<span class="lineno"> 108 </span>    buildDir.resolve(&quot;generated/main/kotlin/hubdle_dependencies.kt&quot;).apply {
+<span class="lineno"> 109 </span>        parentFile.mkdirs()
+<span class="lineno"> 110 </span>        createNewFile()
 </code></pre>
       </li>
       <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatform.kt:218:14</span><span class="message">The function configureMultiplatformNative is too long (78). The maximum length is 60.</span>
@@ -235,9 +235,9 @@
 <span class="lineno"> 105 </span>}
 <span class="lineno"> 106 </span>
 <span class="lineno"> 107 </span>fun <span class="error">buildHubdleDependencies</span>() {
-<span class="lineno"> 108 </span>    buildDir
-<span class="lineno"> 109 </span>        .resolve(
-<span class="lineno"> 110 </span>            &quot;generated/main/kotlin/&quot; +
+<span class="lineno"> 108 </span>    buildDir.resolve(&quot;generated/main/kotlin/hubdle_dependencies.kt&quot;).apply {
+<span class="lineno"> 109 </span>        parentFile.mkdirs()
+<span class="lineno"> 110 </span>        createNewFile()
 </code></pre>
       </li>
     </ul>
@@ -534,24 +534,24 @@
   <details id="SpreadOperator" open="open">
     <summary class="rule-container"><span class="rule">SpreadOperator: 2 </span><span class="description">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span></summary>
     <ul>
-      <li><span class="location">hubdle-settings-gradle-plugin/main/kotlin/com/javiersc/hubdle/settings/HubdleSettingsPlugin.kt:54:29</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
-        <pre><code><span class="lineno">  51 </span>    val autoInclude = hubdleSettings.autoInclude
-<span class="lineno">  52 </span>
-<span class="lineno">  53 </span>    if (autoInclude.isEnabled) {
-<span class="lineno">  54 </span>        autoInclude.includes<span class="error">(*extractedProjects().toTypedArray())</span>
-<span class="lineno">  55 </span>        autoInclude.includedBuilds(*extractedBuildProjects().toTypedArray())
-<span class="lineno">  56 </span>
-<span class="lineno">  57 </span>        for (include in autoInclude.includableProjects) {
+      <li><span class="location">hubdle-settings-gradle-plugin/main/kotlin/com/javiersc/hubdle/settings/HubdleSettingsPlugin.kt:57:29</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
+        <pre><code><span class="lineno">  54 </span>    val autoInclude = hubdleSettings.autoInclude
+<span class="lineno">  55 </span>
+<span class="lineno">  56 </span>    if (autoInclude.isEnabled) {
+<span class="lineno">  57 </span>        autoInclude.includes<span class="error">(*extractedProjects().toTypedArray())</span>
+<span class="lineno">  58 </span>        autoInclude.includedBuilds(*extractedBuildProjects().toTypedArray())
+<span class="lineno">  59 </span>
+<span class="lineno">  60 </span>        for (include in autoInclude.includableProjects) {
 </code></pre>
       </li>
-      <li><span class="location">hubdle-settings-gradle-plugin/main/kotlin/com/javiersc/hubdle/settings/HubdleSettingsPlugin.kt:55:35</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
-        <pre><code><span class="lineno">  52 </span>
-<span class="lineno">  53 </span>    if (autoInclude.isEnabled) {
-<span class="lineno">  54 </span>        autoInclude.includes(*extractedProjects().toTypedArray())
-<span class="lineno">  55 </span>        autoInclude.includedBuilds<span class="error">(*extractedBuildProjects().toTypedArray())</span>
-<span class="lineno">  56 </span>
-<span class="lineno">  57 </span>        for (include in autoInclude.includableProjects) {
-<span class="lineno">  58 </span>            include(include)
+      <li><span class="location">hubdle-settings-gradle-plugin/main/kotlin/com/javiersc/hubdle/settings/HubdleSettingsPlugin.kt:58:35</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
+        <pre><code><span class="lineno">  55 </span>
+<span class="lineno">  56 </span>    if (autoInclude.isEnabled) {
+<span class="lineno">  57 </span>        autoInclude.includes(*extractedProjects().toTypedArray())
+<span class="lineno">  58 </span>        autoInclude.includedBuilds<span class="error">(*extractedBuildProjects().toTypedArray())</span>
+<span class="lineno">  59 </span>
+<span class="lineno">  60 </span>        for (include in autoInclude.includableProjects) {
+<span class="lineno">  61 </span>            include(include)
 </code></pre>
       </li>
     </ul>
@@ -585,14 +585,14 @@
   <details id="MagicNumber" open="open">
     <summary class="rule-container"><span class="rule">MagicNumber: 4 </span><span class="description">Report magic numbers. Magic number is a numeric literal that is not defined as a constant and hence it's unclear what the purpose of this number is. It's better to declare such numbers as constants and give them a proper name. By default, -1, 0, 1, and 2 are not considered to be magic numbers.</span></summary>
     <ul>
-      <li><span class="location">buildSrc/src/main/kotlin/plugins/dependencies-codegen.gradle.kts:198:56</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
-        <pre><code><span class="lineno"> 195 </span>    replace(&quot;.&quot;, &quot;_&quot;).replace(&quot;-&quot;, &quot;_&quot;).toUpperCase(Locale.getDefault())
-<span class="lineno"> 196 </span>
-<span class="lineno"> 197 </span>val MinimalExternalModuleDependency.hasCommonEndingDomain: Boolean
-<span class="lineno"> 198 </span>    get() = module.group.split(&quot;.&quot;).first().count() &lt;= <span class="error">3</span>
-<span class="lineno"> 199 </span>
-<span class="lineno"> 200 </span>val MinimalExternalModuleDependency.endAndStartWithSameName: Boolean
-<span class="lineno"> 201 </span>    get() = module.name.startsWith(module.group.substringAfterLast(&quot;.&quot;))
+      <li><span class="location">buildSrc/src/main/kotlin/plugins/dependencies-codegen.gradle.kts:191:56</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno"> 188 </span>    replace(&quot;.&quot;, &quot;_&quot;).replace(&quot;-&quot;, &quot;_&quot;).toUpperCase(Locale.getDefault())
+<span class="lineno"> 189 </span>
+<span class="lineno"> 190 </span>val MinimalExternalModuleDependency.hasCommonEndingDomain: Boolean
+<span class="lineno"> 191 </span>    get() = module.group.split(&quot;.&quot;).first().count() &lt;= <span class="error">3</span>
+<span class="lineno"> 192 </span>
+<span class="lineno"> 193 </span>val MinimalExternalModuleDependency.endAndStartWithSameName: Boolean
+<span class="lineno"> 194 </span>    get() = module.name.startsWith(module.group.substringAfterLast(&quot;.&quot;))
 </code></pre>
       </li>
       <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/state/HubdleState.kt:981:34</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
@@ -675,7 +675,7 @@
 </div>
 
 
-generated with <a href="https://detekt.dev/">detekt version 1.20.0</a> on 2022-07-09 11:34:49 UTC.
+generated with <a href="https://detekt.dev/">detekt version 1.20.0</a> on 2022-07-09 13:42:25 UTC.
 
 </body>
 </html>

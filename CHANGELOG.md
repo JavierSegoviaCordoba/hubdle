@@ -12,9 +12,13 @@
 
 ### Fixed
 
-- DSL scope violation in every dependency
-
 ### Updated
+
+## [0.2.0-alpha.16] - 2022-07-09
+
+### Fixed
+
+- DSL scope violation in every dependency
 
 ## [0.2.0-alpha.15] - 2022-07-09
 

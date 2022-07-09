@@ -8,16 +8,16 @@
   "sources": [
     {
       "type": "file",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/analysis/AnalysisExtension.kt",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/ConfigExtension.kt",
       "language": "kotlin",
-      "line": 42,
+      "line": 58,
       "offset": 16,
       "length": 7,
       "code": {
-        "startLine": 40,
+        "startLine": 56,
         "length": 7,
         "offset": 37,
-        "surroundingCode": "\n    @HubdleDslMarker\n    public fun Project.reports(action: Action<ReportsExtension> = Action {}) {\n        action.execute(reports)\n    }"
+        "surroundingCode": "\n    @HubdleDslMarker\n    public fun Project.documentation(action: Action<in DocumentationExtension> = Action {}) {\n        action.execute(documentation)\n    }"
       }
     }
   ],
@@ -25,33 +25,61 @@
     "module": "hubdle.hubdle-gradle-plugin.main",
     "inspectionName": "UnusedReceiverParameter"
   },
-  "hash": "10c92a6a7b4a3887a13f37eb4624699cb234f149248812d6befcc5311711c0fb"
+  "hash": "49d9a97939ff1a9892736fe0c6528cce09cc495978f1495b158ad6e721b19198"
 },{
   "tool": "Code Inspection",
   "category": "Redundant constructs",
-  "type": "Unused symbol",
+  "type": "Unused receiver parameter",
   "severity": "High",
-  "comment": "Property \"javaGradlePlugin\" is never used",
-  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "comment": "Receiver parameter is never used",
+  "detailsInfo": "Reports receiver parameter of extension functions and properties that is not used.\n\n**Remove redundant receiver parameter** can be used to amend the code automatically.",
   "sources": [
     {
       "type": "file",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/PluginIds.kt",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/ConfigExtension.kt",
       "language": "kotlin",
-      "line": 25,
-      "offset": 19,
-      "length": 16,
+      "line": 85,
+      "offset": 16,
+      "length": 7,
       "code": {
-        "startLine": 23,
-        "length": 16,
-        "offset": 39,
-        "surroundingCode": "\n    object Gradle {\n        const val javaGradlePlugin = \"java-gradle-plugin\"\n        const val kotlinDsl = \"org.gradle.kotlin.kotlin-dsl\"\n        const val versionCatalog = \"org.gradle.version-catalog\""
+        "startLine": 83,
+        "length": 7,
+        "offset": 37,
+        "surroundingCode": "\n    @HubdleDslMarker\n    public fun Project.install(action: Action<InstallExtension> = Action {}) {\n        action.execute(install)\n    }"
       }
     }
   ],
   "attributes": {
     "module": "hubdle.hubdle-gradle-plugin.main",
-    "inspectionName": "UnusedSymbol"
+    "inspectionName": "UnusedReceiverParameter"
   },
-  "hash": "5acf971fd6bb9310df098d9dfe7d7d7089be5a464e4501b79bb6ddd1e98028cf"
+  "hash": "a33ee68d0abddeaa9c9acfee31dc46ddba24f9e3e0c789947ddeb80298c78a95"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused receiver parameter",
+  "severity": "High",
+  "comment": "Receiver parameter is never used",
+  "detailsInfo": "Reports receiver parameter of extension functions and properties that is not used.\n\n**Remove redundant receiver parameter** can be used to amend the code automatically.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/ConfigExtension.kt",
+      "language": "kotlin",
+      "line": 78,
+      "offset": 16,
+      "length": 7,
+      "code": {
+        "startLine": 76,
+        "length": 7,
+        "offset": 37,
+        "surroundingCode": "\n    @HubdleDslMarker\n    public fun Project.languageSettings(action: Action<LanguageSettingsExtension> = Action {}) {\n        action.execute(languageSettings)\n    }"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-gradle-plugin.main",
+    "inspectionName": "UnusedReceiverParameter"
+  },
+  "hash": "16778ae6e9473a2c4986e4e30954b6d2cd0e7bde11d4cdf8c254392db30fd6fc"
 }]}

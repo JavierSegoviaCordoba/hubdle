@@ -1,0 +1,118 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > GenerateChangelogHtmlTaskKt</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.javiersc.hubdle.extensions.config.documentation.changelog</a>
+</div>
+
+<h1>Coverage Summary for Class: GenerateChangelogHtmlTaskKt (com.javiersc.hubdle.extensions.config.documentation.changelog)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+</tr>
+<tr>
+  <td class="name">GenerateChangelogHtmlTaskKt</td>
+    <td class="coverageStat"/>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.javiersc.hubdle.extensions.config.documentation.changelog
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import javax.inject.Inject
+<i class="no-highlight">4</i>&nbsp;import org.gradle.api.DefaultTask
+<i class="no-highlight">5</i>&nbsp;import org.gradle.api.file.ProjectLayout
+<i class="no-highlight">6</i>&nbsp;import org.gradle.api.file.RegularFileProperty
+<i class="no-highlight">7</i>&nbsp;import org.gradle.api.model.ObjectFactory
+<i class="no-highlight">8</i>&nbsp;import org.gradle.api.provider.Property
+<i class="no-highlight">9</i>&nbsp;import org.gradle.api.tasks.Input
+<i class="no-highlight">10</i>&nbsp;import org.gradle.api.tasks.OutputFile
+<i class="no-highlight">11</i>&nbsp;import org.gradle.api.tasks.TaskAction
+<i class="no-highlight">12</i>&nbsp;
+<i class="no-highlight">13</i>&nbsp;public abstract class GenerateChangelogHtmlTask
+<i class="no-highlight">14</i>&nbsp;@Inject
+<i class="no-highlight">15</i>&nbsp;constructor(
+<i class="no-highlight">16</i>&nbsp;    objects: ObjectFactory,
+<i class="no-highlight">17</i>&nbsp;    layout: ProjectLayout,
+<i class="no-highlight">18</i>&nbsp;) : DefaultTask() {
+<i class="no-highlight">19</i>&nbsp;
+<i class="no-highlight">20</i>&nbsp;    @get:Input public abstract val html: Property&lt;String?&gt;
+<i class="no-highlight">21</i>&nbsp;
+<i class="no-highlight">22</i>&nbsp;    @OutputFile
+<i class="no-highlight">23</i>&nbsp;    public val htmlFile: RegularFileProperty =
+<i class="no-highlight">24</i>&nbsp;        objects
+<i class="no-highlight">25</i>&nbsp;            .fileProperty()
+<i class="no-highlight">26</i>&nbsp;            .convention(layout.buildDirectory.file(GENERATED_CHANGELOG_HTML_FILE_PATH))
+<i class="no-highlight">27</i>&nbsp;
+<i class="no-highlight">28</i>&nbsp;    @TaskAction
+<i class="no-highlight">29</i>&nbsp;    public fun run() {
+<i class="no-highlight">30</i>&nbsp;        htmlFile.get().asFile.apply {
+<i class="no-highlight">31</i>&nbsp;            parentFile.mkdirs()
+<i class="no-highlight">32</i>&nbsp;            createNewFile()
+<i class="no-highlight">33</i>&nbsp;            html.orNull?.let(::writeText)
+<i class="no-highlight">34</i>&nbsp;        }
+<i class="no-highlight">35</i>&nbsp;    }
+<i class="no-highlight">36</i>&nbsp;
+<i class="no-highlight">37</i>&nbsp;    public companion object {
+<i class="no-highlight">38</i>&nbsp;        public const val name: String = &quot;generateChangelogHtml&quot;
+<i class="no-highlight">39</i>&nbsp;    }
+<i class="no-highlight">40</i>&nbsp;}
+<i class="no-highlight">41</i>&nbsp;
+<i class="no-highlight">42</i>&nbsp;internal const val GENERATED_CHANGELOG_HTML_DIR_PATH = &quot;generated/changelog&quot;
+<i class="no-highlight">43</i>&nbsp;internal const val GENERATED_CHANGELOG_HTML_FILE_PATH =
+<i class="no-highlight">44</i>&nbsp;    &quot;$GENERATED_CHANGELOG_HTML_DIR_PATH/CHANGELOG.html&quot;
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-07-09 01:56</div>
+</div>
+</body>
+</html>

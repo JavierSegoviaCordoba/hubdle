@@ -50,7 +50,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/7)
+    (0/8)
   </span>
 </td>
     <td class="coverageStat"/>
@@ -59,7 +59,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/7)
+    (0/8)
   </span>
 </td>
 <td class="coverageStat">
@@ -67,38 +67,10 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/64)
+    (0/77)
   </span>
 </td>
 </tr>
-  <tr>
-    <td class="name">ChangelogExtension$Companion</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/1)
-  </span>
-</td>
-    <td class="coverageStat"/>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/1)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/4)
-  </span>
-</td>
-  </tr>
   <tr>
     <td class="name">ChangelogExtension$RawConfigExtension</td>
 <td class="coverageStat">
@@ -271,7 +243,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/115)
+    (0/124)
   </span>
 </td>
 </tr>
@@ -305,48 +277,46 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">21</i>&nbsp;    objects: ObjectFactory,
 <i class="no-highlight">22</i>&nbsp;) : EnableableOptions, RawConfigOptions&lt;ChangelogExtension.RawConfigExtension&gt; {
 <i class="no-highlight">23</i>&nbsp;
-<b class="nc"><i class="no-highlight">24</i>&nbsp;    override var isEnabled: Boolean = IS_ENABLED</b>
-<i class="no-highlight">25</i>&nbsp;
-<i class="no-highlight">26</i>&nbsp;    @HubdleDslMarker
-<i class="no-highlight">27</i>&nbsp;    public fun Project.removeProjects(vararg paths: String) {
-<b class="nc"><i class="no-highlight">28</i>&nbsp;        tasks.namedLazily&lt;DokkaMultiModuleTask&gt;(&quot;dokkaHtmlMultiModule&quot;).configureEach {</b>
-<b class="nc"><i class="no-highlight">29</i>&nbsp;            removeChildTasks(paths.map(::project))</b>
-<i class="no-highlight">30</i>&nbsp;        }
-<i class="no-highlight">31</i>&nbsp;    }
-<i class="no-highlight">32</i>&nbsp;
-<i class="no-highlight">33</i>&nbsp;    @HubdleDslMarker
-<i class="no-highlight">34</i>&nbsp;    public fun Project.removeProjects(vararg projects: Project) {
-<b class="nc"><i class="no-highlight">35</i>&nbsp;        tasks.namedLazily&lt;DokkaMultiModuleTask&gt;(&quot;dokkaHtmlMultiModule&quot;).configureEach {</b>
-<b class="nc"><i class="no-highlight">36</i>&nbsp;            removeChildTasks(projects.toList())</b>
-<i class="no-highlight">37</i>&nbsp;        }
-<i class="no-highlight">38</i>&nbsp;    }
-<i class="no-highlight">39</i>&nbsp;
-<i class="no-highlight">40</i>&nbsp;    @HubdleDslMarker
-<i class="no-highlight">41</i>&nbsp;    public fun Project.removeProjects(vararg projects: ProjectDependency) {
-<b class="nc"><i class="no-highlight">42</i>&nbsp;        tasks.namedLazily&lt;DokkaMultiModuleTask&gt;(&quot;dokkaHtmlMultiModule&quot;).configureEach {</b>
-<b class="nc"><i class="no-highlight">43</i>&nbsp;            removeChildTasks(projects.map(ProjectDependency::getDependencyProject))</b>
-<i class="no-highlight">44</i>&nbsp;        }
-<i class="no-highlight">45</i>&nbsp;    }
-<i class="no-highlight">46</i>&nbsp;
-<b class="nc"><i class="no-highlight">47</i>&nbsp;    override val rawConfig: RawConfigExtension = objects.newInstance()</b>
+<i class="no-highlight">24</i>&nbsp;    override var Project.isEnabled: Boolean
+<b class="nc"><i class="no-highlight">25</i>&nbsp;        get() = hubdleState.config.documentation.changelog.isEnabled</b>
+<b class="nc"><i class="no-highlight">26</i>&nbsp;        set(value) = hubdleState.config.documentation.changelog.run { isEnabled = value }</b>
+<i class="no-highlight">27</i>&nbsp;
+<i class="no-highlight">28</i>&nbsp;    @HubdleDslMarker
+<i class="no-highlight">29</i>&nbsp;    public fun Project.removeProjects(vararg paths: String) {
+<b class="nc"><i class="no-highlight">30</i>&nbsp;        tasks.namedLazily&lt;DokkaMultiModuleTask&gt;(&quot;dokkaHtmlMultiModule&quot;).configureEach {</b>
+<b class="nc"><i class="no-highlight">31</i>&nbsp;            removeChildTasks(paths.map(::project))</b>
+<i class="no-highlight">32</i>&nbsp;        }
+<i class="no-highlight">33</i>&nbsp;    }
+<i class="no-highlight">34</i>&nbsp;
+<i class="no-highlight">35</i>&nbsp;    @HubdleDslMarker
+<i class="no-highlight">36</i>&nbsp;    public fun Project.removeProjects(vararg projects: Project) {
+<b class="nc"><i class="no-highlight">37</i>&nbsp;        tasks.namedLazily&lt;DokkaMultiModuleTask&gt;(&quot;dokkaHtmlMultiModule&quot;).configureEach {</b>
+<b class="nc"><i class="no-highlight">38</i>&nbsp;            removeChildTasks(projects.toList())</b>
+<i class="no-highlight">39</i>&nbsp;        }
+<i class="no-highlight">40</i>&nbsp;    }
+<i class="no-highlight">41</i>&nbsp;
+<i class="no-highlight">42</i>&nbsp;    @HubdleDslMarker
+<i class="no-highlight">43</i>&nbsp;    public fun Project.removeProjects(vararg projects: ProjectDependency) {
+<b class="nc"><i class="no-highlight">44</i>&nbsp;        tasks.namedLazily&lt;DokkaMultiModuleTask&gt;(&quot;dokkaHtmlMultiModule&quot;).configureEach {</b>
+<b class="nc"><i class="no-highlight">45</i>&nbsp;            removeChildTasks(projects.map(ProjectDependency::getDependencyProject))</b>
+<i class="no-highlight">46</i>&nbsp;        }
+<i class="no-highlight">47</i>&nbsp;    }
 <i class="no-highlight">48</i>&nbsp;
-<i class="no-highlight">49</i>&nbsp;    @HubdleDslMarker
-<i class="no-highlight">50</i>&nbsp;    override fun Project.rawConfig(action: Action&lt;RawConfigExtension&gt;) {
-<b class="nc"><i class="no-highlight">51</i>&nbsp;        action.execute(rawConfig)</b>
-<i class="no-highlight">52</i>&nbsp;    }
-<i class="no-highlight">53</i>&nbsp;
-<i class="no-highlight">54</i>&nbsp;    @HubdleDslMarker
-<b class="nc"><i class="no-highlight">55</i>&nbsp;    public open class RawConfigExtension {</b>
-<i class="no-highlight">56</i>&nbsp;
-<i class="no-highlight">57</i>&nbsp;        public fun Project.changelog(action: Action&lt;ChangelogPluginExtension&gt;) {
-<b class="nc"><i class="no-highlight">58</i>&nbsp;            hubdleState.config.documentation.changelog.rawConfig.changelog = action</b>
-<i class="no-highlight">59</i>&nbsp;        }
-<i class="no-highlight">60</i>&nbsp;    }
-<i class="no-highlight">61</i>&nbsp;
-<b class="nc"><i class="no-highlight">62</i>&nbsp;    public companion object {</b>
-<i class="no-highlight">63</i>&nbsp;        internal const val IS_ENABLED = false
-<i class="no-highlight">64</i>&nbsp;    }
-<i class="no-highlight">65</i>&nbsp;}
+<b class="nc"><i class="no-highlight">49</i>&nbsp;    override val rawConfig: RawConfigExtension = objects.newInstance()</b>
+<i class="no-highlight">50</i>&nbsp;
+<i class="no-highlight">51</i>&nbsp;    @HubdleDslMarker
+<i class="no-highlight">52</i>&nbsp;    override fun Project.rawConfig(action: Action&lt;RawConfigExtension&gt;) {
+<b class="nc"><i class="no-highlight">53</i>&nbsp;        action.execute(rawConfig)</b>
+<i class="no-highlight">54</i>&nbsp;    }
+<i class="no-highlight">55</i>&nbsp;
+<i class="no-highlight">56</i>&nbsp;    @HubdleDslMarker
+<b class="nc"><i class="no-highlight">57</i>&nbsp;    public open class RawConfigExtension {</b>
+<i class="no-highlight">58</i>&nbsp;
+<i class="no-highlight">59</i>&nbsp;        public fun Project.changelog(action: Action&lt;ChangelogPluginExtension&gt;) {
+<b class="nc"><i class="no-highlight">60</i>&nbsp;            hubdleState.config.documentation.changelog.rawConfig.changelog = action</b>
+<i class="no-highlight">61</i>&nbsp;        }
+<i class="no-highlight">62</i>&nbsp;    }
+<i class="no-highlight">63</i>&nbsp;}
 </div>
 </pre>
 </div>
@@ -373,7 +343,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-09 03:28</div>
+    <div style="float:right;">generated on 2022-07-09 04:28</div>
 </div>
 </body>
 </html>

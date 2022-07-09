@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html id="htmlId">
 <head>
-  <title>Coverage Report > AndroidOptions</title>
+  <title>Coverage Report > AndroidSdkOptions</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/highlight-idea.css";
@@ -20,12 +20,15 @@ Current scope:     <a href="../../index.html">all classes</a>
     <a href="../index.html">com.javiersc.hubdle.extensions.kotlin.android</a>
 </div>
 
-<h1>Coverage Summary for Class: AndroidOptions (com.javiersc.hubdle.extensions.kotlin.android)</h1>
+<h1>Coverage Summary for Class: AndroidSdkOptions (com.javiersc.hubdle.extensions.kotlin.android)</h1>
 
 <table class="coverageStats">
-
 <tr>
   <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
 <th class="coverageStat 
 ">
   Method, %
@@ -43,42 +46,22 @@ Current scope:     <a href="../../index.html">all classes</a>
   Instruction, %
 </th>
 </tr>
-  <tr>
-    <td class="name">AndroidOptions$Companion</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/1)
-  </span>
-</td>
-    <td class="coverageStat"/>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/1)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/8)
-  </span>
-</td>
-  </tr>
 <tr>
-  <td class="name"><strong>Total</strong></td>
+  <td class="name">AndroidSdkOptions</td>
 <td class="coverageStat">
   <span class="percent">
     0%
   </span>
   <span class="absValue">
     (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4)
   </span>
 </td>
     <td class="coverageStat"/>
@@ -87,7 +70,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/1)
+    (0/4)
   </span>
 </td>
 <td class="coverageStat">
@@ -95,10 +78,11 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/8)
+    (0/32)
   </span>
 </td>
 </tr>
+
 </table>
 
 <br/>
@@ -108,21 +92,19 @@ Current scope:     <a href="../../index.html">all classes</a>
 <pre>
 <div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.javiersc.hubdle.extensions.kotlin.android
 <i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;import com.android.build.api.dsl.AndroidSourceSet
-<i class="no-highlight">4</i>&nbsp;import com.javiersc.hubdle.extensions.kotlin.jvm.KotlinJvmOptions
-<i class="no-highlight">5</i>&nbsp;import com.javiersc.hubdle.extensions.options.SourceDirectoriesOptions
-<i class="no-highlight">6</i>&nbsp;
-<i class="no-highlight">7</i>&nbsp;public interface AndroidOptions : KotlinJvmOptions, SourceDirectoriesOptions&lt;AndroidSourceSet&gt; {
-<i class="no-highlight">8</i>&nbsp;
-<i class="no-highlight">9</i>&nbsp;    public var compileSdk: Int
-<i class="no-highlight">10</i>&nbsp;
-<i class="no-highlight">11</i>&nbsp;    public var minSdk: Int
-<i class="no-highlight">12</i>&nbsp;
-<b class="nc"><i class="no-highlight">13</i>&nbsp;    public companion object {</b>
-<i class="no-highlight">14</i>&nbsp;        public const val COMPILE_SDK: Int = 31
-<i class="no-highlight">15</i>&nbsp;        public const val MIN_SDK: Int = 21
-<i class="no-highlight">16</i>&nbsp;    }
-<i class="no-highlight">17</i>&nbsp;}
+<i class="no-highlight">3</i>&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
+<i class="no-highlight">4</i>&nbsp;import org.gradle.api.Project
+<i class="no-highlight">5</i>&nbsp;
+<i class="no-highlight">6</i>&nbsp;public interface AndroidSdkOptions {
+<i class="no-highlight">7</i>&nbsp;
+<i class="no-highlight">8</i>&nbsp;    public var Project.compileSdk: Int
+<b class="nc"><i class="no-highlight">9</i>&nbsp;        get() = hubdleState.kotlin.android.compileSdk</b>
+<b class="nc"><i class="no-highlight">10</i>&nbsp;        set(value) = hubdleState.kotlin.android.run { compileSdk = value }</b>
+<i class="no-highlight">11</i>&nbsp;
+<i class="no-highlight">12</i>&nbsp;    public var Project.minSdk: Int
+<b class="nc"><i class="no-highlight">13</i>&nbsp;        get() = hubdleState.kotlin.android.minSdk</b>
+<b class="nc"><i class="no-highlight">14</i>&nbsp;        set(value) = hubdleState.kotlin.android.run { minSdk = value }</b>
+<i class="no-highlight">15</i>&nbsp;}
 </div>
 </pre>
 </div>
@@ -149,7 +131,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-09 03:28</div>
+    <div style="float:right;">generated on 2022-07-09 04:28</div>
 </div>
 </body>
 </html>

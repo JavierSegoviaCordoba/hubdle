@@ -43,6 +43,34 @@ Current scope:     <a href="../../index.html">all classes</a>
   Instruction, %
 </th>
 </tr>
+<tr>
+  <td class="name">KotlinJvmOptions</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/14)
+  </span>
+</td>
+</tr>
   <tr>
     <td class="name">KotlinJvmOptions$Companion</td>
 <td class="coverageStat">
@@ -78,7 +106,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/1)
+    (0/3)
   </span>
 </td>
     <td class="coverageStat"/>
@@ -87,7 +115,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/1)
+    (0/3)
   </span>
 </td>
 <td class="coverageStat">
@@ -95,7 +123,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/8)
+    (0/22)
   </span>
 </td>
 </tr>
@@ -108,14 +136,19 @@ Current scope:     <a href="../../index.html">all classes</a>
 <pre>
 <div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.javiersc.hubdle.extensions.kotlin.jvm
 <i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;public interface KotlinJvmOptions {
-<i class="no-highlight">4</i>&nbsp;
-<i class="no-highlight">5</i>&nbsp;    public var jvmVersion: Int
-<i class="no-highlight">6</i>&nbsp;
-<b class="nc"><i class="no-highlight">7</i>&nbsp;    public companion object {</b>
-<i class="no-highlight">8</i>&nbsp;        public const val JVM_VERSION: Int = 8
-<i class="no-highlight">9</i>&nbsp;    }
-<i class="no-highlight">10</i>&nbsp;}
+<i class="no-highlight">3</i>&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
+<i class="no-highlight">4</i>&nbsp;import org.gradle.api.Project
+<i class="no-highlight">5</i>&nbsp;
+<i class="no-highlight">6</i>&nbsp;public interface KotlinJvmOptions {
+<i class="no-highlight">7</i>&nbsp;
+<i class="no-highlight">8</i>&nbsp;    public var Project.jvmVersion: Int
+<b class="nc"><i class="no-highlight">9</i>&nbsp;        get() = hubdleState.kotlin.jvmVersion</b>
+<b class="nc"><i class="no-highlight">10</i>&nbsp;        set(value) = hubdleState.kotlin.run { jvmVersion = value }</b>
+<i class="no-highlight">11</i>&nbsp;
+<b class="nc"><i class="no-highlight">12</i>&nbsp;    public companion object {</b>
+<i class="no-highlight">13</i>&nbsp;        public const val JVM_VERSION: Int = 8
+<i class="no-highlight">14</i>&nbsp;    }
+<i class="no-highlight">15</i>&nbsp;}
 </div>
 </pre>
 </div>
@@ -142,7 +175,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-09 03:28</div>
+    <div style="float:right;">generated on 2022-07-09 04:28</div>
 </div>
 </body>
 </html>

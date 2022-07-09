@@ -50,7 +50,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/10)
+    (0/11)
   </span>
 </td>
     <td class="coverageStat"/>
@@ -59,7 +59,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/16)
+    (0/12)
   </span>
 </td>
 <td class="coverageStat">
@@ -67,38 +67,10 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/118)
+    (0/89)
   </span>
 </td>
 </tr>
-  <tr>
-    <td class="name">AnalysisExtension$Companion</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/2)
-  </span>
-</td>
-    <td class="coverageStat"/>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/2)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/2)
-  </span>
-</td>
-  </tr>
   <tr>
     <td class="name">AnalysisExtension$RawConfigExtension</td>
 <td class="coverageStat">
@@ -154,7 +126,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/5)
+    (0/9)
   </span>
 </td>
     <td class="coverageStat"/>
@@ -163,7 +135,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/5)
+    (0/9)
   </span>
 </td>
 <td class="coverageStat">
@@ -171,35 +143,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/31)
-  </span>
-</td>
-  </tr>
-  <tr>
-    <td class="name">AnalysisExtension$ReportsExtension$Companion</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/1)
-  </span>
-</td>
-    <td class="coverageStat"/>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/1)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/4)
+    (0/74)
   </span>
 </td>
   </tr>
@@ -210,7 +154,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/21)
+    (0/23)
   </span>
 </td>
     <td class="coverageStat"/>
@@ -219,7 +163,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/27)
+    (0/24)
   </span>
 </td>
 <td class="coverageStat">
@@ -227,7 +171,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/164)
+    (0/172)
   </span>
 </td>
 </tr>
@@ -238,82 +182,85 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.javiersc.hubdle.extensions.config.analysis
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;@file:Suppress(&quot;UnusedReceiverParameter&quot;)
 <i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;import com.javiersc.hubdle.extensions.HubdleDslMarker
-<i class="no-highlight">4</i>&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
-<i class="no-highlight">5</i>&nbsp;import com.javiersc.hubdle.extensions.options.EnableableOptions
-<i class="no-highlight">6</i>&nbsp;import com.javiersc.hubdle.extensions.options.RawConfigOptions
-<i class="no-highlight">7</i>&nbsp;import io.gitlab.arturbosch.detekt.extensions.DetektExtension
-<i class="no-highlight">8</i>&nbsp;import javax.inject.Inject
-<i class="no-highlight">9</i>&nbsp;import org.gradle.api.Action
-<i class="no-highlight">10</i>&nbsp;import org.gradle.api.Project
-<i class="no-highlight">11</i>&nbsp;import org.gradle.api.model.ObjectFactory
-<i class="no-highlight">12</i>&nbsp;import org.gradle.kotlin.dsl.newInstance
-<i class="no-highlight">13</i>&nbsp;
-<i class="no-highlight">14</i>&nbsp;@HubdleDslMarker
-<i class="no-highlight">15</i>&nbsp;public open class AnalysisExtension
-<i class="no-highlight">16</i>&nbsp;@Inject
-<b class="nc"><i class="no-highlight">17</i>&nbsp;constructor(</b>
-<i class="no-highlight">18</i>&nbsp;    objects: ObjectFactory,
-<i class="no-highlight">19</i>&nbsp;) : EnableableOptions, RawConfigOptions&lt;AnalysisExtension.RawConfigExtension&gt; {
-<i class="no-highlight">20</i>&nbsp;
-<b class="nc"><i class="no-highlight">21</i>&nbsp;    override var isEnabled: Boolean = IS_ENABLED</b>
+<i class="no-highlight">3</i>&nbsp;package com.javiersc.hubdle.extensions.config.analysis
+<i class="no-highlight">4</i>&nbsp;
+<i class="no-highlight">5</i>&nbsp;import com.javiersc.hubdle.extensions.HubdleDslMarker
+<i class="no-highlight">6</i>&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
+<i class="no-highlight">7</i>&nbsp;import com.javiersc.hubdle.extensions.options.EnableableOptions
+<i class="no-highlight">8</i>&nbsp;import com.javiersc.hubdle.extensions.options.RawConfigOptions
+<i class="no-highlight">9</i>&nbsp;import io.gitlab.arturbosch.detekt.extensions.DetektExtension
+<i class="no-highlight">10</i>&nbsp;import javax.inject.Inject
+<i class="no-highlight">11</i>&nbsp;import org.gradle.api.Action
+<i class="no-highlight">12</i>&nbsp;import org.gradle.api.Project
+<i class="no-highlight">13</i>&nbsp;import org.gradle.api.model.ObjectFactory
+<i class="no-highlight">14</i>&nbsp;import org.gradle.kotlin.dsl.newInstance
+<i class="no-highlight">15</i>&nbsp;
+<i class="no-highlight">16</i>&nbsp;@HubdleDslMarker
+<i class="no-highlight">17</i>&nbsp;public open class AnalysisExtension
+<i class="no-highlight">18</i>&nbsp;@Inject
+<b class="nc"><i class="no-highlight">19</i>&nbsp;constructor(</b>
+<i class="no-highlight">20</i>&nbsp;    objects: ObjectFactory,
+<i class="no-highlight">21</i>&nbsp;) : EnableableOptions, RawConfigOptions&lt;AnalysisExtension.RawConfigExtension&gt; {
 <i class="no-highlight">22</i>&nbsp;
-<b class="nc"><i class="no-highlight">23</i>&nbsp;    public var ignoreFailures: Boolean = IGNORE_FAILURES</b>
-<i class="no-highlight">24</i>&nbsp;
-<b class="nc"><i class="no-highlight">25</i>&nbsp;    public val includes: MutableList&lt;String&gt; = INCLUDES</b>
+<i class="no-highlight">23</i>&nbsp;    override var Project.isEnabled: Boolean
+<b class="nc"><i class="no-highlight">24</i>&nbsp;        get() = hubdleState.config.analysis.isEnabled</b>
+<b class="nc"><i class="no-highlight">25</i>&nbsp;        set(value) = hubdleState.config.analysis.run { isEnabled = value }</b>
 <i class="no-highlight">26</i>&nbsp;
-<b class="nc"><i class="no-highlight">27</i>&nbsp;    public val excludes: MutableList&lt;String&gt; = EXCLUDES</b>
-<i class="no-highlight">28</i>&nbsp;
-<b class="nc"><i class="no-highlight">29</i>&nbsp;    private val reports: ReportsExtension = objects.newInstance()</b>
+<i class="no-highlight">27</i>&nbsp;    public var Project.ignoreFailures: Boolean
+<b class="nc"><i class="no-highlight">28</i>&nbsp;        get() = hubdleState.config.analysis.ignoreFailures</b>
+<b class="nc"><i class="no-highlight">29</i>&nbsp;        set(value) = hubdleState.config.analysis.run { ignoreFailures = value }</b>
 <i class="no-highlight">30</i>&nbsp;
-<i class="no-highlight">31</i>&nbsp;    @HubdleDslMarker
-<b class="nc"><i class="no-highlight">32</i>&nbsp;    public fun Project.reports(action: Action&lt;ReportsExtension&gt; = Action {}) {</b>
-<b class="nc"><i class="no-highlight">33</i>&nbsp;        action.execute(reports)</b>
+<i class="no-highlight">31</i>&nbsp;    public fun Project.includes(vararg includes: String) {
+<b class="nc"><i class="no-highlight">32</i>&nbsp;        hubdleState.config.analysis.includes += includes</b>
+<i class="no-highlight">33</i>&nbsp;    }
 <i class="no-highlight">34</i>&nbsp;
-<b class="nc"><i class="no-highlight">35</i>&nbsp;        hubdleState.config.analysis.reports.html = reports.html</b>
-<b class="nc"><i class="no-highlight">36</i>&nbsp;        hubdleState.config.analysis.reports.sarif = reports.sarif</b>
-<b class="nc"><i class="no-highlight">37</i>&nbsp;        hubdleState.config.analysis.reports.txt = reports.txt</b>
-<b class="nc"><i class="no-highlight">38</i>&nbsp;        hubdleState.config.analysis.reports.xml = reports.xml</b>
-<i class="no-highlight">39</i>&nbsp;    }
+<i class="no-highlight">35</i>&nbsp;    public fun Project.excludes(vararg excludes: String) {
+<b class="nc"><i class="no-highlight">36</i>&nbsp;        hubdleState.config.analysis.excludes += excludes</b>
+<i class="no-highlight">37</i>&nbsp;    }
+<i class="no-highlight">38</i>&nbsp;
+<b class="nc"><i class="no-highlight">39</i>&nbsp;    private val reports: ReportsExtension = objects.newInstance()</b>
 <i class="no-highlight">40</i>&nbsp;
-<b class="nc"><i class="no-highlight">41</i>&nbsp;    public open class ReportsExtension {</b>
-<b class="nc"><i class="no-highlight">42</i>&nbsp;        public var html: Boolean = HTML</b>
-<b class="nc"><i class="no-highlight">43</i>&nbsp;        public var sarif: Boolean = SARIF</b>
-<b class="nc"><i class="no-highlight">44</i>&nbsp;        public var txt: Boolean = TXT</b>
-<b class="nc"><i class="no-highlight">45</i>&nbsp;        public var xml: Boolean = XML</b>
-<i class="no-highlight">46</i>&nbsp;
-<b class="nc"><i class="no-highlight">47</i>&nbsp;        public companion object {</b>
-<i class="no-highlight">48</i>&nbsp;            internal const val HTML = true
-<i class="no-highlight">49</i>&nbsp;            internal const val SARIF = true
-<i class="no-highlight">50</i>&nbsp;            internal const val TXT = false
-<i class="no-highlight">51</i>&nbsp;            internal const val XML = true
-<i class="no-highlight">52</i>&nbsp;        }
-<i class="no-highlight">53</i>&nbsp;    }
-<i class="no-highlight">54</i>&nbsp;
-<b class="nc"><i class="no-highlight">55</i>&nbsp;    override val rawConfig: RawConfigExtension = objects.newInstance()</b>
-<i class="no-highlight">56</i>&nbsp;
-<i class="no-highlight">57</i>&nbsp;    @HubdleDslMarker
-<i class="no-highlight">58</i>&nbsp;    override fun Project.rawConfig(action: Action&lt;RawConfigExtension&gt;) {
-<b class="nc"><i class="no-highlight">59</i>&nbsp;        action.execute(rawConfig)</b>
-<i class="no-highlight">60</i>&nbsp;    }
-<i class="no-highlight">61</i>&nbsp;
-<i class="no-highlight">62</i>&nbsp;    @HubdleDslMarker
-<b class="nc"><i class="no-highlight">63</i>&nbsp;    public open class RawConfigExtension {</b>
+<i class="no-highlight">41</i>&nbsp;    @HubdleDslMarker
+<b class="nc"><i class="no-highlight">42</i>&nbsp;    public fun Project.reports(action: Action&lt;ReportsExtension&gt; = Action {}) {</b>
+<b class="nc"><i class="no-highlight">43</i>&nbsp;        action.execute(reports)</b>
+<i class="no-highlight">44</i>&nbsp;    }
+<i class="no-highlight">45</i>&nbsp;
+<b class="nc"><i class="no-highlight">46</i>&nbsp;    public open class ReportsExtension {</b>
+<i class="no-highlight">47</i>&nbsp;
+<i class="no-highlight">48</i>&nbsp;        public var Project.html: Boolean
+<b class="nc"><i class="no-highlight">49</i>&nbsp;            get() = hubdleState.config.analysis.reports.html</b>
+<b class="nc"><i class="no-highlight">50</i>&nbsp;            set(value) = hubdleState.config.analysis.reports.run { html = value }</b>
+<i class="no-highlight">51</i>&nbsp;
+<i class="no-highlight">52</i>&nbsp;        public var Project.sarif: Boolean
+<b class="nc"><i class="no-highlight">53</i>&nbsp;            get() = hubdleState.config.analysis.reports.sarif</b>
+<b class="nc"><i class="no-highlight">54</i>&nbsp;            set(value) = hubdleState.config.analysis.reports.run { sarif = value }</b>
+<i class="no-highlight">55</i>&nbsp;
+<i class="no-highlight">56</i>&nbsp;        public var Project.txt: Boolean
+<b class="nc"><i class="no-highlight">57</i>&nbsp;            get() = hubdleState.config.analysis.reports.txt</b>
+<b class="nc"><i class="no-highlight">58</i>&nbsp;            set(value) = hubdleState.config.analysis.reports.run { txt = value }</b>
+<i class="no-highlight">59</i>&nbsp;
+<i class="no-highlight">60</i>&nbsp;        public var Project.xml: Boolean
+<b class="nc"><i class="no-highlight">61</i>&nbsp;            get() = hubdleState.config.analysis.reports.xml</b>
+<b class="nc"><i class="no-highlight">62</i>&nbsp;            set(value) = hubdleState.config.analysis.reports.run { xml = value }</b>
+<i class="no-highlight">63</i>&nbsp;    }
 <i class="no-highlight">64</i>&nbsp;
-<i class="no-highlight">65</i>&nbsp;        public fun Project.detekt(action: Action&lt;DetektExtension&gt;) {
-<b class="nc"><i class="no-highlight">66</i>&nbsp;            hubdleState.config.analysis.rawConfig.detekt = action</b>
-<i class="no-highlight">67</i>&nbsp;        }
-<i class="no-highlight">68</i>&nbsp;    }
-<i class="no-highlight">69</i>&nbsp;
-<i class="no-highlight">70</i>&nbsp;    public companion object {
-<i class="no-highlight">71</i>&nbsp;        internal const val IS_ENABLED = false
-<i class="no-highlight">72</i>&nbsp;        internal const val IGNORE_FAILURES = true
-<b class="nc"><i class="no-highlight">73</i>&nbsp;        internal val INCLUDES = mutableListOf(&quot;**/*.kt&quot;, &quot;**/*.kts&quot;)</b>
-<b class="nc"><i class="no-highlight">74</i>&nbsp;        internal val EXCLUDES = mutableListOf(&quot;**/resources/**&quot;, &quot;**/build/**&quot;)</b>
-<i class="no-highlight">75</i>&nbsp;    }
-<i class="no-highlight">76</i>&nbsp;}
+<b class="nc"><i class="no-highlight">65</i>&nbsp;    override val rawConfig: RawConfigExtension = objects.newInstance()</b>
+<i class="no-highlight">66</i>&nbsp;
+<i class="no-highlight">67</i>&nbsp;    @HubdleDslMarker
+<i class="no-highlight">68</i>&nbsp;    override fun Project.rawConfig(action: Action&lt;RawConfigExtension&gt;) {
+<b class="nc"><i class="no-highlight">69</i>&nbsp;        action.execute(rawConfig)</b>
+<i class="no-highlight">70</i>&nbsp;    }
+<i class="no-highlight">71</i>&nbsp;
+<i class="no-highlight">72</i>&nbsp;    @HubdleDslMarker
+<b class="nc"><i class="no-highlight">73</i>&nbsp;    public open class RawConfigExtension {</b>
+<i class="no-highlight">74</i>&nbsp;
+<i class="no-highlight">75</i>&nbsp;        public fun Project.detekt(action: Action&lt;DetektExtension&gt;) {
+<b class="nc"><i class="no-highlight">76</i>&nbsp;            hubdleState.config.analysis.rawConfig.detekt = action</b>
+<i class="no-highlight">77</i>&nbsp;        }
+<i class="no-highlight">78</i>&nbsp;    }
+<i class="no-highlight">79</i>&nbsp;}
 </div>
 </pre>
 </div>
@@ -340,7 +287,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-09 03:28</div>
+    <div style="float:right;">generated on 2022-07-09 04:28</div>
 </div>
 </body>
 </html>

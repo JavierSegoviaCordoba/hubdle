@@ -59,7 +59,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/13)
+    (0/5)
   </span>
 </td>
 <td class="coverageStat">
@@ -67,7 +67,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/97)
+    (0/31)
   </span>
 </td>
 </tr>
@@ -98,7 +98,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/9)
+    (0/17)
   </span>
 </td>
     <td class="coverageStat"/>
@@ -107,7 +107,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/9)
+    (0/17)
   </span>
 </td>
 <td class="coverageStat">
@@ -115,35 +115,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/42)
-  </span>
-</td>
-  </tr>
-  <tr>
-    <td class="name">InstallExtension$PreCommitsExtension$Companion</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/1)
-  </span>
-</td>
-    <td class="coverageStat"/>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/1)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/4)
+    (0/146)
   </span>
 </td>
   </tr>
@@ -154,7 +126,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/14)
+    (0/21)
   </span>
 </td>
     <td class="coverageStat"/>
@@ -163,7 +135,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/24)
+    (0/23)
   </span>
 </td>
 <td class="coverageStat">
@@ -171,7 +143,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/143)
+    (0/177)
   </span>
 </td>
 </tr>
@@ -204,40 +176,44 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">20</i>&nbsp;
 <i class="no-highlight">21</i>&nbsp;    @HubdleDslMarker
 <b class="nc"><i class="no-highlight">22</i>&nbsp;    public fun Project.preCommits(action: Action&lt;PreCommitsExtension&gt; = Action {}) {</b>
-<b class="nc"><i class="no-highlight">23</i>&nbsp;        preCommits.isEnabled = true</b>
+<b class="nc"><i class="no-highlight">23</i>&nbsp;        preCommits.run { isEnabled = true }</b>
 <b class="nc"><i class="no-highlight">24</i>&nbsp;        action.execute(preCommits)</b>
-<b class="nc"><i class="no-highlight">25</i>&nbsp;        hubdleState.config.install.preCommits.isEnabled = preCommits.allTests</b>
-<b class="nc"><i class="no-highlight">26</i>&nbsp;        hubdleState.config.install.preCommits.allTests = preCommits.allTests</b>
-<b class="nc"><i class="no-highlight">27</i>&nbsp;        hubdleState.config.install.preCommits.applyFormat = preCommits.applyFormat</b>
-<b class="nc"><i class="no-highlight">28</i>&nbsp;        hubdleState.config.install.preCommits.assemble = preCommits.assemble</b>
-<b class="nc"><i class="no-highlight">29</i>&nbsp;        hubdleState.config.install.preCommits.checkAnalysis = preCommits.checkAnalysis</b>
-<b class="nc"><i class="no-highlight">30</i>&nbsp;        hubdleState.config.install.preCommits.checkApi = preCommits.checkApi</b>
-<b class="nc"><i class="no-highlight">31</i>&nbsp;        hubdleState.config.install.preCommits.checkFormat = preCommits.checkFormat</b>
-<b class="nc"><i class="no-highlight">32</i>&nbsp;        hubdleState.config.install.preCommits.dumpApi = preCommits.dumpApi</b>
-<i class="no-highlight">33</i>&nbsp;    }
-<i class="no-highlight">34</i>&nbsp;
-<b class="nc"><i class="no-highlight">35</i>&nbsp;    public open class PreCommitsExtension : EnableableOptions {</b>
-<b class="nc"><i class="no-highlight">36</i>&nbsp;        override var isEnabled: Boolean = IS_ENABLED</b>
-<b class="nc"><i class="no-highlight">37</i>&nbsp;        public var allTests: Boolean = ALL_TESTS</b>
-<b class="nc"><i class="no-highlight">38</i>&nbsp;        public var applyFormat: Boolean = APPLY_FORMAT</b>
-<b class="nc"><i class="no-highlight">39</i>&nbsp;        public var assemble: Boolean = ASSEMBLE</b>
-<b class="nc"><i class="no-highlight">40</i>&nbsp;        public var checkAnalysis: Boolean = CHECK_ANALYSIS</b>
-<b class="nc"><i class="no-highlight">41</i>&nbsp;        public var checkApi: Boolean = CHECK_API</b>
-<b class="nc"><i class="no-highlight">42</i>&nbsp;        public var checkFormat: Boolean = CHECK_FORMAT</b>
-<b class="nc"><i class="no-highlight">43</i>&nbsp;        public var dumpApi: Boolean = DUMP_API</b>
-<i class="no-highlight">44</i>&nbsp;
-<b class="nc"><i class="no-highlight">45</i>&nbsp;        public companion object {</b>
-<i class="no-highlight">46</i>&nbsp;            internal const val IS_ENABLED = false
-<i class="no-highlight">47</i>&nbsp;            internal const val ALL_TESTS = false
-<i class="no-highlight">48</i>&nbsp;            internal const val APPLY_FORMAT = false
-<i class="no-highlight">49</i>&nbsp;            internal const val ASSEMBLE = false
-<i class="no-highlight">50</i>&nbsp;            internal const val CHECK_ANALYSIS = false
-<i class="no-highlight">51</i>&nbsp;            internal const val CHECK_API = false
-<i class="no-highlight">52</i>&nbsp;            internal const val CHECK_FORMAT = false
-<i class="no-highlight">53</i>&nbsp;            internal const val DUMP_API = false
-<i class="no-highlight">54</i>&nbsp;        }
-<i class="no-highlight">55</i>&nbsp;    }
-<i class="no-highlight">56</i>&nbsp;}
+<i class="no-highlight">25</i>&nbsp;    }
+<i class="no-highlight">26</i>&nbsp;
+<b class="nc"><i class="no-highlight">27</i>&nbsp;    public open class PreCommitsExtension : EnableableOptions {</b>
+<i class="no-highlight">28</i>&nbsp;        override var Project.isEnabled: Boolean
+<b class="nc"><i class="no-highlight">29</i>&nbsp;            get() = hubdleState.config.install.preCommits.isEnabled</b>
+<b class="nc"><i class="no-highlight">30</i>&nbsp;            set(value) = hubdleState.config.install.preCommits.run { isEnabled = value }</b>
+<i class="no-highlight">31</i>&nbsp;
+<i class="no-highlight">32</i>&nbsp;        public var Project.allTests: Boolean
+<b class="nc"><i class="no-highlight">33</i>&nbsp;            get() = hubdleState.config.install.preCommits.allTests</b>
+<b class="nc"><i class="no-highlight">34</i>&nbsp;            set(value) = hubdleState.config.install.preCommits.run { allTests = value }</b>
+<i class="no-highlight">35</i>&nbsp;
+<i class="no-highlight">36</i>&nbsp;        public var Project.applyFormat: Boolean
+<b class="nc"><i class="no-highlight">37</i>&nbsp;            get() = hubdleState.config.install.preCommits.applyFormat</b>
+<b class="nc"><i class="no-highlight">38</i>&nbsp;            set(value) = hubdleState.config.install.preCommits.run { applyFormat = value }</b>
+<i class="no-highlight">39</i>&nbsp;
+<i class="no-highlight">40</i>&nbsp;        public var Project.assemble: Boolean
+<b class="nc"><i class="no-highlight">41</i>&nbsp;            get() = hubdleState.config.install.preCommits.assemble</b>
+<b class="nc"><i class="no-highlight">42</i>&nbsp;            set(value) = hubdleState.config.install.preCommits.run { assemble = value }</b>
+<i class="no-highlight">43</i>&nbsp;
+<i class="no-highlight">44</i>&nbsp;        public var Project.checkAnalysis: Boolean
+<b class="nc"><i class="no-highlight">45</i>&nbsp;            get() = hubdleState.config.install.preCommits.checkAnalysis</b>
+<b class="nc"><i class="no-highlight">46</i>&nbsp;            set(value) = hubdleState.config.install.preCommits.run { checkAnalysis = value }</b>
+<i class="no-highlight">47</i>&nbsp;
+<i class="no-highlight">48</i>&nbsp;        public var Project.checkApi: Boolean
+<b class="nc"><i class="no-highlight">49</i>&nbsp;            get() = hubdleState.config.install.preCommits.checkApi</b>
+<b class="nc"><i class="no-highlight">50</i>&nbsp;            set(value) = hubdleState.config.install.preCommits.run { checkApi = value }</b>
+<i class="no-highlight">51</i>&nbsp;
+<i class="no-highlight">52</i>&nbsp;        public var Project.checkFormat: Boolean
+<b class="nc"><i class="no-highlight">53</i>&nbsp;            get() = hubdleState.config.install.preCommits.checkFormat</b>
+<b class="nc"><i class="no-highlight">54</i>&nbsp;            set(value) = hubdleState.config.install.preCommits.run { checkFormat = value }</b>
+<i class="no-highlight">55</i>&nbsp;
+<i class="no-highlight">56</i>&nbsp;        public var Project.dumpApi: Boolean
+<b class="nc"><i class="no-highlight">57</i>&nbsp;            get() = hubdleState.config.install.preCommits.dumpApi</b>
+<b class="nc"><i class="no-highlight">58</i>&nbsp;            set(value) = hubdleState.config.install.preCommits.run { dumpApi = value }</b>
+<i class="no-highlight">59</i>&nbsp;    }
+<i class="no-highlight">60</i>&nbsp;}
 </div>
 </pre>
 </div>
@@ -264,7 +240,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-09 03:28</div>
+    <div style="float:right;">generated on 2022-07-09 04:28</div>
 </div>
 </body>
 </html>

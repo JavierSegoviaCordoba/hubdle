@@ -1,6 +1,8 @@
 import com.javiersc.gradle.extensions.version.catalogs.getLibraries
 import com.javiersc.gradle.tasks.extensions.maybeRegisterLazily
 import com.javiersc.gradle.tasks.extensions.namedLazily
+import com.javiersc.kotlin.stdlib.endWithNewLine
+import com.javiersc.kotlin.stdlib.removeDuplicateEmptyLines
 import java.util.Locale
 import org.gradle.configurationcache.extensions.capitalized
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
@@ -112,76 +114,70 @@ fun buildHubdleDependencies() {
             parentFile.mkdirs()
             createNewFile()
             writeText("")
-            catalog.bundleAliases
-                .map { bundleAlias -> bundleAlias to catalog.findBundle(bundleAlias).get().get() }
-                .forEach { (bundleAlias: String, bundle: ExternalModuleDependencyBundle) ->
+            catalog.libraryAliases
+                .map { libraryAlias -> catalog.findLibrary(libraryAlias).get().get() }
+                .sortedBy { library -> library.module.toString() }
+                .toSet()
+                .forEach { library: MinimalExternalModuleDependency ->
                     val dependencyVariableNames =
-                        bundle
-                            .sortedBy { dependency -> dependency.module.toString() }
-                            .map { dependency: MinimalExternalModuleDependency ->
-                                with(dependency) {
-                                    val fileName = module.toString().replace(":", "_")
-                                    val dependencyVariableName =
-                                        fileName.buildDependencyVariableName()
+                        with(library) {
+                                val fileName = module.toString().replace(":", "_")
+                                val dependencyVariableName = fileName.buildDependencyVariableName()
 
-                                    val groupSanitized =
-                                        if (hasCommonEndingDomain) {
-                                            val group =
-                                                when {
-                                                    onlyDomain && endAndStartWithSameName -> {
-                                                        ""
-                                                    }
-                                                    endAndStartWithSameName -> {
-                                                        module.group.substringBeforeLast(".")
-                                                    }
-                                                    else -> module.group
+                                val groupSanitized =
+                                    if (hasCommonEndingDomain) {
+                                        val group =
+                                            when {
+                                                onlyDomain && endAndStartWithSameName -> {
+                                                    ""
                                                 }
-
-                                            group.substringAfter(".").groupOrNameSanitized()
-                                        } else {
-                                            val group =
-                                                if (endAndStartWithSameName) {
+                                                endAndStartWithSameName -> {
                                                     module.group.substringBeforeLast(".")
-                                                } else {
-                                                    module.group
                                                 }
-                                            group.groupOrNameSanitized()
-                                        }
+                                                else -> module.group
+                                            }
 
-                                    val nameSanitized =
-                                        module.name.groupOrNameSanitized().capitalized()
-                                    val dependencyName =
-                                        "$groupSanitized$nameSanitized".decapitalize()
-                                    """
-                                        |    @HubdleDslMarker
-                                        |    public fun KotlinDependencyHandler.$dependencyName(): Dependency =
-                                        |        catalogImplementation(${dependencyVariableName}_MODULE)
-                                    """
-                                }
+                                        group.substringAfter(".").groupOrNameSanitized()
+                                    } else {
+                                        val group =
+                                            if (endAndStartWithSameName) {
+                                                module.group.substringBeforeLast(".")
+                                            } else {
+                                                module.group
+                                            }
+                                        group.groupOrNameSanitized()
+                                    }
+
+                                val nameSanitized = module.name.groupOrNameSanitized().capitalized()
+                                val dependencyName = "$groupSanitized$nameSanitized".decapitalize()
+                                """
+                                    |@HubdleDslMarker
+                                    |public fun KotlinDependencyHandler.$dependencyName(): Dependency =
+                                    |    catalogImplementation(${dependencyVariableName}_MODULE)
+                                """
                             }
+                            .lines()
 
                     writeText(
                         readText() +
-                            """ |
-                                |public interface ${bundleAlias.capitalized()}Dependencies {
-                                ${dependencyVariableNames.joinToString("\n")}
-                                |}
+                            """ ${dependencyVariableNames.joinToString("\n")}
                                 |
                             """.trimMargin()
                     )
                 }
             writeText(
                 """
-                       |package com.javiersc.hubdle.extensions.dependencies._internal
-                       |
-                       |import com.javiersc.hubdle.extensions.HubdleDslMarker
-                       |import com.javiersc.hubdle.extensions._internal.state.catalogImplementation
-                       |import com.javiersc.hubdle.extensions.dependencies._internal.constants.*
-                       |import org.gradle.api.artifacts.Dependency
-                       |import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
-                       |
+                        |package com.javiersc.hubdle.extensions.dependencies._internal
+                        |
+                        |import com.javiersc.hubdle.extensions.HubdleDslMarker
+                        |import com.javiersc.hubdle.extensions._internal.state.catalogImplementation
+                        |import com.javiersc.hubdle.extensions.dependencies._internal.constants.*
+                        |import org.gradle.api.artifacts.Dependency
+                        |import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
+                        |
+                        |
                     """.trimMargin() +
-                    readText()
+                    readText().removeDuplicateEmptyLines().endWithNewLine()
             )
         }
 }

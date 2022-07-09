@@ -2,7 +2,6 @@ package com.javiersc.hubdle.extensions.kotlin.intellij
 
 import com.javiersc.hubdle.extensions.HubdleDslMarker
 import com.javiersc.hubdle.extensions._internal.state.hubdleState
-import com.javiersc.hubdle.extensions.dependencies._internal.JvmDependencies
 import com.javiersc.hubdle.extensions.kotlin.MainAndTestKotlinSourceSetsOptions
 import com.javiersc.hubdle.extensions.kotlin.jvm.KotlinJvmOptions
 import com.javiersc.hubdle.extensions.kotlin.jvm._internal.jvmFeatures
@@ -37,8 +36,7 @@ constructor(
     SourceDirectoriesOptions<KotlinSourceSet>,
     RawConfigOptions<IntellijExtension.RawConfigExtension>,
     MainAndTestKotlinSourceSetsOptions<KotlinSourceSet>,
-    GradleDependenciesOptions,
-    JvmDependencies {
+    GradleDependenciesOptions {
 
     override var Project.isEnabled: Boolean
         get() = hubdleState.kotlin.intellij.isEnabled

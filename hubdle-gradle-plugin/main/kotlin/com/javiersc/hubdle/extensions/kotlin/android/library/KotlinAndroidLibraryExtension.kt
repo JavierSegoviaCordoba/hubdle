@@ -4,7 +4,6 @@ import com.android.build.api.dsl.AndroidSourceSet
 import com.android.build.api.dsl.LibraryExtension
 import com.javiersc.hubdle.extensions.HubdleDslMarker
 import com.javiersc.hubdle.extensions._internal.state.hubdleState
-import com.javiersc.hubdle.extensions.dependencies._internal.AndroidLibraryDependencies
 import com.javiersc.hubdle.extensions.kotlin.MainAndTestKotlinSourceSetsOptions
 import com.javiersc.hubdle.extensions.kotlin.android.AndroidOptions
 import com.javiersc.hubdle.extensions.kotlin.android.library._internal.androidLibraryFeatures
@@ -29,8 +28,7 @@ constructor(
     FeaturesOptions<KotlinAndroidLibraryExtension.FeaturesExtension>,
     AndroidOptions,
     RawConfigOptions<KotlinAndroidLibraryExtension.RawConfigExtension>,
-    MainAndTestKotlinSourceSetsOptions<AndroidSourceSet>,
-    AndroidLibraryDependencies {
+    MainAndTestKotlinSourceSetsOptions<AndroidSourceSet> {
 
     override var Project.isEnabled: Boolean
         get() = hubdleState.kotlin.android.library.isEnabled

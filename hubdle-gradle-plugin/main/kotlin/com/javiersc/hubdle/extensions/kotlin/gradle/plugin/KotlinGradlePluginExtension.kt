@@ -2,7 +2,6 @@ package com.javiersc.hubdle.extensions.kotlin.gradle.plugin
 
 import com.javiersc.hubdle.extensions.HubdleDslMarker
 import com.javiersc.hubdle.extensions._internal.state.hubdleState
-import com.javiersc.hubdle.extensions.dependencies._internal.GradlePluginDependencies
 import com.javiersc.hubdle.extensions.kotlin.gradle.plugin._internal.gradlePluginFeatures
 import com.javiersc.hubdle.extensions.kotlin.jvm.KotlinJvmOptions
 import com.javiersc.hubdle.extensions.options.EnableableOptions
@@ -34,8 +33,7 @@ constructor(
     KotlinJvmOptions,
     SourceDirectoriesOptions<KotlinSourceSet>,
     RawConfigOptions<KotlinGradlePluginExtension.RawConfigExtension>,
-    GradleDependenciesOptions,
-    GradlePluginDependencies {
+    GradleDependenciesOptions {
 
     override var Project.isEnabled: Boolean
         get() = hubdleState.kotlin.gradle.plugin.isEnabled

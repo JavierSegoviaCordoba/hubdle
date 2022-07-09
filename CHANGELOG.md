@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- DSL scope violation in every dependency (second try)
+
 ### Updated
 
 ## [0.2.0-alpha.16] - 2022-07-09

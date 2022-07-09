@@ -4,7 +4,6 @@ package com.javiersc.hubdle.extensions.kotlin.multiplatform
 
 import com.javiersc.hubdle.extensions.HubdleDslMarker
 import com.javiersc.hubdle.extensions._internal.state.hubdleState
-import com.javiersc.hubdle.extensions.dependencies._internal.MultiplatformDependencies
 import com.javiersc.hubdle.extensions.kotlin.jvm.KotlinJvmOptions
 import com.javiersc.hubdle.extensions.kotlin.multiplatform._internal.multiplatformFeatures
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.KotlinMultiplatformAndroidExtension
@@ -65,8 +64,7 @@ constructor(
     FeaturesOptions<KotlinMultiplatformExtension.FeaturesExtension>,
     KotlinJvmOptions,
     SourceDirectoriesOptions<KotlinSourceSet>,
-    RawConfigOptions<KotlinMultiplatformExtension.RawConfigExtension>,
-    MultiplatformDependencies {
+    RawConfigOptions<KotlinMultiplatformExtension.RawConfigExtension> {
 
     override var Project.isEnabled: Boolean
         get() = hubdleState.kotlin.multiplatform.isEnabled

@@ -2,12 +2,10 @@ package com.javiersc.hubdle.extensions.kotlin.jvm
 
 import com.javiersc.hubdle.extensions.HubdleDslMarker
 import com.javiersc.hubdle.extensions._internal.state.hubdleState
-import com.javiersc.hubdle.extensions.dependencies._internal.JvmDependencies
 import com.javiersc.hubdle.extensions.kotlin.MainAndTestKotlinSourceSetsOptions
 import com.javiersc.hubdle.extensions.kotlin.jvm._internal.jvmFeatures
 import com.javiersc.hubdle.extensions.options.EnableableOptions
 import com.javiersc.hubdle.extensions.options.FeaturesOptions
-import com.javiersc.hubdle.extensions.options.GradleDependenciesOptions
 import com.javiersc.hubdle.extensions.options.RawConfigOptions
 import com.javiersc.hubdle.extensions.options.SourceDirectoriesOptions
 import javax.inject.Inject
@@ -31,9 +29,7 @@ constructor(
     KotlinJvmOptions,
     SourceDirectoriesOptions<KotlinSourceSet>,
     RawConfigOptions<KotlinJvmExtension.RawConfigExtension>,
-    MainAndTestKotlinSourceSetsOptions<KotlinSourceSet>,
-    GradleDependenciesOptions,
-    JvmDependencies {
+    MainAndTestKotlinSourceSetsOptions<KotlinSourceSet> {
 
     override var Project.isEnabled: Boolean
         get() = hubdleState.kotlin.jvm.isEnabled

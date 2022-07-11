@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `actions/setup-java -> v3.4.1`
 - `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.10.3`
 - `com.javiersc.kotlin:kotlin-stdlib -> 0.1.0-alpha.8`
 

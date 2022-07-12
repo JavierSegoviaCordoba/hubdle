@@ -1,6 +1,8 @@
 package com.javiersc.hubdle.extensions.config.format._internal
 
 import com.diffplug.gradle.spotless.SpotlessExtension
+import com.diffplug.gradle.spotless.SpotlessExtensionPredeclare
+import com.javiersc.gradle.project.extensions.isRootProject
 import com.javiersc.gradle.tasks.extensions.maybeRegisterLazily
 import com.javiersc.gradle.tasks.extensions.namedLazily
 import com.javiersc.hubdle.extensions._internal.PluginIds
@@ -36,6 +38,11 @@ internal fun configureFormat(project: Project) {
 
         format.excludes += project.excludedSpecialDirs
 
+        if (project.isRootProject) {
+            project.configure<SpotlessExtension> { predeclareDepsFromBuildscript() }
+
+            project.configure<SpotlessExtensionPredeclare> { kotlin { ktfmt(format.ktfmtVersion) } }
+        }
 
         if (project.hubdleState.kotlin.isEnabled) {
             val checkKotlinFormat = project.tasks.maybeRegisterLazily<Task>("checkKotlinFormat")

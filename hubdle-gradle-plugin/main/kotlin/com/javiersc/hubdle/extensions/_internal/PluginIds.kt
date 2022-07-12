@@ -8,6 +8,7 @@ internal object PluginIds {
     }
 
     object Android {
+        const val application = "com.android.application"
         const val library = "com.android.library"
         const val kotlin = "kotlin-android"
     }
@@ -22,6 +23,7 @@ internal object PluginIds {
     }
 
     object Gradle {
+        const val application = "org.gradle.application"
         const val javaGradlePlugin = "java-gradle-plugin"
         const val kotlinDsl = "org.gradle.kotlin.kotlin-dsl"
         const val versionCatalog = "org.gradle.version-catalog"

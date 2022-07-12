@@ -39,6 +39,11 @@ internal fun configureJvm(project: Project) {
         project.the<KotlinProjectExtension>().configureDefaultKotlinSourceSets()
         project.the<KotlinJvmProjectExtension>().configureJvmDependencies()
 
+        project.hubdleState.kotlin.jvm.application?.let {
+            project.pluginManager.apply(PluginIds.Gradle.application)
+            it.execute(project.the())
+        }
+
         if (project.hubdleState.config.publishing.isEnabled) {
             project.pluginManager.apply(PluginIds.Publishing.mavenPublish)
             project.configurePublishingExtension()

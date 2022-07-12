@@ -1,6 +1,7 @@
 package com.javiersc.hubdle.extensions.kotlin.jvm
 
 import com.javiersc.hubdle.extensions.HubdleDslMarker
+import com.javiersc.hubdle.extensions._internal.PluginIds
 import com.javiersc.hubdle.extensions._internal.state.hubdleState
 import com.javiersc.hubdle.extensions.kotlin.MainAndTestKotlinSourceSetsOptions
 import com.javiersc.hubdle.extensions.kotlin.jvm._internal.jvmFeatures
@@ -13,6 +14,7 @@ import org.gradle.api.Action
 import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.Project
 import org.gradle.api.model.ObjectFactory
+import org.gradle.api.plugins.JavaApplication
 import org.gradle.kotlin.dsl.newInstance
 import org.gradle.kotlin.dsl.the
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
@@ -39,6 +41,12 @@ constructor(
 
     @HubdleDslMarker
     override fun features(action: Action<FeaturesExtension>): Unit = super.features(action)
+
+    @HubdleDslMarker
+    public fun Project.application(action: Action<JavaApplication>) {
+        pluginManager.apply(PluginIds.Gradle.application)
+        hubdleState.kotlin.jvm.application = action
+    }
 
     override val Project.sourceSets: NamedDomainObjectContainer<KotlinSourceSet>
         get() = the<KotlinJvmProjectExtension>().sourceSets

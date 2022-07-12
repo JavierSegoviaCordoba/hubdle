@@ -42,14 +42,14 @@ internal fun SourceSet.configJavaDefaultSourceSets() {
     resources.setSrcDirs(listOf("${this.name}/resources"))
 }
 
-internal fun Named.configAndroidSourceDirectory(sourceSetToName: Pair<AndroidSourceFile, String>) {
-    val (sourceSet, name) = sourceSetToName
-    sourceSet.srcFile("${this.name}/$name")
+internal fun Named.configAndroidSourceDirectory(sourceSetToType: Pair<AndroidSourceFile, String>) {
+    val (sourceSet, type) = sourceSetToType
+    sourceSet.srcFile("${this.name}/$type")
 }
 
 internal fun Named.configAndroidSourceDirectorySet(
-    sourceSetToName: Pair<AndroidSourceDirectorySet, String>
+    sourceSetToType: Pair<AndroidSourceDirectorySet, String>
 ) {
-    val (sourceSet, name) = sourceSetToName
-    sourceSet.setSrcDirs(listOf("${this.name}/$name"))
+    val (sourceSet, type) = sourceSetToType
+    sourceSet.setSrcDirs(listOf("${this.name}/$type"))
 }

@@ -1,3 +1,5 @@
+@file:Suppress("MaxLineLength")
+
 package com.javiersc.hubdle.kotlin.jvm.features
 
 import com.javiersc.gradle.testkit.test.extensions.GradleTest

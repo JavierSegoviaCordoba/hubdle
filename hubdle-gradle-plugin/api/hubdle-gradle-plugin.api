@@ -5,6 +5,7 @@ public final class HubdleProjectPlugin_accessorKt {
 
 public final class Hubdle_dependenciesKt {
 	public static final fun androidxActivityKtx (Lorg/jetbrains/kotlin/gradle/plugin/KotlinDependencyHandler;)Lorg/gradle/api/artifacts/Dependency;
+	public static final fun androidxAppcompat (Lorg/jetbrains/kotlin/gradle/plugin/KotlinDependencyHandler;)Lorg/gradle/api/artifacts/Dependency;
 	public static final fun androidxCoreKtx (Lorg/jetbrains/kotlin/gradle/plugin/KotlinDependencyHandler;)Lorg/gradle/api/artifacts/Dependency;
 	public static final fun arrowKtArrowCore (Lorg/jetbrains/kotlin/gradle/plugin/KotlinDependencyHandler;)Lorg/gradle/api/artifacts/Dependency;
 	public static final fun cashTurbine (Lorg/jetbrains/kotlin/gradle/plugin/KotlinDependencyHandler;)Lorg/gradle/api/artifacts/Dependency;
@@ -672,9 +673,50 @@ public abstract interface class com/javiersc/hubdle/extensions/kotlin/android/An
 
 public class com/javiersc/hubdle/extensions/kotlin/android/KotlinAndroidExtension {
 	public fun <init> (Lorg/gradle/api/model/ObjectFactory;)V
+	public final fun application (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
+	public static synthetic fun application$default (Lcom/javiersc/hubdle/extensions/kotlin/android/KotlinAndroidExtension;Lorg/gradle/api/Project;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+	public final fun getApplication ()Lcom/javiersc/hubdle/extensions/kotlin/android/application/KotlinAndroidApplicationExtension;
 	public final fun getLibrary ()Lcom/javiersc/hubdle/extensions/kotlin/android/library/KotlinAndroidLibraryExtension;
 	public final fun library (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
 	public static synthetic fun library$default (Lcom/javiersc/hubdle/extensions/kotlin/android/KotlinAndroidExtension;Lorg/gradle/api/Project;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+}
+
+public class com/javiersc/hubdle/extensions/kotlin/android/application/KotlinAndroidApplicationExtension : com/javiersc/hubdle/extensions/kotlin/MainAndTestKotlinSourceSetsOptions, com/javiersc/hubdle/extensions/kotlin/android/AndroidOptions, com/javiersc/hubdle/extensions/options/EnableableOptions, com/javiersc/hubdle/extensions/options/FeaturesOptions, com/javiersc/hubdle/extensions/options/RawConfigOptions {
+	public fun <init> (Lorg/gradle/api/model/ObjectFactory;)V
+	public fun features (Lorg/gradle/api/Action;)V
+	public final fun getApplicationId (Lorg/gradle/api/Project;)Ljava/lang/String;
+	public fun getFeatures ()Lcom/javiersc/hubdle/extensions/kotlin/android/application/KotlinAndroidApplicationExtension$FeaturesExtension;
+	public synthetic fun getFeatures ()Ljava/lang/Object;
+	public fun getRawConfig ()Lcom/javiersc/hubdle/extensions/kotlin/android/application/KotlinAndroidApplicationExtension$RawConfigExtension;
+	public synthetic fun getRawConfig ()Ljava/lang/Object;
+	public fun getSourceSets (Lorg/gradle/api/Project;)Lorg/gradle/api/NamedDomainObjectContainer;
+	public final fun getVersionCode (Lorg/gradle/api/Project;)Ljava/lang/Integer;
+	public final fun getVersionName (Lorg/gradle/api/Project;)Ljava/lang/String;
+	public fun isEnabled (Lorg/gradle/api/Project;)Z
+	public fun main (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
+	public fun rawConfig (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
+	public final fun setApplicationId (Lorg/gradle/api/Project;Ljava/lang/String;)V
+	public fun setEnabled (Lorg/gradle/api/Project;Z)V
+	public final fun setVersionCode (Lorg/gradle/api/Project;Ljava/lang/Integer;)V
+	public final fun setVersionName (Lorg/gradle/api/Project;Ljava/lang/String;)V
+	public fun test (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
+}
+
+public class com/javiersc/hubdle/extensions/kotlin/android/application/KotlinAndroidApplicationExtension$FeaturesExtension {
+	public fun <init> ()V
+	public final fun coroutines (Lorg/gradle/api/Project;Z)V
+	public static synthetic fun coroutines$default (Lcom/javiersc/hubdle/extensions/kotlin/android/application/KotlinAndroidApplicationExtension$FeaturesExtension;Lorg/gradle/api/Project;ZILjava/lang/Object;)V
+	public final fun extendedStdlib (Lorg/gradle/api/Project;Z)V
+	public static synthetic fun extendedStdlib$default (Lcom/javiersc/hubdle/extensions/kotlin/android/application/KotlinAndroidApplicationExtension$FeaturesExtension;Lorg/gradle/api/Project;ZILjava/lang/Object;)V
+	public final fun extendedTesting (Lorg/gradle/api/Project;Z)V
+	public static synthetic fun extendedTesting$default (Lcom/javiersc/hubdle/extensions/kotlin/android/application/KotlinAndroidApplicationExtension$FeaturesExtension;Lorg/gradle/api/Project;ZILjava/lang/Object;)V
+	public final fun serialization (Lorg/gradle/api/Project;ZZ)V
+	public static synthetic fun serialization$default (Lcom/javiersc/hubdle/extensions/kotlin/android/application/KotlinAndroidApplicationExtension$FeaturesExtension;Lorg/gradle/api/Project;ZZILjava/lang/Object;)V
+}
+
+public class com/javiersc/hubdle/extensions/kotlin/android/application/KotlinAndroidApplicationExtension$RawConfigExtension {
+	public fun <init> ()V
+	public final fun android (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
 }
 
 public class com/javiersc/hubdle/extensions/kotlin/android/library/KotlinAndroidLibraryExtension : com/javiersc/hubdle/extensions/kotlin/MainAndTestKotlinSourceSetsOptions, com/javiersc/hubdle/extensions/kotlin/android/AndroidOptions, com/javiersc/hubdle/extensions/options/EnableableOptions, com/javiersc/hubdle/extensions/options/FeaturesOptions, com/javiersc/hubdle/extensions/options/RawConfigOptions {
@@ -804,6 +846,7 @@ public class com/javiersc/hubdle/extensions/kotlin/intellij/IntellijExtension$Ra
 
 public class com/javiersc/hubdle/extensions/kotlin/jvm/KotlinJvmExtension : com/javiersc/hubdle/extensions/kotlin/MainAndTestKotlinSourceSetsOptions, com/javiersc/hubdle/extensions/kotlin/jvm/KotlinJvmOptions, com/javiersc/hubdle/extensions/options/EnableableOptions, com/javiersc/hubdle/extensions/options/FeaturesOptions, com/javiersc/hubdle/extensions/options/RawConfigOptions, com/javiersc/hubdle/extensions/options/SourceDirectoriesOptions {
 	public fun <init> (Lorg/gradle/api/model/ObjectFactory;)V
+	public final fun application (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
 	public fun features (Lorg/gradle/api/Action;)V
 	public fun getFeatures ()Lcom/javiersc/hubdle/extensions/kotlin/jvm/KotlinJvmExtension$FeaturesExtension;
 	public synthetic fun getFeatures ()Ljava/lang/Object;

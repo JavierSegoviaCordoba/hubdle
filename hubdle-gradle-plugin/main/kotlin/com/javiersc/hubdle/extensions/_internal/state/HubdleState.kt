@@ -1,5 +1,8 @@
+@file:Suppress("MagicNumber")
+
 package com.javiersc.hubdle.extensions._internal.state
 
+import com.android.build.api.dsl.ApplicationExtension
 import com.android.build.api.dsl.LibraryExtension
 import com.diffplug.gradle.spotless.SpotlessExtension
 import com.diffplug.gradle.spotless.SpotlessExtensionPredeclare
@@ -24,6 +27,8 @@ import com.javiersc.hubdle.extensions.config.publishing._internal.configureKotli
 import com.javiersc.hubdle.extensions.config.versioning._internal.configureConfigVersioningRawConfig
 import com.javiersc.hubdle.extensions.config.versioning._internal.configureVersioning
 import com.javiersc.hubdle.extensions.dependencies._internal.constants.COM_FACEBOOK_KTFMT_VERSION
+import com.javiersc.hubdle.extensions.kotlin.android.application._internal.configureAndroidApplication
+import com.javiersc.hubdle.extensions.kotlin.android.application._internal.configureKotlinAndroidApplicationRawConfig
 import com.javiersc.hubdle.extensions.kotlin.android.library._internal.configureAndroidLibrary
 import com.javiersc.hubdle.extensions.kotlin.android.library._internal.configureKotlinAndroidLibraryRawConfig
 import com.javiersc.hubdle.extensions.kotlin.gradle.plugin._internal.configureGradlePlugin
@@ -81,6 +86,7 @@ import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.artifacts.MinimalExternalModuleDependency
 import org.gradle.api.artifacts.ProjectDependency
+import org.gradle.api.plugins.JavaApplication
 import org.gradle.api.provider.Provider
 import org.gradle.api.publish.PublishingExtension as GradlePublishingExtension
 import org.gradle.internal.os.OperatingSystem
@@ -409,7 +415,7 @@ internal data class HubdleState(
                 android.isEnabled || gradle.isEnabled || jvm.isEnabled || multiplatform.isEnabled
 
         override fun configure(project: Project) {
-            android.library.configure(project)
+            android.configure(project)
             gradle.configure(project)
             intellij.configure(project)
             jvm.configure(project)
@@ -418,15 +424,51 @@ internal data class HubdleState(
 
         data class Android(
             var compileSdk: Int = 32,
+            val application: Application = Application(),
             val library: Library = Library(),
             var minSdk: Int = 21,
         ) : Configurable {
 
             val isEnabled: Boolean
-                get() = library.isEnabled
+                get() = library.isEnabled || application.isEnabled
 
             override fun configure(project: Project) {
+                application.configure(project)
                 library.configure(project)
+            }
+
+            data class Application(
+                override var isEnabled: Boolean = false,
+                var applicationId: String? = null,
+                var versionCode: Int? = null,
+                var versionName: String? = null,
+                var features: Features = Features(),
+                var rawConfig: RawConfig = RawConfig(),
+            ) : Enableable, Configurable {
+
+                override fun configure(project: Project) {
+                    configureAndroidApplication(project)
+                    rawConfig.configure(project)
+                }
+
+                data class RawConfig(
+                    var android: Action<ApplicationExtension>? = null,
+                ) : Configurable {
+                    override fun configure(project: Project) =
+                        configureKotlinAndroidApplicationRawConfig(project)
+                }
+
+                data class Features(
+                    var coroutines: Boolean = false,
+                    var extendedStdlib: Boolean = true,
+                    var extendedTesting: Boolean = true,
+                    val serialization: Serialization = Serialization(),
+                ) {
+                    data class Serialization(
+                        override var isEnabled: Boolean = false,
+                        var useJson: Boolean = false,
+                    ) : Enableable
+                }
             }
 
             data class Library(
@@ -549,6 +591,7 @@ internal data class HubdleState(
 
         data class Jvm(
             override var isEnabled: Boolean = false,
+            var application: Action<JavaApplication>? = null,
             val features: Features = Features(),
             val rawConfig: RawConfig = RawConfig(),
         ) : Enableable, Configurable {

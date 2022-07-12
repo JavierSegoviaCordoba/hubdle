@@ -4,6 +4,7 @@
 
 ### Added
 
+- `application` to Android extension
 - `jvmAndAndroid` source dirs to Multiplatform extension
 - `spotlessPredeclare` to `FormatExtension.RawConfigExtension`
 - `experimentalSerializationApi` to `LanguageSettingsExtension`
@@ -19,6 +20,7 @@
 
 ### Fixed
 
+- Android source sets in non KMP 
 - Spotless is not applied without Kotlin
 - `languageSettings.optIn` function
 

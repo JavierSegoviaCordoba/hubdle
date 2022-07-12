@@ -21,8 +21,15 @@ internal fun configureConfigLanguageSettings(project: Project) {
 
 private fun LanguageSettingsBuilder.configureOptIn(languageSettingsState: LanguageSettings) {
     with(languageSettingsState) {
+        for (optIn in optIns) {
+            optIn(optIn)
+        }
+
         if (experimentalContracts) optIn("kotlin.contracts.ExperimentalContracts")
         if (experimentalCoroutinesApi) optIn("kotlinx.coroutines.ExperimentalCoroutinesApi")
+        if (experimentalSerializationApi) {
+            optIn("kotlinx.serialization.ExperimentalSerializationApi")
+        }
         if (experimentalStdlibApi) optIn("kotlin.ExperimentalStdlibApi")
         if (experimentalTime) optIn("kotlin.time.ExperimentalTime")
         if (flowPreview) optIn("kotlinx.coroutines.FlowPreview")

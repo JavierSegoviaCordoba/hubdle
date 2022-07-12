@@ -22,6 +22,11 @@ public open class LanguageSettingsExtension @Inject constructor(objects: ObjectF
     }
 
     @HubdleDslMarker
+    public fun Project.experimentalSerializationApi(enabled: Boolean = true) {
+        hubdleState.config.languageSettings.experimentalSerializationApi = enabled
+    }
+
+    @HubdleDslMarker
     public fun Project.experimentalStdlibApi(enabled: Boolean = true) {
         hubdleState.config.languageSettings.experimentalStdlibApi = enabled
     }

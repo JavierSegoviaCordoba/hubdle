@@ -315,6 +315,7 @@ internal data class HubdleState(
         data class LanguageSettings(
             var experimentalContracts: Boolean = false,
             var experimentalCoroutinesApi: Boolean = false,
+            var experimentalSerializationApi: Boolean = true,
             var experimentalStdlibApi: Boolean = true,
             var experimentalTime: Boolean = true,
             var flowPreview: Boolean = false,

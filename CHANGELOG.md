@@ -4,6 +4,8 @@
 
 ### Added
 
+- `experimentalSerializationApi` to `LanguageSettingsExtension`
+
 ### Changed
 
 ### Deprecated
@@ -11,6 +13,8 @@
 ### Removed
 
 ### Fixed
+
+- `languageSettings.optIn` function
 
 ### Updated
 

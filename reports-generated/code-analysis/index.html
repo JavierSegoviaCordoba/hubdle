@@ -157,11 +157,11 @@
 
 <div>
   <ul>
-    <li>776 number of properties</li>
-    <li>536 number of functions</li>
-    <li>237 number of classes</li>
-    <li>74 number of packages</li>
-    <li>187 number of kt files</li>
+    <li>796 number of properties</li>
+    <li>557 number of functions</li>
+    <li>246 number of classes</li>
+    <li>76 number of packages</li>
+    <li>190 number of kt files</li>
   </ul>
 </div>
 
@@ -170,22 +170,22 @@
 
 <div>
   <ul>
-    <li>10,168 lines of code (loc)</li>
-    <li>8,357 source lines of code (sloc)</li>
-    <li>5,601 logical lines of code (lloc)</li>
-    <li>27 comment lines of code (cloc)</li>
-    <li>1,023 cyclomatic complexity (mcc)</li>
-    <li>428 cognitive complexity</li>
-    <li>52 number of total code smells</li>
+    <li>10,525 lines of code (loc)</li>
+    <li>8,650 source lines of code (sloc)</li>
+    <li>5,798 logical lines of code (lloc)</li>
+    <li>42 comment lines of code (cloc)</li>
+    <li>1,065 cyclomatic complexity (mcc)</li>
+    <li>437 cognitive complexity</li>
+    <li>48 number of total code smells</li>
     <li>0% comment source ratio</li>
-    <li>182 mcc per 1,000 lloc</li>
-    <li>9 code smells per 1,000 lloc</li>
+    <li>183 mcc per 1,000 lloc</li>
+    <li>8 code smells per 1,000 lloc</li>
   </ul>
 </div>
 
 
 <h2>Findings</h2>
-<div>Total: 52
+<div>Total: 48
   <h3>complexity: 7</h3>
   <details id="ComplexCondition" open="open">
     <summary class="rule-container"><span class="rule">ComplexCondition: 1 </span><span class="description">Complex conditions should be simplified and extracted into well-named methods if necessary.</span></summary>
@@ -215,14 +215,14 @@
 <span class="lineno"> 110 </span>        createNewFile()
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatform.kt:218:14</span><span class="message">The function configureMultiplatformNative is too long (78). The maximum length is 60.</span>
-        <pre><code><span class="lineno"> 215 </span>    }
-<span class="lineno"> 216 </span>}
-<span class="lineno"> 217 </span>
-<span class="lineno"> 218 </span>internal fun <span class="error">configureMultiplatformNative</span>(project: Project) {
-<span class="lineno"> 219 </span>    if (project.hubdleState.kotlin.multiplatform.native.isEnabled) {
-<span class="lineno"> 220 </span>        project.configure&lt;KotlinMultiplatformExtension&gt; {
-<span class="lineno"> 221 </span>            val commonMain: KotlinSourceSet by sourceSets.getting
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatform.kt:262:14</span><span class="message">The function configureMultiplatformNative is too long (78). The maximum length is 60.</span>
+        <pre><code><span class="lineno"> 259 </span>    }
+<span class="lineno"> 260 </span>}
+<span class="lineno"> 261 </span>
+<span class="lineno"> 262 </span>internal fun <span class="error">configureMultiplatformNative</span>(project: Project) {
+<span class="lineno"> 263 </span>    if (project.hubdleState.kotlin.multiplatform.native.isEnabled) {
+<span class="lineno"> 264 </span>        project.configure&lt;KotlinMultiplatformExtension&gt; {
+<span class="lineno"> 265 </span>            val commonMain: KotlinSourceSet by sourceSets.getting
 </code></pre>
       </li>
     </ul>
@@ -255,17 +255,17 @@
 <span class="lineno">  28 </span>    objects: ObjectFactory,
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/KotlinMultiplatformExtension.kt:58:19</span><span class="message">Class 'KotlinMultiplatformExtension' with '36' functions detected. Defined threshold inside classes is set to '11'</span>
-        <pre><code><span class="lineno">  55 </span>import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
-<span class="lineno">  56 </span>
-<span class="lineno">  57 </span>@HubdleDslMarker
-<span class="lineno">  58 </span>public open class <span class="error">KotlinMultiplatformExtension</span>
-<span class="lineno">  59 </span>@Inject
-<span class="lineno">  60 </span>constructor(
-<span class="lineno">  61 </span>    objects: ObjectFactory,
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/KotlinMultiplatformExtension.kt:59:19</span><span class="message">Class 'KotlinMultiplatformExtension' with '37' functions detected. Defined threshold inside classes is set to '11'</span>
+        <pre><code><span class="lineno">  56 </span>import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
+<span class="lineno">  57 </span>
+<span class="lineno">  58 </span>@HubdleDslMarker
+<span class="lineno">  59 </span>public open class <span class="error">KotlinMultiplatformExtension</span>
+<span class="lineno">  60 </span>@Inject
+<span class="lineno">  61 </span>constructor(
+<span class="lineno">  62 </span>    objects: ObjectFactory,
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatform.kt:3:1</span><span class="message">File '/home/runner/work/hubdle/hubdle/hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatform.kt' with '40' functions detected. Defined threshold inside files is set to '11'</span>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatform.kt:3:1</span><span class="message">File '/home/runner/work/hubdle/hubdle/hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatform.kt' with '41' functions detected. Defined threshold inside files is set to '11'</span>
         <pre><code><span class="lineno">   1 </span>@file:Suppress(&quot;SpreadOperator&quot;)
 <span class="lineno">   2 </span>
 <span class="lineno">   3 </span><span class="error">package com.javiersc.hubdle.extensions.kotlin.multiplatform._internal</span>
@@ -286,7 +286,7 @@
       </li>
     </ul>
   </details>
-  <h3>naming: 32</h3>
+  <h3>naming: 33</h3>
   <details id="MatchingDeclarationName" open="open">
     <summary class="rule-container"><span class="rule">MatchingDeclarationName: 1 </span><span class="description">If a source file contains only a single non-private top-level class or object, the file name should reflect the case-sensitive name plus the .kt extension.</span></summary>
     <ul>
@@ -303,7 +303,7 @@
     </ul>
   </details>
   <details id="PackageNaming" open="open">
-    <summary class="rule-container"><span class="rule">PackageNaming: 31 </span><span class="description">Package names should match the naming convention set in the configuration.</span></summary>
+    <summary class="rule-container"><span class="rule">PackageNaming: 32 </span><span class="description">Package names should match the naming convention set in the configuration.</span></summary>
     <ul>
       <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/PluginIds.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
         <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions._internal</span>
@@ -326,11 +326,13 @@
 <span class="lineno">   4 </span>import com.javiersc.gradle.extensions.version.catalogs.getLibraries
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/state/HubdleState.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
-        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions._internal.state</span>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/state/HubdleState.kt:3:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span>@file:Suppress(&quot;MagicNumber&quot;)
 <span class="lineno">   2 </span>
-<span class="lineno">   3 </span>import com.android.build.api.dsl.LibraryExtension
-<span class="lineno">   4 </span>import com.diffplug.gradle.spotless.SpotlessExtension
+<span class="lineno">   3 </span><span class="error">package com.javiersc.hubdle.extensions._internal.state</span>
+<span class="lineno">   4 </span>
+<span class="lineno">   5 </span>import com.android.build.api.dsl.ApplicationExtension
+<span class="lineno">   6 </span>import com.android.build.api.dsl.LibraryExtension
 </code></pre>
       </li>
       <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/state/checkCompatibility.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
@@ -484,6 +486,13 @@
 <span class="lineno">   4 </span>import org.gradle.api.JavaVersion
 </code></pre>
       </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/application/_internal/configureAndroidApplication.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.kotlin.android.application._internal</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import com.android.build.api.dsl.ApplicationExtension
+<span class="lineno">   4 </span>import com.javiersc.hubdle.extensions._internal.PluginIds
+</code></pre>
+      </li>
       <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/library/_internal/configureAndroidLibrary.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
         <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.kotlin.android.library._internal</span>
 <span class="lineno">   2 </span>
@@ -556,9 +565,9 @@
       </li>
     </ul>
   </details>
-  <h3>style: 10</h3>
+  <h3>style: 5</h3>
   <details id="ForbiddenComment" open="open">
-    <summary class="rule-container"><span class="rule">ForbiddenComment: 2 </span><span class="description">Flags a forbidden comment.</span></summary>
+    <summary class="rule-container"><span class="rule">ForbiddenComment: 4 </span><span class="description">Flags a forbidden comment.</span></summary>
     <ul>
       <li><span class="location">buildSrc/build.gradle.kts:15:5</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
         <pre><code><span class="lineno">  12 </span>    implementation(gradleApi())
@@ -580,10 +589,30 @@
 <span class="lineno">  15 </span>        check(project.isRootProject) {
 </code></pre>
       </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatform.kt:143:13</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
+        <pre><code><span class="lineno"> 140 </span>internal fun configureMultiplatformJvmAndAndroid(project: Project) {
+<span class="lineno"> 141 </span>    if (project.hubdleState.kotlin.multiplatform.jvmAndAndroid.isEnabled) {
+<span class="lineno"> 142 </span>        project.configure&lt;KotlinMultiplatformExtension&gt; {
+<span class="lineno"> 143 </span>            <span class="error">/* TODO: enable when granular metadata for jvm+android is fixed</span>
+<span class="lineno"> 144 </span><span class="error">            val jvmAndAndroidMain = sourceSets.create(&quot;jvmAndAndroidMain&quot;)</span>
+<span class="lineno"> 145 </span><span class="error">            val jvmAndAndroidTest = sourceSets.create(&quot;jvmAndAndroidTest&quot;)</span>
+<span class="lineno"> 146 </span><span class="error"></span>
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatform.kt:158:13</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
+        <pre><code><span class="lineno"> 155 </span>            sourceSets.findByName(&quot;androidTest&quot;)?.dependsOn(jvmAndAndroidTest)
+<span class="lineno"> 156 </span>            */
+<span class="lineno"> 157 </span>
+<span class="lineno"> 158 </span>            <span class="error">// TODO: remove when granular metadata for jvm+android is fixed</span>
+<span class="lineno"> 159 </span>            val mainKotlin = &quot;jvmAndAndroidMain/kotlin&quot;
+<span class="lineno"> 160 </span>            val mainResources = &quot;jvmAndAndroidMain/resources&quot;
+<span class="lineno"> 161 </span>            val testKotlin = &quot;jvmAndAndroidTest/kotlin&quot;
+</code></pre>
+      </li>
     </ul>
   </details>
   <details id="MagicNumber" open="open">
-    <summary class="rule-container"><span class="rule">MagicNumber: 4 </span><span class="description">Report magic numbers. Magic number is a numeric literal that is not defined as a constant and hence it's unclear what the purpose of this number is. It's better to declare such numbers as constants and give them a proper name. By default, -1, 0, 1, and 2 are not considered to be magic numbers.</span></summary>
+    <summary class="rule-container"><span class="rule">MagicNumber: 1 </span><span class="description">Report magic numbers. Magic number is a numeric literal that is not defined as a constant and hence it's unclear what the purpose of this number is. It's better to declare such numbers as constants and give them a proper name. By default, -1, 0, 1, and 2 are not considered to be magic numbers.</span></summary>
     <ul>
       <li><span class="location">buildSrc/src/main/kotlin/plugins/dependencies-codegen.gradle.kts:191:56</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
         <pre><code><span class="lineno"> 188 </span>    replace(&quot;.&quot;, &quot;_&quot;).replace(&quot;-&quot;, &quot;_&quot;).toUpperCase(Locale.getDefault())
@@ -595,87 +624,12 @@
 <span class="lineno"> 194 </span>    get() = module.name.startsWith(module.group.substringAfterLast(&quot;.&quot;))
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/state/HubdleState.kt:984:34</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
-        <pre><code><span class="lineno"> 981 </span>        object High : Priority(2) {
-<span class="lineno"> 982 </span>            override fun toString(): String = &quot;High&quot;
-<span class="lineno"> 983 </span>        }
-<span class="lineno"> 984 </span>        object Medium : Priority(<span class="error">3</span>) {
-<span class="lineno"> 985 </span>            override fun toString(): String = &quot;Medium&quot;
-<span class="lineno"> 986 </span>        }
-<span class="lineno"> 987 </span>        object Low : Priority(4) {
-</code></pre>
-      </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/state/HubdleState.kt:987:31</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
-        <pre><code><span class="lineno"> 984 </span>        object Medium : Priority(3) {
-<span class="lineno"> 985 </span>            override fun toString(): String = &quot;Medium&quot;
-<span class="lineno"> 986 </span>        }
-<span class="lineno"> 987 </span>        object Low : Priority(<span class="error">4</span>) {
-<span class="lineno"> 988 </span>            override fun toString(): String = &quot;Low&quot;
-<span class="lineno"> 989 </span>        }
-<span class="lineno"> 990 </span>        object VeryLow : Priority(5) {
-</code></pre>
-      </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/state/HubdleState.kt:990:35</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
-        <pre><code><span class="lineno"> 987 </span>        object Low : Priority(4) {
-<span class="lineno"> 988 </span>            override fun toString(): String = &quot;Low&quot;
-<span class="lineno"> 989 </span>        }
-<span class="lineno"> 990 </span>        object VeryLow : Priority(<span class="error">5</span>) {
-<span class="lineno"> 991 </span>            override fun toString(): String = &quot;VeryLow&quot;
-<span class="lineno"> 992 </span>        }
-<span class="lineno"> 993 </span>
-</code></pre>
-      </li>
-    </ul>
-  </details>
-  <details id="MaxLineLength" open="open">
-    <summary class="rule-container"><span class="rule">MaxLineLength: 4 </span><span class="description">Line detected, which is longer than the defined maximum line length in the code style.</span></summary>
-    <ul>
-      <li><span class="location">hubdle-gradle-plugin/test/kotlin/com/javiersc/hubdle/kotlin/jvm/features/KotlinJvmFeaturesHubdleCatalogTest.kt:30:1</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
-        <pre><code><span class="lineno">  27 </span>                .shouldContain(
-<span class="lineno">  28 </span>                    &quot;&quot;&quot;
-<span class="lineno">  29 </span>                        implementation - Implementation only dependencies for compilation 'main' (target  (jvm)). (n)
-<span class="lineno">  30 </span><span class="error">                        +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:</span>$ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_VERSION (n)
-<span class="lineno">  31 </span>                        \--- com.javiersc.kotlin:kotlin-stdlib:$COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_VERSION (n)
-<span class="lineno">  32 </span>                    &quot;&quot;&quot;.trimIndent()
-<span class="lineno">  33 </span>                )
-</code></pre>
-      </li>
-      <li><span class="location">hubdle-gradle-plugin/test/kotlin/com/javiersc/hubdle/kotlin/jvm/features/KotlinJvmFeaturesHubdleCatalogTest.kt:36:1</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
-        <pre><code><span class="lineno">  33 </span>                )
-<span class="lineno">  34 </span>                .shouldContain(
-<span class="lineno">  35 </span>                    &quot;&quot;&quot;
-<span class="lineno">  36 </span><span class="error">                        testImplementation - Implementation only dependencies for compilation 'test' (target  (jvm)). (n)</span>
-<span class="lineno">  37 </span>                        +--- org.jetbrains.kotlin:kotlin-test:$ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_VERSION (n)
-<span class="lineno">  38 </span>                        +--- org.jetbrains.kotlinx:kotlinx-coroutines-test:$ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_VERSION (n)
-<span class="lineno">  39 </span>                        +--- io.kotest:kotest-assertions-core:$IO_KOTEST_KOTEST_ASSERTIONS_CORE_VERSION (n)
-</code></pre>
-      </li>
-      <li><span class="location">hubdle-gradle-plugin/test/kotlin/com/javiersc/hubdle/kotlin/jvm/features/KotlinJvmFeaturesHubdleCatalogTest.kt:38:1</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
-        <pre><code><span class="lineno">  35 </span>                    &quot;&quot;&quot;
-<span class="lineno">  36 </span>                        testImplementation - Implementation only dependencies for compilation 'test' (target  (jvm)). (n)
-<span class="lineno">  37 </span>                        +--- org.jetbrains.kotlin:kotlin-test:$ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_VERSION (n)
-<span class="lineno">  38 </span><span class="error">                        +--- org.jetbrains.kotlinx:kotlinx-coroutines-test:</span>$ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_VERSION (n)
-<span class="lineno">  39 </span>                        +--- io.kotest:kotest-assertions-core:$IO_KOTEST_KOTEST_ASSERTIONS_CORE_VERSION (n)
-<span class="lineno">  40 </span>                        \--- org.jetbrains.kotlin:kotlin-test:$ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_VERSION (n)
-<span class="lineno">  41 </span>                    &quot;&quot;&quot;.trimIndent()
-</code></pre>
-      </li>
-      <li><span class="location">hubdle-gradle-plugin/test/kotlin/com/javiersc/hubdle/kotlin/jvm/features/KotlinJvmFeaturesUserCatalogTest.kt:26:1</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
-        <pre><code><span class="lineno">  23 </span>                )
-<span class="lineno">  24 </span>                .shouldContain(
-<span class="lineno">  25 </span>                    &quot;&quot;&quot;
-<span class="lineno">  26 </span><span class="error">                        testImplementation - Implementation only dependencies for compilation 'test' (target  (jvm)). (n)</span>
-<span class="lineno">  27 </span>                        +--- org.jetbrains.kotlin:kotlin-test:$ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_VERSION (n)
-<span class="lineno">  28 </span>                        +--- org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.1 (n)
-<span class="lineno">  29 </span>                        +--- io.kotest:kotest-assertions-core:$IO_KOTEST_KOTEST_ASSERTIONS_CORE_VERSION (n)
-</code></pre>
-      </li>
     </ul>
   </details>
 </div>
 
 
-generated with <a href="https://detekt.dev/">detekt version 1.20.0</a> on 2022-07-12 07:42:31 UTC.
+generated with <a href="https://detekt.dev/">detekt version 1.20.0</a> on 2022-07-12 12:31:16 UTC.
 
 </body>
 </html>

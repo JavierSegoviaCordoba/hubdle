@@ -44,6 +44,7 @@ import com.javiersc.hubdle.extensions.kotlin.multiplatform._internal.configureMu
 import com.javiersc.hubdle.extensions.kotlin.multiplatform._internal.configureMultiplatformIOSX64
 import com.javiersc.hubdle.extensions.kotlin.multiplatform._internal.configureMultiplatformJs
 import com.javiersc.hubdle.extensions.kotlin.multiplatform._internal.configureMultiplatformJvm
+import com.javiersc.hubdle.extensions.kotlin.multiplatform._internal.configureMultiplatformJvmAndAndroid
 import com.javiersc.hubdle.extensions.kotlin.multiplatform._internal.configureMultiplatformLinux
 import com.javiersc.hubdle.extensions.kotlin.multiplatform._internal.configureMultiplatformLinuxArm32Hfp
 import com.javiersc.hubdle.extensions.kotlin.multiplatform._internal.configureMultiplatformLinuxArm64
@@ -585,6 +586,7 @@ internal data class HubdleState(
             val iosX64: IOSX64 = IOSX64(),
             val iosSimulatorArm64: IOSSimulatorArm64 = IOSSimulatorArm64(),
             val jvm: Jvm = Jvm(),
+            val jvmAndAndroid: JvmAndAndroid = JvmAndAndroid(),
             val js: Js = Js(),
             val linux: Linux = Linux(),
             val linuxArm32Hfp: LinuxArm32Hfp = LinuxArm32Hfp(),
@@ -653,6 +655,7 @@ internal data class HubdleState(
             private fun configureCommonsTargets(project: Project) {
                 android.configure(project)
                 jvm.configure(project)
+                jvmAndAndroid.configure(project)
                 js.configure(project)
                 configureWasm(project)
             }
@@ -770,6 +773,14 @@ internal data class HubdleState(
             ) : Enableable, Configurable {
 
                 override fun configure(project: Project) = configureMultiplatformJvm(project)
+            }
+
+            data class JvmAndAndroid(
+                override var isEnabled: Boolean = false,
+            ) : Enableable, Configurable {
+
+                override fun configure(project: Project) =
+                    configureMultiplatformJvmAndAndroid(project)
             }
 
             data class Js(

@@ -4,6 +4,7 @@
 
 ### Added
 
+- `jvmAndAndroid` source dirs to Multiplatform extension
 - `spotlessPredeclare` to `FormatExtension.RawConfigExtension`
 - `experimentalSerializationApi` to `LanguageSettingsExtension`
 

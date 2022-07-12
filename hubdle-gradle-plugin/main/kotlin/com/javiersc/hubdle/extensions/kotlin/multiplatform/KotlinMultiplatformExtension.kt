@@ -9,6 +9,7 @@ import com.javiersc.hubdle.extensions.kotlin.multiplatform._internal.multiplatfo
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.KotlinMultiplatformAndroidExtension
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.KotlinMultiplatformCommonExtension
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.KotlinMultiplatformJsExtension
+import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.KotlinMultiplatformJvmAndAndroidExtension
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.KotlinMultiplatformJvmExtension
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.KotlinMultiplatformLinuxExtension
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.KotlinMultiplatformMacOSExtension
@@ -142,6 +143,16 @@ constructor(
     public fun Project.jvm(action: Action<KotlinMultiplatformJvmExtension> = Action {}) {
         jvm.run { isEnabled = true }
         action.execute(jvm)
+    }
+
+    private val jvmAndAndroid: KotlinMultiplatformJvmAndAndroidExtension = objects.newInstance()
+
+    @HubdleDslMarker
+    public fun Project.jvmAndAndroid(
+        action: Action<KotlinMultiplatformJvmAndAndroidExtension> = Action {}
+    ) {
+        jvmAndAndroid.run { isEnabled = true }
+        action.execute(jvmAndAndroid)
     }
 
     private val js: KotlinMultiplatformJsExtension = objects.newInstance()

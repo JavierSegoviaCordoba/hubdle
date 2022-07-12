@@ -137,6 +137,50 @@ internal fun configureMultiplatformJvm(project: Project) {
     }
 }
 
+internal fun configureMultiplatformJvmAndAndroid(project: Project) {
+    if (project.hubdleState.kotlin.multiplatform.jvmAndAndroid.isEnabled) {
+        project.configure<KotlinMultiplatformExtension> {
+            /* TODO: enable when granular metadata for jvm+android is fixed
+            val jvmAndAndroidMain = sourceSets.create("jvmAndAndroidMain")
+            val jvmAndAndroidTest = sourceSets.create("jvmAndAndroidTest")
+
+            jvmAndAndroidMain.dependsOn(sourceSets.getByName("commonMain"))
+            jvmAndAndroidTest.dependsOn(jvmAndAndroidMain)
+            jvmAndAndroidTest.dependsOn(sourceSets.getByName("commonTest"))
+
+            sourceSets.findByName("jvmMain")?.dependsOn(jvmAndAndroidMain)
+            sourceSets.findByName("jvmTest")?.dependsOn(jvmAndAndroidTest)
+
+            sourceSets.findByName("androidMain")?.dependsOn(jvmAndAndroidMain)
+            sourceSets.findByName("androidTest")?.dependsOn(jvmAndAndroidTest)
+            */
+
+            // TODO: remove when granular metadata for jvm+android is fixed
+            val mainKotlin = "jvmAndAndroidMain/kotlin"
+            val mainResources = "jvmAndAndroidMain/resources"
+            val testKotlin = "jvmAndAndroidTest/kotlin"
+            val testResources = "jvmAndAndroidTest/resources"
+
+            sourceSets.findByName("androidMain")?.apply {
+                kotlin.srcDirs(mainKotlin)
+                resources.srcDirs(mainResources)
+            }
+            sourceSets.findByName("androidTest")?.apply {
+                kotlin.srcDirs(testKotlin)
+                resources.srcDirs(testResources)
+            }
+            sourceSets.findByName("jvmMain")?.apply {
+                kotlin.srcDirs(mainKotlin)
+                resources.srcDirs(mainResources)
+            }
+            sourceSets.findByName("jvmTest")?.apply {
+                kotlin.srcDirs(testKotlin)
+                resources.srcDirs(testResources)
+            }
+        }
+    }
+}
+
 internal fun configureMultiplatformJs(project: Project) {
     val jsState = project.hubdleState.kotlin.multiplatform.js
     if (jsState.isEnabled) {

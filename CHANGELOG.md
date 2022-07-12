@@ -4,6 +4,20 @@
 
 ### Added
 
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Updated
+
+## [0.2.0-alpha.21] - 2022-07-12
+
+### Added
+
 - `application` to Android extension
 - `jvmAndAndroid` source dirs to Multiplatform extension
 - `spotlessPredeclare` to `FormatExtension.RawConfigExtension`
@@ -13,10 +27,6 @@
 
 - Spotless predeclares dependencies
 - `root.project.name` property is not mandatory in Hubdle Settings
-
-### Deprecated
-
-### Removed
 
 ### Fixed
 

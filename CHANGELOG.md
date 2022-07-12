@@ -9,6 +9,8 @@
 
 ### Changed
 
+- `root.project.name` property is not mandatory in Hubdle Settings
+
 ### Deprecated
 
 ### Removed

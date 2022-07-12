@@ -1,7 +1,7 @@
 package com.javiersc.hubdle.settings
 
 import com.gradle.enterprise.gradleplugin.GradleEnterpriseExtension
-import com.javiersc.gradle.properties.extensions.getProperty
+import com.javiersc.gradle.properties.extensions.getPropertyOrNull
 import com.javiersc.hubdle.settings.extensions.extractedBuildProjects
 import com.javiersc.hubdle.settings.extensions.extractedProjects
 import java.io.File
@@ -21,7 +21,10 @@ constructor(
 ) : Plugin<Settings> {
 
     override fun apply(target: Settings) {
-        target.rootProject.name = target.getProperty("root.project.name")
+        val rootProjectName = target.getPropertyOrNull("root.project.name")
+        if (rootProjectName != null) {
+            target.rootProject.name = rootProjectName
+        }
         target.enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
         target.extensions.create<HubdleSettingsExtension>("hubdleSettings")

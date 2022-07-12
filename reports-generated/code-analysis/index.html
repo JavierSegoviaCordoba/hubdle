@@ -157,8 +157,8 @@
 
 <div>
   <ul>
-    <li>775 number of properties</li>
-    <li>534 number of functions</li>
+    <li>776 number of properties</li>
+    <li>536 number of functions</li>
     <li>237 number of classes</li>
     <li>74 number of packages</li>
     <li>187 number of kt files</li>
@@ -170,12 +170,12 @@
 
 <div>
   <ul>
-    <li>10,132 lines of code (loc)</li>
-    <li>8,327 source lines of code (sloc)</li>
-    <li>5,581 logical lines of code (lloc)</li>
+    <li>10,168 lines of code (loc)</li>
+    <li>8,357 source lines of code (sloc)</li>
+    <li>5,601 logical lines of code (lloc)</li>
     <li>27 comment lines of code (cloc)</li>
-    <li>1,017 cyclomatic complexity (mcc)</li>
-    <li>420 cognitive complexity</li>
+    <li>1,023 cyclomatic complexity (mcc)</li>
+    <li>428 cognitive complexity</li>
     <li>52 number of total code smells</li>
     <li>0% comment source ratio</li>
     <li>182 mcc per 1,000 lloc</li>
@@ -439,7 +439,7 @@
         <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.config.format._internal</span>
 <span class="lineno">   2 </span>
 <span class="lineno">   3 </span>import com.diffplug.gradle.spotless.SpotlessExtension
-<span class="lineno">   4 </span>import com.javiersc.gradle.tasks.extensions.maybeRegisterLazily
+<span class="lineno">   4 </span>import com.diffplug.gradle.spotless.SpotlessExtensionPredeclare
 </code></pre>
       </li>
       <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/install/_internal/configureInstall.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
@@ -534,24 +534,24 @@
   <details id="SpreadOperator" open="open">
     <summary class="rule-container"><span class="rule">SpreadOperator: 2 </span><span class="description">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span></summary>
     <ul>
-      <li><span class="location">hubdle-settings-gradle-plugin/main/kotlin/com/javiersc/hubdle/settings/HubdleSettingsPlugin.kt:57:29</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
-        <pre><code><span class="lineno">  54 </span>    val autoInclude = hubdleSettings.autoInclude
-<span class="lineno">  55 </span>
-<span class="lineno">  56 </span>    if (autoInclude.isEnabled) {
-<span class="lineno">  57 </span>        autoInclude.includes<span class="error">(*extractedProjects().toTypedArray())</span>
-<span class="lineno">  58 </span>        autoInclude.includedBuilds(*extractedBuildProjects().toTypedArray())
-<span class="lineno">  59 </span>
-<span class="lineno">  60 </span>        for (include in autoInclude.includableProjects) {
+      <li><span class="location">hubdle-settings-gradle-plugin/main/kotlin/com/javiersc/hubdle/settings/HubdleSettingsPlugin.kt:60:29</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
+        <pre><code><span class="lineno">  57 </span>    val autoInclude = hubdleSettings.autoInclude
+<span class="lineno">  58 </span>
+<span class="lineno">  59 </span>    if (autoInclude.isEnabled) {
+<span class="lineno">  60 </span>        autoInclude.includes<span class="error">(*extractedProjects().toTypedArray())</span>
+<span class="lineno">  61 </span>        autoInclude.includedBuilds(*extractedBuildProjects().toTypedArray())
+<span class="lineno">  62 </span>
+<span class="lineno">  63 </span>        for (include in autoInclude.includableProjects) {
 </code></pre>
       </li>
-      <li><span class="location">hubdle-settings-gradle-plugin/main/kotlin/com/javiersc/hubdle/settings/HubdleSettingsPlugin.kt:58:35</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
-        <pre><code><span class="lineno">  55 </span>
-<span class="lineno">  56 </span>    if (autoInclude.isEnabled) {
-<span class="lineno">  57 </span>        autoInclude.includes(*extractedProjects().toTypedArray())
-<span class="lineno">  58 </span>        autoInclude.includedBuilds<span class="error">(*extractedBuildProjects().toTypedArray())</span>
-<span class="lineno">  59 </span>
-<span class="lineno">  60 </span>        for (include in autoInclude.includableProjects) {
-<span class="lineno">  61 </span>            include(include)
+      <li><span class="location">hubdle-settings-gradle-plugin/main/kotlin/com/javiersc/hubdle/settings/HubdleSettingsPlugin.kt:61:35</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
+        <pre><code><span class="lineno">  58 </span>
+<span class="lineno">  59 </span>    if (autoInclude.isEnabled) {
+<span class="lineno">  60 </span>        autoInclude.includes(*extractedProjects().toTypedArray())
+<span class="lineno">  61 </span>        autoInclude.includedBuilds<span class="error">(*extractedBuildProjects().toTypedArray())</span>
+<span class="lineno">  62 </span>
+<span class="lineno">  63 </span>        for (include in autoInclude.includableProjects) {
+<span class="lineno">  64 </span>            include(include)
 </code></pre>
       </li>
     </ul>
@@ -595,34 +595,34 @@
 <span class="lineno"> 194 </span>    get() = module.name.startsWith(module.group.substringAfterLast(&quot;.&quot;))
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/state/HubdleState.kt:981:34</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
-        <pre><code><span class="lineno"> 978 </span>        object High : Priority(2) {
-<span class="lineno"> 979 </span>            override fun toString(): String = &quot;High&quot;
-<span class="lineno"> 980 </span>        }
-<span class="lineno"> 981 </span>        object Medium : Priority(<span class="error">3</span>) {
-<span class="lineno"> 982 </span>            override fun toString(): String = &quot;Medium&quot;
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/state/HubdleState.kt:984:34</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno"> 981 </span>        object High : Priority(2) {
+<span class="lineno"> 982 </span>            override fun toString(): String = &quot;High&quot;
 <span class="lineno"> 983 </span>        }
-<span class="lineno"> 984 </span>        object Low : Priority(4) {
+<span class="lineno"> 984 </span>        object Medium : Priority(<span class="error">3</span>) {
+<span class="lineno"> 985 </span>            override fun toString(): String = &quot;Medium&quot;
+<span class="lineno"> 986 </span>        }
+<span class="lineno"> 987 </span>        object Low : Priority(4) {
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/state/HubdleState.kt:984:31</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
-        <pre><code><span class="lineno"> 981 </span>        object Medium : Priority(3) {
-<span class="lineno"> 982 </span>            override fun toString(): String = &quot;Medium&quot;
-<span class="lineno"> 983 </span>        }
-<span class="lineno"> 984 </span>        object Low : Priority(<span class="error">4</span>) {
-<span class="lineno"> 985 </span>            override fun toString(): String = &quot;Low&quot;
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/state/HubdleState.kt:987:31</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno"> 984 </span>        object Medium : Priority(3) {
+<span class="lineno"> 985 </span>            override fun toString(): String = &quot;Medium&quot;
 <span class="lineno"> 986 </span>        }
-<span class="lineno"> 987 </span>        object VeryLow : Priority(5) {
-</code></pre>
-      </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/state/HubdleState.kt:987:35</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
-        <pre><code><span class="lineno"> 984 </span>        object Low : Priority(4) {
-<span class="lineno"> 985 </span>            override fun toString(): String = &quot;Low&quot;
-<span class="lineno"> 986 </span>        }
-<span class="lineno"> 987 </span>        object VeryLow : Priority(<span class="error">5</span>) {
-<span class="lineno"> 988 </span>            override fun toString(): String = &quot;VeryLow&quot;
+<span class="lineno"> 987 </span>        object Low : Priority(<span class="error">4</span>) {
+<span class="lineno"> 988 </span>            override fun toString(): String = &quot;Low&quot;
 <span class="lineno"> 989 </span>        }
-<span class="lineno"> 990 </span>
+<span class="lineno"> 990 </span>        object VeryLow : Priority(5) {
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/state/HubdleState.kt:990:35</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno"> 987 </span>        object Low : Priority(4) {
+<span class="lineno"> 988 </span>            override fun toString(): String = &quot;Low&quot;
+<span class="lineno"> 989 </span>        }
+<span class="lineno"> 990 </span>        object VeryLow : Priority(<span class="error">5</span>) {
+<span class="lineno"> 991 </span>            override fun toString(): String = &quot;VeryLow&quot;
+<span class="lineno"> 992 </span>        }
+<span class="lineno"> 993 </span>
 </code></pre>
       </li>
     </ul>
@@ -675,7 +675,7 @@
 </div>
 
 
-generated with <a href="https://detekt.dev/">detekt version 1.20.0</a> on 2022-07-10 15:25:49 UTC.
+generated with <a href="https://detekt.dev/">detekt version 1.20.0</a> on 2022-07-12 07:42:31 UTC.
 
 </body>
 </html>

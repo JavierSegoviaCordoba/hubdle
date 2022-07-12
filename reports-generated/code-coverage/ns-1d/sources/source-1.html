@@ -58,7 +58,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/14)
+    (0/18)
   </span>
 </td>
 <td class="coverageStat">
@@ -66,7 +66,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/11)
+    (0/15)
   </span>
 </td>
 <td class="coverageStat">
@@ -74,7 +74,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/60)
+    (0/81)
   </span>
 </td>
 </tr>
@@ -168,7 +168,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/16)
+    (0/20)
   </span>
 </td>
 <td class="coverageStat">
@@ -176,7 +176,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/14)
+    (0/18)
   </span>
 </td>
 <td class="coverageStat">
@@ -184,7 +184,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/84)
+    (0/105)
   </span>
 </td>
 </tr>
@@ -218,14 +218,21 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">21</i>&nbsp;
 <i class="no-highlight">22</i>&nbsp;private fun LanguageSettingsBuilder.configureOptIn(languageSettingsState: LanguageSettings) {
 <b class="nc"><i class="no-highlight">23</i>&nbsp;    with(languageSettingsState) {</b>
-<b class="nc"><i class="no-highlight">24</i>&nbsp;        if (experimentalContracts) optIn(&quot;kotlin.contracts.ExperimentalContracts&quot;)</b>
-<b class="nc"><i class="no-highlight">25</i>&nbsp;        if (experimentalCoroutinesApi) optIn(&quot;kotlinx.coroutines.ExperimentalCoroutinesApi&quot;)</b>
-<b class="nc"><i class="no-highlight">26</i>&nbsp;        if (experimentalStdlibApi) optIn(&quot;kotlin.ExperimentalStdlibApi&quot;)</b>
-<b class="nc"><i class="no-highlight">27</i>&nbsp;        if (experimentalTime) optIn(&quot;kotlin.time.ExperimentalTime&quot;)</b>
-<b class="nc"><i class="no-highlight">28</i>&nbsp;        if (flowPreview) optIn(&quot;kotlinx.coroutines.FlowPreview&quot;)</b>
-<b class="nc"><i class="no-highlight">29</i>&nbsp;        if (requiresOptIn) optIn(&quot;kotlin.RequiresOptIn&quot;)</b>
-<b class="nc"><i class="no-highlight">30</i>&nbsp;    }</b>
-<i class="no-highlight">31</i>&nbsp;}
+<b class="nc"><i class="no-highlight">24</i>&nbsp;        for (optIn in optIns) {</b>
+<b class="nc"><i class="no-highlight">25</i>&nbsp;            optIn(optIn)</b>
+<i class="no-highlight">26</i>&nbsp;        }
+<i class="no-highlight">27</i>&nbsp;
+<b class="nc"><i class="no-highlight">28</i>&nbsp;        if (experimentalContracts) optIn(&quot;kotlin.contracts.ExperimentalContracts&quot;)</b>
+<b class="nc"><i class="no-highlight">29</i>&nbsp;        if (experimentalCoroutinesApi) optIn(&quot;kotlinx.coroutines.ExperimentalCoroutinesApi&quot;)</b>
+<b class="nc"><i class="no-highlight">30</i>&nbsp;        if (experimentalSerializationApi) {</b>
+<b class="nc"><i class="no-highlight">31</i>&nbsp;            optIn(&quot;kotlinx.serialization.ExperimentalSerializationApi&quot;)</b>
+<i class="no-highlight">32</i>&nbsp;        }
+<b class="nc"><i class="no-highlight">33</i>&nbsp;        if (experimentalStdlibApi) optIn(&quot;kotlin.ExperimentalStdlibApi&quot;)</b>
+<b class="nc"><i class="no-highlight">34</i>&nbsp;        if (experimentalTime) optIn(&quot;kotlin.time.ExperimentalTime&quot;)</b>
+<b class="nc"><i class="no-highlight">35</i>&nbsp;        if (flowPreview) optIn(&quot;kotlinx.coroutines.FlowPreview&quot;)</b>
+<b class="nc"><i class="no-highlight">36</i>&nbsp;        if (requiresOptIn) optIn(&quot;kotlin.RequiresOptIn&quot;)</b>
+<b class="nc"><i class="no-highlight">37</i>&nbsp;    }</b>
+<i class="no-highlight">38</i>&nbsp;}
 </div>
 </pre>
 </div>
@@ -252,7 +259,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-11 00:25</div>
+    <div style="float:right;">generated on 2022-07-12 07:47</div>
 </div>
 </body>
 </html>

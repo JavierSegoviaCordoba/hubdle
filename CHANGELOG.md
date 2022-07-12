@@ -16,6 +16,7 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.11.0`
 - `gradle -> 7.5`
 - `org.gradle.kotlin:gradle-kotlin-dsl-plugins -> 2.4.1`
 

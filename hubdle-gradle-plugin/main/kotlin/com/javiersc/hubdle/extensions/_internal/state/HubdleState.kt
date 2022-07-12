@@ -2,6 +2,7 @@ package com.javiersc.hubdle.extensions._internal.state
 
 import com.android.build.api.dsl.LibraryExtension
 import com.diffplug.gradle.spotless.SpotlessExtension
+import com.diffplug.gradle.spotless.SpotlessExtensionPredeclare
 import com.javiersc.hubdle.extensions._internal.state.LaterConfigurable.Priority
 import com.javiersc.hubdle.extensions.config.analysis._internal.configureAnalysis
 import com.javiersc.hubdle.extensions.config.analysis._internal.configureConfigAnalysisRawConfig
@@ -307,6 +308,7 @@ internal data class HubdleState(
 
             data class RawConfig(
                 var spotless: Action<SpotlessExtension>? = null,
+                var spotlessPredeclare: Action<SpotlessExtensionPredeclare>? = null,
             ) : Configurable {
                 override fun configure(project: Project) = configureKotlinFormatRawConfig(project)
             }

@@ -15,7 +15,7 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 internal fun configureFormat(project: Project) {
     val format = project.hubdleState.config.format
 
-    if (format.isEnabled && project.hubdleState.kotlin.isEnabled) {
+    if (format.isEnabled) {
         project.pluginManager.apply(PluginIds.Format.spotless)
 
         val checkTask = project.tasks.namedLazily<Task>("check")
@@ -34,33 +34,38 @@ internal fun configureFormat(project: Project) {
             dependsOn("spotlessApply")
         }
 
-        val checkKotlinFormat = project.tasks.maybeRegisterLazily<Task>("checkKotlinFormat")
-        checkKotlinFormat.configureEach {
-            group = "verification"
-            dependsOn("spotlessKotlinCheck")
-        }
+        format.excludes += project.excludedSpecialDirs
 
-        checkTask.configureEach { dependsOn(checkKotlinFormat) }
 
-        project.tasks.maybeRegisterLazily<Task>("applyKotlinFormat").configureEach {
-            group = "verification"
-            dependsOn("spotlessKotlinApply")
-        }
+        if (project.hubdleState.kotlin.isEnabled) {
+            val checkKotlinFormat = project.tasks.maybeRegisterLazily<Task>("checkKotlinFormat")
+            checkKotlinFormat.configureEach {
+                group = "verification"
+                dependsOn("spotlessKotlinCheck")
+            }
 
-        format.includes += project.includedKotlinSourceSetDirs
-        format.excludes += (project.excludedSpecialDirs + project.excludedResourceSourceSetDirs)
+            checkTask.configureEach { dependsOn(checkKotlinFormat) }
 
-        project.configure<SpotlessExtension> {
-            kotlin {
-                target(format.includes.distinct())
-                targetExclude(format.excludes.distinct())
-                ktfmt(format.ktfmtVersion).kotlinlangStyle()
+            project.tasks.maybeRegisterLazily<Task>("applyKotlinFormat").configureEach {
+                group = "verification"
+                dependsOn("spotlessKotlinApply")
+            }
+
+            format.includes += project.includedKotlinSourceSetDirsKotlinFiles
+            format.excludes += project.excludedResourceSourceSetDirsKotlinFiles
+
+            project.configure<SpotlessExtension> {
+                kotlin {
+                    target(format.includes.distinct())
+                    targetExclude(format.excludes.distinct())
+                    ktfmt(format.ktfmtVersion).kotlinlangStyle()
+                }
             }
         }
     }
 }
 
-private val Project.includedKotlinSourceSetDirs: Set<String>
+private val Project.includedKotlinSourceSetDirsKotlinFiles: Set<String>
     get() =
         the<KotlinProjectExtension>()
             .sourceSets
@@ -78,7 +83,7 @@ private val Project.excludedSpecialDirs: Set<String>
             ".gradle/**/*.kt",
         )
 
-private val Project.excludedResourceSourceSetDirs: Set<String>
+private val Project.excludedResourceSourceSetDirsKotlinFiles: Set<String>
     get() =
         the<KotlinProjectExtension>()
             .sourceSets
@@ -90,6 +95,7 @@ private val Project.excludedResourceSourceSetDirs: Set<String>
 
 internal fun configureKotlinFormatRawConfig(project: Project) {
     project.hubdleState.config.format.rawConfig.spotless?.execute(project.the())
+    project.hubdleState.config.format.rawConfig.spotlessPredeclare?.execute(project.the())
 }
 
 private val File.unixPath: String

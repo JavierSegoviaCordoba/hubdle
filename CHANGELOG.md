@@ -4,6 +4,7 @@
 
 ### Added
 
+- `spotlessPredeclare` to `FormatExtension.RawConfigExtension`
 - `experimentalSerializationApi` to `LanguageSettingsExtension`
 
 ### Changed
@@ -14,6 +15,7 @@
 
 ### Fixed
 
+- Spotless is not applied without Kotlin
 - `languageSettings.optIn` function
 
 ### Updated

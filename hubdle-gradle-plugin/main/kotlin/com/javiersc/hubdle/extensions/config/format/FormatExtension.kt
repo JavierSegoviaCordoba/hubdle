@@ -1,6 +1,7 @@
 package com.javiersc.hubdle.extensions.config.format
 
 import com.diffplug.gradle.spotless.SpotlessExtension
+import com.diffplug.gradle.spotless.SpotlessExtensionPredeclare
 import com.javiersc.hubdle.extensions.HubdleDslMarker
 import com.javiersc.hubdle.extensions._internal.state.hubdleState
 import com.javiersc.hubdle.extensions.options.EnableableOptions
@@ -46,6 +47,10 @@ constructor(
 
         public fun Project.spotless(action: Action<SpotlessExtension>) {
             hubdleState.config.format.rawConfig.spotless = action
+        }
+
+        public fun Project.spotlessPredeclare(action: Action<SpotlessExtensionPredeclare>) {
+            hubdleState.config.format.rawConfig.spotlessPredeclare = action
         }
     }
 }

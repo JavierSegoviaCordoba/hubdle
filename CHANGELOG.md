@@ -4,15 +4,25 @@
 
 ### Added
 
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Updated
+
+## [0.2.0-alpha.22] - 2022-07-13
+
+### Added
+
 - `darwin` source set to Kotlin Multiplatform
 
 ### Changed
 
 - Kotlin Multiplatform source set format from `commonName` to `common/name`
-
-### Deprecated
-
-### Removed
 
 ### Fixed
 

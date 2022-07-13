@@ -11,7 +11,16 @@ public open class KotlinMultiplatformLinuxExtension :
 
     override var Project.isEnabled: Boolean
         get() = hubdleState.kotlin.multiplatform.linux.isEnabled
-        set(value) = hubdleState.kotlin.multiplatform.linux.run { isEnabled = value }
+        set(value) =
+            hubdleState.kotlin.multiplatform.run {
+                linux.isEnabled = value
+                linuxArm32Hfp.isEnabled = value
+                linuxArm64.isEnabled = value
+                linuxMips32.isEnabled = value
+                linuxMipsel32.isEnabled = value
+                linuxX64.isEnabled = value
+                native.isEnabled = value
+            }
 
     override val name: String = "linux"
 }

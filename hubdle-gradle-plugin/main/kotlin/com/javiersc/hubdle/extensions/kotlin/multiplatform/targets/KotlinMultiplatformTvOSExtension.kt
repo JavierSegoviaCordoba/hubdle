@@ -11,7 +11,14 @@ public open class KotlinMultiplatformTvOSExtension :
 
     override var Project.isEnabled: Boolean
         get() = hubdleState.kotlin.multiplatform.tvos.isEnabled
-        set(value) = hubdleState.kotlin.multiplatform.tvos.run { isEnabled = value }
+        set(value) =
+            hubdleState.kotlin.multiplatform.run {
+                tvos.isEnabled = value
+                tvosArm64.isEnabled = value
+                tvosSimulatorArm64.isEnabled = value
+                tvosX64.isEnabled = value
+                darwin.isEnabled = value
+            }
 
     override val name: String = "tvos"
 }

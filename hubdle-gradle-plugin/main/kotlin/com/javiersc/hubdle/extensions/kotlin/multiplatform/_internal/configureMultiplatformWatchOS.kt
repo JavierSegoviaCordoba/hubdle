@@ -56,7 +56,7 @@ internal fun configureMultiplatformWatchOS(project: Project) {
             watchosTest.dependsOn(commonTest)
             if (darwinTest != null) watchosTest.dependsOn(darwinTest)
             for (watchosTestSourceSet in watchosTestSourceSets) {
-                watchosTestSourceSet.dependsOn(watchosMain)
+                watchosTestSourceSet.dependsOn(watchosTest)
             }
         }
     }

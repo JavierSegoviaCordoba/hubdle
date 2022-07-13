@@ -11,7 +11,16 @@ public open class KotlinMultiplatformWatchOSExtension :
 
     override var Project.isEnabled: Boolean
         get() = hubdleState.kotlin.multiplatform.watchos.isEnabled
-        set(value) = hubdleState.kotlin.multiplatform.watchos.run { isEnabled = value }
+        set(value) =
+            hubdleState.kotlin.multiplatform.run {
+                watchos.isEnabled = value
+                watchosArm32.isEnabled = value
+                watchosArm64.isEnabled = value
+                watchosSimulatorArm64.isEnabled = value
+                watchosX64.isEnabled = value
+                watchosX86.isEnabled = value
+                darwin.isEnabled = value
+            }
 
     override val name: String = "watchos"
 }

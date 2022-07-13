@@ -33,6 +33,14 @@ dependenciesCodegen.configureEach {
     }
 }
 
+tasks.namedLazily<Task>("apiCheck").configureEach {
+    dependsOn(dependenciesCodegen)
+}
+
+tasks.namedLazily<Task>("apiDump").configureEach {
+    dependsOn(dependenciesCodegen)
+}
+
 tasks.namedLazily<Task>(LifecycleBasePlugin.ASSEMBLE_TASK_NAME).configureEach {
     dependsOn(dependenciesCodegen)
 }
@@ -145,7 +153,7 @@ fun buildHubdleDependencies() {
 
                             val nameSanitized = module.name.groupOrNameSanitized().capitalized()
                             val dependencyName = "$groupSanitized$nameSanitized".decapitalize()
-                            """
+                                """
                                     |@HubdleDslMarker
                                     |public fun KotlinDependencyHandler.$dependencyName(): Dependency =
                                     |    catalogImplementation(${dependencyVariableName}_MODULE)
@@ -162,14 +170,14 @@ fun buildHubdleDependencies() {
             }
         writeText(
             """
-                        |import com.javiersc.hubdle.extensions.HubdleDslMarker
-                        |import com.javiersc.hubdle.extensions._internal.state.catalogImplementation
-                        |import com.javiersc.hubdle.extensions.dependencies._internal.constants.*
-                        |import org.gradle.api.artifacts.Dependency
-                        |import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
-                        |
-                        |
-                    """.trimMargin() +
+                     |import com.javiersc.hubdle.extensions.HubdleDslMarker
+                     |import com.javiersc.hubdle.extensions._internal.state.catalogImplementation
+                     |import com.javiersc.hubdle.extensions.dependencies._internal.constants.*
+                     |import org.gradle.api.artifacts.Dependency
+                     |import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
+                     |
+                     |
+                 """.trimMargin() +
                 readText().removeDuplicateEmptyLines().endWithNewLine()
         )
     }

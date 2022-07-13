@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- `watchos/test` source set using `main` source set 
+
 ### Updated
 
 ## [0.2.0-alpha.22] - 2022-07-13

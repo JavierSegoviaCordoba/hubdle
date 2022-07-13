@@ -11,7 +11,7 @@ public open class KotlinMultiplatformNativeExtension :
 
     override var Project.isEnabled: Boolean
         get() = hubdleState.kotlin.multiplatform.native.isEnabled
-        set(value) = hubdleState.kotlin.multiplatform.native.run { isEnabled = value }
+        set(value) = hubdleState.kotlin.multiplatform.run { native.isEnabled = value }
 
     override val name: String = "native"
 }

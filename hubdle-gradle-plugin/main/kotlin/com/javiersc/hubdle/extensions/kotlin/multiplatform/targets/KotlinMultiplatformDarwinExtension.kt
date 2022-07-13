@@ -11,7 +11,15 @@ public open class KotlinMultiplatformDarwinExtension :
 
     override var Project.isEnabled: Boolean
         get() = hubdleState.kotlin.multiplatform.darwin.isEnabled
-        set(value) = hubdleState.kotlin.multiplatform.darwin.run { isEnabled = value }
+        set(value) =
+            hubdleState.kotlin.multiplatform.run {
+                darwin.isEnabled = value
+                ios.isEnabled = value
+                macos.isEnabled = value
+                tvos.isEnabled = value
+                watchos.isEnabled = value
+                native.isEnabled = value
+            }
 
     override val name: String = "darwin"
 }

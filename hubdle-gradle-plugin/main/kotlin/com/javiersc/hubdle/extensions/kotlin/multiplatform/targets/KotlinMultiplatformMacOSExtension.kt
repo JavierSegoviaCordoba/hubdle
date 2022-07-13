@@ -11,7 +11,13 @@ public open class KotlinMultiplatformMacOSExtension :
 
     override var Project.isEnabled: Boolean
         get() = hubdleState.kotlin.multiplatform.macos.isEnabled
-        set(value) = hubdleState.kotlin.multiplatform.macos.run { isEnabled = value }
+        set(value) =
+            hubdleState.kotlin.multiplatform.run {
+                macos.isEnabled = value
+                macosArm64.isEnabled = value
+                macosX64.isEnabled = value
+                darwin.isEnabled = value
+            }
 
     override val name: String = "macos"
 }

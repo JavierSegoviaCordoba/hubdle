@@ -11,7 +11,12 @@ public open class KotlinMultiplatformWAsmExtension :
 
     override var Project.isEnabled: Boolean
         get() = hubdleState.kotlin.multiplatform.wasm.isEnabled
-        set(value) = hubdleState.kotlin.multiplatform.wasm.run { isEnabled = value }
+        set(value) =
+            hubdleState.kotlin.multiplatform.run {
+                wasm.isEnabled = value
+                wasm32.isEnabled = value
+                native.isEnabled = value
+            }
 
     override val name: String = "wasm"
 }

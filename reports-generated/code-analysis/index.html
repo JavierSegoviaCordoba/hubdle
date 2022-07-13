@@ -157,7 +157,7 @@
 
 <div>
   <ul>
-    <li>929 number of properties</li>
+    <li>849 number of properties</li>
     <li>562 number of functions</li>
     <li>248 number of classes</li>
     <li>76 number of packages</li>
@@ -170,15 +170,15 @@
 
 <div>
   <ul>
-    <li>11,009 lines of code (loc)</li>
-    <li>9,082 source lines of code (sloc)</li>
-    <li>6,101 logical lines of code (lloc)</li>
-    <li>41 comment lines of code (cloc)</li>
+    <li>10,941 lines of code (loc)</li>
+    <li>9,007 source lines of code (sloc)</li>
+    <li>6,009 logical lines of code (lloc)</li>
+    <li>43 comment lines of code (cloc)</li>
     <li>1,102 cyclomatic complexity (mcc)</li>
     <li>517 cognitive complexity</li>
     <li>62 number of total code smells</li>
     <li>0% comment source ratio</li>
-    <li>180 mcc per 1,000 lloc</li>
+    <li>183 mcc per 1,000 lloc</li>
     <li>10 code smells per 1,000 lloc</li>
   </ul>
 </div>
@@ -186,7 +186,7 @@
 
 <h2>Findings</h2>
 <div>Total: 62
-  <h3>complexity: 7</h3>
+  <h3>complexity: 5</h3>
   <details id="ComplexCondition" open="open">
     <summary class="rule-container"><span class="rule">ComplexCondition: 1 </span><span class="description">Complex conditions should be simplified and extracted into well-named methods if necessary.</span></summary>
     <ul>
@@ -203,36 +203,16 @@
     </ul>
   </details>
   <details id="LongMethod" open="open">
-    <summary class="rule-container"><span class="rule">LongMethod: 3 </span><span class="description">One method should have one responsibility. Long methods tend to handle many things at once. Prefer smaller methods to make them easier to understand.</span></summary>
+    <summary class="rule-container"><span class="rule">LongMethod: 1 </span><span class="description">One method should have one responsibility. Long methods tend to handle many things at once. Prefer smaller methods to make them easier to understand.</span></summary>
     <ul>
-      <li><span class="location">buildSrc/src/main/kotlin/plugins/dependencies-codegen.gradle.kts:107:5</span><span class="message">The function buildHubdleDependencies is too long (66). The maximum length is 60.</span>
-        <pre><code><span class="lineno"> 104 </span>        }
-<span class="lineno"> 105 </span>}
-<span class="lineno"> 106 </span>
-<span class="lineno"> 107 </span>fun <span class="error">buildHubdleDependencies</span>() {
-<span class="lineno"> 108 </span>    buildDir.resolve(&quot;generated/main/kotlin/hubdle_dependencies.kt&quot;).apply {
-<span class="lineno"> 109 </span>        parentFile.mkdirs()
-<span class="lineno"> 110 </span>        createNewFile()
-</code></pre>
-      </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatformDarwin.kt:11:14</span><span class="message">The function configureMultiplatformDarwin is too long (100). The maximum length is 60.</span>
-        <pre><code><span class="lineno">   8 </span>import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
-<span class="lineno">   9 </span>import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet as KSS
-<span class="lineno">  10 </span>
-<span class="lineno">  11 </span>internal fun <span class="error">configureMultiplatformDarwin</span>(project: Project) {
-<span class="lineno">  12 </span>    if (project.hubdleState.kotlin.multiplatform.darwin.isEnabled) {
-<span class="lineno">  13 </span>        project.configure&lt;KotlinMultiplatformExtension&gt; {
-<span class="lineno">  14 </span>            val commonMain: KSS by sourceSets.getting
-</code></pre>
-      </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatformNative.kt:11:14</span><span class="message">The function configureMultiplatformNative is too long (144). The maximum length is 60.</span>
-        <pre><code><span class="lineno">   8 </span>import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
-<span class="lineno">   9 </span>import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet as KSS
-<span class="lineno">  10 </span>
-<span class="lineno">  11 </span>internal fun <span class="error">configureMultiplatformNative</span>(project: Project) {
-<span class="lineno">  12 </span>    if (project.hubdleState.kotlin.multiplatform.native.isEnabled) {
-<span class="lineno">  13 </span>        project.configure&lt;KotlinMultiplatformExtension&gt; {
-<span class="lineno">  14 </span>            val commonMain: KSS by sourceSets.getting
+      <li><span class="location">buildSrc/src/main/kotlin/plugins/dependencies-codegen.gradle.kts:115:5</span><span class="message">The function buildHubdleDependencies is too long (66). The maximum length is 60.</span>
+        <pre><code><span class="lineno"> 112 </span>        }
+<span class="lineno"> 113 </span>}
+<span class="lineno"> 114 </span>
+<span class="lineno"> 115 </span>fun <span class="error">buildHubdleDependencies</span>() {
+<span class="lineno"> 116 </span>    buildDir.resolve(&quot;generated/main/kotlin/hubdle_dependencies.kt&quot;).apply {
+<span class="lineno"> 117 </span>        parentFile.mkdirs()
+<span class="lineno"> 118 </span>        createNewFile()
 </code></pre>
       </li>
     </ul>
@@ -240,14 +220,14 @@
   <details id="NestedBlockDepth" open="open">
     <summary class="rule-container"><span class="rule">NestedBlockDepth: 1 </span><span class="description">Excessive nesting leads to hidden complexity. Prefer extracting code to make it easier to understand.</span></summary>
     <ul>
-      <li><span class="location">buildSrc/src/main/kotlin/plugins/dependencies-codegen.gradle.kts:107:5</span><span class="message">Function buildHubdleDependencies is nested too deeply.</span>
-        <pre><code><span class="lineno"> 104 </span>        }
-<span class="lineno"> 105 </span>}
-<span class="lineno"> 106 </span>
-<span class="lineno"> 107 </span>fun <span class="error">buildHubdleDependencies</span>() {
-<span class="lineno"> 108 </span>    buildDir.resolve(&quot;generated/main/kotlin/hubdle_dependencies.kt&quot;).apply {
-<span class="lineno"> 109 </span>        parentFile.mkdirs()
-<span class="lineno"> 110 </span>        createNewFile()
+      <li><span class="location">buildSrc/src/main/kotlin/plugins/dependencies-codegen.gradle.kts:115:5</span><span class="message">Function buildHubdleDependencies is nested too deeply.</span>
+        <pre><code><span class="lineno"> 112 </span>        }
+<span class="lineno"> 113 </span>}
+<span class="lineno"> 114 </span>
+<span class="lineno"> 115 </span>fun <span class="error">buildHubdleDependencies</span>() {
+<span class="lineno"> 116 </span>    buildDir.resolve(&quot;generated/main/kotlin/hubdle_dependencies.kt&quot;).apply {
+<span class="lineno"> 117 </span>        parentFile.mkdirs()
+<span class="lineno"> 118 </span>        createNewFile()
 </code></pre>
       </li>
     </ul>
@@ -667,10 +647,30 @@
       </li>
     </ul>
   </details>
-  <h3>style: 5</h3>
+  <h3>style: 7</h3>
   <details id="ForbiddenComment" open="open">
-    <summary class="rule-container"><span class="rule">ForbiddenComment: 4 </span><span class="description">Flags a forbidden comment.</span></summary>
+    <summary class="rule-container"><span class="rule">ForbiddenComment: 6 </span><span class="description">Flags a forbidden comment.</span></summary>
     <ul>
+      <li><span class="location">build.gradle.kts:14:20</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
+        <pre><code><span class="lineno">  11 </span>    `kotlinx-binary-compatibility-validator`
+<span class="lineno">  12 </span>    `javiersc-nexus`
+<span class="lineno">  13 </span>    `javiersc-readme-badges-generator`
+<span class="lineno">  14 </span>    `build-itself` <span class="error">// TODO: keep with Hubdle migration</span>
+<span class="lineno">  15 </span>}
+<span class="lineno">  16 </span>
+<span class="lineno">  17 </span>// TODO: remove in Hubdle migration
+</code></pre>
+      </li>
+      <li><span class="location">build.gradle.kts:17:1</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
+        <pre><code><span class="lineno">  14 </span>    `build-itself` // TODO: keep with Hubdle migration
+<span class="lineno">  15 </span>}
+<span class="lineno">  16 </span>
+<span class="lineno">  17 </span><span class="error">// TODO: remove in Hubdle migration</span>
+<span class="lineno">  18 </span>allprojects {
+<span class="lineno">  19 </span>    tasks.withType&lt;JavaCompile&gt;().configureEach {
+<span class="lineno">  20 </span>        sourceCompatibility = &quot;11&quot;
+</code></pre>
+      </li>
       <li><span class="location">buildSrc/build.gradle.kts:15:5</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
         <pre><code><span class="lineno">  12 </span>    implementation(gradleApi())
 <span class="lineno">  13 </span>    implementation(localGroovy())
@@ -716,14 +716,14 @@
   <details id="MagicNumber" open="open">
     <summary class="rule-container"><span class="rule">MagicNumber: 1 </span><span class="description">Report magic numbers. Magic number is a numeric literal that is not defined as a constant and hence it's unclear what the purpose of this number is. It's better to declare such numbers as constants and give them a proper name. By default, -1, 0, 1, and 2 are not considered to be magic numbers.</span></summary>
     <ul>
-      <li><span class="location">buildSrc/src/main/kotlin/plugins/dependencies-codegen.gradle.kts:191:56</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
-        <pre><code><span class="lineno"> 188 </span>    replace(&quot;.&quot;, &quot;_&quot;).replace(&quot;-&quot;, &quot;_&quot;).toUpperCase(Locale.getDefault())
-<span class="lineno"> 189 </span>
-<span class="lineno"> 190 </span>val MinimalExternalModuleDependency.hasCommonEndingDomain: Boolean
-<span class="lineno"> 191 </span>    get() = module.group.split(&quot;.&quot;).first().count() &lt;= <span class="error">3</span>
-<span class="lineno"> 192 </span>
-<span class="lineno"> 193 </span>val MinimalExternalModuleDependency.endAndStartWithSameName: Boolean
-<span class="lineno"> 194 </span>    get() = module.name.startsWith(module.group.substringAfterLast(&quot;.&quot;))
+      <li><span class="location">buildSrc/src/main/kotlin/plugins/dependencies-codegen.gradle.kts:199:56</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno"> 196 </span>    replace(&quot;.&quot;, &quot;_&quot;).replace(&quot;-&quot;, &quot;_&quot;).toUpperCase(Locale.getDefault())
+<span class="lineno"> 197 </span>
+<span class="lineno"> 198 </span>val MinimalExternalModuleDependency.hasCommonEndingDomain: Boolean
+<span class="lineno"> 199 </span>    get() = module.group.split(&quot;.&quot;).first().count() &lt;= <span class="error">3</span>
+<span class="lineno"> 200 </span>
+<span class="lineno"> 201 </span>val MinimalExternalModuleDependency.endAndStartWithSameName: Boolean
+<span class="lineno"> 202 </span>    get() = module.name.startsWith(module.group.substringAfterLast(&quot;.&quot;))
 </code></pre>
       </li>
     </ul>
@@ -731,7 +731,7 @@
 </div>
 
 
-generated with <a href="https://detekt.dev/">detekt version 1.20.0</a> on 2022-07-13 20:50:11 UTC.
+generated with <a href="https://detekt.dev/">detekt version 1.20.0</a> on 2022-07-13 23:48:55 UTC.
 
 </body>
 </html>

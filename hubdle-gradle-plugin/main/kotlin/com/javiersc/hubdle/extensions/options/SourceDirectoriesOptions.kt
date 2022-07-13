@@ -33,23 +33,38 @@ internal fun AndroidSourceSet.configDefaultAndroidSourceSets() {
 }
 
 internal fun KotlinSourceSet.configKotlinDefaultSourceSets() {
-    kotlin.setSrcDirs(listOf("${this.name}/kotlin"))
-    resources.setSrcDirs(listOf("${this.name}/resources"))
+    val directory = calculateSourceSetDirectory()
+
+    kotlin.setSrcDirs(listOf("$directory/kotlin"))
+    resources.setSrcDirs(listOf("$directory/resources"))
 }
 
 internal fun SourceSet.configJavaDefaultSourceSets() {
-    java.setSrcDirs(listOf("${this.name}/java"))
-    resources.setSrcDirs(listOf("${this.name}/resources"))
+    val directory = name.calculateSourceSetDirectory()
+    java.setSrcDirs(listOf("$directory/java"))
+    resources.setSrcDirs(listOf("$directory/resources"))
 }
 
 internal fun Named.configAndroidSourceDirectory(sourceSetToType: Pair<AndroidSourceFile, String>) {
     val (sourceSet, type) = sourceSetToType
-    sourceSet.srcFile("${this.name}/$type")
+    sourceSet.srcFile("${this.calculateSourceSetDirectory()}/$type")
 }
 
 internal fun Named.configAndroidSourceDirectorySet(
     sourceSetToType: Pair<AndroidSourceDirectorySet, String>
 ) {
     val (sourceSet, type) = sourceSetToType
-    sourceSet.setSrcDirs(listOf("${this.name}/$type"))
+    sourceSet.setSrcDirs(listOf("${this.calculateSourceSetDirectory()}/$type"))
 }
+
+private fun String.calculateSourceSetDirectory(): String {
+    val directory =
+        when {
+            this.endsWith("Main") -> "${this.substringBeforeLast("Main")}/main"
+            this.endsWith("Test") -> "${this.substringBeforeLast("Test")}/test"
+            else -> this
+        }
+    return directory
+}
+
+private fun Named.calculateSourceSetDirectory(): String = this.name.calculateSourceSetDirectory()

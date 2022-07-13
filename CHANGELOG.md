@@ -6,11 +6,15 @@
 
 ### Changed
 
+- multiplatform source set format from `commonName` to `common/name`
+
 ### Deprecated
 
 ### Removed
 
 ### Fixed
+
+- linux test source sets in Multiplatform depending on main source sets
 
 ### Updated
 

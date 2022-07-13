@@ -24,7 +24,6 @@ import com.javiersc.hubdle.extensions.options.configurePublishingExtension
 import com.javiersc.hubdle.extensions.options.configureSigningForPublishing
 import org.gradle.api.Project
 import org.gradle.api.plugins.JavaPluginExtension
-import org.gradle.configurationcache.extensions.capitalized
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.getValue
 import org.gradle.kotlin.dsl.getting
@@ -32,7 +31,7 @@ import org.gradle.kotlin.dsl.the
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
-import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
+import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet as KSS
 
 internal fun configureMultiplatform(project: Project) {
     if (project.hubdleState.kotlin.multiplatform.isEnabled) {
@@ -58,11 +57,12 @@ internal fun configureMultiplatformAndroid(project: Project) {
 
     if (androidState.isEnabled) {
         project.pluginManager.apply(PluginIds.Android.library)
+        println("HELLO")
         project.configure<LibraryExtension> {
             compileSdk = project.hubdleState.kotlin.android.compileSdk
             defaultConfig.minSdk = project.hubdleState.kotlin.android.minSdk
 
-            sourceSets.all { manifest.srcFile("android${name.capitalized()}/AndroidManifest.xml") }
+            sourceSets.all { manifest.srcFile("android/$name/AndroidManifest.xml") }
         }
 
         project.configure<KotlinMultiplatformExtension> {
@@ -84,25 +84,35 @@ internal fun configureMultiplatformAndroid(project: Project) {
 internal fun configureMultiplatformIOS(project: Project) {
     if (project.hubdleState.kotlin.multiplatform.ios.isEnabled) {
         project.configure<KotlinMultiplatformExtension> {
-            val commonMain: KotlinSourceSet by sourceSets.getting
-            val iosArm32Main: KotlinSourceSet? = sourceSets.findByName("iosArm32Main")
-            val iosArm64Main: KotlinSourceSet? = sourceSets.findByName("iosArm64Main")
-            val iosX64Main: KotlinSourceSet? = sourceSets.findByName("iosX64Main")
-            val iosSimulatorArm64Main: KotlinSourceSet? =
-                sourceSets.findByName("iosSimulatorArm64Main")
+            val commonMain: KSS by sourceSets.getting
+            val iosArm32Main: KSS? = sourceSets.findByName("iosArm32Main")
+            val iosArm64Main: KSS? = sourceSets.findByName("iosArm64Main")
+            val iosX64Main: KSS? = sourceSets.findByName("iosX64Main")
+            val iosSimulatorArm64Main: KSS? = sourceSets.findByName("iosSimulatorArm64Main")
 
-            val iosSourceSets: List<KotlinSourceSet> =
+            val commonTest: KSS by sourceSets.getting
+            val iosArm32Test: KSS? = sourceSets.findByName("iosArm32Test")
+            val iosArm64Test: KSS? = sourceSets.findByName("iosArm64Test")
+            val iosX64Test: KSS? = sourceSets.findByName("iosX64Test")
+            val iosSimulatorArm64Test: KSS? = sourceSets.findByName("iosSimulatorArm64Test")
+
+            val iosMainSourceSets: List<KSS> =
                 listOfNotNull(iosArm32Main, iosArm64Main, iosX64Main, iosSimulatorArm64Main)
+
+            val iosTestSourceSets: List<KSS> =
+                listOfNotNull(iosArm32Test, iosArm64Test, iosX64Test, iosSimulatorArm64Test)
 
             val iosMain = sourceSets.maybeCreate("iosMain")
             val iosTest = sourceSets.maybeCreate("iosTest")
 
             iosMain.dependsOn(commonMain)
-            for (iosSourceSet in iosSourceSets) {
-                iosSourceSet.dependsOn(iosMain)
+            for (iosMainSourceSet in iosMainSourceSets) {
+                iosMainSourceSet.dependsOn(iosMain)
             }
-
-            iosTest.dependsOn(iosMain)
+            iosTest.dependsOn(commonTest)
+            for (iosTestSourceSet in iosTestSourceSets) {
+                iosTestSourceSet.dependsOn(iosTest)
+            }
         }
     }
 }
@@ -145,7 +155,6 @@ internal fun configureMultiplatformJvmAndAndroid(project: Project) {
             val jvmAndAndroidTest = sourceSets.create("jvmAndAndroidTest")
 
             jvmAndAndroidMain.dependsOn(sourceSets.getByName("commonMain"))
-            jvmAndAndroidTest.dependsOn(jvmAndAndroidMain)
             jvmAndAndroidTest.dependsOn(sourceSets.getByName("commonTest"))
 
             sourceSets.findByName("jvmMain")?.dependsOn(jvmAndAndroidMain)
@@ -200,14 +209,21 @@ internal fun configureMultiplatformJs(project: Project) {
 internal fun configureMultiplatformLinux(project: Project) {
     if (project.hubdleState.kotlin.multiplatform.linux.isEnabled) {
         project.configure<KotlinMultiplatformExtension> {
-            val commonMain: KotlinSourceSet by sourceSets.getting
-            val linuxArm64Main: KotlinSourceSet? = sourceSets.findByName("linuxArm64Main")
-            val linuxArm32HfpMain: KotlinSourceSet? = sourceSets.findByName("linuxArm32HfpMain")
-            val linuxMips32Main: KotlinSourceSet? = sourceSets.findByName("linuxMips32Main")
-            val linuxMipsel32Main: KotlinSourceSet? = sourceSets.findByName("linuxMipsel32Main")
-            val linuxX64Main: KotlinSourceSet? = sourceSets.findByName("linuxX64Main")
+            val commonMain: KSS by sourceSets.getting
+            val linuxArm64Main: KSS? = sourceSets.findByName("linuxArm64Main")
+            val linuxArm32HfpMain: KSS? = sourceSets.findByName("linuxArm32HfpMain")
+            val linuxMips32Main: KSS? = sourceSets.findByName("linuxMips32Main")
+            val linuxMipsel32Main: KSS? = sourceSets.findByName("linuxMipsel32Main")
+            val linuxX64Main: KSS? = sourceSets.findByName("linuxX64Main")
 
-            val linuxSourceSets: List<KotlinSourceSet> =
+            val commonTest: KSS by sourceSets.getting
+            val linuxArm64Test: KSS? = sourceSets.findByName("linuxArm64Test")
+            val linuxArm32HfpTest: KSS? = sourceSets.findByName("linuxArm32HfpTest")
+            val linuxMips32Test: KSS? = sourceSets.findByName("linuxMips32Test")
+            val linuxMipsel32Test: KSS? = sourceSets.findByName("linuxMipsel32Test")
+            val linuxX64Test: KSS? = sourceSets.findByName("linuxX64Test")
+
+            val linuxMainSourceSets: List<KSS> =
                 listOfNotNull(
                     linuxArm64Main,
                     linuxArm32HfpMain,
@@ -216,15 +232,27 @@ internal fun configureMultiplatformLinux(project: Project) {
                     linuxX64Main,
                 )
 
+            val linuxTestSourceSets: List<KSS> =
+                listOfNotNull(
+                    linuxArm64Test,
+                    linuxArm32HfpTest,
+                    linuxMips32Test,
+                    linuxMipsel32Test,
+                    linuxX64Test,
+                )
+
             val linuxMain = sourceSets.maybeCreate("linuxMain")
             val linuxTest = sourceSets.maybeCreate("linuxTest")
 
             linuxMain.dependsOn(commonMain)
-            for (linuxSourceSet in linuxSourceSets) {
-                linuxSourceSet.dependsOn(linuxMain)
+            for (linuxMainSourceSet in linuxMainSourceSets) {
+                linuxMainSourceSet.dependsOn(linuxMain)
             }
 
-            linuxTest.dependsOn(linuxMain)
+            linuxTest.dependsOn(commonTest)
+            for (linuxTestSourceSet in linuxTestSourceSets) {
+                linuxTestSourceSet.dependsOn(linuxTest)
+            }
         }
     }
 }
@@ -262,42 +290,69 @@ internal fun configureMultiplatformLinuxX64(project: Project) {
 internal fun configureMultiplatformNative(project: Project) {
     if (project.hubdleState.kotlin.multiplatform.native.isEnabled) {
         project.configure<KotlinMultiplatformExtension> {
-            val commonMain: KotlinSourceSet by sourceSets.getting
+            val commonMain: KSS by sourceSets.getting
+            val iosMain: KSS? = sourceSets.findByName("iosMain")
+            val iosArm32Main: KSS? = sourceSets.findByName("iosArm32Main")
+            val iosArm64Main: KSS? = sourceSets.findByName("iosArm64Main")
+            val iosSimulatorArm64Main: KSS? = sourceSets.findByName("iosSimulatorArm64Main")
+            val iosX64Main: KSS? = sourceSets.findByName("iosX64Main")
+            val linuxMain: KSS? = sourceSets.findByName("linuxMain")
+            val linuxArm32HfpMain: KSS? = sourceSets.findByName("linuxArm32HfpMain")
+            val linuxArm64Main: KSS? = sourceSets.findByName("linuxArm64Main")
+            val linuxMips32Main: KSS? = sourceSets.findByName("linuxMips32Main")
+            val linuxMipsel32Main: KSS? = sourceSets.findByName("linuxMipsel32Main")
+            val linuxX64Main: KSS? = sourceSets.findByName("linuxX64Main")
+            val macosMain: KSS? = sourceSets.findByName("macosMain")
+            val macosArm64Main: KSS? = sourceSets.findByName("macosArm64Main")
+            val macosX64Main: KSS? = sourceSets.findByName("macosX64Main")
+            val mingwMain: KSS? = sourceSets.findByName("mingwMain")
+            val mingwX64Main: KSS? = sourceSets.findByName("mingwX64Main")
+            val mingwX86Main: KSS? = sourceSets.findByName("mingwX86Main")
+            val tvosMain: KSS? = sourceSets.findByName("tvosMain")
+            val tvosArm64Main: KSS? = sourceSets.findByName("tvosArm64Main")
+            val tvosSimulatorArm64Main: KSS? = sourceSets.findByName("tvosSimulatorArm64Main")
+            val tvosX64Main: KSS? = sourceSets.findByName("tvosX64Main")
+            val wasmMain: KSS? = sourceSets.findByName("wasmMain")
+            val wasm32Main: KSS? = sourceSets.findByName("wasm32Main")
+            val watchosMain: KSS? = sourceSets.findByName("watchosMain")
+            val watchosArm32Main: KSS? = sourceSets.findByName("watchosArm32Main")
+            val watchosArm64Main: KSS? = sourceSets.findByName("watchosArm64Main")
+            val watchosSimulatorArm64Main: KSS? = sourceSets.findByName("watchosSimulatorArm64Main")
+            val watchosX64Main: KSS? = sourceSets.findByName("watchosX64Main")
+            val watchosX86Main: KSS? = sourceSets.findByName("watchosX86Main")
 
-            val iosMain: KotlinSourceSet? = sourceSets.findByName("iosMain")
-            val iosArm32Main: KotlinSourceSet? = sourceSets.findByName("iosArm32Main")
-            val iosArm64Main: KotlinSourceSet? = sourceSets.findByName("iosArm64Main")
-            val iosSimulatorArm64Main: KotlinSourceSet? =
-                sourceSets.findByName("iosSimulatorArm64Main")
-            val iosX64Main: KotlinSourceSet? = sourceSets.findByName("iosX64Main")
-            val linuxMain: KotlinSourceSet? = sourceSets.findByName("linuxMain")
-            val linuxArm32HfpMain: KotlinSourceSet? = sourceSets.findByName("linuxArm32HfpMain")
-            val linuxArm64Main: KotlinSourceSet? = sourceSets.findByName("linuxArm64Main")
-            val linuxMips32Main: KotlinSourceSet? = sourceSets.findByName("linuxMips32Main")
-            val linuxMipsel32Main: KotlinSourceSet? = sourceSets.findByName("linuxMipsel32Main")
-            val linuxX64Main: KotlinSourceSet? = sourceSets.findByName("linuxX64Main")
-            val macosMain: KotlinSourceSet? = sourceSets.findByName("macosMain")
-            val macosArm64Main: KotlinSourceSet? = sourceSets.findByName("macosArm64Main")
-            val macosX64Main: KotlinSourceSet? = sourceSets.findByName("macosX64Main")
-            val mingwMain: KotlinSourceSet? = sourceSets.findByName("mingwMain")
-            val mingwX64Main: KotlinSourceSet? = sourceSets.findByName("mingwX64Main")
-            val mingwX86Main: KotlinSourceSet? = sourceSets.findByName("mingwX86Main")
-            val tvosMain: KotlinSourceSet? = sourceSets.findByName("tvosMain")
-            val tvosArm64Main: KotlinSourceSet? = sourceSets.findByName("tvosArm64Main")
-            val tvosSimulatorArm64Main: KotlinSourceSet? =
-                sourceSets.findByName("tvosSimulatorArm64Main")
-            val tvosX64Main: KotlinSourceSet? = sourceSets.findByName("tvosX64Main")
-            val wasmMain: KotlinSourceSet? = sourceSets.findByName("wasmMain")
-            val wasm32Main: KotlinSourceSet? = sourceSets.findByName("wasm32Main")
-            val watchosMain: KotlinSourceSet? = sourceSets.findByName("watchosMain")
-            val watchosArm32Main: KotlinSourceSet? = sourceSets.findByName("watchosArm32Main")
-            val watchosArm64Main: KotlinSourceSet? = sourceSets.findByName("watchosArm64Main")
-            val watchosSimulatorArm64Main: KotlinSourceSet? =
-                sourceSets.findByName("watchosSimulatorArm64Main")
-            val watchosX64Main: KotlinSourceSet? = sourceSets.findByName("watchosX64Main")
-            val watchosX86Main: KotlinSourceSet? = sourceSets.findByName("watchosX86Main")
+            val commonTest: KSS by sourceSets.getting
+            val iosTest: KSS? = sourceSets.findByName("iosTest")
+            val iosArm32Test: KSS? = sourceSets.findByName("iosArm32Test")
+            val iosArm64Test: KSS? = sourceSets.findByName("iosArm64Test")
+            val iosSimulatorArm64Test: KSS? = sourceSets.findByName("iosSimulatorArm64Test")
+            val iosX64Test: KSS? = sourceSets.findByName("iosX64Test")
+            val linuxTest: KSS? = sourceSets.findByName("linuxTest")
+            val linuxArm32HfpTest: KSS? = sourceSets.findByName("linuxArm32HfpTest")
+            val linuxArm64Test: KSS? = sourceSets.findByName("linuxArm64Test")
+            val linuxMips32Test: KSS? = sourceSets.findByName("linuxMips32Test")
+            val linuxMipsel32Test: KSS? = sourceSets.findByName("linuxMipsel32Test")
+            val linuxX64Test: KSS? = sourceSets.findByName("linuxX64Test")
+            val macosTest: KSS? = sourceSets.findByName("macosTest")
+            val macosArm64Test: KSS? = sourceSets.findByName("macosArm64Test")
+            val macosX64Test: KSS? = sourceSets.findByName("macosX64Test")
+            val mingwTest: KSS? = sourceSets.findByName("mingwTest")
+            val mingwX64Test: KSS? = sourceSets.findByName("mingwX64Test")
+            val mingwX86Test: KSS? = sourceSets.findByName("mingwX86Test")
+            val tvosTest: KSS? = sourceSets.findByName("tvosTest")
+            val tvosArm64Test: KSS? = sourceSets.findByName("tvosArm64Test")
+            val tvosSimulatorArm64Test: KSS? = sourceSets.findByName("tvosSimulatorArm64Test")
+            val tvosX64Test: KSS? = sourceSets.findByName("tvosX64Test")
+            val wasmTest: KSS? = sourceSets.findByName("wasmTest")
+            val wasm32Test: KSS? = sourceSets.findByName("wasm32Test")
+            val watchosTest: KSS? = sourceSets.findByName("watchosTest")
+            val watchosArm32Test: KSS? = sourceSets.findByName("watchosArm32Test")
+            val watchosArm64Test: KSS? = sourceSets.findByName("watchosArm64Test")
+            val watchosSimulatorArm64Test: KSS? = sourceSets.findByName("watchosSimulatorArm64Test")
+            val watchosX64Test: KSS? = sourceSets.findByName("watchosX64Test")
+            val watchosX86Test: KSS? = sourceSets.findByName("watchosX86Test")
 
-            val nativeSourceSets: List<KotlinSourceSet> =
+            val nativeMainSourceSets: List<KSS> =
                 listOfNotNull(
                     iosMain,
                     iosArm32Main,
@@ -330,15 +385,51 @@ internal fun configureMultiplatformNative(project: Project) {
                     watchosX86Main,
                 )
 
+            val nativeTestSourceSets: List<KSS> =
+                listOfNotNull(
+                    iosTest,
+                    iosArm32Test,
+                    iosArm64Test,
+                    iosSimulatorArm64Test,
+                    iosX64Test,
+                    linuxTest,
+                    linuxArm32HfpTest,
+                    linuxArm64Test,
+                    linuxMips32Test,
+                    linuxMipsel32Test,
+                    linuxX64Test,
+                    macosTest,
+                    macosArm64Test,
+                    macosX64Test,
+                    mingwTest,
+                    mingwX64Test,
+                    mingwX86Test,
+                    tvosTest,
+                    tvosArm64Test,
+                    tvosSimulatorArm64Test,
+                    tvosX64Test,
+                    wasmTest,
+                    wasm32Test,
+                    watchosTest,
+                    watchosArm32Test,
+                    watchosArm64Test,
+                    watchosSimulatorArm64Test,
+                    watchosX64Test,
+                    watchosX86Test,
+                )
+
             val nativeMain = sourceSets.maybeCreate("nativeMain")
             val nativeTest = sourceSets.maybeCreate("nativeTest")
 
             nativeMain.dependsOn(commonMain)
-            for (nativeSourceSet in nativeSourceSets) {
-                nativeSourceSet.dependsOn(nativeMain)
+            for (nativeMainSourceSet in nativeMainSourceSets) {
+                nativeMainSourceSet.dependsOn(nativeMain)
             }
 
-            nativeTest.dependsOn(nativeMain)
+            nativeTest.dependsOn(commonTest)
+            for (nativeTestSourceSet in nativeTestSourceSets) {
+                nativeTestSourceSet.dependsOn(nativeTest)
+            }
         }
     }
 }
@@ -346,21 +437,29 @@ internal fun configureMultiplatformNative(project: Project) {
 internal fun configureMultiplatformMacOS(project: Project) {
     if (project.hubdleState.kotlin.multiplatform.macos.isEnabled) {
         project.configure<KotlinMultiplatformExtension> {
-            val commonMain: KotlinSourceSet by sourceSets.getting
-            val macosX64Main: KotlinSourceSet? = sourceSets.findByName("macosX64Main")
-            val macosArm64Main: KotlinSourceSet? = sourceSets.findByName("macosArm64Main")
+            val commonMain: KSS by sourceSets.getting
+            val macosX64Main: KSS? = sourceSets.findByName("macosX64Main")
+            val macosArm64Main: KSS? = sourceSets.findByName("macosArm64Main")
 
-            val macosSourceSets: List<KotlinSourceSet> = listOfNotNull(macosX64Main, macosArm64Main)
+            val commonTest: KSS by sourceSets.getting
+            val macosX64Test: KSS? = sourceSets.findByName("macosX64Test")
+            val macosArm64Test: KSS? = sourceSets.findByName("macosArm64Test")
+
+            val macosMainSourceSets: List<KSS> = listOfNotNull(macosX64Main, macosArm64Main)
+            val macosTestSourceSets: List<KSS> = listOfNotNull(macosX64Test, macosArm64Test)
 
             val macosMain = sourceSets.maybeCreate("macosMain")
             val macosTest = sourceSets.maybeCreate("macosTest")
 
             macosMain.dependsOn(commonMain)
-            for (macosSourceSet in macosSourceSets) {
-                macosMain.dependsOn(macosSourceSet)
+            for (macosMainSourceSet in macosMainSourceSets) {
+                macosMainSourceSet.dependsOn(macosMain)
             }
 
-            macosTest.dependsOn(macosMain)
+            macosTest.dependsOn(commonTest)
+            for (macosTestSourceSet in macosTestSourceSets) {
+                macosTestSourceSet.dependsOn(macosTest)
+            }
         }
     }
 }
@@ -380,21 +479,29 @@ internal fun configureMultiplatformMacOSX64(project: Project) {
 internal fun configureMultiplatformMinGW(project: Project) {
     if (project.hubdleState.kotlin.multiplatform.mingw.isEnabled) {
         project.configure<KotlinMultiplatformExtension> {
-            val commonMain: KotlinSourceSet by sourceSets.getting
-            val mingwX64Main: KotlinSourceSet? = sourceSets.findByName("mingwX64Main")
-            val mingwX86Main: KotlinSourceSet? = sourceSets.findByName("mingwX86Main")
+            val commonMain: KSS by sourceSets.getting
+            val mingwX64Main: KSS? = sourceSets.findByName("mingwX64Main")
+            val mingwX86Main: KSS? = sourceSets.findByName("mingwX86Main")
 
-            val mingwSourceSets: List<KotlinSourceSet> = listOfNotNull(mingwX64Main, mingwX86Main)
+            val commonTest: KSS by sourceSets.getting
+            val mingwX64Test: KSS? = sourceSets.findByName("mingwX64Test")
+            val mingwX86Test: KSS? = sourceSets.findByName("mingwX86Test")
+
+            val mingwMainSourceSets: List<KSS> = listOfNotNull(mingwX64Main, mingwX86Main)
+            val mingwTestSourceSets: List<KSS> = listOfNotNull(mingwX64Test, mingwX86Test)
 
             val mingwMain = sourceSets.maybeCreate("mingwMain")
             val mingwTest = sourceSets.maybeCreate("mingwTest")
 
             mingwMain.dependsOn(commonMain)
-            for (mingwSourceSet in mingwSourceSets) {
-                mingwSourceSet.dependsOn(mingwMain)
+            for (mingwMainSourceSet in mingwMainSourceSets) {
+                mingwMainSourceSet.dependsOn(mingwMain)
             }
 
-            mingwTest.dependsOn(mingwMain)
+            mingwTest.dependsOn(commonTest)
+            for (mingwTestSourceSet in mingwTestSourceSets) {
+                mingwTestSourceSet.dependsOn(mingwTest)
+            }
         }
     }
 }
@@ -414,25 +521,33 @@ internal fun configureMultiplatformMinGWX86(project: Project) {
 internal fun configureMultiplatformTvOS(project: Project) {
     if (project.hubdleState.kotlin.multiplatform.tvos.isEnabled) {
         project.configure<KotlinMultiplatformExtension> {
-            val commonMain: KotlinSourceSet by sourceSets.getting
+            val commonMain: KSS by sourceSets.getting
+            val tvosArm64Main: KSS? = sourceSets.findByName("tvosArm64Main")
+            val tvosX64Main: KSS? = sourceSets.findByName("tvosX64Main")
+            val tvosSimulatorArm64Main: KSS? = sourceSets.findByName("tvosSimulatorArm64Main")
 
-            val tvosArm64Main: KotlinSourceSet? = sourceSets.findByName("tvosArm64Main")
-            val tvosX64Main: KotlinSourceSet? = sourceSets.findByName("tvosX64Main")
-            val tvosSimulatorArm64Main: KotlinSourceSet? =
-                sourceSets.findByName("tvosSimulatorArm64Main")
+            val commonTest: KSS by sourceSets.getting
+            val tvosArm64Test: KSS? = sourceSets.findByName("tvosArm64Test")
+            val tvosX64Test: KSS? = sourceSets.findByName("tvosX64Test")
+            val tvosSimulatorArm64Test: KSS? = sourceSets.findByName("tvosSimulatorArm64Test")
 
-            val tvosSourceSets: List<KotlinSourceSet> =
+            val tvosMainSourceSets: List<KSS> =
                 listOfNotNull(tvosArm64Main, tvosX64Main, tvosSimulatorArm64Main)
+            val tvosTestSourceSets: List<KSS> =
+                listOfNotNull(tvosArm64Test, tvosX64Test, tvosSimulatorArm64Test)
 
             val tvosMain = sourceSets.maybeCreate("tvosMain")
             val tvosTest = sourceSets.maybeCreate("tvosTest")
 
             tvosMain.dependsOn(commonMain)
-            for (tvosSourceSet in tvosSourceSets) {
-                tvosSourceSet.dependsOn(tvosMain)
+            for (tvosMainSourceSet in tvosMainSourceSets) {
+                tvosMainSourceSet.dependsOn(tvosMain)
             }
 
-            tvosTest.dependsOn(tvosMain)
+            tvosTest.dependsOn(commonTest)
+            for (tvosTestSourceSet in tvosTestSourceSets) {
+                tvosTestSourceSet.dependsOn(tvosTest)
+            }
         }
     }
 }
@@ -458,21 +573,27 @@ internal fun configureMultiplatformTvOSX64(project: Project) {
 internal fun configureMultiplatformWAsm(project: Project) {
     if (project.hubdleState.kotlin.multiplatform.wasm.isEnabled) {
         project.configure<KotlinMultiplatformExtension> {
-            val commonMain: KotlinSourceSet by sourceSets.getting
+            val commonMain: KSS by sourceSets.getting
+            val wasm32Main: KSS? = sourceSets.findByName("wasm32Main")
 
-            val wasm32Main: KotlinSourceSet? = sourceSets.findByName("wasm32Main")
+            val commonTest: KSS by sourceSets.getting
+            val wasm32Test: KSS? = sourceSets.findByName("wasm32Test")
 
-            val wasmSourceSets: List<KotlinSourceSet> = listOfNotNull(wasm32Main)
+            val wasmMainSourceSets: List<KSS> = listOfNotNull(wasm32Main)
+            val wasmTestSourceSets: List<KSS> = listOfNotNull(wasm32Test)
 
             val wasmMain = sourceSets.maybeCreate("wasmMain")
             val wasmTest = sourceSets.maybeCreate("wasmTest")
 
             wasmMain.dependsOn(commonMain)
-            for (wasmSourceSet in wasmSourceSets) {
-                wasmSourceSet.dependsOn(wasmMain)
+            for (wasmMainSourceSet in wasmMainSourceSets) {
+                wasmMainSourceSet.dependsOn(wasmMain)
             }
 
-            wasmTest.dependsOn(wasmMain)
+            wasmTest.dependsOn(commonTest)
+            for (wasmTestSourceSet in wasmTestSourceSets) {
+                wasmTestSourceSet.dependsOn(wasmTest)
+            }
         }
     }
 }
@@ -486,16 +607,21 @@ internal fun configureMultiplatformWAsm32(project: Project) {
 internal fun configureMultiplatformWatchOS(project: Project) {
     if (project.hubdleState.kotlin.multiplatform.watchos.isEnabled) {
         project.configure<KotlinMultiplatformExtension> {
-            val commonMain: KotlinSourceSet by sourceSets.getting
+            val commonMain: KSS by sourceSets.getting
+            val watchosArm32Main: KSS? = sourceSets.findByName("watchosArm32Main")
+            val watchosArm64Main: KSS? = sourceSets.findByName("watchosArm64Main")
+            val watchosX64Main: KSS? = sourceSets.findByName("watchosX64Main")
+            val watchosSimulatorArm64Main: KSS? = sourceSets.findByName("watchosSimulatorArm64Main")
+            val watchosX86Main: KSS? = sourceSets.findByName("watchosX86Main")
 
-            val watchosArm32Main: KotlinSourceSet? = sourceSets.findByName("watchosArm32Main")
-            val watchosArm64Main: KotlinSourceSet? = sourceSets.findByName("watchosArm64Main")
-            val watchosX64Main: KotlinSourceSet? = sourceSets.findByName("watchosX64Main")
-            val watchosSimulatorArm64Main: KotlinSourceSet? =
-                sourceSets.findByName("watchosSimulatorArm64Main")
-            val watchosX86Main: KotlinSourceSet? = sourceSets.findByName("watchosX86Main")
+            val commonTest: KSS by sourceSets.getting
+            val watchosArm32Test: KSS? = sourceSets.findByName("watchosArm32Test")
+            val watchosArm64Test: KSS? = sourceSets.findByName("watchosArm64Test")
+            val watchosX64Test: KSS? = sourceSets.findByName("watchosX64Test")
+            val watchosSimulatorArm64Test: KSS? = sourceSets.findByName("watchosSimulatorArm64Test")
+            val watchosX86Test: KSS? = sourceSets.findByName("watchosX86Test")
 
-            val watchosSourceSets: List<KotlinSourceSet> =
+            val watchosMainSourceSets: List<KSS> =
                 listOfNotNull(
                     watchosArm32Main,
                     watchosArm64Main,
@@ -503,16 +629,27 @@ internal fun configureMultiplatformWatchOS(project: Project) {
                     watchosSimulatorArm64Main,
                     watchosX86Main,
                 )
+            val watchosTestSourceSets: List<KSS> =
+                listOfNotNull(
+                    watchosArm32Test,
+                    watchosArm64Test,
+                    watchosX64Test,
+                    watchosSimulatorArm64Test,
+                    watchosX86Test,
+                )
 
             val watchosMain = sourceSets.maybeCreate("watchosMain")
             val watchosTest = sourceSets.maybeCreate("watchosTest")
 
             watchosMain.dependsOn(commonMain)
-            for (watchosSourceSet in watchosSourceSets) {
-                watchosSourceSet.dependsOn(watchosMain)
+            for (watchosMainSourceSet in watchosMainSourceSets) {
+                watchosMainSourceSet.dependsOn(watchosMain)
             }
 
-            watchosTest.dependsOn(watchosMain)
+            watchosTest.dependsOn(commonTest)
+            for (watchosTestSourceSet in watchosTestSourceSets) {
+                watchosTestSourceSet.dependsOn(watchosMain)
+            }
         }
     }
 }

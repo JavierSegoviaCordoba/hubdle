@@ -14,6 +14,10 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx:kotlinx-coroutines-test -> 1.6.4`
+- `org.jetbrains.kotlinx:kotlinx-coroutines-core -> 1.6.4`
+- `org.jetbrains.kotlinx:kotlinx-coroutines-android -> 1.6.4`
+
 ## [0.2.0-alpha.21] - 2022-07-12
 
 ### Added

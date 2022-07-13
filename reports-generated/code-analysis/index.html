@@ -157,11 +157,11 @@
 
 <div>
   <ul>
-    <li>796 number of properties</li>
-    <li>557 number of functions</li>
-    <li>246 number of classes</li>
+    <li>929 number of properties</li>
+    <li>562 number of functions</li>
+    <li>248 number of classes</li>
     <li>76 number of packages</li>
-    <li>190 number of kt files</li>
+    <li>204 number of kt files</li>
   </ul>
 </div>
 
@@ -170,22 +170,22 @@
 
 <div>
   <ul>
-    <li>10,525 lines of code (loc)</li>
-    <li>8,650 source lines of code (sloc)</li>
-    <li>5,798 logical lines of code (lloc)</li>
-    <li>42 comment lines of code (cloc)</li>
-    <li>1,065 cyclomatic complexity (mcc)</li>
-    <li>437 cognitive complexity</li>
-    <li>48 number of total code smells</li>
+    <li>11,009 lines of code (loc)</li>
+    <li>9,082 source lines of code (sloc)</li>
+    <li>6,101 logical lines of code (lloc)</li>
+    <li>41 comment lines of code (cloc)</li>
+    <li>1,102 cyclomatic complexity (mcc)</li>
+    <li>517 cognitive complexity</li>
+    <li>62 number of total code smells</li>
     <li>0% comment source ratio</li>
-    <li>183 mcc per 1,000 lloc</li>
-    <li>8 code smells per 1,000 lloc</li>
+    <li>180 mcc per 1,000 lloc</li>
+    <li>10 code smells per 1,000 lloc</li>
   </ul>
 </div>
 
 
 <h2>Findings</h2>
-<div>Total: 48
+<div>Total: 62
   <h3>complexity: 7</h3>
   <details id="ComplexCondition" open="open">
     <summary class="rule-container"><span class="rule">ComplexCondition: 1 </span><span class="description">Complex conditions should be simplified and extracted into well-named methods if necessary.</span></summary>
@@ -203,7 +203,7 @@
     </ul>
   </details>
   <details id="LongMethod" open="open">
-    <summary class="rule-container"><span class="rule">LongMethod: 2 </span><span class="description">One method should have one responsibility. Long methods tend to handle many things at once. Prefer smaller methods to make them easier to understand.</span></summary>
+    <summary class="rule-container"><span class="rule">LongMethod: 3 </span><span class="description">One method should have one responsibility. Long methods tend to handle many things at once. Prefer smaller methods to make them easier to understand.</span></summary>
     <ul>
       <li><span class="location">buildSrc/src/main/kotlin/plugins/dependencies-codegen.gradle.kts:107:5</span><span class="message">The function buildHubdleDependencies is too long (66). The maximum length is 60.</span>
         <pre><code><span class="lineno"> 104 </span>        }
@@ -215,14 +215,24 @@
 <span class="lineno"> 110 </span>        createNewFile()
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatform.kt:262:14</span><span class="message">The function configureMultiplatformNative is too long (78). The maximum length is 60.</span>
-        <pre><code><span class="lineno"> 259 </span>    }
-<span class="lineno"> 260 </span>}
-<span class="lineno"> 261 </span>
-<span class="lineno"> 262 </span>internal fun <span class="error">configureMultiplatformNative</span>(project: Project) {
-<span class="lineno"> 263 </span>    if (project.hubdleState.kotlin.multiplatform.native.isEnabled) {
-<span class="lineno"> 264 </span>        project.configure&lt;KotlinMultiplatformExtension&gt; {
-<span class="lineno"> 265 </span>            val commonMain: KotlinSourceSet by sourceSets.getting
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatformDarwin.kt:11:14</span><span class="message">The function configureMultiplatformDarwin is too long (100). The maximum length is 60.</span>
+        <pre><code><span class="lineno">   8 </span>import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+<span class="lineno">   9 </span>import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet as KSS
+<span class="lineno">  10 </span>
+<span class="lineno">  11 </span>internal fun <span class="error">configureMultiplatformDarwin</span>(project: Project) {
+<span class="lineno">  12 </span>    if (project.hubdleState.kotlin.multiplatform.darwin.isEnabled) {
+<span class="lineno">  13 </span>        project.configure&lt;KotlinMultiplatformExtension&gt; {
+<span class="lineno">  14 </span>            val commonMain: KSS by sourceSets.getting
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatformNative.kt:11:14</span><span class="message">The function configureMultiplatformNative is too long (144). The maximum length is 60.</span>
+        <pre><code><span class="lineno">   8 </span>import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+<span class="lineno">   9 </span>import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet as KSS
+<span class="lineno">  10 </span>
+<span class="lineno">  11 </span>internal fun <span class="error">configureMultiplatformNative</span>(project: Project) {
+<span class="lineno">  12 </span>    if (project.hubdleState.kotlin.multiplatform.native.isEnabled) {
+<span class="lineno">  13 </span>        project.configure&lt;KotlinMultiplatformExtension&gt; {
+<span class="lineno">  14 </span>            val commonMain: KSS by sourceSets.getting
 </code></pre>
       </li>
     </ul>
@@ -243,7 +253,7 @@
     </ul>
   </details>
   <details id="TooManyFunctions" open="open">
-    <summary class="rule-container"><span class="rule">TooManyFunctions: 3 </span><span class="description">Too many functions inside a/an file/class/object/interface always indicate a violation of the single responsibility principle. Maybe the file/class/object/interface wants to manage too many things at once. Extract functionality which clearly belongs together.</span></summary>
+    <summary class="rule-container"><span class="rule">TooManyFunctions: 2 </span><span class="description">Too many functions inside a/an file/class/object/interface always indicate a violation of the single responsibility principle. Maybe the file/class/object/interface wants to manage too many things at once. Extract functionality which clearly belongs together.</span></summary>
     <ul>
       <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/ConfigExtension.kt:25:19</span><span class="message">Class 'ConfigExtension' with '11' functions detected. Defined threshold inside classes is set to '11'</span>
         <pre><code><span class="lineno">  22 </span>import org.jetbrains.kotlin.gradle.dsl.ExplicitApiMode
@@ -255,23 +265,14 @@
 <span class="lineno">  28 </span>    objects: ObjectFactory,
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/KotlinMultiplatformExtension.kt:59:19</span><span class="message">Class 'KotlinMultiplatformExtension' with '37' functions detected. Defined threshold inside classes is set to '11'</span>
-        <pre><code><span class="lineno">  56 </span>import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
-<span class="lineno">  57 </span>
-<span class="lineno">  58 </span>@HubdleDslMarker
-<span class="lineno">  59 </span>public open class <span class="error">KotlinMultiplatformExtension</span>
-<span class="lineno">  60 </span>@Inject
-<span class="lineno">  61 </span>constructor(
-<span class="lineno">  62 </span>    objects: ObjectFactory,
-</code></pre>
-      </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatform.kt:3:1</span><span class="message">File '/home/runner/work/hubdle/hubdle/hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatform.kt' with '41' functions detected. Defined threshold inside files is set to '11'</span>
-        <pre><code><span class="lineno">   1 </span>@file:Suppress(&quot;SpreadOperator&quot;)
-<span class="lineno">   2 </span>
-<span class="lineno">   3 </span><span class="error">package com.javiersc.hubdle.extensions.kotlin.multiplatform._internal</span>
-<span class="lineno">   4 </span>
-<span class="lineno">   5 </span>import com.android.build.api.dsl.LibraryExtension
-<span class="lineno">   6 </span>import com.javiersc.hubdle.extensions._internal.PluginIds
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/KotlinMultiplatformExtension.kt:60:19</span><span class="message">Class 'KotlinMultiplatformExtension' with '38' functions detected. Defined threshold inside classes is set to '11'</span>
+        <pre><code><span class="lineno">  57 </span>import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
+<span class="lineno">  58 </span>
+<span class="lineno">  59 </span>@HubdleDslMarker
+<span class="lineno">  60 </span>public open class <span class="error">KotlinMultiplatformExtension</span>
+<span class="lineno">  61 </span>@Inject
+<span class="lineno">  62 </span>constructor(
+<span class="lineno">  63 </span>    objects: ObjectFactory,
 </code></pre>
       </li>
     </ul>
@@ -286,7 +287,7 @@
       </li>
     </ul>
   </details>
-  <h3>naming: 33</h3>
+  <h3>naming: 46</h3>
   <details id="MatchingDeclarationName" open="open">
     <summary class="rule-container"><span class="rule">MatchingDeclarationName: 1 </span><span class="description">If a source file contains only a single non-private top-level class or object, the file name should reflect the case-sensitive name plus the .kt extension.</span></summary>
     <ul>
@@ -303,7 +304,7 @@
     </ul>
   </details>
   <details id="PackageNaming" open="open">
-    <summary class="rule-container"><span class="rule">PackageNaming: 32 </span><span class="description">Package names should match the naming convention set in the configuration.</span></summary>
+    <summary class="rule-container"><span class="rule">PackageNaming: 45 </span><span class="description">Package names should match the naming convention set in the configuration.</span></summary>
     <ul>
       <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/PluginIds.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
         <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions._internal</span>
@@ -533,16 +534,117 @@
 <span class="lineno">   2 </span>
 <span class="lineno">   3 </span><span class="error">package com.javiersc.hubdle.extensions.kotlin.multiplatform._internal</span>
 <span class="lineno">   4 </span>
-<span class="lineno">   5 </span>import com.android.build.api.dsl.LibraryExtension
-<span class="lineno">   6 </span>import com.javiersc.hubdle.extensions._internal.PluginIds
+<span class="lineno">   5 </span>import com.javiersc.hubdle.extensions._internal.PluginIds
+<span class="lineno">   6 </span>import com.javiersc.hubdle.extensions._internal.state.HubdleState
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatformAndroid.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.kotlin.multiplatform._internal</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import com.android.build.api.dsl.LibraryExtension
+<span class="lineno">   4 </span>import com.javiersc.hubdle.extensions._internal.PluginIds
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatformDarwin.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.kotlin.multiplatform._internal</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import com.javiersc.hubdle.extensions._internal.state.hubdleState
+<span class="lineno">   4 </span>import org.gradle.api.Project
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatformIOS.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.kotlin.multiplatform._internal</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import com.javiersc.hubdle.extensions._internal.state.hubdleState
+<span class="lineno">   4 </span>import org.gradle.api.Project
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatformJs.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.kotlin.multiplatform._internal</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import com.javiersc.hubdle.extensions._internal.state.hubdleState
+<span class="lineno">   4 </span>import org.gradle.api.Project
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatformJvm.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.kotlin.multiplatform._internal</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import com.javiersc.hubdle.extensions._internal.state.hubdleState
+<span class="lineno">   4 </span>import org.gradle.api.Project
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatformJvmAndAndroid.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.kotlin.multiplatform._internal</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import com.javiersc.hubdle.extensions._internal.state.hubdleState
+<span class="lineno">   4 </span>import org.gradle.api.Project
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatformLinux.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.kotlin.multiplatform._internal</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import com.javiersc.hubdle.extensions._internal.state.hubdleState
+<span class="lineno">   4 </span>import org.gradle.api.Project
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatformMacOS.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.kotlin.multiplatform._internal</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import com.javiersc.hubdle.extensions._internal.state.hubdleState
+<span class="lineno">   4 </span>import org.gradle.api.Project
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatformMinGW.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.kotlin.multiplatform._internal</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import com.javiersc.hubdle.extensions._internal.state.hubdleState
+<span class="lineno">   4 </span>import org.gradle.api.Project
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatformNative.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.kotlin.multiplatform._internal</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import com.javiersc.hubdle.extensions._internal.state.hubdleState
+<span class="lineno">   4 </span>import org.gradle.api.Project
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatformTvOS.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.kotlin.multiplatform._internal</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import com.javiersc.hubdle.extensions._internal.state.hubdleState
+<span class="lineno">   4 </span>import org.gradle.api.Project
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatformWAsm.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.kotlin.multiplatform._internal</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import com.javiersc.hubdle.extensions._internal.state.hubdleState
+<span class="lineno">   4 </span>import org.gradle.api.Project
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatformWatchOS.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.kotlin.multiplatform._internal</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import com.javiersc.hubdle.extensions._internal.state.hubdleState
+<span class="lineno">   4 </span>import org.gradle.api.Project
 </code></pre>
       </li>
     </ul>
   </details>
-  <h3>performance: 2</h3>
+  <h3>performance: 3</h3>
   <details id="SpreadOperator" open="open">
-    <summary class="rule-container"><span class="rule">SpreadOperator: 2 </span><span class="description">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span></summary>
+    <summary class="rule-container"><span class="rule">SpreadOperator: 3 </span><span class="description">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span></summary>
     <ul>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatformAndroid.kt:28:51</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
+        <pre><code><span class="lineno">  25 </span>                    when {
+<span class="lineno">  26 </span>                        androidState.publishLibraryVariants.isNotEmpty() -&gt; {
+<span class="lineno">  27 </span>                            val variants = androidState.publishLibraryVariants.toTypedArray()
+<span class="lineno">  28 </span>                            publishLibraryVariants<span class="error">(*variants)</span>
+<span class="lineno">  29 </span>                        }
+<span class="lineno">  30 </span>                        androidState.allLibraryVariants -&gt; publishAllLibraryVariants()
+<span class="lineno">  31 </span>                    }
+</code></pre>
+      </li>
       <li><span class="location">hubdle-settings-gradle-plugin/main/kotlin/com/javiersc/hubdle/settings/HubdleSettingsPlugin.kt:60:29</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
         <pre><code><span class="lineno">  57 </span>    val autoInclude = hubdleSettings.autoInclude
 <span class="lineno">  58 </span>
@@ -589,24 +691,24 @@
 <span class="lineno">  15 </span>        check(project.isRootProject) {
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatform.kt:143:13</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
-        <pre><code><span class="lineno"> 140 </span>internal fun configureMultiplatformJvmAndAndroid(project: Project) {
-<span class="lineno"> 141 </span>    if (project.hubdleState.kotlin.multiplatform.jvmAndAndroid.isEnabled) {
-<span class="lineno"> 142 </span>        project.configure&lt;KotlinMultiplatformExtension&gt; {
-<span class="lineno"> 143 </span>            <span class="error">/* TODO: enable when granular metadata for jvm+android is fixed</span>
-<span class="lineno"> 144 </span><span class="error">            val jvmAndAndroidMain = sourceSets.create(&quot;jvmAndAndroidMain&quot;)</span>
-<span class="lineno"> 145 </span><span class="error">            val jvmAndAndroidTest = sourceSets.create(&quot;jvmAndAndroidTest&quot;)</span>
-<span class="lineno"> 146 </span><span class="error"></span>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatformJvmAndAndroid.kt:11:13</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
+        <pre><code><span class="lineno">   8 </span>internal fun configureMultiplatformJvmAndAndroid(project: Project) {
+<span class="lineno">   9 </span>    if (project.hubdleState.kotlin.multiplatform.jvmAndAndroid.isEnabled) {
+<span class="lineno">  10 </span>        project.configure&lt;KotlinMultiplatformExtension&gt; {
+<span class="lineno">  11 </span>            <span class="error">/* TODO: enable when granular metadata for jvm+android is fixed</span>
+<span class="lineno">  12 </span><span class="error">            val jvmAndAndroidMain = sourceSets.create(&quot;jvmAndAndroidMain&quot;)</span>
+<span class="lineno">  13 </span><span class="error">            val jvmAndAndroidTest = sourceSets.create(&quot;jvmAndAndroidTest&quot;)</span>
+<span class="lineno">  14 </span><span class="error"></span>
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatform.kt:158:13</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
-        <pre><code><span class="lineno"> 155 </span>            sourceSets.findByName(&quot;androidTest&quot;)?.dependsOn(jvmAndAndroidTest)
-<span class="lineno"> 156 </span>            */
-<span class="lineno"> 157 </span>
-<span class="lineno"> 158 </span>            <span class="error">// TODO: remove when granular metadata for jvm+android is fixed</span>
-<span class="lineno"> 159 </span>            val mainKotlin = &quot;jvmAndAndroidMain/kotlin&quot;
-<span class="lineno"> 160 </span>            val mainResources = &quot;jvmAndAndroidMain/resources&quot;
-<span class="lineno"> 161 </span>            val testKotlin = &quot;jvmAndAndroidTest/kotlin&quot;
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatformJvmAndAndroid.kt:25:13</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
+        <pre><code><span class="lineno">  22 </span>            sourceSets.findByName(&quot;androidTest&quot;)?.dependsOn(jvmAndAndroidTest)
+<span class="lineno">  23 </span>            */
+<span class="lineno">  24 </span>
+<span class="lineno">  25 </span>            <span class="error">// TODO: remove when granular metadata for jvm+android is fixed</span>
+<span class="lineno">  26 </span>            val mainKotlin = &quot;jvmAndAndroid/main/kotlin&quot;
+<span class="lineno">  27 </span>            val mainResources = &quot;jvmAndAndroid/main/resources&quot;
+<span class="lineno">  28 </span>            val testKotlin = &quot;jvmAndAndroid/test/kotlin&quot;
 </code></pre>
       </li>
     </ul>
@@ -629,7 +731,7 @@
 </div>
 
 
-generated with <a href="https://detekt.dev/">detekt version 1.20.0</a> on 2022-07-12 12:46:45 UTC.
+generated with <a href="https://detekt.dev/">detekt version 1.20.0</a> on 2022-07-13 20:29:19 UTC.
 
 </body>
 </html>

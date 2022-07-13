@@ -1,1 +1,197 @@
-{"version":"3","listProblem":[]}
+{"version":"3","listProblem":[{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused import directive",
+  "severity": "High",
+  "comment": "Unused import directive",
+  "detailsInfo": "Reports redundant `import` statements.\n\nDefault and unused imports can be safely removed.\n\n**Example:**\n\n\n      import kotlin.*\n      import kotlin.collections.*\n      import kotlin.comparisons.*\n      import kotlin.io.*\n      import kotlin.ranges.*\n      import kotlin.sequences.*\n      import kotlin.text.*\n\n      // jvm specific\n      import java.lang.*\n      import kotlin.jvm.*\n\n      // js specific\n      import kotlin.js.*\n\n      import java.io.* // this import is unused and could be removed\n      import java.util.*\n\n      fun foo(list: ArrayList<String>) {\n          list.add(\"\")\n      }\n",
+  "sources": [
+    {
+      "type": "file",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/gradle/plugin/_internal/configureGradlePlugin.kt",
+      "language": "kotlin",
+      "line": 32,
+      "offset": 1,
+      "length": 34,
+      "code": {
+        "startLine": 30,
+        "length": 34,
+        "offset": 149,
+        "surroundingCode": "import org.gradle.api.attributes.plugin.GradlePluginApiVersion.GRADLE_PLUGIN_API_VERSION_ATTRIBUTE\nimport org.gradle.api.plugins.JavaPluginExtension\nimport org.gradle.kotlin.dsl.apply\nimport org.gradle.kotlin.dsl.configure\nimport org.gradle.kotlin.dsl.creating"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-gradle-plugin.main",
+    "inspectionName": "KotlinUnusedImport"
+  },
+  "hash": "12974a2dc4470a6bd6755eb1b9b2afb99c98f2b596acdc803b84a9e1feaaddd4"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused receiver parameter",
+  "severity": "High",
+  "comment": "Receiver parameter is never used",
+  "detailsInfo": "Reports receiver parameter of extension functions and properties that is not used.\n\n**Remove redundant receiver parameter** can be used to amend the code automatically.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/HubdleExtension.kt",
+      "language": "kotlin",
+      "line": 26,
+      "offset": 16,
+      "length": 7,
+      "code": {
+        "startLine": 24,
+        "length": 7,
+        "offset": 37,
+        "surroundingCode": "\n    @HubdleDslMarker\n    public fun Project.kotlin(action: Action<in KotlinExtension>) {\n        action.execute(kotlin)\n    }"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-gradle-plugin.main",
+    "inspectionName": "UnusedReceiverParameter"
+  },
+  "hash": "44afd8534f66e9c601f6b50ef6626358dfd3fcc3aac9f8f303bc5fe2c5db025d"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused receiver parameter",
+  "severity": "High",
+  "comment": "Receiver parameter is never used",
+  "detailsInfo": "Reports receiver parameter of extension functions and properties that is not used.\n\n**Remove redundant receiver parameter** can be used to amend the code automatically.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/HubdleExtension.kt",
+      "language": "kotlin",
+      "line": 19,
+      "offset": 16,
+      "length": 7,
+      "code": {
+        "startLine": 17,
+        "length": 7,
+        "offset": 37,
+        "surroundingCode": "\n    @HubdleDslMarker\n    public fun Project.config(action: Action<in ConfigExtension>) {\n        action.execute(config)\n    }"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-gradle-plugin.main",
+    "inspectionName": "UnusedReceiverParameter"
+  },
+  "hash": "2df7a45034122d80d144de518aaa507252ecd1e7a66ae109a1d5777d2680e4cf"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "severity": "High",
+  "comment": "Property \"isKotlinJvm\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/ProjectType.kt",
+      "language": "kotlin",
+      "line": 17,
+      "offset": 22,
+      "length": 11,
+      "code": {
+        "startLine": 15,
+        "length": 11,
+        "offset": 86,
+        "surroundingCode": "    get() = pluginManager.hasPlugin(\"org.gradle.java-platform\")\n\ninternal val Project.isKotlinJvm: Boolean\n    get() = pluginManager.hasPlugin(\"org.jetbrains.kotlin.jvm\")\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-gradle-plugin.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "906b0feb65f2387b6d24d67cde03e9bae14f99c55d5e7045ef5355730a088726"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "severity": "High",
+  "comment": "Property \"isGradlePlugin\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/ProjectType.kt",
+      "language": "kotlin",
+      "line": 11,
+      "offset": 22,
+      "length": 14,
+      "code": {
+        "startLine": 9,
+        "length": 14,
+        "offset": 112,
+        "surroundingCode": "    get() = pluginManager.hasPlugin(\"com.android.library\") && isKotlinMultiplatform.not()\n\ninternal val Project.isGradlePlugin: Boolean\n    get() = pluginManager.hasPlugin(\"org.gradle.java-gradle-plugin\")\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-gradle-plugin.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "503c2ae7cdbf52045e0f30966ca3cd9032628ff7e56fdbc27c172f493388703b"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "severity": "High",
+  "comment": "Property \"isVersionCatalog\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/ProjectType.kt",
+      "language": "kotlin",
+      "line": 26,
+      "offset": 22,
+      "length": 16,
+      "code": {
+        "startLine": 24,
+        "length": 16,
+        "offset": 106,
+        "surroundingCode": "    get() = isKotlinMultiplatform && pluginManager.hasPlugin(\"com.android.library\")\n\ninternal val Project.isVersionCatalog: Boolean\n    get() = pluginManager.hasPlugin(\"org.gradle.version-catalog\")\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-gradle-plugin.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "370080c2d4098d944518ae2450e3f9b5307430ae207b69024d622531fae48310"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "severity": "High",
+  "comment": "Property \"isJavaPlatform\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/ProjectType.kt",
+      "language": "kotlin",
+      "line": 14,
+      "offset": 22,
+      "length": 14,
+      "code": {
+        "startLine": 12,
+        "length": 14,
+        "offset": 91,
+        "surroundingCode": "    get() = pluginManager.hasPlugin(\"org.gradle.java-gradle-plugin\")\n\ninternal val Project.isJavaPlatform: Boolean\n    get() = pluginManager.hasPlugin(\"org.gradle.java-platform\")\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-gradle-plugin.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "bec6df99036d3e8572619e0933aa694a10e154ccdc68f4ea7b5dfc2545f5e8e3"
+}]}

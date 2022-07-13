@@ -42,6 +42,7 @@ import com.javiersc.hubdle.extensions.kotlin.jvm._internal.configureKotlinJvmRaw
 import com.javiersc.hubdle.extensions.kotlin.multiplatform._internal.configureMultiplatform
 import com.javiersc.hubdle.extensions.kotlin.multiplatform._internal.configureMultiplatformAndroid
 import com.javiersc.hubdle.extensions.kotlin.multiplatform._internal.configureMultiplatformAndroidRawConfig
+import com.javiersc.hubdle.extensions.kotlin.multiplatform._internal.configureMultiplatformDarwin
 import com.javiersc.hubdle.extensions.kotlin.multiplatform._internal.configureMultiplatformIOS
 import com.javiersc.hubdle.extensions.kotlin.multiplatform._internal.configureMultiplatformIOSArm32
 import com.javiersc.hubdle.extensions.kotlin.multiplatform._internal.configureMultiplatformIOSArm64
@@ -623,6 +624,7 @@ internal data class HubdleState(
         data class Multiplatform(
             override var isEnabled: Boolean = false,
             val android: Android = Android(),
+            val darwin: Darwin = Darwin(),
             val ios: IOS = IOS(),
             val iosArm32: IOSArm32 = IOSArm32(),
             val iosArm64: IOSArm64 = IOSArm64(),
@@ -689,6 +691,8 @@ internal data class HubdleState(
                     configureTvOS(project)
                     configureWatchOS(project)
                 }
+
+                darwin.configure(project)
 
                 native.configure(project)
 
@@ -773,6 +777,13 @@ internal data class HubdleState(
                     override fun configure(project: Project) =
                         configureMultiplatformAndroidRawConfig(project)
                 }
+            }
+
+            data class Darwin(
+                override var isEnabled: Boolean = false,
+            ) : Enableable, Configurable {
+
+                override fun configure(project: Project) = configureMultiplatformDarwin(project)
             }
 
             data class IOS(

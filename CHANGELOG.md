@@ -4,9 +4,11 @@
 
 ### Added
 
+- `darwin` source set to Kotlin Multiplatform
+
 ### Changed
 
-- multiplatform source set format from `commonName` to `common/name`
+- Kotlin Multiplatform source set format from `commonName` to `common/name`
 
 ### Deprecated
 

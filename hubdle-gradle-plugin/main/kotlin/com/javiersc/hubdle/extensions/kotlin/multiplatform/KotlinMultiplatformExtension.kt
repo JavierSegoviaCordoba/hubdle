@@ -8,6 +8,7 @@ import com.javiersc.hubdle.extensions.kotlin.jvm.KotlinJvmOptions
 import com.javiersc.hubdle.extensions.kotlin.multiplatform._internal.multiplatformFeatures
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.KotlinMultiplatformAndroidExtension
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.KotlinMultiplatformCommonExtension
+import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.KotlinMultiplatformDarwinExtension
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.KotlinMultiplatformJsExtension
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.KotlinMultiplatformJvmAndAndroidExtension
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.KotlinMultiplatformJvmExtension
@@ -92,6 +93,14 @@ constructor(
     public fun Project.android(action: Action<KotlinMultiplatformAndroidExtension> = Action {}) {
         android.run { isEnabled = true }
         action.execute(android)
+    }
+
+    private val darwin: KotlinMultiplatformDarwinExtension = objects.newInstance()
+
+    @HubdleDslMarker
+    public fun Project.darwin(action: Action<KotlinMultiplatformDarwinExtension> = Action {}) {
+        darwin.run { isEnabled = true }
+        action.execute(darwin)
     }
 
     private val ios: KotlinMultiplatformiOSExtension = objects.newInstance()

@@ -157,7 +157,7 @@
 
 <div>
   <ul>
-    <li>849 number of properties</li>
+    <li>889 number of properties</li>
     <li>562 number of functions</li>
     <li>248 number of classes</li>
     <li>76 number of packages</li>
@@ -170,23 +170,23 @@
 
 <div>
   <ul>
-    <li>10,943 lines of code (loc)</li>
-    <li>9,008 source lines of code (sloc)</li>
-    <li>6,015 logical lines of code (lloc)</li>
+    <li>10,964 lines of code (loc)</li>
+    <li>9,029 source lines of code (sloc)</li>
+    <li>6,043 logical lines of code (lloc)</li>
     <li>43 comment lines of code (cloc)</li>
-    <li>1,102 cyclomatic complexity (mcc)</li>
-    <li>517 cognitive complexity</li>
-    <li>63 number of total code smells</li>
+    <li>1,086 cyclomatic complexity (mcc)</li>
+    <li>469 cognitive complexity</li>
+    <li>65 number of total code smells</li>
     <li>0% comment source ratio</li>
-    <li>183 mcc per 1,000 lloc</li>
+    <li>179 mcc per 1,000 lloc</li>
     <li>10 code smells per 1,000 lloc</li>
   </ul>
 </div>
 
 
 <h2>Findings</h2>
-<div>Total: 63
-  <h3>complexity: 5</h3>
+<div>Total: 65
+  <h3>complexity: 7</h3>
   <details id="ComplexCondition" open="open">
     <summary class="rule-container"><span class="rule">ComplexCondition: 1 </span><span class="description">Complex conditions should be simplified and extracted into well-named methods if necessary.</span></summary>
     <ul>
@@ -203,7 +203,7 @@
     </ul>
   </details>
   <details id="LongMethod" open="open">
-    <summary class="rule-container"><span class="rule">LongMethod: 1 </span><span class="description">One method should have one responsibility. Long methods tend to handle many things at once. Prefer smaller methods to make them easier to understand.</span></summary>
+    <summary class="rule-container"><span class="rule">LongMethod: 3 </span><span class="description">One method should have one responsibility. Long methods tend to handle many things at once. Prefer smaller methods to make them easier to understand.</span></summary>
     <ul>
       <li><span class="location">buildSrc/src/main/kotlin/plugins/dependencies-codegen.gradle.kts:115:5</span><span class="message">The function buildHubdleDependencies is too long (67). The maximum length is 60.</span>
         <pre><code><span class="lineno"> 112 </span>        }
@@ -213,6 +213,26 @@
 <span class="lineno"> 116 </span>    buildDir.resolve(&quot;generated/main/kotlin/hubdle_dependencies.kt&quot;).apply {
 <span class="lineno"> 117 </span>        parentFile.mkdirs()
 <span class="lineno"> 118 </span>        createNewFile()
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatformDarwin.kt:11:14</span><span class="message">The function configureMultiplatformDarwin is too long (80). The maximum length is 60.</span>
+        <pre><code><span class="lineno">   8 </span>import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+<span class="lineno">   9 </span>import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet as KSS
+<span class="lineno">  10 </span>
+<span class="lineno">  11 </span>internal fun <span class="error">configureMultiplatformDarwin</span>(project: Project) {
+<span class="lineno">  12 </span>    if (project.hubdleState.kotlin.multiplatform.darwin.isEnabled) {
+<span class="lineno">  13 </span>        project.configure&lt;KotlinMultiplatformExtension&gt; {
+<span class="lineno">  14 </span>            val commonMain: KSS by sourceSets.getting
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatformNative.kt:11:14</span><span class="message">The function configureMultiplatformNative is too long (112). The maximum length is 60.</span>
+        <pre><code><span class="lineno">   8 </span>import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+<span class="lineno">   9 </span>import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet as KSS
+<span class="lineno">  10 </span>
+<span class="lineno">  11 </span>internal fun <span class="error">configureMultiplatformNative</span>(project: Project) {
+<span class="lineno">  12 </span>    if (project.hubdleState.kotlin.multiplatform.native.isEnabled) {
+<span class="lineno">  13 </span>        project.configure&lt;KotlinMultiplatformExtension&gt; {
+<span class="lineno">  14 </span>            val commonMain: KSS by sourceSets.getting
 </code></pre>
       </li>
     </ul>
@@ -746,7 +766,7 @@
 </div>
 
 
-generated with <a href="https://detekt.dev/">detekt version 1.20.0</a> on 2022-07-14 11:35:26 UTC.
+generated with <a href="https://detekt.dev/">detekt version 1.20.0</a> on 2022-07-14 14:21:30 UTC.
 
 </body>
 </html>

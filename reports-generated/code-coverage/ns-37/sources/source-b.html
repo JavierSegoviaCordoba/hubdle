@@ -59,7 +59,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/3)
+    (0/5)
   </span>
 </td>
 <td class="coverageStat">
@@ -67,7 +67,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/54)
+    (0/34)
   </span>
 </td>
 </tr>
@@ -84,38 +84,6 @@ Current scope:     <a href="../../index.html">all classes</a>
     <td class="coverageStat"/>
   </tr>
   <tr>
-    <td class="name">KotlinMultiplatformTargetOptions$main$1</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/1)
-  </span>
-</td>
-    <td class="coverageStat"/>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/1)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/1)
-  </span>
-</td>
-  </tr>
-  <tr>
-    <td class="name">KotlinMultiplatformTargetOptions$sam$org_gradle_api_Action$0</td>
-    <td class="coverageStat"/>
-  </tr>
-  <tr>
     <td class="name">KotlinMultiplatformTargetOptions$test$$inlined$the$1</td>
 <td class="coverageStat">
   <span class="percent">
@@ -127,34 +95,6 @@ Current scope:     <a href="../../index.html">all classes</a>
 </td>
     <td class="coverageStat"/>
   </tr>
-  <tr>
-    <td class="name">KotlinMultiplatformTargetOptions$test$1</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/1)
-  </span>
-</td>
-    <td class="coverageStat"/>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/1)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/1)
-  </span>
-</td>
-  </tr>
 <tr>
   <td class="name"><strong>Total</strong></td>
 <td class="coverageStat">
@@ -162,7 +102,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/7)
+    (0/5)
   </span>
 </td>
     <td class="coverageStat"/>
@@ -179,7 +119,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/56)
+    (0/34)
   </span>
 </td>
 </tr>
@@ -211,14 +151,18 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">19</i>&nbsp;
 <i class="no-highlight">20</i>&nbsp;    @HubdleDslMarker
 <i class="no-highlight">21</i>&nbsp;    override fun Project.main(action: Action&lt;KotlinSourceSet&gt;) {
-<b class="nc"><i class="no-highlight">22</i>&nbsp;        the&lt;KotlinMultiplatformExtension&gt;().sourceSets.named(&quot;${targetName}Main&quot;, action::execute)</b>
-<i class="no-highlight">23</i>&nbsp;    }
-<i class="no-highlight">24</i>&nbsp;
-<i class="no-highlight">25</i>&nbsp;    @HubdleDslMarker
-<i class="no-highlight">26</i>&nbsp;    override fun Project.test(action: Action&lt;KotlinSourceSet&gt;) {
-<b class="nc"><i class="no-highlight">27</i>&nbsp;        the&lt;KotlinMultiplatformExtension&gt;().sourceSets.named(&quot;${targetName}Test&quot;, action::execute)</b>
-<i class="no-highlight">28</i>&nbsp;    }
-<i class="no-highlight">29</i>&nbsp;}
+<b class="nc"><i class="no-highlight">22</i>&nbsp;        action.execute(</b>
+<b class="nc"><i class="no-highlight">23</i>&nbsp;            the&lt;KotlinMultiplatformExtension&gt;().sourceSets.maybeCreate(&quot;${targetName}Main&quot;)</b>
+<i class="no-highlight">24</i>&nbsp;        )
+<i class="no-highlight">25</i>&nbsp;    }
+<i class="no-highlight">26</i>&nbsp;
+<i class="no-highlight">27</i>&nbsp;    @HubdleDslMarker
+<i class="no-highlight">28</i>&nbsp;    override fun Project.test(action: Action&lt;KotlinSourceSet&gt;) {
+<b class="nc"><i class="no-highlight">29</i>&nbsp;        action.execute(</b>
+<b class="nc"><i class="no-highlight">30</i>&nbsp;            the&lt;KotlinMultiplatformExtension&gt;().sourceSets.maybeCreate(&quot;${targetName}Test&quot;)</b>
+<i class="no-highlight">31</i>&nbsp;        )
+<i class="no-highlight">32</i>&nbsp;    }
+<i class="no-highlight">33</i>&nbsp;}
 </div>
 </pre>
 </div>
@@ -245,7 +189,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-14 11:39</div>
+    <div style="float:right;">generated on 2022-07-14 14:26</div>
 </div>
 </body>
 </html>

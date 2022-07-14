@@ -4,6 +4,7 @@
 
 ### Added
 
+- `enableAll()` to `ios`, `linux` `macos`, `mingw`, `native`, `tvos`, `wasm`, `watchos`
 - `javiersc:kotlin-test-junit`, `junit5` and `testng` to `extendedTesting`
 
 ### Changed

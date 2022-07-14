@@ -12,14 +12,12 @@ internal fun configureMultiplatformIOS(project: Project) {
     if (project.hubdleState.kotlin.multiplatform.ios.isEnabled) {
         project.configure<KotlinMultiplatformExtension> {
             val commonMain: KSS by sourceSets.getting
-            val darwinMain: KSS? = sourceSets.findByName("darwinMain")
             val iosArm32Main: KSS? = sourceSets.findByName("iosArm32Main")
             val iosArm64Main: KSS? = sourceSets.findByName("iosArm64Main")
             val iosX64Main: KSS? = sourceSets.findByName("iosX64Main")
             val iosSimulatorArm64Main: KSS? = sourceSets.findByName("iosSimulatorArm64Main")
 
             val commonTest: KSS by sourceSets.getting
-            val darwinTest: KSS? = sourceSets.findByName("darwinTest")
             val iosArm32Test: KSS? = sourceSets.findByName("iosArm32Test")
             val iosArm64Test: KSS? = sourceSets.findByName("iosArm64Test")
             val iosX64Test: KSS? = sourceSets.findByName("iosX64Test")
@@ -45,12 +43,10 @@ internal fun configureMultiplatformIOS(project: Project) {
             val iosTest = sourceSets.maybeCreate("iosTest")
 
             iosMain.dependsOn(commonMain)
-            if (darwinMain != null) iosMain.dependsOn(darwinMain)
             for (iosMainSourceSet in iosMainSourceSets) {
                 iosMainSourceSet.dependsOn(iosMain)
             }
             iosTest.dependsOn(commonTest)
-            if (darwinTest != null) iosTest.dependsOn(darwinTest)
             for (iosTestSourceSet in iosTestSourceSets) {
                 iosTestSourceSet.dependsOn(iosTest)
             }

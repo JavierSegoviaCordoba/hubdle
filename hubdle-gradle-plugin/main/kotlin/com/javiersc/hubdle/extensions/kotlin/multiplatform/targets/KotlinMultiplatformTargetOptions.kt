@@ -19,11 +19,15 @@ public interface KotlinMultiplatformTargetOptions :
 
     @HubdleDslMarker
     override fun Project.main(action: Action<KotlinSourceSet>) {
-        the<KotlinMultiplatformExtension>().sourceSets.named("${targetName}Main", action::execute)
+        action.execute(
+            the<KotlinMultiplatformExtension>().sourceSets.maybeCreate("${targetName}Main")
+        )
     }
 
     @HubdleDslMarker
     override fun Project.test(action: Action<KotlinSourceSet>) {
-        the<KotlinMultiplatformExtension>().sourceSets.named("${targetName}Test", action::execute)
+        action.execute(
+            the<KotlinMultiplatformExtension>().sourceSets.maybeCreate("${targetName}Test")
+        )
     }
 }

@@ -12,11 +12,9 @@ internal fun configureMultiplatformWAsm(project: Project) {
     if (project.hubdleState.kotlin.multiplatform.wasm.isEnabled) {
         project.configure<KotlinMultiplatformExtension> {
             val commonMain: KSS by sourceSets.getting
-            val nativeMain: KSS? = sourceSets.findByName("nativeMain")
             val wasm32Main: KSS? = sourceSets.findByName("wasm32Main")
 
             val commonTest: KSS by sourceSets.getting
-            val nativeTest: KSS? = sourceSets.findByName("nativeTest")
             val wasm32Test: KSS? = sourceSets.findByName("wasm32Test")
 
             val wasmMainSourceSets: List<KSS> =
@@ -32,13 +30,11 @@ internal fun configureMultiplatformWAsm(project: Project) {
             val wasmTest = sourceSets.maybeCreate("wasmTest")
 
             wasmMain.dependsOn(commonMain)
-            if (nativeMain != null) wasmMain.dependsOn(nativeMain)
             for (wasmMainSourceSet in wasmMainSourceSets) {
                 wasmMainSourceSet.dependsOn(wasmMain)
             }
 
             wasmTest.dependsOn(commonTest)
-            if (nativeTest != null) wasmTest.dependsOn(nativeTest)
             for (wasmTestSourceSet in wasmTestSourceSets) {
                 wasmTestSourceSet.dependsOn(wasmTest)
             }

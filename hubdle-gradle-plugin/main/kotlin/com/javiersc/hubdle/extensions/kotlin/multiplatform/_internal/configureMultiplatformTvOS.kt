@@ -12,13 +12,11 @@ internal fun configureMultiplatformTvOS(project: Project) {
     if (project.hubdleState.kotlin.multiplatform.tvos.isEnabled) {
         project.configure<KotlinMultiplatformExtension> {
             val commonMain: KSS by sourceSets.getting
-            val darwinMain: KSS? = sourceSets.findByName("darwinMain")
             val tvosArm64Main: KSS? = sourceSets.findByName("tvosArm64Main")
             val tvosX64Main: KSS? = sourceSets.findByName("tvosX64Main")
             val tvosSimulatorArm64Main: KSS? = sourceSets.findByName("tvosSimulatorArm64Main")
 
             val commonTest: KSS by sourceSets.getting
-            val darwinTest: KSS? = sourceSets.findByName("darwinTest")
             val tvosArm64Test: KSS? = sourceSets.findByName("tvosArm64Test")
             val tvosX64Test: KSS? = sourceSets.findByName("tvosX64Test")
             val tvosSimulatorArm64Test: KSS? = sourceSets.findByName("tvosSimulatorArm64Test")
@@ -40,13 +38,11 @@ internal fun configureMultiplatformTvOS(project: Project) {
             val tvosTest = sourceSets.maybeCreate("tvosTest")
 
             tvosMain.dependsOn(commonMain)
-            if (darwinMain != null) tvosMain.dependsOn(darwinMain)
             for (tvosMainSourceSet in tvosMainSourceSets) {
                 tvosMainSourceSet.dependsOn(tvosMain)
             }
 
             tvosTest.dependsOn(commonTest)
-            if (darwinTest != null) tvosTest.dependsOn(darwinTest)
             for (tvosTestSourceSet in tvosTestSourceSets) {
                 tvosTestSourceSet.dependsOn(tvosTest)
             }

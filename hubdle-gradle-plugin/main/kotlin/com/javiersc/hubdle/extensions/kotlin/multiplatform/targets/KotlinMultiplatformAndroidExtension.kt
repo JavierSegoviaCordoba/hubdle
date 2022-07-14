@@ -25,7 +25,7 @@ constructor(
 
     override var Project.isEnabled: Boolean
         get() = hubdleState.kotlin.multiplatform.android.isEnabled
-        set(value) = hubdleState.kotlin.multiplatform.android.run { isEnabled = value }
+        set(value) = hubdleState.kotlin.multiplatform.run { android.isEnabled = value }
 
     public override val name: String = "android"
 

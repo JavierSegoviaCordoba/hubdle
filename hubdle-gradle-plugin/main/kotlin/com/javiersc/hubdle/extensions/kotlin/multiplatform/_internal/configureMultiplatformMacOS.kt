@@ -12,12 +12,10 @@ internal fun configureMultiplatformMacOS(project: Project) {
     if (project.hubdleState.kotlin.multiplatform.macos.isEnabled) {
         project.configure<KotlinMultiplatformExtension> {
             val commonMain: KSS by sourceSets.getting
-            val darwinMain: KSS? = sourceSets.findByName("darwinMain")
             val macosX64Main: KSS? = sourceSets.findByName("macosX64Main")
             val macosArm64Main: KSS? = sourceSets.findByName("macosArm64Main")
 
             val commonTest: KSS by sourceSets.getting
-            val darwinTest: KSS? = sourceSets.findByName("darwinTest")
             val macosX64Test: KSS? = sourceSets.findByName("macosX64Test")
             val macosArm64Test: KSS? = sourceSets.findByName("macosArm64Test")
 
@@ -36,13 +34,11 @@ internal fun configureMultiplatformMacOS(project: Project) {
             val macosTest = sourceSets.maybeCreate("macosTest")
 
             macosMain.dependsOn(commonMain)
-            if (darwinMain != null) macosMain.dependsOn(darwinMain)
             for (macosMainSourceSet in macosMainSourceSets) {
                 macosMainSourceSet.dependsOn(macosMain)
             }
 
             macosTest.dependsOn(commonTest)
-            if (darwinTest != null) macosTest.dependsOn(darwinTest)
             for (macosTestSourceSet in macosTestSourceSets) {
                 macosTestSourceSet.dependsOn(macosTest)
             }

@@ -16,6 +16,8 @@
 
 ### Fixed
 
+- Hierarchical project structure in Kotlin Multiplatform
+
 ### Updated
 
 ## [0.2.0-alpha.23] - 2022-07-13

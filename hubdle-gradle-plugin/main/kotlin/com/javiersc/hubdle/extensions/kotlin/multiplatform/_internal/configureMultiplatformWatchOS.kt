@@ -12,7 +12,6 @@ internal fun configureMultiplatformWatchOS(project: Project) {
     if (project.hubdleState.kotlin.multiplatform.watchos.isEnabled) {
         project.configure<KotlinMultiplatformExtension> {
             val commonMain: KSS by sourceSets.getting
-            val darwinMain: KSS? = sourceSets.findByName("darwinMain")
             val watchosArm32Main: KSS? = sourceSets.findByName("watchosArm32Main")
             val watchosArm64Main: KSS? = sourceSets.findByName("watchosArm64Main")
             val watchosX64Main: KSS? = sourceSets.findByName("watchosX64Main")
@@ -20,7 +19,6 @@ internal fun configureMultiplatformWatchOS(project: Project) {
             val watchosX86Main: KSS? = sourceSets.findByName("watchosX86Main")
 
             val commonTest: KSS by sourceSets.getting
-            val darwinTest: KSS? = sourceSets.findByName("darwinTest")
             val watchosArm32Test: KSS? = sourceSets.findByName("watchosArm32Test")
             val watchosArm64Test: KSS? = sourceSets.findByName("watchosArm64Test")
             val watchosX64Test: KSS? = sourceSets.findByName("watchosX64Test")
@@ -48,13 +46,11 @@ internal fun configureMultiplatformWatchOS(project: Project) {
             val watchosTest = sourceSets.maybeCreate("watchosTest")
 
             watchosMain.dependsOn(commonMain)
-            if (darwinMain != null) watchosMain.dependsOn(darwinMain)
             for (watchosMainSourceSet in watchosMainSourceSets) {
                 watchosMainSourceSet.dependsOn(watchosMain)
             }
 
             watchosTest.dependsOn(commonTest)
-            if (darwinTest != null) watchosTest.dependsOn(darwinTest)
             for (watchosTestSourceSet in watchosTestSourceSets) {
                 watchosTestSourceSet.dependsOn(watchosTest)
             }

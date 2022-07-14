@@ -12,12 +12,10 @@ internal fun configureMultiplatformMinGW(project: Project) {
     if (project.hubdleState.kotlin.multiplatform.mingw.isEnabled) {
         project.configure<KotlinMultiplatformExtension> {
             val commonMain: KSS by sourceSets.getting
-            val nativeMain: KSS? = sourceSets.findByName("nativeMain")
             val mingwX64Main: KSS? = sourceSets.findByName("mingwX64Main")
             val mingwX86Main: KSS? = sourceSets.findByName("mingwX86Main")
 
             val commonTest: KSS by sourceSets.getting
-            val nativeTest: KSS? = sourceSets.findByName("nativeTest")
             val mingwX64Test: KSS? = sourceSets.findByName("mingwX64Test")
             val mingwX86Test: KSS? = sourceSets.findByName("mingwX86Test")
 
@@ -36,13 +34,11 @@ internal fun configureMultiplatformMinGW(project: Project) {
             val mingwTest = sourceSets.maybeCreate("mingwTest")
 
             mingwMain.dependsOn(commonMain)
-            if (nativeMain != null) mingwMain.dependsOn(nativeMain)
             for (mingwMainSourceSet in mingwMainSourceSets) {
                 mingwMainSourceSet.dependsOn(mingwMain)
             }
 
             mingwTest.dependsOn(commonTest)
-            if (nativeTest != null) mingwTest.dependsOn(nativeTest)
             for (mingwTestSourceSet in mingwTestSourceSets) {
                 mingwTestSourceSet.dependsOn(mingwTest)
             }

@@ -12,7 +12,6 @@ internal fun configureMultiplatformLinux(project: Project) {
     if (project.hubdleState.kotlin.multiplatform.linux.isEnabled) {
         project.configure<KotlinMultiplatformExtension> {
             val commonMain: KSS by sourceSets.getting
-            val nativeMain: KSS? = sourceSets.findByName("nativeMain")
             val linuxArm64Main: KSS? = sourceSets.findByName("linuxArm64Main")
             val linuxArm32HfpMain: KSS? = sourceSets.findByName("linuxArm32HfpMain")
             val linuxMips32Main: KSS? = sourceSets.findByName("linuxMips32Main")
@@ -20,7 +19,6 @@ internal fun configureMultiplatformLinux(project: Project) {
             val linuxX64Main: KSS? = sourceSets.findByName("linuxX64Main")
 
             val commonTest: KSS by sourceSets.getting
-            val nativeTest: KSS? = sourceSets.findByName("nativeTest")
             val linuxArm64Test: KSS? = sourceSets.findByName("linuxArm64Test")
             val linuxArm32HfpTest: KSS? = sourceSets.findByName("linuxArm32HfpTest")
             val linuxMips32Test: KSS? = sourceSets.findByName("linuxMips32Test")
@@ -49,13 +47,11 @@ internal fun configureMultiplatformLinux(project: Project) {
             val linuxTest = sourceSets.maybeCreate("linuxTest")
 
             linuxMain.dependsOn(commonMain)
-            if (nativeMain != null) linuxMain.dependsOn(nativeMain)
             for (linuxMainSourceSet in linuxMainSourceSets) {
                 linuxMainSourceSet.dependsOn(linuxMain)
             }
 
             linuxTest.dependsOn(commonTest)
-            if (nativeTest != null) linuxTest.dependsOn(nativeTest)
             for (linuxTestSourceSet in linuxTestSourceSets) {
                 linuxTestSourceSet.dependsOn(linuxTest)
             }

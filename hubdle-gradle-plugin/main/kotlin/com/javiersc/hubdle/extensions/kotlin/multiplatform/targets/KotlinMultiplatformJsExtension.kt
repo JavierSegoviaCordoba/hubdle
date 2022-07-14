@@ -14,7 +14,7 @@ public open class KotlinMultiplatformJsExtension :
 
     override var Project.isEnabled: Boolean
         get() = hubdleState.kotlin.multiplatform.js.isEnabled
-        set(value) = hubdleState.kotlin.multiplatform.js.run { isEnabled = value }
+        set(value) = hubdleState.kotlin.multiplatform.run { js.isEnabled = value }
 
     public override val name: String = "js"
 

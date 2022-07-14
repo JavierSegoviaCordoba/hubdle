@@ -11,7 +11,7 @@ public open class KotlinMultiplatformJvmExtension :
 
     override var Project.isEnabled: Boolean
         get() = hubdleState.kotlin.multiplatform.jvm.isEnabled
-        set(value) = hubdleState.kotlin.multiplatform.jvm.run { isEnabled = value }
+        set(value) = hubdleState.kotlin.multiplatform.run { jvm.isEnabled = value }
 
     public override val name: String = "jvm"
 }

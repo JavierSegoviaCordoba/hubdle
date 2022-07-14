@@ -2,6 +2,12 @@ package com.javiersc.hubdle
 
 public object HubdleProperty {
 
+    public object Android {
+        public const val namespace: String = "android.namespace"
+        public const val namespaceUseProject: String = "android.namespace.use.project"
+        public const val namespaceUseKotlinFile: String = "android.namespace.use.kotlinFile"
+    }
+
     public object Analysis {
         public const val hostUrl: String = "analysis.sonar.host.url"
         public const val login: String = "analysis.sonar.login"

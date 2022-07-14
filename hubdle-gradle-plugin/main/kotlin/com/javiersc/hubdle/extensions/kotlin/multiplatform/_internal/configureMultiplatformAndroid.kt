@@ -3,6 +3,7 @@ package com.javiersc.hubdle.extensions.kotlin.multiplatform._internal
 import com.android.build.api.dsl.LibraryExtension
 import com.javiersc.hubdle.extensions._internal.PluginIds
 import com.javiersc.hubdle.extensions._internal.state.hubdleState
+import com.javiersc.hubdle.extensions.kotlin._internal.calculateAndroidNamespace
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
@@ -13,8 +14,9 @@ internal fun configureMultiplatformAndroid(project: Project) {
     if (androidState.isEnabled) {
         project.pluginManager.apply(PluginIds.Android.library)
         project.configure<LibraryExtension> {
-            compileSdk = project.hubdleState.kotlin.android.compileSdk
-            defaultConfig.minSdk = project.hubdleState.kotlin.android.minSdk
+            compileSdk = androidState.compileSdk
+            defaultConfig.minSdk = androidState.minSdk
+            namespace = project.calculateAndroidNamespace(androidState.namespace)
 
             sourceSets.all { manifest.srcFile("android/$name/AndroidManifest.xml") }
         }

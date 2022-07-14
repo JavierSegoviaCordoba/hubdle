@@ -24,8 +24,8 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
 
 internal fun configureAndroidApplication(project: Project) {
-    val applicationState = project.hubdleState.kotlin.android.application
-    if (applicationState.isEnabled) {
+    val androidState = project.hubdleState.kotlin.android
+    if (androidState.application.isEnabled) {
         project.pluginManager.apply(PluginIds.Android.kotlin)
         project.pluginManager.apply(PluginIds.Android.application)
 
@@ -36,11 +36,12 @@ internal fun configureAndroidApplication(project: Project) {
         project.the<KotlinProjectExtension>().configureDefaultKotlinSourceSets()
 
         project.configure<ApplicationExtension> {
-            defaultConfig.applicationId = applicationState.applicationId
-            defaultConfig.versionCode = applicationState.versionCode
-            defaultConfig.versionName = applicationState.versionName
-            compileSdk = project.hubdleState.kotlin.android.compileSdk
-            defaultConfig.minSdk = project.hubdleState.kotlin.android.minSdk
+            defaultConfig.applicationId = androidState.application.applicationId
+            defaultConfig.versionCode = androidState.application.versionCode
+            defaultConfig.versionName = androidState.application.versionName
+            compileSdk = androidState.compileSdk
+            defaultConfig.minSdk = androidState.minSdk
+            // TODO: namespace = project.calculateAndroidNamespace(androidState.namespace)
 
             sourceSets.all { configDefaultAndroidSourceSets() }
         }

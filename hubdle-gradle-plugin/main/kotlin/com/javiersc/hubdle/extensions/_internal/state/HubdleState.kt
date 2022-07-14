@@ -428,6 +428,7 @@ internal data class HubdleState(
             val application: Application = Application(),
             val library: Library = Library(),
             var minSdk: Int = 21,
+            var namespace: String? = null,
         ) : Configurable {
 
             val isEnabled: Boolean
@@ -762,6 +763,7 @@ internal data class HubdleState(
                 var allLibraryVariants: Boolean = true,
                 var compileSdk: Int = 32,
                 var minSdk: Int = 21,
+                var namespace: String? = null,
                 val publishLibraryVariants: MutableList<String> = mutableListOf(),
                 val rawConfig: RawConfig = RawConfig()
             ) : Enableable, Configurable {

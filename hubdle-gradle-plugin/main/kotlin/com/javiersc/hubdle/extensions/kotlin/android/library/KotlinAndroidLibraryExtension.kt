@@ -34,6 +34,10 @@ constructor(
         get() = hubdleState.kotlin.android.library.isEnabled
         set(value) = hubdleState.kotlin.android.library.run { isEnabled = value }
 
+    public var Project.namespace: String?
+        get() = hubdleState.kotlin.android.namespace
+        set(value) = hubdleState.kotlin.run { android.namespace = value }
+
     override val features: FeaturesExtension = objects.newInstance()
 
     @HubdleDslMarker

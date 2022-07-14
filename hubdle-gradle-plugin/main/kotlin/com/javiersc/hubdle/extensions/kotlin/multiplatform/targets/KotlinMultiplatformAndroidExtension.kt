@@ -29,6 +29,10 @@ constructor(
 
     public override val name: String = "android"
 
+    public var Project.namespace: String?
+        get() = hubdleState.kotlin.multiplatform.android.namespace
+        set(value) = hubdleState.kotlin.multiplatform.run { android.namespace = value }
+
     @HubdleDslMarker
     public fun Project.publishLibraryVariants(vararg names: String) {
         hubdleState.kotlin.multiplatform.android.publishLibraryVariants += names

@@ -14,6 +14,7 @@ import com.javiersc.hubdle.extensions.dependencies._internal.constants.ORG_JETBR
 import com.javiersc.hubdle.extensions.dependencies._internal.constants.ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_CORE_MODULE
 import com.javiersc.hubdle.extensions.dependencies._internal.constants.ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_JSON_MODULE
 import com.javiersc.hubdle.extensions.dependencies._internal.constants.ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE
+import com.javiersc.hubdle.extensions.kotlin._internal.calculateAndroidNamespace
 import com.javiersc.hubdle.extensions.kotlin._internal.configJvmTarget
 import com.javiersc.hubdle.extensions.options.configDefaultAndroidSourceSets
 import com.javiersc.hubdle.extensions.options.configureJavaJarsForAndroidPublishing
@@ -27,7 +28,8 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
 
 internal fun configureAndroidLibrary(project: Project) {
-    if (project.hubdleState.kotlin.android.library.isEnabled) {
+    val androidState = project.hubdleState.kotlin.android
+    if (androidState.library.isEnabled) {
         project.pluginManager.apply(PluginIds.Android.kotlin)
         project.pluginManager.apply(PluginIds.Android.library)
 
@@ -37,8 +39,9 @@ internal fun configureAndroidLibrary(project: Project) {
         project.the<KotlinProjectExtension>().configureAndroidDependencies()
 
         project.configure<LibraryExtension> {
-            compileSdk = project.hubdleState.kotlin.android.compileSdk
-            defaultConfig.minSdk = project.hubdleState.kotlin.android.minSdk
+            compileSdk = androidState.compileSdk
+            defaultConfig.minSdk = androidState.minSdk
+            namespace = project.calculateAndroidNamespace(androidState.namespace)
 
             sourceSets.all { configDefaultAndroidSourceSets() }
         }

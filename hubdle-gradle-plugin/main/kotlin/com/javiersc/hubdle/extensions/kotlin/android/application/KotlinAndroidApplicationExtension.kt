@@ -45,6 +45,10 @@ constructor(
         get() = hubdleState.kotlin.android.application.applicationId
         set(value) = hubdleState.kotlin.android.application.run { applicationId = value }
 
+    public var Project.namespace: String?
+        get() = hubdleState.kotlin.android.namespace
+        set(value) = hubdleState.kotlin.run { android.namespace = value }
+
     public var Project.versionCode: Int?
         get() = hubdleState.kotlin.android.application.versionCode
         set(value) = hubdleState.kotlin.android.application.run { versionCode = value }

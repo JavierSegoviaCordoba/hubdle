@@ -155,8 +155,8 @@ fun buildHubdleDependencies() {
                             val dependencyName = "$groupSanitized$nameSanitized".decapitalize()
                                 """
                                     |@HubdleDslMarker
-                                    |public fun KotlinDependencyHandler.$dependencyName(): Dependency =
-                                    |    catalogImplementation(${dependencyVariableName}_MODULE)
+                                    |public fun KotlinDependencyHandler.$dependencyName(): MinimalExternalModuleDependency =
+                                    |    catalogDependency(${dependencyVariableName}_MODULE)
                                 """
                         }
                         .lines()
@@ -171,9 +171,10 @@ fun buildHubdleDependencies() {
         writeText(
             """
                      |import com.javiersc.hubdle.extensions.HubdleDslMarker
-                     |import com.javiersc.hubdle.extensions._internal.state.catalogImplementation
+                     |import com.javiersc.hubdle.extensions._internal.state.catalogDependency
                      |import com.javiersc.hubdle.extensions.dependencies._internal.constants.*
                      |import org.gradle.api.artifacts.Dependency
+                     |import org.gradle.api.artifacts.MinimalExternalModuleDependency
                      |import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
                      |
                      |

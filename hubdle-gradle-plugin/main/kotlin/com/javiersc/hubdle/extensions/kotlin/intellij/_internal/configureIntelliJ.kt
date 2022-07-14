@@ -7,7 +7,7 @@ import com.javiersc.hubdle.HubdleProperty.IntelliJ
 import com.javiersc.hubdle.HubdleProperty.JetBrains
 import com.javiersc.hubdle.extensions._internal.PluginIds
 import com.javiersc.hubdle.extensions._internal.state.HubdleState
-import com.javiersc.hubdle.extensions._internal.state.catalogImplementation
+import com.javiersc.hubdle.extensions._internal.state.catalogDependency as catalogDep
 import com.javiersc.hubdle.extensions._internal.state.hubdleState
 import com.javiersc.hubdle.extensions.config.documentation.changelog.GENERATED_CHANGELOG_HTML_DIR_PATH
 import com.javiersc.hubdle.extensions.config.documentation.changelog.GENERATED_CHANGELOG_HTML_FILE_PATH
@@ -170,36 +170,36 @@ private val KotlinDependencyHandler.intellijFeatures: HubdleState.Kotlin.Intelli
 
 private fun KotlinDependencyHandler.configureMainDependencies() {
     if (intellijFeatures.coroutines) {
-        catalogImplementation(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_MODULE)
+        implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_MODULE))
     }
     if (intellijFeatures.extendedGradle) {
         implementation(project.dependencies.gradleApi())
         implementation(project.dependencies.gradleTestKit())
         implementation(project.gradleKotlinDsl())
-        catalogImplementation(COM_JAVIERSC_GRADLE_GRADLE_EXTENSIONS_MODULE)
+        implementation(catalogDep(COM_JAVIERSC_GRADLE_GRADLE_EXTENSIONS_MODULE))
     }
     if (intellijFeatures.extendedStdlib) {
-        catalogImplementation(COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE)
+        implementation(catalogDep(COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE))
     }
 
     if (intellijFeatures.serialization.isEnabled) {
         project.pluginManager.apply(PluginIds.Kotlin.serialization)
-        catalogImplementation(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_CORE_MODULE)
+        implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_CORE_MODULE))
         if (intellijFeatures.serialization.useJson) {
-            catalogImplementation(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_JSON_MODULE)
+            implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_JSON_MODULE))
         }
     }
 }
 
 private fun KotlinDependencyHandler.configureTestDependencies() {
-    catalogImplementation(ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE)
+    implementation(catalogDep(ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE))
     if (intellijFeatures.coroutines) {
-        catalogImplementation(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_TEST_MODULE)
+        implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_TEST_MODULE))
     }
     if (intellijFeatures.extendedGradle) {
-        catalogImplementation(COM_JAVIERSC_GRADLE_GRADLE_TEST_EXTENSIONS_MODULE)
+        implementation(catalogDep(COM_JAVIERSC_GRADLE_GRADLE_TEST_EXTENSIONS_MODULE))
     }
     if (intellijFeatures.extendedTesting) {
-        catalogImplementation(IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE)
+        implementation(catalogDep(IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE))
     }
 }

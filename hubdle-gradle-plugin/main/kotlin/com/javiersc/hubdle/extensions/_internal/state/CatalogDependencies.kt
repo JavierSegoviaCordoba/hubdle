@@ -5,7 +5,6 @@ import com.javiersc.gradle.extensions.version.catalogs.getLibraries
 import com.javiersc.gradle.project.extensions.module
 import com.javiersc.hubdle.extensions.dependencies._internal.hubdleDependencies
 import org.gradle.api.Project
-import org.gradle.api.artifacts.Dependency
 import org.gradle.api.artifacts.MinimalExternalModuleDependency
 import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.api.internal.artifacts.DefaultModuleIdentifier
@@ -18,8 +17,10 @@ internal val userCatalogsDependencies: UserCatalogsDependencies = UserCatalogsDe
 
 internal val hubdleCatalogsDependencies: HubdleCatalogsDependencies = HubdleCatalogsDependencies()
 
-internal fun KotlinDependencyHandler.catalogImplementation(module: String): Dependency =
-    checkNotNull(getDependency(module)?.let(::implementation)) {
+internal fun KotlinDependencyHandler.catalogDependency(
+    module: String
+): MinimalExternalModuleDependency =
+    checkNotNull(getDependency(module)) {
         "The dependency $module has not been found in any catalog"
     }
 

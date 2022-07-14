@@ -8,6 +8,8 @@
 
 ### Changed
 
+- dependency function doesn't use `implementation` under the hood
+
 ### Deprecated
 
 ### Removed

@@ -5,7 +5,7 @@ import com.javiersc.gradle.properties.extensions.getProperty
 import com.javiersc.hubdle.HubdleProperty
 import com.javiersc.hubdle.extensions._internal.PluginIds
 import com.javiersc.hubdle.extensions._internal.state.HubdleState
-import com.javiersc.hubdle.extensions._internal.state.catalogImplementation
+import com.javiersc.hubdle.extensions._internal.state.catalogDependency as catalogDep
 import com.javiersc.hubdle.extensions._internal.state.hubdleState
 import com.javiersc.hubdle.extensions.config.explicit.api._internal.configureExplicitApi
 import com.javiersc.hubdle.extensions.dependencies._internal.constants.COM_JAVIERSC_GRADLE_GRADLE_EXTENSIONS_MODULE
@@ -29,7 +29,6 @@ import org.gradle.api.attributes.Usage.JAVA_RUNTIME
 import org.gradle.api.attributes.Usage.USAGE_ATTRIBUTE
 import org.gradle.api.attributes.plugin.GradlePluginApiVersion.GRADLE_PLUGIN_API_VERSION_ATTRIBUTE
 import org.gradle.api.plugins.JavaPluginExtension
-import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.creating
 import org.gradle.kotlin.dsl.dependencies
@@ -121,21 +120,21 @@ private fun KotlinDependencyHandler.configureMainDependencies() {
     implementation(project.gradleKotlinDsl())
 
     if (gradlePluginFeatures.extendedGradle) {
-        catalogImplementation(COM_JAVIERSC_GRADLE_GRADLE_EXTENSIONS_MODULE)
+        implementation(catalogDep(COM_JAVIERSC_GRADLE_GRADLE_EXTENSIONS_MODULE))
     }
     if (gradlePluginFeatures.extendedGradle) {
-        catalogImplementation(COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE)
+        implementation(catalogDep(COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE))
     }
 }
 
 private fun KotlinDependencyHandler.configureTestDependencies() {
-    catalogImplementation(ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE)
+    implementation(catalogDep(ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE))
     implementation(project.dependencies.gradleTestKit())
     if (gradlePluginFeatures.extendedGradle) {
-        catalogImplementation(COM_JAVIERSC_GRADLE_GRADLE_TEST_EXTENSIONS_MODULE)
+        implementation(catalogDep(COM_JAVIERSC_GRADLE_GRADLE_TEST_EXTENSIONS_MODULE))
     }
 
     if (gradlePluginFeatures.extendedTesting) {
-        catalogImplementation(IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE)
+        implementation(catalogDep(IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE))
     }
 }

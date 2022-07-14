@@ -4,7 +4,7 @@ package com.javiersc.hubdle.extensions.kotlin.multiplatform._internal
 
 import com.javiersc.hubdle.extensions._internal.PluginIds
 import com.javiersc.hubdle.extensions._internal.state.HubdleState
-import com.javiersc.hubdle.extensions._internal.state.catalogImplementation
+import com.javiersc.hubdle.extensions._internal.state.catalogDependency as catalogDep
 import com.javiersc.hubdle.extensions._internal.state.hubdleState
 import com.javiersc.hubdle.extensions.config.explicit.api._internal.configureExplicitApi
 import com.javiersc.hubdle.extensions.dependencies._internal.constants.COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE
@@ -23,7 +23,6 @@ import com.javiersc.hubdle.extensions.options.configurePublishingExtension
 import com.javiersc.hubdle.extensions.options.configureSigningForPublishing
 import org.gradle.api.Project
 import org.gradle.api.plugins.JavaPluginExtension
-import org.gradle.kotlin.dsl.getValue
 import org.gradle.kotlin.dsl.the
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
@@ -72,33 +71,33 @@ private val KotlinDependencyHandler.multiplatformFeatures: HubdleState.Kotlin.Mu
 
 private fun KotlinDependencyHandler.configureCommonMainDependencies() {
     if (multiplatformFeatures.coroutines) {
-        catalogImplementation(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_MODULE)
+        implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_MODULE))
     }
     if (multiplatformFeatures.extendedStdlib) {
-        catalogImplementation(COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE)
+        implementation(catalogDep(COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE))
     }
 
     if (multiplatformFeatures.serialization.isEnabled) {
         project.pluginManager.apply(PluginIds.Kotlin.serialization)
-        catalogImplementation(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_CORE_MODULE)
+        implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_CORE_MODULE))
         if (multiplatformFeatures.serialization.useJson) {
-            catalogImplementation(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_JSON_MODULE)
+            implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_JSON_MODULE))
         }
     }
 }
 
 private fun KotlinDependencyHandler.configureCommonTestDependencies() {
     if (multiplatformFeatures.coroutines) {
-        catalogImplementation(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_TEST_MODULE)
+        implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_TEST_MODULE))
     }
-    catalogImplementation(ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE)
+    implementation(catalogDep(ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE))
     if (multiplatformFeatures.extendedTesting) {
-        catalogImplementation(IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE)
+        implementation(catalogDep(IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE))
     }
 }
 
 private fun KotlinDependencyHandler.configureAndroidMainDependencies() {
     if (multiplatformFeatures.coroutines) {
-        catalogImplementation(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_ANDROID_MODULE)
+        implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_ANDROID_MODULE))
     }
 }

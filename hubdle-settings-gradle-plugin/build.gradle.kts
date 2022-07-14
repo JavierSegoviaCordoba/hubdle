@@ -36,10 +36,11 @@ gradlePlugin {
 val testPluginClasspath: Configuration by configurations.creating
 
 dependencies {
-    implementation(gradleApi())
-    implementation(gradleKotlinDsl())
     api(libs.javiersc.gradle.gradleExtensions)
     api(pluginLibs.gradle.enterprise.comGradleEnterpriseGradlePlugin)
+
+    implementation(gradleApi())
+    implementation(gradleKotlinDsl())
 
     testImplementation(gradleTestKit())
     testImplementation(libs.jetbrains.kotlin.kotlinTest)

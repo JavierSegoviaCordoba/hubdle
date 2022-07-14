@@ -74,7 +74,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/184)
+    (0/200)
   </span>
 </td>
 </tr>
@@ -309,7 +309,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/198)
+    (0/214)
   </span>
 </td>
 </tr>
@@ -326,7 +326,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">4</i>&nbsp;
 <i class="no-highlight">5</i>&nbsp;import com.javiersc.hubdle.extensions._internal.PluginIds
 <i class="no-highlight">6</i>&nbsp;import com.javiersc.hubdle.extensions._internal.state.HubdleState
-<i class="no-highlight">7</i>&nbsp;import com.javiersc.hubdle.extensions._internal.state.catalogImplementation
+<i class="no-highlight">7</i>&nbsp;import com.javiersc.hubdle.extensions._internal.state.catalogDependency as catalogDep
 <i class="no-highlight">8</i>&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
 <i class="no-highlight">9</i>&nbsp;import com.javiersc.hubdle.extensions.config.explicit.api._internal.configureExplicitApi
 <i class="no-highlight">10</i>&nbsp;import com.javiersc.hubdle.extensions.dependencies._internal.constants.COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE
@@ -345,85 +345,84 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">23</i>&nbsp;import com.javiersc.hubdle.extensions.options.configureSigningForPublishing
 <i class="no-highlight">24</i>&nbsp;import org.gradle.api.Project
 <i class="no-highlight">25</i>&nbsp;import org.gradle.api.plugins.JavaPluginExtension
-<i class="no-highlight">26</i>&nbsp;import org.gradle.kotlin.dsl.getValue
-<i class="no-highlight">27</i>&nbsp;import org.gradle.kotlin.dsl.the
-<i class="no-highlight">28</i>&nbsp;import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
-<i class="no-highlight">29</i>&nbsp;import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
-<i class="no-highlight">30</i>&nbsp;import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
-<i class="no-highlight">31</i>&nbsp;
-<i class="no-highlight">32</i>&nbsp;internal fun configureMultiplatform(project: Project) {
-<b class="nc"><i class="no-highlight">33</i>&nbsp;    if (project.hubdleState.kotlin.multiplatform.isEnabled) {</b>
-<b class="nc"><i class="no-highlight">34</i>&nbsp;        project.pluginManager.apply(PluginIds.Kotlin.multiplatform)</b>
-<i class="no-highlight">35</i>&nbsp;
-<b class="nc"><i class="no-highlight">36</i>&nbsp;        project.configureExplicitApi()</b>
-<b class="nc"><i class="no-highlight">37</i>&nbsp;        project.configJvmTarget()</b>
-<b class="nc"><i class="no-highlight">38</i>&nbsp;        project.the&lt;JavaPluginExtension&gt;().configureDefaultJavaSourceSets()</b>
-<b class="nc"><i class="no-highlight">39</i>&nbsp;        project.the&lt;KotlinProjectExtension&gt;().configureDefaultKotlinSourceSets()</b>
-<b class="nc"><i class="no-highlight">40</i>&nbsp;        project.the&lt;KotlinMultiplatformExtension&gt;().configureMultiplatformDependencies()</b>
-<i class="no-highlight">41</i>&nbsp;
-<b class="nc"><i class="no-highlight">42</i>&nbsp;        if (project.hubdleState.config.publishing.isEnabled) {</b>
-<b class="nc"><i class="no-highlight">43</i>&nbsp;            project.pluginManager.apply(PluginIds.Publishing.mavenPublish)</b>
-<b class="nc"><i class="no-highlight">44</i>&nbsp;            project.configurePublishingExtension()</b>
-<b class="nc"><i class="no-highlight">45</i>&nbsp;            project.configureSigningForPublishing()</b>
-<b class="nc"><i class="no-highlight">46</i>&nbsp;            project.configureEmptyJavadocs()</b>
-<i class="no-highlight">47</i>&nbsp;        }
-<i class="no-highlight">48</i>&nbsp;    }
-<i class="no-highlight">49</i>&nbsp;}
-<i class="no-highlight">50</i>&nbsp;
-<i class="no-highlight">51</i>&nbsp;internal fun configureMultiplatformRawConfig(project: Project) {
-<b class="nc"><i class="no-highlight">52</i>&nbsp;    project.hubdleState.kotlin.multiplatform.rawConfig.kotlin?.execute(project.the())</b>
-<i class="no-highlight">53</i>&nbsp;}
-<i class="no-highlight">54</i>&nbsp;
-<i class="no-highlight">55</i>&nbsp;internal fun configureMultiplatformAndroidRawConfig(project: Project) {
-<b class="nc"><i class="no-highlight">56</i>&nbsp;    project.hubdleState.kotlin.multiplatform.android.rawConfig.android?.execute(project.the())</b>
-<i class="no-highlight">57</i>&nbsp;}
-<i class="no-highlight">58</i>&nbsp;
-<i class="no-highlight">59</i>&nbsp;private fun KotlinMultiplatformExtension.configureMultiplatformDependencies() {
-<b class="nc"><i class="no-highlight">60</i>&nbsp;    sourceSets.getByName(&quot;commonMain&quot;) { dependencies { configureCommonMainDependencies() } }</b>
-<b class="nc"><i class="no-highlight">61</i>&nbsp;    sourceSets.getByName(&quot;commonTest&quot;) { dependencies { configureCommonTestDependencies() } }</b>
-<b class="nc"><i class="no-highlight">62</i>&nbsp;    sourceSets.findByName(&quot;androidMain&quot;)?.apply {</b>
-<b class="nc"><i class="no-highlight">63</i>&nbsp;        dependencies { configureAndroidMainDependencies() }</b>
-<b class="nc"><i class="no-highlight">64</i>&nbsp;    }</b>
-<i class="no-highlight">65</i>&nbsp;}
-<i class="no-highlight">66</i>&nbsp;
-<i class="no-highlight">67</i>&nbsp;internal val Project.multiplatformFeatures: HubdleState.Kotlin.Multiplatform.Features
-<b class="nc"><i class="no-highlight">68</i>&nbsp;    get() = hubdleState.kotlin.multiplatform.features</b>
-<i class="no-highlight">69</i>&nbsp;
-<i class="no-highlight">70</i>&nbsp;private val KotlinDependencyHandler.multiplatformFeatures: HubdleState.Kotlin.Multiplatform.Features
-<b class="nc"><i class="no-highlight">71</i>&nbsp;    get() = project.multiplatformFeatures</b>
-<i class="no-highlight">72</i>&nbsp;
-<i class="no-highlight">73</i>&nbsp;private fun KotlinDependencyHandler.configureCommonMainDependencies() {
-<b class="nc"><i class="no-highlight">74</i>&nbsp;    if (multiplatformFeatures.coroutines) {</b>
-<b class="nc"><i class="no-highlight">75</i>&nbsp;        catalogImplementation(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_MODULE)</b>
-<i class="no-highlight">76</i>&nbsp;    }
-<b class="nc"><i class="no-highlight">77</i>&nbsp;    if (multiplatformFeatures.extendedStdlib) {</b>
-<b class="nc"><i class="no-highlight">78</i>&nbsp;        catalogImplementation(COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE)</b>
-<i class="no-highlight">79</i>&nbsp;    }
-<i class="no-highlight">80</i>&nbsp;
-<b class="nc"><i class="no-highlight">81</i>&nbsp;    if (multiplatformFeatures.serialization.isEnabled) {</b>
-<b class="nc"><i class="no-highlight">82</i>&nbsp;        project.pluginManager.apply(PluginIds.Kotlin.serialization)</b>
-<b class="nc"><i class="no-highlight">83</i>&nbsp;        catalogImplementation(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_CORE_MODULE)</b>
-<b class="nc"><i class="no-highlight">84</i>&nbsp;        if (multiplatformFeatures.serialization.useJson) {</b>
-<b class="nc"><i class="no-highlight">85</i>&nbsp;            catalogImplementation(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_JSON_MODULE)</b>
-<i class="no-highlight">86</i>&nbsp;        }
-<i class="no-highlight">87</i>&nbsp;    }
-<i class="no-highlight">88</i>&nbsp;}
-<i class="no-highlight">89</i>&nbsp;
-<i class="no-highlight">90</i>&nbsp;private fun KotlinDependencyHandler.configureCommonTestDependencies() {
-<b class="nc"><i class="no-highlight">91</i>&nbsp;    if (multiplatformFeatures.coroutines) {</b>
-<b class="nc"><i class="no-highlight">92</i>&nbsp;        catalogImplementation(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_TEST_MODULE)</b>
-<i class="no-highlight">93</i>&nbsp;    }
-<b class="nc"><i class="no-highlight">94</i>&nbsp;    catalogImplementation(ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE)</b>
-<b class="nc"><i class="no-highlight">95</i>&nbsp;    if (multiplatformFeatures.extendedTesting) {</b>
-<b class="nc"><i class="no-highlight">96</i>&nbsp;        catalogImplementation(IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE)</b>
-<i class="no-highlight">97</i>&nbsp;    }
-<i class="no-highlight">98</i>&nbsp;}
-<i class="no-highlight">99</i>&nbsp;
-<i class="no-highlight">100</i>&nbsp;private fun KotlinDependencyHandler.configureAndroidMainDependencies() {
-<b class="nc"><i class="no-highlight">101</i>&nbsp;    if (multiplatformFeatures.coroutines) {</b>
-<b class="nc"><i class="no-highlight">102</i>&nbsp;        catalogImplementation(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_ANDROID_MODULE)</b>
-<i class="no-highlight">103</i>&nbsp;    }
-<i class="no-highlight">104</i>&nbsp;}
+<i class="no-highlight">26</i>&nbsp;import org.gradle.kotlin.dsl.the
+<i class="no-highlight">27</i>&nbsp;import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+<i class="no-highlight">28</i>&nbsp;import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
+<i class="no-highlight">29</i>&nbsp;import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
+<i class="no-highlight">30</i>&nbsp;
+<i class="no-highlight">31</i>&nbsp;internal fun configureMultiplatform(project: Project) {
+<b class="nc"><i class="no-highlight">32</i>&nbsp;    if (project.hubdleState.kotlin.multiplatform.isEnabled) {</b>
+<b class="nc"><i class="no-highlight">33</i>&nbsp;        project.pluginManager.apply(PluginIds.Kotlin.multiplatform)</b>
+<i class="no-highlight">34</i>&nbsp;
+<b class="nc"><i class="no-highlight">35</i>&nbsp;        project.configureExplicitApi()</b>
+<b class="nc"><i class="no-highlight">36</i>&nbsp;        project.configJvmTarget()</b>
+<b class="nc"><i class="no-highlight">37</i>&nbsp;        project.the&lt;JavaPluginExtension&gt;().configureDefaultJavaSourceSets()</b>
+<b class="nc"><i class="no-highlight">38</i>&nbsp;        project.the&lt;KotlinProjectExtension&gt;().configureDefaultKotlinSourceSets()</b>
+<b class="nc"><i class="no-highlight">39</i>&nbsp;        project.the&lt;KotlinMultiplatformExtension&gt;().configureMultiplatformDependencies()</b>
+<i class="no-highlight">40</i>&nbsp;
+<b class="nc"><i class="no-highlight">41</i>&nbsp;        if (project.hubdleState.config.publishing.isEnabled) {</b>
+<b class="nc"><i class="no-highlight">42</i>&nbsp;            project.pluginManager.apply(PluginIds.Publishing.mavenPublish)</b>
+<b class="nc"><i class="no-highlight">43</i>&nbsp;            project.configurePublishingExtension()</b>
+<b class="nc"><i class="no-highlight">44</i>&nbsp;            project.configureSigningForPublishing()</b>
+<b class="nc"><i class="no-highlight">45</i>&nbsp;            project.configureEmptyJavadocs()</b>
+<i class="no-highlight">46</i>&nbsp;        }
+<i class="no-highlight">47</i>&nbsp;    }
+<i class="no-highlight">48</i>&nbsp;}
+<i class="no-highlight">49</i>&nbsp;
+<i class="no-highlight">50</i>&nbsp;internal fun configureMultiplatformRawConfig(project: Project) {
+<b class="nc"><i class="no-highlight">51</i>&nbsp;    project.hubdleState.kotlin.multiplatform.rawConfig.kotlin?.execute(project.the())</b>
+<i class="no-highlight">52</i>&nbsp;}
+<i class="no-highlight">53</i>&nbsp;
+<i class="no-highlight">54</i>&nbsp;internal fun configureMultiplatformAndroidRawConfig(project: Project) {
+<b class="nc"><i class="no-highlight">55</i>&nbsp;    project.hubdleState.kotlin.multiplatform.android.rawConfig.android?.execute(project.the())</b>
+<i class="no-highlight">56</i>&nbsp;}
+<i class="no-highlight">57</i>&nbsp;
+<i class="no-highlight">58</i>&nbsp;private fun KotlinMultiplatformExtension.configureMultiplatformDependencies() {
+<b class="nc"><i class="no-highlight">59</i>&nbsp;    sourceSets.getByName(&quot;commonMain&quot;) { dependencies { configureCommonMainDependencies() } }</b>
+<b class="nc"><i class="no-highlight">60</i>&nbsp;    sourceSets.getByName(&quot;commonTest&quot;) { dependencies { configureCommonTestDependencies() } }</b>
+<b class="nc"><i class="no-highlight">61</i>&nbsp;    sourceSets.findByName(&quot;androidMain&quot;)?.apply {</b>
+<b class="nc"><i class="no-highlight">62</i>&nbsp;        dependencies { configureAndroidMainDependencies() }</b>
+<b class="nc"><i class="no-highlight">63</i>&nbsp;    }</b>
+<i class="no-highlight">64</i>&nbsp;}
+<i class="no-highlight">65</i>&nbsp;
+<i class="no-highlight">66</i>&nbsp;internal val Project.multiplatformFeatures: HubdleState.Kotlin.Multiplatform.Features
+<b class="nc"><i class="no-highlight">67</i>&nbsp;    get() = hubdleState.kotlin.multiplatform.features</b>
+<i class="no-highlight">68</i>&nbsp;
+<i class="no-highlight">69</i>&nbsp;private val KotlinDependencyHandler.multiplatformFeatures: HubdleState.Kotlin.Multiplatform.Features
+<b class="nc"><i class="no-highlight">70</i>&nbsp;    get() = project.multiplatformFeatures</b>
+<i class="no-highlight">71</i>&nbsp;
+<i class="no-highlight">72</i>&nbsp;private fun KotlinDependencyHandler.configureCommonMainDependencies() {
+<b class="nc"><i class="no-highlight">73</i>&nbsp;    if (multiplatformFeatures.coroutines) {</b>
+<b class="nc"><i class="no-highlight">74</i>&nbsp;        implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_MODULE))</b>
+<i class="no-highlight">75</i>&nbsp;    }
+<b class="nc"><i class="no-highlight">76</i>&nbsp;    if (multiplatformFeatures.extendedStdlib) {</b>
+<b class="nc"><i class="no-highlight">77</i>&nbsp;        implementation(catalogDep(COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE))</b>
+<i class="no-highlight">78</i>&nbsp;    }
+<i class="no-highlight">79</i>&nbsp;
+<b class="nc"><i class="no-highlight">80</i>&nbsp;    if (multiplatformFeatures.serialization.isEnabled) {</b>
+<b class="nc"><i class="no-highlight">81</i>&nbsp;        project.pluginManager.apply(PluginIds.Kotlin.serialization)</b>
+<b class="nc"><i class="no-highlight">82</i>&nbsp;        implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_CORE_MODULE))</b>
+<b class="nc"><i class="no-highlight">83</i>&nbsp;        if (multiplatformFeatures.serialization.useJson) {</b>
+<b class="nc"><i class="no-highlight">84</i>&nbsp;            implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_JSON_MODULE))</b>
+<i class="no-highlight">85</i>&nbsp;        }
+<i class="no-highlight">86</i>&nbsp;    }
+<i class="no-highlight">87</i>&nbsp;}
+<i class="no-highlight">88</i>&nbsp;
+<i class="no-highlight">89</i>&nbsp;private fun KotlinDependencyHandler.configureCommonTestDependencies() {
+<b class="nc"><i class="no-highlight">90</i>&nbsp;    if (multiplatformFeatures.coroutines) {</b>
+<b class="nc"><i class="no-highlight">91</i>&nbsp;        implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_TEST_MODULE))</b>
+<i class="no-highlight">92</i>&nbsp;    }
+<b class="nc"><i class="no-highlight">93</i>&nbsp;    implementation(catalogDep(ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE))</b>
+<b class="nc"><i class="no-highlight">94</i>&nbsp;    if (multiplatformFeatures.extendedTesting) {</b>
+<b class="nc"><i class="no-highlight">95</i>&nbsp;        implementation(catalogDep(IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE))</b>
+<i class="no-highlight">96</i>&nbsp;    }
+<i class="no-highlight">97</i>&nbsp;}
+<i class="no-highlight">98</i>&nbsp;
+<i class="no-highlight">99</i>&nbsp;private fun KotlinDependencyHandler.configureAndroidMainDependencies() {
+<b class="nc"><i class="no-highlight">100</i>&nbsp;    if (multiplatformFeatures.coroutines) {</b>
+<b class="nc"><i class="no-highlight">101</i>&nbsp;        implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_ANDROID_MODULE))</b>
+<i class="no-highlight">102</i>&nbsp;    }
+<i class="no-highlight">103</i>&nbsp;}
 </div>
 </pre>
 </div>
@@ -450,7 +449,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-13 23:32</div>
+    <div style="float:right;">generated on 2022-07-14 11:39</div>
 </div>
 </body>
 </html>

@@ -170,13 +170,13 @@
 
 <div>
   <ul>
-    <li>10,941 lines of code (loc)</li>
-    <li>9,007 source lines of code (sloc)</li>
-    <li>6,009 logical lines of code (lloc)</li>
+    <li>10,943 lines of code (loc)</li>
+    <li>9,008 source lines of code (sloc)</li>
+    <li>6,015 logical lines of code (lloc)</li>
     <li>43 comment lines of code (cloc)</li>
     <li>1,102 cyclomatic complexity (mcc)</li>
     <li>517 cognitive complexity</li>
-    <li>62 number of total code smells</li>
+    <li>63 number of total code smells</li>
     <li>0% comment source ratio</li>
     <li>183 mcc per 1,000 lloc</li>
     <li>10 code smells per 1,000 lloc</li>
@@ -185,7 +185,7 @@
 
 
 <h2>Findings</h2>
-<div>Total: 62
+<div>Total: 63
   <h3>complexity: 5</h3>
   <details id="ComplexCondition" open="open">
     <summary class="rule-container"><span class="rule">ComplexCondition: 1 </span><span class="description">Complex conditions should be simplified and extracted into well-named methods if necessary.</span></summary>
@@ -205,7 +205,7 @@
   <details id="LongMethod" open="open">
     <summary class="rule-container"><span class="rule">LongMethod: 1 </span><span class="description">One method should have one responsibility. Long methods tend to handle many things at once. Prefer smaller methods to make them easier to understand.</span></summary>
     <ul>
-      <li><span class="location">buildSrc/src/main/kotlin/plugins/dependencies-codegen.gradle.kts:115:5</span><span class="message">The function buildHubdleDependencies is too long (66). The maximum length is 60.</span>
+      <li><span class="location">buildSrc/src/main/kotlin/plugins/dependencies-codegen.gradle.kts:115:5</span><span class="message">The function buildHubdleDependencies is too long (67). The maximum length is 60.</span>
         <pre><code><span class="lineno"> 112 </span>        }
 <span class="lineno"> 113 </span>}
 <span class="lineno"> 114 </span>
@@ -647,7 +647,7 @@
       </li>
     </ul>
   </details>
-  <h3>style: 7</h3>
+  <h3>style: 8</h3>
   <details id="ForbiddenComment" open="open">
     <summary class="rule-container"><span class="rule">ForbiddenComment: 6 </span><span class="description">Flags a forbidden comment.</span></summary>
     <ul>
@@ -716,14 +716,29 @@
   <details id="MagicNumber" open="open">
     <summary class="rule-container"><span class="rule">MagicNumber: 1 </span><span class="description">Report magic numbers. Magic number is a numeric literal that is not defined as a constant and hence it's unclear what the purpose of this number is. It's better to declare such numbers as constants and give them a proper name. By default, -1, 0, 1, and 2 are not considered to be magic numbers.</span></summary>
     <ul>
-      <li><span class="location">buildSrc/src/main/kotlin/plugins/dependencies-codegen.gradle.kts:199:56</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
-        <pre><code><span class="lineno"> 196 </span>    replace(&quot;.&quot;, &quot;_&quot;).replace(&quot;-&quot;, &quot;_&quot;).toUpperCase(Locale.getDefault())
-<span class="lineno"> 197 </span>
-<span class="lineno"> 198 </span>val MinimalExternalModuleDependency.hasCommonEndingDomain: Boolean
-<span class="lineno"> 199 </span>    get() = module.group.split(&quot;.&quot;).first().count() &lt;= <span class="error">3</span>
-<span class="lineno"> 200 </span>
-<span class="lineno"> 201 </span>val MinimalExternalModuleDependency.endAndStartWithSameName: Boolean
-<span class="lineno"> 202 </span>    get() = module.name.startsWith(module.group.substringAfterLast(&quot;.&quot;))
+      <li><span class="location">buildSrc/src/main/kotlin/plugins/dependencies-codegen.gradle.kts:200:56</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno"> 197 </span>    replace(&quot;.&quot;, &quot;_&quot;).replace(&quot;-&quot;, &quot;_&quot;).toUpperCase(Locale.getDefault())
+<span class="lineno"> 198 </span>
+<span class="lineno"> 199 </span>val MinimalExternalModuleDependency.hasCommonEndingDomain: Boolean
+<span class="lineno"> 200 </span>    get() = module.group.split(&quot;.&quot;).first().count() &lt;= <span class="error">3</span>
+<span class="lineno"> 201 </span>
+<span class="lineno"> 202 </span>val MinimalExternalModuleDependency.endAndStartWithSameName: Boolean
+<span class="lineno"> 203 </span>    get() = module.name.startsWith(module.group.substringAfterLast(&quot;.&quot;))
+</code></pre>
+      </li>
+    </ul>
+  </details>
+  <details id="MaxLineLength" open="open">
+    <summary class="rule-container"><span class="rule">MaxLineLength: 1 </span><span class="description">Line detected, which is longer than the defined maximum line length in the code style.</span></summary>
+    <ul>
+      <li><span class="location">buildSrc/src/main/kotlin/plugins/dependencies-codegen.gradle.kts:158:1</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 155 </span>                            val dependencyName = &quot;$groupSanitized$nameSanitized&quot;.decapitalize()
+<span class="lineno"> 156 </span>                                &quot;&quot;&quot;
+<span class="lineno"> 157 </span>                                    |@HubdleDslMarker
+<span class="lineno"> 158 </span><span class="error">                                    |public fun KotlinDependencyHandler.</span>$dependencyName(): MinimalExternalModuleDependency =
+<span class="lineno"> 159 </span>                                    |    catalogDependency(${dependencyVariableName}_MODULE)
+<span class="lineno"> 160 </span>                                &quot;&quot;&quot;
+<span class="lineno"> 161 </span>                        }
 </code></pre>
       </li>
     </ul>
@@ -731,7 +746,7 @@
 </div>
 
 
-generated with <a href="https://detekt.dev/">detekt version 1.20.0</a> on 2022-07-13 23:40:18 UTC.
+generated with <a href="https://detekt.dev/">detekt version 1.20.0</a> on 2022-07-14 11:35:26 UTC.
 
 </body>
 </html>

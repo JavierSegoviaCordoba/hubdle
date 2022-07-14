@@ -74,7 +74,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/314)
+    (0/332)
   </span>
 </td>
 </tr>
@@ -600,7 +600,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/642)
+    (0/660)
   </span>
 </td>
 </tr>
@@ -620,7 +620,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">7</i>&nbsp;import com.javiersc.hubdle.HubdleProperty.JetBrains
 <i class="no-highlight">8</i>&nbsp;import com.javiersc.hubdle.extensions._internal.PluginIds
 <i class="no-highlight">9</i>&nbsp;import com.javiersc.hubdle.extensions._internal.state.HubdleState
-<i class="no-highlight">10</i>&nbsp;import com.javiersc.hubdle.extensions._internal.state.catalogImplementation
+<i class="no-highlight">10</i>&nbsp;import com.javiersc.hubdle.extensions._internal.state.catalogDependency as catalogDep
 <i class="no-highlight">11</i>&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
 <i class="no-highlight">12</i>&nbsp;import com.javiersc.hubdle.extensions.config.documentation.changelog.GENERATED_CHANGELOG_HTML_DIR_PATH
 <i class="no-highlight">13</i>&nbsp;import com.javiersc.hubdle.extensions.config.documentation.changelog.GENERATED_CHANGELOG_HTML_FILE_PATH
@@ -783,37 +783,37 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">170</i>&nbsp;
 <i class="no-highlight">171</i>&nbsp;private fun KotlinDependencyHandler.configureMainDependencies() {
 <b class="nc"><i class="no-highlight">172</i>&nbsp;    if (intellijFeatures.coroutines) {</b>
-<b class="nc"><i class="no-highlight">173</i>&nbsp;        catalogImplementation(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_MODULE)</b>
+<b class="nc"><i class="no-highlight">173</i>&nbsp;        implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_MODULE))</b>
 <i class="no-highlight">174</i>&nbsp;    }
 <b class="nc"><i class="no-highlight">175</i>&nbsp;    if (intellijFeatures.extendedGradle) {</b>
 <b class="nc"><i class="no-highlight">176</i>&nbsp;        implementation(project.dependencies.gradleApi())</b>
 <b class="nc"><i class="no-highlight">177</i>&nbsp;        implementation(project.dependencies.gradleTestKit())</b>
 <b class="nc"><i class="no-highlight">178</i>&nbsp;        implementation(project.gradleKotlinDsl())</b>
-<b class="nc"><i class="no-highlight">179</i>&nbsp;        catalogImplementation(COM_JAVIERSC_GRADLE_GRADLE_EXTENSIONS_MODULE)</b>
+<b class="nc"><i class="no-highlight">179</i>&nbsp;        implementation(catalogDep(COM_JAVIERSC_GRADLE_GRADLE_EXTENSIONS_MODULE))</b>
 <i class="no-highlight">180</i>&nbsp;    }
 <b class="nc"><i class="no-highlight">181</i>&nbsp;    if (intellijFeatures.extendedStdlib) {</b>
-<b class="nc"><i class="no-highlight">182</i>&nbsp;        catalogImplementation(COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE)</b>
+<b class="nc"><i class="no-highlight">182</i>&nbsp;        implementation(catalogDep(COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE))</b>
 <i class="no-highlight">183</i>&nbsp;    }
 <i class="no-highlight">184</i>&nbsp;
 <b class="nc"><i class="no-highlight">185</i>&nbsp;    if (intellijFeatures.serialization.isEnabled) {</b>
 <b class="nc"><i class="no-highlight">186</i>&nbsp;        project.pluginManager.apply(PluginIds.Kotlin.serialization)</b>
-<b class="nc"><i class="no-highlight">187</i>&nbsp;        catalogImplementation(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_CORE_MODULE)</b>
+<b class="nc"><i class="no-highlight">187</i>&nbsp;        implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_CORE_MODULE))</b>
 <b class="nc"><i class="no-highlight">188</i>&nbsp;        if (intellijFeatures.serialization.useJson) {</b>
-<b class="nc"><i class="no-highlight">189</i>&nbsp;            catalogImplementation(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_JSON_MODULE)</b>
+<b class="nc"><i class="no-highlight">189</i>&nbsp;            implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_JSON_MODULE))</b>
 <i class="no-highlight">190</i>&nbsp;        }
 <i class="no-highlight">191</i>&nbsp;    }
 <i class="no-highlight">192</i>&nbsp;}
 <i class="no-highlight">193</i>&nbsp;
 <i class="no-highlight">194</i>&nbsp;private fun KotlinDependencyHandler.configureTestDependencies() {
-<b class="nc"><i class="no-highlight">195</i>&nbsp;    catalogImplementation(ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE)</b>
+<b class="nc"><i class="no-highlight">195</i>&nbsp;    implementation(catalogDep(ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE))</b>
 <b class="nc"><i class="no-highlight">196</i>&nbsp;    if (intellijFeatures.coroutines) {</b>
-<b class="nc"><i class="no-highlight">197</i>&nbsp;        catalogImplementation(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_TEST_MODULE)</b>
+<b class="nc"><i class="no-highlight">197</i>&nbsp;        implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_TEST_MODULE))</b>
 <i class="no-highlight">198</i>&nbsp;    }
 <b class="nc"><i class="no-highlight">199</i>&nbsp;    if (intellijFeatures.extendedGradle) {</b>
-<b class="nc"><i class="no-highlight">200</i>&nbsp;        catalogImplementation(COM_JAVIERSC_GRADLE_GRADLE_TEST_EXTENSIONS_MODULE)</b>
+<b class="nc"><i class="no-highlight">200</i>&nbsp;        implementation(catalogDep(COM_JAVIERSC_GRADLE_GRADLE_TEST_EXTENSIONS_MODULE))</b>
 <i class="no-highlight">201</i>&nbsp;    }
 <b class="nc"><i class="no-highlight">202</i>&nbsp;    if (intellijFeatures.extendedTesting) {</b>
-<b class="nc"><i class="no-highlight">203</i>&nbsp;        catalogImplementation(IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE)</b>
+<b class="nc"><i class="no-highlight">203</i>&nbsp;        implementation(catalogDep(IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE))</b>
 <i class="no-highlight">204</i>&nbsp;    }
 <i class="no-highlight">205</i>&nbsp;}
 </div>
@@ -842,7 +842,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-13 23:32</div>
+    <div style="float:right;">generated on 2022-07-14 11:39</div>
 </div>
 </body>
 </html>

@@ -74,7 +74,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/155)
+    (0/171)
   </span>
 </td>
 </tr>
@@ -317,7 +317,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/194)
+    (0/210)
   </span>
 </td>
 </tr>
@@ -333,7 +333,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">3</i>&nbsp;import com.android.build.gradle.LibraryExtension
 <i class="no-highlight">4</i>&nbsp;import com.javiersc.hubdle.extensions._internal.PluginIds
 <i class="no-highlight">5</i>&nbsp;import com.javiersc.hubdle.extensions._internal.state.HubdleState
-<i class="no-highlight">6</i>&nbsp;import com.javiersc.hubdle.extensions._internal.state.catalogImplementation
+<i class="no-highlight">6</i>&nbsp;import com.javiersc.hubdle.extensions._internal.state.catalogDependency as catalogDep
 <i class="no-highlight">7</i>&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
 <i class="no-highlight">8</i>&nbsp;import com.javiersc.hubdle.extensions.config.explicit.api._internal.configureExplicitApi
 <i class="no-highlight">9</i>&nbsp;import com.javiersc.hubdle.extensions.dependencies._internal.constants.COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE
@@ -401,29 +401,29 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">71</i>&nbsp;
 <i class="no-highlight">72</i>&nbsp;private fun KotlinDependencyHandler.configureMainDependencies() {
 <b class="nc"><i class="no-highlight">73</i>&nbsp;    if (androidLibraryFeatures.coroutines) {</b>
-<b class="nc"><i class="no-highlight">74</i>&nbsp;        catalogImplementation(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_ANDROID_MODULE)</b>
-<b class="nc"><i class="no-highlight">75</i>&nbsp;        catalogImplementation(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_MODULE)</b>
+<b class="nc"><i class="no-highlight">74</i>&nbsp;        implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_ANDROID_MODULE))</b>
+<b class="nc"><i class="no-highlight">75</i>&nbsp;        implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_MODULE))</b>
 <i class="no-highlight">76</i>&nbsp;    }
 <b class="nc"><i class="no-highlight">77</i>&nbsp;    if (androidLibraryFeatures.extendedStdlib) {</b>
-<b class="nc"><i class="no-highlight">78</i>&nbsp;        catalogImplementation(COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE)</b>
+<b class="nc"><i class="no-highlight">78</i>&nbsp;        implementation(catalogDep(COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE))</b>
 <i class="no-highlight">79</i>&nbsp;    }
 <b class="nc"><i class="no-highlight">80</i>&nbsp;    if (androidLibraryFeatures.serialization.isEnabled) {</b>
 <b class="nc"><i class="no-highlight">81</i>&nbsp;        project.pluginManager.apply(PluginIds.Kotlin.serialization)</b>
-<b class="nc"><i class="no-highlight">82</i>&nbsp;        catalogImplementation(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_CORE_MODULE)</b>
+<b class="nc"><i class="no-highlight">82</i>&nbsp;        implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_CORE_MODULE))</b>
 <b class="nc"><i class="no-highlight">83</i>&nbsp;        if (androidLibraryFeatures.serialization.useJson) {</b>
-<b class="nc"><i class="no-highlight">84</i>&nbsp;            catalogImplementation(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_JSON_MODULE)</b>
+<b class="nc"><i class="no-highlight">84</i>&nbsp;            implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_JSON_MODULE))</b>
 <i class="no-highlight">85</i>&nbsp;        }
 <i class="no-highlight">86</i>&nbsp;    }
 <i class="no-highlight">87</i>&nbsp;}
 <i class="no-highlight">88</i>&nbsp;
 <i class="no-highlight">89</i>&nbsp;private fun KotlinDependencyHandler.configureTestDependencies() {
-<b class="nc"><i class="no-highlight">90</i>&nbsp;    catalogImplementation(ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE)</b>
+<b class="nc"><i class="no-highlight">90</i>&nbsp;    implementation(catalogDep(ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE))</b>
 <i class="no-highlight">91</i>&nbsp;
 <b class="nc"><i class="no-highlight">92</i>&nbsp;    if (androidLibraryFeatures.coroutines) {</b>
-<b class="nc"><i class="no-highlight">93</i>&nbsp;        catalogImplementation(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_TEST_MODULE)</b>
+<b class="nc"><i class="no-highlight">93</i>&nbsp;        implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_TEST_MODULE))</b>
 <i class="no-highlight">94</i>&nbsp;    }
 <b class="nc"><i class="no-highlight">95</i>&nbsp;    if (androidLibraryFeatures.extendedTesting) {</b>
-<b class="nc"><i class="no-highlight">96</i>&nbsp;        catalogImplementation(IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE)</b>
+<b class="nc"><i class="no-highlight">96</i>&nbsp;        implementation(catalogDep(IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE))</b>
 <i class="no-highlight">97</i>&nbsp;    }
 <i class="no-highlight">98</i>&nbsp;}
 </div>
@@ -452,7 +452,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-13 23:32</div>
+    <div style="float:right;">generated on 2022-07-14 11:39</div>
 </div>
 </body>
 </html>

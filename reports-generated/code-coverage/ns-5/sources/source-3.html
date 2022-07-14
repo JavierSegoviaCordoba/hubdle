@@ -97,66 +97,67 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">5</i>&nbsp;import com.javiersc.gradle.project.extensions.module
 <i class="no-highlight">6</i>&nbsp;import com.javiersc.hubdle.extensions.dependencies._internal.hubdleDependencies
 <i class="no-highlight">7</i>&nbsp;import org.gradle.api.Project
-<i class="no-highlight">8</i>&nbsp;import org.gradle.api.artifacts.Dependency
-<i class="no-highlight">9</i>&nbsp;import org.gradle.api.artifacts.MinimalExternalModuleDependency
-<i class="no-highlight">10</i>&nbsp;import org.gradle.api.artifacts.VersionCatalogsExtension
-<i class="no-highlight">11</i>&nbsp;import org.gradle.api.internal.artifacts.DefaultModuleIdentifier
-<i class="no-highlight">12</i>&nbsp;import org.gradle.api.internal.artifacts.dependencies.DefaultMinimalDependency
-<i class="no-highlight">13</i>&nbsp;import org.gradle.api.internal.artifacts.dependencies.DefaultMutableVersionConstraint
-<i class="no-highlight">14</i>&nbsp;import org.gradle.kotlin.dsl.findByType
-<i class="no-highlight">15</i>&nbsp;import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
-<i class="no-highlight">16</i>&nbsp;
-<i class="no-highlight">17</i>&nbsp;internal val userCatalogsDependencies: UserCatalogsDependencies = UserCatalogsDependencies()
-<i class="no-highlight">18</i>&nbsp;
-<i class="no-highlight">19</i>&nbsp;internal val hubdleCatalogsDependencies: HubdleCatalogsDependencies = HubdleCatalogsDependencies()
-<i class="no-highlight">20</i>&nbsp;
-<i class="no-highlight">21</i>&nbsp;internal fun KotlinDependencyHandler.catalogImplementation(module: String): Dependency =
-<i class="no-highlight">22</i>&nbsp;    checkNotNull(getDependency(module)?.let(::implementation)) {
-<i class="no-highlight">23</i>&nbsp;        &quot;The dependency $module has not been found in any catalog&quot;
-<i class="no-highlight">24</i>&nbsp;    }
-<i class="no-highlight">25</i>&nbsp;
-<i class="no-highlight">26</i>&nbsp;private fun KotlinDependencyHandler.getDependency(
-<i class="no-highlight">27</i>&nbsp;    module: String
-<i class="no-highlight">28</i>&nbsp;): MinimalExternalModuleDependency? =
-<i class="no-highlight">29</i>&nbsp;    getCatalogsDependency(module).takeIf { project.module != &quot;${it.module}&quot; }
-<i class="no-highlight">30</i>&nbsp;
-<i class="no-highlight">31</i>&nbsp;private fun getCatalogsDependency(module: String): MinimalExternalModuleDependency {
-<i class="no-highlight">32</i>&nbsp;    check(module.split(&quot;:&quot;).count() == 2) { &quot;The module provided is not correct&quot; }
-<i class="no-highlight">33</i>&nbsp;    return userCatalogsDependencies.dependencies.firstOrNull { &quot;${it.module}&quot; == module }
-<i class="no-highlight">34</i>&nbsp;        ?: hubdleCatalogsDependencies.dependencies.first { &quot;${it.module}&quot; == module }
-<i class="no-highlight">35</i>&nbsp;}
-<i class="no-highlight">36</i>&nbsp;
-<i class="no-highlight">37</i>&nbsp;internal data class UserCatalogsDependencies(
-<i class="no-highlight">38</i>&nbsp;    val dependencies: MutableList&lt;MinimalExternalModuleDependency&gt; = mutableListOf(),
-<i class="no-highlight">39</i>&nbsp;) : Configurable {
-<i class="no-highlight">40</i>&nbsp;    override fun configure(project: Project) {
-<i class="no-highlight">41</i>&nbsp;        val catalogExtension: VersionCatalogsExtension? = project.extensions.findByType()
-<i class="no-highlight">42</i>&nbsp;        val libraries: Set&lt;MinimalExternalModuleDependency&gt; =
-<i class="no-highlight">43</i>&nbsp;            catalogExtension
-<i class="no-highlight">44</i>&nbsp;                ?.catalogNamesWithLibsAtFirst
-<i class="no-highlight">45</i>&nbsp;                ?.flatMap(catalogExtension::getLibraries)
-<i class="no-highlight">46</i>&nbsp;                ?.toSet()
-<i class="no-highlight">47</i>&nbsp;                .orEmpty()
-<i class="no-highlight">48</i>&nbsp;        dependencies += libraries
-<i class="no-highlight">49</i>&nbsp;    }
-<i class="no-highlight">50</i>&nbsp;}
-<i class="no-highlight">51</i>&nbsp;
-<b class="nc"><i class="no-highlight">52</i>&nbsp;internal data class HubdleCatalogsDependencies(</b>
-<b class="nc"><i class="no-highlight">53</i>&nbsp;    val dependencies: MutableList&lt;MinimalExternalModuleDependency&gt; = mutableListOf(),</b>
-<i class="no-highlight">54</i>&nbsp;) : Configurable {
-<i class="no-highlight">55</i>&nbsp;    override fun configure(project: Project) {
-<b class="nc"><i class="no-highlight">56</i>&nbsp;        dependencies += hubdleDependencies.map(String::buildDefaultMinimalDependency)</b>
-<i class="no-highlight">57</i>&nbsp;    }
-<i class="no-highlight">58</i>&nbsp;}
-<i class="no-highlight">59</i>&nbsp;
-<i class="no-highlight">60</i>&nbsp;private fun String.buildDefaultMinimalDependency(): MinimalExternalModuleDependency {
-<i class="no-highlight">61</i>&nbsp;    val (group: String, name: String) = split(&quot;:&quot;)
-<i class="no-highlight">62</i>&nbsp;    val version: String = split(&quot;:&quot;).getOrElse(2) { &quot;&quot; }
-<i class="no-highlight">63</i>&nbsp;    return DefaultMinimalDependency(
-<i class="no-highlight">64</i>&nbsp;        DefaultModuleIdentifier.newId(group, name),
-<i class="no-highlight">65</i>&nbsp;        DefaultMutableVersionConstraint.withVersion(version)
-<i class="no-highlight">66</i>&nbsp;    )
-<i class="no-highlight">67</i>&nbsp;}
+<i class="no-highlight">8</i>&nbsp;import org.gradle.api.artifacts.MinimalExternalModuleDependency
+<i class="no-highlight">9</i>&nbsp;import org.gradle.api.artifacts.VersionCatalogsExtension
+<i class="no-highlight">10</i>&nbsp;import org.gradle.api.internal.artifacts.DefaultModuleIdentifier
+<i class="no-highlight">11</i>&nbsp;import org.gradle.api.internal.artifacts.dependencies.DefaultMinimalDependency
+<i class="no-highlight">12</i>&nbsp;import org.gradle.api.internal.artifacts.dependencies.DefaultMutableVersionConstraint
+<i class="no-highlight">13</i>&nbsp;import org.gradle.kotlin.dsl.findByType
+<i class="no-highlight">14</i>&nbsp;import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
+<i class="no-highlight">15</i>&nbsp;
+<i class="no-highlight">16</i>&nbsp;internal val userCatalogsDependencies: UserCatalogsDependencies = UserCatalogsDependencies()
+<i class="no-highlight">17</i>&nbsp;
+<i class="no-highlight">18</i>&nbsp;internal val hubdleCatalogsDependencies: HubdleCatalogsDependencies = HubdleCatalogsDependencies()
+<i class="no-highlight">19</i>&nbsp;
+<i class="no-highlight">20</i>&nbsp;internal fun KotlinDependencyHandler.catalogDependency(
+<i class="no-highlight">21</i>&nbsp;    module: String
+<i class="no-highlight">22</i>&nbsp;): MinimalExternalModuleDependency =
+<i class="no-highlight">23</i>&nbsp;    checkNotNull(getDependency(module)) {
+<i class="no-highlight">24</i>&nbsp;        &quot;The dependency $module has not been found in any catalog&quot;
+<i class="no-highlight">25</i>&nbsp;    }
+<i class="no-highlight">26</i>&nbsp;
+<i class="no-highlight">27</i>&nbsp;private fun KotlinDependencyHandler.getDependency(
+<i class="no-highlight">28</i>&nbsp;    module: String
+<i class="no-highlight">29</i>&nbsp;): MinimalExternalModuleDependency? =
+<i class="no-highlight">30</i>&nbsp;    getCatalogsDependency(module).takeIf { project.module != &quot;${it.module}&quot; }
+<i class="no-highlight">31</i>&nbsp;
+<i class="no-highlight">32</i>&nbsp;private fun getCatalogsDependency(module: String): MinimalExternalModuleDependency {
+<i class="no-highlight">33</i>&nbsp;    check(module.split(&quot;:&quot;).count() == 2) { &quot;The module provided is not correct&quot; }
+<i class="no-highlight">34</i>&nbsp;    return userCatalogsDependencies.dependencies.firstOrNull { &quot;${it.module}&quot; == module }
+<i class="no-highlight">35</i>&nbsp;        ?: hubdleCatalogsDependencies.dependencies.first { &quot;${it.module}&quot; == module }
+<i class="no-highlight">36</i>&nbsp;}
+<i class="no-highlight">37</i>&nbsp;
+<i class="no-highlight">38</i>&nbsp;internal data class UserCatalogsDependencies(
+<i class="no-highlight">39</i>&nbsp;    val dependencies: MutableList&lt;MinimalExternalModuleDependency&gt; = mutableListOf(),
+<i class="no-highlight">40</i>&nbsp;) : Configurable {
+<i class="no-highlight">41</i>&nbsp;    override fun configure(project: Project) {
+<i class="no-highlight">42</i>&nbsp;        val catalogExtension: VersionCatalogsExtension? = project.extensions.findByType()
+<i class="no-highlight">43</i>&nbsp;        val libraries: Set&lt;MinimalExternalModuleDependency&gt; =
+<i class="no-highlight">44</i>&nbsp;            catalogExtension
+<i class="no-highlight">45</i>&nbsp;                ?.catalogNamesWithLibsAtFirst
+<i class="no-highlight">46</i>&nbsp;                ?.flatMap(catalogExtension::getLibraries)
+<i class="no-highlight">47</i>&nbsp;                ?.toSet()
+<i class="no-highlight">48</i>&nbsp;                .orEmpty()
+<i class="no-highlight">49</i>&nbsp;        dependencies += libraries
+<i class="no-highlight">50</i>&nbsp;    }
+<i class="no-highlight">51</i>&nbsp;}
+<i class="no-highlight">52</i>&nbsp;
+<b class="nc"><i class="no-highlight">53</i>&nbsp;internal data class HubdleCatalogsDependencies(</b>
+<b class="nc"><i class="no-highlight">54</i>&nbsp;    val dependencies: MutableList&lt;MinimalExternalModuleDependency&gt; = mutableListOf(),</b>
+<i class="no-highlight">55</i>&nbsp;) : Configurable {
+<i class="no-highlight">56</i>&nbsp;    override fun configure(project: Project) {
+<b class="nc"><i class="no-highlight">57</i>&nbsp;        dependencies += hubdleDependencies.map(String::buildDefaultMinimalDependency)</b>
+<i class="no-highlight">58</i>&nbsp;    }
+<i class="no-highlight">59</i>&nbsp;}
+<i class="no-highlight">60</i>&nbsp;
+<i class="no-highlight">61</i>&nbsp;private fun String.buildDefaultMinimalDependency(): MinimalExternalModuleDependency {
+<i class="no-highlight">62</i>&nbsp;    val (group: String, name: String) = split(&quot;:&quot;)
+<i class="no-highlight">63</i>&nbsp;    val version: String = split(&quot;:&quot;).getOrElse(2) { &quot;&quot; }
+<i class="no-highlight">64</i>&nbsp;    return DefaultMinimalDependency(
+<i class="no-highlight">65</i>&nbsp;        DefaultModuleIdentifier.newId(group, name),
+<i class="no-highlight">66</i>&nbsp;        DefaultMutableVersionConstraint.withVersion(version)
+<i class="no-highlight">67</i>&nbsp;    )
+<i class="no-highlight">68</i>&nbsp;}
 </div>
 </pre>
 </div>
@@ -183,7 +184,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-13 23:32</div>
+    <div style="float:right;">generated on 2022-07-14 11:39</div>
 </div>
 </body>
 </html>

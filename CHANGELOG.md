@@ -4,11 +4,7 @@
 
 ### Added
 
-- `kotlinTestAnnotationsCommon` and `kotlinTestJunit5` dependencies
-
 ### Changed
-
-- dependency function doesn't use `implementation` under the hood
 
 ### Deprecated
 
@@ -16,15 +12,27 @@
 
 ### Fixed
 
-- Hierarchical project structure in Kotlin Multiplatform
-
 ### Updated
+
+## [0.2.0-alpha.24] - 2022-07-14
+
+### Added
+
+- `kotlinTestAnnotationsCommon` and `kotlinTestJunit5` dependencies
+
+### Changed
+
+- dependency function doesn't use `implementation` under the hood
+
+### Fixed
+
+- Hierarchical project structure in Kotlin Multiplatform
 
 ## [0.2.0-alpha.23] - 2022-07-13
 
 ### Fixed
 
-- `watchos/test` source set using `main` source set 
+- `watchos/test` source set using `main` source set
 
 ## [0.2.0-alpha.22] - 2022-07-13
 

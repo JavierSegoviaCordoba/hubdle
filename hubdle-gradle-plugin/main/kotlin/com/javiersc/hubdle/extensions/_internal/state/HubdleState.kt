@@ -325,9 +325,9 @@ internal data class HubdleState(
         data class LanguageSettings(
             var experimentalContracts: Boolean = false,
             var experimentalCoroutinesApi: Boolean = false,
-            var experimentalSerializationApi: Boolean = true,
+            var experimentalSerializationApi: Boolean = false,
             var experimentalStdlibApi: Boolean = true,
-            var experimentalTime: Boolean = true,
+            var experimentalTime: Boolean = false,
             var flowPreview: Boolean = false,
             val optIns: MutableList<String> = mutableListOf(),
             var requiresOptIn: Boolean = true,

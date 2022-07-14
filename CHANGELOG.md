@@ -4,6 +4,8 @@
 
 ### Added
 
+- `javiersc:kotlin-test-junit`, `junit5` and `testng` to `extendedTesting`
+
 ### Changed
 
 ### Deprecated

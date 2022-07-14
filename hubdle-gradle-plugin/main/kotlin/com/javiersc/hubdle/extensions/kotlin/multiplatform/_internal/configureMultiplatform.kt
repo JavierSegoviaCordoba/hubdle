@@ -8,6 +8,9 @@ import com.javiersc.hubdle.extensions._internal.state.catalogDependency as catal
 import com.javiersc.hubdle.extensions._internal.state.hubdleState
 import com.javiersc.hubdle.extensions.config.explicit.api._internal.configureExplicitApi
 import com.javiersc.hubdle.extensions.dependencies._internal.constants.COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE
+import com.javiersc.hubdle.extensions.dependencies._internal.constants.COM_JAVIERSC_KOTLIN_KOTLIN_TEST_JUNIT5_MODULE
+import com.javiersc.hubdle.extensions.dependencies._internal.constants.COM_JAVIERSC_KOTLIN_KOTLIN_TEST_JUNIT_MODULE
+import com.javiersc.hubdle.extensions.dependencies._internal.constants.COM_JAVIERSC_KOTLIN_KOTLIN_TEST_TESTNG_MODULE
 import com.javiersc.hubdle.extensions.dependencies._internal.constants.IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE
 import com.javiersc.hubdle.extensions.dependencies._internal.constants.ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_ANDROID_MODULE
 import com.javiersc.hubdle.extensions.dependencies._internal.constants.ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_MODULE
@@ -22,8 +25,16 @@ import com.javiersc.hubdle.extensions.options.configureEmptyJavadocs
 import com.javiersc.hubdle.extensions.options.configurePublishingExtension
 import com.javiersc.hubdle.extensions.options.configureSigningForPublishing
 import org.gradle.api.Project
+import org.gradle.api.artifacts.Configuration
+import org.gradle.api.artifacts.Dependency
 import org.gradle.api.plugins.JavaPluginExtension
+import org.gradle.api.provider.Provider
+import org.gradle.api.tasks.testing.Test
+import org.gradle.api.tasks.testing.junit.JUnitOptions
+import org.gradle.api.tasks.testing.junitplatform.JUnitPlatformOptions
+import org.gradle.api.tasks.testing.testng.TestNGOptions
 import org.gradle.kotlin.dsl.the
+import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
@@ -91,8 +102,26 @@ private fun KotlinDependencyHandler.configureCommonTestDependencies() {
         implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_TEST_MODULE))
     }
     implementation(catalogDep(ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE))
+
     if (multiplatformFeatures.extendedTesting) {
+        project.commonTestImplementationConfiguration?.withDependencies {
+            addLater(calculateJavierScKotlinTestDependency())
+        }
         implementation(catalogDep(IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE))
+    }
+}
+
+private val Project.commonTestImplementationConfiguration: Configuration?
+    get() = project.configurations.findByName("commonTestImplementation")
+
+private fun KotlinDependencyHandler.calculateJavierScKotlinTestDependency(): Provider<Dependency> {
+    return project.provider {
+        when (project.tasks.withType<Test>().firstOrNull()?.options) {
+            is JUnitOptions -> catalogDep(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_JUNIT_MODULE)
+            is JUnitPlatformOptions -> catalogDep(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_JUNIT5_MODULE)
+            is TestNGOptions -> catalogDep(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_TESTNG_MODULE)
+            else -> catalogDep(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_JUNIT_MODULE)
+        }.run(::implementation)
     }
 }
 

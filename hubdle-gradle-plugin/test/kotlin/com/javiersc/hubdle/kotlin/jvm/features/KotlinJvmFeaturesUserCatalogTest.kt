@@ -14,6 +14,7 @@ internal class KotlinJvmFeaturesUserCatalogTest : GradleTest() {
     @Test
     fun `user catalog coroutines`() {
         gradleTestKitTest("kotlin/jvm/features/user-catalog-coroutines") {
+            gradlew("assemble")
             gradlewArgumentFromTXT()
                 .outputTrimmed
                 .shouldContain(
@@ -26,10 +27,10 @@ internal class KotlinJvmFeaturesUserCatalogTest : GradleTest() {
                 .shouldContain(
                     """
                         testImplementation - Implementation only dependencies for compilation 'test' (target  (jvm)). (n)
-                        +--- org.jetbrains.kotlin:kotlin-test:$ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_VERSION (n)
+                        +--- org.jetbrains.kotlin:kotlin-test:1.6.10 (n)
                         +--- org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.1 (n)
-                        +--- io.kotest:kotest-assertions-core:$IO_KOTEST_KOTEST_ASSERTIONS_CORE_VERSION (n)
-                        \--- org.jetbrains.kotlin:kotlin-test:$ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_VERSION (n)
+                        +--- io.kotest:kotest-assertions-core:5.3.0 (n)
+                        \--- org.jetbrains.kotlin:kotlin-test:1.6.10 (n)
                     """.trimIndent()
                 )
         }

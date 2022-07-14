@@ -4,6 +4,8 @@
 
 ### Added
 
+- `kotlinTestAnnotationsCommon` and `kotlinTestJunit5` dependencies
+
 ### Changed
 
 ### Deprecated

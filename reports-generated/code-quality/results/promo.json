@@ -1,57 +1,29 @@
 {"version":"3","listProblem":[{
   "tool": "Code Inspection",
   "category": "Redundant constructs",
-  "type": "Remove unnecessary parentheses from function call with lambda",
-  "severity": "Info",
-  "comment": "Remove unnecessary parentheses from function call with lambda",
-  "detailsInfo": "Reports redundant empty parentheses of function calls where the only parameter is a lambda that's outside the parentheses.\n\nUse the 'Remove unnecessary parentheses from function call with lambda' quick-fix to clean up the code.\n\n**Examples:**\n\n\n      fun foo() {\n          listOf(1).forEach() {  }\n      }\n\nAfter the quick-fix is applied:\n\n\n      fun foo() {\n          listOf(1).forEach {  }\n      }\n",
-  "sources": [
-    {
-      "type": "file",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatformJs.kt",
-      "language": "kotlin",
-      "line": 12,
-      "offset": 15,
-      "length": 2,
-      "code": {
-        "startLine": 10,
-        "length": 2,
-        "offset": 101,
-        "surroundingCode": "    if (jsState.isEnabled) {\n        project.configure<KotlinMultiplatformExtension> {\n            js() {\n                if (jsState.browser.isEnabled) {\n                    browser { jsState.browser.action?.execute(this) }"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "hubdle.hubdle-gradle-plugin.main",
-    "inspectionName": "RemoveEmptyParenthesesFromLambdaCall"
-  },
-  "hash": "14f9b66fec5ebe545ccc254306de24af493473027d7bf98dc586b0caea5f4a9e"
-},{
-  "tool": "Code Inspection",
-  "category": "Redundant constructs",
-  "type": "Unused symbol",
+  "type": "Unused receiver parameter",
   "severity": "High",
-  "comment": "Property \"javaGradlePlugin\" is never used",
-  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "comment": "Receiver parameter is never used",
+  "detailsInfo": "Reports receiver parameter of extension functions and properties that is not used.\n\n**Remove redundant receiver parameter** can be used to amend the code automatically.",
   "sources": [
     {
       "type": "file",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/PluginIds.kt",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/analysis/AnalysisExtension.kt",
       "language": "kotlin",
-      "line": 27,
-      "offset": 19,
-      "length": 16,
+      "line": 42,
+      "offset": 16,
+      "length": 7,
       "code": {
-        "startLine": 25,
-        "length": 16,
-        "offset": 95,
-        "surroundingCode": "    object Gradle {\n        const val application = \"org.gradle.application\"\n        const val javaGradlePlugin = \"java-gradle-plugin\"\n        const val kotlinDsl = \"org.gradle.kotlin.kotlin-dsl\"\n        const val versionCatalog = \"org.gradle.version-catalog\""
+        "startLine": 40,
+        "length": 7,
+        "offset": 37,
+        "surroundingCode": "\n    @HubdleDslMarker\n    public fun Project.reports(action: Action<ReportsExtension> = Action {}) {\n        action.execute(reports)\n    }"
       }
     }
   ],
   "attributes": {
     "module": "hubdle.hubdle-gradle-plugin.main",
-    "inspectionName": "UnusedSymbol"
+    "inspectionName": "UnusedReceiverParameter"
   },
-  "hash": "5b38bb9687be56115ecdc1eefed4009ab5a56b38ba19c54e66ed42b1254988b8"
+  "hash": "10c92a6a7b4a3887a13f37eb4624699cb234f149248812d6befcc5311711c0fb"
 }]}

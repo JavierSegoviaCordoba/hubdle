@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `org.gradle.kotlin:gradle-kotlin-dsl-plugins -> 2.4.1`
+
 ## [0.2.0-alpha.25] - 2022-07-15
 
 ### Added

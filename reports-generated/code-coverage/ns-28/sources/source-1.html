@@ -50,7 +50,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/16)
+    (0/18)
   </span>
 </td>
     <td class="coverageStat"/>
@@ -59,7 +59,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/16)
+    (0/18)
   </span>
 </td>
 <td class="coverageStat">
@@ -67,7 +67,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/141)
+    (0/157)
   </span>
 </td>
 </tr>
@@ -230,7 +230,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/32)
+    (0/34)
   </span>
 </td>
     <td class="coverageStat"/>
@@ -239,7 +239,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/30)
+    (0/32)
   </span>
 </td>
 <td class="coverageStat">
@@ -247,7 +247,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/208)
+    (0/224)
   </span>
 </td>
 </tr>
@@ -305,67 +305,71 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="nc"><i class="no-highlight">45</i>&nbsp;        get() = hubdleState.kotlin.android.application.applicationId</b>
 <b class="nc"><i class="no-highlight">46</i>&nbsp;        set(value) = hubdleState.kotlin.android.application.run { applicationId = value }</b>
 <i class="no-highlight">47</i>&nbsp;
-<i class="no-highlight">48</i>&nbsp;    public var Project.versionCode: Int?
-<b class="nc"><i class="no-highlight">49</i>&nbsp;        get() = hubdleState.kotlin.android.application.versionCode</b>
-<b class="nc"><i class="no-highlight">50</i>&nbsp;        set(value) = hubdleState.kotlin.android.application.run { versionCode = value }</b>
+<i class="no-highlight">48</i>&nbsp;    public var Project.namespace: String?
+<b class="nc"><i class="no-highlight">49</i>&nbsp;        get() = hubdleState.kotlin.android.namespace</b>
+<b class="nc"><i class="no-highlight">50</i>&nbsp;        set(value) = hubdleState.kotlin.run { android.namespace = value }</b>
 <i class="no-highlight">51</i>&nbsp;
-<i class="no-highlight">52</i>&nbsp;    public var Project.versionName: String?
-<b class="nc"><i class="no-highlight">53</i>&nbsp;        get() = hubdleState.kotlin.android.application.versionName</b>
-<b class="nc"><i class="no-highlight">54</i>&nbsp;        set(value) = hubdleState.kotlin.android.application.run { versionName = value }</b>
+<i class="no-highlight">52</i>&nbsp;    public var Project.versionCode: Int?
+<b class="nc"><i class="no-highlight">53</i>&nbsp;        get() = hubdleState.kotlin.android.application.versionCode</b>
+<b class="nc"><i class="no-highlight">54</i>&nbsp;        set(value) = hubdleState.kotlin.android.application.run { versionCode = value }</b>
 <i class="no-highlight">55</i>&nbsp;
-<i class="no-highlight">56</i>&nbsp;    override val Project.sourceSets: NamedDomainObjectContainer&lt;out AndroidSourceSet&gt;
-<b class="nc"><i class="no-highlight">57</i>&nbsp;        get() = the&lt;ApplicationExtension&gt;().sourceSets</b>
-<i class="no-highlight">58</i>&nbsp;
-<i class="no-highlight">59</i>&nbsp;    @HubdleDslMarker
-<i class="no-highlight">60</i>&nbsp;    override fun Project.main(action: Action&lt;KotlinSourceSet&gt;) {
-<b class="nc"><i class="no-highlight">61</i>&nbsp;        the&lt;KotlinProjectExtension&gt;().sourceSets.named(&quot;main&quot;, action::execute)</b>
-<i class="no-highlight">62</i>&nbsp;    }
-<i class="no-highlight">63</i>&nbsp;
-<i class="no-highlight">64</i>&nbsp;    @HubdleDslMarker
-<i class="no-highlight">65</i>&nbsp;    override fun Project.test(action: Action&lt;KotlinSourceSet&gt;) {
-<b class="nc"><i class="no-highlight">66</i>&nbsp;        the&lt;KotlinProjectExtension&gt;().sourceSets.named(&quot;test&quot;, action::execute)</b>
-<i class="no-highlight">67</i>&nbsp;    }
-<i class="no-highlight">68</i>&nbsp;
-<b class="nc"><i class="no-highlight">69</i>&nbsp;    override val rawConfig: RawConfigExtension = objects.newInstance()</b>
-<i class="no-highlight">70</i>&nbsp;
-<i class="no-highlight">71</i>&nbsp;    @HubdleDslMarker
-<i class="no-highlight">72</i>&nbsp;    override fun Project.rawConfig(action: Action&lt;RawConfigExtension&gt;) {
-<b class="nc"><i class="no-highlight">73</i>&nbsp;        action.execute(rawConfig)</b>
-<i class="no-highlight">74</i>&nbsp;    }
-<i class="no-highlight">75</i>&nbsp;
-<i class="no-highlight">76</i>&nbsp;    @HubdleDslMarker
-<b class="nc"><i class="no-highlight">77</i>&nbsp;    public open class RawConfigExtension {</b>
-<i class="no-highlight">78</i>&nbsp;
-<i class="no-highlight">79</i>&nbsp;        public fun Project.android(action: Action&lt;ApplicationExtension&gt;) {
-<b class="nc"><i class="no-highlight">80</i>&nbsp;            hubdleState.kotlin.android.application.rawConfig.android = action</b>
-<i class="no-highlight">81</i>&nbsp;        }
-<i class="no-highlight">82</i>&nbsp;    }
-<i class="no-highlight">83</i>&nbsp;
-<i class="no-highlight">84</i>&nbsp;    @HubdleDslMarker
-<b class="nc"><i class="no-highlight">85</i>&nbsp;    public open class FeaturesExtension {</b>
-<i class="no-highlight">86</i>&nbsp;
-<i class="no-highlight">87</i>&nbsp;        @HubdleDslMarker
-<b class="nc"><i class="no-highlight">88</i>&nbsp;        public fun Project.coroutines(enabled: Boolean = true) {</b>
-<b class="nc"><i class="no-highlight">89</i>&nbsp;            androidApplicationFeatures.coroutines = enabled</b>
-<i class="no-highlight">90</i>&nbsp;        }
-<i class="no-highlight">91</i>&nbsp;
-<i class="no-highlight">92</i>&nbsp;        @HubdleDslMarker
-<b class="nc"><i class="no-highlight">93</i>&nbsp;        public fun Project.extendedStdlib(enabled: Boolean = true) {</b>
-<b class="nc"><i class="no-highlight">94</i>&nbsp;            androidApplicationFeatures.extendedStdlib = enabled</b>
-<i class="no-highlight">95</i>&nbsp;        }
-<i class="no-highlight">96</i>&nbsp;
-<i class="no-highlight">97</i>&nbsp;        @HubdleDslMarker
-<b class="nc"><i class="no-highlight">98</i>&nbsp;        public fun Project.extendedTesting(enabled: Boolean = true) {</b>
-<b class="nc"><i class="no-highlight">99</i>&nbsp;            androidApplicationFeatures.extendedTesting = enabled</b>
-<i class="no-highlight">100</i>&nbsp;        }
-<i class="no-highlight">101</i>&nbsp;
-<i class="no-highlight">102</i>&nbsp;        @HubdleDslMarker
-<b class="nc"><i class="no-highlight">103</i>&nbsp;        public fun Project.serialization(enabled: Boolean = true, useJson: Boolean = true) {</b>
-<b class="nc"><i class="no-highlight">104</i>&nbsp;            androidApplicationFeatures.serialization.isEnabled = enabled</b>
-<b class="nc"><i class="no-highlight">105</i>&nbsp;            androidApplicationFeatures.serialization.useJson = useJson</b>
-<i class="no-highlight">106</i>&nbsp;        }
-<i class="no-highlight">107</i>&nbsp;    }
-<i class="no-highlight">108</i>&nbsp;}
+<i class="no-highlight">56</i>&nbsp;    public var Project.versionName: String?
+<b class="nc"><i class="no-highlight">57</i>&nbsp;        get() = hubdleState.kotlin.android.application.versionName</b>
+<b class="nc"><i class="no-highlight">58</i>&nbsp;        set(value) = hubdleState.kotlin.android.application.run { versionName = value }</b>
+<i class="no-highlight">59</i>&nbsp;
+<i class="no-highlight">60</i>&nbsp;    override val Project.sourceSets: NamedDomainObjectContainer&lt;out AndroidSourceSet&gt;
+<b class="nc"><i class="no-highlight">61</i>&nbsp;        get() = the&lt;ApplicationExtension&gt;().sourceSets</b>
+<i class="no-highlight">62</i>&nbsp;
+<i class="no-highlight">63</i>&nbsp;    @HubdleDslMarker
+<i class="no-highlight">64</i>&nbsp;    override fun Project.main(action: Action&lt;KotlinSourceSet&gt;) {
+<b class="nc"><i class="no-highlight">65</i>&nbsp;        the&lt;KotlinProjectExtension&gt;().sourceSets.named(&quot;main&quot;, action::execute)</b>
+<i class="no-highlight">66</i>&nbsp;    }
+<i class="no-highlight">67</i>&nbsp;
+<i class="no-highlight">68</i>&nbsp;    @HubdleDslMarker
+<i class="no-highlight">69</i>&nbsp;    override fun Project.test(action: Action&lt;KotlinSourceSet&gt;) {
+<b class="nc"><i class="no-highlight">70</i>&nbsp;        the&lt;KotlinProjectExtension&gt;().sourceSets.named(&quot;test&quot;, action::execute)</b>
+<i class="no-highlight">71</i>&nbsp;    }
+<i class="no-highlight">72</i>&nbsp;
+<b class="nc"><i class="no-highlight">73</i>&nbsp;    override val rawConfig: RawConfigExtension = objects.newInstance()</b>
+<i class="no-highlight">74</i>&nbsp;
+<i class="no-highlight">75</i>&nbsp;    @HubdleDslMarker
+<i class="no-highlight">76</i>&nbsp;    override fun Project.rawConfig(action: Action&lt;RawConfigExtension&gt;) {
+<b class="nc"><i class="no-highlight">77</i>&nbsp;        action.execute(rawConfig)</b>
+<i class="no-highlight">78</i>&nbsp;    }
+<i class="no-highlight">79</i>&nbsp;
+<i class="no-highlight">80</i>&nbsp;    @HubdleDslMarker
+<b class="nc"><i class="no-highlight">81</i>&nbsp;    public open class RawConfigExtension {</b>
+<i class="no-highlight">82</i>&nbsp;
+<i class="no-highlight">83</i>&nbsp;        public fun Project.android(action: Action&lt;ApplicationExtension&gt;) {
+<b class="nc"><i class="no-highlight">84</i>&nbsp;            hubdleState.kotlin.android.application.rawConfig.android = action</b>
+<i class="no-highlight">85</i>&nbsp;        }
+<i class="no-highlight">86</i>&nbsp;    }
+<i class="no-highlight">87</i>&nbsp;
+<i class="no-highlight">88</i>&nbsp;    @HubdleDslMarker
+<b class="nc"><i class="no-highlight">89</i>&nbsp;    public open class FeaturesExtension {</b>
+<i class="no-highlight">90</i>&nbsp;
+<i class="no-highlight">91</i>&nbsp;        @HubdleDslMarker
+<b class="nc"><i class="no-highlight">92</i>&nbsp;        public fun Project.coroutines(enabled: Boolean = true) {</b>
+<b class="nc"><i class="no-highlight">93</i>&nbsp;            androidApplicationFeatures.coroutines = enabled</b>
+<i class="no-highlight">94</i>&nbsp;        }
+<i class="no-highlight">95</i>&nbsp;
+<i class="no-highlight">96</i>&nbsp;        @HubdleDslMarker
+<b class="nc"><i class="no-highlight">97</i>&nbsp;        public fun Project.extendedStdlib(enabled: Boolean = true) {</b>
+<b class="nc"><i class="no-highlight">98</i>&nbsp;            androidApplicationFeatures.extendedStdlib = enabled</b>
+<i class="no-highlight">99</i>&nbsp;        }
+<i class="no-highlight">100</i>&nbsp;
+<i class="no-highlight">101</i>&nbsp;        @HubdleDslMarker
+<b class="nc"><i class="no-highlight">102</i>&nbsp;        public fun Project.extendedTesting(enabled: Boolean = true) {</b>
+<b class="nc"><i class="no-highlight">103</i>&nbsp;            androidApplicationFeatures.extendedTesting = enabled</b>
+<i class="no-highlight">104</i>&nbsp;        }
+<i class="no-highlight">105</i>&nbsp;
+<i class="no-highlight">106</i>&nbsp;        @HubdleDslMarker
+<b class="nc"><i class="no-highlight">107</i>&nbsp;        public fun Project.serialization(enabled: Boolean = true, useJson: Boolean = true) {</b>
+<b class="nc"><i class="no-highlight">108</i>&nbsp;            androidApplicationFeatures.serialization.isEnabled = enabled</b>
+<b class="nc"><i class="no-highlight">109</i>&nbsp;            androidApplicationFeatures.serialization.useJson = useJson</b>
+<i class="no-highlight">110</i>&nbsp;        }
+<i class="no-highlight">111</i>&nbsp;    }
+<i class="no-highlight">112</i>&nbsp;}
 </div>
 </pre>
 </div>
@@ -392,7 +396,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-14 22:34</div>
+    <div style="float:right;">generated on 2022-07-15 00:07</div>
 </div>
 </body>
 </html>

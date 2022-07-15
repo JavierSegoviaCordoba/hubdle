@@ -4,10 +4,6 @@
 
 ### Added
 
-- autocalculate Android `namespace`
-- `enableAll()` to `ios`, `linux` `macos`, `mingw`, `native`, `tvos`, `wasm`, `watchos`
-- `javiersc:kotlin-test-junit`, `junit5` and `testng` to `extendedTesting`
-
 ### Changed
 
 ### Deprecated
@@ -17,6 +13,14 @@
 ### Fixed
 
 ### Updated
+
+## [0.2.0-alpha.25] - 2022-07-15
+
+### Added
+
+- autocalculate Android `namespace`
+- `enableAll()` to `ios`, `linux` `macos`, `mingw`, `native`, `tvos`, `wasm`, `watchos`
+- `javiersc:kotlin-test-junit`, `junit5` and `testng` to `extendedTesting`
 
 ## [0.2.0-alpha.24] - 2022-07-14
 

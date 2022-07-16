@@ -19,6 +19,8 @@
 
 ### Updated
 
+- `io.gitlab.arturbosch.detekt:detekt-gradle-plugin -> 1.21.0`
+
 ## [0.2.0-alpha.26] - 2022-07-16
 
 ### Added

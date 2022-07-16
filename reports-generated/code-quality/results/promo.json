@@ -1,29 +1,29 @@
 {"version":"3","listProblem":[{
   "tool": "Code Inspection",
   "category": "Redundant constructs",
-  "type": "Unused receiver parameter",
+  "type": "Unused symbol",
   "severity": "High",
-  "comment": "Receiver parameter is never used",
-  "detailsInfo": "Reports receiver parameter of extension functions and properties that is not used.\n\n**Remove redundant receiver parameter** can be used to amend the code automatically.",
+  "comment": "Property \"javaGradlePlugin\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
   "sources": [
     {
       "type": "file",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/KotlinMultiplatformExtension.kt",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/PluginIds.kt",
       "language": "kotlin",
-      "line": 86,
-      "offset": 16,
-      "length": 7,
+      "line": 27,
+      "offset": 19,
+      "length": 16,
       "code": {
-        "startLine": 84,
-        "length": 7,
-        "offset": 37,
-        "surroundingCode": "\n    @HubdleDslMarker\n    public fun Project.common(action: Action<KotlinMultiplatformCommonExtension> = Action {}) {\n        action.execute(common)\n    }"
+        "startLine": 25,
+        "length": 16,
+        "offset": 95,
+        "surroundingCode": "    object Gradle {\n        const val application = \"org.gradle.application\"\n        const val javaGradlePlugin = \"java-gradle-plugin\"\n        const val kotlinDsl = \"org.gradle.kotlin.kotlin-dsl\"\n        const val versionCatalog = \"org.gradle.version-catalog\""
       }
     }
   ],
   "attributes": {
     "module": "hubdle.hubdle-gradle-plugin.main",
-    "inspectionName": "UnusedReceiverParameter"
+    "inspectionName": "UnusedSymbol"
   },
-  "hash": "8fee71ce891ee079aaa45afb40f2f50a8b4ebc8d9f06f30e170a70f662edb5a6"
+  "hash": "5b38bb9687be56115ecdc1eefed4009ab5a56b38ba19c54e66ed42b1254988b8"
 }]}

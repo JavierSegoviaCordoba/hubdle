@@ -4,8 +4,6 @@
 
 ### Added
 
-- Android `buildFeatures` to `application`, `library`, and `multiplatform.android`
-
 ### Changed
 
 ### Deprecated
@@ -13,6 +11,14 @@
 ### Removed
 
 ### Fixed
+
+### Updated
+
+## [0.2.0-alpha.26] - 2022-07-16
+
+### Added
+
+- Android `buildFeatures` to `application`, `library`, and `multiplatform.android`
 
 ### Updated
 

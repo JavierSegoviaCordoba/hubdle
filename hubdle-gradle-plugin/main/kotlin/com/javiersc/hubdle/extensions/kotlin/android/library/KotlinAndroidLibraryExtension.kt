@@ -6,6 +6,7 @@ import com.javiersc.hubdle.extensions.HubdleDslMarker
 import com.javiersc.hubdle.extensions._internal.state.hubdleState
 import com.javiersc.hubdle.extensions.kotlin.MainAndTestKotlinSourceSetsOptions
 import com.javiersc.hubdle.extensions.kotlin.android.AndroidOptions
+import com.javiersc.hubdle.extensions.kotlin.android.AndroidSdkBuildFeaturesOptions.BuildFeaturesExtension
 import com.javiersc.hubdle.extensions.kotlin.android.library._internal.androidLibraryFeatures
 import com.javiersc.hubdle.extensions.options.EnableableOptions
 import com.javiersc.hubdle.extensions.options.FeaturesOptions
@@ -34,6 +35,8 @@ constructor(
         get() = hubdleState.kotlin.android.library.isEnabled
         set(value) = hubdleState.kotlin.android.library.run { isEnabled = value }
 
+    override val buildFeatures: BuildFeaturesExtension = objects.newInstance()
+
     public var Project.namespace: String?
         get() = hubdleState.kotlin.android.namespace
         set(value) = hubdleState.kotlin.run { android.namespace = value }
@@ -55,6 +58,18 @@ constructor(
     override fun Project.test(action: Action<AndroidSourceSet>) {
         the<LibraryExtension>().sourceSets.named("test", action::execute)
     }
+
+    // TODO: improve and enable using this docs:
+    //  https://developer.android.com/studio/publish-library/configure-pub-variants
+    // @HubdleDslMarker
+    // public fun Project.publishLibraryVariants(vararg names: String) {
+    //     hubdleState.kotlin.android.library.publishLibraryVariants += names
+    // }
+    //
+    // @HubdleDslMarker
+    // public fun Project.publishAllLibraryVariants(enable: Boolean = true) {
+    //     hubdleState.kotlin.android.library.allLibraryVariants = enable
+    // }
 
     override val rawConfig: RawConfigExtension = objects.newInstance()
 

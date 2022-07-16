@@ -424,11 +424,12 @@ internal data class HubdleState(
         }
 
         data class Android(
-            var compileSdk: Int = 32,
             val application: Application = Application(),
+            val buildFeatures: BuildFeatures = BuildFeatures(),
+            var compileSdk: Int = 32,
             val library: Library = Library(),
             var minSdk: Int = 21,
-            var namespace: String? = null,
+            var namespace: String? = null
         ) : Configurable {
 
             val isEnabled: Boolean
@@ -473,8 +474,20 @@ internal data class HubdleState(
                 }
             }
 
+            data class BuildFeatures(
+                var aidl: Boolean? = null,
+                var buildConfig: Boolean? = null,
+                var compose: Boolean? = null,
+                var renderScript: Boolean? = null,
+                var resValues: Boolean? = null,
+                var shaders: Boolean? = null,
+                var viewBinding: Boolean? = null,
+            )
+
             data class Library(
                 override var isEnabled: Boolean = false,
+                var allLibraryVariants: Boolean = true,
+                val publishLibraryVariants: MutableList<String> = mutableListOf(),
                 var features: Features = Features(),
                 var rawConfig: RawConfig = RawConfig(),
             ) : Enableable, Configurable {
@@ -760,11 +773,6 @@ internal data class HubdleState(
 
             data class Android(
                 override var isEnabled: Boolean = false,
-                var allLibraryVariants: Boolean = true,
-                var compileSdk: Int = 32,
-                var minSdk: Int = 21,
-                var namespace: String? = null,
-                val publishLibraryVariants: MutableList<String> = mutableListOf(),
                 val rawConfig: RawConfig = RawConfig()
             ) : Enableable, Configurable {
 

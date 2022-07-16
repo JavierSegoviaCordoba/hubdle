@@ -3,15 +3,17 @@ package com.javiersc.hubdle.extensions.kotlin.multiplatform._internal
 import com.android.build.api.dsl.LibraryExtension
 import com.javiersc.hubdle.extensions._internal.PluginIds
 import com.javiersc.hubdle.extensions._internal.state.hubdleState
-import com.javiersc.hubdle.extensions.kotlin._internal.calculateAndroidNamespace
+import com.javiersc.hubdle.extensions.kotlin.android._internal.calculateAndroidNamespace
+import com.javiersc.hubdle.extensions.kotlin.android._internal.configureAndroidBuildFeatures
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 internal fun configureMultiplatformAndroid(project: Project) {
-    val androidState = project.hubdleState.kotlin.multiplatform.android
+    val multiplatformAndroidState = project.hubdleState.kotlin.multiplatform.android
+    val androidState = project.hubdleState.kotlin.android
 
-    if (androidState.isEnabled) {
+    if (multiplatformAndroidState.isEnabled) {
         project.pluginManager.apply(PluginIds.Android.library)
         project.configure<LibraryExtension> {
             compileSdk = androidState.compileSdk
@@ -19,17 +21,19 @@ internal fun configureMultiplatformAndroid(project: Project) {
             namespace = project.calculateAndroidNamespace(androidState.namespace)
 
             sourceSets.all { manifest.srcFile("android/$name/AndroidManifest.xml") }
+            project.configureAndroidBuildFeatures(this)
         }
 
         project.configure<KotlinMultiplatformExtension> {
             android {
                 if (project.hubdleState.config.publishing.isEnabled) {
                     when {
-                        androidState.publishLibraryVariants.isNotEmpty() -> {
-                            val variants = androidState.publishLibraryVariants.toTypedArray()
+                        androidState.library.publishLibraryVariants.isNotEmpty() -> {
+                            val variants =
+                                androidState.library.publishLibraryVariants.toTypedArray()
                             publishLibraryVariants(*variants)
                         }
-                        androidState.allLibraryVariants -> publishAllLibraryVariants()
+                        androidState.library.allLibraryVariants -> publishAllLibraryVariants()
                     }
                 }
             }

@@ -1,4 +1,4 @@
-package com.javiersc.hubdle.extensions.kotlin._internal
+package com.javiersc.hubdle.extensions.kotlin.android._internal
 
 import com.javiersc.gradle.properties.extensions.getBooleanProperty
 import com.javiersc.hubdle.HubdleProperty.Android.namespaceUseKotlinFile

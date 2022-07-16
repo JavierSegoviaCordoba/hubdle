@@ -5,4 +5,7 @@ import com.javiersc.hubdle.extensions.kotlin.jvm.KotlinJvmOptions
 import com.javiersc.hubdle.extensions.options.SourceDirectoriesOptions
 
 public interface AndroidOptions :
-    AndroidSdkOptions, KotlinJvmOptions, SourceDirectoriesOptions<AndroidSourceSet>
+    AndroidSdkOptions,
+    AndroidSdkBuildFeaturesOptions,
+    KotlinJvmOptions,
+    SourceDirectoriesOptions<AndroidSourceSet>

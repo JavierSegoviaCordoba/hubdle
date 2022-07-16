@@ -4,6 +4,8 @@
 
 ### Added
 
+- Android `buildFeatures` to `application`, `library`, and `multiplatform.android`
+
 ### Changed
 
 ### Deprecated

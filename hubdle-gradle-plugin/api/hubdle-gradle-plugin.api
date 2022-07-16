@@ -29,6 +29,17 @@ public final class com/javiersc/hubdle/HubdleProperty$Android {
 	public static final field namespaceUseProject Ljava/lang/String;
 }
 
+public final class com/javiersc/hubdle/HubdleProperty$Android$BuildFeatures {
+	public static final field INSTANCE Lcom/javiersc/hubdle/HubdleProperty$Android$BuildFeatures;
+	public static final field aidl Ljava/lang/String;
+	public static final field buildConfig Ljava/lang/String;
+	public static final field compose Ljava/lang/String;
+	public static final field renderScript Ljava/lang/String;
+	public static final field resValues Ljava/lang/String;
+	public static final field shaders Ljava/lang/String;
+	public static final field viewBinding Ljava/lang/String;
+}
+
 public final class com/javiersc/hubdle/HubdleProperty$IntelliJ {
 	public static final field INSTANCE Lcom/javiersc/hubdle/HubdleProperty$IntelliJ;
 	public static final field downloadSources Ljava/lang/String;
@@ -633,7 +644,31 @@ public abstract interface class com/javiersc/hubdle/extensions/kotlin/MainAndTes
 	public static synthetic fun test$default (Lcom/javiersc/hubdle/extensions/kotlin/MainAndTestKotlinSourceSetsOptions;Lorg/gradle/api/Project;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 }
 
-public abstract interface class com/javiersc/hubdle/extensions/kotlin/android/AndroidOptions : com/javiersc/hubdle/extensions/kotlin/android/AndroidSdkOptions, com/javiersc/hubdle/extensions/kotlin/jvm/KotlinJvmOptions, com/javiersc/hubdle/extensions/options/SourceDirectoriesOptions {
+public abstract interface class com/javiersc/hubdle/extensions/kotlin/android/AndroidOptions : com/javiersc/hubdle/extensions/kotlin/android/AndroidSdkBuildFeaturesOptions, com/javiersc/hubdle/extensions/kotlin/android/AndroidSdkOptions, com/javiersc/hubdle/extensions/kotlin/jvm/KotlinJvmOptions, com/javiersc/hubdle/extensions/options/SourceDirectoriesOptions {
+}
+
+public abstract interface class com/javiersc/hubdle/extensions/kotlin/android/AndroidSdkBuildFeaturesOptions {
+	public fun buildFeatures (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
+	public static synthetic fun buildFeatures$default (Lcom/javiersc/hubdle/extensions/kotlin/android/AndroidSdkBuildFeaturesOptions;Lorg/gradle/api/Project;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+	public abstract fun getBuildFeatures ()Lcom/javiersc/hubdle/extensions/kotlin/android/AndroidSdkBuildFeaturesOptions$BuildFeaturesExtension;
+}
+
+public class com/javiersc/hubdle/extensions/kotlin/android/AndroidSdkBuildFeaturesOptions$BuildFeaturesExtension {
+	public fun <init> ()V
+	public final fun getAidl (Lorg/gradle/api/Project;)Ljava/lang/Boolean;
+	public final fun getBuildConfig (Lorg/gradle/api/Project;)Ljava/lang/Boolean;
+	public final fun getCompose (Lorg/gradle/api/Project;)Ljava/lang/Boolean;
+	public final fun getRenderScript (Lorg/gradle/api/Project;)Ljava/lang/Boolean;
+	public final fun getResValues (Lorg/gradle/api/Project;)Ljava/lang/Boolean;
+	public final fun getShaders (Lorg/gradle/api/Project;)Ljava/lang/Boolean;
+	public final fun getViewBinding (Lorg/gradle/api/Project;)Ljava/lang/Boolean;
+	public final fun setAidl (Lorg/gradle/api/Project;Ljava/lang/Boolean;)V
+	public final fun setBuildConfig (Lorg/gradle/api/Project;Ljava/lang/Boolean;)V
+	public final fun setCompose (Lorg/gradle/api/Project;Ljava/lang/Boolean;)V
+	public final fun setRenderScript (Lorg/gradle/api/Project;Ljava/lang/Boolean;)V
+	public final fun setResValues (Lorg/gradle/api/Project;Ljava/lang/Boolean;)V
+	public final fun setShaders (Lorg/gradle/api/Project;Ljava/lang/Boolean;)V
+	public final fun setViewBinding (Lorg/gradle/api/Project;Ljava/lang/Boolean;)V
 }
 
 public abstract interface class com/javiersc/hubdle/extensions/kotlin/android/AndroidSdkOptions {
@@ -657,6 +692,7 @@ public class com/javiersc/hubdle/extensions/kotlin/android/application/KotlinAnd
 	public fun <init> (Lorg/gradle/api/model/ObjectFactory;)V
 	public fun features (Lorg/gradle/api/Action;)V
 	public final fun getApplicationId (Lorg/gradle/api/Project;)Ljava/lang/String;
+	public fun getBuildFeatures ()Lcom/javiersc/hubdle/extensions/kotlin/android/AndroidSdkBuildFeaturesOptions$BuildFeaturesExtension;
 	public fun getFeatures ()Lcom/javiersc/hubdle/extensions/kotlin/android/application/KotlinAndroidApplicationExtension$FeaturesExtension;
 	public synthetic fun getFeatures ()Ljava/lang/Object;
 	public final fun getNamespace (Lorg/gradle/api/Project;)Ljava/lang/String;
@@ -696,6 +732,7 @@ public class com/javiersc/hubdle/extensions/kotlin/android/application/KotlinAnd
 public class com/javiersc/hubdle/extensions/kotlin/android/library/KotlinAndroidLibraryExtension : com/javiersc/hubdle/extensions/kotlin/MainAndTestKotlinSourceSetsOptions, com/javiersc/hubdle/extensions/kotlin/android/AndroidOptions, com/javiersc/hubdle/extensions/options/EnableableOptions, com/javiersc/hubdle/extensions/options/FeaturesOptions, com/javiersc/hubdle/extensions/options/RawConfigOptions {
 	public fun <init> (Lorg/gradle/api/model/ObjectFactory;)V
 	public fun features (Lorg/gradle/api/Action;)V
+	public fun getBuildFeatures ()Lcom/javiersc/hubdle/extensions/kotlin/android/AndroidSdkBuildFeaturesOptions$BuildFeaturesExtension;
 	public fun getFeatures ()Lcom/javiersc/hubdle/extensions/kotlin/android/library/KotlinAndroidLibraryExtension$FeaturesExtension;
 	public synthetic fun getFeatures ()Ljava/lang/Object;
 	public final fun getNamespace (Lorg/gradle/api/Project;)Ljava/lang/String;
@@ -970,8 +1007,9 @@ public class com/javiersc/hubdle/extensions/kotlin/multiplatform/KotlinMultiplat
 	public final fun kotlin (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
 }
 
-public class com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/KotlinMultiplatformAndroidExtension : com/javiersc/hubdle/extensions/kotlin/android/AndroidSdkOptions, com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/KotlinMultiplatformTargetOptions, com/javiersc/hubdle/extensions/options/EnableableOptions, com/javiersc/hubdle/extensions/options/RawConfigOptions {
+public class com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/KotlinMultiplatformAndroidExtension : com/javiersc/hubdle/extensions/kotlin/android/AndroidSdkBuildFeaturesOptions, com/javiersc/hubdle/extensions/kotlin/android/AndroidSdkOptions, com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/KotlinMultiplatformTargetOptions, com/javiersc/hubdle/extensions/options/EnableableOptions, com/javiersc/hubdle/extensions/options/RawConfigOptions {
 	public fun <init> (Lorg/gradle/api/model/ObjectFactory;)V
+	public fun getBuildFeatures ()Lcom/javiersc/hubdle/extensions/kotlin/android/AndroidSdkBuildFeaturesOptions$BuildFeaturesExtension;
 	public fun getName ()Ljava/lang/String;
 	public final fun getNamespace (Lorg/gradle/api/Project;)Ljava/lang/String;
 	public fun getRawConfig ()Lcom/javiersc/hubdle/extensions/kotlin/multiplatform/targets/KotlinMultiplatformAndroidExtension$RawConfigExtension;

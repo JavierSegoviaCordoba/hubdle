@@ -3,6 +3,8 @@ package com.javiersc.hubdle.extensions.kotlin.multiplatform.targets
 import com.android.build.api.dsl.LibraryExtension
 import com.javiersc.hubdle.extensions.HubdleDslMarker
 import com.javiersc.hubdle.extensions._internal.state.hubdleState
+import com.javiersc.hubdle.extensions.kotlin.android.AndroidSdkBuildFeaturesOptions
+import com.javiersc.hubdle.extensions.kotlin.android.AndroidSdkBuildFeaturesOptions.BuildFeaturesExtension
 import com.javiersc.hubdle.extensions.kotlin.android.AndroidSdkOptions
 import com.javiersc.hubdle.extensions.options.EnableableOptions
 import com.javiersc.hubdle.extensions.options.RawConfigOptions
@@ -19,6 +21,7 @@ constructor(
     objects: ObjectFactory,
 ) :
     AndroidSdkOptions,
+    AndroidSdkBuildFeaturesOptions,
     EnableableOptions,
     KotlinMultiplatformTargetOptions,
     RawConfigOptions<KotlinMultiplatformAndroidExtension.RawConfigExtension> {
@@ -29,18 +32,20 @@ constructor(
 
     public override val name: String = "android"
 
+    override val buildFeatures: BuildFeaturesExtension = objects.newInstance()
+
     public var Project.namespace: String?
-        get() = hubdleState.kotlin.multiplatform.android.namespace
-        set(value) = hubdleState.kotlin.multiplatform.run { android.namespace = value }
+        get() = hubdleState.kotlin.android.namespace
+        set(value) = hubdleState.kotlin.run { android.namespace = value }
 
     @HubdleDslMarker
     public fun Project.publishLibraryVariants(vararg names: String) {
-        hubdleState.kotlin.multiplatform.android.publishLibraryVariants += names
+        hubdleState.kotlin.android.library.publishLibraryVariants += names
     }
 
     @HubdleDslMarker
     public fun Project.publishAllLibraryVariants(enable: Boolean = true) {
-        hubdleState.kotlin.multiplatform.android.allLibraryVariants = enable
+        hubdleState.kotlin.android.library.allLibraryVariants = enable
     }
 
     override val rawConfig: RawConfigExtension = objects.newInstance()

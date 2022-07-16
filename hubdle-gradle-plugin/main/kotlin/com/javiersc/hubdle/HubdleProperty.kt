@@ -6,6 +6,16 @@ public object HubdleProperty {
         public const val namespace: String = "android.namespace"
         public const val namespaceUseProject: String = "android.namespace.use.project"
         public const val namespaceUseKotlinFile: String = "android.namespace.use.kotlinFile"
+
+        public object BuildFeatures {
+            public const val aidl: String = "android.defaults.buildfeatures.aidl"
+            public const val buildConfig: String = "android.defaults.buildfeatures.buildconfig"
+            public const val compose: String = "android.defaults.buildfeatures.compose"
+            public const val renderScript: String = "android.defaults.buildfeatures.renderscript"
+            public const val resValues: String = "android.defaults.buildfeatures.resvalues"
+            public const val shaders: String = "android.defaults.buildfeatures.shaders"
+            public const val viewBinding: String = "android.defaults.buildfeatures.viewbinding"
+        }
     }
 
     public object Analysis {

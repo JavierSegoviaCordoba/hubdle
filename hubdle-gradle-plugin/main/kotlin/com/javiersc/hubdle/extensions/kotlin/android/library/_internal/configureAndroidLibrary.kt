@@ -14,8 +14,9 @@ import com.javiersc.hubdle.extensions.dependencies._internal.constants.ORG_JETBR
 import com.javiersc.hubdle.extensions.dependencies._internal.constants.ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_CORE_MODULE
 import com.javiersc.hubdle.extensions.dependencies._internal.constants.ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_JSON_MODULE
 import com.javiersc.hubdle.extensions.dependencies._internal.constants.ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE
-import com.javiersc.hubdle.extensions.kotlin._internal.calculateAndroidNamespace
 import com.javiersc.hubdle.extensions.kotlin._internal.configJvmTarget
+import com.javiersc.hubdle.extensions.kotlin.android._internal.calculateAndroidNamespace
+import com.javiersc.hubdle.extensions.kotlin.android._internal.configureAndroidBuildFeatures
 import com.javiersc.hubdle.extensions.options.configDefaultAndroidSourceSets
 import com.javiersc.hubdle.extensions.options.configureJavaJarsForAndroidPublishing
 import com.javiersc.hubdle.extensions.options.configureMavenPublication
@@ -44,6 +45,7 @@ internal fun configureAndroidLibrary(project: Project) {
             namespace = project.calculateAndroidNamespace(androidState.namespace)
 
             sourceSets.all { configDefaultAndroidSourceSets() }
+            project.configureAndroidBuildFeatures(this)
         }
 
         if (project.hubdleState.config.publishing.isEnabled) {

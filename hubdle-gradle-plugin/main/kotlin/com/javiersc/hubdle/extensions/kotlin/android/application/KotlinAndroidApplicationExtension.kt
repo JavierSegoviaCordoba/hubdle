@@ -6,6 +6,7 @@ import com.javiersc.hubdle.extensions.HubdleDslMarker
 import com.javiersc.hubdle.extensions._internal.state.hubdleState
 import com.javiersc.hubdle.extensions.kotlin.MainAndTestKotlinSourceSetsOptions
 import com.javiersc.hubdle.extensions.kotlin.android.AndroidOptions
+import com.javiersc.hubdle.extensions.kotlin.android.AndroidSdkBuildFeaturesOptions.BuildFeaturesExtension
 import com.javiersc.hubdle.extensions.kotlin.android.application._internal.androidApplicationFeatures
 import com.javiersc.hubdle.extensions.options.EnableableOptions
 import com.javiersc.hubdle.extensions.options.FeaturesOptions
@@ -44,6 +45,8 @@ constructor(
     public var Project.applicationId: String?
         get() = hubdleState.kotlin.android.application.applicationId
         set(value) = hubdleState.kotlin.android.application.run { applicationId = value }
+
+    override val buildFeatures: BuildFeaturesExtension = objects.newInstance()
 
     public var Project.namespace: String?
         get() = hubdleState.kotlin.android.namespace

@@ -157,11 +157,11 @@
 
 <div>
   <ul>
-    <li>910 number of properties</li>
-    <li>568 number of functions</li>
-    <li>249 number of classes</li>
-    <li>76 number of packages</li>
-    <li>205 number of kt files</li>
+    <li>932 number of properties</li>
+    <li>573 number of functions</li>
+    <li>252 number of classes</li>
+    <li>77 number of packages</li>
+    <li>207 number of kt files</li>
   </ul>
 </div>
 
@@ -170,23 +170,23 @@
 
 <div>
   <ul>
-    <li>11,280 lines of code (loc)</li>
-    <li>9,319 source lines of code (sloc)</li>
-    <li>6,285 logical lines of code (lloc)</li>
-    <li>44 comment lines of code (cloc)</li>
-    <li>1,166 cyclomatic complexity (mcc)</li>
-    <li>474 cognitive complexity</li>
-    <li>67 number of total code smells</li>
+    <li>11,422 lines of code (loc)</li>
+    <li>9,424 source lines of code (sloc)</li>
+    <li>6,360 logical lines of code (lloc)</li>
+    <li>55 comment lines of code (cloc)</li>
+    <li>1,194 cyclomatic complexity (mcc)</li>
+    <li>476 cognitive complexity</li>
+    <li>70 number of total code smells</li>
     <li>0% comment source ratio</li>
-    <li>185 mcc per 1,000 lloc</li>
-    <li>10 code smells per 1,000 lloc</li>
+    <li>187 mcc per 1,000 lloc</li>
+    <li>11 code smells per 1,000 lloc</li>
   </ul>
 </div>
 
 
 <h2>Findings</h2>
-<div>Total: 67
-  <h3>complexity: 7</h3>
+<div>Total: 70
+  <h3>complexity: 8</h3>
   <details id="ComplexCondition" open="open">
     <summary class="rule-container"><span class="rule">ComplexCondition: 1 </span><span class="description">Complex conditions should be simplified and extracted into well-named methods if necessary.</span></summary>
     <ul>
@@ -198,6 +198,21 @@
 <span class="lineno"> 380 </span>                    if (allTests) createReportSection(&quot;All tests&quot;, &quot;all-tests&quot;)
 <span class="lineno"> 381 </span>                    if (codeAnalysis) createReportSection(&quot;Code analysis&quot;, &quot;code-analysis&quot;)
 <span class="lineno"> 382 </span>                    if (codeCoverage) createReportSection(&quot;Code coverage&quot;, &quot;code-coverage&quot;)
+</code></pre>
+      </li>
+    </ul>
+  </details>
+  <details id="ComplexMethod" open="open">
+    <summary class="rule-container"><span class="rule">ComplexMethod: 1 </span><span class="description">Prefer splitting up complex methods into smaller, easier to understand methods.</span></summary>
+    <ul>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/_internal/configureBuildFeatures.kt:20:21</span><span class="message">The function configureFeatures appears to be too complex (15). Defined complexity threshold for methods is set to '15'</span>
+        <pre><code><span class="lineno">  17 </span>    }
+<span class="lineno">  18 </span>}
+<span class="lineno">  19 </span>
+<span class="lineno">  20 </span>private fun Project.<span class="error">configureFeatures</span>(androidCommonExtension: AndroidCommonExtension) {
+<span class="lineno">  21 </span>    val feats = project.hubdleState.kotlin.android.buildFeatures
+<span class="lineno">  22 </span>    androidCommonExtension.buildFeatures {
+<span class="lineno">  23 </span>        aidl = feats.aidl ?: propOrNull(BuildFeatures.aidl) ?: trueIfApp()
 </code></pre>
       </li>
     </ul>
@@ -287,7 +302,7 @@
       </li>
     </ul>
   </details>
-  <h3>naming: 47</h3>
+  <h3>naming: 48</h3>
   <details id="MatchingDeclarationName" open="open">
     <summary class="rule-container"><span class="rule">MatchingDeclarationName: 1 </span><span class="description">If a source file contains only a single non-private top-level class or object, the file name should reflect the case-sensitive name plus the .kt extension.</span></summary>
     <ul>
@@ -304,7 +319,7 @@
     </ul>
   </details>
   <details id="PackageNaming" open="open">
-    <summary class="rule-container"><span class="rule">PackageNaming: 46 </span><span class="description">Package names should match the naming convention set in the configuration.</span></summary>
+    <summary class="rule-container"><span class="rule">PackageNaming: 47 </span><span class="description">Package names should match the naming convention set in the configuration.</span></summary>
     <ul>
       <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/PluginIds.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
         <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions._internal</span>
@@ -480,18 +495,25 @@
 <span class="lineno">   4 </span>import com.javiersc.hubdle.extensions._internal.state.hubdleState
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/_internal/calculateAndroidNamespace.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
-        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.kotlin._internal</span>
-<span class="lineno">   2 </span>
-<span class="lineno">   3 </span>import com.javiersc.gradle.properties.extensions.getBooleanProperty
-<span class="lineno">   4 </span>import com.javiersc.hubdle.HubdleProperty.Android.namespaceUseKotlinFile
-</code></pre>
-      </li>
       <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/_internal/configJvmTarget.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
         <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.kotlin._internal</span>
 <span class="lineno">   2 </span>
 <span class="lineno">   3 </span>import com.javiersc.hubdle.extensions._internal.state.hubdleState
 <span class="lineno">   4 </span>import org.gradle.api.JavaVersion
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/_internal/calculateAndroidNamespace.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.kotlin.android._internal</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import com.javiersc.gradle.properties.extensions.getBooleanProperty
+<span class="lineno">   4 </span>import com.javiersc.hubdle.HubdleProperty.Android.namespaceUseKotlinFile
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/_internal/configureBuildFeatures.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.kotlin.android._internal</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import com.android.build.api.dsl.BuildFeatures as AndroidBuildFeatures
+<span class="lineno">   4 </span>import com.android.build.api.dsl.BuildType
 </code></pre>
       </li>
       <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/application/_internal/configureAndroidApplication.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
@@ -642,14 +664,14 @@
   <details id="SpreadOperator" open="open">
     <summary class="rule-container"><span class="rule">SpreadOperator: 3 </span><span class="description">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span></summary>
     <ul>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatformAndroid.kt:30:51</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
-        <pre><code><span class="lineno">  27 </span>                    when {
-<span class="lineno">  28 </span>                        androidState.publishLibraryVariants.isNotEmpty() -&gt; {
-<span class="lineno">  29 </span>                            val variants = androidState.publishLibraryVariants.toTypedArray()
-<span class="lineno">  30 </span>                            publishLibraryVariants<span class="error">(*variants)</span>
-<span class="lineno">  31 </span>                        }
-<span class="lineno">  32 </span>                        androidState.allLibraryVariants -&gt; publishAllLibraryVariants()
-<span class="lineno">  33 </span>                    }
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatformAndroid.kt:34:51</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
+        <pre><code><span class="lineno">  31 </span>                        androidState.library.publishLibraryVariants.isNotEmpty() -&gt; {
+<span class="lineno">  32 </span>                            val variants =
+<span class="lineno">  33 </span>                                androidState.library.publishLibraryVariants.toTypedArray()
+<span class="lineno">  34 </span>                            publishLibraryVariants<span class="error">(*variants)</span>
+<span class="lineno">  35 </span>                        }
+<span class="lineno">  36 </span>                        androidState.library.allLibraryVariants -&gt; publishAllLibraryVariants()
+<span class="lineno">  37 </span>                    }
 </code></pre>
       </li>
       <li><span class="location">hubdle-settings-gradle-plugin/main/kotlin/com/javiersc/hubdle/settings/HubdleSettingsPlugin.kt:60:29</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
@@ -674,9 +696,9 @@
       </li>
     </ul>
   </details>
-  <h3>style: 9</h3>
+  <h3>style: 10</h3>
   <details id="ForbiddenComment" open="open">
-    <summary class="rule-container"><span class="rule">ForbiddenComment: 7 </span><span class="description">Flags a forbidden comment.</span></summary>
+    <summary class="rule-container"><span class="rule">ForbiddenComment: 8 </span><span class="description">Flags a forbidden comment.</span></summary>
     <ul>
       <li><span class="location">build.gradle.kts:14:20</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
         <pre><code><span class="lineno">  11 </span>    `kotlinx-binary-compatibility-validator`
@@ -718,14 +740,24 @@
 <span class="lineno">  15 </span>        check(project.isRootProject) {
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/application/_internal/configureAndroidApplication.kt:44:13</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
-        <pre><code><span class="lineno">  41 </span>            defaultConfig.versionName = androidState.application.versionName
-<span class="lineno">  42 </span>            compileSdk = androidState.compileSdk
-<span class="lineno">  43 </span>            defaultConfig.minSdk = androidState.minSdk
-<span class="lineno">  44 </span>            <span class="error">// TODO: namespace = project.calculateAndroidNamespace(androidState.namespace)</span>
-<span class="lineno">  45 </span>
-<span class="lineno">  46 </span>            sourceSets.all { configDefaultAndroidSourceSets() }
-<span class="lineno">  47 </span>        }
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/application/_internal/configureAndroidApplication.kt:45:13</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
+        <pre><code><span class="lineno">  42 </span>            defaultConfig.versionName = androidState.application.versionName
+<span class="lineno">  43 </span>            compileSdk = androidState.compileSdk
+<span class="lineno">  44 </span>            defaultConfig.minSdk = androidState.minSdk
+<span class="lineno">  45 </span>            <span class="error">// TODO: namespace = project.calculateAndroidNamespace(androidState.namespace)</span>
+<span class="lineno">  46 </span>
+<span class="lineno">  47 </span>            sourceSets.all { configDefaultAndroidSourceSets() }
+<span class="lineno">  48 </span>            project.configureAndroidBuildFeatures(this)
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/library/KotlinAndroidLibraryExtension.kt:62:5</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
+        <pre><code><span class="lineno">  59 </span>        the&lt;LibraryExtension&gt;().sourceSets.named(&quot;test&quot;, action::execute)
+<span class="lineno">  60 </span>    }
+<span class="lineno">  61 </span>
+<span class="lineno">  62 </span>    <span class="error">// TODO: improve and enable using this docs:</span>
+<span class="lineno">  63 </span>    //  https://developer.android.com/studio/publish-library/configure-pub-variants
+<span class="lineno">  64 </span>    // @HubdleDslMarker
+<span class="lineno">  65 </span>    // public fun Project.publishLibraryVariants(vararg names: String) {
 </code></pre>
       </li>
       <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatformJvmAndAndroid.kt:11:13</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
@@ -783,7 +815,7 @@
 </div>
 
 
-generated with <a href="https://detekt.dev/">detekt version 1.20.0</a> on 2022-07-15 00:03:01 UTC.
+generated with <a href="https://detekt.dev/">detekt version 1.20.0</a> on 2022-07-16 00:36:56 UTC.
 
 </body>
 </html>

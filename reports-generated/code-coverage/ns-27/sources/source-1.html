@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html id="htmlId">
 <head>
-  <title>Coverage Report > AndroidSdkOptions</title>
+  <title>Coverage Report > AndroidSdkBuildFeaturesOptions</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/highlight-idea.css";
@@ -20,15 +20,12 @@ Current scope:     <a href="../../index.html">all classes</a>
     <a href="../index.html">com.javiersc.hubdle.extensions.kotlin.android</a>
 </div>
 
-<h1>Coverage Summary for Class: AndroidSdkOptions (com.javiersc.hubdle.extensions.kotlin.android)</h1>
+<h1>Coverage Summary for Class: AndroidSdkBuildFeaturesOptions (com.javiersc.hubdle.extensions.kotlin.android)</h1>
 
 <table class="coverageStats">
+
 <tr>
   <th class="name">Class</th>
-<th class="coverageStat 
-">
-  Class, %
-</th>
 <th class="coverageStat 
 ">
   Method, %
@@ -47,21 +44,13 @@ Current scope:     <a href="../../index.html">all classes</a>
 </th>
 </tr>
 <tr>
-  <td class="name">AndroidSdkOptions</td>
+  <td class="name">AndroidSdkBuildFeaturesOptions</td>
 <td class="coverageStat">
   <span class="percent">
     0%
   </span>
   <span class="absValue">
-    (0/1)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/4)
+    (0/2)
   </span>
 </td>
     <td class="coverageStat"/>
@@ -70,7 +59,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/4)
+    (0/2)
   </span>
 </td>
 <td class="coverageStat">
@@ -78,11 +67,86 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/32)
+    (0/11)
   </span>
 </td>
 </tr>
-
+  <tr>
+    <td class="name">AndroidSdkBuildFeaturesOptions$buildFeatures$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">AndroidSdkBuildFeaturesOptions$BuildFeaturesExtension</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/15)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/15)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/86)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/18)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/18)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/97)
+  </span>
+</td>
+</tr>
 </table>
 
 <br/>
@@ -92,19 +156,54 @@ Current scope:     <a href="../../index.html">all classes</a>
 <pre>
 <div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.javiersc.hubdle.extensions.kotlin.android
 <i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
-<i class="no-highlight">4</i>&nbsp;import org.gradle.api.Project
-<i class="no-highlight">5</i>&nbsp;
-<i class="no-highlight">6</i>&nbsp;public interface AndroidSdkOptions {
+<i class="no-highlight">3</i>&nbsp;import com.javiersc.hubdle.extensions.HubdleDslMarker
+<i class="no-highlight">4</i>&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
+<i class="no-highlight">5</i>&nbsp;import org.gradle.api.Action
+<i class="no-highlight">6</i>&nbsp;import org.gradle.api.Project
 <i class="no-highlight">7</i>&nbsp;
-<i class="no-highlight">8</i>&nbsp;    public var Project.compileSdk: Int
-<b class="nc"><i class="no-highlight">9</i>&nbsp;        get() = hubdleState.kotlin.android.compileSdk</b>
-<b class="nc"><i class="no-highlight">10</i>&nbsp;        set(value) = hubdleState.kotlin.android.run { compileSdk = value }</b>
+<i class="no-highlight">8</i>&nbsp;public interface AndroidSdkBuildFeaturesOptions {
+<i class="no-highlight">9</i>&nbsp;
+<i class="no-highlight">10</i>&nbsp;    public val buildFeatures: BuildFeaturesExtension
 <i class="no-highlight">11</i>&nbsp;
-<i class="no-highlight">12</i>&nbsp;    public var Project.minSdk: Int
-<b class="nc"><i class="no-highlight">13</i>&nbsp;        get() = hubdleState.kotlin.android.minSdk</b>
-<b class="nc"><i class="no-highlight">14</i>&nbsp;        set(value) = hubdleState.kotlin.android.run { minSdk = value }</b>
-<i class="no-highlight">15</i>&nbsp;}
+<i class="no-highlight">12</i>&nbsp;    @HubdleDslMarker
+<b class="nc"><i class="no-highlight">13</i>&nbsp;    public fun Project.buildFeatures(action: Action&lt;BuildFeaturesExtension&gt; = Action {}) {</b>
+<b class="nc"><i class="no-highlight">14</i>&nbsp;        action.execute(buildFeatures)</b>
+<i class="no-highlight">15</i>&nbsp;    }
+<i class="no-highlight">16</i>&nbsp;
+<i class="no-highlight">17</i>&nbsp;    @HubdleDslMarker
+<b class="nc"><i class="no-highlight">18</i>&nbsp;    public open class BuildFeaturesExtension {</b>
+<i class="no-highlight">19</i>&nbsp;        public var Project.aidl: Boolean?
+<b class="nc"><i class="no-highlight">20</i>&nbsp;            get() = feats.aidl</b>
+<b class="nc"><i class="no-highlight">21</i>&nbsp;            set(value) = feats.run { aidl = value }</b>
+<i class="no-highlight">22</i>&nbsp;
+<i class="no-highlight">23</i>&nbsp;        public var Project.buildConfig: Boolean?
+<b class="nc"><i class="no-highlight">24</i>&nbsp;            get() = feats.buildConfig</b>
+<b class="nc"><i class="no-highlight">25</i>&nbsp;            set(value) = feats.run { buildConfig = value }</b>
+<i class="no-highlight">26</i>&nbsp;
+<i class="no-highlight">27</i>&nbsp;        public var Project.compose: Boolean?
+<b class="nc"><i class="no-highlight">28</i>&nbsp;            get() = feats.compose</b>
+<b class="nc"><i class="no-highlight">29</i>&nbsp;            set(value) = feats.run { compose = value }</b>
+<i class="no-highlight">30</i>&nbsp;
+<i class="no-highlight">31</i>&nbsp;        public var Project.renderScript: Boolean?
+<b class="nc"><i class="no-highlight">32</i>&nbsp;            get() = feats.renderScript</b>
+<b class="nc"><i class="no-highlight">33</i>&nbsp;            set(value) = feats.run { renderScript = value }</b>
+<i class="no-highlight">34</i>&nbsp;
+<i class="no-highlight">35</i>&nbsp;        public var Project.resValues: Boolean?
+<b class="nc"><i class="no-highlight">36</i>&nbsp;            get() = feats.resValues</b>
+<b class="nc"><i class="no-highlight">37</i>&nbsp;            set(value) = feats.run { resValues = value }</b>
+<i class="no-highlight">38</i>&nbsp;
+<i class="no-highlight">39</i>&nbsp;        public var Project.shaders: Boolean?
+<b class="nc"><i class="no-highlight">40</i>&nbsp;            get() = feats.shaders</b>
+<b class="nc"><i class="no-highlight">41</i>&nbsp;            set(value) = feats.run { shaders = value }</b>
+<i class="no-highlight">42</i>&nbsp;
+<i class="no-highlight">43</i>&nbsp;        public var Project.viewBinding: Boolean?
+<b class="nc"><i class="no-highlight">44</i>&nbsp;            get() = feats.viewBinding</b>
+<b class="nc"><i class="no-highlight">45</i>&nbsp;            set(value) = feats.run { viewBinding = value }</b>
+<i class="no-highlight">46</i>&nbsp;    }
+<i class="no-highlight">47</i>&nbsp;}
+<i class="no-highlight">48</i>&nbsp;
+<i class="no-highlight">49</i>&nbsp;private val Project.feats
+<i class="no-highlight">50</i>&nbsp;    get() = hubdleState.kotlin.android.buildFeatures
 </div>
 </pre>
 </div>
@@ -131,7 +230,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-15 00:07</div>
+    <div style="float:right;">generated on 2022-07-16 00:46</div>
 </div>
 </body>
 </html>

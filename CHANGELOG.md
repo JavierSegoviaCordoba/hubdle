@@ -4,18 +4,26 @@
 
 ### Added
 
-- `compose` feature to Android Application
-- `compose` feature to Multiplatform
-
 ### Changed
-
-- all extension has prefix `Hubdle`
 
 ### Deprecated
 
 ### Removed
 
 ### Fixed
+
+### Updated
+
+## [0.2.0-alpha.27] - 2022-07-17
+
+### Added
+
+- `compose` feature to Android Application
+- `compose` feature to Multiplatform
+
+### Changed
+
+- all extension has prefix `Hubdle`
 
 ### Updated
 

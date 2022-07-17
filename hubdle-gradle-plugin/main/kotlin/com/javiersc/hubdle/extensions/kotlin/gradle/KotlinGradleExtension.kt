@@ -2,8 +2,8 @@ package com.javiersc.hubdle.extensions.kotlin.gradle
 
 import com.javiersc.hubdle.extensions.HubdleDslMarker
 import com.javiersc.hubdle.extensions._internal.PluginIds
-import com.javiersc.hubdle.extensions.kotlin.gradle.plugin.KotlinGradlePluginExtension
-import com.javiersc.hubdle.extensions.kotlin.gradle.version.catalog.KotlinGradleVersionCatalogExtension
+import com.javiersc.hubdle.extensions.kotlin.gradle.plugin.HubdleKotlinGradlePluginExtension
+import com.javiersc.hubdle.extensions.kotlin.gradle.version.catalog.HubdleKotlinGradleVersionCatalogExtension
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
@@ -17,20 +17,20 @@ constructor(
     objects: ObjectFactory,
 ) {
 
-    private val plugin: KotlinGradlePluginExtension = objects.newInstance()
+    private val plugin: HubdleKotlinGradlePluginExtension = objects.newInstance()
 
     @HubdleDslMarker
-    public fun Project.plugin(action: Action<KotlinGradlePluginExtension> = Action {}) {
+    public fun Project.plugin(action: Action<HubdleKotlinGradlePluginExtension> = Action {}) {
         pluginManager.apply(PluginIds.Gradle.kotlinDsl)
         plugin.run { isEnabled = true }
         action.execute(plugin)
     }
 
-    private val versionCatalog: KotlinGradleVersionCatalogExtension = objects.newInstance()
+    private val versionCatalog: HubdleKotlinGradleVersionCatalogExtension = objects.newInstance()
 
     @HubdleDslMarker
     public fun Project.versionCatalog(
-        action: Action<KotlinGradleVersionCatalogExtension> = Action {}
+        action: Action<HubdleKotlinGradleVersionCatalogExtension> = Action {}
     ) {
         project.pluginManager.apply(PluginIds.Gradle.versionCatalog)
         versionCatalog.run { isEnabled = true }

@@ -13,6 +13,7 @@ import org.gradle.api.model.ObjectFactory
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.create
 import org.gradle.kotlin.dsl.findByType
+import org.gradle.kotlin.dsl.maven
 
 public open class HubdleSettingsPlugin
 @Inject
@@ -49,6 +50,7 @@ private fun Settings.configureRepositories() {
         management.repositories { repos: RepositoryHandler ->
             repos.mavenCentral()
             repos.google()
+            repos.maven(url = "https://maven.pkg.jetbrains.space/public/p/compose/dev")
         }
     }
 }

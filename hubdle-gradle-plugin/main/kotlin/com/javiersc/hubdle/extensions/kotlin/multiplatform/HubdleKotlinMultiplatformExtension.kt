@@ -6,6 +6,7 @@ import com.javiersc.hubdle.extensions.HubdleDslMarker
 import com.javiersc.hubdle.extensions._internal.state.hubdleState
 import com.javiersc.hubdle.extensions.kotlin.jvm.KotlinJvmOptions
 import com.javiersc.hubdle.extensions.kotlin.multiplatform._internal.multiplatformFeatures
+import com.javiersc.hubdle.extensions.kotlin.multiplatform.features.ComposeExtension
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.KotlinMultiplatformAndroidExtension
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.KotlinMultiplatformCommonExtension
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.KotlinMultiplatformDarwinExtension
@@ -53,20 +54,20 @@ import org.gradle.api.Project
 import org.gradle.api.model.ObjectFactory
 import org.gradle.kotlin.dsl.newInstance
 import org.gradle.kotlin.dsl.the
-import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension as KotlinProjectMultiplatformExtension
+import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 
 @HubdleDslMarker
-public open class KotlinMultiplatformExtension
+public open class HubdleKotlinMultiplatformExtension
 @Inject
 constructor(
     objects: ObjectFactory,
 ) :
     EnableableOptions,
-    FeaturesOptions<KotlinMultiplatformExtension.FeaturesExtension>,
+    FeaturesOptions<HubdleKotlinMultiplatformExtension.FeaturesExtension>,
     KotlinJvmOptions,
     SourceDirectoriesOptions<KotlinSourceSet>,
-    RawConfigOptions<KotlinMultiplatformExtension.RawConfigExtension> {
+    RawConfigOptions<HubdleKotlinMultiplatformExtension.RawConfigExtension> {
 
     override var Project.isEnabled: Boolean
         get() = hubdleState.kotlin.multiplatform.isEnabled
@@ -78,7 +79,7 @@ constructor(
     override fun features(action: Action<FeaturesExtension>): Unit = super.features(action)
 
     override val Project.sourceSets: NamedDomainObjectContainer<KotlinSourceSet>
-        get() = the<KotlinProjectMultiplatformExtension>().sourceSets
+        get() = the<KotlinMultiplatformExtension>().sourceSets
 
     private val common: KotlinMultiplatformCommonExtension = objects.newInstance()
 
@@ -408,13 +409,21 @@ constructor(
     @HubdleDslMarker
     public open class RawConfigExtension {
 
-        public fun Project.kotlin(action: Action<KotlinProjectMultiplatformExtension>) {
+        public fun Project.kotlin(action: Action<KotlinMultiplatformExtension>) {
             hubdleState.kotlin.multiplatform.rawConfig.kotlin = action
         }
     }
 
     @HubdleDslMarker
-    public open class FeaturesExtension {
+    public open class FeaturesExtension @Inject constructor(objects: ObjectFactory) {
+
+        private val compose: ComposeExtension = objects.newInstance()
+
+        @HubdleDslMarker
+        public fun Project.compose(action: Action<ComposeExtension> = Action {}) {
+            compose.run { isEnabled = true }
+            action.execute(compose)
+        }
 
         @HubdleDslMarker
         public fun Project.coroutines(enabled: Boolean = true) {

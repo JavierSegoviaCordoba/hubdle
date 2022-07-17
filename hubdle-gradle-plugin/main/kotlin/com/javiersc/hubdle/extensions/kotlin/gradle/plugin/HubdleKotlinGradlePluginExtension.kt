@@ -23,16 +23,16 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 
 @HubdleDslMarker
-public open class KotlinGradlePluginExtension
+public open class HubdleKotlinGradlePluginExtension
 @Inject
 constructor(
     objects: ObjectFactory,
 ) :
     EnableableOptions,
-    FeaturesOptions<KotlinGradlePluginExtension.FeaturesExtension>,
+    FeaturesOptions<HubdleKotlinGradlePluginExtension.FeaturesExtension>,
     KotlinJvmOptions,
     SourceDirectoriesOptions<KotlinSourceSet>,
-    RawConfigOptions<KotlinGradlePluginExtension.RawConfigExtension>,
+    RawConfigOptions<HubdleKotlinGradlePluginExtension.RawConfigExtension>,
     GradleDependenciesOptions {
 
     override var Project.isEnabled: Boolean

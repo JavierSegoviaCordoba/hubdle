@@ -53,6 +53,7 @@ dependencies {
     api(pluginLibs.vyarus.gradleMkdocsPlugin)
 
     compileOnly(pluginLibs.android.toolsBuild.gradle)
+    compileOnly(pluginLibs.jetbrains.compose.composeGradlePlugin)
     compileOnly(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)
 
     implementation(gradleApi())

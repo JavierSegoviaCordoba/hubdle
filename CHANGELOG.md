@@ -4,7 +4,11 @@
 
 ### Added
 
+- `compose` feature to Multiplatform
+
 ### Changed
+
+- all extension has prefix `Hubdle`
 
 ### Deprecated
 

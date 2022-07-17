@@ -40,6 +40,7 @@ internal object PluginIds {
     object Kotlin {
         const val binaryCompatibilityValidator =
             "org.jetbrains.kotlinx.binary-compatibility-validator"
+        const val compose = "org.jetbrains.compose"
         const val dokka = "org.jetbrains.dokka"
         const val jvm = "org.jetbrains.kotlin.jvm"
         const val kover = "org.jetbrains.kotlinx.kover"

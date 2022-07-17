@@ -48,13 +48,7 @@ internal fun configureMultiplatform(project: Project) {
         project.the<JavaPluginExtension>().configureDefaultJavaSourceSets()
         project.the<KotlinProjectExtension>().configureDefaultKotlinSourceSets()
         project.the<KotlinMultiplatformExtension>().configureMultiplatformDependencies()
-
-        if (project.hubdleState.config.publishing.isEnabled) {
-            project.pluginManager.apply(PluginIds.Publishing.mavenPublish)
-            project.configurePublishingExtension()
-            project.configureSigningForPublishing()
-            project.configureEmptyJavadocs()
-        }
+        configurePublishing(project)
     }
 }
 
@@ -64,6 +58,19 @@ internal fun configureMultiplatformRawConfig(project: Project) {
 
 internal fun configureMultiplatformAndroidRawConfig(project: Project) {
     project.hubdleState.kotlin.multiplatform.android.rawConfig.android?.execute(project.the())
+}
+
+internal fun configureSerialization(project: Project) {
+    if (project.multiplatformFeatures.serialization.isEnabled) {
+        project.pluginManager.apply(PluginIds.Kotlin.serialization)
+    }
+}
+
+internal fun configureMultiplatformCompose(project: Project) {
+    if (project.multiplatformFeatures.compose.isEnabled) {
+        project.pluginManager.apply(PluginIds.Kotlin.compose)
+        project.multiplatformFeatures.compose.desktop?.execute(project.the())
+    }
 }
 
 private fun KotlinMultiplatformExtension.configureMultiplatformDependencies() {
@@ -80,6 +87,15 @@ internal val Project.multiplatformFeatures: HubdleState.Kotlin.Multiplatform.Fea
 private val KotlinDependencyHandler.multiplatformFeatures: HubdleState.Kotlin.Multiplatform.Features
     get() = project.multiplatformFeatures
 
+private fun configurePublishing(project: Project) {
+    if (project.hubdleState.config.publishing.isEnabled) {
+        project.pluginManager.apply(PluginIds.Publishing.mavenPublish)
+        project.configurePublishingExtension()
+        project.configureSigningForPublishing()
+        project.configureEmptyJavadocs()
+    }
+}
+
 private fun KotlinDependencyHandler.configureCommonMainDependencies() {
     if (multiplatformFeatures.coroutines) {
         implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_MODULE))
@@ -87,9 +103,7 @@ private fun KotlinDependencyHandler.configureCommonMainDependencies() {
     if (multiplatformFeatures.extendedStdlib) {
         implementation(catalogDep(COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE))
     }
-
     if (multiplatformFeatures.serialization.isEnabled) {
-        project.pluginManager.apply(PluginIds.Kotlin.serialization)
         implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_CORE_MODULE))
         if (multiplatformFeatures.serialization.useJson) {
             implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_JSON_MODULE))

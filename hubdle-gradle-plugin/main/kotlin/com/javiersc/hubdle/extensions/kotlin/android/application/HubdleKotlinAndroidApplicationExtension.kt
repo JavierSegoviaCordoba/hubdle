@@ -22,15 +22,15 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 
 @HubdleDslMarker
-public open class KotlinAndroidApplicationExtension
+public open class HubdleKotlinAndroidApplicationExtension
 @Inject
 constructor(
     objects: ObjectFactory,
 ) :
     EnableableOptions,
-    FeaturesOptions<KotlinAndroidApplicationExtension.FeaturesExtension>,
+    FeaturesOptions<HubdleKotlinAndroidApplicationExtension.FeaturesExtension>,
     AndroidOptions,
-    RawConfigOptions<KotlinAndroidApplicationExtension.RawConfigExtension>,
+    RawConfigOptions<HubdleKotlinAndroidApplicationExtension.RawConfigExtension>,
     MainAndTestKotlinSourceSetsOptions<KotlinSourceSet> {
 
     override var Project.isEnabled: Boolean

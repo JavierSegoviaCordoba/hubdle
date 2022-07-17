@@ -42,6 +42,7 @@ import com.javiersc.hubdle.extensions.kotlin.jvm._internal.configureKotlinJvmRaw
 import com.javiersc.hubdle.extensions.kotlin.multiplatform._internal.configureMultiplatform
 import com.javiersc.hubdle.extensions.kotlin.multiplatform._internal.configureMultiplatformAndroid
 import com.javiersc.hubdle.extensions.kotlin.multiplatform._internal.configureMultiplatformAndroidRawConfig
+import com.javiersc.hubdle.extensions.kotlin.multiplatform._internal.configureMultiplatformCompose
 import com.javiersc.hubdle.extensions.kotlin.multiplatform._internal.configureMultiplatformDarwin
 import com.javiersc.hubdle.extensions.kotlin.multiplatform._internal.configureMultiplatformIOS
 import com.javiersc.hubdle.extensions.kotlin.multiplatform._internal.configureMultiplatformIOSArm32
@@ -77,6 +78,7 @@ import com.javiersc.hubdle.extensions.kotlin.multiplatform._internal.configureMu
 import com.javiersc.hubdle.extensions.kotlin.multiplatform._internal.configureMultiplatformWatchOSSimulatorArm64
 import com.javiersc.hubdle.extensions.kotlin.multiplatform._internal.configureMultiplatformWatchOSX64
 import com.javiersc.hubdle.extensions.kotlin.multiplatform._internal.configureMultiplatformWatchOSX86
+import com.javiersc.hubdle.extensions.kotlin.multiplatform._internal.configureSerialization
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.KotlinMultiplatformJsExtension
 import com.javiersc.semver.gradle.plugin.SemverExtension
 import io.gitlab.arturbosch.detekt.extensions.DetektExtension
@@ -94,13 +96,14 @@ import org.gradle.internal.os.OperatingSystem
 import org.gradle.plugin.devel.GradlePluginDevelopmentExtension
 import org.gradle.plugins.signing.SigningExtension
 import org.jetbrains.changelog.ChangelogPluginExtension
+import org.jetbrains.compose.desktop.DesktopExtension
 import org.jetbrains.intellij.IntelliJPluginExtension
 import org.jetbrains.intellij.tasks.PatchPluginXmlTask
 import org.jetbrains.intellij.tasks.PublishPluginTask
 import org.jetbrains.intellij.tasks.SignPluginTask
 import org.jetbrains.kotlin.gradle.dsl.ExplicitApiMode
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
-import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension as KotlinMultiplatformProjectExtension
+import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.plugin.LanguageSettingsBuilder
 import org.jetbrains.kotlin.gradle.targets.js.dsl.KotlinJsBrowserDsl
 import org.jetbrains.kotlin.gradle.targets.js.dsl.KotlinJsNodeDsl
@@ -707,8 +710,9 @@ internal data class HubdleState(
                 }
 
                 darwin.configure(project)
-
                 native.configure(project)
+
+                features.configure(project)
 
                 rawConfig.configure(project)
             }
@@ -1025,20 +1029,37 @@ internal data class HubdleState(
             }
 
             data class Features(
+                val compose: Compose = Compose(),
                 var coroutines: Boolean = false,
                 var extendedStdlib: Boolean = true,
                 var extendedTesting: Boolean = true,
                 var minimumTargetsPerOS: Boolean = false,
                 val serialization: Serialization = Serialization(),
-            ) {
+            ) : Configurable {
+
+                override fun configure(project: Project) {
+                    serialization.configure(project)
+                    compose.configure(project)
+                }
+
+                data class Compose(
+                    override var isEnabled: Boolean = false,
+                    var desktop: Action<DesktopExtension>? = null,
+                ) : Enableable, Configurable {
+                    override fun configure(project: Project) =
+                        configureMultiplatformCompose(project)
+                }
+
                 data class Serialization(
                     override var isEnabled: Boolean = false,
                     var useJson: Boolean = false,
-                ) : Enableable
+                ) : Enableable, Configurable {
+                    override fun configure(project: Project) = configureSerialization(project)
+                }
             }
 
             data class RawConfig(
-                var kotlin: Action<KotlinMultiplatformProjectExtension>? = null,
+                var kotlin: Action<KotlinMultiplatformExtension>? = null,
             ) : Configurable {
                 override fun configure(project: Project) = configureMultiplatformRawConfig(project)
             }

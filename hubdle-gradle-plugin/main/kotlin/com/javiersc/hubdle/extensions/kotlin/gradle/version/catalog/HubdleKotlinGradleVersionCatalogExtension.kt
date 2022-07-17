@@ -7,7 +7,7 @@ import java.io.File
 import org.gradle.api.Project
 
 @HubdleDslMarker
-public open class KotlinGradleVersionCatalogExtension : EnableableOptions {
+public open class HubdleKotlinGradleVersionCatalogExtension : EnableableOptions {
 
     override var Project.isEnabled: Boolean
         get() = hubdleState.kotlin.gradle.versionCatalog.isEnabled

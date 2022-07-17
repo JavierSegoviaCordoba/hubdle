@@ -20,15 +20,15 @@ import org.gradle.kotlin.dsl.newInstance
 import org.gradle.kotlin.dsl.the
 
 @HubdleDslMarker
-public open class KotlinAndroidLibraryExtension
+public open class HubdleKotlinAndroidLibraryExtension
 @Inject
 constructor(
     objects: ObjectFactory,
 ) :
     EnableableOptions,
-    FeaturesOptions<KotlinAndroidLibraryExtension.FeaturesExtension>,
+    FeaturesOptions<HubdleKotlinAndroidLibraryExtension.FeaturesExtension>,
     AndroidOptions,
-    RawConfigOptions<KotlinAndroidLibraryExtension.RawConfigExtension>,
+    RawConfigOptions<HubdleKotlinAndroidLibraryExtension.RawConfigExtension>,
     MainAndTestKotlinSourceSetsOptions<AndroidSourceSet> {
 
     override var Project.isEnabled: Boolean

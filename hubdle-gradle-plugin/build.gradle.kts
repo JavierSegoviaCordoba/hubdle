@@ -2,7 +2,7 @@ plugins {
     `kotlin-dsl`
     `javiersc-kotlin-config`
     `javiersc-publish`
-    `dependencies-codegen`
+    `generate-hubdle-dependencies`
 }
 
 kotlin {

@@ -465,6 +465,7 @@ internal data class HubdleState(
                 }
 
                 data class Features(
+                    var compose: Boolean = false,
                     var coroutines: Boolean = false,
                     var extendedStdlib: Boolean = true,
                     var extendedTesting: Boolean = true,

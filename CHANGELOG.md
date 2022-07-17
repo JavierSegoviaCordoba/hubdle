@@ -4,6 +4,7 @@
 
 ### Added
 
+- `compose` feature to Android Application
 - `compose` feature to Multiplatform
 
 ### Changed

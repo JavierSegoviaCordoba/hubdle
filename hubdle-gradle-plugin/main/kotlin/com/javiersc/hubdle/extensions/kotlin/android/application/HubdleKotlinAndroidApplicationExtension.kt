@@ -92,6 +92,11 @@ constructor(
     public open class FeaturesExtension {
 
         @HubdleDslMarker
+        public fun Project.compose(enabled: Boolean = true) {
+            androidApplicationFeatures.compose = enabled
+        }
+
+        @HubdleDslMarker
         public fun Project.coroutines(enabled: Boolean = true) {
             androidApplicationFeatures.coroutines = enabled
         }

@@ -6,6 +6,7 @@ import com.javiersc.hubdle.extensions._internal.state.HubdleState
 import com.javiersc.hubdle.extensions._internal.state.catalogDependency as catalogDep
 import com.javiersc.hubdle.extensions._internal.state.hubdleState
 import com.javiersc.hubdle.extensions.config.explicit.api._internal.configureExplicitApi
+import com.javiersc.hubdle.extensions.dependencies._internal.constants.ANDROIDX_ACTIVITY_ACTIVITY_COMPOSE_MODULE
 import com.javiersc.hubdle.extensions.dependencies._internal.constants.COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE
 import com.javiersc.hubdle.extensions.dependencies._internal.constants.IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE
 import com.javiersc.hubdle.extensions.dependencies._internal.constants.ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_ANDROID_MODULE
@@ -36,6 +37,8 @@ internal fun configureAndroidApplication(project: Project) {
         project.the<KotlinProjectExtension>().configureAndroidDependencies()
         project.the<KotlinProjectExtension>().configureDefaultKotlinSourceSets()
 
+        project.configureAndroidApplicationComposeFeature()
+
         project.configure<ApplicationExtension> {
             defaultConfig.applicationId = androidState.application.applicationId
             defaultConfig.versionCode = androidState.application.versionCode
@@ -57,6 +60,12 @@ private val KotlinDependencyHandler.androidApplicationFeatures:
     HubdleState.Kotlin.Android.Application.Features
     get() = project.androidApplicationFeatures
 
+internal fun Project.configureAndroidApplicationComposeFeature() {
+    if (androidApplicationFeatures.compose) {
+        pluginManager.apply(PluginIds.Kotlin.compose)
+    }
+}
+
 internal fun configureKotlinAndroidApplicationRawConfig(project: Project) {
     project.hubdleState.kotlin.android.application.rawConfig.android?.execute(project.the())
 }
@@ -67,6 +76,9 @@ private fun KotlinProjectExtension.configureAndroidDependencies() {
 }
 
 private fun KotlinDependencyHandler.configureMainDependencies() {
+    if (androidApplicationFeatures.compose) {
+        implementation(catalogDep(ANDROIDX_ACTIVITY_ACTIVITY_COMPOSE_MODULE))
+    }
     if (androidApplicationFeatures.coroutines) {
         implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_ANDROID_MODULE))
         implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_MODULE))

@@ -9,7 +9,7 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val dependenciesCodegen: TaskCollection<Task> =
-    tasks.maybeRegisterLazily<Task>("dependenciesCodegen")
+    tasks.maybeRegisterLazily<Task>("generateHubdleDependencies")
 
 the<KotlinProjectExtension>()
     .sourceSets["main"]
@@ -173,7 +173,6 @@ fun buildHubdleDependencies() {
                      |import com.javiersc.hubdle.extensions.HubdleDslMarker
                      |import com.javiersc.hubdle.extensions._internal.state.catalogDependency
                      |import com.javiersc.hubdle.extensions.dependencies._internal.constants.*
-                     |import org.gradle.api.artifacts.Dependency
                      |import org.gradle.api.artifacts.MinimalExternalModuleDependency
                      |import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
                      |

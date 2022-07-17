@@ -150,8 +150,8 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">2</i>&nbsp;
 <i class="no-highlight">3</i>&nbsp;import com.javiersc.hubdle.extensions.HubdleDslMarker
 <i class="no-highlight">4</i>&nbsp;import com.javiersc.hubdle.extensions._internal.PluginIds
-<i class="no-highlight">5</i>&nbsp;import com.javiersc.hubdle.extensions.kotlin.gradle.plugin.KotlinGradlePluginExtension
-<i class="no-highlight">6</i>&nbsp;import com.javiersc.hubdle.extensions.kotlin.gradle.version.catalog.KotlinGradleVersionCatalogExtension
+<i class="no-highlight">5</i>&nbsp;import com.javiersc.hubdle.extensions.kotlin.gradle.plugin.HubdleKotlinGradlePluginExtension
+<i class="no-highlight">6</i>&nbsp;import com.javiersc.hubdle.extensions.kotlin.gradle.version.catalog.HubdleKotlinGradleVersionCatalogExtension
 <i class="no-highlight">7</i>&nbsp;import javax.inject.Inject
 <i class="no-highlight">8</i>&nbsp;import org.gradle.api.Action
 <i class="no-highlight">9</i>&nbsp;import org.gradle.api.Project
@@ -165,20 +165,20 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">17</i>&nbsp;    objects: ObjectFactory,
 <i class="no-highlight">18</i>&nbsp;) {
 <i class="no-highlight">19</i>&nbsp;
-<b class="nc"><i class="no-highlight">20</i>&nbsp;    private val plugin: KotlinGradlePluginExtension = objects.newInstance()</b>
+<b class="nc"><i class="no-highlight">20</i>&nbsp;    private val plugin: HubdleKotlinGradlePluginExtension = objects.newInstance()</b>
 <i class="no-highlight">21</i>&nbsp;
 <i class="no-highlight">22</i>&nbsp;    @HubdleDslMarker
-<b class="nc"><i class="no-highlight">23</i>&nbsp;    public fun Project.plugin(action: Action&lt;KotlinGradlePluginExtension&gt; = Action {}) {</b>
+<b class="nc"><i class="no-highlight">23</i>&nbsp;    public fun Project.plugin(action: Action&lt;HubdleKotlinGradlePluginExtension&gt; = Action {}) {</b>
 <b class="nc"><i class="no-highlight">24</i>&nbsp;        pluginManager.apply(PluginIds.Gradle.kotlinDsl)</b>
 <b class="nc"><i class="no-highlight">25</i>&nbsp;        plugin.run { isEnabled = true }</b>
 <b class="nc"><i class="no-highlight">26</i>&nbsp;        action.execute(plugin)</b>
 <i class="no-highlight">27</i>&nbsp;    }
 <i class="no-highlight">28</i>&nbsp;
-<b class="nc"><i class="no-highlight">29</i>&nbsp;    private val versionCatalog: KotlinGradleVersionCatalogExtension = objects.newInstance()</b>
+<b class="nc"><i class="no-highlight">29</i>&nbsp;    private val versionCatalog: HubdleKotlinGradleVersionCatalogExtension = objects.newInstance()</b>
 <i class="no-highlight">30</i>&nbsp;
 <i class="no-highlight">31</i>&nbsp;    @HubdleDslMarker
 <i class="no-highlight">32</i>&nbsp;    public fun Project.versionCatalog(
-<b class="nc"><i class="no-highlight">33</i>&nbsp;        action: Action&lt;KotlinGradleVersionCatalogExtension&gt; = Action {}</b>
+<b class="nc"><i class="no-highlight">33</i>&nbsp;        action: Action&lt;HubdleKotlinGradleVersionCatalogExtension&gt; = Action {}</b>
 <i class="no-highlight">34</i>&nbsp;    ) {
 <b class="nc"><i class="no-highlight">35</i>&nbsp;        project.pluginManager.apply(PluginIds.Gradle.versionCatalog)</b>
 <b class="nc"><i class="no-highlight">36</i>&nbsp;        versionCatalog.run { isEnabled = true }</b>
@@ -211,7 +211,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-16 01:10</div>
+    <div style="float:right;">generated on 2022-07-17 16:49</div>
 </div>
 </body>
 </html>

@@ -50,7 +50,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/7)
+    (0/8)
   </span>
 </td>
 <td class="coverageStat">
@@ -58,7 +58,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/16)
+    (0/20)
   </span>
 </td>
 <td class="coverageStat">
@@ -66,7 +66,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/29)
+    (0/34)
   </span>
 </td>
 <td class="coverageStat">
@@ -74,7 +74,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/160)
+    (0/180)
   </span>
 </td>
 </tr>
@@ -305,7 +305,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/17)
+    (0/18)
   </span>
 </td>
 <td class="coverageStat">
@@ -313,7 +313,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/16)
+    (0/20)
   </span>
 </td>
 <td class="coverageStat">
@@ -321,7 +321,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/41)
+    (0/46)
   </span>
 </td>
 <td class="coverageStat">
@@ -329,7 +329,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/222)
+    (0/242)
   </span>
 </td>
 </tr>
@@ -348,93 +348,105 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">6</i>&nbsp;import com.javiersc.hubdle.extensions._internal.state.catalogDependency as catalogDep
 <i class="no-highlight">7</i>&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
 <i class="no-highlight">8</i>&nbsp;import com.javiersc.hubdle.extensions.config.explicit.api._internal.configureExplicitApi
-<i class="no-highlight">9</i>&nbsp;import com.javiersc.hubdle.extensions.dependencies._internal.constants.COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE
-<i class="no-highlight">10</i>&nbsp;import com.javiersc.hubdle.extensions.dependencies._internal.constants.IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE
-<i class="no-highlight">11</i>&nbsp;import com.javiersc.hubdle.extensions.dependencies._internal.constants.ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_ANDROID_MODULE
-<i class="no-highlight">12</i>&nbsp;import com.javiersc.hubdle.extensions.dependencies._internal.constants.ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_MODULE
-<i class="no-highlight">13</i>&nbsp;import com.javiersc.hubdle.extensions.dependencies._internal.constants.ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_TEST_MODULE
-<i class="no-highlight">14</i>&nbsp;import com.javiersc.hubdle.extensions.dependencies._internal.constants.ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_CORE_MODULE
-<i class="no-highlight">15</i>&nbsp;import com.javiersc.hubdle.extensions.dependencies._internal.constants.ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_JSON_MODULE
-<i class="no-highlight">16</i>&nbsp;import com.javiersc.hubdle.extensions.dependencies._internal.constants.ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE
-<i class="no-highlight">17</i>&nbsp;import com.javiersc.hubdle.extensions.kotlin._internal.configJvmTarget
-<i class="no-highlight">18</i>&nbsp;import com.javiersc.hubdle.extensions.kotlin.android._internal.configureAndroidBuildFeatures
-<i class="no-highlight">19</i>&nbsp;import com.javiersc.hubdle.extensions.options.configDefaultAndroidSourceSets
-<i class="no-highlight">20</i>&nbsp;import com.javiersc.hubdle.extensions.options.configureDefaultKotlinSourceSets
-<i class="no-highlight">21</i>&nbsp;import org.gradle.api.Project
-<i class="no-highlight">22</i>&nbsp;import org.gradle.kotlin.dsl.configure
-<i class="no-highlight">23</i>&nbsp;import org.gradle.kotlin.dsl.the
-<i class="no-highlight">24</i>&nbsp;import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
-<i class="no-highlight">25</i>&nbsp;import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
-<i class="no-highlight">26</i>&nbsp;
-<i class="no-highlight">27</i>&nbsp;internal fun configureAndroidApplication(project: Project) {
-<b class="nc"><i class="no-highlight">28</i>&nbsp;    val androidState = project.hubdleState.kotlin.android</b>
-<b class="nc"><i class="no-highlight">29</i>&nbsp;    if (androidState.application.isEnabled) {</b>
-<b class="nc"><i class="no-highlight">30</i>&nbsp;        project.pluginManager.apply(PluginIds.Android.kotlin)</b>
-<b class="nc"><i class="no-highlight">31</i>&nbsp;        project.pluginManager.apply(PluginIds.Android.application)</b>
-<i class="no-highlight">32</i>&nbsp;
-<b class="nc"><i class="no-highlight">33</i>&nbsp;        project.configureExplicitApi()</b>
-<b class="nc"><i class="no-highlight">34</i>&nbsp;        project.configJvmTarget()</b>
-<i class="no-highlight">35</i>&nbsp;
-<b class="nc"><i class="no-highlight">36</i>&nbsp;        project.the&lt;KotlinProjectExtension&gt;().configureAndroidDependencies()</b>
-<b class="nc"><i class="no-highlight">37</i>&nbsp;        project.the&lt;KotlinProjectExtension&gt;().configureDefaultKotlinSourceSets()</b>
-<i class="no-highlight">38</i>&nbsp;
-<b class="nc"><i class="no-highlight">39</i>&nbsp;        project.configure&lt;ApplicationExtension&gt; {</b>
-<b class="nc"><i class="no-highlight">40</i>&nbsp;            defaultConfig.applicationId = androidState.application.applicationId</b>
-<b class="nc"><i class="no-highlight">41</i>&nbsp;            defaultConfig.versionCode = androidState.application.versionCode</b>
-<b class="nc"><i class="no-highlight">42</i>&nbsp;            defaultConfig.versionName = androidState.application.versionName</b>
-<b class="nc"><i class="no-highlight">43</i>&nbsp;            compileSdk = androidState.compileSdk</b>
-<b class="nc"><i class="no-highlight">44</i>&nbsp;            defaultConfig.minSdk = androidState.minSdk</b>
-<i class="no-highlight">45</i>&nbsp;            // TODO: namespace = project.calculateAndroidNamespace(androidState.namespace)
-<i class="no-highlight">46</i>&nbsp;
-<b class="nc"><i class="no-highlight">47</i>&nbsp;            sourceSets.all { configDefaultAndroidSourceSets() }</b>
-<b class="nc"><i class="no-highlight">48</i>&nbsp;            project.configureAndroidBuildFeatures(this)</b>
-<i class="no-highlight">49</i>&nbsp;        }
-<i class="no-highlight">50</i>&nbsp;    }
-<i class="no-highlight">51</i>&nbsp;}
-<i class="no-highlight">52</i>&nbsp;
-<i class="no-highlight">53</i>&nbsp;internal val Project.androidApplicationFeatures: HubdleState.Kotlin.Android.Application.Features
-<b class="nc"><i class="no-highlight">54</i>&nbsp;    get() = hubdleState.kotlin.android.application.features</b>
+<i class="no-highlight">9</i>&nbsp;import com.javiersc.hubdle.extensions.dependencies._internal.constants.ANDROIDX_ACTIVITY_ACTIVITY_COMPOSE_MODULE
+<i class="no-highlight">10</i>&nbsp;import com.javiersc.hubdle.extensions.dependencies._internal.constants.COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE
+<i class="no-highlight">11</i>&nbsp;import com.javiersc.hubdle.extensions.dependencies._internal.constants.IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE
+<i class="no-highlight">12</i>&nbsp;import com.javiersc.hubdle.extensions.dependencies._internal.constants.ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_ANDROID_MODULE
+<i class="no-highlight">13</i>&nbsp;import com.javiersc.hubdle.extensions.dependencies._internal.constants.ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_MODULE
+<i class="no-highlight">14</i>&nbsp;import com.javiersc.hubdle.extensions.dependencies._internal.constants.ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_TEST_MODULE
+<i class="no-highlight">15</i>&nbsp;import com.javiersc.hubdle.extensions.dependencies._internal.constants.ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_CORE_MODULE
+<i class="no-highlight">16</i>&nbsp;import com.javiersc.hubdle.extensions.dependencies._internal.constants.ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_JSON_MODULE
+<i class="no-highlight">17</i>&nbsp;import com.javiersc.hubdle.extensions.dependencies._internal.constants.ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE
+<i class="no-highlight">18</i>&nbsp;import com.javiersc.hubdle.extensions.kotlin._internal.configJvmTarget
+<i class="no-highlight">19</i>&nbsp;import com.javiersc.hubdle.extensions.kotlin.android._internal.configureAndroidBuildFeatures
+<i class="no-highlight">20</i>&nbsp;import com.javiersc.hubdle.extensions.options.configDefaultAndroidSourceSets
+<i class="no-highlight">21</i>&nbsp;import com.javiersc.hubdle.extensions.options.configureDefaultKotlinSourceSets
+<i class="no-highlight">22</i>&nbsp;import org.gradle.api.Project
+<i class="no-highlight">23</i>&nbsp;import org.gradle.kotlin.dsl.configure
+<i class="no-highlight">24</i>&nbsp;import org.gradle.kotlin.dsl.the
+<i class="no-highlight">25</i>&nbsp;import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
+<i class="no-highlight">26</i>&nbsp;import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
+<i class="no-highlight">27</i>&nbsp;
+<i class="no-highlight">28</i>&nbsp;internal fun configureAndroidApplication(project: Project) {
+<b class="nc"><i class="no-highlight">29</i>&nbsp;    val androidState = project.hubdleState.kotlin.android</b>
+<b class="nc"><i class="no-highlight">30</i>&nbsp;    if (androidState.application.isEnabled) {</b>
+<b class="nc"><i class="no-highlight">31</i>&nbsp;        project.pluginManager.apply(PluginIds.Android.kotlin)</b>
+<b class="nc"><i class="no-highlight">32</i>&nbsp;        project.pluginManager.apply(PluginIds.Android.application)</b>
+<i class="no-highlight">33</i>&nbsp;
+<b class="nc"><i class="no-highlight">34</i>&nbsp;        project.configureExplicitApi()</b>
+<b class="nc"><i class="no-highlight">35</i>&nbsp;        project.configJvmTarget()</b>
+<i class="no-highlight">36</i>&nbsp;
+<b class="nc"><i class="no-highlight">37</i>&nbsp;        project.the&lt;KotlinProjectExtension&gt;().configureAndroidDependencies()</b>
+<b class="nc"><i class="no-highlight">38</i>&nbsp;        project.the&lt;KotlinProjectExtension&gt;().configureDefaultKotlinSourceSets()</b>
+<i class="no-highlight">39</i>&nbsp;
+<b class="nc"><i class="no-highlight">40</i>&nbsp;        project.configureAndroidApplicationComposeFeature()</b>
+<i class="no-highlight">41</i>&nbsp;
+<b class="nc"><i class="no-highlight">42</i>&nbsp;        project.configure&lt;ApplicationExtension&gt; {</b>
+<b class="nc"><i class="no-highlight">43</i>&nbsp;            defaultConfig.applicationId = androidState.application.applicationId</b>
+<b class="nc"><i class="no-highlight">44</i>&nbsp;            defaultConfig.versionCode = androidState.application.versionCode</b>
+<b class="nc"><i class="no-highlight">45</i>&nbsp;            defaultConfig.versionName = androidState.application.versionName</b>
+<b class="nc"><i class="no-highlight">46</i>&nbsp;            compileSdk = androidState.compileSdk</b>
+<b class="nc"><i class="no-highlight">47</i>&nbsp;            defaultConfig.minSdk = androidState.minSdk</b>
+<i class="no-highlight">48</i>&nbsp;            // TODO: namespace = project.calculateAndroidNamespace(androidState.namespace)
+<i class="no-highlight">49</i>&nbsp;
+<b class="nc"><i class="no-highlight">50</i>&nbsp;            sourceSets.all { configDefaultAndroidSourceSets() }</b>
+<b class="nc"><i class="no-highlight">51</i>&nbsp;            project.configureAndroidBuildFeatures(this)</b>
+<i class="no-highlight">52</i>&nbsp;        }
+<i class="no-highlight">53</i>&nbsp;    }
+<i class="no-highlight">54</i>&nbsp;}
 <i class="no-highlight">55</i>&nbsp;
-<i class="no-highlight">56</i>&nbsp;private val KotlinDependencyHandler.androidApplicationFeatures:
-<i class="no-highlight">57</i>&nbsp;    HubdleState.Kotlin.Android.Application.Features
-<b class="nc"><i class="no-highlight">58</i>&nbsp;    get() = project.androidApplicationFeatures</b>
-<i class="no-highlight">59</i>&nbsp;
-<i class="no-highlight">60</i>&nbsp;internal fun configureKotlinAndroidApplicationRawConfig(project: Project) {
-<b class="nc"><i class="no-highlight">61</i>&nbsp;    project.hubdleState.kotlin.android.application.rawConfig.android?.execute(project.the())</b>
-<i class="no-highlight">62</i>&nbsp;}
-<i class="no-highlight">63</i>&nbsp;
-<i class="no-highlight">64</i>&nbsp;private fun KotlinProjectExtension.configureAndroidDependencies() {
-<b class="nc"><i class="no-highlight">65</i>&nbsp;    sourceSets.named(&quot;main&quot;) { dependencies { configureMainDependencies() } }</b>
-<b class="nc"><i class="no-highlight">66</i>&nbsp;    sourceSets.named(&quot;test&quot;) { dependencies { configureTestDependencies() } }</b>
+<i class="no-highlight">56</i>&nbsp;internal val Project.androidApplicationFeatures: HubdleState.Kotlin.Android.Application.Features
+<b class="nc"><i class="no-highlight">57</i>&nbsp;    get() = hubdleState.kotlin.android.application.features</b>
+<i class="no-highlight">58</i>&nbsp;
+<i class="no-highlight">59</i>&nbsp;private val KotlinDependencyHandler.androidApplicationFeatures:
+<i class="no-highlight">60</i>&nbsp;    HubdleState.Kotlin.Android.Application.Features
+<b class="nc"><i class="no-highlight">61</i>&nbsp;    get() = project.androidApplicationFeatures</b>
+<i class="no-highlight">62</i>&nbsp;
+<i class="no-highlight">63</i>&nbsp;internal fun Project.configureAndroidApplicationComposeFeature() {
+<b class="nc"><i class="no-highlight">64</i>&nbsp;    if (androidApplicationFeatures.compose) {</b>
+<b class="nc"><i class="no-highlight">65</i>&nbsp;        pluginManager.apply(PluginIds.Kotlin.compose)</b>
+<i class="no-highlight">66</i>&nbsp;    }
 <i class="no-highlight">67</i>&nbsp;}
 <i class="no-highlight">68</i>&nbsp;
-<i class="no-highlight">69</i>&nbsp;private fun KotlinDependencyHandler.configureMainDependencies() {
-<b class="nc"><i class="no-highlight">70</i>&nbsp;    if (androidApplicationFeatures.coroutines) {</b>
-<b class="nc"><i class="no-highlight">71</i>&nbsp;        implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_ANDROID_MODULE))</b>
-<b class="nc"><i class="no-highlight">72</i>&nbsp;        implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_MODULE))</b>
-<i class="no-highlight">73</i>&nbsp;    }
-<b class="nc"><i class="no-highlight">74</i>&nbsp;    if (androidApplicationFeatures.extendedStdlib) {</b>
-<b class="nc"><i class="no-highlight">75</i>&nbsp;        implementation(catalogDep(COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE))</b>
-<i class="no-highlight">76</i>&nbsp;    }
-<b class="nc"><i class="no-highlight">77</i>&nbsp;    if (androidApplicationFeatures.serialization.isEnabled) {</b>
-<b class="nc"><i class="no-highlight">78</i>&nbsp;        project.pluginManager.apply(PluginIds.Kotlin.serialization)</b>
-<b class="nc"><i class="no-highlight">79</i>&nbsp;        implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_CORE_MODULE))</b>
-<b class="nc"><i class="no-highlight">80</i>&nbsp;        if (androidApplicationFeatures.serialization.useJson) {</b>
-<b class="nc"><i class="no-highlight">81</i>&nbsp;            implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_JSON_MODULE))</b>
-<i class="no-highlight">82</i>&nbsp;        }
-<i class="no-highlight">83</i>&nbsp;    }
-<i class="no-highlight">84</i>&nbsp;}
-<i class="no-highlight">85</i>&nbsp;
-<i class="no-highlight">86</i>&nbsp;private fun KotlinDependencyHandler.configureTestDependencies() {
-<b class="nc"><i class="no-highlight">87</i>&nbsp;    implementation(catalogDep(ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE))</b>
-<i class="no-highlight">88</i>&nbsp;
-<b class="nc"><i class="no-highlight">89</i>&nbsp;    if (androidApplicationFeatures.coroutines) {</b>
-<b class="nc"><i class="no-highlight">90</i>&nbsp;        implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_TEST_MODULE))</b>
-<i class="no-highlight">91</i>&nbsp;    }
-<b class="nc"><i class="no-highlight">92</i>&nbsp;    if (androidApplicationFeatures.extendedTesting) {</b>
-<b class="nc"><i class="no-highlight">93</i>&nbsp;        implementation(catalogDep(IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE))</b>
-<i class="no-highlight">94</i>&nbsp;    }
-<i class="no-highlight">95</i>&nbsp;}
+<i class="no-highlight">69</i>&nbsp;internal fun configureKotlinAndroidApplicationRawConfig(project: Project) {
+<b class="nc"><i class="no-highlight">70</i>&nbsp;    project.hubdleState.kotlin.android.application.rawConfig.android?.execute(project.the())</b>
+<i class="no-highlight">71</i>&nbsp;}
+<i class="no-highlight">72</i>&nbsp;
+<i class="no-highlight">73</i>&nbsp;private fun KotlinProjectExtension.configureAndroidDependencies() {
+<b class="nc"><i class="no-highlight">74</i>&nbsp;    sourceSets.named(&quot;main&quot;) { dependencies { configureMainDependencies() } }</b>
+<b class="nc"><i class="no-highlight">75</i>&nbsp;    sourceSets.named(&quot;test&quot;) { dependencies { configureTestDependencies() } }</b>
+<i class="no-highlight">76</i>&nbsp;}
+<i class="no-highlight">77</i>&nbsp;
+<i class="no-highlight">78</i>&nbsp;private fun KotlinDependencyHandler.configureMainDependencies() {
+<b class="nc"><i class="no-highlight">79</i>&nbsp;    if (androidApplicationFeatures.compose) {</b>
+<b class="nc"><i class="no-highlight">80</i>&nbsp;        implementation(catalogDep(ANDROIDX_ACTIVITY_ACTIVITY_COMPOSE_MODULE))</b>
+<i class="no-highlight">81</i>&nbsp;    }
+<b class="nc"><i class="no-highlight">82</i>&nbsp;    if (androidApplicationFeatures.coroutines) {</b>
+<b class="nc"><i class="no-highlight">83</i>&nbsp;        implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_ANDROID_MODULE))</b>
+<b class="nc"><i class="no-highlight">84</i>&nbsp;        implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_MODULE))</b>
+<i class="no-highlight">85</i>&nbsp;    }
+<b class="nc"><i class="no-highlight">86</i>&nbsp;    if (androidApplicationFeatures.extendedStdlib) {</b>
+<b class="nc"><i class="no-highlight">87</i>&nbsp;        implementation(catalogDep(COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE))</b>
+<i class="no-highlight">88</i>&nbsp;    }
+<b class="nc"><i class="no-highlight">89</i>&nbsp;    if (androidApplicationFeatures.serialization.isEnabled) {</b>
+<b class="nc"><i class="no-highlight">90</i>&nbsp;        project.pluginManager.apply(PluginIds.Kotlin.serialization)</b>
+<b class="nc"><i class="no-highlight">91</i>&nbsp;        implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_CORE_MODULE))</b>
+<b class="nc"><i class="no-highlight">92</i>&nbsp;        if (androidApplicationFeatures.serialization.useJson) {</b>
+<b class="nc"><i class="no-highlight">93</i>&nbsp;            implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_JSON_MODULE))</b>
+<i class="no-highlight">94</i>&nbsp;        }
+<i class="no-highlight">95</i>&nbsp;    }
+<i class="no-highlight">96</i>&nbsp;}
+<i class="no-highlight">97</i>&nbsp;
+<i class="no-highlight">98</i>&nbsp;private fun KotlinDependencyHandler.configureTestDependencies() {
+<b class="nc"><i class="no-highlight">99</i>&nbsp;    implementation(catalogDep(ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE))</b>
+<i class="no-highlight">100</i>&nbsp;
+<b class="nc"><i class="no-highlight">101</i>&nbsp;    if (androidApplicationFeatures.coroutines) {</b>
+<b class="nc"><i class="no-highlight">102</i>&nbsp;        implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_TEST_MODULE))</b>
+<i class="no-highlight">103</i>&nbsp;    }
+<b class="nc"><i class="no-highlight">104</i>&nbsp;    if (androidApplicationFeatures.extendedTesting) {</b>
+<b class="nc"><i class="no-highlight">105</i>&nbsp;        implementation(catalogDep(IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE))</b>
+<i class="no-highlight">106</i>&nbsp;    }
+<i class="no-highlight">107</i>&nbsp;}
 </div>
 </pre>
 </div>
@@ -461,7 +473,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-16 01:10</div>
+    <div style="float:right;">generated on 2022-07-17 16:49</div>
 </div>
 </body>
 </html>

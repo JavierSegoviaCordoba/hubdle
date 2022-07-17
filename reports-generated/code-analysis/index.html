@@ -157,11 +157,11 @@
 
 <div>
   <ul>
-    <li>932 number of properties</li>
-    <li>573 number of functions</li>
-    <li>252 number of classes</li>
-    <li>77 number of packages</li>
-    <li>207 number of kt files</li>
+    <li>936 number of properties</li>
+    <li>583 number of functions</li>
+    <li>254 number of classes</li>
+    <li>78 number of packages</li>
+    <li>209 number of kt files</li>
   </ul>
 </div>
 
@@ -170,23 +170,23 @@
 
 <div>
   <ul>
-    <li>11,422 lines of code (loc)</li>
-    <li>9,424 source lines of code (sloc)</li>
-    <li>6,360 logical lines of code (lloc)</li>
+    <li>11,519 lines of code (loc)</li>
+    <li>9,504 source lines of code (sloc)</li>
+    <li>6,411 logical lines of code (lloc)</li>
     <li>55 comment lines of code (cloc)</li>
-    <li>1,194 cyclomatic complexity (mcc)</li>
-    <li>476 cognitive complexity</li>
-    <li>70 number of total code smells</li>
+    <li>1,210 cyclomatic complexity (mcc)</li>
+    <li>479 cognitive complexity</li>
+    <li>72 number of total code smells</li>
     <li>0% comment source ratio</li>
-    <li>187 mcc per 1,000 lloc</li>
+    <li>188 mcc per 1,000 lloc</li>
     <li>11 code smells per 1,000 lloc</li>
   </ul>
 </div>
 
 
 <h2>Findings</h2>
-<div>Total: 70
-  <h3>complexity: 8</h3>
+<div>Total: 72
+  <h3>complexity: 9</h3>
   <details id="ComplexCondition" open="open">
     <summary class="rule-container"><span class="rule">ComplexCondition: 1 </span><span class="description">Complex conditions should be simplified and extracted into well-named methods if necessary.</span></summary>
     <ul>
@@ -220,7 +220,7 @@
   <details id="LongMethod" open="open">
     <summary class="rule-container"><span class="rule">LongMethod: 3 </span><span class="description">One method should have one responsibility. Long methods tend to handle many things at once. Prefer smaller methods to make them easier to understand.</span></summary>
     <ul>
-      <li><span class="location">buildSrc/src/main/kotlin/plugins/dependencies-codegen.gradle.kts:115:5</span><span class="message">The function buildHubdleDependencies is too long (67). The maximum length is 60.</span>
+      <li><span class="location">buildSrc/src/main/kotlin/plugins/generate-hubdle-dependencies.gradle.kts:115:5</span><span class="message">The function buildHubdleDependencies is too long (66). The maximum length is 60.</span>
         <pre><code><span class="lineno"> 112 </span>        }
 <span class="lineno"> 113 </span>}
 <span class="lineno"> 114 </span>
@@ -255,7 +255,7 @@
   <details id="NestedBlockDepth" open="open">
     <summary class="rule-container"><span class="rule">NestedBlockDepth: 1 </span><span class="description">Excessive nesting leads to hidden complexity. Prefer extracting code to make it easier to understand.</span></summary>
     <ul>
-      <li><span class="location">buildSrc/src/main/kotlin/plugins/dependencies-codegen.gradle.kts:115:5</span><span class="message">Function buildHubdleDependencies is nested too deeply.</span>
+      <li><span class="location">buildSrc/src/main/kotlin/plugins/generate-hubdle-dependencies.gradle.kts:115:5</span><span class="message">Function buildHubdleDependencies is nested too deeply.</span>
         <pre><code><span class="lineno"> 112 </span>        }
 <span class="lineno"> 113 </span>}
 <span class="lineno"> 114 </span>
@@ -268,7 +268,7 @@
     </ul>
   </details>
   <details id="TooManyFunctions" open="open">
-    <summary class="rule-container"><span class="rule">TooManyFunctions: 2 </span><span class="description">Too many functions inside a/an file/class/object/interface always indicate a violation of the single responsibility principle. Maybe the file/class/object/interface wants to manage too many things at once. Extract functionality which clearly belongs together.</span></summary>
+    <summary class="rule-container"><span class="rule">TooManyFunctions: 3 </span><span class="description">Too many functions inside a/an file/class/object/interface always indicate a violation of the single responsibility principle. Maybe the file/class/object/interface wants to manage too many things at once. Extract functionality which clearly belongs together.</span></summary>
     <ul>
       <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/ConfigExtension.kt:25:19</span><span class="message">Class 'ConfigExtension' with '11' functions detected. Defined threshold inside classes is set to '11'</span>
         <pre><code><span class="lineno">  22 </span>import org.jetbrains.kotlin.gradle.dsl.ExplicitApiMode
@@ -280,14 +280,23 @@
 <span class="lineno">  28 </span>    objects: ObjectFactory,
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/KotlinMultiplatformExtension.kt:60:19</span><span class="message">Class 'KotlinMultiplatformExtension' with '38' functions detected. Defined threshold inside classes is set to '11'</span>
-        <pre><code><span class="lineno">  57 </span>import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
-<span class="lineno">  58 </span>
-<span class="lineno">  59 </span>@HubdleDslMarker
-<span class="lineno">  60 </span>public open class <span class="error">KotlinMultiplatformExtension</span>
-<span class="lineno">  61 </span>@Inject
-<span class="lineno">  62 </span>constructor(
-<span class="lineno">  63 </span>    objects: ObjectFactory,
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/HubdleKotlinMultiplatformExtension.kt:61:19</span><span class="message">Class 'HubdleKotlinMultiplatformExtension' with '38' functions detected. Defined threshold inside classes is set to '11'</span>
+        <pre><code><span class="lineno">  58 </span>import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
+<span class="lineno">  59 </span>
+<span class="lineno">  60 </span>@HubdleDslMarker
+<span class="lineno">  61 </span>public open class <span class="error">HubdleKotlinMultiplatformExtension</span>
+<span class="lineno">  62 </span>@Inject
+<span class="lineno">  63 </span>constructor(
+<span class="lineno">  64 </span>    objects: ObjectFactory,
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatform.kt:3:1</span><span class="message">File '/home/runner/work/hubdle/hubdle/hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatform.kt' with '11' functions detected. Defined threshold inside files is set to '11'</span>
+        <pre><code><span class="lineno">   1 </span>@file:Suppress(&quot;SpreadOperator&quot;)
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span><span class="error">package com.javiersc.hubdle.extensions.kotlin.multiplatform._internal</span>
+<span class="lineno">   4 </span>
+<span class="lineno">   5 </span>import com.javiersc.hubdle.extensions._internal.PluginIds
+<span class="lineno">   6 </span>import com.javiersc.hubdle.extensions._internal.state.HubdleState
 </code></pre>
       </li>
     </ul>
@@ -302,9 +311,9 @@
       </li>
     </ul>
   </details>
-  <h3>naming: 48</h3>
+  <h3>naming: 49</h3>
   <details id="MatchingDeclarationName" open="open">
-    <summary class="rule-container"><span class="rule">MatchingDeclarationName: 1 </span><span class="description">If a source file contains only a single non-private top-level class or object, the file name should reflect the case-sensitive name plus the .kt extension.</span></summary>
+    <summary class="rule-container"><span class="rule">MatchingDeclarationName: 2 </span><span class="description">If a source file contains only a single non-private top-level class or object, the file name should reflect the case-sensitive name plus the .kt extension.</span></summary>
     <ul>
       <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/options/DependenciesOptions.kt:6:1</span><span class="message">The file name 'DependenciesOptions' does not match the name of the single top-level declaration 'GradleDependenciesOptions'.</span>
         <pre><code><span class="lineno">   3 </span>import org.gradle.api.Project
@@ -314,6 +323,16 @@
 <span class="lineno">   7 </span><span class="error"> * For missing dependencies or features from `DependencyHandler` in `KotlinDependencyHandler`, they</span>
 <span class="lineno">   8 </span><span class="error"> * can be accessed by using the getter:</span>
 <span class="lineno">   9 </span><span class="error"> *</span>
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-settings-gradle-plugin/main/kotlin/com/javiersc/hubdle/settings/extensions/HubdleAutoIncludeExtension.kt:7:1</span><span class="message">The file name 'HubdleAutoIncludeExtension' does not match the name of the single top-level declaration 'AutoIncludeExtension'.</span>
+        <pre><code><span class="lineno">   4 </span>import java.io.File
+<span class="lineno">   5 </span>import org.gradle.api.initialization.Settings
+<span class="lineno">   6 </span>
+<span class="lineno">   7 </span><span class="error">@HubdleSettingsDslMarker</span>
+<span class="lineno">   8 </span><span class="error">public open class AutoIncludeExtension {</span>
+<span class="lineno">   9 </span><span class="error"></span>
+<span class="lineno">  10 </span><span class="error">    public var isEnabled: Boolean = true</span>
 </code></pre>
       </li>
     </ul>
@@ -674,24 +693,24 @@
 <span class="lineno">  37 </span>                    }
 </code></pre>
       </li>
-      <li><span class="location">hubdle-settings-gradle-plugin/main/kotlin/com/javiersc/hubdle/settings/HubdleSettingsPlugin.kt:60:29</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
-        <pre><code><span class="lineno">  57 </span>    val autoInclude = hubdleSettings.autoInclude
-<span class="lineno">  58 </span>
-<span class="lineno">  59 </span>    if (autoInclude.isEnabled) {
-<span class="lineno">  60 </span>        autoInclude.includes<span class="error">(*extractedProjects().toTypedArray())</span>
-<span class="lineno">  61 </span>        autoInclude.includedBuilds(*extractedBuildProjects().toTypedArray())
-<span class="lineno">  62 </span>
-<span class="lineno">  63 </span>        for (include in autoInclude.includableProjects) {
+      <li><span class="location">hubdle-settings-gradle-plugin/main/kotlin/com/javiersc/hubdle/settings/HubdleSettingsPlugin.kt:62:29</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
+        <pre><code><span class="lineno">  59 </span>    val autoInclude = hubdleSettings.autoInclude
+<span class="lineno">  60 </span>
+<span class="lineno">  61 </span>    if (autoInclude.isEnabled) {
+<span class="lineno">  62 </span>        autoInclude.includes<span class="error">(*extractedProjects().toTypedArray())</span>
+<span class="lineno">  63 </span>        autoInclude.includedBuilds(*extractedBuildProjects().toTypedArray())
+<span class="lineno">  64 </span>
+<span class="lineno">  65 </span>        for (include in autoInclude.includableProjects) {
 </code></pre>
       </li>
-      <li><span class="location">hubdle-settings-gradle-plugin/main/kotlin/com/javiersc/hubdle/settings/HubdleSettingsPlugin.kt:61:35</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
-        <pre><code><span class="lineno">  58 </span>
-<span class="lineno">  59 </span>    if (autoInclude.isEnabled) {
-<span class="lineno">  60 </span>        autoInclude.includes(*extractedProjects().toTypedArray())
-<span class="lineno">  61 </span>        autoInclude.includedBuilds<span class="error">(*extractedBuildProjects().toTypedArray())</span>
-<span class="lineno">  62 </span>
-<span class="lineno">  63 </span>        for (include in autoInclude.includableProjects) {
-<span class="lineno">  64 </span>            include(include)
+      <li><span class="location">hubdle-settings-gradle-plugin/main/kotlin/com/javiersc/hubdle/settings/HubdleSettingsPlugin.kt:63:35</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
+        <pre><code><span class="lineno">  60 </span>
+<span class="lineno">  61 </span>    if (autoInclude.isEnabled) {
+<span class="lineno">  62 </span>        autoInclude.includes(*extractedProjects().toTypedArray())
+<span class="lineno">  63 </span>        autoInclude.includedBuilds<span class="error">(*extractedBuildProjects().toTypedArray())</span>
+<span class="lineno">  64 </span>
+<span class="lineno">  65 </span>        for (include in autoInclude.includableProjects) {
+<span class="lineno">  66 </span>            include(include)
 </code></pre>
       </li>
     </ul>
@@ -740,17 +759,17 @@
 <span class="lineno">  15 </span>        check(project.isRootProject) {
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/application/_internal/configureAndroidApplication.kt:45:13</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
-        <pre><code><span class="lineno">  42 </span>            defaultConfig.versionName = androidState.application.versionName
-<span class="lineno">  43 </span>            compileSdk = androidState.compileSdk
-<span class="lineno">  44 </span>            defaultConfig.minSdk = androidState.minSdk
-<span class="lineno">  45 </span>            <span class="error">// TODO: namespace = project.calculateAndroidNamespace(androidState.namespace)</span>
-<span class="lineno">  46 </span>
-<span class="lineno">  47 </span>            sourceSets.all { configDefaultAndroidSourceSets() }
-<span class="lineno">  48 </span>            project.configureAndroidBuildFeatures(this)
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/application/_internal/configureAndroidApplication.kt:48:13</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
+        <pre><code><span class="lineno">  45 </span>            defaultConfig.versionName = androidState.application.versionName
+<span class="lineno">  46 </span>            compileSdk = androidState.compileSdk
+<span class="lineno">  47 </span>            defaultConfig.minSdk = androidState.minSdk
+<span class="lineno">  48 </span>            <span class="error">// TODO: namespace = project.calculateAndroidNamespace(androidState.namespace)</span>
+<span class="lineno">  49 </span>
+<span class="lineno">  50 </span>            sourceSets.all { configDefaultAndroidSourceSets() }
+<span class="lineno">  51 </span>            project.configureAndroidBuildFeatures(this)
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/library/KotlinAndroidLibraryExtension.kt:62:5</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/library/HubdleKotlinAndroidLibraryExtension.kt:62:5</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
         <pre><code><span class="lineno">  59 </span>        the&lt;LibraryExtension&gt;().sourceSets.named(&quot;test&quot;, action::execute)
 <span class="lineno">  60 </span>    }
 <span class="lineno">  61 </span>
@@ -785,14 +804,14 @@
   <details id="MagicNumber" open="open">
     <summary class="rule-container"><span class="rule">MagicNumber: 1 </span><span class="description">Report magic numbers. Magic number is a numeric literal that is not defined as a constant and hence it's unclear what the purpose of this number is. It's better to declare such numbers as constants and give them a proper name. By default, -1, 0, 1, and 2 are not considered to be magic numbers.</span></summary>
     <ul>
-      <li><span class="location">buildSrc/src/main/kotlin/plugins/dependencies-codegen.gradle.kts:200:56</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
-        <pre><code><span class="lineno"> 197 </span>    replace(&quot;.&quot;, &quot;_&quot;).replace(&quot;-&quot;, &quot;_&quot;).toUpperCase(Locale.getDefault())
-<span class="lineno"> 198 </span>
-<span class="lineno"> 199 </span>val MinimalExternalModuleDependency.hasCommonEndingDomain: Boolean
-<span class="lineno"> 200 </span>    get() = module.group.split(&quot;.&quot;).first().count() &lt;= <span class="error">3</span>
-<span class="lineno"> 201 </span>
-<span class="lineno"> 202 </span>val MinimalExternalModuleDependency.endAndStartWithSameName: Boolean
-<span class="lineno"> 203 </span>    get() = module.name.startsWith(module.group.substringAfterLast(&quot;.&quot;))
+      <li><span class="location">buildSrc/src/main/kotlin/plugins/generate-hubdle-dependencies.gradle.kts:199:56</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno"> 196 </span>    replace(&quot;.&quot;, &quot;_&quot;).replace(&quot;-&quot;, &quot;_&quot;).toUpperCase(Locale.getDefault())
+<span class="lineno"> 197 </span>
+<span class="lineno"> 198 </span>val MinimalExternalModuleDependency.hasCommonEndingDomain: Boolean
+<span class="lineno"> 199 </span>    get() = module.group.split(&quot;.&quot;).first().count() &lt;= <span class="error">3</span>
+<span class="lineno"> 200 </span>
+<span class="lineno"> 201 </span>val MinimalExternalModuleDependency.endAndStartWithSameName: Boolean
+<span class="lineno"> 202 </span>    get() = module.name.startsWith(module.group.substringAfterLast(&quot;.&quot;))
 </code></pre>
       </li>
     </ul>
@@ -800,7 +819,7 @@
   <details id="MaxLineLength" open="open">
     <summary class="rule-container"><span class="rule">MaxLineLength: 1 </span><span class="description">Line detected, which is longer than the defined maximum line length in the code style.</span></summary>
     <ul>
-      <li><span class="location">buildSrc/src/main/kotlin/plugins/dependencies-codegen.gradle.kts:158:1</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
+      <li><span class="location">buildSrc/src/main/kotlin/plugins/generate-hubdle-dependencies.gradle.kts:158:1</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
         <pre><code><span class="lineno"> 155 </span>                            val dependencyName = &quot;$groupSanitized$nameSanitized&quot;.decapitalize()
 <span class="lineno"> 156 </span>                                &quot;&quot;&quot;
 <span class="lineno"> 157 </span>                                    |@HubdleDslMarker
@@ -815,7 +834,7 @@
 </div>
 
 
-generated with <a href="https://detekt.dev/">detekt version 1.20.0</a> on 2022-07-16 01:05:45 UTC.
+generated with <a href="https://detekt.dev/">detekt version 1.20.0</a> on 2022-07-17 16:44:34 UTC.
 
 </body>
 </html>

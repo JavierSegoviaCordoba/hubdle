@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html id="htmlId">
 <head>
-  <title>Coverage Report > EnableableAllOptions</title>
+  <title>Coverage Report > KotlinMultiplatformWatchOSArm32Extension</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/highlight-idea.css";
@@ -17,10 +17,10 @@
 <div class="breadCrumbs">
 Current scope:     <a href="../../index.html">all classes</a>
     <span class="separator">|</span>
-    <a href="../index.html">com.javiersc.hubdle.extensions.options</a>
+    <a href="../index.html">com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.watchos</a>
 </div>
 
-<h1>Coverage Summary for Class: EnableableAllOptions (com.javiersc.hubdle.extensions.options)</h1>
+<h1>Coverage Summary for Class: KotlinMultiplatformWatchOSArm32Extension (com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.watchos)</h1>
 
 <table class="coverageStats">
 <tr>
@@ -47,7 +47,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 </th>
 </tr>
 <tr>
-  <td class="name">EnableableAllOptions</td>
+  <td class="name">KotlinMultiplatformWatchOSArm32Extension</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -61,7 +61,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/2)
+    (0/4)
   </span>
 </td>
     <td class="coverageStat"/>
@@ -70,7 +70,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/2)
+    (0/4)
   </span>
 </td>
 <td class="coverageStat">
@@ -78,7 +78,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/10)
+    (0/25)
   </span>
 </td>
 </tr>
@@ -90,23 +90,24 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.javiersc.hubdle.extensions.options
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.watchos
 <i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;import org.gradle.api.Project
-<i class="no-highlight">4</i>&nbsp;
-<i class="no-highlight">5</i>&nbsp;public interface EnableableOptions {
-<i class="no-highlight">6</i>&nbsp;
-<i class="no-highlight">7</i>&nbsp;    public var Project.isEnabled: Boolean
-<i class="no-highlight">8</i>&nbsp;}
-<i class="no-highlight">9</i>&nbsp;
-<i class="no-highlight">10</i>&nbsp;public interface EnableableAllOptions {
-<i class="no-highlight">11</i>&nbsp;
-<i class="no-highlight">12</i>&nbsp;    public var Project.allEnabled: Boolean
-<i class="no-highlight">13</i>&nbsp;
-<b class="nc"><i class="no-highlight">14</i>&nbsp;    public fun Project.enableAll(enable: Boolean = true) {</b>
-<b class="nc"><i class="no-highlight">15</i>&nbsp;        allEnabled = enable</b>
-<i class="no-highlight">16</i>&nbsp;    }
-<i class="no-highlight">17</i>&nbsp;}
+<i class="no-highlight">3</i>&nbsp;import com.javiersc.hubdle.extensions.HubdleDslMarker
+<i class="no-highlight">4</i>&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
+<i class="no-highlight">5</i>&nbsp;import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.KotlinMultiplatformTargetOptions
+<i class="no-highlight">6</i>&nbsp;import com.javiersc.hubdle.extensions.options.EnableableOptions
+<i class="no-highlight">7</i>&nbsp;import org.gradle.api.Project
+<i class="no-highlight">8</i>&nbsp;
+<i class="no-highlight">9</i>&nbsp;@HubdleDslMarker
+<b class="nc"><i class="no-highlight">10</i>&nbsp;public open class KotlinMultiplatformWatchOSArm32Extension :</b>
+<i class="no-highlight">11</i>&nbsp;    EnableableOptions, KotlinMultiplatformTargetOptions {
+<i class="no-highlight">12</i>&nbsp;
+<i class="no-highlight">13</i>&nbsp;    override var Project.isEnabled: Boolean
+<b class="nc"><i class="no-highlight">14</i>&nbsp;        get() = hubdleState.kotlin.multiplatform.watchosArm32.isEnabled</b>
+<b class="nc"><i class="no-highlight">15</i>&nbsp;        set(value) = hubdleState.kotlin.multiplatform.watchosArm32.run { isEnabled = value }</b>
+<i class="no-highlight">16</i>&nbsp;
+<b class="nc"><i class="no-highlight">17</i>&nbsp;    override val name: String = &quot;watchosArm32&quot;</b>
+<i class="no-highlight">18</i>&nbsp;}
 </div>
 </pre>
 </div>
@@ -133,7 +134,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-16 01:10</div>
+    <div style="float:right;">generated on 2022-07-17 16:49</div>
 </div>
 </body>
 </html>

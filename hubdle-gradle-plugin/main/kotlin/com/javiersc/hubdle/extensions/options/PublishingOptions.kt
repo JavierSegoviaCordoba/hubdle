@@ -103,8 +103,18 @@ internal fun Project.configureSigningForPublishing() {
 }
 
 private fun SigningExtension.signPublications() {
-    signInMemory()
-    sign(project.the<PublishingExtension>().publications)
+    val publishNonSemver: Boolean = project.getBooleanProperty(HubdleProperty.Publishing.nonSemver)
+    val allTasks = project.gradle.taskGraph.allTasks
+    val hasPublishTask = allTasks.any { it.name.startsWith("publish") }
+    val hasPublishToMavenLocalTask = allTasks.any { it.name == "publishToMavenLocal" }
+
+    isRequired =
+        (hasPublishTask && !hasPublishToMavenLocalTask) && (project.isSemver || publishNonSemver)
+
+    if (isRequired) {
+        signInMemory()
+        sign(project.the<PublishingExtension>().publications)
+    }
 }
 
 private fun SigningExtension.signInMemory() {

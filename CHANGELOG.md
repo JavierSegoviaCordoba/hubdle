@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- `signing.isRequired` is always `true` even without `publish` tasks
+
 ### Updated
 
 ## [0.2.0-alpha.27] - 2022-07-17

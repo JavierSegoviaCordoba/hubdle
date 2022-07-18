@@ -7,6 +7,7 @@ import io.kotest.matchers.string.shouldContain
 import java.io.File
 import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
+import kotlin.test.Ignore
 import kotlin.test.Test
 
 internal class KotlinJvmTest : GradleTest() {
@@ -25,6 +26,7 @@ internal class KotlinJvmTest : GradleTest() {
         repositoryPath.resolve("com/kotlin/jvm").deleteRecursively()
     }
 
+    @Ignore
     @Test
     fun `publish failed 1`() {
         gradleTestKitTest("$basePath/publishing/failed-1") {

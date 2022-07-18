@@ -12,10 +12,14 @@
 
 ### Fixed
 
+### Updated
+
+## [0.2.0-alpha.28] - 2022-07-18
+
+### Fixed
+
 - duplicate source sets in Sonarqube configuration
 - `signing.isRequired` is always `true` even without `publish` tasks
-
-### Updated
 
 ## [0.2.0-alpha.27] - 2022-07-17
 

@@ -121,7 +121,7 @@ private fun configureSonarqube(project: Project) {
     }
 }
 
-private fun Project.kotlinSrcDirs(): List<File> =
+private fun Project.kotlinSrcDirs(): Set<File> =
     extensions
         .findByType<KotlinProjectExtension>()
         ?.sourceSets
@@ -133,8 +133,9 @@ private fun Project.kotlinSrcDirs(): List<File> =
         }
         ?.filter { file -> file.exists() }
         .orEmpty()
+        .toSet()
 
-private fun Project.kotlinTestsSrcDirs(): List<File> =
+private fun Project.kotlinTestsSrcDirs(): Set<File> =
     extensions
         .findByType<KotlinProjectExtension>()
         ?.sourceSets
@@ -146,3 +147,4 @@ private fun Project.kotlinTestsSrcDirs(): List<File> =
         }
         ?.filter { file -> file.exists() }
         .orEmpty()
+        .toSet()

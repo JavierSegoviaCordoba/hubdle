@@ -126,7 +126,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/9)
+    (0/11)
   </span>
 </td>
     <td class="coverageStat"/>
@@ -135,7 +135,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/9)
+    (0/11)
   </span>
 </td>
 <td class="coverageStat">
@@ -143,7 +143,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/74)
+    (0/92)
   </span>
 </td>
   </tr>
@@ -154,7 +154,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/23)
+    (0/25)
   </span>
 </td>
     <td class="coverageStat"/>
@@ -163,7 +163,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/24)
+    (0/26)
   </span>
 </td>
 <td class="coverageStat">
@@ -171,7 +171,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/172)
+    (0/190)
   </span>
 </td>
 </tr>
@@ -229,38 +229,42 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">45</i>&nbsp;
 <b class="nc"><i class="no-highlight">46</i>&nbsp;    public open class ReportsExtension {</b>
 <i class="no-highlight">47</i>&nbsp;
-<i class="no-highlight">48</i>&nbsp;        public var Project.html: Boolean
-<b class="nc"><i class="no-highlight">49</i>&nbsp;            get() = hubdleState.config.analysis.reports.html</b>
-<b class="nc"><i class="no-highlight">50</i>&nbsp;            set(value) = hubdleState.config.analysis.reports.run { html = value }</b>
+<i class="no-highlight">48</i>&nbsp;        public var Project.md: Boolean
+<b class="nc"><i class="no-highlight">49</i>&nbsp;            get() = hubdleState.config.analysis.reports.md</b>
+<b class="nc"><i class="no-highlight">50</i>&nbsp;            set(value) = hubdleState.config.analysis.reports.run { md = value }</b>
 <i class="no-highlight">51</i>&nbsp;
-<i class="no-highlight">52</i>&nbsp;        public var Project.sarif: Boolean
-<b class="nc"><i class="no-highlight">53</i>&nbsp;            get() = hubdleState.config.analysis.reports.sarif</b>
-<b class="nc"><i class="no-highlight">54</i>&nbsp;            set(value) = hubdleState.config.analysis.reports.run { sarif = value }</b>
+<i class="no-highlight">52</i>&nbsp;        public var Project.html: Boolean
+<b class="nc"><i class="no-highlight">53</i>&nbsp;            get() = hubdleState.config.analysis.reports.html</b>
+<b class="nc"><i class="no-highlight">54</i>&nbsp;            set(value) = hubdleState.config.analysis.reports.run { html = value }</b>
 <i class="no-highlight">55</i>&nbsp;
-<i class="no-highlight">56</i>&nbsp;        public var Project.txt: Boolean
-<b class="nc"><i class="no-highlight">57</i>&nbsp;            get() = hubdleState.config.analysis.reports.txt</b>
-<b class="nc"><i class="no-highlight">58</i>&nbsp;            set(value) = hubdleState.config.analysis.reports.run { txt = value }</b>
+<i class="no-highlight">56</i>&nbsp;        public var Project.sarif: Boolean
+<b class="nc"><i class="no-highlight">57</i>&nbsp;            get() = hubdleState.config.analysis.reports.sarif</b>
+<b class="nc"><i class="no-highlight">58</i>&nbsp;            set(value) = hubdleState.config.analysis.reports.run { sarif = value }</b>
 <i class="no-highlight">59</i>&nbsp;
-<i class="no-highlight">60</i>&nbsp;        public var Project.xml: Boolean
-<b class="nc"><i class="no-highlight">61</i>&nbsp;            get() = hubdleState.config.analysis.reports.xml</b>
-<b class="nc"><i class="no-highlight">62</i>&nbsp;            set(value) = hubdleState.config.analysis.reports.run { xml = value }</b>
-<i class="no-highlight">63</i>&nbsp;    }
-<i class="no-highlight">64</i>&nbsp;
-<b class="nc"><i class="no-highlight">65</i>&nbsp;    override val rawConfig: RawConfigExtension = objects.newInstance()</b>
-<i class="no-highlight">66</i>&nbsp;
-<i class="no-highlight">67</i>&nbsp;    @HubdleDslMarker
-<i class="no-highlight">68</i>&nbsp;    override fun Project.rawConfig(action: Action&lt;RawConfigExtension&gt;) {
-<b class="nc"><i class="no-highlight">69</i>&nbsp;        action.execute(rawConfig)</b>
-<i class="no-highlight">70</i>&nbsp;    }
-<i class="no-highlight">71</i>&nbsp;
-<i class="no-highlight">72</i>&nbsp;    @HubdleDslMarker
-<b class="nc"><i class="no-highlight">73</i>&nbsp;    public open class RawConfigExtension {</b>
-<i class="no-highlight">74</i>&nbsp;
-<i class="no-highlight">75</i>&nbsp;        public fun Project.detekt(action: Action&lt;DetektExtension&gt;) {
-<b class="nc"><i class="no-highlight">76</i>&nbsp;            hubdleState.config.analysis.rawConfig.detekt = action</b>
-<i class="no-highlight">77</i>&nbsp;        }
-<i class="no-highlight">78</i>&nbsp;    }
-<i class="no-highlight">79</i>&nbsp;}
+<i class="no-highlight">60</i>&nbsp;        public var Project.txt: Boolean
+<b class="nc"><i class="no-highlight">61</i>&nbsp;            get() = hubdleState.config.analysis.reports.txt</b>
+<b class="nc"><i class="no-highlight">62</i>&nbsp;            set(value) = hubdleState.config.analysis.reports.run { txt = value }</b>
+<i class="no-highlight">63</i>&nbsp;
+<i class="no-highlight">64</i>&nbsp;        public var Project.xml: Boolean
+<b class="nc"><i class="no-highlight">65</i>&nbsp;            get() = hubdleState.config.analysis.reports.xml</b>
+<b class="nc"><i class="no-highlight">66</i>&nbsp;            set(value) = hubdleState.config.analysis.reports.run { xml = value }</b>
+<i class="no-highlight">67</i>&nbsp;    }
+<i class="no-highlight">68</i>&nbsp;
+<b class="nc"><i class="no-highlight">69</i>&nbsp;    override val rawConfig: RawConfigExtension = objects.newInstance()</b>
+<i class="no-highlight">70</i>&nbsp;
+<i class="no-highlight">71</i>&nbsp;    @HubdleDslMarker
+<i class="no-highlight">72</i>&nbsp;    override fun Project.rawConfig(action: Action&lt;RawConfigExtension&gt;) {
+<b class="nc"><i class="no-highlight">73</i>&nbsp;        action.execute(rawConfig)</b>
+<i class="no-highlight">74</i>&nbsp;    }
+<i class="no-highlight">75</i>&nbsp;
+<i class="no-highlight">76</i>&nbsp;    @HubdleDslMarker
+<b class="nc"><i class="no-highlight">77</i>&nbsp;    public open class RawConfigExtension {</b>
+<i class="no-highlight">78</i>&nbsp;
+<i class="no-highlight">79</i>&nbsp;        public fun Project.detekt(action: Action&lt;DetektExtension&gt;) {
+<b class="nc"><i class="no-highlight">80</i>&nbsp;            hubdleState.config.analysis.rawConfig.detekt = action</b>
+<i class="no-highlight">81</i>&nbsp;        }
+<i class="no-highlight">82</i>&nbsp;    }
+<i class="no-highlight">83</i>&nbsp;}
 </div>
 </pre>
 </div>
@@ -287,7 +291,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-17 16:49</div>
+    <div style="float:right;">generated on 2022-07-18 22:47</div>
 </div>
 </body>
 </html>

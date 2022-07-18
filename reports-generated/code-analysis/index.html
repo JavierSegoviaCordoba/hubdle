@@ -157,7 +157,7 @@
 
 <div>
   <ul>
-    <li>936 number of properties</li>
+    <li>942 number of properties</li>
     <li>583 number of functions</li>
     <li>254 number of classes</li>
     <li>78 number of packages</li>
@@ -170,22 +170,22 @@
 
 <div>
   <ul>
-    <li>11,519 lines of code (loc)</li>
-    <li>9,504 source lines of code (sloc)</li>
-    <li>6,411 logical lines of code (lloc)</li>
+    <li>11,542 lines of code (loc)</li>
+    <li>9,523 source lines of code (sloc)</li>
+    <li>6,428 logical lines of code (lloc)</li>
     <li>55 comment lines of code (cloc)</li>
-    <li>1,210 cyclomatic complexity (mcc)</li>
-    <li>479 cognitive complexity</li>
-    <li>72 number of total code smells</li>
+    <li>1,215 cyclomatic complexity (mcc)</li>
+    <li>482 cognitive complexity</li>
+    <li>73 number of total code smells</li>
     <li>0% comment source ratio</li>
-    <li>188 mcc per 1,000 lloc</li>
+    <li>189 mcc per 1,000 lloc</li>
     <li>11 code smells per 1,000 lloc</li>
   </ul>
 </div>
 
 
 <h2>Findings</h2>
-<div>Total: 72
+<div>Total: 73
   <h3>complexity: 9</h3>
   <details id="ComplexCondition" open="open">
     <summary class="rule-container"><span class="rule">ComplexCondition: 1 </span><span class="description">Complex conditions should be simplified and extracted into well-named methods if necessary.</span></summary>
@@ -715,7 +715,7 @@
       </li>
     </ul>
   </details>
-  <h3>style: 10</h3>
+  <h3>style: 11</h3>
   <details id="ForbiddenComment" open="open">
     <summary class="rule-container"><span class="rule">ForbiddenComment: 8 </span><span class="description">Flags a forbidden comment.</span></summary>
     <ul>
@@ -831,10 +831,25 @@
       </li>
     </ul>
   </details>
+  <details id="UnusedPrivateMember" open="open">
+    <summary class="rule-container"><span class="rule">UnusedPrivateMember: 1 </span><span class="description">Private member is unused and should be removed.</span></summary>
+    <ul>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/analysis/_internal/configureAnalysis.kt:60:13</span><span class="message">Private property `detektDir` is unused.</span>
+        <pre><code><span class="lineno">  57 </span>            include(analysis.includes.distinct())
+<span class="lineno">  58 </span>            exclude(analysis.excludes.distinct())
+<span class="lineno">  59 </span>
+<span class="lineno">  60 </span>            <span class="error">val detektDir = project.buildDir.resolve(&quot;reports/detekt&quot;)</span>
+<span class="lineno">  61 </span>
+<span class="lineno">  62 </span>            reports {
+<span class="lineno">  63 </span>                md.required.set(analysis.reports.md)
+</code></pre>
+      </li>
+    </ul>
+  </details>
 </div>
 
 
-generated with <a href="https://detekt.dev/">detekt version 1.20.0</a> on 2022-07-17 16:54:17 UTC.
+generated with <a href="https://detekt.dev/">detekt version 1.20.0</a> on 2022-07-18 22:42:55 UTC.
 
 </body>
 </html>

@@ -57,7 +57,10 @@ private fun configureDetekt(project: Project) {
             include(analysis.includes.distinct())
             exclude(analysis.excludes.distinct())
 
+            val detektDir = project.buildDir.resolve("reports/detekt")
+
             reports {
+                md.required.set(analysis.reports.md)
                 html.required.set(analysis.reports.html)
                 sarif.required.set(analysis.reports.sarif)
                 txt.required.set(analysis.reports.txt)

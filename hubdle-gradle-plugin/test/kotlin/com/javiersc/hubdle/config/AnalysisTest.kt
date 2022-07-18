@@ -15,6 +15,7 @@ internal class AnalysisTest : GradleTest() {
             gradlewArgumentFromTXT()
             val detektDir = projectDir.resolve("build/reports/detekt")
             detektDir.shouldBeADirectory()
+            detektDir.resolve("detekt.md").shouldBeAFile()
             detektDir.resolve("detekt.html").shouldBeAFile()
             detektDir.resolve("detekt.sarif").shouldBeAFile()
             detektDir.resolve("detekt.xml").shouldBeAFile()

@@ -177,6 +177,7 @@ internal data class HubdleState(
             }
 
             data class Reports(
+                var md: Boolean = true,
                 var html: Boolean = true,
                 var sarif: Boolean = true,
                 var txt: Boolean = false,

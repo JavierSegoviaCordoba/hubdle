@@ -45,6 +45,10 @@ constructor(
 
     public open class ReportsExtension {
 
+        public var Project.md: Boolean
+            get() = hubdleState.config.analysis.reports.md
+            set(value) = hubdleState.config.analysis.reports.run { md = value }
+
         public var Project.html: Boolean
             get() = hubdleState.config.analysis.reports.html
             set(value) = hubdleState.config.analysis.reports.run { html = value }

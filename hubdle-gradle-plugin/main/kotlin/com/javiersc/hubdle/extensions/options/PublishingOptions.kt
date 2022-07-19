@@ -95,25 +95,23 @@ internal fun Project.configureEmptyJavadocs() {
 }
 
 internal fun Project.configureSigningForPublishing() {
-    val shouldSign = project.getPropertyOrNull(HubdleProperty.Publishing.sign)?.toBoolean() ?: true
-    if (project.isNotSnapshot && project.isSemver && shouldSign) {
-        project.pluginManager.apply(PluginIds.Publishing.signing)
-        configure<SigningExtension> { signPublications() }
-    }
-}
+    project.pluginManager.apply(PluginIds.Publishing.signing)
+    configure<SigningExtension> {
+        val publishNonSemver: Boolean = getBooleanProperty(HubdleProperty.Publishing.nonSemver)
+        val allTasks: List<String> = gradle.startParameter.taskRequests.flatMap { it.args }
+        val hasPublishTask = allTasks.any { it.startsWith("publish") }
+        val hasPublishToMavenLocalTask = allTasks.any { it == "publishToMavenLocal" }
+        val shouldSign = getPropertyOrNull(HubdleProperty.Publishing.sign)?.toBoolean() ?: false
 
-private fun SigningExtension.signPublications() {
-    val publishNonSemver: Boolean = project.getBooleanProperty(HubdleProperty.Publishing.nonSemver)
-    val allTasks = project.gradle.taskGraph.allTasks
-    val hasPublishTask = allTasks.any { it.name.startsWith("publish") }
-    val hasPublishToMavenLocalTask = allTasks.any { it.name == "publishToMavenLocal" }
+        val hasTaskCondition = (hasPublishTask && !hasPublishToMavenLocalTask)
+        val hasSemverCondition = (project.isNotSnapshot && project.isSemver) || publishNonSemver
 
-    isRequired =
-        (hasPublishTask && !hasPublishToMavenLocalTask) && (project.isSemver || publishNonSemver)
+        isRequired = (hasTaskCondition && hasSemverCondition) || shouldSign
 
-    if (isRequired) {
-        signInMemory()
-        sign(project.the<PublishingExtension>().publications)
+        if (isRequired) {
+            signInMemory()
+            sign(project.the<PublishingExtension>().publications)
+        }
     }
 }
 

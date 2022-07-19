@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `gradle/gradle-build-action -> v2.2.2`
+
 ## [0.2.0-alpha.29] - 2022-07-19
 
 ### Fixed

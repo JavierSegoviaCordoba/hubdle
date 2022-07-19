@@ -4,6 +4,8 @@
 
 ### Added
 
+- repositories to `PublishingExtension`
+
 ### Changed
 
 ### Deprecated

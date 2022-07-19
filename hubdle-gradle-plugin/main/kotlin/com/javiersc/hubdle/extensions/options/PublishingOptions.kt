@@ -10,6 +10,7 @@ import com.javiersc.gradle.tasks.extensions.namedLazily
 import com.javiersc.hubdle.HubdleProperty
 import com.javiersc.hubdle.HubdleProperty.POM
 import com.javiersc.hubdle.extensions._internal.PluginIds
+import com.javiersc.hubdle.extensions._internal.state.hubdleState
 import com.javiersc.semver.Version
 import org.gradle.api.Project
 import org.gradle.api.Task
@@ -51,6 +52,8 @@ internal fun Project.configureJavaJarsForPublishing() {
 
 internal fun Project.configurePublishingExtension() {
     configure<PublishingExtension> {
+        hubdleState.config.publishing.repositories?.execute(repositories)
+
         publications {
             withType<MavenPublication> {
                 pom.name.set(getProperty(POM.name))

@@ -7,6 +7,7 @@ import com.javiersc.hubdle.extensions.options.RawConfigOptions
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
+import org.gradle.api.artifacts.dsl.RepositoryHandler
 import org.gradle.api.model.ObjectFactory
 import org.gradle.api.publish.PublishingExtension as MavenPublishingExtension
 import org.gradle.kotlin.dsl.newInstance
@@ -22,6 +23,11 @@ constructor(
     override var Project.isEnabled: Boolean
         get() = hubdleState.config.publishing.isEnabled
         set(value) = hubdleState.config.publishing.run { isEnabled = value }
+
+    @HubdleDslMarker
+    public fun Project.repositories(action: Action<RepositoryHandler> = Action {}) {
+        hubdleState.config.publishing.repositories = action
+    }
 
     override val rawConfig: RawConfigExtension = objects.newInstance()
 

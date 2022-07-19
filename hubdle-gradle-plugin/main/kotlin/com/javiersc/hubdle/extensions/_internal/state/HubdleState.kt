@@ -89,6 +89,7 @@ import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.artifacts.MinimalExternalModuleDependency
 import org.gradle.api.artifacts.ProjectDependency
+import org.gradle.api.artifacts.dsl.RepositoryHandler
 import org.gradle.api.plugins.JavaApplication
 import org.gradle.api.provider.Provider
 import org.gradle.api.publish.PublishingExtension as GradlePublishingExtension
@@ -372,6 +373,7 @@ internal data class HubdleState(
 
         data class Publishing(
             override var isEnabled: Boolean = false,
+            var repositories: Action<RepositoryHandler>? = null,
             val rawConfig: RawConfig = RawConfig(),
         ) : Enableable, Configurable {
             override fun configure(project: Project) {

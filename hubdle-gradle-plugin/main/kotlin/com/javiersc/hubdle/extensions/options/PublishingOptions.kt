@@ -97,14 +97,13 @@ internal fun Project.configureEmptyJavadocs() {
 internal fun Project.configureSigningForPublishing() {
     project.pluginManager.apply(PluginIds.Publishing.signing)
     configure<SigningExtension> {
-        val publishNonSemver: Boolean = getBooleanProperty(HubdleProperty.Publishing.nonSemver)
         val allTasks: List<String> = gradle.startParameter.taskRequests.flatMap { it.args }
         val hasPublishTask = allTasks.any { it.startsWith("publish") }
         val hasPublishToMavenLocalTask = allTasks.any { it == "publishToMavenLocal" }
         val shouldSign = getPropertyOrNull(HubdleProperty.Publishing.sign)?.toBoolean() ?: false
 
         val hasTaskCondition = (hasPublishTask && !hasPublishToMavenLocalTask)
-        val hasSemverCondition = (project.isNotSnapshot && project.isSemver) || publishNonSemver
+        val hasSemverCondition = project.isNotSnapshot && project.isSemver
 
         isRequired = (hasTaskCondition && hasSemverCondition) || shouldSign
 

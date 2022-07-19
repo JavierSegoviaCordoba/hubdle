@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- being able to sign non semver artifacts
+
 ### Updated
 
 - `gradle/gradle-build-action -> v2.2.2`

@@ -15,11 +15,11 @@ import org.gradle.kotlin.dsl.newInstance
 import ru.vyarus.gradle.plugin.mkdocs.MkdocsExtension
 
 @HubdleDslMarker
-public open class SiteExtension
+public open class HubdleSiteExtension
 @Inject
 constructor(
     objects: ObjectFactory,
-) : EnableableOptions, RawConfigOptions<SiteExtension.RawConfigExtension> {
+) : EnableableOptions, RawConfigOptions<HubdleSiteExtension.RawConfigExtension> {
 
     override var Project.isEnabled: Boolean
         get() = hubdleState.config.documentation.site.isEnabled

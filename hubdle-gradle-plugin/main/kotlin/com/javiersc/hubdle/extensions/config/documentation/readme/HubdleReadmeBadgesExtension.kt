@@ -6,7 +6,7 @@ import com.javiersc.hubdle.extensions.options.EnableableOptions
 import org.gradle.api.Project
 
 @HubdleDslMarker
-public open class ReadmeBadgesExtension : EnableableOptions {
+public open class HubdleReadmeBadgesExtension : EnableableOptions {
 
     override var Project.isEnabled: Boolean
         get() = hubdleState.config.documentation.readme.badges.isEnabled

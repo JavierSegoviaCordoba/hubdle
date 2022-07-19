@@ -13,11 +13,11 @@ import org.gradle.api.model.ObjectFactory
 import org.gradle.kotlin.dsl.newInstance
 
 @HubdleDslMarker
-public open class FormatExtension
+public open class HubdleFormatExtension
 @Inject
 constructor(
     objects: ObjectFactory,
-) : EnableableOptions, RawConfigOptions<FormatExtension.RawConfigExtension> {
+) : EnableableOptions, RawConfigOptions<HubdleFormatExtension.RawConfigExtension> {
 
     override var Project.isEnabled: Boolean
         get() = hubdleState.config.format.isEnabled

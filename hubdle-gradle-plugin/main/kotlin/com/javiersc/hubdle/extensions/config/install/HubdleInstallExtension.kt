@@ -10,7 +10,7 @@ import org.gradle.api.model.ObjectFactory
 import org.gradle.kotlin.dsl.newInstance
 
 @HubdleDslMarker
-public open class InstallExtension
+public open class HubdleInstallExtension
 @Inject
 constructor(
     objects: ObjectFactory,

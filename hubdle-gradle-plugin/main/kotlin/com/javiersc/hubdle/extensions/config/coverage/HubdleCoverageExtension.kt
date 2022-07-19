@@ -1,30 +1,26 @@
-package com.javiersc.hubdle.extensions.config.versioning
+package com.javiersc.hubdle.extensions.config.coverage
 
 import com.javiersc.hubdle.extensions.HubdleDslMarker
 import com.javiersc.hubdle.extensions._internal.state.hubdleState
 import com.javiersc.hubdle.extensions.options.EnableableOptions
 import com.javiersc.hubdle.extensions.options.RawConfigOptions
-import com.javiersc.semver.gradle.plugin.SemverExtension
 import javax.inject.Inject
+import kotlinx.kover.api.KoverExtension
 import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.model.ObjectFactory
 import org.gradle.kotlin.dsl.newInstance
 
 @HubdleDslMarker
-public abstract class VersioningExtension
+public open class HubdleCoverageExtension
 @Inject
 constructor(
     objects: ObjectFactory,
-) : EnableableOptions, RawConfigOptions<VersioningExtension.RawConfigExtension> {
+) : EnableableOptions, RawConfigOptions<HubdleCoverageExtension.RawConfigExtension> {
 
     override var Project.isEnabled: Boolean
-        get() = hubdleState.config.versioning.isEnabled
-        set(value) = hubdleState.config.versioning.run { isEnabled = value }
-
-    public var Project.tagPrefix: String
-        get() = hubdleState.config.versioning.tagPrefix
-        set(value) = hubdleState.config.versioning.run { tagPrefix = value }
+        get() = hubdleState.config.coverage.isEnabled
+        set(value) = hubdleState.config.coverage.run { isEnabled = value }
 
     override val rawConfig: RawConfigExtension = objects.newInstance()
 
@@ -36,8 +32,8 @@ constructor(
     @HubdleDslMarker
     public open class RawConfigExtension {
 
-        public fun Project.semver(action: Action<SemverExtension>) {
-            hubdleState.config.versioning.rawConfig.semver = action
+        public fun Project.kover(action: Action<KoverExtension>) {
+            hubdleState.config.coverage.rawConfig.kover = action
         }
     }
 }

@@ -9,7 +9,7 @@ import org.gradle.api.model.ObjectFactory
 import org.gradle.kotlin.dsl.newInstance
 import org.jetbrains.kotlin.gradle.plugin.LanguageSettingsBuilder
 
-public open class LanguageSettingsExtension @Inject constructor(objects: ObjectFactory) {
+public open class HubdleLanguageSettingsExtension @Inject constructor(objects: ObjectFactory) {
 
     @HubdleDslMarker
     public fun Project.experimentalContracts(enabled: Boolean = true) {

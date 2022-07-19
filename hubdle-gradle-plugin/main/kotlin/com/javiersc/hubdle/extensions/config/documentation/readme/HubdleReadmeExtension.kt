@@ -8,16 +8,16 @@ import org.gradle.api.model.ObjectFactory
 import org.gradle.kotlin.dsl.newInstance
 
 @HubdleDslMarker
-public open class ReadmeExtension
+public open class HubdleReadmeExtension
 @Inject
 constructor(
     objects: ObjectFactory,
 ) {
 
-    private val badges: ReadmeBadgesExtension = objects.newInstance()
+    private val badges: HubdleReadmeBadgesExtension = objects.newInstance()
 
     @HubdleDslMarker
-    public fun Project.badges(action: Action<ReadmeBadgesExtension> = Action {}) {
+    public fun Project.badges(action: Action<HubdleReadmeBadgesExtension> = Action {}) {
         badges.run { isEnabled = true }
         action.execute(badges)
     }

@@ -6,7 +6,7 @@ import com.javiersc.hubdle.extensions.options.EnableableOptions
 import org.gradle.api.Project
 
 @HubdleDslMarker
-public open class NexusExtension : EnableableOptions {
+public open class HubdleNexusExtension : EnableableOptions {
 
     override var Project.isEnabled: Boolean
         get() = hubdleState.config.nexus.isEnabled

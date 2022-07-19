@@ -14,11 +14,11 @@ import org.gradle.api.model.ObjectFactory
 import org.gradle.kotlin.dsl.newInstance
 
 @HubdleDslMarker
-public open class AnalysisExtension
+public open class HubdleAnalysisExtension
 @Inject
 constructor(
     objects: ObjectFactory,
-) : EnableableOptions, RawConfigOptions<AnalysisExtension.RawConfigExtension> {
+) : EnableableOptions, RawConfigOptions<HubdleAnalysisExtension.RawConfigExtension> {
 
     override var Project.isEnabled: Boolean
         get() = hubdleState.config.analysis.isEnabled

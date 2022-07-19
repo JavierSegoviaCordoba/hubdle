@@ -2,7 +2,7 @@
 
 package com.javiersc.hubdle.extensions
 
-import com.javiersc.hubdle.extensions.config.ConfigExtension
+import com.javiersc.hubdle.extensions.config.HubdleConfigExtension
 import com.javiersc.hubdle.extensions.kotlin.HubdleKotlinExtension
 import javax.inject.Inject
 import org.gradle.api.Action
@@ -13,10 +13,10 @@ import org.gradle.kotlin.dsl.newInstance
 @HubdleDslMarker
 public open class HubdleExtension @Inject constructor(objects: ObjectFactory) {
 
-    private val config: ConfigExtension = objects.newInstance()
+    private val config: HubdleConfigExtension = objects.newInstance()
 
     @HubdleDslMarker
-    public fun Project.config(action: Action<in ConfigExtension>) {
+    public fun Project.config(action: Action<in HubdleConfigExtension>) {
         action.execute(config)
     }
 

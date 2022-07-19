@@ -14,11 +14,11 @@ import org.gradle.kotlin.dsl.newInstance
 import org.gradle.plugins.signing.SigningExtension
 
 @HubdleDslMarker
-public open class PublishingExtension
+public open class HubdlePublishingExtension
 @Inject
 constructor(
     objects: ObjectFactory,
-) : EnableableOptions, RawConfigOptions<PublishingExtension.RawConfigExtension> {
+) : EnableableOptions, RawConfigOptions<HubdlePublishingExtension.RawConfigExtension> {
 
     override var Project.isEnabled: Boolean
         get() = hubdleState.config.publishing.isEnabled

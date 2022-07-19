@@ -15,11 +15,11 @@ import org.jetbrains.changelog.ChangelogPluginExtension
 import org.jetbrains.dokka.gradle.DokkaMultiModuleTask
 
 @HubdleDslMarker
-public open class ChangelogExtension
+public open class HubdleChangelogExtension
 @Inject
 constructor(
     objects: ObjectFactory,
-) : EnableableOptions, RawConfigOptions<ChangelogExtension.RawConfigExtension> {
+) : EnableableOptions, RawConfigOptions<HubdleChangelogExtension.RawConfigExtension> {
 
     override var Project.isEnabled: Boolean
         get() = hubdleState.config.documentation.changelog.isEnabled

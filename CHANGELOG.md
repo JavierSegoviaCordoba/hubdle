@@ -4,7 +4,8 @@
 
 ### Added
 
-- repositories to `PublishingExtension`
+- `Hubdle` prefix to all config extension classes
+- `repositories` to `HubdlePublishingExtension`
 
 ### Changed
 

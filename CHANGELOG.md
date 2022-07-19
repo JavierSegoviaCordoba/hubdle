@@ -12,9 +12,13 @@
 
 ### Fixed
 
-- `signing.isRequired` is always `true` even without `publish` tasks (second try)
-
 ### Updated
+
+## [0.2.0-alpha.29] - 2022-07-19
+
+### Fixed
+
+- `signing.isRequired` is always `true` even without `publish` tasks (second try)
 
 ## [0.2.0-alpha.28] - 2022-07-18
 

@@ -99,8 +99,10 @@ internal class KotlinMultiplatformTest : GradleTest() {
 
             multiplatformDirs.map { it.name }.shouldBe(allLinuxCompatibleBinaries)
             multiplatformDirs.forEach { multiplatformChild ->
-                val (dir, xml) =
-                    multiplatformChild.listFiles().shouldNotBeEmpty().shouldHaveSize(2).toList()
+                val children = multiplatformChild.listFiles().orEmpty()
+                children.shouldHaveSize(2)
+                val dir = children.first { it.extension != "xml" }
+                val xml = children.first { it.extension == "xml" }
                 dir.shouldBeADirectory()
                 xml.shouldBeAFile()
                 xml.name.shouldBe("maven-metadata-local.xml")

@@ -12,6 +12,7 @@
 
 ### Fixed
 
+- `publishAllPublicationsToMavenLocalTestRepository` is signed
 - being able to sign non semver artifacts
 
 ### Updated

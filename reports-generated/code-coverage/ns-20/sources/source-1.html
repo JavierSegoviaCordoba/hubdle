@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html id="htmlId">
 <head>
-  <title>Coverage Report > PublishingExtension</title>
+  <title>Coverage Report > HubdlePublishingExtension</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/highlight-idea.css";
@@ -20,7 +20,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     <a href="../index.html">com.javiersc.hubdle.extensions.config.publishing</a>
 </div>
 
-<h1>Coverage Summary for Class: PublishingExtension (com.javiersc.hubdle.extensions.config.publishing)</h1>
+<h1>Coverage Summary for Class: HubdlePublishingExtension (com.javiersc.hubdle.extensions.config.publishing)</h1>
 
 <table class="coverageStats">
 
@@ -44,13 +44,13 @@ Current scope:     <a href="../../index.html">all classes</a>
 </th>
 </tr>
 <tr>
-  <td class="name">PublishingExtension</td>
+  <td class="name">HubdlePublishingExtension</td>
 <td class="coverageStat">
   <span class="percent">
     0%
   </span>
   <span class="absValue">
-    (0/5)
+    (0/7)
   </span>
 </td>
     <td class="coverageStat"/>
@@ -59,7 +59,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/5)
+    (0/7)
   </span>
 </td>
 <td class="coverageStat">
@@ -67,12 +67,12 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/32)
+    (0/45)
   </span>
 </td>
 </tr>
   <tr>
-    <td class="name">PublishingExtension$RawConfigExtension</td>
+    <td class="name">HubdlePublishingExtension$RawConfigExtension</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -99,14 +99,14 @@ Current scope:     <a href="../../index.html">all classes</a>
   </span>
 </td>
   </tr>
-<tr>
-  <td class="name"><strong>Total</strong></td>
+  <tr>
+    <td class="name">HubdlePublishingExtension$repositories$1</td>
 <td class="coverageStat">
   <span class="percent">
     0%
   </span>
   <span class="absValue">
-    (0/8)
+    (0/1)
   </span>
 </td>
     <td class="coverageStat"/>
@@ -115,7 +115,27 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/8)
+    (0/1)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/11)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/11)
   </span>
 </td>
 <td class="coverageStat">
@@ -123,7 +143,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/48)
+    (0/61)
   </span>
 </td>
 </tr>
@@ -143,41 +163,47 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">7</i>&nbsp;import javax.inject.Inject
 <i class="no-highlight">8</i>&nbsp;import org.gradle.api.Action
 <i class="no-highlight">9</i>&nbsp;import org.gradle.api.Project
-<i class="no-highlight">10</i>&nbsp;import org.gradle.api.model.ObjectFactory
-<i class="no-highlight">11</i>&nbsp;import org.gradle.api.publish.PublishingExtension as MavenPublishingExtension
-<i class="no-highlight">12</i>&nbsp;import org.gradle.kotlin.dsl.newInstance
-<i class="no-highlight">13</i>&nbsp;import org.gradle.plugins.signing.SigningExtension
-<i class="no-highlight">14</i>&nbsp;
-<i class="no-highlight">15</i>&nbsp;@HubdleDslMarker
-<i class="no-highlight">16</i>&nbsp;public open class PublishingExtension
-<i class="no-highlight">17</i>&nbsp;@Inject
-<b class="nc"><i class="no-highlight">18</i>&nbsp;constructor(</b>
-<i class="no-highlight">19</i>&nbsp;    objects: ObjectFactory,
-<i class="no-highlight">20</i>&nbsp;) : EnableableOptions, RawConfigOptions&lt;PublishingExtension.RawConfigExtension&gt; {
-<i class="no-highlight">21</i>&nbsp;
-<i class="no-highlight">22</i>&nbsp;    override var Project.isEnabled: Boolean
-<b class="nc"><i class="no-highlight">23</i>&nbsp;        get() = hubdleState.config.publishing.isEnabled</b>
-<b class="nc"><i class="no-highlight">24</i>&nbsp;        set(value) = hubdleState.config.publishing.run { isEnabled = value }</b>
-<i class="no-highlight">25</i>&nbsp;
-<b class="nc"><i class="no-highlight">26</i>&nbsp;    override val rawConfig: RawConfigExtension = objects.newInstance()</b>
-<i class="no-highlight">27</i>&nbsp;
-<i class="no-highlight">28</i>&nbsp;    @HubdleDslMarker
-<i class="no-highlight">29</i>&nbsp;    override fun Project.rawConfig(action: Action&lt;RawConfigExtension&gt;) {
-<b class="nc"><i class="no-highlight">30</i>&nbsp;        action.execute(rawConfig)</b>
-<i class="no-highlight">31</i>&nbsp;    }
-<i class="no-highlight">32</i>&nbsp;
-<i class="no-highlight">33</i>&nbsp;    @HubdleDslMarker
-<b class="nc"><i class="no-highlight">34</i>&nbsp;    public open class RawConfigExtension {</b>
-<i class="no-highlight">35</i>&nbsp;
-<i class="no-highlight">36</i>&nbsp;        public fun Project.publishing(action: Action&lt;MavenPublishingExtension&gt;) {
-<b class="nc"><i class="no-highlight">37</i>&nbsp;            hubdleState.config.publishing.rawConfig.publishing = action</b>
-<i class="no-highlight">38</i>&nbsp;        }
-<i class="no-highlight">39</i>&nbsp;
-<i class="no-highlight">40</i>&nbsp;        public fun Project.signing(action: Action&lt;SigningExtension&gt;) {
-<b class="nc"><i class="no-highlight">41</i>&nbsp;            hubdleState.config.publishing.rawConfig.signing = action</b>
-<i class="no-highlight">42</i>&nbsp;        }
-<i class="no-highlight">43</i>&nbsp;    }
-<i class="no-highlight">44</i>&nbsp;}
+<i class="no-highlight">10</i>&nbsp;import org.gradle.api.artifacts.dsl.RepositoryHandler
+<i class="no-highlight">11</i>&nbsp;import org.gradle.api.model.ObjectFactory
+<i class="no-highlight">12</i>&nbsp;import org.gradle.api.publish.PublishingExtension as MavenPublishingExtension
+<i class="no-highlight">13</i>&nbsp;import org.gradle.kotlin.dsl.newInstance
+<i class="no-highlight">14</i>&nbsp;import org.gradle.plugins.signing.SigningExtension
+<i class="no-highlight">15</i>&nbsp;
+<i class="no-highlight">16</i>&nbsp;@HubdleDslMarker
+<i class="no-highlight">17</i>&nbsp;public open class HubdlePublishingExtension
+<i class="no-highlight">18</i>&nbsp;@Inject
+<b class="nc"><i class="no-highlight">19</i>&nbsp;constructor(</b>
+<i class="no-highlight">20</i>&nbsp;    objects: ObjectFactory,
+<i class="no-highlight">21</i>&nbsp;) : EnableableOptions, RawConfigOptions&lt;HubdlePublishingExtension.RawConfigExtension&gt; {
+<i class="no-highlight">22</i>&nbsp;
+<i class="no-highlight">23</i>&nbsp;    override var Project.isEnabled: Boolean
+<b class="nc"><i class="no-highlight">24</i>&nbsp;        get() = hubdleState.config.publishing.isEnabled</b>
+<b class="nc"><i class="no-highlight">25</i>&nbsp;        set(value) = hubdleState.config.publishing.run { isEnabled = value }</b>
+<i class="no-highlight">26</i>&nbsp;
+<i class="no-highlight">27</i>&nbsp;    @HubdleDslMarker
+<b class="nc"><i class="no-highlight">28</i>&nbsp;    public fun Project.repositories(action: Action&lt;RepositoryHandler&gt; = Action {}) {</b>
+<b class="nc"><i class="no-highlight">29</i>&nbsp;        hubdleState.config.publishing.repositories = action</b>
+<i class="no-highlight">30</i>&nbsp;    }
+<i class="no-highlight">31</i>&nbsp;
+<b class="nc"><i class="no-highlight">32</i>&nbsp;    override val rawConfig: RawConfigExtension = objects.newInstance()</b>
+<i class="no-highlight">33</i>&nbsp;
+<i class="no-highlight">34</i>&nbsp;    @HubdleDslMarker
+<i class="no-highlight">35</i>&nbsp;    override fun Project.rawConfig(action: Action&lt;RawConfigExtension&gt;) {
+<b class="nc"><i class="no-highlight">36</i>&nbsp;        action.execute(rawConfig)</b>
+<i class="no-highlight">37</i>&nbsp;    }
+<i class="no-highlight">38</i>&nbsp;
+<i class="no-highlight">39</i>&nbsp;    @HubdleDslMarker
+<b class="nc"><i class="no-highlight">40</i>&nbsp;    public open class RawConfigExtension {</b>
+<i class="no-highlight">41</i>&nbsp;
+<i class="no-highlight">42</i>&nbsp;        public fun Project.publishing(action: Action&lt;MavenPublishingExtension&gt;) {
+<b class="nc"><i class="no-highlight">43</i>&nbsp;            hubdleState.config.publishing.rawConfig.publishing = action</b>
+<i class="no-highlight">44</i>&nbsp;        }
+<i class="no-highlight">45</i>&nbsp;
+<i class="no-highlight">46</i>&nbsp;        public fun Project.signing(action: Action&lt;SigningExtension&gt;) {
+<b class="nc"><i class="no-highlight">47</i>&nbsp;            hubdleState.config.publishing.rawConfig.signing = action</b>
+<i class="no-highlight">48</i>&nbsp;        }
+<i class="no-highlight">49</i>&nbsp;    }
+<i class="no-highlight">50</i>&nbsp;}
 </div>
 </pre>
 </div>
@@ -204,7 +230,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-19 19:45</div>
+    <div style="float:right;">generated on 2022-07-20 01:24</div>
 </div>
 </body>
 </html>

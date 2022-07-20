@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html id="htmlId">
 <head>
-  <title>Coverage Report > DocumentationExtension</title>
+  <title>Coverage Report > HubdleDocumentationExtension</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/highlight-idea.css";
@@ -20,7 +20,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     <a href="../index.html">com.javiersc.hubdle.extensions.config.documentation</a>
 </div>
 
-<h1>Coverage Summary for Class: DocumentationExtension (com.javiersc.hubdle.extensions.config.documentation)</h1>
+<h1>Coverage Summary for Class: HubdleDocumentationExtension (com.javiersc.hubdle.extensions.config.documentation)</h1>
 
 <table class="coverageStats">
 
@@ -44,7 +44,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 </th>
 </tr>
 <tr>
-  <td class="name">DocumentationExtension</td>
+  <td class="name">HubdleDocumentationExtension</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -72,7 +72,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 </td>
 </tr>
   <tr>
-    <td class="name">DocumentationExtension$changelog$1</td>
+    <td class="name">HubdleDocumentationExtension$changelog$1</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -92,7 +92,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 </td>
   </tr>
   <tr>
-    <td class="name">DocumentationExtension$readme$1</td>
+    <td class="name">HubdleDocumentationExtension$readme$1</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -112,7 +112,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 </td>
   </tr>
   <tr>
-    <td class="name">DocumentationExtension$site$1</td>
+    <td class="name">HubdleDocumentationExtension$site$1</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -171,9 +171,9 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">3</i>&nbsp;package com.javiersc.hubdle.extensions.config.documentation
 <i class="no-highlight">4</i>&nbsp;
 <i class="no-highlight">5</i>&nbsp;import com.javiersc.hubdle.extensions.HubdleDslMarker
-<i class="no-highlight">6</i>&nbsp;import com.javiersc.hubdle.extensions.config.documentation.changelog.ChangelogExtension
-<i class="no-highlight">7</i>&nbsp;import com.javiersc.hubdle.extensions.config.documentation.readme.ReadmeExtension
-<i class="no-highlight">8</i>&nbsp;import com.javiersc.hubdle.extensions.config.documentation.site.SiteExtension
+<i class="no-highlight">6</i>&nbsp;import com.javiersc.hubdle.extensions.config.documentation.changelog.HubdleChangelogExtension
+<i class="no-highlight">7</i>&nbsp;import com.javiersc.hubdle.extensions.config.documentation.readme.HubdleReadmeExtension
+<i class="no-highlight">8</i>&nbsp;import com.javiersc.hubdle.extensions.config.documentation.site.HubdleSiteExtension
 <i class="no-highlight">9</i>&nbsp;import javax.inject.Inject
 <i class="no-highlight">10</i>&nbsp;import org.gradle.api.Action
 <i class="no-highlight">11</i>&nbsp;import org.gradle.api.Project
@@ -181,31 +181,31 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">13</i>&nbsp;import org.gradle.kotlin.dsl.newInstance
 <i class="no-highlight">14</i>&nbsp;
 <i class="no-highlight">15</i>&nbsp;@HubdleDslMarker
-<i class="no-highlight">16</i>&nbsp;public open class DocumentationExtension
+<i class="no-highlight">16</i>&nbsp;public open class HubdleDocumentationExtension
 <i class="no-highlight">17</i>&nbsp;@Inject
 <b class="nc"><i class="no-highlight">18</i>&nbsp;constructor(</b>
 <i class="no-highlight">19</i>&nbsp;    objects: ObjectFactory,
 <i class="no-highlight">20</i>&nbsp;) {
 <i class="no-highlight">21</i>&nbsp;
-<b class="nc"><i class="no-highlight">22</i>&nbsp;    private val changelog: ChangelogExtension = objects.newInstance()</b>
+<b class="nc"><i class="no-highlight">22</i>&nbsp;    private val changelog: HubdleChangelogExtension = objects.newInstance()</b>
 <i class="no-highlight">23</i>&nbsp;
 <i class="no-highlight">24</i>&nbsp;    @HubdleDslMarker
-<b class="nc"><i class="no-highlight">25</i>&nbsp;    public fun Project.changelog(action: Action&lt;ChangelogExtension&gt; = Action {}) {</b>
+<b class="nc"><i class="no-highlight">25</i>&nbsp;    public fun Project.changelog(action: Action&lt;HubdleChangelogExtension&gt; = Action {}) {</b>
 <b class="nc"><i class="no-highlight">26</i>&nbsp;        changelog.run { isEnabled = true }</b>
 <b class="nc"><i class="no-highlight">27</i>&nbsp;        action.execute(changelog)</b>
 <i class="no-highlight">28</i>&nbsp;    }
 <i class="no-highlight">29</i>&nbsp;
-<b class="nc"><i class="no-highlight">30</i>&nbsp;    private val readme: ReadmeExtension = objects.newInstance()</b>
+<b class="nc"><i class="no-highlight">30</i>&nbsp;    private val readme: HubdleReadmeExtension = objects.newInstance()</b>
 <i class="no-highlight">31</i>&nbsp;
 <i class="no-highlight">32</i>&nbsp;    @HubdleDslMarker
-<b class="nc"><i class="no-highlight">33</i>&nbsp;    public fun Project.readme(action: Action&lt;ReadmeExtension&gt; = Action {}) {</b>
+<b class="nc"><i class="no-highlight">33</i>&nbsp;    public fun Project.readme(action: Action&lt;HubdleReadmeExtension&gt; = Action {}) {</b>
 <b class="nc"><i class="no-highlight">34</i>&nbsp;        action.execute(readme)</b>
 <i class="no-highlight">35</i>&nbsp;    }
 <i class="no-highlight">36</i>&nbsp;
-<b class="nc"><i class="no-highlight">37</i>&nbsp;    private val site: SiteExtension = objects.newInstance()</b>
+<b class="nc"><i class="no-highlight">37</i>&nbsp;    private val site: HubdleSiteExtension = objects.newInstance()</b>
 <i class="no-highlight">38</i>&nbsp;
 <i class="no-highlight">39</i>&nbsp;    @HubdleDslMarker
-<b class="nc"><i class="no-highlight">40</i>&nbsp;    public fun Project.site(action: Action&lt;SiteExtension&gt; = Action {}) {</b>
+<b class="nc"><i class="no-highlight">40</i>&nbsp;    public fun Project.site(action: Action&lt;HubdleSiteExtension&gt; = Action {}) {</b>
 <b class="nc"><i class="no-highlight">41</i>&nbsp;        site.run { isEnabled = true }</b>
 <b class="nc"><i class="no-highlight">42</i>&nbsp;        action.execute(site)</b>
 <i class="no-highlight">43</i>&nbsp;    }
@@ -236,7 +236,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-19 19:45</div>
+    <div style="float:right;">generated on 2022-07-20 01:24</div>
 </div>
 </body>
 </html>

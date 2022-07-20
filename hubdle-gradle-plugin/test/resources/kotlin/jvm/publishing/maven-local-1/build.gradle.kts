@@ -19,12 +19,3 @@ hubdle {
         jvm()
     }
 }
-
-configure<PublishingExtension> {
-    repositories {
-        maven {
-            name = "mavenLocalTest"
-            url = rootProject.buildDir.resolve("mavenLocalTest").toURI()
-        }
-    }
-}

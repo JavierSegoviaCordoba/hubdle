@@ -4,6 +4,7 @@
 
 ### Added
 
+- `mavenLocalTest` and `mavenLocalBuildTest` repositories
 - `Hubdle` prefix to all config extension classes
 - `repositories` to `HubdlePublishingExtension`
 

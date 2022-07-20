@@ -18,8 +18,15 @@ internal class KotlinJvmTest : GradleTest() {
         File(System.getProperty("user.home"))
             .resolve(".m2/repository/com/kotlin/jvm/sandbox-project/")
 
-    private val GradleRunner.mavenLocalTestPath
-        get() = projectDir.resolve("build/mavenLocalTest/com/kotlin/jvm/sandbox-project/")
+    private val GradleRunner.mavenLocalRandomPath
+        get() =
+            projectDir.resolve("build/mavenLocalRandom/repository/com/kotlin/jvm/sandbox-project/")
+
+    private val GradleRunner.mavenLocalBuildTestPath
+        get() =
+            projectDir.resolve(
+                "build/mavenLocalBuildTest/repository/com/kotlin/jvm/sandbox-project/"
+            )
 
     @BeforeTest
     fun `clean m2_com_kotlin before test`() {
@@ -48,11 +55,26 @@ internal class KotlinJvmTest : GradleTest() {
 
     @Test
     fun `publish maven-local-test-1`() {
-        gradleTestKitTest("$basePath/publishing/maven-local-test-1") {
+        gradleTestKitTest("$basePath/publishing/maven-local-build-test-1") {
             withEnvironment(gpgMap)
             withArgumentsFromTXT()
             build().output.also(::println)
-            mavenLocalTestPath
+            mavenLocalBuildTestPath
+                .resolve("9.8.3-alpha.4")
+                .listFiles()
+                .orEmpty()
+                .filter { it.isFile && it.extension == "asc" }
+                .shouldHaveSize(0)
+        }
+    }
+
+    @Test
+    fun `publish maven-local-random-1`() {
+        gradleTestKitTest("$basePath/publishing/maven-local-random-1") {
+            withEnvironment(gpgMap)
+            withArgumentsFromTXT()
+            build().output.also(::println)
+            mavenLocalRandomPath
                 .resolve("9.8.3-alpha.4")
                 .listFiles()
                 .orEmpty()

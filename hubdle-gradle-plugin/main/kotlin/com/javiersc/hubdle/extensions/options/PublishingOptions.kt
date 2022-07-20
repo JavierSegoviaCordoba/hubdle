@@ -105,10 +105,15 @@ internal fun Project.configureSigningForPublishing() {
         val hasPublishToMavenLocalTask = allTasks.any { it == "publishToMavenLocal" }
         val hasPublishToMavenLocalTestTask =
             allTasks.any { it == "publishAllPublicationsToMavenLocalTestRepository" }
+        val hasPublishToMavenLocalBuildTestTask =
+            allTasks.any { it == "publishAllPublicationsToMavenLocalBuildTestRepository" }
         val shouldSign = getPropertyOrNull(HubdleProperty.Publishing.sign)?.toBoolean() ?: false
 
         val hasTaskCondition =
-            (hasPublishTask && !hasPublishToMavenLocalTask && !hasPublishToMavenLocalTestTask)
+            (hasPublishTask &&
+                !hasPublishToMavenLocalTask &&
+                !hasPublishToMavenLocalTestTask &&
+                !hasPublishToMavenLocalBuildTestTask)
         val hasSemverCondition = project.isNotSnapshot && project.isSemver
 
         isRequired = (hasTaskCondition && hasSemverCondition) || shouldSign

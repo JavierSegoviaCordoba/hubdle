@@ -18,9 +18,8 @@ internal fun configureReadmeBadges(project: Project) {
             project.getPropertyOrNull(HubdleProperty.Project.mainProjectName) ?: project.name
 
         val projectKey =
-            with(project) {
-                "$group:${getPropertyOrNull(HubdleProperty.Project.rootProjectDirName) ?: rootDir.name}"
-            }
+            project.getPropertyOrNull(HubdleProperty.Analysis.projectKey)
+                ?: "${project.group}:${project.getPropertyOrNull(HubdleProperty.Project.rootProjectDirName) ?: project.rootDir.name}"
 
         project.tasks.register<WriteReadmeBadgesTask>(WriteReadmeBadgesTask.name).configure {
             this.projectGroup.set(project.group.toString())

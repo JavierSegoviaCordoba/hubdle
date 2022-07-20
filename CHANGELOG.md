@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- `ReadmeBadgesExtension` is not using the real `projectKey` property if it exists
+
 ### Updated
 
 ## [0.2.0-alpha.30] - 2022-07-20

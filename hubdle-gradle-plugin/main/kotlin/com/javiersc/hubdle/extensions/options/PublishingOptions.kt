@@ -52,7 +52,7 @@ internal fun Project.configureJavaJarsForPublishing() {
 
 internal fun Project.configurePublishingExtension() {
     configure<PublishingExtension> {
-        hubdleState.config.publishing.repositories?.execute(repositories)
+        configureRepositories(this)
 
         publications {
             withType<MavenPublication> {
@@ -84,6 +84,31 @@ internal fun Project.configurePublishingExtension() {
     configurePublishOnlySemver()
 }
 
+private fun Project.configureRepositories(publishingExtension: PublishingExtension) {
+    hubdleState.config.publishing.repositories?.execute(publishingExtension.repositories)
+
+    val mavenLocalTestRepository = publishingExtension.repositories.findByName("mavenLocalTest")
+    val mavenLocalBuildTestRepository =
+        publishingExtension.repositories.findByName("mavenLocalBuildTest")
+
+    if (mavenLocalTestRepository != null) {
+        val childTask = tasks.namedLazily<Task>("publishAllPublicationsToMavenLocalTestRepository")
+        tasks.maybeRegisterLazily<Task>("publishToMavenLocalTest").configureEach {
+            this@configureEach.group = "publishing"
+            dependsOn(childTask)
+        }
+    }
+
+    if (mavenLocalBuildTestRepository != null) {
+        val childTask =
+            tasks.namedLazily<Task>("publishAllPublicationsToMavenLocalBuildTestRepository")
+        tasks.maybeRegisterLazily<Task>("publishToMavenLocalBuildTest").configureEach {
+            this@configureEach.group = "publishing"
+            dependsOn(childTask)
+        }
+    }
+}
+
 internal fun Project.configureEmptyJavadocs() {
     val emptyJavadocsJarTask: TaskCollection<Jar> = tasks.maybeRegisterLazily("emptyJavadocsJar")
     emptyJavadocsJarTask.configureEach {
@@ -102,18 +127,17 @@ internal fun Project.configureSigningForPublishing() {
     configure<SigningExtension> {
         val allTasks: List<String> = gradle.startParameter.taskRequests.flatMap { it.args }
         val hasPublishTask = allTasks.any { it.startsWith("publish") }
-        val hasPublishToMavenLocalTask = allTasks.any { it == "publishToMavenLocal" }
-        val hasPublishToMavenLocalTestTask =
-            allTasks.any { it == "publishAllPublicationsToMavenLocalTestRepository" }
-        val hasPublishToMavenLocalBuildTestTask =
-            allTasks.any { it == "publishAllPublicationsToMavenLocalBuildTestRepository" }
+        val hasPublishToMavenLocalTasks =
+            allTasks.any {
+                it == "publishToMavenLocal" ||
+                    it == "publishToMavenLocalTest" ||
+                    it == "publishToMavenLocalBuildTest" ||
+                    it == "publishAllPublicationsToMavenLocalTestRepository" ||
+                    it == "publishAllPublicationsToMavenLocalBuildTestRepository"
+            }
         val shouldSign = getPropertyOrNull(HubdleProperty.Publishing.sign)?.toBoolean() ?: false
 
-        val hasTaskCondition =
-            (hasPublishTask &&
-                !hasPublishToMavenLocalTask &&
-                !hasPublishToMavenLocalTestTask &&
-                !hasPublishToMavenLocalBuildTestTask)
+        val hasTaskCondition = (hasPublishTask && !hasPublishToMavenLocalTasks)
         val hasSemverCondition = project.isNotSnapshot && project.isSemver
 
         isRequired = (hasTaskCondition && hasSemverCondition) || shouldSign

@@ -58,7 +58,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/6)
+    (0/8)
   </span>
 </td>
 <td class="coverageStat">
@@ -74,7 +74,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/69)
+    (0/70)
   </span>
 </td>
 </tr>
@@ -121,7 +121,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/6)
+    (0/8)
   </span>
 </td>
 <td class="coverageStat">
@@ -137,7 +137,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/155)
+    (0/156)
   </span>
 </td>
 </tr>
@@ -168,26 +168,25 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="nc"><i class="no-highlight">18</i>&nbsp;            project.getPropertyOrNull(HubdleProperty.Project.mainProjectName) ?: project.name</b>
 <i class="no-highlight">19</i>&nbsp;
 <b class="nc"><i class="no-highlight">20</i>&nbsp;        val projectKey =</b>
-<b class="nc"><i class="no-highlight">21</i>&nbsp;            with(project) {</b>
-<b class="nc"><i class="no-highlight">22</i>&nbsp;                &quot;$group:${getPropertyOrNull(HubdleProperty.Project.rootProjectDirName) ?: rootDir.name}&quot;</b>
-<i class="no-highlight">23</i>&nbsp;            }
-<i class="no-highlight">24</i>&nbsp;
-<b class="nc"><i class="no-highlight">25</i>&nbsp;        project.tasks.register&lt;WriteReadmeBadgesTask&gt;(WriteReadmeBadgesTask.name).configure {</b>
-<b class="nc"><i class="no-highlight">26</i>&nbsp;            this.projectGroup.set(project.group.toString())</b>
-<b class="nc"><i class="no-highlight">27</i>&nbsp;            this.projectName.set(projectName)</b>
-<b class="nc"><i class="no-highlight">28</i>&nbsp;            this.repoUrl.set(project.getProperty(HubdleProperty.POM.scmUrl))</b>
-<b class="nc"><i class="no-highlight">29</i>&nbsp;            this.kotlinVersion.set(project.getKotlinPluginVersion())</b>
-<b class="nc"><i class="no-highlight">30</i>&nbsp;            this.kotlinBadge.set(readmeState.badges.kotlin)</b>
-<b class="nc"><i class="no-highlight">31</i>&nbsp;            this.mavenCentralBadge.set(readmeState.badges.mavenCentral)</b>
-<b class="nc"><i class="no-highlight">32</i>&nbsp;            this.snapshotsBadge.set(readmeState.badges.snapshots)</b>
-<b class="nc"><i class="no-highlight">33</i>&nbsp;            this.buildBadge.set(readmeState.badges.build)</b>
-<b class="nc"><i class="no-highlight">34</i>&nbsp;            this.coverageBadge.set(readmeState.badges.coverage)</b>
-<b class="nc"><i class="no-highlight">35</i>&nbsp;            this.qualityBadge.set(readmeState.badges.quality)</b>
-<b class="nc"><i class="no-highlight">36</i>&nbsp;            this.techDebtBadge.set(readmeState.badges.techDebt)</b>
-<b class="nc"><i class="no-highlight">37</i>&nbsp;            this.projectKey.set(projectKey)</b>
-<i class="no-highlight">38</i>&nbsp;        }
-<i class="no-highlight">39</i>&nbsp;    }
-<i class="no-highlight">40</i>&nbsp;}
+<b class="nc"><i class="no-highlight">21</i>&nbsp;            project.getPropertyOrNull(HubdleProperty.Analysis.projectKey)</b>
+<b class="nc"><i class="no-highlight">22</i>&nbsp;                ?: &quot;${project.group}:${project.getPropertyOrNull(HubdleProperty.Project.rootProjectDirName) ?: project.rootDir.name}&quot;</b>
+<i class="no-highlight">23</i>&nbsp;
+<b class="nc"><i class="no-highlight">24</i>&nbsp;        project.tasks.register&lt;WriteReadmeBadgesTask&gt;(WriteReadmeBadgesTask.name).configure {</b>
+<b class="nc"><i class="no-highlight">25</i>&nbsp;            this.projectGroup.set(project.group.toString())</b>
+<b class="nc"><i class="no-highlight">26</i>&nbsp;            this.projectName.set(projectName)</b>
+<b class="nc"><i class="no-highlight">27</i>&nbsp;            this.repoUrl.set(project.getProperty(HubdleProperty.POM.scmUrl))</b>
+<b class="nc"><i class="no-highlight">28</i>&nbsp;            this.kotlinVersion.set(project.getKotlinPluginVersion())</b>
+<b class="nc"><i class="no-highlight">29</i>&nbsp;            this.kotlinBadge.set(readmeState.badges.kotlin)</b>
+<b class="nc"><i class="no-highlight">30</i>&nbsp;            this.mavenCentralBadge.set(readmeState.badges.mavenCentral)</b>
+<b class="nc"><i class="no-highlight">31</i>&nbsp;            this.snapshotsBadge.set(readmeState.badges.snapshots)</b>
+<b class="nc"><i class="no-highlight">32</i>&nbsp;            this.buildBadge.set(readmeState.badges.build)</b>
+<b class="nc"><i class="no-highlight">33</i>&nbsp;            this.coverageBadge.set(readmeState.badges.coverage)</b>
+<b class="nc"><i class="no-highlight">34</i>&nbsp;            this.qualityBadge.set(readmeState.badges.quality)</b>
+<b class="nc"><i class="no-highlight">35</i>&nbsp;            this.techDebtBadge.set(readmeState.badges.techDebt)</b>
+<b class="nc"><i class="no-highlight">36</i>&nbsp;            this.projectKey.set(projectKey)</b>
+<i class="no-highlight">37</i>&nbsp;        }
+<i class="no-highlight">38</i>&nbsp;    }
+<i class="no-highlight">39</i>&nbsp;}
 </div>
 </pre>
 </div>
@@ -214,7 +213,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-20 01:25</div>
+    <div style="float:right;">generated on 2022-07-20 14:58</div>
 </div>
 </body>
 </html>

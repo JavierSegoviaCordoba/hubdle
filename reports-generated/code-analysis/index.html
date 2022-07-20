@@ -170,13 +170,13 @@
 
 <div>
   <ul>
-    <li>11,750 lines of code (loc)</li>
-    <li>9,711 source lines of code (sloc)</li>
-    <li>6,588 logical lines of code (lloc)</li>
+    <li>11,749 lines of code (loc)</li>
+    <li>9,710 source lines of code (sloc)</li>
+    <li>6,589 logical lines of code (lloc)</li>
     <li>55 comment lines of code (cloc)</li>
     <li>1,229 cyclomatic complexity (mcc)</li>
     <li>489 cognitive complexity</li>
-    <li>75 number of total code smells</li>
+    <li>76 number of total code smells</li>
     <li>0% comment source ratio</li>
     <li>186 mcc per 1,000 lloc</li>
     <li>11 code smells per 1,000 lloc</li>
@@ -185,7 +185,7 @@
 
 
 <h2>Findings</h2>
-<div>Total: 75
+<div>Total: 76
   <h3>complexity: 9</h3>
   <details id="ComplexCondition" open="open">
     <summary class="rule-container"><span class="rule">ComplexCondition: 1 </span><span class="description">Complex conditions should be simplified and extracted into well-named methods if necessary.</span></summary>
@@ -738,7 +738,7 @@
       </li>
     </ul>
   </details>
-  <h3>style: 11</h3>
+  <h3>style: 12</h3>
   <details id="ForbiddenComment" open="open">
     <summary class="rule-container"><span class="rule">ForbiddenComment: 8 </span><span class="description">Flags a forbidden comment.</span></summary>
     <ul>
@@ -840,7 +840,7 @@
     </ul>
   </details>
   <details id="MaxLineLength" open="open">
-    <summary class="rule-container"><span class="rule">MaxLineLength: 1 </span><span class="description">Line detected, which is longer than the defined maximum line length in the code style.</span></summary>
+    <summary class="rule-container"><span class="rule">MaxLineLength: 2 </span><span class="description">Line detected, which is longer than the defined maximum line length in the code style.</span></summary>
     <ul>
       <li><span class="location">buildSrc/src/main/kotlin/plugins/generate-hubdle-dependencies.gradle.kts:158:1</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
         <pre><code><span class="lineno"> 155 </span>                            val dependencyName = &quot;$groupSanitized$nameSanitized&quot;.decapitalize()
@@ -850,6 +850,16 @@
 <span class="lineno"> 159 </span>                                    |    catalogDependency(${dependencyVariableName}_MODULE)
 <span class="lineno"> 160 </span>                                &quot;&quot;&quot;
 <span class="lineno"> 161 </span>                        }
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/documentation/readme/_internal/configureReadme.kt:22:17</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno">  19 </span>
+<span class="lineno">  20 </span>        val projectKey =
+<span class="lineno">  21 </span>            project.getPropertyOrNull(HubdleProperty.Analysis.projectKey)
+<span class="lineno">  22 </span>                <span class="error">?:</span> &quot;${project.group}:${project.getPropertyOrNull(HubdleProperty.Project.rootProjectDirName) ?: project.rootDir.name}&quot;
+<span class="lineno">  23 </span>
+<span class="lineno">  24 </span>        project.tasks.register&lt;WriteReadmeBadgesTask&gt;(WriteReadmeBadgesTask.name).configure {
+<span class="lineno">  25 </span>            this.projectGroup.set(project.group.toString())
 </code></pre>
       </li>
     </ul>
@@ -872,7 +882,7 @@
 </div>
 
 
-generated with <a href="https://detekt.dev/">detekt version 1.20.0</a> on 2022-07-20 01:29:25 UTC.
+generated with <a href="https://detekt.dev/">detekt version 1.20.0</a> on 2022-07-20 14:52:15 UTC.
 
 </body>
 </html>

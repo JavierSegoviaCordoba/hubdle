@@ -4,16 +4,24 @@
 
 ### Added
 
-- `publishToMavenLocalTest` and `publishToMavenLocalBuildTest` tasks if the repositories exist
-- `mavenLocalTest` and `mavenLocalBuildTest` repositories
-- `Hubdle` prefix to all config extension classes
-- `repositories` to `HubdlePublishingExtension`
-
 ### Changed
 
 ### Deprecated
 
 ### Removed
+
+### Fixed
+
+### Updated
+
+## [0.2.0-alpha.30] - 2022-07-20
+
+### Added
+
+- `publishToMavenLocalTest` and `publishToMavenLocalBuildTest` tasks if the repositories exist
+- `mavenLocalTest` and `mavenLocalBuildTest` repositories
+- `Hubdle` prefix to all config extension classes
+- `repositories` to `HubdlePublishingExtension`
 
 ### Fixed
 

@@ -4,6 +4,9 @@
 
 ### Added
 
+- `javierscKotlinxCoroutinesRunBlocking()` dependencies
+- `javierscKotlinxCoroutinesRunBlockingAll()` dependencies
+
 ### Changed
 
 ### Deprecated

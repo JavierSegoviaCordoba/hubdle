@@ -16,6 +16,9 @@
 
 ### Updated
 
+- `com.javiersc.mokoki:mokoki-serialization -> 0.2.0-SNAPSHOT`
+- `com.javiersc.mokoki:mokoki -> 0.2.0-SNAPSHOT`
+
 ## [0.2.0-alpha.32] - 2022-07-22
 
 ### Added

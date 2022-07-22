@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- `com.javiersc.mokoki:mokoki-core -> com.javiersc.mokoki:mokoki`
+
 ### Updated
 
 ## [0.2.0-alpha.32] - 2022-07-22

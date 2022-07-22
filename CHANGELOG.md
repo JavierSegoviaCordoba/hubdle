@@ -4,6 +4,9 @@
 
 ### Added
 
+- `com.squareup.okhttp3:mockwebserver3-junit4` dependency
+- `com.squareup.okhttp3:mockwebserver3-junit5` dependency
+
 ### Changed
 
 ### Deprecated
@@ -11,6 +14,8 @@
 ### Removed
 
 ### Fixed
+
+- `ktor` version
 
 ### Updated
 

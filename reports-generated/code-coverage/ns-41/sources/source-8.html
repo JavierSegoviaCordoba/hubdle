@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html id="htmlId">
 <head>
-  <title>Coverage Report > SourceDirectoriesOptions</title>
+  <title>Coverage Report > EnableableOptions</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/highlight-idea.css";
@@ -20,7 +20,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     <a href="../index.html">com.javiersc.hubdle.extensions.options</a>
 </div>
 
-<h1>Coverage Summary for Class: SourceDirectoriesOptions (com.javiersc.hubdle.extensions.options)</h1>
+<h1>Coverage Summary for Class: EnableableOptions (com.javiersc.hubdle.extensions.options)</h1>
 
 <table class="coverageStats">
 <tr>
@@ -31,7 +31,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 </th>
 </tr>
 <tr>
-  <td class="name">SourceDirectoriesOptions</td>
+  <td class="name">EnableableOptions</td>
     <td class="coverageStat"/>
 </tr>
 
@@ -44,74 +44,21 @@ Current scope:     <a href="../../index.html">all classes</a>
 <pre>
 <div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.javiersc.hubdle.extensions.options
 <i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;import com.android.build.api.dsl.AndroidSourceDirectorySet
-<i class="no-highlight">4</i>&nbsp;import com.android.build.api.dsl.AndroidSourceFile
-<i class="no-highlight">5</i>&nbsp;import com.android.build.api.dsl.AndroidSourceSet
-<i class="no-highlight">6</i>&nbsp;import org.gradle.api.Named
-<i class="no-highlight">7</i>&nbsp;import org.gradle.api.NamedDomainObjectContainer
-<i class="no-highlight">8</i>&nbsp;import org.gradle.api.Project
-<i class="no-highlight">9</i>&nbsp;import org.gradle.api.plugins.JavaPluginExtension
-<i class="no-highlight">10</i>&nbsp;import org.gradle.api.tasks.SourceSet
-<i class="no-highlight">11</i>&nbsp;import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
-<i class="no-highlight">12</i>&nbsp;import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
+<i class="no-highlight">3</i>&nbsp;import org.gradle.api.Project
+<i class="no-highlight">4</i>&nbsp;
+<i class="no-highlight">5</i>&nbsp;public interface EnableableOptions {
+<i class="no-highlight">6</i>&nbsp;
+<i class="no-highlight">7</i>&nbsp;    public var Project.isEnabled: Boolean
+<i class="no-highlight">8</i>&nbsp;}
+<i class="no-highlight">9</i>&nbsp;
+<i class="no-highlight">10</i>&nbsp;public interface EnableableAllOptions {
+<i class="no-highlight">11</i>&nbsp;
+<i class="no-highlight">12</i>&nbsp;    public var Project.allEnabled: Boolean
 <i class="no-highlight">13</i>&nbsp;
-<i class="no-highlight">14</i>&nbsp;public interface SourceDirectoriesOptions&lt;out T&gt; {
-<i class="no-highlight">15</i>&nbsp;
-<i class="no-highlight">16</i>&nbsp;    public val Project.sourceSets: NamedDomainObjectContainer&lt;out T&gt;
+<i class="no-highlight">14</i>&nbsp;    public fun Project.enableAll(enable: Boolean = true) {
+<i class="no-highlight">15</i>&nbsp;        allEnabled = enable
+<i class="no-highlight">16</i>&nbsp;    }
 <i class="no-highlight">17</i>&nbsp;}
-<i class="no-highlight">18</i>&nbsp;
-<i class="no-highlight">19</i>&nbsp;internal fun JavaPluginExtension.configureDefaultJavaSourceSets() {
-<i class="no-highlight">20</i>&nbsp;    sourceSets.all { configJavaDefaultSourceSets() }
-<i class="no-highlight">21</i>&nbsp;}
-<i class="no-highlight">22</i>&nbsp;
-<i class="no-highlight">23</i>&nbsp;internal fun KotlinProjectExtension.configureDefaultKotlinSourceSets() {
-<i class="no-highlight">24</i>&nbsp;    sourceSets.all { configKotlinDefaultSourceSets() }
-<i class="no-highlight">25</i>&nbsp;}
-<i class="no-highlight">26</i>&nbsp;
-<i class="no-highlight">27</i>&nbsp;internal fun AndroidSourceSet.configDefaultAndroidSourceSets() {
-<i class="no-highlight">28</i>&nbsp;    configAndroidSourceDirectorySet(assets to &quot;assets&quot;)
-<i class="no-highlight">29</i>&nbsp;    configAndroidSourceDirectorySet(java to &quot;kotlin&quot;)
-<i class="no-highlight">30</i>&nbsp;    configAndroidSourceDirectory(manifest to &quot;AndroidManifest.xml&quot;)
-<i class="no-highlight">31</i>&nbsp;    configAndroidSourceDirectorySet(res to &quot;res&quot;)
-<i class="no-highlight">32</i>&nbsp;    configAndroidSourceDirectorySet(resources to &quot;resources&quot;)
-<i class="no-highlight">33</i>&nbsp;}
-<i class="no-highlight">34</i>&nbsp;
-<i class="no-highlight">35</i>&nbsp;internal fun KotlinSourceSet.configKotlinDefaultSourceSets() {
-<i class="no-highlight">36</i>&nbsp;    val directory = calculateSourceSetDirectory()
-<i class="no-highlight">37</i>&nbsp;
-<i class="no-highlight">38</i>&nbsp;    kotlin.setSrcDirs(listOf(&quot;$directory/kotlin&quot;))
-<i class="no-highlight">39</i>&nbsp;    resources.setSrcDirs(listOf(&quot;$directory/resources&quot;))
-<i class="no-highlight">40</i>&nbsp;}
-<i class="no-highlight">41</i>&nbsp;
-<i class="no-highlight">42</i>&nbsp;internal fun SourceSet.configJavaDefaultSourceSets() {
-<i class="no-highlight">43</i>&nbsp;    val directory = name.calculateSourceSetDirectory()
-<i class="no-highlight">44</i>&nbsp;    java.setSrcDirs(listOf(&quot;$directory/java&quot;))
-<i class="no-highlight">45</i>&nbsp;    resources.setSrcDirs(listOf(&quot;$directory/resources&quot;))
-<i class="no-highlight">46</i>&nbsp;}
-<i class="no-highlight">47</i>&nbsp;
-<i class="no-highlight">48</i>&nbsp;internal fun Named.configAndroidSourceDirectory(sourceSetToType: Pair&lt;AndroidSourceFile, String&gt;) {
-<i class="no-highlight">49</i>&nbsp;    val (sourceSet, type) = sourceSetToType
-<i class="no-highlight">50</i>&nbsp;    sourceSet.srcFile(&quot;${this.calculateSourceSetDirectory()}/$type&quot;)
-<i class="no-highlight">51</i>&nbsp;}
-<i class="no-highlight">52</i>&nbsp;
-<i class="no-highlight">53</i>&nbsp;internal fun Named.configAndroidSourceDirectorySet(
-<i class="no-highlight">54</i>&nbsp;    sourceSetToType: Pair&lt;AndroidSourceDirectorySet, String&gt;
-<i class="no-highlight">55</i>&nbsp;) {
-<i class="no-highlight">56</i>&nbsp;    val (sourceSet, type) = sourceSetToType
-<i class="no-highlight">57</i>&nbsp;    sourceSet.setSrcDirs(listOf(&quot;${this.calculateSourceSetDirectory()}/$type&quot;))
-<i class="no-highlight">58</i>&nbsp;}
-<i class="no-highlight">59</i>&nbsp;
-<i class="no-highlight">60</i>&nbsp;private fun String.calculateSourceSetDirectory(): String {
-<i class="no-highlight">61</i>&nbsp;    val directory =
-<i class="no-highlight">62</i>&nbsp;        when {
-<i class="no-highlight">63</i>&nbsp;            this.endsWith(&quot;Main&quot;) -&gt; &quot;${this.substringBeforeLast(&quot;Main&quot;)}/main&quot;
-<i class="no-highlight">64</i>&nbsp;            this.endsWith(&quot;Test&quot;) -&gt; &quot;${this.substringBeforeLast(&quot;Test&quot;)}/test&quot;
-<i class="no-highlight">65</i>&nbsp;            else -&gt; this
-<i class="no-highlight">66</i>&nbsp;        }
-<i class="no-highlight">67</i>&nbsp;    return directory
-<i class="no-highlight">68</i>&nbsp;}
-<i class="no-highlight">69</i>&nbsp;
-<i class="no-highlight">70</i>&nbsp;private fun Named.calculateSourceSetDirectory(): String = this.name.calculateSourceSetDirectory()
 </div>
 </pre>
 </div>
@@ -138,7 +85,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-20 22:25</div>
+    <div style="float:right;">generated on 2022-07-22 14:21</div>
 </div>
 </body>
 </html>

@@ -16,6 +16,11 @@
 
 ### Updated
 
+- `com.squareup.okhttp3:okhttp -> 5.0.0-SNAPSHOT`
+- `com.squareup.okhttp3:mockwebserver3-junit5 -> 5.0.0-SNAPSHOT`
+- `com.squareup.okhttp3:mockwebserver3-junit4 -> 5.0.0-SNAPSHOT`
+- `com.squareup.okhttp3:mockwebserver -> 5.0.0-SNAPSHOT`
+
 ## [0.2.0-alpha.32] - 2022-07-22
 
 ### Added

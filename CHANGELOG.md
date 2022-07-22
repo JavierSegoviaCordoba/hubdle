@@ -6,6 +6,8 @@
 
 ### Changed
 
+- `InstallPreCommitTask` header text
+
 ### Deprecated
 
 ### Removed

@@ -18,6 +18,7 @@
 
 ### Updated
 
+- `org.jetbrains.compose:compose-gradle-plugin -> 1.2.0-alpha01-dev750`
 - `io.kotest:kotest-property -> 5.4.0`
 - `io.kotest:kotest-assertions-core -> 5.4.0`
 

@@ -18,6 +18,7 @@
 
 ### Updated
 
+- `org.jetbrains.dokka:dokka-gradle-plugin -> 1.7.10`
 - `io.kotest:kotest-property -> 5.4.0`
 - `io.kotest:kotest-assertions-core -> 5.4.0`
 

@@ -18,6 +18,11 @@
 
 ### Updated
 
+- `org.jetbrains.kotlin:kotlin-test-testng -> 1.7.10`
+- `org.jetbrains.kotlin:kotlin-test-junit5 -> 1.7.10`
+- `org.jetbrains.kotlin:kotlin-test-junit -> 1.7.10`
+- `org.jetbrains.kotlin:kotlin-test-annotations-common -> 1.7.10`
+- `org.jetbrains.kotlin:kotlin-test -> 1.7.10`
 - `io.kotest:kotest-property -> 5.4.0`
 - `io.kotest:kotest-assertions-core -> 5.4.0`
 

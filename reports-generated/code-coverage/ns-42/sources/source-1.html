@@ -92,7 +92,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 <pre>
 <div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.javiersc.hubdle.settings
 <i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;import com.javiersc.hubdle.settings.extensions.AutoIncludeExtension
+<i class="no-highlight">3</i>&nbsp;import com.javiersc.hubdle.settings.extensions.HubdleAutoIncludeExtension
 <i class="no-highlight">4</i>&nbsp;import javax.inject.Inject
 <i class="no-highlight">5</i>&nbsp;import org.gradle.api.Action
 <i class="no-highlight">6</i>&nbsp;import org.gradle.api.model.ObjectFactory
@@ -101,10 +101,10 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="nc"><i class="no-highlight">9</i>&nbsp;@HubdleSettingsDslMarker</b>
 <i class="no-highlight">10</i>&nbsp;public open class HubdleSettingsExtension @Inject constructor(objects: ObjectFactory) {
 <i class="no-highlight">11</i>&nbsp;
-<b class="nc"><i class="no-highlight">12</i>&nbsp;    public val autoInclude: AutoIncludeExtension = objects.newInstance()</b>
+<b class="nc"><i class="no-highlight">12</i>&nbsp;    public val autoInclude: HubdleAutoIncludeExtension = objects.newInstance()</b>
 <i class="no-highlight">13</i>&nbsp;
 <i class="no-highlight">14</i>&nbsp;    @HubdleSettingsDslMarker
-<b class="nc"><i class="no-highlight">15</i>&nbsp;    public fun autoInclude(action: Action&lt;AutoIncludeExtension&gt; = Action {}) {</b>
+<b class="nc"><i class="no-highlight">15</i>&nbsp;    public fun autoInclude(action: Action&lt;HubdleAutoIncludeExtension&gt; = Action {}) {</b>
 <b class="nc"><i class="no-highlight">16</i>&nbsp;        action.execute(autoInclude)</b>
 <i class="no-highlight">17</i>&nbsp;    }
 <i class="no-highlight">18</i>&nbsp;}
@@ -134,7 +134,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-25 10:26</div>
+    <div style="float:right;">generated on 2022-07-26 19:55</div>
 </div>
 </body>
 </html>

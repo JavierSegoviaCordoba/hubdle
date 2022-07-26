@@ -6,11 +6,19 @@
 
 ### Changed
 
-- `InstallPreCommitTask` header text
-
 ### Deprecated
 
 ### Removed
+
+### Fixed
+
+### Updated
+
+## [0.2.0-alpha.33] - 2022-07-26
+
+### Changed
+
+- `InstallPreCommitTask` header text
 
 ### Fixed
 

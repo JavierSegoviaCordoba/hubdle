@@ -334,6 +334,7 @@ internal data class HubdleState(
             var experimentalStdlibApi: Boolean = true,
             var experimentalTime: Boolean = false,
             var flowPreview: Boolean = false,
+            var ktorInternalAPI: Boolean = false,
             val optIns: MutableList<String> = mutableListOf(),
             var requiresOptIn: Boolean = true,
             var rawConfig: RawConfig = RawConfig(),

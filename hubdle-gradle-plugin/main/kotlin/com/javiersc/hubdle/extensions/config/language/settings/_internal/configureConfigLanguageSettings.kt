@@ -33,6 +33,7 @@ private fun LanguageSettingsBuilder.configureOptIn(languageSettingsState: Langua
         if (experimentalStdlibApi) optIn("kotlin.ExperimentalStdlibApi")
         if (experimentalTime) optIn("kotlin.time.ExperimentalTime")
         if (flowPreview) optIn("kotlinx.coroutines.FlowPreview")
+        if (ktorInternalAPI) optIn("io.ktor.util.InternalAPI")
         if (requiresOptIn) optIn("kotlin.RequiresOptIn")
     }
 }

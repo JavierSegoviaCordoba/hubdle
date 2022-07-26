@@ -42,6 +42,11 @@ public open class HubdleLanguageSettingsExtension @Inject constructor(objects: O
     }
 
     @HubdleDslMarker
+    public fun Project.ktorInternalAPI(enabled: Boolean = true) {
+        hubdleState.config.languageSettings.ktorInternalAPI = enabled
+    }
+
+    @HubdleDslMarker
     public fun Project.optIn(annotationName: String) {
         hubdleState.config.languageSettings.optIns += annotationName
     }

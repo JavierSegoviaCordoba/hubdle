@@ -33,13 +33,9 @@ dependenciesCodegen.configureEach {
     }
 }
 
-tasks.namedLazily<Task>("apiCheck").configureEach {
-    dependsOn(dependenciesCodegen)
-}
+tasks.namedLazily<Task>("apiCheck").configureEach { dependsOn(dependenciesCodegen) }
 
-tasks.namedLazily<Task>("apiDump").configureEach {
-    dependsOn(dependenciesCodegen)
-}
+tasks.namedLazily<Task>("apiDump").configureEach { dependsOn(dependenciesCodegen) }
 
 tasks.namedLazily<Task>(LifecycleBasePlugin.ASSEMBLE_TASK_NAME).configureEach {
     dependsOn(dependenciesCodegen)
@@ -152,20 +148,23 @@ fun buildHubdleDependencies() {
                                 }
 
                             val nameSanitized = module.name.groupOrNameSanitized().capitalized()
-                            val dependencyName = "$groupSanitized$nameSanitized".decapitalize()
-                                """
-                                    |@HubdleDslMarker
-                                    |public fun KotlinDependencyHandler.$dependencyName(): MinimalExternalModuleDependency =
-                                    |    catalogDependency(${dependencyVariableName}_MODULE)
-                                """
+                            val dependencyName =
+                                "$groupSanitized$nameSanitized"
+                                    .sanitizeDependencyVariableName()
+                                    .decapitalize()
+                            """
+                                |@HubdleDslMarker
+                                |public fun KotlinDependencyHandler.$dependencyName(): MinimalExternalModuleDependency =
+                                |    catalogDependency(${dependencyVariableName}_MODULE)
+                            """
                         }
                         .lines()
 
                 writeText(
                     readText() +
                         """ ${dependencyVariableNames.joinToString("\n")}
-                                |
-                            """.trimMargin()
+                            |
+                        """.trimMargin()
                 )
             }
         writeText(
@@ -194,6 +193,18 @@ fun String.groupOrNameSanitized(): String =
 
 fun String.buildDependencyVariableName(): String =
     replace(".", "_").replace("-", "_").toUpperCase(Locale.getDefault())
+
+fun String.sanitizeDependencyVariableName(): String {
+    val words = this.map { if (it.isUpperCase()) "_$it" else it }.joinToString("").split("_")
+
+    fun word(index: Int): String? = words.getOrNull(index)
+
+    val newWords =
+        if (word(0)?.capitalize() + word(1) == word(2) + word(3)) {
+            words.subList(2, words.size)
+        } else words
+    return newWords.joinToString("")
+}
 
 val MinimalExternalModuleDependency.hasCommonEndingDomain: Boolean
     get() = module.group.split(".").first().count() <= 3

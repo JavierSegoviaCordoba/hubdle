@@ -5,7 +5,7 @@ import java.io.File
 import org.gradle.api.initialization.Settings
 
 @HubdleSettingsDslMarker
-public open class AutoIncludeExtension {
+public open class HubdleAutoIncludeExtension {
 
     public var isEnabled: Boolean = true
 

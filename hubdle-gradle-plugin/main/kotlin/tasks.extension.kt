@@ -12,22 +12,25 @@ public fun TaskContainer.testDependsOnPublishToMavenLocalTestFrom(
     project: DelegatingProjectDependency
 ) {
     val publishToMavenLocalTest =
-        project.dependencyProject.tasks.namedLazily<Task>(publishToMavenLocalTest)
+        project.dependencyProject.tasks.namedLazily<Task>(PUBLISH_TO_MAVEN_LOCAL_TEST)
     withType<Test>().configureEach {
         dependsOn(publishToMavenLocalTest)
-        dependsOn(project.dependencyProject.tasks.namedLazily<Task>(publishAllToMavenLocalTest))
+        dependsOn(
+            project.dependencyProject.tasks.namedLazily<Task>(PUBLISH_ALL_TO_MAVEN_LOCAL_TEST)
+        )
     }
 }
 
 @HubdleDslMarker
 public fun TaskContainer.testDependsOnPublishToMavenLocalTestFrom(project: Project) {
-    val publishToMavenLocalTest = project.tasks.namedLazily<Task>(publishToMavenLocalTest)
+    val publishToMavenLocalTest = project.tasks.namedLazily<Task>(PUBLISH_TO_MAVEN_LOCAL_TEST)
     withType<Test>().configureEach {
         dependsOn(publishToMavenLocalTest)
-        dependsOn(project.tasks.namedLazily<Task>(publishAllToMavenLocalTest))
+        dependsOn(project.tasks.namedLazily<Task>(PUBLISH_ALL_TO_MAVEN_LOCAL_TEST))
     }
 }
 
-private const val publishToMavenLocalTest = "publishToMavenLocalTest"
+private const val PUBLISH_TO_MAVEN_LOCAL_TEST = "publishToMavenLocalTest"
 
-private const val publishAllToMavenLocalTest = "publishAllPublicationsToMavenLocalTestRepository"
+private const val PUBLISH_ALL_TO_MAVEN_LOCAL_TEST =
+    "publishAllPublicationsToMavenLocalTestRepository"

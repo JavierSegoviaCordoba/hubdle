@@ -1,31 +1,31 @@
 {"version":"3","listProblem":[{
   "tool": "Code Inspection",
-  "category": "Redundant constructs",
-  "type": "Unused receiver parameter",
-  "severity": "High",
-  "comment": "Receiver parameter is never used",
-  "detailsInfo": "Reports receiver parameter of extension functions and properties that is not used.\n\n**Remove redundant receiver parameter** can be used to amend the code automatically.",
+  "category": "Style issues",
+  "type": "Nested lambda has shadowed implicit parameter",
+  "severity": "Moderate",
+  "comment": "Implicit parameter 'it' of enclosing lambda is shadowed",
+  "detailsInfo": "Reports nested lambdas with shadowed implicit parameters.\n\n**Example:**\n\n\n    fun foo(listOfLists: List<List<String>>) {\n      listOfLists.forEach {\n        it.forEach {\n          println(it)\n        }\n      }\n    }\n\nAfter the quick-fix is applied:\n\n\n    fun foo(listOfLists: List<List<String>>) {\n      listOfLists.forEach {\n        it.forEach { it1 ->\n          println(it1)\n        }\n      }\n    }\n",
   "sources": [
     {
       "type": "file",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/HubdleConfigExtension.kt",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/_internal/calculateAndroidNamespace.kt",
       "language": "kotlin",
-      "line": 87,
-      "offset": 16,
-      "length": 7,
+      "line": 43,
+      "offset": 56,
+      "length": 2,
       "code": {
-        "startLine": 85,
-        "length": 7,
-        "offset": 37,
-        "surroundingCode": "\n    @HubdleDslMarker\n    public fun Project.install(action: Action<HubdleInstallExtension> = Action {}) {\n        action.execute(install)\n    }"
+        "startLine": 41,
+        "length": 2,
+        "offset": 121,
+        "surroundingCode": "        }\n        ?.flatMap { it.listFiles().orEmpty().toList() }\n        ?.firstOrNull { it.listFiles().orEmpty().any { it.extension == \"kt\" } }\n        ?.listFiles()\n        ?.firstOrNull { it.extension == \"kt\" }"
       }
     }
   ],
   "attributes": {
     "module": "hubdle.hubdle-gradle-plugin.main",
-    "inspectionName": "UnusedReceiverParameter"
+    "inspectionName": "NestedLambdaShadowedImplicitParameter"
   },
-  "hash": "5bbf5f4faf2ea0a61baa876bea42a2b4a926e9e0f6f5b978446586095fd7706a"
+  "hash": "145ff510cb54dad87255b0f75b7c3009664294acb677d32f0765e231e5720bf4"
 },{
   "tool": "Code Inspection",
   "category": "Redundant constructs",
@@ -36,16 +36,16 @@
   "sources": [
     {
       "type": "file",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/HubdleConfigExtension.kt",
+      "path": "hubdle-gradle-plugin/main/kotlin/composeExtension.accessor.kt",
       "language": "kotlin",
-      "line": 78,
-      "offset": 16,
-      "length": 7,
+      "line": 6,
+      "offset": 12,
+      "length": 23,
       "code": {
-        "startLine": 76,
-        "length": 7,
-        "offset": 37,
-        "surroundingCode": "\n    @HubdleDslMarker\n    public fun Project.languageSettings(\n        action: Action<HubdleLanguageSettingsExtension> = Action {}\n    ) {"
+        "startLine": 4,
+        "length": 23,
+        "offset": 78,
+        "surroundingCode": "import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler\n\npublic val KotlinDependencyHandler.compose: ComposePlugin.Dependencies\n    get() = ComposePlugin.Dependencies\n"
       }
     }
   ],
@@ -53,7 +53,7 @@
     "module": "hubdle.hubdle-gradle-plugin.main",
     "inspectionName": "UnusedReceiverParameter"
   },
-  "hash": "fe90ceb59dd43c1939fb1b6d73ffbf333082c4a2bcd224a53392f872d80f7f56"
+  "hash": "ce5e8565740e1f8e236d963fe260002332b494b2f8c8d4dc5f571af624a61680"
 },{
   "tool": "Code Inspection",
   "category": "Redundant constructs",
@@ -64,16 +64,16 @@
   "sources": [
     {
       "type": "file",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/HubdleConfigExtension.kt",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/documentation/site/HubdleSiteExtension.kt",
       "language": "kotlin",
-      "line": 58,
+      "line": 36,
       "offset": 16,
       "length": 7,
       "code": {
-        "startLine": 56,
+        "startLine": 34,
         "length": 7,
         "offset": 37,
-        "surroundingCode": "\n    @HubdleDslMarker\n    public fun Project.documentation(action: Action<in HubdleDocumentationExtension> = Action {}) {\n        action.execute(documentation)\n    }"
+        "surroundingCode": "\n    @HubdleDslMarker\n    public fun Project.reports(action: Action<ReportsExtension>) {\n        action.execute(reports)\n    }"
       }
     }
   ],
@@ -81,61 +81,5 @@
     "module": "hubdle.hubdle-gradle-plugin.main",
     "inspectionName": "UnusedReceiverParameter"
   },
-  "hash": "900ad747b2fac1679cfad5a4542b8db4626fa908ab51c4a93cd4523bb5264f90"
-},{
-  "tool": "Code Inspection",
-  "category": "Redundant constructs",
-  "type": "Unused receiver parameter",
-  "severity": "High",
-  "comment": "Receiver parameter is never used",
-  "detailsInfo": "Reports receiver parameter of extension functions and properties that is not used.\n\n**Remove redundant receiver parameter** can be used to amend the code automatically.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/HubdleKotlinExtension.kt",
-      "language": "kotlin",
-      "line": 35,
-      "offset": 16,
-      "length": 7,
-      "code": {
-        "startLine": 33,
-        "length": 7,
-        "offset": 37,
-        "surroundingCode": "\n    @HubdleDslMarker\n    public fun Project.gradle(action: Action<in KotlinGradleExtension> = Action {}) {\n        action.execute(this@HubdleKotlinExtension.gradle)\n    }"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "hubdle.hubdle-gradle-plugin.main",
-    "inspectionName": "UnusedReceiverParameter"
-  },
-  "hash": "cba79f03e7649f4182aee8c2a4d5dafa86eafd5f43c873112665817f798deaa3"
-},{
-  "tool": "Code Inspection",
-  "category": "Redundant constructs",
-  "type": "Unused receiver parameter",
-  "severity": "High",
-  "comment": "Receiver parameter is never used",
-  "detailsInfo": "Reports receiver parameter of extension functions and properties that is not used.\n\n**Remove redundant receiver parameter** can be used to amend the code automatically.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/HubdleKotlinExtension.kt",
-      "language": "kotlin",
-      "line": 28,
-      "offset": 16,
-      "length": 7,
-      "code": {
-        "startLine": 26,
-        "length": 7,
-        "offset": 37,
-        "surroundingCode": "\n    @HubdleDslMarker\n    public fun Project.android(action: Action<in HubdleKotlinAndroidExtension> = Action {}) {\n        action.execute(android)\n    }"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "hubdle.hubdle-gradle-plugin.main",
-    "inspectionName": "UnusedReceiverParameter"
-  },
-  "hash": "f30cf7572bac248e22783f6793390437db5f5ac30be187b0e5d8ff63bee0bddf"
+  "hash": "ea0a4e9067a208eb31d4b7cccb6e651286cd2f63787abbcbd4b8db44a79ecbdf"
 }]}

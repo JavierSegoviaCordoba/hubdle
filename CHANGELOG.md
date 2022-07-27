@@ -14,6 +14,9 @@
 
 ### Updated
 
+- `androidx.activity:activity-ktx -> 1.5.1`
+- `androidx.activity:activity-compose -> 1.5.1`
+
 ## [0.2.0-alpha.33] - 2022-07-26
 
 ### Changed

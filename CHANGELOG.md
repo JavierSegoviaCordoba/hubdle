@@ -14,6 +14,12 @@
 
 ### Updated
 
+- `io.kotest:kotest-runner-junit5 -> 5.4.1`
+- `io.kotest:kotest-runner-junit4 -> 5.4.1`
+- `io.kotest:kotest-property -> 5.4.1`
+- `io.kotest:kotest-assertions-sql -> 5.4.1`
+- `io.kotest:kotest-assertions-json -> 5.4.1`
+- `io.kotest:kotest-assertions-core -> 5.4.1`
 - `androidx.activity:activity-ktx -> 1.5.1`
 - `androidx.activity:activity-compose -> 1.5.1`
 

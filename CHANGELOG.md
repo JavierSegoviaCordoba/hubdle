@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.diffplug.spotless:spotless-plugin-gradle -> 6.9.0`
 - `org.jetbrains.dokka:dokka-gradle-plugin -> 1.7.10`
 - `org.jetbrains.kotlin:kotlin-gradle-plugin -> 1.7.10`
 - `io.kotest:kotest-runner-junit5 -> 5.4.1`

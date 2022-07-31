@@ -18,7 +18,8 @@ internal class KotlinJvmFeaturesHubdleCatalogTest : GradleTest() {
         gradleTestKitTest("kotlin/jvm/features/catalog-disable-javiersc-stdlib") {
             gradlew("assemble")
             gradlewArgumentFromTXT()
-                .outputTrimmed.shouldNotContain("com.javiersc.kotlin:kotlin-stdlib")
+                .outputTrimmed
+                .shouldNotContain("com.javiersc.kotlin:kotlin-stdlib")
         }
     }
 

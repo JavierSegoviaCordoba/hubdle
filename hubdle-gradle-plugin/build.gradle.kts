@@ -1,75 +1,281 @@
-plugins {
-    `kotlin-dsl`
-    `javiersc-kotlin-config`
-    `javiersc-publish`
-    `generate-hubdle-dependencies`
-}
+import com.javiersc.gradle.extensions.version.catalogs.getLibraries
+import com.javiersc.gradle.tasks.extensions.maybeRegisterLazily
+import com.javiersc.gradle.tasks.extensions.namedLazily
+import com.javiersc.kotlin.stdlib.endWithNewLine
+import com.javiersc.kotlin.stdlib.removeDuplicateEmptyLines
+import org.gradle.configurationcache.extensions.capitalized
+import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-kotlin {
-    explicitApi()
+plugins { alias(libs.plugins.javiersc.hubdle) }
 
-    sourceSets.all {
-        languageSettings {
-            optIn("kotlin.ExperimentalStdlibApi")
+hubdle {
+    config {
+        explicitApi()
+        languageSettings { experimentalStdlibApi() }
+        publishing()
+    }
+
+    kotlin {
+        gradle {
+            plugin {
+                jvmVersion = 11
+
+                tags("hubdle")
+
+                gradlePlugin {
+                    plugins {
+                        create("ComposeResources") {
+                            id = "com.javiersc.hubdle"
+                            displayName = "Hubdle"
+                            description = "Easy setup for each kind of project"
+                            implementationClass = "com.javiersc.hubdle.HubdlePlugin"
+                        }
+                    }
+                }
+                main {
+                    dependencies {
+                        api(libs.adarshr.gradleTestLoggerPlugin)
+                        api(libs.diffplug.spotless.spotlessPluginGradle)
+                        api(libs.github.gradleNexus.publishPlugin)
+                        api(libs.gitlab.arturboschDetekt.detektGradlePlugin)
+                        api(libs.gradle.kotlin.gradleKotlinDslPlugins)
+                        api(libs.gradle.publish.pluginPublishPlugin)
+                        api(libs.javiersc.semver.semverGradlePlugin)
+                        api(libs.jetbrains.dokka.dokkaGradlePlugin)
+                        api(libs.jetbrains.intellijPlugins.gradleChangelogPlugin)
+                        api(libs.jetbrains.intellijPlugins.gradleIntellijPlugin)
+                        api(libs.jetbrains.kotlinx.binaryCompatibilityValidator)
+                        api(libs.jetbrains.kotlinx.kover)
+                        api(libs.jetbrains.kotlinx.serialization)
+                        api(libs.sonarqube.scannerGradle.sonarqubeGradlePlugin)
+                        api(libs.vyarus.gradleMkdocsPlugin)
+
+                        compileOnly(libs.android.toolsBuild.gradle)
+                        compileOnly(libs.jetbrains.compose.composeGradlePlugin)
+                        compileOnly(libs.jetbrains.kotlin.kotlinGradlePlugin)
+
+                        implementation(libs.eclipse.jgit)
+                        implementation(libs.javiersc.semver.semverCore)
+                    }
+                }
+                pluginUnderTestDependencies(
+                    libs.android.toolsBuild.gradle,
+                    libs.jetbrains.kotlin.kotlinGradlePlugin,
+                )
+            }
         }
     }
 }
 
-pluginBundle {
-    tags =
-        listOf(
-            "hubdle",
+generateHubdleDependencies()
+
+fun Project.generateHubdleDependencies() {
+    val dependenciesCodegen: TaskCollection<Task> =
+        tasks.maybeRegisterLazily("generateHubdleDependencies")
+
+    the<KotlinProjectExtension>()
+        .sourceSets["main"]
+        .kotlin
+        .srcDirs(buildDir.resolve("generated/main/kotlin"))
+
+    dependenciesCodegen.configureEach {
+        group = "build"
+
+        doLast {
+            buildConstants()
+
+            buildHubdleDependenciesList()
+
+            buildHubdleDependencies()
+        }
+    }
+
+    tasks.namedLazily<Task>("apiCheck").configureEach { dependsOn(dependenciesCodegen) }
+
+    tasks.namedLazily<Task>("apiDump").configureEach { dependsOn(dependenciesCodegen) }
+
+    tasks.namedLazily<Task>(LifecycleBasePlugin.ASSEMBLE_TASK_NAME).configureEach {
+        dependsOn(dependenciesCodegen)
+    }
+
+    tasks.withType<JavaCompile>().configureEach { dependsOn(dependenciesCodegen) }
+
+    tasks.withType<KotlinCompile>().configureEach { dependsOn(dependenciesCodegen) }
+}
+
+fun Project.buildConstants() {
+    catalogDependencies.forEach { minimalDependency ->
+        val fileName = minimalDependency.module.toString().replace(":", "_")
+        val dependencyVariableName = fileName.buildDependencyVariableName()
+        val dependencyVersion = minimalDependency.versionConstraint.displayName
+        buildDir
+            .resolve(
+                "generated/main/kotlin/" +
+                    "com/javiersc/hubdle/extensions/dependencies/_internal/constants/$fileName.kt",
+            )
+            .apply {
+                parentFile.mkdirs()
+                createNewFile()
+                writeText(
+                    """
+                        |package com.javiersc.hubdle.extensions.dependencies._internal.constants
+                        |
+                        |internal const val ${dependencyVariableName}_LIBRARY: String =
+                        |    "${minimalDependency.module}:$dependencyVersion"
+                        |
+                        |internal const val ${dependencyVariableName}_MODULE: String =
+                        |    "${minimalDependency.module}"
+                        |
+                        |internal const val ${dependencyVariableName}_VERSION: String =
+                        |    "$dependencyVersion"
+                        |
+                    """.trimMargin(),
+                )
+            }
+    }
+}
+
+fun Project.buildHubdleDependenciesList() {
+    buildDir
+        .resolve(
+            "generated/main/kotlin/" +
+                "com/javiersc/hubdle/extensions/dependencies/_internal/hubdle_dependencies_list.kt",
         )
+        .apply {
+            parentFile.mkdirs()
+            createNewFile()
+            val dependenciesAsStringList =
+                catalogDependencies
+                    .map {
+                        val displayName = it.versionConstraint.displayName
+                        val version = if (displayName.isBlank()) "" else ":$displayName"
+                        """"${it.module}$version",""".prependIndent("        ")
+                    }
+                    .sorted()
+            writeText(
+                """
+                    |package com.javiersc.hubdle.extensions.dependencies._internal
+                    |
+                    |internal val hubdleDependencies: List<String> =
+                    |    listOf(
+                    ${dependenciesAsStringList.joinToString("\n") { "|$it" }}
+                    |    )
+                    |
+                """.trimMargin(),
+            )
+        }
 }
 
-gradlePlugin {
-    plugins {
-        create("com.javiersc.hubdle") {
-            id = "com.javiersc.hubdle"
-            displayName = "Hubdle"
-            description = "Easy setup for each kind of project"
-            implementationClass = "com.javiersc.hubdle.HubdlePlugin"
-        }
+fun Project.buildHubdleDependencies() {
+    buildDir.resolve("generated/main/kotlin/hubdle_dependencies.kt").apply {
+        parentFile.mkdirs()
+        createNewFile()
+        writeText("")
+        catalog.libraryAliases
+            .map { libraryAlias -> catalog.findLibrary(libraryAlias).get().get() }
+            .sortedBy { library -> library.module.toString() }
+            .toSet()
+            .forEach { library: MinimalExternalModuleDependency ->
+                val dependencyVariableNames =
+                    with(library) {
+                            val fileName = module.toString().replace(":", "_")
+                            val dependencyVariableName = fileName.buildDependencyVariableName()
+
+                            val groupSanitized =
+                                if (hasCommonEndingDomain) {
+                                    val group =
+                                        when {
+                                            onlyDomain && endAndStartWithSameName -> {
+                                                ""
+                                            }
+                                            endAndStartWithSameName -> {
+                                                module.group.substringBeforeLast(".")
+                                            }
+                                            else -> module.group
+                                        }
+
+                                    group.substringAfter(".").groupOrNameSanitized()
+                                } else {
+                                    val group =
+                                        if (endAndStartWithSameName) {
+                                            module.group.substringBeforeLast(".")
+                                        } else {
+                                            module.group
+                                        }
+                                    group.groupOrNameSanitized()
+                                }
+
+                            val nameSanitized = module.name.groupOrNameSanitized().capitalized()
+                            val dependencyName =
+                                "$groupSanitized$nameSanitized"
+                                    .sanitizeDependencyVariableName()
+                                    .decapitalize()
+                            """
+                                |@HubdleDslMarker
+                                |public fun KotlinDependencyHandler.$dependencyName(): MinimalExternalModuleDependency =
+                                |    catalogDependency(${dependencyVariableName}_MODULE)
+                            """
+                        }
+                        .lines()
+
+                writeText(
+                    readText() +
+                        """ ${dependencyVariableNames.joinToString("\n")}
+                            |
+                        """.trimMargin()
+                )
+            }
+        writeText(
+            """
+                     |import com.javiersc.hubdle.extensions.HubdleDslMarker
+                     |import com.javiersc.hubdle.extensions._internal.state.catalogDependency
+                     |import com.javiersc.hubdle.extensions.dependencies._internal.constants.*
+                     |import org.gradle.api.artifacts.MinimalExternalModuleDependency
+                     |import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
+                     |
+                     |
+                 """.trimMargin() +
+                readText().removeDuplicateEmptyLines().endWithNewLine()
+        )
     }
 }
 
-val testPluginClasspath: Configuration by configurations.creating
+fun String.groupOrNameSanitized(): String =
+    fold("") { acc: String, c: Char ->
+        if (acc.lastOrNull() == '-' || acc.lastOrNull() == '.') {
+            acc.dropLast(1) + c.toUpperCase()
+        } else {
+            acc + c
+        }
+    }
 
-dependencies {
-    api(pluginLibs.adarshr.gradleTestLoggerPlugin)
-    api(pluginLibs.diffplug.spotless.spotlessPluginGradle)
-    api(pluginLibs.github.gradleNexus.publishPlugin)
-    api(pluginLibs.gitlab.arturboschDetekt.detektGradlePlugin)
-    api(pluginLibs.gradle.kotlin.gradleKotlinDslPlugins)
-    api(pluginLibs.gradle.publish.pluginPublishPlugin)
-    api(pluginLibs.javiersc.semver.semverGradlePlugin)
-    api(pluginLibs.jetbrains.dokka.dokkaGradlePlugin)
-    api(pluginLibs.jetbrains.intellijPlugins.gradleChangelogPlugin)
-    api(pluginLibs.jetbrains.intellijPlugins.gradleIntellijPlugin)
-    api(pluginLibs.jetbrains.kotlinx.binaryCompatibilityValidator)
-    api(pluginLibs.jetbrains.kotlinx.kover)
-    api(pluginLibs.jetbrains.kotlinx.serialization)
-    api(pluginLibs.sonarqube.scannerGradle.sonarqubeGradlePlugin)
-    api(pluginLibs.vyarus.gradleMkdocsPlugin)
+fun String.buildDependencyVariableName(): String =
+    replace(".", "_").replace("-", "_").toUpperCase(java.util.Locale.getDefault())
 
-    compileOnly(pluginLibs.android.toolsBuild.gradle)
-    compileOnly(pluginLibs.jetbrains.compose.composeGradlePlugin)
-    compileOnly(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)
+fun String.sanitizeDependencyVariableName(): String {
+    val words = this.map { if (it.isUpperCase()) "_$it" else it }.joinToString("").split("_")
 
-    implementation(gradleApi())
-    implementation(gradleKotlinDsl())
-    implementation(libs.eclipse.jgit)
-    implementation(libs.javiersc.gradle.gradleExtensions)
-    implementation(libs.javiersc.kotlin.kotlinStdlib)
-    implementation(libs.javiersc.semver.semverCore)
+    fun word(index: Int): String? = words.getOrNull(index)
 
-    testImplementation(gradleTestKit())
-    testImplementation(libs.javiersc.gradle.gradleTestExtensions)
-    testImplementation(libs.jetbrains.kotlin.kotlinTest)
-    testImplementation(libs.kotest.kotestAssertionsCore)
-
-    testPluginClasspath("${pluginLibs.android.toolsBuild.gradle.get().module}:7.2.1")
-    testPluginClasspath("${pluginLibs.jetbrains.kotlin.kotlinGradlePlugin.get().module}:1.6.21")
+    val newWords =
+        if (word(0)?.capitalize() + word(1) == word(2) + word(3)) {
+            words.subList(2, words.size)
+        } else words
+    return newWords.joinToString("")
 }
 
-tasks { pluginUnderTestMetadata { pluginClasspath.from(testPluginClasspath) } }
+val MinimalExternalModuleDependency.hasCommonEndingDomain: Boolean
+    get() = module.group.split(".").first().count() <= 3
+
+val MinimalExternalModuleDependency.endAndStartWithSameName: Boolean
+    get() = module.name.startsWith(module.group.substringAfterLast("."))
+
+val MinimalExternalModuleDependency.onlyDomain: Boolean
+    get() = module.group.split(".").count() == 2
+
+val Project.catalog: VersionCatalog
+    get() = the<VersionCatalogsExtension>().find("hubdleLibs").get()
+
+val Project.catalogDependencies: List<MinimalExternalModuleDependency>
+    get() = the<VersionCatalogsExtension>().getLibraries(catalog)

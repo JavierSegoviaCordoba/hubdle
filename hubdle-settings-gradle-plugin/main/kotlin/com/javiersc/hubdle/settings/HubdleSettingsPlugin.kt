@@ -7,7 +7,6 @@ import com.javiersc.hubdle.settings.extensions.extractedProjects
 import java.io.File
 import javax.inject.Inject
 import org.gradle.api.Plugin
-import org.gradle.api.artifacts.dsl.RepositoryHandler
 import org.gradle.api.initialization.Settings
 import org.gradle.api.model.ObjectFactory
 import org.gradle.kotlin.dsl.configure
@@ -33,9 +32,9 @@ constructor(
         target.configureRepositories()
 
         target.gradle.settingsEvaluated {
-            it.configureGradleEnterprise()
-            it.configureAutoInclude()
-            it.configureAutoIncludeVersionCatalogs(objects)
+            configureGradleEnterprise()
+            configureAutoInclude()
+            configureAutoIncludeVersionCatalogs(objects)
         }
     }
 }
@@ -46,11 +45,11 @@ internal val Settings.hubdleSettings: HubdleSettingsExtension
     get() = checkNotNull(extensions.findByType())
 
 private fun Settings.configureRepositories() {
-    dependencyResolutionManagement { management ->
-        management.repositories { repos: RepositoryHandler ->
-            repos.mavenCentral()
-            repos.google()
-            repos.maven(url = "https://maven.pkg.jetbrains.space/public/p/compose/dev")
+    dependencyResolutionManagement {
+        repositories {
+            mavenCentral()
+            google()
+            maven(url = "https://maven.pkg.jetbrains.space/public/p/compose/dev")
         }
     }
 }
@@ -77,18 +76,18 @@ private fun Settings.configureGradleEnterprise() {
 
     configure<GradleEnterpriseExtension> {
         buildScan {
-            it.termsOfServiceUrl = "https://gradle.com/terms-of-service"
-            it.termsOfServiceAgree = "yes"
+            termsOfServiceUrl = "https://gradle.com/terms-of-service"
+            termsOfServiceAgree = "yes"
         }
     }
 }
 
 private fun Settings.configureAutoIncludeVersionCatalogs(objects: ObjectFactory) {
-    dependencyResolutionManagement { management ->
-        management.versionCatalogs { container ->
+    dependencyResolutionManagement {
+        versionCatalogs {
             val catalogs: Map<String, File> = tomlFileInGradleDirs.getCatalogs()
             for ((name, file) in catalogs) {
-                container.create(name) { it.from(objects.fileCollection().from(file.absolutePath)) }
+                create(name) { from(objects.fileCollection().from(file.absolutePath)) }
             }
         }
     }

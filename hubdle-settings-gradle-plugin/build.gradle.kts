@@ -1,50 +1,42 @@
 plugins {
-    `java-gradle-plugin`
-    `kotlin-jvm`
-    `javiersc-kotlin-config`
-    `javiersc-publish`
+    alias(libs.plugins.javiersc.hubdle)
 }
 
-kotlin {
-    explicitApi()
-
-    sourceSets.all {
+hubdle {
+    config {
+        explicitApi()
         languageSettings {
-            optIn("kotlin.ExperimentalStdlibApi")
+            experimentalStdlibApi()
+        }
+        publishing()
+    }
+
+    kotlin {
+        gradle {
+            plugin {
+                tags("hubdle settings")
+                gradlePlugin {
+                    plugins {
+                        create("com.javiersc.hubdle.settings") {
+                            id = "com.javiersc.hubdle.settings"
+                            displayName = "Hubdle settings"
+                            description = "Easy settings setup"
+                            implementationClass =
+                                "com.javiersc.hubdle.settings.HubdleSettingsPlugin"
+                        }
+                    }
+                }
+                main {
+                    dependencies {
+                        api(javierscGradleExtensions())
+                        api(libs.gradle.enterprise.comGradleEnterpriseGradlePlugin)
+                    }
+                }
+                pluginUnderTestDependencies(
+                    libs.android.toolsBuild.gradle,
+                    libs.jetbrains.kotlin.kotlinGradlePlugin,
+                )
+            }
         }
     }
 }
-
-pluginBundle {
-    tags =
-        listOf(
-            "hubdle settings",
-        )
-}
-
-gradlePlugin {
-    plugins {
-        create("com.javiersc.hubdle.settings") {
-            id = "com.javiersc.hubdle.settings"
-            displayName = "Hubdle settings"
-            description = "Easy settings setup"
-            implementationClass = "com.javiersc.hubdle.settings.HubdleSettingsPlugin"
-        }
-    }
-}
-
-val testPluginClasspath: Configuration by configurations.creating
-
-dependencies {
-    api(libs.javiersc.gradle.gradleExtensions)
-    api(pluginLibs.gradle.enterprise.comGradleEnterpriseGradlePlugin)
-
-    implementation(gradleApi())
-    implementation(gradleKotlinDsl())
-
-    testImplementation(gradleTestKit())
-    testImplementation(libs.jetbrains.kotlin.kotlinTest)
-    testImplementation(libs.kotest.kotestAssertionsCore)
-}
-
-tasks { pluginUnderTestMetadata { pluginClasspath.from(testPluginClasspath) } }

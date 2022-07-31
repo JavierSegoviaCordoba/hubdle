@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `org.jetbrains.dokka:dokka-gradle-plugin -> 1.7.10`
+- `org.jetbrains.kotlin:kotlin-gradle-plugin -> 1.7.10`
 - `io.kotest:kotest-runner-junit5 -> 5.4.1`
 - `io.kotest:kotest-runner-junit4 -> 5.4.1`
 - `io.kotest:kotest-property -> 5.4.1`

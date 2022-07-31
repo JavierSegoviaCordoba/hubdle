@@ -157,11 +157,11 @@
 
 <div>
   <ul>
-    <li>958 number of properties</li>
-    <li>593 number of functions</li>
+    <li>959 number of properties</li>
+    <li>594 number of functions</li>
     <li>254 number of classes</li>
     <li>78 number of packages</li>
-    <li>210 number of kt files</li>
+    <li>206 number of kt files</li>
   </ul>
 </div>
 
@@ -170,25 +170,26 @@
 
 <div>
   <ul>
-    <li>11,768 lines of code (loc)</li>
-    <li>9,725 source lines of code (sloc)</li>
-    <li>6,603 logical lines of code (lloc)</li>
-    <li>55 comment lines of code (cloc)</li>
-    <li>1,235 cyclomatic complexity (mcc)</li>
+    <li>11,681 lines of code (loc)</li>
+    <li>9,663 source lines of code (sloc)</li>
+    <li>6,566 logical lines of code (lloc)</li>
+    <li>52 comment lines of code (cloc)</li>
+    <li>1,228 cyclomatic complexity (mcc)</li>
     <li>494 cognitive complexity</li>
-    <li>73 number of total code smells</li>
+    <li>96 number of total code smells</li>
     <li>0% comment source ratio</li>
     <li>187 mcc per 1,000 lloc</li>
-    <li>11 code smells per 1,000 lloc</li>
+    <li>14 code smells per 1,000 lloc</li>
   </ul>
 </div>
 
 
 <h2>Findings</h2>
-<div>Total: 73
+<div>Total: 96
   <h3>complexity: 10</h3>
   <details id="ComplexCondition" open="open">
     <summary class="rule-container"><span class="rule">ComplexCondition: 1 </span><span class="description">Complex conditions should be simplified and extracted into well-named methods if necessary.</span></summary>
+<a href="https://detekt.dev/docs/rules/complexity#complexcondition">Documentation</a>
     <ul>
       <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/documentation/site/PrebuildSiteTask.kt:379:25</span><span class="message">This condition is too complex (4). Defined complexity threshold for conditions is set to '4'</span>
         <pre><code><span class="lineno"> 376 </span>
@@ -204,6 +205,7 @@
   </details>
   <details id="ComplexMethod" open="open">
     <summary class="rule-container"><span class="rule">ComplexMethod: 1 </span><span class="description">Prefer splitting up complex methods into smaller, easier to understand methods.</span></summary>
+<a href="https://detekt.dev/docs/rules/complexity#complexmethod">Documentation</a>
     <ul>
       <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/_internal/configureBuildFeatures.kt:20:21</span><span class="message">The function configureFeatures appears to be too complex (15). Defined complexity threshold for methods is set to '15'</span>
         <pre><code><span class="lineno">  17 </span>    }
@@ -219,15 +221,16 @@
   </details>
   <details id="LongMethod" open="open">
     <summary class="rule-container"><span class="rule">LongMethod: 3 </span><span class="description">One method should have one responsibility. Long methods tend to handle many things at once. Prefer smaller methods to make them easier to understand.</span></summary>
+<a href="https://detekt.dev/docs/rules/complexity#longmethod">Documentation</a>
     <ul>
-      <li><span class="location">buildSrc/src/main/kotlin/plugins/generate-hubdle-dependencies.gradle.kts:111:5</span><span class="message">The function buildHubdleDependencies is too long (69). The maximum length is 60.</span>
-        <pre><code><span class="lineno"> 108 </span>        }
-<span class="lineno"> 109 </span>}
-<span class="lineno"> 110 </span>
-<span class="lineno"> 111 </span>fun <span class="error">buildHubdleDependencies</span>() {
-<span class="lineno"> 112 </span>    buildDir.resolve(&quot;generated/main/kotlin/hubdle_dependencies.kt&quot;).apply {
-<span class="lineno"> 113 </span>        parentFile.mkdirs()
-<span class="lineno"> 114 </span>        createNewFile()
+      <li><span class="location">hubdle-gradle-plugin/build.gradle.kts:170:13</span><span class="message">The function buildHubdleDependencies is too long (69). The maximum length is 60.</span>
+        <pre><code><span class="lineno"> 167 </span>        }
+<span class="lineno"> 168 </span>}
+<span class="lineno"> 169 </span>
+<span class="lineno"> 170 </span>fun Project.<span class="error">buildHubdleDependencies</span>() {
+<span class="lineno"> 171 </span>    buildDir.resolve(&quot;generated/main/kotlin/hubdle_dependencies.kt&quot;).apply {
+<span class="lineno"> 172 </span>        parentFile.mkdirs()
+<span class="lineno"> 173 </span>        createNewFile()
 </code></pre>
       </li>
       <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatformDarwin.kt:11:14</span><span class="message">The function configureMultiplatformDarwin is too long (80). The maximum length is 60.</span>
@@ -254,21 +257,23 @@
   </details>
   <details id="NestedBlockDepth" open="open">
     <summary class="rule-container"><span class="rule">NestedBlockDepth: 1 </span><span class="description">Excessive nesting leads to hidden complexity. Prefer extracting code to make it easier to understand.</span></summary>
+<a href="https://detekt.dev/docs/rules/complexity#nestedblockdepth">Documentation</a>
     <ul>
-      <li><span class="location">buildSrc/src/main/kotlin/plugins/generate-hubdle-dependencies.gradle.kts:111:5</span><span class="message">Function buildHubdleDependencies is nested too deeply.</span>
-        <pre><code><span class="lineno"> 108 </span>        }
-<span class="lineno"> 109 </span>}
-<span class="lineno"> 110 </span>
-<span class="lineno"> 111 </span>fun <span class="error">buildHubdleDependencies</span>() {
-<span class="lineno"> 112 </span>    buildDir.resolve(&quot;generated/main/kotlin/hubdle_dependencies.kt&quot;).apply {
-<span class="lineno"> 113 </span>        parentFile.mkdirs()
-<span class="lineno"> 114 </span>        createNewFile()
+      <li><span class="location">hubdle-gradle-plugin/build.gradle.kts:170:13</span><span class="message">Function buildHubdleDependencies is nested too deeply.</span>
+        <pre><code><span class="lineno"> 167 </span>        }
+<span class="lineno"> 168 </span>}
+<span class="lineno"> 169 </span>
+<span class="lineno"> 170 </span>fun Project.<span class="error">buildHubdleDependencies</span>() {
+<span class="lineno"> 171 </span>    buildDir.resolve(&quot;generated/main/kotlin/hubdle_dependencies.kt&quot;).apply {
+<span class="lineno"> 172 </span>        parentFile.mkdirs()
+<span class="lineno"> 173 </span>        createNewFile()
 </code></pre>
       </li>
     </ul>
   </details>
   <details id="TooManyFunctions" open="open">
     <summary class="rule-container"><span class="rule">TooManyFunctions: 4 </span><span class="description">Too many functions inside a/an file/class/object/interface always indicate a violation of the single responsibility principle. Maybe the file/class/object/interface wants to manage too many things at once. Extract functionality which clearly belongs together.</span></summary>
+<a href="https://detekt.dev/docs/rules/complexity#toomanyfunctions">Documentation</a>
     <ul>
       <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/HubdleConfigExtension.kt:25:19</span><span class="message">Class 'HubdleConfigExtension' with '11' functions detected. Defined threshold inside classes is set to '11'</span>
         <pre><code><span class="lineno">  22 </span>import org.jetbrains.kotlin.gradle.dsl.ExplicitApiMode
@@ -314,6 +319,7 @@
   <h3>empty-blocks: 1</h3>
   <details id="EmptyKtFile" open="open">
     <summary class="rule-container"><span class="rule">EmptyKtFile: 1 </span><span class="description">Empty block of code detected. As they serve no purpose they should be removed.</span></summary>
+<a href="https://detekt.dev/docs/rules/empty-blocks#emptyktfile">Documentation</a>
     <ul>
       <li><span class="location">sandbox/consumer-settings/included-library/settings.gradle.kts:1:1</span><span class="message">The empty Kotlin file /home/runner/work/hubdle/hubdle/sandbox/consumer-settings/included-library/settings.gradle.kts can be removed.</span>
         <pre><code><span class="lineno">   1 </span>
@@ -321,24 +327,228 @@
       </li>
     </ul>
   </details>
-  <h3>naming: 48</h3>
+  <h3>naming: 76</h3>
+  <details id="InvalidPackageDeclaration" open="open">
+    <summary class="rule-container"><span class="rule">InvalidPackageDeclaration: 28 </span><span class="description">Kotlin source files should be stored in the directory corresponding to its package statement.</span></summary>
+<a href="https://detekt.dev/docs/rules/naming#invalidpackagedeclaration">Documentation</a>
+    <ul>
+      <li><span class="location">sandbox/consumer-kotlin-jvm/main/kotlin/Main.kt:1:1</span><span class="message">The package declaration does not match the actual file location.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.gradle.plugins.sandbox</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>fun main() {
+<span class="lineno">   4 </span>    println(
+</code></pre>
+      </li>
+      <li><span class="location">sandbox/consumer-kotlin-multiplatform/androidMain/kotlin/Platform.kt:1:1</span><span class="message">The package declaration does not match the actual file location.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.kotlin.multiplatform.sandbox.project</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>actual object Platform {
+<span class="lineno">   4 </span>    actual val name: String = &quot;android&quot;
+</code></pre>
+      </li>
+      <li><span class="location">sandbox/consumer-kotlin-multiplatform/commonMain/kotlin/Platform.kt:1:1</span><span class="message">The package declaration does not match the actual file location.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.kotlin.multiplatform.sandbox.project</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>expect object Platform {
+<span class="lineno">   4 </span>    val name: String
+</code></pre>
+      </li>
+      <li><span class="location">sandbox/consumer-kotlin-multiplatform/iosArm32Main/kotlin/Platform.kt:1:1</span><span class="message">The package declaration does not match the actual file location.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.kotlin.multiplatform.sandbox.project</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>actual object Platform {
+<span class="lineno">   4 </span>    actual val name: String = &quot;iosArm32&quot;
+</code></pre>
+      </li>
+      <li><span class="location">sandbox/consumer-kotlin-multiplatform/iosArm64Main/kotlin/Platform.kt:1:1</span><span class="message">The package declaration does not match the actual file location.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.kotlin.multiplatform.sandbox.project</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>actual object Platform {
+<span class="lineno">   4 </span>    actual val name: String = &quot;iosArm64&quot;
+</code></pre>
+      </li>
+      <li><span class="location">sandbox/consumer-kotlin-multiplatform/iosSimulatorArm64Main/kotlin/Platform.kt:1:1</span><span class="message">The package declaration does not match the actual file location.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.kotlin.multiplatform.sandbox.project</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>actual object Platform {
+<span class="lineno">   4 </span>    actual val name: String = &quot;iosSimulatorArm64&quot;
+</code></pre>
+      </li>
+      <li><span class="location">sandbox/consumer-kotlin-multiplatform/iosX64Main/kotlin/Platform.kt:1:1</span><span class="message">The package declaration does not match the actual file location.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.kotlin.multiplatform.sandbox.project</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>actual object Platform {
+<span class="lineno">   4 </span>    actual val name: String = &quot;iosX64&quot;
+</code></pre>
+      </li>
+      <li><span class="location">sandbox/consumer-kotlin-multiplatform/jsMain/kotlin/Platform.kt:1:1</span><span class="message">The package declaration does not match the actual file location.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.kotlin.multiplatform.sandbox.project</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>actual object Platform {
+<span class="lineno">   4 </span>    actual val name: String = &quot;js&quot;
+</code></pre>
+      </li>
+      <li><span class="location">sandbox/consumer-kotlin-multiplatform/jvmMain/kotlin/Platform.kt:1:1</span><span class="message">The package declaration does not match the actual file location.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.kotlin.multiplatform.sandbox.project</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>actual object Platform {
+<span class="lineno">   4 </span>    actual val name: String = &quot;jvm&quot;
+</code></pre>
+      </li>
+      <li><span class="location">sandbox/consumer-kotlin-multiplatform/linuxArm32HfpMain/kotlin/Platform.kt:1:1</span><span class="message">The package declaration does not match the actual file location.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.kotlin.multiplatform.sandbox.project</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>actual object Platform {
+<span class="lineno">   4 </span>    actual val name: String = &quot;linuxArm32Hfp&quot;
+</code></pre>
+      </li>
+      <li><span class="location">sandbox/consumer-kotlin-multiplatform/linuxArm64Main/kotlin/Platform.kt:1:1</span><span class="message">The package declaration does not match the actual file location.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.kotlin.multiplatform.sandbox.project</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>actual object Platform {
+<span class="lineno">   4 </span>    actual val name: String = &quot;linuxArm64&quot;
+</code></pre>
+      </li>
+      <li><span class="location">sandbox/consumer-kotlin-multiplatform/linuxMips32Main/kotlin/Platform.kt:1:1</span><span class="message">The package declaration does not match the actual file location.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.kotlin.multiplatform.sandbox.project</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>actual object Platform {
+<span class="lineno">   4 </span>    actual val name: String = &quot;linuxMips32&quot;
+</code></pre>
+      </li>
+      <li><span class="location">sandbox/consumer-kotlin-multiplatform/linuxMipsel32Main/kotlin/Platform.kt:1:1</span><span class="message">The package declaration does not match the actual file location.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.kotlin.multiplatform.sandbox.project</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>actual object Platform {
+<span class="lineno">   4 </span>    actual val name: String = &quot;linuxMipsel32&quot;
+</code></pre>
+      </li>
+      <li><span class="location">sandbox/consumer-kotlin-multiplatform/linuxX64Main/kotlin/Platform.kt:1:1</span><span class="message">The package declaration does not match the actual file location.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.kotlin.multiplatform.sandbox.project</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>actual object Platform {
+<span class="lineno">   4 </span>    actual val name: String = &quot;linuxX64&quot;
+</code></pre>
+      </li>
+      <li><span class="location">sandbox/consumer-kotlin-multiplatform/macosArm64Main/kotlin/Platform.kt:1:1</span><span class="message">The package declaration does not match the actual file location.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.kotlin.multiplatform.sandbox.project</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>actual object Platform {
+<span class="lineno">   4 </span>    actual val name: String = &quot;macosArm64&quot;
+</code></pre>
+      </li>
+      <li><span class="location">sandbox/consumer-kotlin-multiplatform/macosMain/kotlin/MacosMain.kt:1:1</span><span class="message">The package declaration does not match the actual file location.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.kotlin.multiplatform.sandbox.project</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>object MacosMain {
+<span class="lineno">   4 </span>    fun platform() = Platform.name
+</code></pre>
+      </li>
+      <li><span class="location">sandbox/consumer-kotlin-multiplatform/macosX64Main/kotlin/Platform.kt:1:1</span><span class="message">The package declaration does not match the actual file location.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.kotlin.multiplatform.sandbox.project</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>actual object Platform {
+<span class="lineno">   4 </span>    actual val name: String = &quot;macosX64&quot;
+</code></pre>
+      </li>
+      <li><span class="location">sandbox/consumer-kotlin-multiplatform/mingwX64Main/kotlin/Platform.kt:1:1</span><span class="message">The package declaration does not match the actual file location.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.kotlin.multiplatform.sandbox.project</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>actual object Platform {
+<span class="lineno">   4 </span>    actual val name: String = &quot;mingwX64&quot;
+</code></pre>
+      </li>
+      <li><span class="location">sandbox/consumer-kotlin-multiplatform/mingwX86Main/kotlin/Platform.kt:1:1</span><span class="message">The package declaration does not match the actual file location.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.kotlin.multiplatform.sandbox.project</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>actual object Platform {
+<span class="lineno">   4 </span>    actual val name: String = &quot;mingwX86&quot;
+</code></pre>
+      </li>
+      <li><span class="location">sandbox/consumer-kotlin-multiplatform/tvosArm64Main/kotlin/Platform.kt:1:1</span><span class="message">The package declaration does not match the actual file location.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.kotlin.multiplatform.sandbox.project</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>actual object Platform {
+<span class="lineno">   4 </span>    actual val name: String = &quot;tvosArm64&quot;
+</code></pre>
+      </li>
+      <li><span class="location">sandbox/consumer-kotlin-multiplatform/tvosSimulatorArm64Main/kotlin/Platform.kt:1:1</span><span class="message">The package declaration does not match the actual file location.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.kotlin.multiplatform.sandbox.project</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>actual object Platform {
+<span class="lineno">   4 </span>    actual val name: String = &quot;tvosSimulatorArm64&quot;
+</code></pre>
+      </li>
+      <li><span class="location">sandbox/consumer-kotlin-multiplatform/tvosX64Main/kotlin/Platform.kt:1:1</span><span class="message">The package declaration does not match the actual file location.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.kotlin.multiplatform.sandbox.project</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>actual object Platform {
+<span class="lineno">   4 </span>    actual val name: String = &quot;tvosX64&quot;
+</code></pre>
+      </li>
+      <li><span class="location">sandbox/consumer-kotlin-multiplatform/wasm32Main/kotlin/Platform.kt:1:1</span><span class="message">The package declaration does not match the actual file location.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.kotlin.multiplatform.sandbox.project</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>actual object Platform {
+<span class="lineno">   4 </span>    actual val name: String = &quot;wasm32&quot;
+</code></pre>
+      </li>
+      <li><span class="location">sandbox/consumer-kotlin-multiplatform/watchosArm32Main/kotlin/Platform.kt:1:1</span><span class="message">The package declaration does not match the actual file location.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.kotlin.multiplatform.sandbox.project</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>actual object Platform {
+<span class="lineno">   4 </span>    actual val name: String = &quot;watchosArm32&quot;
+</code></pre>
+      </li>
+      <li><span class="location">sandbox/consumer-kotlin-multiplatform/watchosArm64Main/kotlin/Platform.kt:1:1</span><span class="message">The package declaration does not match the actual file location.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.kotlin.multiplatform.sandbox.project</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>actual object Platform {
+<span class="lineno">   4 </span>    actual val name: String = &quot;watchosArm64&quot;
+</code></pre>
+      </li>
+      <li><span class="location">sandbox/consumer-kotlin-multiplatform/watchosSimulatorArm64Main/kotlin/Platform.kt:1:1</span><span class="message">The package declaration does not match the actual file location.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.kotlin.multiplatform.sandbox.project</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>actual object Platform {
+<span class="lineno">   4 </span>    actual val name: String = &quot;watchosSimulatorArm64&quot;
+</code></pre>
+      </li>
+      <li><span class="location">sandbox/consumer-kotlin-multiplatform/watchosX64Main/kotlin/Platform.kt:1:1</span><span class="message">The package declaration does not match the actual file location.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.kotlin.multiplatform.sandbox.project</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>actual object Platform {
+<span class="lineno">   4 </span>    actual val name: String = &quot;watchosX64&quot;
+</code></pre>
+      </li>
+      <li><span class="location">sandbox/consumer-kotlin-multiplatform/watchosX86Main/kotlin/Platform.kt:1:1</span><span class="message">The package declaration does not match the actual file location.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.kotlin.multiplatform.sandbox.project</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>actual object Platform {
+<span class="lineno">   4 </span>    actual val name: String = &quot;watchosX86&quot;
+</code></pre>
+      </li>
+    </ul>
+  </details>
   <details id="MatchingDeclarationName" open="open">
     <summary class="rule-container"><span class="rule">MatchingDeclarationName: 1 </span><span class="description">If a source file contains only a single non-private top-level class or object, the file name should reflect the case-sensitive name plus the .kt extension.</span></summary>
+<a href="https://detekt.dev/docs/rules/naming#matchingdeclarationname">Documentation</a>
     <ul>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/options/DependenciesOptions.kt:6:1</span><span class="message">The file name 'DependenciesOptions' does not match the name of the single top-level declaration 'GradleDependenciesOptions'.</span>
-        <pre><code><span class="lineno">   3 </span>import org.gradle.api.Project
-<span class="lineno">   4 </span>import org.gradle.api.artifacts.Dependency
-<span class="lineno">   5 </span>
-<span class="lineno">   6 </span><span class="error">/**</span>
-<span class="lineno">   7 </span><span class="error"> * For missing dependencies or features from `DependencyHandler` in `KotlinDependencyHandler`, they</span>
-<span class="lineno">   8 </span><span class="error"> * can be accessed by using the getter:</span>
-<span class="lineno">   9 </span><span class="error"> *</span>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/options/DependenciesOptions.kt:14:18</span><span class="message">The file name 'DependenciesOptions' does not match the name of the single top-level declaration 'GradleDependenciesOptions'.</span>
+        <pre><code><span class="lineno">  11 </span> * val Property.dependencies: DependencyHandler
+<span class="lineno">  12 </span> * ```
+<span class="lineno">  13 </span> */
+<span class="lineno">  14 </span>public interface <span class="error">GradleDependenciesOptions</span> {
+<span class="lineno">  15 </span>    public fun Project.gradleApi(): Dependency = dependencies.gradleApi()
+<span class="lineno">  16 </span>    public fun Project.localGroovy(): Dependency = dependencies.localGroovy()
+<span class="lineno">  17 </span>    public fun Project.gradleTestKit(): Dependency = dependencies.gradleTestKit()
 </code></pre>
       </li>
     </ul>
   </details>
   <details id="PackageNaming" open="open">
     <summary class="rule-container"><span class="rule">PackageNaming: 47 </span><span class="description">Package names should match the naming convention set in the configuration.</span></summary>
+<a href="https://detekt.dev/docs/rules/naming#packagenaming">Documentation</a>
     <ul>
       <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/PluginIds.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
         <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions._internal</span>
@@ -682,6 +892,7 @@
   <h3>performance: 3</h3>
   <details id="SpreadOperator" open="open">
     <summary class="rule-container"><span class="rule">SpreadOperator: 3 </span><span class="description">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span></summary>
+<a href="https://detekt.dev/docs/rules/performance#spreadoperator">Documentation</a>
     <ul>
       <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatformAndroid.kt:34:51</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
         <pre><code><span class="lineno">  31 </span>                        androidState.library.publishLibraryVariants.isNotEmpty() -&gt; {
@@ -693,62 +904,33 @@
 <span class="lineno">  37 </span>                    }
 </code></pre>
       </li>
-      <li><span class="location">hubdle-settings-gradle-plugin/main/kotlin/com/javiersc/hubdle/settings/HubdleSettingsPlugin.kt:62:29</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
-        <pre><code><span class="lineno">  59 </span>    val autoInclude = hubdleSettings.autoInclude
-<span class="lineno">  60 </span>
-<span class="lineno">  61 </span>    if (autoInclude.isEnabled) {
-<span class="lineno">  62 </span>        autoInclude.includes<span class="error">(*extractedProjects().toTypedArray())</span>
-<span class="lineno">  63 </span>        autoInclude.includedBuilds(*extractedBuildProjects().toTypedArray())
-<span class="lineno">  64 </span>
-<span class="lineno">  65 </span>        for (include in autoInclude.includableProjects) {
+      <li><span class="location">hubdle-settings-gradle-plugin/main/kotlin/com/javiersc/hubdle/settings/HubdleSettingsPlugin.kt:61:29</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
+        <pre><code><span class="lineno">  58 </span>    val autoInclude = hubdleSettings.autoInclude
+<span class="lineno">  59 </span>
+<span class="lineno">  60 </span>    if (autoInclude.isEnabled) {
+<span class="lineno">  61 </span>        autoInclude.includes<span class="error">(*extractedProjects().toTypedArray())</span>
+<span class="lineno">  62 </span>        autoInclude.includedBuilds(*extractedBuildProjects().toTypedArray())
+<span class="lineno">  63 </span>
+<span class="lineno">  64 </span>        for (include in autoInclude.includableProjects) {
 </code></pre>
       </li>
-      <li><span class="location">hubdle-settings-gradle-plugin/main/kotlin/com/javiersc/hubdle/settings/HubdleSettingsPlugin.kt:63:35</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
-        <pre><code><span class="lineno">  60 </span>
-<span class="lineno">  61 </span>    if (autoInclude.isEnabled) {
-<span class="lineno">  62 </span>        autoInclude.includes(*extractedProjects().toTypedArray())
-<span class="lineno">  63 </span>        autoInclude.includedBuilds<span class="error">(*extractedBuildProjects().toTypedArray())</span>
-<span class="lineno">  64 </span>
-<span class="lineno">  65 </span>        for (include in autoInclude.includableProjects) {
-<span class="lineno">  66 </span>            include(include)
+      <li><span class="location">hubdle-settings-gradle-plugin/main/kotlin/com/javiersc/hubdle/settings/HubdleSettingsPlugin.kt:62:35</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
+        <pre><code><span class="lineno">  59 </span>
+<span class="lineno">  60 </span>    if (autoInclude.isEnabled) {
+<span class="lineno">  61 </span>        autoInclude.includes(*extractedProjects().toTypedArray())
+<span class="lineno">  62 </span>        autoInclude.includedBuilds<span class="error">(*extractedBuildProjects().toTypedArray())</span>
+<span class="lineno">  63 </span>
+<span class="lineno">  64 </span>        for (include in autoInclude.includableProjects) {
+<span class="lineno">  65 </span>            include(include)
 </code></pre>
       </li>
     </ul>
   </details>
-  <h3>style: 11</h3>
+  <h3>style: 6</h3>
   <details id="ForbiddenComment" open="open">
-    <summary class="rule-container"><span class="rule">ForbiddenComment: 8 </span><span class="description">Flags a forbidden comment.</span></summary>
+    <summary class="rule-container"><span class="rule">ForbiddenComment: 5 </span><span class="description">Flags a forbidden comment.</span></summary>
+<a href="https://detekt.dev/docs/rules/style#forbiddencomment">Documentation</a>
     <ul>
-      <li><span class="location">build.gradle.kts:14:20</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
-        <pre><code><span class="lineno">  11 </span>    `kotlinx-binary-compatibility-validator`
-<span class="lineno">  12 </span>    `javiersc-nexus`
-<span class="lineno">  13 </span>    `javiersc-readme-badges-generator`
-<span class="lineno">  14 </span>    `build-itself` <span class="error">// TODO: keep with Hubdle migration</span>
-<span class="lineno">  15 </span>}
-<span class="lineno">  16 </span>
-<span class="lineno">  17 </span>// TODO: remove in Hubdle migration
-</code></pre>
-      </li>
-      <li><span class="location">build.gradle.kts:17:1</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
-        <pre><code><span class="lineno">  14 </span>    `build-itself` // TODO: keep with Hubdle migration
-<span class="lineno">  15 </span>}
-<span class="lineno">  16 </span>
-<span class="lineno">  17 </span><span class="error">// TODO: remove in Hubdle migration</span>
-<span class="lineno">  18 </span>allprojects {
-<span class="lineno">  19 </span>    tasks.withType&lt;JavaCompile&gt;().configureEach {
-<span class="lineno">  20 </span>        sourceCompatibility = &quot;11&quot;
-</code></pre>
-      </li>
-      <li><span class="location">buildSrc/build.gradle.kts:15:5</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
-        <pre><code><span class="lineno">  12 </span>    implementation(gradleApi())
-<span class="lineno">  13 </span>    implementation(localGroovy())
-<span class="lineno">  14 </span>
-<span class="lineno">  15 </span>    <span class="error">// TODO: remove when the next issue is fixed:</span>
-<span class="lineno">  16 </span>    //  https://github.com/gradle/gradle/issues/15383#issuecomment-779893192
-<span class="lineno">  17 </span>    implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
-<span class="lineno">  18 </span>    implementation(files(pluginLibs.javaClass.superclass.protectionDomain.codeSource.location))
-</code></pre>
-      </li>
       <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/binary/compatibility/validator/_internal/configureBinaryCompatibilityValidator.kt:12:1</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
         <pre><code><span class="lineno">   9 </span>import org.gradle.api.Task
 <span class="lineno">  10 </span>import org.gradle.kotlin.dsl.the
@@ -801,33 +983,9 @@
       </li>
     </ul>
   </details>
-  <details id="MagicNumber" open="open">
-    <summary class="rule-container"><span class="rule">MagicNumber: 2 </span><span class="description">Report magic numbers. Magic number is a numeric literal that is not defined as a constant and hence it's unclear what the purpose of this number is. It's better to declare such numbers as constants and give them a proper name. By default, -1, 0, 1, and 2 are not considered to be magic numbers.</span></summary>
-    <ul>
-      <li><span class="location">buildSrc/src/main/kotlin/plugins/generate-hubdle-dependencies.gradle.kts:203:63</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
-        <pre><code><span class="lineno"> 200 </span>    fun word(index: Int): String? = words.getOrNull(index)
-<span class="lineno"> 201 </span>
-<span class="lineno"> 202 </span>    val newWords =
-<span class="lineno"> 203 </span>        if (word(0)?.capitalize() + word(1) == word(2) + word(<span class="error">3</span>)) {
-<span class="lineno"> 204 </span>            words.subList(2, words.size)
-<span class="lineno"> 205 </span>        } else words
-<span class="lineno"> 206 </span>    return newWords.joinToString(&quot;&quot;)
-</code></pre>
-      </li>
-      <li><span class="location">buildSrc/src/main/kotlin/plugins/generate-hubdle-dependencies.gradle.kts:210:56</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
-        <pre><code><span class="lineno"> 207 </span>}
-<span class="lineno"> 208 </span>
-<span class="lineno"> 209 </span>val MinimalExternalModuleDependency.hasCommonEndingDomain: Boolean
-<span class="lineno"> 210 </span>    get() = module.group.split(&quot;.&quot;).first().count() &lt;= <span class="error">3</span>
-<span class="lineno"> 211 </span>
-<span class="lineno"> 212 </span>val MinimalExternalModuleDependency.endAndStartWithSameName: Boolean
-<span class="lineno"> 213 </span>    get() = module.name.startsWith(module.group.substringAfterLast(&quot;.&quot;))
-</code></pre>
-      </li>
-    </ul>
-  </details>
   <details id="MaxLineLength" open="open">
     <summary class="rule-container"><span class="rule">MaxLineLength: 1 </span><span class="description">Line detected, which is longer than the defined maximum line length in the code style.</span></summary>
+<a href="https://detekt.dev/docs/rules/style#maxlinelength">Documentation</a>
     <ul>
       <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/documentation/readme/_internal/configureReadme.kt:22:17</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
         <pre><code><span class="lineno">  19 </span>
@@ -844,7 +1002,7 @@
 </div>
 
 
-generated with <a href="https://detekt.dev/">detekt version 1.20.0</a> on 2022-07-31 14:11:02 UTC.
+generated with <a href="https://detekt.dev/">detekt version 1.21.0</a> on 2022-07-31 16:36:24 UTC.
 
 </body>
 </html>

@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `app.cash.turbine:turbine -> 0.9.0`
 - `io.kotest.extensions:kotest-extensions-spring -> 1.1.2`
 - `com.diffplug.spotless:spotless-plugin-gradle -> 6.9.0`
 - `org.jetbrains.dokka:dokka-gradle-plugin -> 1.7.10`

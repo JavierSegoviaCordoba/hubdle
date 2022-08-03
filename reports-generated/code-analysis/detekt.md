@@ -1420,4 +1420,4 @@ Line detected, which is longer than the defined maximum line length in the code 
 
 ```
 
-generated with [detekt version 1.21.0](https://detekt.dev/) on 2022-08-03 10:37:05 UTC
+generated with [detekt version 1.21.0](https://detekt.dev/) on 2022-08-03 17:22:00 UTC

@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `io.kotest.extensions:kotest-extensions-testcontainers -> 1.3.4`
 - `app.cash.turbine:turbine -> 0.9.0`
 - `io.kotest.extensions:kotest-extensions-spring -> 1.1.2`
 - `com.diffplug.spotless:spotless-plugin-gradle -> 6.9.0`

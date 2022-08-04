@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.8.0`
 - `com.android.tools.build:gradle -> 7.2.2`
 - `io.kotest.extensions:kotest-extensions-testcontainers -> 1.3.4`
 - `app.cash.turbine:turbine -> 0.9.0`

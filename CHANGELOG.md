@@ -14,6 +14,12 @@
 
 ### Updated
 
+- `io.kotest:kotest-runner-junit5 -> 5.4.2`
+- `io.kotest:kotest-runner-junit4 -> 5.4.2`
+- `io.kotest:kotest-property -> 5.4.2`
+- `io.kotest:kotest-assertions-sql -> 5.4.2`
+- `io.kotest:kotest-assertions-json -> 5.4.2`
+- `io.kotest:kotest-assertions-core -> 5.4.2`
 - `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.11.1`
 - `gradle -> 7.5.1`
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.8.0`
@@ -24,12 +30,6 @@
 - `com.diffplug.spotless:spotless-plugin-gradle -> 6.9.0`
 - `org.jetbrains.dokka:dokka-gradle-plugin -> 1.7.10`
 - `org.jetbrains.kotlin:kotlin-gradle-plugin -> 1.7.10`
-- `io.kotest:kotest-runner-junit5 -> 5.4.1`
-- `io.kotest:kotest-runner-junit4 -> 5.4.1`
-- `io.kotest:kotest-property -> 5.4.1`
-- `io.kotest:kotest-assertions-sql -> 5.4.1`
-- `io.kotest:kotest-assertions-json -> 5.4.1`
-- `io.kotest:kotest-assertions-core -> 5.4.1`
 - `androidx.activity:activity-ktx -> 1.5.1`
 - `androidx.activity:activity-compose -> 1.5.1`
 

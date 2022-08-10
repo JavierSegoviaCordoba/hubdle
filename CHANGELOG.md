@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `androidx.appcompat:appcompat -> 1.5.0`
 - `io.kotest:kotest-runner-junit5 -> 5.4.2`
 - `io.kotest:kotest-runner-junit4 -> 5.4.2`
 - `io.kotest:kotest-property -> 5.4.2`

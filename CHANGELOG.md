@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.diffplug.spotless:spotless-plugin-gradle -> 6.9.1`
 - `androidx.appcompat:appcompat -> 1.5.0`
 - `io.kotest:kotest-runner-junit5 -> 5.4.2`
 - `io.kotest:kotest-runner-junit4 -> 5.4.2`
@@ -28,7 +29,6 @@
 - `io.kotest.extensions:kotest-extensions-testcontainers -> 1.3.4`
 - `app.cash.turbine:turbine -> 0.9.0`
 - `io.kotest.extensions:kotest-extensions-spring -> 1.1.2`
-- `com.diffplug.spotless:spotless-plugin-gradle -> 6.9.0`
 - `org.jetbrains.dokka:dokka-gradle-plugin -> 1.7.10`
 - `org.jetbrains.kotlin:kotlin-gradle-plugin -> 1.7.10`
 - `androidx.activity:activity-ktx -> 1.5.1`

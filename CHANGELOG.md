@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.11.1`
 - `gradle -> 7.5.1`
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.8.0`
 - `com.android.tools.build:gradle -> 7.2.2`

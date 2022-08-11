@@ -14,6 +14,12 @@
 
 ### Updated
 
+- `io.ktor:ktor-serialization-kotlinx-json -> 2.1.0`
+- `io.ktor:ktor-client-okhttp -> 2.1.0`
+- `io.ktor:ktor-client-mock -> 2.1.0`
+- `io.ktor:ktor-client-core -> 2.1.0`
+- `io.ktor:ktor-client-content-negotiation -> 2.1.0`
+- `io.ktor:ktor-client-cio -> 2.1.0`
 - `com.diffplug.spotless:spotless-plugin-gradle -> 6.9.1`
 - `androidx.appcompat:appcompat -> 1.5.0`
 - `io.kotest:kotest-runner-junit5 -> 5.4.2`

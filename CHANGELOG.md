@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx:kotlinx-serialization-json -> 1.4.0`
+- `org.jetbrains.kotlinx:kotlinx-serialization-core -> 1.4.0`
 - `io.ktor:ktor-serialization-kotlinx-json -> 2.1.0`
 - `io.ktor:ktor-client-okhttp -> 2.1.0`
 - `io.ktor:ktor-client-mock -> 2.1.0`

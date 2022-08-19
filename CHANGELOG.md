@@ -14,7 +14,7 @@
 
 ### Updated
 
-- `gradle/gradle-build-action -> v2.2.4`
+- `gradle/gradle-build-action -> v2.2.5`
 - `org.jetbrains.kotlinx:kotlinx-serialization-json -> 1.4.0`
 - `org.jetbrains.kotlinx:kotlinx-serialization-core -> 1.4.0`
 - `io.ktor:ktor-serialization-kotlinx-json -> 2.1.0`

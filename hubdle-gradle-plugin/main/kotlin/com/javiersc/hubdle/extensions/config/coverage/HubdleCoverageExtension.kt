@@ -5,7 +5,7 @@ import com.javiersc.hubdle.extensions._internal.state.hubdleState
 import com.javiersc.hubdle.extensions.options.EnableableOptions
 import com.javiersc.hubdle.extensions.options.RawConfigOptions
 import javax.inject.Inject
-import kotlinx.kover.api.KoverExtension
+import kotlinx.kover.api.KoverProjectConfig
 import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.model.ObjectFactory
@@ -32,7 +32,7 @@ constructor(
     @HubdleDslMarker
     public open class RawConfigExtension {
 
-        public fun Project.kover(action: Action<KoverExtension>) {
+        public fun Project.kover(action: Action<KoverProjectConfig>) {
             hubdleState.config.coverage.rawConfig.kover = action
         }
     }

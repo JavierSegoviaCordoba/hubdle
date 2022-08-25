@@ -83,7 +83,7 @@ import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.KotlinMultipl
 import com.javiersc.semver.gradle.plugin.SemverExtension
 import io.gitlab.arturbosch.detekt.extensions.DetektExtension
 import java.io.File
-import kotlinx.kover.api.KoverExtension
+import kotlinx.kover.api.KoverProjectConfig
 import kotlinx.validation.ApiValidationExtension
 import org.gradle.api.Action
 import org.gradle.api.Project
@@ -220,7 +220,7 @@ internal data class HubdleState(
             }
 
             data class RawConfig(
-                var kover: Action<KoverExtension>? = null,
+                var kover: Action<KoverProjectConfig>? = null,
             ) : Configurable {
                 override fun configure(project: Project) = configureKotlinCoverageRawConfig(project)
             }

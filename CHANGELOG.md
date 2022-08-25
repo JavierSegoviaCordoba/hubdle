@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.compose:compose-gradle-plugin -> 1.2.0-alpha01-dev770`
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.8.1`
 - `gradle/gradle-build-action -> v2.2.5`
 - `org.jetbrains.kotlinx:kotlinx-serialization-json -> 1.4.0`

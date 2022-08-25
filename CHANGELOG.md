@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx:kover -> 0.6.0`
 - `com.diffplug.spotless:spotless-plugin-gradle -> 6.10.0`
 - `org.jetbrains.compose:compose-gradle-plugin -> 1.2.0-alpha01-dev770`
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.8.1`

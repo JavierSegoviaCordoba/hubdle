@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.diffplug.spotless:spotless-plugin-gradle -> 6.10.0`
 - `org.jetbrains.compose:compose-gradle-plugin -> 1.2.0-alpha01-dev770`
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.8.1`
 - `gradle/gradle-build-action -> v2.2.5`
@@ -25,7 +26,6 @@
 - `io.ktor:ktor-client-core -> 2.1.0`
 - `io.ktor:ktor-client-content-negotiation -> 2.1.0`
 - `io.ktor:ktor-client-cio -> 2.1.0`
-- `com.diffplug.spotless:spotless-plugin-gradle -> 6.9.1`
 - `androidx.appcompat:appcompat -> 1.5.0`
 - `io.kotest:kotest-runner-junit5 -> 5.4.2`
 - `io.kotest:kotest-runner-junit4 -> 5.4.2`

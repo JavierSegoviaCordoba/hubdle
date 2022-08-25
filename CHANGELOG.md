@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.8.1`
 - `gradle/gradle-build-action -> v2.2.5`
 - `org.jetbrains.kotlinx:kotlinx-serialization-json -> 1.4.0`
 - `org.jetbrains.kotlinx:kotlinx-serialization-core -> 1.4.0`
@@ -33,7 +34,6 @@
 - `io.kotest:kotest-assertions-core -> 5.4.2`
 - `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.11.1`
 - `gradle -> 7.5.1`
-- `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.8.0`
 - `com.android.tools.build:gradle -> 7.2.2`
 - `io.kotest.extensions:kotest-extensions-testcontainers -> 1.3.4`
 - `app.cash.turbine:turbine -> 0.9.0`

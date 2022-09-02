@@ -14,10 +14,10 @@
 
 ### Updated
 
+- `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.9.0`
 - `org.jetbrains.compose:compose-gradle-plugin -> 1.2.0-alpha01-dev774`
 - `org.jetbrains.kotlinx:kover -> 0.6.0`
 - `com.diffplug.spotless:spotless-plugin-gradle -> 6.10.0`
-- `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.8.1`
 - `gradle/gradle-build-action -> v2.2.5`
 - `org.jetbrains.kotlinx:kotlinx-serialization-json -> 1.4.0`
 - `org.jetbrains.kotlinx:kotlinx-serialization-core -> 1.4.0`

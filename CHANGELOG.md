@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.11.1`
 - `androidx.core:core-ktx -> 1.9.0`
 - `com.squareup.moshi:moshi -> 1.14.0`
 - `io.ktor:ktor-serialization-kotlinx-json -> 2.1.1`

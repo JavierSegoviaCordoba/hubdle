@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `androidx.appcompat:appcompat -> 1.5.1`
 - `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.11.1`
 - `androidx.core:core-ktx -> 1.9.0`
 - `com.squareup.moshi:moshi -> 1.14.0`
@@ -30,7 +31,6 @@
 - `gradle/gradle-build-action -> v2.2.5`
 - `org.jetbrains.kotlinx:kotlinx-serialization-json -> 1.4.0`
 - `org.jetbrains.kotlinx:kotlinx-serialization-core -> 1.4.0`
-- `androidx.appcompat:appcompat -> 1.5.0`
 - `io.kotest:kotest-runner-junit5 -> 5.4.2`
 - `io.kotest:kotest-runner-junit4 -> 5.4.2`
 - `io.kotest:kotest-property -> 5.4.2`

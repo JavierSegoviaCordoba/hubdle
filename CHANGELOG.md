@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `androidx.core:core-ktx -> 1.9.0`
 - `com.squareup.moshi:moshi -> 1.14.0`
 - `io.ktor:ktor-serialization-kotlinx-json -> 2.1.1`
 - `io.ktor:ktor-client-okhttp -> 2.1.1`

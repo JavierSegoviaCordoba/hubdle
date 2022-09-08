@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.eclipse.jgit:org.eclipse.jgit -> 6.3.0.202209071007-r`
 - `androidx.appcompat:appcompat -> 1.5.1`
 - `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.11.1`
 - `androidx.core:core-ktx -> 1.9.0`

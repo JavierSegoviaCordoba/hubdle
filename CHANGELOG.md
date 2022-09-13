@@ -14,6 +14,10 @@
 
 ### Updated
 
+## [0.2.0-alpha.34] - 2022-09-13
+
+### Updated
+
 - `com.javiersc.gradle:gradle-test-extensions -> 1.0.0-alpha.27`
 - `com.javiersc.gradle:gradle-extensions -> 1.0.0-alpha.27`
 - `org.eclipse.jgit:org.eclipse.jgit -> 6.3.0.202209071007-r`

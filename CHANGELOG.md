@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `com.javiersc.gradle:gradle-test-extensions -> 1.0.0-alpha.27`
+- `com.javiersc.gradle:gradle-extensions -> 1.0.0-alpha.27`
 - `org.eclipse.jgit:org.eclipse.jgit -> 6.3.0.202209071007-r`
 - `androidx.appcompat:appcompat -> 1.5.1`
 - `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.11.1`

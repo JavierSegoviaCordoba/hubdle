@@ -170,7 +170,9 @@ private fun Project.configurePublishOnlySemver() {
             doLast {
                 val publishNonSemver = getBooleanProperty(HubdleProperty.Publishing.nonSemver)
                 check(isSemver || publishNonSemver) {
-                    "Only semantic versions can be published (current: $version)"
+                    """|Only semantic versions can be published (current: $version)
+                       |Use `"-Ppublishing.nonSemver=true"` to force the publication 
+                    """.trimMargin()
                 }
             }
         }

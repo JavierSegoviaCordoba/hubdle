@@ -3,6 +3,7 @@ package com.javiersc.hubdle.extensions.config.coverage._internal
 import com.javiersc.gradle.project.extensions.isRootProject
 import com.javiersc.hubdle.extensions._internal.PluginIds
 import com.javiersc.hubdle.extensions._internal.state.hubdleState
+import kotlinx.kover.api.KoverMergedConfig
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.the
 
@@ -11,7 +12,10 @@ internal fun configureCoverage(project: Project) {
         check(project.isRootProject) {
             "Hubdle `coverage()` must be only configured in the root project"
         }
-        project.pluginManager.apply(PluginIds.Kotlin.kover)
+        project.allprojects {
+            pluginManager.apply(PluginIds.Kotlin.kover)
+            the<KoverMergedConfig>().enable()
+        }
     }
 }
 

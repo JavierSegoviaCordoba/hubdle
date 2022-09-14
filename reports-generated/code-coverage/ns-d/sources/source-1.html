@@ -79,6 +79,46 @@ Current scope:     <a href="../../index.html">all classes</a>
 </td>
 </tr>
   <tr>
+    <td class="name">ConfigureCoverageKt$configureCoverage$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/9)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">ConfigureCoverageKt$configureCoverage$2$$special$$inlined$the$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+  </tr>
+  <tr>
     <td class="name">ConfigureCoverageKt$configureKotlinCoverageRawConfig$$inlined$the$1</td>
 <td class="coverageStat">
   <span class="percent">
@@ -97,7 +137,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/3)
+    (0/5)
   </span>
 </td>
 <td class="coverageStat">
@@ -113,7 +153,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/5)
+    (0/7)
   </span>
 </td>
 <td class="coverageStat">
@@ -121,7 +161,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/40)
+    (0/49)
   </span>
 </td>
 </tr>
@@ -137,21 +177,25 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">3</i>&nbsp;import com.javiersc.gradle.project.extensions.isRootProject
 <i class="no-highlight">4</i>&nbsp;import com.javiersc.hubdle.extensions._internal.PluginIds
 <i class="no-highlight">5</i>&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
-<i class="no-highlight">6</i>&nbsp;import org.gradle.api.Project
-<i class="no-highlight">7</i>&nbsp;import org.gradle.kotlin.dsl.the
-<i class="no-highlight">8</i>&nbsp;
-<i class="no-highlight">9</i>&nbsp;internal fun configureCoverage(project: Project) {
-<b class="nc"><i class="no-highlight">10</i>&nbsp;    if (project.hubdleState.config.coverage.isEnabled) {</b>
-<b class="nc"><i class="no-highlight">11</i>&nbsp;        check(project.isRootProject) {</b>
-<b class="nc"><i class="no-highlight">12</i>&nbsp;            &quot;Hubdle `coverage()` must be only configured in the root project&quot;</b>
-<i class="no-highlight">13</i>&nbsp;        }
-<b class="nc"><i class="no-highlight">14</i>&nbsp;        project.pluginManager.apply(PluginIds.Kotlin.kover)</b>
-<i class="no-highlight">15</i>&nbsp;    }
-<i class="no-highlight">16</i>&nbsp;}
-<i class="no-highlight">17</i>&nbsp;
-<i class="no-highlight">18</i>&nbsp;internal fun configureKotlinCoverageRawConfig(project: Project) {
-<b class="nc"><i class="no-highlight">19</i>&nbsp;    project.hubdleState.config.coverage.rawConfig.kover?.execute(project.the())</b>
+<i class="no-highlight">6</i>&nbsp;import kotlinx.kover.api.KoverMergedConfig
+<i class="no-highlight">7</i>&nbsp;import org.gradle.api.Project
+<i class="no-highlight">8</i>&nbsp;import org.gradle.kotlin.dsl.the
+<i class="no-highlight">9</i>&nbsp;
+<i class="no-highlight">10</i>&nbsp;internal fun configureCoverage(project: Project) {
+<b class="nc"><i class="no-highlight">11</i>&nbsp;    if (project.hubdleState.config.coverage.isEnabled) {</b>
+<b class="nc"><i class="no-highlight">12</i>&nbsp;        check(project.isRootProject) {</b>
+<b class="nc"><i class="no-highlight">13</i>&nbsp;            &quot;Hubdle `coverage()` must be only configured in the root project&quot;</b>
+<i class="no-highlight">14</i>&nbsp;        }
+<b class="nc"><i class="no-highlight">15</i>&nbsp;        project.allprojects {</b>
+<b class="nc"><i class="no-highlight">16</i>&nbsp;            pluginManager.apply(PluginIds.Kotlin.kover)</b>
+<b class="nc"><i class="no-highlight">17</i>&nbsp;            the&lt;KoverMergedConfig&gt;().enable()</b>
+<i class="no-highlight">18</i>&nbsp;        }
+<i class="no-highlight">19</i>&nbsp;    }
 <i class="no-highlight">20</i>&nbsp;}
+<i class="no-highlight">21</i>&nbsp;
+<i class="no-highlight">22</i>&nbsp;internal fun configureKotlinCoverageRawConfig(project: Project) {
+<b class="nc"><i class="no-highlight">23</i>&nbsp;    project.hubdleState.config.coverage.rawConfig.kover?.execute(project.the())</b>
+<i class="no-highlight">24</i>&nbsp;}
 </div>
 </pre>
 </div>
@@ -178,7 +222,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-13 12:30</div>
+    <div style="float:right;">generated on 2022-09-14 10:24</div>
 </div>
 </body>
 </html>

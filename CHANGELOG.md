@@ -12,9 +12,13 @@
 
 ### Fixed
 
-- `coverage` doesn't generate merged reports
-
 ### Updated
+
+## [0.2.0-alpha.35] - 2022-09-14
+
+### Fixed
+
+- `coverage` doesn't generate merged reports
 
 ## [0.2.0-alpha.34] - 2022-09-13
 

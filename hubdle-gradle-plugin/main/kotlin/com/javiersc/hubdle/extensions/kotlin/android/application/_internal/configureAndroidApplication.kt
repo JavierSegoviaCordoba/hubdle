@@ -63,6 +63,7 @@ private val KotlinDependencyHandler.androidApplicationFeatures:
 internal fun Project.configureAndroidApplicationComposeFeature() {
     if (androidApplicationFeatures.compose) {
         pluginManager.apply(PluginIds.Kotlin.compose)
+        project.configure<ApplicationExtension> { defaultConfig { buildFeatures.compose = true } }
     }
 }
 

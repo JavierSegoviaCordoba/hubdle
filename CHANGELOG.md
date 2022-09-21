@@ -14,6 +14,8 @@
 
 ### Fixed
 
+- Compose previews doesn't work without `buildFeature.compose = true`
+
 ### Updated
 
 - `compileSdk -> 33`

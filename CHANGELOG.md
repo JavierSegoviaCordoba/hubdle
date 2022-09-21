@@ -4,6 +4,7 @@
 
 ### Added
 
+- compose and other android related libraries
 - `org.jetbrains.kotlinx:kotlinx-collections-immutable` library
 
 ### Changed

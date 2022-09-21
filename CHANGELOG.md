@@ -19,6 +19,8 @@
 
 ### Updated
 
+- `org.junit.jupiter:junit-jupiter-params -> 5.9.1`
+- `org.junit.jupiter:junit-jupiter-api -> 5.9.1`
 - `app.cash.turbine:turbine -> 0.11.0`
 - `io.arrow-kt:arrow-core -> 1.1.3`
 - `compileSdk -> 33`

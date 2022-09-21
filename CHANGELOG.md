@@ -19,6 +19,7 @@
 
 ### Updated
 
+- `io.arrow-kt:arrow-core -> 1.1.3`
 - `compileSdk -> 33`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.2.0-alpha.35`
 

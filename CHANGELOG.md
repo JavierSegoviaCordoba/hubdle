@@ -19,6 +19,8 @@
 
 ### Updated
 
+- `androidx.compose.material3:material3-window-size-class -> 1.0.0-beta03`
+- `androidx.compose.material3:material3 -> 1.0.0-beta03`
 - `androidx.activity:activity-ktx -> 1.6.0`
 - `androidx.activity:activity-compose -> 1.6.0`
 - `org.junit.jupiter:junit-jupiter-params -> 5.9.1`

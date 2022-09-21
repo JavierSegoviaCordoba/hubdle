@@ -19,6 +19,8 @@
 
 ### Updated
 
+- `androidx.activity:activity-ktx -> 1.6.0`
+- `androidx.activity:activity-compose -> 1.6.0`
 - `app.cash.turbine:turbine -> 0.11.0`
 - `io.arrow-kt:arrow-core -> 1.1.3`
 - `compileSdk -> 33`

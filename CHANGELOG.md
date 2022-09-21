@@ -19,6 +19,7 @@
 
 ### Updated
 
+- `org.jetbrains.compose:compose-gradle-plugin -> 1.2.0-beta01`
 - `com.facebook:ktfmt -> 0.40`
 - `actions/setup-java -> v3.5.0`
 - `com.diffplug.spotless:spotless-plugin-gradle -> 6.11.0`

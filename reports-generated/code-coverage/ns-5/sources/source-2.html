@@ -7,9 +7,10 @@
   <title>Coverage Report > CheckCompatibilityKt</title>
   <style type="text/css">
     @import "../../css/coverage.css";
-    @import "../../css/highlight-idea.css";
+    @import "../../css/idea.min.css";
   </style>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
 </head>
 
 <body>
@@ -97,45 +98,45 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.javiersc.hubdle.extensions._internal.state
-<i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;import org.gradle.api.Project
-<i class="no-highlight">4</i>&nbsp;
-<i class="no-highlight">5</i>&nbsp;public fun Project.checkCompatibility() {
-<b class="nc"><i class="no-highlight">6</i>&nbsp;    checkOnlyOneKotlinApplied()</b>
-<i class="no-highlight">7</i>&nbsp;}
-<i class="no-highlight">8</i>&nbsp;
-<i class="no-highlight">9</i>&nbsp;private fun Project.checkOnlyOneKotlinApplied() {
-<b class="nc"><i class="no-highlight">10</i>&nbsp;    val state = hubdleState.kotlin</b>
-<i class="no-highlight">11</i>&nbsp;
-<b class="nc"><i class="no-highlight">12</i>&nbsp;    val isAndroidLibraryEnabled = state.android.library</b>
-<b class="nc"><i class="no-highlight">13</i>&nbsp;    val isGradlePluginEnabled = state.gradle.plugin</b>
-<b class="nc"><i class="no-highlight">14</i>&nbsp;    val isGradleVersionCatalogEnabled = state.gradle.versionCatalog</b>
-<b class="nc"><i class="no-highlight">15</i>&nbsp;    val isJvmEnabled = state.jvm</b>
-<b class="nc"><i class="no-highlight">16</i>&nbsp;    val isMultiplatformEnabled = state.multiplatform</b>
-<i class="no-highlight">17</i>&nbsp;
-<b class="nc"><i class="no-highlight">18</i>&nbsp;    val enabled =</b>
-<b class="nc"><i class="no-highlight">19</i>&nbsp;        listOf(</b>
-<b class="nc"><i class="no-highlight">20</i>&nbsp;            isAndroidLibraryEnabled,</b>
-<b class="nc"><i class="no-highlight">21</i>&nbsp;            isGradlePluginEnabled,</b>
-<b class="nc"><i class="no-highlight">22</i>&nbsp;            isGradleVersionCatalogEnabled,</b>
-<b class="nc"><i class="no-highlight">23</i>&nbsp;            isJvmEnabled,</b>
-<b class="nc"><i class="no-highlight">24</i>&nbsp;            isMultiplatformEnabled,</b>
-<i class="no-highlight">25</i>&nbsp;        )
-<i class="no-highlight">26</i>&nbsp;
-<b class="nc"><i class="no-highlight">27</i>&nbsp;    check(enabled.count(Enableable::isEnabled) &lt;= 1) {</b>
-<b class="nc"><i class="no-highlight">28</i>&nbsp;        &quot;&quot;&quot; </b>
-<i class="no-highlight">29</i>&nbsp;            |There is more than one `kotlin` project enabled:
-<b class="nc"><i class="no-highlight">30</i>&nbsp;            |  - Android library(isEnabled = ${state.android.library.isEnabled})</b>
-<b class="nc"><i class="no-highlight">31</i>&nbsp;            |  - Gradle Plugin(isEnabled = ${state.gradle.plugin.isEnabled})</b>
-<b class="nc"><i class="no-highlight">32</i>&nbsp;            |  - Version Catalog(isEnabled = ${state.gradle.versionCatalog.isEnabled})</b>
-<b class="nc"><i class="no-highlight">33</i>&nbsp;            |  - Jvm(isEnabled = ${state.jvm.isEnabled})</b>
-<b class="nc"><i class="no-highlight">34</i>&nbsp;            |  - Multiplatform(isEnabled = ${state.multiplatform.isEnabled})</b>
-<i class="no-highlight">35</i>&nbsp;            |
-<b class="nc"><i class="no-highlight">36</i>&nbsp;        &quot;&quot;&quot;.trimMargin()</b>
-<i class="no-highlight">37</i>&nbsp;    }
-<i class="no-highlight">38</i>&nbsp;}
-</div>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.extensions._internal.state
+&nbsp;
+&nbsp;import org.gradle.api.Project
+&nbsp;
+&nbsp;public fun Project.checkCompatibility() {
+<b class="nc">&nbsp;    checkOnlyOneKotlinApplied()</b>
+&nbsp;}
+&nbsp;
+&nbsp;private fun Project.checkOnlyOneKotlinApplied() {
+<b class="nc">&nbsp;    val state = hubdleState.kotlin</b>
+&nbsp;
+<b class="nc">&nbsp;    val isAndroidLibraryEnabled = state.android.library</b>
+<b class="nc">&nbsp;    val isGradlePluginEnabled = state.gradle.plugin</b>
+<b class="nc">&nbsp;    val isGradleVersionCatalogEnabled = state.gradle.versionCatalog</b>
+<b class="nc">&nbsp;    val isJvmEnabled = state.jvm</b>
+<b class="nc">&nbsp;    val isMultiplatformEnabled = state.multiplatform</b>
+&nbsp;
+<b class="nc">&nbsp;    val enabled =</b>
+<b class="nc">&nbsp;        listOf(</b>
+<b class="nc">&nbsp;            isAndroidLibraryEnabled,</b>
+<b class="nc">&nbsp;            isGradlePluginEnabled,</b>
+<b class="nc">&nbsp;            isGradleVersionCatalogEnabled,</b>
+<b class="nc">&nbsp;            isJvmEnabled,</b>
+<b class="nc">&nbsp;            isMultiplatformEnabled,</b>
+&nbsp;        )
+&nbsp;
+<b class="nc">&nbsp;    check(enabled.count(Enableable::isEnabled) &lt;= 1) {</b>
+<b class="nc">&nbsp;        &quot;&quot;&quot; </b>
+&nbsp;            |There is more than one `kotlin` project enabled:
+<b class="nc">&nbsp;            |  - Android library(isEnabled = ${state.android.library.isEnabled})</b>
+<b class="nc">&nbsp;            |  - Gradle Plugin(isEnabled = ${state.gradle.plugin.isEnabled})</b>
+<b class="nc">&nbsp;            |  - Version Catalog(isEnabled = ${state.gradle.versionCatalog.isEnabled})</b>
+<b class="nc">&nbsp;            |  - Jvm(isEnabled = ${state.jvm.isEnabled})</b>
+<b class="nc">&nbsp;            |  - Multiplatform(isEnabled = ${state.multiplatform.isEnabled})</b>
+&nbsp;            |
+<b class="nc">&nbsp;        &quot;&quot;&quot;.trimMargin()</b>
+&nbsp;    }
+&nbsp;}
+</code>
 </pre>
 </div>
 
@@ -150,18 +151,15 @@ Current scope:     <a href="../../index.html">all classes</a>
     @*/
 
     if (!msie || msie && msie9) {
-        var codeBlock = document.getElementById('sourceCode');
-
-        if (codeBlock) {
-            hljs.highlightBlock(codeBlock);
-        }
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
     }
 })();
 </script>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-14 10:24</div>
+    <div style="float:right;">generated on 2022-09-21 10:36</div>
 </div>
 </body>
 </html>

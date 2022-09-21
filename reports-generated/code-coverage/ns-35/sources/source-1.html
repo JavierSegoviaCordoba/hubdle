@@ -7,9 +7,10 @@
   <title>Coverage Report > ConfigureJvmKt</title>
   <style type="text/css">
     @import "../../css/coverage.css";
-    @import "../../css/highlight-idea.css";
+    @import "../../css/idea.min.css";
   </style>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
 </head>
 
 <body>
@@ -292,113 +293,113 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.javiersc.hubdle.extensions.kotlin.jvm._internal
-<i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;import com.javiersc.hubdle.extensions._internal.PluginIds
-<i class="no-highlight">4</i>&nbsp;import com.javiersc.hubdle.extensions._internal.state.HubdleState
-<i class="no-highlight">5</i>&nbsp;import com.javiersc.hubdle.extensions._internal.state.catalogDependency as catalogDep
-<i class="no-highlight">6</i>&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
-<i class="no-highlight">7</i>&nbsp;import com.javiersc.hubdle.extensions.config.explicit.api._internal.configureExplicitApi
-<i class="no-highlight">8</i>&nbsp;import com.javiersc.hubdle.extensions.dependencies._internal.constants.COM_JAVIERSC_GRADLE_GRADLE_EXTENSIONS_MODULE
-<i class="no-highlight">9</i>&nbsp;import com.javiersc.hubdle.extensions.dependencies._internal.constants.COM_JAVIERSC_GRADLE_GRADLE_TEST_EXTENSIONS_MODULE
-<i class="no-highlight">10</i>&nbsp;import com.javiersc.hubdle.extensions.dependencies._internal.constants.COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE
-<i class="no-highlight">11</i>&nbsp;import com.javiersc.hubdle.extensions.dependencies._internal.constants.IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE
-<i class="no-highlight">12</i>&nbsp;import com.javiersc.hubdle.extensions.dependencies._internal.constants.ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_MODULE
-<i class="no-highlight">13</i>&nbsp;import com.javiersc.hubdle.extensions.dependencies._internal.constants.ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_TEST_MODULE
-<i class="no-highlight">14</i>&nbsp;import com.javiersc.hubdle.extensions.dependencies._internal.constants.ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_CORE_MODULE
-<i class="no-highlight">15</i>&nbsp;import com.javiersc.hubdle.extensions.dependencies._internal.constants.ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_JSON_MODULE
-<i class="no-highlight">16</i>&nbsp;import com.javiersc.hubdle.extensions.dependencies._internal.constants.ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE
-<i class="no-highlight">17</i>&nbsp;import com.javiersc.hubdle.extensions.kotlin._internal.configJvmTarget
-<i class="no-highlight">18</i>&nbsp;import com.javiersc.hubdle.extensions.options.configureDefaultJavaSourceSets
-<i class="no-highlight">19</i>&nbsp;import com.javiersc.hubdle.extensions.options.configureDefaultKotlinSourceSets
-<i class="no-highlight">20</i>&nbsp;import com.javiersc.hubdle.extensions.options.configureJavaJarsForPublishing
-<i class="no-highlight">21</i>&nbsp;import com.javiersc.hubdle.extensions.options.configureMavenPublication
-<i class="no-highlight">22</i>&nbsp;import com.javiersc.hubdle.extensions.options.configurePublishingExtension
-<i class="no-highlight">23</i>&nbsp;import com.javiersc.hubdle.extensions.options.configureSigningForPublishing
-<i class="no-highlight">24</i>&nbsp;import org.gradle.api.Project
-<i class="no-highlight">25</i>&nbsp;import org.gradle.api.plugins.JavaPluginExtension
-<i class="no-highlight">26</i>&nbsp;import org.gradle.kotlin.dsl.gradleKotlinDsl
-<i class="no-highlight">27</i>&nbsp;import org.gradle.kotlin.dsl.the
-<i class="no-highlight">28</i>&nbsp;import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
-<i class="no-highlight">29</i>&nbsp;import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
-<i class="no-highlight">30</i>&nbsp;import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
-<i class="no-highlight">31</i>&nbsp;
-<i class="no-highlight">32</i>&nbsp;internal fun configureJvm(project: Project) {
-<b class="nc"><i class="no-highlight">33</i>&nbsp;    if (project.hubdleState.kotlin.jvm.isEnabled) {</b>
-<b class="nc"><i class="no-highlight">34</i>&nbsp;        project.pluginManager.apply(PluginIds.Kotlin.jvm)</b>
-<i class="no-highlight">35</i>&nbsp;
-<b class="nc"><i class="no-highlight">36</i>&nbsp;        project.configureExplicitApi()</b>
-<b class="nc"><i class="no-highlight">37</i>&nbsp;        project.configJvmTarget()</b>
-<b class="nc"><i class="no-highlight">38</i>&nbsp;        project.the&lt;JavaPluginExtension&gt;().configureDefaultJavaSourceSets()</b>
-<b class="nc"><i class="no-highlight">39</i>&nbsp;        project.the&lt;KotlinProjectExtension&gt;().configureDefaultKotlinSourceSets()</b>
-<b class="nc"><i class="no-highlight">40</i>&nbsp;        project.the&lt;KotlinJvmProjectExtension&gt;().configureJvmDependencies()</b>
-<i class="no-highlight">41</i>&nbsp;
-<b class="nc"><i class="no-highlight">42</i>&nbsp;        project.hubdleState.kotlin.jvm.application?.let {</b>
-<b class="nc"><i class="no-highlight">43</i>&nbsp;            project.pluginManager.apply(PluginIds.Gradle.application)</b>
-<b class="nc"><i class="no-highlight">44</i>&nbsp;            it.execute(project.the())</b>
-<b class="nc"><i class="no-highlight">45</i>&nbsp;        }</b>
-<i class="no-highlight">46</i>&nbsp;
-<b class="nc"><i class="no-highlight">47</i>&nbsp;        if (project.hubdleState.config.publishing.isEnabled) {</b>
-<b class="nc"><i class="no-highlight">48</i>&nbsp;            project.pluginManager.apply(PluginIds.Publishing.mavenPublish)</b>
-<b class="nc"><i class="no-highlight">49</i>&nbsp;            project.configurePublishingExtension()</b>
-<b class="nc"><i class="no-highlight">50</i>&nbsp;            project.configureMavenPublication(&quot;java&quot;)</b>
-<b class="nc"><i class="no-highlight">51</i>&nbsp;            project.configureJavaJarsForPublishing()</b>
-<b class="nc"><i class="no-highlight">52</i>&nbsp;            project.configureSigningForPublishing()</b>
-<i class="no-highlight">53</i>&nbsp;        }
-<i class="no-highlight">54</i>&nbsp;    }
-<i class="no-highlight">55</i>&nbsp;}
-<i class="no-highlight">56</i>&nbsp;
-<i class="no-highlight">57</i>&nbsp;internal fun configureKotlinJvmRawConfig(project: Project) {
-<b class="nc"><i class="no-highlight">58</i>&nbsp;    project.hubdleState.kotlin.jvm.rawConfig.kotlin?.execute(project.the())</b>
-<i class="no-highlight">59</i>&nbsp;}
-<i class="no-highlight">60</i>&nbsp;
-<i class="no-highlight">61</i>&nbsp;private fun KotlinJvmProjectExtension.configureJvmDependencies() {
-<b class="nc"><i class="no-highlight">62</i>&nbsp;    sourceSets.named(&quot;main&quot;) { dependencies { configureMainDependencies() } }</b>
-<b class="nc"><i class="no-highlight">63</i>&nbsp;    sourceSets.named(&quot;test&quot;) { dependencies { configureTestDependencies() } }</b>
-<i class="no-highlight">64</i>&nbsp;}
-<i class="no-highlight">65</i>&nbsp;
-<i class="no-highlight">66</i>&nbsp;internal val Project.jvmFeatures: HubdleState.Kotlin.Jvm.Features
-<b class="nc"><i class="no-highlight">67</i>&nbsp;    get() = hubdleState.kotlin.jvm.features</b>
-<i class="no-highlight">68</i>&nbsp;
-<i class="no-highlight">69</i>&nbsp;private val KotlinDependencyHandler.jvmFeatures: HubdleState.Kotlin.Jvm.Features
-<b class="nc"><i class="no-highlight">70</i>&nbsp;    get() = project.jvmFeatures</b>
-<i class="no-highlight">71</i>&nbsp;
-<i class="no-highlight">72</i>&nbsp;private fun KotlinDependencyHandler.configureMainDependencies() {
-<b class="nc"><i class="no-highlight">73</i>&nbsp;    if (jvmFeatures.coroutines) {</b>
-<b class="nc"><i class="no-highlight">74</i>&nbsp;        implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_MODULE))</b>
-<i class="no-highlight">75</i>&nbsp;    }
-<b class="nc"><i class="no-highlight">76</i>&nbsp;    if (jvmFeatures.extendedGradle) {</b>
-<b class="nc"><i class="no-highlight">77</i>&nbsp;        implementation(project.dependencies.gradleApi())</b>
-<b class="nc"><i class="no-highlight">78</i>&nbsp;        implementation(project.dependencies.gradleTestKit())</b>
-<b class="nc"><i class="no-highlight">79</i>&nbsp;        implementation(project.gradleKotlinDsl())</b>
-<b class="nc"><i class="no-highlight">80</i>&nbsp;        implementation(catalogDep(COM_JAVIERSC_GRADLE_GRADLE_EXTENSIONS_MODULE))</b>
-<i class="no-highlight">81</i>&nbsp;    }
-<b class="nc"><i class="no-highlight">82</i>&nbsp;    if (jvmFeatures.extendedStdlib) {</b>
-<b class="nc"><i class="no-highlight">83</i>&nbsp;        implementation(catalogDep(COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE))</b>
-<i class="no-highlight">84</i>&nbsp;    }
-<i class="no-highlight">85</i>&nbsp;
-<b class="nc"><i class="no-highlight">86</i>&nbsp;    if (jvmFeatures.serialization.isEnabled) {</b>
-<b class="nc"><i class="no-highlight">87</i>&nbsp;        project.pluginManager.apply(PluginIds.Kotlin.serialization)</b>
-<b class="nc"><i class="no-highlight">88</i>&nbsp;        implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_CORE_MODULE))</b>
-<b class="nc"><i class="no-highlight">89</i>&nbsp;        if (jvmFeatures.serialization.useJson) {</b>
-<b class="nc"><i class="no-highlight">90</i>&nbsp;            implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_JSON_MODULE))</b>
-<i class="no-highlight">91</i>&nbsp;        }
-<i class="no-highlight">92</i>&nbsp;    }
-<i class="no-highlight">93</i>&nbsp;}
-<i class="no-highlight">94</i>&nbsp;
-<i class="no-highlight">95</i>&nbsp;private fun KotlinDependencyHandler.configureTestDependencies() {
-<b class="nc"><i class="no-highlight">96</i>&nbsp;    implementation(catalogDep(ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE))</b>
-<b class="nc"><i class="no-highlight">97</i>&nbsp;    if (jvmFeatures.coroutines) {</b>
-<b class="nc"><i class="no-highlight">98</i>&nbsp;        implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_TEST_MODULE))</b>
-<i class="no-highlight">99</i>&nbsp;    }
-<b class="nc"><i class="no-highlight">100</i>&nbsp;    if (jvmFeatures.extendedGradle) {</b>
-<b class="nc"><i class="no-highlight">101</i>&nbsp;        implementation(catalogDep(COM_JAVIERSC_GRADLE_GRADLE_TEST_EXTENSIONS_MODULE))</b>
-<i class="no-highlight">102</i>&nbsp;    }
-<b class="nc"><i class="no-highlight">103</i>&nbsp;    if (jvmFeatures.extendedTesting) {</b>
-<b class="nc"><i class="no-highlight">104</i>&nbsp;        implementation(catalogDep(IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE))</b>
-<i class="no-highlight">105</i>&nbsp;    }
-<i class="no-highlight">106</i>&nbsp;}
-</div>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.extensions.kotlin.jvm._internal
+&nbsp;
+&nbsp;import com.javiersc.hubdle.extensions._internal.PluginIds
+&nbsp;import com.javiersc.hubdle.extensions._internal.state.HubdleState
+&nbsp;import com.javiersc.hubdle.extensions._internal.state.catalogDependency as catalogDep
+&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
+&nbsp;import com.javiersc.hubdle.extensions.config.explicit.api._internal.configureExplicitApi
+&nbsp;import com.javiersc.hubdle.extensions.dependencies._internal.constants.COM_JAVIERSC_GRADLE_GRADLE_EXTENSIONS_MODULE
+&nbsp;import com.javiersc.hubdle.extensions.dependencies._internal.constants.COM_JAVIERSC_GRADLE_GRADLE_TEST_EXTENSIONS_MODULE
+&nbsp;import com.javiersc.hubdle.extensions.dependencies._internal.constants.COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE
+&nbsp;import com.javiersc.hubdle.extensions.dependencies._internal.constants.IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE
+&nbsp;import com.javiersc.hubdle.extensions.dependencies._internal.constants.ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_MODULE
+&nbsp;import com.javiersc.hubdle.extensions.dependencies._internal.constants.ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_TEST_MODULE
+&nbsp;import com.javiersc.hubdle.extensions.dependencies._internal.constants.ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_CORE_MODULE
+&nbsp;import com.javiersc.hubdle.extensions.dependencies._internal.constants.ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_JSON_MODULE
+&nbsp;import com.javiersc.hubdle.extensions.dependencies._internal.constants.ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE
+&nbsp;import com.javiersc.hubdle.extensions.kotlin._internal.configJvmTarget
+&nbsp;import com.javiersc.hubdle.extensions.options.configureDefaultJavaSourceSets
+&nbsp;import com.javiersc.hubdle.extensions.options.configureDefaultKotlinSourceSets
+&nbsp;import com.javiersc.hubdle.extensions.options.configureJavaJarsForPublishing
+&nbsp;import com.javiersc.hubdle.extensions.options.configureMavenPublication
+&nbsp;import com.javiersc.hubdle.extensions.options.configurePublishingExtension
+&nbsp;import com.javiersc.hubdle.extensions.options.configureSigningForPublishing
+&nbsp;import org.gradle.api.Project
+&nbsp;import org.gradle.api.plugins.JavaPluginExtension
+&nbsp;import org.gradle.kotlin.dsl.gradleKotlinDsl
+&nbsp;import org.gradle.kotlin.dsl.the
+&nbsp;import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
+&nbsp;import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
+&nbsp;import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
+&nbsp;
+&nbsp;internal fun configureJvm(project: Project) {
+<b class="nc">&nbsp;    if (project.hubdleState.kotlin.jvm.isEnabled) {</b>
+<b class="nc">&nbsp;        project.pluginManager.apply(PluginIds.Kotlin.jvm)</b>
+&nbsp;
+<b class="nc">&nbsp;        project.configureExplicitApi()</b>
+<b class="nc">&nbsp;        project.configJvmTarget()</b>
+<b class="nc">&nbsp;        project.the&lt;JavaPluginExtension&gt;().configureDefaultJavaSourceSets()</b>
+<b class="nc">&nbsp;        project.the&lt;KotlinProjectExtension&gt;().configureDefaultKotlinSourceSets()</b>
+<b class="nc">&nbsp;        project.the&lt;KotlinJvmProjectExtension&gt;().configureJvmDependencies()</b>
+&nbsp;
+<b class="nc">&nbsp;        project.hubdleState.kotlin.jvm.application?.let {</b>
+<b class="nc">&nbsp;            project.pluginManager.apply(PluginIds.Gradle.application)</b>
+<b class="nc">&nbsp;            it.execute(project.the())</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;
+<b class="nc">&nbsp;        if (project.hubdleState.config.publishing.isEnabled) {</b>
+<b class="nc">&nbsp;            project.pluginManager.apply(PluginIds.Publishing.mavenPublish)</b>
+<b class="nc">&nbsp;            project.configurePublishingExtension()</b>
+<b class="nc">&nbsp;            project.configureMavenPublication(&quot;java&quot;)</b>
+<b class="nc">&nbsp;            project.configureJavaJarsForPublishing()</b>
+<b class="nc">&nbsp;            project.configureSigningForPublishing()</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;internal fun configureKotlinJvmRawConfig(project: Project) {
+<b class="nc">&nbsp;    project.hubdleState.kotlin.jvm.rawConfig.kotlin?.execute(project.the())</b>
+&nbsp;}
+&nbsp;
+&nbsp;private fun KotlinJvmProjectExtension.configureJvmDependencies() {
+<b class="nc">&nbsp;    sourceSets.named(&quot;main&quot;) { dependencies { configureMainDependencies() } }</b>
+<b class="nc">&nbsp;    sourceSets.named(&quot;test&quot;) { dependencies { configureTestDependencies() } }</b>
+&nbsp;}
+&nbsp;
+&nbsp;internal val Project.jvmFeatures: HubdleState.Kotlin.Jvm.Features
+<b class="nc">&nbsp;    get() = hubdleState.kotlin.jvm.features</b>
+&nbsp;
+&nbsp;private val KotlinDependencyHandler.jvmFeatures: HubdleState.Kotlin.Jvm.Features
+<b class="nc">&nbsp;    get() = project.jvmFeatures</b>
+&nbsp;
+&nbsp;private fun KotlinDependencyHandler.configureMainDependencies() {
+<b class="nc">&nbsp;    if (jvmFeatures.coroutines) {</b>
+<b class="nc">&nbsp;        implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_MODULE))</b>
+&nbsp;    }
+<b class="nc">&nbsp;    if (jvmFeatures.extendedGradle) {</b>
+<b class="nc">&nbsp;        implementation(project.dependencies.gradleApi())</b>
+<b class="nc">&nbsp;        implementation(project.dependencies.gradleTestKit())</b>
+<b class="nc">&nbsp;        implementation(project.gradleKotlinDsl())</b>
+<b class="nc">&nbsp;        implementation(catalogDep(COM_JAVIERSC_GRADLE_GRADLE_EXTENSIONS_MODULE))</b>
+&nbsp;    }
+<b class="nc">&nbsp;    if (jvmFeatures.extendedStdlib) {</b>
+<b class="nc">&nbsp;        implementation(catalogDep(COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE))</b>
+&nbsp;    }
+&nbsp;
+<b class="nc">&nbsp;    if (jvmFeatures.serialization.isEnabled) {</b>
+<b class="nc">&nbsp;        project.pluginManager.apply(PluginIds.Kotlin.serialization)</b>
+<b class="nc">&nbsp;        implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_CORE_MODULE))</b>
+<b class="nc">&nbsp;        if (jvmFeatures.serialization.useJson) {</b>
+<b class="nc">&nbsp;            implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_JSON_MODULE))</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;private fun KotlinDependencyHandler.configureTestDependencies() {
+<b class="nc">&nbsp;    implementation(catalogDep(ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE))</b>
+<b class="nc">&nbsp;    if (jvmFeatures.coroutines) {</b>
+<b class="nc">&nbsp;        implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_TEST_MODULE))</b>
+&nbsp;    }
+<b class="nc">&nbsp;    if (jvmFeatures.extendedGradle) {</b>
+<b class="nc">&nbsp;        implementation(catalogDep(COM_JAVIERSC_GRADLE_GRADLE_TEST_EXTENSIONS_MODULE))</b>
+&nbsp;    }
+<b class="nc">&nbsp;    if (jvmFeatures.extendedTesting) {</b>
+<b class="nc">&nbsp;        implementation(catalogDep(IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE))</b>
+&nbsp;    }
+&nbsp;}
+</code>
 </pre>
 </div>
 
@@ -413,18 +414,15 @@ Current scope:     <a href="../../index.html">all classes</a>
     @*/
 
     if (!msie || msie && msie9) {
-        var codeBlock = document.getElementById('sourceCode');
-
-        if (codeBlock) {
-            hljs.highlightBlock(codeBlock);
-        }
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
     }
 })();
 </script>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-14 10:24</div>
+    <div style="float:right;">generated on 2022-09-21 10:36</div>
 </div>
 </body>
 </html>

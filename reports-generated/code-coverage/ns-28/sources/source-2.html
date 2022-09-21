@@ -7,9 +7,10 @@
   <title>Coverage Report > ConfigureBuildFeaturesKt</title>
   <style type="text/css">
     @import "../../css/coverage.css";
-    @import "../../css/highlight-idea.css";
+    @import "../../css/idea.min.css";
   </style>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
 </head>
 
 <body>
@@ -155,45 +156,45 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.javiersc.hubdle.extensions.kotlin.android._internal
-<i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;import com.android.build.api.dsl.BuildFeatures as AndroidBuildFeatures
-<i class="no-highlight">4</i>&nbsp;import com.android.build.api.dsl.BuildType
-<i class="no-highlight">5</i>&nbsp;import com.android.build.api.dsl.CommonExtension
-<i class="no-highlight">6</i>&nbsp;import com.android.build.api.dsl.DefaultConfig
-<i class="no-highlight">7</i>&nbsp;import com.android.build.api.dsl.ProductFlavor
-<i class="no-highlight">8</i>&nbsp;import com.javiersc.gradle.properties.extensions.getPropertyOrNull
-<i class="no-highlight">9</i>&nbsp;import com.javiersc.hubdle.HubdleProperty.Android.BuildFeatures
-<i class="no-highlight">10</i>&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
-<i class="no-highlight">11</i>&nbsp;import org.gradle.api.Project
-<i class="no-highlight">12</i>&nbsp;
-<i class="no-highlight">13</i>&nbsp;internal fun Project.configureAndroidBuildFeatures(androidCommonExtension: AndroidCommonExtension) {
-<b class="nc"><i class="no-highlight">14</i>&nbsp;    val kotlinState = hubdleState.kotlin</b>
-<b class="nc"><i class="no-highlight">15</i>&nbsp;    if (kotlinState.android.isEnabled || kotlinState.multiplatform.android.isEnabled) {</b>
-<b class="nc"><i class="no-highlight">16</i>&nbsp;        configureFeatures(androidCommonExtension)</b>
-<i class="no-highlight">17</i>&nbsp;    }
-<i class="no-highlight">18</i>&nbsp;}
-<i class="no-highlight">19</i>&nbsp;
-<i class="no-highlight">20</i>&nbsp;private fun Project.configureFeatures(androidCommonExtension: AndroidCommonExtension) {
-<b class="nc"><i class="no-highlight">21</i>&nbsp;    val feats = project.hubdleState.kotlin.android.buildFeatures</b>
-<b class="nc"><i class="no-highlight">22</i>&nbsp;    androidCommonExtension.buildFeatures {</b>
-<b class="nc"><i class="no-highlight">23</i>&nbsp;        aidl = feats.aidl ?: propOrNull(BuildFeatures.aidl) ?: trueIfApp()</b>
-<b class="nc"><i class="no-highlight">24</i>&nbsp;        buildConfig = feats.buildConfig ?: propOrNull(BuildFeatures.buildConfig) ?: trueIfApp()</b>
-<b class="nc"><i class="no-highlight">25</i>&nbsp;        compose = feats.compose ?: propOrNull(BuildFeatures.compose) ?: false</b>
-<b class="nc"><i class="no-highlight">26</i>&nbsp;        renderScript = feats.renderScript ?: propOrNull(BuildFeatures.renderScript) ?: trueIfApp()</b>
-<b class="nc"><i class="no-highlight">27</i>&nbsp;        resValues = feats.resValues ?: propOrNull(BuildFeatures.resValues) ?: trueIfApp()</b>
-<b class="nc"><i class="no-highlight">28</i>&nbsp;        shaders = feats.shaders ?: propOrNull(BuildFeatures.shaders) ?: trueIfApp()</b>
-<b class="nc"><i class="no-highlight">29</i>&nbsp;        viewBinding = feats.viewBinding ?: propOrNull(BuildFeatures.viewBinding) ?: false</b>
-<i class="no-highlight">30</i>&nbsp;    }
-<i class="no-highlight">31</i>&nbsp;}
-<i class="no-highlight">32</i>&nbsp;
-<b class="nc"><i class="no-highlight">33</i>&nbsp;private fun Project.propOrNull(key: String): Boolean? = getPropertyOrNull(key)?.toBoolean()</b>
-<i class="no-highlight">34</i>&nbsp;
-<b class="nc"><i class="no-highlight">35</i>&nbsp;private fun Project.trueIfApp(): Boolean = hubdleState.kotlin.android.application.isEnabled</b>
-<i class="no-highlight">36</i>&nbsp;
-<i class="no-highlight">37</i>&nbsp;internal typealias AndroidCommonExtension =
-<i class="no-highlight">38</i>&nbsp;    CommonExtension&lt;out AndroidBuildFeatures, out BuildType, out DefaultConfig, out ProductFlavor&gt;
-</div>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.extensions.kotlin.android._internal
+&nbsp;
+&nbsp;import com.android.build.api.dsl.BuildFeatures as AndroidBuildFeatures
+&nbsp;import com.android.build.api.dsl.BuildType
+&nbsp;import com.android.build.api.dsl.CommonExtension
+&nbsp;import com.android.build.api.dsl.DefaultConfig
+&nbsp;import com.android.build.api.dsl.ProductFlavor
+&nbsp;import com.javiersc.gradle.properties.extensions.getPropertyOrNull
+&nbsp;import com.javiersc.hubdle.HubdleProperty.Android.BuildFeatures
+&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
+&nbsp;import org.gradle.api.Project
+&nbsp;
+&nbsp;internal fun Project.configureAndroidBuildFeatures(androidCommonExtension: AndroidCommonExtension) {
+<b class="nc">&nbsp;    val kotlinState = hubdleState.kotlin</b>
+<b class="nc">&nbsp;    if (kotlinState.android.isEnabled || kotlinState.multiplatform.android.isEnabled) {</b>
+<b class="nc">&nbsp;        configureFeatures(androidCommonExtension)</b>
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;private fun Project.configureFeatures(androidCommonExtension: AndroidCommonExtension) {
+<b class="nc">&nbsp;    val feats = project.hubdleState.kotlin.android.buildFeatures</b>
+<b class="nc">&nbsp;    androidCommonExtension.buildFeatures {</b>
+<b class="nc">&nbsp;        aidl = feats.aidl ?: propOrNull(BuildFeatures.aidl) ?: trueIfApp()</b>
+<b class="nc">&nbsp;        buildConfig = feats.buildConfig ?: propOrNull(BuildFeatures.buildConfig) ?: trueIfApp()</b>
+<b class="nc">&nbsp;        compose = feats.compose ?: propOrNull(BuildFeatures.compose) ?: false</b>
+<b class="nc">&nbsp;        renderScript = feats.renderScript ?: propOrNull(BuildFeatures.renderScript) ?: trueIfApp()</b>
+<b class="nc">&nbsp;        resValues = feats.resValues ?: propOrNull(BuildFeatures.resValues) ?: trueIfApp()</b>
+<b class="nc">&nbsp;        shaders = feats.shaders ?: propOrNull(BuildFeatures.shaders) ?: trueIfApp()</b>
+<b class="nc">&nbsp;        viewBinding = feats.viewBinding ?: propOrNull(BuildFeatures.viewBinding) ?: false</b>
+&nbsp;    }
+&nbsp;}
+&nbsp;
+<b class="nc">&nbsp;private fun Project.propOrNull(key: String): Boolean? = getPropertyOrNull(key)?.toBoolean()</b>
+&nbsp;
+<b class="nc">&nbsp;private fun Project.trueIfApp(): Boolean = hubdleState.kotlin.android.application.isEnabled</b>
+&nbsp;
+&nbsp;internal typealias AndroidCommonExtension =
+&nbsp;    CommonExtension&lt;out AndroidBuildFeatures, out BuildType, out DefaultConfig, out ProductFlavor&gt;
+</code>
 </pre>
 </div>
 
@@ -208,18 +209,15 @@ Current scope:     <a href="../../index.html">all classes</a>
     @*/
 
     if (!msie || msie && msie9) {
-        var codeBlock = document.getElementById('sourceCode');
-
-        if (codeBlock) {
-            hljs.highlightBlock(codeBlock);
-        }
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
     }
 })();
 </script>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-14 10:24</div>
+    <div style="float:right;">generated on 2022-09-21 10:36</div>
 </div>
 </body>
 </html>

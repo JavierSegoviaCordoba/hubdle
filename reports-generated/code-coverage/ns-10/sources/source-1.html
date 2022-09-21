@@ -7,9 +7,10 @@
   <title>Coverage Report > Changelog</title>
   <style type="text/css">
     @import "../../css/coverage.css";
-    @import "../../css/highlight-idea.css";
+    @import "../../css/idea.min.css";
   </style>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
 </head>
 
 <body>
@@ -274,130 +275,130 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;@file:Suppress(&quot;SpreadOperator&quot;)
-<i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;package com.javiersc.hubdle.extensions.config.documentation.changelog._internal
-<i class="no-highlight">4</i>&nbsp;
-<i class="no-highlight">5</i>&nbsp;import com.javiersc.hubdle.extensions.config.documentation.changelog._internal.Changelog.Version
-<i class="no-highlight">6</i>&nbsp;import com.javiersc.hubdle.extensions.config.documentation.changelog._internal.Changelog.Version.Group
-<i class="no-highlight">7</i>&nbsp;import com.javiersc.hubdle.extensions.config.documentation.changelog._internal.Changelog.Version.Group.Item
-<i class="no-highlight">8</i>&nbsp;import java.io.File
-<i class="no-highlight">9</i>&nbsp;
-<b class="fc"><i class="no-highlight">10</i>&nbsp;internal class Changelog(val header: String, vararg val versions: Version) {</b>
-<i class="no-highlight">11</i>&nbsp;
-<i class="no-highlight">12</i>&nbsp;    override fun toString(): String =
-<b class="fc"><i class="no-highlight">13</i>&nbsp;        buildString {</b>
-<b class="fc"><i class="no-highlight">14</i>&nbsp;                appendLine(header)</b>
-<b class="fc"><i class="no-highlight">15</i>&nbsp;                appendLine()</b>
-<b class="fc"><i class="no-highlight">16</i>&nbsp;                for (version in versions) {</b>
-<b class="fc"><i class="no-highlight">17</i>&nbsp;                    append(&quot;$version&quot;)</b>
-<i class="no-highlight">18</i>&nbsp;                }
-<b class="pc"><i class="no-highlight">19</i>&nbsp;                if (versions.isNotEmpty()) appendLine()</b>
-<b class="fc"><i class="no-highlight">20</i>&nbsp;            }</b>
-<b class="fc"><i class="no-highlight">21</i>&nbsp;            .lines()</b>
-<b class="fc"><i class="no-highlight">22</i>&nbsp;            .dropLastWhile(String::isBlank)</b>
-<b class="fc"><i class="no-highlight">23</i>&nbsp;            .joinToString(&quot;\n&quot;) + &quot;\n&quot;</b>
-<i class="no-highlight">24</i>&nbsp;
-<b class="fc"><i class="no-highlight">25</i>&nbsp;    internal class Version(val value: String, vararg val groups: Group) {</b>
-<i class="no-highlight">26</i>&nbsp;
-<b class="fc"><i class="no-highlight">27</i>&nbsp;        override fun toString(): String = buildString {</b>
-<b class="fc"><i class="no-highlight">28</i>&nbsp;            appendLine(value)</b>
-<b class="fc"><i class="no-highlight">29</i>&nbsp;            appendLine()</b>
-<b class="fc"><i class="no-highlight">30</i>&nbsp;            for (group in groups) {</b>
-<b class="fc"><i class="no-highlight">31</i>&nbsp;                append(&quot;$group&quot;)</b>
-<i class="no-highlight">32</i>&nbsp;            }
-<b class="fc"><i class="no-highlight">33</i>&nbsp;            if (groups.isEmpty()) {</b>
-<b class="fc"><i class="no-highlight">34</i>&nbsp;                appendLine(&quot;${Item.itemPrefix} ${Item.noChanges}&quot;)</b>
-<b class="fc"><i class="no-highlight">35</i>&nbsp;                appendLine()</b>
-<i class="no-highlight">36</i>&nbsp;            }
-<b class="fc"><i class="no-highlight">37</i>&nbsp;        }</b>
-<i class="no-highlight">38</i>&nbsp;
-<b class="fc"><i class="no-highlight">39</i>&nbsp;        internal class Group(val value: String, vararg val items: Item) {</b>
-<i class="no-highlight">40</i>&nbsp;
-<b class="fc"><i class="no-highlight">41</i>&nbsp;            override fun toString(): String = buildString {</b>
-<b class="fc"><i class="no-highlight">42</i>&nbsp;                appendLine(value)</b>
-<b class="fc"><i class="no-highlight">43</i>&nbsp;                appendLine()</b>
-<b class="fc"><i class="no-highlight">44</i>&nbsp;                for (item in items) {</b>
-<b class="fc"><i class="no-highlight">45</i>&nbsp;                    appendLine(&quot;$item&quot;)</b>
-<i class="no-highlight">46</i>&nbsp;                }
-<b class="fc"><i class="no-highlight">47</i>&nbsp;                if (items.isNotEmpty()) appendLine()</b>
-<b class="fc"><i class="no-highlight">48</i>&nbsp;            }</b>
-<i class="no-highlight">49</i>&nbsp;
-<b class="fc"><i class="no-highlight">50</i>&nbsp;            internal class Item(val value: String) {</b>
-<i class="no-highlight">51</i>&nbsp;
-<b class="fc"><i class="no-highlight">52</i>&nbsp;                override fun toString(): String = value</b>
-<i class="no-highlight">53</i>&nbsp;
-<i class="no-highlight">54</i>&nbsp;                companion object {
-<b class="fc"><i class="no-highlight">55</i>&nbsp;                    var itemPrefix: String = &quot;-&quot;</b>
-<b class="fc"><i class="no-highlight">56</i>&nbsp;                    var noChanges: String = &quot;No changes&quot;</b>
-<b class="pc"><i class="no-highlight">57</i>&nbsp;                    var unreleased: String = &quot;Unreleased&quot;</b>
-<i class="no-highlight">58</i>&nbsp;                }
-<i class="no-highlight">59</i>&nbsp;            }
-<i class="no-highlight">60</i>&nbsp;        }
-<i class="no-highlight">61</i>&nbsp;    }
-<b class="fc"><i class="no-highlight">62</i>&nbsp;    internal companion object</b>
-<i class="no-highlight">63</i>&nbsp;}
-<i class="no-highlight">64</i>&nbsp;
-<i class="no-highlight">65</i>&nbsp;internal fun Changelog.Companion.fromFile(changelogFile: File): Changelog =
-<i class="no-highlight">66</i>&nbsp;    Changelog.fromString(changelogFile.readText())
-<i class="no-highlight">67</i>&nbsp;
-<i class="no-highlight">68</i>&nbsp;internal fun Changelog.Companion.fromString(changelogText: String): Changelog {
-<i class="no-highlight">69</i>&nbsp;    val lines = changelogText.lines()
-<i class="no-highlight">70</i>&nbsp;    val header = lines.first { it.startsWith(&quot;# &quot;) }
-<i class="no-highlight">71</i>&nbsp;    val versions: Array&lt;Version&gt; = buildVersions(lines)
-<i class="no-highlight">72</i>&nbsp;
-<i class="no-highlight">73</i>&nbsp;    return Changelog(header, *versions)
-<i class="no-highlight">74</i>&nbsp;}
-<i class="no-highlight">75</i>&nbsp;
-<i class="no-highlight">76</i>&nbsp;private fun buildVersions(lines: List&lt;String&gt;): Array&lt;Version&gt; =
-<i class="no-highlight">77</i>&nbsp;    buildList {
-<i class="no-highlight">78</i>&nbsp;            val versions =
-<i class="no-highlight">79</i>&nbsp;                buildMap&lt;String, List&lt;String&gt;&gt; {
-<i class="no-highlight">80</i>&nbsp;                    lines.filter(String::isNotBlank).forEach { line -&gt;
-<i class="no-highlight">81</i>&nbsp;                        when {
-<i class="no-highlight">82</i>&nbsp;                            line.startsWith(&quot;## &quot;) -&gt; set(line, getOrDefault(line, emptyList()))
-<i class="no-highlight">83</i>&nbsp;                            !line.startsWith(&quot;## &quot;) -&gt; {
-<i class="no-highlight">84</i>&nbsp;                                val key = entries.lastOrNull()?.key
-<i class="no-highlight">85</i>&nbsp;                                if (key != null) {
-<i class="no-highlight">86</i>&nbsp;                                    set(key, getOrDefault(key, emptyList()) + listOf(line))
-<i class="no-highlight">87</i>&nbsp;                                }
-<i class="no-highlight">88</i>&nbsp;                            }
-<i class="no-highlight">89</i>&nbsp;                        }
-<i class="no-highlight">90</i>&nbsp;                    }
-<i class="no-highlight">91</i>&nbsp;                }
-<i class="no-highlight">92</i>&nbsp;            versions.forEach { (value, items) -&gt; add(Version(value, *buildGroups(items))) }
-<i class="no-highlight">93</i>&nbsp;        }
-<i class="no-highlight">94</i>&nbsp;        .toTypedArray()
-<i class="no-highlight">95</i>&nbsp;
-<i class="no-highlight">96</i>&nbsp;private fun buildGroups(lines: List&lt;String&gt;): Array&lt;Group&gt; =
-<i class="no-highlight">97</i>&nbsp;    buildList {
-<i class="no-highlight">98</i>&nbsp;            val groups =
-<i class="no-highlight">99</i>&nbsp;                buildMap&lt;String, List&lt;String&gt;&gt; {
-<i class="no-highlight">100</i>&nbsp;                    lines.filter(String::isNotBlank).forEach { line -&gt;
-<i class="no-highlight">101</i>&nbsp;                        when {
-<i class="no-highlight">102</i>&nbsp;                            line.startsWith(&quot;### &quot;) -&gt; set(line, getOrDefault(line, emptyList()))
-<i class="no-highlight">103</i>&nbsp;                            !line.startsWith(&quot;### &quot;) -&gt; {
-<i class="no-highlight">104</i>&nbsp;                                val key = entries.lastOrNull()?.key
-<i class="no-highlight">105</i>&nbsp;                                if (key != null) {
-<i class="no-highlight">106</i>&nbsp;                                    set(key, getOrDefault(key, emptyList()) + listOf(line))
-<i class="no-highlight">107</i>&nbsp;                                }
-<i class="no-highlight">108</i>&nbsp;                            }
-<i class="no-highlight">109</i>&nbsp;                        }
-<i class="no-highlight">110</i>&nbsp;                    }
-<i class="no-highlight">111</i>&nbsp;                }
-<i class="no-highlight">112</i>&nbsp;            groups.forEach { (value, items) -&gt; add(Group(value, *buildItems(items))) }
-<i class="no-highlight">113</i>&nbsp;        }
-<i class="no-highlight">114</i>&nbsp;        .toTypedArray()
-<i class="no-highlight">115</i>&nbsp;
-<i class="no-highlight">116</i>&nbsp;private fun buildItems(lines: List&lt;String&gt;): Array&lt;Item&gt; =
-<i class="no-highlight">117</i>&nbsp;    buildList {
-<i class="no-highlight">118</i>&nbsp;            lines
-<i class="no-highlight">119</i>&nbsp;                .filter(String::isNotBlank)
-<i class="no-highlight">120</i>&nbsp;                .filterNot { it.startsWith(&quot;#&quot;) }
-<i class="no-highlight">121</i>&nbsp;                .forEach { item -&gt; add(Item(item)) }
-<i class="no-highlight">122</i>&nbsp;        }
-<i class="no-highlight">123</i>&nbsp;        .toTypedArray()
-</div>
+<code class="sourceCode" id="sourceCode">&nbsp;@file:Suppress(&quot;SpreadOperator&quot;)
+&nbsp;
+&nbsp;package com.javiersc.hubdle.extensions.config.documentation.changelog._internal
+&nbsp;
+&nbsp;import com.javiersc.hubdle.extensions.config.documentation.changelog._internal.Changelog.Version
+&nbsp;import com.javiersc.hubdle.extensions.config.documentation.changelog._internal.Changelog.Version.Group
+&nbsp;import com.javiersc.hubdle.extensions.config.documentation.changelog._internal.Changelog.Version.Group.Item
+&nbsp;import java.io.File
+&nbsp;
+<b class="fc">&nbsp;internal class Changelog(val header: String, vararg val versions: Version) {</b>
+&nbsp;
+&nbsp;    override fun toString(): String =
+<b class="fc">&nbsp;        buildString {</b>
+<b class="fc">&nbsp;                appendLine(header)</b>
+<b class="fc">&nbsp;                appendLine()</b>
+<b class="fc">&nbsp;                for (version in versions) {</b>
+<b class="fc">&nbsp;                    append(&quot;$version&quot;)</b>
+&nbsp;                }
+<b class="pc">&nbsp;                if (versions.isNotEmpty()) appendLine()</b>
+<b class="fc">&nbsp;            }</b>
+<b class="fc">&nbsp;            .lines()</b>
+<b class="fc">&nbsp;            .dropLastWhile(String::isBlank)</b>
+<b class="fc">&nbsp;            .joinToString(&quot;\n&quot;) + &quot;\n&quot;</b>
+&nbsp;
+<b class="fc">&nbsp;    internal class Version(val value: String, vararg val groups: Group) {</b>
+&nbsp;
+<b class="fc">&nbsp;        override fun toString(): String = buildString {</b>
+<b class="fc">&nbsp;            appendLine(value)</b>
+<b class="fc">&nbsp;            appendLine()</b>
+<b class="fc">&nbsp;            for (group in groups) {</b>
+<b class="fc">&nbsp;                append(&quot;$group&quot;)</b>
+&nbsp;            }
+<b class="fc">&nbsp;            if (groups.isEmpty()) {</b>
+<b class="fc">&nbsp;                appendLine(&quot;${Item.itemPrefix} ${Item.noChanges}&quot;)</b>
+<b class="fc">&nbsp;                appendLine()</b>
+&nbsp;            }
+<b class="fc">&nbsp;        }</b>
+&nbsp;
+<b class="fc">&nbsp;        internal class Group(val value: String, vararg val items: Item) {</b>
+&nbsp;
+<b class="fc">&nbsp;            override fun toString(): String = buildString {</b>
+<b class="fc">&nbsp;                appendLine(value)</b>
+<b class="fc">&nbsp;                appendLine()</b>
+<b class="fc">&nbsp;                for (item in items) {</b>
+<b class="fc">&nbsp;                    appendLine(&quot;$item&quot;)</b>
+&nbsp;                }
+<b class="fc">&nbsp;                if (items.isNotEmpty()) appendLine()</b>
+<b class="fc">&nbsp;            }</b>
+&nbsp;
+<b class="fc">&nbsp;            internal class Item(val value: String) {</b>
+&nbsp;
+<b class="fc">&nbsp;                override fun toString(): String = value</b>
+&nbsp;
+&nbsp;                companion object {
+<b class="fc">&nbsp;                    var itemPrefix: String = &quot;-&quot;</b>
+<b class="fc">&nbsp;                    var noChanges: String = &quot;No changes&quot;</b>
+<b class="pc">&nbsp;                    var unreleased: String = &quot;Unreleased&quot;</b>
+&nbsp;                }
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+<b class="fc">&nbsp;    internal companion object</b>
+&nbsp;}
+&nbsp;
+&nbsp;internal fun Changelog.Companion.fromFile(changelogFile: File): Changelog =
+&nbsp;    Changelog.fromString(changelogFile.readText())
+&nbsp;
+&nbsp;internal fun Changelog.Companion.fromString(changelogText: String): Changelog {
+&nbsp;    val lines = changelogText.lines()
+&nbsp;    val header = lines.first { it.startsWith(&quot;# &quot;) }
+&nbsp;    val versions: Array&lt;Version&gt; = buildVersions(lines)
+&nbsp;
+&nbsp;    return Changelog(header, *versions)
+&nbsp;}
+&nbsp;
+&nbsp;private fun buildVersions(lines: List&lt;String&gt;): Array&lt;Version&gt; =
+&nbsp;    buildList {
+&nbsp;            val versions =
+&nbsp;                buildMap&lt;String, List&lt;String&gt;&gt; {
+&nbsp;                    lines.filter(String::isNotBlank).forEach { line -&gt;
+&nbsp;                        when {
+&nbsp;                            line.startsWith(&quot;## &quot;) -&gt; set(line, getOrDefault(line, emptyList()))
+&nbsp;                            !line.startsWith(&quot;## &quot;) -&gt; {
+&nbsp;                                val key = entries.lastOrNull()?.key
+&nbsp;                                if (key != null) {
+&nbsp;                                    set(key, getOrDefault(key, emptyList()) + listOf(line))
+&nbsp;                                }
+&nbsp;                            }
+&nbsp;                        }
+&nbsp;                    }
+&nbsp;                }
+&nbsp;            versions.forEach { (value, items) -&gt; add(Version(value, *buildGroups(items))) }
+&nbsp;        }
+&nbsp;        .toTypedArray()
+&nbsp;
+&nbsp;private fun buildGroups(lines: List&lt;String&gt;): Array&lt;Group&gt; =
+&nbsp;    buildList {
+&nbsp;            val groups =
+&nbsp;                buildMap&lt;String, List&lt;String&gt;&gt; {
+&nbsp;                    lines.filter(String::isNotBlank).forEach { line -&gt;
+&nbsp;                        when {
+&nbsp;                            line.startsWith(&quot;### &quot;) -&gt; set(line, getOrDefault(line, emptyList()))
+&nbsp;                            !line.startsWith(&quot;### &quot;) -&gt; {
+&nbsp;                                val key = entries.lastOrNull()?.key
+&nbsp;                                if (key != null) {
+&nbsp;                                    set(key, getOrDefault(key, emptyList()) + listOf(line))
+&nbsp;                                }
+&nbsp;                            }
+&nbsp;                        }
+&nbsp;                    }
+&nbsp;                }
+&nbsp;            groups.forEach { (value, items) -&gt; add(Group(value, *buildItems(items))) }
+&nbsp;        }
+&nbsp;        .toTypedArray()
+&nbsp;
+&nbsp;private fun buildItems(lines: List&lt;String&gt;): Array&lt;Item&gt; =
+&nbsp;    buildList {
+&nbsp;            lines
+&nbsp;                .filter(String::isNotBlank)
+&nbsp;                .filterNot { it.startsWith(&quot;#&quot;) }
+&nbsp;                .forEach { item -&gt; add(Item(item)) }
+&nbsp;        }
+&nbsp;        .toTypedArray()
+</code>
 </pre>
 </div>
 
@@ -412,18 +413,15 @@ Current scope:     <a href="../../index.html">all classes</a>
     @*/
 
     if (!msie || msie && msie9) {
-        var codeBlock = document.getElementById('sourceCode');
-
-        if (codeBlock) {
-            hljs.highlightBlock(codeBlock);
-        }
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
     }
 })();
 </script>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-14 10:24</div>
+    <div style="float:right;">generated on 2022-09-21 10:36</div>
 </div>
 </body>
 </html>

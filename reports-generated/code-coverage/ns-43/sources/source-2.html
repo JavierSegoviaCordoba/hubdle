@@ -7,9 +7,10 @@
   <title>Coverage Report > HubdleAutoIncludeExtensionKt</title>
   <style type="text/css">
     @import "../../css/coverage.css";
-    @import "../../css/highlight-idea.css";
+    @import "../../css/idea.min.css";
   </style>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
 </head>
 
 <body>
@@ -246,103 +247,103 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.javiersc.hubdle.settings.extensions
-<i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;import com.javiersc.hubdle.settings.HubdleSettingsDslMarker
-<i class="no-highlight">4</i>&nbsp;import java.io.File
-<i class="no-highlight">5</i>&nbsp;import org.gradle.api.initialization.Settings
-<i class="no-highlight">6</i>&nbsp;
-<i class="no-highlight">7</i>&nbsp;@HubdleSettingsDslMarker
-<i class="no-highlight">8</i>&nbsp;public open class HubdleAutoIncludeExtension {
-<i class="no-highlight">9</i>&nbsp;
-<i class="no-highlight">10</i>&nbsp;    public var isEnabled: Boolean = true
-<i class="no-highlight">11</i>&nbsp;
-<i class="no-highlight">12</i>&nbsp;    internal val includableProjects: Set&lt;String&gt;
-<i class="no-highlight">13</i>&nbsp;        get() = (includes - excludes).filter(String::isNotBlank).toSet()
-<i class="no-highlight">14</i>&nbsp;
-<i class="no-highlight">15</i>&nbsp;    internal val includableBuilds: Set&lt;String&gt;
-<i class="no-highlight">16</i>&nbsp;        get() = (includedBuilds - excludedBuilds).filter(String::isNotBlank).toSet()
-<i class="no-highlight">17</i>&nbsp;
-<i class="no-highlight">18</i>&nbsp;    private val includes: MutableSet&lt;String&gt; = mutableSetOf()
-<i class="no-highlight">19</i>&nbsp;    private val excludes: MutableSet&lt;String&gt; = mutableSetOf()
-<i class="no-highlight">20</i>&nbsp;
-<i class="no-highlight">21</i>&nbsp;    private val includedBuilds: MutableSet&lt;String&gt; = mutableSetOf()
-<i class="no-highlight">22</i>&nbsp;    private val excludedBuilds: MutableSet&lt;String&gt; = mutableSetOf(&quot;buildSrc&quot;)
-<i class="no-highlight">23</i>&nbsp;
-<i class="no-highlight">24</i>&nbsp;    @HubdleSettingsDslMarker
-<i class="no-highlight">25</i>&nbsp;    public fun includes(vararg paths: String) {
-<i class="no-highlight">26</i>&nbsp;        includes += paths.map(String::toProjectPath)
-<i class="no-highlight">27</i>&nbsp;    }
-<i class="no-highlight">28</i>&nbsp;
-<i class="no-highlight">29</i>&nbsp;    @HubdleSettingsDslMarker
-<i class="no-highlight">30</i>&nbsp;    public fun excludes(vararg paths: String) {
-<i class="no-highlight">31</i>&nbsp;        excludes += paths.map(String::toProjectPath)
-<i class="no-highlight">32</i>&nbsp;    }
-<i class="no-highlight">33</i>&nbsp;
-<i class="no-highlight">34</i>&nbsp;    @HubdleSettingsDslMarker
-<i class="no-highlight">35</i>&nbsp;    public fun includedBuilds(vararg paths: String) {
-<i class="no-highlight">36</i>&nbsp;        includedBuilds += paths.map(String::toIncludedBuildPath)
-<i class="no-highlight">37</i>&nbsp;    }
-<i class="no-highlight">38</i>&nbsp;
-<i class="no-highlight">39</i>&nbsp;    @HubdleSettingsDslMarker
-<i class="no-highlight">40</i>&nbsp;    public fun excludedBuilds(vararg paths: String) {
-<i class="no-highlight">41</i>&nbsp;        excludedBuilds += paths.map(String::toIncludedBuildPath)
-<i class="no-highlight">42</i>&nbsp;    }
-<i class="no-highlight">43</i>&nbsp;}
-<i class="no-highlight">44</i>&nbsp;
-<i class="no-highlight">45</i>&nbsp;internal fun Settings.extractedProjects(): Set&lt;String&gt; =
-<b class="nc"><i class="no-highlight">46</i>&nbsp;    settingsDir</b>
-<b class="nc"><i class="no-highlight">47</i>&nbsp;        .walkTopDown()</b>
-<b class="nc"><i class="no-highlight">48</i>&nbsp;        .onEnter { file -&gt; file.shouldContinueVisiting(settings) }</b>
-<b class="nc"><i class="no-highlight">49</i>&nbsp;        .flatMap { file -&gt;</b>
-<b class="nc"><i class="no-highlight">50</i>&nbsp;            val children = file.listFiles()?.filter { child -&gt; child.isProject }</b>
-<b class="nc"><i class="no-highlight">51</i>&nbsp;            children?.map { child -&gt; child.relativeTo(settingsDir).path }.orEmpty()</b>
-<i class="no-highlight">52</i>&nbsp;        }
-<b class="nc"><i class="no-highlight">53</i>&nbsp;        .toSet()</b>
-<i class="no-highlight">54</i>&nbsp;
-<i class="no-highlight">55</i>&nbsp;internal fun Settings.extractedBuildProjects(): Set&lt;String&gt; =
-<b class="nc"><i class="no-highlight">56</i>&nbsp;    settingsDir</b>
-<b class="nc"><i class="no-highlight">57</i>&nbsp;        .walkTopDown()</b>
-<b class="nc"><i class="no-highlight">58</i>&nbsp;        .onEnter { file -&gt; file.shouldContinueVisiting(settings) }</b>
-<b class="nc"><i class="no-highlight">59</i>&nbsp;        .flatMap { file -&gt;</b>
-<b class="nc"><i class="no-highlight">60</i>&nbsp;            val children = file.listFiles()?.filter { child -&gt; child.isSettingsProject }</b>
-<b class="nc"><i class="no-highlight">61</i>&nbsp;            children?.map { child -&gt; child.relativeTo(settingsDir).path }.orEmpty()</b>
-<i class="no-highlight">62</i>&nbsp;        }
-<b class="nc"><i class="no-highlight">63</i>&nbsp;        .toSet()</b>
-<i class="no-highlight">64</i>&nbsp;
-<i class="no-highlight">65</i>&nbsp;private fun File.shouldContinueVisiting(settings: Settings): Boolean =
-<b class="nc"><i class="no-highlight">66</i>&nbsp;    if (isRootDir(settings)) true else !isProject &amp;&amp; !isSettingsProject &amp;&amp; !isSpecialDirectory</b>
-<i class="no-highlight">67</i>&nbsp;
-<i class="no-highlight">68</i>&nbsp;private val File.isSpecialDirectory: Boolean
-<b class="nc"><i class="no-highlight">69</i>&nbsp;    get() = name.startsWith(&quot;.&quot;) || name.startsWith(&quot;build&quot;) || name == &quot;gradle&quot;</b>
-<i class="no-highlight">70</i>&nbsp;
-<i class="no-highlight">71</i>&nbsp;private fun File.isRootDir(settings: Settings): Boolean =
-<b class="nc"><i class="no-highlight">72</i>&nbsp;    absoluteFile == settings.settingsDir.absoluteFile</b>
-<i class="no-highlight">73</i>&nbsp;
-<i class="no-highlight">74</i>&nbsp;private val File.isProject: Boolean
-<b class="nc"><i class="no-highlight">75</i>&nbsp;    get() = hasBuildGradle &amp;&amp; !isSettingsProject</b>
-<i class="no-highlight">76</i>&nbsp;
-<i class="no-highlight">77</i>&nbsp;private val File.isSettingsProject: Boolean
-<b class="nc"><i class="no-highlight">78</i>&nbsp;    get() = hasSettingsGradle</b>
-<i class="no-highlight">79</i>&nbsp;
-<i class="no-highlight">80</i>&nbsp;private val File.hasBuildGradle: Boolean
-<b class="nc"><i class="no-highlight">81</i>&nbsp;    get() = listFiles()?.any { it.name == &quot;build.gradle.kts&quot; || it.name == &quot;build.gradle&quot; } ?: false</b>
-<i class="no-highlight">82</i>&nbsp;
-<i class="no-highlight">83</i>&nbsp;private val File.hasSettingsGradle: Boolean
-<i class="no-highlight">84</i>&nbsp;    get() =
-<b class="nc"><i class="no-highlight">85</i>&nbsp;        listFiles()?.any { it.name == &quot;settings.gradle.kts&quot; || it.name == &quot;settings.gradle&quot; }</b>
-<b class="nc"><i class="no-highlight">86</i>&nbsp;            ?: false</b>
-<i class="no-highlight">87</i>&nbsp;
-<i class="no-highlight">88</i>&nbsp;private fun String.toProjectPath(): String {
-<b class="nc"><i class="no-highlight">89</i>&nbsp;    val project = replace(File.separator, &quot;:&quot;).replace(&quot;/&quot;, &quot;:&quot;).replace(&quot;\\&quot;, &quot;:&quot;)</b>
-<b class="nc"><i class="no-highlight">90</i>&nbsp;    return if (project.startsWith(&quot;:&quot;)) project else &quot;:$project&quot;</b>
-<i class="no-highlight">91</i>&nbsp;}
-<i class="no-highlight">92</i>&nbsp;
-<i class="no-highlight">93</i>&nbsp;private fun String.toIncludedBuildPath(): String =
-<b class="nc"><i class="no-highlight">94</i>&nbsp;    replace(File.separator, &quot;/&quot;).replace(&quot;:&quot;, &quot;/&quot;).replace(&quot;\\&quot;, &quot;:&quot;).dropWhile {</b>
-<b class="nc"><i class="no-highlight">95</i>&nbsp;        it == File.separatorChar || it == &#39;/&#39; || it == &#39;\\&#39;</b>
-<i class="no-highlight">96</i>&nbsp;    }
-</div>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.settings.extensions
+&nbsp;
+&nbsp;import com.javiersc.hubdle.settings.HubdleSettingsDslMarker
+&nbsp;import java.io.File
+&nbsp;import org.gradle.api.initialization.Settings
+&nbsp;
+&nbsp;@HubdleSettingsDslMarker
+&nbsp;public open class HubdleAutoIncludeExtension {
+&nbsp;
+&nbsp;    public var isEnabled: Boolean = true
+&nbsp;
+&nbsp;    internal val includableProjects: Set&lt;String&gt;
+&nbsp;        get() = (includes - excludes).filter(String::isNotBlank).toSet()
+&nbsp;
+&nbsp;    internal val includableBuilds: Set&lt;String&gt;
+&nbsp;        get() = (includedBuilds - excludedBuilds).filter(String::isNotBlank).toSet()
+&nbsp;
+&nbsp;    private val includes: MutableSet&lt;String&gt; = mutableSetOf()
+&nbsp;    private val excludes: MutableSet&lt;String&gt; = mutableSetOf()
+&nbsp;
+&nbsp;    private val includedBuilds: MutableSet&lt;String&gt; = mutableSetOf()
+&nbsp;    private val excludedBuilds: MutableSet&lt;String&gt; = mutableSetOf(&quot;buildSrc&quot;)
+&nbsp;
+&nbsp;    @HubdleSettingsDslMarker
+&nbsp;    public fun includes(vararg paths: String) {
+&nbsp;        includes += paths.map(String::toProjectPath)
+&nbsp;    }
+&nbsp;
+&nbsp;    @HubdleSettingsDslMarker
+&nbsp;    public fun excludes(vararg paths: String) {
+&nbsp;        excludes += paths.map(String::toProjectPath)
+&nbsp;    }
+&nbsp;
+&nbsp;    @HubdleSettingsDslMarker
+&nbsp;    public fun includedBuilds(vararg paths: String) {
+&nbsp;        includedBuilds += paths.map(String::toIncludedBuildPath)
+&nbsp;    }
+&nbsp;
+&nbsp;    @HubdleSettingsDslMarker
+&nbsp;    public fun excludedBuilds(vararg paths: String) {
+&nbsp;        excludedBuilds += paths.map(String::toIncludedBuildPath)
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;internal fun Settings.extractedProjects(): Set&lt;String&gt; =
+<b class="nc">&nbsp;    settingsDir</b>
+<b class="nc">&nbsp;        .walkTopDown()</b>
+<b class="nc">&nbsp;        .onEnter { file -&gt; file.shouldContinueVisiting(settings) }</b>
+<b class="nc">&nbsp;        .flatMap { file -&gt;</b>
+<b class="nc">&nbsp;            val children = file.listFiles()?.filter { child -&gt; child.isProject }</b>
+<b class="nc">&nbsp;            children?.map { child -&gt; child.relativeTo(settingsDir).path }.orEmpty()</b>
+&nbsp;        }
+<b class="nc">&nbsp;        .toSet()</b>
+&nbsp;
+&nbsp;internal fun Settings.extractedBuildProjects(): Set&lt;String&gt; =
+<b class="nc">&nbsp;    settingsDir</b>
+<b class="nc">&nbsp;        .walkTopDown()</b>
+<b class="nc">&nbsp;        .onEnter { file -&gt; file.shouldContinueVisiting(settings) }</b>
+<b class="nc">&nbsp;        .flatMap { file -&gt;</b>
+<b class="nc">&nbsp;            val children = file.listFiles()?.filter { child -&gt; child.isSettingsProject }</b>
+<b class="nc">&nbsp;            children?.map { child -&gt; child.relativeTo(settingsDir).path }.orEmpty()</b>
+&nbsp;        }
+<b class="nc">&nbsp;        .toSet()</b>
+&nbsp;
+&nbsp;private fun File.shouldContinueVisiting(settings: Settings): Boolean =
+<b class="nc">&nbsp;    if (isRootDir(settings)) true else !isProject &amp;&amp; !isSettingsProject &amp;&amp; !isSpecialDirectory</b>
+&nbsp;
+&nbsp;private val File.isSpecialDirectory: Boolean
+<b class="nc">&nbsp;    get() = name.startsWith(&quot;.&quot;) || name.startsWith(&quot;build&quot;) || name == &quot;gradle&quot;</b>
+&nbsp;
+&nbsp;private fun File.isRootDir(settings: Settings): Boolean =
+<b class="nc">&nbsp;    absoluteFile == settings.settingsDir.absoluteFile</b>
+&nbsp;
+&nbsp;private val File.isProject: Boolean
+<b class="nc">&nbsp;    get() = hasBuildGradle &amp;&amp; !isSettingsProject</b>
+&nbsp;
+&nbsp;private val File.isSettingsProject: Boolean
+<b class="nc">&nbsp;    get() = hasSettingsGradle</b>
+&nbsp;
+&nbsp;private val File.hasBuildGradle: Boolean
+<b class="nc">&nbsp;    get() = listFiles()?.any { it.name == &quot;build.gradle.kts&quot; || it.name == &quot;build.gradle&quot; } ?: false</b>
+&nbsp;
+&nbsp;private val File.hasSettingsGradle: Boolean
+&nbsp;    get() =
+<b class="nc">&nbsp;        listFiles()?.any { it.name == &quot;settings.gradle.kts&quot; || it.name == &quot;settings.gradle&quot; }</b>
+<b class="nc">&nbsp;            ?: false</b>
+&nbsp;
+&nbsp;private fun String.toProjectPath(): String {
+<b class="nc">&nbsp;    val project = replace(File.separator, &quot;:&quot;).replace(&quot;/&quot;, &quot;:&quot;).replace(&quot;\\&quot;, &quot;:&quot;)</b>
+<b class="nc">&nbsp;    return if (project.startsWith(&quot;:&quot;)) project else &quot;:$project&quot;</b>
+&nbsp;}
+&nbsp;
+&nbsp;private fun String.toIncludedBuildPath(): String =
+<b class="nc">&nbsp;    replace(File.separator, &quot;/&quot;).replace(&quot;:&quot;, &quot;/&quot;).replace(&quot;\\&quot;, &quot;:&quot;).dropWhile {</b>
+<b class="nc">&nbsp;        it == File.separatorChar || it == &#39;/&#39; || it == &#39;\\&#39;</b>
+&nbsp;    }
+</code>
 </pre>
 </div>
 
@@ -357,18 +358,15 @@ Current scope:     <a href="../../index.html">all classes</a>
     @*/
 
     if (!msie || msie && msie9) {
-        var codeBlock = document.getElementById('sourceCode');
-
-        if (codeBlock) {
-            hljs.highlightBlock(codeBlock);
-        }
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
     }
 })();
 </script>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-14 10:24</div>
+    <div style="float:right;">generated on 2022-09-21 10:36</div>
 </div>
 </body>
 </html>

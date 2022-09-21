@@ -7,9 +7,10 @@
   <title>Coverage Report > ConfigureMultiplatformLinuxKt</title>
   <style type="text/css">
     @import "../../css/coverage.css";
-    @import "../../css/highlight-idea.css";
+    @import "../../css/idea.min.css";
   </style>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
 </head>
 
 <body>
@@ -371,97 +372,97 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.javiersc.hubdle.extensions.kotlin.multiplatform._internal
-<i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
-<i class="no-highlight">4</i>&nbsp;import org.gradle.api.Project
-<i class="no-highlight">5</i>&nbsp;import org.gradle.kotlin.dsl.configure
-<i class="no-highlight">6</i>&nbsp;import org.gradle.kotlin.dsl.getValue
-<i class="no-highlight">7</i>&nbsp;import org.gradle.kotlin.dsl.getting
-<i class="no-highlight">8</i>&nbsp;import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
-<i class="no-highlight">9</i>&nbsp;import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet as KSS
-<i class="no-highlight">10</i>&nbsp;
-<i class="no-highlight">11</i>&nbsp;internal fun configureMultiplatformLinux(project: Project) {
-<b class="nc"><i class="no-highlight">12</i>&nbsp;    if (project.hubdleState.kotlin.multiplatform.linux.isEnabled) {</b>
-<b class="nc"><i class="no-highlight">13</i>&nbsp;        project.configure&lt;KotlinMultiplatformExtension&gt; {</b>
-<b class="nc"><i class="no-highlight">14</i>&nbsp;            val commonMain: KSS by sourceSets.getting</b>
-<b class="nc"><i class="no-highlight">15</i>&nbsp;            val linuxArm64Main: KSS? = sourceSets.findByName(&quot;linuxArm64Main&quot;)</b>
-<b class="nc"><i class="no-highlight">16</i>&nbsp;            val linuxArm32HfpMain: KSS? = sourceSets.findByName(&quot;linuxArm32HfpMain&quot;)</b>
-<b class="nc"><i class="no-highlight">17</i>&nbsp;            val linuxMips32Main: KSS? = sourceSets.findByName(&quot;linuxMips32Main&quot;)</b>
-<b class="nc"><i class="no-highlight">18</i>&nbsp;            val linuxMipsel32Main: KSS? = sourceSets.findByName(&quot;linuxMipsel32Main&quot;)</b>
-<b class="nc"><i class="no-highlight">19</i>&nbsp;            val linuxX64Main: KSS? = sourceSets.findByName(&quot;linuxX64Main&quot;)</b>
-<i class="no-highlight">20</i>&nbsp;
-<b class="nc"><i class="no-highlight">21</i>&nbsp;            val commonTest: KSS by sourceSets.getting</b>
-<b class="nc"><i class="no-highlight">22</i>&nbsp;            val linuxArm64Test: KSS? = sourceSets.findByName(&quot;linuxArm64Test&quot;)</b>
-<b class="nc"><i class="no-highlight">23</i>&nbsp;            val linuxArm32HfpTest: KSS? = sourceSets.findByName(&quot;linuxArm32HfpTest&quot;)</b>
-<b class="nc"><i class="no-highlight">24</i>&nbsp;            val linuxMips32Test: KSS? = sourceSets.findByName(&quot;linuxMips32Test&quot;)</b>
-<b class="nc"><i class="no-highlight">25</i>&nbsp;            val linuxMipsel32Test: KSS? = sourceSets.findByName(&quot;linuxMipsel32Test&quot;)</b>
-<b class="nc"><i class="no-highlight">26</i>&nbsp;            val linuxX64Test: KSS? = sourceSets.findByName(&quot;linuxX64Test&quot;)</b>
-<i class="no-highlight">27</i>&nbsp;
-<b class="nc"><i class="no-highlight">28</i>&nbsp;            val linuxMainSourceSets: List&lt;KSS&gt; =</b>
-<b class="nc"><i class="no-highlight">29</i>&nbsp;                listOfNotNull(</b>
-<b class="nc"><i class="no-highlight">30</i>&nbsp;                    linuxArm64Main,</b>
-<b class="nc"><i class="no-highlight">31</i>&nbsp;                    linuxArm32HfpMain,</b>
-<b class="nc"><i class="no-highlight">32</i>&nbsp;                    linuxMips32Main,</b>
-<b class="nc"><i class="no-highlight">33</i>&nbsp;                    linuxMipsel32Main,</b>
-<b class="nc"><i class="no-highlight">34</i>&nbsp;                    linuxX64Main,</b>
-<i class="no-highlight">35</i>&nbsp;                )
-<i class="no-highlight">36</i>&nbsp;
-<b class="nc"><i class="no-highlight">37</i>&nbsp;            val linuxTestSourceSets: List&lt;KSS&gt; =</b>
-<b class="nc"><i class="no-highlight">38</i>&nbsp;                listOfNotNull(</b>
-<b class="nc"><i class="no-highlight">39</i>&nbsp;                    linuxArm64Test,</b>
-<b class="nc"><i class="no-highlight">40</i>&nbsp;                    linuxArm32HfpTest,</b>
-<b class="nc"><i class="no-highlight">41</i>&nbsp;                    linuxMips32Test,</b>
-<b class="nc"><i class="no-highlight">42</i>&nbsp;                    linuxMipsel32Test,</b>
-<b class="nc"><i class="no-highlight">43</i>&nbsp;                    linuxX64Test,</b>
-<i class="no-highlight">44</i>&nbsp;                )
-<i class="no-highlight">45</i>&nbsp;
-<b class="nc"><i class="no-highlight">46</i>&nbsp;            val linuxMain = sourceSets.maybeCreate(&quot;linuxMain&quot;)</b>
-<b class="nc"><i class="no-highlight">47</i>&nbsp;            val linuxTest = sourceSets.maybeCreate(&quot;linuxTest&quot;)</b>
-<i class="no-highlight">48</i>&nbsp;
-<b class="nc"><i class="no-highlight">49</i>&nbsp;            linuxMain.dependsOn(commonMain)</b>
-<b class="nc"><i class="no-highlight">50</i>&nbsp;            for (linuxMainSourceSet in linuxMainSourceSets) {</b>
-<b class="nc"><i class="no-highlight">51</i>&nbsp;                linuxMainSourceSet.dependsOn(linuxMain)</b>
-<i class="no-highlight">52</i>&nbsp;            }
-<i class="no-highlight">53</i>&nbsp;
-<b class="nc"><i class="no-highlight">54</i>&nbsp;            linuxTest.dependsOn(commonTest)</b>
-<b class="nc"><i class="no-highlight">55</i>&nbsp;            for (linuxTestSourceSet in linuxTestSourceSets) {</b>
-<b class="nc"><i class="no-highlight">56</i>&nbsp;                linuxTestSourceSet.dependsOn(linuxTest)</b>
-<i class="no-highlight">57</i>&nbsp;            }
-<i class="no-highlight">58</i>&nbsp;        }
-<i class="no-highlight">59</i>&nbsp;    }
-<i class="no-highlight">60</i>&nbsp;}
-<i class="no-highlight">61</i>&nbsp;
-<i class="no-highlight">62</i>&nbsp;internal fun configureMultiplatformLinuxArm32Hfp(project: Project) {
-<b class="nc"><i class="no-highlight">63</i>&nbsp;    if (project.hubdleState.kotlin.multiplatform.linuxArm32Hfp.isEnabled) {</b>
-<b class="nc"><i class="no-highlight">64</i>&nbsp;        project.configure&lt;KotlinMultiplatformExtension&gt; { linuxArm32Hfp() }</b>
-<i class="no-highlight">65</i>&nbsp;    }
-<i class="no-highlight">66</i>&nbsp;}
-<i class="no-highlight">67</i>&nbsp;
-<i class="no-highlight">68</i>&nbsp;internal fun configureMultiplatformLinuxArm64(project: Project) {
-<b class="nc"><i class="no-highlight">69</i>&nbsp;    if (project.hubdleState.kotlin.multiplatform.linuxArm64.isEnabled) {</b>
-<b class="nc"><i class="no-highlight">70</i>&nbsp;        project.configure&lt;KotlinMultiplatformExtension&gt; { linuxArm64() }</b>
-<i class="no-highlight">71</i>&nbsp;    }
-<i class="no-highlight">72</i>&nbsp;}
-<i class="no-highlight">73</i>&nbsp;
-<i class="no-highlight">74</i>&nbsp;internal fun configureMultiplatformLinuxMips32(project: Project) {
-<b class="nc"><i class="no-highlight">75</i>&nbsp;    if (project.hubdleState.kotlin.multiplatform.linuxMips32.isEnabled) {</b>
-<b class="nc"><i class="no-highlight">76</i>&nbsp;        project.configure&lt;KotlinMultiplatformExtension&gt; { linuxMips32() }</b>
-<i class="no-highlight">77</i>&nbsp;    }
-<i class="no-highlight">78</i>&nbsp;}
-<i class="no-highlight">79</i>&nbsp;
-<i class="no-highlight">80</i>&nbsp;internal fun configureMultiplatformLinuxMipsel32(project: Project) {
-<b class="nc"><i class="no-highlight">81</i>&nbsp;    if (project.hubdleState.kotlin.multiplatform.linuxMipsel32.isEnabled) {</b>
-<b class="nc"><i class="no-highlight">82</i>&nbsp;        project.configure&lt;KotlinMultiplatformExtension&gt; { linuxMipsel32() }</b>
-<i class="no-highlight">83</i>&nbsp;    }
-<i class="no-highlight">84</i>&nbsp;}
-<i class="no-highlight">85</i>&nbsp;
-<i class="no-highlight">86</i>&nbsp;internal fun configureMultiplatformLinuxX64(project: Project) {
-<b class="nc"><i class="no-highlight">87</i>&nbsp;    if (project.hubdleState.kotlin.multiplatform.linuxX64.isEnabled) {</b>
-<b class="nc"><i class="no-highlight">88</i>&nbsp;        project.configure&lt;KotlinMultiplatformExtension&gt; { linuxX64() }</b>
-<i class="no-highlight">89</i>&nbsp;    }
-<i class="no-highlight">90</i>&nbsp;}
-</div>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.extensions.kotlin.multiplatform._internal
+&nbsp;
+&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
+&nbsp;import org.gradle.api.Project
+&nbsp;import org.gradle.kotlin.dsl.configure
+&nbsp;import org.gradle.kotlin.dsl.getValue
+&nbsp;import org.gradle.kotlin.dsl.getting
+&nbsp;import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+&nbsp;import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet as KSS
+&nbsp;
+&nbsp;internal fun configureMultiplatformLinux(project: Project) {
+<b class="nc">&nbsp;    if (project.hubdleState.kotlin.multiplatform.linux.isEnabled) {</b>
+<b class="nc">&nbsp;        project.configure&lt;KotlinMultiplatformExtension&gt; {</b>
+<b class="nc">&nbsp;            val commonMain: KSS by sourceSets.getting</b>
+<b class="nc">&nbsp;            val linuxArm64Main: KSS? = sourceSets.findByName(&quot;linuxArm64Main&quot;)</b>
+<b class="nc">&nbsp;            val linuxArm32HfpMain: KSS? = sourceSets.findByName(&quot;linuxArm32HfpMain&quot;)</b>
+<b class="nc">&nbsp;            val linuxMips32Main: KSS? = sourceSets.findByName(&quot;linuxMips32Main&quot;)</b>
+<b class="nc">&nbsp;            val linuxMipsel32Main: KSS? = sourceSets.findByName(&quot;linuxMipsel32Main&quot;)</b>
+<b class="nc">&nbsp;            val linuxX64Main: KSS? = sourceSets.findByName(&quot;linuxX64Main&quot;)</b>
+&nbsp;
+<b class="nc">&nbsp;            val commonTest: KSS by sourceSets.getting</b>
+<b class="nc">&nbsp;            val linuxArm64Test: KSS? = sourceSets.findByName(&quot;linuxArm64Test&quot;)</b>
+<b class="nc">&nbsp;            val linuxArm32HfpTest: KSS? = sourceSets.findByName(&quot;linuxArm32HfpTest&quot;)</b>
+<b class="nc">&nbsp;            val linuxMips32Test: KSS? = sourceSets.findByName(&quot;linuxMips32Test&quot;)</b>
+<b class="nc">&nbsp;            val linuxMipsel32Test: KSS? = sourceSets.findByName(&quot;linuxMipsel32Test&quot;)</b>
+<b class="nc">&nbsp;            val linuxX64Test: KSS? = sourceSets.findByName(&quot;linuxX64Test&quot;)</b>
+&nbsp;
+<b class="nc">&nbsp;            val linuxMainSourceSets: List&lt;KSS&gt; =</b>
+<b class="nc">&nbsp;                listOfNotNull(</b>
+<b class="nc">&nbsp;                    linuxArm64Main,</b>
+<b class="nc">&nbsp;                    linuxArm32HfpMain,</b>
+<b class="nc">&nbsp;                    linuxMips32Main,</b>
+<b class="nc">&nbsp;                    linuxMipsel32Main,</b>
+<b class="nc">&nbsp;                    linuxX64Main,</b>
+&nbsp;                )
+&nbsp;
+<b class="nc">&nbsp;            val linuxTestSourceSets: List&lt;KSS&gt; =</b>
+<b class="nc">&nbsp;                listOfNotNull(</b>
+<b class="nc">&nbsp;                    linuxArm64Test,</b>
+<b class="nc">&nbsp;                    linuxArm32HfpTest,</b>
+<b class="nc">&nbsp;                    linuxMips32Test,</b>
+<b class="nc">&nbsp;                    linuxMipsel32Test,</b>
+<b class="nc">&nbsp;                    linuxX64Test,</b>
+&nbsp;                )
+&nbsp;
+<b class="nc">&nbsp;            val linuxMain = sourceSets.maybeCreate(&quot;linuxMain&quot;)</b>
+<b class="nc">&nbsp;            val linuxTest = sourceSets.maybeCreate(&quot;linuxTest&quot;)</b>
+&nbsp;
+<b class="nc">&nbsp;            linuxMain.dependsOn(commonMain)</b>
+<b class="nc">&nbsp;            for (linuxMainSourceSet in linuxMainSourceSets) {</b>
+<b class="nc">&nbsp;                linuxMainSourceSet.dependsOn(linuxMain)</b>
+&nbsp;            }
+&nbsp;
+<b class="nc">&nbsp;            linuxTest.dependsOn(commonTest)</b>
+<b class="nc">&nbsp;            for (linuxTestSourceSet in linuxTestSourceSets) {</b>
+<b class="nc">&nbsp;                linuxTestSourceSet.dependsOn(linuxTest)</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;internal fun configureMultiplatformLinuxArm32Hfp(project: Project) {
+<b class="nc">&nbsp;    if (project.hubdleState.kotlin.multiplatform.linuxArm32Hfp.isEnabled) {</b>
+<b class="nc">&nbsp;        project.configure&lt;KotlinMultiplatformExtension&gt; { linuxArm32Hfp() }</b>
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;internal fun configureMultiplatformLinuxArm64(project: Project) {
+<b class="nc">&nbsp;    if (project.hubdleState.kotlin.multiplatform.linuxArm64.isEnabled) {</b>
+<b class="nc">&nbsp;        project.configure&lt;KotlinMultiplatformExtension&gt; { linuxArm64() }</b>
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;internal fun configureMultiplatformLinuxMips32(project: Project) {
+<b class="nc">&nbsp;    if (project.hubdleState.kotlin.multiplatform.linuxMips32.isEnabled) {</b>
+<b class="nc">&nbsp;        project.configure&lt;KotlinMultiplatformExtension&gt; { linuxMips32() }</b>
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;internal fun configureMultiplatformLinuxMipsel32(project: Project) {
+<b class="nc">&nbsp;    if (project.hubdleState.kotlin.multiplatform.linuxMipsel32.isEnabled) {</b>
+<b class="nc">&nbsp;        project.configure&lt;KotlinMultiplatformExtension&gt; { linuxMipsel32() }</b>
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;internal fun configureMultiplatformLinuxX64(project: Project) {
+<b class="nc">&nbsp;    if (project.hubdleState.kotlin.multiplatform.linuxX64.isEnabled) {</b>
+<b class="nc">&nbsp;        project.configure&lt;KotlinMultiplatformExtension&gt; { linuxX64() }</b>
+&nbsp;    }
+&nbsp;}
+</code>
 </pre>
 </div>
 
@@ -476,18 +477,15 @@ Current scope:     <a href="../../index.html">all classes</a>
     @*/
 
     if (!msie || msie && msie9) {
-        var codeBlock = document.getElementById('sourceCode');
-
-        if (codeBlock) {
-            hljs.highlightBlock(codeBlock);
-        }
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
     }
 })();
 </script>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-14 10:24</div>
+    <div style="float:right;">generated on 2022-09-21 10:36</div>
 </div>
 </body>
 </html>

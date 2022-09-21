@@ -7,9 +7,10 @@
   <title>Coverage Report > ConfigureNexusKt</title>
   <style type="text/css">
     @import "../../css/coverage.css";
-    @import "../../css/highlight-idea.css";
+    @import "../../css/idea.min.css";
   </style>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
 </head>
 
 <body>
@@ -255,57 +256,57 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.javiersc.hubdle.extensions.config.nexus._internal
-<i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;import com.javiersc.gradle.properties.extensions.getPropertyOrNull
-<i class="no-highlight">4</i>&nbsp;import com.javiersc.hubdle.HubdleProperty.Nexus
-<i class="no-highlight">5</i>&nbsp;import com.javiersc.hubdle.extensions._internal.PluginIds
-<i class="no-highlight">6</i>&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
-<i class="no-highlight">7</i>&nbsp;import io.github.gradlenexus.publishplugin.NexusPublishExtension
-<i class="no-highlight">8</i>&nbsp;import java.time.Duration
-<i class="no-highlight">9</i>&nbsp;import org.gradle.api.Project
-<i class="no-highlight">10</i>&nbsp;import org.gradle.kotlin.dsl.configure
-<i class="no-highlight">11</i>&nbsp;
-<i class="no-highlight">12</i>&nbsp;internal fun configureNexus(project: Project) {
-<b class="nc"><i class="no-highlight">13</i>&nbsp;    if (project.hubdleState.config.nexus.isEnabled) {</b>
-<b class="nc"><i class="no-highlight">14</i>&nbsp;        project.pluginManager.apply(PluginIds.Publishing.nexusPublish)</b>
-<i class="no-highlight">15</i>&nbsp;
-<b class="nc"><i class="no-highlight">16</i>&nbsp;        project.configure&lt;NexusPublishExtension&gt; {</b>
-<b class="nc"><i class="no-highlight">17</i>&nbsp;            repositoryDescription.set(</b>
-<b class="nc"><i class="no-highlight">18</i>&nbsp;                &quot;${project.rootProject.group} - ${project.rootProject.version}&quot;</b>
-<i class="no-highlight">19</i>&nbsp;            )
-<i class="no-highlight">20</i>&nbsp;
-<b class="nc"><i class="no-highlight">21</i>&nbsp;            repositories {</b>
-<b class="nc"><i class="no-highlight">22</i>&nbsp;                sonatype {</b>
-<b class="nc"><i class="no-highlight">23</i>&nbsp;                    val nexusUrl = project.getPropertyOrNull(Nexus.nexusUrl)</b>
-<b class="nc"><i class="no-highlight">24</i>&nbsp;                    val snapshotRepositoryUrl =</b>
-<b class="nc"><i class="no-highlight">25</i>&nbsp;                        project.getPropertyOrNull(Nexus.nexusSnapshotRepositoryUrl)</b>
-<b class="nc"><i class="no-highlight">26</i>&nbsp;                    if (nexusUrl != null &amp;&amp; snapshotRepositoryUrl != null) {</b>
-<b class="nc"><i class="no-highlight">27</i>&nbsp;                        this.nexusUrl.set(project.uri(nexusUrl))</b>
-<b class="nc"><i class="no-highlight">28</i>&nbsp;                        this.snapshotRepositoryUrl.set(project.uri(snapshotRepositoryUrl))</b>
-<i class="no-highlight">29</i>&nbsp;                    }
-<b class="nc"><i class="no-highlight">30</i>&nbsp;                    username.set(project.getPropertyOrNull(Nexus.nexusUser))</b>
-<b class="nc"><i class="no-highlight">31</i>&nbsp;                    password.set(project.getPropertyOrNull(Nexus.nexusToken))</b>
-<b class="nc"><i class="no-highlight">32</i>&nbsp;                    stagingProfileId.set(project.getPropertyOrNull(Nexus.nexusStagingProfileId))</b>
-<i class="no-highlight">33</i>&nbsp;                }
-<i class="no-highlight">34</i>&nbsp;            }
-<i class="no-highlight">35</i>&nbsp;
-<b class="nc"><i class="no-highlight">36</i>&nbsp;            connectTimeout.set(Duration.ofMinutes(DEFAULT_CONNECT_TIMEOUT))</b>
-<b class="nc"><i class="no-highlight">37</i>&nbsp;            clientTimeout.set(Duration.ofMinutes(DEFAULT_CLIENT_TIMEOUT))</b>
-<i class="no-highlight">38</i>&nbsp;
-<b class="nc"><i class="no-highlight">39</i>&nbsp;            transitionCheckOptions {</b>
-<b class="nc"><i class="no-highlight">40</i>&nbsp;                maxRetries.set(DEFAULT_MAX_RETRIES)</b>
-<b class="nc"><i class="no-highlight">41</i>&nbsp;                delayBetween.set(Duration.ofSeconds(DEFAULT_DELAY_BETWEEN))</b>
-<i class="no-highlight">42</i>&nbsp;            }
-<i class="no-highlight">43</i>&nbsp;        }
-<i class="no-highlight">44</i>&nbsp;    }
-<i class="no-highlight">45</i>&nbsp;}
-<i class="no-highlight">46</i>&nbsp;
-<i class="no-highlight">47</i>&nbsp;private const val DEFAULT_CONNECT_TIMEOUT = 30L
-<i class="no-highlight">48</i>&nbsp;private const val DEFAULT_CLIENT_TIMEOUT = 30L
-<i class="no-highlight">49</i>&nbsp;private const val DEFAULT_MAX_RETRIES = 200
-<i class="no-highlight">50</i>&nbsp;private const val DEFAULT_DELAY_BETWEEN = 10L
-</div>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.extensions.config.nexus._internal
+&nbsp;
+&nbsp;import com.javiersc.gradle.properties.extensions.getPropertyOrNull
+&nbsp;import com.javiersc.hubdle.HubdleProperty.Nexus
+&nbsp;import com.javiersc.hubdle.extensions._internal.PluginIds
+&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
+&nbsp;import io.github.gradlenexus.publishplugin.NexusPublishExtension
+&nbsp;import java.time.Duration
+&nbsp;import org.gradle.api.Project
+&nbsp;import org.gradle.kotlin.dsl.configure
+&nbsp;
+&nbsp;internal fun configureNexus(project: Project) {
+<b class="nc">&nbsp;    if (project.hubdleState.config.nexus.isEnabled) {</b>
+<b class="nc">&nbsp;        project.pluginManager.apply(PluginIds.Publishing.nexusPublish)</b>
+&nbsp;
+<b class="nc">&nbsp;        project.configure&lt;NexusPublishExtension&gt; {</b>
+<b class="nc">&nbsp;            repositoryDescription.set(</b>
+<b class="nc">&nbsp;                &quot;${project.rootProject.group} - ${project.rootProject.version}&quot;</b>
+&nbsp;            )
+&nbsp;
+<b class="nc">&nbsp;            repositories {</b>
+<b class="nc">&nbsp;                sonatype {</b>
+<b class="nc">&nbsp;                    val nexusUrl = project.getPropertyOrNull(Nexus.nexusUrl)</b>
+<b class="nc">&nbsp;                    val snapshotRepositoryUrl =</b>
+<b class="nc">&nbsp;                        project.getPropertyOrNull(Nexus.nexusSnapshotRepositoryUrl)</b>
+<b class="nc">&nbsp;                    if (nexusUrl != null &amp;&amp; snapshotRepositoryUrl != null) {</b>
+<b class="nc">&nbsp;                        this.nexusUrl.set(project.uri(nexusUrl))</b>
+<b class="nc">&nbsp;                        this.snapshotRepositoryUrl.set(project.uri(snapshotRepositoryUrl))</b>
+&nbsp;                    }
+<b class="nc">&nbsp;                    username.set(project.getPropertyOrNull(Nexus.nexusUser))</b>
+<b class="nc">&nbsp;                    password.set(project.getPropertyOrNull(Nexus.nexusToken))</b>
+<b class="nc">&nbsp;                    stagingProfileId.set(project.getPropertyOrNull(Nexus.nexusStagingProfileId))</b>
+&nbsp;                }
+&nbsp;            }
+&nbsp;
+<b class="nc">&nbsp;            connectTimeout.set(Duration.ofMinutes(DEFAULT_CONNECT_TIMEOUT))</b>
+<b class="nc">&nbsp;            clientTimeout.set(Duration.ofMinutes(DEFAULT_CLIENT_TIMEOUT))</b>
+&nbsp;
+<b class="nc">&nbsp;            transitionCheckOptions {</b>
+<b class="nc">&nbsp;                maxRetries.set(DEFAULT_MAX_RETRIES)</b>
+<b class="nc">&nbsp;                delayBetween.set(Duration.ofSeconds(DEFAULT_DELAY_BETWEEN))</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;private const val DEFAULT_CONNECT_TIMEOUT = 30L
+&nbsp;private const val DEFAULT_CLIENT_TIMEOUT = 30L
+&nbsp;private const val DEFAULT_MAX_RETRIES = 200
+&nbsp;private const val DEFAULT_DELAY_BETWEEN = 10L
+</code>
 </pre>
 </div>
 
@@ -320,18 +321,15 @@ Current scope:     <a href="../../index.html">all classes</a>
     @*/
 
     if (!msie || msie && msie9) {
-        var codeBlock = document.getElementById('sourceCode');
-
-        if (codeBlock) {
-            hljs.highlightBlock(codeBlock);
-        }
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
     }
 })();
 </script>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-14 10:24</div>
+    <div style="float:right;">generated on 2022-09-21 10:36</div>
 </div>
 </body>
 </html>

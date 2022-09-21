@@ -7,9 +7,10 @@
   <title>Coverage Report > ConfigureSiteKt</title>
   <style type="text/css">
     @import "../../css/coverage.css";
-    @import "../../css/highlight-idea.css";
+    @import "../../css/idea.min.css";
   </style>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
 </head>
 
 <body>
@@ -362,92 +363,92 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.javiersc.hubdle.extensions.config.documentation.site._internal
-<i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;import com.javiersc.gradle.project.extensions.isRootProject
-<i class="no-highlight">4</i>&nbsp;import com.javiersc.hubdle.extensions._internal.PluginIds
-<i class="no-highlight">5</i>&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
-<i class="no-highlight">6</i>&nbsp;import com.javiersc.hubdle.extensions.config._internal.hasKotlinGradlePlugin
-<i class="no-highlight">7</i>&nbsp;import com.javiersc.hubdle.extensions.config.documentation.site.BuildSiteTask
-<i class="no-highlight">8</i>&nbsp;import com.javiersc.hubdle.extensions.config.documentation.site.PrebuildSiteTask
-<i class="no-highlight">9</i>&nbsp;import com.javiersc.hubdle.extensions.config.documentation.site.projectsInfo
-<i class="no-highlight">10</i>&nbsp;import org.gradle.api.Project
-<i class="no-highlight">11</i>&nbsp;import org.gradle.api.artifacts.ProjectDependency
-<i class="no-highlight">12</i>&nbsp;import org.gradle.kotlin.dsl.configure
-<i class="no-highlight">13</i>&nbsp;import org.gradle.kotlin.dsl.the
-<i class="no-highlight">14</i>&nbsp;import org.gradle.kotlin.dsl.withType
-<i class="no-highlight">15</i>&nbsp;import org.jetbrains.dokka.gradle.DokkaMultiModuleTask
-<i class="no-highlight">16</i>&nbsp;import org.jetbrains.dokka.gradle.DokkaTaskPartial
-<i class="no-highlight">17</i>&nbsp;import ru.vyarus.gradle.plugin.mkdocs.MkdocsExtension
-<i class="no-highlight">18</i>&nbsp;
-<i class="no-highlight">19</i>&nbsp;internal fun configureSite(project: Project) {
-<b class="nc"><i class="no-highlight">20</i>&nbsp;    if (project.hubdleState.config.documentation.site.isEnabled) {</b>
-<b class="nc"><i class="no-highlight">21</i>&nbsp;        check(project.isRootProject) {</b>
-<b class="nc"><i class="no-highlight">22</i>&nbsp;            &quot;&quot;&quot;</b>
-<i class="no-highlight">23</i>&nbsp;                |`site` can be only used in the root project, and it is being applied in:
-<b class="nc"><i class="no-highlight">24</i>&nbsp;                |  - `${project.path}</b>
-<b class="nc"><i class="no-highlight">25</i>&nbsp;            &quot;&quot;&quot;.trimMargin()</b>
-<i class="no-highlight">26</i>&nbsp;        }
-<i class="no-highlight">27</i>&nbsp;
-<b class="nc"><i class="no-highlight">28</i>&nbsp;        project.pluginManager.apply(PluginIds.Kotlin.dokka)</b>
-<b class="nc"><i class="no-highlight">29</i>&nbsp;        project.pluginManager.apply(PluginIds.Documentation.mkdocs)</b>
-<i class="no-highlight">30</i>&nbsp;
-<b class="nc"><i class="no-highlight">31</i>&nbsp;        project.tasks.withType&lt;DokkaMultiModuleTask&gt;().configureEach {</b>
-<b class="nc"><i class="no-highlight">32</i>&nbsp;            val excludedProjects =</b>
-<b class="nc"><i class="no-highlight">33</i>&nbsp;                project.hubdleState.config.documentation.site.excludes.map(</b>
-<b class="nc"><i class="no-highlight">34</i>&nbsp;                    ProjectDependency::getDependencyProject</b>
-<i class="no-highlight">35</i>&nbsp;                )
-<b class="nc"><i class="no-highlight">36</i>&nbsp;            removeChildTasks(excludedProjects)</b>
-<i class="no-highlight">37</i>&nbsp;        }
-<i class="no-highlight">38</i>&nbsp;
-<b class="nc"><i class="no-highlight">39</i>&nbsp;        project.configure&lt;MkdocsExtension&gt; {</b>
-<b class="nc"><i class="no-highlight">40</i>&nbsp;            strict = false</b>
-<b class="nc"><i class="no-highlight">41</i>&nbsp;            sourcesDir = &quot;${project.rootProject.rootDir}/build/.docs&quot;</b>
-<b class="nc"><i class="no-highlight">42</i>&nbsp;            buildDir = &quot;${project.rootProject.rootDir}/build/docs&quot;</b>
-<b class="nc"><i class="no-highlight">43</i>&nbsp;            publish.docPath = &quot;_site&quot;</b>
-<i class="no-highlight">44</i>&nbsp;        }
-<i class="no-highlight">45</i>&nbsp;
-<b class="nc"><i class="no-highlight">46</i>&nbsp;        project.allprojects {</b>
-<b class="nc"><i class="no-highlight">47</i>&nbsp;            afterEvaluate {</b>
-<b class="nc"><i class="no-highlight">48</i>&nbsp;                if (hasKotlinGradlePlugin) {</b>
-<b class="nc"><i class="no-highlight">49</i>&nbsp;                    pluginManager.apply(PluginIds.Kotlin.dokka)</b>
-<b class="nc"><i class="no-highlight">50</i>&nbsp;                    tasks.withType&lt;DokkaTaskPartial&gt; {</b>
-<b class="nc"><i class="no-highlight">51</i>&nbsp;                        dokkaSourceSets.configureEach {</b>
-<b class="nc"><i class="no-highlight">52</i>&nbsp;                            val includes: List&lt;String&gt; = buildList {</b>
-<b class="nc"><i class="no-highlight">53</i>&nbsp;                                if (projectDir.resolve(&quot;MODULE.md&quot;).exists()) {</b>
-<b class="nc"><i class="no-highlight">54</i>&nbsp;                                    add(&quot;MODULE.md&quot;)</b>
-<i class="no-highlight">55</i>&nbsp;                                }
-<b class="nc"><i class="no-highlight">56</i>&nbsp;                                if (projectDir.resolve(&quot;README.md&quot;).exists()) {</b>
-<b class="nc"><i class="no-highlight">57</i>&nbsp;                                    add(&quot;README.md&quot;)</b>
-<i class="no-highlight">58</i>&nbsp;                                }
-<b class="nc"><i class="no-highlight">59</i>&nbsp;                            }</b>
-<i class="no-highlight">60</i>&nbsp;
-<b class="nc"><i class="no-highlight">61</i>&nbsp;                            if (includes.isNotEmpty()) this.includes.from(includes)</b>
-<i class="no-highlight">62</i>&nbsp;                        }
-<i class="no-highlight">63</i>&nbsp;                    }
-<i class="no-highlight">64</i>&nbsp;                }
-<i class="no-highlight">65</i>&nbsp;            }
-<i class="no-highlight">66</i>&nbsp;        }
-<i class="no-highlight">67</i>&nbsp;
-<b class="nc"><i class="no-highlight">68</i>&nbsp;        val siteState = project.hubdleState.config.documentation.site</b>
-<i class="no-highlight">69</i>&nbsp;
-<b class="nc"><i class="no-highlight">70</i>&nbsp;        val preBuildDocsTask =</b>
-<b class="nc"><i class="no-highlight">71</i>&nbsp;            PrebuildSiteTask.register(project) {</b>
-<b class="nc"><i class="no-highlight">72</i>&nbsp;                projectsInfo.set(project.projectsInfo)</b>
-<b class="nc"><i class="no-highlight">73</i>&nbsp;                allTests.set(siteState.reports.allTests)</b>
-<b class="nc"><i class="no-highlight">74</i>&nbsp;                codeAnalysis.set(siteState.reports.codeAnalysis)</b>
-<b class="nc"><i class="no-highlight">75</i>&nbsp;                codeCoverage.set(siteState.reports.codeCoverage)</b>
-<b class="nc"><i class="no-highlight">76</i>&nbsp;                codeQuality.set(siteState.reports.codeQuality)</b>
-<i class="no-highlight">77</i>&nbsp;            }
-<i class="no-highlight">78</i>&nbsp;
-<b class="nc"><i class="no-highlight">79</i>&nbsp;        BuildSiteTask.register(project, preBuildDocsTask)</b>
-<i class="no-highlight">80</i>&nbsp;    }
-<i class="no-highlight">81</i>&nbsp;}
-<i class="no-highlight">82</i>&nbsp;
-<i class="no-highlight">83</i>&nbsp;internal fun configureConfigDocumentationSiteRawConfig(project: Project) {
-<b class="nc"><i class="no-highlight">84</i>&nbsp;    project.hubdleState.config.documentation.site.rawConfig.mkdocs?.execute(project.the())</b>
-<i class="no-highlight">85</i>&nbsp;}
-</div>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.extensions.config.documentation.site._internal
+&nbsp;
+&nbsp;import com.javiersc.gradle.project.extensions.isRootProject
+&nbsp;import com.javiersc.hubdle.extensions._internal.PluginIds
+&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
+&nbsp;import com.javiersc.hubdle.extensions.config._internal.hasKotlinGradlePlugin
+&nbsp;import com.javiersc.hubdle.extensions.config.documentation.site.BuildSiteTask
+&nbsp;import com.javiersc.hubdle.extensions.config.documentation.site.PrebuildSiteTask
+&nbsp;import com.javiersc.hubdle.extensions.config.documentation.site.projectsInfo
+&nbsp;import org.gradle.api.Project
+&nbsp;import org.gradle.api.artifacts.ProjectDependency
+&nbsp;import org.gradle.kotlin.dsl.configure
+&nbsp;import org.gradle.kotlin.dsl.the
+&nbsp;import org.gradle.kotlin.dsl.withType
+&nbsp;import org.jetbrains.dokka.gradle.DokkaMultiModuleTask
+&nbsp;import org.jetbrains.dokka.gradle.DokkaTaskPartial
+&nbsp;import ru.vyarus.gradle.plugin.mkdocs.MkdocsExtension
+&nbsp;
+&nbsp;internal fun configureSite(project: Project) {
+<b class="nc">&nbsp;    if (project.hubdleState.config.documentation.site.isEnabled) {</b>
+<b class="nc">&nbsp;        check(project.isRootProject) {</b>
+<b class="nc">&nbsp;            &quot;&quot;&quot;</b>
+&nbsp;                |`site` can be only used in the root project, and it is being applied in:
+<b class="nc">&nbsp;                |  - `${project.path}</b>
+<b class="nc">&nbsp;            &quot;&quot;&quot;.trimMargin()</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        project.pluginManager.apply(PluginIds.Kotlin.dokka)</b>
+<b class="nc">&nbsp;        project.pluginManager.apply(PluginIds.Documentation.mkdocs)</b>
+&nbsp;
+<b class="nc">&nbsp;        project.tasks.withType&lt;DokkaMultiModuleTask&gt;().configureEach {</b>
+<b class="nc">&nbsp;            val excludedProjects =</b>
+<b class="nc">&nbsp;                project.hubdleState.config.documentation.site.excludes.map(</b>
+<b class="nc">&nbsp;                    ProjectDependency::getDependencyProject</b>
+&nbsp;                )
+<b class="nc">&nbsp;            removeChildTasks(excludedProjects)</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        project.configure&lt;MkdocsExtension&gt; {</b>
+<b class="nc">&nbsp;            strict = false</b>
+<b class="nc">&nbsp;            sourcesDir = &quot;${project.rootProject.rootDir}/build/.docs&quot;</b>
+<b class="nc">&nbsp;            buildDir = &quot;${project.rootProject.rootDir}/build/docs&quot;</b>
+<b class="nc">&nbsp;            publish.docPath = &quot;_site&quot;</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        project.allprojects {</b>
+<b class="nc">&nbsp;            afterEvaluate {</b>
+<b class="nc">&nbsp;                if (hasKotlinGradlePlugin) {</b>
+<b class="nc">&nbsp;                    pluginManager.apply(PluginIds.Kotlin.dokka)</b>
+<b class="nc">&nbsp;                    tasks.withType&lt;DokkaTaskPartial&gt; {</b>
+<b class="nc">&nbsp;                        dokkaSourceSets.configureEach {</b>
+<b class="nc">&nbsp;                            val includes: List&lt;String&gt; = buildList {</b>
+<b class="nc">&nbsp;                                if (projectDir.resolve(&quot;MODULE.md&quot;).exists()) {</b>
+<b class="nc">&nbsp;                                    add(&quot;MODULE.md&quot;)</b>
+&nbsp;                                }
+<b class="nc">&nbsp;                                if (projectDir.resolve(&quot;README.md&quot;).exists()) {</b>
+<b class="nc">&nbsp;                                    add(&quot;README.md&quot;)</b>
+&nbsp;                                }
+<b class="nc">&nbsp;                            }</b>
+&nbsp;
+<b class="nc">&nbsp;                            if (includes.isNotEmpty()) this.includes.from(includes)</b>
+&nbsp;                        }
+&nbsp;                    }
+&nbsp;                }
+&nbsp;            }
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        val siteState = project.hubdleState.config.documentation.site</b>
+&nbsp;
+<b class="nc">&nbsp;        val preBuildDocsTask =</b>
+<b class="nc">&nbsp;            PrebuildSiteTask.register(project) {</b>
+<b class="nc">&nbsp;                projectsInfo.set(project.projectsInfo)</b>
+<b class="nc">&nbsp;                allTests.set(siteState.reports.allTests)</b>
+<b class="nc">&nbsp;                codeAnalysis.set(siteState.reports.codeAnalysis)</b>
+<b class="nc">&nbsp;                codeCoverage.set(siteState.reports.codeCoverage)</b>
+<b class="nc">&nbsp;                codeQuality.set(siteState.reports.codeQuality)</b>
+&nbsp;            }
+&nbsp;
+<b class="nc">&nbsp;        BuildSiteTask.register(project, preBuildDocsTask)</b>
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;internal fun configureConfigDocumentationSiteRawConfig(project: Project) {
+<b class="nc">&nbsp;    project.hubdleState.config.documentation.site.rawConfig.mkdocs?.execute(project.the())</b>
+&nbsp;}
+</code>
 </pre>
 </div>
 
@@ -462,18 +463,15 @@ Current scope:     <a href="../../index.html">all classes</a>
     @*/
 
     if (!msie || msie && msie9) {
-        var codeBlock = document.getElementById('sourceCode');
-
-        if (codeBlock) {
-            hljs.highlightBlock(codeBlock);
-        }
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
     }
 })();
 </script>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-14 10:24</div>
+    <div style="float:right;">generated on 2022-09-21 10:36</div>
 </div>
 </body>
 </html>

@@ -7,9 +7,10 @@
   <title>Coverage Report > ConfigureBinaryCompatibilityValidatorKt</title>
   <style type="text/css">
     @import "../../css/coverage.css";
-    @import "../../css/highlight-idea.css";
+    @import "../../css/idea.min.css";
   </style>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
 </head>
 
 <body>
@@ -288,45 +289,45 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.javiersc.hubdle.extensions.config.binary.compatibility.validator._internal
-<i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;import com.javiersc.gradle.project.extensions.isRootProject
-<i class="no-highlight">4</i>&nbsp;import com.javiersc.gradle.tasks.extensions.maybeRegisterLazily
-<i class="no-highlight">5</i>&nbsp;import com.javiersc.gradle.tasks.extensions.namedLazily
-<i class="no-highlight">6</i>&nbsp;import com.javiersc.hubdle.extensions._internal.PluginIds
-<i class="no-highlight">7</i>&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
-<i class="no-highlight">8</i>&nbsp;import org.gradle.api.Project
-<i class="no-highlight">9</i>&nbsp;import org.gradle.api.Task
-<i class="no-highlight">10</i>&nbsp;import org.gradle.kotlin.dsl.the
-<i class="no-highlight">11</i>&nbsp;
-<i class="no-highlight">12</i>&nbsp;// TODO: change to per project when it is redesigned to support project isolation
-<i class="no-highlight">13</i>&nbsp;internal fun configureBinaryCompatibilityValidator(project: Project) {
-<b class="nc"><i class="no-highlight">14</i>&nbsp;    if (project.hubdleState.config.binaryCompatibilityValidator.isEnabled) {</b>
-<b class="nc"><i class="no-highlight">15</i>&nbsp;        check(project.isRootProject) {</b>
-<b class="nc"><i class="no-highlight">16</i>&nbsp;            &quot;`binaryCompatibilityValidator` must be applied only on root project&quot;</b>
-<i class="no-highlight">17</i>&nbsp;        }
-<b class="nc"><i class="no-highlight">18</i>&nbsp;        project.pluginManager.apply(PluginIds.Kotlin.binaryCompatibilityValidator)</b>
-<b class="nc"><i class="no-highlight">19</i>&nbsp;        project.allprojects {</b>
-<b class="nc"><i class="no-highlight">20</i>&nbsp;            val apiCheckTask = tasks.namedLazily&lt;Task&gt;(&quot;apiCheck&quot;)</b>
-<b class="nc"><i class="no-highlight">21</i>&nbsp;            val checkApiTask = tasks.maybeRegisterLazily&lt;Task&gt;(&quot;checkApi&quot;)</b>
-<b class="nc"><i class="no-highlight">22</i>&nbsp;            checkApiTask.configureEach {</b>
-<b class="nc"><i class="no-highlight">23</i>&nbsp;                group = &quot;verification&quot;</b>
-<b class="nc"><i class="no-highlight">24</i>&nbsp;                dependsOn(apiCheckTask)</b>
-<i class="no-highlight">25</i>&nbsp;            }
-<i class="no-highlight">26</i>&nbsp;
-<b class="nc"><i class="no-highlight">27</i>&nbsp;            val apiDumpTask = tasks.namedLazily&lt;Task&gt;(&quot;apiDump&quot;)</b>
-<b class="nc"><i class="no-highlight">28</i>&nbsp;            val dumpApiTask = tasks.maybeRegisterLazily&lt;Task&gt;(&quot;dumpApi&quot;)</b>
-<b class="nc"><i class="no-highlight">29</i>&nbsp;            dumpApiTask.configureEach { dependsOn(apiDumpTask) }</b>
-<i class="no-highlight">30</i>&nbsp;        }
-<i class="no-highlight">31</i>&nbsp;    }
-<i class="no-highlight">32</i>&nbsp;}
-<i class="no-highlight">33</i>&nbsp;
-<i class="no-highlight">34</i>&nbsp;internal fun configureConfigBinaryCompatibilityValidatorRawConfig(project: Project) {
-<b class="nc"><i class="no-highlight">35</i>&nbsp;    project.hubdleState.config.binaryCompatibilityValidator.rawConfig.apiValidation?.execute(</b>
-<b class="nc"><i class="no-highlight">36</i>&nbsp;        project.the()</b>
-<i class="no-highlight">37</i>&nbsp;    )
-<i class="no-highlight">38</i>&nbsp;}
-</div>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.extensions.config.binary.compatibility.validator._internal
+&nbsp;
+&nbsp;import com.javiersc.gradle.project.extensions.isRootProject
+&nbsp;import com.javiersc.gradle.tasks.extensions.maybeRegisterLazily
+&nbsp;import com.javiersc.gradle.tasks.extensions.namedLazily
+&nbsp;import com.javiersc.hubdle.extensions._internal.PluginIds
+&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
+&nbsp;import org.gradle.api.Project
+&nbsp;import org.gradle.api.Task
+&nbsp;import org.gradle.kotlin.dsl.the
+&nbsp;
+&nbsp;// TODO: change to per project when it is redesigned to support project isolation
+&nbsp;internal fun configureBinaryCompatibilityValidator(project: Project) {
+<b class="nc">&nbsp;    if (project.hubdleState.config.binaryCompatibilityValidator.isEnabled) {</b>
+<b class="nc">&nbsp;        check(project.isRootProject) {</b>
+<b class="nc">&nbsp;            &quot;`binaryCompatibilityValidator` must be applied only on root project&quot;</b>
+&nbsp;        }
+<b class="nc">&nbsp;        project.pluginManager.apply(PluginIds.Kotlin.binaryCompatibilityValidator)</b>
+<b class="nc">&nbsp;        project.allprojects {</b>
+<b class="nc">&nbsp;            val apiCheckTask = tasks.namedLazily&lt;Task&gt;(&quot;apiCheck&quot;)</b>
+<b class="nc">&nbsp;            val checkApiTask = tasks.maybeRegisterLazily&lt;Task&gt;(&quot;checkApi&quot;)</b>
+<b class="nc">&nbsp;            checkApiTask.configureEach {</b>
+<b class="nc">&nbsp;                group = &quot;verification&quot;</b>
+<b class="nc">&nbsp;                dependsOn(apiCheckTask)</b>
+&nbsp;            }
+&nbsp;
+<b class="nc">&nbsp;            val apiDumpTask = tasks.namedLazily&lt;Task&gt;(&quot;apiDump&quot;)</b>
+<b class="nc">&nbsp;            val dumpApiTask = tasks.maybeRegisterLazily&lt;Task&gt;(&quot;dumpApi&quot;)</b>
+<b class="nc">&nbsp;            dumpApiTask.configureEach { dependsOn(apiDumpTask) }</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;internal fun configureConfigBinaryCompatibilityValidatorRawConfig(project: Project) {
+<b class="nc">&nbsp;    project.hubdleState.config.binaryCompatibilityValidator.rawConfig.apiValidation?.execute(</b>
+<b class="nc">&nbsp;        project.the()</b>
+&nbsp;    )
+&nbsp;}
+</code>
 </pre>
 </div>
 
@@ -341,18 +342,15 @@ Current scope:     <a href="../../index.html">all classes</a>
     @*/
 
     if (!msie || msie && msie9) {
-        var codeBlock = document.getElementById('sourceCode');
-
-        if (codeBlock) {
-            hljs.highlightBlock(codeBlock);
-        }
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
     }
 })();
 </script>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-14 10:24</div>
+    <div style="float:right;">generated on 2022-09-21 10:36</div>
 </div>
 </body>
 </html>

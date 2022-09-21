@@ -7,9 +7,10 @@
   <title>Coverage Report > HubdleKotlinExtension</title>
   <style type="text/css">
     @import "../../css/coverage.css";
-    @import "../../css/highlight-idea.css";
+    @import "../../css/idea.min.css";
   </style>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
 </head>
 
 <body>
@@ -206,74 +207,74 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;@file:Suppress(&quot;UnusedReceiverParameter&quot;)
-<i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;package com.javiersc.hubdle.extensions.kotlin
-<i class="no-highlight">4</i>&nbsp;
-<i class="no-highlight">5</i>&nbsp;import com.javiersc.hubdle.extensions.HubdleDslMarker
-<i class="no-highlight">6</i>&nbsp;import com.javiersc.hubdle.extensions._internal.PluginIds
-<i class="no-highlight">7</i>&nbsp;import com.javiersc.hubdle.extensions.kotlin.android.HubdleKotlinAndroidExtension
-<i class="no-highlight">8</i>&nbsp;import com.javiersc.hubdle.extensions.kotlin.gradle.KotlinGradleExtension
-<i class="no-highlight">9</i>&nbsp;import com.javiersc.hubdle.extensions.kotlin.intellij.HubdleIntellijExtension
-<i class="no-highlight">10</i>&nbsp;import com.javiersc.hubdle.extensions.kotlin.jvm.HubdleKotlinJvmExtension
-<i class="no-highlight">11</i>&nbsp;import com.javiersc.hubdle.extensions.kotlin.multiplatform.HubdleKotlinMultiplatformExtension
-<i class="no-highlight">12</i>&nbsp;import javax.inject.Inject
-<i class="no-highlight">13</i>&nbsp;import org.gradle.api.Action
-<i class="no-highlight">14</i>&nbsp;import org.gradle.api.Project
-<i class="no-highlight">15</i>&nbsp;import org.gradle.api.model.ObjectFactory
-<i class="no-highlight">16</i>&nbsp;import org.gradle.kotlin.dsl.newInstance
-<i class="no-highlight">17</i>&nbsp;
-<i class="no-highlight">18</i>&nbsp;@HubdleDslMarker
-<i class="no-highlight">19</i>&nbsp;public open class HubdleKotlinExtension
-<i class="no-highlight">20</i>&nbsp;@Inject
-<b class="nc"><i class="no-highlight">21</i>&nbsp;constructor(</b>
-<i class="no-highlight">22</i>&nbsp;    objects: ObjectFactory,
-<i class="no-highlight">23</i>&nbsp;) {
-<i class="no-highlight">24</i>&nbsp;
-<b class="nc"><i class="no-highlight">25</i>&nbsp;    private val android: HubdleKotlinAndroidExtension = objects.newInstance()</b>
-<i class="no-highlight">26</i>&nbsp;
-<i class="no-highlight">27</i>&nbsp;    @HubdleDslMarker
-<b class="nc"><i class="no-highlight">28</i>&nbsp;    public fun Project.android(action: Action&lt;in HubdleKotlinAndroidExtension&gt; = Action {}) {</b>
-<b class="nc"><i class="no-highlight">29</i>&nbsp;        action.execute(android)</b>
-<i class="no-highlight">30</i>&nbsp;    }
-<i class="no-highlight">31</i>&nbsp;
-<b class="nc"><i class="no-highlight">32</i>&nbsp;    private val gradle: KotlinGradleExtension = objects.newInstance()</b>
-<i class="no-highlight">33</i>&nbsp;
-<i class="no-highlight">34</i>&nbsp;    @HubdleDslMarker
-<b class="nc"><i class="no-highlight">35</i>&nbsp;    public fun Project.gradle(action: Action&lt;in KotlinGradleExtension&gt; = Action {}) {</b>
-<b class="nc"><i class="no-highlight">36</i>&nbsp;        action.execute(this@HubdleKotlinExtension.gradle)</b>
-<i class="no-highlight">37</i>&nbsp;    }
-<i class="no-highlight">38</i>&nbsp;
-<b class="nc"><i class="no-highlight">39</i>&nbsp;    private val intellijPlugin: HubdleIntellijExtension = objects.newInstance()</b>
-<i class="no-highlight">40</i>&nbsp;
-<i class="no-highlight">41</i>&nbsp;    @HubdleDslMarker
-<b class="nc"><i class="no-highlight">42</i>&nbsp;    public fun Project.intellijPlugin(action: Action&lt;in HubdleIntellijExtension&gt; = Action {}) {</b>
-<b class="nc"><i class="no-highlight">43</i>&nbsp;        project.pluginManager.apply(PluginIds.JetBrains.intellij)</b>
-<b class="nc"><i class="no-highlight">44</i>&nbsp;        intellijPlugin.run { isEnabled = true }</b>
-<b class="nc"><i class="no-highlight">45</i>&nbsp;        action.execute(intellijPlugin)</b>
-<i class="no-highlight">46</i>&nbsp;    }
-<i class="no-highlight">47</i>&nbsp;
-<b class="nc"><i class="no-highlight">48</i>&nbsp;    private val jvm: HubdleKotlinJvmExtension = objects.newInstance()</b>
-<i class="no-highlight">49</i>&nbsp;
-<i class="no-highlight">50</i>&nbsp;    @HubdleDslMarker
-<b class="nc"><i class="no-highlight">51</i>&nbsp;    public fun Project.jvm(action: Action&lt;in HubdleKotlinJvmExtension&gt; = Action {}) {</b>
-<b class="nc"><i class="no-highlight">52</i>&nbsp;        pluginManager.apply(PluginIds.Kotlin.jvm)</b>
-<b class="nc"><i class="no-highlight">53</i>&nbsp;        jvm.run { isEnabled = true }</b>
-<b class="nc"><i class="no-highlight">54</i>&nbsp;        action.execute(jvm)</b>
-<i class="no-highlight">55</i>&nbsp;    }
-<i class="no-highlight">56</i>&nbsp;
-<b class="nc"><i class="no-highlight">57</i>&nbsp;    private val multiplatform: HubdleKotlinMultiplatformExtension = objects.newInstance()</b>
-<i class="no-highlight">58</i>&nbsp;
-<i class="no-highlight">59</i>&nbsp;    @HubdleDslMarker
-<i class="no-highlight">60</i>&nbsp;    public fun Project.multiplatform(
-<b class="nc"><i class="no-highlight">61</i>&nbsp;        action: Action&lt;in HubdleKotlinMultiplatformExtension&gt; = Action {}</b>
-<i class="no-highlight">62</i>&nbsp;    ) {
-<b class="nc"><i class="no-highlight">63</i>&nbsp;        project.pluginManager.apply(PluginIds.Kotlin.multiplatform)</b>
-<b class="nc"><i class="no-highlight">64</i>&nbsp;        multiplatform.run { isEnabled = true }</b>
-<b class="nc"><i class="no-highlight">65</i>&nbsp;        action.execute(multiplatform)</b>
-<i class="no-highlight">66</i>&nbsp;    }
-<i class="no-highlight">67</i>&nbsp;}
-</div>
+<code class="sourceCode" id="sourceCode">&nbsp;@file:Suppress(&quot;UnusedReceiverParameter&quot;)
+&nbsp;
+&nbsp;package com.javiersc.hubdle.extensions.kotlin
+&nbsp;
+&nbsp;import com.javiersc.hubdle.extensions.HubdleDslMarker
+&nbsp;import com.javiersc.hubdle.extensions._internal.PluginIds
+&nbsp;import com.javiersc.hubdle.extensions.kotlin.android.HubdleKotlinAndroidExtension
+&nbsp;import com.javiersc.hubdle.extensions.kotlin.gradle.KotlinGradleExtension
+&nbsp;import com.javiersc.hubdle.extensions.kotlin.intellij.HubdleIntellijExtension
+&nbsp;import com.javiersc.hubdle.extensions.kotlin.jvm.HubdleKotlinJvmExtension
+&nbsp;import com.javiersc.hubdle.extensions.kotlin.multiplatform.HubdleKotlinMultiplatformExtension
+&nbsp;import javax.inject.Inject
+&nbsp;import org.gradle.api.Action
+&nbsp;import org.gradle.api.Project
+&nbsp;import org.gradle.api.model.ObjectFactory
+&nbsp;import org.gradle.kotlin.dsl.newInstance
+&nbsp;
+&nbsp;@HubdleDslMarker
+&nbsp;public open class HubdleKotlinExtension
+&nbsp;@Inject
+<b class="nc">&nbsp;constructor(</b>
+&nbsp;    objects: ObjectFactory,
+&nbsp;) {
+&nbsp;
+<b class="nc">&nbsp;    private val android: HubdleKotlinAndroidExtension = objects.newInstance()</b>
+&nbsp;
+&nbsp;    @HubdleDslMarker
+<b class="nc">&nbsp;    public fun Project.android(action: Action&lt;in HubdleKotlinAndroidExtension&gt; = Action {}) {</b>
+<b class="nc">&nbsp;        action.execute(android)</b>
+&nbsp;    }
+&nbsp;
+<b class="nc">&nbsp;    private val gradle: KotlinGradleExtension = objects.newInstance()</b>
+&nbsp;
+&nbsp;    @HubdleDslMarker
+<b class="nc">&nbsp;    public fun Project.gradle(action: Action&lt;in KotlinGradleExtension&gt; = Action {}) {</b>
+<b class="nc">&nbsp;        action.execute(this@HubdleKotlinExtension.gradle)</b>
+&nbsp;    }
+&nbsp;
+<b class="nc">&nbsp;    private val intellijPlugin: HubdleIntellijExtension = objects.newInstance()</b>
+&nbsp;
+&nbsp;    @HubdleDslMarker
+<b class="nc">&nbsp;    public fun Project.intellijPlugin(action: Action&lt;in HubdleIntellijExtension&gt; = Action {}) {</b>
+<b class="nc">&nbsp;        project.pluginManager.apply(PluginIds.JetBrains.intellij)</b>
+<b class="nc">&nbsp;        intellijPlugin.run { isEnabled = true }</b>
+<b class="nc">&nbsp;        action.execute(intellijPlugin)</b>
+&nbsp;    }
+&nbsp;
+<b class="nc">&nbsp;    private val jvm: HubdleKotlinJvmExtension = objects.newInstance()</b>
+&nbsp;
+&nbsp;    @HubdleDslMarker
+<b class="nc">&nbsp;    public fun Project.jvm(action: Action&lt;in HubdleKotlinJvmExtension&gt; = Action {}) {</b>
+<b class="nc">&nbsp;        pluginManager.apply(PluginIds.Kotlin.jvm)</b>
+<b class="nc">&nbsp;        jvm.run { isEnabled = true }</b>
+<b class="nc">&nbsp;        action.execute(jvm)</b>
+&nbsp;    }
+&nbsp;
+<b class="nc">&nbsp;    private val multiplatform: HubdleKotlinMultiplatformExtension = objects.newInstance()</b>
+&nbsp;
+&nbsp;    @HubdleDslMarker
+&nbsp;    public fun Project.multiplatform(
+<b class="nc">&nbsp;        action: Action&lt;in HubdleKotlinMultiplatformExtension&gt; = Action {}</b>
+&nbsp;    ) {
+<b class="nc">&nbsp;        project.pluginManager.apply(PluginIds.Kotlin.multiplatform)</b>
+<b class="nc">&nbsp;        multiplatform.run { isEnabled = true }</b>
+<b class="nc">&nbsp;        action.execute(multiplatform)</b>
+&nbsp;    }
+&nbsp;}
+</code>
 </pre>
 </div>
 
@@ -288,18 +289,15 @@ Current scope:     <a href="../../index.html">all classes</a>
     @*/
 
     if (!msie || msie && msie9) {
-        var codeBlock = document.getElementById('sourceCode');
-
-        if (codeBlock) {
-            hljs.highlightBlock(codeBlock);
-        }
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
     }
 })();
 </script>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-14 10:24</div>
+    <div style="float:right;">generated on 2022-09-21 10:36</div>
 </div>
 </body>
 </html>

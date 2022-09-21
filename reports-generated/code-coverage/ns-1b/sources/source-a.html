@@ -7,9 +7,10 @@
   <title>Coverage Report > WriteFilePreCommitTask</title>
   <style type="text/css">
     @import "../../css/coverage.css";
-    @import "../../css/highlight-idea.css";
+    @import "../../css/idea.min.css";
   </style>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
 </head>
 
 <body>
@@ -66,7 +67,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/23)
+    (0/24)
   </span>
 </td>
 <td class="coverageStat">
@@ -129,7 +130,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/25)
+    (0/26)
   </span>
 </td>
 <td class="coverageStat">
@@ -148,71 +149,71 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.javiersc.hubdle.extensions.config.install.commit
-<i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;import java.io.File
-<i class="no-highlight">4</i>&nbsp;import javax.inject.Inject
-<i class="no-highlight">5</i>&nbsp;import org.gradle.api.DefaultTask
-<i class="no-highlight">6</i>&nbsp;import org.gradle.api.Project
-<i class="no-highlight">7</i>&nbsp;import org.gradle.api.file.ProjectLayout
-<i class="no-highlight">8</i>&nbsp;import org.gradle.api.tasks.CacheableTask
-<i class="no-highlight">9</i>&nbsp;import org.gradle.api.tasks.TaskAction
-<i class="no-highlight">10</i>&nbsp;import org.gradle.api.tasks.TaskProvider
-<i class="no-highlight">11</i>&nbsp;import org.gradle.kotlin.dsl.named
-<i class="no-highlight">12</i>&nbsp;import org.gradle.kotlin.dsl.register
-<i class="no-highlight">13</i>&nbsp;
-<i class="no-highlight">14</i>&nbsp;@CacheableTask
-<i class="no-highlight">15</i>&nbsp;public abstract class WriteFilePreCommitTask
-<i class="no-highlight">16</i>&nbsp;@Inject
-<b class="nc"><i class="no-highlight">17</i>&nbsp;constructor(</b>
-<i class="no-highlight">18</i>&nbsp;    layout: ProjectLayout,
-<b class="nc"><i class="no-highlight">19</i>&nbsp;) : DefaultTask() {</b>
-<i class="no-highlight">20</i>&nbsp;
-<b class="nc"><i class="no-highlight">21</i>&nbsp;    init {</b>
-<b class="nc"><i class="no-highlight">22</i>&nbsp;        group = &quot;install&quot;</b>
-<b class="nc"><i class="no-highlight">23</i>&nbsp;    }</b>
-<i class="no-highlight">24</i>&nbsp;
-<i class="no-highlight">25</i>&nbsp;    private val installPreCommitsDir: File =
-<b class="nc"><i class="no-highlight">26</i>&nbsp;        layout.buildDirectory.asFile.get().resolve(&quot;install/pre-commits&quot;)</b>
-<i class="no-highlight">27</i>&nbsp;
-<b class="nc"><i class="no-highlight">28</i>&nbsp;    private val preCommitFile: File = layout.preCommitFile</b>
-<i class="no-highlight">29</i>&nbsp;
-<i class="no-highlight">30</i>&nbsp;    @TaskAction
-<i class="no-highlight">31</i>&nbsp;    public fun writeFile() {
-<b class="nc"><i class="no-highlight">32</i>&nbsp;        installPreCommitsDir.mkdirs()</b>
-<b class="nc"><i class="no-highlight">33</i>&nbsp;        preCommitFile.apply {</b>
-<b class="nc"><i class="no-highlight">34</i>&nbsp;            parentFile.mkdirs()</b>
-<b class="nc"><i class="no-highlight">35</i>&nbsp;            createNewFile()</b>
-<b class="nc"><i class="no-highlight">36</i>&nbsp;        }</b>
-<b class="nc"><i class="no-highlight">37</i>&nbsp;        val currentPreCommitText = preCommitFile.readText()</b>
-<i class="no-highlight">38</i>&nbsp;
-<b class="nc"><i class="no-highlight">39</i>&nbsp;        val preCommitText: String =</b>
-<b class="nc"><i class="no-highlight">40</i>&nbsp;            installPreCommitsDir</b>
-<b class="nc"><i class="no-highlight">41</i>&nbsp;                .listFiles()</b>
-<b class="nc"><i class="no-highlight">42</i>&nbsp;                ?.map(File::readText)</b>
-<b class="nc"><i class="no-highlight">43</i>&nbsp;                ?.reduce { accumulative, text -&gt;</b>
-<b class="nc"><i class="no-highlight">44</i>&nbsp;                    if (!currentPreCommitText.contains(text)) accumulative + text else accumulative</b>
-<i class="no-highlight">45</i>&nbsp;                }
-<b class="nc"><i class="no-highlight">46</i>&nbsp;                .orEmpty()</b>
-<b class="nc"><i class="no-highlight">47</i>&nbsp;        if (currentPreCommitText.lines().firstOrNull()?.contains(&quot;#!/bin/bash&quot;) == true) {</b>
-<b class="nc"><i class="no-highlight">48</i>&nbsp;            preCommitFile.writeText(currentPreCommitText + preCommitText)</b>
-<i class="no-highlight">49</i>&nbsp;        } else {
-<b class="nc"><i class="no-highlight">50</i>&nbsp;            preCommitFile.writeText(&quot;#!/bin/bash\n$currentPreCommitText$preCommitText&quot;)</b>
-<i class="no-highlight">51</i>&nbsp;        }
-<i class="no-highlight">52</i>&nbsp;    }
-<i class="no-highlight">53</i>&nbsp;
-<i class="no-highlight">54</i>&nbsp;    public companion object {
-<i class="no-highlight">55</i>&nbsp;        public const val name: String = &quot;writeFilePreCommit&quot;
-<i class="no-highlight">56</i>&nbsp;
-<i class="no-highlight">57</i>&nbsp;        internal fun register(project: Project) {
-<b class="nc"><i class="no-highlight">58</i>&nbsp;            project.tasks.register&lt;WriteFilePreCommitTask&gt;(name)</b>
-<i class="no-highlight">59</i>&nbsp;        }
-<i class="no-highlight">60</i>&nbsp;
-<i class="no-highlight">61</i>&nbsp;        internal fun getTask(project: Project): TaskProvider&lt;WriteFilePreCommitTask&gt; =
-<b class="nc"><i class="no-highlight">62</i>&nbsp;            project.tasks.named&lt;WriteFilePreCommitTask&gt;(name)</b>
-<i class="no-highlight">63</i>&nbsp;    }
-<i class="no-highlight">64</i>&nbsp;}
-</div>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.extensions.config.install.commit
+&nbsp;
+&nbsp;import java.io.File
+&nbsp;import javax.inject.Inject
+&nbsp;import org.gradle.api.DefaultTask
+&nbsp;import org.gradle.api.Project
+&nbsp;import org.gradle.api.file.ProjectLayout
+&nbsp;import org.gradle.api.tasks.CacheableTask
+&nbsp;import org.gradle.api.tasks.TaskAction
+&nbsp;import org.gradle.api.tasks.TaskProvider
+&nbsp;import org.gradle.kotlin.dsl.named
+&nbsp;import org.gradle.kotlin.dsl.register
+&nbsp;
+&nbsp;@CacheableTask
+&nbsp;public abstract class WriteFilePreCommitTask
+&nbsp;@Inject
+<b class="nc">&nbsp;constructor(</b>
+&nbsp;    layout: ProjectLayout,
+<b class="nc">&nbsp;) : DefaultTask() {</b>
+&nbsp;
+<b class="nc">&nbsp;    init {</b>
+<b class="nc">&nbsp;        group = &quot;install&quot;</b>
+<b class="nc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    private val installPreCommitsDir: File =
+<b class="nc">&nbsp;        layout.buildDirectory.asFile.get().resolve(&quot;install/pre-commits&quot;)</b>
+&nbsp;
+<b class="nc">&nbsp;    private val preCommitFile: File = layout.preCommitFile</b>
+&nbsp;
+&nbsp;    @TaskAction
+&nbsp;    public fun writeFile() {
+<b class="nc">&nbsp;        installPreCommitsDir.mkdirs()</b>
+<b class="nc">&nbsp;        preCommitFile.apply {</b>
+<b class="nc">&nbsp;            parentFile.mkdirs()</b>
+<b class="nc">&nbsp;            createNewFile()</b>
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;        val currentPreCommitText = preCommitFile.readText()</b>
+&nbsp;
+<b class="nc">&nbsp;        val preCommitText: String =</b>
+<b class="nc">&nbsp;            installPreCommitsDir</b>
+<b class="nc">&nbsp;                .listFiles()</b>
+<b class="nc">&nbsp;                ?.map(File::readText)</b>
+<b class="nc">&nbsp;                ?.reduce { accumulative, text -&gt;</b>
+<b class="nc">&nbsp;                    if (!currentPreCommitText.contains(text)) accumulative + text else accumulative</b>
+&nbsp;                }
+<b class="nc">&nbsp;                .orEmpty()</b>
+<b class="nc">&nbsp;        if (currentPreCommitText.lines().firstOrNull()?.contains(&quot;#!/bin/bash&quot;) == true) {</b>
+<b class="nc">&nbsp;            preCommitFile.writeText(currentPreCommitText + preCommitText)</b>
+&nbsp;        } else {
+<b class="nc">&nbsp;            preCommitFile.writeText(&quot;#!/bin/bash\n$currentPreCommitText$preCommitText&quot;)</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public companion object {
+&nbsp;        public const val name: String = &quot;writeFilePreCommit&quot;
+&nbsp;
+&nbsp;        internal fun register(project: Project) {
+<b class="nc">&nbsp;            project.tasks.register&lt;WriteFilePreCommitTask&gt;(name)</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        internal fun getTask(project: Project): TaskProvider&lt;WriteFilePreCommitTask&gt; =
+<b class="nc">&nbsp;            project.tasks.named&lt;WriteFilePreCommitTask&gt;(name)</b>
+&nbsp;    }
+&nbsp;}
+</code>
 </pre>
 </div>
 
@@ -227,18 +228,15 @@ Current scope:     <a href="../../index.html">all classes</a>
     @*/
 
     if (!msie || msie && msie9) {
-        var codeBlock = document.getElementById('sourceCode');
-
-        if (codeBlock) {
-            hljs.highlightBlock(codeBlock);
-        }
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
     }
 })();
 </script>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-14 10:24</div>
+    <div style="float:right;">generated on 2022-09-21 10:36</div>
 </div>
 </body>
 </html>

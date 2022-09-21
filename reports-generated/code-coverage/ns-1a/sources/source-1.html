@@ -7,9 +7,10 @@
   <title>Coverage Report > ConfigureInstallKt</title>
   <style type="text/css">
     @import "../../css/coverage.css";
-    @import "../../css/highlight-idea.css";
+    @import "../../css/idea.min.css";
   </style>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
 </head>
 
 <body>
@@ -97,42 +98,42 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.javiersc.hubdle.extensions.config.install._internal
-<i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;import com.javiersc.gradle.project.extensions.isRootProject
-<i class="no-highlight">4</i>&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
-<i class="no-highlight">5</i>&nbsp;import com.javiersc.hubdle.extensions.config.install.commit.InstallAllTestsPreCommitTask
-<i class="no-highlight">6</i>&nbsp;import com.javiersc.hubdle.extensions.config.install.commit.InstallApplyFormatPreCommitTask
-<i class="no-highlight">7</i>&nbsp;import com.javiersc.hubdle.extensions.config.install.commit.InstallAssemblePreCommitTask
-<i class="no-highlight">8</i>&nbsp;import com.javiersc.hubdle.extensions.config.install.commit.InstallCheckAnalysisPreCommitTask
-<i class="no-highlight">9</i>&nbsp;import com.javiersc.hubdle.extensions.config.install.commit.InstallCheckApiPreCommitTask
-<i class="no-highlight">10</i>&nbsp;import com.javiersc.hubdle.extensions.config.install.commit.InstallCheckFormatPreCommitTask
-<i class="no-highlight">11</i>&nbsp;import com.javiersc.hubdle.extensions.config.install.commit.InstallDumpApiPreCommitTask
-<i class="no-highlight">12</i>&nbsp;import com.javiersc.hubdle.extensions.config.install.commit.InstallPreCommitTask
-<i class="no-highlight">13</i>&nbsp;import com.javiersc.hubdle.extensions.config.install.commit.WriteFilePreCommitTask
-<i class="no-highlight">14</i>&nbsp;import org.gradle.api.Project
-<i class="no-highlight">15</i>&nbsp;
-<i class="no-highlight">16</i>&nbsp;internal fun configureInstallPreCommits(project: Project) {
-<b class="nc"><i class="no-highlight">17</i>&nbsp;    val preCommitsState = project.hubdleState.config.install.preCommits</b>
-<b class="nc"><i class="no-highlight">18</i>&nbsp;    if (preCommitsState.isEnabled) {</b>
-<i class="no-highlight">19</i>&nbsp;
-<b class="nc"><i class="no-highlight">20</i>&nbsp;        check(project.isRootProject) {</b>
-<b class="nc"><i class="no-highlight">21</i>&nbsp;            &quot;Hubdle `install` must be configured only in the root project&quot;</b>
-<i class="no-highlight">22</i>&nbsp;        }
-<i class="no-highlight">23</i>&nbsp;
-<b class="nc"><i class="no-highlight">24</i>&nbsp;        InstallPreCommitTask.register(project)</b>
-<b class="nc"><i class="no-highlight">25</i>&nbsp;        WriteFilePreCommitTask.register(project)</b>
-<i class="no-highlight">26</i>&nbsp;
-<b class="nc"><i class="no-highlight">27</i>&nbsp;        if (preCommitsState.allTests) InstallAllTestsPreCommitTask.register(project)</b>
-<b class="nc"><i class="no-highlight">28</i>&nbsp;        if (preCommitsState.applyFormat) InstallApplyFormatPreCommitTask.register(project)</b>
-<b class="nc"><i class="no-highlight">29</i>&nbsp;        if (preCommitsState.assemble) InstallAssemblePreCommitTask.register(project)</b>
-<b class="nc"><i class="no-highlight">30</i>&nbsp;        if (preCommitsState.checkAnalysis) InstallCheckAnalysisPreCommitTask.register(project)</b>
-<b class="nc"><i class="no-highlight">31</i>&nbsp;        if (preCommitsState.checkApi) InstallCheckApiPreCommitTask.register(project)</b>
-<b class="nc"><i class="no-highlight">32</i>&nbsp;        if (preCommitsState.checkFormat) InstallCheckFormatPreCommitTask.register(project)</b>
-<b class="nc"><i class="no-highlight">33</i>&nbsp;        if (preCommitsState.dumpApi) InstallDumpApiPreCommitTask.register(project)</b>
-<i class="no-highlight">34</i>&nbsp;    }
-<i class="no-highlight">35</i>&nbsp;}
-</div>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.extensions.config.install._internal
+&nbsp;
+&nbsp;import com.javiersc.gradle.project.extensions.isRootProject
+&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
+&nbsp;import com.javiersc.hubdle.extensions.config.install.commit.InstallAllTestsPreCommitTask
+&nbsp;import com.javiersc.hubdle.extensions.config.install.commit.InstallApplyFormatPreCommitTask
+&nbsp;import com.javiersc.hubdle.extensions.config.install.commit.InstallAssemblePreCommitTask
+&nbsp;import com.javiersc.hubdle.extensions.config.install.commit.InstallCheckAnalysisPreCommitTask
+&nbsp;import com.javiersc.hubdle.extensions.config.install.commit.InstallCheckApiPreCommitTask
+&nbsp;import com.javiersc.hubdle.extensions.config.install.commit.InstallCheckFormatPreCommitTask
+&nbsp;import com.javiersc.hubdle.extensions.config.install.commit.InstallDumpApiPreCommitTask
+&nbsp;import com.javiersc.hubdle.extensions.config.install.commit.InstallPreCommitTask
+&nbsp;import com.javiersc.hubdle.extensions.config.install.commit.WriteFilePreCommitTask
+&nbsp;import org.gradle.api.Project
+&nbsp;
+&nbsp;internal fun configureInstallPreCommits(project: Project) {
+<b class="nc">&nbsp;    val preCommitsState = project.hubdleState.config.install.preCommits</b>
+<b class="nc">&nbsp;    if (preCommitsState.isEnabled) {</b>
+&nbsp;
+<b class="nc">&nbsp;        check(project.isRootProject) {</b>
+<b class="nc">&nbsp;            &quot;Hubdle `install` must be configured only in the root project&quot;</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        InstallPreCommitTask.register(project)</b>
+<b class="nc">&nbsp;        WriteFilePreCommitTask.register(project)</b>
+&nbsp;
+<b class="nc">&nbsp;        if (preCommitsState.allTests) InstallAllTestsPreCommitTask.register(project)</b>
+<b class="nc">&nbsp;        if (preCommitsState.applyFormat) InstallApplyFormatPreCommitTask.register(project)</b>
+<b class="nc">&nbsp;        if (preCommitsState.assemble) InstallAssemblePreCommitTask.register(project)</b>
+<b class="nc">&nbsp;        if (preCommitsState.checkAnalysis) InstallCheckAnalysisPreCommitTask.register(project)</b>
+<b class="nc">&nbsp;        if (preCommitsState.checkApi) InstallCheckApiPreCommitTask.register(project)</b>
+<b class="nc">&nbsp;        if (preCommitsState.checkFormat) InstallCheckFormatPreCommitTask.register(project)</b>
+<b class="nc">&nbsp;        if (preCommitsState.dumpApi) InstallDumpApiPreCommitTask.register(project)</b>
+&nbsp;    }
+&nbsp;}
+</code>
 </pre>
 </div>
 
@@ -147,18 +148,15 @@ Current scope:     <a href="../../index.html">all classes</a>
     @*/
 
     if (!msie || msie && msie9) {
-        var codeBlock = document.getElementById('sourceCode');
-
-        if (codeBlock) {
-            hljs.highlightBlock(codeBlock);
-        }
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
     }
 })();
 </script>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-14 10:24</div>
+    <div style="float:right;">generated on 2022-09-21 10:36</div>
 </div>
 </body>
 </html>

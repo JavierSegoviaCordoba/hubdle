@@ -7,9 +7,10 @@
   <title>Coverage Report > HubdleCoverageExtension</title>
   <style type="text/css">
     @import "../../css/coverage.css";
-    @import "../../css/highlight-idea.css";
+    @import "../../css/idea.min.css";
   </style>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
 </head>
 
 <body>
@@ -134,46 +135,46 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.javiersc.hubdle.extensions.config.coverage
-<i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;import com.javiersc.hubdle.extensions.HubdleDslMarker
-<i class="no-highlight">4</i>&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
-<i class="no-highlight">5</i>&nbsp;import com.javiersc.hubdle.extensions.options.EnableableOptions
-<i class="no-highlight">6</i>&nbsp;import com.javiersc.hubdle.extensions.options.RawConfigOptions
-<i class="no-highlight">7</i>&nbsp;import javax.inject.Inject
-<i class="no-highlight">8</i>&nbsp;import kotlinx.kover.api.KoverProjectConfig
-<i class="no-highlight">9</i>&nbsp;import org.gradle.api.Action
-<i class="no-highlight">10</i>&nbsp;import org.gradle.api.Project
-<i class="no-highlight">11</i>&nbsp;import org.gradle.api.model.ObjectFactory
-<i class="no-highlight">12</i>&nbsp;import org.gradle.kotlin.dsl.newInstance
-<i class="no-highlight">13</i>&nbsp;
-<i class="no-highlight">14</i>&nbsp;@HubdleDslMarker
-<i class="no-highlight">15</i>&nbsp;public open class HubdleCoverageExtension
-<i class="no-highlight">16</i>&nbsp;@Inject
-<b class="nc"><i class="no-highlight">17</i>&nbsp;constructor(</b>
-<i class="no-highlight">18</i>&nbsp;    objects: ObjectFactory,
-<i class="no-highlight">19</i>&nbsp;) : EnableableOptions, RawConfigOptions&lt;HubdleCoverageExtension.RawConfigExtension&gt; {
-<i class="no-highlight">20</i>&nbsp;
-<i class="no-highlight">21</i>&nbsp;    override var Project.isEnabled: Boolean
-<b class="nc"><i class="no-highlight">22</i>&nbsp;        get() = hubdleState.config.coverage.isEnabled</b>
-<b class="nc"><i class="no-highlight">23</i>&nbsp;        set(value) = hubdleState.config.coverage.run { isEnabled = value }</b>
-<i class="no-highlight">24</i>&nbsp;
-<b class="nc"><i class="no-highlight">25</i>&nbsp;    override val rawConfig: RawConfigExtension = objects.newInstance()</b>
-<i class="no-highlight">26</i>&nbsp;
-<i class="no-highlight">27</i>&nbsp;    @HubdleDslMarker
-<i class="no-highlight">28</i>&nbsp;    override fun Project.rawConfig(action: Action&lt;RawConfigExtension&gt;) {
-<b class="nc"><i class="no-highlight">29</i>&nbsp;        action.execute(rawConfig)</b>
-<i class="no-highlight">30</i>&nbsp;    }
-<i class="no-highlight">31</i>&nbsp;
-<i class="no-highlight">32</i>&nbsp;    @HubdleDslMarker
-<b class="nc"><i class="no-highlight">33</i>&nbsp;    public open class RawConfigExtension {</b>
-<i class="no-highlight">34</i>&nbsp;
-<i class="no-highlight">35</i>&nbsp;        public fun Project.kover(action: Action&lt;KoverProjectConfig&gt;) {
-<b class="nc"><i class="no-highlight">36</i>&nbsp;            hubdleState.config.coverage.rawConfig.kover = action</b>
-<i class="no-highlight">37</i>&nbsp;        }
-<i class="no-highlight">38</i>&nbsp;    }
-<i class="no-highlight">39</i>&nbsp;}
-</div>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.extensions.config.coverage
+&nbsp;
+&nbsp;import com.javiersc.hubdle.extensions.HubdleDslMarker
+&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
+&nbsp;import com.javiersc.hubdle.extensions.options.EnableableOptions
+&nbsp;import com.javiersc.hubdle.extensions.options.RawConfigOptions
+&nbsp;import javax.inject.Inject
+&nbsp;import kotlinx.kover.api.KoverProjectConfig
+&nbsp;import org.gradle.api.Action
+&nbsp;import org.gradle.api.Project
+&nbsp;import org.gradle.api.model.ObjectFactory
+&nbsp;import org.gradle.kotlin.dsl.newInstance
+&nbsp;
+&nbsp;@HubdleDslMarker
+&nbsp;public open class HubdleCoverageExtension
+&nbsp;@Inject
+<b class="nc">&nbsp;constructor(</b>
+&nbsp;    objects: ObjectFactory,
+&nbsp;) : EnableableOptions, RawConfigOptions&lt;HubdleCoverageExtension.RawConfigExtension&gt; {
+&nbsp;
+&nbsp;    override var Project.isEnabled: Boolean
+<b class="nc">&nbsp;        get() = hubdleState.config.coverage.isEnabled</b>
+<b class="nc">&nbsp;        set(value) = hubdleState.config.coverage.run { isEnabled = value }</b>
+&nbsp;
+<b class="nc">&nbsp;    override val rawConfig: RawConfigExtension = objects.newInstance()</b>
+&nbsp;
+&nbsp;    @HubdleDslMarker
+&nbsp;    override fun Project.rawConfig(action: Action&lt;RawConfigExtension&gt;) {
+<b class="nc">&nbsp;        action.execute(rawConfig)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @HubdleDslMarker
+<b class="nc">&nbsp;    public open class RawConfigExtension {</b>
+&nbsp;
+&nbsp;        public fun Project.kover(action: Action&lt;KoverProjectConfig&gt;) {
+<b class="nc">&nbsp;            hubdleState.config.coverage.rawConfig.kover = action</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+</code>
 </pre>
 </div>
 
@@ -188,18 +189,15 @@ Current scope:     <a href="../../index.html">all classes</a>
     @*/
 
     if (!msie || msie && msie9) {
-        var codeBlock = document.getElementById('sourceCode');
-
-        if (codeBlock) {
-            hljs.highlightBlock(codeBlock);
-        }
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
     }
 })();
 </script>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-14 10:24</div>
+    <div style="float:right;">generated on 2022-09-21 10:36</div>
 </div>
 </body>
 </html>

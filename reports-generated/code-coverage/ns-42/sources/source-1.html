@@ -7,9 +7,10 @@
   <title>Coverage Report > HubdleSettingsExtension</title>
   <style type="text/css">
     @import "../../css/coverage.css";
-    @import "../../css/highlight-idea.css";
+    @import "../../css/idea.min.css";
   </style>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
 </head>
 
 <body>
@@ -126,25 +127,25 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.javiersc.hubdle.settings
-<i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;import com.javiersc.hubdle.settings.extensions.HubdleAutoIncludeExtension
-<i class="no-highlight">4</i>&nbsp;import javax.inject.Inject
-<i class="no-highlight">5</i>&nbsp;import org.gradle.api.Action
-<i class="no-highlight">6</i>&nbsp;import org.gradle.api.model.ObjectFactory
-<i class="no-highlight">7</i>&nbsp;import org.gradle.kotlin.dsl.newInstance
-<i class="no-highlight">8</i>&nbsp;
-<i class="no-highlight">9</i>&nbsp;@HubdleSettingsDslMarker
-<b class="nc"><i class="no-highlight">10</i>&nbsp;public open class HubdleSettingsExtension @Inject constructor(objects: ObjectFactory) {</b>
-<i class="no-highlight">11</i>&nbsp;
-<b class="nc"><i class="no-highlight">12</i>&nbsp;    public val autoInclude: HubdleAutoIncludeExtension = objects.newInstance()</b>
-<i class="no-highlight">13</i>&nbsp;
-<i class="no-highlight">14</i>&nbsp;    @HubdleSettingsDslMarker
-<b class="nc"><i class="no-highlight">15</i>&nbsp;    public fun autoInclude(action: Action&lt;HubdleAutoIncludeExtension&gt; = Action {}) {</b>
-<b class="nc"><i class="no-highlight">16</i>&nbsp;        action.execute(autoInclude)</b>
-<i class="no-highlight">17</i>&nbsp;    }
-<i class="no-highlight">18</i>&nbsp;}
-</div>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.settings
+&nbsp;
+&nbsp;import com.javiersc.hubdle.settings.extensions.HubdleAutoIncludeExtension
+&nbsp;import javax.inject.Inject
+&nbsp;import org.gradle.api.Action
+&nbsp;import org.gradle.api.model.ObjectFactory
+&nbsp;import org.gradle.kotlin.dsl.newInstance
+&nbsp;
+&nbsp;@HubdleSettingsDslMarker
+<b class="nc">&nbsp;public open class HubdleSettingsExtension @Inject constructor(objects: ObjectFactory) {</b>
+&nbsp;
+<b class="nc">&nbsp;    public val autoInclude: HubdleAutoIncludeExtension = objects.newInstance()</b>
+&nbsp;
+&nbsp;    @HubdleSettingsDslMarker
+<b class="nc">&nbsp;    public fun autoInclude(action: Action&lt;HubdleAutoIncludeExtension&gt; = Action {}) {</b>
+<b class="nc">&nbsp;        action.execute(autoInclude)</b>
+&nbsp;    }
+&nbsp;}
+</code>
 </pre>
 </div>
 
@@ -159,18 +160,15 @@ Current scope:     <a href="../../index.html">all classes</a>
     @*/
 
     if (!msie || msie && msie9) {
-        var codeBlock = document.getElementById('sourceCode');
-
-        if (codeBlock) {
-            hljs.highlightBlock(codeBlock);
-        }
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
     }
 })();
 </script>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-14 10:24</div>
+    <div style="float:right;">generated on 2022-09-21 10:36</div>
 </div>
 </body>
 </html>

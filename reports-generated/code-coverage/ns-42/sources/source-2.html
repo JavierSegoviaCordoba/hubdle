@@ -7,9 +7,10 @@
   <title>Coverage Report > HubdleSettingsPlugin</title>
   <style type="text/css">
     @import "../../css/coverage.css";
-    @import "../../css/highlight-idea.css";
+    @import "../../css/idea.min.css";
   </style>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
 </head>
 
 <body>
@@ -148,128 +149,128 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.javiersc.hubdle.settings
-<i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;import com.gradle.enterprise.gradleplugin.GradleEnterpriseExtension
-<i class="no-highlight">4</i>&nbsp;import com.javiersc.gradle.properties.extensions.getPropertyOrNull
-<i class="no-highlight">5</i>&nbsp;import com.javiersc.hubdle.settings.extensions.extractedBuildProjects
-<i class="no-highlight">6</i>&nbsp;import com.javiersc.hubdle.settings.extensions.extractedProjects
-<i class="no-highlight">7</i>&nbsp;import java.io.File
-<i class="no-highlight">8</i>&nbsp;import javax.inject.Inject
-<i class="no-highlight">9</i>&nbsp;import org.gradle.api.Plugin
-<i class="no-highlight">10</i>&nbsp;import org.gradle.api.initialization.Settings
-<i class="no-highlight">11</i>&nbsp;import org.gradle.api.model.ObjectFactory
-<i class="no-highlight">12</i>&nbsp;import org.gradle.kotlin.dsl.configure
-<i class="no-highlight">13</i>&nbsp;import org.gradle.kotlin.dsl.create
-<i class="no-highlight">14</i>&nbsp;import org.gradle.kotlin.dsl.findByType
-<i class="no-highlight">15</i>&nbsp;import org.gradle.kotlin.dsl.maven
-<i class="no-highlight">16</i>&nbsp;
-<i class="no-highlight">17</i>&nbsp;public open class HubdleSettingsPlugin
-<i class="no-highlight">18</i>&nbsp;@Inject
-<b class="nc"><i class="no-highlight">19</i>&nbsp;constructor(</b>
-<i class="no-highlight">20</i>&nbsp;    private val objects: ObjectFactory,
-<i class="no-highlight">21</i>&nbsp;) : Plugin&lt;Settings&gt; {
-<i class="no-highlight">22</i>&nbsp;
-<i class="no-highlight">23</i>&nbsp;    override fun apply(target: Settings) {
-<b class="nc"><i class="no-highlight">24</i>&nbsp;        val rootProjectName = target.getPropertyOrNull(&quot;root.project.name&quot;)</b>
-<b class="nc"><i class="no-highlight">25</i>&nbsp;        if (rootProjectName != null) {</b>
-<b class="nc"><i class="no-highlight">26</i>&nbsp;            target.rootProject.name = rootProjectName</b>
-<i class="no-highlight">27</i>&nbsp;        }
-<b class="nc"><i class="no-highlight">28</i>&nbsp;        target.enableFeaturePreview(&quot;TYPESAFE_PROJECT_ACCESSORS&quot;)</b>
-<i class="no-highlight">29</i>&nbsp;
-<b class="nc"><i class="no-highlight">30</i>&nbsp;        target.extensions.create&lt;HubdleSettingsExtension&gt;(&quot;hubdleSettings&quot;)</b>
-<i class="no-highlight">31</i>&nbsp;
-<b class="nc"><i class="no-highlight">32</i>&nbsp;        target.configureRepositories()</b>
-<i class="no-highlight">33</i>&nbsp;
-<b class="nc"><i class="no-highlight">34</i>&nbsp;        target.gradle.settingsEvaluated {</b>
-<b class="nc"><i class="no-highlight">35</i>&nbsp;            configureGradleEnterprise()</b>
-<b class="nc"><i class="no-highlight">36</i>&nbsp;            configureAutoInclude()</b>
-<b class="nc"><i class="no-highlight">37</i>&nbsp;            configureAutoIncludeVersionCatalogs(objects)</b>
-<i class="no-highlight">38</i>&nbsp;        }
-<i class="no-highlight">39</i>&nbsp;    }
-<i class="no-highlight">40</i>&nbsp;}
-<i class="no-highlight">41</i>&nbsp;
-<i class="no-highlight">42</i>&nbsp;@DslMarker public annotation class HubdleSettingsDslMarker
-<i class="no-highlight">43</i>&nbsp;
-<i class="no-highlight">44</i>&nbsp;internal val Settings.hubdleSettings: HubdleSettingsExtension
-<i class="no-highlight">45</i>&nbsp;    get() = checkNotNull(extensions.findByType())
-<i class="no-highlight">46</i>&nbsp;
-<i class="no-highlight">47</i>&nbsp;private fun Settings.configureRepositories() {
-<i class="no-highlight">48</i>&nbsp;    dependencyResolutionManagement {
-<i class="no-highlight">49</i>&nbsp;        repositories {
-<i class="no-highlight">50</i>&nbsp;            mavenCentral()
-<i class="no-highlight">51</i>&nbsp;            google()
-<i class="no-highlight">52</i>&nbsp;            maven(url = &quot;https://maven.pkg.jetbrains.space/public/p/compose/dev&quot;)
-<i class="no-highlight">53</i>&nbsp;        }
-<i class="no-highlight">54</i>&nbsp;    }
-<i class="no-highlight">55</i>&nbsp;}
-<i class="no-highlight">56</i>&nbsp;
-<i class="no-highlight">57</i>&nbsp;private fun Settings.configureAutoInclude() {
-<i class="no-highlight">58</i>&nbsp;    val autoInclude = hubdleSettings.autoInclude
-<i class="no-highlight">59</i>&nbsp;
-<i class="no-highlight">60</i>&nbsp;    if (autoInclude.isEnabled) {
-<i class="no-highlight">61</i>&nbsp;        autoInclude.includes(*extractedProjects().toTypedArray())
-<i class="no-highlight">62</i>&nbsp;        autoInclude.includedBuilds(*extractedBuildProjects().toTypedArray())
-<i class="no-highlight">63</i>&nbsp;
-<i class="no-highlight">64</i>&nbsp;        for (include in autoInclude.includableProjects) {
-<i class="no-highlight">65</i>&nbsp;            include(include)
-<i class="no-highlight">66</i>&nbsp;        }
-<i class="no-highlight">67</i>&nbsp;
-<i class="no-highlight">68</i>&nbsp;        for (includeBuild in autoInclude.includableBuilds) {
-<i class="no-highlight">69</i>&nbsp;            includeBuild(includeBuild)
-<i class="no-highlight">70</i>&nbsp;        }
-<i class="no-highlight">71</i>&nbsp;    }
-<i class="no-highlight">72</i>&nbsp;}
-<i class="no-highlight">73</i>&nbsp;
-<i class="no-highlight">74</i>&nbsp;private fun Settings.configureGradleEnterprise() {
-<i class="no-highlight">75</i>&nbsp;    pluginManager.apply(&quot;com.gradle.enterprise&quot;)
-<i class="no-highlight">76</i>&nbsp;
-<i class="no-highlight">77</i>&nbsp;    configure&lt;GradleEnterpriseExtension&gt; {
-<i class="no-highlight">78</i>&nbsp;        buildScan {
-<i class="no-highlight">79</i>&nbsp;            termsOfServiceUrl = &quot;https://gradle.com/terms-of-service&quot;
-<i class="no-highlight">80</i>&nbsp;            termsOfServiceAgree = &quot;yes&quot;
-<i class="no-highlight">81</i>&nbsp;        }
-<i class="no-highlight">82</i>&nbsp;    }
-<i class="no-highlight">83</i>&nbsp;}
-<i class="no-highlight">84</i>&nbsp;
-<i class="no-highlight">85</i>&nbsp;private fun Settings.configureAutoIncludeVersionCatalogs(objects: ObjectFactory) {
-<i class="no-highlight">86</i>&nbsp;    dependencyResolutionManagement {
-<i class="no-highlight">87</i>&nbsp;        versionCatalogs {
-<i class="no-highlight">88</i>&nbsp;            val catalogs: Map&lt;String, File&gt; = tomlFileInGradleDirs.getCatalogs()
-<i class="no-highlight">89</i>&nbsp;            for ((name, file) in catalogs) {
-<i class="no-highlight">90</i>&nbsp;                create(name) { from(objects.fileCollection().from(file.absolutePath)) }
-<i class="no-highlight">91</i>&nbsp;            }
-<i class="no-highlight">92</i>&nbsp;        }
-<i class="no-highlight">93</i>&nbsp;    }
-<i class="no-highlight">94</i>&nbsp;}
-<i class="no-highlight">95</i>&nbsp;
-<i class="no-highlight">96</i>&nbsp;private val Settings.tomlFileInGradleDirs: Set&lt;File&gt;
-<i class="no-highlight">97</i>&nbsp;    get() =
-<i class="no-highlight">98</i>&nbsp;        (rootDir.resolve(&quot;gradle&quot;).listFiles().orEmpty().toSet() +
-<i class="no-highlight">99</i>&nbsp;                settingsDir.resolve(&quot;gradle&quot;).listFiles().orEmpty().toSet())
-<i class="no-highlight">100</i>&nbsp;            .filter { it.extension == &quot;toml&quot; }
-<i class="no-highlight">101</i>&nbsp;            .toSet()
-<i class="no-highlight">102</i>&nbsp;
-<i class="no-highlight">103</i>&nbsp;private fun Set&lt;File&gt;.getCatalogs(): Map&lt;String, File&gt; =
-<i class="no-highlight">104</i>&nbsp;    mapNotNull { file -&gt; if (file.isCatalog) file else null }
-<i class="no-highlight">105</i>&nbsp;        .mapNotNull { catalog -&gt;
-<i class="no-highlight">106</i>&nbsp;            val catalogName =
-<i class="no-highlight">107</i>&nbsp;                when {
-<i class="no-highlight">108</i>&nbsp;                    catalog.name.contains(&quot;-libs&quot;) -&gt; catalog.name.substringBefore(&quot;-&quot;)
-<i class="no-highlight">109</i>&nbsp;                    catalog.name.contains(&quot;.libs&quot;) -&gt; catalog.name.substringBefore(&quot;.&quot;)
-<i class="no-highlight">110</i>&nbsp;                    else -&gt; null
-<i class="no-highlight">111</i>&nbsp;                }
-<i class="no-highlight">112</i>&nbsp;            when {
-<i class="no-highlight">113</i>&nbsp;                catalog.name == &quot;libs.versions.catalog&quot; -&gt; null
-<i class="no-highlight">114</i>&nbsp;                catalogName?.isNotBlank() == true -&gt; &quot;${catalogName}Libs&quot; to catalog
-<i class="no-highlight">115</i>&nbsp;                else -&gt; null
-<i class="no-highlight">116</i>&nbsp;            }
-<i class="no-highlight">117</i>&nbsp;        }
-<i class="no-highlight">118</i>&nbsp;        .toMap()
-<i class="no-highlight">119</i>&nbsp;
-<i class="no-highlight">120</i>&nbsp;private val File.isCatalog: Boolean
-<i class="no-highlight">121</i>&nbsp;    get() = name.endsWith(&quot;libs.versions.toml&quot;)
-</div>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.settings
+&nbsp;
+&nbsp;import com.gradle.enterprise.gradleplugin.GradleEnterpriseExtension
+&nbsp;import com.javiersc.gradle.properties.extensions.getPropertyOrNull
+&nbsp;import com.javiersc.hubdle.settings.extensions.extractedBuildProjects
+&nbsp;import com.javiersc.hubdle.settings.extensions.extractedProjects
+&nbsp;import java.io.File
+&nbsp;import javax.inject.Inject
+&nbsp;import org.gradle.api.Plugin
+&nbsp;import org.gradle.api.initialization.Settings
+&nbsp;import org.gradle.api.model.ObjectFactory
+&nbsp;import org.gradle.kotlin.dsl.configure
+&nbsp;import org.gradle.kotlin.dsl.create
+&nbsp;import org.gradle.kotlin.dsl.findByType
+&nbsp;import org.gradle.kotlin.dsl.maven
+&nbsp;
+&nbsp;public open class HubdleSettingsPlugin
+&nbsp;@Inject
+<b class="nc">&nbsp;constructor(</b>
+&nbsp;    private val objects: ObjectFactory,
+&nbsp;) : Plugin&lt;Settings&gt; {
+&nbsp;
+&nbsp;    override fun apply(target: Settings) {
+<b class="nc">&nbsp;        val rootProjectName = target.getPropertyOrNull(&quot;root.project.name&quot;)</b>
+<b class="nc">&nbsp;        if (rootProjectName != null) {</b>
+<b class="nc">&nbsp;            target.rootProject.name = rootProjectName</b>
+&nbsp;        }
+<b class="nc">&nbsp;        target.enableFeaturePreview(&quot;TYPESAFE_PROJECT_ACCESSORS&quot;)</b>
+&nbsp;
+<b class="nc">&nbsp;        target.extensions.create&lt;HubdleSettingsExtension&gt;(&quot;hubdleSettings&quot;)</b>
+&nbsp;
+<b class="nc">&nbsp;        target.configureRepositories()</b>
+&nbsp;
+<b class="nc">&nbsp;        target.gradle.settingsEvaluated {</b>
+<b class="nc">&nbsp;            configureGradleEnterprise()</b>
+<b class="nc">&nbsp;            configureAutoInclude()</b>
+<b class="nc">&nbsp;            configureAutoIncludeVersionCatalogs(objects)</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;@DslMarker public annotation class HubdleSettingsDslMarker
+&nbsp;
+&nbsp;internal val Settings.hubdleSettings: HubdleSettingsExtension
+&nbsp;    get() = checkNotNull(extensions.findByType())
+&nbsp;
+&nbsp;private fun Settings.configureRepositories() {
+&nbsp;    dependencyResolutionManagement {
+&nbsp;        repositories {
+&nbsp;            mavenCentral()
+&nbsp;            google()
+&nbsp;            maven(url = &quot;https://maven.pkg.jetbrains.space/public/p/compose/dev&quot;)
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;private fun Settings.configureAutoInclude() {
+&nbsp;    val autoInclude = hubdleSettings.autoInclude
+&nbsp;
+&nbsp;    if (autoInclude.isEnabled) {
+&nbsp;        autoInclude.includes(*extractedProjects().toTypedArray())
+&nbsp;        autoInclude.includedBuilds(*extractedBuildProjects().toTypedArray())
+&nbsp;
+&nbsp;        for (include in autoInclude.includableProjects) {
+&nbsp;            include(include)
+&nbsp;        }
+&nbsp;
+&nbsp;        for (includeBuild in autoInclude.includableBuilds) {
+&nbsp;            includeBuild(includeBuild)
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;private fun Settings.configureGradleEnterprise() {
+&nbsp;    pluginManager.apply(&quot;com.gradle.enterprise&quot;)
+&nbsp;
+&nbsp;    configure&lt;GradleEnterpriseExtension&gt; {
+&nbsp;        buildScan {
+&nbsp;            termsOfServiceUrl = &quot;https://gradle.com/terms-of-service&quot;
+&nbsp;            termsOfServiceAgree = &quot;yes&quot;
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;private fun Settings.configureAutoIncludeVersionCatalogs(objects: ObjectFactory) {
+&nbsp;    dependencyResolutionManagement {
+&nbsp;        versionCatalogs {
+&nbsp;            val catalogs: Map&lt;String, File&gt; = tomlFileInGradleDirs.getCatalogs()
+&nbsp;            for ((name, file) in catalogs) {
+&nbsp;                create(name) { from(objects.fileCollection().from(file.absolutePath)) }
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;private val Settings.tomlFileInGradleDirs: Set&lt;File&gt;
+&nbsp;    get() =
+&nbsp;        (rootDir.resolve(&quot;gradle&quot;).listFiles().orEmpty().toSet() +
+&nbsp;                settingsDir.resolve(&quot;gradle&quot;).listFiles().orEmpty().toSet())
+&nbsp;            .filter { it.extension == &quot;toml&quot; }
+&nbsp;            .toSet()
+&nbsp;
+&nbsp;private fun Set&lt;File&gt;.getCatalogs(): Map&lt;String, File&gt; =
+&nbsp;    mapNotNull { file -&gt; if (file.isCatalog) file else null }
+&nbsp;        .mapNotNull { catalog -&gt;
+&nbsp;            val catalogName =
+&nbsp;                when {
+&nbsp;                    catalog.name.contains(&quot;-libs&quot;) -&gt; catalog.name.substringBefore(&quot;-&quot;)
+&nbsp;                    catalog.name.contains(&quot;.libs&quot;) -&gt; catalog.name.substringBefore(&quot;.&quot;)
+&nbsp;                    else -&gt; null
+&nbsp;                }
+&nbsp;            when {
+&nbsp;                catalog.name == &quot;libs.versions.catalog&quot; -&gt; null
+&nbsp;                catalogName?.isNotBlank() == true -&gt; &quot;${catalogName}Libs&quot; to catalog
+&nbsp;                else -&gt; null
+&nbsp;            }
+&nbsp;        }
+&nbsp;        .toMap()
+&nbsp;
+&nbsp;private val File.isCatalog: Boolean
+&nbsp;    get() = name.endsWith(&quot;libs.versions.toml&quot;)
+</code>
 </pre>
 </div>
 
@@ -284,18 +285,15 @@ Current scope:     <a href="../../index.html">all classes</a>
     @*/
 
     if (!msie || msie && msie9) {
-        var codeBlock = document.getElementById('sourceCode');
-
-        if (codeBlock) {
-            hljs.highlightBlock(codeBlock);
-        }
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
     }
 })();
 </script>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-14 10:24</div>
+    <div style="float:right;">generated on 2022-09-21 10:36</div>
 </div>
 </body>
 </html>

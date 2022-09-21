@@ -7,9 +7,10 @@
   <title>Coverage Report > ProjectInfoKt</title>
   <style type="text/css">
     @import "../../css/coverage.css";
-    @import "../../css/highlight-idea.css";
+    @import "../../css/idea.min.css";
   </style>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
 </head>
 
 <body>
@@ -160,48 +161,48 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.javiersc.hubdle.extensions.config.documentation.site
-<i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;import java.io.File
-<i class="no-highlight">4</i>&nbsp;import org.gradle.api.Project
-<i class="no-highlight">5</i>&nbsp;import org.gradle.api.tasks.Input
-<i class="no-highlight">6</i>&nbsp;import org.gradle.api.tasks.InputFile
-<i class="no-highlight">7</i>&nbsp;import org.gradle.api.tasks.PathSensitive
-<i class="no-highlight">8</i>&nbsp;import org.gradle.api.tasks.PathSensitivity
-<i class="no-highlight">9</i>&nbsp;
-<i class="no-highlight">10</i>&nbsp;public data class ProjectInfo(
-<i class="no-highlight">11</i>&nbsp;    @Input val name: String,
-<i class="no-highlight">12</i>&nbsp;    @Input val projectPath: String,
-<i class="no-highlight">13</i>&nbsp;    @get:PathSensitive(PathSensitivity.ABSOLUTE) @InputFile val mdFile: File,
-<i class="no-highlight">14</i>&nbsp;) {
-<i class="no-highlight">15</i>&nbsp;
-<i class="no-highlight">16</i>&nbsp;    @get:Input
-<i class="no-highlight">17</i>&nbsp;    val filePath: String
-<i class="no-highlight">18</i>&nbsp;        get() = projectPath.split(&#39;:&#39;).filter(String::isNotEmpty).joinToString(&quot;/&quot;)
-<i class="no-highlight">19</i>&nbsp;}
-<i class="no-highlight">20</i>&nbsp;
-<i class="no-highlight">21</i>&nbsp;internal val Project.projectsInfo: List&lt;ProjectInfo&gt;
-<i class="no-highlight">22</i>&nbsp;    get() =
-<b class="nc"><i class="no-highlight">23</i>&nbsp;        subprojects.sortedBy(Project::getPath).mapNotNull { project -&gt;</b>
-<b class="nc"><i class="no-highlight">24</i>&nbsp;            val mdFiles =</b>
-<b class="nc"><i class="no-highlight">25</i>&nbsp;                project.projectDir.walkTopDown().maxDepth(1).filter { file -&gt;</b>
-<b class="nc"><i class="no-highlight">26</i>&nbsp;                    file.name.endsWith(&quot;.md&quot;, true)</b>
-<i class="no-highlight">27</i>&nbsp;                }
-<b class="nc"><i class="no-highlight">28</i>&nbsp;            val mdFile =</b>
-<b class="nc"><i class="no-highlight">29</i>&nbsp;                mdFiles.find { file -&gt; file.name.contains(&quot;MODULE&quot;, true) }</b>
-<b class="nc"><i class="no-highlight">30</i>&nbsp;                    ?: mdFiles.find { file -&gt; file.name.contains(&quot;README&quot;, true) }</b>
-<b class="nc"><i class="no-highlight">31</i>&nbsp;                        ?: mdFiles.firstOrNull()</b>
-<i class="no-highlight">32</i>&nbsp;
-<b class="nc"><i class="no-highlight">33</i>&nbsp;            if (mdFile != null) {</b>
-<b class="nc"><i class="no-highlight">34</i>&nbsp;                ProjectInfo(project.name, project.path, mdFile)</b>
-<i class="no-highlight">35</i>&nbsp;            } else {
-<b class="nc"><i class="no-highlight">36</i>&nbsp;                logger.lifecycle(</b>
-<b class="nc"><i class="no-highlight">37</i>&nbsp;                    &quot;${project.name} hasn&#39;t a markdown file, so it won&#39;t be added to docs&quot;</b>
-<i class="no-highlight">38</i>&nbsp;                )
-<b class="nc"><i class="no-highlight">39</i>&nbsp;                null</b>
-<i class="no-highlight">40</i>&nbsp;            }
-<i class="no-highlight">41</i>&nbsp;        }
-</div>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.extensions.config.documentation.site
+&nbsp;
+&nbsp;import java.io.File
+&nbsp;import org.gradle.api.Project
+&nbsp;import org.gradle.api.tasks.Input
+&nbsp;import org.gradle.api.tasks.InputFile
+&nbsp;import org.gradle.api.tasks.PathSensitive
+&nbsp;import org.gradle.api.tasks.PathSensitivity
+&nbsp;
+&nbsp;public data class ProjectInfo(
+&nbsp;    @Input val name: String,
+&nbsp;    @Input val projectPath: String,
+&nbsp;    @get:PathSensitive(PathSensitivity.ABSOLUTE) @InputFile val mdFile: File,
+&nbsp;) {
+&nbsp;
+&nbsp;    @get:Input
+&nbsp;    val filePath: String
+&nbsp;        get() = projectPath.split(&#39;:&#39;).filter(String::isNotEmpty).joinToString(&quot;/&quot;)
+&nbsp;}
+&nbsp;
+&nbsp;internal val Project.projectsInfo: List&lt;ProjectInfo&gt;
+&nbsp;    get() =
+<b class="nc">&nbsp;        subprojects.sortedBy(Project::getPath).mapNotNull { project -&gt;</b>
+<b class="nc">&nbsp;            val mdFiles =</b>
+<b class="nc">&nbsp;                project.projectDir.walkTopDown().maxDepth(1).filter { file -&gt;</b>
+<b class="nc">&nbsp;                    file.name.endsWith(&quot;.md&quot;, true)</b>
+&nbsp;                }
+<b class="nc">&nbsp;            val mdFile =</b>
+<b class="nc">&nbsp;                mdFiles.find { file -&gt; file.name.contains(&quot;MODULE&quot;, true) }</b>
+<b class="nc">&nbsp;                    ?: mdFiles.find { file -&gt; file.name.contains(&quot;README&quot;, true) }</b>
+<b class="nc">&nbsp;                        ?: mdFiles.firstOrNull()</b>
+&nbsp;
+<b class="nc">&nbsp;            if (mdFile != null) {</b>
+<b class="nc">&nbsp;                ProjectInfo(project.name, project.path, mdFile)</b>
+&nbsp;            } else {
+<b class="nc">&nbsp;                logger.lifecycle(</b>
+<b class="nc">&nbsp;                    &quot;${project.name} hasn&#39;t a markdown file, so it won&#39;t be added to docs&quot;</b>
+&nbsp;                )
+<b class="nc">&nbsp;                null</b>
+&nbsp;            }
+&nbsp;        }
+</code>
 </pre>
 </div>
 
@@ -216,18 +217,15 @@ Current scope:     <a href="../../index.html">all classes</a>
     @*/
 
     if (!msie || msie && msie9) {
-        var codeBlock = document.getElementById('sourceCode');
-
-        if (codeBlock) {
-            hljs.highlightBlock(codeBlock);
-        }
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
     }
 })();
 </script>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-14 10:24</div>
+    <div style="float:right;">generated on 2022-09-21 10:36</div>
 </div>
 </body>
 </html>

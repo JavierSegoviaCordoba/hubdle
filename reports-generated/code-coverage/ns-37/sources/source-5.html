@@ -7,9 +7,10 @@
   <title>Coverage Report > ConfigureMultiplatformJvmAndAndroidKt</title>
   <style type="text/css">
     @import "../../css/coverage.css";
-    @import "../../css/highlight-idea.css";
+    @import "../../css/idea.min.css";
   </style>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
 </head>
 
 <body>
@@ -171,56 +172,56 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.javiersc.hubdle.extensions.kotlin.multiplatform._internal
-<i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
-<i class="no-highlight">4</i>&nbsp;import org.gradle.api.Project
-<i class="no-highlight">5</i>&nbsp;import org.gradle.kotlin.dsl.configure
-<i class="no-highlight">6</i>&nbsp;import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
-<i class="no-highlight">7</i>&nbsp;
-<i class="no-highlight">8</i>&nbsp;internal fun configureMultiplatformJvmAndAndroid(project: Project) {
-<b class="nc"><i class="no-highlight">9</i>&nbsp;    if (project.hubdleState.kotlin.multiplatform.jvmAndAndroid.isEnabled) {</b>
-<b class="nc"><i class="no-highlight">10</i>&nbsp;        project.configure&lt;KotlinMultiplatformExtension&gt; {</b>
-<i class="no-highlight">11</i>&nbsp;            /* TODO: enable when granular metadata for jvm+android is fixed
-<i class="no-highlight">12</i>&nbsp;            val jvmAndAndroidMain = sourceSets.create(&quot;jvmAndAndroidMain&quot;)
-<i class="no-highlight">13</i>&nbsp;            val jvmAndAndroidTest = sourceSets.create(&quot;jvmAndAndroidTest&quot;)
-<i class="no-highlight">14</i>&nbsp;
-<i class="no-highlight">15</i>&nbsp;            jvmAndAndroidMain.dependsOn(sourceSets.getByName(&quot;commonMain&quot;))
-<i class="no-highlight">16</i>&nbsp;            jvmAndAndroidTest.dependsOn(sourceSets.getByName(&quot;commonTest&quot;))
-<i class="no-highlight">17</i>&nbsp;
-<i class="no-highlight">18</i>&nbsp;            sourceSets.findByName(&quot;jvmMain&quot;)?.dependsOn(jvmAndAndroidMain)
-<i class="no-highlight">19</i>&nbsp;            sourceSets.findByName(&quot;jvmTest&quot;)?.dependsOn(jvmAndAndroidTest)
-<i class="no-highlight">20</i>&nbsp;
-<i class="no-highlight">21</i>&nbsp;            sourceSets.findByName(&quot;androidMain&quot;)?.dependsOn(jvmAndAndroidMain)
-<i class="no-highlight">22</i>&nbsp;            sourceSets.findByName(&quot;androidTest&quot;)?.dependsOn(jvmAndAndroidTest)
-<i class="no-highlight">23</i>&nbsp;            */
-<i class="no-highlight">24</i>&nbsp;
-<i class="no-highlight">25</i>&nbsp;            // TODO: remove when granular metadata for jvm+android is fixed
-<b class="nc"><i class="no-highlight">26</i>&nbsp;            val mainKotlin = &quot;jvmAndAndroid/main/kotlin&quot;</b>
-<b class="nc"><i class="no-highlight">27</i>&nbsp;            val mainResources = &quot;jvmAndAndroid/main/resources&quot;</b>
-<b class="nc"><i class="no-highlight">28</i>&nbsp;            val testKotlin = &quot;jvmAndAndroid/test/kotlin&quot;</b>
-<b class="nc"><i class="no-highlight">29</i>&nbsp;            val testResources = &quot;jvmAndAndroid/test/resources&quot;</b>
-<i class="no-highlight">30</i>&nbsp;
-<b class="nc"><i class="no-highlight">31</i>&nbsp;            sourceSets.findByName(&quot;androidMain&quot;)?.apply {</b>
-<b class="nc"><i class="no-highlight">32</i>&nbsp;                kotlin.srcDirs(mainKotlin)</b>
-<b class="nc"><i class="no-highlight">33</i>&nbsp;                resources.srcDirs(mainResources)</b>
-<b class="nc"><i class="no-highlight">34</i>&nbsp;            }</b>
-<b class="nc"><i class="no-highlight">35</i>&nbsp;            sourceSets.findByName(&quot;androidTest&quot;)?.apply {</b>
-<b class="nc"><i class="no-highlight">36</i>&nbsp;                kotlin.srcDirs(testKotlin)</b>
-<b class="nc"><i class="no-highlight">37</i>&nbsp;                resources.srcDirs(testResources)</b>
-<b class="nc"><i class="no-highlight">38</i>&nbsp;            }</b>
-<b class="nc"><i class="no-highlight">39</i>&nbsp;            sourceSets.findByName(&quot;jvmMain&quot;)?.apply {</b>
-<b class="nc"><i class="no-highlight">40</i>&nbsp;                kotlin.srcDirs(mainKotlin)</b>
-<b class="nc"><i class="no-highlight">41</i>&nbsp;                resources.srcDirs(mainResources)</b>
-<b class="nc"><i class="no-highlight">42</i>&nbsp;            }</b>
-<b class="nc"><i class="no-highlight">43</i>&nbsp;            sourceSets.findByName(&quot;jvmTest&quot;)?.apply {</b>
-<b class="nc"><i class="no-highlight">44</i>&nbsp;                kotlin.srcDirs(testKotlin)</b>
-<b class="nc"><i class="no-highlight">45</i>&nbsp;                resources.srcDirs(testResources)</b>
-<b class="nc"><i class="no-highlight">46</i>&nbsp;            }</b>
-<i class="no-highlight">47</i>&nbsp;        }
-<i class="no-highlight">48</i>&nbsp;    }
-<i class="no-highlight">49</i>&nbsp;}
-</div>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.extensions.kotlin.multiplatform._internal
+&nbsp;
+&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
+&nbsp;import org.gradle.api.Project
+&nbsp;import org.gradle.kotlin.dsl.configure
+&nbsp;import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+&nbsp;
+&nbsp;internal fun configureMultiplatformJvmAndAndroid(project: Project) {
+<b class="nc">&nbsp;    if (project.hubdleState.kotlin.multiplatform.jvmAndAndroid.isEnabled) {</b>
+<b class="nc">&nbsp;        project.configure&lt;KotlinMultiplatformExtension&gt; {</b>
+&nbsp;            /* TODO: enable when granular metadata for jvm+android is fixed
+&nbsp;            val jvmAndAndroidMain = sourceSets.create(&quot;jvmAndAndroidMain&quot;)
+&nbsp;            val jvmAndAndroidTest = sourceSets.create(&quot;jvmAndAndroidTest&quot;)
+&nbsp;
+&nbsp;            jvmAndAndroidMain.dependsOn(sourceSets.getByName(&quot;commonMain&quot;))
+&nbsp;            jvmAndAndroidTest.dependsOn(sourceSets.getByName(&quot;commonTest&quot;))
+&nbsp;
+&nbsp;            sourceSets.findByName(&quot;jvmMain&quot;)?.dependsOn(jvmAndAndroidMain)
+&nbsp;            sourceSets.findByName(&quot;jvmTest&quot;)?.dependsOn(jvmAndAndroidTest)
+&nbsp;
+&nbsp;            sourceSets.findByName(&quot;androidMain&quot;)?.dependsOn(jvmAndAndroidMain)
+&nbsp;            sourceSets.findByName(&quot;androidTest&quot;)?.dependsOn(jvmAndAndroidTest)
+&nbsp;            */
+&nbsp;
+&nbsp;            // TODO: remove when granular metadata for jvm+android is fixed
+<b class="nc">&nbsp;            val mainKotlin = &quot;jvmAndAndroid/main/kotlin&quot;</b>
+<b class="nc">&nbsp;            val mainResources = &quot;jvmAndAndroid/main/resources&quot;</b>
+<b class="nc">&nbsp;            val testKotlin = &quot;jvmAndAndroid/test/kotlin&quot;</b>
+<b class="nc">&nbsp;            val testResources = &quot;jvmAndAndroid/test/resources&quot;</b>
+&nbsp;
+<b class="nc">&nbsp;            sourceSets.findByName(&quot;androidMain&quot;)?.apply {</b>
+<b class="nc">&nbsp;                kotlin.srcDirs(mainKotlin)</b>
+<b class="nc">&nbsp;                resources.srcDirs(mainResources)</b>
+<b class="nc">&nbsp;            }</b>
+<b class="nc">&nbsp;            sourceSets.findByName(&quot;androidTest&quot;)?.apply {</b>
+<b class="nc">&nbsp;                kotlin.srcDirs(testKotlin)</b>
+<b class="nc">&nbsp;                resources.srcDirs(testResources)</b>
+<b class="nc">&nbsp;            }</b>
+<b class="nc">&nbsp;            sourceSets.findByName(&quot;jvmMain&quot;)?.apply {</b>
+<b class="nc">&nbsp;                kotlin.srcDirs(mainKotlin)</b>
+<b class="nc">&nbsp;                resources.srcDirs(mainResources)</b>
+<b class="nc">&nbsp;            }</b>
+<b class="nc">&nbsp;            sourceSets.findByName(&quot;jvmTest&quot;)?.apply {</b>
+<b class="nc">&nbsp;                kotlin.srcDirs(testKotlin)</b>
+<b class="nc">&nbsp;                resources.srcDirs(testResources)</b>
+<b class="nc">&nbsp;            }</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+</code>
 </pre>
 </div>
 
@@ -235,18 +236,15 @@ Current scope:     <a href="../../index.html">all classes</a>
     @*/
 
     if (!msie || msie && msie9) {
-        var codeBlock = document.getElementById('sourceCode');
-
-        if (codeBlock) {
-            hljs.highlightBlock(codeBlock);
-        }
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
     }
 })();
 </script>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-14 10:24</div>
+    <div style="float:right;">generated on 2022-09-21 10:36</div>
 </div>
 </body>
 </html>

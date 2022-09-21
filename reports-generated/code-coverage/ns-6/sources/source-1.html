@@ -7,9 +7,10 @@
   <title>Coverage Report > HubdleConfigExtension</title>
   <style type="text/css">
     @import "../../css/coverage.css";
-    @import "../../css/highlight-idea.css";
+    @import "../../css/idea.min.css";
   </style>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
 </head>
 
 <body>
@@ -286,121 +287,121 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;@file:Suppress(&quot;UnusedReceiverParameter&quot;)
-<i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;package com.javiersc.hubdle.extensions.config
-<i class="no-highlight">4</i>&nbsp;
-<i class="no-highlight">5</i>&nbsp;import com.javiersc.hubdle.extensions.HubdleDslMarker
-<i class="no-highlight">6</i>&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
-<i class="no-highlight">7</i>&nbsp;import com.javiersc.hubdle.extensions.config.analysis.HubdleAnalysisExtension
-<i class="no-highlight">8</i>&nbsp;import com.javiersc.hubdle.extensions.config.binary.compatibility.validator.HubdleBinaryCompatibilityValidatorExtension
-<i class="no-highlight">9</i>&nbsp;import com.javiersc.hubdle.extensions.config.coverage.HubdleCoverageExtension
-<i class="no-highlight">10</i>&nbsp;import com.javiersc.hubdle.extensions.config.documentation.HubdleDocumentationExtension
-<i class="no-highlight">11</i>&nbsp;import com.javiersc.hubdle.extensions.config.format.HubdleFormatExtension
-<i class="no-highlight">12</i>&nbsp;import com.javiersc.hubdle.extensions.config.install.HubdleInstallExtension
-<i class="no-highlight">13</i>&nbsp;import com.javiersc.hubdle.extensions.config.language.settings.HubdleLanguageSettingsExtension
-<i class="no-highlight">14</i>&nbsp;import com.javiersc.hubdle.extensions.config.nexus.HubdleNexusExtension
-<i class="no-highlight">15</i>&nbsp;import com.javiersc.hubdle.extensions.config.publishing.HubdlePublishingExtension
-<i class="no-highlight">16</i>&nbsp;import com.javiersc.hubdle.extensions.config.versioning.HubdleVersioningExtension
-<i class="no-highlight">17</i>&nbsp;import javax.inject.Inject
-<i class="no-highlight">18</i>&nbsp;import org.gradle.api.Action
-<i class="no-highlight">19</i>&nbsp;import org.gradle.api.Project
-<i class="no-highlight">20</i>&nbsp;import org.gradle.api.model.ObjectFactory
-<i class="no-highlight">21</i>&nbsp;import org.gradle.kotlin.dsl.newInstance
-<i class="no-highlight">22</i>&nbsp;import org.jetbrains.kotlin.gradle.dsl.ExplicitApiMode
-<i class="no-highlight">23</i>&nbsp;
-<i class="no-highlight">24</i>&nbsp;@HubdleDslMarker
-<i class="no-highlight">25</i>&nbsp;public open class HubdleConfigExtension
-<i class="no-highlight">26</i>&nbsp;@Inject
-<b class="nc"><i class="no-highlight">27</i>&nbsp;constructor(</b>
-<i class="no-highlight">28</i>&nbsp;    objects: ObjectFactory,
-<i class="no-highlight">29</i>&nbsp;) {
-<i class="no-highlight">30</i>&nbsp;
-<b class="nc"><i class="no-highlight">31</i>&nbsp;    private val analysis: HubdleAnalysisExtension = objects.newInstance()</b>
-<i class="no-highlight">32</i>&nbsp;
-<i class="no-highlight">33</i>&nbsp;    @HubdleDslMarker
-<b class="nc"><i class="no-highlight">34</i>&nbsp;    public fun Project.analysis(action: Action&lt;HubdleAnalysisExtension&gt; = Action {}) {</b>
-<b class="nc"><i class="no-highlight">35</i>&nbsp;        analysis.run { isEnabled = true }</b>
-<b class="nc"><i class="no-highlight">36</i>&nbsp;        action.execute(analysis)</b>
-<i class="no-highlight">37</i>&nbsp;    }
-<i class="no-highlight">38</i>&nbsp;
-<i class="no-highlight">39</i>&nbsp;    private val binaryCompatibilityValidator: HubdleBinaryCompatibilityValidatorExtension =
-<b class="nc"><i class="no-highlight">40</i>&nbsp;        objects.newInstance()</b>
-<i class="no-highlight">41</i>&nbsp;
-<i class="no-highlight">42</i>&nbsp;    @HubdleDslMarker
-<i class="no-highlight">43</i>&nbsp;    public fun Project.binaryCompatibilityValidator() {
-<b class="nc"><i class="no-highlight">44</i>&nbsp;        binaryCompatibilityValidator.run { isEnabled = true }</b>
-<i class="no-highlight">45</i>&nbsp;    }
-<i class="no-highlight">46</i>&nbsp;
-<b class="nc"><i class="no-highlight">47</i>&nbsp;    private val coverage: HubdleCoverageExtension = objects.newInstance()</b>
-<i class="no-highlight">48</i>&nbsp;
-<i class="no-highlight">49</i>&nbsp;    @HubdleDslMarker
-<b class="nc"><i class="no-highlight">50</i>&nbsp;    public fun Project.coverage(action: Action&lt;HubdleCoverageExtension&gt; = Action {}) {</b>
-<b class="nc"><i class="no-highlight">51</i>&nbsp;        coverage.run { isEnabled = true }</b>
-<b class="nc"><i class="no-highlight">52</i>&nbsp;        action.execute(coverage)</b>
-<i class="no-highlight">53</i>&nbsp;    }
-<i class="no-highlight">54</i>&nbsp;
-<b class="nc"><i class="no-highlight">55</i>&nbsp;    private val documentation: HubdleDocumentationExtension = objects.newInstance()</b>
-<i class="no-highlight">56</i>&nbsp;
-<i class="no-highlight">57</i>&nbsp;    @HubdleDslMarker
-<b class="nc"><i class="no-highlight">58</i>&nbsp;    public fun Project.documentation(action: Action&lt;in HubdleDocumentationExtension&gt; = Action {}) {</b>
-<b class="nc"><i class="no-highlight">59</i>&nbsp;        action.execute(documentation)</b>
-<i class="no-highlight">60</i>&nbsp;    }
-<i class="no-highlight">61</i>&nbsp;
-<i class="no-highlight">62</i>&nbsp;    @HubdleDslMarker
-<b class="nc"><i class="no-highlight">63</i>&nbsp;    public fun Project.explicitApi(explicitApiMode: ExplicitApiMode = ExplicitApiMode.Strict) {</b>
-<b class="nc"><i class="no-highlight">64</i>&nbsp;        hubdleState.config.explicitApiMode = explicitApiMode</b>
-<i class="no-highlight">65</i>&nbsp;    }
-<i class="no-highlight">66</i>&nbsp;
-<b class="nc"><i class="no-highlight">67</i>&nbsp;    private val format: HubdleFormatExtension = objects.newInstance()</b>
-<i class="no-highlight">68</i>&nbsp;
-<i class="no-highlight">69</i>&nbsp;    @HubdleDslMarker
-<b class="nc"><i class="no-highlight">70</i>&nbsp;    public fun Project.format(action: Action&lt;HubdleFormatExtension&gt; = Action {}) {</b>
-<b class="nc"><i class="no-highlight">71</i>&nbsp;        format.run { isEnabled = true }</b>
-<b class="nc"><i class="no-highlight">72</i>&nbsp;        action.execute(format)</b>
-<i class="no-highlight">73</i>&nbsp;    }
-<i class="no-highlight">74</i>&nbsp;
-<b class="nc"><i class="no-highlight">75</i>&nbsp;    private val languageSettings: HubdleLanguageSettingsExtension = objects.newInstance()</b>
-<i class="no-highlight">76</i>&nbsp;
-<i class="no-highlight">77</i>&nbsp;    @HubdleDslMarker
-<i class="no-highlight">78</i>&nbsp;    public fun Project.languageSettings(
-<b class="nc"><i class="no-highlight">79</i>&nbsp;        action: Action&lt;HubdleLanguageSettingsExtension&gt; = Action {}</b>
-<i class="no-highlight">80</i>&nbsp;    ) {
-<b class="nc"><i class="no-highlight">81</i>&nbsp;        action.execute(languageSettings)</b>
-<i class="no-highlight">82</i>&nbsp;    }
-<i class="no-highlight">83</i>&nbsp;
-<b class="nc"><i class="no-highlight">84</i>&nbsp;    private val install: HubdleInstallExtension = objects.newInstance()</b>
-<i class="no-highlight">85</i>&nbsp;
-<i class="no-highlight">86</i>&nbsp;    @HubdleDslMarker
-<b class="nc"><i class="no-highlight">87</i>&nbsp;    public fun Project.install(action: Action&lt;HubdleInstallExtension&gt; = Action {}) {</b>
-<b class="nc"><i class="no-highlight">88</i>&nbsp;        action.execute(install)</b>
-<i class="no-highlight">89</i>&nbsp;    }
-<i class="no-highlight">90</i>&nbsp;
-<b class="nc"><i class="no-highlight">91</i>&nbsp;    private val nexus: HubdleNexusExtension = objects.newInstance()</b>
-<i class="no-highlight">92</i>&nbsp;
-<i class="no-highlight">93</i>&nbsp;    @HubdleDslMarker
-<b class="nc"><i class="no-highlight">94</i>&nbsp;    public fun Project.nexus(action: Action&lt;HubdleNexusExtension&gt; = Action {}) {</b>
-<b class="nc"><i class="no-highlight">95</i>&nbsp;        nexus.run { isEnabled = true }</b>
-<b class="nc"><i class="no-highlight">96</i>&nbsp;        action.execute(nexus)</b>
-<i class="no-highlight">97</i>&nbsp;    }
-<i class="no-highlight">98</i>&nbsp;
-<b class="nc"><i class="no-highlight">99</i>&nbsp;    private val publishing: HubdlePublishingExtension = objects.newInstance()</b>
-<i class="no-highlight">100</i>&nbsp;
-<i class="no-highlight">101</i>&nbsp;    @HubdleDslMarker
-<b class="nc"><i class="no-highlight">102</i>&nbsp;    public fun Project.publishing(action: Action&lt;HubdlePublishingExtension&gt; = Action {}) {</b>
-<b class="nc"><i class="no-highlight">103</i>&nbsp;        publishing.run { isEnabled = true }</b>
-<b class="nc"><i class="no-highlight">104</i>&nbsp;        action.execute(publishing)</b>
-<i class="no-highlight">105</i>&nbsp;    }
-<i class="no-highlight">106</i>&nbsp;
-<b class="nc"><i class="no-highlight">107</i>&nbsp;    private val versioning: HubdleVersioningExtension = objects.newInstance()</b>
-<i class="no-highlight">108</i>&nbsp;
-<i class="no-highlight">109</i>&nbsp;    @HubdleDslMarker
-<b class="nc"><i class="no-highlight">110</i>&nbsp;    public fun Project.versioning(action: Action&lt;in HubdleVersioningExtension&gt; = Action {}) {</b>
-<b class="nc"><i class="no-highlight">111</i>&nbsp;        versioning.run { isEnabled = true }</b>
-<b class="nc"><i class="no-highlight">112</i>&nbsp;        action.execute(versioning)</b>
-<i class="no-highlight">113</i>&nbsp;    }
-<i class="no-highlight">114</i>&nbsp;}
-</div>
+<code class="sourceCode" id="sourceCode">&nbsp;@file:Suppress(&quot;UnusedReceiverParameter&quot;)
+&nbsp;
+&nbsp;package com.javiersc.hubdle.extensions.config
+&nbsp;
+&nbsp;import com.javiersc.hubdle.extensions.HubdleDslMarker
+&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
+&nbsp;import com.javiersc.hubdle.extensions.config.analysis.HubdleAnalysisExtension
+&nbsp;import com.javiersc.hubdle.extensions.config.binary.compatibility.validator.HubdleBinaryCompatibilityValidatorExtension
+&nbsp;import com.javiersc.hubdle.extensions.config.coverage.HubdleCoverageExtension
+&nbsp;import com.javiersc.hubdle.extensions.config.documentation.HubdleDocumentationExtension
+&nbsp;import com.javiersc.hubdle.extensions.config.format.HubdleFormatExtension
+&nbsp;import com.javiersc.hubdle.extensions.config.install.HubdleInstallExtension
+&nbsp;import com.javiersc.hubdle.extensions.config.language.settings.HubdleLanguageSettingsExtension
+&nbsp;import com.javiersc.hubdle.extensions.config.nexus.HubdleNexusExtension
+&nbsp;import com.javiersc.hubdle.extensions.config.publishing.HubdlePublishingExtension
+&nbsp;import com.javiersc.hubdle.extensions.config.versioning.HubdleVersioningExtension
+&nbsp;import javax.inject.Inject
+&nbsp;import org.gradle.api.Action
+&nbsp;import org.gradle.api.Project
+&nbsp;import org.gradle.api.model.ObjectFactory
+&nbsp;import org.gradle.kotlin.dsl.newInstance
+&nbsp;import org.jetbrains.kotlin.gradle.dsl.ExplicitApiMode
+&nbsp;
+&nbsp;@HubdleDslMarker
+&nbsp;public open class HubdleConfigExtension
+&nbsp;@Inject
+<b class="nc">&nbsp;constructor(</b>
+&nbsp;    objects: ObjectFactory,
+&nbsp;) {
+&nbsp;
+<b class="nc">&nbsp;    private val analysis: HubdleAnalysisExtension = objects.newInstance()</b>
+&nbsp;
+&nbsp;    @HubdleDslMarker
+<b class="nc">&nbsp;    public fun Project.analysis(action: Action&lt;HubdleAnalysisExtension&gt; = Action {}) {</b>
+<b class="nc">&nbsp;        analysis.run { isEnabled = true }</b>
+<b class="nc">&nbsp;        action.execute(analysis)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private val binaryCompatibilityValidator: HubdleBinaryCompatibilityValidatorExtension =
+<b class="nc">&nbsp;        objects.newInstance()</b>
+&nbsp;
+&nbsp;    @HubdleDslMarker
+&nbsp;    public fun Project.binaryCompatibilityValidator() {
+<b class="nc">&nbsp;        binaryCompatibilityValidator.run { isEnabled = true }</b>
+&nbsp;    }
+&nbsp;
+<b class="nc">&nbsp;    private val coverage: HubdleCoverageExtension = objects.newInstance()</b>
+&nbsp;
+&nbsp;    @HubdleDslMarker
+<b class="nc">&nbsp;    public fun Project.coverage(action: Action&lt;HubdleCoverageExtension&gt; = Action {}) {</b>
+<b class="nc">&nbsp;        coverage.run { isEnabled = true }</b>
+<b class="nc">&nbsp;        action.execute(coverage)</b>
+&nbsp;    }
+&nbsp;
+<b class="nc">&nbsp;    private val documentation: HubdleDocumentationExtension = objects.newInstance()</b>
+&nbsp;
+&nbsp;    @HubdleDslMarker
+<b class="nc">&nbsp;    public fun Project.documentation(action: Action&lt;in HubdleDocumentationExtension&gt; = Action {}) {</b>
+<b class="nc">&nbsp;        action.execute(documentation)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @HubdleDslMarker
+<b class="nc">&nbsp;    public fun Project.explicitApi(explicitApiMode: ExplicitApiMode = ExplicitApiMode.Strict) {</b>
+<b class="nc">&nbsp;        hubdleState.config.explicitApiMode = explicitApiMode</b>
+&nbsp;    }
+&nbsp;
+<b class="nc">&nbsp;    private val format: HubdleFormatExtension = objects.newInstance()</b>
+&nbsp;
+&nbsp;    @HubdleDslMarker
+<b class="nc">&nbsp;    public fun Project.format(action: Action&lt;HubdleFormatExtension&gt; = Action {}) {</b>
+<b class="nc">&nbsp;        format.run { isEnabled = true }</b>
+<b class="nc">&nbsp;        action.execute(format)</b>
+&nbsp;    }
+&nbsp;
+<b class="nc">&nbsp;    private val languageSettings: HubdleLanguageSettingsExtension = objects.newInstance()</b>
+&nbsp;
+&nbsp;    @HubdleDslMarker
+&nbsp;    public fun Project.languageSettings(
+<b class="nc">&nbsp;        action: Action&lt;HubdleLanguageSettingsExtension&gt; = Action {}</b>
+&nbsp;    ) {
+<b class="nc">&nbsp;        action.execute(languageSettings)</b>
+&nbsp;    }
+&nbsp;
+<b class="nc">&nbsp;    private val install: HubdleInstallExtension = objects.newInstance()</b>
+&nbsp;
+&nbsp;    @HubdleDslMarker
+<b class="nc">&nbsp;    public fun Project.install(action: Action&lt;HubdleInstallExtension&gt; = Action {}) {</b>
+<b class="nc">&nbsp;        action.execute(install)</b>
+&nbsp;    }
+&nbsp;
+<b class="nc">&nbsp;    private val nexus: HubdleNexusExtension = objects.newInstance()</b>
+&nbsp;
+&nbsp;    @HubdleDslMarker
+<b class="nc">&nbsp;    public fun Project.nexus(action: Action&lt;HubdleNexusExtension&gt; = Action {}) {</b>
+<b class="nc">&nbsp;        nexus.run { isEnabled = true }</b>
+<b class="nc">&nbsp;        action.execute(nexus)</b>
+&nbsp;    }
+&nbsp;
+<b class="nc">&nbsp;    private val publishing: HubdlePublishingExtension = objects.newInstance()</b>
+&nbsp;
+&nbsp;    @HubdleDslMarker
+<b class="nc">&nbsp;    public fun Project.publishing(action: Action&lt;HubdlePublishingExtension&gt; = Action {}) {</b>
+<b class="nc">&nbsp;        publishing.run { isEnabled = true }</b>
+<b class="nc">&nbsp;        action.execute(publishing)</b>
+&nbsp;    }
+&nbsp;
+<b class="nc">&nbsp;    private val versioning: HubdleVersioningExtension = objects.newInstance()</b>
+&nbsp;
+&nbsp;    @HubdleDslMarker
+<b class="nc">&nbsp;    public fun Project.versioning(action: Action&lt;in HubdleVersioningExtension&gt; = Action {}) {</b>
+<b class="nc">&nbsp;        versioning.run { isEnabled = true }</b>
+<b class="nc">&nbsp;        action.execute(versioning)</b>
+&nbsp;    }
+&nbsp;}
+</code>
 </pre>
 </div>
 
@@ -415,18 +416,15 @@ Current scope:     <a href="../../index.html">all classes</a>
     @*/
 
     if (!msie || msie && msie9) {
-        var codeBlock = document.getElementById('sourceCode');
-
-        if (codeBlock) {
-            hljs.highlightBlock(codeBlock);
-        }
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
     }
 })();
 </script>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-14 10:24</div>
+    <div style="float:right;">generated on 2022-09-21 10:36</div>
 </div>
 </body>
 </html>

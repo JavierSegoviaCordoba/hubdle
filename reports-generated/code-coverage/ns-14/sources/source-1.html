@@ -7,9 +7,10 @@
   <title>Coverage Report > BuildSiteTask</title>
   <style type="text/css">
     @import "../../css/coverage.css";
-    @import "../../css/highlight-idea.css";
+    @import "../../css/idea.min.css";
   </style>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
 </head>
 
 <body>
@@ -336,109 +337,109 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.javiersc.hubdle.extensions.config.documentation.site
-<i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;import com.javiersc.gradle.tasks.extensions.maybeRegisterLazily
-<i class="no-highlight">4</i>&nbsp;import com.javiersc.gradle.tasks.extensions.namedLazily
-<i class="no-highlight">5</i>&nbsp;import java.io.File
-<i class="no-highlight">6</i>&nbsp;import javax.inject.Inject
-<i class="no-highlight">7</i>&nbsp;import org.gradle.api.DefaultTask
-<i class="no-highlight">8</i>&nbsp;import org.gradle.api.Project
-<i class="no-highlight">9</i>&nbsp;import org.gradle.api.file.FileSystemOperations
-<i class="no-highlight">10</i>&nbsp;import org.gradle.api.file.ProjectLayout
-<i class="no-highlight">11</i>&nbsp;import org.gradle.api.tasks.Input
-<i class="no-highlight">12</i>&nbsp;import org.gradle.api.tasks.OutputDirectory
-<i class="no-highlight">13</i>&nbsp;import org.gradle.api.tasks.TaskAction
-<i class="no-highlight">14</i>&nbsp;import org.gradle.api.tasks.TaskCollection
-<i class="no-highlight">15</i>&nbsp;import org.gradle.api.tasks.TaskProvider
-<i class="no-highlight">16</i>&nbsp;import org.jetbrains.dokka.gradle.DokkaMultiModuleTask
-<i class="no-highlight">17</i>&nbsp;import ru.vyarus.gradle.plugin.mkdocs.task.MkdocsBuildTask
-<i class="no-highlight">18</i>&nbsp;
-<i class="no-highlight">19</i>&nbsp;public abstract class BuildSiteTask
-<i class="no-highlight">20</i>&nbsp;@Inject
-<b class="nc"><i class="no-highlight">21</i>&nbsp;constructor(</b>
-<i class="no-highlight">22</i>&nbsp;    private val layout: ProjectLayout,
-<i class="no-highlight">23</i>&nbsp;    private val fileSystemOperations: FileSystemOperations,
-<b class="nc"><i class="no-highlight">24</i>&nbsp;) : DefaultTask() {</b>
-<i class="no-highlight">25</i>&nbsp;
-<b class="nc"><i class="no-highlight">26</i>&nbsp;    init {</b>
-<b class="nc"><i class="no-highlight">27</i>&nbsp;        group = &quot;documentation&quot;</b>
-<b class="nc"><i class="no-highlight">28</i>&nbsp;    }</b>
-<i class="no-highlight">29</i>&nbsp;
-<i class="no-highlight">30</i>&nbsp;    @get:Input
-<i class="no-highlight">31</i>&nbsp;    public val projectVersion: String
-<b class="nc"><i class="no-highlight">32</i>&nbsp;        get() = project.version.toString()</b>
-<i class="no-highlight">33</i>&nbsp;
-<i class="no-highlight">34</i>&nbsp;    @get:OutputDirectory
-<i class="no-highlight">35</i>&nbsp;    public val dokkaOutputDir: File
-<b class="nc"><i class="no-highlight">36</i>&nbsp;        get() = File(&quot;${layout.projectDirectory.asFile}/build/dokka/htmlMultiModule/&quot;)</b>
-<i class="no-highlight">37</i>&nbsp;
-<i class="no-highlight">38</i>&nbsp;    @get:OutputDirectory
-<i class="no-highlight">39</i>&nbsp;    public val apiDir: File
-<b class="nc"><i class="no-highlight">40</i>&nbsp;        get() = File(&quot;${layout.projectDirectory.asFile}/build/docs/_site/api/&quot;).apply(File::mkdirs)</b>
-<i class="no-highlight">41</i>&nbsp;
-<i class="no-highlight">42</i>&nbsp;    @TaskAction
-<i class="no-highlight">43</i>&nbsp;    public fun buildDocs() {
-<b class="nc"><i class="no-highlight">44</i>&nbsp;        moveApiDocsInToDocs()</b>
-<i class="no-highlight">45</i>&nbsp;    }
-<i class="no-highlight">46</i>&nbsp;
-<i class="no-highlight">47</i>&nbsp;    public companion object {
-<i class="no-highlight">48</i>&nbsp;        public const val name: String = &quot;buildSite&quot;
-<i class="no-highlight">49</i>&nbsp;
-<i class="no-highlight">50</i>&nbsp;        public fun register(
-<i class="no-highlight">51</i>&nbsp;            project: Project,
-<i class="no-highlight">52</i>&nbsp;            preBuildDocsTask: TaskProvider&lt;PrebuildSiteTask&gt;
-<i class="no-highlight">53</i>&nbsp;        ): TaskCollection&lt;BuildSiteTask&gt; {
-<b class="nc"><i class="no-highlight">54</i>&nbsp;            val dokkaHtmlMultiModuleTask =</b>
-<b class="nc"><i class="no-highlight">55</i>&nbsp;                project.tasks.namedLazily&lt;DokkaMultiModuleTask&gt;(&quot;dokkaHtmlMultiModule&quot;)</b>
-<b class="nc"><i class="no-highlight">56</i>&nbsp;            val mkdocsBuildTask = project.tasks.namedLazily&lt;MkdocsBuildTask&gt;(&quot;mkdocsBuild&quot;)</b>
-<b class="nc"><i class="no-highlight">57</i>&nbsp;            mkdocsBuildTask.configureEach { dependsOn(preBuildDocsTask) }</b>
-<i class="no-highlight">58</i>&nbsp;
-<b class="nc"><i class="no-highlight">59</i>&nbsp;            dokkaHtmlMultiModuleTask.configureEach { dependsOn(mkdocsBuildTask) }</b>
-<i class="no-highlight">60</i>&nbsp;
-<b class="nc"><i class="no-highlight">61</i>&nbsp;            val buildSiteTask = project.tasks.maybeRegisterLazily&lt;BuildSiteTask&gt;(name)</b>
-<b class="nc"><i class="no-highlight">62</i>&nbsp;            buildSiteTask.configureEach {</b>
-<b class="nc"><i class="no-highlight">63</i>&nbsp;                notCompatibleWithConfigurationCache(&quot;mkDocsBuild(grgit) task is incompatible&quot;)</b>
-<i class="no-highlight">64</i>&nbsp;
-<b class="nc"><i class="no-highlight">65</i>&nbsp;                dependsOn(mkdocsBuildTask)</b>
-<b class="nc"><i class="no-highlight">66</i>&nbsp;                dependsOn(dokkaHtmlMultiModuleTask)</b>
-<i class="no-highlight">67</i>&nbsp;            }
-<b class="nc"><i class="no-highlight">68</i>&nbsp;            return buildSiteTask</b>
-<i class="no-highlight">69</i>&nbsp;        }
-<i class="no-highlight">70</i>&nbsp;    }
-<i class="no-highlight">71</i>&nbsp;
-<i class="no-highlight">72</i>&nbsp;    private fun moveApiDocsInToDocs() {
-<b class="nc"><i class="no-highlight">73</i>&nbsp;        with(fileSystemOperations) {</b>
-<b class="nc"><i class="no-highlight">74</i>&nbsp;            if (projectVersion.endsWith(&quot;-SNAPSHOT&quot;)) {</b>
-<b class="nc"><i class="no-highlight">75</i>&nbsp;                copy {</b>
-<b class="nc"><i class="no-highlight">76</i>&nbsp;                    from(dokkaOutputDir.path)</b>
-<b class="nc"><i class="no-highlight">77</i>&nbsp;                    into(File(&quot;$apiDir/snapshot&quot;).path)</b>
-<i class="no-highlight">78</i>&nbsp;                }
-<i class="no-highlight">79</i>&nbsp;            } else {
-<b class="nc"><i class="no-highlight">80</i>&nbsp;                File(&quot;$apiDir/index.html&quot;).apply {</b>
-<b class="nc"><i class="no-highlight">81</i>&nbsp;                    createNewFile()</b>
-<b class="nc"><i class="no-highlight">82</i>&nbsp;                    writeText(apiIndexHtmlContent)</b>
-<b class="nc"><i class="no-highlight">83</i>&nbsp;                }</b>
-<b class="nc"><i class="no-highlight">84</i>&nbsp;                copy {</b>
-<b class="nc"><i class="no-highlight">85</i>&nbsp;                    from(dokkaOutputDir.path)</b>
-<b class="nc"><i class="no-highlight">86</i>&nbsp;                    into(File(&quot;$apiDir/versions/$projectVersion&quot;).path)</b>
-<i class="no-highlight">87</i>&nbsp;                }
-<i class="no-highlight">88</i>&nbsp;            }
-<i class="no-highlight">89</i>&nbsp;        }
-<i class="no-highlight">90</i>&nbsp;    }
-<i class="no-highlight">91</i>&nbsp;
-<i class="no-highlight">92</i>&nbsp;    private val apiIndexHtmlContent: String =
-<b class="nc"><i class="no-highlight">93</i>&nbsp;        &quot;&quot;&quot;</b>
-<i class="no-highlight">94</i>&nbsp;            &lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
-<i class="no-highlight">95</i>&nbsp;            &lt;head&gt;
-<b class="nc"><i class="no-highlight">96</i>&nbsp;                &lt;meta http-equiv=&quot;refresh&quot; content=&quot;0;URL=&#39;versions/$projectVersion&#39;&quot; /&gt;</b>
-<i class="no-highlight">97</i>&nbsp;            &lt;/head&gt;
-<i class="no-highlight">98</i>&nbsp;            &lt;body&gt;
-<i class="no-highlight">99</i>&nbsp;            &lt;/body&gt;
-<i class="no-highlight">100</i>&nbsp;            &lt;/html&gt;
-<b class="nc"><i class="no-highlight">101</i>&nbsp;        &quot;&quot;&quot;.trimIndent()</b>
-<i class="no-highlight">102</i>&nbsp;}
-</div>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.extensions.config.documentation.site
+&nbsp;
+&nbsp;import com.javiersc.gradle.tasks.extensions.maybeRegisterLazily
+&nbsp;import com.javiersc.gradle.tasks.extensions.namedLazily
+&nbsp;import java.io.File
+&nbsp;import javax.inject.Inject
+&nbsp;import org.gradle.api.DefaultTask
+&nbsp;import org.gradle.api.Project
+&nbsp;import org.gradle.api.file.FileSystemOperations
+&nbsp;import org.gradle.api.file.ProjectLayout
+&nbsp;import org.gradle.api.tasks.Input
+&nbsp;import org.gradle.api.tasks.OutputDirectory
+&nbsp;import org.gradle.api.tasks.TaskAction
+&nbsp;import org.gradle.api.tasks.TaskCollection
+&nbsp;import org.gradle.api.tasks.TaskProvider
+&nbsp;import org.jetbrains.dokka.gradle.DokkaMultiModuleTask
+&nbsp;import ru.vyarus.gradle.plugin.mkdocs.task.MkdocsBuildTask
+&nbsp;
+&nbsp;public abstract class BuildSiteTask
+&nbsp;@Inject
+<b class="nc">&nbsp;constructor(</b>
+&nbsp;    private val layout: ProjectLayout,
+&nbsp;    private val fileSystemOperations: FileSystemOperations,
+<b class="nc">&nbsp;) : DefaultTask() {</b>
+&nbsp;
+<b class="nc">&nbsp;    init {</b>
+<b class="nc">&nbsp;        group = &quot;documentation&quot;</b>
+<b class="nc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    @get:Input
+&nbsp;    public val projectVersion: String
+<b class="nc">&nbsp;        get() = project.version.toString()</b>
+&nbsp;
+&nbsp;    @get:OutputDirectory
+&nbsp;    public val dokkaOutputDir: File
+<b class="nc">&nbsp;        get() = File(&quot;${layout.projectDirectory.asFile}/build/dokka/htmlMultiModule/&quot;)</b>
+&nbsp;
+&nbsp;    @get:OutputDirectory
+&nbsp;    public val apiDir: File
+<b class="nc">&nbsp;        get() = File(&quot;${layout.projectDirectory.asFile}/build/docs/_site/api/&quot;).apply(File::mkdirs)</b>
+&nbsp;
+&nbsp;    @TaskAction
+&nbsp;    public fun buildDocs() {
+<b class="nc">&nbsp;        moveApiDocsInToDocs()</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public companion object {
+&nbsp;        public const val name: String = &quot;buildSite&quot;
+&nbsp;
+&nbsp;        public fun register(
+&nbsp;            project: Project,
+&nbsp;            preBuildDocsTask: TaskProvider&lt;PrebuildSiteTask&gt;
+&nbsp;        ): TaskCollection&lt;BuildSiteTask&gt; {
+<b class="nc">&nbsp;            val dokkaHtmlMultiModuleTask =</b>
+<b class="nc">&nbsp;                project.tasks.namedLazily&lt;DokkaMultiModuleTask&gt;(&quot;dokkaHtmlMultiModule&quot;)</b>
+<b class="nc">&nbsp;            val mkdocsBuildTask = project.tasks.namedLazily&lt;MkdocsBuildTask&gt;(&quot;mkdocsBuild&quot;)</b>
+<b class="nc">&nbsp;            mkdocsBuildTask.configureEach { dependsOn(preBuildDocsTask) }</b>
+&nbsp;
+<b class="nc">&nbsp;            dokkaHtmlMultiModuleTask.configureEach { dependsOn(mkdocsBuildTask) }</b>
+&nbsp;
+<b class="nc">&nbsp;            val buildSiteTask = project.tasks.maybeRegisterLazily&lt;BuildSiteTask&gt;(name)</b>
+<b class="nc">&nbsp;            buildSiteTask.configureEach {</b>
+<b class="nc">&nbsp;                notCompatibleWithConfigurationCache(&quot;mkDocsBuild(grgit) task is incompatible&quot;)</b>
+&nbsp;
+<b class="nc">&nbsp;                dependsOn(mkdocsBuildTask)</b>
+<b class="nc">&nbsp;                dependsOn(dokkaHtmlMultiModuleTask)</b>
+&nbsp;            }
+<b class="nc">&nbsp;            return buildSiteTask</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    private fun moveApiDocsInToDocs() {
+<b class="nc">&nbsp;        with(fileSystemOperations) {</b>
+<b class="nc">&nbsp;            if (projectVersion.endsWith(&quot;-SNAPSHOT&quot;)) {</b>
+<b class="nc">&nbsp;                copy {</b>
+<b class="nc">&nbsp;                    from(dokkaOutputDir.path)</b>
+<b class="nc">&nbsp;                    into(File(&quot;$apiDir/snapshot&quot;).path)</b>
+&nbsp;                }
+&nbsp;            } else {
+<b class="nc">&nbsp;                File(&quot;$apiDir/index.html&quot;).apply {</b>
+<b class="nc">&nbsp;                    createNewFile()</b>
+<b class="nc">&nbsp;                    writeText(apiIndexHtmlContent)</b>
+<b class="nc">&nbsp;                }</b>
+<b class="nc">&nbsp;                copy {</b>
+<b class="nc">&nbsp;                    from(dokkaOutputDir.path)</b>
+<b class="nc">&nbsp;                    into(File(&quot;$apiDir/versions/$projectVersion&quot;).path)</b>
+&nbsp;                }
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    private val apiIndexHtmlContent: String =
+<b class="nc">&nbsp;        &quot;&quot;&quot;</b>
+&nbsp;            &lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&nbsp;            &lt;head&gt;
+<b class="nc">&nbsp;                &lt;meta http-equiv=&quot;refresh&quot; content=&quot;0;URL=&#39;versions/$projectVersion&#39;&quot; /&gt;</b>
+&nbsp;            &lt;/head&gt;
+&nbsp;            &lt;body&gt;
+&nbsp;            &lt;/body&gt;
+&nbsp;            &lt;/html&gt;
+<b class="nc">&nbsp;        &quot;&quot;&quot;.trimIndent()</b>
+&nbsp;}
+</code>
 </pre>
 </div>
 
@@ -453,18 +454,15 @@ Current scope:     <a href="../../index.html">all classes</a>
     @*/
 
     if (!msie || msie && msie9) {
-        var codeBlock = document.getElementById('sourceCode');
-
-        if (codeBlock) {
-            hljs.highlightBlock(codeBlock);
-        }
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
     }
 })();
 </script>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-14 10:24</div>
+    <div style="float:right;">generated on 2022-09-21 10:36</div>
 </div>
 </body>
 </html>

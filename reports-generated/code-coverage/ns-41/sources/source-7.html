@@ -4,12 +4,13 @@
 <!DOCTYPE html>
 <html id="htmlId">
 <head>
-  <title>Coverage Report > EnableableOptions</title>
+  <title>Coverage Report > SourceDirectoriesOptions</title>
   <style type="text/css">
     @import "../../css/coverage.css";
-    @import "../../css/highlight-idea.css";
+    @import "../../css/idea.min.css";
   </style>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
 </head>
 
 <body>
@@ -20,7 +21,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     <a href="../index.html">com.javiersc.hubdle.extensions.options</a>
 </div>
 
-<h1>Coverage Summary for Class: EnableableOptions (com.javiersc.hubdle.extensions.options)</h1>
+<h1>Coverage Summary for Class: SourceDirectoriesOptions (com.javiersc.hubdle.extensions.options)</h1>
 
 <table class="coverageStats">
 <tr>
@@ -31,7 +32,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 </th>
 </tr>
 <tr>
-  <td class="name">EnableableOptions</td>
+  <td class="name">SourceDirectoriesOptions</td>
     <td class="coverageStat"/>
 </tr>
 
@@ -42,24 +43,77 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.javiersc.hubdle.extensions.options
-<i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;import org.gradle.api.Project
-<i class="no-highlight">4</i>&nbsp;
-<i class="no-highlight">5</i>&nbsp;public interface EnableableOptions {
-<i class="no-highlight">6</i>&nbsp;
-<i class="no-highlight">7</i>&nbsp;    public var Project.isEnabled: Boolean
-<i class="no-highlight">8</i>&nbsp;}
-<i class="no-highlight">9</i>&nbsp;
-<i class="no-highlight">10</i>&nbsp;public interface EnableableAllOptions {
-<i class="no-highlight">11</i>&nbsp;
-<i class="no-highlight">12</i>&nbsp;    public var Project.allEnabled: Boolean
-<i class="no-highlight">13</i>&nbsp;
-<i class="no-highlight">14</i>&nbsp;    public fun Project.enableAll(enable: Boolean = true) {
-<i class="no-highlight">15</i>&nbsp;        allEnabled = enable
-<i class="no-highlight">16</i>&nbsp;    }
-<i class="no-highlight">17</i>&nbsp;}
-</div>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.extensions.options
+&nbsp;
+&nbsp;import com.android.build.api.dsl.AndroidSourceDirectorySet
+&nbsp;import com.android.build.api.dsl.AndroidSourceFile
+&nbsp;import com.android.build.api.dsl.AndroidSourceSet
+&nbsp;import org.gradle.api.Named
+&nbsp;import org.gradle.api.NamedDomainObjectContainer
+&nbsp;import org.gradle.api.Project
+&nbsp;import org.gradle.api.plugins.JavaPluginExtension
+&nbsp;import org.gradle.api.tasks.SourceSet
+&nbsp;import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
+&nbsp;import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
+&nbsp;
+&nbsp;public interface SourceDirectoriesOptions&lt;out T&gt; {
+&nbsp;
+&nbsp;    public val Project.sourceSets: NamedDomainObjectContainer&lt;out T&gt;
+&nbsp;}
+&nbsp;
+&nbsp;internal fun JavaPluginExtension.configureDefaultJavaSourceSets() {
+&nbsp;    sourceSets.all { configJavaDefaultSourceSets() }
+&nbsp;}
+&nbsp;
+&nbsp;internal fun KotlinProjectExtension.configureDefaultKotlinSourceSets() {
+&nbsp;    sourceSets.all { configKotlinDefaultSourceSets() }
+&nbsp;}
+&nbsp;
+&nbsp;internal fun AndroidSourceSet.configDefaultAndroidSourceSets() {
+&nbsp;    configAndroidSourceDirectorySet(assets to &quot;assets&quot;)
+&nbsp;    configAndroidSourceDirectorySet(java to &quot;kotlin&quot;)
+&nbsp;    configAndroidSourceDirectory(manifest to &quot;AndroidManifest.xml&quot;)
+&nbsp;    configAndroidSourceDirectorySet(res to &quot;res&quot;)
+&nbsp;    configAndroidSourceDirectorySet(resources to &quot;resources&quot;)
+&nbsp;}
+&nbsp;
+&nbsp;internal fun KotlinSourceSet.configKotlinDefaultSourceSets() {
+&nbsp;    val directory = calculateSourceSetDirectory()
+&nbsp;
+&nbsp;    kotlin.setSrcDirs(listOf(&quot;$directory/kotlin&quot;))
+&nbsp;    resources.setSrcDirs(listOf(&quot;$directory/resources&quot;))
+&nbsp;}
+&nbsp;
+&nbsp;internal fun SourceSet.configJavaDefaultSourceSets() {
+&nbsp;    val directory = name.calculateSourceSetDirectory()
+&nbsp;    java.setSrcDirs(listOf(&quot;$directory/java&quot;))
+&nbsp;    resources.setSrcDirs(listOf(&quot;$directory/resources&quot;))
+&nbsp;}
+&nbsp;
+&nbsp;internal fun Named.configAndroidSourceDirectory(sourceSetToType: Pair&lt;AndroidSourceFile, String&gt;) {
+&nbsp;    val (sourceSet, type) = sourceSetToType
+&nbsp;    sourceSet.srcFile(&quot;${this.calculateSourceSetDirectory()}/$type&quot;)
+&nbsp;}
+&nbsp;
+&nbsp;internal fun Named.configAndroidSourceDirectorySet(
+&nbsp;    sourceSetToType: Pair&lt;AndroidSourceDirectorySet, String&gt;
+&nbsp;) {
+&nbsp;    val (sourceSet, type) = sourceSetToType
+&nbsp;    sourceSet.setSrcDirs(listOf(&quot;${this.calculateSourceSetDirectory()}/$type&quot;))
+&nbsp;}
+&nbsp;
+&nbsp;private fun String.calculateSourceSetDirectory(): String {
+&nbsp;    val directory =
+&nbsp;        when {
+&nbsp;            this.endsWith(&quot;Main&quot;) -&gt; &quot;${this.substringBeforeLast(&quot;Main&quot;)}/main&quot;
+&nbsp;            this.endsWith(&quot;Test&quot;) -&gt; &quot;${this.substringBeforeLast(&quot;Test&quot;)}/test&quot;
+&nbsp;            else -&gt; this
+&nbsp;        }
+&nbsp;    return directory
+&nbsp;}
+&nbsp;
+&nbsp;private fun Named.calculateSourceSetDirectory(): String = this.name.calculateSourceSetDirectory()
+</code>
 </pre>
 </div>
 
@@ -74,18 +128,15 @@ Current scope:     <a href="../../index.html">all classes</a>
     @*/
 
     if (!msie || msie && msie9) {
-        var codeBlock = document.getElementById('sourceCode');
-
-        if (codeBlock) {
-            hljs.highlightBlock(codeBlock);
-        }
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
     }
 })();
 </script>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-14 10:24</div>
+    <div style="float:right;">generated on 2022-09-21 10:36</div>
 </div>
 </body>
 </html>

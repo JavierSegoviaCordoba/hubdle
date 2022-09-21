@@ -7,9 +7,10 @@
   <title>Coverage Report > KotlinMultiplatformAndroidExtension</title>
   <style type="text/css">
     @import "../../css/coverage.css";
-    @import "../../css/highlight-idea.css";
+    @import "../../css/idea.min.css";
   </style>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
 </head>
 
 <body>
@@ -134,72 +135,72 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.javiersc.hubdle.extensions.kotlin.multiplatform.targets
-<i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;import com.android.build.api.dsl.LibraryExtension
-<i class="no-highlight">4</i>&nbsp;import com.javiersc.hubdle.extensions.HubdleDslMarker
-<i class="no-highlight">5</i>&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
-<i class="no-highlight">6</i>&nbsp;import com.javiersc.hubdle.extensions.kotlin.android.AndroidSdkBuildFeaturesOptions
-<i class="no-highlight">7</i>&nbsp;import com.javiersc.hubdle.extensions.kotlin.android.AndroidSdkBuildFeaturesOptions.BuildFeaturesExtension
-<i class="no-highlight">8</i>&nbsp;import com.javiersc.hubdle.extensions.kotlin.android.AndroidSdkOptions
-<i class="no-highlight">9</i>&nbsp;import com.javiersc.hubdle.extensions.options.EnableableOptions
-<i class="no-highlight">10</i>&nbsp;import com.javiersc.hubdle.extensions.options.RawConfigOptions
-<i class="no-highlight">11</i>&nbsp;import javax.inject.Inject
-<i class="no-highlight">12</i>&nbsp;import org.gradle.api.Action
-<i class="no-highlight">13</i>&nbsp;import org.gradle.api.Project
-<i class="no-highlight">14</i>&nbsp;import org.gradle.api.model.ObjectFactory
-<i class="no-highlight">15</i>&nbsp;import org.gradle.kotlin.dsl.newInstance
-<i class="no-highlight">16</i>&nbsp;
-<i class="no-highlight">17</i>&nbsp;@HubdleDslMarker
-<i class="no-highlight">18</i>&nbsp;public open class KotlinMultiplatformAndroidExtension
-<i class="no-highlight">19</i>&nbsp;@Inject
-<b class="nc"><i class="no-highlight">20</i>&nbsp;constructor(</b>
-<i class="no-highlight">21</i>&nbsp;    objects: ObjectFactory,
-<i class="no-highlight">22</i>&nbsp;) :
-<i class="no-highlight">23</i>&nbsp;    AndroidSdkOptions,
-<i class="no-highlight">24</i>&nbsp;    AndroidSdkBuildFeaturesOptions,
-<i class="no-highlight">25</i>&nbsp;    EnableableOptions,
-<i class="no-highlight">26</i>&nbsp;    KotlinMultiplatformTargetOptions,
-<i class="no-highlight">27</i>&nbsp;    RawConfigOptions&lt;KotlinMultiplatformAndroidExtension.RawConfigExtension&gt; {
-<i class="no-highlight">28</i>&nbsp;
-<i class="no-highlight">29</i>&nbsp;    override var Project.isEnabled: Boolean
-<b class="nc"><i class="no-highlight">30</i>&nbsp;        get() = hubdleState.kotlin.multiplatform.android.isEnabled</b>
-<b class="nc"><i class="no-highlight">31</i>&nbsp;        set(value) = hubdleState.kotlin.multiplatform.run { android.isEnabled = value }</b>
-<i class="no-highlight">32</i>&nbsp;
-<b class="nc"><i class="no-highlight">33</i>&nbsp;    public override val name: String = &quot;android&quot;</b>
-<i class="no-highlight">34</i>&nbsp;
-<b class="nc"><i class="no-highlight">35</i>&nbsp;    override val buildFeatures: BuildFeaturesExtension = objects.newInstance()</b>
-<i class="no-highlight">36</i>&nbsp;
-<i class="no-highlight">37</i>&nbsp;    public var Project.namespace: String?
-<b class="nc"><i class="no-highlight">38</i>&nbsp;        get() = hubdleState.kotlin.android.namespace</b>
-<b class="nc"><i class="no-highlight">39</i>&nbsp;        set(value) = hubdleState.kotlin.run { android.namespace = value }</b>
-<i class="no-highlight">40</i>&nbsp;
-<i class="no-highlight">41</i>&nbsp;    @HubdleDslMarker
-<i class="no-highlight">42</i>&nbsp;    public fun Project.publishLibraryVariants(vararg names: String) {
-<b class="nc"><i class="no-highlight">43</i>&nbsp;        hubdleState.kotlin.android.library.publishLibraryVariants += names</b>
-<i class="no-highlight">44</i>&nbsp;    }
-<i class="no-highlight">45</i>&nbsp;
-<i class="no-highlight">46</i>&nbsp;    @HubdleDslMarker
-<b class="nc"><i class="no-highlight">47</i>&nbsp;    public fun Project.publishAllLibraryVariants(enable: Boolean = true) {</b>
-<b class="nc"><i class="no-highlight">48</i>&nbsp;        hubdleState.kotlin.android.library.allLibraryVariants = enable</b>
-<i class="no-highlight">49</i>&nbsp;    }
-<i class="no-highlight">50</i>&nbsp;
-<b class="nc"><i class="no-highlight">51</i>&nbsp;    override val rawConfig: RawConfigExtension = objects.newInstance()</b>
-<i class="no-highlight">52</i>&nbsp;
-<i class="no-highlight">53</i>&nbsp;    @HubdleDslMarker
-<i class="no-highlight">54</i>&nbsp;    override fun Project.rawConfig(action: Action&lt;RawConfigExtension&gt;) {
-<b class="nc"><i class="no-highlight">55</i>&nbsp;        action.execute(rawConfig)</b>
-<i class="no-highlight">56</i>&nbsp;    }
-<i class="no-highlight">57</i>&nbsp;
-<i class="no-highlight">58</i>&nbsp;    @HubdleDslMarker
-<b class="nc"><i class="no-highlight">59</i>&nbsp;    public open class RawConfigExtension {</b>
-<i class="no-highlight">60</i>&nbsp;
-<i class="no-highlight">61</i>&nbsp;        public fun Project.android(action: Action&lt;LibraryExtension&gt;) {
-<b class="nc"><i class="no-highlight">62</i>&nbsp;            hubdleState.kotlin.multiplatform.android.rawConfig.android = action</b>
-<i class="no-highlight">63</i>&nbsp;        }
-<i class="no-highlight">64</i>&nbsp;    }
-<i class="no-highlight">65</i>&nbsp;}
-</div>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.extensions.kotlin.multiplatform.targets
+&nbsp;
+&nbsp;import com.android.build.api.dsl.LibraryExtension
+&nbsp;import com.javiersc.hubdle.extensions.HubdleDslMarker
+&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
+&nbsp;import com.javiersc.hubdle.extensions.kotlin.android.AndroidSdkBuildFeaturesOptions
+&nbsp;import com.javiersc.hubdle.extensions.kotlin.android.AndroidSdkBuildFeaturesOptions.BuildFeaturesExtension
+&nbsp;import com.javiersc.hubdle.extensions.kotlin.android.AndroidSdkOptions
+&nbsp;import com.javiersc.hubdle.extensions.options.EnableableOptions
+&nbsp;import com.javiersc.hubdle.extensions.options.RawConfigOptions
+&nbsp;import javax.inject.Inject
+&nbsp;import org.gradle.api.Action
+&nbsp;import org.gradle.api.Project
+&nbsp;import org.gradle.api.model.ObjectFactory
+&nbsp;import org.gradle.kotlin.dsl.newInstance
+&nbsp;
+&nbsp;@HubdleDslMarker
+&nbsp;public open class KotlinMultiplatformAndroidExtension
+&nbsp;@Inject
+<b class="nc">&nbsp;constructor(</b>
+&nbsp;    objects: ObjectFactory,
+&nbsp;) :
+&nbsp;    AndroidSdkOptions,
+&nbsp;    AndroidSdkBuildFeaturesOptions,
+&nbsp;    EnableableOptions,
+&nbsp;    KotlinMultiplatformTargetOptions,
+&nbsp;    RawConfigOptions&lt;KotlinMultiplatformAndroidExtension.RawConfigExtension&gt; {
+&nbsp;
+&nbsp;    override var Project.isEnabled: Boolean
+<b class="nc">&nbsp;        get() = hubdleState.kotlin.multiplatform.android.isEnabled</b>
+<b class="nc">&nbsp;        set(value) = hubdleState.kotlin.multiplatform.run { android.isEnabled = value }</b>
+&nbsp;
+<b class="nc">&nbsp;    public override val name: String = &quot;android&quot;</b>
+&nbsp;
+<b class="nc">&nbsp;    override val buildFeatures: BuildFeaturesExtension = objects.newInstance()</b>
+&nbsp;
+&nbsp;    public var Project.namespace: String?
+<b class="nc">&nbsp;        get() = hubdleState.kotlin.android.namespace</b>
+<b class="nc">&nbsp;        set(value) = hubdleState.kotlin.run { android.namespace = value }</b>
+&nbsp;
+&nbsp;    @HubdleDslMarker
+&nbsp;    public fun Project.publishLibraryVariants(vararg names: String) {
+<b class="nc">&nbsp;        hubdleState.kotlin.android.library.publishLibraryVariants += names</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @HubdleDslMarker
+<b class="nc">&nbsp;    public fun Project.publishAllLibraryVariants(enable: Boolean = true) {</b>
+<b class="nc">&nbsp;        hubdleState.kotlin.android.library.allLibraryVariants = enable</b>
+&nbsp;    }
+&nbsp;
+<b class="nc">&nbsp;    override val rawConfig: RawConfigExtension = objects.newInstance()</b>
+&nbsp;
+&nbsp;    @HubdleDslMarker
+&nbsp;    override fun Project.rawConfig(action: Action&lt;RawConfigExtension&gt;) {
+<b class="nc">&nbsp;        action.execute(rawConfig)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @HubdleDslMarker
+<b class="nc">&nbsp;    public open class RawConfigExtension {</b>
+&nbsp;
+&nbsp;        public fun Project.android(action: Action&lt;LibraryExtension&gt;) {
+<b class="nc">&nbsp;            hubdleState.kotlin.multiplatform.android.rawConfig.android = action</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+</code>
 </pre>
 </div>
 
@@ -214,18 +215,15 @@ Current scope:     <a href="../../index.html">all classes</a>
     @*/
 
     if (!msie || msie && msie9) {
-        var codeBlock = document.getElementById('sourceCode');
-
-        if (codeBlock) {
-            hljs.highlightBlock(codeBlock);
-        }
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
     }
 })();
 </script>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-14 10:24</div>
+    <div style="float:right;">generated on 2022-09-21 10:36</div>
 </div>
 </body>
 </html>

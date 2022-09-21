@@ -7,9 +7,10 @@
   <title>Coverage Report > HubdleDocumentationExtension</title>
   <style type="text/css">
     @import "../../css/coverage.css";
-    @import "../../css/highlight-idea.css";
+    @import "../../css/idea.min.css";
   </style>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
 </head>
 
 <body>
@@ -166,51 +167,51 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;@file:Suppress(&quot;UnusedReceiverParameter&quot;)
-<i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;package com.javiersc.hubdle.extensions.config.documentation
-<i class="no-highlight">4</i>&nbsp;
-<i class="no-highlight">5</i>&nbsp;import com.javiersc.hubdle.extensions.HubdleDslMarker
-<i class="no-highlight">6</i>&nbsp;import com.javiersc.hubdle.extensions.config.documentation.changelog.HubdleChangelogExtension
-<i class="no-highlight">7</i>&nbsp;import com.javiersc.hubdle.extensions.config.documentation.readme.HubdleReadmeExtension
-<i class="no-highlight">8</i>&nbsp;import com.javiersc.hubdle.extensions.config.documentation.site.HubdleSiteExtension
-<i class="no-highlight">9</i>&nbsp;import javax.inject.Inject
-<i class="no-highlight">10</i>&nbsp;import org.gradle.api.Action
-<i class="no-highlight">11</i>&nbsp;import org.gradle.api.Project
-<i class="no-highlight">12</i>&nbsp;import org.gradle.api.model.ObjectFactory
-<i class="no-highlight">13</i>&nbsp;import org.gradle.kotlin.dsl.newInstance
-<i class="no-highlight">14</i>&nbsp;
-<i class="no-highlight">15</i>&nbsp;@HubdleDslMarker
-<i class="no-highlight">16</i>&nbsp;public open class HubdleDocumentationExtension
-<i class="no-highlight">17</i>&nbsp;@Inject
-<b class="nc"><i class="no-highlight">18</i>&nbsp;constructor(</b>
-<i class="no-highlight">19</i>&nbsp;    objects: ObjectFactory,
-<i class="no-highlight">20</i>&nbsp;) {
-<i class="no-highlight">21</i>&nbsp;
-<b class="nc"><i class="no-highlight">22</i>&nbsp;    private val changelog: HubdleChangelogExtension = objects.newInstance()</b>
-<i class="no-highlight">23</i>&nbsp;
-<i class="no-highlight">24</i>&nbsp;    @HubdleDslMarker
-<b class="nc"><i class="no-highlight">25</i>&nbsp;    public fun Project.changelog(action: Action&lt;HubdleChangelogExtension&gt; = Action {}) {</b>
-<b class="nc"><i class="no-highlight">26</i>&nbsp;        changelog.run { isEnabled = true }</b>
-<b class="nc"><i class="no-highlight">27</i>&nbsp;        action.execute(changelog)</b>
-<i class="no-highlight">28</i>&nbsp;    }
-<i class="no-highlight">29</i>&nbsp;
-<b class="nc"><i class="no-highlight">30</i>&nbsp;    private val readme: HubdleReadmeExtension = objects.newInstance()</b>
-<i class="no-highlight">31</i>&nbsp;
-<i class="no-highlight">32</i>&nbsp;    @HubdleDslMarker
-<b class="nc"><i class="no-highlight">33</i>&nbsp;    public fun Project.readme(action: Action&lt;HubdleReadmeExtension&gt; = Action {}) {</b>
-<b class="nc"><i class="no-highlight">34</i>&nbsp;        action.execute(readme)</b>
-<i class="no-highlight">35</i>&nbsp;    }
-<i class="no-highlight">36</i>&nbsp;
-<b class="nc"><i class="no-highlight">37</i>&nbsp;    private val site: HubdleSiteExtension = objects.newInstance()</b>
-<i class="no-highlight">38</i>&nbsp;
-<i class="no-highlight">39</i>&nbsp;    @HubdleDslMarker
-<b class="nc"><i class="no-highlight">40</i>&nbsp;    public fun Project.site(action: Action&lt;HubdleSiteExtension&gt; = Action {}) {</b>
-<b class="nc"><i class="no-highlight">41</i>&nbsp;        site.run { isEnabled = true }</b>
-<b class="nc"><i class="no-highlight">42</i>&nbsp;        action.execute(site)</b>
-<i class="no-highlight">43</i>&nbsp;    }
-<i class="no-highlight">44</i>&nbsp;}
-</div>
+<code class="sourceCode" id="sourceCode">&nbsp;@file:Suppress(&quot;UnusedReceiverParameter&quot;)
+&nbsp;
+&nbsp;package com.javiersc.hubdle.extensions.config.documentation
+&nbsp;
+&nbsp;import com.javiersc.hubdle.extensions.HubdleDslMarker
+&nbsp;import com.javiersc.hubdle.extensions.config.documentation.changelog.HubdleChangelogExtension
+&nbsp;import com.javiersc.hubdle.extensions.config.documentation.readme.HubdleReadmeExtension
+&nbsp;import com.javiersc.hubdle.extensions.config.documentation.site.HubdleSiteExtension
+&nbsp;import javax.inject.Inject
+&nbsp;import org.gradle.api.Action
+&nbsp;import org.gradle.api.Project
+&nbsp;import org.gradle.api.model.ObjectFactory
+&nbsp;import org.gradle.kotlin.dsl.newInstance
+&nbsp;
+&nbsp;@HubdleDslMarker
+&nbsp;public open class HubdleDocumentationExtension
+&nbsp;@Inject
+<b class="nc">&nbsp;constructor(</b>
+&nbsp;    objects: ObjectFactory,
+&nbsp;) {
+&nbsp;
+<b class="nc">&nbsp;    private val changelog: HubdleChangelogExtension = objects.newInstance()</b>
+&nbsp;
+&nbsp;    @HubdleDslMarker
+<b class="nc">&nbsp;    public fun Project.changelog(action: Action&lt;HubdleChangelogExtension&gt; = Action {}) {</b>
+<b class="nc">&nbsp;        changelog.run { isEnabled = true }</b>
+<b class="nc">&nbsp;        action.execute(changelog)</b>
+&nbsp;    }
+&nbsp;
+<b class="nc">&nbsp;    private val readme: HubdleReadmeExtension = objects.newInstance()</b>
+&nbsp;
+&nbsp;    @HubdleDslMarker
+<b class="nc">&nbsp;    public fun Project.readme(action: Action&lt;HubdleReadmeExtension&gt; = Action {}) {</b>
+<b class="nc">&nbsp;        action.execute(readme)</b>
+&nbsp;    }
+&nbsp;
+<b class="nc">&nbsp;    private val site: HubdleSiteExtension = objects.newInstance()</b>
+&nbsp;
+&nbsp;    @HubdleDslMarker
+<b class="nc">&nbsp;    public fun Project.site(action: Action&lt;HubdleSiteExtension&gt; = Action {}) {</b>
+<b class="nc">&nbsp;        site.run { isEnabled = true }</b>
+<b class="nc">&nbsp;        action.execute(site)</b>
+&nbsp;    }
+&nbsp;}
+</code>
 </pre>
 </div>
 
@@ -225,18 +226,15 @@ Current scope:     <a href="../../index.html">all classes</a>
     @*/
 
     if (!msie || msie && msie9) {
-        var codeBlock = document.getElementById('sourceCode');
-
-        if (codeBlock) {
-            hljs.highlightBlock(codeBlock);
-        }
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
     }
 })();
 </script>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-14 10:24</div>
+    <div style="float:right;">generated on 2022-09-21 10:36</div>
 </div>
 </body>
 </html>

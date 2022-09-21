@@ -7,9 +7,10 @@
   <title>Coverage Report > Tasks_extensionKt</title>
   <style type="text/css">
     @import "../../css/coverage.css";
-    @import "../../css/highlight-idea.css";
+    @import "../../css/idea.min.css";
   </style>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
 </head>
 
 <body>
@@ -210,43 +211,43 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;import com.javiersc.gradle.tasks.extensions.namedLazily
-<i class="no-highlight">2</i>&nbsp;import com.javiersc.hubdle.extensions.HubdleDslMarker
-<i class="no-highlight">3</i>&nbsp;import org.gradle.api.Project
-<i class="no-highlight">4</i>&nbsp;import org.gradle.api.Task
-<i class="no-highlight">5</i>&nbsp;import org.gradle.api.internal.catalog.DelegatingProjectDependency
-<i class="no-highlight">6</i>&nbsp;import org.gradle.api.tasks.TaskContainer
-<i class="no-highlight">7</i>&nbsp;import org.gradle.api.tasks.testing.Test
-<i class="no-highlight">8</i>&nbsp;import org.gradle.kotlin.dsl.withType
-<i class="no-highlight">9</i>&nbsp;
-<i class="no-highlight">10</i>&nbsp;@HubdleDslMarker
-<i class="no-highlight">11</i>&nbsp;public fun TaskContainer.testDependsOnPublishToMavenLocalTestFrom(
-<i class="no-highlight">12</i>&nbsp;    project: DelegatingProjectDependency
-<i class="no-highlight">13</i>&nbsp;) {
-<b class="nc"><i class="no-highlight">14</i>&nbsp;    val publishToMavenLocalTest =</b>
-<b class="nc"><i class="no-highlight">15</i>&nbsp;        project.dependencyProject.tasks.namedLazily&lt;Task&gt;(PUBLISH_TO_MAVEN_LOCAL_TEST)</b>
-<b class="nc"><i class="no-highlight">16</i>&nbsp;    withType&lt;Test&gt;().configureEach {</b>
-<b class="nc"><i class="no-highlight">17</i>&nbsp;        dependsOn(publishToMavenLocalTest)</b>
-<b class="nc"><i class="no-highlight">18</i>&nbsp;        dependsOn(</b>
-<b class="nc"><i class="no-highlight">19</i>&nbsp;            project.dependencyProject.tasks.namedLazily&lt;Task&gt;(PUBLISH_ALL_TO_MAVEN_LOCAL_TEST)</b>
-<i class="no-highlight">20</i>&nbsp;        )
-<i class="no-highlight">21</i>&nbsp;    }
-<i class="no-highlight">22</i>&nbsp;}
-<i class="no-highlight">23</i>&nbsp;
-<i class="no-highlight">24</i>&nbsp;@HubdleDslMarker
-<i class="no-highlight">25</i>&nbsp;public fun TaskContainer.testDependsOnPublishToMavenLocalTestFrom(project: Project) {
-<b class="nc"><i class="no-highlight">26</i>&nbsp;    val publishToMavenLocalTest = project.tasks.namedLazily&lt;Task&gt;(PUBLISH_TO_MAVEN_LOCAL_TEST)</b>
-<b class="nc"><i class="no-highlight">27</i>&nbsp;    withType&lt;Test&gt;().configureEach {</b>
-<b class="nc"><i class="no-highlight">28</i>&nbsp;        dependsOn(publishToMavenLocalTest)</b>
-<b class="nc"><i class="no-highlight">29</i>&nbsp;        dependsOn(project.tasks.namedLazily&lt;Task&gt;(PUBLISH_ALL_TO_MAVEN_LOCAL_TEST))</b>
-<i class="no-highlight">30</i>&nbsp;    }
-<i class="no-highlight">31</i>&nbsp;}
-<i class="no-highlight">32</i>&nbsp;
-<i class="no-highlight">33</i>&nbsp;private const val PUBLISH_TO_MAVEN_LOCAL_TEST = &quot;publishToMavenLocalTest&quot;
-<i class="no-highlight">34</i>&nbsp;
-<i class="no-highlight">35</i>&nbsp;private const val PUBLISH_ALL_TO_MAVEN_LOCAL_TEST =
-<i class="no-highlight">36</i>&nbsp;    &quot;publishAllPublicationsToMavenLocalTestRepository&quot;
-</div>
+<code class="sourceCode" id="sourceCode">&nbsp;import com.javiersc.gradle.tasks.extensions.namedLazily
+&nbsp;import com.javiersc.hubdle.extensions.HubdleDslMarker
+&nbsp;import org.gradle.api.Project
+&nbsp;import org.gradle.api.Task
+&nbsp;import org.gradle.api.internal.catalog.DelegatingProjectDependency
+&nbsp;import org.gradle.api.tasks.TaskContainer
+&nbsp;import org.gradle.api.tasks.testing.Test
+&nbsp;import org.gradle.kotlin.dsl.withType
+&nbsp;
+&nbsp;@HubdleDslMarker
+&nbsp;public fun TaskContainer.testDependsOnPublishToMavenLocalTestFrom(
+&nbsp;    project: DelegatingProjectDependency
+&nbsp;) {
+<b class="nc">&nbsp;    val publishToMavenLocalTest =</b>
+<b class="nc">&nbsp;        project.dependencyProject.tasks.namedLazily&lt;Task&gt;(PUBLISH_TO_MAVEN_LOCAL_TEST)</b>
+<b class="nc">&nbsp;    withType&lt;Test&gt;().configureEach {</b>
+<b class="nc">&nbsp;        dependsOn(publishToMavenLocalTest)</b>
+<b class="nc">&nbsp;        dependsOn(</b>
+<b class="nc">&nbsp;            project.dependencyProject.tasks.namedLazily&lt;Task&gt;(PUBLISH_ALL_TO_MAVEN_LOCAL_TEST)</b>
+&nbsp;        )
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;@HubdleDslMarker
+&nbsp;public fun TaskContainer.testDependsOnPublishToMavenLocalTestFrom(project: Project) {
+<b class="nc">&nbsp;    val publishToMavenLocalTest = project.tasks.namedLazily&lt;Task&gt;(PUBLISH_TO_MAVEN_LOCAL_TEST)</b>
+<b class="nc">&nbsp;    withType&lt;Test&gt;().configureEach {</b>
+<b class="nc">&nbsp;        dependsOn(publishToMavenLocalTest)</b>
+<b class="nc">&nbsp;        dependsOn(project.tasks.namedLazily&lt;Task&gt;(PUBLISH_ALL_TO_MAVEN_LOCAL_TEST))</b>
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;private const val PUBLISH_TO_MAVEN_LOCAL_TEST = &quot;publishToMavenLocalTest&quot;
+&nbsp;
+&nbsp;private const val PUBLISH_ALL_TO_MAVEN_LOCAL_TEST =
+&nbsp;    &quot;publishAllPublicationsToMavenLocalTestRepository&quot;
+</code>
 </pre>
 </div>
 
@@ -261,18 +262,15 @@ Current scope:     <a href="../../index.html">all classes</a>
     @*/
 
     if (!msie || msie && msie9) {
-        var codeBlock = document.getElementById('sourceCode');
-
-        if (codeBlock) {
-            hljs.highlightBlock(codeBlock);
-        }
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
     }
 })();
 </script>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-14 10:24</div>
+    <div style="float:right;">generated on 2022-09-21 10:36</div>
 </div>
 </body>
 </html>

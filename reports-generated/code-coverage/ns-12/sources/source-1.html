@@ -7,9 +7,10 @@
   <title>Coverage Report > ConfigureReadmeKt</title>
   <style type="text/css">
     @import "../../css/coverage.css";
-    @import "../../css/highlight-idea.css";
+    @import "../../css/idea.min.css";
   </style>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
 </head>
 
 <body>
@@ -148,46 +149,46 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.javiersc.hubdle.extensions.config.documentation.readme._internal
-<i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;import com.javiersc.gradle.properties.extensions.getProperty
-<i class="no-highlight">4</i>&nbsp;import com.javiersc.gradle.properties.extensions.getPropertyOrNull
-<i class="no-highlight">5</i>&nbsp;import com.javiersc.hubdle.HubdleProperty
-<i class="no-highlight">6</i>&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
-<i class="no-highlight">7</i>&nbsp;import com.javiersc.hubdle.extensions.config.documentation.readme.WriteReadmeBadgesTask
-<i class="no-highlight">8</i>&nbsp;import org.gradle.api.Project
-<i class="no-highlight">9</i>&nbsp;import org.gradle.kotlin.dsl.register
-<i class="no-highlight">10</i>&nbsp;import org.jetbrains.kotlin.gradle.plugin.getKotlinPluginVersion
-<i class="no-highlight">11</i>&nbsp;
-<i class="no-highlight">12</i>&nbsp;internal fun configureReadmeBadges(project: Project) {
-<b class="nc"><i class="no-highlight">13</i>&nbsp;    val readmeState = project.hubdleState.config.documentation.readme</b>
-<i class="no-highlight">14</i>&nbsp;
-<b class="nc"><i class="no-highlight">15</i>&nbsp;    if (readmeState.badges.isEnabled) {</b>
-<i class="no-highlight">16</i>&nbsp;
-<b class="nc"><i class="no-highlight">17</i>&nbsp;        val projectName =</b>
-<b class="nc"><i class="no-highlight">18</i>&nbsp;            project.getPropertyOrNull(HubdleProperty.Project.mainProjectName) ?: project.name</b>
-<i class="no-highlight">19</i>&nbsp;
-<b class="nc"><i class="no-highlight">20</i>&nbsp;        val projectKey =</b>
-<b class="nc"><i class="no-highlight">21</i>&nbsp;            project.getPropertyOrNull(HubdleProperty.Analysis.projectKey)</b>
-<b class="nc"><i class="no-highlight">22</i>&nbsp;                ?: &quot;${project.group}:${project.getPropertyOrNull(HubdleProperty.Project.rootProjectDirName) ?: project.rootDir.name}&quot;</b>
-<i class="no-highlight">23</i>&nbsp;
-<b class="nc"><i class="no-highlight">24</i>&nbsp;        project.tasks.register&lt;WriteReadmeBadgesTask&gt;(WriteReadmeBadgesTask.name).configure {</b>
-<b class="nc"><i class="no-highlight">25</i>&nbsp;            this.projectGroup.set(project.group.toString())</b>
-<b class="nc"><i class="no-highlight">26</i>&nbsp;            this.projectName.set(projectName)</b>
-<b class="nc"><i class="no-highlight">27</i>&nbsp;            this.repoUrl.set(project.getProperty(HubdleProperty.POM.scmUrl))</b>
-<b class="nc"><i class="no-highlight">28</i>&nbsp;            this.kotlinVersion.set(project.getKotlinPluginVersion())</b>
-<b class="nc"><i class="no-highlight">29</i>&nbsp;            this.kotlinBadge.set(readmeState.badges.kotlin)</b>
-<b class="nc"><i class="no-highlight">30</i>&nbsp;            this.mavenCentralBadge.set(readmeState.badges.mavenCentral)</b>
-<b class="nc"><i class="no-highlight">31</i>&nbsp;            this.snapshotsBadge.set(readmeState.badges.snapshots)</b>
-<b class="nc"><i class="no-highlight">32</i>&nbsp;            this.buildBadge.set(readmeState.badges.build)</b>
-<b class="nc"><i class="no-highlight">33</i>&nbsp;            this.coverageBadge.set(readmeState.badges.coverage)</b>
-<b class="nc"><i class="no-highlight">34</i>&nbsp;            this.qualityBadge.set(readmeState.badges.quality)</b>
-<b class="nc"><i class="no-highlight">35</i>&nbsp;            this.techDebtBadge.set(readmeState.badges.techDebt)</b>
-<b class="nc"><i class="no-highlight">36</i>&nbsp;            this.projectKey.set(projectKey)</b>
-<i class="no-highlight">37</i>&nbsp;        }
-<i class="no-highlight">38</i>&nbsp;    }
-<i class="no-highlight">39</i>&nbsp;}
-</div>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.extensions.config.documentation.readme._internal
+&nbsp;
+&nbsp;import com.javiersc.gradle.properties.extensions.getProperty
+&nbsp;import com.javiersc.gradle.properties.extensions.getPropertyOrNull
+&nbsp;import com.javiersc.hubdle.HubdleProperty
+&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
+&nbsp;import com.javiersc.hubdle.extensions.config.documentation.readme.WriteReadmeBadgesTask
+&nbsp;import org.gradle.api.Project
+&nbsp;import org.gradle.kotlin.dsl.register
+&nbsp;import org.jetbrains.kotlin.gradle.plugin.getKotlinPluginVersion
+&nbsp;
+&nbsp;internal fun configureReadmeBadges(project: Project) {
+<b class="nc">&nbsp;    val readmeState = project.hubdleState.config.documentation.readme</b>
+&nbsp;
+<b class="nc">&nbsp;    if (readmeState.badges.isEnabled) {</b>
+&nbsp;
+<b class="nc">&nbsp;        val projectName =</b>
+<b class="nc">&nbsp;            project.getPropertyOrNull(HubdleProperty.Project.mainProjectName) ?: project.name</b>
+&nbsp;
+<b class="nc">&nbsp;        val projectKey =</b>
+<b class="nc">&nbsp;            project.getPropertyOrNull(HubdleProperty.Analysis.projectKey)</b>
+<b class="nc">&nbsp;                ?: &quot;${project.group}:${project.getPropertyOrNull(HubdleProperty.Project.rootProjectDirName) ?: project.rootDir.name}&quot;</b>
+&nbsp;
+<b class="nc">&nbsp;        project.tasks.register&lt;WriteReadmeBadgesTask&gt;(WriteReadmeBadgesTask.name).configure {</b>
+<b class="nc">&nbsp;            this.projectGroup.set(project.group.toString())</b>
+<b class="nc">&nbsp;            this.projectName.set(projectName)</b>
+<b class="nc">&nbsp;            this.repoUrl.set(project.getProperty(HubdleProperty.POM.scmUrl))</b>
+<b class="nc">&nbsp;            this.kotlinVersion.set(project.getKotlinPluginVersion())</b>
+<b class="nc">&nbsp;            this.kotlinBadge.set(readmeState.badges.kotlin)</b>
+<b class="nc">&nbsp;            this.mavenCentralBadge.set(readmeState.badges.mavenCentral)</b>
+<b class="nc">&nbsp;            this.snapshotsBadge.set(readmeState.badges.snapshots)</b>
+<b class="nc">&nbsp;            this.buildBadge.set(readmeState.badges.build)</b>
+<b class="nc">&nbsp;            this.coverageBadge.set(readmeState.badges.coverage)</b>
+<b class="nc">&nbsp;            this.qualityBadge.set(readmeState.badges.quality)</b>
+<b class="nc">&nbsp;            this.techDebtBadge.set(readmeState.badges.techDebt)</b>
+<b class="nc">&nbsp;            this.projectKey.set(projectKey)</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+</code>
 </pre>
 </div>
 
@@ -202,18 +203,15 @@ Current scope:     <a href="../../index.html">all classes</a>
     @*/
 
     if (!msie || msie && msie9) {
-        var codeBlock = document.getElementById('sourceCode');
-
-        if (codeBlock) {
-            hljs.highlightBlock(codeBlock);
-        }
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
     }
 })();
 </script>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-14 10:24</div>
+    <div style="float:right;">generated on 2022-09-21 10:36</div>
 </div>
 </body>
 </html>

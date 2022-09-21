@@ -7,9 +7,10 @@
   <title>Coverage Report > ConfigureCoverageKt</title>
   <style type="text/css">
     @import "../../css/coverage.css";
-    @import "../../css/highlight-idea.css";
+    @import "../../css/idea.min.css";
   </style>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
 </head>
 
 <body>
@@ -172,31 +173,31 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.javiersc.hubdle.extensions.config.coverage._internal
-<i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;import com.javiersc.gradle.project.extensions.isRootProject
-<i class="no-highlight">4</i>&nbsp;import com.javiersc.hubdle.extensions._internal.PluginIds
-<i class="no-highlight">5</i>&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
-<i class="no-highlight">6</i>&nbsp;import kotlinx.kover.api.KoverMergedConfig
-<i class="no-highlight">7</i>&nbsp;import org.gradle.api.Project
-<i class="no-highlight">8</i>&nbsp;import org.gradle.kotlin.dsl.the
-<i class="no-highlight">9</i>&nbsp;
-<i class="no-highlight">10</i>&nbsp;internal fun configureCoverage(project: Project) {
-<b class="nc"><i class="no-highlight">11</i>&nbsp;    if (project.hubdleState.config.coverage.isEnabled) {</b>
-<b class="nc"><i class="no-highlight">12</i>&nbsp;        check(project.isRootProject) {</b>
-<b class="nc"><i class="no-highlight">13</i>&nbsp;            &quot;Hubdle `coverage()` must be only configured in the root project&quot;</b>
-<i class="no-highlight">14</i>&nbsp;        }
-<b class="nc"><i class="no-highlight">15</i>&nbsp;        project.allprojects {</b>
-<b class="nc"><i class="no-highlight">16</i>&nbsp;            pluginManager.apply(PluginIds.Kotlin.kover)</b>
-<b class="nc"><i class="no-highlight">17</i>&nbsp;            the&lt;KoverMergedConfig&gt;().enable()</b>
-<i class="no-highlight">18</i>&nbsp;        }
-<i class="no-highlight">19</i>&nbsp;    }
-<i class="no-highlight">20</i>&nbsp;}
-<i class="no-highlight">21</i>&nbsp;
-<i class="no-highlight">22</i>&nbsp;internal fun configureKotlinCoverageRawConfig(project: Project) {
-<b class="nc"><i class="no-highlight">23</i>&nbsp;    project.hubdleState.config.coverage.rawConfig.kover?.execute(project.the())</b>
-<i class="no-highlight">24</i>&nbsp;}
-</div>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.extensions.config.coverage._internal
+&nbsp;
+&nbsp;import com.javiersc.gradle.project.extensions.isRootProject
+&nbsp;import com.javiersc.hubdle.extensions._internal.PluginIds
+&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
+&nbsp;import kotlinx.kover.api.KoverMergedConfig
+&nbsp;import org.gradle.api.Project
+&nbsp;import org.gradle.kotlin.dsl.the
+&nbsp;
+&nbsp;internal fun configureCoverage(project: Project) {
+<b class="nc">&nbsp;    if (project.hubdleState.config.coverage.isEnabled) {</b>
+<b class="nc">&nbsp;        check(project.isRootProject) {</b>
+<b class="nc">&nbsp;            &quot;Hubdle `coverage()` must be only configured in the root project&quot;</b>
+&nbsp;        }
+<b class="nc">&nbsp;        project.allprojects {</b>
+<b class="nc">&nbsp;            pluginManager.apply(PluginIds.Kotlin.kover)</b>
+<b class="nc">&nbsp;            the&lt;KoverMergedConfig&gt;().enable()</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;internal fun configureKotlinCoverageRawConfig(project: Project) {
+<b class="nc">&nbsp;    project.hubdleState.config.coverage.rawConfig.kover?.execute(project.the())</b>
+&nbsp;}
+</code>
 </pre>
 </div>
 
@@ -211,18 +212,15 @@ Current scope:     <a href="../../index.html">all classes</a>
     @*/
 
     if (!msie || msie && msie9) {
-        var codeBlock = document.getElementById('sourceCode');
-
-        if (codeBlock) {
-            hljs.highlightBlock(codeBlock);
-        }
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
     }
 })();
 </script>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-14 10:24</div>
+    <div style="float:right;">generated on 2022-09-21 10:36</div>
 </div>
 </body>
 </html>

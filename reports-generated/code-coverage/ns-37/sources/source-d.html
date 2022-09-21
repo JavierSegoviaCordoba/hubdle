@@ -7,9 +7,10 @@
   <title>Coverage Report > ConfigureMultiplatformWAsmKt</title>
   <style type="text/css">
     @import "../../css/coverage.css";
-    @import "../../css/highlight-idea.css";
+    @import "../../css/idea.min.css";
   </style>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
 </head>
 
 <body>
@@ -211,56 +212,56 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.javiersc.hubdle.extensions.kotlin.multiplatform._internal
-<i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
-<i class="no-highlight">4</i>&nbsp;import org.gradle.api.Project
-<i class="no-highlight">5</i>&nbsp;import org.gradle.kotlin.dsl.configure
-<i class="no-highlight">6</i>&nbsp;import org.gradle.kotlin.dsl.getValue
-<i class="no-highlight">7</i>&nbsp;import org.gradle.kotlin.dsl.getting
-<i class="no-highlight">8</i>&nbsp;import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
-<i class="no-highlight">9</i>&nbsp;import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet as KSS
-<i class="no-highlight">10</i>&nbsp;
-<i class="no-highlight">11</i>&nbsp;internal fun configureMultiplatformWAsm(project: Project) {
-<b class="nc"><i class="no-highlight">12</i>&nbsp;    if (project.hubdleState.kotlin.multiplatform.wasm.isEnabled) {</b>
-<b class="nc"><i class="no-highlight">13</i>&nbsp;        project.configure&lt;KotlinMultiplatformExtension&gt; {</b>
-<b class="nc"><i class="no-highlight">14</i>&nbsp;            val commonMain: KSS by sourceSets.getting</b>
-<b class="nc"><i class="no-highlight">15</i>&nbsp;            val wasm32Main: KSS? = sourceSets.findByName(&quot;wasm32Main&quot;)</b>
-<i class="no-highlight">16</i>&nbsp;
-<b class="nc"><i class="no-highlight">17</i>&nbsp;            val commonTest: KSS by sourceSets.getting</b>
-<b class="nc"><i class="no-highlight">18</i>&nbsp;            val wasm32Test: KSS? = sourceSets.findByName(&quot;wasm32Test&quot;)</b>
-<i class="no-highlight">19</i>&nbsp;
-<b class="nc"><i class="no-highlight">20</i>&nbsp;            val wasmMainSourceSets: List&lt;KSS&gt; =</b>
-<b class="nc"><i class="no-highlight">21</i>&nbsp;                listOfNotNull(</b>
-<b class="nc"><i class="no-highlight">22</i>&nbsp;                    wasm32Main,</b>
-<i class="no-highlight">23</i>&nbsp;                )
-<b class="nc"><i class="no-highlight">24</i>&nbsp;            val wasmTestSourceSets: List&lt;KSS&gt; =</b>
-<b class="nc"><i class="no-highlight">25</i>&nbsp;                listOfNotNull(</b>
-<b class="nc"><i class="no-highlight">26</i>&nbsp;                    wasm32Test,</b>
-<i class="no-highlight">27</i>&nbsp;                )
-<i class="no-highlight">28</i>&nbsp;
-<b class="nc"><i class="no-highlight">29</i>&nbsp;            val wasmMain = sourceSets.maybeCreate(&quot;wasmMain&quot;)</b>
-<b class="nc"><i class="no-highlight">30</i>&nbsp;            val wasmTest = sourceSets.maybeCreate(&quot;wasmTest&quot;)</b>
-<i class="no-highlight">31</i>&nbsp;
-<b class="nc"><i class="no-highlight">32</i>&nbsp;            wasmMain.dependsOn(commonMain)</b>
-<b class="nc"><i class="no-highlight">33</i>&nbsp;            for (wasmMainSourceSet in wasmMainSourceSets) {</b>
-<b class="nc"><i class="no-highlight">34</i>&nbsp;                wasmMainSourceSet.dependsOn(wasmMain)</b>
-<i class="no-highlight">35</i>&nbsp;            }
-<i class="no-highlight">36</i>&nbsp;
-<b class="nc"><i class="no-highlight">37</i>&nbsp;            wasmTest.dependsOn(commonTest)</b>
-<b class="nc"><i class="no-highlight">38</i>&nbsp;            for (wasmTestSourceSet in wasmTestSourceSets) {</b>
-<b class="nc"><i class="no-highlight">39</i>&nbsp;                wasmTestSourceSet.dependsOn(wasmTest)</b>
-<i class="no-highlight">40</i>&nbsp;            }
-<i class="no-highlight">41</i>&nbsp;        }
-<i class="no-highlight">42</i>&nbsp;    }
-<i class="no-highlight">43</i>&nbsp;}
-<i class="no-highlight">44</i>&nbsp;
-<i class="no-highlight">45</i>&nbsp;internal fun configureMultiplatformWAsm32(project: Project) {
-<b class="nc"><i class="no-highlight">46</i>&nbsp;    if (project.hubdleState.kotlin.multiplatform.wasm32.isEnabled) {</b>
-<b class="nc"><i class="no-highlight">47</i>&nbsp;        project.configure&lt;KotlinMultiplatformExtension&gt; { wasm32() }</b>
-<i class="no-highlight">48</i>&nbsp;    }
-<i class="no-highlight">49</i>&nbsp;}
-</div>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.extensions.kotlin.multiplatform._internal
+&nbsp;
+&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
+&nbsp;import org.gradle.api.Project
+&nbsp;import org.gradle.kotlin.dsl.configure
+&nbsp;import org.gradle.kotlin.dsl.getValue
+&nbsp;import org.gradle.kotlin.dsl.getting
+&nbsp;import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+&nbsp;import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet as KSS
+&nbsp;
+&nbsp;internal fun configureMultiplatformWAsm(project: Project) {
+<b class="nc">&nbsp;    if (project.hubdleState.kotlin.multiplatform.wasm.isEnabled) {</b>
+<b class="nc">&nbsp;        project.configure&lt;KotlinMultiplatformExtension&gt; {</b>
+<b class="nc">&nbsp;            val commonMain: KSS by sourceSets.getting</b>
+<b class="nc">&nbsp;            val wasm32Main: KSS? = sourceSets.findByName(&quot;wasm32Main&quot;)</b>
+&nbsp;
+<b class="nc">&nbsp;            val commonTest: KSS by sourceSets.getting</b>
+<b class="nc">&nbsp;            val wasm32Test: KSS? = sourceSets.findByName(&quot;wasm32Test&quot;)</b>
+&nbsp;
+<b class="nc">&nbsp;            val wasmMainSourceSets: List&lt;KSS&gt; =</b>
+<b class="nc">&nbsp;                listOfNotNull(</b>
+<b class="nc">&nbsp;                    wasm32Main,</b>
+&nbsp;                )
+<b class="nc">&nbsp;            val wasmTestSourceSets: List&lt;KSS&gt; =</b>
+<b class="nc">&nbsp;                listOfNotNull(</b>
+<b class="nc">&nbsp;                    wasm32Test,</b>
+&nbsp;                )
+&nbsp;
+<b class="nc">&nbsp;            val wasmMain = sourceSets.maybeCreate(&quot;wasmMain&quot;)</b>
+<b class="nc">&nbsp;            val wasmTest = sourceSets.maybeCreate(&quot;wasmTest&quot;)</b>
+&nbsp;
+<b class="nc">&nbsp;            wasmMain.dependsOn(commonMain)</b>
+<b class="nc">&nbsp;            for (wasmMainSourceSet in wasmMainSourceSets) {</b>
+<b class="nc">&nbsp;                wasmMainSourceSet.dependsOn(wasmMain)</b>
+&nbsp;            }
+&nbsp;
+<b class="nc">&nbsp;            wasmTest.dependsOn(commonTest)</b>
+<b class="nc">&nbsp;            for (wasmTestSourceSet in wasmTestSourceSets) {</b>
+<b class="nc">&nbsp;                wasmTestSourceSet.dependsOn(wasmTest)</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;internal fun configureMultiplatformWAsm32(project: Project) {
+<b class="nc">&nbsp;    if (project.hubdleState.kotlin.multiplatform.wasm32.isEnabled) {</b>
+<b class="nc">&nbsp;        project.configure&lt;KotlinMultiplatformExtension&gt; { wasm32() }</b>
+&nbsp;    }
+&nbsp;}
+</code>
 </pre>
 </div>
 
@@ -275,18 +276,15 @@ Current scope:     <a href="../../index.html">all classes</a>
     @*/
 
     if (!msie || msie && msie9) {
-        var codeBlock = document.getElementById('sourceCode');
-
-        if (codeBlock) {
-            hljs.highlightBlock(codeBlock);
-        }
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
     }
 })();
 </script>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-14 10:24</div>
+    <div style="float:right;">generated on 2022-09-21 10:36</div>
 </div>
 </body>
 </html>

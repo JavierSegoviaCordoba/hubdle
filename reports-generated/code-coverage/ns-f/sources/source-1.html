@@ -7,9 +7,10 @@
   <title>Coverage Report > AddChangelogItemTask</title>
   <style type="text/css">
     @import "../../css/coverage.css";
-    @import "../../css/highlight-idea.css";
+    @import "../../css/idea.min.css";
   </style>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
 </head>
 
 <body>
@@ -148,266 +149,266 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.javiersc.hubdle.extensions.config.documentation.changelog
-<i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;import com.javiersc.hubdle.extensions.config.documentation.changelog._internal.Changelog
-<i class="no-highlight">4</i>&nbsp;import com.javiersc.hubdle.extensions.config.documentation.changelog._internal.changelogFile
-<i class="no-highlight">5</i>&nbsp;import com.javiersc.hubdle.extensions.config.documentation.changelog._internal.fromString
-<i class="no-highlight">6</i>&nbsp;import java.io.File
-<i class="no-highlight">7</i>&nbsp;import javax.inject.Inject
-<i class="no-highlight">8</i>&nbsp;import org.eclipse.jgit.api.Git
-<i class="no-highlight">9</i>&nbsp;import org.eclipse.jgit.lib.Constants
-<i class="no-highlight">10</i>&nbsp;import org.eclipse.jgit.lib.Repository
-<i class="no-highlight">11</i>&nbsp;import org.eclipse.jgit.revwalk.RevCommit
-<i class="no-highlight">12</i>&nbsp;import org.eclipse.jgit.storage.file.FileRepositoryBuilder
-<i class="no-highlight">13</i>&nbsp;import org.gradle.api.DefaultTask
-<i class="no-highlight">14</i>&nbsp;import org.gradle.api.Project
-<i class="no-highlight">15</i>&nbsp;import org.gradle.api.model.ObjectFactory
-<i class="no-highlight">16</i>&nbsp;import org.gradle.api.provider.Property
-<i class="no-highlight">17</i>&nbsp;import org.gradle.api.tasks.Input
-<i class="no-highlight">18</i>&nbsp;import org.gradle.api.tasks.Optional
-<i class="no-highlight">19</i>&nbsp;import org.gradle.api.tasks.TaskAction
-<i class="no-highlight">20</i>&nbsp;import org.gradle.api.tasks.options.Option
-<i class="no-highlight">21</i>&nbsp;import org.gradle.kotlin.dsl.property
-<i class="no-highlight">22</i>&nbsp;
-<b class="nc"><i class="no-highlight">23</i>&nbsp;public abstract class AddChangelogItemTask @Inject constructor(objects: ObjectFactory) :</b>
-<b class="nc"><i class="no-highlight">24</i>&nbsp;    DefaultTask() {</b>
-<i class="no-highlight">25</i>&nbsp;
-<i class="no-highlight">26</i>&nbsp;    @Input
-<i class="no-highlight">27</i>&nbsp;    @Option(option = &quot;added&quot;, description = &quot;Add an item to the `added` section&quot;)
-<i class="no-highlight">28</i>&nbsp;    @Optional
-<b class="nc"><i class="no-highlight">29</i>&nbsp;    public val added: Property&lt;String?&gt; = objects.property()</b>
-<i class="no-highlight">30</i>&nbsp;
-<i class="no-highlight">31</i>&nbsp;    @Input
-<i class="no-highlight">32</i>&nbsp;    @Option(option = &quot;changed&quot;, description = &quot;Add an item to the `changed` section&quot;)
-<i class="no-highlight">33</i>&nbsp;    @Optional
-<b class="nc"><i class="no-highlight">34</i>&nbsp;    public val changed: Property&lt;String?&gt; = objects.property()</b>
-<i class="no-highlight">35</i>&nbsp;
-<i class="no-highlight">36</i>&nbsp;    @Input
-<i class="no-highlight">37</i>&nbsp;    @Option(option = &quot;deprecated&quot;, description = &quot;Add an item to the `deprecated` section&quot;)
-<i class="no-highlight">38</i>&nbsp;    @Optional
-<b class="nc"><i class="no-highlight">39</i>&nbsp;    public val deprecated: Property&lt;String?&gt; = objects.property()</b>
-<i class="no-highlight">40</i>&nbsp;
-<i class="no-highlight">41</i>&nbsp;    @Input
-<i class="no-highlight">42</i>&nbsp;    @Option(option = &quot;removed&quot;, description = &quot;Add an item to the `removed` section&quot;)
-<i class="no-highlight">43</i>&nbsp;    @Optional
-<b class="nc"><i class="no-highlight">44</i>&nbsp;    public val removed: Property&lt;String?&gt; = objects.property()</b>
-<i class="no-highlight">45</i>&nbsp;
-<i class="no-highlight">46</i>&nbsp;    @Input
-<i class="no-highlight">47</i>&nbsp;    @Option(option = &quot;fixed&quot;, description = &quot;Add an item to the `fixed` section&quot;)
-<i class="no-highlight">48</i>&nbsp;    @Optional
-<b class="nc"><i class="no-highlight">49</i>&nbsp;    public val fixed: Property&lt;String?&gt; = objects.property()</b>
-<i class="no-highlight">50</i>&nbsp;
-<i class="no-highlight">51</i>&nbsp;    @Input
-<i class="no-highlight">52</i>&nbsp;    @Option(option = &quot;updated&quot;, description = &quot;Add an item to the `updated` section&quot;)
-<i class="no-highlight">53</i>&nbsp;    @Optional
-<b class="nc"><i class="no-highlight">54</i>&nbsp;    public val updated: Property&lt;String?&gt; = objects.property()</b>
-<i class="no-highlight">55</i>&nbsp;
-<i class="no-highlight">56</i>&nbsp;    @Input
-<i class="no-highlight">57</i>&nbsp;    @Option(
-<i class="no-highlight">58</i>&nbsp;        option = &quot;renovate&quot;,
-<i class="no-highlight">59</i>&nbsp;        description = &quot;Extract dependencies from the table in the PR body&quot;,
-<i class="no-highlight">60</i>&nbsp;    )
-<i class="no-highlight">61</i>&nbsp;    @Optional
-<b class="nc"><i class="no-highlight">62</i>&nbsp;    public val renovate: Property&lt;String?&gt; = objects.property()</b>
-<i class="no-highlight">63</i>&nbsp;
-<i class="no-highlight">64</i>&nbsp;    @Input
-<i class="no-highlight">65</i>&nbsp;    @Option(
-<i class="no-highlight">66</i>&nbsp;        option = &quot;renovatePath&quot;,
-<i class="no-highlight">67</i>&nbsp;        description = &quot;Extract dependencies from the table in the PR body from a file&quot;,
-<i class="no-highlight">68</i>&nbsp;    )
-<i class="no-highlight">69</i>&nbsp;    @Optional
-<b class="nc"><i class="no-highlight">70</i>&nbsp;    public val renovatePath: Property&lt;String?&gt; = objects.property()</b>
-<i class="no-highlight">71</i>&nbsp;
-<i class="no-highlight">72</i>&nbsp;    @Input
-<i class="no-highlight">73</i>&nbsp;    @Option(
-<i class="no-highlight">74</i>&nbsp;        option = &quot;renovateCommitTable&quot;,
-<i class="no-highlight">75</i>&nbsp;        description =
-<i class="no-highlight">76</i>&nbsp;            &quot;&quot;&quot;
-<i class="no-highlight">77</i>&nbsp;               Extract dependencies from the table in the commit body
-<i class="no-highlight">78</i>&nbsp;               Add `&quot;commitBodyTable&quot;: true` to Renovate config
-<i class="no-highlight">79</i>&nbsp;            &quot;&quot;&quot;,
-<i class="no-highlight">80</i>&nbsp;    )
-<b class="nc"><i class="no-highlight">81</i>&nbsp;    public val renovateCommitTable: Property&lt;Boolean&gt; =</b>
-<b class="nc"><i class="no-highlight">82</i>&nbsp;        objects.property&lt;Boolean&gt;().convention(false)</b>
-<i class="no-highlight">83</i>&nbsp;
-<b class="nc"><i class="no-highlight">84</i>&nbsp;    init {</b>
-<b class="nc"><i class="no-highlight">85</i>&nbsp;        group = &quot;changelog&quot;</b>
-<i class="no-highlight">86</i>&nbsp;    }
-<i class="no-highlight">87</i>&nbsp;
-<i class="no-highlight">88</i>&nbsp;    @TaskAction
-<i class="no-highlight">89</i>&nbsp;    public fun run() {
-<b class="nc"><i class="no-highlight">90</i>&nbsp;        check(project.changelogFile.exists()) { &quot;CHANGELOG.md file doesn&#39;t found&quot; }</b>
-<b class="nc"><i class="no-highlight">91</i>&nbsp;        setupSection(&quot;### Added&quot;, added.orNull)</b>
-<b class="nc"><i class="no-highlight">92</i>&nbsp;        setupSection(&quot;### Changed&quot;, changed.orNull)</b>
-<b class="nc"><i class="no-highlight">93</i>&nbsp;        setupSection(&quot;### Deprecated&quot;, deprecated.orNull)</b>
-<b class="nc"><i class="no-highlight">94</i>&nbsp;        setupSection(&quot;### Removed&quot;, removed.orNull)</b>
-<b class="nc"><i class="no-highlight">95</i>&nbsp;        setupSection(&quot;### Fixed&quot;, fixed.orNull)</b>
-<b class="nc"><i class="no-highlight">96</i>&nbsp;        setupSection(&quot;### Updated&quot;, updated.orNull)</b>
-<b class="nc"><i class="no-highlight">97</i>&nbsp;        setupRenovate()</b>
-<i class="no-highlight">98</i>&nbsp;    }
-<i class="no-highlight">99</i>&nbsp;
-<b class="nc"><i class="no-highlight">100</i>&nbsp;    public companion object {</b>
-<i class="no-highlight">101</i>&nbsp;        public const val name: String = &quot;addChangelogItem&quot;
-<i class="no-highlight">102</i>&nbsp;    }
-<i class="no-highlight">103</i>&nbsp;}
-<i class="no-highlight">104</i>&nbsp;
-<i class="no-highlight">105</i>&nbsp;private val Project.changelog: String
-<i class="no-highlight">106</i>&nbsp;    get() = changelogFile.readText()
-<i class="no-highlight">107</i>&nbsp;
-<i class="no-highlight">108</i>&nbsp;private fun AddChangelogItemTask.setupSection(header: String, item: String?) {
-<i class="no-highlight">109</i>&nbsp;    if (item?.isNotBlank() == true) {
-<i class="no-highlight">110</i>&nbsp;        with(project) {
-<i class="no-highlight">111</i>&nbsp;            logger.lifecycle(header)
-<i class="no-highlight">112</i>&nbsp;            logger.lifecycle(&quot;- $item&quot;)
-<i class="no-highlight">113</i>&nbsp;            val updatedChangelog = changelog.addChanges(header, listOf(item))
-<i class="no-highlight">114</i>&nbsp;            changelogFile.writeText(updatedChangelog.toString())
-<i class="no-highlight">115</i>&nbsp;        }
-<i class="no-highlight">116</i>&nbsp;    }
-<i class="no-highlight">117</i>&nbsp;}
-<i class="no-highlight">118</i>&nbsp;
-<i class="no-highlight">119</i>&nbsp;private fun AddChangelogItemTask.setupRenovate(): Unit =
-<i class="no-highlight">120</i>&nbsp;    with(project) {
-<i class="no-highlight">121</i>&nbsp;        val dependenciesFromPullRequest: List&lt;String&gt; =
-<i class="no-highlight">122</i>&nbsp;            dependenciesFromRenovatePullRequestBody(renovate.orNull, renovatePath.orNull)
-<i class="no-highlight">123</i>&nbsp;
-<i class="no-highlight">124</i>&nbsp;        val dependenciesFromCommit: List&lt;String&gt; =
-<i class="no-highlight">125</i>&nbsp;            if (renovateCommitTable.get()) dependenciesFromRenovateCommit() else emptyList()
-<i class="no-highlight">126</i>&nbsp;
-<i class="no-highlight">127</i>&nbsp;        val updatedLabel = &quot;### Updated&quot;
-<i class="no-highlight">128</i>&nbsp;
-<i class="no-highlight">129</i>&nbsp;        when {
-<i class="no-highlight">130</i>&nbsp;            dependenciesFromPullRequest.isNotEmpty() -&gt; {
-<i class="no-highlight">131</i>&nbsp;                logger.lifecycle(updatedLabel)
-<i class="no-highlight">132</i>&nbsp;                for (dependencyFromPullRequest in dependenciesFromPullRequest) {
-<i class="no-highlight">133</i>&nbsp;                    logger.lifecycle(&quot;- $dependencyFromPullRequest&quot;)
-<i class="no-highlight">134</i>&nbsp;                }
-<i class="no-highlight">135</i>&nbsp;
-<i class="no-highlight">136</i>&nbsp;                val updatedChangelog =
-<i class="no-highlight">137</i>&nbsp;                    changelog.addChanges(updatedLabel, dependenciesFromPullRequest)
-<i class="no-highlight">138</i>&nbsp;                changelogFile.writeText(updatedChangelog.toString())
-<i class="no-highlight">139</i>&nbsp;            }
-<i class="no-highlight">140</i>&nbsp;            dependenciesFromCommit.isNotEmpty() -&gt; {
-<i class="no-highlight">141</i>&nbsp;                logger.lifecycle(updatedLabel)
-<i class="no-highlight">142</i>&nbsp;                for (dependencyFromCommit in dependenciesFromCommit) {
-<i class="no-highlight">143</i>&nbsp;                    logger.lifecycle(&quot;- $dependencyFromCommit&quot;)
-<i class="no-highlight">144</i>&nbsp;                }
-<i class="no-highlight">145</i>&nbsp;
-<i class="no-highlight">146</i>&nbsp;                val updatedChangelog = changelog.addChanges(updatedLabel, dependenciesFromCommit)
-<i class="no-highlight">147</i>&nbsp;                changelogFile.writeText(updatedChangelog.toString())
-<i class="no-highlight">148</i>&nbsp;            }
-<i class="no-highlight">149</i>&nbsp;        }
-<i class="no-highlight">150</i>&nbsp;    }
-<i class="no-highlight">151</i>&nbsp;
-<i class="no-highlight">152</i>&nbsp;private fun String.addChanges(header: String, changes: List&lt;String&gt;): Changelog =
-<i class="no-highlight">153</i>&nbsp;    buildList&lt;String&gt; {
-<i class="no-highlight">154</i>&nbsp;            val firstVersionIndex =
-<i class="no-highlight">155</i>&nbsp;                lines().indexOfFirst {
-<i class="no-highlight">156</i>&nbsp;                    it.startsWith(&quot;## [&quot;) &amp;&amp; it.contains(&quot;[Unreleased]&quot;, true).not()
-<i class="no-highlight">157</i>&nbsp;                }
-<i class="no-highlight">158</i>&nbsp;            var shouldAddUpdate = true
-<i class="no-highlight">159</i>&nbsp;            lines().onEach { line -&gt;
-<i class="no-highlight">160</i>&nbsp;                if (line.startsWith(header) &amp;&amp; shouldAddUpdate) {
-<i class="no-highlight">161</i>&nbsp;                    shouldAddUpdate = false
-<i class="no-highlight">162</i>&nbsp;                    add(line)
-<i class="no-highlight">163</i>&nbsp;                    for (change in changes) {
-<i class="no-highlight">164</i>&nbsp;                        if (lines().subList(0, firstVersionIndex).none { it.contains(change) }) {
-<i class="no-highlight">165</i>&nbsp;                            add(&quot;- $change&quot;)
-<i class="no-highlight">166</i>&nbsp;                        }
-<i class="no-highlight">167</i>&nbsp;                    }
-<i class="no-highlight">168</i>&nbsp;                } else {
-<i class="no-highlight">169</i>&nbsp;                    add(line)
-<i class="no-highlight">170</i>&nbsp;                }
-<i class="no-highlight">171</i>&nbsp;            }
-<i class="no-highlight">172</i>&nbsp;            runCatching {
-<i class="no-highlight">173</i>&nbsp;                forEachIndexed { index: Int, line -&gt;
-<i class="no-highlight">174</i>&nbsp;                    val updateRegex = &quot;&quot;&quot;(- `)(.*)( )(-&gt;)( )(.*)(`)&quot;&quot;&quot;
-<i class="no-highlight">175</i>&nbsp;                    if (Regex(updateRegex).matches(line)) {
-<i class="no-highlight">176</i>&nbsp;                        for (j in index + 1 until firstVersionIndex) {
-<i class="no-highlight">177</i>&nbsp;                            val lineToRemove = this[j]
-<i class="no-highlight">178</i>&nbsp;                            val shouldRemovePreviousUpdate =
-<i class="no-highlight">179</i>&nbsp;                                lineToRemove.module == line.module &amp;&amp;
-<i class="no-highlight">180</i>&nbsp;                                    Regex(updateRegex).matches(lineToRemove)
-<i class="no-highlight">181</i>&nbsp;
-<i class="no-highlight">182</i>&nbsp;                            if (shouldRemovePreviousUpdate) removeAt(j)
-<i class="no-highlight">183</i>&nbsp;                        }
-<i class="no-highlight">184</i>&nbsp;                    }
-<i class="no-highlight">185</i>&nbsp;                }
-<i class="no-highlight">186</i>&nbsp;            }
-<i class="no-highlight">187</i>&nbsp;        }
-<i class="no-highlight">188</i>&nbsp;        .joinToString(&quot;\n&quot;)
-<i class="no-highlight">189</i>&nbsp;        .run(Changelog.Companion::fromString)
-<i class="no-highlight">190</i>&nbsp;
-<i class="no-highlight">191</i>&nbsp;private fun Project.dependenciesFromRenovatePullRequestBody(
-<i class="no-highlight">192</i>&nbsp;    body: String?,
-<i class="no-highlight">193</i>&nbsp;    path: String?
-<i class="no-highlight">194</i>&nbsp;): List&lt;String&gt; {
-<i class="no-highlight">195</i>&nbsp;    val renovateLines: List&lt;String&gt; =
-<i class="no-highlight">196</i>&nbsp;        when {
-<i class="no-highlight">197</i>&nbsp;            body?.isNotBlank() == true -&gt; body.split(&quot;&quot;&quot;\n&quot;&quot;&quot;)
-<i class="no-highlight">198</i>&nbsp;            path?.isNotBlank() == true -&gt; File(&quot;$rootDir/$path&quot;).readText().split(&quot;\n&quot;)
-<i class="no-highlight">199</i>&nbsp;            else -&gt; emptyList()
-<i class="no-highlight">200</i>&nbsp;        }
-<i class="no-highlight">201</i>&nbsp;
-<i class="no-highlight">202</i>&nbsp;    return renovateLines
-<i class="no-highlight">203</i>&nbsp;        .asSequence()
-<i class="no-highlight">204</i>&nbsp;        .filter(String::isNotBlank)
-<i class="no-highlight">205</i>&nbsp;        .map { it.replace(&quot;&quot;&quot;\n&quot;&quot;&quot;, &quot;\n&quot;) }
-<i class="no-highlight">206</i>&nbsp;        .dropWhile { it.startsWith(&quot;| Package | Change |&quot;).not() }
-<i class="no-highlight">207</i>&nbsp;        .dropWhile { it.startsWith(&quot;|---&quot;).not() }
-<i class="no-highlight">208</i>&nbsp;        .drop(1)
-<i class="no-highlight">209</i>&nbsp;        .takeWhile { it.startsWith(&quot;| &quot;) }
-<i class="no-highlight">210</i>&nbsp;        .flatMap { it.split(&quot;|&quot;) }
-<i class="no-highlight">211</i>&nbsp;        .map { it.replace(&quot; &quot;, &quot;&quot;) }
-<i class="no-highlight">212</i>&nbsp;        .map { if (it.startsWith(&quot;`&quot;).not()) it else it.replace(&quot;`&quot;, &quot;&quot;).split(&quot;-&gt;&quot;)[1] }
-<i class="no-highlight">213</i>&nbsp;        .filter(String::isNotBlank)
-<i class="no-highlight">214</i>&nbsp;        .filter { it.startsWith(&quot;[!&quot;).not() }
-<i class="no-highlight">215</i>&nbsp;        .map { if (it.startsWith(&quot;[&quot;)) it.drop(1).takeWhile { char -&gt; char != &#39;]&#39; } else it }
-<i class="no-highlight">216</i>&nbsp;        .zipWithNext { a: String, b: String -&gt;
-<i class="no-highlight">217</i>&nbsp;            if (a.first().run { isLetter() || this == &#39;[&#39; }) &quot;`$a -&gt; $b`&quot; else null
-<i class="no-highlight">218</i>&nbsp;        }
-<i class="no-highlight">219</i>&nbsp;        .filterNotNull()
-<i class="no-highlight">220</i>&nbsp;        .toList()
-<i class="no-highlight">221</i>&nbsp;}
-<i class="no-highlight">222</i>&nbsp;
-<i class="no-highlight">223</i>&nbsp;private fun Project.dependenciesFromRenovateCommit(): List&lt;String&gt; {
-<i class="no-highlight">224</i>&nbsp;    val gitFolder = File(&quot;${rootProject.rootDir}&quot;).walkTopDown().first { it.name == &quot;.git&quot; }
-<i class="no-highlight">225</i>&nbsp;
-<i class="no-highlight">226</i>&nbsp;    val repository: Repository =
-<i class="no-highlight">227</i>&nbsp;        FileRepositoryBuilder().setGitDir(gitFolder).readEnvironment().findGitDir().build()
-<i class="no-highlight">228</i>&nbsp;
-<i class="no-highlight">229</i>&nbsp;    val head = repository.resolve(Constants.HEAD).name
-<i class="no-highlight">230</i>&nbsp;
-<i class="no-highlight">231</i>&nbsp;    val commits: List&lt;RevCommit&gt; =
-<i class="no-highlight">232</i>&nbsp;        Git(repository).log().add(repository.resolve(head)).call().toList()
-<i class="no-highlight">233</i>&nbsp;
-<i class="no-highlight">234</i>&nbsp;    val latestCommit: RevCommit =
-<i class="no-highlight">235</i>&nbsp;        commits.first { commit -&gt;
-<i class="no-highlight">236</i>&nbsp;            listOf(&quot;datasource&quot;, &quot;package&quot;, &quot;from&quot;, &quot;to&quot;).all { keyword -&gt;
-<i class="no-highlight">237</i>&nbsp;                keyword in commit.fullMessage
-<i class="no-highlight">238</i>&nbsp;            }
-<i class="no-highlight">239</i>&nbsp;        }
-<i class="no-highlight">240</i>&nbsp;
-<i class="no-highlight">241</i>&nbsp;    return latestCommit.fullMessage
-<i class="no-highlight">242</i>&nbsp;        .lines()
-<i class="no-highlight">243</i>&nbsp;        .dropWhile { it.startsWith(&quot;| ----&quot;).not() }
-<i class="no-highlight">244</i>&nbsp;        .drop(1)
-<i class="no-highlight">245</i>&nbsp;        .dropLastWhile { it.startsWith(&quot;|&quot;).not() &amp;&amp; it.endsWith(&quot;|&quot;).not() }
-<i class="no-highlight">246</i>&nbsp;        .map {
-<i class="no-highlight">247</i>&nbsp;            val data = it.filterNot(Char::isWhitespace).split(&quot;|&quot;).drop(2).dropLast(1)
-<i class="no-highlight">248</i>&nbsp;            &quot;`${data.first()} -&gt; ${data.last()}`&quot;
-<i class="no-highlight">249</i>&nbsp;        }
-<i class="no-highlight">250</i>&nbsp;        .distinct()
-<i class="no-highlight">251</i>&nbsp;}
-<i class="no-highlight">252</i>&nbsp;
-<i class="no-highlight">253</i>&nbsp;private val String.module: String
-<i class="no-highlight">254</i>&nbsp;    get() =
-<i class="no-highlight">255</i>&nbsp;        filterNot(Char::isWhitespace)
-<i class="no-highlight">256</i>&nbsp;            .replace(&quot;`&quot;, &quot;&quot;)
-<i class="no-highlight">257</i>&nbsp;            .replaceAfter(&quot;-&gt;&quot;, &quot;&quot;)
-<i class="no-highlight">258</i>&nbsp;            .replace(&quot;-&gt;&quot;, &quot;&quot;)
-<i class="no-highlight">259</i>&nbsp;            .drop(1)
-</div>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.extensions.config.documentation.changelog
+&nbsp;
+&nbsp;import com.javiersc.hubdle.extensions.config.documentation.changelog._internal.Changelog
+&nbsp;import com.javiersc.hubdle.extensions.config.documentation.changelog._internal.changelogFile
+&nbsp;import com.javiersc.hubdle.extensions.config.documentation.changelog._internal.fromString
+&nbsp;import java.io.File
+&nbsp;import javax.inject.Inject
+&nbsp;import org.eclipse.jgit.api.Git
+&nbsp;import org.eclipse.jgit.lib.Constants
+&nbsp;import org.eclipse.jgit.lib.Repository
+&nbsp;import org.eclipse.jgit.revwalk.RevCommit
+&nbsp;import org.eclipse.jgit.storage.file.FileRepositoryBuilder
+&nbsp;import org.gradle.api.DefaultTask
+&nbsp;import org.gradle.api.Project
+&nbsp;import org.gradle.api.model.ObjectFactory
+&nbsp;import org.gradle.api.provider.Property
+&nbsp;import org.gradle.api.tasks.Input
+&nbsp;import org.gradle.api.tasks.Optional
+&nbsp;import org.gradle.api.tasks.TaskAction
+&nbsp;import org.gradle.api.tasks.options.Option
+&nbsp;import org.gradle.kotlin.dsl.property
+&nbsp;
+<b class="nc">&nbsp;public abstract class AddChangelogItemTask @Inject constructor(objects: ObjectFactory) :</b>
+<b class="nc">&nbsp;    DefaultTask() {</b>
+&nbsp;
+&nbsp;    @Input
+&nbsp;    @Option(option = &quot;added&quot;, description = &quot;Add an item to the `added` section&quot;)
+&nbsp;    @Optional
+<b class="nc">&nbsp;    public val added: Property&lt;String?&gt; = objects.property()</b>
+&nbsp;
+&nbsp;    @Input
+&nbsp;    @Option(option = &quot;changed&quot;, description = &quot;Add an item to the `changed` section&quot;)
+&nbsp;    @Optional
+<b class="nc">&nbsp;    public val changed: Property&lt;String?&gt; = objects.property()</b>
+&nbsp;
+&nbsp;    @Input
+&nbsp;    @Option(option = &quot;deprecated&quot;, description = &quot;Add an item to the `deprecated` section&quot;)
+&nbsp;    @Optional
+<b class="nc">&nbsp;    public val deprecated: Property&lt;String?&gt; = objects.property()</b>
+&nbsp;
+&nbsp;    @Input
+&nbsp;    @Option(option = &quot;removed&quot;, description = &quot;Add an item to the `removed` section&quot;)
+&nbsp;    @Optional
+<b class="nc">&nbsp;    public val removed: Property&lt;String?&gt; = objects.property()</b>
+&nbsp;
+&nbsp;    @Input
+&nbsp;    @Option(option = &quot;fixed&quot;, description = &quot;Add an item to the `fixed` section&quot;)
+&nbsp;    @Optional
+<b class="nc">&nbsp;    public val fixed: Property&lt;String?&gt; = objects.property()</b>
+&nbsp;
+&nbsp;    @Input
+&nbsp;    @Option(option = &quot;updated&quot;, description = &quot;Add an item to the `updated` section&quot;)
+&nbsp;    @Optional
+<b class="nc">&nbsp;    public val updated: Property&lt;String?&gt; = objects.property()</b>
+&nbsp;
+&nbsp;    @Input
+&nbsp;    @Option(
+&nbsp;        option = &quot;renovate&quot;,
+&nbsp;        description = &quot;Extract dependencies from the table in the PR body&quot;,
+&nbsp;    )
+&nbsp;    @Optional
+<b class="nc">&nbsp;    public val renovate: Property&lt;String?&gt; = objects.property()</b>
+&nbsp;
+&nbsp;    @Input
+&nbsp;    @Option(
+&nbsp;        option = &quot;renovatePath&quot;,
+&nbsp;        description = &quot;Extract dependencies from the table in the PR body from a file&quot;,
+&nbsp;    )
+&nbsp;    @Optional
+<b class="nc">&nbsp;    public val renovatePath: Property&lt;String?&gt; = objects.property()</b>
+&nbsp;
+&nbsp;    @Input
+&nbsp;    @Option(
+&nbsp;        option = &quot;renovateCommitTable&quot;,
+&nbsp;        description =
+&nbsp;            &quot;&quot;&quot;
+&nbsp;               Extract dependencies from the table in the commit body
+&nbsp;               Add `&quot;commitBodyTable&quot;: true` to Renovate config
+&nbsp;            &quot;&quot;&quot;,
+&nbsp;    )
+<b class="nc">&nbsp;    public val renovateCommitTable: Property&lt;Boolean&gt; =</b>
+<b class="nc">&nbsp;        objects.property&lt;Boolean&gt;().convention(false)</b>
+&nbsp;
+<b class="nc">&nbsp;    init {</b>
+<b class="nc">&nbsp;        group = &quot;changelog&quot;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @TaskAction
+&nbsp;    public fun run() {
+<b class="nc">&nbsp;        check(project.changelogFile.exists()) { &quot;CHANGELOG.md file doesn&#39;t found&quot; }</b>
+<b class="nc">&nbsp;        setupSection(&quot;### Added&quot;, added.orNull)</b>
+<b class="nc">&nbsp;        setupSection(&quot;### Changed&quot;, changed.orNull)</b>
+<b class="nc">&nbsp;        setupSection(&quot;### Deprecated&quot;, deprecated.orNull)</b>
+<b class="nc">&nbsp;        setupSection(&quot;### Removed&quot;, removed.orNull)</b>
+<b class="nc">&nbsp;        setupSection(&quot;### Fixed&quot;, fixed.orNull)</b>
+<b class="nc">&nbsp;        setupSection(&quot;### Updated&quot;, updated.orNull)</b>
+<b class="nc">&nbsp;        setupRenovate()</b>
+&nbsp;    }
+&nbsp;
+<b class="nc">&nbsp;    public companion object {</b>
+&nbsp;        public const val name: String = &quot;addChangelogItem&quot;
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;private val Project.changelog: String
+&nbsp;    get() = changelogFile.readText()
+&nbsp;
+&nbsp;private fun AddChangelogItemTask.setupSection(header: String, item: String?) {
+&nbsp;    if (item?.isNotBlank() == true) {
+&nbsp;        with(project) {
+&nbsp;            logger.lifecycle(header)
+&nbsp;            logger.lifecycle(&quot;- $item&quot;)
+&nbsp;            val updatedChangelog = changelog.addChanges(header, listOf(item))
+&nbsp;            changelogFile.writeText(updatedChangelog.toString())
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;private fun AddChangelogItemTask.setupRenovate(): Unit =
+&nbsp;    with(project) {
+&nbsp;        val dependenciesFromPullRequest: List&lt;String&gt; =
+&nbsp;            dependenciesFromRenovatePullRequestBody(renovate.orNull, renovatePath.orNull)
+&nbsp;
+&nbsp;        val dependenciesFromCommit: List&lt;String&gt; =
+&nbsp;            if (renovateCommitTable.get()) dependenciesFromRenovateCommit() else emptyList()
+&nbsp;
+&nbsp;        val updatedLabel = &quot;### Updated&quot;
+&nbsp;
+&nbsp;        when {
+&nbsp;            dependenciesFromPullRequest.isNotEmpty() -&gt; {
+&nbsp;                logger.lifecycle(updatedLabel)
+&nbsp;                for (dependencyFromPullRequest in dependenciesFromPullRequest) {
+&nbsp;                    logger.lifecycle(&quot;- $dependencyFromPullRequest&quot;)
+&nbsp;                }
+&nbsp;
+&nbsp;                val updatedChangelog =
+&nbsp;                    changelog.addChanges(updatedLabel, dependenciesFromPullRequest)
+&nbsp;                changelogFile.writeText(updatedChangelog.toString())
+&nbsp;            }
+&nbsp;            dependenciesFromCommit.isNotEmpty() -&gt; {
+&nbsp;                logger.lifecycle(updatedLabel)
+&nbsp;                for (dependencyFromCommit in dependenciesFromCommit) {
+&nbsp;                    logger.lifecycle(&quot;- $dependencyFromCommit&quot;)
+&nbsp;                }
+&nbsp;
+&nbsp;                val updatedChangelog = changelog.addChanges(updatedLabel, dependenciesFromCommit)
+&nbsp;                changelogFile.writeText(updatedChangelog.toString())
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;private fun String.addChanges(header: String, changes: List&lt;String&gt;): Changelog =
+&nbsp;    buildList&lt;String&gt; {
+&nbsp;            val firstVersionIndex =
+&nbsp;                lines().indexOfFirst {
+&nbsp;                    it.startsWith(&quot;## [&quot;) &amp;&amp; it.contains(&quot;[Unreleased]&quot;, true).not()
+&nbsp;                }
+&nbsp;            var shouldAddUpdate = true
+&nbsp;            lines().onEach { line -&gt;
+&nbsp;                if (line.startsWith(header) &amp;&amp; shouldAddUpdate) {
+&nbsp;                    shouldAddUpdate = false
+&nbsp;                    add(line)
+&nbsp;                    for (change in changes) {
+&nbsp;                        if (lines().subList(0, firstVersionIndex).none { it.contains(change) }) {
+&nbsp;                            add(&quot;- $change&quot;)
+&nbsp;                        }
+&nbsp;                    }
+&nbsp;                } else {
+&nbsp;                    add(line)
+&nbsp;                }
+&nbsp;            }
+&nbsp;            runCatching {
+&nbsp;                forEachIndexed { index: Int, line -&gt;
+&nbsp;                    val updateRegex = &quot;&quot;&quot;(- `)(.*)( )(-&gt;)( )(.*)(`)&quot;&quot;&quot;
+&nbsp;                    if (Regex(updateRegex).matches(line)) {
+&nbsp;                        for (j in index + 1 until firstVersionIndex) {
+&nbsp;                            val lineToRemove = this[j]
+&nbsp;                            val shouldRemovePreviousUpdate =
+&nbsp;                                lineToRemove.module == line.module &amp;&amp;
+&nbsp;                                    Regex(updateRegex).matches(lineToRemove)
+&nbsp;
+&nbsp;                            if (shouldRemovePreviousUpdate) removeAt(j)
+&nbsp;                        }
+&nbsp;                    }
+&nbsp;                }
+&nbsp;            }
+&nbsp;        }
+&nbsp;        .joinToString(&quot;\n&quot;)
+&nbsp;        .run(Changelog.Companion::fromString)
+&nbsp;
+&nbsp;private fun Project.dependenciesFromRenovatePullRequestBody(
+&nbsp;    body: String?,
+&nbsp;    path: String?
+&nbsp;): List&lt;String&gt; {
+&nbsp;    val renovateLines: List&lt;String&gt; =
+&nbsp;        when {
+&nbsp;            body?.isNotBlank() == true -&gt; body.split(&quot;&quot;&quot;\n&quot;&quot;&quot;)
+&nbsp;            path?.isNotBlank() == true -&gt; File(&quot;$rootDir/$path&quot;).readText().split(&quot;\n&quot;)
+&nbsp;            else -&gt; emptyList()
+&nbsp;        }
+&nbsp;
+&nbsp;    return renovateLines
+&nbsp;        .asSequence()
+&nbsp;        .filter(String::isNotBlank)
+&nbsp;        .map { it.replace(&quot;&quot;&quot;\n&quot;&quot;&quot;, &quot;\n&quot;) }
+&nbsp;        .dropWhile { it.startsWith(&quot;| Package | Change |&quot;).not() }
+&nbsp;        .dropWhile { it.startsWith(&quot;|---&quot;).not() }
+&nbsp;        .drop(1)
+&nbsp;        .takeWhile { it.startsWith(&quot;| &quot;) }
+&nbsp;        .flatMap { it.split(&quot;|&quot;) }
+&nbsp;        .map { it.replace(&quot; &quot;, &quot;&quot;) }
+&nbsp;        .map { if (it.startsWith(&quot;`&quot;).not()) it else it.replace(&quot;`&quot;, &quot;&quot;).split(&quot;-&gt;&quot;)[1] }
+&nbsp;        .filter(String::isNotBlank)
+&nbsp;        .filter { it.startsWith(&quot;[!&quot;).not() }
+&nbsp;        .map { if (it.startsWith(&quot;[&quot;)) it.drop(1).takeWhile { char -&gt; char != &#39;]&#39; } else it }
+&nbsp;        .zipWithNext { a: String, b: String -&gt;
+&nbsp;            if (a.first().run { isLetter() || this == &#39;[&#39; }) &quot;`$a -&gt; $b`&quot; else null
+&nbsp;        }
+&nbsp;        .filterNotNull()
+&nbsp;        .toList()
+&nbsp;}
+&nbsp;
+&nbsp;private fun Project.dependenciesFromRenovateCommit(): List&lt;String&gt; {
+&nbsp;    val gitFolder = File(&quot;${rootProject.rootDir}&quot;).walkTopDown().first { it.name == &quot;.git&quot; }
+&nbsp;
+&nbsp;    val repository: Repository =
+&nbsp;        FileRepositoryBuilder().setGitDir(gitFolder).readEnvironment().findGitDir().build()
+&nbsp;
+&nbsp;    val head = repository.resolve(Constants.HEAD).name
+&nbsp;
+&nbsp;    val commits: List&lt;RevCommit&gt; =
+&nbsp;        Git(repository).log().add(repository.resolve(head)).call().toList()
+&nbsp;
+&nbsp;    val latestCommit: RevCommit =
+&nbsp;        commits.first { commit -&gt;
+&nbsp;            listOf(&quot;datasource&quot;, &quot;package&quot;, &quot;from&quot;, &quot;to&quot;).all { keyword -&gt;
+&nbsp;                keyword in commit.fullMessage
+&nbsp;            }
+&nbsp;        }
+&nbsp;
+&nbsp;    return latestCommit.fullMessage
+&nbsp;        .lines()
+&nbsp;        .dropWhile { it.startsWith(&quot;| ----&quot;).not() }
+&nbsp;        .drop(1)
+&nbsp;        .dropLastWhile { it.startsWith(&quot;|&quot;).not() &amp;&amp; it.endsWith(&quot;|&quot;).not() }
+&nbsp;        .map {
+&nbsp;            val data = it.filterNot(Char::isWhitespace).split(&quot;|&quot;).drop(2).dropLast(1)
+&nbsp;            &quot;`${data.first()} -&gt; ${data.last()}`&quot;
+&nbsp;        }
+&nbsp;        .distinct()
+&nbsp;}
+&nbsp;
+&nbsp;private val String.module: String
+&nbsp;    get() =
+&nbsp;        filterNot(Char::isWhitespace)
+&nbsp;            .replace(&quot;`&quot;, &quot;&quot;)
+&nbsp;            .replaceAfter(&quot;-&gt;&quot;, &quot;&quot;)
+&nbsp;            .replace(&quot;-&gt;&quot;, &quot;&quot;)
+&nbsp;            .drop(1)
+</code>
 </pre>
 </div>
 
@@ -422,18 +423,15 @@ Current scope:     <a href="../../index.html">all classes</a>
     @*/
 
     if (!msie || msie && msie9) {
-        var codeBlock = document.getElementById('sourceCode');
-
-        if (codeBlock) {
-            hljs.highlightBlock(codeBlock);
-        }
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
     }
 })();
 </script>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-14 10:24</div>
+    <div style="float:right;">generated on 2022-09-21 10:36</div>
 </div>
 </body>
 </html>

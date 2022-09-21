@@ -7,9 +7,10 @@
   <title>Coverage Report > InstallCheckApiPreCommitTask</title>
   <style type="text/css">
     @import "../../css/coverage.css";
-    @import "../../css/highlight-idea.css";
+    @import "../../css/idea.min.css";
   </style>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
 </head>
 
 <body>
@@ -202,58 +203,58 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.javiersc.hubdle.extensions.config.install.commit
-<i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;import com.javiersc.gradle.tasks.extensions.namedLazily
-<i class="no-highlight">4</i>&nbsp;import javax.inject.Inject
-<i class="no-highlight">5</i>&nbsp;import org.gradle.api.Project
-<i class="no-highlight">6</i>&nbsp;import org.gradle.api.file.ProjectLayout
-<i class="no-highlight">7</i>&nbsp;import org.gradle.api.model.ObjectFactory
-<i class="no-highlight">8</i>&nbsp;import org.gradle.api.provider.Property
-<i class="no-highlight">9</i>&nbsp;import org.gradle.api.tasks.CacheableTask
-<i class="no-highlight">10</i>&nbsp;import org.gradle.api.tasks.Input
-<i class="no-highlight">11</i>&nbsp;import org.gradle.api.tasks.TaskAction
-<i class="no-highlight">12</i>&nbsp;import org.gradle.kotlin.dsl.property
-<i class="no-highlight">13</i>&nbsp;import org.gradle.kotlin.dsl.register
-<i class="no-highlight">14</i>&nbsp;
-<i class="no-highlight">15</i>&nbsp;@CacheableTask
-<i class="no-highlight">16</i>&nbsp;public abstract class InstallCheckApiPreCommitTask
-<i class="no-highlight">17</i>&nbsp;@Inject
-<b class="nc"><i class="no-highlight">18</i>&nbsp;constructor(</b>
-<i class="no-highlight">19</i>&nbsp;    objects: ObjectFactory,
-<i class="no-highlight">20</i>&nbsp;    layout: ProjectLayout,
-<b class="nc"><i class="no-highlight">21</i>&nbsp;) : InstallPreCommitTask(layout) {</b>
-<i class="no-highlight">22</i>&nbsp;
-<b class="nc"><i class="no-highlight">23</i>&nbsp;    init {</b>
-<b class="nc"><i class="no-highlight">24</i>&nbsp;        group = &quot;install&quot;</b>
-<b class="nc"><i class="no-highlight">25</i>&nbsp;    }</b>
-<i class="no-highlight">26</i>&nbsp;
-<i class="no-highlight">27</i>&nbsp;    @Input
-<b class="nc"><i class="no-highlight">28</i>&nbsp;    override val preCommitName: Property&lt;String&gt; = objects.property&lt;String&gt;().convention(&quot;checkApi&quot;)</b>
-<i class="no-highlight">29</i>&nbsp;
-<i class="no-highlight">30</i>&nbsp;    @TaskAction
-<i class="no-highlight">31</i>&nbsp;    override fun install() {
-<b class="nc"><i class="no-highlight">32</i>&nbsp;        createInstallPreCommitGradleTask()</b>
-<i class="no-highlight">33</i>&nbsp;    }
-<i class="no-highlight">34</i>&nbsp;
-<i class="no-highlight">35</i>&nbsp;    public companion object {
-<i class="no-highlight">36</i>&nbsp;        public const val name: String = &quot;installCheckApiPreCommit&quot;
-<i class="no-highlight">37</i>&nbsp;
-<i class="no-highlight">38</i>&nbsp;        internal fun register(project: Project) {
-<b class="nc"><i class="no-highlight">39</i>&nbsp;            val installApiCheckPreCommitTask =</b>
-<b class="nc"><i class="no-highlight">40</i>&nbsp;                project.tasks.register&lt;InstallCheckApiPreCommitTask&gt;(name)</b>
-<i class="no-highlight">41</i>&nbsp;
-<b class="nc"><i class="no-highlight">42</i>&nbsp;            installApiCheckPreCommitTask.configure {</b>
-<b class="nc"><i class="no-highlight">43</i>&nbsp;                finalizedBy(WriteFilePreCommitTask.getTask(project))</b>
-<i class="no-highlight">44</i>&nbsp;            }
-<i class="no-highlight">45</i>&nbsp;
-<b class="nc"><i class="no-highlight">46</i>&nbsp;            project.tasks</b>
-<b class="nc"><i class="no-highlight">47</i>&nbsp;                .namedLazily&lt;InstallPreCommitTask&gt;(InstallPreCommitTask.name)</b>
-<b class="nc"><i class="no-highlight">48</i>&nbsp;                .configureEach { dependsOn(installApiCheckPreCommitTask) }</b>
-<i class="no-highlight">49</i>&nbsp;        }
-<i class="no-highlight">50</i>&nbsp;    }
-<i class="no-highlight">51</i>&nbsp;}
-</div>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.extensions.config.install.commit
+&nbsp;
+&nbsp;import com.javiersc.gradle.tasks.extensions.namedLazily
+&nbsp;import javax.inject.Inject
+&nbsp;import org.gradle.api.Project
+&nbsp;import org.gradle.api.file.ProjectLayout
+&nbsp;import org.gradle.api.model.ObjectFactory
+&nbsp;import org.gradle.api.provider.Property
+&nbsp;import org.gradle.api.tasks.CacheableTask
+&nbsp;import org.gradle.api.tasks.Input
+&nbsp;import org.gradle.api.tasks.TaskAction
+&nbsp;import org.gradle.kotlin.dsl.property
+&nbsp;import org.gradle.kotlin.dsl.register
+&nbsp;
+&nbsp;@CacheableTask
+&nbsp;public abstract class InstallCheckApiPreCommitTask
+&nbsp;@Inject
+<b class="nc">&nbsp;constructor(</b>
+&nbsp;    objects: ObjectFactory,
+&nbsp;    layout: ProjectLayout,
+<b class="nc">&nbsp;) : InstallPreCommitTask(layout) {</b>
+&nbsp;
+<b class="nc">&nbsp;    init {</b>
+<b class="nc">&nbsp;        group = &quot;install&quot;</b>
+<b class="nc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    @Input
+<b class="nc">&nbsp;    override val preCommitName: Property&lt;String&gt; = objects.property&lt;String&gt;().convention(&quot;checkApi&quot;)</b>
+&nbsp;
+&nbsp;    @TaskAction
+&nbsp;    override fun install() {
+<b class="nc">&nbsp;        createInstallPreCommitGradleTask()</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public companion object {
+&nbsp;        public const val name: String = &quot;installCheckApiPreCommit&quot;
+&nbsp;
+&nbsp;        internal fun register(project: Project) {
+<b class="nc">&nbsp;            val installApiCheckPreCommitTask =</b>
+<b class="nc">&nbsp;                project.tasks.register&lt;InstallCheckApiPreCommitTask&gt;(name)</b>
+&nbsp;
+<b class="nc">&nbsp;            installApiCheckPreCommitTask.configure {</b>
+<b class="nc">&nbsp;                finalizedBy(WriteFilePreCommitTask.getTask(project))</b>
+&nbsp;            }
+&nbsp;
+<b class="nc">&nbsp;            project.tasks</b>
+<b class="nc">&nbsp;                .namedLazily&lt;InstallPreCommitTask&gt;(InstallPreCommitTask.name)</b>
+<b class="nc">&nbsp;                .configureEach { dependsOn(installApiCheckPreCommitTask) }</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+</code>
 </pre>
 </div>
 
@@ -268,18 +269,15 @@ Current scope:     <a href="../../index.html">all classes</a>
     @*/
 
     if (!msie || msie && msie9) {
-        var codeBlock = document.getElementById('sourceCode');
-
-        if (codeBlock) {
-            hljs.highlightBlock(codeBlock);
-        }
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
     }
 })();
 </script>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-14 10:24</div>
+    <div style="float:right;">generated on 2022-09-21 10:36</div>
 </div>
 </body>
 </html>

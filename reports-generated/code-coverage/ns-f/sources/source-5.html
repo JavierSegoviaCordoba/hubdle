@@ -7,9 +7,10 @@
   <title>Coverage Report > HubdleChangelogExtension</title>
   <style type="text/css">
     @import "../../css/coverage.css";
-    @import "../../css/highlight-idea.css";
+    @import "../../css/idea.min.css";
   </style>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
 </head>
 
 <body>
@@ -254,70 +255,70 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.javiersc.hubdle.extensions.config.documentation.changelog
-<i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;import com.javiersc.gradle.tasks.extensions.namedLazily
-<i class="no-highlight">4</i>&nbsp;import com.javiersc.hubdle.extensions.HubdleDslMarker
-<i class="no-highlight">5</i>&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
-<i class="no-highlight">6</i>&nbsp;import com.javiersc.hubdle.extensions.options.EnableableOptions
-<i class="no-highlight">7</i>&nbsp;import com.javiersc.hubdle.extensions.options.RawConfigOptions
-<i class="no-highlight">8</i>&nbsp;import javax.inject.Inject
-<i class="no-highlight">9</i>&nbsp;import org.gradle.api.Action
-<i class="no-highlight">10</i>&nbsp;import org.gradle.api.Project
-<i class="no-highlight">11</i>&nbsp;import org.gradle.api.artifacts.ProjectDependency
-<i class="no-highlight">12</i>&nbsp;import org.gradle.api.model.ObjectFactory
-<i class="no-highlight">13</i>&nbsp;import org.gradle.kotlin.dsl.newInstance
-<i class="no-highlight">14</i>&nbsp;import org.jetbrains.changelog.ChangelogPluginExtension
-<i class="no-highlight">15</i>&nbsp;import org.jetbrains.dokka.gradle.DokkaMultiModuleTask
-<i class="no-highlight">16</i>&nbsp;
-<i class="no-highlight">17</i>&nbsp;@HubdleDslMarker
-<i class="no-highlight">18</i>&nbsp;public open class HubdleChangelogExtension
-<i class="no-highlight">19</i>&nbsp;@Inject
-<b class="nc"><i class="no-highlight">20</i>&nbsp;constructor(</b>
-<i class="no-highlight">21</i>&nbsp;    objects: ObjectFactory,
-<i class="no-highlight">22</i>&nbsp;) : EnableableOptions, RawConfigOptions&lt;HubdleChangelogExtension.RawConfigExtension&gt; {
-<i class="no-highlight">23</i>&nbsp;
-<i class="no-highlight">24</i>&nbsp;    override var Project.isEnabled: Boolean
-<b class="nc"><i class="no-highlight">25</i>&nbsp;        get() = hubdleState.config.documentation.changelog.isEnabled</b>
-<b class="nc"><i class="no-highlight">26</i>&nbsp;        set(value) = hubdleState.config.documentation.changelog.run { isEnabled = value }</b>
-<i class="no-highlight">27</i>&nbsp;
-<i class="no-highlight">28</i>&nbsp;    @HubdleDslMarker
-<i class="no-highlight">29</i>&nbsp;    public fun Project.removeProjects(vararg paths: String) {
-<b class="nc"><i class="no-highlight">30</i>&nbsp;        tasks.namedLazily&lt;DokkaMultiModuleTask&gt;(&quot;dokkaHtmlMultiModule&quot;).configureEach {</b>
-<b class="nc"><i class="no-highlight">31</i>&nbsp;            removeChildTasks(paths.map(::project))</b>
-<i class="no-highlight">32</i>&nbsp;        }
-<i class="no-highlight">33</i>&nbsp;    }
-<i class="no-highlight">34</i>&nbsp;
-<i class="no-highlight">35</i>&nbsp;    @HubdleDslMarker
-<i class="no-highlight">36</i>&nbsp;    public fun Project.removeProjects(vararg projects: Project) {
-<b class="nc"><i class="no-highlight">37</i>&nbsp;        tasks.namedLazily&lt;DokkaMultiModuleTask&gt;(&quot;dokkaHtmlMultiModule&quot;).configureEach {</b>
-<b class="nc"><i class="no-highlight">38</i>&nbsp;            removeChildTasks(projects.toList())</b>
-<i class="no-highlight">39</i>&nbsp;        }
-<i class="no-highlight">40</i>&nbsp;    }
-<i class="no-highlight">41</i>&nbsp;
-<i class="no-highlight">42</i>&nbsp;    @HubdleDslMarker
-<i class="no-highlight">43</i>&nbsp;    public fun Project.removeProjects(vararg projects: ProjectDependency) {
-<b class="nc"><i class="no-highlight">44</i>&nbsp;        tasks.namedLazily&lt;DokkaMultiModuleTask&gt;(&quot;dokkaHtmlMultiModule&quot;).configureEach {</b>
-<b class="nc"><i class="no-highlight">45</i>&nbsp;            removeChildTasks(projects.map(ProjectDependency::getDependencyProject))</b>
-<i class="no-highlight">46</i>&nbsp;        }
-<i class="no-highlight">47</i>&nbsp;    }
-<i class="no-highlight">48</i>&nbsp;
-<b class="nc"><i class="no-highlight">49</i>&nbsp;    override val rawConfig: RawConfigExtension = objects.newInstance()</b>
-<i class="no-highlight">50</i>&nbsp;
-<i class="no-highlight">51</i>&nbsp;    @HubdleDslMarker
-<i class="no-highlight">52</i>&nbsp;    override fun Project.rawConfig(action: Action&lt;RawConfigExtension&gt;) {
-<b class="nc"><i class="no-highlight">53</i>&nbsp;        action.execute(rawConfig)</b>
-<i class="no-highlight">54</i>&nbsp;    }
-<i class="no-highlight">55</i>&nbsp;
-<i class="no-highlight">56</i>&nbsp;    @HubdleDslMarker
-<b class="nc"><i class="no-highlight">57</i>&nbsp;    public open class RawConfigExtension {</b>
-<i class="no-highlight">58</i>&nbsp;
-<i class="no-highlight">59</i>&nbsp;        public fun Project.changelog(action: Action&lt;ChangelogPluginExtension&gt;) {
-<b class="nc"><i class="no-highlight">60</i>&nbsp;            hubdleState.config.documentation.changelog.rawConfig.changelog = action</b>
-<i class="no-highlight">61</i>&nbsp;        }
-<i class="no-highlight">62</i>&nbsp;    }
-<i class="no-highlight">63</i>&nbsp;}
-</div>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.extensions.config.documentation.changelog
+&nbsp;
+&nbsp;import com.javiersc.gradle.tasks.extensions.namedLazily
+&nbsp;import com.javiersc.hubdle.extensions.HubdleDslMarker
+&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
+&nbsp;import com.javiersc.hubdle.extensions.options.EnableableOptions
+&nbsp;import com.javiersc.hubdle.extensions.options.RawConfigOptions
+&nbsp;import javax.inject.Inject
+&nbsp;import org.gradle.api.Action
+&nbsp;import org.gradle.api.Project
+&nbsp;import org.gradle.api.artifacts.ProjectDependency
+&nbsp;import org.gradle.api.model.ObjectFactory
+&nbsp;import org.gradle.kotlin.dsl.newInstance
+&nbsp;import org.jetbrains.changelog.ChangelogPluginExtension
+&nbsp;import org.jetbrains.dokka.gradle.DokkaMultiModuleTask
+&nbsp;
+&nbsp;@HubdleDslMarker
+&nbsp;public open class HubdleChangelogExtension
+&nbsp;@Inject
+<b class="nc">&nbsp;constructor(</b>
+&nbsp;    objects: ObjectFactory,
+&nbsp;) : EnableableOptions, RawConfigOptions&lt;HubdleChangelogExtension.RawConfigExtension&gt; {
+&nbsp;
+&nbsp;    override var Project.isEnabled: Boolean
+<b class="nc">&nbsp;        get() = hubdleState.config.documentation.changelog.isEnabled</b>
+<b class="nc">&nbsp;        set(value) = hubdleState.config.documentation.changelog.run { isEnabled = value }</b>
+&nbsp;
+&nbsp;    @HubdleDslMarker
+&nbsp;    public fun Project.removeProjects(vararg paths: String) {
+<b class="nc">&nbsp;        tasks.namedLazily&lt;DokkaMultiModuleTask&gt;(&quot;dokkaHtmlMultiModule&quot;).configureEach {</b>
+<b class="nc">&nbsp;            removeChildTasks(paths.map(::project))</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    @HubdleDslMarker
+&nbsp;    public fun Project.removeProjects(vararg projects: Project) {
+<b class="nc">&nbsp;        tasks.namedLazily&lt;DokkaMultiModuleTask&gt;(&quot;dokkaHtmlMultiModule&quot;).configureEach {</b>
+<b class="nc">&nbsp;            removeChildTasks(projects.toList())</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    @HubdleDslMarker
+&nbsp;    public fun Project.removeProjects(vararg projects: ProjectDependency) {
+<b class="nc">&nbsp;        tasks.namedLazily&lt;DokkaMultiModuleTask&gt;(&quot;dokkaHtmlMultiModule&quot;).configureEach {</b>
+<b class="nc">&nbsp;            removeChildTasks(projects.map(ProjectDependency::getDependencyProject))</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+<b class="nc">&nbsp;    override val rawConfig: RawConfigExtension = objects.newInstance()</b>
+&nbsp;
+&nbsp;    @HubdleDslMarker
+&nbsp;    override fun Project.rawConfig(action: Action&lt;RawConfigExtension&gt;) {
+<b class="nc">&nbsp;        action.execute(rawConfig)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @HubdleDslMarker
+<b class="nc">&nbsp;    public open class RawConfigExtension {</b>
+&nbsp;
+&nbsp;        public fun Project.changelog(action: Action&lt;ChangelogPluginExtension&gt;) {
+<b class="nc">&nbsp;            hubdleState.config.documentation.changelog.rawConfig.changelog = action</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+</code>
 </pre>
 </div>
 
@@ -332,18 +333,15 @@ Current scope:     <a href="../../index.html">all classes</a>
     @*/
 
     if (!msie || msie && msie9) {
-        var codeBlock = document.getElementById('sourceCode');
-
-        if (codeBlock) {
-            hljs.highlightBlock(codeBlock);
-        }
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
     }
 })();
 </script>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-14 10:24</div>
+    <div style="float:right;">generated on 2022-09-21 10:36</div>
 </div>
 </body>
 </html>

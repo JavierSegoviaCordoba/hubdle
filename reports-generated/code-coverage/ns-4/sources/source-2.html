@@ -7,9 +7,10 @@
   <title>Coverage Report > ProjectTypeKt</title>
   <style type="text/css">
     @import "../../css/coverage.css";
-    @import "../../css/highlight-idea.css";
+    @import "../../css/idea.min.css";
   </style>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
 </head>
 
 <body>
@@ -97,34 +98,34 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.javiersc.hubdle.extensions._internal
-<i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;import org.gradle.api.Project
-<i class="no-highlight">4</i>&nbsp;
-<i class="no-highlight">5</i>&nbsp;internal val Project.isAndroidApplication: Boolean
-<b class="nc"><i class="no-highlight">6</i>&nbsp;    get() = pluginManager.hasPlugin(&quot;com.android.application&quot;)</b>
-<i class="no-highlight">7</i>&nbsp;
-<i class="no-highlight">8</i>&nbsp;internal val Project.isAndroidLibrary: Boolean
-<b class="nc"><i class="no-highlight">9</i>&nbsp;    get() = pluginManager.hasPlugin(&quot;com.android.library&quot;) &amp;&amp; isKotlinMultiplatform.not()</b>
-<i class="no-highlight">10</i>&nbsp;
-<i class="no-highlight">11</i>&nbsp;internal val Project.isGradlePlugin: Boolean
-<b class="nc"><i class="no-highlight">12</i>&nbsp;    get() = pluginManager.hasPlugin(&quot;org.gradle.java-gradle-plugin&quot;)</b>
-<i class="no-highlight">13</i>&nbsp;
-<i class="no-highlight">14</i>&nbsp;internal val Project.isJavaPlatform: Boolean
-<b class="nc"><i class="no-highlight">15</i>&nbsp;    get() = pluginManager.hasPlugin(&quot;org.gradle.java-platform&quot;)</b>
-<i class="no-highlight">16</i>&nbsp;
-<i class="no-highlight">17</i>&nbsp;internal val Project.isKotlinJvm: Boolean
-<b class="nc"><i class="no-highlight">18</i>&nbsp;    get() = pluginManager.hasPlugin(&quot;org.jetbrains.kotlin.jvm&quot;)</b>
-<i class="no-highlight">19</i>&nbsp;
-<i class="no-highlight">20</i>&nbsp;internal val Project.isKotlinMultiplatform: Boolean
-<b class="nc"><i class="no-highlight">21</i>&nbsp;    get() = pluginManager.hasPlugin(&quot;org.jetbrains.kotlin.multiplatform&quot;)</b>
-<i class="no-highlight">22</i>&nbsp;
-<i class="no-highlight">23</i>&nbsp;internal val Project.isKotlinMultiplatformWithAndroid: Boolean
-<b class="nc"><i class="no-highlight">24</i>&nbsp;    get() = isKotlinMultiplatform &amp;&amp; pluginManager.hasPlugin(&quot;com.android.library&quot;)</b>
-<i class="no-highlight">25</i>&nbsp;
-<i class="no-highlight">26</i>&nbsp;internal val Project.isVersionCatalog: Boolean
-<b class="nc"><i class="no-highlight">27</i>&nbsp;    get() = pluginManager.hasPlugin(&quot;org.gradle.version-catalog&quot;)</b>
-</div>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.extensions._internal
+&nbsp;
+&nbsp;import org.gradle.api.Project
+&nbsp;
+&nbsp;internal val Project.isAndroidApplication: Boolean
+<b class="nc">&nbsp;    get() = pluginManager.hasPlugin(&quot;com.android.application&quot;)</b>
+&nbsp;
+&nbsp;internal val Project.isAndroidLibrary: Boolean
+<b class="nc">&nbsp;    get() = pluginManager.hasPlugin(&quot;com.android.library&quot;) &amp;&amp; isKotlinMultiplatform.not()</b>
+&nbsp;
+&nbsp;internal val Project.isGradlePlugin: Boolean
+<b class="nc">&nbsp;    get() = pluginManager.hasPlugin(&quot;org.gradle.java-gradle-plugin&quot;)</b>
+&nbsp;
+&nbsp;internal val Project.isJavaPlatform: Boolean
+<b class="nc">&nbsp;    get() = pluginManager.hasPlugin(&quot;org.gradle.java-platform&quot;)</b>
+&nbsp;
+&nbsp;internal val Project.isKotlinJvm: Boolean
+<b class="nc">&nbsp;    get() = pluginManager.hasPlugin(&quot;org.jetbrains.kotlin.jvm&quot;)</b>
+&nbsp;
+&nbsp;internal val Project.isKotlinMultiplatform: Boolean
+<b class="nc">&nbsp;    get() = pluginManager.hasPlugin(&quot;org.jetbrains.kotlin.multiplatform&quot;)</b>
+&nbsp;
+&nbsp;internal val Project.isKotlinMultiplatformWithAndroid: Boolean
+<b class="nc">&nbsp;    get() = isKotlinMultiplatform &amp;&amp; pluginManager.hasPlugin(&quot;com.android.library&quot;)</b>
+&nbsp;
+&nbsp;internal val Project.isVersionCatalog: Boolean
+<b class="nc">&nbsp;    get() = pluginManager.hasPlugin(&quot;org.gradle.version-catalog&quot;)</b>
+</code>
 </pre>
 </div>
 
@@ -139,18 +140,15 @@ Current scope:     <a href="../../index.html">all classes</a>
     @*/
 
     if (!msie || msie && msie9) {
-        var codeBlock = document.getElementById('sourceCode');
-
-        if (codeBlock) {
-            hljs.highlightBlock(codeBlock);
-        }
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
     }
 })();
 </script>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-14 10:24</div>
+    <div style="float:right;">generated on 2022-09-21 10:36</div>
 </div>
 </body>
 </html>

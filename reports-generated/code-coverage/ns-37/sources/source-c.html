@@ -7,9 +7,10 @@
   <title>Coverage Report > ConfigureMultiplatformTvOSKt</title>
   <style type="text/css">
     @import "../../css/coverage.css";
-    @import "../../css/highlight-idea.css";
+    @import "../../css/idea.min.css";
   </style>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
 </head>
 
 <body>
@@ -291,76 +292,76 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.javiersc.hubdle.extensions.kotlin.multiplatform._internal
-<i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
-<i class="no-highlight">4</i>&nbsp;import org.gradle.api.Project
-<i class="no-highlight">5</i>&nbsp;import org.gradle.kotlin.dsl.configure
-<i class="no-highlight">6</i>&nbsp;import org.gradle.kotlin.dsl.getValue
-<i class="no-highlight">7</i>&nbsp;import org.gradle.kotlin.dsl.getting
-<i class="no-highlight">8</i>&nbsp;import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
-<i class="no-highlight">9</i>&nbsp;import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet as KSS
-<i class="no-highlight">10</i>&nbsp;
-<i class="no-highlight">11</i>&nbsp;internal fun configureMultiplatformTvOS(project: Project) {
-<b class="nc"><i class="no-highlight">12</i>&nbsp;    if (project.hubdleState.kotlin.multiplatform.tvos.isEnabled) {</b>
-<b class="nc"><i class="no-highlight">13</i>&nbsp;        project.configure&lt;KotlinMultiplatformExtension&gt; {</b>
-<b class="nc"><i class="no-highlight">14</i>&nbsp;            val commonMain: KSS by sourceSets.getting</b>
-<b class="nc"><i class="no-highlight">15</i>&nbsp;            val tvosArm64Main: KSS? = sourceSets.findByName(&quot;tvosArm64Main&quot;)</b>
-<b class="nc"><i class="no-highlight">16</i>&nbsp;            val tvosX64Main: KSS? = sourceSets.findByName(&quot;tvosX64Main&quot;)</b>
-<b class="nc"><i class="no-highlight">17</i>&nbsp;            val tvosSimulatorArm64Main: KSS? = sourceSets.findByName(&quot;tvosSimulatorArm64Main&quot;)</b>
-<i class="no-highlight">18</i>&nbsp;
-<b class="nc"><i class="no-highlight">19</i>&nbsp;            val commonTest: KSS by sourceSets.getting</b>
-<b class="nc"><i class="no-highlight">20</i>&nbsp;            val tvosArm64Test: KSS? = sourceSets.findByName(&quot;tvosArm64Test&quot;)</b>
-<b class="nc"><i class="no-highlight">21</i>&nbsp;            val tvosX64Test: KSS? = sourceSets.findByName(&quot;tvosX64Test&quot;)</b>
-<b class="nc"><i class="no-highlight">22</i>&nbsp;            val tvosSimulatorArm64Test: KSS? = sourceSets.findByName(&quot;tvosSimulatorArm64Test&quot;)</b>
-<i class="no-highlight">23</i>&nbsp;
-<b class="nc"><i class="no-highlight">24</i>&nbsp;            val tvosMainSourceSets: List&lt;KSS&gt; =</b>
-<b class="nc"><i class="no-highlight">25</i>&nbsp;                listOfNotNull(</b>
-<b class="nc"><i class="no-highlight">26</i>&nbsp;                    tvosArm64Main,</b>
-<b class="nc"><i class="no-highlight">27</i>&nbsp;                    tvosX64Main,</b>
-<b class="nc"><i class="no-highlight">28</i>&nbsp;                    tvosSimulatorArm64Main,</b>
-<i class="no-highlight">29</i>&nbsp;                )
-<b class="nc"><i class="no-highlight">30</i>&nbsp;            val tvosTestSourceSets: List&lt;KSS&gt; =</b>
-<b class="nc"><i class="no-highlight">31</i>&nbsp;                listOfNotNull(</b>
-<b class="nc"><i class="no-highlight">32</i>&nbsp;                    tvosArm64Test,</b>
-<b class="nc"><i class="no-highlight">33</i>&nbsp;                    tvosX64Test,</b>
-<b class="nc"><i class="no-highlight">34</i>&nbsp;                    tvosSimulatorArm64Test,</b>
-<i class="no-highlight">35</i>&nbsp;                )
-<i class="no-highlight">36</i>&nbsp;
-<b class="nc"><i class="no-highlight">37</i>&nbsp;            val tvosMain = sourceSets.maybeCreate(&quot;tvosMain&quot;)</b>
-<b class="nc"><i class="no-highlight">38</i>&nbsp;            val tvosTest = sourceSets.maybeCreate(&quot;tvosTest&quot;)</b>
-<i class="no-highlight">39</i>&nbsp;
-<b class="nc"><i class="no-highlight">40</i>&nbsp;            tvosMain.dependsOn(commonMain)</b>
-<b class="nc"><i class="no-highlight">41</i>&nbsp;            for (tvosMainSourceSet in tvosMainSourceSets) {</b>
-<b class="nc"><i class="no-highlight">42</i>&nbsp;                tvosMainSourceSet.dependsOn(tvosMain)</b>
-<i class="no-highlight">43</i>&nbsp;            }
-<i class="no-highlight">44</i>&nbsp;
-<b class="nc"><i class="no-highlight">45</i>&nbsp;            tvosTest.dependsOn(commonTest)</b>
-<b class="nc"><i class="no-highlight">46</i>&nbsp;            for (tvosTestSourceSet in tvosTestSourceSets) {</b>
-<b class="nc"><i class="no-highlight">47</i>&nbsp;                tvosTestSourceSet.dependsOn(tvosTest)</b>
-<i class="no-highlight">48</i>&nbsp;            }
-<i class="no-highlight">49</i>&nbsp;        }
-<i class="no-highlight">50</i>&nbsp;    }
-<i class="no-highlight">51</i>&nbsp;}
-<i class="no-highlight">52</i>&nbsp;
-<i class="no-highlight">53</i>&nbsp;internal fun configureMultiplatformTvOSArm64(project: Project) {
-<b class="nc"><i class="no-highlight">54</i>&nbsp;    if (project.hubdleState.kotlin.multiplatform.tvosArm64.isEnabled) {</b>
-<b class="nc"><i class="no-highlight">55</i>&nbsp;        project.configure&lt;KotlinMultiplatformExtension&gt; { tvosArm64() }</b>
-<i class="no-highlight">56</i>&nbsp;    }
-<i class="no-highlight">57</i>&nbsp;}
-<i class="no-highlight">58</i>&nbsp;
-<i class="no-highlight">59</i>&nbsp;internal fun configureMultiplatformTvOSSimulatorArm64(project: Project) {
-<b class="nc"><i class="no-highlight">60</i>&nbsp;    if (project.hubdleState.kotlin.multiplatform.tvosArm64.isEnabled) {</b>
-<b class="nc"><i class="no-highlight">61</i>&nbsp;        project.configure&lt;KotlinMultiplatformExtension&gt; { tvosSimulatorArm64() }</b>
-<i class="no-highlight">62</i>&nbsp;    }
-<i class="no-highlight">63</i>&nbsp;}
-<i class="no-highlight">64</i>&nbsp;
-<i class="no-highlight">65</i>&nbsp;internal fun configureMultiplatformTvOSX64(project: Project) {
-<b class="nc"><i class="no-highlight">66</i>&nbsp;    if (project.hubdleState.kotlin.multiplatform.tvosX64.isEnabled) {</b>
-<b class="nc"><i class="no-highlight">67</i>&nbsp;        project.configure&lt;KotlinMultiplatformExtension&gt; { tvosX64() }</b>
-<i class="no-highlight">68</i>&nbsp;    }
-<i class="no-highlight">69</i>&nbsp;}
-</div>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.extensions.kotlin.multiplatform._internal
+&nbsp;
+&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
+&nbsp;import org.gradle.api.Project
+&nbsp;import org.gradle.kotlin.dsl.configure
+&nbsp;import org.gradle.kotlin.dsl.getValue
+&nbsp;import org.gradle.kotlin.dsl.getting
+&nbsp;import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+&nbsp;import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet as KSS
+&nbsp;
+&nbsp;internal fun configureMultiplatformTvOS(project: Project) {
+<b class="nc">&nbsp;    if (project.hubdleState.kotlin.multiplatform.tvos.isEnabled) {</b>
+<b class="nc">&nbsp;        project.configure&lt;KotlinMultiplatformExtension&gt; {</b>
+<b class="nc">&nbsp;            val commonMain: KSS by sourceSets.getting</b>
+<b class="nc">&nbsp;            val tvosArm64Main: KSS? = sourceSets.findByName(&quot;tvosArm64Main&quot;)</b>
+<b class="nc">&nbsp;            val tvosX64Main: KSS? = sourceSets.findByName(&quot;tvosX64Main&quot;)</b>
+<b class="nc">&nbsp;            val tvosSimulatorArm64Main: KSS? = sourceSets.findByName(&quot;tvosSimulatorArm64Main&quot;)</b>
+&nbsp;
+<b class="nc">&nbsp;            val commonTest: KSS by sourceSets.getting</b>
+<b class="nc">&nbsp;            val tvosArm64Test: KSS? = sourceSets.findByName(&quot;tvosArm64Test&quot;)</b>
+<b class="nc">&nbsp;            val tvosX64Test: KSS? = sourceSets.findByName(&quot;tvosX64Test&quot;)</b>
+<b class="nc">&nbsp;            val tvosSimulatorArm64Test: KSS? = sourceSets.findByName(&quot;tvosSimulatorArm64Test&quot;)</b>
+&nbsp;
+<b class="nc">&nbsp;            val tvosMainSourceSets: List&lt;KSS&gt; =</b>
+<b class="nc">&nbsp;                listOfNotNull(</b>
+<b class="nc">&nbsp;                    tvosArm64Main,</b>
+<b class="nc">&nbsp;                    tvosX64Main,</b>
+<b class="nc">&nbsp;                    tvosSimulatorArm64Main,</b>
+&nbsp;                )
+<b class="nc">&nbsp;            val tvosTestSourceSets: List&lt;KSS&gt; =</b>
+<b class="nc">&nbsp;                listOfNotNull(</b>
+<b class="nc">&nbsp;                    tvosArm64Test,</b>
+<b class="nc">&nbsp;                    tvosX64Test,</b>
+<b class="nc">&nbsp;                    tvosSimulatorArm64Test,</b>
+&nbsp;                )
+&nbsp;
+<b class="nc">&nbsp;            val tvosMain = sourceSets.maybeCreate(&quot;tvosMain&quot;)</b>
+<b class="nc">&nbsp;            val tvosTest = sourceSets.maybeCreate(&quot;tvosTest&quot;)</b>
+&nbsp;
+<b class="nc">&nbsp;            tvosMain.dependsOn(commonMain)</b>
+<b class="nc">&nbsp;            for (tvosMainSourceSet in tvosMainSourceSets) {</b>
+<b class="nc">&nbsp;                tvosMainSourceSet.dependsOn(tvosMain)</b>
+&nbsp;            }
+&nbsp;
+<b class="nc">&nbsp;            tvosTest.dependsOn(commonTest)</b>
+<b class="nc">&nbsp;            for (tvosTestSourceSet in tvosTestSourceSets) {</b>
+<b class="nc">&nbsp;                tvosTestSourceSet.dependsOn(tvosTest)</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;internal fun configureMultiplatformTvOSArm64(project: Project) {
+<b class="nc">&nbsp;    if (project.hubdleState.kotlin.multiplatform.tvosArm64.isEnabled) {</b>
+<b class="nc">&nbsp;        project.configure&lt;KotlinMultiplatformExtension&gt; { tvosArm64() }</b>
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;internal fun configureMultiplatformTvOSSimulatorArm64(project: Project) {
+<b class="nc">&nbsp;    if (project.hubdleState.kotlin.multiplatform.tvosArm64.isEnabled) {</b>
+<b class="nc">&nbsp;        project.configure&lt;KotlinMultiplatformExtension&gt; { tvosSimulatorArm64() }</b>
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;internal fun configureMultiplatformTvOSX64(project: Project) {
+<b class="nc">&nbsp;    if (project.hubdleState.kotlin.multiplatform.tvosX64.isEnabled) {</b>
+<b class="nc">&nbsp;        project.configure&lt;KotlinMultiplatformExtension&gt; { tvosX64() }</b>
+&nbsp;    }
+&nbsp;}
+</code>
 </pre>
 </div>
 
@@ -375,18 +376,15 @@ Current scope:     <a href="../../index.html">all classes</a>
     @*/
 
     if (!msie || msie && msie9) {
-        var codeBlock = document.getElementById('sourceCode');
-
-        if (codeBlock) {
-            hljs.highlightBlock(codeBlock);
-        }
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
     }
 })();
 </script>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-14 10:24</div>
+    <div style="float:right;">generated on 2022-09-21 10:36</div>
 </div>
 </body>
 </html>

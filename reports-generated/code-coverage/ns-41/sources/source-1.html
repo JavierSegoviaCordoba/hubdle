@@ -7,9 +7,10 @@
   <title>Coverage Report > EnableableAllOptions</title>
   <style type="text/css">
     @import "../../css/coverage.css";
-    @import "../../css/highlight-idea.css";
+    @import "../../css/idea.min.css";
   </style>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
 </head>
 
 <body>
@@ -90,24 +91,24 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.javiersc.hubdle.extensions.options
-<i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;import org.gradle.api.Project
-<i class="no-highlight">4</i>&nbsp;
-<i class="no-highlight">5</i>&nbsp;public interface EnableableOptions {
-<i class="no-highlight">6</i>&nbsp;
-<i class="no-highlight">7</i>&nbsp;    public var Project.isEnabled: Boolean
-<i class="no-highlight">8</i>&nbsp;}
-<i class="no-highlight">9</i>&nbsp;
-<i class="no-highlight">10</i>&nbsp;public interface EnableableAllOptions {
-<i class="no-highlight">11</i>&nbsp;
-<i class="no-highlight">12</i>&nbsp;    public var Project.allEnabled: Boolean
-<i class="no-highlight">13</i>&nbsp;
-<b class="nc"><i class="no-highlight">14</i>&nbsp;    public fun Project.enableAll(enable: Boolean = true) {</b>
-<b class="nc"><i class="no-highlight">15</i>&nbsp;        allEnabled = enable</b>
-<i class="no-highlight">16</i>&nbsp;    }
-<i class="no-highlight">17</i>&nbsp;}
-</div>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.extensions.options
+&nbsp;
+&nbsp;import org.gradle.api.Project
+&nbsp;
+&nbsp;public interface EnableableOptions {
+&nbsp;
+&nbsp;    public var Project.isEnabled: Boolean
+&nbsp;}
+&nbsp;
+&nbsp;public interface EnableableAllOptions {
+&nbsp;
+&nbsp;    public var Project.allEnabled: Boolean
+&nbsp;
+<b class="nc">&nbsp;    public fun Project.enableAll(enable: Boolean = true) {</b>
+<b class="nc">&nbsp;        allEnabled = enable</b>
+&nbsp;    }
+&nbsp;}
+</code>
 </pre>
 </div>
 
@@ -122,18 +123,15 @@ Current scope:     <a href="../../index.html">all classes</a>
     @*/
 
     if (!msie || msie && msie9) {
-        var codeBlock = document.getElementById('sourceCode');
-
-        if (codeBlock) {
-            hljs.highlightBlock(codeBlock);
-        }
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
     }
 })();
 </script>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-14 10:24</div>
+    <div style="float:right;">generated on 2022-09-21 10:36</div>
 </div>
 </body>
 </html>

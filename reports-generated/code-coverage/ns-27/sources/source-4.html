@@ -7,9 +7,10 @@
   <title>Coverage Report > HubdleKotlinAndroidExtension</title>
   <style type="text/css">
     @import "../../css/coverage.css";
-    @import "../../css/highlight-idea.css";
+    @import "../../css/idea.min.css";
   </style>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
 </head>
 
 <body>
@@ -146,44 +147,44 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.javiersc.hubdle.extensions.kotlin.android
-<i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;import com.javiersc.hubdle.extensions.HubdleDslMarker
-<i class="no-highlight">4</i>&nbsp;import com.javiersc.hubdle.extensions._internal.PluginIds
-<i class="no-highlight">5</i>&nbsp;import com.javiersc.hubdle.extensions.kotlin.android.application.HubdleKotlinAndroidApplicationExtension
-<i class="no-highlight">6</i>&nbsp;import com.javiersc.hubdle.extensions.kotlin.android.library.HubdleKotlinAndroidLibraryExtension
-<i class="no-highlight">7</i>&nbsp;import javax.inject.Inject
-<i class="no-highlight">8</i>&nbsp;import org.gradle.api.Action
-<i class="no-highlight">9</i>&nbsp;import org.gradle.api.Project
-<i class="no-highlight">10</i>&nbsp;import org.gradle.api.model.ObjectFactory
-<i class="no-highlight">11</i>&nbsp;import org.gradle.kotlin.dsl.newInstance
-<i class="no-highlight">12</i>&nbsp;
-<i class="no-highlight">13</i>&nbsp;@HubdleDslMarker
-<b class="nc"><i class="no-highlight">14</i>&nbsp;public open class HubdleKotlinAndroidExtension @Inject constructor(objects: ObjectFactory) {</b>
-<i class="no-highlight">15</i>&nbsp;
-<b class="nc"><i class="no-highlight">16</i>&nbsp;    public val application: HubdleKotlinAndroidApplicationExtension = objects.newInstance()</b>
-<i class="no-highlight">17</i>&nbsp;
-<i class="no-highlight">18</i>&nbsp;    @HubdleDslMarker
-<i class="no-highlight">19</i>&nbsp;    public fun Project.application(
-<b class="nc"><i class="no-highlight">20</i>&nbsp;        action: Action&lt;in HubdleKotlinAndroidApplicationExtension&gt; = Action {}</b>
-<i class="no-highlight">21</i>&nbsp;    ) {
-<b class="nc"><i class="no-highlight">22</i>&nbsp;        pluginManager.apply(PluginIds.Android.application)</b>
-<b class="nc"><i class="no-highlight">23</i>&nbsp;        pluginManager.apply(PluginIds.Android.kotlin)</b>
-<b class="nc"><i class="no-highlight">24</i>&nbsp;        application.run { isEnabled = true }</b>
-<b class="nc"><i class="no-highlight">25</i>&nbsp;        action.execute(application)</b>
-<i class="no-highlight">26</i>&nbsp;    }
-<i class="no-highlight">27</i>&nbsp;
-<b class="nc"><i class="no-highlight">28</i>&nbsp;    public val library: HubdleKotlinAndroidLibraryExtension = objects.newInstance()</b>
-<i class="no-highlight">29</i>&nbsp;
-<i class="no-highlight">30</i>&nbsp;    @HubdleDslMarker
-<b class="nc"><i class="no-highlight">31</i>&nbsp;    public fun Project.library(action: Action&lt;in HubdleKotlinAndroidLibraryExtension&gt; = Action {}) {</b>
-<b class="nc"><i class="no-highlight">32</i>&nbsp;        pluginManager.apply(PluginIds.Android.library)</b>
-<b class="nc"><i class="no-highlight">33</i>&nbsp;        pluginManager.apply(PluginIds.Android.kotlin)</b>
-<b class="nc"><i class="no-highlight">34</i>&nbsp;        library.run { isEnabled = true }</b>
-<b class="nc"><i class="no-highlight">35</i>&nbsp;        action.execute(library)</b>
-<i class="no-highlight">36</i>&nbsp;    }
-<i class="no-highlight">37</i>&nbsp;}
-</div>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.extensions.kotlin.android
+&nbsp;
+&nbsp;import com.javiersc.hubdle.extensions.HubdleDslMarker
+&nbsp;import com.javiersc.hubdle.extensions._internal.PluginIds
+&nbsp;import com.javiersc.hubdle.extensions.kotlin.android.application.HubdleKotlinAndroidApplicationExtension
+&nbsp;import com.javiersc.hubdle.extensions.kotlin.android.library.HubdleKotlinAndroidLibraryExtension
+&nbsp;import javax.inject.Inject
+&nbsp;import org.gradle.api.Action
+&nbsp;import org.gradle.api.Project
+&nbsp;import org.gradle.api.model.ObjectFactory
+&nbsp;import org.gradle.kotlin.dsl.newInstance
+&nbsp;
+&nbsp;@HubdleDslMarker
+<b class="nc">&nbsp;public open class HubdleKotlinAndroidExtension @Inject constructor(objects: ObjectFactory) {</b>
+&nbsp;
+<b class="nc">&nbsp;    public val application: HubdleKotlinAndroidApplicationExtension = objects.newInstance()</b>
+&nbsp;
+&nbsp;    @HubdleDslMarker
+&nbsp;    public fun Project.application(
+<b class="nc">&nbsp;        action: Action&lt;in HubdleKotlinAndroidApplicationExtension&gt; = Action {}</b>
+&nbsp;    ) {
+<b class="nc">&nbsp;        pluginManager.apply(PluginIds.Android.application)</b>
+<b class="nc">&nbsp;        pluginManager.apply(PluginIds.Android.kotlin)</b>
+<b class="nc">&nbsp;        application.run { isEnabled = true }</b>
+<b class="nc">&nbsp;        action.execute(application)</b>
+&nbsp;    }
+&nbsp;
+<b class="nc">&nbsp;    public val library: HubdleKotlinAndroidLibraryExtension = objects.newInstance()</b>
+&nbsp;
+&nbsp;    @HubdleDslMarker
+<b class="nc">&nbsp;    public fun Project.library(action: Action&lt;in HubdleKotlinAndroidLibraryExtension&gt; = Action {}) {</b>
+<b class="nc">&nbsp;        pluginManager.apply(PluginIds.Android.library)</b>
+<b class="nc">&nbsp;        pluginManager.apply(PluginIds.Android.kotlin)</b>
+<b class="nc">&nbsp;        library.run { isEnabled = true }</b>
+<b class="nc">&nbsp;        action.execute(library)</b>
+&nbsp;    }
+&nbsp;}
+</code>
 </pre>
 </div>
 
@@ -198,18 +199,15 @@ Current scope:     <a href="../../index.html">all classes</a>
     @*/
 
     if (!msie || msie && msie9) {
-        var codeBlock = document.getElementById('sourceCode');
-
-        if (codeBlock) {
-            hljs.highlightBlock(codeBlock);
-        }
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
     }
 })();
 </script>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-14 10:24</div>
+    <div style="float:right;">generated on 2022-09-21 10:36</div>
 </div>
 </body>
 </html>

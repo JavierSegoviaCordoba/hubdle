@@ -7,9 +7,10 @@
   <title>Coverage Report > PublishingOptionsKt</title>
   <style type="text/css">
     @import "../../css/coverage.css";
-    @import "../../css/highlight-idea.css";
+    @import "../../css/idea.min.css";
   </style>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
 </head>
 
 <body>
@@ -66,7 +67,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/41)
+    (0/42)
   </span>
 </td>
 <td class="coverageStat">
@@ -1080,7 +1081,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/12)
+    (0/16)
   </span>
 </td>
 <td class="coverageStat">
@@ -1131,7 +1132,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/98)
+    (0/103)
   </span>
 </td>
 <td class="coverageStat">
@@ -1150,199 +1151,199 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.javiersc.hubdle.extensions.options
-<i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;import com.android.build.api.dsl.LibraryExtension
-<i class="no-highlight">4</i>&nbsp;import com.javiersc.gradle.project.extensions.isNotSnapshot
-<i class="no-highlight">5</i>&nbsp;import com.javiersc.gradle.properties.extensions.getBooleanProperty
-<i class="no-highlight">6</i>&nbsp;import com.javiersc.gradle.properties.extensions.getProperty
-<i class="no-highlight">7</i>&nbsp;import com.javiersc.gradle.properties.extensions.getPropertyOrNull
-<i class="no-highlight">8</i>&nbsp;import com.javiersc.gradle.tasks.extensions.maybeRegisterLazily
-<i class="no-highlight">9</i>&nbsp;import com.javiersc.gradle.tasks.extensions.namedLazily
-<i class="no-highlight">10</i>&nbsp;import com.javiersc.hubdle.HubdleProperty
-<i class="no-highlight">11</i>&nbsp;import com.javiersc.hubdle.HubdleProperty.POM
-<i class="no-highlight">12</i>&nbsp;import com.javiersc.hubdle.extensions._internal.PluginIds
-<i class="no-highlight">13</i>&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
-<i class="no-highlight">14</i>&nbsp;import com.javiersc.semver.Version
-<i class="no-highlight">15</i>&nbsp;import org.gradle.api.Project
-<i class="no-highlight">16</i>&nbsp;import org.gradle.api.Task
-<i class="no-highlight">17</i>&nbsp;import org.gradle.api.plugins.JavaPluginExtension
-<i class="no-highlight">18</i>&nbsp;import org.gradle.api.publish.PublishingExtension
-<i class="no-highlight">19</i>&nbsp;import org.gradle.api.publish.maven.MavenPublication
-<i class="no-highlight">20</i>&nbsp;import org.gradle.api.tasks.TaskCollection
-<i class="no-highlight">21</i>&nbsp;import org.gradle.jvm.tasks.Jar
-<i class="no-highlight">22</i>&nbsp;import org.gradle.kotlin.dsl.configure
-<i class="no-highlight">23</i>&nbsp;import org.gradle.kotlin.dsl.create
-<i class="no-highlight">24</i>&nbsp;import org.gradle.kotlin.dsl.get
-<i class="no-highlight">25</i>&nbsp;import org.gradle.kotlin.dsl.invoke
-<i class="no-highlight">26</i>&nbsp;import org.gradle.kotlin.dsl.the
-<i class="no-highlight">27</i>&nbsp;import org.gradle.kotlin.dsl.withType
-<i class="no-highlight">28</i>&nbsp;import org.gradle.plugins.signing.SigningExtension
-<i class="no-highlight">29</i>&nbsp;
-<i class="no-highlight">30</i>&nbsp;internal fun Project.configureMavenPublication(name: String) {
-<b class="nc"><i class="no-highlight">31</i>&nbsp;    configure&lt;PublishingExtension&gt; {</b>
-<b class="nc"><i class="no-highlight">32</i>&nbsp;        publications { create&lt;MavenPublication&gt;(name) { from(components[name]) } }</b>
-<i class="no-highlight">33</i>&nbsp;    }
-<i class="no-highlight">34</i>&nbsp;}
-<i class="no-highlight">35</i>&nbsp;
-<i class="no-highlight">36</i>&nbsp;internal fun Project.configureJavaJarsForAndroidPublishing() {
-<b class="nc"><i class="no-highlight">37</i>&nbsp;    configure&lt;LibraryExtension&gt; {</b>
-<b class="nc"><i class="no-highlight">38</i>&nbsp;        publishing {</b>
-<b class="nc"><i class="no-highlight">39</i>&nbsp;            multipleVariants {</b>
-<b class="nc"><i class="no-highlight">40</i>&nbsp;                withSourcesJar()</b>
-<b class="nc"><i class="no-highlight">41</i>&nbsp;                withJavadocJar()</b>
-<b class="nc"><i class="no-highlight">42</i>&nbsp;                allVariants()</b>
-<i class="no-highlight">43</i>&nbsp;            }
-<i class="no-highlight">44</i>&nbsp;        }
-<i class="no-highlight">45</i>&nbsp;    }
-<i class="no-highlight">46</i>&nbsp;}
-<i class="no-highlight">47</i>&nbsp;
-<i class="no-highlight">48</i>&nbsp;internal fun Project.configureJavaJarsForPublishing() {
-<b class="nc"><i class="no-highlight">49</i>&nbsp;    the&lt;JavaPluginExtension&gt;().withSourcesJar()</b>
-<b class="nc"><i class="no-highlight">50</i>&nbsp;    the&lt;JavaPluginExtension&gt;().withJavadocJar()</b>
-<i class="no-highlight">51</i>&nbsp;}
-<i class="no-highlight">52</i>&nbsp;
-<i class="no-highlight">53</i>&nbsp;internal fun Project.configurePublishingExtension() {
-<b class="nc"><i class="no-highlight">54</i>&nbsp;    configure&lt;PublishingExtension&gt; {</b>
-<b class="nc"><i class="no-highlight">55</i>&nbsp;        configureRepositories(this)</b>
-<i class="no-highlight">56</i>&nbsp;
-<b class="nc"><i class="no-highlight">57</i>&nbsp;        publications {</b>
-<b class="nc"><i class="no-highlight">58</i>&nbsp;            withType&lt;MavenPublication&gt; {</b>
-<b class="nc"><i class="no-highlight">59</i>&nbsp;                pom.name.set(getProperty(POM.name))</b>
-<b class="nc"><i class="no-highlight">60</i>&nbsp;                pom.description.set(getProperty(POM.description))</b>
-<b class="nc"><i class="no-highlight">61</i>&nbsp;                pom.url.set(getProperty(POM.url))</b>
-<b class="nc"><i class="no-highlight">62</i>&nbsp;                pom.licenses {</b>
-<b class="nc"><i class="no-highlight">63</i>&nbsp;                    license {</b>
-<b class="nc"><i class="no-highlight">64</i>&nbsp;                        name.set(getProperty(POM.licenseName))</b>
-<b class="nc"><i class="no-highlight">65</i>&nbsp;                        url.set(getProperty(POM.licenseUrl))</b>
-<i class="no-highlight">66</i>&nbsp;                    }
-<i class="no-highlight">67</i>&nbsp;                }
-<b class="nc"><i class="no-highlight">68</i>&nbsp;                pom.developers {</b>
-<b class="nc"><i class="no-highlight">69</i>&nbsp;                    developer {</b>
-<b class="nc"><i class="no-highlight">70</i>&nbsp;                        id.set(getProperty(POM.developerId))</b>
-<b class="nc"><i class="no-highlight">71</i>&nbsp;                        name.set(getProperty(POM.developerName))</b>
-<b class="nc"><i class="no-highlight">72</i>&nbsp;                        email.set(getProperty(POM.developerEmail))</b>
-<i class="no-highlight">73</i>&nbsp;                    }
-<i class="no-highlight">74</i>&nbsp;                }
-<b class="nc"><i class="no-highlight">75</i>&nbsp;                pom.scm {</b>
-<b class="nc"><i class="no-highlight">76</i>&nbsp;                    url.set(getProperty(POM.scmUrl))</b>
-<b class="nc"><i class="no-highlight">77</i>&nbsp;                    connection.set(getProperty(POM.scmConnection))</b>
-<b class="nc"><i class="no-highlight">78</i>&nbsp;                    developerConnection.set(getProperty(POM.scmDeveloperConnection))</b>
-<i class="no-highlight">79</i>&nbsp;                }
-<i class="no-highlight">80</i>&nbsp;            }
-<i class="no-highlight">81</i>&nbsp;        }
-<i class="no-highlight">82</i>&nbsp;    }
-<i class="no-highlight">83</i>&nbsp;
-<b class="nc"><i class="no-highlight">84</i>&nbsp;    configurePublishOnlySemver()</b>
-<i class="no-highlight">85</i>&nbsp;}
-<i class="no-highlight">86</i>&nbsp;
-<i class="no-highlight">87</i>&nbsp;private fun Project.configureRepositories(publishingExtension: PublishingExtension) {
-<b class="nc"><i class="no-highlight">88</i>&nbsp;    hubdleState.config.publishing.repositories?.execute(publishingExtension.repositories)</b>
-<i class="no-highlight">89</i>&nbsp;
-<b class="nc"><i class="no-highlight">90</i>&nbsp;    val mavenLocalTestRepository = publishingExtension.repositories.findByName(&quot;mavenLocalTest&quot;)</b>
-<b class="nc"><i class="no-highlight">91</i>&nbsp;    val mavenLocalBuildTestRepository =</b>
-<b class="nc"><i class="no-highlight">92</i>&nbsp;        publishingExtension.repositories.findByName(&quot;mavenLocalBuildTest&quot;)</b>
-<i class="no-highlight">93</i>&nbsp;
-<b class="nc"><i class="no-highlight">94</i>&nbsp;    if (mavenLocalTestRepository != null) {</b>
-<b class="nc"><i class="no-highlight">95</i>&nbsp;        val childTask = tasks.namedLazily&lt;Task&gt;(&quot;publishAllPublicationsToMavenLocalTestRepository&quot;)</b>
-<b class="nc"><i class="no-highlight">96</i>&nbsp;        tasks.maybeRegisterLazily&lt;Task&gt;(&quot;publishToMavenLocalTest&quot;).configureEach {</b>
-<b class="nc"><i class="no-highlight">97</i>&nbsp;            this@configureEach.group = &quot;publishing&quot;</b>
-<b class="nc"><i class="no-highlight">98</i>&nbsp;            dependsOn(childTask)</b>
-<i class="no-highlight">99</i>&nbsp;        }
-<i class="no-highlight">100</i>&nbsp;    }
-<i class="no-highlight">101</i>&nbsp;
-<b class="nc"><i class="no-highlight">102</i>&nbsp;    if (mavenLocalBuildTestRepository != null) {</b>
-<b class="nc"><i class="no-highlight">103</i>&nbsp;        val childTask =</b>
-<b class="nc"><i class="no-highlight">104</i>&nbsp;            tasks.namedLazily&lt;Task&gt;(&quot;publishAllPublicationsToMavenLocalBuildTestRepository&quot;)</b>
-<b class="nc"><i class="no-highlight">105</i>&nbsp;        tasks.maybeRegisterLazily&lt;Task&gt;(&quot;publishToMavenLocalBuildTest&quot;).configureEach {</b>
-<b class="nc"><i class="no-highlight">106</i>&nbsp;            this@configureEach.group = &quot;publishing&quot;</b>
-<b class="nc"><i class="no-highlight">107</i>&nbsp;            dependsOn(childTask)</b>
-<i class="no-highlight">108</i>&nbsp;        }
-<i class="no-highlight">109</i>&nbsp;    }
-<i class="no-highlight">110</i>&nbsp;}
-<i class="no-highlight">111</i>&nbsp;
-<i class="no-highlight">112</i>&nbsp;internal fun Project.configureEmptyJavadocs() {
-<b class="nc"><i class="no-highlight">113</i>&nbsp;    val emptyJavadocsJarTask: TaskCollection&lt;Jar&gt; = tasks.maybeRegisterLazily(&quot;emptyJavadocsJar&quot;)</b>
-<b class="nc"><i class="no-highlight">114</i>&nbsp;    emptyJavadocsJarTask.configureEach {</b>
-<b class="nc"><i class="no-highlight">115</i>&nbsp;        group = &quot;build&quot;</b>
-<b class="nc"><i class="no-highlight">116</i>&nbsp;        description = &quot;Assembles an empty Javadoc jar file for publishing&quot;</b>
-<b class="nc"><i class="no-highlight">117</i>&nbsp;        archiveClassifier.set(&quot;javadoc&quot;)</b>
-<i class="no-highlight">118</i>&nbsp;    }
-<b class="nc"><i class="no-highlight">119</i>&nbsp;    val emptyJavadocsJar: Jar = emptyJavadocsJarTask.first()</b>
-<b class="nc"><i class="no-highlight">120</i>&nbsp;    the&lt;PublishingExtension&gt;().publications.withType&lt;MavenPublication&gt; {</b>
-<b class="nc"><i class="no-highlight">121</i>&nbsp;        artifact(emptyJavadocsJar)</b>
-<i class="no-highlight">122</i>&nbsp;    }
-<i class="no-highlight">123</i>&nbsp;}
-<i class="no-highlight">124</i>&nbsp;
-<i class="no-highlight">125</i>&nbsp;internal fun Project.configureSigningForPublishing() {
-<b class="nc"><i class="no-highlight">126</i>&nbsp;    project.pluginManager.apply(PluginIds.Publishing.signing)</b>
-<b class="nc"><i class="no-highlight">127</i>&nbsp;    configure&lt;SigningExtension&gt; {</b>
-<b class="nc"><i class="no-highlight">128</i>&nbsp;        val allTasks: List&lt;String&gt; = gradle.startParameter.taskRequests.flatMap { it.args }</b>
-<b class="nc"><i class="no-highlight">129</i>&nbsp;        val hasPublishTask = allTasks.any { it.startsWith(&quot;publish&quot;) }</b>
-<b class="nc"><i class="no-highlight">130</i>&nbsp;        val hasPublishToMavenLocalTasks =</b>
-<b class="nc"><i class="no-highlight">131</i>&nbsp;            allTasks.any {</b>
-<i class="no-highlight">132</i>&nbsp;                it == &quot;publishToMavenLocal&quot; ||
-<i class="no-highlight">133</i>&nbsp;                    it == &quot;publishToMavenLocalTest&quot; ||
-<i class="no-highlight">134</i>&nbsp;                    it == &quot;publishToMavenLocalBuildTest&quot; ||
-<i class="no-highlight">135</i>&nbsp;                    it == &quot;publishAllPublicationsToMavenLocalTestRepository&quot; ||
-<b class="nc"><i class="no-highlight">136</i>&nbsp;                    it == &quot;publishAllPublicationsToMavenLocalBuildTestRepository&quot;</b>
-<i class="no-highlight">137</i>&nbsp;            }
-<b class="nc"><i class="no-highlight">138</i>&nbsp;        val shouldSign = getPropertyOrNull(HubdleProperty.Publishing.sign)?.toBoolean() ?: false</b>
-<i class="no-highlight">139</i>&nbsp;
-<b class="nc"><i class="no-highlight">140</i>&nbsp;        val hasTaskCondition = (hasPublishTask &amp;&amp; !hasPublishToMavenLocalTasks)</b>
-<b class="nc"><i class="no-highlight">141</i>&nbsp;        val hasSemverCondition = project.isNotSnapshot &amp;&amp; project.isSemver</b>
-<i class="no-highlight">142</i>&nbsp;
-<b class="nc"><i class="no-highlight">143</i>&nbsp;        isRequired = (hasTaskCondition &amp;&amp; hasSemverCondition) || shouldSign</b>
-<i class="no-highlight">144</i>&nbsp;
-<b class="nc"><i class="no-highlight">145</i>&nbsp;        if (isRequired) {</b>
-<b class="nc"><i class="no-highlight">146</i>&nbsp;            signInMemory()</b>
-<b class="nc"><i class="no-highlight">147</i>&nbsp;            sign(project.the&lt;PublishingExtension&gt;().publications)</b>
-<i class="no-highlight">148</i>&nbsp;        }
-<i class="no-highlight">149</i>&nbsp;    }
-<i class="no-highlight">150</i>&nbsp;}
-<i class="no-highlight">151</i>&nbsp;
-<i class="no-highlight">152</i>&nbsp;private fun SigningExtension.signInMemory() {
-<b class="nc"><i class="no-highlight">153</i>&nbsp;    val keyId = project.getPropertyOrNull(HubdleProperty.Signing.keyId)</b>
-<b class="nc"><i class="no-highlight">154</i>&nbsp;    val gnupgKey = project.getPropertyOrNull(HubdleProperty.Signing.gnupgKey)?.replace(&quot;\\n&quot;, &quot;\n&quot;)</b>
-<b class="nc"><i class="no-highlight">155</i>&nbsp;    val gnupgPassphrase = project.getPropertyOrNull(HubdleProperty.Signing.gnupgPassphrase)</b>
-<i class="no-highlight">156</i>&nbsp;
-<b class="nc"><i class="no-highlight">157</i>&nbsp;    when {</b>
-<b class="nc"><i class="no-highlight">158</i>&nbsp;        keyId != null &amp;&amp; gnupgKey != null &amp;&amp; gnupgPassphrase != null -&gt; {</b>
-<b class="nc"><i class="no-highlight">159</i>&nbsp;            useInMemoryPgpKeys(keyId, gnupgKey, gnupgPassphrase)</b>
-<i class="no-highlight">160</i>&nbsp;        }
-<b class="nc"><i class="no-highlight">161</i>&nbsp;        gnupgKey != null &amp;&amp; gnupgPassphrase != null -&gt; {</b>
-<b class="nc"><i class="no-highlight">162</i>&nbsp;            useInMemoryPgpKeys(gnupgKey, gnupgPassphrase)</b>
-<i class="no-highlight">163</i>&nbsp;        }
-<i class="no-highlight">164</i>&nbsp;    }
-<i class="no-highlight">165</i>&nbsp;}
-<i class="no-highlight">166</i>&nbsp;
-<i class="no-highlight">167</i>&nbsp;private fun Project.configurePublishOnlySemver() {
-<b class="nc"><i class="no-highlight">168</i>&nbsp;    val checkIsSemver: TaskCollection&lt;Task&gt; =</b>
-<b class="nc"><i class="no-highlight">169</i>&nbsp;        project.tasks.maybeRegisterLazily(&quot;checkIsSemver&quot;) {</b>
-<b class="nc"><i class="no-highlight">170</i>&nbsp;            doLast {</b>
-<b class="nc"><i class="no-highlight">171</i>&nbsp;                val publishNonSemver = getBooleanProperty(HubdleProperty.Publishing.nonSemver)</b>
-<b class="nc"><i class="no-highlight">172</i>&nbsp;                check(isSemver || publishNonSemver) {</b>
-<b class="nc"><i class="no-highlight">173</i>&nbsp;                    &quot;&quot;&quot;|Only semantic versions can be published (current: $version)</b>
-<i class="no-highlight">174</i>&nbsp;                       |Use `&quot;-Ppublishing.nonSemver=true&quot;` to force the publication 
-<b class="nc"><i class="no-highlight">175</i>&nbsp;                    &quot;&quot;&quot;.trimMargin()</b>
-<i class="no-highlight">176</i>&nbsp;                }
-<i class="no-highlight">177</i>&nbsp;            }
-<i class="no-highlight">178</i>&nbsp;        }
-<i class="no-highlight">179</i>&nbsp;
-<b class="nc"><i class="no-highlight">180</i>&nbsp;    tasks {</b>
-<b class="nc"><i class="no-highlight">181</i>&nbsp;        namedLazily&lt;Task&gt;(&quot;initializeSonatypeStagingRepository&quot;).configureEach {</b>
-<b class="nc"><i class="no-highlight">182</i>&nbsp;            dependsOn(checkIsSemver)</b>
-<i class="no-highlight">183</i>&nbsp;        }
-<b class="nc"><i class="no-highlight">184</i>&nbsp;        namedLazily&lt;Task&gt;(&quot;publish&quot;).configureEach { dependsOn(checkIsSemver) }</b>
-<b class="nc"><i class="no-highlight">185</i>&nbsp;        namedLazily&lt;Task&gt;(&quot;publishToSonatype&quot;).configureEach { dependsOn(checkIsSemver) }</b>
-<b class="nc"><i class="no-highlight">186</i>&nbsp;        namedLazily&lt;Task&gt;(&quot;publishToMavenLocal&quot;).configureEach { dependsOn(checkIsSemver) }</b>
-<b class="nc"><i class="no-highlight">187</i>&nbsp;        namedLazily&lt;Task&gt;(&quot;publishPlugins&quot;).configureEach { dependsOn(checkIsSemver) }</b>
-<b class="nc"><i class="no-highlight">188</i>&nbsp;    }</b>
-<i class="no-highlight">189</i>&nbsp;}
-<i class="no-highlight">190</i>&nbsp;
-<i class="no-highlight">191</i>&nbsp;private val Project.isSemver: Boolean
-<b class="nc"><i class="no-highlight">192</i>&nbsp;    get() = Version.regex.matches(&quot;$version&quot;)</b>
-</div>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.extensions.options
+&nbsp;
+&nbsp;import com.android.build.api.dsl.LibraryExtension
+&nbsp;import com.javiersc.gradle.project.extensions.isNotSnapshot
+&nbsp;import com.javiersc.gradle.properties.extensions.getBooleanProperty
+&nbsp;import com.javiersc.gradle.properties.extensions.getProperty
+&nbsp;import com.javiersc.gradle.properties.extensions.getPropertyOrNull
+&nbsp;import com.javiersc.gradle.tasks.extensions.maybeRegisterLazily
+&nbsp;import com.javiersc.gradle.tasks.extensions.namedLazily
+&nbsp;import com.javiersc.hubdle.HubdleProperty
+&nbsp;import com.javiersc.hubdle.HubdleProperty.POM
+&nbsp;import com.javiersc.hubdle.extensions._internal.PluginIds
+&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
+&nbsp;import com.javiersc.semver.Version
+&nbsp;import org.gradle.api.Project
+&nbsp;import org.gradle.api.Task
+&nbsp;import org.gradle.api.plugins.JavaPluginExtension
+&nbsp;import org.gradle.api.publish.PublishingExtension
+&nbsp;import org.gradle.api.publish.maven.MavenPublication
+&nbsp;import org.gradle.api.tasks.TaskCollection
+&nbsp;import org.gradle.jvm.tasks.Jar
+&nbsp;import org.gradle.kotlin.dsl.configure
+&nbsp;import org.gradle.kotlin.dsl.create
+&nbsp;import org.gradle.kotlin.dsl.get
+&nbsp;import org.gradle.kotlin.dsl.invoke
+&nbsp;import org.gradle.kotlin.dsl.the
+&nbsp;import org.gradle.kotlin.dsl.withType
+&nbsp;import org.gradle.plugins.signing.SigningExtension
+&nbsp;
+&nbsp;internal fun Project.configureMavenPublication(name: String) {
+<b class="nc">&nbsp;    configure&lt;PublishingExtension&gt; {</b>
+<b class="nc">&nbsp;        publications { create&lt;MavenPublication&gt;(name) { from(components[name]) } }</b>
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;internal fun Project.configureJavaJarsForAndroidPublishing() {
+<b class="nc">&nbsp;    configure&lt;LibraryExtension&gt; {</b>
+<b class="nc">&nbsp;        publishing {</b>
+<b class="nc">&nbsp;            multipleVariants {</b>
+<b class="nc">&nbsp;                withSourcesJar()</b>
+<b class="nc">&nbsp;                withJavadocJar()</b>
+<b class="nc">&nbsp;                allVariants()</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;internal fun Project.configureJavaJarsForPublishing() {
+<b class="nc">&nbsp;    the&lt;JavaPluginExtension&gt;().withSourcesJar()</b>
+<b class="nc">&nbsp;    the&lt;JavaPluginExtension&gt;().withJavadocJar()</b>
+&nbsp;}
+&nbsp;
+&nbsp;internal fun Project.configurePublishingExtension() {
+<b class="nc">&nbsp;    configure&lt;PublishingExtension&gt; {</b>
+<b class="nc">&nbsp;        configureRepositories(this)</b>
+&nbsp;
+<b class="nc">&nbsp;        publications {</b>
+<b class="nc">&nbsp;            withType&lt;MavenPublication&gt; {</b>
+<b class="nc">&nbsp;                pom.name.set(getProperty(POM.name))</b>
+<b class="nc">&nbsp;                pom.description.set(getProperty(POM.description))</b>
+<b class="nc">&nbsp;                pom.url.set(getProperty(POM.url))</b>
+<b class="nc">&nbsp;                pom.licenses {</b>
+<b class="nc">&nbsp;                    license {</b>
+<b class="nc">&nbsp;                        name.set(getProperty(POM.licenseName))</b>
+<b class="nc">&nbsp;                        url.set(getProperty(POM.licenseUrl))</b>
+&nbsp;                    }
+&nbsp;                }
+<b class="nc">&nbsp;                pom.developers {</b>
+<b class="nc">&nbsp;                    developer {</b>
+<b class="nc">&nbsp;                        id.set(getProperty(POM.developerId))</b>
+<b class="nc">&nbsp;                        name.set(getProperty(POM.developerName))</b>
+<b class="nc">&nbsp;                        email.set(getProperty(POM.developerEmail))</b>
+&nbsp;                    }
+&nbsp;                }
+<b class="nc">&nbsp;                pom.scm {</b>
+<b class="nc">&nbsp;                    url.set(getProperty(POM.scmUrl))</b>
+<b class="nc">&nbsp;                    connection.set(getProperty(POM.scmConnection))</b>
+<b class="nc">&nbsp;                    developerConnection.set(getProperty(POM.scmDeveloperConnection))</b>
+&nbsp;                }
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+<b class="nc">&nbsp;    configurePublishOnlySemver()</b>
+&nbsp;}
+&nbsp;
+&nbsp;private fun Project.configureRepositories(publishingExtension: PublishingExtension) {
+<b class="nc">&nbsp;    hubdleState.config.publishing.repositories?.execute(publishingExtension.repositories)</b>
+&nbsp;
+<b class="nc">&nbsp;    val mavenLocalTestRepository = publishingExtension.repositories.findByName(&quot;mavenLocalTest&quot;)</b>
+<b class="nc">&nbsp;    val mavenLocalBuildTestRepository =</b>
+<b class="nc">&nbsp;        publishingExtension.repositories.findByName(&quot;mavenLocalBuildTest&quot;)</b>
+&nbsp;
+<b class="nc">&nbsp;    if (mavenLocalTestRepository != null) {</b>
+<b class="nc">&nbsp;        val childTask = tasks.namedLazily&lt;Task&gt;(&quot;publishAllPublicationsToMavenLocalTestRepository&quot;)</b>
+<b class="nc">&nbsp;        tasks.maybeRegisterLazily&lt;Task&gt;(&quot;publishToMavenLocalTest&quot;).configureEach {</b>
+<b class="nc">&nbsp;            this@configureEach.group = &quot;publishing&quot;</b>
+<b class="nc">&nbsp;            dependsOn(childTask)</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+<b class="nc">&nbsp;    if (mavenLocalBuildTestRepository != null) {</b>
+<b class="nc">&nbsp;        val childTask =</b>
+<b class="nc">&nbsp;            tasks.namedLazily&lt;Task&gt;(&quot;publishAllPublicationsToMavenLocalBuildTestRepository&quot;)</b>
+<b class="nc">&nbsp;        tasks.maybeRegisterLazily&lt;Task&gt;(&quot;publishToMavenLocalBuildTest&quot;).configureEach {</b>
+<b class="nc">&nbsp;            this@configureEach.group = &quot;publishing&quot;</b>
+<b class="nc">&nbsp;            dependsOn(childTask)</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;internal fun Project.configureEmptyJavadocs() {
+<b class="nc">&nbsp;    val emptyJavadocsJarTask: TaskCollection&lt;Jar&gt; = tasks.maybeRegisterLazily(&quot;emptyJavadocsJar&quot;)</b>
+<b class="nc">&nbsp;    emptyJavadocsJarTask.configureEach {</b>
+<b class="nc">&nbsp;        group = &quot;build&quot;</b>
+<b class="nc">&nbsp;        description = &quot;Assembles an empty Javadoc jar file for publishing&quot;</b>
+<b class="nc">&nbsp;        archiveClassifier.set(&quot;javadoc&quot;)</b>
+&nbsp;    }
+<b class="nc">&nbsp;    val emptyJavadocsJar: Jar = emptyJavadocsJarTask.first()</b>
+<b class="nc">&nbsp;    the&lt;PublishingExtension&gt;().publications.withType&lt;MavenPublication&gt; {</b>
+<b class="nc">&nbsp;        artifact(emptyJavadocsJar)</b>
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;internal fun Project.configureSigningForPublishing() {
+<b class="nc">&nbsp;    project.pluginManager.apply(PluginIds.Publishing.signing)</b>
+<b class="nc">&nbsp;    configure&lt;SigningExtension&gt; {</b>
+<b class="nc">&nbsp;        val allTasks: List&lt;String&gt; = gradle.startParameter.taskRequests.flatMap { it.args }</b>
+<b class="nc">&nbsp;        val hasPublishTask = allTasks.any { it.startsWith(&quot;publish&quot;) }</b>
+<b class="nc">&nbsp;        val hasPublishToMavenLocalTasks =</b>
+<b class="nc">&nbsp;            allTasks.any {</b>
+<b class="nc">&nbsp;                it == &quot;publishToMavenLocal&quot; ||</b>
+<b class="nc">&nbsp;                    it == &quot;publishToMavenLocalTest&quot; ||</b>
+<b class="nc">&nbsp;                    it == &quot;publishToMavenLocalBuildTest&quot; ||</b>
+<b class="nc">&nbsp;                    it == &quot;publishAllPublicationsToMavenLocalTestRepository&quot; ||</b>
+<b class="nc">&nbsp;                    it == &quot;publishAllPublicationsToMavenLocalBuildTestRepository&quot;</b>
+&nbsp;            }
+<b class="nc">&nbsp;        val shouldSign = getPropertyOrNull(HubdleProperty.Publishing.sign)?.toBoolean() ?: false</b>
+&nbsp;
+<b class="nc">&nbsp;        val hasTaskCondition = (hasPublishTask &amp;&amp; !hasPublishToMavenLocalTasks)</b>
+<b class="nc">&nbsp;        val hasSemverCondition = project.isNotSnapshot &amp;&amp; project.isSemver</b>
+&nbsp;
+<b class="nc">&nbsp;        isRequired = (hasTaskCondition &amp;&amp; hasSemverCondition) || shouldSign</b>
+&nbsp;
+<b class="nc">&nbsp;        if (isRequired) {</b>
+<b class="nc">&nbsp;            signInMemory()</b>
+<b class="nc">&nbsp;            sign(project.the&lt;PublishingExtension&gt;().publications)</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;private fun SigningExtension.signInMemory() {
+<b class="nc">&nbsp;    val keyId = project.getPropertyOrNull(HubdleProperty.Signing.keyId)</b>
+<b class="nc">&nbsp;    val gnupgKey = project.getPropertyOrNull(HubdleProperty.Signing.gnupgKey)?.replace(&quot;\\n&quot;, &quot;\n&quot;)</b>
+<b class="nc">&nbsp;    val gnupgPassphrase = project.getPropertyOrNull(HubdleProperty.Signing.gnupgPassphrase)</b>
+&nbsp;
+<b class="nc">&nbsp;    when {</b>
+<b class="nc">&nbsp;        keyId != null &amp;&amp; gnupgKey != null &amp;&amp; gnupgPassphrase != null -&gt; {</b>
+<b class="nc">&nbsp;            useInMemoryPgpKeys(keyId, gnupgKey, gnupgPassphrase)</b>
+&nbsp;        }
+<b class="nc">&nbsp;        gnupgKey != null &amp;&amp; gnupgPassphrase != null -&gt; {</b>
+<b class="nc">&nbsp;            useInMemoryPgpKeys(gnupgKey, gnupgPassphrase)</b>
+&nbsp;        }
+<b class="nc">&nbsp;    }</b>
+&nbsp;}
+&nbsp;
+&nbsp;private fun Project.configurePublishOnlySemver() {
+<b class="nc">&nbsp;    val checkIsSemver: TaskCollection&lt;Task&gt; =</b>
+<b class="nc">&nbsp;        project.tasks.maybeRegisterLazily(&quot;checkIsSemver&quot;) {</b>
+<b class="nc">&nbsp;            doLast {</b>
+<b class="nc">&nbsp;                val publishNonSemver = getBooleanProperty(HubdleProperty.Publishing.nonSemver)</b>
+<b class="nc">&nbsp;                check(isSemver || publishNonSemver) {</b>
+<b class="nc">&nbsp;                    &quot;&quot;&quot;|Only semantic versions can be published (current: $version)</b>
+&nbsp;                       |Use `&quot;-Ppublishing.nonSemver=true&quot;` to force the publication 
+<b class="nc">&nbsp;                    &quot;&quot;&quot;.trimMargin()</b>
+&nbsp;                }
+&nbsp;            }
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;    tasks {</b>
+<b class="nc">&nbsp;        namedLazily&lt;Task&gt;(&quot;initializeSonatypeStagingRepository&quot;).configureEach {</b>
+<b class="nc">&nbsp;            dependsOn(checkIsSemver)</b>
+&nbsp;        }
+<b class="nc">&nbsp;        namedLazily&lt;Task&gt;(&quot;publish&quot;).configureEach { dependsOn(checkIsSemver) }</b>
+<b class="nc">&nbsp;        namedLazily&lt;Task&gt;(&quot;publishToSonatype&quot;).configureEach { dependsOn(checkIsSemver) }</b>
+<b class="nc">&nbsp;        namedLazily&lt;Task&gt;(&quot;publishToMavenLocal&quot;).configureEach { dependsOn(checkIsSemver) }</b>
+<b class="nc">&nbsp;        namedLazily&lt;Task&gt;(&quot;publishPlugins&quot;).configureEach { dependsOn(checkIsSemver) }</b>
+<b class="nc">&nbsp;    }</b>
+&nbsp;}
+&nbsp;
+&nbsp;private val Project.isSemver: Boolean
+<b class="nc">&nbsp;    get() = Version.regex.matches(&quot;$version&quot;)</b>
+</code>
 </pre>
 </div>
 
@@ -1357,18 +1358,15 @@ Current scope:     <a href="../../index.html">all classes</a>
     @*/
 
     if (!msie || msie && msie9) {
-        var codeBlock = document.getElementById('sourceCode');
-
-        if (codeBlock) {
-            hljs.highlightBlock(codeBlock);
-        }
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
     }
 })();
 </script>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-14 10:24</div>
+    <div style="float:right;">generated on 2022-09-21 10:36</div>
 </div>
 </body>
 </html>

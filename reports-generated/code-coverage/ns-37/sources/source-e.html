@@ -7,9 +7,10 @@
   <title>Coverage Report > ConfigureMultiplatformWatchOSKt</title>
   <style type="text/css">
     @import "../../css/coverage.css";
-    @import "../../css/highlight-idea.css";
+    @import "../../css/idea.min.css";
   </style>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
 </head>
 
 <body>
@@ -371,96 +372,96 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.javiersc.hubdle.extensions.kotlin.multiplatform._internal
-<i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
-<i class="no-highlight">4</i>&nbsp;import org.gradle.api.Project
-<i class="no-highlight">5</i>&nbsp;import org.gradle.kotlin.dsl.configure
-<i class="no-highlight">6</i>&nbsp;import org.gradle.kotlin.dsl.getValue
-<i class="no-highlight">7</i>&nbsp;import org.gradle.kotlin.dsl.getting
-<i class="no-highlight">8</i>&nbsp;import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
-<i class="no-highlight">9</i>&nbsp;import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet as KSS
-<i class="no-highlight">10</i>&nbsp;
-<i class="no-highlight">11</i>&nbsp;internal fun configureMultiplatformWatchOS(project: Project) {
-<b class="nc"><i class="no-highlight">12</i>&nbsp;    if (project.hubdleState.kotlin.multiplatform.watchos.isEnabled) {</b>
-<b class="nc"><i class="no-highlight">13</i>&nbsp;        project.configure&lt;KotlinMultiplatformExtension&gt; {</b>
-<b class="nc"><i class="no-highlight">14</i>&nbsp;            val commonMain: KSS by sourceSets.getting</b>
-<b class="nc"><i class="no-highlight">15</i>&nbsp;            val watchosArm32Main: KSS? = sourceSets.findByName(&quot;watchosArm32Main&quot;)</b>
-<b class="nc"><i class="no-highlight">16</i>&nbsp;            val watchosArm64Main: KSS? = sourceSets.findByName(&quot;watchosArm64Main&quot;)</b>
-<b class="nc"><i class="no-highlight">17</i>&nbsp;            val watchosX64Main: KSS? = sourceSets.findByName(&quot;watchosX64Main&quot;)</b>
-<b class="nc"><i class="no-highlight">18</i>&nbsp;            val watchosSimulatorArm64Main: KSS? = sourceSets.findByName(&quot;watchosSimulatorArm64Main&quot;)</b>
-<b class="nc"><i class="no-highlight">19</i>&nbsp;            val watchosX86Main: KSS? = sourceSets.findByName(&quot;watchosX86Main&quot;)</b>
-<i class="no-highlight">20</i>&nbsp;
-<b class="nc"><i class="no-highlight">21</i>&nbsp;            val commonTest: KSS by sourceSets.getting</b>
-<b class="nc"><i class="no-highlight">22</i>&nbsp;            val watchosArm32Test: KSS? = sourceSets.findByName(&quot;watchosArm32Test&quot;)</b>
-<b class="nc"><i class="no-highlight">23</i>&nbsp;            val watchosArm64Test: KSS? = sourceSets.findByName(&quot;watchosArm64Test&quot;)</b>
-<b class="nc"><i class="no-highlight">24</i>&nbsp;            val watchosX64Test: KSS? = sourceSets.findByName(&quot;watchosX64Test&quot;)</b>
-<b class="nc"><i class="no-highlight">25</i>&nbsp;            val watchosSimulatorArm64Test: KSS? = sourceSets.findByName(&quot;watchosSimulatorArm64Test&quot;)</b>
-<b class="nc"><i class="no-highlight">26</i>&nbsp;            val watchosX86Test: KSS? = sourceSets.findByName(&quot;watchosX86Test&quot;)</b>
-<i class="no-highlight">27</i>&nbsp;
-<b class="nc"><i class="no-highlight">28</i>&nbsp;            val watchosMainSourceSets: List&lt;KSS&gt; =</b>
-<b class="nc"><i class="no-highlight">29</i>&nbsp;                listOfNotNull(</b>
-<b class="nc"><i class="no-highlight">30</i>&nbsp;                    watchosArm32Main,</b>
-<b class="nc"><i class="no-highlight">31</i>&nbsp;                    watchosArm64Main,</b>
-<b class="nc"><i class="no-highlight">32</i>&nbsp;                    watchosX64Main,</b>
-<b class="nc"><i class="no-highlight">33</i>&nbsp;                    watchosSimulatorArm64Main,</b>
-<b class="nc"><i class="no-highlight">34</i>&nbsp;                    watchosX86Main,</b>
-<i class="no-highlight">35</i>&nbsp;                )
-<b class="nc"><i class="no-highlight">36</i>&nbsp;            val watchosTestSourceSets: List&lt;KSS&gt; =</b>
-<b class="nc"><i class="no-highlight">37</i>&nbsp;                listOfNotNull(</b>
-<b class="nc"><i class="no-highlight">38</i>&nbsp;                    watchosArm32Test,</b>
-<b class="nc"><i class="no-highlight">39</i>&nbsp;                    watchosArm64Test,</b>
-<b class="nc"><i class="no-highlight">40</i>&nbsp;                    watchosX64Test,</b>
-<b class="nc"><i class="no-highlight">41</i>&nbsp;                    watchosSimulatorArm64Test,</b>
-<b class="nc"><i class="no-highlight">42</i>&nbsp;                    watchosX86Test,</b>
-<i class="no-highlight">43</i>&nbsp;                )
-<i class="no-highlight">44</i>&nbsp;
-<b class="nc"><i class="no-highlight">45</i>&nbsp;            val watchosMain = sourceSets.maybeCreate(&quot;watchosMain&quot;)</b>
-<b class="nc"><i class="no-highlight">46</i>&nbsp;            val watchosTest = sourceSets.maybeCreate(&quot;watchosTest&quot;)</b>
-<i class="no-highlight">47</i>&nbsp;
-<b class="nc"><i class="no-highlight">48</i>&nbsp;            watchosMain.dependsOn(commonMain)</b>
-<b class="nc"><i class="no-highlight">49</i>&nbsp;            for (watchosMainSourceSet in watchosMainSourceSets) {</b>
-<b class="nc"><i class="no-highlight">50</i>&nbsp;                watchosMainSourceSet.dependsOn(watchosMain)</b>
-<i class="no-highlight">51</i>&nbsp;            }
-<i class="no-highlight">52</i>&nbsp;
-<b class="nc"><i class="no-highlight">53</i>&nbsp;            watchosTest.dependsOn(commonTest)</b>
-<b class="nc"><i class="no-highlight">54</i>&nbsp;            for (watchosTestSourceSet in watchosTestSourceSets) {</b>
-<b class="nc"><i class="no-highlight">55</i>&nbsp;                watchosTestSourceSet.dependsOn(watchosTest)</b>
-<i class="no-highlight">56</i>&nbsp;            }
-<i class="no-highlight">57</i>&nbsp;        }
-<i class="no-highlight">58</i>&nbsp;    }
-<i class="no-highlight">59</i>&nbsp;}
-<i class="no-highlight">60</i>&nbsp;
-<i class="no-highlight">61</i>&nbsp;internal fun configureMultiplatformWatchOSArm32(project: Project) {
-<b class="nc"><i class="no-highlight">62</i>&nbsp;    if (project.hubdleState.kotlin.multiplatform.watchosArm32.isEnabled) {</b>
-<b class="nc"><i class="no-highlight">63</i>&nbsp;        project.configure&lt;KotlinMultiplatformExtension&gt; { watchosArm32() }</b>
-<i class="no-highlight">64</i>&nbsp;    }
-<i class="no-highlight">65</i>&nbsp;}
-<i class="no-highlight">66</i>&nbsp;
-<i class="no-highlight">67</i>&nbsp;internal fun configureMultiplatformWatchOSArm64(project: Project) {
-<b class="nc"><i class="no-highlight">68</i>&nbsp;    if (project.hubdleState.kotlin.multiplatform.watchosArm64.isEnabled) {</b>
-<b class="nc"><i class="no-highlight">69</i>&nbsp;        project.configure&lt;KotlinMultiplatformExtension&gt; { watchosArm64() }</b>
-<i class="no-highlight">70</i>&nbsp;    }
-<i class="no-highlight">71</i>&nbsp;}
-<i class="no-highlight">72</i>&nbsp;
-<i class="no-highlight">73</i>&nbsp;internal fun configureMultiplatformWatchOSSimulatorArm64(project: Project) {
-<b class="nc"><i class="no-highlight">74</i>&nbsp;    if (project.hubdleState.kotlin.multiplatform.watchosSimulatorArm64.isEnabled) {</b>
-<b class="nc"><i class="no-highlight">75</i>&nbsp;        project.configure&lt;KotlinMultiplatformExtension&gt; { watchosSimulatorArm64() }</b>
-<i class="no-highlight">76</i>&nbsp;    }
-<i class="no-highlight">77</i>&nbsp;}
-<i class="no-highlight">78</i>&nbsp;
-<i class="no-highlight">79</i>&nbsp;internal fun configureMultiplatformWatchOSX64(project: Project) {
-<b class="nc"><i class="no-highlight">80</i>&nbsp;    if (project.hubdleState.kotlin.multiplatform.watchosX64.isEnabled) {</b>
-<b class="nc"><i class="no-highlight">81</i>&nbsp;        project.configure&lt;KotlinMultiplatformExtension&gt; { watchosX64() }</b>
-<i class="no-highlight">82</i>&nbsp;    }
-<i class="no-highlight">83</i>&nbsp;}
-<i class="no-highlight">84</i>&nbsp;
-<i class="no-highlight">85</i>&nbsp;internal fun configureMultiplatformWatchOSX86(project: Project) {
-<b class="nc"><i class="no-highlight">86</i>&nbsp;    if (project.hubdleState.kotlin.multiplatform.watchosX86.isEnabled) {</b>
-<b class="nc"><i class="no-highlight">87</i>&nbsp;        project.configure&lt;KotlinMultiplatformExtension&gt; { watchosX86() }</b>
-<i class="no-highlight">88</i>&nbsp;    }
-<i class="no-highlight">89</i>&nbsp;}
-</div>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.extensions.kotlin.multiplatform._internal
+&nbsp;
+&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
+&nbsp;import org.gradle.api.Project
+&nbsp;import org.gradle.kotlin.dsl.configure
+&nbsp;import org.gradle.kotlin.dsl.getValue
+&nbsp;import org.gradle.kotlin.dsl.getting
+&nbsp;import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+&nbsp;import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet as KSS
+&nbsp;
+&nbsp;internal fun configureMultiplatformWatchOS(project: Project) {
+<b class="nc">&nbsp;    if (project.hubdleState.kotlin.multiplatform.watchos.isEnabled) {</b>
+<b class="nc">&nbsp;        project.configure&lt;KotlinMultiplatformExtension&gt; {</b>
+<b class="nc">&nbsp;            val commonMain: KSS by sourceSets.getting</b>
+<b class="nc">&nbsp;            val watchosArm32Main: KSS? = sourceSets.findByName(&quot;watchosArm32Main&quot;)</b>
+<b class="nc">&nbsp;            val watchosArm64Main: KSS? = sourceSets.findByName(&quot;watchosArm64Main&quot;)</b>
+<b class="nc">&nbsp;            val watchosX64Main: KSS? = sourceSets.findByName(&quot;watchosX64Main&quot;)</b>
+<b class="nc">&nbsp;            val watchosSimulatorArm64Main: KSS? = sourceSets.findByName(&quot;watchosSimulatorArm64Main&quot;)</b>
+<b class="nc">&nbsp;            val watchosX86Main: KSS? = sourceSets.findByName(&quot;watchosX86Main&quot;)</b>
+&nbsp;
+<b class="nc">&nbsp;            val commonTest: KSS by sourceSets.getting</b>
+<b class="nc">&nbsp;            val watchosArm32Test: KSS? = sourceSets.findByName(&quot;watchosArm32Test&quot;)</b>
+<b class="nc">&nbsp;            val watchosArm64Test: KSS? = sourceSets.findByName(&quot;watchosArm64Test&quot;)</b>
+<b class="nc">&nbsp;            val watchosX64Test: KSS? = sourceSets.findByName(&quot;watchosX64Test&quot;)</b>
+<b class="nc">&nbsp;            val watchosSimulatorArm64Test: KSS? = sourceSets.findByName(&quot;watchosSimulatorArm64Test&quot;)</b>
+<b class="nc">&nbsp;            val watchosX86Test: KSS? = sourceSets.findByName(&quot;watchosX86Test&quot;)</b>
+&nbsp;
+<b class="nc">&nbsp;            val watchosMainSourceSets: List&lt;KSS&gt; =</b>
+<b class="nc">&nbsp;                listOfNotNull(</b>
+<b class="nc">&nbsp;                    watchosArm32Main,</b>
+<b class="nc">&nbsp;                    watchosArm64Main,</b>
+<b class="nc">&nbsp;                    watchosX64Main,</b>
+<b class="nc">&nbsp;                    watchosSimulatorArm64Main,</b>
+<b class="nc">&nbsp;                    watchosX86Main,</b>
+&nbsp;                )
+<b class="nc">&nbsp;            val watchosTestSourceSets: List&lt;KSS&gt; =</b>
+<b class="nc">&nbsp;                listOfNotNull(</b>
+<b class="nc">&nbsp;                    watchosArm32Test,</b>
+<b class="nc">&nbsp;                    watchosArm64Test,</b>
+<b class="nc">&nbsp;                    watchosX64Test,</b>
+<b class="nc">&nbsp;                    watchosSimulatorArm64Test,</b>
+<b class="nc">&nbsp;                    watchosX86Test,</b>
+&nbsp;                )
+&nbsp;
+<b class="nc">&nbsp;            val watchosMain = sourceSets.maybeCreate(&quot;watchosMain&quot;)</b>
+<b class="nc">&nbsp;            val watchosTest = sourceSets.maybeCreate(&quot;watchosTest&quot;)</b>
+&nbsp;
+<b class="nc">&nbsp;            watchosMain.dependsOn(commonMain)</b>
+<b class="nc">&nbsp;            for (watchosMainSourceSet in watchosMainSourceSets) {</b>
+<b class="nc">&nbsp;                watchosMainSourceSet.dependsOn(watchosMain)</b>
+&nbsp;            }
+&nbsp;
+<b class="nc">&nbsp;            watchosTest.dependsOn(commonTest)</b>
+<b class="nc">&nbsp;            for (watchosTestSourceSet in watchosTestSourceSets) {</b>
+<b class="nc">&nbsp;                watchosTestSourceSet.dependsOn(watchosTest)</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;internal fun configureMultiplatformWatchOSArm32(project: Project) {
+<b class="nc">&nbsp;    if (project.hubdleState.kotlin.multiplatform.watchosArm32.isEnabled) {</b>
+<b class="nc">&nbsp;        project.configure&lt;KotlinMultiplatformExtension&gt; { watchosArm32() }</b>
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;internal fun configureMultiplatformWatchOSArm64(project: Project) {
+<b class="nc">&nbsp;    if (project.hubdleState.kotlin.multiplatform.watchosArm64.isEnabled) {</b>
+<b class="nc">&nbsp;        project.configure&lt;KotlinMultiplatformExtension&gt; { watchosArm64() }</b>
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;internal fun configureMultiplatformWatchOSSimulatorArm64(project: Project) {
+<b class="nc">&nbsp;    if (project.hubdleState.kotlin.multiplatform.watchosSimulatorArm64.isEnabled) {</b>
+<b class="nc">&nbsp;        project.configure&lt;KotlinMultiplatformExtension&gt; { watchosSimulatorArm64() }</b>
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;internal fun configureMultiplatformWatchOSX64(project: Project) {
+<b class="nc">&nbsp;    if (project.hubdleState.kotlin.multiplatform.watchosX64.isEnabled) {</b>
+<b class="nc">&nbsp;        project.configure&lt;KotlinMultiplatformExtension&gt; { watchosX64() }</b>
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;internal fun configureMultiplatformWatchOSX86(project: Project) {
+<b class="nc">&nbsp;    if (project.hubdleState.kotlin.multiplatform.watchosX86.isEnabled) {</b>
+<b class="nc">&nbsp;        project.configure&lt;KotlinMultiplatformExtension&gt; { watchosX86() }</b>
+&nbsp;    }
+&nbsp;}
+</code>
 </pre>
 </div>
 
@@ -475,18 +476,15 @@ Current scope:     <a href="../../index.html">all classes</a>
     @*/
 
     if (!msie || msie && msie9) {
-        var codeBlock = document.getElementById('sourceCode');
-
-        if (codeBlock) {
-            hljs.highlightBlock(codeBlock);
-        }
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
     }
 })();
 </script>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-14 10:24</div>
+    <div style="float:right;">generated on 2022-09-21 10:36</div>
 </div>
 </body>
 </html>

@@ -433,7 +433,7 @@ internal data class HubdleState(
         data class Android(
             val application: Application = Application(),
             val buildFeatures: BuildFeatures = BuildFeatures(),
-            var compileSdk: Int = 32,
+            var compileSdk: Int = 33,
             val library: Library = Library(),
             var minSdk: Int = 21,
             var namespace: String? = null

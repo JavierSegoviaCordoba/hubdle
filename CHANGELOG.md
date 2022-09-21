@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `compileSdk -> 33`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.2.0-alpha.35`
 
 ## [0.2.0-alpha.35] - 2022-09-14

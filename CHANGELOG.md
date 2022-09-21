@@ -4,6 +4,8 @@
 
 ### Added
 
+- `org.jetbrains.kotlinx:kotlinx-collections-immutable` library
+
 ### Changed
 
 ### Deprecated

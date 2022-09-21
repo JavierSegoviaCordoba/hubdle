@@ -19,6 +19,7 @@
 
 ### Updated
 
+- `com.diffplug.spotless:spotless-plugin-gradle -> 6.11.0`
 - `androidx.compose.material3:material3-window-size-class -> 1.0.0-beta03`
 - `androidx.compose.material3:material3 -> 1.0.0-beta03`
 - `androidx.activity:activity-ktx -> 1.6.0`

@@ -19,6 +19,8 @@
 
 ### Updated
 
+- `androidx.activity:activity-ktx -> 1.6.0`
+- `androidx.activity:activity-compose -> 1.6.0`
 - `org.junit.jupiter:junit-jupiter-params -> 5.9.1`
 - `org.junit.jupiter:junit-jupiter-api -> 5.9.1`
 - `app.cash.turbine:turbine -> 0.11.0`

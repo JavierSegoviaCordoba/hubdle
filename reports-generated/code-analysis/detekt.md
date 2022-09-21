@@ -14,11 +14,11 @@
 
 ## Complexity Report
 
-* 11,687 lines of code (loc)
+* 11,691 lines of code (loc)
 
-* 9,669 source lines of code (sloc)
+* 9,673 source lines of code (sloc)
 
-* 6,570 logical lines of code (lloc)
+* 6,573 logical lines of code (lloc)
 
 * 52 comment lines of code (cloc)
 
@@ -220,8 +220,8 @@ File '/home/runner/work/hubdle/hubdle/hubdle-gradle-plugin/main/kotlin/com/javie
 3 package com.javiersc.hubdle.extensions.kotlin.multiplatform._internal
 ! ^ error
 4 
-5 import com.javiersc.hubdle.extensions._internal.PluginIds
-6 import com.javiersc.hubdle.extensions._internal.state.HubdleState
+5 import com.android.build.api.dsl.LibraryExtension
+6 import com.javiersc.hubdle.extensions._internal.PluginIds
 
 ```
 
@@ -1084,8 +1084,8 @@ Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*
 3 package com.javiersc.hubdle.extensions.kotlin.multiplatform._internal
 ! ^ error
 4 
-5 import com.javiersc.hubdle.extensions._internal.PluginIds
-6 import com.javiersc.hubdle.extensions._internal.state.HubdleState
+5 import com.android.build.api.dsl.LibraryExtension
+6 import com.javiersc.hubdle.extensions._internal.PluginIds
 
 ```
 
@@ -1420,4 +1420,4 @@ Line detected, which is longer than the defined maximum line length in the code 
 
 ```
 
-generated with [detekt version 1.21.0](https://detekt.dev/) on 2022-09-21 12:25:18 UTC
+generated with [detekt version 1.21.0](https://detekt.dev/) on 2022-09-21 17:24:06 UTC

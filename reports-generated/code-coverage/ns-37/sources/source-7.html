@@ -67,7 +67,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/45)
+    (0/46)
   </span>
 </td>
 <td class="coverageStat">
@@ -75,7 +75,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/262)
+    (0/270)
   </span>
 </td>
 </tr>
@@ -180,6 +180,18 @@ Current scope:     <a href="../../index.html">all classes</a>
   </tr>
   <tr>
     <td class="name">ConfigureMultiplatformKt$configureMultiplatformAndroidRawConfig$$inlined$the$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+  </tr>
+  <tr>
+    <td class="name">ConfigureMultiplatformKt$configureMultiplatformCompose$$inlined$findByType$1</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -361,7 +373,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/27)
+    (0/28)
   </span>
 </td>
 <td class="coverageStat">
@@ -377,7 +389,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/57)
+    (0/58)
   </span>
 </td>
 <td class="coverageStat">
@@ -385,7 +397,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/336)
+    (0/344)
   </span>
 </td>
 </tr>
@@ -400,6 +412,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;
 &nbsp;package com.javiersc.hubdle.extensions.kotlin.multiplatform._internal
 &nbsp;
+&nbsp;import com.android.build.api.dsl.LibraryExtension
 &nbsp;import com.javiersc.hubdle.extensions._internal.PluginIds
 &nbsp;import com.javiersc.hubdle.extensions._internal.state.HubdleState
 &nbsp;import com.javiersc.hubdle.extensions._internal.state.catalogDependency as catalogDep
@@ -431,6 +444,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;import org.gradle.api.tasks.testing.junit.JUnitOptions
 &nbsp;import org.gradle.api.tasks.testing.junitplatform.JUnitPlatformOptions
 &nbsp;import org.gradle.api.tasks.testing.testng.TestNGOptions
+&nbsp;import org.gradle.kotlin.dsl.findByType
 &nbsp;import org.gradle.kotlin.dsl.the
 &nbsp;import org.gradle.kotlin.dsl.withType
 &nbsp;import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
@@ -467,6 +481,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;internal fun configureMultiplatformCompose(project: Project) {
 <b class="nc">&nbsp;    if (project.multiplatformFeatures.compose.isEnabled) {</b>
 <b class="nc">&nbsp;        project.pluginManager.apply(PluginIds.Kotlin.compose)</b>
+<b class="nc">&nbsp;        project.extensions.findByType&lt;LibraryExtension&gt;()?.buildFeatures?.compose = true</b>
 <b class="nc">&nbsp;        project.multiplatformFeatures.compose.desktop?.execute(project.the())</b>
 &nbsp;    }
 &nbsp;}
@@ -565,7 +580,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-21 12:30</div>
+    <div style="float:right;">generated on 2022-09-21 17:30</div>
 </div>
 </body>
 </html>

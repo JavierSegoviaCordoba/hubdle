@@ -19,6 +19,7 @@
 
 ### Updated
 
+- `gradle/gradle-build-action -> v2.3.0`
 - `com.android.tools.build:gradle -> 7.3.0`
 - `org.jetbrains.compose:compose-gradle-plugin -> 1.2.0-beta01`
 - `com.facebook:ktfmt -> 0.40`

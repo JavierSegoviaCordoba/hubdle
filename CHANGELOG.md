@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `gradle/gradle-build-action -> v2.3.1`
+
 ## [0.2.0-alpha.36] - 2022-09-22
 
 ### Added

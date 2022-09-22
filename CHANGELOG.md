@@ -4,14 +4,22 @@
 
 ### Added
 
-- compose and other android related libraries
-- `org.jetbrains.kotlinx:kotlinx-collections-immutable` library
-
 ### Changed
 
 ### Deprecated
 
 ### Removed
+
+### Fixed
+
+### Updated
+
+## [0.2.0-alpha.36] - 2022-09-22
+
+### Added
+
+- compose and other android related libraries
+- `org.jetbrains.kotlinx:kotlinx-collections-immutable` library
 
 ### Fixed
 

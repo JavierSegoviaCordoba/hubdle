@@ -16,6 +16,7 @@ on:
       - main
     paths-ignore:
       - '**.md'
+  workflow_dispatch:
 
 jobs:
   build-itself:
@@ -25,11 +26,21 @@ jobs:
 
     strategy:
       matrix:
-        os: [ 'macos-latest', 'ubuntu-latest', 'windows-latest' ]
+        os: [ 'macos-latest', 'ubuntu-latest' ]
 
     steps:
       - name: Checkout
         uses: actions/checkout@v3.0.2
+        with:
+          fetch-depth: 0
+
+      - name: Restore Kotlin native cache
+        uses: actions/cache@v3.0.8
+        with:
+          path: ~/.konan
+          key: ${{ runner.os }}-konan-${{ hashFiles('**/gradle/libs.versions.toml') }}
+          restore-keys: |
+            ${{ runner.os }}-konan-
 
       - name: Set up Java
         uses: actions/setup-java@v3.5.0
@@ -37,25 +48,25 @@ jobs:
           distribution: 'zulu'
           java-version: 11
 
-      - name: Run build itself
+      - name: Setup Gradle
         uses: gradle/gradle-build-action@v2.3.0
         with:
-          arguments: |
-            buildItself
-            -Psemver.stage=snapshot
+          gradle-home-cache-cleanup: true
 
-      - name: Git diff and commit
+      - name: Set Hubdle version output
+        id: semver
+        run: ./gradlew printSemver -Psemver.stage=snapshot --githubOnlyRoot --githubOutput
+
+      - name: Publish next version to MavenLocal
+        run: ./gradlew publishToMavenLocal -Psemver.stage=snapshot
+
+      - name: Check format
+        continue-on-error: true
         run: |
-          git config --global user.email "action@github.com"
-          git config --global user.name "GitHub Action"
-          git diff
-          git add .
-          git commit -m "Build itself"
+          hubdleVersion=${{ steps.semver.outputs.semver }}
+          ./gradlew checkFormat -PhubdleVersion=$hubdleVersion -Psemver.stage=beta
 
       - name: Build
-        uses: gradle/gradle-build-action@v2.3.0
-        with:
-          arguments: |
-            build
-            --exclude-task spotlessCheck
-            -Psemver.stage=snapshot
+        run: |
+          hubdleVersion=${{ steps.semver.outputs.semver }}
+          ./gradlew build -PhubdleVersion=$hubdleVersion -Psemver.stage=beta -x checkFormat -x spotlessCheck -x spotlessKotlinCheck

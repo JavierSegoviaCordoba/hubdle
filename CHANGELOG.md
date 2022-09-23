@@ -14,6 +14,10 @@
 
 ### Updated
 
+## [0.2.0-alpha.37] - 2022-09-23
+
+### Updated
+
 - `com.facebook:ktfmt -> 0.41`
 - `gradle/gradle-build-action -> v2.3.1`
 

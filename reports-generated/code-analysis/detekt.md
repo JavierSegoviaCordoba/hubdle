@@ -14,11 +14,11 @@
 
 ## Complexity Report
 
-* 11,703 lines of code (loc)
+* 11,725 lines of code (loc)
 
-* 9,685 source lines of code (sloc)
+* 9,707 source lines of code (sloc)
 
-* 6,582 logical lines of code (lloc)
+* 6,604 logical lines of code (lloc)
 
 * 51 comment lines of code (cloc)
 
@@ -30,7 +30,7 @@
 
 * 0% comment source ratio
 
-* 187 mcc per 1,000 lloc
+* 186 mcc per 1,000 lloc
 
 * 14 code smells per 1,000 lloc
 
@@ -42,19 +42,19 @@ Complex conditions should be simplified and extracted into well-named methods if
 
 [Documentation](https://detekt.dev/docs/rules/complexity#complexcondition)
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/documentation/site/PrebuildSiteTask.kt:379:25
+* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/documentation/site/PrebuildSiteTask.kt:383:25
 ```
 This condition is too complex (4). Defined complexity threshold for conditions is set to '4'
 ```
 ```kotlin
-376 
-377         val navReports: String =
-378             buildList {
-379                     if (allTests && codeAnalysis || codeCoverage || codeQuality) add("  - Reports:")
+380 
+381         val navReports: String =
+382             buildList {
+383                     if (allTests && codeAnalysis || codeCoverage || codeQuality) add("  - Reports:")
 !!!                         ^ error
-380                     if (allTests) createReportSection("All tests", "all-tests")
-381                     if (codeAnalysis) createReportSection("Code analysis", "code-analysis")
-382                     if (codeCoverage) createReportSection("Code coverage", "code-coverage")
+384                     if (allTests) createReportSection("All tests", "all-tests")
+385                     if (codeAnalysis) createReportSection("Code analysis", "code-analysis")
+386                     if (codeCoverage) createReportSection("Code coverage", "code-coverage")
 
 ```
 
@@ -1420,4 +1420,4 @@ Line detected, which is longer than the defined maximum line length in the code 
 
 ```
 
-generated with [detekt version 1.21.0](https://detekt.dev/) on 2022-09-22 12:26:16 UTC
+generated with [detekt version 1.21.0](https://detekt.dev/) on 2022-09-26 18:00:50 UTC

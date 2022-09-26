@@ -59,7 +59,8 @@ internal fun InstallPreCommitTask.createInstallPreCommitGradleTask() {
             |# $headerText
             |./gradlew ${preCommitName.get()}
             |
-        """.trimMargin()
+        """
+            .trimMargin()
 
     preCommitOutputFile.writeText(text)
 }

@@ -180,7 +180,8 @@ private val gpgKey
             AXhbR75VhhHLfucMCpE+0rpBfMuXRTHKUHsafK3zPIp5kNI1jQxTWy8=
             =ZuCh
             -----END PGP PRIVATE KEY BLOCK-----
-        """.trimIndent()
+        """
+            .trimIndent()
 
 private val gpgKeyPassphrase
     get() = "12345678"

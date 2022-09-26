@@ -34,7 +34,8 @@ internal class KotlinJvmFeaturesHubdleCatalogTest : GradleTest() {
                         implementation - Implementation only dependencies for compilation 'main' (target  (jvm)). (n)
                         +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:$ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_VERSION (n)
                         \--- com.javiersc.kotlin:kotlin-stdlib:$COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_VERSION (n)
-                    """.trimIndent()
+                    """
+                        .trimIndent()
                 )
                 .shouldContain(
                     """
@@ -43,7 +44,8 @@ internal class KotlinJvmFeaturesHubdleCatalogTest : GradleTest() {
                         +--- org.jetbrains.kotlinx:kotlinx-coroutines-test:$ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_VERSION (n)
                         +--- io.kotest:kotest-assertions-core:$IO_KOTEST_KOTEST_ASSERTIONS_CORE_VERSION (n)
                         \--- org.jetbrains.kotlin:kotlin-test:$ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_VERSION (n)
-                    """.trimIndent()
+                    """
+                        .trimIndent()
                 )
         }
     }

@@ -1,29 +1,113 @@
 {"version":"3","listProblem":[{
   "tool": "Code Inspection",
-  "category": "Redundant constructs",
-  "type": "Remove unnecessary parentheses from function call with lambda",
-  "severity": "Info",
-  "comment": "Remove unnecessary parentheses from function call with lambda",
-  "detailsInfo": "Reports redundant empty parentheses of function calls where the only parameter is a lambda that's outside the parentheses.\n\nUse the 'Remove unnecessary parentheses from function call with lambda' quick-fix to clean up the code.\n\n**Examples:**\n\n\n      fun foo() {\n          listOf(1).forEach() {  }\n      }\n\nAfter the quick-fix is applied:\n\n\n      fun foo() {\n          listOf(1).forEach {  }\n      }\n",
+  "category": "Style issues",
+  "type": "Nested lambda has shadowed implicit parameter",
+  "severity": "Moderate",
+  "comment": "Implicit parameter 'it' of enclosing lambda is shadowed",
+  "detailsInfo": "Reports nested lambdas with shadowed implicit parameters.\n\n**Example:**\n\n\n    fun foo(listOfLists: List<List<String>>) {\n      listOfLists.forEach {\n        it.forEach {\n          println(it)\n        }\n      }\n    }\n\nAfter the quick-fix is applied:\n\n\n    fun foo(listOfLists: List<List<String>>) {\n      listOfLists.forEach {\n        it.forEach { it1 ->\n          println(it1)\n        }\n      }\n    }\n",
   "sources": [
     {
       "type": "file",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatformJs.kt",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/_internal/calculateAndroidNamespace.kt",
       "language": "kotlin",
-      "line": 12,
-      "offset": 15,
+      "line": 43,
+      "offset": 56,
       "length": 2,
       "code": {
-        "startLine": 10,
+        "startLine": 41,
         "length": 2,
-        "offset": 101,
-        "surroundingCode": "    if (jsState.isEnabled) {\n        project.configure<KotlinMultiplatformExtension> {\n            js() {\n                if (jsState.browser.isEnabled) {\n                    browser { jsState.browser.action?.execute(this) }"
+        "offset": 121,
+        "surroundingCode": "        }\n        ?.flatMap { it.listFiles().orEmpty().toList() }\n        ?.firstOrNull { it.listFiles().orEmpty().any { it.extension == \"kt\" } }\n        ?.listFiles()\n        ?.firstOrNull { it.extension == \"kt\" }"
       }
     }
   ],
   "attributes": {
     "module": "hubdle.hubdle-gradle-plugin.main",
-    "inspectionName": "RemoveEmptyParenthesesFromLambdaCall"
+    "inspectionName": "NestedLambdaShadowedImplicitParameter"
   },
-  "hash": "14f9b66fec5ebe545ccc254306de24af493473027d7bf98dc586b0caea5f4a9e"
+  "hash": "145ff510cb54dad87255b0f75b7c3009664294acb677d32f0765e231e5720bf4"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "severity": "High",
+  "comment": "Object \"High\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/state/HubdleState.kt",
+      "language": "kotlin",
+      "line": 1082,
+      "offset": 16,
+      "length": 4,
+      "code": {
+        "startLine": 1080,
+        "length": 4,
+        "offset": 82,
+        "surroundingCode": "            override fun toString(): String = \"VeryHigh\"\n        }\n        object High : Priority(2) {\n            override fun toString(): String = \"High\"\n        }"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-gradle-plugin.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "1ca00755ef3f84f7846863f086866a0b1e8c6c241077312c9b795e8bd691a1bc"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "severity": "High",
+  "comment": "Object \"VeryHigh\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/state/HubdleState.kt",
+      "language": "kotlin",
+      "line": 1079,
+      "offset": 16,
+      "length": 8,
+      "code": {
+        "startLine": 1077,
+        "length": 8,
+        "offset": 91,
+        "surroundingCode": "    sealed class Priority(private val value: Int) : Comparable<Priority> {\n\n        object VeryHigh : Priority(1) {\n            override fun toString(): String = \"VeryHigh\"\n        }"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-gradle-plugin.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "383fc2ac4ed0fbe2d98fe25e45d8e4082550952cd46f9dd5f4dd7e9cb0d2bb35"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "severity": "High",
+  "comment": "Object \"Low\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/state/HubdleState.kt",
+      "language": "kotlin",
+      "line": 1088,
+      "offset": 16,
+      "length": 3,
+      "code": {
+        "startLine": 1086,
+        "length": 3,
+        "offset": 80,
+        "surroundingCode": "            override fun toString(): String = \"Medium\"\n        }\n        object Low : Priority(4) {\n            override fun toString(): String = \"Low\"\n        }"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-gradle-plugin.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "36ec1a16d5beb97aed313a2b1486466e65e9f156545b7a4ac26ad56c2e232328"
 }]}

@@ -26,7 +26,8 @@ internal class BinaryCompatibilityValidatorTest : GradleTest() {
                         |public final class com/kotlin/jvm/sandbox/project/Main {
                         |	public fun <init> ()V
                         |}
-                    """.trimMargin()
+                    """
+                        .trimMargin()
                 )
 
             val libraryApiDir: File = projectDir.resolve("library/api")
@@ -40,7 +41,8 @@ internal class BinaryCompatibilityValidatorTest : GradleTest() {
                         |public final class com/kotlin/jvm/sandbox/project/library/Main {
                         |	public fun <init> ()V
                         |}
-                    """.trimMargin()
+                    """
+                        .trimMargin()
                 )
         }
     }

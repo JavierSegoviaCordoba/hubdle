@@ -20,7 +20,8 @@ internal class KotlinJvmFeaturesUserCatalogTest : GradleTest() {
                         implementation - Implementation only dependencies for compilation 'main' (target  (jvm)). (n)
                         +--- org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1 (n)
                         \--- com.javiersc.kotlin:kotlin-stdlib:$COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_VERSION (n)
-                    """.trimIndent()
+                    """
+                        .trimIndent()
                 )
                 .shouldContain(
                     """
@@ -29,7 +30,8 @@ internal class KotlinJvmFeaturesUserCatalogTest : GradleTest() {
                         +--- org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.1 (n)
                         +--- io.kotest:kotest-assertions-core:5.3.0 (n)
                         \--- org.jetbrains.kotlin:kotlin-test:1.6.10 (n)
-                    """.trimIndent()
+                    """
+                        .trimIndent()
                 )
         }
     }

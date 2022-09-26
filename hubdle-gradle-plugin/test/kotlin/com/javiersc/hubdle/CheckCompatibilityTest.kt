@@ -19,7 +19,8 @@ class CheckCompatibilityTest : GradleTest() {
                     |  - Version Catalog(isEnabled = true)
                     |  - Jvm(isEnabled = true)
                     |  - Multiplatform(isEnabled = false)
-                """.trimMargin()
+                """
+                    .trimMargin()
 
             buildAndFail().output.shouldContain(expectOutput)
         }

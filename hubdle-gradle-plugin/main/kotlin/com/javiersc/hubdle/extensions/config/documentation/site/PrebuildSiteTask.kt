@@ -190,7 +190,8 @@ constructor(
                 |extra_css:
                 |  - css/all.css
                 |
-            """.trimMargin()
+            """
+                .trimMargin()
 
     private val defaultAllCss: String
         get() =
@@ -208,7 +209,8 @@ constructor(
                 |    font-weight: bold;
                 |}
                 |
-            """.trimMargin()
+            """
+                .trimMargin()
 
     private fun FileSystemOperations.buildBuildDotDocs(
         rootDirectory: File,
@@ -245,7 +247,8 @@ constructor(
                 |  - API docs:
                 |    - Latest: api/
                 |    - Snapshot: api/snapshot/
-            """.trimMargin()
+            """
+                    .trimMargin()
 
         writeNavigation(navsPlusApiDocs)
     }
@@ -364,7 +367,8 @@ constructor(
                 |
                 |<iframe src="$src" style="$style" frameborder="0"></iframe>
                 |
-            """.trimMargin()
+            """
+                    .trimMargin()
 
             File("$rootDirectory/build/.docs/docs/reports/$pathAndFileName.md").apply {
                 ensureParentDirsCreated()

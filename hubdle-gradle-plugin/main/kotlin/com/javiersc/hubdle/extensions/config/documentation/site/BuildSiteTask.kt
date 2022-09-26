@@ -98,5 +98,6 @@ constructor(
             <body>
             </body>
             </html>
-        """.trimIndent()
+        """
+            .trimIndent()
 }

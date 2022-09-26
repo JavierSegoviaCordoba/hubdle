@@ -33,6 +33,7 @@ private fun Project.checkOnlyOneKotlinApplied() {
             |  - Jvm(isEnabled = ${state.jvm.isEnabled})
             |  - Multiplatform(isEnabled = ${state.multiplatform.isEnabled})
             |
-        """.trimMargin()
+        """
+            .trimMargin()
     }
 }

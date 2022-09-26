@@ -22,7 +22,8 @@ internal fun configureSite(project: Project) {
             """
                 |`site` can be only used in the root project, and it is being applied in:
                 |  - `${project.path}
-            """.trimMargin()
+            """
+                .trimMargin()
         }
 
         project.pluginManager.apply(PluginIds.Kotlin.dokka)

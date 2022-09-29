@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html id="htmlId">
 <head>
-  <title>Coverage Report > EnableableOptions</title>
+  <title>Coverage Report > SourceDirectoriesOptions</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/idea.min.css";
@@ -21,7 +21,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     <a href="../index.html">com.javiersc.hubdle.extensions.options</a>
 </div>
 
-<h1>Coverage Summary for Class: EnableableOptions (com.javiersc.hubdle.extensions.options)</h1>
+<h1>Coverage Summary for Class: SourceDirectoriesOptions (com.javiersc.hubdle.extensions.options)</h1>
 
 <table class="coverageStats">
 <tr>
@@ -32,7 +32,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 </th>
 </tr>
 <tr>
-  <td class="name">EnableableOptions</td>
+  <td class="name">SourceDirectoriesOptions</td>
     <td class="coverageStat"/>
 </tr>
 
@@ -45,21 +45,74 @@ Current scope:     <a href="../../index.html">all classes</a>
 <pre>
 <code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.extensions.options
 &nbsp;
+&nbsp;import com.android.build.api.dsl.AndroidSourceDirectorySet
+&nbsp;import com.android.build.api.dsl.AndroidSourceFile
+&nbsp;import com.android.build.api.dsl.AndroidSourceSet
+&nbsp;import org.gradle.api.Named
+&nbsp;import org.gradle.api.NamedDomainObjectContainer
 &nbsp;import org.gradle.api.Project
+&nbsp;import org.gradle.api.plugins.JavaPluginExtension
+&nbsp;import org.gradle.api.tasks.SourceSet
+&nbsp;import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
+&nbsp;import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 &nbsp;
-&nbsp;public interface EnableableOptions {
+&nbsp;public interface SourceDirectoriesOptions&lt;out T&gt; {
 &nbsp;
-&nbsp;    public var Project.isEnabled: Boolean
+&nbsp;    public val Project.sourceSets: NamedDomainObjectContainer&lt;out T&gt;
 &nbsp;}
 &nbsp;
-&nbsp;public interface EnableableAllOptions {
-&nbsp;
-&nbsp;    public var Project.allEnabled: Boolean
-&nbsp;
-&nbsp;    public fun Project.enableAll(enable: Boolean = true) {
-&nbsp;        allEnabled = enable
-&nbsp;    }
+&nbsp;internal fun JavaPluginExtension.configureDefaultJavaSourceSets() {
+&nbsp;    sourceSets.all { configJavaDefaultSourceSets() }
 &nbsp;}
+&nbsp;
+&nbsp;internal fun KotlinProjectExtension.configureDefaultKotlinSourceSets() {
+&nbsp;    sourceSets.all { configKotlinDefaultSourceSets() }
+&nbsp;}
+&nbsp;
+&nbsp;internal fun AndroidSourceSet.configDefaultAndroidSourceSets() {
+&nbsp;    configAndroidSourceDirectorySet(assets to &quot;assets&quot;)
+&nbsp;    configAndroidSourceDirectorySet(java to &quot;kotlin&quot;)
+&nbsp;    configAndroidSourceDirectory(manifest to &quot;AndroidManifest.xml&quot;)
+&nbsp;    configAndroidSourceDirectorySet(res to &quot;res&quot;)
+&nbsp;    configAndroidSourceDirectorySet(resources to &quot;resources&quot;)
+&nbsp;}
+&nbsp;
+&nbsp;internal fun KotlinSourceSet.configKotlinDefaultSourceSets() {
+&nbsp;    val directory = calculateSourceSetDirectory()
+&nbsp;
+&nbsp;    kotlin.setSrcDirs(listOf(&quot;$directory/kotlin&quot;))
+&nbsp;    resources.setSrcDirs(listOf(&quot;$directory/resources&quot;))
+&nbsp;}
+&nbsp;
+&nbsp;internal fun SourceSet.configJavaDefaultSourceSets() {
+&nbsp;    val directory = name.calculateSourceSetDirectory()
+&nbsp;    java.setSrcDirs(listOf(&quot;$directory/java&quot;))
+&nbsp;    resources.setSrcDirs(listOf(&quot;$directory/resources&quot;))
+&nbsp;}
+&nbsp;
+&nbsp;internal fun Named.configAndroidSourceDirectory(sourceSetToType: Pair&lt;AndroidSourceFile, String&gt;) {
+&nbsp;    val (sourceSet, type) = sourceSetToType
+&nbsp;    sourceSet.srcFile(&quot;${this.calculateSourceSetDirectory()}/$type&quot;)
+&nbsp;}
+&nbsp;
+&nbsp;internal fun Named.configAndroidSourceDirectorySet(
+&nbsp;    sourceSetToType: Pair&lt;AndroidSourceDirectorySet, String&gt;
+&nbsp;) {
+&nbsp;    val (sourceSet, type) = sourceSetToType
+&nbsp;    sourceSet.setSrcDirs(listOf(&quot;${this.calculateSourceSetDirectory()}/$type&quot;))
+&nbsp;}
+&nbsp;
+&nbsp;private fun String.calculateSourceSetDirectory(): String {
+&nbsp;    val directory =
+&nbsp;        when {
+&nbsp;            this.endsWith(&quot;Main&quot;) -&gt; &quot;${this.substringBeforeLast(&quot;Main&quot;)}/main&quot;
+&nbsp;            this.endsWith(&quot;Test&quot;) -&gt; &quot;${this.substringBeforeLast(&quot;Test&quot;)}/test&quot;
+&nbsp;            else -&gt; this
+&nbsp;        }
+&nbsp;    return directory
+&nbsp;}
+&nbsp;
+&nbsp;private fun Named.calculateSourceSetDirectory(): String = this.name.calculateSourceSetDirectory()
 </code>
 </pre>
 </div>
@@ -83,7 +136,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-26 18:07</div>
+    <div style="float:right;">generated on 2022-09-29 12:56</div>
 </div>
 </body>
 </html>

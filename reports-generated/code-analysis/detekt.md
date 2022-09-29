@@ -14,7 +14,7 @@
 
 ## Complexity Report
 
-* 11,725 lines of code (loc)
+* 11,724 lines of code (loc)
 
 * 9,707 source lines of code (sloc)
 
@@ -86,19 +86,19 @@ One method should have one responsibility. Long methods tend to handle many thin
 
 [Documentation](https://detekt.dev/docs/rules/complexity#longmethod)
 
-* hubdle-gradle-plugin/build.gradle.kts:170:13
+* hubdle-gradle-plugin/build.gradle.kts:169:13
 ```
 The function buildHubdleDependencies is too long (69). The maximum length is 60.
 ```
 ```kotlin
-167         }
-168 }
-169 
-170 fun Project.buildHubdleDependencies() {
+166         }
+167 }
+168 
+169 fun Project.buildHubdleDependencies() {
 !!!             ^ error
-171     buildDir.resolve("generated/main/kotlin/hubdle_dependencies.kt").apply {
-172         parentFile.mkdirs()
-173         createNewFile()
+170     buildDir.resolve("generated/main/kotlin/hubdle_dependencies.kt").apply {
+171         parentFile.mkdirs()
+172         createNewFile()
 
 ```
 
@@ -140,19 +140,19 @@ Excessive nesting leads to hidden complexity. Prefer extracting code to make it 
 
 [Documentation](https://detekt.dev/docs/rules/complexity#nestedblockdepth)
 
-* hubdle-gradle-plugin/build.gradle.kts:170:13
+* hubdle-gradle-plugin/build.gradle.kts:169:13
 ```
 Function buildHubdleDependencies is nested too deeply.
 ```
 ```kotlin
-167         }
-168 }
-169 
-170 fun Project.buildHubdleDependencies() {
+166         }
+167 }
+168 
+169 fun Project.buildHubdleDependencies() {
 !!!             ^ error
-171     buildDir.resolve("generated/main/kotlin/hubdle_dependencies.kt").apply {
-172         parentFile.mkdirs()
-173         createNewFile()
+170     buildDir.resolve("generated/main/kotlin/hubdle_dependencies.kt").apply {
+171         parentFile.mkdirs()
+172         createNewFile()
 
 ```
 
@@ -1420,4 +1420,4 @@ Line detected, which is longer than the defined maximum line length in the code 
 
 ```
 
-generated with [detekt version 1.21.0](https://detekt.dev/) on 2022-09-26 18:00:50 UTC
+generated with [detekt version 1.21.0](https://detekt.dev/) on 2022-09-29 12:51:11 UTC

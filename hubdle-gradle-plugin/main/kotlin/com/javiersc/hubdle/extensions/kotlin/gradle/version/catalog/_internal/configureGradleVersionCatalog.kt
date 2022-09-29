@@ -14,7 +14,9 @@ internal fun configureGradleVersionCatalog(project: Project) {
         project.pluginManager.apply(PluginIds.Gradle.versionCatalog)
 
         project.configure<CatalogPluginExtension> {
-            versionCatalog { from(project.hubdleState.kotlin.gradle.versionCatalog.catalogs) }
+            versionCatalog { catalog ->
+                catalog.from(project.hubdleState.kotlin.gradle.versionCatalog.catalogs)
+            }
         }
 
         if (project.hubdleState.config.publishing.isEnabled) {

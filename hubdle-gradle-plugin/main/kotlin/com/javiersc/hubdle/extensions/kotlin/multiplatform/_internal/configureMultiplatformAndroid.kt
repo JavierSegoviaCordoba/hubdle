@@ -20,7 +20,9 @@ internal fun configureMultiplatformAndroid(project: Project) {
             defaultConfig.minSdk = androidState.minSdk
             namespace = project.calculateAndroidNamespace(androidState.namespace)
 
-            sourceSets.all { manifest.srcFile("android/$name/AndroidManifest.xml") }
+            sourceSets.all { set ->
+                set.manifest.srcFile("android/${set.name}/AndroidManifest.xml")
+            }
             project.configureAndroidBuildFeatures(this)
         }
 

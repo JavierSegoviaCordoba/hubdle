@@ -9,12 +9,12 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 internal fun Project.configJvmTarget() {
     val target = hubdleState.kotlin.jvmVersion
-    tasks.withType<JavaCompile>().configureEach {
-        targetCompatibility = "${JavaVersion.toVersion(target)}"
-        sourceCompatibility = "${JavaVersion.toVersion(target)}"
+    tasks.withType<JavaCompile>().configureEach { task ->
+        task.targetCompatibility = "${JavaVersion.toVersion(target)}"
+        task.sourceCompatibility = "${JavaVersion.toVersion(target)}"
     }
 
-    tasks.withType<KotlinCompile>().configureEach {
-        kotlinOptions.jvmTarget = "${JavaVersion.toVersion(target)}"
+    tasks.withType<KotlinCompile>().configureEach { task ->
+        task.kotlinOptions.jvmTarget = "${JavaVersion.toVersion(target)}"
     }
 }

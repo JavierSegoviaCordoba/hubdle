@@ -40,13 +40,13 @@ constructor(
             val installAllTestsPreCommitTask =
                 project.tasks.register<InstallAllTestsPreCommitTask>(name)
 
-            installAllTestsPreCommitTask.configure {
-                finalizedBy(WriteFilePreCommitTask.getTask(project))
+            installAllTestsPreCommitTask.configure { task ->
+                task.finalizedBy(WriteFilePreCommitTask.getTask(project))
             }
 
             project.tasks
                 .namedLazily<InstallPreCommitTask>(InstallPreCommitTask.name)
-                .configureEach { dependsOn(installAllTestsPreCommitTask) }
+                .configureEach { task -> task.dependsOn(installAllTestsPreCommitTask) }
         }
     }
 }

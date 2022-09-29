@@ -23,17 +23,17 @@ internal fun configureFormat(project: Project) {
         val checkTask = project.tasks.namedLazily<Task>("check")
 
         val checkFormat = project.tasks.maybeRegisterLazily<Task>("checkFormat")
-        checkFormat.configureEach {
-            group = "verification"
-            dependsOn("spotlessCheck")
+        checkFormat.configureEach { task ->
+            task.group = "verification"
+            task.dependsOn("spotlessCheck")
         }
 
-        checkTask.configureEach { dependsOn(checkFormat) }
+        checkTask.configureEach { task -> task.dependsOn(checkFormat) }
 
         val applyFormat = project.tasks.maybeRegisterLazily<Task>("applyFormat")
-        applyFormat.configureEach {
-            group = "verification"
-            dependsOn("spotlessApply")
+        applyFormat.configureEach { task ->
+            task.group = "verification"
+            task.dependsOn("spotlessApply")
         }
 
         format.excludes += project.excludedSpecialDirs
@@ -41,31 +41,33 @@ internal fun configureFormat(project: Project) {
         if (project.isRootProject) {
             project.configure<SpotlessExtension> { predeclareDepsFromBuildscript() }
 
-            project.configure<SpotlessExtensionPredeclare> { kotlin { ktfmt(format.ktfmtVersion) } }
+            project.configure<SpotlessExtensionPredeclare> {
+                kotlin { kotlin -> kotlin.ktfmt(format.ktfmtVersion) }
+            }
         }
 
         if (project.hubdleState.kotlin.isEnabled) {
             val checkKotlinFormat = project.tasks.maybeRegisterLazily<Task>("checkKotlinFormat")
-            checkKotlinFormat.configureEach {
-                group = "verification"
-                dependsOn("spotlessKotlinCheck")
+            checkKotlinFormat.configureEach { task ->
+                task.group = "verification"
+                task.dependsOn("spotlessKotlinCheck")
             }
 
-            checkTask.configureEach { dependsOn(checkKotlinFormat) }
+            checkTask.configureEach { task -> task.dependsOn(checkKotlinFormat) }
 
-            project.tasks.maybeRegisterLazily<Task>("applyKotlinFormat").configureEach {
-                group = "verification"
-                dependsOn("spotlessKotlinApply")
+            project.tasks.maybeRegisterLazily<Task>("applyKotlinFormat").configureEach { task ->
+                task.group = "verification"
+                task.dependsOn("spotlessKotlinApply")
             }
 
             format.includes += project.includedKotlinSourceSetDirsKotlinFiles
             format.excludes += project.excludedResourceSourceSetDirsKotlinFiles
 
             project.configure<SpotlessExtension> {
-                kotlin {
-                    target(format.includes.distinct())
-                    targetExclude(format.excludes.distinct())
-                    ktfmt(format.ktfmtVersion).kotlinlangStyle()
+                kotlin { kotlin ->
+                    kotlin.target(format.includes.distinct())
+                    kotlin.targetExclude(format.excludes.distinct())
+                    kotlin.ktfmt(format.ktfmtVersion).kotlinlangStyle()
                 }
             }
         }

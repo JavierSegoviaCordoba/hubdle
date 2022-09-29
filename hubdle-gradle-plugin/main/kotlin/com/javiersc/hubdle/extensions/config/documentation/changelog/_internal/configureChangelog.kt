@@ -28,25 +28,25 @@ internal fun configureChangelog(project: Project) {
             groups.set(listOf("Added", "Changed", "Deprecated", "Removed", "Fixed", "Updated"))
         }
 
-        project.tasks.namedLazily<PatchChangelogTask>("patchChangelog").configureEach {
-            finalizedBy(ApplyFormatChangelogTask.name)
+        project.tasks.namedLazily<PatchChangelogTask>("patchChangelog").configureEach { task ->
+            task.finalizedBy(ApplyFormatChangelogTask.name)
         }
 
         project.tasks.register<ApplyFormatChangelogTask>(ApplyFormatChangelogTask.name)
 
         project.tasks.register<MergeChangelogTask>(MergeChangelogTask.name)
 
-        project.tasks.register<AddChangelogItemTask>(AddChangelogItemTask.name).configure {
-            finalizedBy(ApplyFormatChangelogTask.name)
+        project.tasks.register<AddChangelogItemTask>(AddChangelogItemTask.name).configure { task ->
+            task.finalizedBy(ApplyFormatChangelogTask.name)
         }
 
         val generateChangelogHtmlTask =
             project.tasks.register<GenerateChangelogHtmlTask>(GenerateChangelogHtmlTask.name)
 
-        generateChangelogHtmlTask.configure {
+        generateChangelogHtmlTask.configure { task ->
             val htmlText =
                 project.the<ChangelogPluginExtension>().getOrNull("${project.version}")?.toHTML()
-            html.set(htmlText ?: "Changelog not found")
+            task.html.set(htmlText ?: "Changelog not found")
         }
 
         createGeneratedChangelogHtmlConfiguration(project, generateChangelogHtmlTask)
@@ -61,16 +61,16 @@ private fun createGeneratedChangelogHtmlConfiguration(
     project: Project,
     generateChangelogHtmlTask: TaskProvider<GenerateChangelogHtmlTask>,
 ) {
-    project.configurations.create("generatedChangelogHtml") {
-        isCanBeConsumed = true
-        isCanBeResolved = false
-        attributes {
-            attribute(
+    project.configurations.create("generatedChangelogHtml") { configuration ->
+        configuration.isCanBeConsumed = true
+        configuration.isCanBeResolved = false
+        configuration.attributes { attributes ->
+            attributes.attribute(
                 LIBRARY_ELEMENTS_ATTRIBUTE,
                 project.objects.named(GENERATED_CHANGELOG_HTML_ATTRIBUTE)
             )
         }
-        outgoing { artifact(generateChangelogHtmlTask) }
+        configuration.outgoing { publications -> publications.artifact(generateChangelogHtmlTask) }
     }
 }
 

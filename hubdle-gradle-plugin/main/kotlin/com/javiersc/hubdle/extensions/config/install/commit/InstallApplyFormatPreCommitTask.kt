@@ -40,13 +40,13 @@ constructor(
             val applyFormatPreCommitTask =
                 project.tasks.register<InstallApplyFormatPreCommitTask>(name)
 
-            applyFormatPreCommitTask.configure {
-                finalizedBy(WriteFilePreCommitTask.getTask(project))
+            applyFormatPreCommitTask.configure { task ->
+                task.finalizedBy(WriteFilePreCommitTask.getTask(project))
             }
 
             project.tasks
                 .namedLazily<InstallPreCommitTask>(InstallPreCommitTask.name)
-                .configureEach { dependsOn(applyFormatPreCommitTask) }
+                .configureEach { task -> task.dependsOn(applyFormatPreCommitTask) }
         }
     }
 }

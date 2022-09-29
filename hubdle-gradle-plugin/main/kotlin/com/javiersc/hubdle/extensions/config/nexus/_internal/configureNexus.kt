@@ -18,27 +18,31 @@ internal fun configureNexus(project: Project) {
                 "${project.rootProject.group} - ${project.rootProject.version}"
             )
 
-            repositories {
-                sonatype {
+            repositories { container ->
+                container.sonatype { nexusRepository ->
                     val nexusUrl = project.getPropertyOrNull(Nexus.nexusUrl)
                     val snapshotRepositoryUrl =
                         project.getPropertyOrNull(Nexus.nexusSnapshotRepositoryUrl)
                     if (nexusUrl != null && snapshotRepositoryUrl != null) {
-                        this.nexusUrl.set(project.uri(nexusUrl))
-                        this.snapshotRepositoryUrl.set(project.uri(snapshotRepositoryUrl))
+                        nexusRepository.nexusUrl.set(project.uri(nexusUrl))
+                        nexusRepository.snapshotRepositoryUrl.set(
+                            project.uri(snapshotRepositoryUrl)
+                        )
                     }
-                    username.set(project.getPropertyOrNull(Nexus.nexusUser))
-                    password.set(project.getPropertyOrNull(Nexus.nexusToken))
-                    stagingProfileId.set(project.getPropertyOrNull(Nexus.nexusStagingProfileId))
+                    nexusRepository.username.set(project.getPropertyOrNull(Nexus.nexusUser))
+                    nexusRepository.password.set(project.getPropertyOrNull(Nexus.nexusToken))
+                    nexusRepository.stagingProfileId.set(
+                        project.getPropertyOrNull(Nexus.nexusStagingProfileId)
+                    )
                 }
             }
 
             connectTimeout.set(Duration.ofMinutes(DEFAULT_CONNECT_TIMEOUT))
             clientTimeout.set(Duration.ofMinutes(DEFAULT_CLIENT_TIMEOUT))
 
-            transitionCheckOptions {
-                maxRetries.set(DEFAULT_MAX_RETRIES)
-                delayBetween.set(Duration.ofSeconds(DEFAULT_DELAY_BETWEEN))
+            transitionCheckOptions { options ->
+                options.maxRetries.set(DEFAULT_MAX_RETRIES)
+                options.delayBetween.set(Duration.ofSeconds(DEFAULT_DELAY_BETWEEN))
             }
         }
     }

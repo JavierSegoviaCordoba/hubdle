@@ -21,19 +21,20 @@ internal fun configureReadmeBadges(project: Project) {
             project.getPropertyOrNull(HubdleProperty.Analysis.projectKey)
                 ?: "${project.group}:${project.getPropertyOrNull(HubdleProperty.Project.rootProjectDirName) ?: project.rootDir.name}"
 
-        project.tasks.register<WriteReadmeBadgesTask>(WriteReadmeBadgesTask.name).configure {
-            this.projectGroup.set(project.group.toString())
-            this.projectName.set(projectName)
-            this.repoUrl.set(project.getProperty(HubdleProperty.POM.scmUrl))
-            this.kotlinVersion.set(project.getKotlinPluginVersion())
-            this.kotlinBadge.set(readmeState.badges.kotlin)
-            this.mavenCentralBadge.set(readmeState.badges.mavenCentral)
-            this.snapshotsBadge.set(readmeState.badges.snapshots)
-            this.buildBadge.set(readmeState.badges.build)
-            this.coverageBadge.set(readmeState.badges.coverage)
-            this.qualityBadge.set(readmeState.badges.quality)
-            this.techDebtBadge.set(readmeState.badges.techDebt)
-            this.projectKey.set(projectKey)
+        project.tasks.register<WriteReadmeBadgesTask>(WriteReadmeBadgesTask.name).configure { task
+            ->
+            task.projectGroup.set(project.group.toString())
+            task.projectName.set(projectName)
+            task.repoUrl.set(project.getProperty(HubdleProperty.POM.scmUrl))
+            task.kotlinVersion.set(project.getKotlinPluginVersion())
+            task.kotlinBadge.set(readmeState.badges.kotlin)
+            task.mavenCentralBadge.set(readmeState.badges.mavenCentral)
+            task.snapshotsBadge.set(readmeState.badges.snapshots)
+            task.buildBadge.set(readmeState.badges.build)
+            task.coverageBadge.set(readmeState.badges.coverage)
+            task.qualityBadge.set(readmeState.badges.quality)
+            task.techDebtBadge.set(readmeState.badges.techDebt)
+            task.projectKey.set(projectKey)
         }
     }
 }

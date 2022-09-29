@@ -29,12 +29,12 @@ internal fun configureSite(project: Project) {
         project.pluginManager.apply(PluginIds.Kotlin.dokka)
         project.pluginManager.apply(PluginIds.Documentation.mkdocs)
 
-        project.tasks.withType<DokkaMultiModuleTask>().configureEach {
+        project.tasks.withType<DokkaMultiModuleTask>().configureEach { task ->
             val excludedProjects =
                 project.hubdleState.config.documentation.site.excludes.map(
                     ProjectDependency::getDependencyProject
                 )
-            removeChildTasks(excludedProjects)
+            task.removeChildTasks(excludedProjects)
         }
 
         project.configure<MkdocsExtension> {
@@ -44,13 +44,14 @@ internal fun configureSite(project: Project) {
             publish.docPath = "_site"
         }
 
-        project.allprojects {
-            afterEvaluate {
-                if (hasKotlinGradlePlugin) {
-                    pluginManager.apply(PluginIds.Kotlin.dokka)
-                    tasks.withType<DokkaTaskPartial> {
-                        dokkaSourceSets.configureEach {
+        project.allprojects { allproject ->
+            allproject.afterEvaluate { allprojectAfterEvaluate ->
+                if (allprojectAfterEvaluate.hasKotlinGradlePlugin) {
+                    allprojectAfterEvaluate.pluginManager.apply(PluginIds.Kotlin.dokka)
+                    allprojectAfterEvaluate.tasks.withType<DokkaTaskPartial> {
+                        dokkaSourceSets.configureEach { set ->
                             val includes: List<String> = buildList {
+                                val projectDir = allprojectAfterEvaluate.projectDir
                                 if (projectDir.resolve("MODULE.md").exists()) {
                                     add("MODULE.md")
                                 }
@@ -59,7 +60,7 @@ internal fun configureSite(project: Project) {
                                 }
                             }
 
-                            if (includes.isNotEmpty()) this.includes.from(includes)
+                            if (includes.isNotEmpty()) set.includes.from(includes)
                         }
                     }
                 }

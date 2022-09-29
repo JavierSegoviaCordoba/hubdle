@@ -11,10 +11,10 @@ import org.jetbrains.kotlin.gradle.plugin.LanguageSettingsBuilder
 internal fun configureConfigLanguageSettings(project: Project) {
     if (project.hasKotlinGradlePlugin) {
         val languageSettingsState = project.hubdleState.config.languageSettings
-        project.the<KotlinProjectExtension>().sourceSets.all {
-            languageSettings { configureOptIn(languageSettingsState) }
+        project.the<KotlinProjectExtension>().sourceSets.all { set ->
+            set.languageSettings { configureOptIn(languageSettingsState) }
 
-            languageSettingsState.rawConfig.languageSettings?.execute(languageSettings)
+            languageSettingsState.rawConfig.languageSettings?.execute(set.languageSettings)
         }
     }
 }

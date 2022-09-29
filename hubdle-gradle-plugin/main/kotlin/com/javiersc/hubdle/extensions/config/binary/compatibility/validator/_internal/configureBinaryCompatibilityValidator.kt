@@ -16,17 +16,17 @@ internal fun configureBinaryCompatibilityValidator(project: Project) {
             "`binaryCompatibilityValidator` must be applied only on root project"
         }
         project.pluginManager.apply(PluginIds.Kotlin.binaryCompatibilityValidator)
-        project.allprojects {
-            val apiCheckTask = tasks.namedLazily<Task>("apiCheck")
-            val checkApiTask = tasks.maybeRegisterLazily<Task>("checkApi")
-            checkApiTask.configureEach {
-                group = "verification"
-                dependsOn(apiCheckTask)
+        project.allprojects { allproject ->
+            val apiCheckTask = allproject.tasks.namedLazily<Task>("apiCheck")
+            val checkApiTask = allproject.tasks.maybeRegisterLazily<Task>("checkApi")
+            checkApiTask.configureEach { task ->
+                task.group = "verification"
+                task.dependsOn(apiCheckTask)
             }
 
-            val apiDumpTask = tasks.namedLazily<Task>("apiDump")
-            val dumpApiTask = tasks.maybeRegisterLazily<Task>("dumpApi")
-            dumpApiTask.configureEach { dependsOn(apiDumpTask) }
+            val apiDumpTask = allproject.tasks.namedLazily<Task>("apiDump")
+            val dumpApiTask = allproject.tasks.maybeRegisterLazily<Task>("dumpApi")
+            dumpApiTask.configureEach { task -> task.dependsOn(apiDumpTask) }
         }
     }
 }

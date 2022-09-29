@@ -1,11 +1,3 @@
-buildscript {
-    dependencies {
-        classpath(libs.android.toolsBuild.gradle)
-        classpath(libs.jetbrains.compose.composeGradlePlugin)
-        classpath(libs.jetbrains.kotlin.kotlinGradlePlugin)
-    }
-}
-
 plugins {
     alias(libs.plugins.javiersc.hubdle)
 }

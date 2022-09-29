@@ -12,9 +12,9 @@ internal fun configureCoverage(project: Project) {
         check(project.isRootProject) {
             "Hubdle `coverage()` must be only configured in the root project"
         }
-        project.allprojects {
-            pluginManager.apply(PluginIds.Kotlin.kover)
-            the<KoverMergedConfig>().enable()
+        project.allprojects { allproject ->
+            allproject.pluginManager.apply(PluginIds.Kotlin.kover)
+            allproject.the<KoverMergedConfig>().enable()
         }
     }
 }

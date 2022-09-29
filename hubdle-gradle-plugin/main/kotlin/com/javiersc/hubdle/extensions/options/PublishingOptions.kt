@@ -29,7 +29,9 @@ import org.gradle.plugins.signing.SigningExtension
 
 internal fun Project.configureMavenPublication(name: String) {
     configure<PublishingExtension> {
-        publications { create<MavenPublication>(name) { from(components[name]) } }
+        publications { container ->
+            container.create<MavenPublication>(name) { from(components[name]) }
+        }
     }
 }
 
@@ -54,28 +56,28 @@ internal fun Project.configurePublishingExtension() {
     configure<PublishingExtension> {
         configureRepositories(this)
 
-        publications {
-            withType<MavenPublication> {
+        publications { container ->
+            container.withType<MavenPublication> {
                 pom.name.set(getProperty(POM.name))
                 pom.description.set(getProperty(POM.description))
                 pom.url.set(getProperty(POM.url))
-                pom.licenses {
-                    license {
-                        name.set(getProperty(POM.licenseName))
-                        url.set(getProperty(POM.licenseUrl))
+                pom.licenses { licenses ->
+                    licenses.license { license ->
+                        license.name.set(getProperty(POM.licenseName))
+                        license.url.set(getProperty(POM.licenseUrl))
                     }
                 }
-                pom.developers {
-                    developer {
-                        id.set(getProperty(POM.developerId))
-                        name.set(getProperty(POM.developerName))
-                        email.set(getProperty(POM.developerEmail))
+                pom.developers { developers ->
+                    developers.developer { developer ->
+                        developer.id.set(getProperty(POM.developerId))
+                        developer.name.set(getProperty(POM.developerName))
+                        developer.email.set(getProperty(POM.developerEmail))
                     }
                 }
-                pom.scm {
-                    url.set(getProperty(POM.scmUrl))
-                    connection.set(getProperty(POM.scmConnection))
-                    developerConnection.set(getProperty(POM.scmDeveloperConnection))
+                pom.scm { scm ->
+                    scm.url.set(getProperty(POM.scmUrl))
+                    scm.connection.set(getProperty(POM.scmConnection))
+                    scm.developerConnection.set(getProperty(POM.scmDeveloperConnection))
                 }
             }
         }
@@ -93,28 +95,28 @@ private fun Project.configureRepositories(publishingExtension: PublishingExtensi
 
     if (mavenLocalTestRepository != null) {
         val childTask = tasks.namedLazily<Task>("publishAllPublicationsToMavenLocalTestRepository")
-        tasks.maybeRegisterLazily<Task>("publishToMavenLocalTest").configureEach {
-            this@configureEach.group = "publishing"
-            dependsOn(childTask)
+        tasks.maybeRegisterLazily<Task>("publishToMavenLocalTest").configureEach { task ->
+            task.group = "publishing"
+            task.dependsOn(childTask)
         }
     }
 
     if (mavenLocalBuildTestRepository != null) {
         val childTask =
             tasks.namedLazily<Task>("publishAllPublicationsToMavenLocalBuildTestRepository")
-        tasks.maybeRegisterLazily<Task>("publishToMavenLocalBuildTest").configureEach {
-            this@configureEach.group = "publishing"
-            dependsOn(childTask)
+        tasks.maybeRegisterLazily<Task>("publishToMavenLocalBuildTest").configureEach { task ->
+            task.group = "publishing"
+            task.dependsOn(childTask)
         }
     }
 }
 
 internal fun Project.configureEmptyJavadocs() {
     val emptyJavadocsJarTask: TaskCollection<Jar> = tasks.maybeRegisterLazily("emptyJavadocsJar")
-    emptyJavadocsJarTask.configureEach {
-        group = "build"
-        description = "Assembles an empty Javadoc jar file for publishing"
-        archiveClassifier.set("javadoc")
+    emptyJavadocsJarTask.configureEach { task ->
+        task.group = "build"
+        task.description = "Assembles an empty Javadoc jar file for publishing"
+        task.archiveClassifier.set("javadoc")
     }
     val emptyJavadocsJar: Jar = emptyJavadocsJarTask.first()
     the<PublishingExtension>().publications.withType<MavenPublication> {
@@ -166,10 +168,11 @@ private fun SigningExtension.signInMemory() {
 
 private fun Project.configurePublishOnlySemver() {
     val checkIsSemver: TaskCollection<Task> =
-        project.tasks.maybeRegisterLazily("checkIsSemver") {
-            doLast {
+        project.tasks.maybeRegisterLazily("checkIsSemver") { task ->
+            task.doLast {
                 val publishNonSemver = getBooleanProperty(HubdleProperty.Publishing.nonSemver)
                 check(isSemver || publishNonSemver) {
+                    // TODO: inject `$version` instead of getting it from the `project`
                     """|Only semantic versions can be published (current: $version)
                        |Use `"-Ppublishing.nonSemver=true"` to force the publication 
                     """
@@ -179,13 +182,17 @@ private fun Project.configurePublishOnlySemver() {
         }
 
     tasks {
-        namedLazily<Task>("initializeSonatypeStagingRepository").configureEach {
-            dependsOn(checkIsSemver)
+        namedLazily<Task>("initializeSonatypeStagingRepository").configureEach { task ->
+            task.dependsOn(checkIsSemver)
         }
-        namedLazily<Task>("publish").configureEach { dependsOn(checkIsSemver) }
-        namedLazily<Task>("publishToSonatype").configureEach { dependsOn(checkIsSemver) }
-        namedLazily<Task>("publishToMavenLocal").configureEach { dependsOn(checkIsSemver) }
-        namedLazily<Task>("publishPlugins").configureEach { dependsOn(checkIsSemver) }
+        namedLazily<Task>("publish").configureEach { task -> task.dependsOn(checkIsSemver) }
+        namedLazily<Task>("publishToSonatype").configureEach { task ->
+            task.dependsOn(checkIsSemver)
+        }
+        namedLazily<Task>("publishToMavenLocal").configureEach { task ->
+            task.dependsOn(checkIsSemver)
+        }
+        namedLazily<Task>("publishPlugins").configureEach { task -> task.dependsOn(checkIsSemver) }
     }
 }
 

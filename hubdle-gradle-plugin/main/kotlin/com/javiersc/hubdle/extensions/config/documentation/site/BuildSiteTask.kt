@@ -54,16 +54,15 @@ constructor(
             val dokkaHtmlMultiModuleTask =
                 project.tasks.namedLazily<DokkaMultiModuleTask>("dokkaHtmlMultiModule")
             val mkdocsBuildTask = project.tasks.namedLazily<MkdocsBuildTask>("mkdocsBuild")
-            mkdocsBuildTask.configureEach { dependsOn(preBuildDocsTask) }
+            mkdocsBuildTask.configureEach { task -> task.dependsOn(preBuildDocsTask) }
 
-            dokkaHtmlMultiModuleTask.configureEach { dependsOn(mkdocsBuildTask) }
+            dokkaHtmlMultiModuleTask.configureEach { task -> task.dependsOn(mkdocsBuildTask) }
 
             val buildSiteTask = project.tasks.maybeRegisterLazily<BuildSiteTask>(name)
-            buildSiteTask.configureEach {
-                notCompatibleWithConfigurationCache("mkDocsBuild(grgit) task is incompatible")
-
-                dependsOn(mkdocsBuildTask)
-                dependsOn(dokkaHtmlMultiModuleTask)
+            buildSiteTask.configureEach { task ->
+                task.notCompatibleWithConfigurationCache("mkDocsBuild(grgit) task is incompatible")
+                task.dependsOn(mkdocsBuildTask)
+                task.dependsOn(dokkaHtmlMultiModuleTask)
             }
             return buildSiteTask
         }
@@ -72,18 +71,18 @@ constructor(
     private fun moveApiDocsInToDocs() {
         with(fileSystemOperations) {
             if (projectVersion.endsWith("-SNAPSHOT")) {
-                copy {
-                    from(dokkaOutputDir.path)
-                    into(File("$apiDir/snapshot").path)
+                copy { copy ->
+                    copy.from(dokkaOutputDir.path)
+                    copy.into(File("$apiDir/snapshot").path)
                 }
             } else {
                 File("$apiDir/index.html").apply {
                     createNewFile()
                     writeText(apiIndexHtmlContent)
                 }
-                copy {
-                    from(dokkaOutputDir.path)
-                    into(File("$apiDir/versions/$projectVersion").path)
+                copy { copy ->
+                    copy.from(dokkaOutputDir.path)
+                    copy.into(File("$apiDir/versions/$projectVersion").path)
                 }
             }
         }

@@ -45,8 +45,8 @@ constructor(
         public const val name: String = "installPreCommit"
 
         internal fun register(project: Project) =
-            project.tasks.maybeRegisterLazily<InstallPreCommitTask>(name).configureEach {
-                preCommitName.set("")
+            project.tasks.maybeRegisterLazily<InstallPreCommitTask>(name).configureEach { task ->
+                task.preCommitName.set("")
             }
     }
 }

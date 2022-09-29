@@ -217,16 +217,16 @@ constructor(
         dotDocsDirectory: File,
         buildDotDocsDirectory: File,
     ) {
-        copy {
-            from(dotDocsDirectory)
-            into(buildDotDocsDirectory)
+        copy { copy ->
+            copy.from(dotDocsDirectory)
+            copy.into(buildDotDocsDirectory)
         }
 
         if (File("$dotDocsDirectory/docs/index.md").exists().not()) {
-            copy {
-                from("$rootDirectory/README.md")
-                into("$rootDirectory/build/.docs/docs")
-                rename { fileName -> fileName.replace(fileName, "index.md") }
+            copy { copy ->
+                copy.from("$rootDirectory/README.md")
+                copy.into("$rootDirectory/build/.docs/docs")
+                copy.rename { fileName -> fileName.replace(fileName, "index.md") }
             }
 
             File("$rootDirectory/build/.docs/docs/index.md").apply {
@@ -259,9 +259,9 @@ constructor(
     ) {
         with(fileSystemOperations) {
             if (File("$rootDirectory/CHANGELOG.md").exists()) {
-                copy {
-                    from("$rootDirectory/CHANGELOG.md")
-                    into("$rootDirectory/build/.docs/docs")
+                copy { copy ->
+                    copy.from("$rootDirectory/CHANGELOG.md")
+                    copy.into("$rootDirectory/build/.docs/docs")
                 }
 
                 File("$rootDirectory/build/.docs/docs/CHANGELOG.md").apply {
@@ -299,10 +299,10 @@ constructor(
             projectsInfo.forEach { projectInfo ->
                 val projectsNavPath = "$projectsPath/${projectInfo.filePath}"
 
-                copy {
-                    from(projectInfo.mdFile)
-                    into(projectsNavPath)
-                    rename { fileName -> fileName.replace(fileName, "${projectInfo.name}.md") }
+                copy { copy ->
+                    copy.from(projectInfo.mdFile)
+                    copy.into(projectsNavPath)
+                    copy.rename { fileName -> fileName.replace(fileName, "${projectInfo.name}.md") }
                 }
 
                 File("$projectsNavPath/${projectInfo.name}.md").apply {
@@ -406,7 +406,7 @@ constructor(
 
     private fun writeNavigation(newNavigations: List<String>) {
         mkDocsBuildFile.writeText(
-            buildList<String> {
+            buildList {
                     addAll(mkDocsBuildFile.readLines())
                     removeAt(getDocsNavigation().index)
                     removeAll(getDocsNavigation().navs)
@@ -432,7 +432,7 @@ constructor(
     }
 
     private fun List<String>.cleanNavProjects(): List<String> =
-        buildList<String> {
+        buildList {
                 val lines = this@cleanNavProjects
 
                 fun String.isReference() =

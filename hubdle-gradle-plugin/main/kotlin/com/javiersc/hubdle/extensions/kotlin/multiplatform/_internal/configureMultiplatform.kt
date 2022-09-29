@@ -77,11 +77,13 @@ internal fun configureMultiplatformCompose(project: Project) {
 }
 
 private fun KotlinMultiplatformExtension.configureMultiplatformDependencies() {
-    sourceSets.getByName("commonMain") { dependencies { configureCommonMainDependencies() } }
-    sourceSets.getByName("commonTest") { dependencies { configureCommonTestDependencies() } }
-    sourceSets.findByName("androidMain")?.apply {
-        dependencies { configureAndroidMainDependencies() }
+    sourceSets.getByName("commonMain") { set ->
+        set.dependencies { configureCommonMainDependencies() }
     }
+    sourceSets.getByName("commonTest") { set ->
+        set.dependencies { configureCommonTestDependencies() }
+    }
+    sourceSets.findByName("androidMain")?.dependencies { configureAndroidMainDependencies() }
 }
 
 internal val Project.multiplatformFeatures: HubdleState.Kotlin.Multiplatform.Features
@@ -121,8 +123,8 @@ private fun KotlinDependencyHandler.configureCommonTestDependencies() {
     implementation(catalogDep(ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE))
 
     if (multiplatformFeatures.extendedTesting) {
-        project.commonTestImplementationConfiguration?.withDependencies {
-            addLater(calculateJavierScKotlinTestDependency())
+        project.commonTestImplementationConfiguration?.withDependencies { set ->
+            set.addLater(calculateJavierScKotlinTestDependency())
         }
         implementation(catalogDep(IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE))
     }

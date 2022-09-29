@@ -17,11 +17,11 @@ public interface SourceDirectoriesOptions<out T> {
 }
 
 internal fun JavaPluginExtension.configureDefaultJavaSourceSets() {
-    sourceSets.all { configJavaDefaultSourceSets() }
+    sourceSets.all { set -> set.configJavaDefaultSourceSets() }
 }
 
 internal fun KotlinProjectExtension.configureDefaultKotlinSourceSets() {
-    sourceSets.all { configKotlinDefaultSourceSets() }
+    sourceSets.all { set -> set.configKotlinDefaultSourceSets() }
 }
 
 internal fun AndroidSourceSet.configDefaultAndroidSourceSets() {

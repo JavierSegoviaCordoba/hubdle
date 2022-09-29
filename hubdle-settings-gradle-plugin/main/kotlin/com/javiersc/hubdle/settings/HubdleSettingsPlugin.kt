@@ -31,10 +31,10 @@ constructor(
 
         target.configureRepositories()
 
-        target.gradle.settingsEvaluated {
-            configureGradleEnterprise()
-            configureAutoInclude()
-            configureAutoIncludeVersionCatalogs(objects)
+        target.gradle.settingsEvaluated { settings ->
+            settings.configureGradleEnterprise()
+            settings.configureAutoInclude()
+            settings.configureAutoIncludeVersionCatalogs(objects)
         }
     }
 }
@@ -45,12 +45,12 @@ internal val Settings.hubdleSettings: HubdleSettingsExtension
     get() = checkNotNull(extensions.findByType())
 
 private fun Settings.configureRepositories() {
-    dependencyResolutionManagement {
-        repositories {
-            mavenCentral()
-            google()
-            gradlePluginPortal()
-            maven(url = "https://maven.pkg.jetbrains.space/public/p/compose/dev")
+    dependencyResolutionManagement { management ->
+        management.repositories { repository ->
+            repository.mavenCentral()
+            repository.google()
+            repository.gradlePluginPortal()
+            repository.maven(url = "https://maven.pkg.jetbrains.space/public/p/compose/dev")
         }
     }
 }
@@ -76,19 +76,21 @@ private fun Settings.configureGradleEnterprise() {
     pluginManager.apply("com.gradle.enterprise")
 
     configure<GradleEnterpriseExtension> {
-        buildScan {
-            termsOfServiceUrl = "https://gradle.com/terms-of-service"
-            termsOfServiceAgree = "yes"
+        buildScan { scan ->
+            scan.termsOfServiceUrl = "https://gradle.com/terms-of-service"
+            scan.termsOfServiceAgree = "yes"
         }
     }
 }
 
 private fun Settings.configureAutoIncludeVersionCatalogs(objects: ObjectFactory) {
-    dependencyResolutionManagement {
-        versionCatalogs {
+    dependencyResolutionManagement { management ->
+        management.versionCatalogs { container ->
             val catalogs: Map<String, File> = tomlFileInGradleDirs.getCatalogs()
             for ((name, file) in catalogs) {
-                create(name) { from(objects.fileCollection().from(file.absolutePath)) }
+                container.create(name) { catalog ->
+                    catalog.from(objects.fileCollection().from(file.absolutePath))
+                }
             }
         }
     }

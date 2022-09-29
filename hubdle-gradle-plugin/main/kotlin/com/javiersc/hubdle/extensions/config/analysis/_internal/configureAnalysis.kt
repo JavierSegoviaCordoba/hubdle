@@ -27,8 +27,10 @@ internal fun configureAnalysis(project: Project) {
             """Hubdle `analysis()` must be only configured in the root project"""
         }
         val checkAnalysisTask = project.tasks.maybeRegisterLazily<Task>("checkAnalysis")
-        checkAnalysisTask.configureEach { group = "verification" }
-        project.tasks.namedLazily<Task>("check").configureEach { dependsOn(checkAnalysisTask) }
+        checkAnalysisTask.configureEach { task -> task.group = "verification" }
+        project.tasks.namedLazily<Task>("check").configureEach { task ->
+            task.dependsOn(checkAnalysisTask)
+        }
 
         configureDetekt(project)
         configureSonarqube(project)
@@ -50,19 +52,21 @@ private fun configureDetekt(project: Project) {
             basePath = project.rootProject.projectDir.path
         }
 
-        project.tasks.namedLazily<Task>("checkAnalysis").configureEach { dependsOn("detekt") }
+        project.tasks.namedLazily<Task>("checkAnalysis").configureEach { task ->
+            task.dependsOn("detekt")
+        }
 
-        project.tasks.withType<Detekt>().configureEach {
-            setSource(project.files(project.rootDir))
-            include(analysis.includes.distinct())
-            exclude(analysis.excludes.distinct())
+        project.tasks.withType<Detekt>().configureEach { detekt ->
+            detekt.setSource(project.files(project.rootDir))
+            detekt.include(analysis.includes.distinct())
+            detekt.exclude(analysis.excludes.distinct())
 
-            reports {
-                md.required.set(analysis.reports.md)
-                html.required.set(analysis.reports.html)
-                sarif.required.set(analysis.reports.sarif)
-                txt.required.set(analysis.reports.txt)
-                xml.required.set(analysis.reports.xml)
+            detekt.reports { reports ->
+                reports.md.required.set(analysis.reports.md)
+                reports.html.required.set(analysis.reports.html)
+                reports.sarif.required.set(analysis.reports.sarif)
+                reports.txt.required.set(analysis.reports.txt)
+                reports.xml.required.set(analysis.reports.xml)
             }
         }
     }
@@ -76,46 +80,49 @@ private fun configureSonarqube(project: Project) {
     // project.tasks.namedLazily<Task>("checkAnalysis").configureEach { it.dependsOn("sonarqube") }
 
     project.configure<SonarQubeExtension> {
-        properties {
-            property(
+        properties { properties ->
+            properties.property(
                 "sonar.projectName",
                 project.getPropertyOrNull(Analysis.projectName)
                     ?: project.getPropertyOrNull(HubdleProperty.Project.rootProjectDirName)
                         ?: project.name
             )
-            property(
+            properties.property(
                 "sonar.projectKey",
                 project.getPropertyOrNull(Analysis.projectKey)
                     ?: project.getPropertyOrNull(HubdleProperty.Project.rootProjectDirName)
                         ?: "${project.group}:${project.name}"
             )
-            property(
+            properties.property(
                 "sonar.login",
                 project.getProperty(Analysis.login),
             )
-            property(
+            properties.property(
                 "sonar.host.url",
                 project.getPropertyOrNull(Analysis.hostUrl) ?: "https://sonarcloud.io"
             )
 
-            property("sonar.organization", project.getPropertyOrNull(Analysis.organization) ?: "")
-            property(
+            properties.property(
+                "sonar.organization",
+                project.getPropertyOrNull(Analysis.organization) ?: ""
+            )
+            properties.property(
                 "sonar.kotlin.detekt.reportPaths",
                 "${project.buildDir}/reports/detekt/detekt.xml"
             )
-            property(
+            properties.property(
                 "sonar.coverage.jacoco.xmlReportPaths",
                 "${project.buildDir}/reports/kover/report.xml"
             )
         }
     }
 
-    project.allprojects {
-        afterEvaluate {
-            extensions.findByType<SonarQubeExtension>()?.apply {
-                properties {
-                    property("sonar.sources", kotlinSrcDirs())
-                    property("sonar.tests", kotlinTestsSrcDirs())
+    project.allprojects { allproject ->
+        allproject.afterEvaluate {
+            allproject.extensions.findByType<SonarQubeExtension>()?.apply {
+                properties { properties ->
+                    properties.property("sonar.sources", allproject.kotlinSrcDirs())
+                    properties.property("sonar.tests", allproject.kotlinTestsSrcDirs())
                 }
             }
         }

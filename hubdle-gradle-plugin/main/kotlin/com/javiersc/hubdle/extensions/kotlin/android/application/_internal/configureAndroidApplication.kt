@@ -47,7 +47,7 @@ internal fun configureAndroidApplication(project: Project) {
             defaultConfig.minSdk = androidState.minSdk
             // TODO: namespace = project.calculateAndroidNamespace(androidState.namespace)
 
-            sourceSets.all { configDefaultAndroidSourceSets() }
+            sourceSets.all { set -> set.configDefaultAndroidSourceSets() }
             project.configureAndroidBuildFeatures(this)
         }
     }
@@ -72,8 +72,8 @@ internal fun configureKotlinAndroidApplicationRawConfig(project: Project) {
 }
 
 private fun KotlinProjectExtension.configureAndroidDependencies() {
-    sourceSets.named("main") { dependencies { configureMainDependencies() } }
-    sourceSets.named("test") { dependencies { configureTestDependencies() } }
+    sourceSets.named("main") { set -> set.dependencies { configureMainDependencies() } }
+    sourceSets.named("test") { set -> set.dependencies { configureTestDependencies() } }
 }
 
 private fun KotlinDependencyHandler.configureMainDependencies() {

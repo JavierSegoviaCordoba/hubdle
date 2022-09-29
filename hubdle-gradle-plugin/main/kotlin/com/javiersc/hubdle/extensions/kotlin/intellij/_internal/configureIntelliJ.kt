@@ -87,12 +87,12 @@ private fun configureIntellijPluginExtension(project: Project) {
 }
 
 private fun configurePatchPluginXml(project: Project) {
-    project.tasks.withType<PatchPluginXmlTask>().configureEach {
-        dependsOn(project.tasks.named("copyGeneratedChangelogHtml"))
+    project.tasks.withType<PatchPluginXmlTask>().configureEach { task ->
+        task.dependsOn(project.tasks.named("copyGeneratedChangelogHtml"))
 
-        version.set("${project.version}")
-        sinceBuild.set(project.getProperty(IntelliJ.sinceBuild))
-        untilBuild.set(project.getProperty(IntelliJ.untilBuild))
+        task.version.set("${project.version}")
+        task.sinceBuild.set(project.getProperty(IntelliJ.sinceBuild))
+        task.untilBuild.set(project.getProperty(IntelliJ.untilBuild))
 
         val changelogFile = project.layout.buildDirectory.file(GENERATED_CHANGELOG_HTML_FILE_PATH)
         val notes =
@@ -101,21 +101,21 @@ private fun configurePatchPluginXml(project: Project) {
                     if (it.asFile.exists()) it.asFile.readText() else "No changelog found"
                 }
             }
-        changeNotes.set(notes)
+        task.changeNotes.set(notes)
 
-        project.hubdleState.kotlin.intellij.patchPluginXml?.execute(this)
+        project.hubdleState.kotlin.intellij.patchPluginXml?.execute(task)
     }
 }
 
 private fun configurePublishPlugin(project: Project) {
-    project.tasks.withType<PublishPluginTask>().configureEach {
-        token.set(project.getPropertyOrNull(IntelliJ.publishToken) ?: "")
-        project.hubdleState.kotlin.intellij.publishPlugin?.execute(this)
+    project.tasks.withType<PublishPluginTask>().configureEach { task ->
+        task.token.set(project.getPropertyOrNull(IntelliJ.publishToken) ?: "")
+        project.hubdleState.kotlin.intellij.publishPlugin?.execute(task)
     }
 }
 
 private fun configureSignPlugin(project: Project) {
-    project.tasks.withType<SignPluginTask>().configureEach {
+    project.tasks.withType<SignPluginTask>().configureEach { task ->
         val certificate = project.getPropertyOrNull(JetBrains.marketplaceCertificateChain) ?: ""
         val key =
             project.getPropertyOrNull(JetBrains.marketplaceKey)
@@ -125,10 +125,10 @@ private fun configureSignPlugin(project: Project) {
             project.getPropertyOrNull(JetBrains.marketplaceKeyPassphrase)
                 ?: project.getPropertyOrNull(HubdleProperty.Signing.gnupgPassphrase) ?: ""
 
-        certificateChain.set(certificate)
-        privateKey.set(key)
-        password.set(passphrase)
-        project.hubdleState.kotlin.intellij.signPlugin?.execute(this)
+        task.certificateChain.set(certificate)
+        task.privateKey.set(key)
+        task.password.set(passphrase)
+        project.hubdleState.kotlin.intellij.signPlugin?.execute(task)
     }
 }
 
@@ -137,8 +137,8 @@ private fun configureGeneratedChangelogHtmlDependency(project: Project) {
         project.configurations.creating {
             isCanBeConsumed = false
             isCanBeResolved = true
-            attributes {
-                attribute(
+            attributes { attributes ->
+                attributes.attribute(
                     LIBRARY_ELEMENTS_ATTRIBUTE,
                     project.objects.named(GENERATED_CHANGELOG_HTML_ATTRIBUTE)
                 )
@@ -158,8 +158,8 @@ internal fun configureKotlinIntellijRawConfig(project: Project) {
 }
 
 private fun KotlinJvmProjectExtension.configureJvmDependencies() {
-    sourceSets.named("main") { dependencies { configureMainDependencies() } }
-    sourceSets.named("test") { dependencies { configureTestDependencies() } }
+    sourceSets.named("main") { set -> set.dependencies { configureMainDependencies() } }
+    sourceSets.named("test") { set -> set.dependencies { configureTestDependencies() } }
 }
 
 internal val Project.intellijFeatures: HubdleState.Kotlin.IntelliJ.Features

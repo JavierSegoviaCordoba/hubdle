@@ -81,10 +81,13 @@ private fun Project.configurePluginUnderTestDependencies() {
             configurations.creating {
                 val kotlinVersion = Version.safe(project.getKotlinPluginVersion()).getOrNull()
                 if (kotlinVersion != null && kotlinVersion >= Version("1.7.0"))
-                    attributes {
-                        attribute(USAGE_ATTRIBUTE, objects.named(JAVA_RUNTIME))
-                        attribute(CATEGORY_ATTRIBUTE, objects.named(LIBRARY))
-                        attribute(GRADLE_PLUGIN_API_VERSION_ATTRIBUTE, objects.named("7.0"))
+                    attributes { attributes ->
+                        attributes.attribute(USAGE_ATTRIBUTE, objects.named(JAVA_RUNTIME))
+                        attributes.attribute(CATEGORY_ATTRIBUTE, objects.named(LIBRARY))
+                        attributes.attribute(
+                            GRADLE_PLUGIN_API_VERSION_ATTRIBUTE,
+                            objects.named("7.0")
+                        )
                     }
             }
 
@@ -94,8 +97,8 @@ private fun Project.configurePluginUnderTestDependencies() {
             }
         }
 
-        tasks.withType<PluginUnderTestMetadata>().configureEach {
-            pluginClasspath.from(testPluginClasspath)
+        tasks.withType<PluginUnderTestMetadata>().configureEach { metadata ->
+            metadata.pluginClasspath.from(testPluginClasspath)
         }
     }
 }
@@ -106,8 +109,8 @@ internal fun configureKotlinGradlePluginRawConfig(project: Project) {
 }
 
 private fun KotlinJvmProjectExtension.configureGradleDependencies() {
-    sourceSets.named("main") { dependencies { configureMainDependencies() } }
-    sourceSets.named("test") { dependencies { configureTestDependencies() } }
+    sourceSets.named("main") { set -> set.dependencies { configureMainDependencies() } }
+    sourceSets.named("test") { set -> set.dependencies { configureTestDependencies() } }
 }
 
 internal val Project.gradlePluginFeatures: HubdleState.Kotlin.Gradle.Plugin.Features

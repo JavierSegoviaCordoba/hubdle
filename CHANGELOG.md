@@ -4,6 +4,8 @@
 
 ### Added
 
+- `gradlePluginPortal` to the default repositories
+
 ### Changed
 
 ### Deprecated

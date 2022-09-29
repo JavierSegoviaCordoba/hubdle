@@ -8,8 +8,8 @@ pluginManagement {
                 .split("\"")[1]
 
     repositories {
-        gradlePluginPortal()
         mavenCentral()
+        gradlePluginPortal()
         google()
         if (hubdleVersionProp != null) mavenLocal()
     }
@@ -27,9 +27,9 @@ val hubdleVersion: String? = providers.gradleProperty("hubdleVersion").orNull
 
 dependencyResolutionManagement {
     repositories {
-        gradlePluginPortal()
         mavenCentral()
         google()
+        gradlePluginPortal()
         maven(url = "https://maven.pkg.jetbrains.space/public/p/compose/dev/")
         if (hubdleVersion != null) mavenLocal()
     }

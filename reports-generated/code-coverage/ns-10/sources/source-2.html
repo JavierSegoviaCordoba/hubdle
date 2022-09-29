@@ -67,26 +67,26 @@ Current scope:     <a href="../../index.html">all classes</a>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    75%
+    81.8%
   </span>
   <span class="absValue">
-    (24/32)
+    (18/22)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    97.7%
+    97.6%
   </span>
   <span class="absValue">
-    (43/44)
+    (41/42)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    97.3%
+    97.2%
   </span>
   <span class="absValue">
-    (322/331)
+    (311/320)
   </span>
 </td>
 </tr>
@@ -167,7 +167,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;
 &nbsp;internal fun Changelog.Companion.fromString(changelogText: String): Changelog {
 <b class="fc">&nbsp;    val lines = changelogText.lines()</b>
-<b class="pc">&nbsp;    val header = lines.first { it.startsWith(&quot;# &quot;) }</b>
+<b class="fc">&nbsp;    val header = lines.first { it.startsWith(&quot;# &quot;) }</b>
 <b class="fc">&nbsp;    val versions: Array&lt;Version&gt; = buildVersions(lines)</b>
 &nbsp;
 <b class="fc">&nbsp;    return Changelog(header, *versions)</b>
@@ -186,7 +186,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="fc">&nbsp;                                    set(key, getOrDefault(key, emptyList()) + listOf(line))</b>
 &nbsp;                                }
 &nbsp;                            }
-<b class="fc">&nbsp;                        }</b>
+&nbsp;                        }
 <b class="fc">&nbsp;                    }</b>
 <b class="fc">&nbsp;                }</b>
 <b class="fc">&nbsp;            versions.forEach { (value, items) -&gt; add(Version(value, *buildGroups(items))) }</b>
@@ -206,7 +206,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="fc">&nbsp;                                    set(key, getOrDefault(key, emptyList()) + listOf(line))</b>
 &nbsp;                                }
 &nbsp;                            }
-<b class="fc">&nbsp;                        }</b>
+&nbsp;                        }
 <b class="fc">&nbsp;                    }</b>
 <b class="fc">&nbsp;                }</b>
 <b class="fc">&nbsp;            groups.forEach { (value, items) -&gt; add(Group(value, *buildItems(items))) }</b>
@@ -217,7 +217,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="fc">&nbsp;    buildList {</b>
 <b class="fc">&nbsp;            lines</b>
 <b class="pc">&nbsp;                .filter(String::isNotBlank)</b>
-<b class="pc">&nbsp;                .filterNot { it.startsWith(&quot;#&quot;) }</b>
+<b class="fc">&nbsp;                .filterNot { it.startsWith(&quot;#&quot;) }</b>
 <b class="fc">&nbsp;                .forEach { item -&gt; add(Item(item)) }</b>
 <b class="fc">&nbsp;        }</b>
 <b class="fc">&nbsp;        .toTypedArray()</b>
@@ -244,7 +244,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-29 16:26</div>
+    <div style="float:right;">generated on 2022-09-29 20:22</div>
 </div>
 </body>
 </html>

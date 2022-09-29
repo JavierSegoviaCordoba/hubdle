@@ -51,7 +51,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/14)
+    (0/15)
   </span>
 </td>
 <td class="coverageStat">
@@ -59,7 +59,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/32)
+    (0/44)
   </span>
 </td>
 <td class="coverageStat">
@@ -67,7 +67,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/46)
+    (0/50)
   </span>
 </td>
 <td class="coverageStat">
@@ -75,45 +75,10 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/270)
+    (0/336)
   </span>
 </td>
 </tr>
-  <tr>
-    <td class="name">ConfigureMultiplatformKt$calculateJavierScKotlinTestDependency$1</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/1)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/8)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/6)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/55)
-  </span>
-</td>
-  </tr>
   <tr>
     <td class="name">ConfigureMultiplatformKt$configureCommonTestDependencies$1</td>
 <td class="coverageStat">
@@ -327,7 +292,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 </td>
   </tr>
   <tr>
-    <td class="name">ConfigureMultiplatformKt$configureMultiplatformDependencies$3$1</td>
+    <td class="name">ConfigureMultiplatformKt$configureMultiplatformDependencies$3</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -381,7 +346,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/40)
+    (0/44)
   </span>
 </td>
 <td class="coverageStat">
@@ -389,7 +354,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/58)
+    (0/56)
   </span>
 </td>
 <td class="coverageStat">
@@ -397,7 +362,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/344)
+    (0/355)
   </span>
 </td>
 </tr>
@@ -487,11 +452,13 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;}
 &nbsp;
 &nbsp;private fun KotlinMultiplatformExtension.configureMultiplatformDependencies() {
-<b class="nc">&nbsp;    sourceSets.getByName(&quot;commonMain&quot;) { dependencies { configureCommonMainDependencies() } }</b>
-<b class="nc">&nbsp;    sourceSets.getByName(&quot;commonTest&quot;) { dependencies { configureCommonTestDependencies() } }</b>
-<b class="nc">&nbsp;    sourceSets.findByName(&quot;androidMain&quot;)?.apply {</b>
-<b class="nc">&nbsp;        dependencies { configureAndroidMainDependencies() }</b>
-<b class="nc">&nbsp;    }</b>
+<b class="nc">&nbsp;    sourceSets.getByName(&quot;commonMain&quot;) { set -&gt;</b>
+<b class="nc">&nbsp;        set.dependencies { configureCommonMainDependencies() }</b>
+&nbsp;    }
+<b class="nc">&nbsp;    sourceSets.getByName(&quot;commonTest&quot;) { set -&gt;</b>
+<b class="nc">&nbsp;        set.dependencies { configureCommonTestDependencies() }</b>
+&nbsp;    }
+<b class="nc">&nbsp;    sourceSets.findByName(&quot;androidMain&quot;)?.dependencies { configureAndroidMainDependencies() }</b>
 &nbsp;}
 &nbsp;
 &nbsp;internal val Project.multiplatformFeatures: HubdleState.Kotlin.Multiplatform.Features
@@ -531,8 +498,8 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="nc">&nbsp;    implementation(catalogDep(ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE))</b>
 &nbsp;
 <b class="nc">&nbsp;    if (multiplatformFeatures.extendedTesting) {</b>
-<b class="nc">&nbsp;        project.commonTestImplementationConfiguration?.withDependencies {</b>
-<b class="nc">&nbsp;            addLater(calculateJavierScKotlinTestDependency())</b>
+<b class="nc">&nbsp;        project.commonTestImplementationConfiguration?.withDependencies { set -&gt;</b>
+<b class="nc">&nbsp;            set.addLater(calculateJavierScKotlinTestDependency())</b>
 &nbsp;        }
 <b class="nc">&nbsp;        implementation(catalogDep(IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE))</b>
 &nbsp;    }
@@ -580,7 +547,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-29 16:26</div>
+    <div style="float:right;">generated on 2022-09-29 20:22</div>
 </div>
 </body>
 </html>

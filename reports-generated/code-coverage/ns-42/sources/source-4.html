@@ -76,10 +76,10 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;
 &nbsp;        target.configureRepositories()
 &nbsp;
-&nbsp;        target.gradle.settingsEvaluated {
-&nbsp;            configureGradleEnterprise()
-&nbsp;            configureAutoInclude()
-&nbsp;            configureAutoIncludeVersionCatalogs(objects)
+&nbsp;        target.gradle.settingsEvaluated { settings -&gt;
+&nbsp;            settings.configureGradleEnterprise()
+&nbsp;            settings.configureAutoInclude()
+&nbsp;            settings.configureAutoIncludeVersionCatalogs(objects)
 &nbsp;        }
 &nbsp;    }
 &nbsp;}
@@ -90,12 +90,12 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;    get() = checkNotNull(extensions.findByType())
 &nbsp;
 &nbsp;private fun Settings.configureRepositories() {
-&nbsp;    dependencyResolutionManagement {
-&nbsp;        repositories {
-&nbsp;            mavenCentral()
-&nbsp;            google()
-&nbsp;            gradlePluginPortal()
-&nbsp;            maven(url = &quot;https://maven.pkg.jetbrains.space/public/p/compose/dev&quot;)
+&nbsp;    dependencyResolutionManagement { management -&gt;
+&nbsp;        management.repositories { repository -&gt;
+&nbsp;            repository.mavenCentral()
+&nbsp;            repository.google()
+&nbsp;            repository.gradlePluginPortal()
+&nbsp;            repository.maven(url = &quot;https://maven.pkg.jetbrains.space/public/p/compose/dev&quot;)
 &nbsp;        }
 &nbsp;    }
 &nbsp;}
@@ -121,19 +121,21 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;    pluginManager.apply(&quot;com.gradle.enterprise&quot;)
 &nbsp;
 &nbsp;    configure&lt;GradleEnterpriseExtension&gt; {
-&nbsp;        buildScan {
-&nbsp;            termsOfServiceUrl = &quot;https://gradle.com/terms-of-service&quot;
-&nbsp;            termsOfServiceAgree = &quot;yes&quot;
+&nbsp;        buildScan { scan -&gt;
+&nbsp;            scan.termsOfServiceUrl = &quot;https://gradle.com/terms-of-service&quot;
+&nbsp;            scan.termsOfServiceAgree = &quot;yes&quot;
 &nbsp;        }
 &nbsp;    }
 &nbsp;}
 &nbsp;
 &nbsp;private fun Settings.configureAutoIncludeVersionCatalogs(objects: ObjectFactory) {
-&nbsp;    dependencyResolutionManagement {
-&nbsp;        versionCatalogs {
+&nbsp;    dependencyResolutionManagement { management -&gt;
+&nbsp;        management.versionCatalogs { container -&gt;
 &nbsp;            val catalogs: Map&lt;String, File&gt; = tomlFileInGradleDirs.getCatalogs()
 &nbsp;            for ((name, file) in catalogs) {
-&nbsp;                create(name) { from(objects.fileCollection().from(file.absolutePath)) }
+&nbsp;                container.create(name) { catalog -&gt;
+&nbsp;                    catalog.from(objects.fileCollection().from(file.absolutePath))
+&nbsp;                }
 &nbsp;            }
 &nbsp;        }
 &nbsp;    }
@@ -188,7 +190,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-29 16:26</div>
+    <div style="float:right;">generated on 2022-09-29 20:22</div>
 </div>
 </body>
 </html>

@@ -75,7 +75,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/137)
+    (0/111)
   </span>
 </td>
 </tr>
@@ -103,12 +103,12 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/50)
+    (0/65)
   </span>
 </td>
   </tr>
   <tr>
-    <td class="name">BuildSiteTask$Companion$register$$inlined$maybeRegisterLazily$1</td>
+    <td class="name">BuildSiteTask$Companion$register$$inlined$maybeRegisterLazily$default$1</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -120,7 +120,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     <td class="coverageStat"/>
   </tr>
   <tr>
-    <td class="name">BuildSiteTask$Companion$register$$inlined$maybeRegisterLazily$2</td>
+    <td class="name">BuildSiteTask$Companion$register$$inlined$maybeRegisterLazily$default$2</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -132,7 +132,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     <td class="coverageStat"/>
   </tr>
   <tr>
-    <td class="name">BuildSiteTask$Companion$register$$inlined$namedLazily$1</td>
+    <td class="name">BuildSiteTask$Companion$register$$inlined$namedLazily$default$1</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -144,7 +144,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     <td class="coverageStat"/>
   </tr>
   <tr>
-    <td class="name">BuildSiteTask$Companion$register$$inlined$namedLazily$2</td>
+    <td class="name">BuildSiteTask$Companion$register$$inlined$namedLazily$default$2</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -179,7 +179,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/10)
+    (0/12)
   </span>
 </td>
   </tr>
@@ -207,7 +207,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/10)
+    (0/12)
   </span>
 </td>
   </tr>
@@ -235,12 +235,12 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/23)
+    (0/27)
   </span>
 </td>
   </tr>
   <tr>
-    <td class="name">BuildSiteTask$moveApiDocsInToDocs$$inlined$with$lambda$1</td>
+    <td class="name">BuildSiteTask$moveApiDocsInToDocs$1$1</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -263,12 +263,12 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/29)
+    (0/25)
   </span>
 </td>
   </tr>
   <tr>
-    <td class="name">BuildSiteTask$moveApiDocsInToDocs$$inlined$with$lambda$2</td>
+    <td class="name">BuildSiteTask$moveApiDocsInToDocs$1$3</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -291,7 +291,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/33)
+    (0/28)
   </span>
 </td>
   </tr>
@@ -326,7 +326,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/292)
+    (0/280)
   </span>
 </td>
 </tr>
@@ -357,9 +357,9 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;
 &nbsp;public abstract class BuildSiteTask
 &nbsp;@Inject
-<b class="nc">&nbsp;constructor(</b>
-&nbsp;    private val layout: ProjectLayout,
-&nbsp;    private val fileSystemOperations: FileSystemOperations,
+&nbsp;constructor(
+<b class="nc">&nbsp;    private val layout: ProjectLayout,</b>
+<b class="nc">&nbsp;    private val fileSystemOperations: FileSystemOperations,</b>
 <b class="nc">&nbsp;) : DefaultTask() {</b>
 &nbsp;
 <b class="nc">&nbsp;    init {</b>
@@ -393,16 +393,15 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="nc">&nbsp;            val dokkaHtmlMultiModuleTask =</b>
 <b class="nc">&nbsp;                project.tasks.namedLazily&lt;DokkaMultiModuleTask&gt;(&quot;dokkaHtmlMultiModule&quot;)</b>
 <b class="nc">&nbsp;            val mkdocsBuildTask = project.tasks.namedLazily&lt;MkdocsBuildTask&gt;(&quot;mkdocsBuild&quot;)</b>
-<b class="nc">&nbsp;            mkdocsBuildTask.configureEach { dependsOn(preBuildDocsTask) }</b>
+<b class="nc">&nbsp;            mkdocsBuildTask.configureEach { task -&gt; task.dependsOn(preBuildDocsTask) }</b>
 &nbsp;
-<b class="nc">&nbsp;            dokkaHtmlMultiModuleTask.configureEach { dependsOn(mkdocsBuildTask) }</b>
+<b class="nc">&nbsp;            dokkaHtmlMultiModuleTask.configureEach { task -&gt; task.dependsOn(mkdocsBuildTask) }</b>
 &nbsp;
 <b class="nc">&nbsp;            val buildSiteTask = project.tasks.maybeRegisterLazily&lt;BuildSiteTask&gt;(name)</b>
-<b class="nc">&nbsp;            buildSiteTask.configureEach {</b>
-<b class="nc">&nbsp;                notCompatibleWithConfigurationCache(&quot;mkDocsBuild(grgit) task is incompatible&quot;)</b>
-&nbsp;
-<b class="nc">&nbsp;                dependsOn(mkdocsBuildTask)</b>
-<b class="nc">&nbsp;                dependsOn(dokkaHtmlMultiModuleTask)</b>
+<b class="nc">&nbsp;            buildSiteTask.configureEach { task -&gt;</b>
+<b class="nc">&nbsp;                task.notCompatibleWithConfigurationCache(&quot;mkDocsBuild(grgit) task is incompatible&quot;)</b>
+<b class="nc">&nbsp;                task.dependsOn(mkdocsBuildTask)</b>
+<b class="nc">&nbsp;                task.dependsOn(dokkaHtmlMultiModuleTask)</b>
 &nbsp;            }
 <b class="nc">&nbsp;            return buildSiteTask</b>
 &nbsp;        }
@@ -411,25 +410,25 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;    private fun moveApiDocsInToDocs() {
 <b class="nc">&nbsp;        with(fileSystemOperations) {</b>
 <b class="nc">&nbsp;            if (projectVersion.endsWith(&quot;-SNAPSHOT&quot;)) {</b>
-<b class="nc">&nbsp;                copy {</b>
-<b class="nc">&nbsp;                    from(dokkaOutputDir.path)</b>
-<b class="nc">&nbsp;                    into(File(&quot;$apiDir/snapshot&quot;).path)</b>
+<b class="nc">&nbsp;                copy { copy -&gt;</b>
+<b class="nc">&nbsp;                    copy.from(dokkaOutputDir.path)</b>
+<b class="nc">&nbsp;                    copy.into(File(&quot;$apiDir/snapshot&quot;).path)</b>
 &nbsp;                }
 &nbsp;            } else {
 <b class="nc">&nbsp;                File(&quot;$apiDir/index.html&quot;).apply {</b>
 <b class="nc">&nbsp;                    createNewFile()</b>
 <b class="nc">&nbsp;                    writeText(apiIndexHtmlContent)</b>
 <b class="nc">&nbsp;                }</b>
-<b class="nc">&nbsp;                copy {</b>
-<b class="nc">&nbsp;                    from(dokkaOutputDir.path)</b>
-<b class="nc">&nbsp;                    into(File(&quot;$apiDir/versions/$projectVersion&quot;).path)</b>
+<b class="nc">&nbsp;                copy { copy -&gt;</b>
+<b class="nc">&nbsp;                    copy.from(dokkaOutputDir.path)</b>
+<b class="nc">&nbsp;                    copy.into(File(&quot;$apiDir/versions/$projectVersion&quot;).path)</b>
 &nbsp;                }
 &nbsp;            }
 &nbsp;        }
 &nbsp;    }
 &nbsp;
 &nbsp;    private val apiIndexHtmlContent: String =
-<b class="nc">&nbsp;        &quot;&quot;&quot;</b>
+&nbsp;        &quot;&quot;&quot;
 &nbsp;            &lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
 &nbsp;            &lt;head&gt;
 <b class="nc">&nbsp;                &lt;meta http-equiv=&quot;refresh&quot; content=&quot;0;URL=&#39;versions/$projectVersion&#39;&quot; /&gt;</b>
@@ -463,7 +462,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-29 16:26</div>
+    <div style="float:right;">generated on 2022-09-29 20:22</div>
 </div>
 </body>
 </html>

@@ -75,7 +75,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/174)
+    (0/184)
   </span>
 </td>
 </tr>
@@ -239,7 +239,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/31)
+    (0/36)
   </span>
 </td>
   </tr>
@@ -267,7 +267,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/3)
+    (0/6)
   </span>
 </td>
   </tr>
@@ -318,7 +318,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/220)
+    (0/238)
   </span>
 </td>
 </tr>
@@ -375,7 +375,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="nc">&nbsp;            defaultConfig.minSdk = androidState.minSdk</b>
 <b class="nc">&nbsp;            namespace = project.calculateAndroidNamespace(androidState.namespace)</b>
 &nbsp;
-<b class="nc">&nbsp;            sourceSets.all { configDefaultAndroidSourceSets() }</b>
+<b class="nc">&nbsp;            sourceSets.all { set -&gt; set.configDefaultAndroidSourceSets() }</b>
 <b class="nc">&nbsp;            project.configureAndroidBuildFeatures(this)</b>
 &nbsp;        }
 &nbsp;
@@ -401,8 +401,8 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;}
 &nbsp;
 &nbsp;private fun KotlinProjectExtension.configureAndroidDependencies() {
-<b class="nc">&nbsp;    sourceSets.named(&quot;main&quot;) { dependencies { configureMainDependencies() } }</b>
-<b class="nc">&nbsp;    sourceSets.named(&quot;test&quot;) { dependencies { configureTestDependencies() } }</b>
+<b class="nc">&nbsp;    sourceSets.named(&quot;main&quot;) { set -&gt; set.dependencies { configureMainDependencies() } }</b>
+<b class="nc">&nbsp;    sourceSets.named(&quot;test&quot;) { set -&gt; set.dependencies { configureTestDependencies() } }</b>
 &nbsp;}
 &nbsp;
 &nbsp;private fun KotlinDependencyHandler.configureMainDependencies() {
@@ -455,7 +455,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-29 16:26</div>
+    <div style="float:right;">generated on 2022-09-29 20:22</div>
 </div>
 </body>
 </html>

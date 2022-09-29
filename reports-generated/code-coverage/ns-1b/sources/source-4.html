@@ -60,7 +60,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/8)
+    (0/7)
   </span>
 </td>
 <td class="coverageStat">
@@ -68,7 +68,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/23)
+    (0/24)
   </span>
 </td>
 </tr>
@@ -96,12 +96,12 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/32)
+    (0/42)
   </span>
 </td>
   </tr>
   <tr>
-    <td class="name">InstallCheckAnalysisPreCommitTask$Companion$register$$inlined$namedLazily$1</td>
+    <td class="name">InstallCheckAnalysisPreCommitTask$Companion$register$$inlined$namedLazily$default$1</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -136,7 +136,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/12)
+    (0/14)
   </span>
 </td>
   </tr>
@@ -164,7 +164,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/10)
+    (0/12)
   </span>
 </td>
   </tr>
@@ -184,7 +184,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/16)
+    (0/15)
   </span>
 </td>
 <td class="coverageStat">
@@ -192,7 +192,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/77)
+    (0/92)
   </span>
 </td>
 </tr>
@@ -219,7 +219,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;@CacheableTask
 &nbsp;public abstract class InstallCheckAnalysisPreCommitTask
 &nbsp;@Inject
-<b class="nc">&nbsp;constructor(</b>
+&nbsp;constructor(
 &nbsp;    objects: ObjectFactory,
 &nbsp;    layout: ProjectLayout,
 <b class="nc">&nbsp;) : InstallPreCommitTask(layout) {</b>
@@ -243,13 +243,13 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="nc">&nbsp;            val installCheckAnalysisPreCommitTask =</b>
 <b class="nc">&nbsp;                project.tasks.register&lt;InstallCheckAnalysisPreCommitTask&gt;(name)</b>
 &nbsp;
-<b class="nc">&nbsp;            installCheckAnalysisPreCommitTask.configure {</b>
-<b class="nc">&nbsp;                finalizedBy(WriteFilePreCommitTask.getTask(project))</b>
+<b class="nc">&nbsp;            installCheckAnalysisPreCommitTask.configure { task -&gt;</b>
+<b class="nc">&nbsp;                task.finalizedBy(WriteFilePreCommitTask.getTask(project))</b>
 &nbsp;            }
 &nbsp;
 <b class="nc">&nbsp;            project.tasks</b>
 <b class="nc">&nbsp;                .namedLazily&lt;InstallPreCommitTask&gt;(InstallPreCommitTask.name)</b>
-<b class="nc">&nbsp;                .configureEach { dependsOn(installCheckAnalysisPreCommitTask) }</b>
+<b class="nc">&nbsp;                .configureEach { task -&gt; task.dependsOn(installCheckAnalysisPreCommitTask) }</b>
 &nbsp;        }
 &nbsp;    }
 &nbsp;}
@@ -276,7 +276,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-29 16:26</div>
+    <div style="float:right;">generated on 2022-09-29 20:22</div>
 </div>
 </body>
 </html>

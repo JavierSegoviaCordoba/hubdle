@@ -67,26 +67,26 @@ Current scope:     <a href="../../index.html">all classes</a>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    81.6%
+    80.8%
   </span>
   <span class="absValue">
-    (31/38)
+    (21/26)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    97.5%
+    97.4%
   </span>
   <span class="absValue">
-    (39/40)
+    (38/39)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    98.4%
+    98%
   </span>
   <span class="absValue">
-    (315/320)
+    (290/296)
   </span>
 </td>
 </tr>
@@ -116,7 +116,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;                else -&gt; {
 <b class="fc">&nbsp;                    put(version, emptyList())</b>
 &nbsp;                }
-<b class="fc">&nbsp;            }</b>
+&nbsp;            }
 &nbsp;        }
 <b class="fc">&nbsp;    }</b>
 &nbsp;
@@ -133,10 +133,10 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="fc">&nbsp;                        .mapNotNull { (key, groups) -&gt;</b>
 <b class="fc">&nbsp;                            val items: Array&lt;out Changelog.Version.Group.Item&gt; =</b>
 <b class="fc">&nbsp;                                groups</b>
-<b class="pc">&nbsp;                                    .filter { it.value == key }</b>
+<b class="fc">&nbsp;                                    .filter { it.value == key }</b>
 <b class="fc">&nbsp;                                    .flatMap { it.items.toList() }</b>
 <b class="fc">&nbsp;                                    .toTypedArray()</b>
-<b class="pc">&nbsp;                            when {</b>
+<b class="fc">&nbsp;                            when {</b>
 <b class="fc">&nbsp;                                version.unreleased -&gt; Changelog.Version.Group(key, *items)</b>
 <b class="pc">&nbsp;                                items.isNotEmpty() -&gt; Changelog.Version.Group(key, *items)</b>
 <b class="nc">&nbsp;                                else -&gt; null</b>
@@ -193,7 +193,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-29 16:26</div>
+    <div style="float:right;">generated on 2022-09-29 20:22</div>
 </div>
 </body>
 </html>

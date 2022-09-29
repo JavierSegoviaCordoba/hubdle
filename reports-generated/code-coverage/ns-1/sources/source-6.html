@@ -68,12 +68,12 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/46)
+    (0/53)
   </span>
 </td>
 </tr>
   <tr>
-    <td class="name">Tasks_extensionKt$testDependsOnPublishToMavenLocalTestFrom$$inlined$namedLazily$1</td>
+    <td class="name">Tasks_extensionKt$testDependsOnPublishToMavenLocalTestFrom$$inlined$namedLazily$default$1</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -85,7 +85,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     <td class="coverageStat"/>
   </tr>
   <tr>
-    <td class="name">Tasks_extensionKt$testDependsOnPublishToMavenLocalTestFrom$$inlined$namedLazily$2</td>
+    <td class="name">Tasks_extensionKt$testDependsOnPublishToMavenLocalTestFrom$$inlined$namedLazily$default$2</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -120,12 +120,12 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/30)
+    (0/31)
   </span>
 </td>
   </tr>
   <tr>
-    <td class="name">Tasks_extensionKt$testDependsOnPublishToMavenLocalTestFrom$1$$special$$inlined$namedLazily$1</td>
+    <td class="name">Tasks_extensionKt$testDependsOnPublishToMavenLocalTestFrom$1$invoke$$inlined$namedLazily$default$1</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -160,12 +160,12 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/26)
+    (0/30)
   </span>
 </td>
   </tr>
   <tr>
-    <td class="name">Tasks_extensionKt$testDependsOnPublishToMavenLocalTestFrom$2$$special$$inlined$namedLazily$1</td>
+    <td class="name">Tasks_extensionKt$testDependsOnPublishToMavenLocalTestFrom$2$invoke$$inlined$namedLazily$default$1</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -200,7 +200,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/102)
+    (0/114)
   </span>
 </td>
 </tr>
@@ -226,9 +226,9 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;) {
 <b class="nc">&nbsp;    val publishToMavenLocalTest =</b>
 <b class="nc">&nbsp;        project.dependencyProject.tasks.namedLazily&lt;Task&gt;(PUBLISH_TO_MAVEN_LOCAL_TEST)</b>
-<b class="nc">&nbsp;    withType&lt;Test&gt;().configureEach {</b>
-<b class="nc">&nbsp;        dependsOn(publishToMavenLocalTest)</b>
-<b class="nc">&nbsp;        dependsOn(</b>
+<b class="nc">&nbsp;    withType&lt;Test&gt;().configureEach { task -&gt;</b>
+<b class="nc">&nbsp;        task.dependsOn(publishToMavenLocalTest)</b>
+<b class="nc">&nbsp;        task.dependsOn(</b>
 <b class="nc">&nbsp;            project.dependencyProject.tasks.namedLazily&lt;Task&gt;(PUBLISH_ALL_TO_MAVEN_LOCAL_TEST)</b>
 &nbsp;        )
 &nbsp;    }
@@ -237,9 +237,9 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;@HubdleDslMarker
 &nbsp;public fun TaskContainer.testDependsOnPublishToMavenLocalTestFrom(project: Project) {
 <b class="nc">&nbsp;    val publishToMavenLocalTest = project.tasks.namedLazily&lt;Task&gt;(PUBLISH_TO_MAVEN_LOCAL_TEST)</b>
-<b class="nc">&nbsp;    withType&lt;Test&gt;().configureEach {</b>
-<b class="nc">&nbsp;        dependsOn(publishToMavenLocalTest)</b>
-<b class="nc">&nbsp;        dependsOn(project.tasks.namedLazily&lt;Task&gt;(PUBLISH_ALL_TO_MAVEN_LOCAL_TEST))</b>
+<b class="nc">&nbsp;    withType&lt;Test&gt;().configureEach { task -&gt;</b>
+<b class="nc">&nbsp;        task.dependsOn(publishToMavenLocalTest)</b>
+<b class="nc">&nbsp;        task.dependsOn(project.tasks.namedLazily&lt;Task&gt;(PUBLISH_ALL_TO_MAVEN_LOCAL_TEST))</b>
 &nbsp;    }
 &nbsp;}
 &nbsp;
@@ -270,7 +270,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-29 16:26</div>
+    <div style="float:right;">generated on 2022-09-29 20:22</div>
 </div>
 </body>
 </html>

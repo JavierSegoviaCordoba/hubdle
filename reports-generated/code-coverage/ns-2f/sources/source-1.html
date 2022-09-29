@@ -67,7 +67,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/43)
+    (0/44)
   </span>
 </td>
 <td class="coverageStat">
@@ -75,7 +75,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/275)
+    (0/307)
   </span>
 </td>
 </tr>
@@ -334,7 +334,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/22)
+    (0/18)
   </span>
 </td>
   </tr>
@@ -362,7 +362,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/16)
+    (0/14)
   </span>
 </td>
   </tr>
@@ -397,7 +397,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/34)
+    (0/40)
   </span>
 </td>
   </tr>
@@ -417,7 +417,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/3)
+    (0/5)
   </span>
 </td>
 <td class="coverageStat">
@@ -425,7 +425,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/48)
+    (0/45)
   </span>
 </td>
   </tr>
@@ -456,7 +456,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/59)
+    (0/62)
   </span>
 </td>
 <td class="coverageStat">
@@ -464,7 +464,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/429)
+    (0/458)
   </span>
 </td>
 </tr>
@@ -475,7 +475,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.extensions.kotlin.gradle.plugin._internal
+<code class="sourceCode" id="sourceCode"><b class="nc">&nbsp;package com.javiersc.hubdle.extensions.kotlin.gradle.plugin._internal</b>
 &nbsp;
 &nbsp;import com.gradle.publish.PluginBundleExtension
 &nbsp;import com.javiersc.gradle.properties.extensions.getProperty
@@ -558,10 +558,13 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="nc">&nbsp;            configurations.creating {</b>
 <b class="nc">&nbsp;                val kotlinVersion = Version.safe(project.getKotlinPluginVersion()).getOrNull()</b>
 <b class="nc">&nbsp;                if (kotlinVersion != null &amp;&amp; kotlinVersion &gt;= Version(&quot;1.7.0&quot;))</b>
-<b class="nc">&nbsp;                    attributes {</b>
-<b class="nc">&nbsp;                        attribute(USAGE_ATTRIBUTE, objects.named(JAVA_RUNTIME))</b>
-<b class="nc">&nbsp;                        attribute(CATEGORY_ATTRIBUTE, objects.named(LIBRARY))</b>
-<b class="nc">&nbsp;                        attribute(GRADLE_PLUGIN_API_VERSION_ATTRIBUTE, objects.named(&quot;7.0&quot;))</b>
+<b class="nc">&nbsp;                    attributes { attributes -&gt;</b>
+<b class="nc">&nbsp;                        attributes.attribute(USAGE_ATTRIBUTE, objects.named(JAVA_RUNTIME))</b>
+<b class="nc">&nbsp;                        attributes.attribute(CATEGORY_ATTRIBUTE, objects.named(LIBRARY))</b>
+<b class="nc">&nbsp;                        attributes.attribute(</b>
+<b class="nc">&nbsp;                            GRADLE_PLUGIN_API_VERSION_ATTRIBUTE,</b>
+<b class="nc">&nbsp;                            objects.named(&quot;7.0&quot;)</b>
+&nbsp;                        )
 &nbsp;                    }
 &nbsp;            }
 &nbsp;
@@ -571,8 +574,8 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;            }
 &nbsp;        }
 &nbsp;
-<b class="nc">&nbsp;        tasks.withType&lt;PluginUnderTestMetadata&gt;().configureEach {</b>
-<b class="nc">&nbsp;            pluginClasspath.from(testPluginClasspath)</b>
+<b class="nc">&nbsp;        tasks.withType&lt;PluginUnderTestMetadata&gt;().configureEach { metadata -&gt;</b>
+<b class="nc">&nbsp;            metadata.pluginClasspath.from(testPluginClasspath)</b>
 &nbsp;        }
 &nbsp;    }
 &nbsp;}
@@ -583,8 +586,8 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;}
 &nbsp;
 &nbsp;private fun KotlinJvmProjectExtension.configureGradleDependencies() {
-<b class="nc">&nbsp;    sourceSets.named(&quot;main&quot;) { dependencies { configureMainDependencies() } }</b>
-<b class="nc">&nbsp;    sourceSets.named(&quot;test&quot;) { dependencies { configureTestDependencies() } }</b>
+<b class="nc">&nbsp;    sourceSets.named(&quot;main&quot;) { set -&gt; set.dependencies { configureMainDependencies() } }</b>
+<b class="nc">&nbsp;    sourceSets.named(&quot;test&quot;) { set -&gt; set.dependencies { configureTestDependencies() } }</b>
 &nbsp;}
 &nbsp;
 &nbsp;internal val Project.gradlePluginFeatures: HubdleState.Kotlin.Gradle.Plugin.Features
@@ -639,7 +642,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-29 16:26</div>
+    <div style="float:right;">generated on 2022-09-29 20:22</div>
 </div>
 </body>
 </html>

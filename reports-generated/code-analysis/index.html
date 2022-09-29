@@ -157,7 +157,7 @@
 
 <div>
   <ul>
-    <li>960 number of properties</li>
+    <li>961 number of properties</li>
     <li>594 number of functions</li>
     <li>254 number of classes</li>
     <li>78 number of packages</li>
@@ -170,13 +170,13 @@
 
 <div>
   <ul>
-    <li>11,717 lines of code (loc)</li>
-    <li>9,701 source lines of code (sloc)</li>
-    <li>6,600 logical lines of code (lloc)</li>
-    <li>51 comment lines of code (cloc)</li>
-    <li>1,232 cyclomatic complexity (mcc)</li>
+    <li>11,750 lines of code (loc)</li>
+    <li>9,734 source lines of code (sloc)</li>
+    <li>6,615 logical lines of code (lloc)</li>
+    <li>52 comment lines of code (cloc)</li>
+    <li>1,231 cyclomatic complexity (mcc)</li>
     <li>494 cognitive complexity</li>
-    <li>96 number of total code smells</li>
+    <li>97 number of total code smells</li>
     <li>0% comment source ratio</li>
     <li>186 mcc per 1,000 lloc</li>
     <li>14 code smells per 1,000 lloc</li>
@@ -185,7 +185,7 @@
 
 
 <h2>Findings</h2>
-<div>Total: 96
+<div>Total: 97
   <h3>complexity: 10</h3>
   <details id="ComplexCondition" open="open">
     <summary class="rule-container"><span class="rule">ComplexCondition: 1 </span><span class="description">Complex conditions should be simplified and extracted into well-named methods if necessary.</span></summary>
@@ -894,14 +894,14 @@
     <summary class="rule-container"><span class="rule">SpreadOperator: 3 </span><span class="description">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span></summary>
 <a href="https://detekt.dev/docs/rules/performance#spreadoperator">Documentation</a>
     <ul>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatformAndroid.kt:34:51</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
-        <pre><code><span class="lineno">  31 </span>                        androidState.library.publishLibraryVariants.isNotEmpty() -&gt; {
-<span class="lineno">  32 </span>                            val variants =
-<span class="lineno">  33 </span>                                androidState.library.publishLibraryVariants.toTypedArray()
-<span class="lineno">  34 </span>                            publishLibraryVariants<span class="error">(*variants)</span>
-<span class="lineno">  35 </span>                        }
-<span class="lineno">  36 </span>                        androidState.library.allLibraryVariants -&gt; publishAllLibraryVariants()
-<span class="lineno">  37 </span>                    }
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatformAndroid.kt:36:51</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
+        <pre><code><span class="lineno">  33 </span>                        androidState.library.publishLibraryVariants.isNotEmpty() -&gt; {
+<span class="lineno">  34 </span>                            val variants =
+<span class="lineno">  35 </span>                                androidState.library.publishLibraryVariants.toTypedArray()
+<span class="lineno">  36 </span>                            publishLibraryVariants<span class="error">(*variants)</span>
+<span class="lineno">  37 </span>                        }
+<span class="lineno">  38 </span>                        androidState.library.allLibraryVariants -&gt; publishAllLibraryVariants()
+<span class="lineno">  39 </span>                    }
 </code></pre>
       </li>
       <li><span class="location">hubdle-settings-gradle-plugin/main/kotlin/com/javiersc/hubdle/settings/HubdleSettingsPlugin.kt:62:29</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
@@ -926,9 +926,9 @@
       </li>
     </ul>
   </details>
-  <h3>style: 6</h3>
+  <h3>style: 7</h3>
   <details id="ForbiddenComment" open="open">
-    <summary class="rule-container"><span class="rule">ForbiddenComment: 5 </span><span class="description">Flags a forbidden comment.</span></summary>
+    <summary class="rule-container"><span class="rule">ForbiddenComment: 6 </span><span class="description">Flags a forbidden comment.</span></summary>
 <a href="https://detekt.dev/docs/rules/style#forbiddencomment">Documentation</a>
     <ul>
       <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/binary/compatibility/validator/_internal/configureBinaryCompatibilityValidator.kt:12:1</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
@@ -947,7 +947,7 @@
 <span class="lineno">  47 </span>            defaultConfig.minSdk = androidState.minSdk
 <span class="lineno">  48 </span>            <span class="error">// TODO: namespace = project.calculateAndroidNamespace(androidState.namespace)</span>
 <span class="lineno">  49 </span>
-<span class="lineno">  50 </span>            sourceSets.all { configDefaultAndroidSourceSets() }
+<span class="lineno">  50 </span>            sourceSets.all { set -&gt; set.configDefaultAndroidSourceSets() }
 <span class="lineno">  51 </span>            project.configureAndroidBuildFeatures(this)
 </code></pre>
       </li>
@@ -981,6 +981,16 @@
 <span class="lineno">  28 </span>            val testKotlin = &quot;jvmAndAndroid/test/kotlin&quot;
 </code></pre>
       </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/options/PublishingOptions.kt:175:21</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
+        <pre><code><span class="lineno"> 172 </span>            task.doLast {
+<span class="lineno"> 173 </span>                val publishNonSemver = getBooleanProperty(HubdleProperty.Publishing.nonSemver)
+<span class="lineno"> 174 </span>                check(isSemver || publishNonSemver) {
+<span class="lineno"> 175 </span>                    <span class="error">// TODO: inject `$version` instead of getting it from the `project`</span>
+<span class="lineno"> 176 </span>                    &quot;&quot;&quot;|Only semantic versions can be published (current: $version)
+<span class="lineno"> 177 </span>                       |Use `&quot;-Ppublishing.nonSemver=true&quot;` to force the publication 
+<span class="lineno"> 178 </span>                    &quot;&quot;&quot;
+</code></pre>
+      </li>
     </ul>
   </details>
   <details id="MaxLineLength" open="open">
@@ -993,8 +1003,8 @@
 <span class="lineno">  21 </span>            project.getPropertyOrNull(HubdleProperty.Analysis.projectKey)
 <span class="lineno">  22 </span>                <span class="error">?:</span> &quot;${project.group}:${project.getPropertyOrNull(HubdleProperty.Project.rootProjectDirName) ?: project.rootDir.name}&quot;
 <span class="lineno">  23 </span>
-<span class="lineno">  24 </span>        project.tasks.register&lt;WriteReadmeBadgesTask&gt;(WriteReadmeBadgesTask.name).configure {
-<span class="lineno">  25 </span>            this.projectGroup.set(project.group.toString())
+<span class="lineno">  24 </span>        project.tasks.register&lt;WriteReadmeBadgesTask&gt;(WriteReadmeBadgesTask.name).configure { task
+<span class="lineno">  25 </span>            -&gt;
 </code></pre>
       </li>
     </ul>
@@ -1002,7 +1012,7 @@
 </div>
 
 
-generated with <a href="https://detekt.dev/">detekt version 1.21.0</a> on 2022-09-29 16:21:47 UTC.
+generated with <a href="https://detekt.dev/">detekt version 1.21.0</a> on 2022-09-29 19:56:50 UTC.
 
 </body>
 </html>

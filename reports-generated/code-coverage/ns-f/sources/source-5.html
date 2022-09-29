@@ -51,7 +51,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/8)
+    (0/7)
   </span>
 </td>
     <td class="coverageStat"/>
@@ -68,7 +68,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/77)
+    (0/91)
   </span>
 </td>
 </tr>
@@ -101,7 +101,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 </td>
   </tr>
   <tr>
-    <td class="name">HubdleChangelogExtension$removeProjects$$inlined$namedLazily$1</td>
+    <td class="name">HubdleChangelogExtension$removeProjects$$inlined$namedLazily$default$1</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -113,7 +113,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     <td class="coverageStat"/>
   </tr>
   <tr>
-    <td class="name">HubdleChangelogExtension$removeProjects$$inlined$namedLazily$2</td>
+    <td class="name">HubdleChangelogExtension$removeProjects$$inlined$namedLazily$default$2</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -125,7 +125,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     <td class="coverageStat"/>
   </tr>
   <tr>
-    <td class="name">HubdleChangelogExtension$removeProjects$$inlined$namedLazily$3</td>
+    <td class="name">HubdleChangelogExtension$removeProjects$$inlined$namedLazily$default$3</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -160,7 +160,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/17)
+    (0/16)
   </span>
 </td>
   </tr>
@@ -216,7 +216,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/14)
+    (0/12)
   </span>
 </td>
   </tr>
@@ -227,7 +227,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/16)
+    (0/15)
   </span>
 </td>
     <td class="coverageStat"/>
@@ -244,7 +244,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/124)
+    (0/135)
   </span>
 </td>
 </tr>
@@ -271,10 +271,10 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;import org.jetbrains.changelog.ChangelogPluginExtension
 &nbsp;import org.jetbrains.dokka.gradle.DokkaMultiModuleTask
 &nbsp;
-&nbsp;@HubdleDslMarker
+<b class="nc">&nbsp;@HubdleDslMarker</b>
 &nbsp;public open class HubdleChangelogExtension
 &nbsp;@Inject
-<b class="nc">&nbsp;constructor(</b>
+&nbsp;constructor(
 &nbsp;    objects: ObjectFactory,
 &nbsp;) : EnableableOptions, RawConfigOptions&lt;HubdleChangelogExtension.RawConfigExtension&gt; {
 &nbsp;
@@ -284,22 +284,22 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;
 &nbsp;    @HubdleDslMarker
 &nbsp;    public fun Project.removeProjects(vararg paths: String) {
-<b class="nc">&nbsp;        tasks.namedLazily&lt;DokkaMultiModuleTask&gt;(&quot;dokkaHtmlMultiModule&quot;).configureEach {</b>
-<b class="nc">&nbsp;            removeChildTasks(paths.map(::project))</b>
+<b class="nc">&nbsp;        tasks.namedLazily&lt;DokkaMultiModuleTask&gt;(&quot;dokkaHtmlMultiModule&quot;).configureEach { task -&gt;</b>
+<b class="nc">&nbsp;            task.removeChildTasks(paths.map(::project))</b>
 &nbsp;        }
 &nbsp;    }
 &nbsp;
 &nbsp;    @HubdleDslMarker
 &nbsp;    public fun Project.removeProjects(vararg projects: Project) {
-<b class="nc">&nbsp;        tasks.namedLazily&lt;DokkaMultiModuleTask&gt;(&quot;dokkaHtmlMultiModule&quot;).configureEach {</b>
-<b class="nc">&nbsp;            removeChildTasks(projects.toList())</b>
+<b class="nc">&nbsp;        tasks.namedLazily&lt;DokkaMultiModuleTask&gt;(&quot;dokkaHtmlMultiModule&quot;).configureEach { task -&gt;</b>
+<b class="nc">&nbsp;            task.removeChildTasks(projects.toList())</b>
 &nbsp;        }
 &nbsp;    }
 &nbsp;
 &nbsp;    @HubdleDslMarker
 &nbsp;    public fun Project.removeProjects(vararg projects: ProjectDependency) {
-<b class="nc">&nbsp;        tasks.namedLazily&lt;DokkaMultiModuleTask&gt;(&quot;dokkaHtmlMultiModule&quot;).configureEach {</b>
-<b class="nc">&nbsp;            removeChildTasks(projects.map(ProjectDependency::getDependencyProject))</b>
+<b class="nc">&nbsp;        tasks.namedLazily&lt;DokkaMultiModuleTask&gt;(&quot;dokkaHtmlMultiModule&quot;).configureEach { task -&gt;</b>
+<b class="nc">&nbsp;            task.removeChildTasks(projects.map(ProjectDependency::getDependencyProject))</b>
 &nbsp;        }
 &nbsp;    }
 &nbsp;
@@ -310,8 +310,8 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="nc">&nbsp;        action.execute(rawConfig)</b>
 &nbsp;    }
 &nbsp;
-&nbsp;    @HubdleDslMarker
-<b class="nc">&nbsp;    public open class RawConfigExtension {</b>
+<b class="nc">&nbsp;    @HubdleDslMarker</b>
+&nbsp;    public open class RawConfigExtension {
 &nbsp;
 &nbsp;        public fun Project.changelog(action: Action&lt;ChangelogPluginExtension&gt;) {
 <b class="nc">&nbsp;            hubdleState.config.documentation.changelog.rawConfig.changelog = action</b>
@@ -341,7 +341,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-29 16:26</div>
+    <div style="float:right;">generated on 2022-09-29 20:22</div>
 </div>
 </body>
 </html>

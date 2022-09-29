@@ -67,7 +67,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/15)
+    (0/14)
   </span>
 </td>
 <td class="coverageStat">
@@ -127,7 +127,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/23)
+    (0/20)
   </span>
 </td>
   </tr>
@@ -155,7 +155,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/42)
+    (0/21)
   </span>
 </td>
   </tr>
@@ -183,7 +183,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/4)
+    (0/9)
   </span>
 </td>
   </tr>
@@ -218,7 +218,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/22)
+    (0/25)
   </span>
 </td>
   </tr>
@@ -246,7 +246,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/8)
+    (0/14)
   </span>
 </td>
   </tr>
@@ -273,7 +273,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/7)
+    (0/8)
   </span>
 </td>
 <td class="coverageStat">
@@ -281,7 +281,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/60)
+    (0/57)
   </span>
 </td>
   </tr>
@@ -352,7 +352,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/308)
+    (0/295)
   </span>
 </td>
 </tr>
@@ -384,7 +384,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;internal fun configureSite(project: Project) {
 <b class="nc">&nbsp;    if (project.hubdleState.config.documentation.site.isEnabled) {</b>
 <b class="nc">&nbsp;        check(project.isRootProject) {</b>
-<b class="nc">&nbsp;            &quot;&quot;&quot;</b>
+&nbsp;            &quot;&quot;&quot;
 &nbsp;                |`site` can be only used in the root project, and it is being applied in:
 <b class="nc">&nbsp;                |  - `${project.path}</b>
 &nbsp;            &quot;&quot;&quot;
@@ -394,12 +394,12 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="nc">&nbsp;        project.pluginManager.apply(PluginIds.Kotlin.dokka)</b>
 <b class="nc">&nbsp;        project.pluginManager.apply(PluginIds.Documentation.mkdocs)</b>
 &nbsp;
-<b class="nc">&nbsp;        project.tasks.withType&lt;DokkaMultiModuleTask&gt;().configureEach {</b>
+<b class="nc">&nbsp;        project.tasks.withType&lt;DokkaMultiModuleTask&gt;().configureEach { task -&gt;</b>
 <b class="nc">&nbsp;            val excludedProjects =</b>
 <b class="nc">&nbsp;                project.hubdleState.config.documentation.site.excludes.map(</b>
 <b class="nc">&nbsp;                    ProjectDependency::getDependencyProject</b>
 &nbsp;                )
-<b class="nc">&nbsp;            removeChildTasks(excludedProjects)</b>
+<b class="nc">&nbsp;            task.removeChildTasks(excludedProjects)</b>
 &nbsp;        }
 &nbsp;
 <b class="nc">&nbsp;        project.configure&lt;MkdocsExtension&gt; {</b>
@@ -409,13 +409,14 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="nc">&nbsp;            publish.docPath = &quot;_site&quot;</b>
 &nbsp;        }
 &nbsp;
-<b class="nc">&nbsp;        project.allprojects {</b>
-<b class="nc">&nbsp;            afterEvaluate {</b>
-<b class="nc">&nbsp;                if (hasKotlinGradlePlugin) {</b>
-<b class="nc">&nbsp;                    pluginManager.apply(PluginIds.Kotlin.dokka)</b>
-<b class="nc">&nbsp;                    tasks.withType&lt;DokkaTaskPartial&gt; {</b>
-<b class="nc">&nbsp;                        dokkaSourceSets.configureEach {</b>
+<b class="nc">&nbsp;        project.allprojects { allproject -&gt;</b>
+<b class="nc">&nbsp;            allproject.afterEvaluate { allprojectAfterEvaluate -&gt;</b>
+<b class="nc">&nbsp;                if (allprojectAfterEvaluate.hasKotlinGradlePlugin) {</b>
+<b class="nc">&nbsp;                    allprojectAfterEvaluate.pluginManager.apply(PluginIds.Kotlin.dokka)</b>
+<b class="nc">&nbsp;                    allprojectAfterEvaluate.tasks.withType&lt;DokkaTaskPartial&gt; {</b>
+<b class="nc">&nbsp;                        dokkaSourceSets.configureEach { set -&gt;</b>
 <b class="nc">&nbsp;                            val includes: List&lt;String&gt; = buildList {</b>
+<b class="nc">&nbsp;                                val projectDir = allprojectAfterEvaluate.projectDir</b>
 <b class="nc">&nbsp;                                if (projectDir.resolve(&quot;MODULE.md&quot;).exists()) {</b>
 <b class="nc">&nbsp;                                    add(&quot;MODULE.md&quot;)</b>
 &nbsp;                                }
@@ -424,7 +425,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;                                }
 <b class="nc">&nbsp;                            }</b>
 &nbsp;
-<b class="nc">&nbsp;                            if (includes.isNotEmpty()) this.includes.from(includes)</b>
+<b class="nc">&nbsp;                            if (includes.isNotEmpty()) set.includes.from(includes)</b>
 &nbsp;                        }
 &nbsp;                    }
 &nbsp;                }
@@ -472,7 +473,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-29 16:26</div>
+    <div style="float:right;">generated on 2022-09-29 20:22</div>
 </div>
 </body>
 </html>

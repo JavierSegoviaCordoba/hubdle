@@ -59,7 +59,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/28)
+    (0/24)
   </span>
 </td>
 <td class="coverageStat">
@@ -75,7 +75,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/270)
+    (0/282)
   </span>
 </td>
 </tr>
@@ -103,7 +103,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/7)
+    (0/15)
   </span>
 </td>
   </tr>
@@ -138,7 +138,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/42)
+    (0/41)
   </span>
 </td>
   </tr>
@@ -206,7 +206,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/4)
+    (0/9)
   </span>
 </td>
   </tr>
@@ -262,7 +262,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/4)
+    (0/9)
   </span>
 </td>
   </tr>
@@ -290,12 +290,16 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/13)
+    (0/16)
   </span>
 </td>
   </tr>
   <tr>
-    <td class="name">HubdleSettingsPluginKt$hubdleSettings$$inlined$findByType$1</td>
+    <td class="name">HubdleSettingsPluginKt$inlined$sam$i$org_gradle_api_Action$0</td>
+    <td class="coverageStat"/>
+  </tr>
+  <tr>
+    <td class="name">HubdleSettingsPluginKt$special$$inlined$findByType$1</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -304,10 +308,6 @@ Current scope:     <a href="../../index.html">all classes</a>
     (0/1)
   </span>
 </td>
-    <td class="coverageStat"/>
-  </tr>
-  <tr>
-    <td class="name">HubdleSettingsPluginKt$inlined$sam$i$org_gradle_api_Action$0</td>
     <td class="coverageStat"/>
   </tr>
 <tr>
@@ -325,7 +325,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/30)
+    (0/26)
   </span>
 </td>
 <td class="coverageStat">
@@ -341,7 +341,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/362)
+    (0/394)
   </span>
 </td>
 </tr>
@@ -385,10 +385,10 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;
 &nbsp;        target.configureRepositories()
 &nbsp;
-&nbsp;        target.gradle.settingsEvaluated {
-&nbsp;            configureGradleEnterprise()
-&nbsp;            configureAutoInclude()
-&nbsp;            configureAutoIncludeVersionCatalogs(objects)
+&nbsp;        target.gradle.settingsEvaluated { settings -&gt;
+&nbsp;            settings.configureGradleEnterprise()
+&nbsp;            settings.configureAutoInclude()
+&nbsp;            settings.configureAutoIncludeVersionCatalogs(objects)
 &nbsp;        }
 &nbsp;    }
 &nbsp;}
@@ -399,12 +399,12 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="nc">&nbsp;    get() = checkNotNull(extensions.findByType())</b>
 &nbsp;
 &nbsp;private fun Settings.configureRepositories() {
-<b class="nc">&nbsp;    dependencyResolutionManagement {</b>
-<b class="nc">&nbsp;        repositories {</b>
-<b class="nc">&nbsp;            mavenCentral()</b>
-<b class="nc">&nbsp;            google()</b>
-<b class="nc">&nbsp;            gradlePluginPortal()</b>
-<b class="nc">&nbsp;            maven(url = &quot;https://maven.pkg.jetbrains.space/public/p/compose/dev&quot;)</b>
+<b class="nc">&nbsp;    dependencyResolutionManagement { management -&gt;</b>
+<b class="nc">&nbsp;        management.repositories { repository -&gt;</b>
+<b class="nc">&nbsp;            repository.mavenCentral()</b>
+<b class="nc">&nbsp;            repository.google()</b>
+<b class="nc">&nbsp;            repository.gradlePluginPortal()</b>
+<b class="nc">&nbsp;            repository.maven(url = &quot;https://maven.pkg.jetbrains.space/public/p/compose/dev&quot;)</b>
 &nbsp;        }
 &nbsp;    }
 &nbsp;}
@@ -430,19 +430,21 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="nc">&nbsp;    pluginManager.apply(&quot;com.gradle.enterprise&quot;)</b>
 &nbsp;
 <b class="nc">&nbsp;    configure&lt;GradleEnterpriseExtension&gt; {</b>
-<b class="nc">&nbsp;        buildScan {</b>
-<b class="nc">&nbsp;            termsOfServiceUrl = &quot;https://gradle.com/terms-of-service&quot;</b>
-<b class="nc">&nbsp;            termsOfServiceAgree = &quot;yes&quot;</b>
+<b class="nc">&nbsp;        buildScan { scan -&gt;</b>
+<b class="nc">&nbsp;            scan.termsOfServiceUrl = &quot;https://gradle.com/terms-of-service&quot;</b>
+<b class="nc">&nbsp;            scan.termsOfServiceAgree = &quot;yes&quot;</b>
 &nbsp;        }
 &nbsp;    }
 &nbsp;}
 &nbsp;
 &nbsp;private fun Settings.configureAutoIncludeVersionCatalogs(objects: ObjectFactory) {
-<b class="nc">&nbsp;    dependencyResolutionManagement {</b>
-<b class="nc">&nbsp;        versionCatalogs {</b>
+<b class="nc">&nbsp;    dependencyResolutionManagement { management -&gt;</b>
+<b class="nc">&nbsp;        management.versionCatalogs { container -&gt;</b>
 <b class="nc">&nbsp;            val catalogs: Map&lt;String, File&gt; = tomlFileInGradleDirs.getCatalogs()</b>
 <b class="nc">&nbsp;            for ((name, file) in catalogs) {</b>
-<b class="nc">&nbsp;                create(name) { from(objects.fileCollection().from(file.absolutePath)) }</b>
+<b class="nc">&nbsp;                container.create(name) { catalog -&gt;</b>
+<b class="nc">&nbsp;                    catalog.from(objects.fileCollection().from(file.absolutePath))</b>
+&nbsp;                }
 &nbsp;            }
 &nbsp;        }
 &nbsp;    }
@@ -497,7 +499,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-29 16:26</div>
+    <div style="float:right;">generated on 2022-09-29 20:22</div>
 </div>
 </body>
 </html>

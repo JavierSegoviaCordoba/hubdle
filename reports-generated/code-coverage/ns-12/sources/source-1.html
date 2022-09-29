@@ -75,7 +75,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/70)
+    (0/62)
   </span>
 </td>
 </tr>
@@ -138,7 +138,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/156)
+    (0/148)
   </span>
 </td>
 </tr>
@@ -172,19 +172,20 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="nc">&nbsp;            project.getPropertyOrNull(HubdleProperty.Analysis.projectKey)</b>
 <b class="nc">&nbsp;                ?: &quot;${project.group}:${project.getPropertyOrNull(HubdleProperty.Project.rootProjectDirName) ?: project.rootDir.name}&quot;</b>
 &nbsp;
-<b class="nc">&nbsp;        project.tasks.register&lt;WriteReadmeBadgesTask&gt;(WriteReadmeBadgesTask.name).configure {</b>
-<b class="nc">&nbsp;            this.projectGroup.set(project.group.toString())</b>
-<b class="nc">&nbsp;            this.projectName.set(projectName)</b>
-<b class="nc">&nbsp;            this.repoUrl.set(project.getProperty(HubdleProperty.POM.scmUrl))</b>
-<b class="nc">&nbsp;            this.kotlinVersion.set(project.getKotlinPluginVersion())</b>
-<b class="nc">&nbsp;            this.kotlinBadge.set(readmeState.badges.kotlin)</b>
-<b class="nc">&nbsp;            this.mavenCentralBadge.set(readmeState.badges.mavenCentral)</b>
-<b class="nc">&nbsp;            this.snapshotsBadge.set(readmeState.badges.snapshots)</b>
-<b class="nc">&nbsp;            this.buildBadge.set(readmeState.badges.build)</b>
-<b class="nc">&nbsp;            this.coverageBadge.set(readmeState.badges.coverage)</b>
-<b class="nc">&nbsp;            this.qualityBadge.set(readmeState.badges.quality)</b>
-<b class="nc">&nbsp;            this.techDebtBadge.set(readmeState.badges.techDebt)</b>
-<b class="nc">&nbsp;            this.projectKey.set(projectKey)</b>
+<b class="nc">&nbsp;        project.tasks.register&lt;WriteReadmeBadgesTask&gt;(WriteReadmeBadgesTask.name).configure { task</b>
+&nbsp;            -&gt;
+<b class="nc">&nbsp;            task.projectGroup.set(project.group.toString())</b>
+<b class="nc">&nbsp;            task.projectName.set(projectName)</b>
+<b class="nc">&nbsp;            task.repoUrl.set(project.getProperty(HubdleProperty.POM.scmUrl))</b>
+<b class="nc">&nbsp;            task.kotlinVersion.set(project.getKotlinPluginVersion())</b>
+<b class="nc">&nbsp;            task.kotlinBadge.set(readmeState.badges.kotlin)</b>
+<b class="nc">&nbsp;            task.mavenCentralBadge.set(readmeState.badges.mavenCentral)</b>
+<b class="nc">&nbsp;            task.snapshotsBadge.set(readmeState.badges.snapshots)</b>
+<b class="nc">&nbsp;            task.buildBadge.set(readmeState.badges.build)</b>
+<b class="nc">&nbsp;            task.coverageBadge.set(readmeState.badges.coverage)</b>
+<b class="nc">&nbsp;            task.qualityBadge.set(readmeState.badges.quality)</b>
+<b class="nc">&nbsp;            task.techDebtBadge.set(readmeState.badges.techDebt)</b>
+<b class="nc">&nbsp;            task.projectKey.set(projectKey)</b>
 &nbsp;        }
 &nbsp;    }
 &nbsp;}
@@ -211,7 +212,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-29 16:26</div>
+    <div style="float:right;">generated on 2022-09-29 20:22</div>
 </div>
 </body>
 </html>

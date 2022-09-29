@@ -14,6 +14,10 @@
 
 ### Updated
 
+## [0.2.0-alpha.40] - 2022-09-29
+
+### Updated
+
 - `gradle/gradle-build-action -> v2.3.2`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.2.0-alpha.39`
 

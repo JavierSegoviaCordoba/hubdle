@@ -14,6 +14,10 @@
 
 ### Updated
 
+## [0.2.0-alpha.38] - 2022-09-29
+
+### Updated
+
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.2.0-alpha.37`
 - `actions/setup-java -> v3.5.1`
 

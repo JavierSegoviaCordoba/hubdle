@@ -4,18 +4,26 @@
 
 ### Added
 
-- `gradlePluginPortal` to the default repositories
-- `java-gradle-plugin` and `kotlin("jvm")` to build Gradle Plugins
-
 ### Changed
 
 ### Deprecated
 
 ### Removed
 
-- `kotlin-dsl` to build Gradle plugins
-
 ### Fixed
+
+### Updated
+
+## [0.2.0-alpha.39] - 2022-09-29
+
+### Added
+
+- `gradlePluginPortal` to the default repositories
+- `java-gradle-plugin` and `kotlin("jvm")` to build Gradle Plugins
+
+### Removed
+
+- `kotlin-dsl` to build Gradle plugins
 
 ### Updated
 

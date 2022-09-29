@@ -36,24 +36,23 @@ hubdle {
                 main {
                     dependencies {
                         api(libs.adarshr.gradleTestLoggerPlugin)
+                        api(libs.android.toolsBuild.gradle)
                         api(libs.diffplug.spotless.spotlessPluginGradle)
                         api(libs.github.gradleNexus.publishPlugin)
                         api(libs.gitlab.arturboschDetekt.detektGradlePlugin)
                         api(libs.gradle.kotlin.gradleKotlinDslPlugins)
                         api(libs.gradle.publish.pluginPublishPlugin)
                         api(libs.javiersc.semver.semverGradlePlugin)
+                        api(libs.jetbrains.compose.composeGradlePlugin)
                         api(libs.jetbrains.dokka.dokkaGradlePlugin)
                         api(libs.jetbrains.intellijPlugins.gradleChangelogPlugin)
                         api(libs.jetbrains.intellijPlugins.gradleIntellijPlugin)
+                        api(libs.jetbrains.kotlin.kotlinGradlePlugin)
                         api(libs.jetbrains.kotlinx.binaryCompatibilityValidator)
                         api(libs.jetbrains.kotlinx.kover)
                         api(libs.jetbrains.kotlinx.serialization)
                         api(libs.sonarqube.scannerGradle.sonarqubeGradlePlugin)
                         api(libs.vyarus.gradleMkdocsPlugin)
-
-                        compileOnly(libs.android.toolsBuild.gradle)
-                        compileOnly(libs.jetbrains.compose.composeGradlePlugin)
-                        compileOnly(libs.jetbrains.kotlin.kotlinGradlePlugin)
 
                         implementation(libs.eclipse.jgit)
                         implementation(libs.javiersc.semver.semverCore)

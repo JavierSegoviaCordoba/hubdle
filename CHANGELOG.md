@@ -16,6 +16,8 @@
 
 ### Updated
 
+- `org.jetbrains.kotlin:kotlin-serialization -> 1.7.20`
+- `org.jetbrains.kotlin:kotlin-gradle-plugin -> 1.7.20`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.2.0-alpha.38`
 
 ## [0.2.0-alpha.38] - 2022-09-29

@@ -40,7 +40,6 @@ hubdle {
                         api(libs.diffplug.spotless.spotlessPluginGradle)
                         api(libs.github.gradleNexus.publishPlugin)
                         api(libs.gitlab.arturboschDetekt.detektGradlePlugin)
-                        api(libs.gradle.kotlin.gradleKotlinDslPlugins)
                         api(libs.gradle.publish.pluginPublishPlugin)
                         api(libs.javiersc.semver.semverGradlePlugin)
                         api(libs.jetbrains.compose.composeGradlePlugin)

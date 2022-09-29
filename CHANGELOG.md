@@ -5,12 +5,15 @@
 ### Added
 
 - `gradlePluginPortal` to the default repositories
+- `java-gradle-plugin` and `kotlin("jvm")` to build Gradle Plugins
 
 ### Changed
 
 ### Deprecated
 
 ### Removed
+
+- `kotlin-dsl` to build Gradle plugins
 
 ### Fixed
 

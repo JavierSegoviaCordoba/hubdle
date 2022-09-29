@@ -45,7 +45,8 @@ import org.jetbrains.kotlin.gradle.plugin.getKotlinPluginVersion
 
 internal fun configureGradlePlugin(project: Project) {
     if (project.hubdleState.kotlin.gradle.plugin.isEnabled) {
-        project.pluginManager.apply(PluginIds.Gradle.kotlinDsl)
+        project.pluginManager.apply(PluginIds.Gradle.javaGradlePlugin)
+        project.pluginManager.apply(PluginIds.Kotlin.jvm)
 
         project.configureExplicitApi()
         project.configJvmTarget()

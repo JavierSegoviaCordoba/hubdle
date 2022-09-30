@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `actions/cache -> v3.0.9`
+
 ## [0.2.0-alpha.40] - 2022-09-29
 
 ### Updated

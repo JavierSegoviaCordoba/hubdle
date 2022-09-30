@@ -116,29 +116,30 @@ private fun KotlinJvmProjectExtension.configureGradleDependencies() {
 internal val Project.gradlePluginFeatures: HubdleState.Kotlin.Gradle.Plugin.Features
     get() = hubdleState.kotlin.gradle.plugin.features
 
-private val KotlinDependencyHandler.gradlePluginFeatures: HubdleState.Kotlin.Gradle.Plugin.Features
-    get() = project.gradlePluginFeatures
-
 private fun KotlinDependencyHandler.configureMainDependencies() {
-    implementation(project.dependencies.gradleApi())
-    implementation(project.gradleKotlinDsl())
+    with(project) {
+        implementation(dependencies.gradleApi())
+        implementation(gradleKotlinDsl())
 
-    if (gradlePluginFeatures.extendedGradle) {
-        implementation(catalogDep(COM_JAVIERSC_GRADLE_GRADLE_EXTENSIONS_MODULE))
-    }
-    if (gradlePluginFeatures.extendedGradle) {
-        implementation(catalogDep(COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE))
+        if (gradlePluginFeatures.extendedGradle) {
+            implementation(catalogDep(COM_JAVIERSC_GRADLE_GRADLE_EXTENSIONS_MODULE))
+        }
+        if (gradlePluginFeatures.extendedGradle) {
+            implementation(catalogDep(COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE))
+        }
     }
 }
 
 private fun KotlinDependencyHandler.configureTestDependencies() {
-    implementation(catalogDep(ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE))
-    implementation(project.dependencies.gradleTestKit())
-    if (gradlePluginFeatures.extendedGradle) {
-        implementation(catalogDep(COM_JAVIERSC_GRADLE_GRADLE_TEST_EXTENSIONS_MODULE))
-    }
+    with(project) {
+        implementation(catalogDep(ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE))
+        implementation(project.dependencies.gradleTestKit())
+        if (gradlePluginFeatures.extendedGradle) {
+            implementation(catalogDep(COM_JAVIERSC_GRADLE_GRADLE_TEST_EXTENSIONS_MODULE))
+        }
 
-    if (gradlePluginFeatures.extendedTesting) {
-        implementation(catalogDep(IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE))
+        if (gradlePluginFeatures.extendedTesting) {
+            implementation(catalogDep(IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE))
+        }
     }
 }

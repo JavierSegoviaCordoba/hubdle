@@ -61,10 +61,6 @@ internal fun configureAndroidLibrary(project: Project) {
 internal val Project.androidLibraryFeatures: HubdleState.Kotlin.Android.Library.Features
     get() = hubdleState.kotlin.android.library.features
 
-private val KotlinDependencyHandler.androidLibraryFeatures:
-    HubdleState.Kotlin.Android.Library.Features
-    get() = project.androidLibraryFeatures
-
 internal fun configureKotlinAndroidLibraryRawConfig(project: Project) {
     project.hubdleState.kotlin.android.library.rawConfig.android?.execute(project.the())
 }
@@ -75,29 +71,33 @@ private fun KotlinProjectExtension.configureAndroidDependencies() {
 }
 
 private fun KotlinDependencyHandler.configureMainDependencies() {
-    if (androidLibraryFeatures.coroutines) {
-        implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_ANDROID_MODULE))
-        implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_MODULE))
-    }
-    if (androidLibraryFeatures.extendedStdlib) {
-        implementation(catalogDep(COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE))
-    }
-    if (androidLibraryFeatures.serialization.isEnabled) {
-        project.pluginManager.apply(PluginIds.Kotlin.serialization)
-        implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_CORE_MODULE))
-        if (androidLibraryFeatures.serialization.useJson) {
-            implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_JSON_MODULE))
+    with(project) {
+        if (androidLibraryFeatures.coroutines) {
+            implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_ANDROID_MODULE))
+            implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_MODULE))
+        }
+        if (androidLibraryFeatures.extendedStdlib) {
+            implementation(catalogDep(COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE))
+        }
+        if (androidLibraryFeatures.serialization.isEnabled) {
+            project.pluginManager.apply(PluginIds.Kotlin.serialization)
+            implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_CORE_MODULE))
+            if (androidLibraryFeatures.serialization.useJson) {
+                implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_JSON_MODULE))
+            }
         }
     }
 }
 
 private fun KotlinDependencyHandler.configureTestDependencies() {
-    implementation(catalogDep(ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE))
+    with(project) {
+        implementation(catalogDep(ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE))
 
-    if (androidLibraryFeatures.coroutines) {
-        implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_TEST_MODULE))
-    }
-    if (androidLibraryFeatures.extendedTesting) {
-        implementation(catalogDep(IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE))
+        if (androidLibraryFeatures.coroutines) {
+            implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_TEST_MODULE))
+        }
+        if (androidLibraryFeatures.extendedTesting) {
+            implementation(catalogDep(IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE))
+        }
     }
 }

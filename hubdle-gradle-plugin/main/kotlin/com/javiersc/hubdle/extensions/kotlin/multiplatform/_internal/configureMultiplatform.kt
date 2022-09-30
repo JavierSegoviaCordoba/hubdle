@@ -89,9 +89,6 @@ private fun KotlinMultiplatformExtension.configureMultiplatformDependencies() {
 internal val Project.multiplatformFeatures: HubdleState.Kotlin.Multiplatform.Features
     get() = hubdleState.kotlin.multiplatform.features
 
-private val KotlinDependencyHandler.multiplatformFeatures: HubdleState.Kotlin.Multiplatform.Features
-    get() = project.multiplatformFeatures
-
 private fun configurePublishing(project: Project) {
     if (project.hubdleState.config.publishing.isEnabled) {
         project.pluginManager.apply(PluginIds.Publishing.mavenPublish)
@@ -102,31 +99,35 @@ private fun configurePublishing(project: Project) {
 }
 
 private fun KotlinDependencyHandler.configureCommonMainDependencies() {
-    if (multiplatformFeatures.coroutines) {
-        implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_MODULE))
-    }
-    if (multiplatformFeatures.extendedStdlib) {
-        implementation(catalogDep(COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE))
-    }
-    if (multiplatformFeatures.serialization.isEnabled) {
-        implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_CORE_MODULE))
-        if (multiplatformFeatures.serialization.useJson) {
-            implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_JSON_MODULE))
+    with(project) {
+        if (multiplatformFeatures.coroutines) {
+            implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_MODULE))
+        }
+        if (multiplatformFeatures.extendedStdlib) {
+            implementation(catalogDep(COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE))
+        }
+        if (multiplatformFeatures.serialization.isEnabled) {
+            implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_CORE_MODULE))
+            if (multiplatformFeatures.serialization.useJson) {
+                implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_JSON_MODULE))
+            }
         }
     }
 }
 
 private fun KotlinDependencyHandler.configureCommonTestDependencies() {
-    if (multiplatformFeatures.coroutines) {
-        implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_TEST_MODULE))
-    }
-    implementation(catalogDep(ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE))
-
-    if (multiplatformFeatures.extendedTesting) {
-        project.commonTestImplementationConfiguration?.withDependencies { set ->
-            set.addLater(calculateJavierScKotlinTestDependency())
+    with(project) {
+        if (multiplatformFeatures.coroutines) {
+            implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_TEST_MODULE))
         }
-        implementation(catalogDep(IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE))
+        implementation(catalogDep(ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE))
+
+        if (multiplatformFeatures.extendedTesting) {
+            project.commonTestImplementationConfiguration?.withDependencies { set ->
+                set.addLater(calculateJavierScKotlinTestDependency())
+            }
+            implementation(catalogDep(IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE))
+        }
     }
 }
 
@@ -135,17 +136,21 @@ private val Project.commonTestImplementationConfiguration: Configuration?
 
 private fun KotlinDependencyHandler.calculateJavierScKotlinTestDependency(): Provider<Dependency> {
     return project.provider {
-        when (project.tasks.withType<Test>().firstOrNull()?.options) {
-            is JUnitOptions -> catalogDep(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_JUNIT_MODULE)
-            is JUnitPlatformOptions -> catalogDep(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_JUNIT5_MODULE)
-            is TestNGOptions -> catalogDep(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_TESTNG_MODULE)
-            else -> catalogDep(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_JUNIT_MODULE)
-        }.run(::implementation)
+        with(project) {
+            when (tasks.withType<Test>().firstOrNull()?.options) {
+                is JUnitOptions -> catalogDep(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_JUNIT_MODULE)
+                is JUnitPlatformOptions -> catalogDep(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_JUNIT5_MODULE)
+                is TestNGOptions -> catalogDep(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_TESTNG_MODULE)
+                else -> catalogDep(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_JUNIT_MODULE)
+            }.run { implementation(this) }
+        }
     }
 }
 
 private fun KotlinDependencyHandler.configureAndroidMainDependencies() {
-    if (multiplatformFeatures.coroutines) {
-        implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_ANDROID_MODULE))
+    with(project) {
+        if (multiplatformFeatures.coroutines) {
+            implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_ANDROID_MODULE))
+        }
     }
 }

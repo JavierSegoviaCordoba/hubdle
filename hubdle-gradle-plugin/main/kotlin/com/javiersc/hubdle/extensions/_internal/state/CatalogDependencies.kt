@@ -11,22 +11,17 @@ import org.gradle.api.internal.artifacts.DefaultModuleIdentifier
 import org.gradle.api.internal.artifacts.dependencies.DefaultMinimalDependency
 import org.gradle.api.internal.artifacts.dependencies.DefaultMutableVersionConstraint
 import org.gradle.kotlin.dsl.findByType
-import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
 
 internal val userCatalogsDependencies: UserCatalogsDependencies = UserCatalogsDependencies()
 
 internal val hubdleCatalogsDependencies: HubdleCatalogsDependencies = HubdleCatalogsDependencies()
 
-internal fun KotlinDependencyHandler.catalogDependency(
-    module: String
-): MinimalExternalModuleDependency =
+internal fun Project.catalogDependency(module: String): MinimalExternalModuleDependency =
     checkNotNull(getDependency(module)) {
         "The dependency $module has not been found in any catalog"
     }
 
-private fun KotlinDependencyHandler.getDependency(
-    module: String
-): MinimalExternalModuleDependency? =
+private fun Project.getDependency(module: String): MinimalExternalModuleDependency? =
     getCatalogsDependency(module).takeIf { project.module != "${it.module}" }
 
 private fun getCatalogsDependency(module: String): MinimalExternalModuleDependency {

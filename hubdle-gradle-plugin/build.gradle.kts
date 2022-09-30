@@ -211,8 +211,8 @@ fun Project.buildHubdleDependencies() {
                                     .decapitalize()
                             """
                                 |@HubdleDslMarker
-                                |public fun KotlinDependencyHandler.$dependencyName(): MinimalExternalModuleDependency =
-                                |    catalogDependency(${dependencyVariableName}_MODULE)
+                                |public fun Project.$dependencyName(): Provider<MinimalExternalModuleDependency> =
+                                |    provider { catalogDependency(${dependencyVariableName}_MODULE) }
                             """
                         }
                         .lines()
@@ -230,7 +230,8 @@ fun Project.buildHubdleDependencies() {
                      |import com.javiersc.hubdle.extensions._internal.state.catalogDependency
                      |import com.javiersc.hubdle.extensions.dependencies._internal.constants.*
                      |import org.gradle.api.artifacts.MinimalExternalModuleDependency
-                     |import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
+                     |import org.gradle.api.Project
+                     |import org.gradle.api.provider.Provider
                      |
                      |
                  """.trimMargin() +

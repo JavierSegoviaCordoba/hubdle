@@ -51,7 +51,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/8)
+    (0/7)
   </span>
 </td>
 <td class="coverageStat">
@@ -67,7 +67,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/35)
+    (0/38)
   </span>
 </td>
 <td class="coverageStat">
@@ -75,7 +75,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/201)
+    (0/212)
   </span>
 </td>
 </tr>
@@ -374,7 +374,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/21)
+    (0/20)
   </span>
 </td>
 <td class="coverageStat">
@@ -390,7 +390,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/49)
+    (0/52)
   </span>
 </td>
 <td class="coverageStat">
@@ -398,7 +398,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/285)
+    (0/296)
   </span>
 </td>
 </tr>
@@ -467,10 +467,6 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;internal val Project.androidApplicationFeatures: HubdleState.Kotlin.Android.Application.Features
 <b class="nc">&nbsp;    get() = hubdleState.kotlin.android.application.features</b>
 &nbsp;
-&nbsp;private val KotlinDependencyHandler.androidApplicationFeatures:
-&nbsp;    HubdleState.Kotlin.Android.Application.Features
-<b class="nc">&nbsp;    get() = project.androidApplicationFeatures</b>
-&nbsp;
 &nbsp;internal fun Project.configureAndroidApplicationComposeFeature() {
 <b class="nc">&nbsp;    if (androidApplicationFeatures.compose) {</b>
 <b class="nc">&nbsp;        pluginManager.apply(PluginIds.Kotlin.compose)</b>
@@ -488,34 +484,38 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;}
 &nbsp;
 &nbsp;private fun KotlinDependencyHandler.configureMainDependencies() {
-<b class="nc">&nbsp;    if (androidApplicationFeatures.compose) {</b>
-<b class="nc">&nbsp;        implementation(catalogDep(ANDROIDX_ACTIVITY_ACTIVITY_COMPOSE_MODULE))</b>
-&nbsp;    }
-<b class="nc">&nbsp;    if (androidApplicationFeatures.coroutines) {</b>
-<b class="nc">&nbsp;        implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_ANDROID_MODULE))</b>
-<b class="nc">&nbsp;        implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_MODULE))</b>
-&nbsp;    }
-<b class="nc">&nbsp;    if (androidApplicationFeatures.extendedStdlib) {</b>
-<b class="nc">&nbsp;        implementation(catalogDep(COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE))</b>
-&nbsp;    }
-<b class="nc">&nbsp;    if (androidApplicationFeatures.serialization.isEnabled) {</b>
-<b class="nc">&nbsp;        project.pluginManager.apply(PluginIds.Kotlin.serialization)</b>
-<b class="nc">&nbsp;        implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_CORE_MODULE))</b>
-<b class="nc">&nbsp;        if (androidApplicationFeatures.serialization.useJson) {</b>
-<b class="nc">&nbsp;            implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_JSON_MODULE))</b>
+<b class="nc">&nbsp;    with(project) {</b>
+<b class="nc">&nbsp;        if (androidApplicationFeatures.compose) {</b>
+<b class="nc">&nbsp;            implementation(catalogDep(ANDROIDX_ACTIVITY_ACTIVITY_COMPOSE_MODULE))</b>
 &nbsp;        }
-&nbsp;    }
+<b class="nc">&nbsp;        if (androidApplicationFeatures.coroutines) {</b>
+<b class="nc">&nbsp;            implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_ANDROID_MODULE))</b>
+<b class="nc">&nbsp;            implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_MODULE))</b>
+&nbsp;        }
+<b class="nc">&nbsp;        if (androidApplicationFeatures.extendedStdlib) {</b>
+<b class="nc">&nbsp;            implementation(catalogDep(COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE))</b>
+&nbsp;        }
+<b class="nc">&nbsp;        if (androidApplicationFeatures.serialization.isEnabled) {</b>
+<b class="nc">&nbsp;            project.pluginManager.apply(PluginIds.Kotlin.serialization)</b>
+<b class="nc">&nbsp;            implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_CORE_MODULE))</b>
+<b class="nc">&nbsp;            if (androidApplicationFeatures.serialization.useJson) {</b>
+<b class="nc">&nbsp;                implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_JSON_MODULE))</b>
+&nbsp;            }
+&nbsp;        }
+<b class="nc">&nbsp;    }</b>
 &nbsp;}
 &nbsp;
 &nbsp;private fun KotlinDependencyHandler.configureTestDependencies() {
-<b class="nc">&nbsp;    implementation(catalogDep(ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE))</b>
+<b class="nc">&nbsp;    with(project) {</b>
+<b class="nc">&nbsp;        implementation(catalogDep(ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE))</b>
 &nbsp;
-<b class="nc">&nbsp;    if (androidApplicationFeatures.coroutines) {</b>
-<b class="nc">&nbsp;        implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_TEST_MODULE))</b>
-&nbsp;    }
-<b class="nc">&nbsp;    if (androidApplicationFeatures.extendedTesting) {</b>
-<b class="nc">&nbsp;        implementation(catalogDep(IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE))</b>
-&nbsp;    }
+<b class="nc">&nbsp;        if (androidApplicationFeatures.coroutines) {</b>
+<b class="nc">&nbsp;            implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_TEST_MODULE))</b>
+&nbsp;        }
+<b class="nc">&nbsp;        if (androidApplicationFeatures.extendedTesting) {</b>
+<b class="nc">&nbsp;            implementation(catalogDep(IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE))</b>
+&nbsp;        }
+<b class="nc">&nbsp;    }</b>
 &nbsp;}
 </code>
 </pre>
@@ -540,7 +540,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-30 10:20</div>
+    <div style="float:right;">generated on 2022-09-30 13:08</div>
 </div>
 </body>
 </html>

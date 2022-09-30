@@ -51,7 +51,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/8)
+    (0/7)
   </span>
 </td>
 <td class="coverageStat">
@@ -67,7 +67,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/44)
+    (0/47)
   </span>
 </td>
 <td class="coverageStat">
@@ -75,7 +75,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/307)
+    (0/316)
   </span>
 </td>
 </tr>
@@ -440,7 +440,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/24)
+    (0/23)
   </span>
 </td>
 <td class="coverageStat">
@@ -456,7 +456,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/62)
+    (0/65)
   </span>
 </td>
 <td class="coverageStat">
@@ -464,7 +464,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/458)
+    (0/467)
   </span>
 </td>
 </tr>
@@ -593,31 +593,32 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;internal val Project.gradlePluginFeatures: HubdleState.Kotlin.Gradle.Plugin.Features
 <b class="nc">&nbsp;    get() = hubdleState.kotlin.gradle.plugin.features</b>
 &nbsp;
-&nbsp;private val KotlinDependencyHandler.gradlePluginFeatures: HubdleState.Kotlin.Gradle.Plugin.Features
-<b class="nc">&nbsp;    get() = project.gradlePluginFeatures</b>
-&nbsp;
 &nbsp;private fun KotlinDependencyHandler.configureMainDependencies() {
-<b class="nc">&nbsp;    implementation(project.dependencies.gradleApi())</b>
-<b class="nc">&nbsp;    implementation(project.gradleKotlinDsl())</b>
+<b class="nc">&nbsp;    with(project) {</b>
+<b class="nc">&nbsp;        implementation(dependencies.gradleApi())</b>
+<b class="nc">&nbsp;        implementation(gradleKotlinDsl())</b>
 &nbsp;
-<b class="nc">&nbsp;    if (gradlePluginFeatures.extendedGradle) {</b>
-<b class="nc">&nbsp;        implementation(catalogDep(COM_JAVIERSC_GRADLE_GRADLE_EXTENSIONS_MODULE))</b>
-&nbsp;    }
-<b class="nc">&nbsp;    if (gradlePluginFeatures.extendedGradle) {</b>
-<b class="nc">&nbsp;        implementation(catalogDep(COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE))</b>
-&nbsp;    }
+<b class="nc">&nbsp;        if (gradlePluginFeatures.extendedGradle) {</b>
+<b class="nc">&nbsp;            implementation(catalogDep(COM_JAVIERSC_GRADLE_GRADLE_EXTENSIONS_MODULE))</b>
+&nbsp;        }
+<b class="nc">&nbsp;        if (gradlePluginFeatures.extendedGradle) {</b>
+<b class="nc">&nbsp;            implementation(catalogDep(COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE))</b>
+&nbsp;        }
+<b class="nc">&nbsp;    }</b>
 &nbsp;}
 &nbsp;
 &nbsp;private fun KotlinDependencyHandler.configureTestDependencies() {
-<b class="nc">&nbsp;    implementation(catalogDep(ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE))</b>
-<b class="nc">&nbsp;    implementation(project.dependencies.gradleTestKit())</b>
-<b class="nc">&nbsp;    if (gradlePluginFeatures.extendedGradle) {</b>
-<b class="nc">&nbsp;        implementation(catalogDep(COM_JAVIERSC_GRADLE_GRADLE_TEST_EXTENSIONS_MODULE))</b>
-&nbsp;    }
+<b class="nc">&nbsp;    with(project) {</b>
+<b class="nc">&nbsp;        implementation(catalogDep(ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE))</b>
+<b class="nc">&nbsp;        implementation(project.dependencies.gradleTestKit())</b>
+<b class="nc">&nbsp;        if (gradlePluginFeatures.extendedGradle) {</b>
+<b class="nc">&nbsp;            implementation(catalogDep(COM_JAVIERSC_GRADLE_GRADLE_TEST_EXTENSIONS_MODULE))</b>
+&nbsp;        }
 &nbsp;
-<b class="nc">&nbsp;    if (gradlePluginFeatures.extendedTesting) {</b>
-<b class="nc">&nbsp;        implementation(catalogDep(IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE))</b>
-&nbsp;    }
+<b class="nc">&nbsp;        if (gradlePluginFeatures.extendedTesting) {</b>
+<b class="nc">&nbsp;            implementation(catalogDep(IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE))</b>
+&nbsp;        }
+<b class="nc">&nbsp;    }</b>
 &nbsp;}
 </code>
 </pre>
@@ -642,7 +643,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-30 10:20</div>
+    <div style="float:right;">generated on 2022-09-30 13:08</div>
 </div>
 </body>
 </html>

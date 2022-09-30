@@ -51,7 +51,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/12)
+    (0/11)
   </span>
 </td>
 <td class="coverageStat">
@@ -67,7 +67,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/53)
+    (0/56)
   </span>
 </td>
 <td class="coverageStat">
@@ -75,7 +75,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/369)
+    (0/383)
   </span>
 </td>
 </tr>
@@ -549,7 +549,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/31)
+    (0/30)
   </span>
 </td>
 <td class="coverageStat">
@@ -565,7 +565,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/96)
+    (0/99)
   </span>
 </td>
 <td class="coverageStat">
@@ -573,7 +573,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/680)
+    (0/694)
   </span>
 </td>
 </tr>
@@ -751,43 +751,44 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;internal val Project.intellijFeatures: HubdleState.Kotlin.IntelliJ.Features
 <b class="nc">&nbsp;    get() = hubdleState.kotlin.intellij.features</b>
 &nbsp;
-&nbsp;private val KotlinDependencyHandler.intellijFeatures: HubdleState.Kotlin.IntelliJ.Features
-<b class="nc">&nbsp;    get() = project.intellijFeatures</b>
-&nbsp;
 &nbsp;private fun KotlinDependencyHandler.configureMainDependencies() {
-<b class="nc">&nbsp;    if (intellijFeatures.coroutines) {</b>
-<b class="nc">&nbsp;        implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_MODULE))</b>
-&nbsp;    }
-<b class="nc">&nbsp;    if (intellijFeatures.extendedGradle) {</b>
-<b class="nc">&nbsp;        implementation(project.dependencies.gradleApi())</b>
-<b class="nc">&nbsp;        implementation(project.dependencies.gradleTestKit())</b>
-<b class="nc">&nbsp;        implementation(project.gradleKotlinDsl())</b>
-<b class="nc">&nbsp;        implementation(catalogDep(COM_JAVIERSC_GRADLE_GRADLE_EXTENSIONS_MODULE))</b>
-&nbsp;    }
-<b class="nc">&nbsp;    if (intellijFeatures.extendedStdlib) {</b>
-<b class="nc">&nbsp;        implementation(catalogDep(COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE))</b>
-&nbsp;    }
-&nbsp;
-<b class="nc">&nbsp;    if (intellijFeatures.serialization.isEnabled) {</b>
-<b class="nc">&nbsp;        project.pluginManager.apply(PluginIds.Kotlin.serialization)</b>
-<b class="nc">&nbsp;        implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_CORE_MODULE))</b>
-<b class="nc">&nbsp;        if (intellijFeatures.serialization.useJson) {</b>
-<b class="nc">&nbsp;            implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_JSON_MODULE))</b>
+<b class="nc">&nbsp;    with(project) {</b>
+<b class="nc">&nbsp;        if (intellijFeatures.coroutines) {</b>
+<b class="nc">&nbsp;            implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_MODULE))</b>
 &nbsp;        }
-&nbsp;    }
+<b class="nc">&nbsp;        if (intellijFeatures.extendedGradle) {</b>
+<b class="nc">&nbsp;            implementation(project.dependencies.gradleApi())</b>
+<b class="nc">&nbsp;            implementation(project.dependencies.gradleTestKit())</b>
+<b class="nc">&nbsp;            implementation(project.gradleKotlinDsl())</b>
+<b class="nc">&nbsp;            implementation(catalogDep(COM_JAVIERSC_GRADLE_GRADLE_EXTENSIONS_MODULE))</b>
+&nbsp;        }
+<b class="nc">&nbsp;        if (intellijFeatures.extendedStdlib) {</b>
+<b class="nc">&nbsp;            implementation(catalogDep(COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE))</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        if (intellijFeatures.serialization.isEnabled) {</b>
+<b class="nc">&nbsp;            project.pluginManager.apply(PluginIds.Kotlin.serialization)</b>
+<b class="nc">&nbsp;            implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_CORE_MODULE))</b>
+<b class="nc">&nbsp;            if (intellijFeatures.serialization.useJson) {</b>
+<b class="nc">&nbsp;                implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_JSON_MODULE))</b>
+&nbsp;            }
+&nbsp;        }
+<b class="nc">&nbsp;    }</b>
 &nbsp;}
 &nbsp;
 &nbsp;private fun KotlinDependencyHandler.configureTestDependencies() {
-<b class="nc">&nbsp;    implementation(catalogDep(ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE))</b>
-<b class="nc">&nbsp;    if (intellijFeatures.coroutines) {</b>
-<b class="nc">&nbsp;        implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_TEST_MODULE))</b>
-&nbsp;    }
-<b class="nc">&nbsp;    if (intellijFeatures.extendedGradle) {</b>
-<b class="nc">&nbsp;        implementation(catalogDep(COM_JAVIERSC_GRADLE_GRADLE_TEST_EXTENSIONS_MODULE))</b>
-&nbsp;    }
-<b class="nc">&nbsp;    if (intellijFeatures.extendedTesting) {</b>
-<b class="nc">&nbsp;        implementation(catalogDep(IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE))</b>
-&nbsp;    }
+<b class="nc">&nbsp;    with(project) {</b>
+<b class="nc">&nbsp;        implementation(catalogDep(ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE))</b>
+<b class="nc">&nbsp;        if (intellijFeatures.coroutines) {</b>
+<b class="nc">&nbsp;            implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_TEST_MODULE))</b>
+&nbsp;        }
+<b class="nc">&nbsp;        if (intellijFeatures.extendedGradle) {</b>
+<b class="nc">&nbsp;            implementation(catalogDep(COM_JAVIERSC_GRADLE_GRADLE_TEST_EXTENSIONS_MODULE))</b>
+&nbsp;        }
+<b class="nc">&nbsp;        if (intellijFeatures.extendedTesting) {</b>
+<b class="nc">&nbsp;            implementation(catalogDep(IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE))</b>
+&nbsp;        }
+<b class="nc">&nbsp;    }</b>
 &nbsp;}
 </code>
 </pre>
@@ -812,7 +813,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-30 10:20</div>
+    <div style="float:right;">generated on 2022-09-30 13:08</div>
 </div>
 </body>
 </html>

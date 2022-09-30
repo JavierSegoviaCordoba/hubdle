@@ -51,7 +51,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/15)
+    (0/14)
   </span>
 </td>
 <td class="coverageStat">
@@ -67,7 +67,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/50)
+    (0/56)
   </span>
 </td>
 <td class="coverageStat">
@@ -75,12 +75,12 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/336)
+    (0/363)
   </span>
 </td>
 </tr>
   <tr>
-    <td class="name">ConfigureMultiplatformKt$configureCommonTestDependencies$1</td>
+    <td class="name">ConfigureMultiplatformKt$configureCommonTestDependencies$1$1</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -338,7 +338,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/28)
+    (0/27)
   </span>
 </td>
 <td class="coverageStat">
@@ -354,7 +354,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/56)
+    (0/62)
   </span>
 </td>
 <td class="coverageStat">
@@ -362,7 +362,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/355)
+    (0/382)
   </span>
 </td>
 </tr>
@@ -464,9 +464,6 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;internal val Project.multiplatformFeatures: HubdleState.Kotlin.Multiplatform.Features
 <b class="nc">&nbsp;    get() = hubdleState.kotlin.multiplatform.features</b>
 &nbsp;
-&nbsp;private val KotlinDependencyHandler.multiplatformFeatures: HubdleState.Kotlin.Multiplatform.Features
-<b class="nc">&nbsp;    get() = project.multiplatformFeatures</b>
-&nbsp;
 &nbsp;private fun configurePublishing(project: Project) {
 <b class="nc">&nbsp;    if (project.hubdleState.config.publishing.isEnabled) {</b>
 <b class="nc">&nbsp;        project.pluginManager.apply(PluginIds.Publishing.mavenPublish)</b>
@@ -477,32 +474,36 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;}
 &nbsp;
 &nbsp;private fun KotlinDependencyHandler.configureCommonMainDependencies() {
-<b class="nc">&nbsp;    if (multiplatformFeatures.coroutines) {</b>
-<b class="nc">&nbsp;        implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_MODULE))</b>
-&nbsp;    }
-<b class="nc">&nbsp;    if (multiplatformFeatures.extendedStdlib) {</b>
-<b class="nc">&nbsp;        implementation(catalogDep(COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE))</b>
-&nbsp;    }
-<b class="nc">&nbsp;    if (multiplatformFeatures.serialization.isEnabled) {</b>
-<b class="nc">&nbsp;        implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_CORE_MODULE))</b>
-<b class="nc">&nbsp;        if (multiplatformFeatures.serialization.useJson) {</b>
-<b class="nc">&nbsp;            implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_JSON_MODULE))</b>
+<b class="nc">&nbsp;    with(project) {</b>
+<b class="nc">&nbsp;        if (multiplatformFeatures.coroutines) {</b>
+<b class="nc">&nbsp;            implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_MODULE))</b>
 &nbsp;        }
-&nbsp;    }
+<b class="nc">&nbsp;        if (multiplatformFeatures.extendedStdlib) {</b>
+<b class="nc">&nbsp;            implementation(catalogDep(COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE))</b>
+&nbsp;        }
+<b class="nc">&nbsp;        if (multiplatformFeatures.serialization.isEnabled) {</b>
+<b class="nc">&nbsp;            implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_CORE_MODULE))</b>
+<b class="nc">&nbsp;            if (multiplatformFeatures.serialization.useJson) {</b>
+<b class="nc">&nbsp;                implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_JSON_MODULE))</b>
+&nbsp;            }
+&nbsp;        }
+<b class="nc">&nbsp;    }</b>
 &nbsp;}
 &nbsp;
 &nbsp;private fun KotlinDependencyHandler.configureCommonTestDependencies() {
-<b class="nc">&nbsp;    if (multiplatformFeatures.coroutines) {</b>
-<b class="nc">&nbsp;        implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_TEST_MODULE))</b>
-&nbsp;    }
-<b class="nc">&nbsp;    implementation(catalogDep(ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE))</b>
-&nbsp;
-<b class="nc">&nbsp;    if (multiplatformFeatures.extendedTesting) {</b>
-<b class="nc">&nbsp;        project.commonTestImplementationConfiguration?.withDependencies { set -&gt;</b>
-<b class="nc">&nbsp;            set.addLater(calculateJavierScKotlinTestDependency())</b>
+<b class="nc">&nbsp;    with(project) {</b>
+<b class="nc">&nbsp;        if (multiplatformFeatures.coroutines) {</b>
+<b class="nc">&nbsp;            implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_TEST_MODULE))</b>
 &nbsp;        }
-<b class="nc">&nbsp;        implementation(catalogDep(IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE))</b>
-&nbsp;    }
+<b class="nc">&nbsp;        implementation(catalogDep(ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE))</b>
+&nbsp;
+<b class="nc">&nbsp;        if (multiplatformFeatures.extendedTesting) {</b>
+<b class="nc">&nbsp;            project.commonTestImplementationConfiguration?.withDependencies { set -&gt;</b>
+<b class="nc">&nbsp;                set.addLater(calculateJavierScKotlinTestDependency())</b>
+&nbsp;            }
+<b class="nc">&nbsp;            implementation(catalogDep(IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE))</b>
+&nbsp;        }
+<b class="nc">&nbsp;    }</b>
 &nbsp;}
 &nbsp;
 &nbsp;private val Project.commonTestImplementationConfiguration: Configuration?
@@ -510,19 +511,23 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;
 &nbsp;private fun KotlinDependencyHandler.calculateJavierScKotlinTestDependency(): Provider&lt;Dependency&gt; {
 <b class="nc">&nbsp;    return project.provider {</b>
-<b class="nc">&nbsp;        when (project.tasks.withType&lt;Test&gt;().firstOrNull()?.options) {</b>
-<b class="nc">&nbsp;            is JUnitOptions -&gt; catalogDep(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_JUNIT_MODULE)</b>
-<b class="nc">&nbsp;            is JUnitPlatformOptions -&gt; catalogDep(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_JUNIT5_MODULE)</b>
-<b class="nc">&nbsp;            is TestNGOptions -&gt; catalogDep(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_TESTNG_MODULE)</b>
-<b class="nc">&nbsp;            else -&gt; catalogDep(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_JUNIT_MODULE)</b>
-<b class="nc">&nbsp;        }.run(::implementation)</b>
+<b class="nc">&nbsp;        with(project) {</b>
+<b class="nc">&nbsp;            when (tasks.withType&lt;Test&gt;().firstOrNull()?.options) {</b>
+<b class="nc">&nbsp;                is JUnitOptions -&gt; catalogDep(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_JUNIT_MODULE)</b>
+<b class="nc">&nbsp;                is JUnitPlatformOptions -&gt; catalogDep(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_JUNIT5_MODULE)</b>
+<b class="nc">&nbsp;                is TestNGOptions -&gt; catalogDep(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_TESTNG_MODULE)</b>
+<b class="nc">&nbsp;                else -&gt; catalogDep(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_JUNIT_MODULE)</b>
+<b class="nc">&nbsp;            }.run { implementation(this) }</b>
+&nbsp;        }
 &nbsp;    }
 &nbsp;}
 &nbsp;
 &nbsp;private fun KotlinDependencyHandler.configureAndroidMainDependencies() {
-<b class="nc">&nbsp;    if (multiplatformFeatures.coroutines) {</b>
-<b class="nc">&nbsp;        implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_ANDROID_MODULE))</b>
-&nbsp;    }
+<b class="nc">&nbsp;    with(project) {</b>
+<b class="nc">&nbsp;        if (multiplatformFeatures.coroutines) {</b>
+<b class="nc">&nbsp;            implementation(catalogDep(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_ANDROID_MODULE))</b>
+&nbsp;        }
+<b class="nc">&nbsp;    }</b>
 &nbsp;}
 </code>
 </pre>
@@ -547,7 +552,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-30 10:20</div>
+    <div style="float:right;">generated on 2022-09-30 13:08</div>
 </div>
 </body>
 </html>

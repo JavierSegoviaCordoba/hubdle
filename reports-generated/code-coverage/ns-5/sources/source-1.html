@@ -86,7 +86,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/178)
+    (0/181)
   </span>
 </td>
 </tr>
@@ -111,22 +111,17 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;import org.gradle.api.internal.artifacts.dependencies.DefaultMinimalDependency
 &nbsp;import org.gradle.api.internal.artifacts.dependencies.DefaultMutableVersionConstraint
 &nbsp;import org.gradle.kotlin.dsl.findByType
-&nbsp;import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
 &nbsp;
 <b class="nc">&nbsp;internal val userCatalogsDependencies: UserCatalogsDependencies = UserCatalogsDependencies()</b>
 &nbsp;
 <b class="nc">&nbsp;internal val hubdleCatalogsDependencies: HubdleCatalogsDependencies = HubdleCatalogsDependencies()</b>
 &nbsp;
-&nbsp;internal fun KotlinDependencyHandler.catalogDependency(
-&nbsp;    module: String
-&nbsp;): MinimalExternalModuleDependency =
+&nbsp;internal fun Project.catalogDependency(module: String): MinimalExternalModuleDependency =
 <b class="nc">&nbsp;    checkNotNull(getDependency(module)) {</b>
 <b class="nc">&nbsp;        &quot;The dependency $module has not been found in any catalog&quot;</b>
 &nbsp;    }
 &nbsp;
-&nbsp;private fun KotlinDependencyHandler.getDependency(
-&nbsp;    module: String
-&nbsp;): MinimalExternalModuleDependency? =
+&nbsp;private fun Project.getDependency(module: String): MinimalExternalModuleDependency? =
 <b class="nc">&nbsp;    getCatalogsDependency(module).takeIf { project.module != &quot;${it.module}&quot; }</b>
 &nbsp;
 &nbsp;private fun getCatalogsDependency(module: String): MinimalExternalModuleDependency {
@@ -189,7 +184,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-09-30 10:20</div>
+    <div style="float:right;">generated on 2022-09-30 13:08</div>
 </div>
 </body>
 </html>

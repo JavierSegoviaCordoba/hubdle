@@ -6,9 +6,6 @@
 
 ### Changed
 
-- dependencies `return` to `Provider<MinimalExternalModuleDependency>` instead of `MinimalExternalModuleDependency`
-- dependencies use `Project` as receiver instead of `KotlinDependencyHandler`
-
 ### Deprecated
 
 ### Removed
@@ -16,6 +13,13 @@
 ### Fixed
 
 ### Updated
+
+## [0.2.0-alpha.42] - 2022-09-30
+
+### Changed
+
+- dependencies `return` to `Provider<MinimalExternalModuleDependency>` instead of `MinimalExternalModuleDependency`
+- dependencies use `Project` as receiver instead of `KotlinDependencyHandler`
 
 ## [0.2.0-alpha.41] - 2022-09-30
 

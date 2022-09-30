@@ -4,11 +4,6 @@
 
 ### Added
 
-- `com.android.application:com.android.application.gradle.plugin` dependency
-- `com.android.library:com.android.library.gradle.plugin` dependency
-- `com.android.tools.build:gradle` dependency
-- `org.jetbrains.kotlin:kotlin-gradle-plugin` dependency
-
 ### Changed
 
 ### Deprecated
@@ -16,6 +11,17 @@
 ### Removed
 
 ### Fixed
+
+### Updated
+
+## [0.2.0-alpha.41] - 2022-09-30
+
+### Added
+
+- `com.android.application:com.android.application.gradle.plugin` dependency
+- `com.android.library:com.android.library.gradle.plugin` dependency
+- `com.android.tools.build:gradle` dependency
+- `org.jetbrains.kotlin:kotlin-gradle-plugin` dependency
 
 ### Updated
 

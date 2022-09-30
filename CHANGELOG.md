@@ -4,6 +4,11 @@
 
 ### Added
 
+- `com.android.application:com.android.application.gradle.plugin` dependency
+- `com.android.library:com.android.library.gradle.plugin` dependency
+- `com.android.tools.build:gradle` dependency
+- `org.jetbrains.kotlin:kotlin-gradle-plugin` dependency
+
 ### Changed
 
 ### Deprecated

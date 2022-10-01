@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.2.0-alpha.42`
+
 ## [0.2.0-alpha.42] - 2022-09-30
 
 ### Changed

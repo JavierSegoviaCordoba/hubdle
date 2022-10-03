@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx:kover -> 0.6.1`
 - `actions/cache -> v3.0.10`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.2.0-alpha.42`
 

@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `androidx.compose.compiler:compiler -> 1.3.2`
 - `actions/checkout -> v3.1.0`
 - `org.jetbrains.kotlinx:kover -> 0.6.1`
 - `actions/cache -> v3.0.10`

@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `androidx.compose.material3:material3-window-size-class -> 1.0.0-rc01`
+- `androidx.compose.material3:material3 -> 1.0.0-rc01`
 - `androidx.compose.compiler:compiler -> 1.3.2`
 - `actions/checkout -> v3.1.0`
 - `org.jetbrains.kotlinx:kover -> 0.6.1`

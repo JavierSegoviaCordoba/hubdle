@@ -14,13 +14,13 @@
 
 ### Updated
 
+- `org.jetbrains.compose:compose-gradle-plugin -> 1.2.0-rc02`
 - `io.kotest:kotest-runner-junit5 -> 5.5.1`
 - `io.kotest:kotest-runner-junit4 -> 5.5.1`
 - `io.kotest:kotest-property -> 5.5.1`
 - `io.kotest:kotest-assertions-sql -> 5.5.1`
 - `io.kotest:kotest-assertions-json -> 5.5.1`
 - `io.kotest:kotest-assertions-core -> 5.5.1`
-- `org.jetbrains.compose:compose-gradle-plugin -> 1.2.0-rc01`
 - `androidx.compose.material3:material3-window-size-class -> 1.0.0-rc01`
 - `androidx.compose.material3:material3 -> 1.0.0-rc01`
 - `androidx.compose.compiler:compiler -> 1.3.2`

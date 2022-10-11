@@ -14,7 +14,7 @@
 
 ### Updated
 
-- `org.jetbrains.compose:compose-gradle-plugin -> 1.2.0-rc02`
+- `org.jetbrains.compose:compose-gradle-plugin -> 1.2.0`
 - `io.kotest:kotest-runner-junit5 -> 5.5.1`
 - `io.kotest:kotest-runner-junit4 -> 5.5.1`
 - `io.kotest:kotest-property -> 5.5.1`

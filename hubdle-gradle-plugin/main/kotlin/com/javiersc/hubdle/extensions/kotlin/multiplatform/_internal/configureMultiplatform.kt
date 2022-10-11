@@ -2,6 +2,7 @@
 
 package com.javiersc.hubdle.extensions.kotlin.multiplatform._internal
 
+import androidxComposeCompiler
 import com.android.build.api.dsl.LibraryExtension
 import com.javiersc.hubdle.extensions._internal.PluginIds
 import com.javiersc.hubdle.extensions._internal.state.HubdleState
@@ -37,6 +38,7 @@ import org.gradle.api.tasks.testing.testng.TestNGOptions
 import org.gradle.kotlin.dsl.findByType
 import org.gradle.kotlin.dsl.the
 import org.gradle.kotlin.dsl.withType
+import org.jetbrains.compose.ComposeExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
@@ -71,8 +73,16 @@ internal fun configureSerialization(project: Project) {
 internal fun configureMultiplatformCompose(project: Project) {
     if (project.multiplatformFeatures.compose.isEnabled) {
         project.pluginManager.apply(PluginIds.Kotlin.compose)
-        project.extensions.findByType<LibraryExtension>()?.buildFeatures?.compose = true
+        project.extensions.findByType<LibraryExtension>()?.apply {
+            buildFeatures.compose = true
+            composeOptions.kotlinCompilerExtensionVersion =
+                project.androidxComposeCompiler().get().versionConstraint.displayName
+        }
         project.multiplatformFeatures.compose.desktop?.execute(project.the())
+        project.extensions
+            .findByType<ComposeExtension>()
+            ?.kotlinCompilerPlugin
+            ?.set(project.androidxComposeCompiler().get().versionConstraint.displayName)
     }
 }
 

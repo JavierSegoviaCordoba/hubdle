@@ -1,5 +1,6 @@
 package com.javiersc.hubdle.extensions.kotlin.android.application._internal
 
+import androidxComposeCompiler
 import com.android.build.api.dsl.ApplicationExtension
 import com.javiersc.hubdle.extensions._internal.PluginIds
 import com.javiersc.hubdle.extensions._internal.state.HubdleState
@@ -59,7 +60,13 @@ internal val Project.androidApplicationFeatures: HubdleState.Kotlin.Android.Appl
 internal fun Project.configureAndroidApplicationComposeFeature() {
     if (androidApplicationFeatures.compose) {
         pluginManager.apply(PluginIds.Kotlin.compose)
-        project.configure<ApplicationExtension> { defaultConfig { buildFeatures.compose = true } }
+        project.configure<ApplicationExtension> {
+            defaultConfig {
+                buildFeatures.compose = true
+                composeOptions.kotlinCompilerExtensionVersion =
+                    project.androidxComposeCompiler().get().versionConstraint.displayName
+            }
+        }
     }
 }
 

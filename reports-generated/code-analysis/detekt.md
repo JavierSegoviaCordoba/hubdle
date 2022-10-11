@@ -14,15 +14,15 @@
 
 ## Complexity Report
 
-* 11,771 lines of code (loc)
+* 11,789 lines of code (loc)
 
-* 9,757 source lines of code (sloc)
+* 9,775 source lines of code (sloc)
 
-* 6,620 logical lines of code (lloc)
+* 6,628 logical lines of code (lloc)
 
 * 52 comment lines of code (cloc)
 
-* 1,247 cyclomatic complexity (mcc)
+* 1,248 cyclomatic complexity (mcc)
 
 * 535 cognitive complexity
 
@@ -220,8 +220,8 @@ File '/home/runner/work/hubdle/hubdle/hubdle-gradle-plugin/main/kotlin/com/javie
 3 package com.javiersc.hubdle.extensions.kotlin.multiplatform._internal
 ! ^ error
 4 
-5 import com.android.build.api.dsl.LibraryExtension
-6 import com.javiersc.hubdle.extensions._internal.PluginIds
+5 import androidxComposeCompiler
+6 import com.android.build.api.dsl.LibraryExtension
 
 ```
 
@@ -1004,8 +1004,8 @@ Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*
 1 package com.javiersc.hubdle.extensions.kotlin.android.application._internal
 ! ^ error
 2 
-3 import com.android.build.api.dsl.ApplicationExtension
-4 import com.javiersc.hubdle.extensions._internal.PluginIds
+3 import androidxComposeCompiler
+4 import com.android.build.api.dsl.ApplicationExtension
 
 ```
 
@@ -1084,8 +1084,8 @@ Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*
 3 package com.javiersc.hubdle.extensions.kotlin.multiplatform._internal
 ! ^ error
 4 
-5 import com.android.build.api.dsl.LibraryExtension
-6 import com.javiersc.hubdle.extensions._internal.PluginIds
+5 import androidxComposeCompiler
+6 import com.android.build.api.dsl.LibraryExtension
 
 ```
 
@@ -1334,19 +1334,19 @@ This comment contains 'TODO:' that has been defined as forbidden in detekt.
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/application/_internal/configureAndroidApplication.kt:48:13
+* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/application/_internal/configureAndroidApplication.kt:49:13
 ```
 This comment contains 'TODO:' that has been defined as forbidden in detekt.
 ```
 ```kotlin
-45             defaultConfig.versionName = androidState.application.versionName
-46             compileSdk = androidState.compileSdk
-47             defaultConfig.minSdk = androidState.minSdk
-48             // TODO: namespace = project.calculateAndroidNamespace(androidState.namespace)
+46             defaultConfig.versionName = androidState.application.versionName
+47             compileSdk = androidState.compileSdk
+48             defaultConfig.minSdk = androidState.minSdk
+49             // TODO: namespace = project.calculateAndroidNamespace(androidState.namespace)
 !!             ^ error
-49 
-50             sourceSets.all { set -> set.configDefaultAndroidSourceSets() }
-51             project.configureAndroidBuildFeatures(this)
+50 
+51             sourceSets.all { set -> set.configDefaultAndroidSourceSets() }
+52             project.configureAndroidBuildFeatures(this)
 
 ```
 
@@ -1436,4 +1436,4 @@ Line detected, which is longer than the defined maximum line length in the code 
 
 ```
 
-generated with [detekt version 1.21.0](https://detekt.dev/) on 2022-10-11 22:30:27 UTC
+generated with [detekt version 1.21.0](https://detekt.dev/) on 2022-10-11 23:24:48 UTC

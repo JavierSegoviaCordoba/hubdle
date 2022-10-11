@@ -14,6 +14,10 @@
 
 ### Updated
 
+## [0.2.0-alpha.43] - 2022-10-11
+
+### Updated
+
 - `org.jetbrains.compose:compose-gradle-plugin -> 1.2.0`
 - `io.kotest:kotest-runner-junit5 -> 5.5.1`
 - `io.kotest:kotest-runner-junit4 -> 5.5.1`

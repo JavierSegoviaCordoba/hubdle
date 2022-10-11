@@ -14,6 +14,13 @@
 
 ### Updated
 
+- `io.kotest:kotest-assertions-ktor -> 4.4.3`
+- `io.kotest:kotest-assertions-kotlinx-time -> 4.4.3`
+- `io.kotest:kotest-assertions-konform -> 4.4.3`
+- `io.kotest:kotest-assertions-klock -> 4.4.3`
+- `io.kotest:kotest-assertions-jsoup -> 4.4.3`
+- `io.kotest:kotest-assertions-compiler -> 4.6.4`
+- `io.kotest:kotest-assertions-arrow -> 4.4.3`
 - `org.jetbrains.compose:compose-gradle-plugin -> 1.2.0-rc01`
 - `androidx.compose.material3:material3-window-size-class -> 1.0.0-rc01`
 - `androidx.compose.material3:material3 -> 1.0.0-rc01`

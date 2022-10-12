@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.11.2`
 - `app.cash.turbine:turbine -> 0.12.0`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.2.0-alpha.43`
 

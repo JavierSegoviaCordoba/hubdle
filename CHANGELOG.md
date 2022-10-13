@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.android.library:com.android.library.gradle.plugin -> 7.3.1`
 - `com.android.tools.build:gradle -> 7.3.1`
 - `actions/cache -> v3.0.11`
 - `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.11.2`

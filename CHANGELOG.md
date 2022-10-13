@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.android.tools.build:gradle -> 7.3.1`
 - `actions/cache -> v3.0.11`
 - `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.11.2`
 - `app.cash.turbine:turbine -> 0.12.0`

@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx:kotlinx-serialization-json -> 1.4.1`
+- `org.jetbrains.kotlinx:kotlinx-serialization-core -> 1.4.1`
 - `com.android.application:com.android.application.gradle.plugin -> 7.3.1`
 - `com.android.library:com.android.library.gradle.plugin -> 7.3.1`
 - `com.android.tools.build:gradle -> 7.3.1`

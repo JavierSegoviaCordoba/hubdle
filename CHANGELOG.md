@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `actions/setup-java -> v3.6.0`
 - `com.javiersc.kotlin:kotlin-test-testng -> 0.1.0-alpha.12`
 - `com.javiersc.kotlin:kotlin-test-junit5 -> 0.1.0-alpha.12`
 - `com.javiersc.kotlin:kotlin-test-junit -> 0.1.0-alpha.12`

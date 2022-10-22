@@ -502,21 +502,21 @@
     "Sanity"
   ],
   "severity": "Critical",
-  "comment": "Unresolved reference: COM_JAVIERSC_GRADLE_GRADLE_EXTENSIONS_MODULE",
+  "comment": "Unresolved reference: ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE",
   "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
   "sources": [
     {
       "type": "file",
       "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/gradle/plugin/_internal/configureGradlePlugin.kt",
       "language": "kotlin",
-      "line": 125,
-      "offset": 39,
-      "length": 44,
+      "line": 135,
+      "offset": 35,
+      "length": 39,
       "code": {
-        "startLine": 123,
-        "length": 44,
-        "offset": 90,
-        "surroundingCode": "\n        if (gradlePluginFeatures.extendedGradle) {\n            implementation(catalogDep(COM_JAVIERSC_GRADLE_GRADLE_EXTENSIONS_MODULE))\n        }\n        if (gradlePluginFeatures.extendedGradle) {"
+        "startLine": 133,
+        "length": 39,
+        "offset": 120,
+        "surroundingCode": "private fun KotlinDependencyHandler.configureTestDependencies() {\n    with(project) {\n        implementation(catalogDep(ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE))\n        implementation(project.dependencies.gradleTestKit())\n        if (gradlePluginFeatures.extendedGradle) {"
       }
     }
   ],
@@ -524,7 +524,7 @@
     "module": "hubdle.hubdle-gradle-plugin.main",
     "inspectionName": "KotlinAnnotator"
   },
-  "hash": "6fd6d833dcb9d92684e68bc606625ca1c82a42408550a1ab922974cf5d7a461a"
+  "hash": "5f8f661a67fd01e73cc76fa6d2de44916c0f5b66f96aa1e2045dcff965a74e32"
 },{
   "tool": "Code Inspection",
   "category": "General",
@@ -533,21 +533,21 @@
     "Sanity"
   ],
   "severity": "Critical",
-  "comment": "Unresolved reference: COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE",
+  "comment": "Unresolved reference: COM_JAVIERSC_GRADLE_GRADLE_TEST_EXTENSIONS_MODULE",
   "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
   "sources": [
     {
       "type": "file",
       "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/gradle/plugin/_internal/configureGradlePlugin.kt",
       "language": "kotlin",
-      "line": 128,
+      "line": 138,
       "offset": 39,
-      "length": 40,
+      "length": 49,
       "code": {
-        "startLine": 126,
-        "length": 40,
-        "offset": 99,
-        "surroundingCode": "        }\n        if (gradlePluginFeatures.extendedGradle) {\n            implementation(catalogDep(COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE))\n        }\n    }"
+        "startLine": 136,
+        "length": 49,
+        "offset": 150,
+        "surroundingCode": "        implementation(project.dependencies.gradleTestKit())\n        if (gradlePluginFeatures.extendedGradle) {\n            implementation(catalogDep(COM_JAVIERSC_GRADLE_GRADLE_TEST_EXTENSIONS_MODULE))\n        }\n"
       }
     }
   ],
@@ -555,7 +555,38 @@
     "module": "hubdle.hubdle-gradle-plugin.main",
     "inspectionName": "KotlinAnnotator"
   },
-  "hash": "46a7f7db26397cb8e0cb904c65217039d5b955c49f168a3c62a8bb9c703c8268"
+  "hash": "44488f74fc1e8d69425aebf3b5bb7bd20c86b27b7941b1f1e4964361f988269c"
+},{
+  "tool": "Code Inspection",
+  "category": "General",
+  "type": "Kotlin annotator",
+  "tags": [
+    "Sanity"
+  ],
+  "severity": "Critical",
+  "comment": "Unresolved reference: IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE",
+  "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/gradle/plugin/_internal/configureGradlePlugin.kt",
+      "language": "kotlin",
+      "line": 142,
+      "offset": 39,
+      "length": 39,
+      "code": {
+        "startLine": 140,
+        "length": 39,
+        "offset": 91,
+        "surroundingCode": "\n        if (gradlePluginFeatures.extendedTesting) {\n            implementation(catalogDep(IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE))\n        }\n    }"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-gradle-plugin.main",
+    "inspectionName": "KotlinAnnotator"
+  },
+  "hash": "bc445f6d30e55b46c7f08aa8250fe90ccf2797f1a872f3c1ed9ee622e473b80f"
 },{
   "tool": "Code Inspection",
   "category": "General",
@@ -587,35 +618,4 @@
     "inspectionName": "KotlinAnnotator"
   },
   "hash": "2eb9c58d26cb6eb3674b5af175f57cbc5c56a2482d95b1f03264c26480a2d97c"
-},{
-  "tool": "Code Inspection",
-  "category": "General",
-  "type": "Kotlin annotator",
-  "tags": [
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Unresolved reference: COM_JAVIERSC_GRADLE_GRADLE_TEST_EXTENSIONS_MODULE",
-  "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/gradle/plugin/_internal/configureGradlePlugin.kt",
-      "language": "kotlin",
-      "line": 12,
-      "offset": 72,
-      "length": 49,
-      "code": {
-        "startLine": 10,
-        "length": 49,
-        "offset": 276,
-        "surroundingCode": "import com.javiersc.hubdle.extensions.config.explicit.api._internal.configureExplicitApi\nimport com.javiersc.hubdle.extensions.dependencies._internal.constants.COM_JAVIERSC_GRADLE_GRADLE_EXTENSIONS_MODULE\nimport com.javiersc.hubdle.extensions.dependencies._internal.constants.COM_JAVIERSC_GRADLE_GRADLE_TEST_EXTENSIONS_MODULE\nimport com.javiersc.hubdle.extensions.dependencies._internal.constants.COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE\nimport com.javiersc.hubdle.extensions.dependencies._internal.constants.IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "hubdle.hubdle-gradle-plugin.main",
-    "inspectionName": "KotlinAnnotator"
-  },
-  "hash": "9a09d57612355ecf6cb130e8defc438751c1fffa7487616c4964887b38250e5a"
 }]}

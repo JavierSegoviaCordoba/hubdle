@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `gradle/gradle-build-action -> v2.3.3`
 - `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.12.0`
 - `actions/setup-java -> v3.6.0`
 - `com.javiersc.kotlin:kotlin-test-testng -> 0.1.0-alpha.12`

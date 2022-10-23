@@ -14,6 +14,12 @@
 
 ### Updated
 
+- `io.kotest:kotest-runner-junit5 -> 5.5.2`
+- `io.kotest:kotest-runner-junit4 -> 5.5.2`
+- `io.kotest:kotest-property -> 5.5.2`
+- `io.kotest:kotest-assertions-sql -> 5.5.2`
+- `io.kotest:kotest-assertions-json -> 5.5.2`
+- `io.kotest:kotest-assertions-core -> 5.5.2`
 - `gradle/gradle-build-action -> v2.3.3`
 - `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.12.0`
 - `actions/setup-java -> v3.6.0`

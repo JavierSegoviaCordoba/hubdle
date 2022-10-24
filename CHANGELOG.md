@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `androidx.compose.material3:material3-window-size-class -> 1.0.0`
+- `androidx.compose.material3:material3 -> 1.0.0`
 - `androidx.compose.ui:ui-util -> 1.3.0`
 - `androidx.compose.ui:ui-tooling-preview -> 1.3.0`
 - `androidx.compose.ui:ui-tooling -> 1.3.0`

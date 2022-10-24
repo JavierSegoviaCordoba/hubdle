@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `androidx.activity:activity-ktx -> 1.6.1`
+- `androidx.activity:activity-compose -> 1.6.1`
 - `io.kotest:kotest-runner-junit5 -> 5.5.2`
 - `io.kotest:kotest-runner-junit4 -> 5.5.2`
 - `io.kotest:kotest-property -> 5.5.2`

@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `androidx.navigation:navigation-compose -> 2.5.3`
 - `androidx.compose.material:material-ripple -> 1.3.0`
 - `androidx.compose.material:material-icons-extended -> 1.3.0`
 - `androidx.compose.material:material-icons-core -> 1.3.0`

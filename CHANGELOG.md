@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `androidx.compose.foundation:foundation-layout -> 1.3.0`
+- `androidx.compose.foundation:foundation -> 1.3.0`
 - `androidx.compose.ui:ui-util -> 1.3.0`
 - `androidx.compose.ui:ui-tooling-preview -> 1.3.0`
 - `androidx.compose.ui:ui-tooling -> 1.3.0`

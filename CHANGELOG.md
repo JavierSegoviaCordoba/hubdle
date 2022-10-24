@@ -14,6 +14,10 @@
 
 ### Updated
 
+- `androidx.compose.material:material-ripple -> 1.3.0`
+- `androidx.compose.material:material-icons-extended -> 1.3.0`
+- `androidx.compose.material:material-icons-core -> 1.3.0`
+- `androidx.compose.material:material -> 1.3.0`
 - `androidx.compose.animation:animation-graphics -> 1.3.0`
 - `androidx.compose.animation:animation-core -> 1.3.0`
 - `androidx.compose.animation:animation -> 1.3.0`

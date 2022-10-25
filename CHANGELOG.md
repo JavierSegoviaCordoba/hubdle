@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `androidx.compose.material3:material3-window-size-class -> 1.0.0`
+- `androidx.compose.material3:material3 -> 1.0.0`
 - `androidx.compose.foundation:foundation-layout -> 1.3.0`
 - `androidx.compose.foundation:foundation -> 1.3.0`
 - `androidx.compose.runtime:runtime-saveable -> 1.3.0`

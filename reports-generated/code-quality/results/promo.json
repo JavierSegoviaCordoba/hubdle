@@ -1,29 +1,29 @@
 {"version":"3","listProblem":[{
   "tool": "Code Inspection",
   "category": "Redundant constructs",
-  "type": "Remove unnecessary parentheses from function call with lambda",
-  "severity": "Info",
-  "comment": "Remove unnecessary parentheses from function call with lambda",
-  "detailsInfo": "Reports redundant empty parentheses of function calls where the only parameter is a lambda that's outside the parentheses.\n\nUse the 'Remove unnecessary parentheses from function call with lambda' quick-fix to clean up the code.\n\n**Examples:**\n\n\n      fun foo() {\n          listOf(1).forEach() {  }\n      }\n\nAfter the quick-fix is applied:\n\n\n      fun foo() {\n          listOf(1).forEach {  }\n      }\n",
+  "type": "Unnecessary type argument",
+  "severity": "Moderate",
+  "comment": "Remove explicit type arguments",
+  "detailsInfo": "Reports function calls with type arguments that can be automatically inferred. Such type arguments are redundant and can be safely omitted.\n\nUse the 'Remove explicit type arguments' quick-fix to clean up the code.\n\n**Examples:**\n\n\n      // 'String' type can be inferred here\n      fun foo(): MutableList<String> = mutableListOf<String>()\n\n      // Here 'String' cannot be inferred, type argument is required.\n      fun bar() = mutableListOf<String>()\n\nAfter the quick-fix is applied:\n\n\n      fun foo(): MutableList<String> = mutableListOf() <== Updated\n\n      fun bar() = mutableListOf<String>()\n",
   "sources": [
     {
       "type": "file",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatformJs.kt",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/documentation/changelog/AddChangelogItemTask.kt",
       "language": "kotlin",
-      "line": 12,
-      "offset": 15,
-      "length": 2,
+      "line": 153,
+      "offset": 14,
+      "length": 8,
       "code": {
-        "startLine": 10,
-        "length": 2,
-        "offset": 101,
-        "surroundingCode": "    if (jsState.isEnabled) {\n        project.configure<KotlinMultiplatformExtension> {\n            js() {\n                if (jsState.browser.isEnabled) {\n                    browser { jsState.browser.action?.execute(this) }"
+        "startLine": 151,
+        "length": 8,
+        "offset": 96,
+        "surroundingCode": "\nprivate fun String.addChanges(header: String, changes: List<String>): Changelog =\n    buildList<String> {\n            val firstVersionIndex =\n                lines().indexOfFirst {"
       }
     }
   ],
   "attributes": {
     "module": "hubdle.hubdle-gradle-plugin.main",
-    "inspectionName": "RemoveEmptyParenthesesFromLambdaCall"
+    "inspectionName": "RemoveExplicitTypeArguments"
   },
-  "hash": "14f9b66fec5ebe545ccc254306de24af493473027d7bf98dc586b0caea5f4a9e"
+  "hash": "bde2fa6f773a8a13cd7a15001ded75605dafba91a41c6dc3c05a8ace98722956"
 }]}

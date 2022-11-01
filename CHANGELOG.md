@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `ru.vyarus:gradle-mkdocs-plugin -> 3.0.0`
 - `androidx.compose.runtime:runtime-saveable -> 1.3.0`
 - `androidx.compose.runtime:runtime -> 1.3.0`
 - `androidx.compose.ui:ui-util -> 1.3.0`

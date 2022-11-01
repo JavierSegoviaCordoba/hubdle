@@ -15,7 +15,7 @@ internal object PluginIds {
 
     object Documentation {
         const val changelog = "org.jetbrains.changelog"
-        const val mkdocs = "ru.vyarus.mkdocs"
+        const val mkdocs = "ru.vyarus.mkdocs-build"
     }
 
     object Format {

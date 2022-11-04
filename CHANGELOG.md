@@ -14,6 +14,12 @@
 
 ### Updated
 
+- `io.ktor:ktor-serialization-kotlinx-json -> 2.1.3`
+- `io.ktor:ktor-client-okhttp -> 2.1.3`
+- `io.ktor:ktor-client-mock -> 2.1.3`
+- `io.ktor:ktor-client-core -> 2.1.3`
+- `io.ktor:ktor-client-content-negotiation -> 2.1.3`
+- `io.ktor:ktor-client-cio -> 2.1.3`
 - `io.kotest:kotest-runner-junit5 -> 5.5.4`
 - `io.kotest:kotest-runner-junit4 -> 5.5.4`
 - `io.kotest:kotest-property -> 5.5.4`

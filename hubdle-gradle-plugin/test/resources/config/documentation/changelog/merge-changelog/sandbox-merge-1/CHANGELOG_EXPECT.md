@@ -1,6 +1,6 @@
 # Changelog
 
-## [Unreleased]
+## Unreleased
 
 ### Added
 
@@ -14,7 +14,7 @@
 
 ### Updated
 
-## [0.1.0] - {{ PLACEHOLDER_DATE }}
+## 0.1.0 - {{ PLACEHOLDER_DATE }}
 
 ### Added
 

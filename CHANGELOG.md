@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.intellij.plugins:gradle-changelog-plugin -> 2.0.0`
 - `org.sonarsource.scanner.gradle:sonarqube-gradle-plugin -> 3.5.0.2730`
 - `io.ktor:ktor-serialization-kotlinx-json -> 2.1.3`
 - `io.ktor:ktor-client-okhttp -> 2.1.3`

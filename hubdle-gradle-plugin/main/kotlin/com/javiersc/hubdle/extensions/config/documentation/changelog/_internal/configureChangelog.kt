@@ -9,6 +9,7 @@ import com.javiersc.hubdle.extensions.config.documentation.changelog.GenerateCha
 import com.javiersc.hubdle.extensions.config.documentation.changelog.MergeChangelogTask
 import org.gradle.api.Project
 import org.gradle.api.attributes.LibraryElements.LIBRARY_ELEMENTS_ATTRIBUTE
+import org.gradle.api.tasks.TaskCollection
 import org.gradle.api.tasks.TaskProvider
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.named
@@ -24,17 +25,22 @@ internal fun configureChangelog(project: Project) {
 
         project.configure<ChangelogPluginExtension> {
             version.set("${project.version}")
-            header.set(project.provider { "[${project.version}] - ${date()}" })
+            header.set(project.provider { "${project.version} - ${date()}" })
             groups.set(listOf("Added", "Changed", "Deprecated", "Removed", "Fixed", "Updated"))
-        }
-
-        project.tasks.namedLazily<PatchChangelogTask>("patchChangelog").configureEach { task ->
-            task.finalizedBy(ApplyFormatChangelogTask.name)
+            combinePreReleases.set(false)
         }
 
         project.tasks.register<ApplyFormatChangelogTask>(ApplyFormatChangelogTask.name)
 
-        project.tasks.register<MergeChangelogTask>(MergeChangelogTask.name)
+        val patchChangelogTask: TaskCollection<PatchChangelogTask> =
+            project.tasks.namedLazily<PatchChangelogTask>("patchChangelog").apply {
+                configureEach { task -> task.finalizedBy(ApplyFormatChangelogTask.name) }
+            }
+
+        project.tasks.register<MergeChangelogTask>(MergeChangelogTask.name).configure { task ->
+            task.shouldRunAfter(patchChangelogTask)
+            task.finalizedBy(ApplyFormatChangelogTask.name)
+        }
 
         project.tasks.register<AddChangelogItemTask>(AddChangelogItemTask.name).configure { task ->
             task.finalizedBy(ApplyFormatChangelogTask.name)

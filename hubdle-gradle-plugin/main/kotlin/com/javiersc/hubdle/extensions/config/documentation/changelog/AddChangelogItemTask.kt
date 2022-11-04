@@ -3,6 +3,7 @@ package com.javiersc.hubdle.extensions.config.documentation.changelog
 import com.javiersc.hubdle.extensions.config.documentation.changelog._internal.Changelog
 import com.javiersc.hubdle.extensions.config.documentation.changelog._internal.changelogFile
 import com.javiersc.hubdle.extensions.config.documentation.changelog._internal.fromString
+import com.javiersc.kotlin.stdlib.isNotNullNorEmpty
 import java.io.File
 import javax.inject.Inject
 import org.eclipse.jgit.api.Git
@@ -106,10 +107,8 @@ private val Project.changelog: String
     get() = changelogFile.readText()
 
 private fun AddChangelogItemTask.setupSection(header: String, item: String?) {
-    if (item?.isNotBlank() == true) {
+    if (item.isNotNullNorEmpty()) {
         with(project) {
-            logger.lifecycle(header)
-            logger.lifecycle("- $item")
             val updatedChangelog = changelog.addChanges(header, listOf(item))
             changelogFile.writeText(updatedChangelog.toString())
         }
@@ -153,7 +152,12 @@ private fun String.addChanges(header: String, changes: List<String>): Changelog 
     buildList<String> {
             val firstVersionIndex =
                 lines().indexOfFirst {
-                    it.startsWith("## [") && it.contains("[Unreleased]", true).not()
+                    val isUnreleased: Boolean =
+                        it.contains("## [Unreleased]", true) || it.contains("## Unreleased", true)
+                    val isNotUnreleased = !isUnreleased
+                    val isHeader = it.startsWith("## [") || it.startsWith("## ")
+
+                    isHeader && isNotUnreleased
                 }
             var shouldAddUpdate = true
             lines().onEach { line ->

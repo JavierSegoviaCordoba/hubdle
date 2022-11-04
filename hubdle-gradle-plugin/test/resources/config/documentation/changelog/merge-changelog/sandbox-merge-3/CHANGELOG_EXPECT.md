@@ -1,6 +1,6 @@
 # Changelog
 
-## [Unreleased]
+## Unreleased
 
 ### Added
 
@@ -26,7 +26,7 @@
 
 - new updated
 
-## [0.1.0] - 2021-10-03
+## 0.1.0 - 2021-10-03
 
 ### Added
 

@@ -55,7 +55,8 @@ private fun Changelog.Version.extractVersionWithoutStage(): String =
     extractVersion().takeWhile { it.isDigit() || it == '.' }
 
 private fun Changelog.Version.extractVersion(): String =
-    value.substringAfter("[").substringBefore("]")
+    if (value.contains("[")) value.substringAfter("[").substringBefore("]")
+    else value.substringAfterLast('#').substringBefore(" - ").filterNot(Char::isWhitespace)
 
 private val Changelog.Version.unreleased: Boolean
     get() = extractVersion().contains("Unreleased", ignoreCase = true)

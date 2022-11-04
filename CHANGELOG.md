@@ -14,6 +14,12 @@
 
 ### Updated
 
+- `io.kotest:kotest-runner-junit5 -> 5.5.4`
+- `io.kotest:kotest-runner-junit4 -> 5.5.4`
+- `io.kotest:kotest-property -> 5.5.4`
+- `io.kotest:kotest-assertions-sql -> 5.5.4`
+- `io.kotest:kotest-assertions-json -> 5.5.4`
+- `io.kotest:kotest-assertions-core -> 5.5.4`
 - `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.12.1`
 - `androidx.compose.material3:material3-window-size-class -> 1.0.0`
 - `androidx.compose.material3:material3 -> 1.0.0`
@@ -39,12 +45,6 @@
 - `androidx.compose.animation:animation -> 1.3.0`
 - `androidx.activity:activity-ktx -> 1.6.1`
 - `androidx.activity:activity-compose -> 1.6.1`
-- `io.kotest:kotest-runner-junit5 -> 5.5.2`
-- `io.kotest:kotest-runner-junit4 -> 5.5.2`
-- `io.kotest:kotest-property -> 5.5.2`
-- `io.kotest:kotest-assertions-sql -> 5.5.2`
-- `io.kotest:kotest-assertions-json -> 5.5.2`
-- `io.kotest:kotest-assertions-core -> 5.5.2`
 - `gradle/gradle-build-action -> v2.3.3`
 - `actions/setup-java -> v3.6.0`
 - `com.javiersc.kotlin:kotlin-test-testng -> 0.1.0-alpha.12`

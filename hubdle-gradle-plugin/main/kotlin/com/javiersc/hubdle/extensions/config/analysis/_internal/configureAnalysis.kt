@@ -19,7 +19,7 @@ import org.gradle.kotlin.dsl.findByType
 import org.gradle.kotlin.dsl.the
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
-import org.sonarqube.gradle.SonarQubeExtension
+import org.sonarqube.gradle.SonarExtension
 
 internal fun configureAnalysis(project: Project) {
     if (project.hubdleState.config.analysis.isEnabled) {
@@ -79,7 +79,7 @@ private fun configureSonarqube(project: Project) {
 
     // project.tasks.namedLazily<Task>("checkAnalysis").configureEach { it.dependsOn("sonarqube") }
 
-    project.configure<SonarQubeExtension> {
+    project.configure<SonarExtension> {
         properties { properties ->
             properties.property(
                 "sonar.projectName",
@@ -119,7 +119,7 @@ private fun configureSonarqube(project: Project) {
 
     project.allprojects { allproject ->
         allproject.afterEvaluate {
-            allproject.extensions.findByType<SonarQubeExtension>()?.apply {
+            allproject.extensions.findByType<SonarExtension>()?.apply {
                 properties { properties ->
                     properties.property("sonar.sources", allproject.kotlinSrcDirs())
                     properties.property("sonar.tests", allproject.kotlinTestsSrcDirs())

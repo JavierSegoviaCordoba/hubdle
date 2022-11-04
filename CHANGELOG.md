@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `app.cash.turbine:turbine -> 0.12.1`
 - `ru.vyarus:gradle-mkdocs-plugin -> 3.0.0`
 - `androidx.compose.runtime:runtime-saveable -> 1.3.0`
 - `androidx.compose.runtime:runtime -> 1.3.0`
@@ -53,7 +54,6 @@
 - `com.android.tools.build:gradle -> 7.3.1`
 - `actions/cache -> v3.0.11`
 - `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.11.2`
-- `app.cash.turbine:turbine -> 0.12.0`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.2.0-alpha.43`
 
 ## [0.2.0-alpha.43] - 2022-10-11

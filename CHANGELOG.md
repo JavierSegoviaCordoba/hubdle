@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.javiersc.semver:semver-gradle-plugin -> 0.3.0-alpha.5`
 - `org.jetbrains.dokka:dokka-gradle-plugin -> 1.7.20`
 - `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.11.3`
 - `org.jetbrains.intellij.plugins:gradle-changelog-plugin -> 2.0.0`

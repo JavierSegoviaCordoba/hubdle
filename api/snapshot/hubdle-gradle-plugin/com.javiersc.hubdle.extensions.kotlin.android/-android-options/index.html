@@ -4,10 +4,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>AndroidOptions</title>
 <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
-const savedDarkMode = storage ? JSON.parse(storage) : false
-if(savedDarkMode === true){
-    document.getElementsByTagName("html")[0].classList.add("theme-dark")
-}</script>
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
 <script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
 <link href="../../../styles/style.css" rel="Stylesheet">
 <link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
@@ -18,7 +26,8 @@ if(savedDarkMode === true){
 <script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
 <script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
 <script type="text/javascript" src="../../../scripts/main.js" defer></script>
-<script type="text/javascript" src="../../../scripts/prism.js" async></script></head>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
 <body>
 <div class="navigation-wrapper" id="navigation-wrapper">
     <div id="leftToggler"><span class="icon-toggler"></span></div>
@@ -38,10 +47,10 @@ if(savedDarkMode === true){
     </div>
     <div id="main">
 <div class="main-content" id="content" pageids="hubdle-gradle-plugin::com.javiersc.hubdle.extensions.kotlin.android/AndroidOptions///PointingToDeclaration//-1722432172">
-  <div class="breadcrumbs"><a href="../../index.html">hubdle-gradle-plugin</a><span class="delimiter">/</span><a href="../index.html">com.javiersc.hubdle.extensions.kotlin.android</a><span class="delimiter">/</span><a href="index.html">AndroidOptions</a></div>
+  <div class="breadcrumbs"><a href="../../index.html">hubdle-gradle-plugin</a><span class="delimiter">/</span><a href="../index.html">com.javiersc.hubdle.extensions.kotlin.android</a><span class="delimiter">/</span><span class="current">AndroidOptions</span></div>
   <div class="cover ">
     <h1 class="cover"><span>Android</span><wbr><span><span>Options</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":hubdle-gradle-plugin:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">interface </span><a href="index.html">AndroidOptions</a> : <a href="../-android-sdk-options/index.html">AndroidSdkOptions</a>, <a href="../-android-sdk-build-features-options/index.html">AndroidSdkBuildFeaturesOptions</a>, <a href="../../com.javiersc.hubdle.extensions.kotlin.jvm/-kotlin-jvm-options/index.html">KotlinJvmOptions</a>, <a href="../../com.javiersc.hubdle.extensions.options/-source-directories-options/index.html">SourceDirectoriesOptions</a><span class="token operator">&lt;</span><span class="token keyword"></span><span data-unresolved-link="com.android.build.api.dsl/AndroidSourceSet///PointingToDeclaration/">AndroidSourceSet</span><span class="token operator">&gt; </span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":hubdle-gradle-plugin:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">interface </span><a href="index.html">AndroidOptions</a> : <a href="../-android-sdk-options/index.html">AndroidSdkOptions</a>, <a href="../-android-sdk-build-features-options/index.html">AndroidSdkBuildFeaturesOptions</a>, <a href="../../com.javiersc.hubdle.extensions.kotlin.jvm/-kotlin-jvm-options/index.html">KotlinJvmOptions</a>, <a href="../../com.javiersc.hubdle.extensions.options/-source-directories-options/index.html">SourceDirectoriesOptions</a><span class="token operator">&lt;</span><span class="token keyword"></span><span data-unresolved-link="com.android.build.api.dsl/AndroidSourceSet///PointingToDeclaration/">AndroidSourceSet</span><span class="token operator">&gt; </span></div></div></div>
   </div>
   <div class="tabbedcontent">
     <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Functions">Functions</button><button class="section-tab" data-togglable="Properties">Properties</button><button class="section-tab" data-togglable="Inheritors">Inheritors</button></div>
@@ -57,7 +66,7 @@ if(savedDarkMode === true){
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":hubdle-gradle-plugin:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span data-unresolved-link="org.gradle.api/Project///PointingToDeclaration/">Project</span><span class="token punctuation">.</span><a href="../-android-sdk-build-features-options/build-features.html"><span class="token function">buildFeatures</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">action<span class="token operator">: </span><span data-unresolved-link="org.gradle.api/Action///PointingToDeclaration/">Action</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../-android-sdk-build-features-options/-build-features-extension/index.html">AndroidSdkBuildFeaturesOptions.BuildFeaturesExtension</a><span class="token operator">&gt;</span><span class="token operator"> = </span>Action {}</span></span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":hubdle-gradle-plugin:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span data-unresolved-link="org.gradle.api/Project///PointingToDeclaration/">Project</span><span class="token punctuation">.</span><a href="../-android-sdk-build-features-options/build-features.html"><span class="token function">buildFeatures</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">action<span class="token operator">: </span><span data-unresolved-link="org.gradle.api/Action///PointingToDeclaration/">Action</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../-android-sdk-build-features-options/-build-features-extension/index.html">AndroidSdkBuildFeaturesOptions.BuildFeaturesExtension</a><span class="token operator">&gt;</span><span class="token operator"> = </span>Action {}</span></span><span class="token punctuation">)</span></div></div></div>
               </div>
             </div>
           </div>
@@ -74,7 +83,7 @@ if(savedDarkMode === true){
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":hubdle-gradle-plugin:dokkaHtmlPartial/main"><a data-name="469615428%2FProperties%2F-1722432172" anchor-label="buildFeatures" id="469615428%2FProperties%2F-1722432172" data-filterable-set=":hubdle-gradle-plugin:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">val </span><a href="../-android-sdk-build-features-options/build-features.html">buildFeatures</a><span class="token operator">: </span><a href="../-android-sdk-build-features-options/-build-features-extension/index.html">AndroidSdkBuildFeaturesOptions.BuildFeaturesExtension</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":hubdle-gradle-plugin:dokkaHtmlPartial/main"><a data-name="469615428%2FProperties%2F-1722432172" anchor-label="buildFeatures" id="469615428%2FProperties%2F-1722432172" data-filterable-set=":hubdle-gradle-plugin:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">val </span><a href="../-android-sdk-build-features-options/build-features.html">buildFeatures</a><span class="token operator">: </span><a href="../-android-sdk-build-features-options/-build-features-extension/index.html">AndroidSdkBuildFeaturesOptions.BuildFeaturesExtension</a></div></div></div>
               </div>
             </div>
           </div>
@@ -89,7 +98,7 @@ if(savedDarkMode === true){
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":hubdle-gradle-plugin:dokkaHtmlPartial/main"><a data-name="1083667683%2FProperties%2F-1722432172" anchor-label="compileSdk" id="1083667683%2FProperties%2F-1722432172" data-filterable-set=":hubdle-gradle-plugin:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><span data-unresolved-link="org.gradle.api/Project///PointingToDeclaration/">Project</span><span class="token punctuation">.</span><a href="../-android-sdk-options/compile-sdk.html">compileSdk</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":hubdle-gradle-plugin:dokkaHtmlPartial/main"><a data-name="1083667683%2FProperties%2F-1722432172" anchor-label="compileSdk" id="1083667683%2FProperties%2F-1722432172" data-filterable-set=":hubdle-gradle-plugin:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><span data-unresolved-link="org.gradle.api/Project///PointingToDeclaration/">Project</span><span class="token punctuation">.</span><a href="../-android-sdk-options/compile-sdk.html">compileSdk</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></div></div></div>
               </div>
             </div>
           </div>
@@ -104,7 +113,7 @@ if(savedDarkMode === true){
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":hubdle-gradle-plugin:dokkaHtmlPartial/main"><a data-name="-1568836502%2FProperties%2F-1722432172" anchor-label="jvmVersion" id="-1568836502%2FProperties%2F-1722432172" data-filterable-set=":hubdle-gradle-plugin:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><span data-unresolved-link="org.gradle.api/Project///PointingToDeclaration/">Project</span><span class="token punctuation">.</span><a href="../../com.javiersc.hubdle.extensions.kotlin.jvm/-kotlin-jvm-options/jvm-version.html">jvmVersion</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":hubdle-gradle-plugin:dokkaHtmlPartial/main"><a data-name="-1568836502%2FProperties%2F-1722432172" anchor-label="jvmVersion" id="-1568836502%2FProperties%2F-1722432172" data-filterable-set=":hubdle-gradle-plugin:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><span data-unresolved-link="org.gradle.api/Project///PointingToDeclaration/">Project</span><span class="token punctuation">.</span><a href="../../com.javiersc.hubdle.extensions.kotlin.jvm/-kotlin-jvm-options/jvm-version.html">jvmVersion</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></div></div></div>
               </div>
             </div>
           </div>
@@ -119,7 +128,7 @@ if(savedDarkMode === true){
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":hubdle-gradle-plugin:dokkaHtmlPartial/main"><a data-name="-2050906686%2FProperties%2F-1722432172" anchor-label="minSdk" id="-2050906686%2FProperties%2F-1722432172" data-filterable-set=":hubdle-gradle-plugin:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><span data-unresolved-link="org.gradle.api/Project///PointingToDeclaration/">Project</span><span class="token punctuation">.</span><a href="../-android-sdk-options/min-sdk.html">minSdk</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":hubdle-gradle-plugin:dokkaHtmlPartial/main"><a data-name="-2050906686%2FProperties%2F-1722432172" anchor-label="minSdk" id="-2050906686%2FProperties%2F-1722432172" data-filterable-set=":hubdle-gradle-plugin:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">var </span><span data-unresolved-link="org.gradle.api/Project///PointingToDeclaration/">Project</span><span class="token punctuation">.</span><a href="../-android-sdk-options/min-sdk.html">minSdk</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></div></div></div>
               </div>
             </div>
           </div>
@@ -134,7 +143,7 @@ if(savedDarkMode === true){
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":hubdle-gradle-plugin:dokkaHtmlPartial/main"><a data-name="-729311529%2FProperties%2F-1722432172" anchor-label="sourceSets" id="-729311529%2FProperties%2F-1722432172" data-filterable-set=":hubdle-gradle-plugin:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">val </span><span data-unresolved-link="org.gradle.api/Project///PointingToDeclaration/">Project</span><span class="token punctuation">.</span><a href="../../com.javiersc.hubdle.extensions.options/-source-directories-options/source-sets.html">sourceSets</a><span class="token operator">: </span><span data-unresolved-link="org.gradle.api/NamedDomainObjectContainer///PointingToDeclaration/">NamedDomainObjectContainer</span><span class="token operator">&lt;</span><span class="token keyword">out </span><span data-unresolved-link="com.android.build.api.dsl/AndroidSourceSet///PointingToDeclaration/">AndroidSourceSet</span><span class="token operator">&gt;</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":hubdle-gradle-plugin:dokkaHtmlPartial/main"><a data-name="-729311529%2FProperties%2F-1722432172" anchor-label="sourceSets" id="-729311529%2FProperties%2F-1722432172" data-filterable-set=":hubdle-gradle-plugin:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">val </span><span data-unresolved-link="org.gradle.api/Project///PointingToDeclaration/">Project</span><span class="token punctuation">.</span><a href="../../com.javiersc.hubdle.extensions.options/-source-directories-options/source-sets.html">sourceSets</a><span class="token operator">: </span><span data-unresolved-link="org.gradle.api/NamedDomainObjectContainer///PointingToDeclaration/">NamedDomainObjectContainer</span><span class="token operator">&lt;</span><span class="token keyword">out </span><span data-unresolved-link="com.android.build.api.dsl/AndroidSourceSet///PointingToDeclaration/">AndroidSourceSet</span><span class="token operator">&gt;</span></div></div></div>
               </div>
             </div>
           </div>

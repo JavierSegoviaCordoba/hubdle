@@ -4,10 +4,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>HubdleReadmeBadgesExtension</title>
 <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
-const savedDarkMode = storage ? JSON.parse(storage) : false
-if(savedDarkMode === true){
-    document.getElementsByTagName("html")[0].classList.add("theme-dark")
-}</script>
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
 <script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
 <link href="../../../styles/style.css" rel="Stylesheet">
 <link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
@@ -18,7 +26,8 @@ if(savedDarkMode === true){
 <script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
 <script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
 <script type="text/javascript" src="../../../scripts/main.js" defer></script>
-<script type="text/javascript" src="../../../scripts/prism.js" async></script></head>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
 <body>
 <div class="navigation-wrapper" id="navigation-wrapper">
     <div id="leftToggler"><span class="icon-toggler"></span></div>
@@ -38,10 +47,10 @@ if(savedDarkMode === true){
     </div>
     <div id="main">
 <div class="main-content" id="content" pageids="hubdle-gradle-plugin::com.javiersc.hubdle.extensions.config.documentation.readme/HubdleReadmeBadgesExtension///PointingToDeclaration//-1722432172">
-  <div class="breadcrumbs"><a href="../../index.html">hubdle-gradle-plugin</a><span class="delimiter">/</span><a href="../index.html">com.javiersc.hubdle.extensions.config.documentation.readme</a><span class="delimiter">/</span><a href="index.html">HubdleReadmeBadgesExtension</a></div>
+  <div class="breadcrumbs"><a href="../../index.html">hubdle-gradle-plugin</a><span class="delimiter">/</span><a href="../index.html">com.javiersc.hubdle.extensions.config.documentation.readme</a><span class="delimiter">/</span><span class="current">HubdleReadmeBadgesExtension</span></div>
   <div class="cover ">
     <h1 class="cover"><span>Hubdle</span><wbr><span>Readme</span><wbr><span>Badges</span><wbr><span><span>Extension</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":hubdle-gradle-plugin:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="index.html">HubdleReadmeBadgesExtension</a> : <a href="../../com.javiersc.hubdle.extensions.options/-enableable-options/index.html">EnableableOptions</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":hubdle-gradle-plugin:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="index.html">HubdleReadmeBadgesExtension</a> : <a href="../../com.javiersc.hubdle.extensions.options/-enableable-options/index.html">EnableableOptions</a></div></div></div>
   </div>
   <div class="tabbedcontent">
     <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Constructors">Constructors</button><button class="section-tab" data-togglable="Properties">Properties</button></div>
@@ -57,7 +66,7 @@ if(savedDarkMode === true){
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":hubdle-gradle-plugin:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="-hubdle-readme-badges-extension.html"><span class="token function">HubdleReadmeBadgesExtension</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":hubdle-gradle-plugin:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="-hubdle-readme-badges-extension.html"><span class="token function">HubdleReadmeBadgesExtension</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
               </div>
             </div>
           </div>
@@ -74,7 +83,7 @@ if(savedDarkMode === true){
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":hubdle-gradle-plugin:dokkaHtmlPartial/main"><a data-name="2024897244%2FProperties%2F-1722432172" anchor-label="build" id="2024897244%2FProperties%2F-1722432172" data-filterable-set=":hubdle-gradle-plugin:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><span data-unresolved-link="org.gradle.api/Project///PointingToDeclaration/">Project</span><span class="token punctuation">.</span><a href="build.html">build</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":hubdle-gradle-plugin:dokkaHtmlPartial/main"><a data-name="2024897244%2FProperties%2F-1722432172" anchor-label="build" id="2024897244%2FProperties%2F-1722432172" data-filterable-set=":hubdle-gradle-plugin:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><span data-unresolved-link="org.gradle.api/Project///PointingToDeclaration/">Project</span><span class="token punctuation">.</span><a href="build.html">build</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
               </div>
             </div>
           </div>
@@ -89,7 +98,7 @@ if(savedDarkMode === true){
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":hubdle-gradle-plugin:dokkaHtmlPartial/main"><a data-name="-1270199432%2FProperties%2F-1722432172" anchor-label="coverage" id="-1270199432%2FProperties%2F-1722432172" data-filterable-set=":hubdle-gradle-plugin:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><span data-unresolved-link="org.gradle.api/Project///PointingToDeclaration/">Project</span><span class="token punctuation">.</span><a href="coverage.html">coverage</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":hubdle-gradle-plugin:dokkaHtmlPartial/main"><a data-name="-1270199432%2FProperties%2F-1722432172" anchor-label="coverage" id="-1270199432%2FProperties%2F-1722432172" data-filterable-set=":hubdle-gradle-plugin:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><span data-unresolved-link="org.gradle.api/Project///PointingToDeclaration/">Project</span><span class="token punctuation">.</span><a href="coverage.html">coverage</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
               </div>
             </div>
           </div>
@@ -104,7 +113,7 @@ if(savedDarkMode === true){
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":hubdle-gradle-plugin:dokkaHtmlPartial/main"><a data-name="1754197235%2FProperties%2F-1722432172" anchor-label="isEnabled" id="1754197235%2FProperties%2F-1722432172" data-filterable-set=":hubdle-gradle-plugin:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">var </span><span data-unresolved-link="org.gradle.api/Project///PointingToDeclaration/">Project</span><span class="token punctuation">.</span><a href="is-enabled.html">isEnabled</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":hubdle-gradle-plugin:dokkaHtmlPartial/main"><a data-name="1754197235%2FProperties%2F-1722432172" anchor-label="isEnabled" id="1754197235%2FProperties%2F-1722432172" data-filterable-set=":hubdle-gradle-plugin:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">var </span><span data-unresolved-link="org.gradle.api/Project///PointingToDeclaration/">Project</span><span class="token punctuation">.</span><a href="is-enabled.html">isEnabled</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
               </div>
             </div>
           </div>
@@ -119,7 +128,7 @@ if(savedDarkMode === true){
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":hubdle-gradle-plugin:dokkaHtmlPartial/main"><a data-name="-1497267713%2FProperties%2F-1722432172" anchor-label="kotlin" id="-1497267713%2FProperties%2F-1722432172" data-filterable-set=":hubdle-gradle-plugin:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><span data-unresolved-link="org.gradle.api/Project///PointingToDeclaration/">Project</span><span class="token punctuation">.</span><a href="kotlin.html">kotlin</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":hubdle-gradle-plugin:dokkaHtmlPartial/main"><a data-name="-1497267713%2FProperties%2F-1722432172" anchor-label="kotlin" id="-1497267713%2FProperties%2F-1722432172" data-filterable-set=":hubdle-gradle-plugin:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><span data-unresolved-link="org.gradle.api/Project///PointingToDeclaration/">Project</span><span class="token punctuation">.</span><a href="kotlin.html">kotlin</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
               </div>
             </div>
           </div>
@@ -134,7 +143,7 @@ if(savedDarkMode === true){
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":hubdle-gradle-plugin:dokkaHtmlPartial/main"><a data-name="-224006602%2FProperties%2F-1722432172" anchor-label="mavenCentral" id="-224006602%2FProperties%2F-1722432172" data-filterable-set=":hubdle-gradle-plugin:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><span data-unresolved-link="org.gradle.api/Project///PointingToDeclaration/">Project</span><span class="token punctuation">.</span><a href="maven-central.html">mavenCentral</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":hubdle-gradle-plugin:dokkaHtmlPartial/main"><a data-name="-224006602%2FProperties%2F-1722432172" anchor-label="mavenCentral" id="-224006602%2FProperties%2F-1722432172" data-filterable-set=":hubdle-gradle-plugin:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><span data-unresolved-link="org.gradle.api/Project///PointingToDeclaration/">Project</span><span class="token punctuation">.</span><a href="maven-central.html">mavenCentral</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
               </div>
             </div>
           </div>
@@ -149,7 +158,7 @@ if(savedDarkMode === true){
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":hubdle-gradle-plugin:dokkaHtmlPartial/main"><a data-name="1877717739%2FProperties%2F-1722432172" anchor-label="quality" id="1877717739%2FProperties%2F-1722432172" data-filterable-set=":hubdle-gradle-plugin:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><span data-unresolved-link="org.gradle.api/Project///PointingToDeclaration/">Project</span><span class="token punctuation">.</span><a href="quality.html">quality</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":hubdle-gradle-plugin:dokkaHtmlPartial/main"><a data-name="1877717739%2FProperties%2F-1722432172" anchor-label="quality" id="1877717739%2FProperties%2F-1722432172" data-filterable-set=":hubdle-gradle-plugin:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><span data-unresolved-link="org.gradle.api/Project///PointingToDeclaration/">Project</span><span class="token punctuation">.</span><a href="quality.html">quality</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
               </div>
             </div>
           </div>
@@ -164,7 +173,7 @@ if(savedDarkMode === true){
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":hubdle-gradle-plugin:dokkaHtmlPartial/main"><a data-name="-1695957637%2FProperties%2F-1722432172" anchor-label="snapshots" id="-1695957637%2FProperties%2F-1722432172" data-filterable-set=":hubdle-gradle-plugin:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><span data-unresolved-link="org.gradle.api/Project///PointingToDeclaration/">Project</span><span class="token punctuation">.</span><a href="snapshots.html">snapshots</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":hubdle-gradle-plugin:dokkaHtmlPartial/main"><a data-name="-1695957637%2FProperties%2F-1722432172" anchor-label="snapshots" id="-1695957637%2FProperties%2F-1722432172" data-filterable-set=":hubdle-gradle-plugin:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><span data-unresolved-link="org.gradle.api/Project///PointingToDeclaration/">Project</span><span class="token punctuation">.</span><a href="snapshots.html">snapshots</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
               </div>
             </div>
           </div>
@@ -179,7 +188,7 @@ if(savedDarkMode === true){
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":hubdle-gradle-plugin:dokkaHtmlPartial/main"><a data-name="-2066325769%2FProperties%2F-1722432172" anchor-label="techDebt" id="-2066325769%2FProperties%2F-1722432172" data-filterable-set=":hubdle-gradle-plugin:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><span data-unresolved-link="org.gradle.api/Project///PointingToDeclaration/">Project</span><span class="token punctuation">.</span><a href="tech-debt.html">techDebt</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":hubdle-gradle-plugin:dokkaHtmlPartial/main"><a data-name="-2066325769%2FProperties%2F-1722432172" anchor-label="techDebt" id="-2066325769%2FProperties%2F-1722432172" data-filterable-set=":hubdle-gradle-plugin:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><span data-unresolved-link="org.gradle.api/Project///PointingToDeclaration/">Project</span><span class="token punctuation">.</span><a href="tech-debt.html">techDebt</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
               </div>
             </div>
           </div>

@@ -4,10 +4,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>hubdle-settings-gradle-plugin</title>
 <link href="../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
-const savedDarkMode = storage ? JSON.parse(storage) : false
-if(savedDarkMode === true){
-    document.getElementsByTagName("html")[0].classList.add("theme-dark")
-}</script>
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
 <script type="text/javascript" src="../scripts/sourceset_dependencies.js" async></script>
 <link href="../styles/style.css" rel="Stylesheet">
 <link href="../styles/jetbrains-mono.css" rel="Stylesheet">
@@ -18,7 +26,8 @@ if(savedDarkMode === true){
 <script type="text/javascript" src="../scripts/navigation-loader.js" async></script>
 <script type="text/javascript" src="../scripts/platform-content-handler.js" async></script>
 <script type="text/javascript" src="../scripts/main.js" defer></script>
-<script type="text/javascript" src="../scripts/prism.js" async></script></head>
+<script type="text/javascript" src="../scripts/prism.js" async></script>
+<script type="text/javascript" src="../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
 <body>
 <div class="navigation-wrapper" id="navigation-wrapper">
     <div id="leftToggler"><span class="icon-toggler"></span></div>
@@ -41,7 +50,7 @@ if(savedDarkMode === true){
   <div class="breadcrumbs"></div>
   <div class="cover ">
     <h1 class="cover"><span><span>hubdle-settings-gradle-plugin</span></span></h1>
-    <div class="platform-hinted UnderCoverText" data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":hubdle-settings-gradle-plugin:dokkaHtmlPartial/main"><h1 class="">Hubdle settings plugin</h1><h2 class=""> Usage</h2><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">plugins {<br>    id("com.javiersc.hubdle.settings") version "$version"<br>}<br><br>hubdle {<br>    autoInclude {<br>        isEnabled = true<br><br>        excludes(":some-project")<br>        excludedBuilds("some-dir/some-build")<br>    }<br>}</code></pre><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+    <div class="platform-hinted UnderCoverText" data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":hubdle-settings-gradle-plugin:dokkaHtmlPartial/main"><h1 class="">Hubdle settings plugin</h1><h2 class=""> Usage</h2><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">plugins {<br>    id("com.javiersc.hubdle.settings") version "$version"<br>}<br><br>hubdle {<br>    autoInclude {<br>        isEnabled = true<br>        <br>        excludes(":some-project")<br>        excludedBuilds("some-dir/some-build")<br>    }<br>}</code></pre><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
   </div>
   <h2 class="">Packages</h2>
   <div class="table"><a data-name="-1999595294%2FPackages%2F-608281242" anchor-label="[root]" id="-1999595294%2FPackages%2F-608281242" data-filterable-set=":hubdle-settings-gradle-plugin:dokkaHtmlPartial/main"></a>

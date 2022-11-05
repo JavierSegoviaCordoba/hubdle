@@ -154,6 +154,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;import com.javiersc.hubdle.extensions.config.documentation.changelog._internal.Changelog
 &nbsp;import com.javiersc.hubdle.extensions.config.documentation.changelog._internal.changelogFile
 &nbsp;import com.javiersc.hubdle.extensions.config.documentation.changelog._internal.fromString
+&nbsp;import com.javiersc.kotlin.stdlib.isNotNullNorEmpty
 &nbsp;import java.io.File
 &nbsp;import javax.inject.Inject
 &nbsp;import org.eclipse.jgit.api.Git
@@ -257,10 +258,8 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;    get() = changelogFile.readText()
 &nbsp;
 &nbsp;private fun AddChangelogItemTask.setupSection(header: String, item: String?) {
-&nbsp;    if (item?.isNotBlank() == true) {
+&nbsp;    if (item.isNotNullNorEmpty()) {
 &nbsp;        with(project) {
-&nbsp;            logger.lifecycle(header)
-&nbsp;            logger.lifecycle(&quot;- $item&quot;)
 &nbsp;            val updatedChangelog = changelog.addChanges(header, listOf(item))
 &nbsp;            changelogFile.writeText(updatedChangelog.toString())
 &nbsp;        }
@@ -304,7 +303,12 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;    buildList&lt;String&gt; {
 &nbsp;            val firstVersionIndex =
 &nbsp;                lines().indexOfFirst {
-&nbsp;                    it.startsWith(&quot;## [&quot;) &amp;&amp; it.contains(&quot;[Unreleased]&quot;, true).not()
+&nbsp;                    val isUnreleased: Boolean =
+&nbsp;                        it.contains(&quot;## [Unreleased]&quot;, true) || it.contains(&quot;## Unreleased&quot;, true)
+&nbsp;                    val isNotUnreleased = !isUnreleased
+&nbsp;                    val isHeader = it.startsWith(&quot;## [&quot;) || it.startsWith(&quot;## &quot;)
+&nbsp;
+&nbsp;                    isHeader &amp;&amp; isNotUnreleased
 &nbsp;                }
 &nbsp;            var shouldAddUpdate = true
 &nbsp;            lines().onEach { line -&gt;
@@ -431,7 +435,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-11-04 18:19</div>
+    <div style="float:right;">generated on 2022-11-05 00:05</div>
 </div>
 </body>
 </html>

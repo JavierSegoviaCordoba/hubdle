@@ -67,7 +67,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/13)
+    (0/16)
   </span>
 </td>
 <td class="coverageStat">
@@ -75,7 +75,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/133)
+    (0/152)
   </span>
 </td>
 </tr>
@@ -103,7 +103,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/3)
+    (0/4)
   </span>
 </td>
 <td class="coverageStat">
@@ -111,7 +111,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/56)
+    (0/61)
   </span>
 </td>
   </tr>
@@ -131,7 +131,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/1)
+    (0/2)
   </span>
 </td>
 <td class="coverageStat">
@@ -139,7 +139,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/11)
+    (0/23)
   </span>
 </td>
   </tr>
@@ -209,6 +209,34 @@ Current scope:     <a href="../../index.html">all classes</a>
   <tr>
     <td class="name">ConfigureChangelogKt$configureChangelog$4$invoke$$inlined$the$1</td>
     <td class="coverageStat"/>
+  </tr>
+  <tr>
+    <td class="name">ConfigureChangelogKt$configureChangelog$patchChangelogTask$1$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/11)
+  </span>
+</td>
   </tr>
   <tr>
     <td class="name">ConfigureChangelogKt$configureConfigDocumentationChangelogRawConfig$$inlined$the$1</td>
@@ -309,7 +337,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/10)
+    (0/11)
   </span>
 </td>
 <td class="coverageStat">
@@ -325,7 +353,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/29)
+    (0/35)
   </span>
 </td>
 <td class="coverageStat">
@@ -333,7 +361,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/289)
+    (0/336)
   </span>
 </td>
 </tr>
@@ -355,6 +383,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;import com.javiersc.hubdle.extensions.config.documentation.changelog.MergeChangelogTask
 &nbsp;import org.gradle.api.Project
 &nbsp;import org.gradle.api.attributes.LibraryElements.LIBRARY_ELEMENTS_ATTRIBUTE
+&nbsp;import org.gradle.api.tasks.TaskCollection
 &nbsp;import org.gradle.api.tasks.TaskProvider
 &nbsp;import org.gradle.kotlin.dsl.configure
 &nbsp;import org.gradle.kotlin.dsl.named
@@ -370,17 +399,22 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;
 <b class="nc">&nbsp;        project.configure&lt;ChangelogPluginExtension&gt; {</b>
 <b class="nc">&nbsp;            version.set(&quot;${project.version}&quot;)</b>
-<b class="nc">&nbsp;            header.set(project.provider { &quot;[${project.version}] - ${date()}&quot; })</b>
+<b class="nc">&nbsp;            header.set(project.provider { &quot;${project.version} - ${date()}&quot; })</b>
 <b class="nc">&nbsp;            groups.set(listOf(&quot;Added&quot;, &quot;Changed&quot;, &quot;Deprecated&quot;, &quot;Removed&quot;, &quot;Fixed&quot;, &quot;Updated&quot;))</b>
-&nbsp;        }
-&nbsp;
-<b class="nc">&nbsp;        project.tasks.namedLazily&lt;PatchChangelogTask&gt;(&quot;patchChangelog&quot;).configureEach { task -&gt;</b>
-<b class="nc">&nbsp;            task.finalizedBy(ApplyFormatChangelogTask.name)</b>
+<b class="nc">&nbsp;            combinePreReleases.set(false)</b>
 &nbsp;        }
 &nbsp;
 <b class="nc">&nbsp;        project.tasks.register&lt;ApplyFormatChangelogTask&gt;(ApplyFormatChangelogTask.name)</b>
 &nbsp;
-<b class="nc">&nbsp;        project.tasks.register&lt;MergeChangelogTask&gt;(MergeChangelogTask.name)</b>
+<b class="nc">&nbsp;        val patchChangelogTask: TaskCollection&lt;PatchChangelogTask&gt; =</b>
+<b class="nc">&nbsp;            project.tasks.namedLazily&lt;PatchChangelogTask&gt;(&quot;patchChangelog&quot;).apply {</b>
+<b class="nc">&nbsp;                configureEach { task -&gt; task.finalizedBy(ApplyFormatChangelogTask.name) }</b>
+<b class="nc">&nbsp;            }</b>
+&nbsp;
+<b class="nc">&nbsp;        project.tasks.register&lt;MergeChangelogTask&gt;(MergeChangelogTask.name).configure { task -&gt;</b>
+<b class="nc">&nbsp;            task.shouldRunAfter(patchChangelogTask)</b>
+<b class="nc">&nbsp;            task.finalizedBy(ApplyFormatChangelogTask.name)</b>
+&nbsp;        }
 &nbsp;
 <b class="nc">&nbsp;        project.tasks.register&lt;AddChangelogItemTask&gt;(AddChangelogItemTask.name).configure { task -&gt;</b>
 <b class="nc">&nbsp;            task.finalizedBy(ApplyFormatChangelogTask.name)</b>
@@ -444,7 +478,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-11-04 18:19</div>
+    <div style="float:right;">generated on 2022-11-05 00:05</div>
 </div>
 </body>
 </html>

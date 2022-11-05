@@ -2,7 +2,7 @@
 
 ## Metrics
 
-* 955 number of properties
+* 959 number of properties
 
 * 595 number of functions
 
@@ -14,17 +14,17 @@
 
 ## Complexity Report
 
-* 11,789 lines of code (loc)
+* 11,800 lines of code (loc)
 
-* 9,775 source lines of code (sloc)
+* 9,785 source lines of code (sloc)
 
-* 6,628 logical lines of code (lloc)
+* 6,635 logical lines of code (lloc)
 
 * 52 comment lines of code (cloc)
 
-* 1,248 cyclomatic complexity (mcc)
+* 1,252 cyclomatic complexity (mcc)
 
-* 535 cognitive complexity
+* 538 cognitive complexity
 
 * 97 number of total code smells
 
@@ -1436,4 +1436,4 @@ Line detected, which is longer than the defined maximum line length in the code 
 
 ```
 
-generated with [detekt version 1.21.0](https://detekt.dev/) on 2022-11-01 17:27:46 UTC
+generated with [detekt version 1.21.0](https://detekt.dev/) on 2022-11-04 23:58:32 UTC

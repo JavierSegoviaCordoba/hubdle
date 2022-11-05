@@ -452,7 +452,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;import org.gradle.kotlin.dsl.the
 &nbsp;import org.gradle.kotlin.dsl.withType
 &nbsp;import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
-&nbsp;import org.sonarqube.gradle.SonarQubeExtension
+&nbsp;import org.sonarqube.gradle.SonarExtension
 &nbsp;
 &nbsp;internal fun configureAnalysis(project: Project) {
 <b class="nc">&nbsp;    if (project.hubdleState.config.analysis.isEnabled) {</b>
@@ -512,7 +512,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;
 &nbsp;    // project.tasks.namedLazily&lt;Task&gt;(&quot;checkAnalysis&quot;).configureEach { it.dependsOn(&quot;sonarqube&quot;) }
 &nbsp;
-<b class="nc">&nbsp;    project.configure&lt;SonarQubeExtension&gt; {</b>
+<b class="nc">&nbsp;    project.configure&lt;SonarExtension&gt; {</b>
 <b class="nc">&nbsp;        properties { properties -&gt;</b>
 <b class="nc">&nbsp;            properties.property(</b>
 <b class="nc">&nbsp;                &quot;sonar.projectName&quot;,</b>
@@ -552,7 +552,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;
 <b class="nc">&nbsp;    project.allprojects { allproject -&gt;</b>
 <b class="nc">&nbsp;        allproject.afterEvaluate {</b>
-<b class="nc">&nbsp;            allproject.extensions.findByType&lt;SonarQubeExtension&gt;()?.apply {</b>
+<b class="nc">&nbsp;            allproject.extensions.findByType&lt;SonarExtension&gt;()?.apply {</b>
 <b class="nc">&nbsp;                properties { properties -&gt;</b>
 <b class="nc">&nbsp;                    properties.property(&quot;sonar.sources&quot;, allproject.kotlinSrcDirs())</b>
 <b class="nc">&nbsp;                    properties.property(&quot;sonar.tests&quot;, allproject.kotlinTestsSrcDirs())</b>
@@ -612,7 +612,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-11-04 18:19</div>
+    <div style="float:right;">generated on 2022-11-05 00:05</div>
 </div>
 </body>
 </html>

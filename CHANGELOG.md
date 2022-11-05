@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.11.3`
 - `org.jetbrains.intellij.plugins:gradle-changelog-plugin -> 2.0.0`
 - `org.sonarsource.scanner.gradle:sonarqube-gradle-plugin -> 3.5.0.2730`
 - `io.ktor:ktor-serialization-kotlinx-json -> 2.1.3`
@@ -65,7 +66,6 @@
 - `com.android.library:com.android.library.gradle.plugin -> 7.3.1`
 - `com.android.tools.build:gradle -> 7.3.1`
 - `actions/cache -> v3.0.11`
-- `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.11.2`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.2.0-alpha.43`
 
 ## [0.2.0-alpha.43] - 2022-10-11

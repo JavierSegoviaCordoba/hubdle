@@ -385,37 +385,6 @@
       "type": "file",
       "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/analysis/_internal/configureAnalysis.kt",
       "language": "kotlin",
-      "line": 22,
-      "offset": 29,
-      "length": 14,
-      "code": {
-        "startLine": 20,
-        "length": 14,
-        "offset": 128,
-        "surroundingCode": "import org.gradle.kotlin.dsl.withType\nimport org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension\nimport org.sonarqube.gradle.SonarExtension\n\ninternal fun configureAnalysis(project: Project) {"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "hubdle.hubdle-gradle-plugin.main",
-    "inspectionName": "KotlinAnnotator"
-  },
-  "hash": "3d82bebd28bc837d9cd8f7be0927da641e9921053ae16a3dfdb045ecf714658a"
-},{
-  "tool": "Code Inspection",
-  "category": "General",
-  "type": "Kotlin annotator",
-  "tags": [
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Unresolved reference: SonarExtension",
-  "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/analysis/_internal/configureAnalysis.kt",
-      "language": "kotlin",
       "line": 82,
       "offset": 23,
       "length": 14,
@@ -494,6 +463,37 @@
     "inspectionName": "KotlinAnnotator"
   },
   "hash": "01eea8060114057d439548034e17e29fa5fad950e9d048fef022f4a6e8397232"
+},{
+  "tool": "Code Inspection",
+  "category": "General",
+  "type": "Kotlin annotator",
+  "tags": [
+    "Sanity"
+  ],
+  "severity": "Critical",
+  "comment": "Unresolved reference: properties",
+  "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/analysis/_internal/configureAnalysis.kt",
+      "language": "kotlin",
+      "line": 123,
+      "offset": 17,
+      "length": 10,
+      "code": {
+        "startLine": 121,
+        "length": 10,
+        "offset": 123,
+        "surroundingCode": "        allproject.afterEvaluate {\n            allproject.extensions.findByType<SonarExtension>()?.apply {\n                properties { properties ->\n                    properties.property(\"sonar.sources\", allproject.kotlinSrcDirs())\n                    properties.property(\"sonar.tests\", allproject.kotlinTestsSrcDirs())"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-gradle-plugin.main",
+    "inspectionName": "KotlinAnnotator"
+  },
+  "hash": "fd080b8f0f906300ce47af0e2a38b6d797cf1579fe6e881d8abad58a767f7720"
 },{
   "tool": "Code Inspection",
   "category": "General",

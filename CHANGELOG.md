@@ -14,6 +14,13 @@
 
 ### Updated
 
+- `org.jetbrains.kotlin:kotlin-test-testng -> 1.7.21`
+- `org.jetbrains.kotlin:kotlin-test-junit5 -> 1.7.21`
+- `org.jetbrains.kotlin:kotlin-test-junit -> 1.7.21`
+- `org.jetbrains.kotlin:kotlin-test-annotations-common -> 1.7.21`
+- `org.jetbrains.kotlin:kotlin-test -> 1.7.21`
+- `org.jetbrains.kotlin:kotlin-gradle-plugin -> 1.7.21`
+- `org.jetbrains.kotlin:kotlin-serialization -> 1.7.21`
 - `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.11.4`
 - `org.jetbrains.compose:compose-gradle-plugin -> 1.2.1`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.2.0-alpha.44`

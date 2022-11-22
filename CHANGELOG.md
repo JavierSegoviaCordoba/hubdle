@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `io.kotest.extensions:kotest-assertions-arrow -> 1.3.0`
 - `androidx.compose.ui:ui-util -> 1.3.1`
 - `androidx.compose.ui:ui-tooling-preview -> 1.3.1`
 - `androidx.compose.ui:ui-tooling -> 1.3.1`

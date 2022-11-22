@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `io.gitlab.arturbosch.detekt:detekt-gradle-plugin -> 1.22.0`
 - `com.gradle.publish:plugin-publish-plugin -> 1.1.0`
 - `io.kotest.extensions:kotest-assertions-arrow -> 1.3.0`
 - `androidx.compose.ui:ui-util -> 1.3.1`

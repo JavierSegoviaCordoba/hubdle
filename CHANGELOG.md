@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.diffplug.spotless:spotless-plugin-gradle -> 6.12.0`
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.10.0`
 - `io.gitlab.arturbosch.detekt:detekt-gradle-plugin -> 1.22.0`
 - `com.gradle.publish:plugin-publish-plugin -> 1.1.0`

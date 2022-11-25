@@ -28,8 +28,7 @@ internal class KotlinJvmFeaturesUserCatalogTest : GradleTest() {
                         testImplementation - Implementation only dependencies for compilation 'test' (target  (jvm)). (n)
                         +--- org.jetbrains.kotlin:kotlin-test:1.6.10 (n)
                         +--- org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.1 (n)
-                        +--- io.kotest:kotest-assertions-core:5.3.0 (n)
-                        \--- org.jetbrains.kotlin:kotlin-test:1.6.10 (n)
+                        \--- io.kotest:kotest-assertions-core:5.3.0 (n)
                     """
                         .trimIndent()
                 )

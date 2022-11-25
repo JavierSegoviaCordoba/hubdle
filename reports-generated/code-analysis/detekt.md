@@ -14,11 +14,11 @@
 
 ## Complexity Report
 
-* 11,800 lines of code (loc)
+* 11,798 lines of code (loc)
 
-* 9,785 source lines of code (sloc)
+* 9,783 source lines of code (sloc)
 
-* 6,635 logical lines of code (lloc)
+* 6,633 logical lines of code (lloc)
 
 * 52 comment lines of code (cloc)
 
@@ -1436,4 +1436,4 @@ Line detected, which is longer than the defined maximum line length in the code 
 
 ```
 
-generated with [detekt version 1.21.0](https://detekt.dev/) on 2022-11-22 09:28:52 UTC
+generated with [detekt version 1.21.0](https://detekt.dev/) on 2022-11-25 19:23:01 UTC

@@ -9,7 +9,7 @@ internal fun configureMultiplatformJs(project: Project) {
     val jsState = project.hubdleState.kotlin.multiplatform.js
     if (jsState.isEnabled) {
         project.configure<KotlinMultiplatformExtension> {
-            js() {
+            js {
                 if (jsState.browser.isEnabled) {
                     browser { jsState.browser.action?.execute(this) }
                 }

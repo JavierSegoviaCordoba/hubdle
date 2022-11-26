@@ -2,35 +2,35 @@
 
 ## Metrics
 
-* 959 number of properties
+* 966 number of properties
 
-* 595 number of functions
+* 601 number of functions
 
 * 255 number of classes
 
 * 79 number of packages
 
-* 207 number of kt files
+* 208 number of kt files
 
 ## Complexity Report
 
-* 11,798 lines of code (loc)
+* 11,889 lines of code (loc)
 
-* 9,783 source lines of code (sloc)
+* 9,857 source lines of code (sloc)
 
-* 6,633 logical lines of code (lloc)
+* 6,698 logical lines of code (lloc)
 
 * 52 comment lines of code (cloc)
 
-* 1,252 cyclomatic complexity (mcc)
+* 1,257 cyclomatic complexity (mcc)
 
-* 538 cognitive complexity
+* 536 cognitive complexity
 
 * 97 number of total code smells
 
 * 0% comment source ratio
 
-* 188 mcc per 1,000 lloc
+* 187 mcc per 1,000 lloc
 
 * 14 code smells per 1,000 lloc
 
@@ -212,7 +212,7 @@ Class 'HubdleKotlinMultiplatformExtension' with '38' functions detected. Defined
 
 * hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatform.kt:3:1
 ```
-File '/home/runner/work/hubdle/hubdle/hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatform.kt' with '11' functions detected. Defined threshold inside files is set to '11'
+File '/home/runner/work/hubdle/hubdle/hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatform.kt' with '12' functions detected. Defined threshold inside files is set to '11'
 ```
 ```kotlin
 1 @file:Suppress("SpreadOperator")
@@ -1436,4 +1436,4 @@ Line detected, which is longer than the defined maximum line length in the code 
 
 ```
 
-generated with [detekt version 1.21.0](https://detekt.dev/) on 2022-11-25 19:23:01 UTC
+generated with [detekt version 1.21.0](https://detekt.dev/) on 2022-11-26 22:11:56 UTC

@@ -51,7 +51,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/13)
+    (0/19)
   </span>
 </td>
     <td class="coverageStat"/>
@@ -60,7 +60,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/15)
+    (0/21)
   </span>
 </td>
 <td class="coverageStat">
@@ -68,7 +68,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/165)
+    (0/260)
   </span>
 </td>
 </tr>
@@ -99,10 +99,6 @@ Current scope:     <a href="../../index.html">all classes</a>
     (0/65)
   </span>
 </td>
-  </tr>
-  <tr>
-    <td class="name">HubdleKotlinGradlePluginExtension$main$$inlined$the$1</td>
-    <td class="coverageStat"/>
   </tr>
   <tr>
     <td class="name">HubdleKotlinGradlePluginExtension$RawConfigExtension</td>
@@ -136,10 +132,6 @@ Current scope:     <a href="../../index.html">all classes</a>
     <td class="name">HubdleKotlinGradlePluginExtension$special$$inlined$the$1</td>
     <td class="coverageStat"/>
   </tr>
-  <tr>
-    <td class="name">HubdleKotlinGradlePluginExtension$test$$inlined$the$1</td>
-    <td class="coverageStat"/>
-  </tr>
 <tr>
   <td class="name"><strong>Total</strong></td>
 <td class="coverageStat">
@@ -147,7 +139,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/23)
+    (0/29)
   </span>
 </td>
     <td class="coverageStat"/>
@@ -156,7 +148,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/25)
+    (0/31)
   </span>
 </td>
 <td class="coverageStat">
@@ -164,7 +156,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/248)
+    (0/343)
   </span>
 </td>
 </tr>
@@ -235,13 +227,28 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;    }
 &nbsp;
 &nbsp;    @HubdleDslMarker
+<b class="nc">&nbsp;    public fun Project.functionalTest(action: Action&lt;KotlinSourceSet&gt; = Action {}) {</b>
+<b class="nc">&nbsp;        sourceSets.named(&quot;functionalTest&quot;, action::execute)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @HubdleDslMarker
+<b class="nc">&nbsp;    public fun Project.integrationTest(action: Action&lt;KotlinSourceSet&gt; = Action {}) {</b>
+<b class="nc">&nbsp;        sourceSets.named(&quot;integrationTest&quot;, action::execute)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @HubdleDslMarker
 <b class="nc">&nbsp;    public fun Project.main(action: Action&lt;KotlinSourceSet&gt; = Action {}) {</b>
-<b class="nc">&nbsp;        the&lt;KotlinJvmProjectExtension&gt;().sourceSets.named(&quot;main&quot;, action::execute)</b>
+<b class="nc">&nbsp;        sourceSets.named(&quot;main&quot;, action::execute)</b>
 &nbsp;    }
 &nbsp;
 &nbsp;    @HubdleDslMarker
 <b class="nc">&nbsp;    public fun Project.test(action: Action&lt;KotlinSourceSet&gt; = Action {}) {</b>
-<b class="nc">&nbsp;        the&lt;KotlinJvmProjectExtension&gt;().sourceSets.named(&quot;test&quot;, action::execute)</b>
+<b class="nc">&nbsp;        sourceSets.named(&quot;test&quot;, action::execute)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @HubdleDslMarker
+<b class="nc">&nbsp;    public fun Project.testFixtures(action: Action&lt;KotlinSourceSet&gt; = Action {}) {</b>
+<b class="nc">&nbsp;        sourceSets.named(&quot;testFixtures&quot;, action::execute)</b>
 &nbsp;    }
 &nbsp;
 &nbsp;    @HubdleDslMarker
@@ -312,7 +319,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-11-25 19:28</div>
+    <div style="float:right;">generated on 2022-11-26 22:18</div>
 </div>
 </body>
 </html>

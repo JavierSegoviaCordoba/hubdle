@@ -48,6 +48,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;import com.android.build.api.dsl.AndroidSourceDirectorySet
 &nbsp;import com.android.build.api.dsl.AndroidSourceFile
 &nbsp;import com.android.build.api.dsl.AndroidSourceSet
+&nbsp;import com.javiersc.kotlin.stdlib.decapitalize
 &nbsp;import org.gradle.api.Named
 &nbsp;import org.gradle.api.NamedDomainObjectContainer
 &nbsp;import org.gradle.api.Project
@@ -65,8 +66,10 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;    sourceSets.all { set -&gt; set.configJavaDefaultSourceSets() }
 &nbsp;}
 &nbsp;
-&nbsp;internal fun KotlinProjectExtension.configureDefaultKotlinSourceSets() {
-&nbsp;    sourceSets.all { set -&gt; set.configKotlinDefaultSourceSets() }
+&nbsp;internal fun KotlinProjectExtension.configureDefaultKotlinSourceSets(
+&nbsp;    targets: Set&lt;String&gt; = emptySet()
+&nbsp;) {
+&nbsp;    sourceSets.all { set -&gt; set.configKotlinDefaultSourceSets(targets) }
 &nbsp;}
 &nbsp;
 &nbsp;internal fun AndroidSourceSet.configDefaultAndroidSourceSets() {
@@ -77,42 +80,47 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;    configAndroidSourceDirectorySet(resources to &quot;resources&quot;)
 &nbsp;}
 &nbsp;
-&nbsp;internal fun KotlinSourceSet.configKotlinDefaultSourceSets() {
-&nbsp;    val directory = calculateSourceSetDirectory()
+&nbsp;internal fun KotlinSourceSet.configKotlinDefaultSourceSets(targets: Set&lt;String&gt;) {
+&nbsp;    val directory = calculateKmpSourceSetDirectory(targets)
 &nbsp;
 &nbsp;    kotlin.setSrcDirs(listOf(&quot;$directory/kotlin&quot;))
 &nbsp;    resources.setSrcDirs(listOf(&quot;$directory/resources&quot;))
 &nbsp;}
 &nbsp;
 &nbsp;internal fun SourceSet.configJavaDefaultSourceSets() {
-&nbsp;    val directory = name.calculateSourceSetDirectory()
-&nbsp;    java.setSrcDirs(listOf(&quot;$directory/java&quot;))
-&nbsp;    resources.setSrcDirs(listOf(&quot;$directory/resources&quot;))
+&nbsp;    java.setSrcDirs(listOf(&quot;$name/java&quot;))
+&nbsp;    resources.setSrcDirs(listOf(&quot;$name/resources&quot;))
 &nbsp;}
 &nbsp;
 &nbsp;internal fun Named.configAndroidSourceDirectory(sourceSetToType: Pair&lt;AndroidSourceFile, String&gt;) {
 &nbsp;    val (sourceSet, type) = sourceSetToType
-&nbsp;    sourceSet.srcFile(&quot;${this.calculateSourceSetDirectory()}/$type&quot;)
+&nbsp;    sourceSet.srcFile(&quot;$name/$type&quot;)
 &nbsp;}
 &nbsp;
 &nbsp;internal fun Named.configAndroidSourceDirectorySet(
 &nbsp;    sourceSetToType: Pair&lt;AndroidSourceDirectorySet, String&gt;
 &nbsp;) {
 &nbsp;    val (sourceSet, type) = sourceSetToType
-&nbsp;    sourceSet.setSrcDirs(listOf(&quot;${this.calculateSourceSetDirectory()}/$type&quot;))
+&nbsp;    sourceSet.setSrcDirs(listOf(&quot;$name/$type&quot;))
 &nbsp;}
 &nbsp;
-&nbsp;private fun String.calculateSourceSetDirectory(): String {
+&nbsp;private fun Named.calculateKmpSourceSetDirectory(targets: Set&lt;String&gt;): String {
+&nbsp;
+&nbsp;    val target =
+&nbsp;        targets
+&nbsp;            .filter { target -&gt; name.startsWith(target) }
+&nbsp;            .maxByOrNull { target -&gt; target.count() }
+&nbsp;
 &nbsp;    val directory =
 &nbsp;        when {
-&nbsp;            this.endsWith(&quot;Main&quot;) -&gt; &quot;${this.substringBeforeLast(&quot;Main&quot;)}/main&quot;
-&nbsp;            this.endsWith(&quot;Test&quot;) -&gt; &quot;${this.substringBeforeLast(&quot;Test&quot;)}/test&quot;
-&nbsp;            else -&gt; this
+&nbsp;            target != null -&gt; {
+&nbsp;                val type = name.substringAfter(target).decapitalize()
+&nbsp;                &quot;$target/$type&quot;
+&nbsp;            }
+&nbsp;            else -&gt; name
 &nbsp;        }
 &nbsp;    return directory
 &nbsp;}
-&nbsp;
-&nbsp;private fun Named.calculateSourceSetDirectory(): String = this.name.calculateSourceSetDirectory()
 </code>
 </pre>
 </div>
@@ -136,7 +144,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-11-25 19:28</div>
+    <div style="float:right;">generated on 2022-11-26 22:18</div>
 </div>
 </body>
 </html>

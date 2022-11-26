@@ -51,7 +51,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/9)
+    (0/8)
   </span>
 </td>
 <td class="coverageStat">
@@ -59,7 +59,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/4)
+    (0/2)
   </span>
 </td>
 <td class="coverageStat">
@@ -67,7 +67,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/24)
+    (0/28)
   </span>
 </td>
 <td class="coverageStat">
@@ -75,7 +75,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/170)
+    (0/188)
   </span>
 </td>
 </tr>
@@ -131,7 +131,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/5)
+    (0/7)
   </span>
 </td>
   </tr>
@@ -142,7 +142,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/11)
+    (0/10)
   </span>
 </td>
 <td class="coverageStat">
@@ -150,7 +150,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/4)
+    (0/2)
   </span>
 </td>
 <td class="coverageStat">
@@ -158,7 +158,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/26)
+    (0/30)
   </span>
 </td>
 <td class="coverageStat">
@@ -166,7 +166,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/180)
+    (0/200)
   </span>
 </td>
 </tr>
@@ -182,6 +182,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;import com.android.build.api.dsl.AndroidSourceDirectorySet
 &nbsp;import com.android.build.api.dsl.AndroidSourceFile
 &nbsp;import com.android.build.api.dsl.AndroidSourceSet
+&nbsp;import com.javiersc.kotlin.stdlib.decapitalize
 &nbsp;import org.gradle.api.Named
 &nbsp;import org.gradle.api.NamedDomainObjectContainer
 &nbsp;import org.gradle.api.Project
@@ -199,8 +200,10 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="nc">&nbsp;    sourceSets.all { set -&gt; set.configJavaDefaultSourceSets() }</b>
 &nbsp;}
 &nbsp;
-&nbsp;internal fun KotlinProjectExtension.configureDefaultKotlinSourceSets() {
-<b class="nc">&nbsp;    sourceSets.all { set -&gt; set.configKotlinDefaultSourceSets() }</b>
+&nbsp;internal fun KotlinProjectExtension.configureDefaultKotlinSourceSets(
+<b class="nc">&nbsp;    targets: Set&lt;String&gt; = emptySet()</b>
+&nbsp;) {
+<b class="nc">&nbsp;    sourceSets.all { set -&gt; set.configKotlinDefaultSourceSets(targets) }</b>
 &nbsp;}
 &nbsp;
 &nbsp;internal fun AndroidSourceSet.configDefaultAndroidSourceSets() {
@@ -211,42 +214,47 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="nc">&nbsp;    configAndroidSourceDirectorySet(resources to &quot;resources&quot;)</b>
 &nbsp;}
 &nbsp;
-&nbsp;internal fun KotlinSourceSet.configKotlinDefaultSourceSets() {
-<b class="nc">&nbsp;    val directory = calculateSourceSetDirectory()</b>
+&nbsp;internal fun KotlinSourceSet.configKotlinDefaultSourceSets(targets: Set&lt;String&gt;) {
+<b class="nc">&nbsp;    val directory = calculateKmpSourceSetDirectory(targets)</b>
 &nbsp;
 <b class="nc">&nbsp;    kotlin.setSrcDirs(listOf(&quot;$directory/kotlin&quot;))</b>
 <b class="nc">&nbsp;    resources.setSrcDirs(listOf(&quot;$directory/resources&quot;))</b>
 &nbsp;}
 &nbsp;
 &nbsp;internal fun SourceSet.configJavaDefaultSourceSets() {
-<b class="nc">&nbsp;    val directory = name.calculateSourceSetDirectory()</b>
-<b class="nc">&nbsp;    java.setSrcDirs(listOf(&quot;$directory/java&quot;))</b>
-<b class="nc">&nbsp;    resources.setSrcDirs(listOf(&quot;$directory/resources&quot;))</b>
+<b class="nc">&nbsp;    java.setSrcDirs(listOf(&quot;$name/java&quot;))</b>
+<b class="nc">&nbsp;    resources.setSrcDirs(listOf(&quot;$name/resources&quot;))</b>
 &nbsp;}
 &nbsp;
 &nbsp;internal fun Named.configAndroidSourceDirectory(sourceSetToType: Pair&lt;AndroidSourceFile, String&gt;) {
 <b class="nc">&nbsp;    val (sourceSet, type) = sourceSetToType</b>
-<b class="nc">&nbsp;    sourceSet.srcFile(&quot;${this.calculateSourceSetDirectory()}/$type&quot;)</b>
+<b class="nc">&nbsp;    sourceSet.srcFile(&quot;$name/$type&quot;)</b>
 &nbsp;}
 &nbsp;
 &nbsp;internal fun Named.configAndroidSourceDirectorySet(
 &nbsp;    sourceSetToType: Pair&lt;AndroidSourceDirectorySet, String&gt;
 &nbsp;) {
 <b class="nc">&nbsp;    val (sourceSet, type) = sourceSetToType</b>
-<b class="nc">&nbsp;    sourceSet.setSrcDirs(listOf(&quot;${this.calculateSourceSetDirectory()}/$type&quot;))</b>
+<b class="nc">&nbsp;    sourceSet.setSrcDirs(listOf(&quot;$name/$type&quot;))</b>
 &nbsp;}
 &nbsp;
-&nbsp;private fun String.calculateSourceSetDirectory(): String {
+&nbsp;private fun Named.calculateKmpSourceSetDirectory(targets: Set&lt;String&gt;): String {
+&nbsp;
+<b class="nc">&nbsp;    val target =</b>
+<b class="nc">&nbsp;        targets</b>
+<b class="nc">&nbsp;            .filter { target -&gt; name.startsWith(target) }</b>
+<b class="nc">&nbsp;            .maxByOrNull { target -&gt; target.count() }</b>
+&nbsp;
 <b class="nc">&nbsp;    val directory =</b>
 <b class="nc">&nbsp;        when {</b>
-<b class="nc">&nbsp;            this.endsWith(&quot;Main&quot;) -&gt; &quot;${this.substringBeforeLast(&quot;Main&quot;)}/main&quot;</b>
-<b class="nc">&nbsp;            this.endsWith(&quot;Test&quot;) -&gt; &quot;${this.substringBeforeLast(&quot;Test&quot;)}/test&quot;</b>
-<b class="nc">&nbsp;            else -&gt; this</b>
+<b class="nc">&nbsp;            target != null -&gt; {</b>
+<b class="nc">&nbsp;                val type = name.substringAfter(target).decapitalize()</b>
+<b class="nc">&nbsp;                &quot;$target/$type&quot;</b>
+&nbsp;            }
+<b class="nc">&nbsp;            else -&gt; name</b>
 &nbsp;        }
 <b class="nc">&nbsp;    return directory</b>
 &nbsp;}
-&nbsp;
-<b class="nc">&nbsp;private fun Named.calculateSourceSetDirectory(): String = this.name.calculateSourceSetDirectory()</b>
 </code>
 </pre>
 </div>
@@ -270,7 +278,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-11-25 19:28</div>
+    <div style="float:right;">generated on 2022-11-26 22:18</div>
 </div>
 </body>
 </html>

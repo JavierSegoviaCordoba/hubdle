@@ -3,6 +3,8 @@ package com.javiersc.hubdle.extensions.kotlin.gradle
 import com.javiersc.hubdle.extensions.HubdleDslMarker
 import com.javiersc.hubdle.extensions._internal.PluginIds
 import com.javiersc.hubdle.extensions.kotlin.gradle.plugin.HubdleKotlinGradlePluginExtension
+import com.javiersc.hubdle.extensions.kotlin.gradle.plugin._internal.configureGradlePluginTestSourceSets
+import com.javiersc.hubdle.extensions.kotlin.gradle.plugin._internal.configureGradlePluginTestTasks
 import com.javiersc.hubdle.extensions.kotlin.gradle.version.catalog.HubdleKotlinGradleVersionCatalogExtension
 import javax.inject.Inject
 import org.gradle.api.Action
@@ -22,7 +24,10 @@ constructor(
     @HubdleDslMarker
     public fun Project.plugin(action: Action<HubdleKotlinGradlePluginExtension> = Action {}) {
         pluginManager.apply(PluginIds.Gradle.javaGradlePlugin)
+        pluginManager.apply(PluginIds.Gradle.javaTestFixtures)
         pluginManager.apply(PluginIds.Kotlin.jvm)
+        project.configureGradlePluginTestSourceSets()
+        project.configureGradlePluginTestTasks()
         plugin.run { isEnabled = true }
         action.execute(plugin)
     }

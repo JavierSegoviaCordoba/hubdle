@@ -117,6 +117,10 @@ public final class Tasks_extensionKt {
 	public static final fun testDependsOnPublishToMavenLocalTestFrom (Lorg/gradle/api/tasks/TaskContainer;Lorg/gradle/api/internal/catalog/DelegatingProjectDependency;)V
 }
 
+public final class TestFixturesKt {
+	public static final fun testFixtures (Lorg/jetbrains/kotlin/gradle/plugin/KotlinDependencyHandler;Ljava/lang/Object;)Lorg/gradle/api/artifacts/Dependency;
+}
+
 public abstract class com/javiersc/hubdle/HubdlePlugin : org/gradle/api/Plugin {
 	public fun <init> ()V
 	public synthetic fun apply (Ljava/lang/Object;)V
@@ -935,6 +939,8 @@ public class com/javiersc/hubdle/extensions/kotlin/gradle/KotlinGradleExtension 
 public class com/javiersc/hubdle/extensions/kotlin/gradle/plugin/HubdleKotlinGradlePluginExtension : com/javiersc/hubdle/extensions/kotlin/jvm/KotlinJvmOptions, com/javiersc/hubdle/extensions/options/EnableableOptions, com/javiersc/hubdle/extensions/options/FeaturesOptions, com/javiersc/hubdle/extensions/options/GradleDependenciesOptions, com/javiersc/hubdle/extensions/options/RawConfigOptions, com/javiersc/hubdle/extensions/options/SourceDirectoriesOptions {
 	public fun <init> (Lorg/gradle/api/model/ObjectFactory;)V
 	public fun features (Lorg/gradle/api/Action;)V
+	public final fun functionalTest (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
+	public static synthetic fun functionalTest$default (Lcom/javiersc/hubdle/extensions/kotlin/gradle/plugin/HubdleKotlinGradlePluginExtension;Lorg/gradle/api/Project;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 	public fun getFeatures ()Lcom/javiersc/hubdle/extensions/kotlin/gradle/plugin/HubdleKotlinGradlePluginExtension$FeaturesExtension;
 	public synthetic fun getFeatures ()Ljava/lang/Object;
 	public fun getJvmVersion (Lorg/gradle/api/Project;)I
@@ -944,6 +950,8 @@ public class com/javiersc/hubdle/extensions/kotlin/gradle/plugin/HubdleKotlinGra
 	public fun gradleApi (Lorg/gradle/api/Project;)Lorg/gradle/api/artifacts/Dependency;
 	public final fun gradlePlugin (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
 	public fun gradleTestKit (Lorg/gradle/api/Project;)Lorg/gradle/api/artifacts/Dependency;
+	public final fun integrationTest (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
+	public static synthetic fun integrationTest$default (Lcom/javiersc/hubdle/extensions/kotlin/gradle/plugin/HubdleKotlinGradlePluginExtension;Lorg/gradle/api/Project;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 	public fun isEnabled (Lorg/gradle/api/Project;)Z
 	public fun localGroovy (Lorg/gradle/api/Project;)Lorg/gradle/api/artifacts/Dependency;
 	public final fun main (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
@@ -955,6 +963,8 @@ public class com/javiersc/hubdle/extensions/kotlin/gradle/plugin/HubdleKotlinGra
 	public final fun tags (Lorg/gradle/api/Project;[Ljava/lang/String;)V
 	public final fun test (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
 	public static synthetic fun test$default (Lcom/javiersc/hubdle/extensions/kotlin/gradle/plugin/HubdleKotlinGradlePluginExtension;Lorg/gradle/api/Project;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+	public final fun testFixtures (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
+	public static synthetic fun testFixtures$default (Lcom/javiersc/hubdle/extensions/kotlin/gradle/plugin/HubdleKotlinGradlePluginExtension;Lorg/gradle/api/Project;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 }
 
 public class com/javiersc/hubdle/extensions/kotlin/gradle/plugin/HubdleKotlinGradlePluginExtension$FeaturesExtension {

@@ -58,13 +58,28 @@ constructor(
     }
 
     @HubdleDslMarker
+    public fun Project.functionalTest(action: Action<KotlinSourceSet> = Action {}) {
+        sourceSets.named("functionalTest", action::execute)
+    }
+
+    @HubdleDslMarker
+    public fun Project.integrationTest(action: Action<KotlinSourceSet> = Action {}) {
+        sourceSets.named("integrationTest", action::execute)
+    }
+
+    @HubdleDslMarker
     public fun Project.main(action: Action<KotlinSourceSet> = Action {}) {
-        the<KotlinJvmProjectExtension>().sourceSets.named("main", action::execute)
+        sourceSets.named("main", action::execute)
     }
 
     @HubdleDslMarker
     public fun Project.test(action: Action<KotlinSourceSet> = Action {}) {
-        the<KotlinJvmProjectExtension>().sourceSets.named("test", action::execute)
+        sourceSets.named("test", action::execute)
+    }
+
+    @HubdleDslMarker
+    public fun Project.testFixtures(action: Action<KotlinSourceSet> = Action {}) {
+        sourceSets.named("testFixtures", action::execute)
     }
 
     @HubdleDslMarker

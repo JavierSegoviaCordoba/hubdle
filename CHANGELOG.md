@@ -4,6 +4,10 @@
 
 ### Added
 
+- `functionalTest` to Kotlin Gradle plugin config
+- `integrationTest` to Kotlin Gradle plugin config
+- `testFixtures` to Kotlin Gradle plugin config
+
 ### Changed
 
 ### Deprecated

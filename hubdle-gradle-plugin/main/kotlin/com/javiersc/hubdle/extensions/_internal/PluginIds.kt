@@ -25,6 +25,7 @@ internal object PluginIds {
     object Gradle {
         const val application = "org.gradle.application"
         const val javaGradlePlugin = "java-gradle-plugin"
+        const val javaTestFixtures = "java-test-fixtures"
         const val versionCatalog = "org.gradle.version-catalog"
     }
 

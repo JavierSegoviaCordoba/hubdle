@@ -3,6 +3,7 @@ package com.javiersc.hubdle.extensions.options
 import com.android.build.api.dsl.AndroidSourceDirectorySet
 import com.android.build.api.dsl.AndroidSourceFile
 import com.android.build.api.dsl.AndroidSourceSet
+import com.javiersc.kotlin.stdlib.decapitalize
 import org.gradle.api.Named
 import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.Project
@@ -20,8 +21,10 @@ internal fun JavaPluginExtension.configureDefaultJavaSourceSets() {
     sourceSets.all { set -> set.configJavaDefaultSourceSets() }
 }
 
-internal fun KotlinProjectExtension.configureDefaultKotlinSourceSets() {
-    sourceSets.all { set -> set.configKotlinDefaultSourceSets() }
+internal fun KotlinProjectExtension.configureDefaultKotlinSourceSets(
+    targets: Set<String> = emptySet()
+) {
+    sourceSets.all { set -> set.configKotlinDefaultSourceSets(targets) }
 }
 
 internal fun AndroidSourceSet.configDefaultAndroidSourceSets() {
@@ -32,39 +35,44 @@ internal fun AndroidSourceSet.configDefaultAndroidSourceSets() {
     configAndroidSourceDirectorySet(resources to "resources")
 }
 
-internal fun KotlinSourceSet.configKotlinDefaultSourceSets() {
-    val directory = calculateSourceSetDirectory()
+internal fun KotlinSourceSet.configKotlinDefaultSourceSets(targets: Set<String>) {
+    val directory = calculateKmpSourceSetDirectory(targets)
 
     kotlin.setSrcDirs(listOf("$directory/kotlin"))
     resources.setSrcDirs(listOf("$directory/resources"))
 }
 
 internal fun SourceSet.configJavaDefaultSourceSets() {
-    val directory = name.calculateSourceSetDirectory()
-    java.setSrcDirs(listOf("$directory/java"))
-    resources.setSrcDirs(listOf("$directory/resources"))
+    java.setSrcDirs(listOf("$name/java"))
+    resources.setSrcDirs(listOf("$name/resources"))
 }
 
 internal fun Named.configAndroidSourceDirectory(sourceSetToType: Pair<AndroidSourceFile, String>) {
     val (sourceSet, type) = sourceSetToType
-    sourceSet.srcFile("${this.calculateSourceSetDirectory()}/$type")
+    sourceSet.srcFile("$name/$type")
 }
 
 internal fun Named.configAndroidSourceDirectorySet(
     sourceSetToType: Pair<AndroidSourceDirectorySet, String>
 ) {
     val (sourceSet, type) = sourceSetToType
-    sourceSet.setSrcDirs(listOf("${this.calculateSourceSetDirectory()}/$type"))
+    sourceSet.setSrcDirs(listOf("$name/$type"))
 }
 
-private fun String.calculateSourceSetDirectory(): String {
+private fun Named.calculateKmpSourceSetDirectory(targets: Set<String>): String {
+
+    val target =
+        targets
+            .filter { target -> name.startsWith(target) }
+            .maxByOrNull { target -> target.count() }
+
     val directory =
         when {
-            this.endsWith("Main") -> "${this.substringBeforeLast("Main")}/main"
-            this.endsWith("Test") -> "${this.substringBeforeLast("Test")}/test"
-            else -> this
+            target != null -> {
+                val type = name.substringAfter(target).decapitalize()
+                "$target/$type"
+            }
+            else -> name
         }
     return directory
 }
-
-private fun Named.calculateSourceSetDirectory(): String = this.name.calculateSourceSetDirectory()

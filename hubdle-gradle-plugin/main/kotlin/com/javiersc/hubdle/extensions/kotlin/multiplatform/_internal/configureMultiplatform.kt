@@ -42,6 +42,8 @@ import org.jetbrains.compose.ComposeExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
+import org.jetbrains.kotlin.gradle.plugin.KotlinTarget
+import org.jetbrains.kotlin.gradle.plugin.KotlinTargetPreset
 
 internal fun configureMultiplatform(project: Project) {
     if (project.hubdleState.kotlin.multiplatform.isEnabled) {
@@ -50,9 +52,25 @@ internal fun configureMultiplatform(project: Project) {
         project.configureExplicitApi()
         project.configJvmTarget()
         project.the<JavaPluginExtension>().configureDefaultJavaSourceSets()
-        project.the<KotlinProjectExtension>().configureDefaultKotlinSourceSets()
         project.the<KotlinMultiplatformExtension>().configureMultiplatformDependencies()
         configurePublishing(project)
+    }
+}
+
+internal fun configureKotlinMultiplatformSourceSets(project: Project) {
+    if (project.hubdleState.kotlin.multiplatform.isEnabled) {
+        val kmpExt = project.the<KotlinMultiplatformExtension>()
+        val targets: Set<String> = buildSet {
+            add("common")
+            addAll(listOf("android", "jvm", "jvmAndAndroid"))
+            addAll(listOf("darwin", "ios", "macos", "watchos", "tvos"))
+            addAll(listOf("native", "linux", "macos", "mingw"))
+            add("js")
+            add("wasm")
+            addAll(kmpExt.targets.map(KotlinTarget::getName))
+            addAll(kmpExt.presets.map(KotlinTargetPreset<*>::getName))
+        }
+        project.the<KotlinProjectExtension>().configureDefaultKotlinSourceSets(targets)
     }
 }
 

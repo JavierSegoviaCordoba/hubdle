@@ -39,6 +39,7 @@ import com.javiersc.hubdle.extensions.kotlin.intellij._internal.configureKotlinI
 import com.javiersc.hubdle.extensions.kotlin.jvm.KotlinJvmOptions.Companion.JVM_VERSION
 import com.javiersc.hubdle.extensions.kotlin.jvm._internal.configureJvm
 import com.javiersc.hubdle.extensions.kotlin.jvm._internal.configureKotlinJvmRawConfig
+import com.javiersc.hubdle.extensions.kotlin.multiplatform._internal.configureKotlinMultiplatformSourceSets
 import com.javiersc.hubdle.extensions.kotlin.multiplatform._internal.configureMultiplatform
 import com.javiersc.hubdle.extensions.kotlin.multiplatform._internal.configureMultiplatformAndroid
 import com.javiersc.hubdle.extensions.kotlin.multiplatform._internal.configureMultiplatformAndroidRawConfig
@@ -716,6 +717,8 @@ internal data class HubdleState(
 
                 darwin.configure(project)
                 native.configure(project)
+
+                configureKotlinMultiplatformSourceSets(project)
 
                 features.configure(project)
 

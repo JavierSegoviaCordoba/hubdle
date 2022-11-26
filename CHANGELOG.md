@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- Source set names convention is applied to non Kotlin Multiplatform
+
 ### Updated
 
 - `gradle -> 7.6`

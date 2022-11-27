@@ -18,6 +18,38 @@ internal class PatchChangelogTest : GradleTest() {
     }
 
     @Test
+    fun `patch 2`() {
+        gradleTestKitTest("$basePath/sandbox-patch-2") {
+            gradlewArgumentFromTXT()
+            projectDir.testChangelog()
+        }
+    }
+
+    @Test
+    fun `patch 3`() {
+        gradleTestKitTest("$basePath/sandbox-patch-3") {
+            gradlewArgumentFromTXT()
+            projectDir.testChangelog()
+        }
+    }
+
+    @Test
+    fun `patch 4`() {
+        gradleTestKitTest("$basePath/sandbox-patch-4") {
+            gradlewArgumentFromTXT()
+            projectDir.testChangelog()
+        }
+    }
+
+    @Test
+    fun `patch 5`() {
+        gradleTestKitTest("$basePath/sandbox-patch-5") {
+            gradlewArgumentFromTXT()
+            projectDir.testChangelog()
+        }
+    }
+
+    @Test
     fun `patch configuration cache 1`() {
         gradleTestKitTest("$basePath/sandbox-patch-configuration-cache-1") {
             withArgumentsFromTXT()

@@ -20,52 +20,45 @@ internal fun Changelog.merged(): Changelog {
         }
     }
 
-    val versions: Array<Changelog.Version> =
-        versionsMap
-            .map { (version, subVersions) ->
-                val groups: List<Changelog.Version.Group> =
-                    (listOf(version) + subVersions).map { it.groups.toList() }.flatten()
+    val versions: List<Changelog.Version> =
+        versionsMap.map { (version, subVersions) ->
+            val groups: List<Changelog.Version.Group> =
+                (listOf(version) + subVersions).map { it.groups.toList() }.flatten()
 
-                val groupedGroups = groups.groupBy { it.value }
+            val groupedGroups = groups.groupBy { it.value }
 
-                val mergedGroups: Array<Changelog.Version.Group> =
-                    groupedGroups
-                        .mapNotNull { (key, groups) ->
-                            val items: Array<out Changelog.Version.Group.Item> =
-                                groups
-                                    .filter { it.value == key }
-                                    .flatMap { it.items.toList() }
-                                    .toTypedArray()
-                            when {
-                                version.unreleased -> Changelog.Version.Group(key, *items)
-                                items.isNotEmpty() -> Changelog.Version.Group(key, *items)
-                                else -> null
-                            }
-                        }
-                        .toTypedArray()
+            val mergedGroups: List<Changelog.Version.Group> =
+                groupedGroups.mapNotNull { (key, groups) ->
+                    val items: List<Changelog.Version.Group.Item> =
+                        groups.filter { it.value == key }.flatMap { it.items.toList() }
 
-                Changelog.Version(version.value, *mergedGroups)
-            }
-            .toTypedArray()
+                    when {
+                        version.unreleased -> Changelog.Version.Group(key, items)
+                        items.isNotEmpty() -> Changelog.Version.Group(key, items)
+                        else -> null
+                    }
+                }
 
-    return Changelog(header, *versions)
+            Changelog.Version(version.value, mergedGroups)
+        }
+
+    val references: List<Changelog.Reference> =
+        references.filter { it.version in versions.map(Changelog.Version::version) }
+
+    return Changelog(header, versions, references)
 }
 
 private fun Changelog.Version.extractVersionWithoutStage(): String =
-    extractVersion().takeWhile { it.isDigit() || it == '.' }
-
-private fun Changelog.Version.extractVersion(): String =
-    if (value.contains("[")) value.substringAfter("[").substringBefore("]")
-    else value.substringAfterLast('#').substringBefore(" - ").filterNot(Char::isWhitespace)
+    version.takeWhile { it.isDigit() || it == '.' }
 
 private val Changelog.Version.unreleased: Boolean
-    get() = extractVersion().contains("Unreleased", ignoreCase = true)
+    get() = version.contains("Unreleased", ignoreCase = true)
 
 private val Changelog.Version.isFinal: Boolean
-    get() = extractVersion().all { it.isDigit() || it == '.' }
+    get() = version.all { it.isDigit() || it == '.' }
 
 private fun Changelog.Version.hasFinal(finalVersions: Iterable<Changelog.Version>): Boolean =
-    finalVersions.any { it.extractVersion() == extractVersionWithoutStage() }
+    finalVersions.any { it.version == extractVersionWithoutStage() }
 
 private fun Iterable<Changelog.Version>.versionKey(version: Changelog.Version): Changelog.Version? =
     firstOrNull {

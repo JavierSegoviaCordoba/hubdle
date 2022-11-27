@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## [Unreleased]
 
 ### Added
 
@@ -14,7 +14,7 @@
 
 ### Updated
 
-## 0.1.0 - {{ PLACEHOLDER_DATE }}
+## [0.1.0] - {{ PLACEHOLDER_DATE }}
 
 ### Added
 
@@ -42,3 +42,7 @@
 ### Updated
 
 - new updated
+
+[Unreleased]: https://github.com/JavierSegoviaCordoba/sandbox-project/compare/0.1.0...HEAD
+
+[0.1.0]: https://github.com/JavierSegoviaCordoba/sandbox-project/compare/0.1.0-rc.1...0.1.0

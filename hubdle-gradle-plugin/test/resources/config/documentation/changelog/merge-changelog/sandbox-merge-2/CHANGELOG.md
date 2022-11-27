@@ -43,3 +43,15 @@
 
 ## [0.1.0-alpha.1] - 2021-08-01
 - No changes
+
+[Unreleased]: https://github.com/JavierSegoviaCordoba/sandbox-project/compare/0.1.0...HEAD
+
+[0.1.0]: https://github.com/JavierSegoviaCordoba/sandbox-project/compare/0.1.0-rc.1...0.1.0
+
+[0.1.0-alpha.1]: https://github.com/JavierSegoviaCordoba/sandbox-project/commits/0.1.0-alpha.1
+
+[0.1.0-alpha.2]: https://github.com/JavierSegoviaCordoba/sandbox-project/compare/0.1.0-alpha.1...0.1.0-alpha.2
+
+[0.1.0-beta.1]: https://github.com/JavierSegoviaCordoba/sandbox-project/compare/0.1.0-alpha.2...0.1.0-beta.1
+
+[0.1.0-rc.1]: https://github.com/JavierSegoviaCordoba/sandbox-project/compare/0.1.0-beta.1...0.1.0-rc.1

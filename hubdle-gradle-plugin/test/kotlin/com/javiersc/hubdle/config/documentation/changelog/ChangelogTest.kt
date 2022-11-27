@@ -17,6 +17,11 @@ internal class ChangelogTest {
     fun `changelog to string 2`() {
         assert(2)
     }
+
+    @Test
+    fun `changelog to string 3`() {
+        assert(3)
+    }
 }
 
 private fun assert(number: Int) {

@@ -1,6 +1,8 @@
 package com.javiersc.hubdle.extensions.config.documentation.changelog._internal
 
+import com.javiersc.gradle.properties.extensions.getStringProperty
 import com.javiersc.gradle.tasks.extensions.namedLazily
+import com.javiersc.hubdle.HubdleProperty
 import com.javiersc.hubdle.extensions._internal.PluginIds
 import com.javiersc.hubdle.extensions._internal.state.hubdleState
 import com.javiersc.hubdle.extensions.config.documentation.changelog.AddChangelogItemTask
@@ -16,7 +18,7 @@ import org.gradle.kotlin.dsl.named
 import org.gradle.kotlin.dsl.register
 import org.gradle.kotlin.dsl.the
 import org.jetbrains.changelog.ChangelogPluginExtension
-import org.jetbrains.changelog.date
+import org.jetbrains.changelog.ChangelogSectionUrlBuilder
 import org.jetbrains.changelog.tasks.PatchChangelogTask
 
 internal fun configureChangelog(project: Project) {
@@ -24,10 +26,40 @@ internal fun configureChangelog(project: Project) {
         project.pluginManager.apply(PluginIds.Documentation.changelog)
 
         project.configure<ChangelogPluginExtension> {
-            version.set("${project.version}")
-            header.set(project.provider { "${project.version} - ${date()}" })
+            repositoryUrl.set(project.getStringProperty(HubdleProperty.POM.scmUrl))
             groups.set(listOf("Added", "Changed", "Deprecated", "Removed", "Fixed", "Updated"))
             combinePreReleases.set(false)
+
+            val prefix = project.hubdleState.config.versioning.tagPrefix
+
+            val customSectionUrlBuilder =
+                project.provider {
+                    @Suppress("ObjectLiteralToLambda")
+                    object : ChangelogSectionUrlBuilder {
+                        override fun build(
+                            repositoryUrl: String,
+                            currentVersion: String?,
+                            previousVersion: String?,
+                            isUnreleased: Boolean
+                        ): String {
+                            val comparison =
+                                when {
+                                    isUnreleased -> {
+                                        when (previousVersion) {
+                                            null -> "/commits"
+                                            else -> "/compare/$prefix$previousVersion...HEAD"
+                                        }
+                                    }
+                                    previousVersion == null -> "/commits/$prefix$currentVersion"
+                                    else ->
+                                        "/compare/$prefix$previousVersion...$prefix$currentVersion"
+                                }
+                            return repositoryUrl + comparison
+                        }
+                    }
+                }
+
+            sectionUrlBuilder.set(customSectionUrlBuilder)
         }
 
         project.tasks.register<ApplyFormatChangelogTask>(ApplyFormatChangelogTask.name)

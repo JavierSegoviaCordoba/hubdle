@@ -62,31 +62,31 @@ Current scope:     <a href="../../index.html">all classes</a>
     100%
   </span>
   <span class="absValue">
-    (7/7)
+    (6/6)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    78.6%
+    83.3%
   </span>
   <span class="absValue">
-    (22/28)
+    (20/24)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    97.5%
+    97%
   </span>
   <span class="absValue">
-    (39/40)
+    (32/33)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    94.1%
+    98.5%
   </span>
   <span class="absValue">
-    (305/324)
+    (263/267)
   </span>
 </td>
 </tr>
@@ -120,52 +120,45 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;        }
 <b class="fc">&nbsp;    }</b>
 &nbsp;
-<b class="fc">&nbsp;    val versions: Array&lt;Changelog.Version&gt; =</b>
-<b class="fc">&nbsp;        versionsMap</b>
-<b class="fc">&nbsp;            .map { (version, subVersions) -&gt;</b>
-<b class="fc">&nbsp;                val groups: List&lt;Changelog.Version.Group&gt; =</b>
-<b class="fc">&nbsp;                    (listOf(version) + subVersions).map { it.groups.toList() }.flatten()</b>
+<b class="fc">&nbsp;    val versions: List&lt;Changelog.Version&gt; =</b>
+<b class="fc">&nbsp;        versionsMap.map { (version, subVersions) -&gt;</b>
+<b class="fc">&nbsp;            val groups: List&lt;Changelog.Version.Group&gt; =</b>
+<b class="fc">&nbsp;                (listOf(version) + subVersions).map { it.groups.toList() }.flatten()</b>
 &nbsp;
-<b class="fc">&nbsp;                val groupedGroups = groups.groupBy { it.value }</b>
+<b class="fc">&nbsp;            val groupedGroups = groups.groupBy { it.value }</b>
 &nbsp;
-<b class="fc">&nbsp;                val mergedGroups: Array&lt;Changelog.Version.Group&gt; =</b>
-<b class="fc">&nbsp;                    groupedGroups</b>
-<b class="fc">&nbsp;                        .mapNotNull { (key, groups) -&gt;</b>
-<b class="fc">&nbsp;                            val items: Array&lt;out Changelog.Version.Group.Item&gt; =</b>
-<b class="fc">&nbsp;                                groups</b>
-<b class="fc">&nbsp;                                    .filter { it.value == key }</b>
-<b class="fc">&nbsp;                                    .flatMap { it.items.toList() }</b>
-<b class="fc">&nbsp;                                    .toTypedArray()</b>
-<b class="fc">&nbsp;                            when {</b>
-<b class="fc">&nbsp;                                version.unreleased -&gt; Changelog.Version.Group(key, *items)</b>
-<b class="pc">&nbsp;                                items.isNotEmpty() -&gt; Changelog.Version.Group(key, *items)</b>
-<b class="nc">&nbsp;                                else -&gt; null</b>
-&nbsp;                            }
-&nbsp;                        }
-<b class="fc">&nbsp;                        .toTypedArray()</b>
+<b class="fc">&nbsp;            val mergedGroups: List&lt;Changelog.Version.Group&gt; =</b>
+<b class="fc">&nbsp;                groupedGroups.mapNotNull { (key, groups) -&gt;</b>
+<b class="fc">&nbsp;                    val items: List&lt;Changelog.Version.Group.Item&gt; =</b>
+<b class="fc">&nbsp;                        groups.filter { it.value == key }.flatMap { it.items.toList() }</b>
 &nbsp;
-<b class="fc">&nbsp;                Changelog.Version(version.value, *mergedGroups)</b>
-&nbsp;            }
-<b class="fc">&nbsp;            .toTypedArray()</b>
+<b class="fc">&nbsp;                    when {</b>
+<b class="fc">&nbsp;                        version.unreleased -&gt; Changelog.Version.Group(key, items)</b>
+<b class="pc">&nbsp;                        items.isNotEmpty() -&gt; Changelog.Version.Group(key, items)</b>
+<b class="nc">&nbsp;                        else -&gt; null</b>
+&nbsp;                    }
+&nbsp;                }
 &nbsp;
-<b class="fc">&nbsp;    return Changelog(header, *versions)</b>
+<b class="fc">&nbsp;            Changelog.Version(version.value, mergedGroups)</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;    val references: List&lt;Changelog.Reference&gt; =</b>
+<b class="fc">&nbsp;        references.filter { it.version in versions.map(Changelog.Version::version) }</b>
+&nbsp;
+<b class="fc">&nbsp;    return Changelog(header, versions, references)</b>
 &nbsp;}
 &nbsp;
 &nbsp;private fun Changelog.Version.extractVersionWithoutStage(): String =
-<b class="fc">&nbsp;    extractVersion().takeWhile { it.isDigit() || it == &#39;.&#39; }</b>
-&nbsp;
-&nbsp;private fun Changelog.Version.extractVersion(): String =
-<b class="pc">&nbsp;    if (value.contains(&quot;[&quot;)) value.substringAfter(&quot;[&quot;).substringBefore(&quot;]&quot;)</b>
-<b class="fc">&nbsp;    else value.substringAfterLast(&#39;#&#39;).substringBefore(&quot; - &quot;).filterNot(Char::isWhitespace)</b>
+<b class="fc">&nbsp;    version.takeWhile { it.isDigit() || it == &#39;.&#39; }</b>
 &nbsp;
 &nbsp;private val Changelog.Version.unreleased: Boolean
-<b class="fc">&nbsp;    get() = extractVersion().contains(&quot;Unreleased&quot;, ignoreCase = true)</b>
+<b class="fc">&nbsp;    get() = version.contains(&quot;Unreleased&quot;, ignoreCase = true)</b>
 &nbsp;
 &nbsp;private val Changelog.Version.isFinal: Boolean
-<b class="fc">&nbsp;    get() = extractVersion().all { it.isDigit() || it == &#39;.&#39; }</b>
+<b class="fc">&nbsp;    get() = version.all { it.isDigit() || it == &#39;.&#39; }</b>
 &nbsp;
 &nbsp;private fun Changelog.Version.hasFinal(finalVersions: Iterable&lt;Changelog.Version&gt;): Boolean =
-<b class="fc">&nbsp;    finalVersions.any { it.extractVersion() == extractVersionWithoutStage() }</b>
+<b class="fc">&nbsp;    finalVersions.any { it.version == extractVersionWithoutStage() }</b>
 &nbsp;
 &nbsp;private fun Iterable&lt;Changelog.Version&gt;.versionKey(version: Changelog.Version): Changelog.Version? =
 <b class="fc">&nbsp;    firstOrNull {</b>
@@ -194,7 +187,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-11-26 22:18</div>
+    <div style="float:right;">generated on 2022-11-27 16:23</div>
 </div>
 </body>
 </html>

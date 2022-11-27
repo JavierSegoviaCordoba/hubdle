@@ -103,7 +103,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/4)
+    (0/3)
   </span>
 </td>
 <td class="coverageStat">
@@ -111,7 +111,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/61)
+    (0/45)
   </span>
 </td>
   </tr>
@@ -353,7 +353,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/35)
+    (0/34)
   </span>
 </td>
 <td class="coverageStat">
@@ -361,7 +361,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/336)
+    (0/320)
   </span>
 </td>
 </tr>
@@ -374,7 +374,9 @@ Current scope:     <a href="../../index.html">all classes</a>
 <pre>
 <code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.extensions.config.documentation.changelog._internal
 &nbsp;
+&nbsp;import com.javiersc.gradle.properties.extensions.getStringProperty
 &nbsp;import com.javiersc.gradle.tasks.extensions.namedLazily
+&nbsp;import com.javiersc.hubdle.HubdleProperty
 &nbsp;import com.javiersc.hubdle.extensions._internal.PluginIds
 &nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
 &nbsp;import com.javiersc.hubdle.extensions.config.documentation.changelog.AddChangelogItemTask
@@ -390,7 +392,6 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;import org.gradle.kotlin.dsl.register
 &nbsp;import org.gradle.kotlin.dsl.the
 &nbsp;import org.jetbrains.changelog.ChangelogPluginExtension
-&nbsp;import org.jetbrains.changelog.date
 &nbsp;import org.jetbrains.changelog.tasks.PatchChangelogTask
 &nbsp;
 &nbsp;internal fun configureChangelog(project: Project) {
@@ -398,8 +399,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="nc">&nbsp;        project.pluginManager.apply(PluginIds.Documentation.changelog)</b>
 &nbsp;
 <b class="nc">&nbsp;        project.configure&lt;ChangelogPluginExtension&gt; {</b>
-<b class="nc">&nbsp;            version.set(&quot;${project.version}&quot;)</b>
-<b class="nc">&nbsp;            header.set(project.provider { &quot;${project.version} - ${date()}&quot; })</b>
+<b class="nc">&nbsp;            repositoryUrl.set(project.getStringProperty(HubdleProperty.POM.scmUrl))</b>
 <b class="nc">&nbsp;            groups.set(listOf(&quot;Added&quot;, &quot;Changed&quot;, &quot;Deprecated&quot;, &quot;Removed&quot;, &quot;Fixed&quot;, &quot;Updated&quot;))</b>
 <b class="nc">&nbsp;            combinePreReleases.set(false)</b>
 &nbsp;        }
@@ -478,7 +478,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-11-26 22:18</div>
+    <div style="float:right;">generated on 2022-11-27 16:23</div>
 </div>
 </body>
 </html>

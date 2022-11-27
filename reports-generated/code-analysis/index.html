@@ -157,9 +157,9 @@
 
 <div>
   <ul>
-    <li>966 number of properties</li>
-    <li>601 number of functions</li>
-    <li>255 number of classes</li>
+    <li>972 number of properties</li>
+    <li>606 number of functions</li>
+    <li>256 number of classes</li>
     <li>79 number of packages</li>
     <li>208 number of kt files</li>
   </ul>
@@ -170,13 +170,13 @@
 
 <div>
   <ul>
-    <li>11,889 lines of code (loc)</li>
-    <li>9,857 source lines of code (sloc)</li>
-    <li>6,698 logical lines of code (lloc)</li>
+    <li>11,946 lines of code (loc)</li>
+    <li>9,901 source lines of code (sloc)</li>
+    <li>6,727 logical lines of code (lloc)</li>
     <li>52 comment lines of code (cloc)</li>
-    <li>1,257 cyclomatic complexity (mcc)</li>
-    <li>536 cognitive complexity</li>
-    <li>97 number of total code smells</li>
+    <li>1,263 cyclomatic complexity (mcc)</li>
+    <li>538 cognitive complexity</li>
+    <li>98 number of total code smells</li>
     <li>0% comment source ratio</li>
     <li>187 mcc per 1,000 lloc</li>
     <li>14 code smells per 1,000 lloc</li>
@@ -185,7 +185,7 @@
 
 
 <h2>Findings</h2>
-<div>Total: 97
+<div>Total: 98
   <h3>complexity: 10</h3>
   <details id="ComplexCondition" open="open">
     <summary class="rule-container"><span class="rule">ComplexCondition: 1 </span><span class="description">Complex conditions should be simplified and extracted into well-named methods if necessary.</span></summary>
@@ -327,7 +327,7 @@
       </li>
     </ul>
   </details>
-  <h3>naming: 76</h3>
+  <h3>naming: 77</h3>
   <details id="InvalidPackageDeclaration" open="open">
     <summary class="rule-container"><span class="rule">InvalidPackageDeclaration: 28 </span><span class="description">Kotlin source files should be stored in the directory corresponding to its package statement.</span></summary>
 <a href="https://detekt.dev/docs/rules/naming#invalidpackagedeclaration">Documentation</a>
@@ -546,6 +546,22 @@
       </li>
     </ul>
   </details>
+  <details id="MemberNameEqualsClassName" open="open">
+    <summary class="rule-container"><span class="rule">MemberNameEqualsClassName: 1 </span><span class="description">A member should not be given the same name as its parent class or object.</span></summary>
+<a href="https://detekt.dev/docs/rules/naming#membernameequalsclassname">Documentation</a>
+    <ul>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/documentation/changelog/_internal/Changelog.kt:40:9</span><span class="message">A member is named after the class. This might result in confusion. Either rename the member or change it to a constructor.</span>
+        <pre><code><span class="lineno">  37 </span>
+<span class="lineno">  38 </span>    internal class Version(val value: String, val groups: List&lt;Group&gt;) {
+<span class="lineno">  39 </span>
+<span class="lineno">  40 </span>        <span class="error">val version: String</span>
+<span class="lineno">  41 </span><span class="error">            get() =</span>
+<span class="lineno">  42 </span><span class="error">                if (value.contains(&quot;[&quot;)) value.substringAfter(&quot;[&quot;).substringBefore(&quot;]&quot;)</span>
+<span class="lineno">  43 </span><span class="error">                else</span>
+</code></pre>
+      </li>
+    </ul>
+  </details>
   <details id="PackageNaming" open="open">
     <summary class="rule-container"><span class="rule">PackageNaming: 47 </span><span class="description">Package names should match the naming convention set in the configuration.</span></summary>
 <a href="https://detekt.dev/docs/rules/naming#packagenaming">Documentation</a>
@@ -620,8 +636,8 @@
 <span class="lineno">   2 </span>
 <span class="lineno">   3 </span><span class="error">package com.javiersc.hubdle.extensions.config.documentation.changelog._internal</span>
 <span class="lineno">   4 </span>
-<span class="lineno">   5 </span>import com.javiersc.hubdle.extensions.config.documentation.changelog._internal.Changelog.Version
-<span class="lineno">   6 </span>import com.javiersc.hubdle.extensions.config.documentation.changelog._internal.Changelog.Version.Group
+<span class="lineno">   5 </span>import com.javiersc.hubdle.extensions.config.documentation.changelog._internal.Changelog.Reference
+<span class="lineno">   6 </span>import com.javiersc.hubdle.extensions.config.documentation.changelog._internal.Changelog.Version
 </code></pre>
       </li>
       <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/documentation/changelog/_internal/Extensions.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
@@ -643,8 +659,8 @@
       <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/documentation/changelog/_internal/configureChangelog.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
         <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.config.documentation.changelog._internal</span>
 <span class="lineno">   2 </span>
-<span class="lineno">   3 </span>import com.javiersc.gradle.tasks.extensions.namedLazily
-<span class="lineno">   4 </span>import com.javiersc.hubdle.extensions._internal.PluginIds
+<span class="lineno">   3 </span>import com.javiersc.gradle.properties.extensions.getStringProperty
+<span class="lineno">   4 </span>import com.javiersc.gradle.tasks.extensions.namedLazily
 </code></pre>
       </li>
       <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/documentation/readme/_internal/configureReadme.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
@@ -1012,7 +1028,7 @@
 </div>
 
 
-generated with <a href="https://detekt.dev/">detekt version 1.21.0</a> on 2022-11-26 22:22:45 UTC.
+generated with <a href="https://detekt.dev/">detekt version 1.21.0</a> on 2022-11-27 16:18:31 UTC.
 
 </body>
 </html>

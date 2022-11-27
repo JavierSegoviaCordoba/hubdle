@@ -59,34 +59,34 @@ Current scope:     <a href="../../index.html">all classes</a>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    80%
+    85.7%
   </span>
   <span class="absValue">
-    (4/5)
+    (6/7)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    81.8%
+    71.4%
   </span>
   <span class="absValue">
-    (18/22)
+    (20/28)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    97.6%
+    94.9%
   </span>
   <span class="absValue">
-    (41/42)
+    (37/39)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    97.2%
+    89.7%
   </span>
   <span class="absValue">
-    (311/320)
+    (304/339)
   </span>
 </td>
 </tr>
@@ -102,12 +102,19 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;
 &nbsp;package com.javiersc.hubdle.extensions.config.documentation.changelog._internal
 &nbsp;
+&nbsp;import com.javiersc.hubdle.extensions.config.documentation.changelog._internal.Changelog.Reference
 &nbsp;import com.javiersc.hubdle.extensions.config.documentation.changelog._internal.Changelog.Version
 &nbsp;import com.javiersc.hubdle.extensions.config.documentation.changelog._internal.Changelog.Version.Group
 &nbsp;import com.javiersc.hubdle.extensions.config.documentation.changelog._internal.Changelog.Version.Group.Item
+&nbsp;import com.javiersc.kotlin.stdlib.endWithNewLine
+&nbsp;import com.javiersc.kotlin.stdlib.removeDuplicateEmptyLines
 &nbsp;import java.io.File
 &nbsp;
-&nbsp;internal class Changelog(val header: String, vararg val versions: Version) {
+&nbsp;internal class Changelog(
+&nbsp;    val header: String,
+&nbsp;    val versions: List&lt;Version&gt;,
+&nbsp;    val references: List&lt;Reference&gt;
+&nbsp;) {
 &nbsp;
 &nbsp;    override fun toString(): String =
 &nbsp;        buildString {
@@ -117,12 +124,27 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;                    append(&quot;$version&quot;)
 &nbsp;                }
 &nbsp;                if (versions.isNotEmpty()) appendLine()
+&nbsp;                for (reference in references) {
+&nbsp;                    appendLine(reference)
+&nbsp;                    appendLine()
+&nbsp;                }
 &nbsp;            }
 &nbsp;            .lines()
 &nbsp;            .dropLastWhile(String::isBlank)
-&nbsp;            .joinToString(&quot;\n&quot;) + &quot;\n&quot;
+&nbsp;            .joinToString(&quot;\n&quot;)
+&nbsp;            .removeDuplicateEmptyLines()
+&nbsp;            .endWithNewLine()
 &nbsp;
-&nbsp;    internal class Version(val value: String, vararg val groups: Group) {
+&nbsp;    internal class Version(val value: String, val groups: List&lt;Group&gt;) {
+&nbsp;
+&nbsp;        val version: String
+&nbsp;            get() =
+&nbsp;                if (value.contains(&quot;[&quot;)) value.substringAfter(&quot;[&quot;).substringBefore(&quot;]&quot;)
+&nbsp;                else
+&nbsp;                    value
+&nbsp;                        .substringAfterLast(&#39;#&#39;)
+&nbsp;                        .substringBefore(&quot; - &quot;)
+&nbsp;                        .filterNot(Char::isWhitespace)
 &nbsp;
 &nbsp;        override fun toString(): String = buildString {
 &nbsp;            appendLine(value)
@@ -136,7 +158,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;            }
 &nbsp;        }
 &nbsp;
-&nbsp;        internal class Group(val value: String, vararg val items: Item) {
+&nbsp;        internal class Group(val value: String, val items: List&lt;Item&gt;) {
 &nbsp;
 &nbsp;            override fun toString(): String = buildString {
 &nbsp;                appendLine(value)
@@ -159,6 +181,15 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;            }
 &nbsp;        }
 &nbsp;    }
+&nbsp;
+&nbsp;    internal class Reference(val value: String) {
+&nbsp;
+&nbsp;        val version: String
+&nbsp;            get() = value.substringAfter(&quot;[&quot;).substringBefore(&quot;]&quot;)
+&nbsp;
+&nbsp;        override fun toString(): String = value
+&nbsp;    }
+&nbsp;
 &nbsp;    internal companion object
 &nbsp;}
 &nbsp;
@@ -168,59 +199,60 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;internal fun Changelog.Companion.fromString(changelogText: String): Changelog {
 <b class="fc">&nbsp;    val lines = changelogText.lines()</b>
 <b class="fc">&nbsp;    val header = lines.first { it.startsWith(&quot;# &quot;) }</b>
-<b class="fc">&nbsp;    val versions: Array&lt;Version&gt; = buildVersions(lines)</b>
+<b class="fc">&nbsp;    val versions: List&lt;Version&gt; = buildVersions(lines)</b>
+<b class="fc">&nbsp;    val references: List&lt;Reference&gt; = buildReferences(lines)</b>
 &nbsp;
-<b class="fc">&nbsp;    return Changelog(header, *versions)</b>
+<b class="fc">&nbsp;    return Changelog(header, versions, references)</b>
 &nbsp;}
 &nbsp;
-&nbsp;private fun buildVersions(lines: List&lt;String&gt;): Array&lt;Version&gt; =
-<b class="fc">&nbsp;    buildList {</b>
-<b class="fc">&nbsp;            val versions =</b>
-<b class="fc">&nbsp;                buildMap&lt;String, List&lt;String&gt;&gt; {</b>
-<b class="fc">&nbsp;                    lines.filter(String::isNotBlank).forEach { line -&gt;</b>
-<b class="fc">&nbsp;                        when {</b>
-<b class="fc">&nbsp;                            line.startsWith(&quot;## &quot;) -&gt; set(line, getOrDefault(line, emptyList()))</b>
-<b class="pc">&nbsp;                            !line.startsWith(&quot;## &quot;) -&gt; {</b>
-<b class="fc">&nbsp;                                val key = entries.lastOrNull()?.key</b>
-<b class="fc">&nbsp;                                if (key != null) {</b>
-<b class="fc">&nbsp;                                    set(key, getOrDefault(key, emptyList()) + listOf(line))</b>
-&nbsp;                                }
-&nbsp;                            }
+<b class="fc">&nbsp;private fun buildVersions(lines: List&lt;String&gt;): List&lt;Version&gt; = buildList {</b>
+<b class="fc">&nbsp;    val versions =</b>
+<b class="fc">&nbsp;        buildMap&lt;String, List&lt;String&gt;&gt; {</b>
+<b class="fc">&nbsp;            lines.filter(String::isNotBlank).filter(String::isNotReference).forEach { line -&gt;</b>
+<b class="fc">&nbsp;                when {</b>
+<b class="fc">&nbsp;                    line.startsWith(&quot;## &quot;) -&gt; set(line, getOrDefault(line, emptyList()))</b>
+<b class="pc">&nbsp;                    !line.startsWith(&quot;## &quot;) -&gt; {</b>
+<b class="fc">&nbsp;                        val key = entries.lastOrNull()?.key</b>
+<b class="fc">&nbsp;                        if (key != null) {</b>
+<b class="fc">&nbsp;                            set(key, getOrDefault(key, emptyList()) + listOf(line))</b>
 &nbsp;                        }
-<b class="fc">&nbsp;                    }</b>
-<b class="fc">&nbsp;                }</b>
-<b class="fc">&nbsp;            versions.forEach { (value, items) -&gt; add(Version(value, *buildGroups(items))) }</b>
+&nbsp;                    }
+&nbsp;                }
+<b class="fc">&nbsp;            }</b>
 <b class="fc">&nbsp;        }</b>
-<b class="fc">&nbsp;        .toTypedArray()</b>
 &nbsp;
-&nbsp;private fun buildGroups(lines: List&lt;String&gt;): Array&lt;Group&gt; =
-<b class="fc">&nbsp;    buildList {</b>
-<b class="fc">&nbsp;            val groups =</b>
-<b class="fc">&nbsp;                buildMap&lt;String, List&lt;String&gt;&gt; {</b>
-<b class="pc">&nbsp;                    lines.filter(String::isNotBlank).forEach { line -&gt;</b>
-<b class="fc">&nbsp;                        when {</b>
-<b class="fc">&nbsp;                            line.startsWith(&quot;### &quot;) -&gt; set(line, getOrDefault(line, emptyList()))</b>
-<b class="pc">&nbsp;                            !line.startsWith(&quot;### &quot;) -&gt; {</b>
-<b class="fc">&nbsp;                                val key = entries.lastOrNull()?.key</b>
-<b class="fc">&nbsp;                                if (key != null) {</b>
-<b class="fc">&nbsp;                                    set(key, getOrDefault(key, emptyList()) + listOf(line))</b>
-&nbsp;                                }
-&nbsp;                            }
+<b class="fc">&nbsp;    versions.forEach { (value, items) -&gt; add(Version(value, buildGroups(items))) }</b>
+<b class="fc">&nbsp;}</b>
+&nbsp;
+<b class="fc">&nbsp;private fun buildGroups(lines: List&lt;String&gt;): List&lt;Group&gt; = buildList {</b>
+<b class="fc">&nbsp;    val groups =</b>
+<b class="fc">&nbsp;        buildMap&lt;String, List&lt;String&gt;&gt; {</b>
+<b class="pc">&nbsp;            lines.filter(String::isNotBlank).forEach { line -&gt;</b>
+<b class="fc">&nbsp;                when {</b>
+<b class="fc">&nbsp;                    line.startsWith(&quot;### &quot;) -&gt; set(line, getOrDefault(line, emptyList()))</b>
+<b class="pc">&nbsp;                    !line.startsWith(&quot;### &quot;) -&gt; {</b>
+<b class="fc">&nbsp;                        val key = entries.lastOrNull()?.key</b>
+<b class="fc">&nbsp;                        if (key != null) {</b>
+<b class="fc">&nbsp;                            set(key, getOrDefault(key, emptyList()) + listOf(line))</b>
 &nbsp;                        }
-<b class="fc">&nbsp;                    }</b>
-<b class="fc">&nbsp;                }</b>
-<b class="fc">&nbsp;            groups.forEach { (value, items) -&gt; add(Group(value, *buildItems(items))) }</b>
+&nbsp;                    }
+&nbsp;                }
+<b class="fc">&nbsp;            }</b>
 <b class="fc">&nbsp;        }</b>
-<b class="fc">&nbsp;        .toTypedArray()</b>
+<b class="fc">&nbsp;    groups.forEach { (value, items) -&gt; add(Group(value, buildItems(items))) }</b>
+<b class="fc">&nbsp;}</b>
 &nbsp;
-&nbsp;private fun buildItems(lines: List&lt;String&gt;): Array&lt;Item&gt; =
-<b class="fc">&nbsp;    buildList {</b>
-<b class="fc">&nbsp;            lines</b>
-<b class="pc">&nbsp;                .filter(String::isNotBlank)</b>
-<b class="fc">&nbsp;                .filterNot { it.startsWith(&quot;#&quot;) }</b>
-<b class="fc">&nbsp;                .forEach { item -&gt; add(Item(item)) }</b>
-<b class="fc">&nbsp;        }</b>
-<b class="fc">&nbsp;        .toTypedArray()</b>
+&nbsp;private fun buildReferences(lines: List&lt;String&gt;): List&lt;Reference&gt; {
+<b class="fc">&nbsp;    val index = lines.indexOfLast { it.startsWith(&quot;[Unreleased]:&quot;) }</b>
+<b class="pc">&nbsp;    return if (index == -1) emptyList()</b>
+<b class="nc">&nbsp;    else lines.subList(index, lines.lastIndex).filter(String::isNotBlank).map(::Reference)</b>
+&nbsp;}
+&nbsp;
+&nbsp;private fun buildItems(lines: List&lt;String&gt;): List&lt;Item&gt; =
+<b class="pc">&nbsp;    lines.filter(String::isNotBlank).filterNot { it.startsWith(&quot;#&quot;) }.map(::Item)</b>
+&nbsp;
+&nbsp;private val String.isNotReference: Boolean
+<b class="pc">&nbsp;    get() = !Regex(&quot;&quot;&quot;^(\[.*]:)&quot;&quot;&quot;).containsMatchIn(this)</b>
 </code>
 </pre>
 </div>
@@ -244,7 +276,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-11-26 22:18</div>
+    <div style="float:right;">generated on 2022-11-27 16:23</div>
 </div>
 </body>
 </html>

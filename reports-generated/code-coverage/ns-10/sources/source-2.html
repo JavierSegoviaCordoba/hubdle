@@ -24,12 +24,9 @@ Current scope:     <a href="../../index.html">all classes</a>
 <h1>Coverage Summary for Class: ChangelogKt (com.javiersc.hubdle.extensions.config.documentation.changelog._internal)</h1>
 
 <table class="coverageStats">
+
 <tr>
   <th class="name">Class</th>
-<th class="coverageStat 
-">
-  Class, %
-</th>
 <th class="coverageStat 
 ">
   Method, %
@@ -51,12 +48,43 @@ Current scope:     <a href="../../index.html">all classes</a>
   <td class="name">ChangelogKt</td>
 <td class="coverageStat">
   <span class="percent">
-    100%
+    85.7%
   </span>
   <span class="absValue">
-    (1/1)
+    (6/7)
   </span>
 </td>
+<td class="coverageStat">
+  <span class="percent">
+    71.4%
+  </span>
+  <span class="absValue">
+    (20/28)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    84.8%
+  </span>
+  <span class="absValue">
+    (39/46)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    85.7%
+  </span>
+  <span class="absValue">
+    (306/357)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">ChangelogKt$buildReferences$$inlined$sortedByDescending$1</td>
+    <td class="coverageStat"/>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
 <td class="coverageStat">
   <span class="percent">
     85.7%
@@ -75,22 +103,21 @@ Current scope:     <a href="../../index.html">all classes</a>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    94.9%
+    84.8%
   </span>
   <span class="absValue">
-    (37/39)
+    (39/46)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    89.7%
+    85.7%
   </span>
   <span class="absValue">
-    (304/339)
+    (306/357)
   </span>
 </td>
 </tr>
-
 </table>
 
 <br/>
@@ -108,6 +135,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;import com.javiersc.hubdle.extensions.config.documentation.changelog._internal.Changelog.Version.Group.Item
 &nbsp;import com.javiersc.kotlin.stdlib.endWithNewLine
 &nbsp;import com.javiersc.kotlin.stdlib.removeDuplicateEmptyLines
+&nbsp;import com.javiersc.semver.Version as SemVer
 &nbsp;import java.io.File
 &nbsp;
 &nbsp;internal class Changelog(
@@ -171,8 +199,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;
 &nbsp;            internal class Item(val value: String) {
 &nbsp;
-&nbsp;                override fun toString(): String = value
-&nbsp;
+&nbsp;                override fun toString(): String = value.replace(&quot;- -&quot;, &quot;-&quot;)
 &nbsp;                companion object {
 &nbsp;                    var itemPrefix: String = &quot;-&quot;
 &nbsp;                    var noChanges: String = &quot;No changes&quot;
@@ -244,8 +271,17 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;
 &nbsp;private fun buildReferences(lines: List&lt;String&gt;): List&lt;Reference&gt; {
 <b class="fc">&nbsp;    val index = lines.indexOfLast { it.startsWith(&quot;[Unreleased]:&quot;) }</b>
-<b class="pc">&nbsp;    return if (index == -1) emptyList()</b>
-<b class="nc">&nbsp;    else lines.subList(index, lines.lastIndex).filter(String::isNotBlank).map(::Reference)</b>
+<b class="fc">&nbsp;    val references =</b>
+<b class="pc">&nbsp;        if (index == -1) emptyList()</b>
+&nbsp;        else {
+<b class="nc">&nbsp;            listOf(Reference(lines[index])) +</b>
+<b class="nc">&nbsp;                lines</b>
+<b class="nc">&nbsp;                    .subList(index + 1, lines.lastIndex)</b>
+<b class="nc">&nbsp;                    .filter(String::isNotBlank)</b>
+<b class="nc">&nbsp;                    .map(::Reference)</b>
+<b class="nc">&nbsp;                    .sortedByDescending { SemVer(it.version) }</b>
+&nbsp;        }
+<b class="fc">&nbsp;    return references</b>
 &nbsp;}
 &nbsp;
 &nbsp;private fun buildItems(lines: List&lt;String&gt;): List&lt;Item&gt; =
@@ -276,7 +312,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-11-27 18:29</div>
+    <div style="float:right;">generated on 2022-11-27 20:14</div>
 </div>
 </body>
 </html>

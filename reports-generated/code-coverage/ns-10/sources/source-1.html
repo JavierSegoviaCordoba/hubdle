@@ -229,7 +229,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     100%
   </span>
   <span class="absValue">
-    (15/15)
+    (21/21)
   </span>
 </td>
   </tr>
@@ -289,10 +289,10 @@ Current scope:     <a href="../../index.html">all classes</a>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    84.5%
+    84.8%
   </span>
   <span class="absValue">
-    (339/401)
+    (345/407)
   </span>
 </td>
 </tr>
@@ -313,6 +313,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;import com.javiersc.hubdle.extensions.config.documentation.changelog._internal.Changelog.Version.Group.Item
 &nbsp;import com.javiersc.kotlin.stdlib.endWithNewLine
 &nbsp;import com.javiersc.kotlin.stdlib.removeDuplicateEmptyLines
+&nbsp;import com.javiersc.semver.Version as SemVer
 &nbsp;import java.io.File
 &nbsp;
 <b class="fc">&nbsp;internal class Changelog(</b>
@@ -376,8 +377,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;
 <b class="fc">&nbsp;            internal class Item(val value: String) {</b>
 &nbsp;
-<b class="fc">&nbsp;                override fun toString(): String = value</b>
-&nbsp;
+<b class="fc">&nbsp;                override fun toString(): String = value.replace(&quot;- -&quot;, &quot;-&quot;)</b>
 &nbsp;                companion object {
 <b class="fc">&nbsp;                    var itemPrefix: String = &quot;-&quot;</b>
 <b class="fc">&nbsp;                    var noChanges: String = &quot;No changes&quot;</b>
@@ -449,8 +449,17 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;
 &nbsp;private fun buildReferences(lines: List&lt;String&gt;): List&lt;Reference&gt; {
 &nbsp;    val index = lines.indexOfLast { it.startsWith(&quot;[Unreleased]:&quot;) }
-&nbsp;    return if (index == -1) emptyList()
-&nbsp;    else lines.subList(index, lines.lastIndex).filter(String::isNotBlank).map(::Reference)
+&nbsp;    val references =
+&nbsp;        if (index == -1) emptyList()
+&nbsp;        else {
+&nbsp;            listOf(Reference(lines[index])) +
+&nbsp;                lines
+&nbsp;                    .subList(index + 1, lines.lastIndex)
+&nbsp;                    .filter(String::isNotBlank)
+&nbsp;                    .map(::Reference)
+&nbsp;                    .sortedByDescending { SemVer(it.version) }
+&nbsp;        }
+&nbsp;    return references
 &nbsp;}
 &nbsp;
 &nbsp;private fun buildItems(lines: List&lt;String&gt;): List&lt;Item&gt; =
@@ -481,7 +490,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-11-27 18:29</div>
+    <div style="float:right;">generated on 2022-11-27 20:14</div>
 </div>
 </body>
 </html>

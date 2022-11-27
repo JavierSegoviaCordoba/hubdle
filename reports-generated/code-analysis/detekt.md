@@ -2,9 +2,9 @@
 
 ## Metrics
 
-* 975 number of properties
+* 976 number of properties
 
-* 607 number of functions
+* 609 number of functions
 
 * 256 number of classes
 
@@ -14,15 +14,15 @@
 
 ## Complexity Report
 
-* 11,978 lines of code (loc)
+* 12,000 lines of code (loc)
 
-* 9,930 source lines of code (sloc)
+* 9,951 source lines of code (sloc)
 
-* 6,749 logical lines of code (lloc)
+* 6,765 logical lines of code (lloc)
 
 * 52 comment lines of code (cloc)
 
-* 1,263 cyclomatic complexity (mcc)
+* 1,265 cyclomatic complexity (mcc)
 
 * 549 cognitive complexity
 
@@ -30,7 +30,7 @@
 
 * 0% comment source ratio
 
-* 187 mcc per 1,000 lloc
+* 186 mcc per 1,000 lloc
 
 * 14 code smells per 1,000 lloc
 
@@ -639,19 +639,19 @@ A member should not be given the same name as its parent class or object.
 
 [Documentation](https://detekt.dev/docs/rules/naming#membernameequalsclassname)
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/documentation/changelog/_internal/Changelog.kt:40:9
+* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/documentation/changelog/_internal/Changelog.kt:41:9
 ```
 A member is named after the class. This might result in confusion. Either rename the member or change it to a constructor.
 ```
 ```kotlin
-37 
-38     internal class Version(val value: String, val groups: List<Group>) {
-39 
-40         val version: String
+38 
+39     internal class Version(val value: String, val groups: List<Group>) {
+40 
+41         val version: String
 !!         ^ error
-41             get() =
-42                 if (value.contains("[")) value.substringAfter("[").substringBefore("]")
-43                 else
+42             get() =
+43                 if (value.contains("[")) value.substringAfter("[").substringBefore("]")
+44                 else
 
 ```
 
@@ -1458,4 +1458,4 @@ Line detected, which is longer than the defined maximum line length in the code 
 
 ```
 
-generated with [detekt version 1.21.0](https://detekt.dev/) on 2022-11-27 18:19:26 UTC
+generated with [detekt version 1.21.0](https://detekt.dev/) on 2022-11-27 20:06:54 UTC

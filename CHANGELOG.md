@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `actions/setup-java -> v3.7.0`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.2.0-alpha.46`
 
 ## 0.2.0-alpha.46 - 2022-11-27

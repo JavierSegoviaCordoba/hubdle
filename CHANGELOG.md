@@ -14,8 +14,8 @@
 
 ### Updated
 
+- `actions/setup-java -> v3.8.0`
 - `org.eclipse.jgit:org.eclipse.jgit -> 6.4.0.202211300538-r`
-- `actions/setup-java -> v3.7.0`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.2.0-alpha.46`
 
 ## 0.2.0-alpha.46 - 2022-11-27

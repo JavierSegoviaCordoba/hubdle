@@ -14,6 +14,12 @@
 
 ### Updated
 
+- `io.ktor:ktor-serialization-kotlinx-json -> 2.2.0`
+- `io.ktor:ktor-client-okhttp -> 2.2.0`
+- `io.ktor:ktor-client-mock -> 2.2.0`
+- `io.ktor:ktor-client-core -> 2.2.0`
+- `io.ktor:ktor-client-content-negotiation -> 2.2.0`
+- `io.ktor:ktor-client-cio -> 2.2.0`
 - `actions/setup-java -> v3.8.0`
 - `org.eclipse.jgit:org.eclipse.jgit -> 6.4.0.202211300538-r`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.2.0-alpha.46`

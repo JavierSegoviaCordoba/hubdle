@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.10.1`
 - `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.12`
 - `io.ktor:ktor-serialization-kotlinx-json -> 2.2.1`
 - `io.ktor:ktor-client-okhttp -> 2.2.1`

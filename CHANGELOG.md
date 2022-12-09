@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.facebook:ktfmt -> 0.42`
 - `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.12`
 - `io.ktor:ktor-serialization-kotlinx-json -> 2.2.1`
 - `io.ktor:ktor-client-okhttp -> 2.2.1`

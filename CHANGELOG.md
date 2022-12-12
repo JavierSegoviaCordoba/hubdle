@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `actions/checkout -> v3.2.0`
 - `com.facebook:ktfmt -> 0.42`
 - `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.12`
 - `io.ktor:ktor-serialization-kotlinx-json -> 2.2.1`

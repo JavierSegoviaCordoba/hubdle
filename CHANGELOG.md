@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `actions/setup-java -> v3.9.0`
 - `actions/checkout -> v3.2.0`
 - `com.facebook:ktfmt -> 0.42`
 - `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.12`
@@ -34,7 +35,6 @@
 - `androidx.compose.animation:animation-graphics -> 1.3.2`
 - `androidx.compose.animation:animation-core -> 1.3.2`
 - `androidx.compose.animation:animation -> 1.3.2`
-- `actions/setup-java -> v3.8.0`
 - `org.eclipse.jgit:org.eclipse.jgit -> 6.4.0.202211300538-r`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.2.0-alpha.46`
 

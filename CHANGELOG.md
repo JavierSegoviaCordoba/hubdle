@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.compose:compose-gradle-plugin -> 1.2.2`
 - `actions/cache -> v3.2.0`
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.11.0`
 - `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.12.1`

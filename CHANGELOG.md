@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.11.0`
 - `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.12.1`
 - `actions/setup-java -> v3.9.0`
 - `actions/checkout -> v3.2.0`

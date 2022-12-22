@@ -45,10 +45,9 @@
 
 ### Deleted
 
-- new project structure:
-    - `main/AndroidManifest.xml`
-    - `main/assets`
-    - `main/java`
-    - `main/kotlin`
-    - `main/res`
-    - `main/resources`
+- `main/AndroidManifest.xml`
+- `main/assets`
+- `main/java`
+- `main/kotlin`
+- `main/res`
+- `main/resources`

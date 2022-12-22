@@ -1,113 +1,136 @@
 package com.javiersc.hubdle.extensions.kotlin.android.library
 
-import com.android.build.api.dsl.AndroidSourceSet
 import com.android.build.api.dsl.LibraryExtension
 import com.javiersc.hubdle.extensions.HubdleDslMarker
-import com.javiersc.hubdle.extensions._internal.state.hubdleState
-import com.javiersc.hubdle.extensions.kotlin.MainAndTestKotlinSourceSetsOptions
-import com.javiersc.hubdle.extensions.kotlin.android.AndroidOptions
-import com.javiersc.hubdle.extensions.kotlin.android.AndroidSdkBuildFeaturesOptions.BuildFeaturesExtension
-import com.javiersc.hubdle.extensions.kotlin.android.library._internal.androidLibraryFeatures
-import com.javiersc.hubdle.extensions.options.EnableableOptions
-import com.javiersc.hubdle.extensions.options.FeaturesOptions
-import com.javiersc.hubdle.extensions.options.RawConfigOptions
+import com.javiersc.hubdle.extensions._internal.ApplicablePlugin.Scope
+import com.javiersc.hubdle.extensions._internal.Configurable.Priority
+import com.javiersc.hubdle.extensions._internal.PluginId
+import com.javiersc.hubdle.extensions._internal.configDefaultAndroidSourceSets
+import com.javiersc.hubdle.extensions._internal.configureDefaultKotlinSourceSets
+import com.javiersc.hubdle.extensions._internal.configureDependencies
+import com.javiersc.hubdle.extensions._internal.getHubdleExtension
+import com.javiersc.hubdle.extensions.apis.HubdleConfigurableExtension
+import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
+import com.javiersc.hubdle.extensions.config.publishing._internal.configurableMavenPublishing
+import com.javiersc.hubdle.extensions.kotlin.android._internal.calculateAndroidNamespace
+import com.javiersc.hubdle.extensions.kotlin.android.hubdleAndroid
+import com.javiersc.hubdle.extensions.kotlin.android.library.features.HubdleKotlinAndroidLibraryFeaturesExtension
 import javax.inject.Inject
 import org.gradle.api.Action
-import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.Project
-import org.gradle.api.model.ObjectFactory
-import org.gradle.kotlin.dsl.newInstance
-import org.gradle.kotlin.dsl.the
+import org.gradle.api.artifacts.Configuration
+import org.gradle.api.provider.Property
+import org.gradle.kotlin.dsl.configure
+import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
+import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 
 @HubdleDslMarker
 public open class HubdleKotlinAndroidLibraryExtension
 @Inject
 constructor(
-    objects: ObjectFactory,
-) :
-    EnableableOptions,
-    FeaturesOptions<HubdleKotlinAndroidLibraryExtension.FeaturesExtension>,
-    AndroidOptions,
-    RawConfigOptions<HubdleKotlinAndroidLibraryExtension.RawConfigExtension>,
-    MainAndTestKotlinSourceSetsOptions<AndroidSourceSet> {
+    project: Project,
+) : HubdleConfigurableExtension(project) {
 
-    override var Project.isEnabled: Boolean
-        get() = hubdleState.kotlin.android.library.isEnabled
-        set(value) = hubdleState.kotlin.android.library.run { isEnabled = value }
+    override val isEnabled: Property<Boolean> = property { false }
 
-    override val buildFeatures: BuildFeaturesExtension = objects.newInstance()
+    override val requiredExtensions: Set<HubdleEnableableExtension>
+        get() = setOf(hubdleAndroid)
 
-    public var Project.namespace: String?
-        get() = hubdleState.kotlin.android.namespace
-        set(value) = hubdleState.kotlin.run { android.namespace = value }
+    override val priority: Priority = Priority.P3
 
-    override val features: FeaturesExtension = objects.newInstance()
+    public val features: HubdleKotlinAndroidLibraryFeaturesExtension
+        get() = getHubdleExtension()
 
     @HubdleDslMarker
-    override fun features(action: Action<FeaturesExtension>): Unit = super.features(action)
-
-    override val Project.sourceSets: NamedDomainObjectContainer<out AndroidSourceSet>
-        get() = the<LibraryExtension>().sourceSets
-
-    @HubdleDslMarker
-    override fun Project.main(action: Action<AndroidSourceSet>) {
-        the<LibraryExtension>().sourceSets.named("main", action::execute)
+    public fun configuration(name: String, action: Action<Configuration>) {
+        userConfigurable {
+            configure<LibraryExtension> { project.configurations.named(name, action::execute) }
+        }
     }
 
     @HubdleDslMarker
-    override fun Project.test(action: Action<AndroidSourceSet>) {
-        the<LibraryExtension>().sourceSets.named("test", action::execute)
+    public fun sourceSet(name: String, action: Action<KotlinSourceSet>) {
+        userConfigurable {
+            configure<KotlinProjectExtension> { sourceSets.named(name, action::execute) }
+        }
+    }
+
+    @HubdleDslMarker
+    public fun main(action: Action<KotlinSourceSet>) {
+        sourceSet("main", action)
+    }
+
+    @HubdleDslMarker
+    public fun test(action: Action<KotlinSourceSet>) {
+        sourceSet("test", action)
     }
 
     // TODO: improve and enable using this docs:
     //  https://developer.android.com/studio/publish-library/configure-pub-variants
     // @HubdleDslMarker
-    // public fun Project.publishLibraryVariants(vararg names: String) {
-    //     hubdleState.kotlin.android.library.publishLibraryVariants += names
+    // public fun publishLibraryVariants(vararg names: String) {
+    //
     // }
     //
     // @HubdleDslMarker
-    // public fun Project.publishAllLibraryVariants(enable: Boolean = true) {
-    //     hubdleState.kotlin.android.library.allLibraryVariants = enable
+    // public fun publishAllLibraryVariants(enable: Boolean = true) {
+    //
     // }
 
-    override val rawConfig: RawConfigExtension = objects.newInstance()
-
     @HubdleDslMarker
-    override fun Project.rawConfig(action: Action<RawConfigExtension>) {
-        action.execute(rawConfig)
+    public fun android(action: Action<LibraryExtension>) {
+        userConfigurable { action.execute(the()) }
     }
 
-    @HubdleDslMarker
-    public open class RawConfigExtension {
+    override fun Project.defaultConfiguration() {
+        applicablePlugins()
 
-        public fun Project.android(action: Action<LibraryExtension>) {
-            hubdleState.kotlin.android.library.rawConfig.android = action
+        configurable {
+            configureDependencies()
+            configureDefaultKotlinSourceSets()
+
+            configure<LibraryExtension> {
+                compileSdk = hubdleAndroid.compileSdk.get()
+                defaultConfig.minSdk = hubdleAndroid.minSdk.get()
+                namespace = calculateAndroidNamespace(hubdleAndroid.namespace.orNull)
+
+                sourceSets.all { set -> set.configDefaultAndroidSourceSets() }
+            }
         }
+        configurePublishing()
     }
 
-    @HubdleDslMarker
-    public open class FeaturesExtension {
+    private fun applicablePlugins() {
+        applicablePlugin(
+            priority = Priority.P3,
+            scope = Scope.CurrentProject,
+            pluginId = PluginId.AndroidLibrary,
+        )
 
-        @HubdleDslMarker
-        public fun Project.coroutines(enabled: Boolean = true) {
-            androidLibraryFeatures.coroutines = enabled
-        }
+        applicablePlugin(
+            priority = Priority.P3,
+            scope = Scope.CurrentProject,
+            pluginId = PluginId.JetbrainsKotlinAndroid,
+        )
+    }
 
-        @HubdleDslMarker
-        public fun Project.extendedStdlib(enabled: Boolean = true) {
-            androidLibraryFeatures.extendedStdlib = enabled
-        }
-
-        @HubdleDslMarker
-        public fun Project.extendedTesting(enabled: Boolean = true) {
-            androidLibraryFeatures.extendedTesting = enabled
-        }
-
-        @HubdleDslMarker
-        public fun Project.serialization(enabled: Boolean = true, useJson: Boolean = true) {
-            androidLibraryFeatures.serialization.isEnabled = enabled
-            androidLibraryFeatures.serialization.useJson = useJson
+    private fun configurePublishing() {
+        configurableMavenPublishing(mavenPublicationName = "release") {
+            configure<LibraryExtension> {
+                publishing {
+                    multipleVariants {
+                        withSourcesJar()
+                        withJavadocJar()
+                        allVariants()
+                    }
+                }
+            }
         }
     }
 }
+
+internal val HubdleEnableableExtension.hubdleAndroidLibrary: HubdleKotlinAndroidLibraryExtension
+    get() = getHubdleExtension()
+
+internal val Project.hubdleAndroidLibrary: HubdleKotlinAndroidLibraryExtension
+    get() = getHubdleExtension()

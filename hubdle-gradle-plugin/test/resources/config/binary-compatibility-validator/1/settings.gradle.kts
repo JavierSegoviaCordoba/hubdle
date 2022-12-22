@@ -1,9 +1,5 @@
 rootProject.name = "sandbox-project"
 
-dependencyResolutionManagement {
-    repositories {
-        mavenCentral()
-    }
-}
+dependencyResolutionManagement { repositories { mavenCentral() } }
 
 include(":library")

@@ -1,114 +1,129 @@
-@file:Suppress("UnusedReceiverParameter")
-
 package com.javiersc.hubdle.extensions.config
 
 import com.javiersc.hubdle.extensions.HubdleDslMarker
-import com.javiersc.hubdle.extensions._internal.state.hubdleState
-import com.javiersc.hubdle.extensions.config.analysis.HubdleAnalysisExtension
-import com.javiersc.hubdle.extensions.config.binary.compatibility.validator.HubdleBinaryCompatibilityValidatorExtension
-import com.javiersc.hubdle.extensions.config.coverage.HubdleCoverageExtension
-import com.javiersc.hubdle.extensions.config.documentation.HubdleDocumentationExtension
-import com.javiersc.hubdle.extensions.config.format.HubdleFormatExtension
-import com.javiersc.hubdle.extensions.config.install.HubdleInstallExtension
-import com.javiersc.hubdle.extensions.config.language.settings.HubdleLanguageSettingsExtension
-import com.javiersc.hubdle.extensions.config.nexus.HubdleNexusExtension
-import com.javiersc.hubdle.extensions.config.publishing.HubdlePublishingExtension
-import com.javiersc.hubdle.extensions.config.versioning.HubdleVersioningExtension
+import com.javiersc.hubdle.extensions._internal.Configurable.Priority
+import com.javiersc.hubdle.extensions._internal.getHubdleExtension
+import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
+import com.javiersc.hubdle.extensions.apis.enableAndExecute
+import com.javiersc.hubdle.extensions.config.analysis.HubdleConfigAnalysisExtension
+import com.javiersc.hubdle.extensions.config.binary.compatibility.validator.HubdleConfigBinaryCompatibilityValidatorExtension
+import com.javiersc.hubdle.extensions.config.coverage.HubdleConfigCoverageExtension
+import com.javiersc.hubdle.extensions.config.documentation.HubdleConfigDocumentationExtension
+import com.javiersc.hubdle.extensions.config.format.HubdleConfigFormatExtension
+import com.javiersc.hubdle.extensions.config.install.HubdleConfigInstallExtension
+import com.javiersc.hubdle.extensions.config.language.settings.HubdleConfigLanguageSettingsExtension
+import com.javiersc.hubdle.extensions.config.nexus.HubdleConfigNexusExtension
+import com.javiersc.hubdle.extensions.config.publishing.HubdleConfigPublishingExtension
+import com.javiersc.hubdle.extensions.config.versioning.HubdleConfigVersioningExtension
+import com.javiersc.hubdle.extensions.kotlin.hubdleKotlinAny
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
-import org.gradle.api.model.ObjectFactory
-import org.gradle.kotlin.dsl.newInstance
+import org.gradle.api.provider.Property
 import org.jetbrains.kotlin.gradle.dsl.ExplicitApiMode
+import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 
 @HubdleDslMarker
 public open class HubdleConfigExtension
 @Inject
 constructor(
-    objects: ObjectFactory,
-) {
+    project: Project,
+) : HubdleEnableableExtension(project) {
 
-    private val analysis: HubdleAnalysisExtension = objects.newInstance()
+    override val isEnabled: Property<Boolean> = property { true }
+
+    public val analysis: HubdleConfigAnalysisExtension
+        get() = getHubdleExtension()
 
     @HubdleDslMarker
-    public fun Project.analysis(action: Action<HubdleAnalysisExtension> = Action {}) {
-        analysis.run { isEnabled = true }
-        action.execute(analysis)
+    public fun analysis(action: Action<HubdleConfigAnalysisExtension> = Action {}) {
+        analysis.enableAndExecute(action)
     }
 
-    private val binaryCompatibilityValidator: HubdleBinaryCompatibilityValidatorExtension =
-        objects.newInstance()
+    public val binaryCompatibilityValidator: HubdleConfigBinaryCompatibilityValidatorExtension
+        get() = getHubdleExtension()
 
     @HubdleDslMarker
-    public fun Project.binaryCompatibilityValidator() {
-        binaryCompatibilityValidator.run { isEnabled = true }
-    }
-
-    private val coverage: HubdleCoverageExtension = objects.newInstance()
-
-    @HubdleDslMarker
-    public fun Project.coverage(action: Action<HubdleCoverageExtension> = Action {}) {
-        coverage.run { isEnabled = true }
-        action.execute(coverage)
-    }
-
-    private val documentation: HubdleDocumentationExtension = objects.newInstance()
-
-    @HubdleDslMarker
-    public fun Project.documentation(action: Action<in HubdleDocumentationExtension> = Action {}) {
-        action.execute(documentation)
-    }
-
-    @HubdleDslMarker
-    public fun Project.explicitApi(explicitApiMode: ExplicitApiMode = ExplicitApiMode.Strict) {
-        hubdleState.config.explicitApiMode = explicitApiMode
-    }
-
-    private val format: HubdleFormatExtension = objects.newInstance()
-
-    @HubdleDslMarker
-    public fun Project.format(action: Action<HubdleFormatExtension> = Action {}) {
-        format.run { isEnabled = true }
-        action.execute(format)
-    }
-
-    private val languageSettings: HubdleLanguageSettingsExtension = objects.newInstance()
-
-    @HubdleDslMarker
-    public fun Project.languageSettings(
-        action: Action<HubdleLanguageSettingsExtension> = Action {}
+    public fun binaryCompatibilityValidator(
+        action: Action<HubdleConfigBinaryCompatibilityValidatorExtension> = Action {}
     ) {
-        action.execute(languageSettings)
+        binaryCompatibilityValidator.enableAndExecute(action)
     }
 
-    private val install: HubdleInstallExtension = objects.newInstance()
+    public val coverage: HubdleConfigCoverageExtension
+        get() = getHubdleExtension()
 
     @HubdleDslMarker
-    public fun Project.install(action: Action<HubdleInstallExtension> = Action {}) {
-        action.execute(install)
+    public fun coverage(action: Action<HubdleConfigCoverageExtension> = Action {}) {
+        coverage.enableAndExecute(action)
     }
 
-    private val nexus: HubdleNexusExtension = objects.newInstance()
+    public val documentation: HubdleConfigDocumentationExtension
+        get() = getHubdleExtension()
 
     @HubdleDslMarker
-    public fun Project.nexus(action: Action<HubdleNexusExtension> = Action {}) {
-        nexus.run { isEnabled = true }
-        action.execute(nexus)
+    public fun documentation(action: Action<HubdleConfigDocumentationExtension> = Action {}) {
+        documentation.enableAndExecute(action)
     }
 
-    private val publishing: HubdlePublishingExtension = objects.newInstance()
-
     @HubdleDslMarker
-    public fun Project.publishing(action: Action<HubdlePublishingExtension> = Action {}) {
-        publishing.run { isEnabled = true }
-        action.execute(publishing)
+    public fun explicitApi(explicitApiMode: ExplicitApiMode = ExplicitApiMode.Strict) {
+        val isEnabled = property {
+            isFullEnabled.get() && hubdleKotlinAny.any { it.isFullEnabled.get() }
+        }
+        configurable(isEnabled = isEnabled, priority = Priority.P4) {
+            configure<KotlinProjectExtension> { explicitApi = explicitApiMode }
+        }
     }
 
-    private val versioning: HubdleVersioningExtension = objects.newInstance()
+    public val format: HubdleConfigFormatExtension
+        get() = getHubdleExtension()
 
     @HubdleDslMarker
-    public fun Project.versioning(action: Action<in HubdleVersioningExtension> = Action {}) {
-        versioning.run { isEnabled = true }
-        action.execute(versioning)
+    public fun format(action: Action<HubdleConfigFormatExtension> = Action {}) {
+        format.enableAndExecute(action)
+    }
+
+    public val languageSettings: HubdleConfigLanguageSettingsExtension
+        get() = getHubdleExtension()
+
+    @HubdleDslMarker
+    public fun languageSettings(action: Action<HubdleConfigLanguageSettingsExtension> = Action {}) {
+        languageSettings.enableAndExecute(action)
+    }
+
+    public val install: HubdleConfigInstallExtension
+        get() = getHubdleExtension()
+
+    @HubdleDslMarker
+    public fun install(action: Action<HubdleConfigInstallExtension> = Action {}) {
+        install.enableAndExecute(action)
+    }
+
+    public val nexus: HubdleConfigNexusExtension
+        get() = getHubdleExtension()
+
+    @HubdleDslMarker
+    public fun nexus(action: Action<HubdleConfigNexusExtension> = Action {}) {
+        nexus.enableAndExecute(action)
+    }
+
+    public val publishing: HubdleConfigPublishingExtension
+        get() = getHubdleExtension()
+
+    @HubdleDslMarker
+    public fun publishing(action: Action<HubdleConfigPublishingExtension> = Action {}) {
+        publishing.enableAndExecute(action)
+    }
+
+    public val versioning: HubdleConfigVersioningExtension
+        get() = getHubdleExtension()
+
+    @HubdleDslMarker
+    public fun versioning(action: Action<HubdleConfigVersioningExtension> = Action {}) {
+        versioning.enableAndExecute(action)
     }
 }
+
+internal val HubdleEnableableExtension.hubdleConfig: HubdleConfigExtension
+    get() = getHubdleExtension()

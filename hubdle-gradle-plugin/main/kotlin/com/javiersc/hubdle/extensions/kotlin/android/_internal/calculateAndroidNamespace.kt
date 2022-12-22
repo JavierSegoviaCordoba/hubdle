@@ -1,8 +1,7 @@
 package com.javiersc.hubdle.extensions.kotlin.android._internal
 
 import com.javiersc.gradle.properties.extensions.getBooleanProperty
-import com.javiersc.hubdle.HubdleProperty.Android.namespaceUseKotlinFile
-import com.javiersc.hubdle.HubdleProperty.Android.namespaceUseProject
+import com.javiersc.hubdle.HubdleProperty.Android
 import com.javiersc.kotlin.stdlib.remove
 import java.io.File
 import org.gradle.api.Project
@@ -12,8 +11,9 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 internal fun Project.calculateAndroidNamespace(initial: String?): String? =
     when {
         initial != null -> initial
-        getBooleanProperty(namespaceUseProject) -> calculateAndroidNamespaceWithProject()
-        getBooleanProperty(namespaceUseKotlinFile) -> calculateAndroidNamespaceWithKotlinFile()
+        getBooleanProperty(Android.namespaceUseProject) -> calculateAndroidNamespaceWithProject()
+        getBooleanProperty(Android.namespaceUseKotlinFile) ->
+            calculateAndroidNamespaceWithKotlinFile()
         else -> calculateAndroidNamespaceWithProject()
     }
 

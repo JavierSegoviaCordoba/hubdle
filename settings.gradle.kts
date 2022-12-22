@@ -1,3 +1,5 @@
+import com.javiersc.gradle.properties.extensions.getPropertyOrNull
+
 pluginManagement {
     val hubdleVersionProp = providers.gradleProperty("hubdleVersion").orNull
     val hubdleVersion: String =
@@ -14,14 +16,10 @@ pluginManagement {
         if (hubdleVersionProp != null) mavenLocal()
     }
 
-    plugins {
-        id("com.javiersc.hubdle.settings") version hubdleVersion
-    }
+    plugins { id("com.javiersc.hubdle.settings") version hubdleVersion }
 }
 
-plugins {
-    id("com.javiersc.hubdle.settings")
-}
+plugins { id("com.javiersc.hubdle.settings") }
 
 val hubdleVersion: String? = providers.gradleProperty("hubdleVersion").orNull
 
@@ -34,16 +32,13 @@ dependencyResolutionManagement {
         if (hubdleVersion != null) mavenLocal()
     }
     if (hubdleVersion != null) {
-        versionCatalogs {
-            create("libs") {
-                version("hubdle", hubdleVersion)
-            }
-        }
+        versionCatalogs { create("libs") { version("hubdle", hubdleVersion) } }
     }
 }
 
 hubdleSettings {
     autoInclude {
-        excludedBuilds("sandbox")
+        val sandboxEnabled = getPropertyOrNull("sandbox.enabled")?.toBoolean() ?: false
+        if (!sandboxEnabled) excludedBuilds("sandbox")
     }
 }

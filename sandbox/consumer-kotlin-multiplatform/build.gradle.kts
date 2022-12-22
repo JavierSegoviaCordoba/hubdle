@@ -12,12 +12,12 @@ plugins {
 version = "7.3.4-beta.2"
 
 hubdle {
-    config { versioning { isEnabled = false } }
+    config { versioning { enabled(false) } }
 
     kotlin {
         multiplatform {
             features {
-                extendedStdlib(true)
+                extendedStdlib()
                 minimumTargetsPerOS()
             }
 

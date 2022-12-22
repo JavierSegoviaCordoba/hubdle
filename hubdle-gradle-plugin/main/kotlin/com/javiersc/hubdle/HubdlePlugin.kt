@@ -1,24 +1,38 @@
 package com.javiersc.hubdle
 
+import com.javiersc.gradle.plugin.extensions.Plugin
 import com.javiersc.gradle.properties.extensions.getProperty
 import com.javiersc.hubdle.extensions.HubdleExtension
-import com.javiersc.hubdle.extensions._internal.state.hubdleCatalogsDependencies
-import com.javiersc.hubdle.extensions._internal.state.userCatalogsDependencies
-import org.gradle.api.Plugin
+import com.javiersc.hubdle.extensions._internal.hubdleCatalogsDependencies
+import com.javiersc.hubdle.extensions._internal.hubdleState
+import com.javiersc.hubdle.extensions._internal.userCatalogsDependencies
+import com.javiersc.hubdle.extensions.config._internal.createHubdleConfigExtensions
+import com.javiersc.hubdle.extensions.kotlin._internal.createHubdleKotlinExtensions
 import org.gradle.api.Project
 import org.gradle.api.plugins.BasePlugin
 import org.gradle.kotlin.dsl.apply
-import org.gradle.kotlin.dsl.create
 
 public abstract class HubdlePlugin : Plugin<Project> {
 
-    override fun apply(target: Project) {
-        target.group = target.getProperty(HubdleProperty.Project.group)
-        target.pluginManager.apply(BasePlugin::class)
+    override fun Project.apply() {
+        group = getProperty(HubdleProperty.Project.group)
+        pluginManager.apply(BasePlugin::class)
 
-        hubdleCatalogsDependencies.configure(target)
-        userCatalogsDependencies.configure(target)
-
-        target.extensions.create<HubdleExtension>("InternalHubdle")
+        configureHubdleExtensions()
+        configureDependencies()
     }
+}
+
+private fun Project.configureHubdleExtensions() {
+    hubdleState.createExtension<HubdleExtension>()
+
+    hubdleState.createHubdleConfigExtensions()
+    hubdleState.createHubdleKotlinExtensions()
+
+    hubdleState.configureExtensions()
+}
+
+private fun Project.configureDependencies() {
+    hubdleCatalogsDependencies.configure()
+    userCatalogsDependencies.configure(this)
 }

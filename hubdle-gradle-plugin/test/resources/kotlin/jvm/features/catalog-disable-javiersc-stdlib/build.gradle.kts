@@ -1,19 +1,7 @@
-plugins {
-    id("com.javiersc.hubdle")
-}
+plugins { id("com.javiersc.hubdle") }
 
 hubdle {
-    config {
-        versioning {
-            isEnabled = false
-        }
-    }
+    config { versioning { enabled(false) } }
 
-    kotlin {
-        jvm {
-            features {
-                extendedStdlib(false)
-            }
-        }
-    }
+    kotlin { jvm { features { extendedStdlib.isEnabled.set(false) } } }
 }

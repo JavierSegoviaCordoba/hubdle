@@ -1,7 +1,7 @@
 package multiplatform.features.compose
 
-import androidx.compose.runtime.Composable
 import androidx.compose.foundation.layout.Column
+import androidx.compose.runtime.Composable
 
 @Composable
 fun Foo() {

@@ -1,18 +1,13 @@
-plugins {
-    id("com.javiersc.hubdle")
-}
+plugins { id("com.javiersc.hubdle") }
 
 hubdle {
-    config {
-        versioning {
-            isEnabled = false
-        }
-    }
+    config { versioning { enabled(false) } }
 
     kotlin {
         jvm {
             features {
                 coroutines()
+                kotest()
             }
         }
     }

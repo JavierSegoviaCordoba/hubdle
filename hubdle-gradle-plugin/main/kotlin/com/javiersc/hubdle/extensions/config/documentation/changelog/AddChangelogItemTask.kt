@@ -21,8 +21,11 @@ import org.gradle.api.tasks.TaskAction
 import org.gradle.api.tasks.options.Option
 import org.gradle.kotlin.dsl.property
 
-public abstract class AddChangelogItemTask @Inject constructor(objects: ObjectFactory) :
-    DefaultTask() {
+public abstract class AddChangelogItemTask
+@Inject
+constructor(
+    objects: ObjectFactory,
+) : DefaultTask() {
 
     @Input
     @Option(option = "added", description = "Add an item to the `added` section")

@@ -1,67 +1,95 @@
-@file:Suppress("UnusedReceiverParameter")
-
 package com.javiersc.hubdle.extensions.kotlin
 
 import com.javiersc.hubdle.extensions.HubdleDslMarker
-import com.javiersc.hubdle.extensions._internal.PluginIds
+import com.javiersc.hubdle.extensions._internal.getHubdleExtension
+import com.javiersc.hubdle.extensions.apis.HubdleConfigurableExtension
+import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
+import com.javiersc.hubdle.extensions.apis.enableAndExecute
 import com.javiersc.hubdle.extensions.kotlin.android.HubdleKotlinAndroidExtension
-import com.javiersc.hubdle.extensions.kotlin.gradle.KotlinGradleExtension
-import com.javiersc.hubdle.extensions.kotlin.intellij.HubdleIntellijExtension
+import com.javiersc.hubdle.extensions.kotlin.android.application.hubdleAndroidApplication
+import com.javiersc.hubdle.extensions.kotlin.android.library.hubdleAndroidLibrary
+import com.javiersc.hubdle.extensions.kotlin.features.HubdleKotlinFeaturesExtension
+import com.javiersc.hubdle.extensions.kotlin.gradle.HubdleKotlinGradleExtension
+import com.javiersc.hubdle.extensions.kotlin.gradle.plugin.hubdleGradlePlugin
+import com.javiersc.hubdle.extensions.kotlin.intellij.HubdleKotlinIntellijExtension
+import com.javiersc.hubdle.extensions.kotlin.intellij.hubdleIntellij
 import com.javiersc.hubdle.extensions.kotlin.jvm.HubdleKotlinJvmExtension
+import com.javiersc.hubdle.extensions.kotlin.jvm.hubdleKotlinJvm
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.HubdleKotlinMultiplatformExtension
+import com.javiersc.hubdle.extensions.kotlin.multiplatform.hubdleKotlinMultiplatform
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
-import org.gradle.api.model.ObjectFactory
-import org.gradle.kotlin.dsl.newInstance
+import org.gradle.api.provider.Property
 
 @HubdleDslMarker
 public open class HubdleKotlinExtension
 @Inject
 constructor(
-    objects: ObjectFactory,
-) {
+    project: Project,
+) : HubdleEnableableExtension(project) {
 
-    private val android: HubdleKotlinAndroidExtension = objects.newInstance()
+    override val isEnabled: Property<Boolean> = property { false }
+
+    public val features: HubdleKotlinFeaturesExtension
+        get() = getHubdleExtension()
 
     @HubdleDslMarker
-    public fun Project.android(action: Action<in HubdleKotlinAndroidExtension> = Action {}) {
-        action.execute(android)
+    public fun features(action: Action<HubdleKotlinFeaturesExtension> = Action {}) {
+        features.enableAndExecute(action)
     }
 
-    private val gradle: KotlinGradleExtension = objects.newInstance()
+    public val android: HubdleKotlinAndroidExtension
+        get() = getHubdleExtension()
 
     @HubdleDslMarker
-    public fun Project.gradle(action: Action<in KotlinGradleExtension> = Action {}) {
-        action.execute(this@HubdleKotlinExtension.gradle)
+    public fun android(action: Action<HubdleKotlinAndroidExtension> = Action {}) {
+        android.enableAndExecute(action)
     }
 
-    private val intellijPlugin: HubdleIntellijExtension = objects.newInstance()
+    public val gradle: HubdleKotlinGradleExtension
+        get() = getHubdleExtension()
 
     @HubdleDslMarker
-    public fun Project.intellijPlugin(action: Action<in HubdleIntellijExtension> = Action {}) {
-        project.pluginManager.apply(PluginIds.JetBrains.intellij)
-        intellijPlugin.run { isEnabled = true }
-        action.execute(intellijPlugin)
+    public fun gradle(action: Action<HubdleKotlinGradleExtension> = Action {}) {
+        gradle.enableAndExecute(action)
     }
 
-    private val jvm: HubdleKotlinJvmExtension = objects.newInstance()
+    public val intellijPlugin: HubdleKotlinIntellijExtension
+        get() = getHubdleExtension()
 
     @HubdleDslMarker
-    public fun Project.jvm(action: Action<in HubdleKotlinJvmExtension> = Action {}) {
-        pluginManager.apply(PluginIds.Kotlin.jvm)
-        jvm.run { isEnabled = true }
-        action.execute(jvm)
+    public fun intellijPlugin(action: Action<HubdleKotlinIntellijExtension> = Action {}) {
+        intellijPlugin.enableAndExecute(action)
     }
 
-    private val multiplatform: HubdleKotlinMultiplatformExtension = objects.newInstance()
+    public val jvm: HubdleKotlinJvmExtension
+        get() = getHubdleExtension()
 
     @HubdleDslMarker
-    public fun Project.multiplatform(
-        action: Action<in HubdleKotlinMultiplatformExtension> = Action {}
-    ) {
-        project.pluginManager.apply(PluginIds.Kotlin.multiplatform)
-        multiplatform.run { isEnabled = true }
-        action.execute(multiplatform)
+    public fun jvm(action: Action<HubdleKotlinJvmExtension> = Action {}) {
+        jvm.enableAndExecute(action)
+    }
+
+    public val multiplatform: HubdleKotlinMultiplatformExtension
+        get() = getHubdleExtension()
+
+    @HubdleDslMarker
+    public fun multiplatform(action: Action<HubdleKotlinMultiplatformExtension> = Action {}) {
+        multiplatform.enableAndExecute(action)
     }
 }
+
+internal val HubdleEnableableExtension.hubdleKotlin: HubdleKotlinExtension
+    get() = getHubdleExtension()
+
+internal val HubdleEnableableExtension.hubdleKotlinAny: Set<HubdleConfigurableExtension>
+    get() =
+        setOf(
+            hubdleAndroidApplication,
+            hubdleAndroidLibrary,
+            hubdleGradlePlugin,
+            hubdleIntellij,
+            hubdleKotlinJvm,
+            hubdleKotlinMultiplatform,
+        )

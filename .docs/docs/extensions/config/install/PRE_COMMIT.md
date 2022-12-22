@@ -23,14 +23,14 @@ hubdle {
     config {
         install {
             preCommits {
-                isEnabled = true
-                allTests = true
-                applyFormat = true
-                assemble = true
-                checkAnalysis = true
-                checkApi = true
-                checkFormat = true
-                dumpApi = true
+                isEnabled.set(true)
+                allTests.set(true)
+                applyFormat.set(true)
+                assemble.set(true)
+                checkAnalysis.set(true)
+                checkApi.set(true)
+                checkFormat.set(true)
+                dumpApi.set(true)
             }
         }
     }

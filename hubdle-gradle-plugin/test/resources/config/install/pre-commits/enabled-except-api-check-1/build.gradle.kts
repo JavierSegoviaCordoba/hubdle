@@ -1,21 +1,17 @@
-plugins {
-    id("com.javiersc.hubdle")
-}
+plugins { id("com.javiersc.hubdle") }
 
 hubdle {
     config {
         install {
             preCommits {
-                allTests = true
-                applyFormat = true
-                assemble = true
-                checkAnalysis = true
-                checkApi = false
+                allTests.set(true)
+                applyFormat.set(true)
+                assemble.set(true)
+                checkAnalysis.set(true)
+                checkApi.set(false)
             }
         }
 
-        versioning {
-            isEnabled = false
-        }
+        versioning { enabled(false) }
     }
 }

@@ -14,7 +14,9 @@ class CheckCompatibilityTest : GradleTest() {
             val expectOutput =
                 """ 
                     |There is more than one `kotlin` project enabled:
-                    |  - Android library(isEnabled = false)
+                    |  - Android(isEnabled = false)
+                    |    - Application(isEnabled = false)
+                    |    - Library(isEnabled = false)
                     |  - Gradle Plugin(isEnabled = false)
                     |  - Version Catalog(isEnabled = true)
                     |  - Jvm(isEnabled = true)

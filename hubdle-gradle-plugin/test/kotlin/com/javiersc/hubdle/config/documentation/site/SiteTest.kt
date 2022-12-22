@@ -6,13 +6,11 @@ import io.kotest.matchers.file.shouldBeADirectory
 import io.kotest.matchers.file.shouldBeAFile
 import io.kotest.matchers.file.shouldHaveSameStructureAndContentAs
 import java.io.File
-import kotlin.test.Ignore
 import kotlin.test.Test
 
 internal class SiteTest : GradleTest() {
 
     @Test
-    @Ignore(value = "https://github.com/kotest/kotest/pull/3091")
     fun `site docs`() {
         val rootDir: File = resourceFile("config")
         val readmeDir: File = resourceFile("config/documentation/site")
@@ -24,7 +22,7 @@ internal class SiteTest : GradleTest() {
                 build()
 
                 val expect: File = projectDir.resolve(".docs.expect")
-                val actual = projectDir.resolve("build/.docs/")
+                val actual: File = projectDir.resolve("build/.docs/")
 
                 expect shouldHaveSameStructureAndContentAs actual
 

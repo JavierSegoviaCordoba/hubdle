@@ -6,6 +6,9 @@
 
 ### Changed
 
+- `hubdle-gradle-plugin` with a big refactor,
+  check [hubdle extension overview](.docs/docs/extensions/HUBDLE_EXTENSION_OVERVIEW.md)
+
 ### Deprecated
 
 ### Removed

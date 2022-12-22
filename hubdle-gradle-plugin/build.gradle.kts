@@ -128,7 +128,8 @@ fun Project.buildConstants() {
                         |internal const val ${dependencyVariableName}_VERSION: String =
                         |    "$dependencyVersion"
                         |
-                    """.trimMargin(),
+                    """
+                        .trimMargin(),
                 )
             }
     }
@@ -160,7 +161,8 @@ fun Project.buildHubdleDependenciesList() {
                     ${dependenciesAsStringList.joinToString("\n") { "|$it" }}
                     |    )
                     |
-                """.trimMargin(),
+                """
+                    .trimMargin(),
             )
         }
 }
@@ -221,21 +223,22 @@ fun Project.buildHubdleDependencies() {
                     readText() +
                         """ ${dependencyVariableNames.joinToString("\n")}
                             |
-                        """.trimMargin()
+                        """
+                            .trimMargin()
                 )
             }
         writeText(
             """
-                     |import com.javiersc.hubdle.extensions.HubdleDslMarker
-                     |import com.javiersc.hubdle.extensions._internal.state.catalogDependency
-                     |import com.javiersc.hubdle.extensions.dependencies._internal.constants.*
-                     |import org.gradle.api.artifacts.MinimalExternalModuleDependency
-                     |import org.gradle.api.Project
-                     |import org.gradle.api.provider.Provider
-                     |
-                     |
-                 """.trimMargin() +
-                readText().removeDuplicateEmptyLines().endWithNewLine()
+                    |import com.javiersc.hubdle.extensions.HubdleDslMarker
+                    |import com.javiersc.hubdle.extensions._internal.catalogDependency
+                    |import com.javiersc.hubdle.extensions.dependencies._internal.constants.*
+                    |import org.gradle.api.artifacts.MinimalExternalModuleDependency
+                    |import org.gradle.api.Project
+                    |import org.gradle.api.provider.Provider
+                    |
+                    |
+                """
+                .trimMargin() + readText().removeDuplicateEmptyLines().endWithNewLine()
         )
     }
 }

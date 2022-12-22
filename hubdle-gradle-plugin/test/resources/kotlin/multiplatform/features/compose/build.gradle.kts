@@ -1,23 +1,15 @@
-plugins {
-    id("com.javiersc.hubdle")
-}
+plugins { id("com.javiersc.hubdle") }
 
 hubdle {
     config {
-        format {
-            isEnabled = false
-        }
+        format { enabled(false) }
 
-        versioning {
-            isEnabled = false
-        }
+        versioning { enabled(false) }
     }
 
     kotlin {
         multiplatform {
-            features {
-                compose()
-            }
+            features { compose() }
 
             common {
                 main {

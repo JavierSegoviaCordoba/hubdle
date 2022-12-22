@@ -10,9 +10,7 @@ plugins {
 }
 
 hubdle {
-    autoInclude {
-        isEnabled = true
-        
+    autoInclude {        
         excludes(":some-project")
         excludedBuilds("some-dir/some-build")
     }

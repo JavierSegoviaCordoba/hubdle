@@ -1,22 +1,21 @@
-buildscript {
-    dependencies {
-        classpath(pluginLibs.android.toolsBuild.gradle)
-        classpath(pluginLibs.jetbrains.kotlin.kotlinGradlePlugin)
-    }
-}
-
 plugins {
-    id("com.javiersc.hubdle") version "0.1.1-SNAPSHOT"
+    id("com.javiersc.hubdle") version "0.3.0-SNAPSHOT"
 }
 
 hubdle {
     config {
         versioning {
-            isEnabled = false
+            enabled(false)
         }
     }
 
     kotlin {
-        jvm()
+        jvm {
+            main {
+                dependencies {
+                    implementation(pluginLibs.javiersc.semver.semverCore)
+                }
+            }
+        }
     }
 }

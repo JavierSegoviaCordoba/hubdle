@@ -1,5 +1,3 @@
-@file:Suppress("UnusedReceiverParameter")
-
 import org.jetbrains.compose.ComposePlugin
 import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
 

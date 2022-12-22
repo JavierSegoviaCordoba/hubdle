@@ -1,19 +1,11 @@
-plugins {
-    id("com.javiersc.hubdle")
-}
+plugins { id("com.javiersc.hubdle") }
 
-allprojects {
-    version = "1.0.1-SNAPSHOT"
-}
+allprojects { version = "1.0.1-SNAPSHOT" }
 
 hubdle {
     config {
-        documentation {
-            site()
-        }
+        documentation { site() }
 
-        versioning {
-            isEnabled = false
-        }
+        versioning { enabled(false) }
     }
 }

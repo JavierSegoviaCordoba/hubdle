@@ -1376,21 +1376,6 @@
 - `kotlin-jvm`
 - `kotlin-multiplatform` accessors for all targets
 
-### Changed
-
-- `src` folder is no longer necessary
-    - new project structure:
-        - `main/AndroidManifest.xml`
-        - `main/assets`
-        - `main/java`
-        - `main/kotlin`
-        - `main/res`
-        - `main/resources`
-- `src` folder is no longer necessary
-    - new project structure:
-        - `targetMain/kotlin`
-        - `targetMain/resources`
-
 ### Removed
 
 - `isSnapshot` and use `reckon.stage` to check if it is a snapshot

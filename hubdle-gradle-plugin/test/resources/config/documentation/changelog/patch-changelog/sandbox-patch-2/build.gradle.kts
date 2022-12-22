@@ -1,19 +1,11 @@
-plugins {
-    id("com.javiersc.hubdle")
-}
+plugins { id("com.javiersc.hubdle") }
 
-allprojects {
-    version = "0.1.1"
-}
+allprojects { version = "0.1.1" }
 
 hubdle {
     config {
-        documentation {
-            changelog()
-        }
-        
-        versioning {
-            isEnabled = false
-        }
+        documentation { changelog() }
+
+        versioning { enabled(false) }
     }
 }

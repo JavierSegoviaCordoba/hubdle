@@ -1,129 +1,269 @@
 package com.javiersc.hubdle.extensions.kotlin.gradle.plugin
 
+import com.gradle.publish.PluginBundleExtension
+import com.javiersc.gradle.properties.extensions.getProperty
+import com.javiersc.gradle.tasks.extensions.maybeRegisterLazily
+import com.javiersc.gradle.tasks.extensions.namedLazily
+import com.javiersc.hubdle.HubdleProperty
 import com.javiersc.hubdle.extensions.HubdleDslMarker
-import com.javiersc.hubdle.extensions._internal.state.hubdleState
-import com.javiersc.hubdle.extensions.kotlin.gradle.plugin._internal.gradlePluginFeatures
-import com.javiersc.hubdle.extensions.kotlin.jvm.KotlinJvmOptions
-import com.javiersc.hubdle.extensions.options.EnableableOptions
-import com.javiersc.hubdle.extensions.options.FeaturesOptions
-import com.javiersc.hubdle.extensions.options.GradleDependenciesOptions
-import com.javiersc.hubdle.extensions.options.RawConfigOptions
-import com.javiersc.hubdle.extensions.options.SourceDirectoriesOptions
+import com.javiersc.hubdle.extensions._internal.ApplicablePlugin.Scope
+import com.javiersc.hubdle.extensions._internal.Configurable.Priority
+import com.javiersc.hubdle.extensions._internal.PluginId
+import com.javiersc.hubdle.extensions._internal.configureDefaultJavaSourceSets
+import com.javiersc.hubdle.extensions._internal.configureDefaultKotlinSourceSets
+import com.javiersc.hubdle.extensions._internal.configureDependencies
+import com.javiersc.hubdle.extensions._internal.getHubdleExtension
+import com.javiersc.hubdle.extensions.apis.HubdleConfigurableExtension
+import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
+import com.javiersc.hubdle.extensions.config.publishing._internal.configurableMavenPublishing
+import com.javiersc.hubdle.extensions.config.publishing.hubdlePublishing
+import com.javiersc.hubdle.extensions.kotlin.gradle.plugin.features.HubdleKotlinGradlePluginFeaturesExtension
+import com.javiersc.hubdle.extensions.kotlin.hubdleKotlin
+import com.javiersc.hubdle.extensions.shared.HubdleGradleDependencies
 import javax.inject.Inject
 import org.gradle.api.Action
-import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.Project
+import org.gradle.api.Task
+import org.gradle.api.artifacts.Configuration
 import org.gradle.api.artifacts.MinimalExternalModuleDependency
-import org.gradle.api.model.ObjectFactory
-import org.gradle.api.provider.Provider
-import org.gradle.kotlin.dsl.newInstance
-import org.gradle.kotlin.dsl.the
+import org.gradle.api.provider.ListProperty
+import org.gradle.api.provider.Property
+import org.gradle.api.provider.SetProperty
+import org.gradle.api.tasks.SourceSetContainer
+import org.gradle.api.tasks.testing.Test
+import org.gradle.kotlin.dsl.configure
+import org.gradle.kotlin.dsl.dependencies
+import org.gradle.kotlin.dsl.withType
 import org.gradle.plugin.devel.GradlePluginDevelopmentExtension
+import org.gradle.plugin.devel.tasks.PluginUnderTestMetadata
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
+import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 
+// TODO: Move to Kotlin/Jvm/Features
 @HubdleDslMarker
 public open class HubdleKotlinGradlePluginExtension
 @Inject
 constructor(
-    objects: ObjectFactory,
-) :
-    EnableableOptions,
-    FeaturesOptions<HubdleKotlinGradlePluginExtension.FeaturesExtension>,
-    KotlinJvmOptions,
-    SourceDirectoriesOptions<KotlinSourceSet>,
-    RawConfigOptions<HubdleKotlinGradlePluginExtension.RawConfigExtension>,
-    GradleDependenciesOptions {
+    project: Project,
+) : HubdleConfigurableExtension(project), HubdleGradleDependencies {
 
-    override var Project.isEnabled: Boolean
-        get() = hubdleState.kotlin.gradle.plugin.isEnabled
-        set(value) = hubdleState.kotlin.gradle.plugin.run { isEnabled = value }
+    override val isEnabled: Property<Boolean> = property { false }
 
-    override val features: FeaturesExtension = objects.newInstance()
+    override val priority: Priority = Priority.P3
 
-    @HubdleDslMarker
-    override fun features(action: Action<FeaturesExtension>): Unit = super.features(action)
+    override val requiredExtensions: Set<HubdleEnableableExtension>
+        get() = setOf(hubdleKotlin)
 
-    override val Project.sourceSets: NamedDomainObjectContainer<KotlinSourceSet>
-        get() = the<KotlinJvmProjectExtension>().sourceSets
+    public val features: HubdleKotlinGradlePluginFeaturesExtension
+        get() = getHubdleExtension()
+
+    public val tags: SetProperty<String> = setProperty { emptySet() }
 
     @HubdleDslMarker
-    public fun Project.tags(vararg tags: String) {
-        hubdleState.kotlin.gradle.plugin.tags += tags
+    public fun tags(vararg tags: String) {
+        this.tags.addAll(tags.toList())
     }
 
     @HubdleDslMarker
-    public fun Project.gradlePlugin(action: Action<GradlePluginDevelopmentExtension>) {
-        hubdleState.kotlin.gradle.plugin.gradlePlugin = action
+    public fun kotlin(action: Action<KotlinJvmProjectExtension>) {
+        userConfigurable { action.execute(the()) }
     }
 
     @HubdleDslMarker
-    public fun Project.functionalTest(action: Action<KotlinSourceSet> = Action {}) {
-        sourceSets.named("functionalTest", action::execute)
+    public fun gradlePlugin(action: Action<GradlePluginDevelopmentExtension>) {
+        userConfigurable { action.execute(the()) }
     }
 
     @HubdleDslMarker
-    public fun Project.integrationTest(action: Action<KotlinSourceSet> = Action {}) {
-        sourceSets.named("integrationTest", action::execute)
+    public fun main(action: Action<KotlinSourceSet> = Action {}) {
+        userConfigurable {
+            configure<KotlinProjectExtension> { sourceSets.named("main", action::execute) }
+        }
     }
 
     @HubdleDslMarker
-    public fun Project.main(action: Action<KotlinSourceSet> = Action {}) {
-        sourceSets.named("main", action::execute)
+    public fun functionalTest(action: Action<KotlinSourceSet> = Action {}) {
+        userConfigurable {
+            configure<KotlinProjectExtension> {
+                sourceSets.named("functionalTest", action::execute)
+            }
+        }
     }
 
     @HubdleDslMarker
-    public fun Project.test(action: Action<KotlinSourceSet> = Action {}) {
-        sourceSets.named("test", action::execute)
+    public fun integrationTest(action: Action<KotlinSourceSet> = Action {}) {
+        userConfigurable {
+            configure<KotlinProjectExtension> {
+                sourceSets.named("integrationTest", action::execute)
+            }
+        }
     }
 
     @HubdleDslMarker
-    public fun Project.testFixtures(action: Action<KotlinSourceSet> = Action {}) {
-        sourceSets.named("testFixtures", action::execute)
+    public fun test(action: Action<KotlinSourceSet> = Action {}) {
+        userConfigurable {
+            configure<KotlinProjectExtension> { sourceSets.named("test", action::execute) }
+        }
     }
 
     @HubdleDslMarker
-    public fun Project.pluginUnderTestDependencies(
-        vararg pluginUnderTestDependencies: Provider<MinimalExternalModuleDependency>,
+    public fun testFixtures(action: Action<KotlinSourceSet> = Action {}) {
+        userConfigurable {
+            configure<KotlinProjectExtension> { sourceSets.named("testFixtures", action::execute) }
+        }
+    }
+
+    public val pluginUnderTestDependencies: ListProperty<MinimalExternalModuleDependency> =
+        listProperty {
+            emptyList()
+        }
+
+    @HubdleDslMarker
+    public fun pluginUnderTestDependencies(
+        vararg pluginUnderTestDependencies: MinimalExternalModuleDependency
     ) {
-        hubdleState.kotlin.gradle.plugin.pluginUnderTestDependencies += pluginUnderTestDependencies
+        this.pluginUnderTestDependencies.addAll(pluginUnderTestDependencies.toList())
     }
 
-    override val rawConfig: RawConfigExtension = objects.newInstance()
+    override fun Project.defaultConfiguration() {
+        applicablePlugins()
 
-    @HubdleDslMarker
-    override fun Project.rawConfig(action: Action<RawConfigExtension>) {
-        action.execute(rawConfig)
+        configurable {
+            configureDefaultJavaSourceSets()
+            configureDefaultKotlinSourceSets()
+            configureDependencies()
+            configureGradleDependencies()
+            configureGradlePluginTestSourceSets()
+            configurePluginUnderTestDependencies()
+            configureGradlePluginTestTasks()
+        }
+
+        configureGradlePluginPublishing()
     }
 
-    @HubdleDslMarker
-    public open class FeaturesExtension {
+    private fun applicablePlugins() {
+        applicablePlugin(
+            priority = Priority.P3,
+            scope = Scope.CurrentProject,
+            pluginId = PluginId.JetbrainsKotlinJvm,
+        )
+        applicablePlugin(
+            priority = Priority.P3,
+            scope = Scope.CurrentProject,
+            pluginId = PluginId.JavaGradlePlugin,
+        )
+        applicablePlugin(
+            priority = Priority.P3,
+            scope = Scope.CurrentProject,
+            pluginId = PluginId.JavaTestFixtures,
+        )
+    }
 
-        @HubdleDslMarker
-        public fun Project.extendedGradle(enabled: Boolean = true) {
-            gradlePluginFeatures.extendedGradle = enabled
+    private fun configureGradlePluginTestSourceSets() =
+        with(project) {
+            configure<SourceSetContainer> {
+                maybeCreate("functionalTest")
+                maybeCreate("integrationTest")
+            }
+            configure<KotlinProjectExtension> {
+                sourceSets.maybeCreate("functionalTest")
+                sourceSets.maybeCreate("integrationTest")
+            }
         }
 
-        @HubdleDslMarker
-        public fun Project.extendedStdlib(enabled: Boolean = true) {
-            gradlePluginFeatures.extendedStdlib = enabled
+    private fun configureGradlePluginTestTasks() =
+        with(project) {
+            val functionalTest = the<SourceSetContainer>().named("functionalTest")
+            val integrationTest = the<SourceSetContainer>().named("integrationTest")
+
+            val integrationTestTask =
+                tasks.maybeRegisterLazily<Test>("integrationTest") { task ->
+                    task.description = "Runs the integration tests."
+                    task.group = "verification"
+
+                    task.testClassesDirs = functionalTest.get().output.classesDirs
+                    task.classpath = functionalTest.get().runtimeClasspath
+                    task.mustRunAfter(tasks.namedLazily<Task>("test"))
+                }
+
+            val functionalTestTask =
+                tasks.maybeRegisterLazily<Test>("functionalTest") { task ->
+                    task.description = "Runs the functional tests."
+                    task.group = "verification"
+
+                    task.testClassesDirs = integrationTest.get().output.classesDirs
+                    task.classpath = integrationTest.get().runtimeClasspath
+                    task.mustRunAfter(tasks.namedLazily<Task>("test"))
+                }
+
+            tasks.namedLazily<Task>("allTests") { task ->
+                task.dependsOn(functionalTestTask)
+                task.dependsOn(integrationTestTask)
+            }
+
+            tasks.namedLazily<Task>("check") { task ->
+                task.dependsOn(functionalTestTask)
+                task.dependsOn(integrationTestTask)
+            }
         }
 
-        @HubdleDslMarker
-        public fun Project.extendedTesting(enabled: Boolean = true) {
-            gradlePluginFeatures.extendedTesting = enabled
+    private fun configurePluginUnderTestDependencies() =
+        with(project) {
+            val pluginUnderTestDependencies = pluginUnderTestDependencies.get()
+            if (pluginUnderTestDependencies.isNotEmpty()) {
+                val testPluginClasspath: Configuration =
+                    configurations.create("testPluginClasspath")
+
+                dependencies {
+                    for (dependency in pluginUnderTestDependencies) {
+                        testPluginClasspath(dependency)
+                    }
+                }
+
+                tasks.withType<PluginUnderTestMetadata>().configureEach { metadata ->
+                    metadata.pluginClasspath.from(testPluginClasspath)
+                }
+            }
+        }
+
+    private fun configureGradleDependencies() {
+        configure<KotlinProjectExtension> {
+            sourceSets.named("functionalTest") { it.configureTestDependencies() }
+            sourceSets.named("integrationTest") { it.configureTestDependencies() }
+            sourceSets.named("test") { it.configureTestDependencies() }
+            sourceSets.named("testFixtures") { it.configureTestDependencies() }
         }
     }
 
-    @HubdleDslMarker
-    public open class RawConfigExtension {
-
-        public fun Project.kotlin(action: Action<KotlinJvmProjectExtension>) {
-            hubdleState.kotlin.gradle.plugin.rawConfig.kotlin = action
-        }
-
-        public fun Project.gradlePlugin(action: Action<GradlePluginDevelopmentExtension>) {
-            hubdleState.kotlin.gradle.plugin.rawConfig.gradlePlugin = action
+    private fun KotlinSourceSet.configureTestDependencies() {
+        dependencies {
+            implementation(project)
+            implementation(project.dependencies.gradleTestKit())
+            if (name == "testFixtures") implementation(project.dependencies.testFixtures(project))
         }
     }
+
+    private fun configureGradlePluginPublishing() =
+        with(project) {
+            applicablePlugin(
+                isEnabled = property { isFullEnabled.get() && hubdlePublishing.isEnabled.get() },
+                priority = Priority.P3,
+                scope = Scope.CurrentProject,
+                pluginId = PluginId.GradlePluginPublish,
+            )
+            configurableMavenPublishing(mavenPublicationName = "java") {
+                configure<PluginBundleExtension> {
+                    tags = hubdleGradlePlugin.tags.get()
+                    website = getProperty(HubdleProperty.POM.url)
+                    vcsUrl = getProperty(HubdleProperty.POM.scmUrl)
+                }
+            }
+        }
 }
+
+internal val HubdleEnableableExtension.hubdleGradlePlugin: HubdleKotlinGradlePluginExtension
+    get() = getHubdleExtension()
+
+internal val Project.hubdleGradlePlugin: HubdleKotlinGradlePluginExtension
+    get() = getHubdleExtension()

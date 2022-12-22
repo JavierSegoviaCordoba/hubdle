@@ -1,7 +1,10 @@
 package com.kotlin.jvm.sandbox.project
 
-class Format {
+class FormatA {
 
     val hello =
+
+
+
         1
 }

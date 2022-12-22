@@ -1,29 +1,23 @@
-plugins {
-    id("com.javiersc.hubdle")
-}
+plugins { id("com.javiersc.hubdle") }
 
-allprojects {
-    version = "1.0.0-alpha.1"
-}
+allprojects { version = "1.0.0-alpha.1" }
 
 hubdle {
     config {
         documentation {
             readme {
                 badges {
-                    kotlin = false
-                    mavenCentral = false
-                    snapshots = false
-                    build = true
-                    coverage = false
-                    quality = false
-                    techDebt = false
+                    kotlin.set(false)
+                    mavenCentral.set(false)
+                    snapshots.set(false)
+                    build.set(true)
+                    coverage.set(false)
+                    quality.set(false)
+                    techDebt.set(false)
                 }
             }
         }
 
-        versioning {
-            isEnabled = false
-        }
+        versioning { enabled(false) }
     }
 }

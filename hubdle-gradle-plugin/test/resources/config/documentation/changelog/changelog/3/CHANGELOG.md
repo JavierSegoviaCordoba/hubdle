@@ -29,12 +29,14 @@
 ## [0.1.0] - 2021-09-09
 
 ### Added
+
 - One
     - Two
         - Three
 - Two
     - Three
 - Three
+
 ### Fixed
 
 - One
@@ -42,10 +44,10 @@
         - Three
 
 ### Deleted
-- - new project structure:
-    - `main/AndroidManifest.xml`
-    - `main/assets`
-    - `main/java`
-    - `main/kotlin`
-    - `main/res`
-    - `main/resources`
+
+- `main/AndroidManifest.xml`
+- `main/assets`
+- `main/java`
+- `main/kotlin`
+- `main/res`
+- `main/resources`

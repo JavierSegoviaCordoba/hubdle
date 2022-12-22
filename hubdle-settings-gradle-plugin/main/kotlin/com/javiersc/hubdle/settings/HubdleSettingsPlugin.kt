@@ -58,7 +58,7 @@ private fun Settings.configureRepositories() {
 private fun Settings.configureAutoInclude() {
     val autoInclude = hubdleSettings.autoInclude
 
-    if (autoInclude.isEnabled) {
+    if (autoInclude.isEnabled.get()) {
         autoInclude.includes(*extractedProjects().toTypedArray())
         autoInclude.includedBuilds(*extractedBuildProjects().toTypedArray())
 

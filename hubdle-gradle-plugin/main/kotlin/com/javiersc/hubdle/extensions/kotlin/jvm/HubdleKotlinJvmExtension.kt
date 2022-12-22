@@ -1,108 +1,85 @@
 package com.javiersc.hubdle.extensions.kotlin.jvm
 
 import com.javiersc.hubdle.extensions.HubdleDslMarker
-import com.javiersc.hubdle.extensions._internal.PluginIds
-import com.javiersc.hubdle.extensions._internal.state.hubdleState
-import com.javiersc.hubdle.extensions.kotlin.MainAndTestKotlinSourceSetsOptions
-import com.javiersc.hubdle.extensions.kotlin.jvm._internal.jvmFeatures
-import com.javiersc.hubdle.extensions.options.EnableableOptions
-import com.javiersc.hubdle.extensions.options.FeaturesOptions
-import com.javiersc.hubdle.extensions.options.RawConfigOptions
-import com.javiersc.hubdle.extensions.options.SourceDirectoriesOptions
+import com.javiersc.hubdle.extensions._internal.ApplicablePlugin.Scope
+import com.javiersc.hubdle.extensions._internal.Configurable.Priority
+import com.javiersc.hubdle.extensions._internal.PluginId
+import com.javiersc.hubdle.extensions._internal.configureDefaultKotlinSourceSets
+import com.javiersc.hubdle.extensions._internal.configureDependencies
+import com.javiersc.hubdle.extensions._internal.getHubdleExtension
+import com.javiersc.hubdle.extensions.apis.HubdleConfigurableExtension
+import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
+import com.javiersc.hubdle.extensions.apis.enableAndExecute
+import com.javiersc.hubdle.extensions.config.publishing._internal.configurableMavenPublishing
+import com.javiersc.hubdle.extensions.kotlin.hubdleKotlin
+import com.javiersc.hubdle.extensions.kotlin.jvm.features.HubdleKotlinJvmFeaturesExtension
+import com.javiersc.hubdle.extensions.shared.HubdleGradleDependencies
 import javax.inject.Inject
 import org.gradle.api.Action
-import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.Project
-import org.gradle.api.model.ObjectFactory
-import org.gradle.api.plugins.JavaApplication
-import org.gradle.kotlin.dsl.newInstance
-import org.gradle.kotlin.dsl.the
+import org.gradle.api.provider.Property
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
+import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 
 @HubdleDslMarker
 public open class HubdleKotlinJvmExtension
 @Inject
 constructor(
-    objects: ObjectFactory,
-) :
-    EnableableOptions,
-    FeaturesOptions<HubdleKotlinJvmExtension.FeaturesExtension>,
-    KotlinJvmOptions,
-    SourceDirectoriesOptions<KotlinSourceSet>,
-    RawConfigOptions<HubdleKotlinJvmExtension.RawConfigExtension>,
-    MainAndTestKotlinSourceSetsOptions<KotlinSourceSet> {
+    project: Project,
+) : HubdleConfigurableExtension(project), HubdleGradleDependencies {
 
-    override var Project.isEnabled: Boolean
-        get() = hubdleState.kotlin.jvm.isEnabled
-        set(value) = hubdleState.kotlin.jvm.run { isEnabled = value }
+    override val isEnabled: Property<Boolean> = property { false }
 
-    override val features: FeaturesExtension = objects.newInstance()
+    override val requiredExtensions: Set<HubdleEnableableExtension>
+        get() = setOf(hubdleKotlin)
+
+    override val priority: Priority = Priority.P3
+
+    public val features: HubdleKotlinJvmFeaturesExtension
+        get() = getHubdleExtension()
 
     @HubdleDslMarker
-    override fun features(action: Action<FeaturesExtension>): Unit = super.features(action)
-
-    @HubdleDslMarker
-    public fun Project.application(action: Action<JavaApplication>) {
-        pluginManager.apply(PluginIds.Gradle.application)
-        hubdleState.kotlin.jvm.application = action
-    }
-
-    override val Project.sourceSets: NamedDomainObjectContainer<KotlinSourceSet>
-        get() = the<KotlinJvmProjectExtension>().sourceSets
-
-    @HubdleDslMarker
-    override fun Project.main(action: Action<KotlinSourceSet>) {
-        the<KotlinJvmProjectExtension>().sourceSets.named("main", action::execute)
+    public fun features(action: Action<HubdleKotlinJvmFeaturesExtension>) {
+        features.enableAndExecute(action)
     }
 
     @HubdleDslMarker
-    override fun Project.test(action: Action<KotlinSourceSet>) {
-        the<KotlinJvmProjectExtension>().sourceSets.named("test", action::execute)
-    }
-
-    override val rawConfig: RawConfigExtension = objects.newInstance()
-
-    @HubdleDslMarker
-    override fun Project.rawConfig(action: Action<RawConfigExtension>) {
-        action.execute(rawConfig)
-    }
-
-    @HubdleDslMarker
-    public open class FeaturesExtension {
-
-        @HubdleDslMarker
-        public fun Project.coroutines(enabled: Boolean = true) {
-            jvmFeatures.coroutines = enabled
-        }
-
-        @HubdleDslMarker
-        public fun Project.extendedGradle(enabled: Boolean = true) {
-            jvmFeatures.extendedGradle = enabled
-        }
-
-        @HubdleDslMarker
-        public fun Project.extendedStdlib(enabled: Boolean = true) {
-            jvmFeatures.extendedStdlib = enabled
-        }
-
-        @HubdleDslMarker
-        public fun Project.extendedTesting(enabled: Boolean = true) {
-            jvmFeatures.extendedTesting = enabled
-        }
-
-        @HubdleDslMarker
-        public fun Project.serialization(enabled: Boolean = true, useJson: Boolean = true) {
-            jvmFeatures.serialization.isEnabled = enabled
-            jvmFeatures.serialization.useJson = useJson
+    public fun main(action: Action<KotlinSourceSet>) {
+        userConfigurable {
+            configure<KotlinProjectExtension> { sourceSets.named("main", action::execute) }
         }
     }
 
     @HubdleDslMarker
-    public open class RawConfigExtension {
-
-        public fun Project.kotlin(action: Action<KotlinJvmProjectExtension>) {
-            hubdleState.kotlin.jvm.rawConfig.kotlin = action
+    public fun test(action: Action<KotlinSourceSet>) {
+        userConfigurable {
+            configure<KotlinProjectExtension> { sourceSets.named("test", action::execute) }
         }
+    }
+
+    @HubdleDslMarker
+    public fun kotlin(action: Action<KotlinJvmProjectExtension>) {
+        userConfigurable { action.execute(the()) }
+    }
+
+    override fun Project.defaultConfiguration() {
+        applicablePlugin(
+            priority = Priority.P3,
+            scope = Scope.CurrentProject,
+            pluginId = PluginId.JetbrainsKotlinJvm
+        )
+
+        configurable {
+            configureDefaultKotlinSourceSets()
+            configureDependencies()
+        }
+        configurableMavenPublishing(mavenPublicationName = "java", configJavaExtension = true)
     }
 }
+
+internal val HubdleEnableableExtension.hubdleKotlinJvm: HubdleKotlinJvmExtension
+    get() = getHubdleExtension()
+
+internal val Project.hubdleKotlinJvm: HubdleKotlinJvmExtension
+    get() = getHubdleExtension()

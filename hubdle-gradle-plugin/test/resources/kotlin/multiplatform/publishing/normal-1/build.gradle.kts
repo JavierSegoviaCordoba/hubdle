@@ -1,6 +1,4 @@
-plugins {
-    id("com.javiersc.hubdle")
-}
+plugins { id("com.javiersc.hubdle") }
 
 version = "9.8.3-alpha.4"
 
@@ -8,9 +6,7 @@ hubdle {
     config {
         publishing()
 
-        versioning {
-            isEnabled = false
-        }
+        versioning { enabled(false) }
     }
 
     kotlin {

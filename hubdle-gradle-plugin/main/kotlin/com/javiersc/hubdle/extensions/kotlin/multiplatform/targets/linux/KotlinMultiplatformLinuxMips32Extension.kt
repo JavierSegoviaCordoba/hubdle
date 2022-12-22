@@ -1,18 +1,39 @@
 package com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.linux
 
 import com.javiersc.hubdle.extensions.HubdleDslMarker
-import com.javiersc.hubdle.extensions._internal.state.hubdleState
-import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.KotlinMultiplatformTargetOptions
-import com.javiersc.hubdle.extensions.options.EnableableOptions
+import com.javiersc.hubdle.extensions._internal.Configurable.Priority
+import com.javiersc.hubdle.extensions.apis.HubdleConfigurableExtension
+import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
+import com.javiersc.hubdle.extensions.kotlin.multiplatform.features.configurableTargetPerOs
+import com.javiersc.hubdle.extensions.kotlin.multiplatform.hubdleKotlinMultiplatform
+import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformTargetOptions
+import javax.inject.Inject
 import org.gradle.api.Project
+import org.gradle.api.provider.Property
+import org.gradle.internal.os.OperatingSystem
 
 @HubdleDslMarker
-public open class KotlinMultiplatformLinuxMips32Extension :
-    EnableableOptions, KotlinMultiplatformTargetOptions {
+public open class KotlinMultiplatformLinuxMips32Extension
+@Inject
+constructor(
+    project: Project,
+) : HubdleConfigurableExtension(project), HubdleKotlinMultiplatformTargetOptions {
 
-    override var Project.isEnabled: Boolean
-        get() = hubdleState.kotlin.multiplatform.linuxMips32.isEnabled
-        set(value) = hubdleState.kotlin.multiplatform.linuxMips32.run { isEnabled = value }
+    override val project: Project
+        get() = super.project
 
-    override val name: String = "linuxMips32"
+    override val isEnabled: Property<Boolean> = property { false }
+
+    override val priority: Priority = Priority.P3
+
+    public override val targetName: String = "linuxMips32"
+
+    override val requiredExtensions: Set<HubdleEnableableExtension>
+        get() = setOf(hubdleKotlinMultiplatform.linux)
+
+    override fun Project.defaultConfiguration() {
+        configurableTargetPerOs(operativeSystem = OperatingSystem.current().isLinux) {
+            linuxMips32()
+        }
+    }
 }

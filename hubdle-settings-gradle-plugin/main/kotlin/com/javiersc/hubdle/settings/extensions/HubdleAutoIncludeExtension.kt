@@ -2,21 +2,29 @@ package com.javiersc.hubdle.settings.extensions
 
 import com.javiersc.hubdle.settings.HubdleSettingsDslMarker
 import java.io.File
+import javax.inject.Inject
 import org.gradle.api.initialization.Settings
+import org.gradle.api.model.ObjectFactory
+import org.gradle.api.provider.Property
+import org.gradle.kotlin.dsl.property
 
 @HubdleSettingsDslMarker
-public open class HubdleAutoIncludeExtension {
+public open class HubdleAutoIncludeExtension @Inject constructor(objects: ObjectFactory) {
 
-    public var isEnabled: Boolean = true
+    public val isEnabled: Property<Boolean> = objects.property<Boolean>().convention(true)
+
+    public fun enabled(enabled: Boolean = true) {
+        isEnabled.set(enabled)
+    }
 
     internal val includableProjects: Set<String>
         get() = (includes - excludes).filter(String::isNotBlank).toSet()
 
-    internal val includableBuilds: Set<String>
-        get() = (includedBuilds - excludedBuilds).filter(String::isNotBlank).toSet()
-
     private val includes: MutableSet<String> = mutableSetOf()
     private val excludes: MutableSet<String> = mutableSetOf()
+
+    internal val includableBuilds: Set<String>
+        get() = (includedBuilds - excludedBuilds).filter(String::isNotBlank).toSet()
 
     private val includedBuilds: MutableSet<String> = mutableSetOf()
     private val excludedBuilds: MutableSet<String> = mutableSetOf("buildSrc")

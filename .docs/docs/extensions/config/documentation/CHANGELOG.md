@@ -42,7 +42,7 @@ hubdle {
 
 ## Merge the changelog
 
-Merge all non-final related versions into the final one 
+Merge all non-final related versions into the final one
 
 ```shell
 ./gradlew mergeChangelog

@@ -2,28 +2,29 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {
     repositories {
-        mavenLocal()
         gradlePluginPortal()
         mavenCentral()
         google()
+        mavenLocal()
     }
 }
 
 dependencyResolutionManagement {
     repositories {
-        mavenLocal()
         mavenCentral()
         google()
         gradlePluginPortal()
+        mavenLocal()
     }
 
     versionCatalogs {
         create("pluginLibs") {
-            from(files("../gradle/plugin.libs.versions.toml"))
+            from(files("../gradle/libs.versions.toml"))
         }
     }
 }
 
+//include(":consumer-kotlin-android")
 include(":consumer-kotlin-jvm")
-include(":consumer-kotlin-multiplatform")
-includeBuild("consumer-settings")
+//include(":consumer-kotlin-multiplatform")
+//includeBuild("consumer-settings")

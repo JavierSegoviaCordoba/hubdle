@@ -14,6 +14,10 @@
 
 ### Updated
 
+- `com.squareup.okhttp3:okhttp -> 5.0.0-alpha.11`
+- `com.squareup.okhttp3:mockwebserver3-junit5 -> 5.0.0-alpha.11`
+- `com.squareup.okhttp3:mockwebserver3-junit4 -> 5.0.0-alpha.11`
+- `com.squareup.okhttp3:mockwebserver -> 5.0.0-alpha.11`
 - `actions/cache -> v3.2.1`
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.11.0`
 - `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.12.1`

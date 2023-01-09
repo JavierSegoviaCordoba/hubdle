@@ -17,6 +17,7 @@
 
 ### Updated
 
+- `actions/checkout -> v3.3.0`
 - `com.squareup.okio:okio -> 3.3.0`
 - `com.diffplug.spotless:spotless-plugin-gradle -> 6.12.1`
 - `io.ktor:ktor-serialization-kotlinx-json -> 2.2.2`
@@ -34,7 +35,6 @@
 - `com.squareup.okhttp3:mockwebserver -> 5.0.0-alpha.11`
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.11.0`
 - `actions/setup-java -> v3.9.0`
-- `actions/checkout -> v3.2.0`
 - `com.facebook:ktfmt -> 0.42`
 - `androidx.compose.ui:ui-util -> 1.3.2`
 - `androidx.compose.ui:ui-tooling-preview -> 1.3.2`

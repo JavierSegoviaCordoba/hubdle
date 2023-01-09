@@ -17,6 +17,7 @@
 
 ### Updated
 
+- `com.javiersc.semver:semver-core -> 0.1.0-beta.12`
 - `org.jetbrains.compose:compose-gradle-plugin -> 1.2.2`
 - `actions/cache -> v3.2.2`
 - `com.squareup.okhttp3:okhttp -> 5.0.0-alpha.11`

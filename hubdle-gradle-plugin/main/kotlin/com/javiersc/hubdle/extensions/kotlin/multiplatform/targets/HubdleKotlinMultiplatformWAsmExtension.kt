@@ -28,7 +28,7 @@ constructor(
     override val project: Project
         get() = super.project
 
-    override val isEnabled: Property<Boolean> = property { true }
+    override val isEnabled: Property<Boolean> = property { false }
 
     override val requiredExtensions: Set<HubdleEnableableExtension>
         get() = setOf(hubdleKotlinMultiplatform)
@@ -46,7 +46,7 @@ constructor(
     }
 
     override fun Project.defaultConfiguration() {
-        configurable(priority = Priority.P4) {
+        configurable(priority = Priority.P6) {
             configure<KotlinMultiplatformExtension> {
                 val commonMain: KotlinSourceSet by sourceSets.getting
                 val wasm32Main: KotlinSourceSet? = sourceSets.findByName("wasm32Main")

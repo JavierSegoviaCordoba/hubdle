@@ -29,7 +29,7 @@ constructor(
     override val project: Project
         get() = super.project
 
-    override val isEnabled: Property<Boolean> = property { true }
+    override val isEnabled: Property<Boolean> = property { false }
 
     override val priority: Priority = Priority.P3
 
@@ -82,7 +82,7 @@ constructor(
                 tvosX64()
             }
         }
-        configurable(priority = Priority.P4) {
+        configurable(priority = Priority.P6) {
             configure<KotlinMultiplatformExtension> {
                 val commonMain: KotlinSourceSet by sourceSets.getting
                 val tvosArm64Main: KotlinSourceSet? = sourceSets.findByName("tvosArm64Main")

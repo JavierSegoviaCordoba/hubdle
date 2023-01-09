@@ -12,6 +12,9 @@
 
 ### Fixed
 
+- Fix `build` badge codegen in Readme Badges extension
+- Fix Kotlin Multiplatform extensions
+
 ### Updated
 
 - `actions/cache -> v3.2.3`

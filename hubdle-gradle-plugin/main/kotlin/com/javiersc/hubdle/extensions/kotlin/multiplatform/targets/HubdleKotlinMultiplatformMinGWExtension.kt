@@ -7,7 +7,7 @@ import com.javiersc.hubdle.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.extensions.apis.enableAndExecute
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.hubdleKotlinMultiplatform
-import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.macos.HubdleKotlinMultiplatformMacOSX64Extension
+import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.mingw.HubdleKotlinMultiplatformMinGWX64Extension
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.mingw.HubdleKotlinMultiplatformMinGWX86Extension
 import javax.inject.Inject
 import org.gradle.api.Action
@@ -29,7 +29,7 @@ constructor(
     override val project: Project
         get() = super.project
 
-    override val isEnabled: Property<Boolean> = property { true }
+    override val isEnabled: Property<Boolean> = property { false }
 
     override val priority: Priority = Priority.P3
 
@@ -45,11 +45,11 @@ constructor(
     override val requiredExtensions: Set<HubdleEnableableExtension>
         get() = setOf(hubdleKotlinMultiplatform)
 
-    public val mingwX64: HubdleKotlinMultiplatformMacOSX64Extension
+    public val mingwX64: HubdleKotlinMultiplatformMinGWX64Extension
         get() = getHubdleExtension()
 
     @HubdleDslMarker
-    public fun mingwX64(action: Action<HubdleKotlinMultiplatformMacOSX64Extension> = Action {}) {
+    public fun mingwX64(action: Action<HubdleKotlinMultiplatformMinGWX64Extension> = Action {}) {
         mingwX64.enableAndExecute(action)
     }
 
@@ -68,7 +68,7 @@ constructor(
                 mingwX86()
             }
         }
-        configurable(priority = Priority.P4) {
+        configurable(priority = Priority.P6) {
             configure<KotlinMultiplatformExtension> {
                 val commonMain: KotlinSourceSet by sourceSets.getting
                 val mingwX64Main: KotlinSourceSet? = sourceSets.findByName("mingwX64Main")

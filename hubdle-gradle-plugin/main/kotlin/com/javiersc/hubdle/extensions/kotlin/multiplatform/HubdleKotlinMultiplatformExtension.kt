@@ -167,11 +167,12 @@ constructor(
                         }
                         .map { target -> "$target" }
 
-                val targetsPresets: List<String> = buildList {
+                val targetsPresets: Set<String> = buildSet {
                     addAll(targets.map(KotlinTarget::getName))
                     addAll(presets.map(KotlinTargetPreset<*>::getName))
+                    addAll(hubdleTargets)
                 }
-                configureDefaultKotlinSourceSets((hubdleTargets + targetsPresets).toSet())
+                configureDefaultKotlinSourceSets(targetsPresets)
             }
         }
         configurableMavenPublishing(configEmptyJavaDocs = true)

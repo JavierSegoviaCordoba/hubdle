@@ -32,6 +32,6 @@ internal enum class HubdleKotlinMultiplatformTarget(val target: String) {
     override fun toString(): String = target
 }
 
-internal val hubdleAppleTargets = setOf(listOf(Apple, IOS, MacOS, WatchOS, TvOS))
+internal val hubdleAppleTargets = setOf(Apple, IOS, MacOS, WatchOS, TvOS)
 internal val nativeTargets = setOf(Native, IOS, Linux, MacOS, MinGW, WatchOS, TvOS)
 internal val hubdleJvmTargets = setOf(Android, Jvm, JvmAndAndroid)

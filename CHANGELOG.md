@@ -17,6 +17,12 @@
 
 ### Updated
 
+- `io.ktor:ktor-serialization-kotlinx-json -> 2.2.2`
+- `io.ktor:ktor-client-okhttp -> 2.2.2`
+- `io.ktor:ktor-client-mock -> 2.2.2`
+- `io.ktor:ktor-client-core -> 2.2.2`
+- `io.ktor:ktor-client-content-negotiation -> 2.2.2`
+- `io.ktor:ktor-client-cio -> 2.2.2`
 - `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.12.2`
 - `org.jetbrains.compose:compose-gradle-plugin -> 1.2.2`
 - `actions/cache -> v3.2.2`
@@ -28,12 +34,6 @@
 - `actions/setup-java -> v3.9.0`
 - `actions/checkout -> v3.2.0`
 - `com.facebook:ktfmt -> 0.42`
-- `io.ktor:ktor-serialization-kotlinx-json -> 2.2.1`
-- `io.ktor:ktor-client-okhttp -> 2.2.1`
-- `io.ktor:ktor-client-mock -> 2.2.1`
-- `io.ktor:ktor-client-core -> 2.2.1`
-- `io.ktor:ktor-client-content-negotiation -> 2.2.1`
-- `io.ktor:ktor-client-cio -> 2.2.1`
 - `androidx.compose.ui:ui-util -> 1.3.2`
 - `androidx.compose.ui:ui-tooling-preview -> 1.3.2`
 - `androidx.compose.ui:ui-tooling -> 1.3.2`

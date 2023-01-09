@@ -11,7 +11,6 @@ import com.javiersc.hubdle.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.extensions.config.hubdleConfig
 import com.javiersc.hubdle.extensions.kotlin.android.hubdleAndroidAny
-import com.javiersc.hubdle.extensions.kotlin.hubdleKotlinAny
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.hubdleKotlinMultiplatform
 import javax.inject.Inject
 import org.gradle.api.Action
@@ -33,9 +32,6 @@ constructor(
 ) : HubdleConfigurableExtension(project) {
 
     override val isEnabled: Property<Boolean> = property { true }
-
-    override val oneOfExtensions: Set<HubdleEnableableExtension>
-        get() = hubdleKotlinAny
 
     override val requiredExtensions: Set<HubdleEnableableExtension>
         get() = setOf(hubdleConfig)

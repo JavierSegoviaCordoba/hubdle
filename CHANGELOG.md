@@ -6,6 +6,8 @@
 
 ### Changed
 
+- `testing` extension doesn't depends on Kotlin now
+
 ### Deprecated
 
 ### Removed

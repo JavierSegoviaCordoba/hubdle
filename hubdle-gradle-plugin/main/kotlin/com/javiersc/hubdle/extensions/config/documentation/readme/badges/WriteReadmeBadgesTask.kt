@@ -118,7 +118,7 @@ constructor(
 
     private fun buildBuildBadge(): String {
         return "[![Build]" +
-            "($shieldsIoUrl/github/workflow/status/$repoWithoutUrlPrefix/build-kotlin" +
+            "($shieldsIoUrl/github/actions/workflow/status/$repoWithoutUrlPrefix/build-kotlin.yaml" +
             "?label=Build&logo=GitHub)]" +
             "(${repoUrl.get()}/tree/main)"
     }

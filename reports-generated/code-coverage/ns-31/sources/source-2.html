@@ -284,11 +284,12 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;                        }
 &nbsp;                        .map { target -&gt; &quot;$target&quot; }
 &nbsp;
-&nbsp;                val targetsPresets: List&lt;String&gt; = buildList {
+&nbsp;                val targetsPresets: Set&lt;String&gt; = buildSet {
 &nbsp;                    addAll(targets.map(KotlinTarget::getName))
 &nbsp;                    addAll(presets.map(KotlinTargetPreset&lt;*&gt;::getName))
+&nbsp;                    addAll(hubdleTargets)
 &nbsp;                }
-&nbsp;                configureDefaultKotlinSourceSets((hubdleTargets + targetsPresets).toSet())
+&nbsp;                configureDefaultKotlinSourceSets(targetsPresets)
 &nbsp;            }
 &nbsp;        }
 &nbsp;        configurableMavenPublishing(configEmptyJavaDocs = true)
@@ -323,7 +324,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2023-01-09 00:46</div>
+    <div style="float:right;">generated on 2023-01-09 12:05</div>
 </div>
 </body>
 </html>

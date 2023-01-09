@@ -14,11 +14,11 @@
 
 ## Complexity Report
 
-* 12,535 lines of code (loc)
+* 12,536 lines of code (loc)
 
-* 10,337 source lines of code (sloc)
+* 10,338 source lines of code (sloc)
 
-* 6,842 logical lines of code (lloc)
+* 6,843 logical lines of code (lloc)
 
 * 68 comment lines of code (cloc)
 
@@ -1331,4 +1331,4 @@ Private property `apiValidationExtension` is unused.
 
 ```
 
-generated with [detekt version 1.22.0](https://detekt.dev/) on 2023-01-09 00:10:04 UTC
+generated with [detekt version 1.22.0](https://detekt.dev/) on 2023-01-09 11:58:47 UTC

@@ -116,7 +116,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/15)
+    (0/16)
   </span>
 </td>
 <td class="coverageStat">
@@ -124,7 +124,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/94)
+    (0/93)
   </span>
 </td>
   </tr>
@@ -232,7 +232,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/64)
+    (0/65)
   </span>
 </td>
 <td class="coverageStat">
@@ -240,7 +240,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/459)
+    (0/458)
   </span>
 </td>
 </tr>
@@ -420,11 +420,12 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="nc">&nbsp;                        }</b>
 <b class="nc">&nbsp;                        .map { target -&gt; &quot;$target&quot; }</b>
 &nbsp;
-<b class="nc">&nbsp;                val targetsPresets: List&lt;String&gt; = buildList {</b>
+<b class="nc">&nbsp;                val targetsPresets: Set&lt;String&gt; = buildSet {</b>
 <b class="nc">&nbsp;                    addAll(targets.map(KotlinTarget::getName))</b>
 <b class="nc">&nbsp;                    addAll(presets.map(KotlinTargetPreset&lt;*&gt;::getName))</b>
+<b class="nc">&nbsp;                    addAll(hubdleTargets)</b>
 <b class="nc">&nbsp;                }</b>
-<b class="nc">&nbsp;                configureDefaultKotlinSourceSets((hubdleTargets + targetsPresets).toSet())</b>
+<b class="nc">&nbsp;                configureDefaultKotlinSourceSets(targetsPresets)</b>
 &nbsp;            }
 &nbsp;        }
 <b class="nc">&nbsp;        configurableMavenPublishing(configEmptyJavaDocs = true)</b>
@@ -459,7 +460,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2023-01-09 00:46</div>
+    <div style="float:right;">generated on 2023-01-09 12:05</div>
 </div>
 </body>
 </html>

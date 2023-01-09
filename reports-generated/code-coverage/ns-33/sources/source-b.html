@@ -245,7 +245,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
 &nbsp;import com.javiersc.hubdle.extensions.apis.enableAndExecute
 &nbsp;import com.javiersc.hubdle.extensions.kotlin.multiplatform.hubdleKotlinMultiplatform
-&nbsp;import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.macos.HubdleKotlinMultiplatformMacOSX64Extension
+&nbsp;import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.mingw.HubdleKotlinMultiplatformMinGWX64Extension
 &nbsp;import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.mingw.HubdleKotlinMultiplatformMinGWX86Extension
 &nbsp;import javax.inject.Inject
 &nbsp;import org.gradle.api.Action
@@ -267,7 +267,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;    override val project: Project
 <b class="nc">&nbsp;        get() = super.project</b>
 &nbsp;
-<b class="nc">&nbsp;    override val isEnabled: Property&lt;Boolean&gt; = property { true }</b>
+<b class="nc">&nbsp;    override val isEnabled: Property&lt;Boolean&gt; = property { false }</b>
 &nbsp;
 <b class="nc">&nbsp;    override val priority: Priority = Priority.P3</b>
 &nbsp;
@@ -283,11 +283,11 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;    override val requiredExtensions: Set&lt;HubdleEnableableExtension&gt;
 <b class="nc">&nbsp;        get() = setOf(hubdleKotlinMultiplatform)</b>
 &nbsp;
-&nbsp;    public val mingwX64: HubdleKotlinMultiplatformMacOSX64Extension
+&nbsp;    public val mingwX64: HubdleKotlinMultiplatformMinGWX64Extension
 <b class="nc">&nbsp;        get() = getHubdleExtension()</b>
 &nbsp;
 &nbsp;    @HubdleDslMarker
-<b class="nc">&nbsp;    public fun mingwX64(action: Action&lt;HubdleKotlinMultiplatformMacOSX64Extension&gt; = Action {}) {</b>
+<b class="nc">&nbsp;    public fun mingwX64(action: Action&lt;HubdleKotlinMultiplatformMinGWX64Extension&gt; = Action {}) {</b>
 <b class="nc">&nbsp;        mingwX64.enableAndExecute(action)</b>
 &nbsp;    }
 &nbsp;
@@ -306,7 +306,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="nc">&nbsp;                mingwX86()</b>
 &nbsp;            }
 &nbsp;        }
-<b class="nc">&nbsp;        configurable(priority = Priority.P4) {</b>
+<b class="nc">&nbsp;        configurable(priority = Priority.P6) {</b>
 <b class="nc">&nbsp;            configure&lt;KotlinMultiplatformExtension&gt; {</b>
 <b class="nc">&nbsp;                val commonMain: KotlinSourceSet by sourceSets.getting</b>
 <b class="nc">&nbsp;                val mingwX64Main: KotlinSourceSet? = sourceSets.findByName(&quot;mingwX64Main&quot;)</b>
@@ -366,7 +366,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2023-01-09 00:46</div>
+    <div style="float:right;">generated on 2023-01-09 12:05</div>
 </div>
 </body>
 </html>

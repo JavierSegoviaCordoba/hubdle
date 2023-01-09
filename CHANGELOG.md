@@ -17,6 +17,7 @@
 
 ### Updated
 
+- `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.12.2`
 - `org.jetbrains.compose:compose-gradle-plugin -> 1.2.2`
 - `actions/cache -> v3.2.2`
 - `com.squareup.okhttp3:okhttp -> 5.0.0-alpha.11`
@@ -24,7 +25,6 @@
 - `com.squareup.okhttp3:mockwebserver3-junit4 -> 5.0.0-alpha.11`
 - `com.squareup.okhttp3:mockwebserver -> 5.0.0-alpha.11`
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.11.0`
-- `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.12.1`
 - `actions/setup-java -> v3.9.0`
 - `actions/checkout -> v3.2.0`
 - `com.facebook:ktfmt -> 0.42`

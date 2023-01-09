@@ -17,6 +17,7 @@
 
 ### Updated
 
+- `com.squareup.okio:okio -> 3.3.0`
 - `com.diffplug.spotless:spotless-plugin-gradle -> 6.12.1`
 - `io.ktor:ktor-serialization-kotlinx-json -> 2.2.2`
 - `io.ktor:ktor-client-okhttp -> 2.2.2`

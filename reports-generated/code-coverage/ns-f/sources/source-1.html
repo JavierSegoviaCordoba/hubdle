@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html id="htmlId">
 <head>
-  <title>Coverage Report > AddChangelogItemTask</title>
+  <title>Coverage Report > HubdleConfigDocumentationReadmeExtension</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/idea.min.css";
@@ -18,10 +18,10 @@
 <div class="breadCrumbs">
 Current scope:     <a href="../../index.html">all classes</a>
     <span class="separator">|</span>
-    <a href="../index.html">com.javiersc.hubdle.extensions.config.documentation.changelog</a>
+    <a href="../index.html">com.javiersc.hubdle.extensions.config.documentation.readme</a>
 </div>
 
-<h1>Coverage Summary for Class: AddChangelogItemTask (com.javiersc.hubdle.extensions.config.documentation.changelog)</h1>
+<h1>Coverage Summary for Class: HubdleConfigDocumentationReadmeExtension (com.javiersc.hubdle.extensions.config.documentation.readme)</h1>
 
 <table class="coverageStats">
 
@@ -45,48 +45,13 @@ Current scope:     <a href="../../index.html">all classes</a>
 </th>
 </tr>
 <tr>
-  <td class="name">AddChangelogItemTask</td>
+  <td class="name">HubdleConfigDocumentationReadmeExtension</td>
 <td class="coverageStat">
   <span class="percent">
     0%
   </span>
   <span class="absValue">
-    (0/3)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/2)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/22)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/145)
-  </span>
-</td>
-</tr>
-  <tr>
-    <td class="name">AddChangelogItemTask$Companion</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/1)
+    (0/5)
   </span>
 </td>
     <td class="coverageStat"/>
@@ -95,7 +60,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/1)
+    (0/6)
   </span>
 </td>
 <td class="coverageStat">
@@ -103,9 +68,17 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/2)
+    (0/42)
   </span>
 </td>
+</tr>
+  <tr>
+    <td class="name">HubdleConfigDocumentationReadmeExtension$special$$inlined$getHubdleExtension$1</td>
+    <td class="coverageStat"/>
+  </tr>
+  <tr>
+    <td class="name">HubdleConfigDocumentationReadmeExtension$special$$inlined$property$hubdle_gradle_plugin$1</td>
+    <td class="coverageStat"/>
   </tr>
 <tr>
   <td class="name"><strong>Total</strong></td>
@@ -114,7 +87,16 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/4)
+    (0/5)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/6)
   </span>
 </td>
 <td class="coverageStat">
@@ -122,23 +104,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/2)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/23)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/147)
+    (0/42)
   </span>
 </td>
 </tr>
@@ -149,269 +115,42 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.extensions.config.documentation.changelog
+<code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.extensions.config.documentation.readme
 &nbsp;
-&nbsp;import com.javiersc.hubdle.extensions.config.documentation.changelog._internal.Changelog
-&nbsp;import com.javiersc.hubdle.extensions.config.documentation.changelog._internal.changelogFile
-&nbsp;import com.javiersc.hubdle.extensions.config.documentation.changelog._internal.fromString
-&nbsp;import com.javiersc.kotlin.stdlib.isNotNullNorEmpty
-&nbsp;import java.io.File
+&nbsp;import com.javiersc.hubdle.extensions.HubdleDslMarker
+&nbsp;import com.javiersc.hubdle.extensions._internal.getHubdleExtension
+&nbsp;import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
+&nbsp;import com.javiersc.hubdle.extensions.apis.enableAndExecute
+&nbsp;import com.javiersc.hubdle.extensions.config.documentation.hubdleDocumentation
+&nbsp;import com.javiersc.hubdle.extensions.config.documentation.readme.badges.HubdleConfigDocumentationReadmeBadgesExtension
 &nbsp;import javax.inject.Inject
-&nbsp;import org.eclipse.jgit.api.Git
-&nbsp;import org.eclipse.jgit.lib.Constants
-&nbsp;import org.eclipse.jgit.lib.Repository
-&nbsp;import org.eclipse.jgit.revwalk.RevCommit
-&nbsp;import org.eclipse.jgit.storage.file.FileRepositoryBuilder
-&nbsp;import org.gradle.api.DefaultTask
+&nbsp;import org.gradle.api.Action
 &nbsp;import org.gradle.api.Project
-&nbsp;import org.gradle.api.model.ObjectFactory
 &nbsp;import org.gradle.api.provider.Property
-&nbsp;import org.gradle.api.tasks.Input
-&nbsp;import org.gradle.api.tasks.Optional
-&nbsp;import org.gradle.api.tasks.TaskAction
-&nbsp;import org.gradle.api.tasks.options.Option
-&nbsp;import org.gradle.kotlin.dsl.property
 &nbsp;
-&nbsp;public abstract class AddChangelogItemTask @Inject constructor(objects: ObjectFactory) :
-<b class="nc">&nbsp;    DefaultTask() {</b>
+&nbsp;@HubdleDslMarker
+&nbsp;public open class HubdleConfigDocumentationReadmeExtension
+&nbsp;@Inject
+&nbsp;constructor(
+&nbsp;    project: Project,
+<b class="nc">&nbsp;) : HubdleEnableableExtension(project) {</b>
 &nbsp;
-&nbsp;    @Input
-&nbsp;    @Option(option = &quot;added&quot;, description = &quot;Add an item to the `added` section&quot;)
-&nbsp;    @Optional
-<b class="nc">&nbsp;    public val added: Property&lt;String?&gt; = objects.property()</b>
+<b class="nc">&nbsp;    override val isEnabled: Property&lt;Boolean&gt; = property { false }</b>
 &nbsp;
-&nbsp;    @Input
-&nbsp;    @Option(option = &quot;changed&quot;, description = &quot;Add an item to the `changed` section&quot;)
-&nbsp;    @Optional
-<b class="nc">&nbsp;    public val changed: Property&lt;String?&gt; = objects.property()</b>
+&nbsp;    override val requiredExtensions: Set&lt;HubdleEnableableExtension&gt;
+<b class="nc">&nbsp;        get() = setOf(hubdleDocumentation)</b>
 &nbsp;
-&nbsp;    @Input
-&nbsp;    @Option(option = &quot;deprecated&quot;, description = &quot;Add an item to the `deprecated` section&quot;)
-&nbsp;    @Optional
-<b class="nc">&nbsp;    public val deprecated: Property&lt;String?&gt; = objects.property()</b>
+&nbsp;    public val badges: HubdleConfigDocumentationReadmeBadgesExtension
+<b class="nc">&nbsp;        get() = getHubdleExtension()</b>
 &nbsp;
-&nbsp;    @Input
-&nbsp;    @Option(option = &quot;removed&quot;, description = &quot;Add an item to the `removed` section&quot;)
-&nbsp;    @Optional
-<b class="nc">&nbsp;    public val removed: Property&lt;String?&gt; = objects.property()</b>
-&nbsp;
-&nbsp;    @Input
-&nbsp;    @Option(option = &quot;fixed&quot;, description = &quot;Add an item to the `fixed` section&quot;)
-&nbsp;    @Optional
-<b class="nc">&nbsp;    public val fixed: Property&lt;String?&gt; = objects.property()</b>
-&nbsp;
-&nbsp;    @Input
-&nbsp;    @Option(option = &quot;updated&quot;, description = &quot;Add an item to the `updated` section&quot;)
-&nbsp;    @Optional
-<b class="nc">&nbsp;    public val updated: Property&lt;String?&gt; = objects.property()</b>
-&nbsp;
-&nbsp;    @Input
-&nbsp;    @Option(
-&nbsp;        option = &quot;renovate&quot;,
-&nbsp;        description = &quot;Extract dependencies from the table in the PR body&quot;,
-&nbsp;    )
-&nbsp;    @Optional
-<b class="nc">&nbsp;    public val renovate: Property&lt;String?&gt; = objects.property()</b>
-&nbsp;
-&nbsp;    @Input
-&nbsp;    @Option(
-&nbsp;        option = &quot;renovatePath&quot;,
-&nbsp;        description = &quot;Extract dependencies from the table in the PR body from a file&quot;,
-&nbsp;    )
-&nbsp;    @Optional
-<b class="nc">&nbsp;    public val renovatePath: Property&lt;String?&gt; = objects.property()</b>
-&nbsp;
-&nbsp;    @Input
-&nbsp;    @Option(
-&nbsp;        option = &quot;renovateCommitTable&quot;,
-&nbsp;        description =
-&nbsp;            &quot;&quot;&quot;
-&nbsp;               Extract dependencies from the table in the commit body
-&nbsp;               Add `&quot;commitBodyTable&quot;: true` to Renovate config
-&nbsp;            &quot;&quot;&quot;,
-&nbsp;    )
-<b class="nc">&nbsp;    public val renovateCommitTable: Property&lt;Boolean&gt; =</b>
-<b class="nc">&nbsp;        objects.property&lt;Boolean&gt;().convention(false)</b>
-&nbsp;
-<b class="nc">&nbsp;    init {</b>
-<b class="nc">&nbsp;        group = &quot;changelog&quot;</b>
-<b class="nc">&nbsp;    }</b>
-&nbsp;
-&nbsp;    @TaskAction
-&nbsp;    public fun run() {
-<b class="nc">&nbsp;        check(project.changelogFile.exists()) { &quot;CHANGELOG.md file doesn&#39;t found&quot; }</b>
-<b class="nc">&nbsp;        setupSection(&quot;### Added&quot;, added.orNull)</b>
-<b class="nc">&nbsp;        setupSection(&quot;### Changed&quot;, changed.orNull)</b>
-<b class="nc">&nbsp;        setupSection(&quot;### Deprecated&quot;, deprecated.orNull)</b>
-<b class="nc">&nbsp;        setupSection(&quot;### Removed&quot;, removed.orNull)</b>
-<b class="nc">&nbsp;        setupSection(&quot;### Fixed&quot;, fixed.orNull)</b>
-<b class="nc">&nbsp;        setupSection(&quot;### Updated&quot;, updated.orNull)</b>
-<b class="nc">&nbsp;        setupRenovate()</b>
-&nbsp;    }
-&nbsp;
-<b class="nc">&nbsp;    public companion object {</b>
-&nbsp;        public const val name: String = &quot;addChangelogItem&quot;
+&nbsp;    @HubdleDslMarker
+<b class="nc">&nbsp;    public fun badges(action: Action&lt;HubdleConfigDocumentationReadmeBadgesExtension&gt; = Action {}) {</b>
+<b class="nc">&nbsp;        badges.enableAndExecute(action)</b>
 &nbsp;    }
 &nbsp;}
 &nbsp;
-&nbsp;private val Project.changelog: String
-&nbsp;    get() = changelogFile.readText()
-&nbsp;
-&nbsp;private fun AddChangelogItemTask.setupSection(header: String, item: String?) {
-&nbsp;    if (item.isNotNullNorEmpty()) {
-&nbsp;        with(project) {
-&nbsp;            val updatedChangelog = changelog.addChanges(header, listOf(item))
-&nbsp;            changelogFile.writeText(updatedChangelog.toString())
-&nbsp;        }
-&nbsp;    }
-&nbsp;}
-&nbsp;
-&nbsp;private fun AddChangelogItemTask.setupRenovate(): Unit =
-&nbsp;    with(project) {
-&nbsp;        val dependenciesFromPullRequest: List&lt;String&gt; =
-&nbsp;            dependenciesFromRenovatePullRequestBody(renovate.orNull, renovatePath.orNull)
-&nbsp;
-&nbsp;        val dependenciesFromCommit: List&lt;String&gt; =
-&nbsp;            if (renovateCommitTable.get()) dependenciesFromRenovateCommit() else emptyList()
-&nbsp;
-&nbsp;        val updatedLabel = &quot;### Updated&quot;
-&nbsp;
-&nbsp;        when {
-&nbsp;            dependenciesFromPullRequest.isNotEmpty() -&gt; {
-&nbsp;                logger.lifecycle(updatedLabel)
-&nbsp;                for (dependencyFromPullRequest in dependenciesFromPullRequest) {
-&nbsp;                    logger.lifecycle(&quot;- $dependencyFromPullRequest&quot;)
-&nbsp;                }
-&nbsp;
-&nbsp;                val updatedChangelog =
-&nbsp;                    changelog.addChanges(updatedLabel, dependenciesFromPullRequest)
-&nbsp;                changelogFile.writeText(updatedChangelog.toString())
-&nbsp;            }
-&nbsp;            dependenciesFromCommit.isNotEmpty() -&gt; {
-&nbsp;                logger.lifecycle(updatedLabel)
-&nbsp;                for (dependencyFromCommit in dependenciesFromCommit) {
-&nbsp;                    logger.lifecycle(&quot;- $dependencyFromCommit&quot;)
-&nbsp;                }
-&nbsp;
-&nbsp;                val updatedChangelog = changelog.addChanges(updatedLabel, dependenciesFromCommit)
-&nbsp;                changelogFile.writeText(updatedChangelog.toString())
-&nbsp;            }
-&nbsp;        }
-&nbsp;    }
-&nbsp;
-&nbsp;private fun String.addChanges(header: String, changes: List&lt;String&gt;): Changelog =
-&nbsp;    buildList&lt;String&gt; {
-&nbsp;            val firstVersionIndex =
-&nbsp;                lines().indexOfFirst {
-&nbsp;                    val isUnreleased: Boolean =
-&nbsp;                        it.contains(&quot;## [Unreleased]&quot;, true) || it.contains(&quot;## Unreleased&quot;, true)
-&nbsp;                    val isNotUnreleased = !isUnreleased
-&nbsp;                    val isHeader = it.startsWith(&quot;## [&quot;) || it.startsWith(&quot;## &quot;)
-&nbsp;
-&nbsp;                    isHeader &amp;&amp; isNotUnreleased
-&nbsp;                }
-&nbsp;            var shouldAddUpdate = true
-&nbsp;            lines().onEach { line -&gt;
-&nbsp;                if (line.startsWith(header) &amp;&amp; shouldAddUpdate) {
-&nbsp;                    shouldAddUpdate = false
-&nbsp;                    add(line)
-&nbsp;                    for (change in changes) {
-&nbsp;                        if (lines().subList(0, firstVersionIndex).none { it.contains(change) }) {
-&nbsp;                            add(&quot;- $change&quot;)
-&nbsp;                        }
-&nbsp;                    }
-&nbsp;                } else {
-&nbsp;                    add(line)
-&nbsp;                }
-&nbsp;            }
-&nbsp;            runCatching {
-&nbsp;                forEachIndexed { index: Int, line -&gt;
-&nbsp;                    val updateRegex = &quot;&quot;&quot;(- `)(.*)( )(-&gt;)( )(.*)(`)&quot;&quot;&quot;
-&nbsp;                    if (Regex(updateRegex).matches(line)) {
-&nbsp;                        for (j in index + 1 until firstVersionIndex) {
-&nbsp;                            val lineToRemove = this[j]
-&nbsp;                            val shouldRemovePreviousUpdate =
-&nbsp;                                lineToRemove.module == line.module &amp;&amp;
-&nbsp;                                    Regex(updateRegex).matches(lineToRemove)
-&nbsp;
-&nbsp;                            if (shouldRemovePreviousUpdate) removeAt(j)
-&nbsp;                        }
-&nbsp;                    }
-&nbsp;                }
-&nbsp;            }
-&nbsp;        }
-&nbsp;        .joinToString(&quot;\n&quot;)
-&nbsp;        .run(Changelog.Companion::fromString)
-&nbsp;
-&nbsp;private fun Project.dependenciesFromRenovatePullRequestBody(
-&nbsp;    body: String?,
-&nbsp;    path: String?
-&nbsp;): List&lt;String&gt; {
-&nbsp;    val renovateLines: List&lt;String&gt; =
-&nbsp;        when {
-&nbsp;            body?.isNotBlank() == true -&gt; body.split(&quot;&quot;&quot;\n&quot;&quot;&quot;)
-&nbsp;            path?.isNotBlank() == true -&gt; File(&quot;$rootDir/$path&quot;).readText().split(&quot;\n&quot;)
-&nbsp;            else -&gt; emptyList()
-&nbsp;        }
-&nbsp;
-&nbsp;    return renovateLines
-&nbsp;        .asSequence()
-&nbsp;        .filter(String::isNotBlank)
-&nbsp;        .map { it.replace(&quot;&quot;&quot;\n&quot;&quot;&quot;, &quot;\n&quot;) }
-&nbsp;        .dropWhile { it.startsWith(&quot;| Package | Change |&quot;).not() }
-&nbsp;        .dropWhile { it.startsWith(&quot;|---&quot;).not() }
-&nbsp;        .drop(1)
-&nbsp;        .takeWhile { it.startsWith(&quot;| &quot;) }
-&nbsp;        .flatMap { it.split(&quot;|&quot;) }
-&nbsp;        .map { it.replace(&quot; &quot;, &quot;&quot;) }
-&nbsp;        .map { if (it.startsWith(&quot;`&quot;).not()) it else it.replace(&quot;`&quot;, &quot;&quot;).split(&quot;-&gt;&quot;)[1] }
-&nbsp;        .filter(String::isNotBlank)
-&nbsp;        .filter { it.startsWith(&quot;[!&quot;).not() }
-&nbsp;        .map { if (it.startsWith(&quot;[&quot;)) it.drop(1).takeWhile { char -&gt; char != &#39;]&#39; } else it }
-&nbsp;        .zipWithNext { a: String, b: String -&gt;
-&nbsp;            if (a.first().run { isLetter() || this == &#39;[&#39; }) &quot;`$a -&gt; $b`&quot; else null
-&nbsp;        }
-&nbsp;        .filterNotNull()
-&nbsp;        .toList()
-&nbsp;}
-&nbsp;
-&nbsp;private fun Project.dependenciesFromRenovateCommit(): List&lt;String&gt; {
-&nbsp;    val gitFolder = File(&quot;${rootProject.rootDir}&quot;).walkTopDown().first { it.name == &quot;.git&quot; }
-&nbsp;
-&nbsp;    val repository: Repository =
-&nbsp;        FileRepositoryBuilder().setGitDir(gitFolder).readEnvironment().findGitDir().build()
-&nbsp;
-&nbsp;    val head = repository.resolve(Constants.HEAD).name
-&nbsp;
-&nbsp;    val commits: List&lt;RevCommit&gt; =
-&nbsp;        Git(repository).log().add(repository.resolve(head)).call().toList()
-&nbsp;
-&nbsp;    val latestCommit: RevCommit =
-&nbsp;        commits.first { commit -&gt;
-&nbsp;            listOf(&quot;datasource&quot;, &quot;package&quot;, &quot;from&quot;, &quot;to&quot;).all { keyword -&gt;
-&nbsp;                keyword in commit.fullMessage
-&nbsp;            }
-&nbsp;        }
-&nbsp;
-&nbsp;    return latestCommit.fullMessage
-&nbsp;        .lines()
-&nbsp;        .dropWhile { it.startsWith(&quot;| ----&quot;).not() }
-&nbsp;        .drop(1)
-&nbsp;        .dropLastWhile { it.startsWith(&quot;|&quot;).not() &amp;&amp; it.endsWith(&quot;|&quot;).not() }
-&nbsp;        .map {
-&nbsp;            val data = it.filterNot(Char::isWhitespace).split(&quot;|&quot;).drop(2).dropLast(1)
-&nbsp;            &quot;`${data.first()} -&gt; ${data.last()}`&quot;
-&nbsp;        }
-&nbsp;        .distinct()
-&nbsp;}
-&nbsp;
-&nbsp;private val String.module: String
-&nbsp;    get() =
-&nbsp;        filterNot(Char::isWhitespace)
-&nbsp;            .replace(&quot;`&quot;, &quot;&quot;)
-&nbsp;            .replaceAfter(&quot;-&gt;&quot;, &quot;&quot;)
-&nbsp;            .replace(&quot;-&gt;&quot;, &quot;&quot;)
-&nbsp;            .drop(1)
+&nbsp;internal val HubdleEnableableExtension.hubdleReadme: HubdleConfigDocumentationReadmeExtension
+&nbsp;    get() = getHubdleExtension()
 </code>
 </pre>
 </div>
@@ -435,7 +174,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-12-25 11:18</div>
+    <div style="float:right;">generated on 2023-01-09 00:46</div>
 </div>
 </body>
 </html>

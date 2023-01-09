@@ -1,0 +1,229 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > HubdleConfigNexusExtensionKt</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.javiersc.hubdle.extensions.config.nexus</a>
+</div>
+
+<h1>Coverage Summary for Class: HubdleConfigNexusExtensionKt (com.javiersc.hubdle.extensions.config.nexus)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">HubdleConfigNexusExtensionKt</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">HubdleConfigNexusExtensionKt$special$$inlined$getHubdleExtension$1</td>
+    <td class="coverageStat"/>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.extensions.config.nexus
+&nbsp;
+&nbsp;import com.javiersc.gradle.properties.extensions.getPropertyOrNull
+&nbsp;import com.javiersc.hubdle.HubdleProperty.Nexus
+&nbsp;import com.javiersc.hubdle.extensions.HubdleDslMarker
+&nbsp;import com.javiersc.hubdle.extensions._internal.ApplicablePlugin.Scope
+&nbsp;import com.javiersc.hubdle.extensions._internal.Configurable.Priority
+&nbsp;import com.javiersc.hubdle.extensions._internal.PluginId
+&nbsp;import com.javiersc.hubdle.extensions._internal.getHubdleExtension
+&nbsp;import com.javiersc.hubdle.extensions.apis.HubdleConfigurableExtension
+&nbsp;import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
+&nbsp;import com.javiersc.hubdle.extensions.config.hubdleConfig
+&nbsp;import io.github.gradlenexus.publishplugin.NexusPublishException
+&nbsp;import io.github.gradlenexus.publishplugin.NexusPublishExtension
+&nbsp;import java.time.Duration
+&nbsp;import javax.inject.Inject
+&nbsp;import org.gradle.api.Action
+&nbsp;import org.gradle.api.Project
+&nbsp;import org.gradle.api.provider.Property
+&nbsp;import org.gradle.kotlin.dsl.configure
+&nbsp;
+&nbsp;@HubdleDslMarker
+&nbsp;public open class HubdleConfigNexusExtension
+&nbsp;@Inject
+&nbsp;constructor(
+&nbsp;    project: Project,
+&nbsp;) : HubdleConfigurableExtension(project) {
+&nbsp;
+&nbsp;    override val isEnabled: Property&lt;Boolean&gt; = property { false }
+&nbsp;
+&nbsp;    override val requiredExtensions: Set&lt;HubdleEnableableExtension&gt;
+&nbsp;        get() = setOf(hubdleConfig)
+&nbsp;
+&nbsp;    override val priority: Priority = Priority.P3
+&nbsp;
+&nbsp;    @HubdleDslMarker
+&nbsp;    public fun nexusPublishing(action: Action&lt;NexusPublishException&gt; = Action {}) {
+&nbsp;        userConfigurable { action.execute(the()) }
+&nbsp;    }
+&nbsp;
+&nbsp;    override fun Project.defaultConfiguration() {
+&nbsp;        applicablePlugin(
+&nbsp;            priority = Priority.P4,
+&nbsp;            scope = Scope.CurrentProject,
+&nbsp;            pluginId = PluginId.GithubGradleNexusPublishPlugin
+&nbsp;        )
+&nbsp;
+&nbsp;        configurable {
+&nbsp;            configure&lt;NexusPublishExtension&gt; {
+&nbsp;                repositoryDescription.set(&quot;${rootProject.group} - ${rootProject.version}&quot;)
+&nbsp;
+&nbsp;                repositories { container -&gt;
+&nbsp;                    container.sonatype { nexusRepository -&gt;
+&nbsp;                        val nexusUrl = getPropertyOrNull(Nexus.nexusUrl)
+&nbsp;                        val snapshotRepositoryUrl =
+&nbsp;                            getPropertyOrNull(Nexus.nexusSnapshotRepositoryUrl)
+&nbsp;                        if (nexusUrl != null &amp;&amp; snapshotRepositoryUrl != null) {
+&nbsp;                            nexusRepository.nexusUrl.set(uri(nexusUrl))
+&nbsp;                            nexusRepository.snapshotRepositoryUrl.set(uri(snapshotRepositoryUrl))
+&nbsp;                        }
+&nbsp;                        nexusRepository.username.set(getPropertyOrNull(Nexus.nexusUser))
+&nbsp;                        nexusRepository.password.set(getPropertyOrNull(Nexus.nexusToken))
+&nbsp;                        nexusRepository.stagingProfileId.set(
+&nbsp;                            getPropertyOrNull(Nexus.nexusStagingProfileId)
+&nbsp;                        )
+&nbsp;                    }
+&nbsp;                }
+&nbsp;
+&nbsp;                connectTimeout.set(Duration.ofMinutes(DEFAULT_CONNECT_TIMEOUT))
+&nbsp;                clientTimeout.set(Duration.ofMinutes(DEFAULT_CLIENT_TIMEOUT))
+&nbsp;
+&nbsp;                transitionCheckOptions { options -&gt;
+&nbsp;                    options.maxRetries.set(DEFAULT_MAX_RETRIES)
+&nbsp;                    options.delayBetween.set(Duration.ofSeconds(DEFAULT_DELAY_BETWEEN))
+&nbsp;                }
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    internal companion object {
+&nbsp;        private const val DEFAULT_CONNECT_TIMEOUT = 30L
+&nbsp;        private const val DEFAULT_CLIENT_TIMEOUT = 30L
+&nbsp;        private const val DEFAULT_MAX_RETRIES = 200
+&nbsp;        private const val DEFAULT_DELAY_BETWEEN = 10L
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;internal val HubdleEnableableExtension.hubdleNexus: HubdleConfigNexusExtension
+<b class="nc">&nbsp;    get() = getHubdleExtension()</b>
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-01-09 00:46</div>
+</div>
+</body>
+</html>

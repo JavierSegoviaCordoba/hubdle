@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html id="htmlId">
 <head>
-  <title>Coverage Report > ConfigureConfigLanguageSettingsKt</title>
+  <title>Coverage Report > Hubdle_dependencies_listKt</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/idea.min.css";
@@ -18,15 +18,18 @@
 <div class="breadCrumbs">
 Current scope:     <a href="../../index.html">all classes</a>
     <span class="separator">|</span>
-    <a href="../index.html">com.javiersc.hubdle.extensions.config.language.settings._internal</a>
+    <a href="../index.html">com.javiersc.hubdle.extensions.dependencies._internal</a>
 </div>
 
-<h1>Coverage Summary for Class: ConfigureConfigLanguageSettingsKt (com.javiersc.hubdle.extensions.config.language.settings._internal)</h1>
+<h1>Coverage Summary for Class: Hubdle_dependencies_listKt (com.javiersc.hubdle.extensions.dependencies._internal)</h1>
 
 <table class="coverageStats">
-
 <tr>
   <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
 <th class="coverageStat 
 ">
   Method, %
@@ -45,46 +48,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 </th>
 </tr>
 <tr>
-  <td class="name">ConfigureConfigLanguageSettingsKt</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/2)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/20)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/16)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/93)
-  </span>
-</td>
-</tr>
-  <tr>
-    <td class="name">ConfigureConfigLanguageSettingsKt$configureConfigLanguageSettings$$inlined$the$1</td>
-    <td class="coverageStat"/>
-  </tr>
-  <tr>
-    <td class="name">ConfigureConfigLanguageSettingsKt$configureConfigLanguageSettings$1</td>
+  <td class="name">Hubdle_dependencies_listKt</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -99,33 +63,6 @@ Current scope:     <a href="../../index.html">all classes</a>
   </span>
   <span class="absValue">
     (0/2)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/2)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/20)
-  </span>
-</td>
-  </tr>
-  <tr>
-    <td class="name">ConfigureConfigLanguageSettingsKt$configureConfigLanguageSettings$1$1</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/1)
   </span>
 </td>
     <td class="coverageStat"/>
@@ -134,7 +71,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/1)
+    (0/104)
   </span>
 </td>
 <td class="coverageStat">
@@ -142,45 +79,11 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/4)
-  </span>
-</td>
-  </tr>
-<tr>
-  <td class="name"><strong>Total</strong></td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/4)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/22)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/19)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/117)
+    (0/415)
   </span>
 </td>
 </tr>
+
 </table>
 
 <br/>
@@ -188,45 +91,113 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.extensions.config.language.settings._internal
+<code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.extensions.dependencies._internal
 &nbsp;
-&nbsp;import com.javiersc.hubdle.extensions._internal.state.HubdleState.Config.LanguageSettings
-&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
-&nbsp;import com.javiersc.hubdle.extensions.config._internal.hasKotlinGradlePlugin
-&nbsp;import org.gradle.api.Project
-&nbsp;import org.gradle.kotlin.dsl.the
-&nbsp;import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
-&nbsp;import org.jetbrains.kotlin.gradle.plugin.LanguageSettingsBuilder
-&nbsp;
-&nbsp;internal fun configureConfigLanguageSettings(project: Project) {
-<b class="nc">&nbsp;    if (project.hasKotlinGradlePlugin) {</b>
-<b class="nc">&nbsp;        val languageSettingsState = project.hubdleState.config.languageSettings</b>
-<b class="nc">&nbsp;        project.the&lt;KotlinProjectExtension&gt;().sourceSets.all { set -&gt;</b>
-<b class="nc">&nbsp;            set.languageSettings { configureOptIn(languageSettingsState) }</b>
-&nbsp;
-<b class="nc">&nbsp;            languageSettingsState.rawConfig.languageSettings?.execute(set.languageSettings)</b>
-&nbsp;        }
-&nbsp;    }
-&nbsp;}
-&nbsp;
-&nbsp;private fun LanguageSettingsBuilder.configureOptIn(languageSettingsState: LanguageSettings) {
-<b class="nc">&nbsp;    with(languageSettingsState) {</b>
-<b class="nc">&nbsp;        for (optIn in optIns) {</b>
-<b class="nc">&nbsp;            optIn(optIn)</b>
-&nbsp;        }
-&nbsp;
-<b class="nc">&nbsp;        if (experimentalContracts) optIn(&quot;kotlin.contracts.ExperimentalContracts&quot;)</b>
-<b class="nc">&nbsp;        if (experimentalCoroutinesApi) optIn(&quot;kotlinx.coroutines.ExperimentalCoroutinesApi&quot;)</b>
-<b class="nc">&nbsp;        if (experimentalSerializationApi) {</b>
-<b class="nc">&nbsp;            optIn(&quot;kotlinx.serialization.ExperimentalSerializationApi&quot;)</b>
-&nbsp;        }
-<b class="nc">&nbsp;        if (experimentalStdlibApi) optIn(&quot;kotlin.ExperimentalStdlibApi&quot;)</b>
-<b class="nc">&nbsp;        if (experimentalTime) optIn(&quot;kotlin.time.ExperimentalTime&quot;)</b>
-<b class="nc">&nbsp;        if (flowPreview) optIn(&quot;kotlinx.coroutines.FlowPreview&quot;)</b>
-<b class="nc">&nbsp;        if (ktorInternalAPI) optIn(&quot;io.ktor.util.InternalAPI&quot;)</b>
-<b class="nc">&nbsp;        if (requiresOptIn) optIn(&quot;kotlin.RequiresOptIn&quot;)</b>
-<b class="nc">&nbsp;    }</b>
-&nbsp;}
+<b class="nc">&nbsp;internal val hubdleDependencies: List&lt;String&gt; =</b>
+<b class="nc">&nbsp;    listOf(</b>
+<b class="nc">&nbsp;        &quot;androidx.activity:activity-compose:1.6.1&quot;,</b>
+<b class="nc">&nbsp;        &quot;androidx.activity:activity-ktx:1.6.1&quot;,</b>
+<b class="nc">&nbsp;        &quot;androidx.appcompat:appcompat:1.5.1&quot;,</b>
+<b class="nc">&nbsp;        &quot;androidx.compose.animation:animation-core:1.3.2&quot;,</b>
+<b class="nc">&nbsp;        &quot;androidx.compose.animation:animation-graphics:1.3.2&quot;,</b>
+<b class="nc">&nbsp;        &quot;androidx.compose.animation:animation:1.3.2&quot;,</b>
+<b class="nc">&nbsp;        &quot;androidx.compose.compiler:compiler:1.3.2&quot;,</b>
+<b class="nc">&nbsp;        &quot;androidx.compose.foundation:foundation-layout:1.3.1&quot;,</b>
+<b class="nc">&nbsp;        &quot;androidx.compose.foundation:foundation-text:1.2.1&quot;,</b>
+<b class="nc">&nbsp;        &quot;androidx.compose.foundation:foundation:1.3.1&quot;,</b>
+<b class="nc">&nbsp;        &quot;androidx.compose.material3:material3-window-size-class:1.0.1&quot;,</b>
+<b class="nc">&nbsp;        &quot;androidx.compose.material3:material3:1.0.1&quot;,</b>
+<b class="nc">&nbsp;        &quot;androidx.compose.material:material-icons-core:1.3.1&quot;,</b>
+<b class="nc">&nbsp;        &quot;androidx.compose.material:material-icons-extended:1.3.1&quot;,</b>
+<b class="nc">&nbsp;        &quot;androidx.compose.material:material-ripple:1.3.1&quot;,</b>
+<b class="nc">&nbsp;        &quot;androidx.compose.material:material:1.3.1&quot;,</b>
+<b class="nc">&nbsp;        &quot;androidx.compose.runtime:runtime-saveable:1.3.2&quot;,</b>
+<b class="nc">&nbsp;        &quot;androidx.compose.runtime:runtime-tracing:1.0.0-alpha01&quot;,</b>
+<b class="nc">&nbsp;        &quot;androidx.compose.runtime:runtime:1.3.2&quot;,</b>
+<b class="nc">&nbsp;        &quot;androidx.compose.ui:ui-test-manifest:1.3.2&quot;,</b>
+<b class="nc">&nbsp;        &quot;androidx.compose.ui:ui-test:1.3.2&quot;,</b>
+<b class="nc">&nbsp;        &quot;androidx.compose.ui:ui-tooling-preview:1.3.2&quot;,</b>
+<b class="nc">&nbsp;        &quot;androidx.compose.ui:ui-tooling:1.3.2&quot;,</b>
+<b class="nc">&nbsp;        &quot;androidx.compose.ui:ui-util:1.3.2&quot;,</b>
+<b class="nc">&nbsp;        &quot;androidx.compose.ui:ui:1.3.2&quot;,</b>
+<b class="nc">&nbsp;        &quot;androidx.core:core-ktx:1.9.0&quot;,</b>
+<b class="nc">&nbsp;        &quot;androidx.core:core-splashscreen:1.0.0&quot;,</b>
+<b class="nc">&nbsp;        &quot;androidx.hilt:hilt-navigation-compose:1.0.0&quot;,</b>
+<b class="nc">&nbsp;        &quot;androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1&quot;,</b>
+<b class="nc">&nbsp;        &quot;androidx.navigation:navigation-compose:2.5.3&quot;,</b>
+<b class="nc">&nbsp;        &quot;app.cash.turbine:turbine:0.12.1&quot;,</b>
+<b class="nc">&nbsp;        &quot;com.android.application:com.android.application.gradle.plugin:7.3.1&quot;,</b>
+<b class="nc">&nbsp;        &quot;com.android.library:com.android.library.gradle.plugin:7.3.1&quot;,</b>
+<b class="nc">&nbsp;        &quot;com.android.tools.build:gradle:7.3.1&quot;,</b>
+<b class="nc">&nbsp;        &quot;com.android.tools:desugar_jdk_libs:2.0.0&quot;,</b>
+<b class="nc">&nbsp;        &quot;com.facebook:ktfmt:0.42&quot;,</b>
+<b class="nc">&nbsp;        &quot;com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0&quot;,</b>
+<b class="nc">&nbsp;        &quot;com.javiersc.gradle:gradle-extensions:1.0.0-alpha.27&quot;,</b>
+<b class="nc">&nbsp;        &quot;com.javiersc.gradle:gradle-test-extensions:1.0.0-alpha.27&quot;,</b>
+<b class="nc">&nbsp;        &quot;com.javiersc.kotlin:kotlin-stdlib:0.1.0-alpha.12&quot;,</b>
+<b class="nc">&nbsp;        &quot;com.javiersc.kotlin:kotlin-test-junit5:0.1.0-alpha.12&quot;,</b>
+<b class="nc">&nbsp;        &quot;com.javiersc.kotlin:kotlin-test-junit:0.1.0-alpha.12&quot;,</b>
+<b class="nc">&nbsp;        &quot;com.javiersc.kotlin:kotlin-test-testng:0.1.0-alpha.12&quot;,</b>
+<b class="nc">&nbsp;        &quot;com.javiersc.kotlinx:coroutines-run-blocking-all:0.1.0-rc.1&quot;,</b>
+<b class="nc">&nbsp;        &quot;com.javiersc.kotlinx:coroutines-run-blocking:0.1.0-rc.1&quot;,</b>
+<b class="nc">&nbsp;        &quot;com.javiersc.mokoki:mokoki-serialization:0.2.0-alpha.1&quot;,</b>
+<b class="nc">&nbsp;        &quot;com.javiersc.mokoki:mokoki:0.2.0-alpha.1&quot;,</b>
+<b class="nc">&nbsp;        &quot;com.javiersc.network:network-either-logger:0.2.0-alpha.1&quot;,</b>
+<b class="nc">&nbsp;        &quot;com.javiersc.network:network-either:0.2.0-alpha.1&quot;,</b>
+<b class="nc">&nbsp;        &quot;com.javiersc.network:network-resource-either-extensions:0.2.0-alpha.1&quot;,</b>
+<b class="nc">&nbsp;        &quot;com.javiersc.network:resource-either:0.2.0-alpha.1&quot;,</b>
+<b class="nc">&nbsp;        &quot;com.squareup.moshi:moshi:1.14.0&quot;,</b>
+<b class="nc">&nbsp;        &quot;com.squareup.okhttp3:mockwebserver3-junit4:5.0.0-alpha.11&quot;,</b>
+<b class="nc">&nbsp;        &quot;com.squareup.okhttp3:mockwebserver3-junit5:5.0.0-alpha.11&quot;,</b>
+<b class="nc">&nbsp;        &quot;com.squareup.okhttp3:mockwebserver:5.0.0-alpha.11&quot;,</b>
+<b class="nc">&nbsp;        &quot;com.squareup.okhttp3:okhttp:5.0.0-alpha.11&quot;,</b>
+<b class="nc">&nbsp;        &quot;com.squareup.okio:okio:3.3.0&quot;,</b>
+<b class="nc">&nbsp;        &quot;com.squareup.retrofit2:retrofit-mock:2.9.0&quot;,</b>
+<b class="nc">&nbsp;        &quot;com.squareup.retrofit2:retrofit:2.9.0&quot;,</b>
+<b class="nc">&nbsp;        &quot;io.arrow-kt:arrow-core:1.1.3&quot;,</b>
+<b class="nc">&nbsp;        &quot;io.kotest.extensions:kotest-assertions-arrow:1.3.0&quot;,</b>
+<b class="nc">&nbsp;        &quot;io.kotest.extensions:kotest-assertions-compiler:1.0.0&quot;,</b>
+<b class="nc">&nbsp;        &quot;io.kotest.extensions:kotest-assertions-jsoup:1.0.0&quot;,</b>
+<b class="nc">&nbsp;        &quot;io.kotest.extensions:kotest-assertions-klock:1.0.0&quot;,</b>
+<b class="nc">&nbsp;        &quot;io.kotest.extensions:kotest-assertions-konform:1.0.1&quot;,</b>
+<b class="nc">&nbsp;        &quot;io.kotest.extensions:kotest-assertions-kotlinx-datetime:1.0.1&quot;,</b>
+<b class="nc">&nbsp;        &quot;io.kotest.extensions:kotest-assertions-ktor:1.0.3&quot;,</b>
+<b class="nc">&nbsp;        &quot;io.kotest.extensions:kotest-extensions-allure:1.2.0&quot;,</b>
+<b class="nc">&nbsp;        &quot;io.kotest.extensions:kotest-extensions-embedded-kafka:1.0.6&quot;,</b>
+<b class="nc">&nbsp;        &quot;io.kotest.extensions:kotest-extensions-koin:1.1.0&quot;,</b>
+<b class="nc">&nbsp;        &quot;io.kotest.extensions:kotest-extensions-mockserver:1.2.1&quot;,</b>
+<b class="nc">&nbsp;        &quot;io.kotest.extensions:kotest-extensions-robolectric:0.5.0&quot;,</b>
+<b class="nc">&nbsp;        &quot;io.kotest.extensions:kotest-extensions-spring:1.1.2&quot;,</b>
+<b class="nc">&nbsp;        &quot;io.kotest.extensions:kotest-extensions-testcontainers:1.3.4&quot;,</b>
+<b class="nc">&nbsp;        &quot;io.kotest.extensions:kotest-extensions-wiremock:1.0.3&quot;,</b>
+<b class="nc">&nbsp;        &quot;io.kotest:kotest-assertions-core:5.5.4&quot;,</b>
+<b class="nc">&nbsp;        &quot;io.kotest:kotest-assertions-json:5.5.4&quot;,</b>
+<b class="nc">&nbsp;        &quot;io.kotest:kotest-assertions-sql:5.5.4&quot;,</b>
+<b class="nc">&nbsp;        &quot;io.kotest:kotest-property:5.5.4&quot;,</b>
+<b class="nc">&nbsp;        &quot;io.kotest:kotest-runner-junit4:5.5.4&quot;,</b>
+<b class="nc">&nbsp;        &quot;io.kotest:kotest-runner-junit5:5.5.4&quot;,</b>
+<b class="nc">&nbsp;        &quot;io.ktor:ktor-client-cio:2.2.2&quot;,</b>
+<b class="nc">&nbsp;        &quot;io.ktor:ktor-client-content-negotiation:2.2.2&quot;,</b>
+<b class="nc">&nbsp;        &quot;io.ktor:ktor-client-core:2.2.2&quot;,</b>
+<b class="nc">&nbsp;        &quot;io.ktor:ktor-client-mock:2.2.2&quot;,</b>
+<b class="nc">&nbsp;        &quot;io.ktor:ktor-client-okhttp:2.2.2&quot;,</b>
+<b class="nc">&nbsp;        &quot;io.ktor:ktor-serialization-kotlinx-json:2.2.2&quot;,</b>
+<b class="nc">&nbsp;        &quot;org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.20&quot;,</b>
+<b class="nc">&nbsp;        &quot;org.jetbrains.kotlin:kotlin-test-annotations-common:1.7.20&quot;,</b>
+<b class="nc">&nbsp;        &quot;org.jetbrains.kotlin:kotlin-test-junit5:1.7.20&quot;,</b>
+<b class="nc">&nbsp;        &quot;org.jetbrains.kotlin:kotlin-test-junit:1.7.20&quot;,</b>
+<b class="nc">&nbsp;        &quot;org.jetbrains.kotlin:kotlin-test-testng:1.7.20&quot;,</b>
+<b class="nc">&nbsp;        &quot;org.jetbrains.kotlin:kotlin-test:1.7.20&quot;,</b>
+<b class="nc">&nbsp;        &quot;org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.5&quot;,</b>
+<b class="nc">&nbsp;        &quot;org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4&quot;,</b>
+<b class="nc">&nbsp;        &quot;org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4&quot;,</b>
+<b class="nc">&nbsp;        &quot;org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4&quot;,</b>
+<b class="nc">&nbsp;        &quot;org.jetbrains.kotlinx:kotlinx-datetime:0.4.0&quot;,</b>
+<b class="nc">&nbsp;        &quot;org.jetbrains.kotlinx:kotlinx-serialization-core:1.4.1&quot;,</b>
+<b class="nc">&nbsp;        &quot;org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1&quot;,</b>
+<b class="nc">&nbsp;        &quot;org.junit.jupiter:junit-jupiter-api:5.9.1&quot;,</b>
+<b class="nc">&nbsp;        &quot;org.junit.jupiter:junit-jupiter-params:5.9.1&quot;,</b>
+&nbsp;    )
 </code>
 </pre>
 </div>
@@ -250,7 +221,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-12-25 11:18</div>
+    <div style="float:right;">generated on 2023-01-09 00:46</div>
 </div>
 </body>
 </html>

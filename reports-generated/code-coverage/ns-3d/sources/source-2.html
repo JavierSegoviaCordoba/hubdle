@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html id="htmlId">
 <head>
-  <title>Coverage Report > KotlinMultiplatformMinGWX86Extension</title>
+  <title>Coverage Report > HubdleSettingsPlugin</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/idea.min.css";
@@ -18,18 +18,15 @@
 <div class="breadCrumbs">
 Current scope:     <a href="../../index.html">all classes</a>
     <span class="separator">|</span>
-    <a href="../index.html">com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.mingw</a>
+    <a href="../index.html">com.javiersc.hubdle.settings</a>
 </div>
 
-<h1>Coverage Summary for Class: KotlinMultiplatformMinGWX86Extension (com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.mingw)</h1>
+<h1>Coverage Summary for Class: HubdleSettingsPlugin (com.javiersc.hubdle.settings)</h1>
 
 <table class="coverageStats">
+
 <tr>
   <th class="name">Class</th>
-<th class="coverageStat 
-">
-  Class, %
-</th>
 <th class="coverageStat 
 ">
   Method, %
@@ -48,7 +45,42 @@ Current scope:     <a href="../../index.html">all classes</a>
 </th>
 </tr>
 <tr>
-  <td class="name">KotlinMultiplatformMinGWX86Extension</td>
+  <td class="name">HubdleSettingsPlugin</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/46)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">HubdleSettingsPlugin$apply$1</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -57,6 +89,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     (0/1)
   </span>
 </td>
+    <td class="coverageStat"/>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -65,13 +98,23 @@ Current scope:     <a href="../../index.html">all classes</a>
     (0/3)
   </span>
 </td>
-    <td class="coverageStat"/>
 <td class="coverageStat">
   <span class="percent">
     0%
   </span>
   <span class="absValue">
-    (0/4)
+    (0/12)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/3)
   </span>
 </td>
 <td class="coverageStat">
@@ -79,11 +122,26 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/31)
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/12)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/58)
   </span>
 </td>
 </tr>
-
 </table>
 
 <br/>
@@ -91,24 +149,130 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.mingw
+<code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.settings
 &nbsp;
-&nbsp;import com.javiersc.hubdle.extensions.HubdleDslMarker
-&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
-&nbsp;import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.KotlinMultiplatformTargetOptions
-&nbsp;import com.javiersc.hubdle.extensions.options.EnableableOptions
-&nbsp;import org.gradle.api.Project
+&nbsp;import com.gradle.enterprise.gradleplugin.GradleEnterpriseExtension
+&nbsp;import com.javiersc.gradle.properties.extensions.getPropertyOrNull
+&nbsp;import com.javiersc.hubdle.settings.extensions.extractedBuildProjects
+&nbsp;import com.javiersc.hubdle.settings.extensions.extractedProjects
+&nbsp;import java.io.File
+&nbsp;import javax.inject.Inject
+&nbsp;import org.gradle.api.Plugin
+&nbsp;import org.gradle.api.initialization.Settings
+&nbsp;import org.gradle.api.model.ObjectFactory
+&nbsp;import org.gradle.kotlin.dsl.configure
+&nbsp;import org.gradle.kotlin.dsl.create
+&nbsp;import org.gradle.kotlin.dsl.findByType
+&nbsp;import org.gradle.kotlin.dsl.maven
 &nbsp;
-<b class="nc">&nbsp;@HubdleDslMarker</b>
-&nbsp;public open class KotlinMultiplatformMinGWX86Extension :
-&nbsp;    EnableableOptions, KotlinMultiplatformTargetOptions {
+<b class="nc">&nbsp;public open class HubdleSettingsPlugin</b>
+&nbsp;@Inject
+&nbsp;constructor(
+<b class="nc">&nbsp;    private val objects: ObjectFactory,</b>
+&nbsp;) : Plugin&lt;Settings&gt; {
 &nbsp;
-&nbsp;    override var Project.isEnabled: Boolean
-<b class="nc">&nbsp;        get() = hubdleState.kotlin.multiplatform.mingwX86.isEnabled</b>
-<b class="nc">&nbsp;        set(value) = hubdleState.kotlin.multiplatform.mingwX86.run { isEnabled = value }</b>
+&nbsp;    override fun apply(target: Settings) {
+<b class="nc">&nbsp;        val rootProjectName = target.getPropertyOrNull(&quot;root.project.name&quot;)</b>
+<b class="nc">&nbsp;        if (rootProjectName != null) {</b>
+<b class="nc">&nbsp;            target.rootProject.name = rootProjectName</b>
+&nbsp;        }
+<b class="nc">&nbsp;        target.enableFeaturePreview(&quot;TYPESAFE_PROJECT_ACCESSORS&quot;)</b>
 &nbsp;
-<b class="nc">&nbsp;    override val name: String = &quot;mingwX86&quot;</b>
+<b class="nc">&nbsp;        target.extensions.create&lt;HubdleSettingsExtension&gt;(&quot;hubdleSettings&quot;)</b>
+&nbsp;
+<b class="nc">&nbsp;        target.configureRepositories()</b>
+&nbsp;
+<b class="nc">&nbsp;        target.gradle.settingsEvaluated { settings -&gt;</b>
+<b class="nc">&nbsp;            settings.configureGradleEnterprise()</b>
+<b class="nc">&nbsp;            settings.configureAutoInclude()</b>
+<b class="nc">&nbsp;            settings.configureAutoIncludeVersionCatalogs(objects)</b>
+&nbsp;        }
+&nbsp;    }
 &nbsp;}
+&nbsp;
+&nbsp;@DslMarker public annotation class HubdleSettingsDslMarker
+&nbsp;
+&nbsp;internal val Settings.hubdleSettings: HubdleSettingsExtension
+&nbsp;    get() = checkNotNull(extensions.findByType())
+&nbsp;
+&nbsp;private fun Settings.configureRepositories() {
+&nbsp;    dependencyResolutionManagement { management -&gt;
+&nbsp;        management.repositories { repository -&gt;
+&nbsp;            repository.mavenCentral()
+&nbsp;            repository.google()
+&nbsp;            repository.gradlePluginPortal()
+&nbsp;            repository.maven(url = &quot;https://maven.pkg.jetbrains.space/public/p/compose/dev&quot;)
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;private fun Settings.configureAutoInclude() {
+&nbsp;    val autoInclude = hubdleSettings.autoInclude
+&nbsp;
+&nbsp;    if (autoInclude.isEnabled.get()) {
+&nbsp;        autoInclude.includes(*extractedProjects().toTypedArray())
+&nbsp;        autoInclude.includedBuilds(*extractedBuildProjects().toTypedArray())
+&nbsp;
+&nbsp;        for (include in autoInclude.includableProjects) {
+&nbsp;            include(include)
+&nbsp;        }
+&nbsp;
+&nbsp;        for (includeBuild in autoInclude.includableBuilds) {
+&nbsp;            includeBuild(includeBuild)
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;private fun Settings.configureGradleEnterprise() {
+&nbsp;    pluginManager.apply(&quot;com.gradle.enterprise&quot;)
+&nbsp;
+&nbsp;    configure&lt;GradleEnterpriseExtension&gt; {
+&nbsp;        buildScan { scan -&gt;
+&nbsp;            scan.termsOfServiceUrl = &quot;https://gradle.com/terms-of-service&quot;
+&nbsp;            scan.termsOfServiceAgree = &quot;yes&quot;
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;private fun Settings.configureAutoIncludeVersionCatalogs(objects: ObjectFactory) {
+&nbsp;    dependencyResolutionManagement { management -&gt;
+&nbsp;        management.versionCatalogs { container -&gt;
+&nbsp;            val catalogs: Map&lt;String, File&gt; = tomlFileInGradleDirs.getCatalogs()
+&nbsp;            for ((name, file) in catalogs) {
+&nbsp;                container.create(name) { catalog -&gt;
+&nbsp;                    catalog.from(objects.fileCollection().from(file.absolutePath))
+&nbsp;                }
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;private val Settings.tomlFileInGradleDirs: Set&lt;File&gt;
+&nbsp;    get() =
+&nbsp;        (rootDir.resolve(&quot;gradle&quot;).listFiles().orEmpty().toSet() +
+&nbsp;                settingsDir.resolve(&quot;gradle&quot;).listFiles().orEmpty().toSet())
+&nbsp;            .filter { it.extension == &quot;toml&quot; }
+&nbsp;            .toSet()
+&nbsp;
+&nbsp;private fun Set&lt;File&gt;.getCatalogs(): Map&lt;String, File&gt; =
+&nbsp;    mapNotNull { file -&gt; if (file.isCatalog) file else null }
+&nbsp;        .mapNotNull { catalog -&gt;
+&nbsp;            val catalogName =
+&nbsp;                when {
+&nbsp;                    catalog.name.contains(&quot;-libs&quot;) -&gt; catalog.name.substringBefore(&quot;-&quot;)
+&nbsp;                    catalog.name.contains(&quot;.libs&quot;) -&gt; catalog.name.substringBefore(&quot;.&quot;)
+&nbsp;                    else -&gt; null
+&nbsp;                }
+&nbsp;            when {
+&nbsp;                catalog.name == &quot;libs.versions.catalog&quot; -&gt; null
+&nbsp;                catalogName?.isNotBlank() == true -&gt; &quot;${catalogName}Libs&quot; to catalog
+&nbsp;                else -&gt; null
+&nbsp;            }
+&nbsp;        }
+&nbsp;        .toMap()
+&nbsp;
+&nbsp;private val File.isCatalog: Boolean
+&nbsp;    get() = name.endsWith(&quot;libs.versions.toml&quot;)
 </code>
 </pre>
 </div>
@@ -132,7 +296,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-12-25 11:18</div>
+    <div style="float:right;">generated on 2023-01-09 00:46</div>
 </div>
 </body>
 </html>

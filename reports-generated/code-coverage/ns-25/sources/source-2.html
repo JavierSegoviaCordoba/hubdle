@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html id="htmlId">
 <head>
-  <title>Coverage Report > MainAndTestKotlinSourceSetsOptions</title>
+  <title>Coverage Report > HubdleKotlinAndroidLibraryExtensionKt</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/idea.min.css";
@@ -18,10 +18,10 @@
 <div class="breadCrumbs">
 Current scope:     <a href="../../index.html">all classes</a>
     <span class="separator">|</span>
-    <a href="../index.html">com.javiersc.hubdle.extensions.kotlin</a>
+    <a href="../index.html">com.javiersc.hubdle.extensions.kotlin.android.library</a>
 </div>
 
-<h1>Coverage Summary for Class: MainAndTestKotlinSourceSetsOptions (com.javiersc.hubdle.extensions.kotlin)</h1>
+<h1>Coverage Summary for Class: HubdleKotlinAndroidLibraryExtensionKt (com.javiersc.hubdle.extensions.kotlin.android.library)</h1>
 
 <table class="coverageStats">
 
@@ -44,8 +44,8 @@ Current scope:     <a href="../../index.html">all classes</a>
   Instruction, %
 </th>
 </tr>
-  <tr>
-    <td class="name">MainAndTestKotlinSourceSetsOptions$DefaultImpls</td>
+<tr>
+  <td class="name">HubdleKotlinAndroidLibraryExtensionKt</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -68,9 +68,21 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/34)
+    (0/8)
   </span>
 </td>
+</tr>
+  <tr>
+    <td class="name">HubdleKotlinAndroidLibraryExtensionKt$sam$org_gradle_api_Action$0</td>
+    <td class="coverageStat"/>
+  </tr>
+  <tr>
+    <td class="name">HubdleKotlinAndroidLibraryExtensionKt$special$$inlined$getHubdleExtension$1</td>
+    <td class="coverageStat"/>
+  </tr>
+  <tr>
+    <td class="name">HubdleKotlinAndroidLibraryExtensionKt$special$$inlined$getHubdleExtension$2</td>
+    <td class="coverageStat"/>
   </tr>
 <tr>
   <td class="name"><strong>Total</strong></td>
@@ -96,7 +108,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/34)
+    (0/8)
   </span>
 </td>
 </tr>
@@ -107,17 +119,142 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.extensions.kotlin
+<code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.extensions.kotlin.android.library
 &nbsp;
+&nbsp;import com.android.build.api.dsl.LibraryExtension
+&nbsp;import com.javiersc.hubdle.extensions.HubdleDslMarker
+&nbsp;import com.javiersc.hubdle.extensions._internal.ApplicablePlugin.Scope
+&nbsp;import com.javiersc.hubdle.extensions._internal.Configurable.Priority
+&nbsp;import com.javiersc.hubdle.extensions._internal.PluginId
+&nbsp;import com.javiersc.hubdle.extensions._internal.configDefaultAndroidSourceSets
+&nbsp;import com.javiersc.hubdle.extensions._internal.configureDefaultKotlinSourceSets
+&nbsp;import com.javiersc.hubdle.extensions._internal.configureDependencies
+&nbsp;import com.javiersc.hubdle.extensions._internal.getHubdleExtension
+&nbsp;import com.javiersc.hubdle.extensions.apis.HubdleConfigurableExtension
+&nbsp;import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
+&nbsp;import com.javiersc.hubdle.extensions.config.publishing._internal.configurableMavenPublishing
+&nbsp;import com.javiersc.hubdle.extensions.kotlin.android._internal.calculateAndroidNamespace
+&nbsp;import com.javiersc.hubdle.extensions.kotlin.android.hubdleAndroid
+&nbsp;import com.javiersc.hubdle.extensions.kotlin.android.library.features.HubdleKotlinAndroidLibraryFeaturesExtension
+&nbsp;import javax.inject.Inject
 &nbsp;import org.gradle.api.Action
 &nbsp;import org.gradle.api.Project
+&nbsp;import org.gradle.api.artifacts.Configuration
+&nbsp;import org.gradle.api.provider.Property
+&nbsp;import org.gradle.kotlin.dsl.configure
+&nbsp;import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
+&nbsp;import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 &nbsp;
-&nbsp;public interface MainAndTestKotlinSourceSetsOptions&lt;T&gt; {
+&nbsp;@HubdleDslMarker
+&nbsp;public open class HubdleKotlinAndroidLibraryExtension
+&nbsp;@Inject
+&nbsp;constructor(
+&nbsp;    project: Project,
+&nbsp;) : HubdleConfigurableExtension(project) {
 &nbsp;
-<b class="nc">&nbsp;    public fun Project.main(action: Action&lt;T&gt; = Action {})</b>
+&nbsp;    override val isEnabled: Property&lt;Boolean&gt; = property { false }
 &nbsp;
-<b class="nc">&nbsp;    public fun Project.test(action: Action&lt;T&gt; = Action {})</b>
+&nbsp;    override val requiredExtensions: Set&lt;HubdleEnableableExtension&gt;
+&nbsp;        get() = setOf(hubdleAndroid)
+&nbsp;
+&nbsp;    override val priority: Priority = Priority.P3
+&nbsp;
+&nbsp;    public val features: HubdleKotlinAndroidLibraryFeaturesExtension
+&nbsp;        get() = getHubdleExtension()
+&nbsp;
+&nbsp;    @HubdleDslMarker
+&nbsp;    public fun configuration(name: String, action: Action&lt;Configuration&gt;) {
+&nbsp;        userConfigurable {
+&nbsp;            configure&lt;LibraryExtension&gt; { project.configurations.named(name, action::execute) }
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    @HubdleDslMarker
+&nbsp;    public fun sourceSet(name: String, action: Action&lt;KotlinSourceSet&gt;) {
+&nbsp;        userConfigurable {
+&nbsp;            configure&lt;KotlinProjectExtension&gt; { sourceSets.named(name, action::execute) }
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    @HubdleDslMarker
+&nbsp;    public fun main(action: Action&lt;KotlinSourceSet&gt;) {
+&nbsp;        sourceSet(&quot;main&quot;, action)
+&nbsp;    }
+&nbsp;
+&nbsp;    @HubdleDslMarker
+&nbsp;    public fun test(action: Action&lt;KotlinSourceSet&gt;) {
+&nbsp;        sourceSet(&quot;test&quot;, action)
+&nbsp;    }
+&nbsp;
+&nbsp;    // TODO: improve and enable using this docs:
+&nbsp;    //  https://developer.android.com/studio/publish-library/configure-pub-variants
+&nbsp;    // @HubdleDslMarker
+&nbsp;    // public fun publishLibraryVariants(vararg names: String) {
+&nbsp;    //
+&nbsp;    // }
+&nbsp;    //
+&nbsp;    // @HubdleDslMarker
+&nbsp;    // public fun publishAllLibraryVariants(enable: Boolean = true) {
+&nbsp;    //
+&nbsp;    // }
+&nbsp;
+&nbsp;    @HubdleDslMarker
+&nbsp;    public fun android(action: Action&lt;LibraryExtension&gt;) {
+&nbsp;        userConfigurable { action.execute(the()) }
+&nbsp;    }
+&nbsp;
+&nbsp;    override fun Project.defaultConfiguration() {
+&nbsp;        applicablePlugins()
+&nbsp;
+&nbsp;        configurable {
+&nbsp;            configureDependencies()
+&nbsp;            configureDefaultKotlinSourceSets()
+&nbsp;
+&nbsp;            configure&lt;LibraryExtension&gt; {
+&nbsp;                compileSdk = hubdleAndroid.compileSdk.get()
+&nbsp;                defaultConfig.minSdk = hubdleAndroid.minSdk.get()
+&nbsp;                namespace = calculateAndroidNamespace(hubdleAndroid.namespace.orNull)
+&nbsp;
+&nbsp;                sourceSets.all { set -&gt; set.configDefaultAndroidSourceSets() }
+&nbsp;            }
+&nbsp;        }
+&nbsp;        configurePublishing()
+&nbsp;    }
+&nbsp;
+&nbsp;    private fun applicablePlugins() {
+&nbsp;        applicablePlugin(
+&nbsp;            priority = Priority.P3,
+&nbsp;            scope = Scope.CurrentProject,
+&nbsp;            pluginId = PluginId.AndroidLibrary,
+&nbsp;        )
+&nbsp;
+&nbsp;        applicablePlugin(
+&nbsp;            priority = Priority.P3,
+&nbsp;            scope = Scope.CurrentProject,
+&nbsp;            pluginId = PluginId.JetbrainsKotlinAndroid,
+&nbsp;        )
+&nbsp;    }
+&nbsp;
+&nbsp;    private fun configurePublishing() {
+&nbsp;        configurableMavenPublishing(mavenPublicationName = &quot;release&quot;) {
+&nbsp;            configure&lt;LibraryExtension&gt; {
+&nbsp;                publishing {
+&nbsp;                    multipleVariants {
+&nbsp;                        withSourcesJar()
+&nbsp;                        withJavadocJar()
+&nbsp;                        allVariants()
+&nbsp;                    }
+&nbsp;                }
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
 &nbsp;}
+&nbsp;
+&nbsp;internal val HubdleEnableableExtension.hubdleAndroidLibrary: HubdleKotlinAndroidLibraryExtension
+<b class="nc">&nbsp;    get() = getHubdleExtension()</b>
+&nbsp;
+&nbsp;internal val Project.hubdleAndroidLibrary: HubdleKotlinAndroidLibraryExtension
+<b class="nc">&nbsp;    get() = getHubdleExtension()</b>
 </code>
 </pre>
 </div>
@@ -141,7 +278,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-12-25 11:18</div>
+    <div style="float:right;">generated on 2023-01-09 00:46</div>
 </div>
 </body>
 </html>

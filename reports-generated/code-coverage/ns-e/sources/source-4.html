@@ -1,0 +1,193 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > MergeChangelogKt</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.javiersc.hubdle.extensions.config.documentation.changelog._internal</a>
+</div>
+
+<h1>Coverage Summary for Class: MergeChangelogKt (com.javiersc.hubdle.extensions.config.documentation.changelog._internal)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">MergeChangelogKt</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    83.3%
+  </span>
+  <span class="absValue">
+    (20/24)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    97%
+  </span>
+  <span class="absValue">
+    (32/33)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    98.5%
+  </span>
+  <span class="absValue">
+    (263/267)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;@file:Suppress(&quot;SpreadOperator&quot;)
+&nbsp;
+&nbsp;package com.javiersc.hubdle.extensions.config.documentation.changelog._internal
+&nbsp;
+&nbsp;internal fun Changelog.merged(): Changelog {
+<b class="fc">&nbsp;    val versionsMap: Map&lt;Changelog.Version, List&lt;Changelog.Version&gt;&gt; = buildMap {</b>
+<b class="fc">&nbsp;        for (version in versions) {</b>
+<b class="fc">&nbsp;            when {</b>
+<b class="fc">&nbsp;                version.isFinal -&gt; put(version, getOrDefault(version, emptyList()))</b>
+<b class="pc">&nbsp;                !version.isFinal &amp;&amp; version.hasFinal(keys) -&gt; {</b>
+<b class="fc">&nbsp;                    val versionKey = keys.versionKey(version)</b>
+<b class="pc">&nbsp;                    versionKey?.let {</b>
+<b class="fc">&nbsp;                        put(versionKey, getOrDefault(versionKey, emptyList()) + listOf(version))</b>
+&nbsp;                    }
+&nbsp;                }
+&nbsp;                else -&gt; {
+<b class="fc">&nbsp;                    put(version, emptyList())</b>
+&nbsp;                }
+&nbsp;            }
+&nbsp;        }
+<b class="fc">&nbsp;    }</b>
+&nbsp;
+<b class="fc">&nbsp;    val versions: List&lt;Changelog.Version&gt; =</b>
+<b class="fc">&nbsp;        versionsMap.map { (version, subVersions) -&gt;</b>
+<b class="fc">&nbsp;            val groups: List&lt;Changelog.Version.Group&gt; =</b>
+<b class="fc">&nbsp;                (listOf(version) + subVersions).map { it.groups.toList() }.flatten()</b>
+&nbsp;
+<b class="fc">&nbsp;            val groupedGroups = groups.groupBy { it.value }</b>
+&nbsp;
+<b class="fc">&nbsp;            val mergedGroups: List&lt;Changelog.Version.Group&gt; =</b>
+<b class="fc">&nbsp;                groupedGroups.mapNotNull { (key, groups) -&gt;</b>
+<b class="fc">&nbsp;                    val items: List&lt;Changelog.Version.Group.Item&gt; =</b>
+<b class="fc">&nbsp;                        groups.filter { it.value == key }.flatMap { it.items.toList() }</b>
+&nbsp;
+<b class="fc">&nbsp;                    when {</b>
+<b class="fc">&nbsp;                        version.unreleased -&gt; Changelog.Version.Group(key, items)</b>
+<b class="pc">&nbsp;                        items.isNotEmpty() -&gt; Changelog.Version.Group(key, items)</b>
+<b class="nc">&nbsp;                        else -&gt; null</b>
+&nbsp;                    }
+&nbsp;                }
+&nbsp;
+<b class="fc">&nbsp;            Changelog.Version(version.value, mergedGroups)</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;    val references: List&lt;Changelog.Reference&gt; =</b>
+<b class="fc">&nbsp;        references.filter { it.version in versions.map(Changelog.Version::version) }</b>
+&nbsp;
+<b class="fc">&nbsp;    return Changelog(header, versions, references)</b>
+&nbsp;}
+&nbsp;
+&nbsp;private fun Changelog.Version.extractVersionWithoutStage(): String =
+<b class="fc">&nbsp;    version.takeWhile { it.isDigit() || it == &#39;.&#39; }</b>
+&nbsp;
+&nbsp;private val Changelog.Version.unreleased: Boolean
+<b class="fc">&nbsp;    get() = version.contains(&quot;Unreleased&quot;, ignoreCase = true)</b>
+&nbsp;
+&nbsp;private val Changelog.Version.isFinal: Boolean
+<b class="fc">&nbsp;    get() = version.all { it.isDigit() || it == &#39;.&#39; }</b>
+&nbsp;
+&nbsp;private fun Changelog.Version.hasFinal(finalVersions: Iterable&lt;Changelog.Version&gt;): Boolean =
+<b class="fc">&nbsp;    finalVersions.any { it.version == extractVersionWithoutStage() }</b>
+&nbsp;
+&nbsp;private fun Iterable&lt;Changelog.Version&gt;.versionKey(version: Changelog.Version): Changelog.Version? =
+<b class="fc">&nbsp;    firstOrNull {</b>
+<b class="fc">&nbsp;        it.value.contains(version.extractVersionWithoutStage())</b>
+&nbsp;    }
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-01-09 00:46</div>
+</div>
+</body>
+</html>

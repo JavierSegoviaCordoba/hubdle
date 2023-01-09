@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html id="htmlId">
 <head>
-  <title>Coverage Report > ConfigureVersioningKt</title>
+  <title>Coverage Report > HubdleKotlinAndroidApplicationDelegateFeaturesExtension</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/idea.min.css";
@@ -18,10 +18,10 @@
 <div class="breadCrumbs">
 Current scope:     <a href="../../index.html">all classes</a>
     <span class="separator">|</span>
-    <a href="../index.html">com.javiersc.hubdle.extensions.config.versioning._internal</a>
+    <a href="../index.html">com.javiersc.hubdle.extensions.kotlin.android.application.features</a>
 </div>
 
-<h1>Coverage Summary for Class: ConfigureVersioningKt (com.javiersc.hubdle.extensions.config.versioning._internal)</h1>
+<h1>Coverage Summary for Class: HubdleKotlinAndroidApplicationDelegateFeaturesExtension (com.javiersc.hubdle.extensions.kotlin.android.application.features)</h1>
 
 <table class="coverageStats">
 
@@ -44,48 +44,33 @@ Current scope:     <a href="../../index.html">all classes</a>
   Instruction, %
 </th>
 </tr>
-<tr>
-  <td class="name">ConfigureVersioningKt</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/2)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/4)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/5)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/35)
-  </span>
-</td>
-</tr>
   <tr>
-    <td class="name">ConfigureVersioningKt$configureConfigVersioningRawConfig$$inlined$the$1</td>
+    <td class="name">HubdleKotlinAndroidApplicationDelegateFeaturesExtension$DefaultImpls</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
     <td class="coverageStat"/>
-  </tr>
-  <tr>
-    <td class="name">ConfigureVersioningKt$configureVersioning$$inlined$the$1</td>
-    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/53)
+  </span>
+</td>
   </tr>
 <tr>
   <td class="name"><strong>Total</strong></td>
@@ -94,7 +79,16 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/2)
+    (0/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
   </span>
 </td>
 <td class="coverageStat">
@@ -102,23 +96,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/4)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/5)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/35)
+    (0/53)
   </span>
 </td>
 </tr>
@@ -129,26 +107,51 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.extensions.config.versioning._internal
+<code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.extensions.kotlin.android.application.features
 &nbsp;
-&nbsp;import com.javiersc.hubdle.extensions._internal.PluginIds
-&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
-&nbsp;import com.javiersc.semver.gradle.plugin.SemverExtension
+&nbsp;import com.javiersc.hubdle.extensions.HubdleDslMarker
+&nbsp;import com.javiersc.hubdle.extensions._internal.getHubdleExtension
+&nbsp;import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
+&nbsp;import com.javiersc.hubdle.extensions.kotlin.android.application.hubdleAndroidApplication
+&nbsp;import com.javiersc.hubdle.extensions.kotlin.features.shared.HubdleKotlinComposeDelegateFeatureExtension
+&nbsp;import com.javiersc.hubdle.extensions.kotlin.features.shared.HubdleKotlinCoroutinesDelegateFeatureExtension
+&nbsp;import com.javiersc.hubdle.extensions.kotlin.features.shared.HubdleKotlinExtendedStdlibDelegateFeatureExtension
+&nbsp;import com.javiersc.hubdle.extensions.kotlin.features.shared.HubdleKotlinKotestDelegateFeatureExtension
+&nbsp;import com.javiersc.hubdle.extensions.kotlin.features.shared.HubdleKotlinSerializationDelegateFeatureExtension
+&nbsp;import com.javiersc.hubdle.extensions.shared.features.HubdleJavaVersionDelegateFeatureExtension
+&nbsp;import com.javiersc.hubdle.extensions.shared.features.HubdleJvmToolchainDelegateFeatureExtension
+&nbsp;import javax.inject.Inject
 &nbsp;import org.gradle.api.Project
-&nbsp;import org.gradle.kotlin.dsl.the
+&nbsp;import org.gradle.api.provider.Property
 &nbsp;
-&nbsp;internal fun configureVersioning(project: Project) {
-<b class="nc">&nbsp;    val versioningState = project.hubdleState.config.versioning</b>
-<b class="nc">&nbsp;    if (versioningState.isEnabled) {</b>
-<b class="nc">&nbsp;        project.pluginManager.apply(PluginIds.JavierSC.semver)</b>
+&nbsp;@HubdleDslMarker
+&nbsp;public open class HubdleKotlinAndroidApplicationFeaturesExtension
+&nbsp;@Inject
+&nbsp;constructor(
+&nbsp;    project: Project,
+&nbsp;) : HubdleEnableableExtension(project), HubdleKotlinAndroidApplicationDelegateFeaturesExtension {
 &nbsp;
-<b class="nc">&nbsp;        project.the&lt;SemverExtension&gt;().tagPrefix.set(versioningState.tagPrefix)</b>
-&nbsp;    }
+&nbsp;    override val project: Project
+&nbsp;        get() = super.project
+&nbsp;
+&nbsp;    public override val isEnabled: Property&lt;Boolean&gt; = property { true }
+&nbsp;
+&nbsp;    override val requiredExtensions: Set&lt;HubdleEnableableExtension&gt;
+&nbsp;        get() = setOf(hubdleAndroidApplication)
 &nbsp;}
 &nbsp;
-&nbsp;internal fun configureConfigVersioningRawConfig(project: Project) {
-<b class="nc">&nbsp;    project.hubdleState.config.versioning.rawConfig.semver?.execute(project.the())</b>
-&nbsp;}
+<b class="nc">&nbsp;public interface HubdleKotlinAndroidApplicationDelegateFeaturesExtension :</b>
+&nbsp;    HubdleKotlinComposeDelegateFeatureExtension,
+&nbsp;    HubdleKotlinCoroutinesDelegateFeatureExtension,
+&nbsp;    HubdleKotlinExtendedStdlibDelegateFeatureExtension,
+&nbsp;    HubdleJavaVersionDelegateFeatureExtension,
+&nbsp;    HubdleKotlinKotestDelegateFeatureExtension,
+&nbsp;    HubdleKotlinSerializationDelegateFeatureExtension,
+&nbsp;    HubdleJvmToolchainDelegateFeatureExtension
+&nbsp;
+&nbsp;internal val HubdleEnableableExtension.hubdleAndroidApplicationFeatures:
+&nbsp;    HubdleKotlinAndroidApplicationFeaturesExtension
+&nbsp;    get() = getHubdleExtension()
 </code>
 </pre>
 </div>
@@ -172,7 +175,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-12-25 11:18</div>
+    <div style="float:right;">generated on 2023-01-09 00:46</div>
 </div>
 </body>
 </html>

@@ -1,0 +1,196 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > HubdleCatalogsDependencies</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.javiersc.hubdle.extensions._internal</a>
+</div>
+
+<h1>Coverage Summary for Class: HubdleCatalogsDependencies (com.javiersc.hubdle.extensions._internal)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">HubdleCatalogsDependencies</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/3)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/27)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.extensions._internal
+&nbsp;
+&nbsp;import com.javiersc.gradle.extensions.version.catalogs.catalogNamesWithLibsAtFirst
+&nbsp;import com.javiersc.gradle.extensions.version.catalogs.getLibraries
+&nbsp;import com.javiersc.gradle.project.extensions.module
+&nbsp;import com.javiersc.hubdle.extensions.dependencies._internal.hubdleDependencies
+&nbsp;import org.gradle.api.Project
+&nbsp;import org.gradle.api.artifacts.MinimalExternalModuleDependency
+&nbsp;import org.gradle.api.artifacts.VersionCatalogsExtension
+&nbsp;import org.gradle.api.internal.artifacts.DefaultModuleIdentifier
+&nbsp;import org.gradle.api.internal.artifacts.dependencies.DefaultMinimalDependency
+&nbsp;import org.gradle.api.internal.artifacts.dependencies.DefaultMutableVersionConstraint
+&nbsp;import org.gradle.kotlin.dsl.findByType
+&nbsp;import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
+&nbsp;
+&nbsp;internal val userCatalogsDependencies: UserCatalogsDependencies = UserCatalogsDependencies()
+&nbsp;
+&nbsp;internal val hubdleCatalogsDependencies: HubdleCatalogsDependencies = HubdleCatalogsDependencies()
+&nbsp;
+&nbsp;internal fun Project.catalogDependency(module: String): MinimalExternalModuleDependency =
+&nbsp;    checkNotNull(getDependency(module)) {
+&nbsp;        &quot;The dependency $module has not been found in any catalog&quot;
+&nbsp;    }
+&nbsp;
+&nbsp;internal fun KotlinDependencyHandler.catalogDependency(
+&nbsp;    module: String
+&nbsp;): MinimalExternalModuleDependency =
+&nbsp;    checkNotNull(project.getDependency(module)) {
+&nbsp;        &quot;The dependency $module has not been found in any catalog&quot;
+&nbsp;    }
+&nbsp;
+&nbsp;private fun Project.getDependency(module: String): MinimalExternalModuleDependency? =
+&nbsp;    getCatalogsDependency(module).takeIf { project.module != &quot;${it.module}&quot; }
+&nbsp;
+&nbsp;private fun getCatalogsDependency(module: String): MinimalExternalModuleDependency {
+&nbsp;    check(module.split(&quot;:&quot;).count() == 2) { &quot;The module provided is not correct&quot; }
+&nbsp;    return userCatalogsDependencies.dependencies.firstOrNull { &quot;${it.module}&quot; == module }
+&nbsp;        ?: hubdleCatalogsDependencies.dependencies.first { &quot;${it.module}&quot; == module }
+&nbsp;}
+&nbsp;
+&nbsp;internal class UserCatalogsDependencies {
+&nbsp;
+&nbsp;    private val _dependencies: MutableList&lt;MinimalExternalModuleDependency&gt; = mutableListOf()
+&nbsp;    val dependencies: List&lt;MinimalExternalModuleDependency&gt;
+&nbsp;        get() = _dependencies
+&nbsp;
+&nbsp;    fun configure(project: Project) {
+&nbsp;        val catalogExtension: VersionCatalogsExtension? = project.extensions.findByType()
+&nbsp;        val libraries: Set&lt;MinimalExternalModuleDependency&gt; =
+&nbsp;            catalogExtension
+&nbsp;                ?.catalogNamesWithLibsAtFirst
+&nbsp;                ?.flatMap(catalogExtension::getLibraries)
+&nbsp;                ?.toSet()
+&nbsp;                .orEmpty()
+&nbsp;        _dependencies += libraries
+&nbsp;    }
+&nbsp;}
+&nbsp;
+<b class="nc">&nbsp;internal class HubdleCatalogsDependencies {</b>
+<b class="nc">&nbsp;    private val _dependencies: MutableList&lt;MinimalExternalModuleDependency&gt; = mutableListOf()</b>
+&nbsp;    val dependencies: List&lt;MinimalExternalModuleDependency&gt;
+<b class="nc">&nbsp;        get() = _dependencies</b>
+&nbsp;
+&nbsp;    fun configure() {
+<b class="nc">&nbsp;        _dependencies += hubdleDependencies.map(String::buildDefaultMinimalDependency)</b>
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;private fun String.buildDefaultMinimalDependency(): MinimalExternalModuleDependency {
+&nbsp;    val (group: String, name: String) = split(&quot;:&quot;)
+&nbsp;    val version: String = split(&quot;:&quot;).getOrElse(2) { &quot;&quot; }
+&nbsp;    return DefaultMinimalDependency(
+&nbsp;        DefaultModuleIdentifier.newId(group, name),
+&nbsp;        DefaultMutableVersionConstraint.withVersion(version)
+&nbsp;    )
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-01-09 00:46</div>
+</div>
+</body>
+</html>

@@ -157,11 +157,11 @@
 
 <div>
   <ul>
-    <li>976 number of properties</li>
-    <li>609 number of functions</li>
-    <li>256 number of classes</li>
-    <li>79 number of packages</li>
-    <li>208 number of kt files</li>
+    <li>1,260 number of properties</li>
+    <li>545 number of functions</li>
+    <li>217 number of classes</li>
+    <li>75 number of packages</li>
+    <li>200 number of kt files</li>
   </ul>
 </div>
 
@@ -170,23 +170,23 @@
 
 <div>
   <ul>
-    <li>12,000 lines of code (loc)</li>
-    <li>9,951 source lines of code (sloc)</li>
-    <li>6,765 logical lines of code (lloc)</li>
-    <li>52 comment lines of code (cloc)</li>
-    <li>1,265 cyclomatic complexity (mcc)</li>
-    <li>576 cognitive complexity</li>
-    <li>98 number of total code smells</li>
+    <li>12,535 lines of code (loc)</li>
+    <li>10,337 source lines of code (sloc)</li>
+    <li>6,842 logical lines of code (lloc)</li>
+    <li>68 comment lines of code (cloc)</li>
+    <li>909 cyclomatic complexity (mcc)</li>
+    <li>456 cognitive complexity</li>
+    <li>85 number of total code smells</li>
     <li>0% comment source ratio</li>
-    <li>186 mcc per 1,000 lloc</li>
-    <li>14 code smells per 1,000 lloc</li>
+    <li>132 mcc per 1,000 lloc</li>
+    <li>12 code smells per 1,000 lloc</li>
   </ul>
 </div>
 
 
 <h2>Findings</h2>
-<div>Total: 98
-  <h3>complexity: 10</h3>
+<div>Total: 85
+  <h3>complexity: 12</h3>
   <details id="ComplexCondition" open="open">
     <summary class="rule-container"><span class="rule">ComplexCondition: 1 </span><span class="description">Complex conditions should be simplified and extracted into well-named methods if necessary.</span></summary>
 <a href="https://detekt.dev/docs/rules/complexity#complexcondition">Documentation</a>
@@ -203,54 +203,48 @@
       </li>
     </ul>
   </details>
-  <details id="CyclomaticComplexMethod" open="open">
-    <summary class="rule-container"><span class="rule">CyclomaticComplexMethod: 1 </span><span class="description">Prefer splitting up complex methods into smaller, easier to test methods.</span></summary>
-<a href="https://detekt.dev/docs/rules/complexity#cyclomaticcomplexmethod">Documentation</a>
-    <ul>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/_internal/configureBuildFeatures.kt:20:21</span><span class="message">The function configureFeatures appears to be too complex based on Cyclomatic Complexity (complexity: 15). Defined complexity threshold for methods is set to '15'</span>
-        <pre><code><span class="lineno">  17 </span>    }
-<span class="lineno">  18 </span>}
-<span class="lineno">  19 </span>
-<span class="lineno">  20 </span>private fun Project.<span class="error">configureFeatures</span>(androidCommonExtension: AndroidCommonExtension) {
-<span class="lineno">  21 </span>    val feats = project.hubdleState.kotlin.android.buildFeatures
-<span class="lineno">  22 </span>    androidCommonExtension.buildFeatures {
-<span class="lineno">  23 </span>        aidl = feats.aidl ?: propOrNull(BuildFeatures.aidl) ?: trueIfApp()
-</code></pre>
-      </li>
-    </ul>
-  </details>
   <details id="LongMethod" open="open">
-    <summary class="rule-container"><span class="rule">LongMethod: 3 </span><span class="description">One method should have one responsibility. Long methods tend to handle many things at once. Prefer smaller methods to make them easier to understand.</span></summary>
+    <summary class="rule-container"><span class="rule">LongMethod: 4 </span><span class="description">One method should have one responsibility. Long methods tend to handle many things at once. Prefer smaller methods to make them easier to understand.</span></summary>
 <a href="https://detekt.dev/docs/rules/complexity#longmethod">Documentation</a>
     <ul>
-      <li><span class="location">hubdle-gradle-plugin/build.gradle.kts:168:13</span><span class="message">The function buildHubdleDependencies is too long (70). The maximum length is 60.</span>
-        <pre><code><span class="lineno"> 165 </span>        }
-<span class="lineno"> 166 </span>}
-<span class="lineno"> 167 </span>
-<span class="lineno"> 168 </span>fun Project.<span class="error">buildHubdleDependencies</span>() {
-<span class="lineno"> 169 </span>    buildDir.resolve(&quot;generated/main/kotlin/hubdle_dependencies.kt&quot;).apply {
-<span class="lineno"> 170 </span>        parentFile.mkdirs()
-<span class="lineno"> 171 </span>        createNewFile()
+      <li><span class="location">hubdle-gradle-plugin/build.gradle.kts:170:13</span><span class="message">The function buildHubdleDependencies is too long (71). The maximum length is 60.</span>
+        <pre><code><span class="lineno"> 167 </span>        }
+<span class="lineno"> 168 </span>}
+<span class="lineno"> 169 </span>
+<span class="lineno"> 170 </span>fun Project.<span class="error">buildHubdleDependencies</span>() {
+<span class="lineno"> 171 </span>    buildDir.resolve(&quot;generated/main/kotlin/hubdle_dependencies.kt&quot;).apply {
+<span class="lineno"> 172 </span>        parentFile.mkdirs()
+<span class="lineno"> 173 </span>        createNewFile()
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatformDarwin.kt:11:14</span><span class="message">The function configureMultiplatformDarwin is too long (80). The maximum length is 60.</span>
-        <pre><code><span class="lineno">   8 </span>import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
-<span class="lineno">   9 </span>import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet as KSS
-<span class="lineno">  10 </span>
-<span class="lineno">  11 </span>internal fun <span class="error">configureMultiplatformDarwin</span>(project: Project) {
-<span class="lineno">  12 </span>    if (project.hubdleState.kotlin.multiplatform.darwin.isEnabled) {
-<span class="lineno">  13 </span>        project.configure&lt;KotlinMultiplatformExtension&gt; {
-<span class="lineno">  14 </span>            val commonMain: KSS by sourceSets.getting
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/documentation/site/HubdleConfigDocumentationSiteExtension.kt:61:26</span><span class="message">The function defaultConfiguration is too long (64). The maximum length is 60.</span>
+        <pre><code><span class="lineno">  58 </span>        userConfigurable { action.execute(the()) }
+<span class="lineno">  59 </span>    }
+<span class="lineno">  60 </span>
+<span class="lineno">  61 </span>    override fun Project.<span class="error">defaultConfiguration</span>() {
+<span class="lineno">  62 </span>        val project = this
+<span class="lineno">  63 </span>        applicablePlugin(
+<span class="lineno">  64 </span>            priority = Priority.P4,
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatformNative.kt:11:14</span><span class="message">The function configureMultiplatformNative is too long (112). The maximum length is 60.</span>
-        <pre><code><span class="lineno">   8 </span>import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
-<span class="lineno">   9 </span>import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet as KSS
-<span class="lineno">  10 </span>
-<span class="lineno">  11 </span>internal fun <span class="error">configureMultiplatformNative</span>(project: Project) {
-<span class="lineno">  12 </span>    if (project.hubdleState.kotlin.multiplatform.native.isEnabled) {
-<span class="lineno">  13 </span>        project.configure&lt;KotlinMultiplatformExtension&gt; {
-<span class="lineno">  14 </span>            val commonMain: KSS by sourceSets.getting
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAppleExtension.kt:78:26</span><span class="message">The function defaultConfiguration is too long (94). The maximum length is 60.</span>
+        <pre><code><span class="lineno">  75 </span>        watchos.enableAndExecute(action)
+<span class="lineno">  76 </span>    }
+<span class="lineno">  77 </span>
+<span class="lineno">  78 </span>    override fun Project.<span class="error">defaultConfiguration</span>() {
+<span class="lineno">  79 </span>        configurable {
+<span class="lineno">  80 </span>            if (allEnabled.get()) {
+<span class="lineno">  81 </span>                ios.allEnabled()
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformNativeExtension.kt:43:26</span><span class="message">The function defaultConfiguration is too long (125). The maximum length is 60.</span>
+        <pre><code><span class="lineno">  40 </span>        allEnabled.set(value)
+<span class="lineno">  41 </span>    }
+<span class="lineno">  42 </span>
+<span class="lineno">  43 </span>    override fun Project.<span class="error">defaultConfiguration</span>() {
+<span class="lineno">  44 </span>        configurable {
+<span class="lineno">  45 </span>            if (allEnabled.get()) {
+<span class="lineno">  46 </span>                hubdleKotlinMultiplatform.apple.allEnabled()
 </code></pre>
       </li>
     </ul>
@@ -259,59 +253,77 @@
     <summary class="rule-container"><span class="rule">NestedBlockDepth: 1 </span><span class="description">Excessive nesting leads to hidden complexity. Prefer extracting code to make it easier to understand.</span></summary>
 <a href="https://detekt.dev/docs/rules/complexity#nestedblockdepth">Documentation</a>
     <ul>
-      <li><span class="location">hubdle-gradle-plugin/build.gradle.kts:168:13</span><span class="message">Function buildHubdleDependencies is nested too deeply.</span>
-        <pre><code><span class="lineno"> 165 </span>        }
-<span class="lineno"> 166 </span>}
-<span class="lineno"> 167 </span>
-<span class="lineno"> 168 </span>fun Project.<span class="error">buildHubdleDependencies</span>() {
-<span class="lineno"> 169 </span>    buildDir.resolve(&quot;generated/main/kotlin/hubdle_dependencies.kt&quot;).apply {
-<span class="lineno"> 170 </span>        parentFile.mkdirs()
-<span class="lineno"> 171 </span>        createNewFile()
+      <li><span class="location">hubdle-gradle-plugin/build.gradle.kts:170:13</span><span class="message">Function buildHubdleDependencies is nested too deeply.</span>
+        <pre><code><span class="lineno"> 167 </span>        }
+<span class="lineno"> 168 </span>}
+<span class="lineno"> 169 </span>
+<span class="lineno"> 170 </span>fun Project.<span class="error">buildHubdleDependencies</span>() {
+<span class="lineno"> 171 </span>    buildDir.resolve(&quot;generated/main/kotlin/hubdle_dependencies.kt&quot;).apply {
+<span class="lineno"> 172 </span>        parentFile.mkdirs()
+<span class="lineno"> 173 </span>        createNewFile()
 </code></pre>
       </li>
     </ul>
   </details>
   <details id="TooManyFunctions" open="open">
-    <summary class="rule-container"><span class="rule">TooManyFunctions: 4 </span><span class="description">Too many functions inside a/an file/class/object/interface always indicate a violation of the single responsibility principle. Maybe the file/class/object/interface wants to manage too many things at once. Extract functionality which clearly belongs together.</span></summary>
+    <summary class="rule-container"><span class="rule">TooManyFunctions: 6 </span><span class="description">Too many functions inside a/an file/class/object/interface always indicate a violation of the single responsibility principle. Maybe the file/class/object/interface wants to manage too many things at once. Extract functionality which clearly belongs together.</span></summary>
 <a href="https://detekt.dev/docs/rules/complexity#toomanyfunctions">Documentation</a>
     <ul>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/HubdleConfigExtension.kt:25:19</span><span class="message">Class 'HubdleConfigExtension' with '11' functions detected. Defined threshold inside classes is set to '11'</span>
-        <pre><code><span class="lineno">  22 </span>import org.jetbrains.kotlin.gradle.dsl.ExplicitApiMode
-<span class="lineno">  23 </span>
-<span class="lineno">  24 </span>@HubdleDslMarker
-<span class="lineno">  25 </span>public open class <span class="error">HubdleConfigExtension</span>
-<span class="lineno">  26 </span>@Inject
-<span class="lineno">  27 </span>constructor(
-<span class="lineno">  28 </span>    objects: ObjectFactory,
-</code></pre>
-      </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/language/settings/HubdleLanguageSettingsExtension.kt:12:19</span><span class="message">Class 'HubdleLanguageSettingsExtension' with '11' functions detected. Defined threshold inside classes is set to '11'</span>
-        <pre><code><span class="lineno">   9 </span>import org.gradle.kotlin.dsl.newInstance
-<span class="lineno">  10 </span>import org.jetbrains.kotlin.gradle.plugin.LanguageSettingsBuilder
-<span class="lineno">  11 </span>
-<span class="lineno">  12 </span>public open class <span class="error">HubdleLanguageSettingsExtension</span> @Inject constructor(objects: ObjectFactory) {
-<span class="lineno">  13 </span>
-<span class="lineno">  14 </span>    @HubdleDslMarker
-<span class="lineno">  15 </span>    public fun Project.experimentalContracts(enabled: Boolean = true) {
-</code></pre>
-      </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/HubdleKotlinMultiplatformExtension.kt:61:19</span><span class="message">Class 'HubdleKotlinMultiplatformExtension' with '38' functions detected. Defined threshold inside classes is set to '11'</span>
-        <pre><code><span class="lineno">  58 </span>import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
-<span class="lineno">  59 </span>
-<span class="lineno">  60 </span>@HubdleDslMarker
-<span class="lineno">  61 </span>public open class <span class="error">HubdleKotlinMultiplatformExtension</span>
-<span class="lineno">  62 </span>@Inject
-<span class="lineno">  63 </span>constructor(
-<span class="lineno">  64 </span>    objects: ObjectFactory,
-</code></pre>
-      </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatform.kt:3:1</span><span class="message">File '/home/runner/work/hubdle/hubdle/hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatform.kt' with '12' functions detected. Defined threshold inside files is set to '11'</span>
-        <pre><code><span class="lineno">   1 </span>@file:Suppress(&quot;SpreadOperator&quot;)
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/withPluginExtensions.kt:1:1</span><span class="message">File '/home/runner/work/hubdle/hubdle/hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/withPluginExtensions.kt' with '19' functions detected. Defined threshold inside files is set to '11'</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions._internal</span>
 <span class="lineno">   2 </span>
-<span class="lineno">   3 </span><span class="error">package com.javiersc.hubdle.extensions.kotlin.multiplatform._internal</span>
-<span class="lineno">   4 </span>
-<span class="lineno">   5 </span>import androidxComposeCompiler
-<span class="lineno">   6 </span>import com.android.build.api.dsl.LibraryExtension
+<span class="lineno">   3 </span>import com.android.build.api.dsl.ApplicationExtension
+<span class="lineno">   4 </span>import com.android.build.api.dsl.LibraryExtension
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/apis/HubdleEnableableExtension.kt:21:23</span><span class="message">Class 'HubdleEnableableExtension' with '11' functions detected. Defined threshold inside classes is set to '11'</span>
+        <pre><code><span class="lineno">  18 </span>import org.gradle.kotlin.dsl.configure
+<span class="lineno">  19 </span>import org.gradle.kotlin.dsl.the
+<span class="lineno">  20 </span>
+<span class="lineno">  21 </span>public abstract class <span class="error">HubdleEnableableExtension</span>(
+<span class="lineno">  22 </span>    internal open val project: Project,
+<span class="lineno">  23 </span>) : BaseHubdleEnableableExtension {
+<span class="lineno">  24 </span>
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/HubdleConfigExtension.kt:27:19</span><span class="message">Class 'HubdleConfigExtension' with '11' functions detected. Defined threshold inside classes is set to '11'</span>
+        <pre><code><span class="lineno">  24 </span>import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
+<span class="lineno">  25 </span>
+<span class="lineno">  26 </span>@HubdleDslMarker
+<span class="lineno">  27 </span>public open class <span class="error">HubdleConfigExtension</span>
+<span class="lineno">  28 </span>@Inject
+<span class="lineno">  29 </span>constructor(
+<span class="lineno">  30 </span>    project: Project,
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/language/settings/HubdleConfigLanguageSettingsExtension.kt:15:19</span><span class="message">Class 'HubdleConfigLanguageSettingsExtension' with '11' functions detected. Defined threshold inside classes is set to '11'</span>
+        <pre><code><span class="lineno">  12 </span>import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
+<span class="lineno">  13 </span>import org.jetbrains.kotlin.gradle.plugin.LanguageSettingsBuilder
+<span class="lineno">  14 </span>
+<span class="lineno">  15 </span>public open class <span class="error">HubdleConfigLanguageSettingsExtension</span>
+<span class="lineno">  16 </span>@Inject
+<span class="lineno">  17 </span>constructor(
+<span class="lineno">  18 </span>    project: Project,
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/gradle/plugin/HubdleKotlinGradlePluginExtension.kt:45:19</span><span class="message">Class 'HubdleKotlinGradlePluginExtension' with '17' functions detected. Defined threshold inside classes is set to '11'</span>
+        <pre><code><span class="lineno">  42 </span>
+<span class="lineno">  43 </span>// TODO: Move to Kotlin/Jvm/Features
+<span class="lineno">  44 </span>@HubdleDslMarker
+<span class="lineno">  45 </span>public open class <span class="error">HubdleKotlinGradlePluginExtension</span>
+<span class="lineno">  46 </span>@Inject
+<span class="lineno">  47 </span>constructor(
+<span class="lineno">  48 </span>    project: Project,
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/HubdleKotlinMultiplatformExtension.kt:40:19</span><span class="message">Class 'HubdleKotlinMultiplatformExtension' with '13' functions detected. Defined threshold inside classes is set to '11'</span>
+        <pre><code><span class="lineno">  37 </span>import org.jetbrains.kotlin.gradle.plugin.KotlinTargetPreset
+<span class="lineno">  38 </span>
+<span class="lineno">  39 </span>@HubdleDslMarker
+<span class="lineno">  40 </span>public open class <span class="error">HubdleKotlinMultiplatformExtension</span>
+<span class="lineno">  41 </span>@Inject
+<span class="lineno">  42 </span>constructor(
+<span class="lineno">  43 </span>    project: Project,
 </code></pre>
       </li>
     </ul>
@@ -327,11 +339,18 @@
       </li>
     </ul>
   </details>
-  <h3>naming: 77</h3>
+  <h3>naming: 50</h3>
   <details id="InvalidPackageDeclaration" open="open">
-    <summary class="rule-container"><span class="rule">InvalidPackageDeclaration: 28 </span><span class="description">Kotlin source files should be stored in the directory corresponding to its package statement.</span></summary>
+    <summary class="rule-container"><span class="rule">InvalidPackageDeclaration: 29 </span><span class="description">Kotlin source files should be stored in the directory corresponding to its package statement.</span></summary>
 <a href="https://detekt.dev/docs/rules/naming#invalidpackagedeclaration">Documentation</a>
     <ul>
+      <li><span class="location">sandbox/consumer-kotlin-android/main/kotlin/Main.kt:1:1</span><span class="message">The package declaration does not match the actual file location.</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.gradle.plugins.sandbox</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>fun main() {
+<span class="lineno">   4 </span>    println(
+</code></pre>
+      </li>
       <li><span class="location">sandbox/consumer-kotlin-jvm/main/kotlin/Main.kt:1:1</span><span class="message">The package declaration does not match the actual file location.</span>
         <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.gradle.plugins.sandbox</span>
 <span class="lineno">   2 </span>
@@ -530,22 +549,6 @@
       </li>
     </ul>
   </details>
-  <details id="MatchingDeclarationName" open="open">
-    <summary class="rule-container"><span class="rule">MatchingDeclarationName: 1 </span><span class="description">If a source file contains only a single non-private top-level class or object, the file name should reflect the case-sensitive name plus the .kt extension.</span></summary>
-<a href="https://detekt.dev/docs/rules/naming#matchingdeclarationname">Documentation</a>
-    <ul>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/options/DependenciesOptions.kt:14:18</span><span class="message">The file name 'DependenciesOptions' does not match the name of the single top-level declaration 'GradleDependenciesOptions'.</span>
-        <pre><code><span class="lineno">  11 </span> * val Property.dependencies: DependencyHandler
-<span class="lineno">  12 </span> * ```
-<span class="lineno">  13 </span> */
-<span class="lineno">  14 </span>public interface <span class="error">GradleDependenciesOptions</span> {
-<span class="lineno">  15 </span>    public fun Project.gradleApi(): Dependency = dependencies.gradleApi()
-<span class="lineno">  16 </span>    public fun Project.localGroovy(): Dependency = dependencies.localGroovy()
-<span class="lineno">  17 </span>    public fun Project.gradleTestKit(): Dependency = dependencies.gradleTestKit()
-</code></pre>
-      </li>
-    </ul>
-  </details>
   <details id="MemberNameEqualsClassName" open="open">
     <summary class="rule-container"><span class="rule">MemberNameEqualsClassName: 1 </span><span class="description">A member should not be given the same name as its parent class or object.</span></summary>
 <a href="https://detekt.dev/docs/rules/naming#membernameequalsclassname">Documentation</a>
@@ -563,72 +566,86 @@
     </ul>
   </details>
   <details id="PackageNaming" open="open">
-    <summary class="rule-container"><span class="rule">PackageNaming: 47 </span><span class="description">Package names should match the naming convention set in the configuration.</span></summary>
+    <summary class="rule-container"><span class="rule">PackageNaming: 19 </span><span class="description">Package names should match the naming convention set in the configuration.</span></summary>
 <a href="https://detekt.dev/docs/rules/naming#packagenaming">Documentation</a>
     <ul>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/PluginIds.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/CatalogDependencies.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
         <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions._internal</span>
-<span class="lineno">   2 </span>
-<span class="lineno">   3 </span>internal object PluginIds {
-<span class="lineno">   4 </span>
-</code></pre>
-      </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/ProjectType.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
-        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions._internal</span>
-<span class="lineno">   2 </span>
-<span class="lineno">   3 </span>import org.gradle.api.Project
-<span class="lineno">   4 </span>
-</code></pre>
-      </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/state/CatalogDependencies.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
-        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions._internal.state</span>
 <span class="lineno">   2 </span>
 <span class="lineno">   3 </span>import com.javiersc.gradle.extensions.version.catalogs.catalogNamesWithLibsAtFirst
 <span class="lineno">   4 </span>import com.javiersc.gradle.extensions.version.catalogs.getLibraries
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/state/HubdleState.kt:3:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/HubdleState.kt:3:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
         <pre><code><span class="lineno">   1 </span>@file:Suppress(&quot;MagicNumber&quot;)
 <span class="lineno">   2 </span>
-<span class="lineno">   3 </span><span class="error">package com.javiersc.hubdle.extensions._internal.state</span>
+<span class="lineno">   3 </span><span class="error">package com.javiersc.hubdle.extensions._internal</span>
 <span class="lineno">   4 </span>
-<span class="lineno">   5 </span>import com.android.build.api.dsl.ApplicationExtension
-<span class="lineno">   6 </span>import com.android.build.api.dsl.LibraryExtension
+<span class="lineno">   5 </span>import com.javiersc.hubdle.extensions._internal.ApplicablePlugin.Scope
+<span class="lineno">   6 </span>import com.javiersc.hubdle.extensions._internal.Configurable.Priority
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/state/checkCompatibility.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
-        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions._internal.state</span>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/PluginId.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions._internal</span>
 <span class="lineno">   2 </span>
-<span class="lineno">   3 </span>import org.gradle.api.Project
-<span class="lineno">   4 </span>
+<span class="lineno">   3 </span>internal enum class PluginId(val id: String) {
+<span class="lineno">   4 </span>    AdarshrTestLogger(&quot;com.adarshr.test-logger&quot;),
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/_internal/hasKotlinGradlePlugin.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
-        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.config._internal</span>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/checkCompatibility.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions._internal</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import com.javiersc.hubdle.extensions.kotlin.android.application.hubdleAndroidApplication
+<span class="lineno">   4 </span>import com.javiersc.hubdle.extensions.kotlin.android.hubdleAndroid
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/configureDependencies.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions._internal</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import com.javiersc.hubdle.extensions.config.testing.HubdleConfigTestingExtension.Options
+<span class="lineno">   4 </span>import com.javiersc.hubdle.extensions.config.testing.hubdleTesting
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/configureSourceSets.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions._internal</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import com.android.build.api.dsl.AndroidSourceDirectorySet
+<span class="lineno">   4 </span>import com.android.build.api.dsl.AndroidSourceFile
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/hasPluginExensions.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions._internal</span>
 <span class="lineno">   2 </span>
 <span class="lineno">   3 </span>import org.gradle.api.Project
 <span class="lineno">   4 </span>import org.jetbrains.kotlin.gradle.plugin.KotlinBasePluginWrapper
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/analysis/_internal/configureAnalysis.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
-        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.config.analysis._internal</span>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/hubdleExtension.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions._internal</span>
 <span class="lineno">   2 </span>
-<span class="lineno">   3 </span>import com.javiersc.gradle.project.extensions.isRootProject
-<span class="lineno">   4 </span>import com.javiersc.gradle.properties.extensions.getProperty
+<span class="lineno">   3 </span>import com.javiersc.hubdle.extensions.apis.BaseHubdleExtension as BaseHubdleExt
+<span class="lineno">   4 </span>import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension as HubdleEnableableExt
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/binary/compatibility/validator/_internal/configureBinaryCompatibilityValidator.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
-        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.config.binary.compatibility.validator._internal</span>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/projectExtensions.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions._internal</span>
 <span class="lineno">   2 </span>
-<span class="lineno">   3 </span>import com.javiersc.gradle.project.extensions.isRootProject
-<span class="lineno">   4 </span>import com.javiersc.gradle.tasks.extensions.maybeRegisterLazily
+<span class="lineno">   3 </span>import org.gradle.api.Project
+<span class="lineno">   4 </span>import org.gradle.api.provider.ListProperty
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/coverage/_internal/configureCoverage.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
-        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.config.coverage._internal</span>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/withPluginExtensions.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions._internal</span>
 <span class="lineno">   2 </span>
-<span class="lineno">   3 </span>import com.javiersc.gradle.project.extensions.isRootProject
-<span class="lineno">   4 </span>import com.javiersc.hubdle.extensions._internal.PluginIds
+<span class="lineno">   3 </span>import com.android.build.api.dsl.ApplicationExtension
+<span class="lineno">   4 </span>import com.android.build.api.dsl.LibraryExtension
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/_internal/createAndConfigureHubdleConfigExtensions.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.config._internal</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import com.javiersc.hubdle.extensions._internal.HubdleState
+<span class="lineno">   4 </span>import com.javiersc.hubdle.extensions.config.HubdleConfigExtension
 </code></pre>
       </li>
       <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/documentation/changelog/_internal/Changelog.kt:3:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
@@ -656,251 +673,54 @@
 <span class="lineno">   6 </span>    val versionsMap: Map&lt;Changelog.Version, List&lt;Changelog.Version&gt;&gt; = buildMap {
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/documentation/changelog/_internal/configureChangelog.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
-        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.config.documentation.changelog._internal</span>
-<span class="lineno">   2 </span>
-<span class="lineno">   3 </span>import com.javiersc.gradle.properties.extensions.getStringProperty
-<span class="lineno">   4 </span>import com.javiersc.gradle.tasks.extensions.namedLazily
-</code></pre>
-      </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/documentation/readme/_internal/configureReadme.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
-        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.config.documentation.readme._internal</span>
-<span class="lineno">   2 </span>
-<span class="lineno">   3 </span>import com.javiersc.gradle.properties.extensions.getProperty
-<span class="lineno">   4 </span>import com.javiersc.gradle.properties.extensions.getPropertyOrNull
-</code></pre>
-      </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/documentation/readme/_internal/models/MavenRepo.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
-        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.config.documentation.readme._internal.models</span>
-<span class="lineno">   2 </span>
-<span class="lineno">   3 </span>/** Sonatype Maven repos */
-<span class="lineno">   4 </span>internal enum class MavenRepo {
-</code></pre>
-      </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/documentation/readme/_internal/models/Sonar.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
-        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.config.documentation.readme._internal.models</span>
-<span class="lineno">   2 </span>
-<span class="lineno">   3 </span>/** Sonar metrics */
-<span class="lineno">   4 </span>internal enum class Sonar(val label: String, val path: String) {
-</code></pre>
-      </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/documentation/site/_internal/configureSite.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
-        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.config.documentation.site._internal</span>
-<span class="lineno">   2 </span>
-<span class="lineno">   3 </span>import com.javiersc.gradle.project.extensions.isRootProject
-<span class="lineno">   4 </span>import com.javiersc.hubdle.extensions._internal.PluginIds
-</code></pre>
-      </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/explicit/api/_internal/configureExplicitApi.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
-        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.config.explicit.api._internal</span>
-<span class="lineno">   2 </span>
-<span class="lineno">   3 </span>import com.javiersc.hubdle.extensions._internal.state.hubdleState
-<span class="lineno">   4 </span>import org.gradle.api.Project
-</code></pre>
-      </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/format/_internal/configureFormat.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
-        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.config.format._internal</span>
-<span class="lineno">   2 </span>
-<span class="lineno">   3 </span>import com.diffplug.gradle.spotless.SpotlessExtension
-<span class="lineno">   4 </span>import com.diffplug.gradle.spotless.SpotlessExtensionPredeclare
-</code></pre>
-      </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/install/_internal/configureInstall.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
-        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.config.install._internal</span>
-<span class="lineno">   2 </span>
-<span class="lineno">   3 </span>import com.javiersc.gradle.project.extensions.isRootProject
-<span class="lineno">   4 </span>import com.javiersc.hubdle.extensions._internal.state.hubdleState
-</code></pre>
-      </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/language/settings/_internal/configureConfigLanguageSettings.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
-        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.config.language.settings._internal</span>
-<span class="lineno">   2 </span>
-<span class="lineno">   3 </span>import com.javiersc.hubdle.extensions._internal.state.HubdleState.Config.LanguageSettings
-<span class="lineno">   4 </span>import com.javiersc.hubdle.extensions._internal.state.hubdleState
-</code></pre>
-      </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/nexus/_internal/configureNexus.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
-        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.config.nexus._internal</span>
-<span class="lineno">   2 </span>
-<span class="lineno">   3 </span>import com.javiersc.gradle.properties.extensions.getPropertyOrNull
-<span class="lineno">   4 </span>import com.javiersc.hubdle.HubdleProperty.Nexus
-</code></pre>
-      </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/publishing/_internal/configurePublishing.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/publishing/_internal/configureMavenPublishing.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
         <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.config.publishing._internal</span>
 <span class="lineno">   2 </span>
-<span class="lineno">   3 </span>import com.javiersc.hubdle.extensions._internal.state.hubdleState
-<span class="lineno">   4 </span>import org.gradle.api.Project
+<span class="lineno">   3 </span>import com.javiersc.gradle.project.extensions.isNotSnapshot
+<span class="lineno">   4 </span>import com.javiersc.gradle.properties.extensions.getBooleanProperty
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/versioning/_internal/configureVersioning.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
-        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.config.versioning._internal</span>
-<span class="lineno">   2 </span>
-<span class="lineno">   3 </span>import com.javiersc.hubdle.extensions._internal.PluginIds
-<span class="lineno">   4 </span>import com.javiersc.hubdle.extensions._internal.state.hubdleState
-</code></pre>
-      </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/_internal/configJvmTarget.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/_internal/createAndConfigureHubdleKotlinExtensions.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
         <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.kotlin._internal</span>
 <span class="lineno">   2 </span>
-<span class="lineno">   3 </span>import com.javiersc.hubdle.extensions._internal.state.hubdleState
-<span class="lineno">   4 </span>import org.gradle.api.JavaVersion
+<span class="lineno">   3 </span>import com.javiersc.hubdle.extensions._internal.HubdleState
+<span class="lineno">   4 </span>import com.javiersc.hubdle.extensions.kotlin.HubdleKotlinExtension
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/_internal/forSets.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.kotlin._internal</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import org.gradle.api.Project
+<span class="lineno">   4 </span>import org.gradle.kotlin.dsl.the
 </code></pre>
       </li>
       <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/_internal/calculateAndroidNamespace.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
         <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.kotlin.android._internal</span>
 <span class="lineno">   2 </span>
 <span class="lineno">   3 </span>import com.javiersc.gradle.properties.extensions.getBooleanProperty
-<span class="lineno">   4 </span>import com.javiersc.hubdle.HubdleProperty.Android.namespaceUseKotlinFile
+<span class="lineno">   4 </span>import com.javiersc.hubdle.HubdleProperty.Android
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/_internal/configureBuildFeatures.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
-        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.kotlin.android._internal</span>
+      <li><span class="location">hubdle-gradle-plugin/test/kotlin/com/javiersc/hubdle/_utils/commitAndCheckout.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle._utils</span>
 <span class="lineno">   2 </span>
-<span class="lineno">   3 </span>import com.android.build.api.dsl.BuildFeatures as AndroidBuildFeatures
-<span class="lineno">   4 </span>import com.android.build.api.dsl.BuildType
+<span class="lineno">   3 </span>import java.io.File
+<span class="lineno">   4 </span>import org.eclipse.jgit.api.Git
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/application/_internal/configureAndroidApplication.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
-        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.kotlin.android.application._internal</span>
-<span class="lineno">   2 </span>
-<span class="lineno">   3 </span>import androidxComposeCompiler
-<span class="lineno">   4 </span>import com.android.build.api.dsl.ApplicationExtension
-</code></pre>
-      </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/library/_internal/configureAndroidLibrary.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
-        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.kotlin.android.library._internal</span>
-<span class="lineno">   2 </span>
-<span class="lineno">   3 </span>import com.android.build.gradle.LibraryExtension
-<span class="lineno">   4 </span>import com.javiersc.hubdle.extensions._internal.PluginIds
-</code></pre>
-      </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/gradle/plugin/_internal/configureGradlePlugin.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
-        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.kotlin.gradle.plugin._internal</span>
-<span class="lineno">   2 </span>
-<span class="lineno">   3 </span>import com.gradle.publish.PluginBundleExtension
-<span class="lineno">   4 </span>import com.javiersc.gradle.properties.extensions.getProperty
-</code></pre>
-      </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/gradle/version/catalog/_internal/configureGradleVersionCatalog.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
-        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.kotlin.gradle.version.catalog._internal</span>
-<span class="lineno">   2 </span>
-<span class="lineno">   3 </span>import com.javiersc.hubdle.extensions._internal.PluginIds
-<span class="lineno">   4 </span>import com.javiersc.hubdle.extensions._internal.state.hubdleState
-</code></pre>
-      </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/intellij/_internal/configureIntelliJ.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
-        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.kotlin.intellij._internal</span>
-<span class="lineno">   2 </span>
-<span class="lineno">   3 </span>import com.javiersc.gradle.properties.extensions.getProperty
-<span class="lineno">   4 </span>import com.javiersc.gradle.properties.extensions.getPropertyOrNull
-</code></pre>
-      </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/jvm/_internal/configureJvm.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
-        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.kotlin.jvm._internal</span>
-<span class="lineno">   2 </span>
-<span class="lineno">   3 </span>import com.javiersc.hubdle.extensions._internal.PluginIds
-<span class="lineno">   4 </span>import com.javiersc.hubdle.extensions._internal.state.HubdleState
-</code></pre>
-      </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatform.kt:3:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
-        <pre><code><span class="lineno">   1 </span>@file:Suppress(&quot;SpreadOperator&quot;)
-<span class="lineno">   2 </span>
-<span class="lineno">   3 </span><span class="error">package com.javiersc.hubdle.extensions.kotlin.multiplatform._internal</span>
-<span class="lineno">   4 </span>
-<span class="lineno">   5 </span>import androidxComposeCompiler
-<span class="lineno">   6 </span>import com.android.build.api.dsl.LibraryExtension
-</code></pre>
-      </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatformAndroid.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
-        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.kotlin.multiplatform._internal</span>
-<span class="lineno">   2 </span>
-<span class="lineno">   3 </span>import com.android.build.api.dsl.LibraryExtension
-<span class="lineno">   4 </span>import com.javiersc.hubdle.extensions._internal.PluginIds
-</code></pre>
-      </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatformDarwin.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
-        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.kotlin.multiplatform._internal</span>
-<span class="lineno">   2 </span>
-<span class="lineno">   3 </span>import com.javiersc.hubdle.extensions._internal.state.hubdleState
-<span class="lineno">   4 </span>import org.gradle.api.Project
-</code></pre>
-      </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatformIOS.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
-        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.kotlin.multiplatform._internal</span>
-<span class="lineno">   2 </span>
-<span class="lineno">   3 </span>import com.javiersc.hubdle.extensions._internal.state.hubdleState
-<span class="lineno">   4 </span>import org.gradle.api.Project
-</code></pre>
-      </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatformJs.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
-        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.kotlin.multiplatform._internal</span>
-<span class="lineno">   2 </span>
-<span class="lineno">   3 </span>import com.javiersc.hubdle.extensions._internal.state.hubdleState
-<span class="lineno">   4 </span>import org.gradle.api.Project
-</code></pre>
-      </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatformJvm.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
-        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.kotlin.multiplatform._internal</span>
-<span class="lineno">   2 </span>
-<span class="lineno">   3 </span>import com.javiersc.hubdle.extensions._internal.state.hubdleState
-<span class="lineno">   4 </span>import org.gradle.api.Project
-</code></pre>
-      </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatformJvmAndAndroid.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
-        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.kotlin.multiplatform._internal</span>
-<span class="lineno">   2 </span>
-<span class="lineno">   3 </span>import com.javiersc.hubdle.extensions._internal.state.hubdleState
-<span class="lineno">   4 </span>import org.gradle.api.Project
-</code></pre>
-      </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatformLinux.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
-        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.kotlin.multiplatform._internal</span>
-<span class="lineno">   2 </span>
-<span class="lineno">   3 </span>import com.javiersc.hubdle.extensions._internal.state.hubdleState
-<span class="lineno">   4 </span>import org.gradle.api.Project
-</code></pre>
-      </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatformMacOS.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
-        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.kotlin.multiplatform._internal</span>
-<span class="lineno">   2 </span>
-<span class="lineno">   3 </span>import com.javiersc.hubdle.extensions._internal.state.hubdleState
-<span class="lineno">   4 </span>import org.gradle.api.Project
-</code></pre>
-      </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatformMinGW.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
-        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.kotlin.multiplatform._internal</span>
-<span class="lineno">   2 </span>
-<span class="lineno">   3 </span>import com.javiersc.hubdle.extensions._internal.state.hubdleState
-<span class="lineno">   4 </span>import org.gradle.api.Project
-</code></pre>
-      </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatformNative.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
-        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.kotlin.multiplatform._internal</span>
-<span class="lineno">   2 </span>
-<span class="lineno">   3 </span>import com.javiersc.hubdle.extensions._internal.state.hubdleState
-<span class="lineno">   4 </span>import org.gradle.api.Project
-</code></pre>
-      </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatformTvOS.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
-        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.kotlin.multiplatform._internal</span>
-<span class="lineno">   2 </span>
-<span class="lineno">   3 </span>import com.javiersc.hubdle.extensions._internal.state.hubdleState
-<span class="lineno">   4 </span>import org.gradle.api.Project
-</code></pre>
-      </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatformWAsm.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
-        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.kotlin.multiplatform._internal</span>
-<span class="lineno">   2 </span>
-<span class="lineno">   3 </span>import com.javiersc.hubdle.extensions._internal.state.hubdleState
-<span class="lineno">   4 </span>import org.gradle.api.Project
-</code></pre>
-      </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatformWatchOS.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
-        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.kotlin.multiplatform._internal</span>
-<span class="lineno">   2 </span>
-<span class="lineno">   3 </span>import com.javiersc.hubdle.extensions._internal.state.hubdleState
-<span class="lineno">   4 </span>import org.gradle.api.Project
+    </ul>
+  </details>
+  <details id="TopLevelPropertyNaming" open="open">
+    <summary class="rule-container"><span class="rule">TopLevelPropertyNaming: 1 </span><span class="description">Top level property names should follow the naming convention set in the projects configuration.</span></summary>
+<a href="https://detekt.dev/docs/rules/naming#toplevelpropertynaming">Documentation</a>
+    <ul>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/PluginId.kt:35:19</span><span class="message">Top level constant names should match the pattern: [A-Z][_A-Z0-9]*</span>
+        <pre><code><span class="lineno">  32 </span>    override fun toString(): String = id
+<span class="lineno">  33 </span>}
+<span class="lineno">  34 </span>
+<span class="lineno">  35 </span>private const val <span class="error">KotlinBinaryCompatibilityValidator</span> =
+<span class="lineno">  36 </span>    &quot;org.jetbrains.kotlinx.binary-compatibility-validator&quot;
+<span class="lineno">  37 </span>
 </code></pre>
       </li>
     </ul>
@@ -910,20 +730,20 @@
     <summary class="rule-container"><span class="rule">SpreadOperator: 3 </span><span class="description">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span></summary>
 <a href="https://detekt.dev/docs/rules/performance#spreadoperator">Documentation</a>
     <ul>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatformAndroid.kt:36:51</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
-        <pre><code><span class="lineno">  33 </span>                        androidState.library.publishLibraryVariants.isNotEmpty() -&gt; {
-<span class="lineno">  34 </span>                            val variants =
-<span class="lineno">  35 </span>                                androidState.library.publishLibraryVariants.toTypedArray()
-<span class="lineno">  36 </span>                            publishLibraryVariants<span class="error">(*variants)</span>
-<span class="lineno">  37 </span>                        }
-<span class="lineno">  38 </span>                        androidState.library.allLibraryVariants -&gt; publishAllLibraryVariants()
-<span class="lineno">  39 </span>                    }
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidExtension.kt:92:47</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
+        <pre><code><span class="lineno">  89 </span>                val publishAllVariants = hubdleAndroid.publishAllLibraryVariants.get()
+<span class="lineno">  90 </span>                android {
+<span class="lineno">  91 </span>                    if (publishVariants.isNotEmpty() &amp;&amp; !publishAllVariants) {
+<span class="lineno">  92 </span>                        publishLibraryVariants<span class="error">(*publishVariants)</span>
+<span class="lineno">  93 </span>                    }
+<span class="lineno">  94 </span>                    if (publishAllVariants) {
+<span class="lineno">  95 </span>                        publishAllLibraryVariants()
 </code></pre>
       </li>
       <li><span class="location">hubdle-settings-gradle-plugin/main/kotlin/com/javiersc/hubdle/settings/HubdleSettingsPlugin.kt:62:29</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
         <pre><code><span class="lineno">  59 </span>    val autoInclude = hubdleSettings.autoInclude
 <span class="lineno">  60 </span>
-<span class="lineno">  61 </span>    if (autoInclude.isEnabled) {
+<span class="lineno">  61 </span>    if (autoInclude.isEnabled.get()) {
 <span class="lineno">  62 </span>        autoInclude.includes<span class="error">(*extractedProjects().toTypedArray())</span>
 <span class="lineno">  63 </span>        autoInclude.includedBuilds(*extractedBuildProjects().toTypedArray())
 <span class="lineno">  64 </span>
@@ -932,7 +752,7 @@
       </li>
       <li><span class="location">hubdle-settings-gradle-plugin/main/kotlin/com/javiersc/hubdle/settings/HubdleSettingsPlugin.kt:63:35</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
         <pre><code><span class="lineno">  60 </span>
-<span class="lineno">  61 </span>    if (autoInclude.isEnabled) {
+<span class="lineno">  61 </span>    if (autoInclude.isEnabled.get()) {
 <span class="lineno">  62 </span>        autoInclude.includes(*extractedProjects().toTypedArray())
 <span class="lineno">  63 </span>        autoInclude.includedBuilds<span class="error">(*extractedBuildProjects().toTypedArray())</span>
 <span class="lineno">  64 </span>
@@ -942,69 +762,185 @@
       </li>
     </ul>
   </details>
-  <h3>style: 7</h3>
+  <h3>style: 19</h3>
   <details id="ForbiddenComment" open="open">
-    <summary class="rule-container"><span class="rule">ForbiddenComment: 6 </span><span class="description">Flags a forbidden comment.</span></summary>
+    <summary class="rule-container"><span class="rule">ForbiddenComment: 11 </span><span class="description">Flags a forbidden comment.</span></summary>
 <a href="https://detekt.dev/docs/rules/style#forbiddencomment">Documentation</a>
     <ul>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/binary/compatibility/validator/_internal/configureBinaryCompatibilityValidator.kt:12:1</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
-        <pre><code><span class="lineno">   9 </span>import org.gradle.api.Task
-<span class="lineno">  10 </span>import org.gradle.kotlin.dsl.the
-<span class="lineno">  11 </span>
-<span class="lineno">  12 </span><span class="error">// TODO: change to per project when it is redesigned to support project isolation</span>
-<span class="lineno">  13 </span>internal fun configureBinaryCompatibilityValidator(project: Project) {
-<span class="lineno">  14 </span>    if (project.hubdleState.config.binaryCompatibilityValidator.isEnabled) {
-<span class="lineno">  15 </span>        check(project.isRootProject) {
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/projectExtensions.kt:11:1</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
+        <pre><code><span class="lineno">   8 </span>import org.gradle.kotlin.dsl.property
+<span class="lineno">   9 </span>import org.gradle.kotlin.dsl.setProperty
+<span class="lineno">  10 </span>
+<span class="lineno">  11 </span><span class="error">// TODO: Extract to Gradle Extensions libraries</span>
+<span class="lineno">  12 </span>internal inline fun &lt;reified T&gt; Project.property(crossinline block: Project.() -&gt; T): Property&lt;T&gt; =
+<span class="lineno">  13 </span>    objects.property&lt;T&gt;().convention(project.provider { block(this) })
+<span class="lineno">  14 </span>
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/application/_internal/configureAndroidApplication.kt:49:13</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
-        <pre><code><span class="lineno">  46 </span>            defaultConfig.versionName = androidState.application.versionName
-<span class="lineno">  47 </span>            compileSdk = androidState.compileSdk
-<span class="lineno">  48 </span>            defaultConfig.minSdk = androidState.minSdk
-<span class="lineno">  49 </span>            <span class="error">// TODO: namespace = project.calculateAndroidNamespace(androidState.namespace)</span>
-<span class="lineno">  50 </span>
-<span class="lineno">  51 </span>            sourceSets.all { set -&gt; set.configDefaultAndroidSourceSets() }
-<span class="lineno">  52 </span>            project.configureAndroidBuildFeatures(this)
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/projectExtensions.kt:15:1</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
+        <pre><code><span class="lineno">  12 </span>internal inline fun &lt;reified T&gt; Project.property(crossinline block: Project.() -&gt; T): Property&lt;T&gt; =
+<span class="lineno">  13 </span>    objects.property&lt;T&gt;().convention(project.provider { block(this) })
+<span class="lineno">  14 </span>
+<span class="lineno">  15 </span><span class="error">// TODO: Extract to Gradle Extensions libraries</span>
+<span class="lineno">  16 </span>internal inline fun &lt;reified T&gt; Project.listProperty(
+<span class="lineno">  17 </span>    crossinline block: Project.() -&gt; List&lt;T&gt;
+<span class="lineno">  18 </span>): ListProperty&lt;T&gt; = objects.listProperty&lt;T&gt;().convention(project.provider { block(this) })
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/library/HubdleKotlinAndroidLibraryExtension.kt:62:5</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
-        <pre><code><span class="lineno">  59 </span>        the&lt;LibraryExtension&gt;().sourceSets.named(&quot;test&quot;, action::execute)
-<span class="lineno">  60 </span>    }
-<span class="lineno">  61 </span>
-<span class="lineno">  62 </span>    <span class="error">// TODO: improve and enable using this docs:</span>
-<span class="lineno">  63 </span>    //  https://developer.android.com/studio/publish-library/configure-pub-variants
-<span class="lineno">  64 </span>    // @HubdleDslMarker
-<span class="lineno">  65 </span>    // public fun Project.publishLibraryVariants(vararg names: String) {
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/projectExtensions.kt:20:1</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
+        <pre><code><span class="lineno">  17 </span>    crossinline block: Project.() -&gt; List&lt;T&gt;
+<span class="lineno">  18 </span>): ListProperty&lt;T&gt; = objects.listProperty&lt;T&gt;().convention(project.provider { block(this) })
+<span class="lineno">  19 </span>
+<span class="lineno">  20 </span><span class="error">// TODO: Extract to Gradle Extensions libraries</span>
+<span class="lineno">  21 </span>internal inline fun &lt;reified T&gt; Project.setProperty(
+<span class="lineno">  22 </span>    crossinline block: Project.() -&gt; Set&lt;T&gt;
+<span class="lineno">  23 </span>): SetProperty&lt;T&gt; = objects.setProperty&lt;T&gt;().convention(project.provider { block(this) })
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatformJvmAndAndroid.kt:11:13</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
-        <pre><code><span class="lineno">   8 </span>internal fun configureMultiplatformJvmAndAndroid(project: Project) {
-<span class="lineno">   9 </span>    if (project.hubdleState.kotlin.multiplatform.jvmAndAndroid.isEnabled) {
-<span class="lineno">  10 </span>        project.configure&lt;KotlinMultiplatformExtension&gt; {
-<span class="lineno">  11 </span>            <span class="error">/* TODO: enable when granular metadata for jvm+android is fixed</span>
-<span class="lineno">  12 </span><span class="error">            val jvmAndAndroidMain = sourceSets.create(&quot;jvmAndAndroidMain&quot;)</span>
-<span class="lineno">  13 </span><span class="error">            val jvmAndAndroidTest = sourceSets.create(&quot;jvmAndAndroidTest&quot;)</span>
-<span class="lineno">  14 </span><span class="error"></span>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/analysis/HubdleConfigAnalysisExtension.kt:94:13</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
+        <pre><code><span class="lineno">  91 </span>        )
+<span class="lineno">  92 </span>
+<span class="lineno">  93 </span>        configurable {
+<span class="lineno">  94 </span>            <span class="error">// TODO: Fix do this per project</span>
+<span class="lineno">  95 </span>            check(project.isRootProject) {
+<span class="lineno">  96 </span>                &quot;&quot;&quot;Hubdle `analysis()` must be only configured in the root project&quot;&quot;&quot;
+<span class="lineno">  97 </span>            }
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/_internal/configureMultiplatformJvmAndAndroid.kt:25:13</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
-        <pre><code><span class="lineno">  22 </span>            sourceSets.findByName(&quot;androidTest&quot;)?.dependsOn(jvmAndAndroidTest)
-<span class="lineno">  23 </span>            */
-<span class="lineno">  24 </span>
-<span class="lineno">  25 </span>            <span class="error">// TODO: remove when granular metadata for jvm+android is fixed</span>
-<span class="lineno">  26 </span>            val mainKotlin = &quot;jvmAndAndroid/main/kotlin&quot;
-<span class="lineno">  27 </span>            val mainResources = &quot;jvmAndAndroid/main/resources&quot;
-<span class="lineno">  28 </span>            val testKotlin = &quot;jvmAndAndroid/test/kotlin&quot;
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/documentation/site/HubdleConfigDocumentationSiteExtension.kt:99:13</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
+        <pre><code><span class="lineno">  96 </span>                publish.docPath = &quot;_site&quot;
+<span class="lineno">  97 </span>            }
+<span class="lineno">  98 </span>
+<span class="lineno">  99 </span>            <span class="error">// TODO: fix project isolation</span>
+<span class="lineno"> 100 </span>            allprojects { allproject -&gt;
+<span class="lineno"> 101 </span>                allproject.afterEvaluate { allprojectAfterEvaluate -&gt;
+<span class="lineno"> 102 </span>                    if (allprojectAfterEvaluate.hasKotlinGradlePlugin) {
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/options/PublishingOptions.kt:175:21</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
-        <pre><code><span class="lineno"> 172 </span>            task.doLast {
-<span class="lineno"> 173 </span>                val publishNonSemver = getBooleanProperty(HubdleProperty.Publishing.nonSemver)
-<span class="lineno"> 174 </span>                check(isSemver || publishNonSemver) {
-<span class="lineno"> 175 </span>                    <span class="error">// TODO: inject `$version` instead of getting it from the `project`</span>
-<span class="lineno"> 176 </span>                    &quot;&quot;&quot;|Only semantic versions can be published (current: $version)
-<span class="lineno"> 177 </span>                       |Use `&quot;-Ppublishing.nonSemver=true&quot;` to force the publication 
-<span class="lineno"> 178 </span>                    &quot;&quot;&quot;
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/publishing/_internal/configureMavenPublishing.kt:116:25</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
+        <pre><code><span class="lineno"> 113 </span>                task.doLast {
+<span class="lineno"> 114 </span>                    val publishNonSemver = getBooleanProperty(HubdleProperty.Publishing.nonSemver)
+<span class="lineno"> 115 </span>                    check(isSemver || publishNonSemver) {
+<span class="lineno"> 116 </span>                        <span class="error">// TODO: inject `$version` instead of getting it from the `project`</span>
+<span class="lineno"> 117 </span>                        &quot;&quot;&quot;|Only semantic versions can be published (current: $version)
+<span class="lineno"> 118 </span>                           |Use `&quot;-Ppublishing.nonSemver=true&quot;` to force the publication 
+<span class="lineno"> 119 </span>                        &quot;&quot;&quot;
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/HubdleKotlinAndroidExtension.kt:20:1</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
+        <pre><code><span class="lineno">  17 </span>import org.gradle.api.Project
+<span class="lineno">  18 </span>import org.gradle.api.provider.Property
+<span class="lineno">  19 </span>
+<span class="lineno">  20 </span><span class="error">// TODO: transform into `HubdleConfigurableExtension`</span>
+<span class="lineno">  21 </span>@HubdleDslMarker
+<span class="lineno">  22 </span>public open class HubdleKotlinAndroidExtension
+<span class="lineno">  23 </span>@Inject
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/library/HubdleKotlinAndroidLibraryExtension.kt:68:5</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
+        <pre><code><span class="lineno">  65 </span>        sourceSet(&quot;test&quot;, action)
+<span class="lineno">  66 </span>    }
+<span class="lineno">  67 </span>
+<span class="lineno">  68 </span>    <span class="error">// TODO: improve and enable using this docs:</span>
+<span class="lineno">  69 </span>    //  https://developer.android.com/studio/publish-library/configure-pub-variants
+<span class="lineno">  70 </span>    // @HubdleDslMarker
+<span class="lineno">  71 </span>    // public fun publishLibraryVariants(vararg names: String) {
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/gradle/plugin/HubdleKotlinGradlePluginExtension.kt:43:1</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
+        <pre><code><span class="lineno">  40 </span>import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
+<span class="lineno">  41 </span>import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
+<span class="lineno">  42 </span>
+<span class="lineno">  43 </span><span class="error">// TODO: Move to Kotlin/Jvm/Features</span>
+<span class="lineno">  44 </span>@HubdleDslMarker
+<span class="lineno">  45 </span>public open class HubdleKotlinGradlePluginExtension
+<span class="lineno">  46 </span>@Inject
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformJvmAndAndroidExtension.kt:36:17</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
+        <pre><code><span class="lineno">  33 </span>    override fun Project.defaultConfiguration() {
+<span class="lineno">  34 </span>        configurable {
+<span class="lineno">  35 </span>            configure&lt;KotlinMultiplatformExtension&gt; {
+<span class="lineno">  36 </span>                <span class="error">/* TODO: enable when granular metadata for jvm+android is fixed</span>
+<span class="lineno">  37 </span><span class="error">                val jvmAndAndroidMain = sourceSets.create(&quot;jvmAndAndroidMain&quot;)</span>
+<span class="lineno">  38 </span><span class="error">                val jvmAndAndroidTest = sourceSets.create(&quot;jvmAndAndroidTest&quot;)</span>
+<span class="lineno">  39 </span><span class="error"></span>
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformJvmAndAndroidExtension.kt:50:17</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
+        <pre><code><span class="lineno">  47 </span>                sourceSets.findByName(&quot;androidTest&quot;)?.dependsOn(jvmAndAndroidTest)
+<span class="lineno">  48 </span>                */
+<span class="lineno">  49 </span>
+<span class="lineno">  50 </span>                <span class="error">// TODO: remove when granular metadata for jvm+android is fixed</span>
+<span class="lineno">  51 </span>                val mainKotlin = &quot;jvmAndAndroid/main/kotlin&quot;
+<span class="lineno">  52 </span>                val mainResources = &quot;jvmAndAndroid/main/resources&quot;
+<span class="lineno">  53 </span>                val testKotlin = &quot;jvmAndAndroid/test/kotlin&quot;
+</code></pre>
+      </li>
+    </ul>
+  </details>
+  <details id="MagicNumber" open="open">
+    <summary class="rule-container"><span class="rule">MagicNumber: 6 </span><span class="description">Report magic numbers. Magic number is a numeric literal that is not defined as a constant and hence it's unclear what the purpose of this number is. It's better to declare such numbers as constants and give them a proper name. By default, -1, 0, 1, and 2 are not considered to be magic numbers.</span></summary>
+<a href="https://detekt.dev/docs/rules/style#magicnumber">Documentation</a>
+    <ul>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/HubdleKotlinAndroidExtension.kt:35:51</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  32 </span>
+<span class="lineno">  33 </span>    public val namespace: Property&lt;String?&gt; = property { null }
+<span class="lineno">  34 </span>
+<span class="lineno">  35 </span>    public val minSdk: Property&lt;Int&gt; = property { <span class="error">23</span> }
+<span class="lineno">  36 </span>
+<span class="lineno">  37 </span>    public val compileSdk: Property&lt;Int&gt; = property { 33 }
+<span class="lineno">  38 </span>
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/HubdleKotlinAndroidExtension.kt:37:55</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  34 </span>
+<span class="lineno">  35 </span>    public val minSdk: Property&lt;Int&gt; = property { 23 }
+<span class="lineno">  36 </span>
+<span class="lineno">  37 </span>    public val compileSdk: Property&lt;Int&gt; = property { <span class="error">33</span> }
+<span class="lineno">  38 </span>
+<span class="lineno">  39 </span>    public val targetSdk: Property&lt;Int&gt; = property { 33 }
+<span class="lineno">  40 </span>
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/HubdleKotlinAndroidExtension.kt:39:54</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  36 </span>
+<span class="lineno">  37 </span>    public val compileSdk: Property&lt;Int&gt; = property { 33 }
+<span class="lineno">  38 </span>
+<span class="lineno">  39 </span>    public val targetSdk: Property&lt;Int&gt; = property { <span class="error">33</span> }
+<span class="lineno">  40 </span>
+<span class="lineno">  41 </span>    public val buildFeatures: HubdleKotlinAndroidBuildFeaturesExtension
+<span class="lineno">  42 </span>        get() = getHubdleExtension()
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidExtension.kt:43:51</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  40 </span>
+<span class="lineno">  41 </span>    public val namespace: Property&lt;String?&gt; = property { null }
+<span class="lineno">  42 </span>
+<span class="lineno">  43 </span>    public val minSdk: Property&lt;Int&gt; = property { <span class="error">23</span> }
+<span class="lineno">  44 </span>
+<span class="lineno">  45 </span>    public val compileSdk: Property&lt;Int&gt; = property { 33 }
+<span class="lineno">  46 </span>
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidExtension.kt:45:55</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  42 </span>
+<span class="lineno">  43 </span>    public val minSdk: Property&lt;Int&gt; = property { 23 }
+<span class="lineno">  44 </span>
+<span class="lineno">  45 </span>    public val compileSdk: Property&lt;Int&gt; = property { <span class="error">33</span> }
+<span class="lineno">  46 </span>
+<span class="lineno">  47 </span>    public val targetSdk: Property&lt;Int&gt; = property { 33 }
+<span class="lineno">  48 </span>
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidExtension.kt:47:54</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  44 </span>
+<span class="lineno">  45 </span>    public val compileSdk: Property&lt;Int&gt; = property { 33 }
+<span class="lineno">  46 </span>
+<span class="lineno">  47 </span>    public val targetSdk: Property&lt;Int&gt; = property { <span class="error">33</span> }
+<span class="lineno">  48 </span>
+<span class="lineno">  49 </span>    public val buildFeatures: HubdleKotlinAndroidBuildFeaturesExtension
+<span class="lineno">  50 </span>        get() = getHubdleExtension()
 </code></pre>
       </li>
     </ul>
@@ -1013,14 +949,29 @@
     <summary class="rule-container"><span class="rule">MaxLineLength: 1 </span><span class="description">Line detected, which is longer than the defined maximum line length in the code style.</span></summary>
 <a href="https://detekt.dev/docs/rules/style#maxlinelength">Documentation</a>
     <ul>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/documentation/readme/_internal/configureReadme.kt:22:17</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
-        <pre><code><span class="lineno">  19 </span>
-<span class="lineno">  20 </span>        val projectKey =
-<span class="lineno">  21 </span>            project.getPropertyOrNull(HubdleProperty.Analysis.projectKey)
-<span class="lineno">  22 </span>                <span class="error">?:</span> &quot;${project.group}:${project.getPropertyOrNull(HubdleProperty.Project.rootProjectDirName) ?: project.rootDir.name}&quot;
-<span class="lineno">  23 </span>
-<span class="lineno">  24 </span>        project.tasks.register&lt;WriteReadmeBadgesTask&gt;(WriteReadmeBadgesTask.name).configure { task
-<span class="lineno">  25 </span>            -&gt;
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/HubdleState.kt:139:21</span><span class="message">Line detected, which is longer than the defined maximum line length in the code style.</span>
+        <pre><code><span class="lineno"> 136 </span>                }
+<span class="lineno"> 137 </span>
+<span class="lineno"> 138 </span>                override fun toString(): String =
+<span class="lineno"> 139 </span>                    <span class="error">&quot;ApplicablePlugin(pluginId=$pluginId, isEnabled=${isEnabled.get()}, priority=$priority, scope=$scope)&quot;</span>
+<span class="lineno"> 140 </span>            }
+<span class="lineno"> 141 </span>    }
+<span class="lineno"> 142 </span>}
+</code></pre>
+      </li>
+    </ul>
+  </details>
+  <details id="UnusedPrivateMember" open="open">
+    <summary class="rule-container"><span class="rule">UnusedPrivateMember: 1 </span><span class="description">Private member is unused and should be removed.</span></summary>
+<a href="https://detekt.dev/docs/rules/style#unusedprivatemember">Documentation</a>
+    <ul>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/binary/compatibility/validator/HubdleConfigBinaryCompatibilityValidatorExtension.kt:71:21</span><span class="message">Private property `apiValidationExtension` is unused.</span>
+        <pre><code><span class="lineno">  68 </span>    HubdleConfigBinaryCompatibilityValidatorExtension
+<span class="lineno">  69 </span>    get() = getHubdleExtension()
+<span class="lineno">  70 </span>
+<span class="lineno">  71 </span>private val Project.<span class="error">apiValidationExtension</span>: ApiValidationExtension
+<span class="lineno">  72 </span>    get() = getHubdleExtension()
+<span class="lineno">  73 </span>
 </code></pre>
       </li>
     </ul>
@@ -1028,7 +979,7 @@
 </div>
 
 
-generated with <a href="https://detekt.dev/">detekt version 1.22.0</a> on 2022-11-27 22:14:48 UTC.
+generated with <a href="https://detekt.dev/">detekt version 1.22.0</a> on 2023-01-09 00:10:04 UTC.
 
 </body>
 </html>

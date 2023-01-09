@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html id="htmlId">
 <head>
-  <title>Coverage Report > CatalogDependenciesKt</title>
+  <title>Coverage Report > BaseHubdleEnableableExtension</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/idea.min.css";
@@ -18,18 +18,15 @@
 <div class="breadCrumbs">
 Current scope:     <a href="../../index.html">all classes</a>
     <span class="separator">|</span>
-    <a href="../index.html">com.javiersc.hubdle.extensions._internal.state</a>
+    <a href="../index.html">com.javiersc.hubdle.extensions.apis</a>
 </div>
 
-<h1>Coverage Summary for Class: CatalogDependenciesKt (com.javiersc.hubdle.extensions._internal.state)</h1>
+<h1>Coverage Summary for Class: BaseHubdleEnableableExtension (com.javiersc.hubdle.extensions.apis)</h1>
 
 <table class="coverageStats">
+
 <tr>
   <th class="name">Class</th>
-<th class="coverageStat 
-">
-  Class, %
-</th>
 <th class="coverageStat 
 ">
   Method, %
@@ -47,8 +44,8 @@ Current scope:     <a href="../../index.html">all classes</a>
   Instruction, %
 </th>
 </tr>
-<tr>
-  <td class="name">CatalogDependenciesKt</td>
+  <tr>
+    <td class="name">BaseHubdleEnableableExtension$DefaultImpls</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -57,12 +54,13 @@ Current scope:     <a href="../../index.html">all classes</a>
     (0/1)
   </span>
 </td>
+    <td class="coverageStat"/>
 <td class="coverageStat">
   <span class="percent">
     0%
   </span>
   <span class="absValue">
-    (0/6)
+    (0/2)
   </span>
 </td>
 <td class="coverageStat">
@@ -70,7 +68,27 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/14)
+    (0/21)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
   </span>
 </td>
 <td class="coverageStat">
@@ -78,19 +96,10 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/13)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/181)
+    (0/21)
   </span>
 </td>
 </tr>
-
 </table>
 
 <br/>
@@ -98,68 +107,17 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.extensions._internal.state
+<code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.extensions.apis
 &nbsp;
-&nbsp;import com.javiersc.gradle.extensions.version.catalogs.catalogNamesWithLibsAtFirst
-&nbsp;import com.javiersc.gradle.extensions.version.catalogs.getLibraries
-&nbsp;import com.javiersc.gradle.project.extensions.module
-&nbsp;import com.javiersc.hubdle.extensions.dependencies._internal.hubdleDependencies
-&nbsp;import org.gradle.api.Project
-&nbsp;import org.gradle.api.artifacts.MinimalExternalModuleDependency
-&nbsp;import org.gradle.api.artifacts.VersionCatalogsExtension
-&nbsp;import org.gradle.api.internal.artifacts.DefaultModuleIdentifier
-&nbsp;import org.gradle.api.internal.artifacts.dependencies.DefaultMinimalDependency
-&nbsp;import org.gradle.api.internal.artifacts.dependencies.DefaultMutableVersionConstraint
-&nbsp;import org.gradle.kotlin.dsl.findByType
+&nbsp;import org.gradle.api.provider.Property
 &nbsp;
-<b class="nc">&nbsp;internal val userCatalogsDependencies: UserCatalogsDependencies = UserCatalogsDependencies()</b>
+&nbsp;public interface BaseHubdleEnableableExtension : BaseHubdleExtension {
 &nbsp;
-<b class="nc">&nbsp;internal val hubdleCatalogsDependencies: HubdleCatalogsDependencies = HubdleCatalogsDependencies()</b>
+&nbsp;    public val isEnabled: Property&lt;Boolean&gt;
 &nbsp;
-&nbsp;internal fun Project.catalogDependency(module: String): MinimalExternalModuleDependency =
-<b class="nc">&nbsp;    checkNotNull(getDependency(module)) {</b>
-<b class="nc">&nbsp;        &quot;The dependency $module has not been found in any catalog&quot;</b>
+<b class="nc">&nbsp;    public fun enabled(value: Boolean = true) {</b>
+<b class="nc">&nbsp;        isEnabled.set(value)</b>
 &nbsp;    }
-&nbsp;
-&nbsp;private fun Project.getDependency(module: String): MinimalExternalModuleDependency? =
-<b class="nc">&nbsp;    getCatalogsDependency(module).takeIf { project.module != &quot;${it.module}&quot; }</b>
-&nbsp;
-&nbsp;private fun getCatalogsDependency(module: String): MinimalExternalModuleDependency {
-<b class="nc">&nbsp;    check(module.split(&quot;:&quot;).count() == 2) { &quot;The module provided is not correct&quot; }</b>
-<b class="nc">&nbsp;    return userCatalogsDependencies.dependencies.firstOrNull { &quot;${it.module}&quot; == module }</b>
-<b class="nc">&nbsp;        ?: hubdleCatalogsDependencies.dependencies.first { &quot;${it.module}&quot; == module }</b>
-&nbsp;}
-&nbsp;
-&nbsp;internal data class UserCatalogsDependencies(
-&nbsp;    val dependencies: MutableList&lt;MinimalExternalModuleDependency&gt; = mutableListOf(),
-&nbsp;) : Configurable {
-&nbsp;    override fun configure(project: Project) {
-&nbsp;        val catalogExtension: VersionCatalogsExtension? = project.extensions.findByType()
-&nbsp;        val libraries: Set&lt;MinimalExternalModuleDependency&gt; =
-&nbsp;            catalogExtension
-&nbsp;                ?.catalogNamesWithLibsAtFirst
-&nbsp;                ?.flatMap(catalogExtension::getLibraries)
-&nbsp;                ?.toSet()
-&nbsp;                .orEmpty()
-&nbsp;        dependencies += libraries
-&nbsp;    }
-&nbsp;}
-&nbsp;
-&nbsp;internal data class HubdleCatalogsDependencies(
-&nbsp;    val dependencies: MutableList&lt;MinimalExternalModuleDependency&gt; = mutableListOf(),
-&nbsp;) : Configurable {
-&nbsp;    override fun configure(project: Project) {
-&nbsp;        dependencies += hubdleDependencies.map(String::buildDefaultMinimalDependency)
-&nbsp;    }
-&nbsp;}
-&nbsp;
-&nbsp;private fun String.buildDefaultMinimalDependency(): MinimalExternalModuleDependency {
-<b class="nc">&nbsp;    val (group: String, name: String) = split(&quot;:&quot;)</b>
-<b class="nc">&nbsp;    val version: String = split(&quot;:&quot;).getOrElse(2) { &quot;&quot; }</b>
-<b class="nc">&nbsp;    return DefaultMinimalDependency(</b>
-<b class="nc">&nbsp;        DefaultModuleIdentifier.newId(group, name),</b>
-<b class="nc">&nbsp;        DefaultMutableVersionConstraint.withVersion(version)</b>
-&nbsp;    )
 &nbsp;}
 </code>
 </pre>
@@ -184,7 +142,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-12-25 11:18</div>
+    <div style="float:right;">generated on 2023-01-09 00:46</div>
 </div>
 </body>
 </html>

@@ -43,33 +43,41 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<code class="sourceCode" id="sourceCode">&nbsp;@file:Suppress(&quot;UnusedReceiverParameter&quot;)
+<code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.extensions
 &nbsp;
-&nbsp;package com.javiersc.hubdle.extensions
-&nbsp;
+&nbsp;import com.javiersc.hubdle.extensions._internal.getHubdleExtension
+&nbsp;import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
+&nbsp;import com.javiersc.hubdle.extensions.apis.enableAndExecute
 &nbsp;import com.javiersc.hubdle.extensions.config.HubdleConfigExtension
 &nbsp;import com.javiersc.hubdle.extensions.kotlin.HubdleKotlinExtension
 &nbsp;import javax.inject.Inject
 &nbsp;import org.gradle.api.Action
 &nbsp;import org.gradle.api.Project
-&nbsp;import org.gradle.api.model.ObjectFactory
-&nbsp;import org.gradle.kotlin.dsl.newInstance
+&nbsp;import org.gradle.api.provider.Property
 &nbsp;
 &nbsp;@HubdleDslMarker
-&nbsp;public open class HubdleExtension @Inject constructor(objects: ObjectFactory) {
+&nbsp;public open class HubdleExtension
+&nbsp;@Inject
+&nbsp;constructor(
+&nbsp;    project: Project,
+&nbsp;) : HubdleEnableableExtension(project) {
 &nbsp;
-&nbsp;    private val config: HubdleConfigExtension = objects.newInstance()
+&nbsp;    override val isEnabled: Property&lt;Boolean&gt; = property { true }
+&nbsp;
+&nbsp;    public val config: HubdleConfigExtension
+&nbsp;        get() = getHubdleExtension()
 &nbsp;
 &nbsp;    @HubdleDslMarker
-&nbsp;    public fun Project.config(action: Action&lt;in HubdleConfigExtension&gt;) {
-&nbsp;        action.execute(config)
+&nbsp;    public fun config(action: Action&lt;HubdleConfigExtension&gt;) {
+&nbsp;        config.enableAndExecute(action)
 &nbsp;    }
 &nbsp;
-&nbsp;    private val kotlin: HubdleKotlinExtension = objects.newInstance()
+&nbsp;    public val kotlin: HubdleKotlinExtension
+&nbsp;        get() = getHubdleExtension()
 &nbsp;
 &nbsp;    @HubdleDslMarker
-&nbsp;    public fun Project.kotlin(action: Action&lt;in HubdleKotlinExtension&gt;) {
-&nbsp;        action.execute(kotlin)
+&nbsp;    public fun kotlin(action: Action&lt;HubdleKotlinExtension&gt;) {
+&nbsp;        kotlin.enableAndExecute(action)
 &nbsp;    }
 &nbsp;}
 &nbsp;
@@ -97,7 +105,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-12-25 11:18</div>
+    <div style="float:right;">generated on 2023-01-09 00:46</div>
 </div>
 </body>
 </html>

@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html id="htmlId">
 <head>
-  <title>Coverage Report > ConfigureReadmeKt</title>
+  <title>Coverage Report > HubdleConfigDocumentationSiteReportsExtension</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/idea.min.css";
@@ -18,10 +18,10 @@
 <div class="breadCrumbs">
 Current scope:     <a href="../../index.html">all classes</a>
     <span class="separator">|</span>
-    <a href="../index.html">com.javiersc.hubdle.extensions.config.documentation.readme._internal</a>
+    <a href="../index.html">com.javiersc.hubdle.extensions.config.documentation.site.reports</a>
 </div>
 
-<h1>Coverage Summary for Class: ConfigureReadmeKt (com.javiersc.hubdle.extensions.config.documentation.readme._internal)</h1>
+<h1>Coverage Summary for Class: HubdleConfigDocumentationSiteReportsExtension (com.javiersc.hubdle.extensions.config.documentation.site.reports)</h1>
 
 <table class="coverageStats">
 
@@ -45,48 +45,13 @@ Current scope:     <a href="../../index.html">all classes</a>
 </th>
 </tr>
 <tr>
-  <td class="name">ConfigureReadmeKt</td>
+  <td class="name">HubdleConfigDocumentationSiteReportsExtension</td>
 <td class="coverageStat">
   <span class="percent">
     0%
   </span>
   <span class="absValue">
-    (0/1)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/8)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/8)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/62)
-  </span>
-</td>
-</tr>
-  <tr>
-    <td class="name">ConfigureReadmeKt$configureReadmeBadges$1</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/1)
+    (0/2)
   </span>
 </td>
     <td class="coverageStat"/>
@@ -95,7 +60,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/12)
+    (0/7)
   </span>
 </td>
 <td class="coverageStat">
@@ -103,9 +68,29 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/86)
+    (0/52)
   </span>
 </td>
+</tr>
+  <tr>
+    <td class="name">HubdleConfigDocumentationSiteReportsExtension$special$$inlined$property$hubdle_gradle_plugin$1</td>
+    <td class="coverageStat"/>
+  </tr>
+  <tr>
+    <td class="name">HubdleConfigDocumentationSiteReportsExtension$special$$inlined$property$hubdle_gradle_plugin$2</td>
+    <td class="coverageStat"/>
+  </tr>
+  <tr>
+    <td class="name">HubdleConfigDocumentationSiteReportsExtension$special$$inlined$property$hubdle_gradle_plugin$3</td>
+    <td class="coverageStat"/>
+  </tr>
+  <tr>
+    <td class="name">HubdleConfigDocumentationSiteReportsExtension$special$$inlined$property$hubdle_gradle_plugin$4</td>
+    <td class="coverageStat"/>
+  </tr>
+  <tr>
+    <td class="name">HubdleConfigDocumentationSiteReportsExtension$special$$inlined$property$hubdle_gradle_plugin$5</td>
+    <td class="coverageStat"/>
   </tr>
 <tr>
   <td class="name"><strong>Total</strong></td>
@@ -117,12 +102,13 @@ Current scope:     <a href="../../index.html">all classes</a>
     (0/2)
   </span>
 </td>
+    <td class="coverageStat"/>
 <td class="coverageStat">
   <span class="percent">
     0%
   </span>
   <span class="absValue">
-    (0/8)
+    (0/7)
   </span>
 </td>
 <td class="coverageStat">
@@ -130,15 +116,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/20)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/148)
+    (0/52)
   </span>
 </td>
 </tr>
@@ -149,45 +127,29 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.extensions.config.documentation.readme._internal
+<code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.extensions.config.documentation.site.reports
 &nbsp;
-&nbsp;import com.javiersc.gradle.properties.extensions.getProperty
-&nbsp;import com.javiersc.gradle.properties.extensions.getPropertyOrNull
-&nbsp;import com.javiersc.hubdle.HubdleProperty
-&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleState
-&nbsp;import com.javiersc.hubdle.extensions.config.documentation.readme.WriteReadmeBadgesTask
+&nbsp;import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
+&nbsp;import com.javiersc.hubdle.extensions.config.documentation.site.hubdleSite
+&nbsp;import javax.inject.Inject
 &nbsp;import org.gradle.api.Project
-&nbsp;import org.gradle.kotlin.dsl.register
-&nbsp;import org.jetbrains.kotlin.gradle.plugin.getKotlinPluginVersion
+&nbsp;import org.gradle.api.provider.Property
 &nbsp;
-&nbsp;internal fun configureReadmeBadges(project: Project) {
-<b class="nc">&nbsp;    val readmeState = project.hubdleState.config.documentation.readme</b>
+&nbsp;public open class HubdleConfigDocumentationSiteReportsExtension
+&nbsp;@Inject
+&nbsp;constructor(
+&nbsp;    project: Project,
+<b class="nc">&nbsp;) : HubdleEnableableExtension(project) {</b>
 &nbsp;
-<b class="nc">&nbsp;    if (readmeState.badges.isEnabled) {</b>
+<b class="nc">&nbsp;    override val isEnabled: Property&lt;Boolean&gt; = property { true }</b>
 &nbsp;
-<b class="nc">&nbsp;        val projectName =</b>
-<b class="nc">&nbsp;            project.getPropertyOrNull(HubdleProperty.Project.mainProjectName) ?: project.name</b>
+&nbsp;    override val requiredExtensions: Set&lt;HubdleEnableableExtension&gt;
+<b class="nc">&nbsp;        get() = setOf(hubdleSite)</b>
 &nbsp;
-<b class="nc">&nbsp;        val projectKey =</b>
-<b class="nc">&nbsp;            project.getPropertyOrNull(HubdleProperty.Analysis.projectKey)</b>
-<b class="nc">&nbsp;                ?: &quot;${project.group}:${project.getPropertyOrNull(HubdleProperty.Project.rootProjectDirName) ?: project.rootDir.name}&quot;</b>
-&nbsp;
-<b class="nc">&nbsp;        project.tasks.register&lt;WriteReadmeBadgesTask&gt;(WriteReadmeBadgesTask.name).configure { task</b>
-&nbsp;            -&gt;
-<b class="nc">&nbsp;            task.projectGroup.set(project.group.toString())</b>
-<b class="nc">&nbsp;            task.projectName.set(projectName)</b>
-<b class="nc">&nbsp;            task.repoUrl.set(project.getProperty(HubdleProperty.POM.scmUrl))</b>
-<b class="nc">&nbsp;            task.kotlinVersion.set(project.getKotlinPluginVersion())</b>
-<b class="nc">&nbsp;            task.kotlinBadge.set(readmeState.badges.kotlin)</b>
-<b class="nc">&nbsp;            task.mavenCentralBadge.set(readmeState.badges.mavenCentral)</b>
-<b class="nc">&nbsp;            task.snapshotsBadge.set(readmeState.badges.snapshots)</b>
-<b class="nc">&nbsp;            task.buildBadge.set(readmeState.badges.build)</b>
-<b class="nc">&nbsp;            task.coverageBadge.set(readmeState.badges.coverage)</b>
-<b class="nc">&nbsp;            task.qualityBadge.set(readmeState.badges.quality)</b>
-<b class="nc">&nbsp;            task.techDebtBadge.set(readmeState.badges.techDebt)</b>
-<b class="nc">&nbsp;            task.projectKey.set(projectKey)</b>
-&nbsp;        }
-&nbsp;    }
+<b class="nc">&nbsp;    public val allTests: Property&lt;Boolean&gt; = property { true }</b>
+<b class="nc">&nbsp;    public val codeAnalysis: Property&lt;Boolean&gt; = property { true }</b>
+<b class="nc">&nbsp;    public val codeCoverage: Property&lt;Boolean&gt; = property { true }</b>
+<b class="nc">&nbsp;    public val codeQuality: Property&lt;Boolean&gt; = property { true }</b>
 &nbsp;}
 </code>
 </pre>
@@ -212,7 +174,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-12-25 11:18</div>
+    <div style="float:right;">generated on 2023-01-09 00:46</div>
 </div>
 </body>
 </html>

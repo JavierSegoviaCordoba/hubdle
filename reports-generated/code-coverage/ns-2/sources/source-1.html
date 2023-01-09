@@ -71,7 +71,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/6)
+    (0/5)
   </span>
 </td>
 <td class="coverageStat">
@@ -79,7 +79,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/36)
+    (0/24)
   </span>
 </td>
 </tr>
@@ -93,27 +93,41 @@ Current scope:     <a href="../../index.html">all classes</a>
 <pre>
 <code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle
 &nbsp;
+&nbsp;import com.javiersc.gradle.plugin.extensions.Plugin
 &nbsp;import com.javiersc.gradle.properties.extensions.getProperty
 &nbsp;import com.javiersc.hubdle.extensions.HubdleExtension
-&nbsp;import com.javiersc.hubdle.extensions._internal.state.hubdleCatalogsDependencies
-&nbsp;import com.javiersc.hubdle.extensions._internal.state.userCatalogsDependencies
-&nbsp;import org.gradle.api.Plugin
+&nbsp;import com.javiersc.hubdle.extensions._internal.hubdleCatalogsDependencies
+&nbsp;import com.javiersc.hubdle.extensions._internal.hubdleState
+&nbsp;import com.javiersc.hubdle.extensions._internal.userCatalogsDependencies
+&nbsp;import com.javiersc.hubdle.extensions.config._internal.createHubdleConfigExtensions
+&nbsp;import com.javiersc.hubdle.extensions.kotlin._internal.createHubdleKotlinExtensions
 &nbsp;import org.gradle.api.Project
 &nbsp;import org.gradle.api.plugins.BasePlugin
 &nbsp;import org.gradle.kotlin.dsl.apply
-&nbsp;import org.gradle.kotlin.dsl.create
 &nbsp;
 <b class="nc">&nbsp;public abstract class HubdlePlugin : Plugin&lt;Project&gt; {</b>
 &nbsp;
-&nbsp;    override fun apply(target: Project) {
-<b class="nc">&nbsp;        target.group = target.getProperty(HubdleProperty.Project.group)</b>
-<b class="nc">&nbsp;        target.pluginManager.apply(BasePlugin::class)</b>
+&nbsp;    override fun Project.apply() {
+<b class="nc">&nbsp;        group = getProperty(HubdleProperty.Project.group)</b>
+<b class="nc">&nbsp;        pluginManager.apply(BasePlugin::class)</b>
 &nbsp;
-<b class="nc">&nbsp;        hubdleCatalogsDependencies.configure(target)</b>
-<b class="nc">&nbsp;        userCatalogsDependencies.configure(target)</b>
-&nbsp;
-<b class="nc">&nbsp;        target.extensions.create&lt;HubdleExtension&gt;(&quot;InternalHubdle&quot;)</b>
+<b class="nc">&nbsp;        configureHubdleExtensions()</b>
+<b class="nc">&nbsp;        configureDependencies()</b>
 &nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;private fun Project.configureHubdleExtensions() {
+&nbsp;    hubdleState.createExtension&lt;HubdleExtension&gt;()
+&nbsp;
+&nbsp;    hubdleState.createHubdleConfigExtensions()
+&nbsp;    hubdleState.createHubdleKotlinExtensions()
+&nbsp;
+&nbsp;    hubdleState.configureExtensions()
+&nbsp;}
+&nbsp;
+&nbsp;private fun Project.configureDependencies() {
+&nbsp;    hubdleCatalogsDependencies.configure()
+&nbsp;    userCatalogsDependencies.configure(this)
 &nbsp;}
 </code>
 </pre>
@@ -138,7 +152,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-12-25 11:18</div>
+    <div style="float:right;">generated on 2023-01-09 00:46</div>
 </div>
 </body>
 </html>

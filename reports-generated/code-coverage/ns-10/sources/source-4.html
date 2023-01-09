@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html id="htmlId">
 <head>
-  <title>Coverage Report > ExtensionsKt</title>
+  <title>Coverage Report > WriteReadmeBadgesTask</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/idea.min.css";
@@ -18,18 +18,15 @@
 <div class="breadCrumbs">
 Current scope:     <a href="../../index.html">all classes</a>
     <span class="separator">|</span>
-    <a href="../index.html">com.javiersc.hubdle.extensions.config.documentation.changelog._internal</a>
+    <a href="../index.html">com.javiersc.hubdle.extensions.config.documentation.readme.badges</a>
 </div>
 
-<h1>Coverage Summary for Class: ExtensionsKt (com.javiersc.hubdle.extensions.config.documentation.changelog._internal)</h1>
+<h1>Coverage Summary for Class: WriteReadmeBadgesTask (com.javiersc.hubdle.extensions.config.documentation.readme.badges)</h1>
 
 <table class="coverageStats">
+
 <tr>
   <th class="name">Class</th>
-<th class="coverageStat 
-">
-  Class, %
-</th>
 <th class="coverageStat 
 ">
   Method, %
@@ -48,15 +45,42 @@ Current scope:     <a href="../../index.html">all classes</a>
 </th>
 </tr>
 <tr>
-  <td class="name">ExtensionsKt</td>
+  <td class="name">WriteReadmeBadgesTask</td>
 <td class="coverageStat">
   <span class="percent">
     0%
   </span>
   <span class="absValue">
-    (0/1)
+    (0/10)
   </span>
 </td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/20)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/59)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/377)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">WriteReadmeBadgesTask$Companion</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -79,11 +103,45 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/9)
+    (0/2)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/11)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/20)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/60)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/379)
   </span>
 </td>
 </tr>
-
 </table>
 
 <br/>
@@ -91,13 +149,169 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.extensions.config.documentation.changelog._internal
+<code class="sourceCode" id="sourceCode">&nbsp;package com.javiersc.hubdle.extensions.config.documentation.readme.badges
 &nbsp;
+&nbsp;import com.javiersc.kotlin.stdlib.removeDuplicateEmptyLines
 &nbsp;import java.io.File
-&nbsp;import org.gradle.api.Project
+&nbsp;import javax.inject.Inject
+&nbsp;import org.gradle.api.DefaultTask
+&nbsp;import org.gradle.api.file.ProjectLayout
+&nbsp;import org.gradle.api.provider.Property
+&nbsp;import org.gradle.api.tasks.CacheableTask
+&nbsp;import org.gradle.api.tasks.Input
+&nbsp;import org.gradle.api.tasks.InputFile
+&nbsp;import org.gradle.api.tasks.OutputFile
+&nbsp;import org.gradle.api.tasks.PathSensitive
+&nbsp;import org.gradle.api.tasks.PathSensitivity
+&nbsp;import org.gradle.api.tasks.TaskAction
 &nbsp;
-&nbsp;internal val Project.changelogFile: File
-<b class="nc">&nbsp;    get() = file(&quot;${layout.projectDirectory}/CHANGELOG.md&quot;)</b>
+&nbsp;@CacheableTask
+&nbsp;public abstract class WriteReadmeBadgesTask
+&nbsp;@Inject
+&nbsp;constructor(
+<b class="nc">&nbsp;    private val layout: ProjectLayout,</b>
+<b class="nc">&nbsp;) : DefaultTask() {</b>
+&nbsp;
+<b class="nc">&nbsp;    init {</b>
+<b class="nc">&nbsp;        group = &quot;documentation&quot;</b>
+<b class="nc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    @get:InputFile
+&nbsp;    @get:PathSensitive(PathSensitivity.ABSOLUTE)
+&nbsp;    public val readmeFile: File
+<b class="nc">&nbsp;        get() = File(&quot;${layout.projectDirectory.asFile}/README.md&quot;)</b>
+&nbsp;
+&nbsp;    @get:Input public abstract val projectGroup: Property&lt;String&gt;
+&nbsp;
+&nbsp;    @get:Input public abstract val projectName: Property&lt;String&gt;
+&nbsp;
+&nbsp;    @get:Input public abstract val repoUrl: Property&lt;String&gt;
+&nbsp;
+&nbsp;    @get:Input public abstract val kotlinVersion: Property&lt;String&gt;
+&nbsp;
+&nbsp;    @get:Input public abstract val kotlinBadge: Property&lt;Boolean&gt;
+&nbsp;
+&nbsp;    @get:Input public abstract val mavenCentralBadge: Property&lt;Boolean&gt;
+&nbsp;
+&nbsp;    @get:Input public abstract val snapshotsBadge: Property&lt;Boolean&gt;
+&nbsp;
+&nbsp;    @get:Input public abstract val buildBadge: Property&lt;Boolean&gt;
+&nbsp;
+&nbsp;    @get:Input public abstract val coverageBadge: Property&lt;Boolean&gt;
+&nbsp;
+&nbsp;    @get:Input public abstract val qualityBadge: Property&lt;Boolean&gt;
+&nbsp;
+&nbsp;    @get:Input public abstract val techDebtBadge: Property&lt;Boolean&gt;
+&nbsp;
+&nbsp;    @get:Input public abstract val projectKey: Property&lt;String&gt;
+&nbsp;
+&nbsp;    @get:OutputFile
+&nbsp;    public val outputReadmeFile: File
+<b class="nc">&nbsp;        get() = readmeFile</b>
+&nbsp;
+&nbsp;    @TaskAction
+&nbsp;    public fun build() {
+<b class="nc">&nbsp;        outputReadmeFile.apply {</b>
+<b class="nc">&nbsp;            val content: List&lt;String&gt; = readLines()</b>
+<b class="nc">&nbsp;            val updatedContent: List&lt;String&gt; = buildList {</b>
+<b class="nc">&nbsp;                addAll(buildReadmeBadges())</b>
+<b class="nc">&nbsp;                addAll(</b>
+<b class="nc">&nbsp;                    content.subList(</b>
+<b class="nc">&nbsp;                        content.indexOfFirst { it.contains(&quot;# &quot;) },</b>
+<b class="nc">&nbsp;                        content.lastIndex + 1</b>
+&nbsp;                    )
+&nbsp;                )
+<b class="nc">&nbsp;                add(&quot;&quot;)</b>
+<b class="nc">&nbsp;            }</b>
+&nbsp;
+<b class="nc">&nbsp;            writeText(updatedContent.joinToString(separator = &quot;\n&quot;))</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;
+<b class="nc">&nbsp;    public companion object {</b>
+&nbsp;        public const val NAME: String = &quot;writeReadmeBadges&quot;
+&nbsp;    }
+&nbsp;
+&nbsp;    private val buildKotlinVersionBadge: String
+&nbsp;        get() =
+&nbsp;            &quot;![Kotlin version]&quot; +
+<b class="nc">&nbsp;                &quot;($shieldsIoUrl/badge/kotlin-${kotlinVersion.get()}-blueviolet&quot; +</b>
+<b class="nc">&nbsp;                &quot;?logo=kotlin&amp;logoColor=white)&quot;.also {</b>
+<b class="nc">&nbsp;                    logger.lifecycle(&quot;Kotlin version: ${kotlinVersion.get()}&quot;)</b>
+<b class="nc">&nbsp;                }</b>
+&nbsp;
+<b class="nc">&nbsp;    private val shieldsIoUrl = &quot;https://img.shields.io&quot;</b>
+&nbsp;
+&nbsp;    private val repoWithoutUrlPrefix: String
+<b class="nc">&nbsp;        get() = repoUrl.get().replace(&quot;https://github.com/&quot;, &quot;&quot;)</b>
+&nbsp;
+&nbsp;    private fun buildMavenRepoBadge(mavenRepo: MavenRepo): String {
+<b class="nc">&nbsp;        val label: String = mavenRepo.name</b>
+&nbsp;
+<b class="nc">&nbsp;        val labelPath = label.replace(&quot; &quot;, &quot;%20&quot;)</b>
+&nbsp;
+<b class="nc">&nbsp;        val groupPath = projectGroup.get().replace(&quot;.&quot;, &quot;/&quot;)</b>
+<b class="nc">&nbsp;        val namePath = projectName.get()</b>
+&nbsp;
+<b class="nc">&nbsp;        return if (label.contains(&quot;snapshot&quot;, ignoreCase = true)) {</b>
+<b class="nc">&nbsp;            &quot;[![$label]&quot; +</b>
+<b class="nc">&nbsp;                &quot;($shieldsIoUrl/nexus/s/${projectGroup.get()}/$namePath&quot; +</b>
+&nbsp;                &quot;?server=https%3A%2F%2Foss.sonatype.org%2F&quot; +
+<b class="nc">&nbsp;                &quot;&amp;label=$labelPath)]&quot; +</b>
+<b class="nc">&nbsp;                &quot;(https://oss.sonatype.org/content/repositories/snapshots/$groupPath/$namePath/)&quot;</b>
+&nbsp;        } else {
+<b class="nc">&nbsp;            &quot;[![$label]&quot; +</b>
+<b class="nc">&nbsp;                &quot;($shieldsIoUrl/maven-central/v/${projectGroup.get()}/$namePath&quot; +</b>
+<b class="nc">&nbsp;                &quot;?label=$labelPath)]&quot; +</b>
+<b class="nc">&nbsp;                &quot;(https://repo1.maven.org/maven2/$groupPath/$namePath/)&quot;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    private fun buildBuildBadge(): String {
+&nbsp;        return &quot;[![Build]&quot; +
+<b class="nc">&nbsp;            &quot;($shieldsIoUrl/github/workflow/status/$repoWithoutUrlPrefix/build-kotlin&quot; +</b>
+&nbsp;            &quot;?label=Build&amp;logo=GitHub)]&quot; +
+<b class="nc">&nbsp;            &quot;(${repoUrl.get()}/tree/main)&quot;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private fun buildAnalysisBadge(sonar: Sonar): String =
+<b class="nc">&nbsp;        &quot;[![${sonar.label}]&quot; +</b>
+<b class="nc">&nbsp;            &quot;($shieldsIoUrl/sonar/${sonar.path}/${projectKey.get()}&quot; +</b>
+<b class="nc">&nbsp;            &quot;?label=${sonar.label.replace(&quot; &quot;, &quot;%20&quot;)}&amp;logo=SonarCloud&quot; +</b>
+&nbsp;            &quot;&amp;logoColor=white&amp;server=https%3A%2F%2Fsonarcloud.io)]&quot; +
+<b class="nc">&nbsp;            &quot;(https://sonarcloud.io/dashboard?id=${projectKey.get()})&quot;</b>
+&nbsp;
+&nbsp;    private fun buildReadmeBadges(): List&lt;String&gt; =
+<b class="nc">&nbsp;        buildList {</b>
+<b class="nc">&nbsp;                if (kotlinBadge.get()) add(buildKotlinVersionBadge)</b>
+&nbsp;
+<b class="nc">&nbsp;                if (mavenCentralBadge.get()) add(buildMavenRepoBadge(MavenRepo.MavenCentral))</b>
+&nbsp;
+<b class="nc">&nbsp;                if (snapshotsBadge.get()) add(buildMavenRepoBadge(MavenRepo.Snapshot))</b>
+&nbsp;
+<b class="nc">&nbsp;                add(&quot;&quot;)</b>
+<b class="nc">&nbsp;                if (buildBadge.get()) add(buildBuildBadge())</b>
+<b class="nc">&nbsp;                if (coverageBadge.get()) add(buildAnalysisBadge(Sonar.Coverage))</b>
+<b class="nc">&nbsp;                if (qualityBadge.get()) add(buildAnalysisBadge(Sonar.Quality))</b>
+<b class="nc">&nbsp;                if (techDebtBadge.get()) add(buildAnalysisBadge(Sonar.TechDebt))</b>
+<b class="nc">&nbsp;                add(&quot;&quot;)</b>
+<b class="nc">&nbsp;            }</b>
+<b class="nc">&nbsp;            .removeDuplicateEmptyLines()</b>
+<b class="nc">&nbsp;            .lines()</b>
+<b class="nc">&nbsp;            .dropWhile(String::isBlank)</b>
+<b class="nc">&nbsp;            .run { if (any(String::isNotBlank)) this else emptyList() }</b>
+&nbsp;}
+&nbsp;
+&nbsp;private enum class MavenRepo {
+&nbsp;    MavenCentral,
+&nbsp;    Snapshot
+&nbsp;}
+&nbsp;
+&nbsp;private enum class Sonar(val label: String, val path: String) {
+&nbsp;    Coverage(&quot;Coverage&quot;, &quot;coverage&quot;),
+&nbsp;    Quality(&quot;Quality&quot;, &quot;quality_gate&quot;),
+&nbsp;    TechDebt(&quot;Tech debt&quot;, &quot;tech_debt&quot;),
+&nbsp;}
 </code>
 </pre>
 </div>
@@ -121,7 +335,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-12-25 11:18</div>
+    <div style="float:right;">generated on 2023-01-09 00:46</div>
 </div>
 </body>
 </html>

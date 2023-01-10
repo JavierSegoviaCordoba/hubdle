@@ -3,7 +3,6 @@ package com.javiersc.hubdle.extensions.kotlin.multiplatform.targets
 import com.javiersc.hubdle.extensions.HubdleDslMarker
 import com.javiersc.hubdle.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.extensions._internal.getHubdleExtension
-import com.javiersc.hubdle.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.extensions.apis.enableAndExecute
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.hubdleKotlinMultiplatform
@@ -11,6 +10,7 @@ import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.ios.HubdleKot
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.ios.HubdleKotlinMultiplatformIOSArm64Extension
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.ios.HubdleKotlinMultiplatformIOSSimulatorArm64Extension
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.ios.HubdleKotlinMultiplatformIOSX64Extension
+import com.javiersc.hubdle.extensions.kotlin.shared.HubdleKotlinMinimalSourceSetConfigurableExtension
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
@@ -26,7 +26,7 @@ public open class HubdleKotlinMultiplatformIOSExtension
 @Inject
 constructor(
     project: Project,
-) : HubdleConfigurableExtension(project), HubdleKotlinMultiplatformTargetOptions {
+) : HubdleKotlinMinimalSourceSetConfigurableExtension(project) {
 
     override val project: Project
         get() = super.project

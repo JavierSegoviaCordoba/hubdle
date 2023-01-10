@@ -5,16 +5,15 @@ import com.javiersc.hubdle.extensions.HubdleDslMarker
 import com.javiersc.hubdle.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.extensions._internal.PluginId
-import com.javiersc.hubdle.extensions._internal.configDefaultAndroidSourceSets
-import com.javiersc.hubdle.extensions._internal.configureDefaultKotlinSourceSets
-import com.javiersc.hubdle.extensions._internal.configureDependencies
+import com.javiersc.hubdle.extensions._internal.configurableDependencies
 import com.javiersc.hubdle.extensions._internal.getHubdleExtension
-import com.javiersc.hubdle.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.extensions.config.publishing._internal.configurableMavenPublishing
+import com.javiersc.hubdle.extensions.kotlin._internal.configurableSrcDirs
 import com.javiersc.hubdle.extensions.kotlin.android._internal.calculateAndroidNamespace
 import com.javiersc.hubdle.extensions.kotlin.android.hubdleAndroid
 import com.javiersc.hubdle.extensions.kotlin.android.library.features.HubdleKotlinAndroidLibraryFeaturesExtension
+import com.javiersc.hubdle.extensions.kotlin.shared.HubdleKotlinMinimalSourceSetConfigurableExtension
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
@@ -29,7 +28,10 @@ public open class HubdleKotlinAndroidLibraryExtension
 @Inject
 constructor(
     project: Project,
-) : HubdleConfigurableExtension(project) {
+) : HubdleKotlinMinimalSourceSetConfigurableExtension(project) {
+
+    override val project: Project
+        get() = super.project
 
     override val isEnabled: Property<Boolean> = property { false }
 
@@ -55,16 +57,6 @@ constructor(
         }
     }
 
-    @HubdleDslMarker
-    public fun main(action: Action<KotlinSourceSet>) {
-        sourceSet("main", action)
-    }
-
-    @HubdleDslMarker
-    public fun test(action: Action<KotlinSourceSet>) {
-        sourceSet("test", action)
-    }
-
     // TODO: improve and enable using this docs:
     //  https://developer.android.com/studio/publish-library/configure-pub-variants
     // @HubdleDslMarker
@@ -86,17 +78,15 @@ constructor(
         applicablePlugins()
 
         configurable {
-            configureDependencies()
-            configureDefaultKotlinSourceSets()
-
             configure<LibraryExtension> {
                 compileSdk = hubdleAndroid.compileSdk.get()
                 defaultConfig.minSdk = hubdleAndroid.minSdk.get()
                 namespace = calculateAndroidNamespace(hubdleAndroid.namespace.orNull)
-
-                sourceSets.all { set -> set.configDefaultAndroidSourceSets() }
             }
         }
+
+        configurableSrcDirs()
+        configurableDependencies()
         configurePublishing()
     }
 

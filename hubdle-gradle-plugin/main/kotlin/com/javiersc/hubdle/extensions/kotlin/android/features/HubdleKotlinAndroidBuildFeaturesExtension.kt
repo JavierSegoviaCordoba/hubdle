@@ -1,11 +1,11 @@
 package com.javiersc.hubdle.extensions.kotlin.android.features
 
-import com.android.build.api.dsl.CommonExtension
 import com.javiersc.gradle.properties.extensions.getPropertyOrNull
 import com.javiersc.hubdle.HubdleProperty.Android.BuildFeatures
 import com.javiersc.hubdle.extensions.HubdleDslMarker
 import com.javiersc.hubdle.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.extensions._internal.getHubdleExtension
+import com.javiersc.hubdle.extensions.android._internal.configureAndroidCommonExtension
 import com.javiersc.hubdle.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.extensions.kotlin.android.application.hubdleAndroidApplication
@@ -13,7 +13,6 @@ import com.javiersc.hubdle.extensions.kotlin.android.library.hubdleAndroidLibrar
 import javax.inject.Inject
 import org.gradle.api.Project
 import org.gradle.api.provider.Property
-import org.gradle.kotlin.dsl.configure
 
 @HubdleDslMarker
 public open class HubdleKotlinAndroidBuildFeaturesExtension
@@ -40,23 +39,22 @@ constructor(
     override fun Project.defaultConfiguration() {
         configurable {
             val feats = this@HubdleKotlinAndroidBuildFeaturesExtension
-            configure<CommonExtension<*, *, *, *>> {
-                defaultConfig {
-                    buildFeatures.aidl =
-                        feats.aidl.orNull ?: propOrNull(BuildFeatures.aidl) ?: trueIfApp()
-                    buildFeatures.buildConfig =
-                        feats.buildConfig.orNull
-                            ?: propOrNull(BuildFeatures.buildConfig) ?: trueIfApp()
-                    buildFeatures.compose =
-                        feats.compose.orNull ?: propOrNull(BuildFeatures.compose) ?: false
-                    buildFeatures.renderScript =
-                        feats.renderScript.orNull
-                            ?: propOrNull(BuildFeatures.renderScript) ?: trueIfApp()
-                    buildFeatures.resValues =
-                        feats.resValues.orNull ?: propOrNull(BuildFeatures.resValues) ?: trueIfApp()
-                    buildFeatures.shaders =
-                        feats.shaders.orNull ?: propOrNull(BuildFeatures.shaders) ?: trueIfApp()
-                }
+            configureAndroidCommonExtension {
+                buildFeatures.aidl =
+                    feats.aidl.orNull ?: propOrNull(BuildFeatures.aidl) ?: trueIfApp()
+                buildFeatures.buildConfig =
+                    feats.buildConfig.orNull ?: propOrNull(BuildFeatures.buildConfig) ?: trueIfApp()
+                buildFeatures.compose =
+                    feats.compose.orNull ?: propOrNull(BuildFeatures.compose) ?: false
+                buildFeatures.renderScript =
+                    feats.renderScript.orNull
+                        ?: propOrNull(BuildFeatures.renderScript) ?: trueIfApp()
+                buildFeatures.resValues =
+                    feats.resValues.orNull ?: propOrNull(BuildFeatures.resValues) ?: trueIfApp()
+                buildFeatures.shaders =
+                    feats.shaders.orNull ?: propOrNull(BuildFeatures.shaders) ?: trueIfApp()
+                buildFeatures.viewBinding =
+                    feats.viewBinding.orNull ?: propOrNull(BuildFeatures.viewBinding) ?: false
             }
         }
     }

@@ -44,14 +44,14 @@ internal fun HubdleConfigurableExtension.configurableTargetPerOs(
     operativeSystem: Boolean,
     block: KotlinMultiplatformExtension.() -> Unit
 ) {
-    val isEnabledButNotPerOS = property {
-        (isEnabled.get() && !hubdleMinimumTargetPerOs.isFullEnabled.get())
+    val isMinimumTargetPerOs: Property<Boolean> = hubdleMinimumTargetPerOs.isFullEnabled
+    val isEnabledPerOS = property { isMinimumTargetPerOs.get() && operativeSystem }
+
+    val isFullEnabled = property {
+        if (isMinimumTargetPerOs.get()) isFullEnabled.get() && isEnabledPerOS.get()
+        else isFullEnabled.get()
     }
-    val isEnabledPerOS = property {
-        hubdleMinimumTargetPerOs.isFullEnabled.get() && operativeSystem
-    }
-    val isEnabled = property { isEnabledButNotPerOS.get() || isEnabledPerOS.get() }
-    configurable(isEnabled = isEnabled, priority = priority) {
+    configurable(isEnabled = isFullEnabled, priority = priority) {
         block(project.extensions.getByType())
     }
 }

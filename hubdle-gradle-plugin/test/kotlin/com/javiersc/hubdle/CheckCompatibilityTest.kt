@@ -8,17 +8,15 @@ class CheckCompatibilityTest : GradleTest() {
 
     @Test
     fun `check compatibility`() {
-        gradleTestKitTest("check-compatibility/1") {
+        gradleTestKitTest("check-compatibility/1", withDebug = true) {
             withArguments("build")
 
             val expectOutput =
                 """ 
                     |There is more than one `kotlin` project enabled:
-                    |  - Android(isEnabled = false)
+                    |  - Android(isEnabled = true)
                     |    - Application(isEnabled = false)
-                    |    - Library(isEnabled = false)
-                    |  - Gradle Plugin(isEnabled = false)
-                    |  - Version Catalog(isEnabled = true)
+                    |    - Library(isEnabled = true)
                     |  - Jvm(isEnabled = true)
                     |  - Multiplatform(isEnabled = false)
                 """

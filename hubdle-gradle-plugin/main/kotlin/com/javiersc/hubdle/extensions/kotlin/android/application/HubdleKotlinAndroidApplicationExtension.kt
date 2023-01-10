@@ -5,15 +5,14 @@ import com.javiersc.hubdle.extensions.HubdleDslMarker
 import com.javiersc.hubdle.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.extensions._internal.PluginId
-import com.javiersc.hubdle.extensions._internal.configDefaultAndroidSourceSets
-import com.javiersc.hubdle.extensions._internal.configureDefaultKotlinSourceSets
-import com.javiersc.hubdle.extensions._internal.configureDependencies
+import com.javiersc.hubdle.extensions._internal.configurableDependencies
 import com.javiersc.hubdle.extensions._internal.getHubdleExtension
-import com.javiersc.hubdle.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
+import com.javiersc.hubdle.extensions.kotlin._internal.configurableSrcDirs
 import com.javiersc.hubdle.extensions.kotlin.android._internal.calculateAndroidNamespace
 import com.javiersc.hubdle.extensions.kotlin.android.application.features.HubdleKotlinAndroidApplicationFeaturesExtension
 import com.javiersc.hubdle.extensions.kotlin.android.hubdleAndroid
+import com.javiersc.hubdle.extensions.kotlin.shared.HubdleKotlinMinimalSourceSetConfigurableExtension
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
@@ -28,9 +27,12 @@ public open class HubdleKotlinAndroidApplicationExtension
 @Inject
 constructor(
     project: Project,
-) : HubdleConfigurableExtension(project) {
+) : HubdleKotlinMinimalSourceSetConfigurableExtension(project) {
 
-    override val isEnabled: Property<Boolean> = property { true }
+    override val project: Project
+        get() = super.project
+
+    override val isEnabled: Property<Boolean> = property { false }
 
     override val priority: Priority = Priority.P3
 
@@ -61,16 +63,6 @@ constructor(
     }
 
     @HubdleDslMarker
-    public fun main(action: Action<KotlinSourceSet>) {
-        sourceSet("main", action)
-    }
-
-    @HubdleDslMarker
-    public fun test(action: Action<KotlinSourceSet>) {
-        sourceSet("test", action)
-    }
-
-    @HubdleDslMarker
     public fun android(action: Action<ApplicationExtension>) {
         userConfigurable { action.execute(the()) }
     }
@@ -91,9 +83,6 @@ constructor(
         )
 
         configurable {
-            configureDependencies()
-            configureDefaultKotlinSourceSets()
-
             configure<ApplicationExtension> {
                 defaultConfig.applicationId = application.applicationId.get()
                 defaultConfig.versionCode = application.versionCode.get()
@@ -101,9 +90,10 @@ constructor(
                 compileSdk = hubdleAndroid.compileSdk.get()
                 defaultConfig.minSdk = hubdleAndroid.minSdk.get()
                 namespace = project.calculateAndroidNamespace(hubdleAndroid.namespace.orNull)
-                sourceSets.all { set -> set.configDefaultAndroidSourceSets() }
             }
         }
+        configurableSrcDirs()
+        configurableDependencies()
     }
 }
 

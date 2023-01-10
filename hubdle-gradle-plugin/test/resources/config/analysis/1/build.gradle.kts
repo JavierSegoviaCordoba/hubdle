@@ -1,4 +1,6 @@
-plugins { id("com.javiersc.hubdle") }
+plugins {
+    id("com.javiersc.hubdle")
+}
 
 version = "1.0.0"
 
@@ -6,10 +8,16 @@ hubdle {
     config {
         analysis()
 
-        format { enabled(false) }
+        format {
+            isEnabled.set(false)
+        }
 
-        versioning { enabled(false) }
+        versioning {
+            isEnabled.set(false)
+        }
     }
 
-    kotlin { jvm() }
+    kotlin {
+        jvm()
+    }
 }

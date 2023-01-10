@@ -1,10 +1,11 @@
 plugins {
-    id("com.javiersc.hubdle") version "0.3.0-SNAPSHOT"
+    id("com.javiersc.hubdle") version "0.3.1-SNAPSHOT"
 }
 
 hubdle {
     config {
-        analysis()
-        versioning { enabled(false) }
+        versioning {
+            isEnabled.set(false)
+        }
     }
 }

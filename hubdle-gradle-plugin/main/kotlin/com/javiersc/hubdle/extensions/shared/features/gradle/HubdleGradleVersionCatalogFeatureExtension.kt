@@ -1,24 +1,26 @@
-package com.javiersc.hubdle.extensions.kotlin.gradle.version.catalog
+package com.javiersc.hubdle.extensions.shared.features.gradle
 
 import com.javiersc.hubdle.extensions.HubdleDslMarker
 import com.javiersc.hubdle.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.extensions._internal.PluginId
 import com.javiersc.hubdle.extensions._internal.getHubdleExtension
+import com.javiersc.hubdle.extensions.apis.BaseHubdleDelegateExtension
 import com.javiersc.hubdle.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
+import com.javiersc.hubdle.extensions.apis.enableAndExecute
 import com.javiersc.hubdle.extensions.config.publishing._internal.configurableMavenPublishing
 import com.javiersc.hubdle.extensions.kotlin.hubdleKotlin
 import java.io.File
 import javax.inject.Inject
+import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.file.ConfigurableFileCollection
 import org.gradle.api.plugins.catalog.CatalogPluginExtension
 import org.gradle.api.provider.Property
 import org.gradle.kotlin.dsl.configure
 
-@HubdleDslMarker
-public open class HubdleKotlinGradleVersionCatalogExtension
+public open class HubdleGradleVersionCatalogFeatureExtension
 @Inject
 constructor(
     project: Project,
@@ -55,9 +57,19 @@ constructor(
     }
 }
 
-internal val HubdleEnableableExtension.hubdleGradleVersionCatalog:
-    HubdleKotlinGradleVersionCatalogExtension
-    get() = getHubdleExtension()
+public interface HubdleGradleVersionCatalogDelegateFeatureExtension : BaseHubdleDelegateExtension {
 
-internal val Project.hubdleGradleVersionCatalog: HubdleKotlinGradleVersionCatalogExtension
+    public val versionCatalog: HubdleGradleVersionCatalogFeatureExtension
+        get() = project.getHubdleExtension()
+
+    @HubdleDslMarker
+    public fun versionCatalog(
+        action: Action<HubdleGradleVersionCatalogFeatureExtension> = Action {}
+    ) {
+        versionCatalog.enableAndExecute(action)
+    }
+}
+
+internal val HubdleEnableableExtension.hubdleGradleVersionCatalog:
+    HubdleGradleVersionCatalogFeatureExtension
     get() = getHubdleExtension()

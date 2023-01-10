@@ -6,6 +6,9 @@
 
 ### Changed
 
+- `kotlin/gradle` extension to `kotlin/jvm/features/gradle`
+- `kotlin/intellij` extension to `kotlin/jvm/features/intellij`
+
 ### Deprecated
 
 ### Removed

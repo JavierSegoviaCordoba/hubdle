@@ -1,26 +1,22 @@
-package com.javiersc.hubdle.extensions.kotlin.intellij
+package com.javiersc.hubdle.extensions.shared.features.intellij
 
 import com.javiersc.gradle.properties.extensions.getProperty
 import com.javiersc.gradle.properties.extensions.getPropertyOrNull
 import com.javiersc.hubdle.HubdleProperty
-import com.javiersc.hubdle.HubdleProperty.IntelliJ
-import com.javiersc.hubdle.HubdleProperty.JetBrains
 import com.javiersc.hubdle.extensions.HubdleDslMarker
 import com.javiersc.hubdle.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.extensions._internal.PluginId
-import com.javiersc.hubdle.extensions._internal.configureDefaultJavaSourceSets
-import com.javiersc.hubdle.extensions._internal.configureDefaultKotlinSourceSets
-import com.javiersc.hubdle.extensions._internal.configureDependencies
 import com.javiersc.hubdle.extensions._internal.getHubdleExtension
+import com.javiersc.hubdle.extensions.apis.BaseHubdleDelegateExtension
 import com.javiersc.hubdle.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
+import com.javiersc.hubdle.extensions.apis.enableAndExecute
 import com.javiersc.hubdle.extensions.config.documentation.changelog.GENERATED_CHANGELOG_HTML_DIR_PATH
 import com.javiersc.hubdle.extensions.config.documentation.changelog.GENERATED_CHANGELOG_HTML_FILE_PATH
-import com.javiersc.hubdle.extensions.config.documentation.changelog.HubdleConfigDocumentationChangelogExtension.Companion.GENERATED_CHANGELOG_HTML_ATTRIBUTE
+import com.javiersc.hubdle.extensions.config.documentation.changelog.HubdleConfigDocumentationChangelogExtension
 import com.javiersc.hubdle.extensions.config.publishing.hubdlePublishing
 import com.javiersc.hubdle.extensions.kotlin.hubdleKotlin
-import com.javiersc.hubdle.extensions.kotlin.intellij.features.HubdleKotlinIntellijFeaturesExtension
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
@@ -36,12 +32,9 @@ import org.jetbrains.intellij.IntelliJPluginExtension
 import org.jetbrains.intellij.tasks.PatchPluginXmlTask
 import org.jetbrains.intellij.tasks.PublishPluginTask
 import org.jetbrains.intellij.tasks.SignPluginTask
-import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
-import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
-import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 
 @HubdleDslMarker
-public open class HubdleKotlinIntellijExtension
+public open class HubdleIntellijPluginFeatureExtension
 @Inject
 constructor(
     project: Project,
@@ -53,14 +46,6 @@ constructor(
 
     override val requiredExtensions: Set<HubdleEnableableExtension>
         get() = setOf(hubdleKotlin)
-
-    public val features: HubdleKotlinIntellijFeaturesExtension
-        get() = getHubdleExtension()
-
-    @HubdleDslMarker
-    public fun kotlin(action: Action<KotlinJvmProjectExtension>) {
-        userConfigurable { action.execute(the()) }
-    }
 
     @HubdleDslMarker
     public fun intellij(action: Action<IntelliJPluginExtension> = Action {}) {
@@ -82,27 +67,7 @@ constructor(
         userConfigurable { action.execute(the()) }
     }
 
-    @HubdleDslMarker
-    public fun main(action: Action<KotlinSourceSet>) {
-        userConfigurable {
-            configure<KotlinProjectExtension> { sourceSets.named("main", action::execute) }
-        }
-    }
-
-    @HubdleDslMarker
-    public fun test(action: Action<KotlinSourceSet>) {
-        userConfigurable {
-            configure<KotlinProjectExtension> { sourceSets.named("test", action::execute) }
-        }
-    }
-
     override fun Project.defaultConfiguration() {
-        applicablePlugins()
-    }
-}
-
-private fun HubdleKotlinIntellijExtension.applicablePlugins() =
-    with(project) {
         applicablePlugin(
             priority = Priority.P3,
             scope = Scope.CurrentProject,
@@ -119,9 +84,6 @@ private fun HubdleKotlinIntellijExtension.applicablePlugins() =
             configureIntellijPluginExtension()
             configureGeneratedChangelogHtmlDependency()
             configurePatchPluginXml()
-            configureDependencies()
-            configureDefaultJavaSourceSets()
-            configureDefaultKotlinSourceSets()
         }
 
         configurable(
@@ -132,32 +94,33 @@ private fun HubdleKotlinIntellijExtension.applicablePlugins() =
             configureSignPlugin()
         }
     }
+}
 
-private fun HubdleKotlinIntellijExtension.configureIntellijPluginExtension() =
+private fun HubdleIntellijPluginFeatureExtension.configureIntellijPluginExtension() =
     with(project) {
         val downloadSourcesProperty =
-            getPropertyOrNull(IntelliJ.downloadSources)?.toBoolean() ?: true
+            getPropertyOrNull(HubdleProperty.IntelliJ.downloadSources)?.toBoolean() ?: true
 
         val updateSinceUntilBuildProperty =
-            getPropertyOrNull(IntelliJ.updateSinceUntilBuild)?.toBoolean() ?: true
+            getPropertyOrNull(HubdleProperty.IntelliJ.updateSinceUntilBuild)?.toBoolean() ?: true
 
         configure<IntelliJPluginExtension> {
             pluginName.set(getProperty(HubdleProperty.POM.name))
             downloadSources.set(downloadSourcesProperty)
-            type.set(getProperty(IntelliJ.type))
-            version.set(getProperty(IntelliJ.version))
+            type.set(getProperty(HubdleProperty.IntelliJ.type))
+            version.set(getProperty(HubdleProperty.IntelliJ.version))
             updateSinceUntilBuild.set(updateSinceUntilBuildProperty)
         }
     }
 
-private fun HubdleKotlinIntellijExtension.configurePatchPluginXml() =
+private fun HubdleIntellijPluginFeatureExtension.configurePatchPluginXml() =
     with(project) {
         tasks.withType<PatchPluginXmlTask>().configureEach { task ->
             task.dependsOn(tasks.named("copyGeneratedChangelogHtml"))
 
             task.version.set("$version")
-            task.sinceBuild.set(getProperty(IntelliJ.sinceBuild))
-            task.untilBuild.set(getProperty(IntelliJ.untilBuild))
+            task.sinceBuild.set(getProperty(HubdleProperty.IntelliJ.sinceBuild))
+            task.untilBuild.set(getProperty(HubdleProperty.IntelliJ.untilBuild))
 
             val changelogFile = layout.buildDirectory.file(GENERATED_CHANGELOG_HTML_FILE_PATH)
             val notes =
@@ -170,23 +133,24 @@ private fun HubdleKotlinIntellijExtension.configurePatchPluginXml() =
         }
     }
 
-private fun HubdleKotlinIntellijExtension.configurePublishPlugin() =
+private fun HubdleIntellijPluginFeatureExtension.configurePublishPlugin() =
     with(project) {
         tasks.withType<PublishPluginTask>().configureEach { task ->
-            task.token.set(project.getPropertyOrNull(IntelliJ.publishToken) ?: "")
+            task.token.set(project.getPropertyOrNull(HubdleProperty.IntelliJ.publishToken) ?: "")
         }
     }
 
-private fun HubdleKotlinIntellijExtension.configureSignPlugin() =
+private fun HubdleIntellijPluginFeatureExtension.configureSignPlugin() =
     with(project) {
         tasks.withType<SignPluginTask>().configureEach { task ->
-            val certificate = getPropertyOrNull(JetBrains.marketplaceCertificateChain) ?: ""
+            val certificate =
+                getPropertyOrNull(HubdleProperty.JetBrains.marketplaceCertificateChain) ?: ""
             val key =
-                getPropertyOrNull(JetBrains.marketplaceKey)
+                getPropertyOrNull(HubdleProperty.JetBrains.marketplaceKey)
                     ?: getPropertyOrNull(HubdleProperty.Signing.gnupgKey) ?: ""
 
             val passphrase =
-                getPropertyOrNull(JetBrains.marketplaceKeyPassphrase)
+                getPropertyOrNull(HubdleProperty.JetBrains.marketplaceKeyPassphrase)
                     ?: getPropertyOrNull(HubdleProperty.Signing.gnupgPassphrase) ?: ""
 
             task.certificateChain.set(certificate)
@@ -195,7 +159,7 @@ private fun HubdleKotlinIntellijExtension.configureSignPlugin() =
         }
     }
 
-private fun HubdleKotlinIntellijExtension.configureGeneratedChangelogHtmlDependency() =
+private fun HubdleIntellijPluginFeatureExtension.configureGeneratedChangelogHtmlDependency() =
     with(project) {
         val generatedChangelogHtml =
             configurations.create("generatedChangelogHtml").apply {
@@ -204,7 +168,10 @@ private fun HubdleKotlinIntellijExtension.configureGeneratedChangelogHtmlDepende
                 attributes { attributes ->
                     attributes.attribute(
                         LibraryElements.LIBRARY_ELEMENTS_ATTRIBUTE,
-                        objects.named(GENERATED_CHANGELOG_HTML_ATTRIBUTE)
+                        objects.named(
+                            HubdleConfigDocumentationChangelogExtension
+                                .GENERATED_CHANGELOG_HTML_ATTRIBUTE
+                        )
                     )
                 }
             }
@@ -217,5 +184,17 @@ private fun HubdleKotlinIntellijExtension.configureGeneratedChangelogHtmlDepende
         }
     }
 
-internal val HubdleEnableableExtension.hubdleIntellij: HubdleKotlinIntellijExtension
+public interface HubdleIntellijPluginDelegateFeatureExtension : BaseHubdleDelegateExtension {
+
+    public val plugin: HubdleIntellijPluginFeatureExtension
+        get() = project.getHubdleExtension()
+
+    @HubdleDslMarker
+    public fun plugin(action: Action<HubdleIntellijPluginFeatureExtension> = Action {}) {
+        plugin.enableAndExecute(action)
+    }
+}
+
+internal val HubdleEnableableExtension.hubdleGradlePluginFeature:
+    HubdleIntellijPluginFeatureExtension
     get() = getHubdleExtension()

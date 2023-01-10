@@ -1,4 +1,6 @@
-plugins { id("com.javiersc.hubdle") }
+plugins {
+    id("com.javiersc.hubdle")
+}
 
 hubdle {
     config {
@@ -12,6 +14,8 @@ hubdle {
             }
         }
 
-        versioning { enabled(false) }
+        versioning {
+            isEnabled.set(false)
+        }
     }
 }

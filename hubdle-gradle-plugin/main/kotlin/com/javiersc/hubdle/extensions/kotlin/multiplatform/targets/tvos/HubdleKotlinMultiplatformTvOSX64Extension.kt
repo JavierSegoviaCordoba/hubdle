@@ -2,11 +2,10 @@ package com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.tvos
 
 import com.javiersc.hubdle.extensions.HubdleDslMarker
 import com.javiersc.hubdle.extensions._internal.Configurable
-import com.javiersc.hubdle.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.features.configurableTargetPerOs
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.hubdleKotlinMultiplatform
-import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformTargetOptions
+import com.javiersc.hubdle.extensions.kotlin.shared.HubdleKotlinMinimalSourceSetConfigurableExtension
 import javax.inject.Inject
 import org.gradle.api.Project
 import org.gradle.api.provider.Property
@@ -17,7 +16,7 @@ public open class HubdleKotlinMultiplatformTvOSX64Extension
 @Inject
 constructor(
     project: Project,
-) : HubdleConfigurableExtension(project), HubdleKotlinMultiplatformTargetOptions {
+) : HubdleKotlinMinimalSourceSetConfigurableExtension(project) {
 
     override val project: Project
         get() = super.project

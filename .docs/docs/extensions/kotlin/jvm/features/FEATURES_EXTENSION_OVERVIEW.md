@@ -5,6 +5,8 @@
     - compose
     - coroutines
     - extendedStdlib
+    - gradle
+    - intellij
     - kotest
     - serialization
     - toolchain

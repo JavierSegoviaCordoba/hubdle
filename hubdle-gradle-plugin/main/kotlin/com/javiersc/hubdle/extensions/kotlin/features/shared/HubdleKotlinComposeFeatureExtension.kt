@@ -1,13 +1,13 @@
 package com.javiersc.hubdle.extensions.kotlin.features.shared
 
 import androidxComposeCompiler
-import com.android.build.api.dsl.CommonExtension
 import com.javiersc.hubdle.extensions.HubdleDslMarker
 import com.javiersc.hubdle.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.extensions._internal.PluginId
 import com.javiersc.hubdle.extensions._internal.catalogDependency
 import com.javiersc.hubdle.extensions._internal.getHubdleExtension
+import com.javiersc.hubdle.extensions.android._internal.configureAndroidCommonExtension
 import com.javiersc.hubdle.extensions.apis.BaseHubdleDelegateExtension
 import com.javiersc.hubdle.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
@@ -63,7 +63,7 @@ constructor(
                 forKotlinSetsDependencies("main") {
                     implementation(catalogDependency(ANDROIDX_ACTIVITY_ACTIVITY_COMPOSE_MODULE))
                 }
-                configure<CommonExtension<*, *, *, *>> {
+                configureAndroidCommonExtension {
                     defaultConfig {
                         buildFeatures.compose = true
                         composeOptions.kotlinCompilerExtensionVersion = compilerVersion.get()

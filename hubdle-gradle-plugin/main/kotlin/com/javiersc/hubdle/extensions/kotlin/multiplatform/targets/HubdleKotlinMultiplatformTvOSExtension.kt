@@ -3,12 +3,13 @@ package com.javiersc.hubdle.extensions.kotlin.multiplatform.targets
 import com.javiersc.hubdle.extensions.HubdleDslMarker
 import com.javiersc.hubdle.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.extensions._internal.getHubdleExtension
-import com.javiersc.hubdle.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.extensions.apis.enableAndExecute
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.hubdleKotlinMultiplatform
+import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.tvos.HubdleKotlinMultiplatformTvOSArm64Extension
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.tvos.HubdleKotlinMultiplatformTvOSSimulatorArm64Extension
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.tvos.HubdleKotlinMultiplatformTvOSX64Extension
+import com.javiersc.hubdle.extensions.kotlin.shared.HubdleKotlinMinimalSourceSetConfigurableExtension
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
@@ -24,7 +25,7 @@ public open class HubdleKotlinMultiplatformTvOSExtension
 @Inject
 constructor(
     project: Project,
-) : HubdleConfigurableExtension(project), HubdleKotlinMultiplatformTargetOptions {
+) : HubdleKotlinMinimalSourceSetConfigurableExtension(project) {
 
     override val project: Project
         get() = super.project
@@ -45,14 +46,11 @@ constructor(
     override val requiredExtensions: Set<HubdleEnableableExtension>
         get() = setOf(hubdleKotlinMultiplatform)
 
-    @HubdleDslMarker
-    public val tvosArm64: HubdleKotlinMultiplatformTvOSSimulatorArm64Extension
+    public val tvosArm64: HubdleKotlinMultiplatformTvOSArm64Extension
         get() = getHubdleExtension()
 
     @HubdleDslMarker
-    public fun tvosArm64(
-        action: Action<HubdleKotlinMultiplatformTvOSSimulatorArm64Extension> = Action {}
-    ) {
+    public fun tvosArm64(action: Action<HubdleKotlinMultiplatformTvOSArm64Extension> = Action {}) {
         tvosArm64.enableAndExecute(action)
     }
 

@@ -1,10 +1,18 @@
-plugins { id("com.javiersc.hubdle") }
+plugins {
+    id("com.javiersc.hubdle")
+}
 
 hubdle {
-    config { versioning { enabled(false) } }
+    config {
+        versioning {
+            isEnabled.set(false)
+        }
+    }
 
     kotlin {
-        gradle { versionCatalog() }
+        android {
+            library()
+        }
         jvm()
     }
 }

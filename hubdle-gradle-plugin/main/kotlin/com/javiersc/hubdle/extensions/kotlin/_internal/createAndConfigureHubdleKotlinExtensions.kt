@@ -15,12 +15,6 @@ import com.javiersc.hubdle.extensions.kotlin.features.shared.HubdleKotlinCorouti
 import com.javiersc.hubdle.extensions.kotlin.features.shared.HubdleKotlinExtendedStdlibFeatureExtension
 import com.javiersc.hubdle.extensions.kotlin.features.shared.HubdleKotlinKotestFeatureExtension
 import com.javiersc.hubdle.extensions.kotlin.features.shared.HubdleKotlinSerializationFeatureExtension
-import com.javiersc.hubdle.extensions.kotlin.gradle.HubdleKotlinGradleExtension
-import com.javiersc.hubdle.extensions.kotlin.gradle.plugin.HubdleKotlinGradlePluginExtension
-import com.javiersc.hubdle.extensions.kotlin.gradle.plugin.features.HubdleKotlinGradlePluginFeaturesExtension
-import com.javiersc.hubdle.extensions.kotlin.gradle.version.catalog.HubdleKotlinGradleVersionCatalogExtension
-import com.javiersc.hubdle.extensions.kotlin.intellij.HubdleKotlinIntellijExtension
-import com.javiersc.hubdle.extensions.kotlin.intellij.features.HubdleKotlinIntellijFeaturesExtension
 import com.javiersc.hubdle.extensions.kotlin.jvm.HubdleKotlinJvmExtension
 import com.javiersc.hubdle.extensions.kotlin.jvm.features.HubdleKotlinJvmFeaturesExtension
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.HubdleKotlinMultiplatformExtension
@@ -62,15 +56,19 @@ import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.watchos.Hubdl
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.watchos.HubdleKotlinMultiplatformWatchOSSimulatorArm64Extension
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.watchos.HubdleKotlinMultiplatformWatchOSX64Extension
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.watchos.HubdleKotlinMultiplatformWatchOSX86Extension
+import com.javiersc.hubdle.extensions.shared.features.HubdleGradleFeatureExtension
+import com.javiersc.hubdle.extensions.shared.features.HubdleIntellijFeatureExtension
+import com.javiersc.hubdle.extensions.shared.features.HubdleJavaApplicationFeatureExtension
 import com.javiersc.hubdle.extensions.shared.features.HubdleJavaVersionFeatureExtension
 import com.javiersc.hubdle.extensions.shared.features.HubdleJvmToolchainFeatureExtension
+import com.javiersc.hubdle.extensions.shared.features.gradle.HubdleGradlePluginFeatureExtension
+import com.javiersc.hubdle.extensions.shared.features.gradle.HubdleGradleVersionCatalogFeatureExtension
+import com.javiersc.hubdle.extensions.shared.features.intellij.HubdleIntellijPluginFeatureExtension
 
 internal fun HubdleState.createHubdleKotlinExtensions() {
     createExtension<HubdleKotlinExtension> {
         createKotlinFeatureExtensions()
         createKotlinAndroidExtensions()
-        createKotlinGradleExtensions()
-        createKotlinIntellijExtensions()
         createKotlinJvmExtensions()
         createKotlinMultiplatformAndroidExtensions()
     }
@@ -78,10 +76,18 @@ internal fun HubdleState.createHubdleKotlinExtensions() {
 
 private fun HubdleState.createKotlinFeatureExtensions() {
     createExtension<HubdleKotlinFeaturesExtension> {
+        createExtension<HubdleJavaApplicationFeatureExtension>()
+        createExtension<HubdleJavaVersionFeatureExtension>()
+        createExtension<HubdleGradleFeatureExtension> {
+            createExtension<HubdleGradlePluginFeatureExtension>()
+            createExtension<HubdleGradleVersionCatalogFeatureExtension>()
+        }
+        createExtension<HubdleIntellijFeatureExtension> {
+            createExtension<HubdleIntellijPluginFeatureExtension>()
+        }
         createExtension<HubdleKotlinComposeFeatureExtension>()
         createExtension<HubdleKotlinCoroutinesFeatureExtension>()
         createExtension<HubdleKotlinExtendedStdlibFeatureExtension>()
-        createExtension<HubdleJavaVersionFeatureExtension>()
         createExtension<HubdleKotlinKotestFeatureExtension>()
         createExtension<HubdleKotlinSerializationFeatureExtension>()
         createExtension<HubdleJvmToolchainFeatureExtension>()
@@ -98,21 +104,6 @@ private fun HubdleState.createKotlinAndroidExtensions() {
             createExtension<HubdleKotlinAndroidLibraryFeaturesExtension>()
         }
         createExtension<HubdleKotlinAndroidBuildFeaturesExtension>()
-    }
-}
-
-private fun HubdleState.createKotlinGradleExtensions() {
-    createExtension<HubdleKotlinGradleExtension> {
-        createExtension<HubdleKotlinGradlePluginExtension> {
-            createExtension<HubdleKotlinGradlePluginFeaturesExtension>()
-        }
-        createExtension<HubdleKotlinGradleVersionCatalogExtension>()
-    }
-}
-
-private fun HubdleState.createKotlinIntellijExtensions() {
-    createExtension<HubdleKotlinIntellijExtension> {
-        createExtension<HubdleKotlinIntellijFeaturesExtension>()
     }
 }
 

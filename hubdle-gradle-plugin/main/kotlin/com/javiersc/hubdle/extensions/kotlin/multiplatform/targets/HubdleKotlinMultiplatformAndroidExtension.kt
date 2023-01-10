@@ -6,11 +6,11 @@ import com.javiersc.hubdle.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.extensions._internal.PluginId
 import com.javiersc.hubdle.extensions._internal.getHubdleExtension
-import com.javiersc.hubdle.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.extensions.kotlin.android._internal.calculateAndroidNamespace
 import com.javiersc.hubdle.extensions.kotlin.android.features.HubdleKotlinAndroidBuildFeaturesExtension
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.hubdleKotlinMultiplatform
+import com.javiersc.hubdle.extensions.kotlin.shared.HubdleKotlinMinimalSourceSetConfigurableExtension
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
@@ -24,7 +24,7 @@ public open class HubdleKotlinMultiplatformAndroidExtension
 @Inject
 constructor(
     project: Project,
-) : HubdleConfigurableExtension(project), HubdleKotlinMultiplatformTargetOptions {
+) : HubdleKotlinMinimalSourceSetConfigurableExtension(project) {
 
     override val project: Project
         get() = super.project
@@ -100,9 +100,6 @@ constructor(
                 compileSdk = hubdleAndroid.compileSdk.get()
                 defaultConfig.minSdk = hubdleAndroid.minSdk.get()
                 namespace = calculateAndroidNamespace(hubdleAndroid.namespace.orNull)
-                sourceSets.all { set ->
-                    set.manifest.srcFile("android/${set.name}/AndroidManifest.xml")
-                }
             }
         }
     }

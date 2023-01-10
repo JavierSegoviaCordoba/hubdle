@@ -9,10 +9,6 @@ import com.javiersc.hubdle.extensions.kotlin.android.HubdleKotlinAndroidExtensio
 import com.javiersc.hubdle.extensions.kotlin.android.application.hubdleAndroidApplication
 import com.javiersc.hubdle.extensions.kotlin.android.library.hubdleAndroidLibrary
 import com.javiersc.hubdle.extensions.kotlin.features.HubdleKotlinFeaturesExtension
-import com.javiersc.hubdle.extensions.kotlin.gradle.HubdleKotlinGradleExtension
-import com.javiersc.hubdle.extensions.kotlin.gradle.plugin.hubdleGradlePlugin
-import com.javiersc.hubdle.extensions.kotlin.intellij.HubdleKotlinIntellijExtension
-import com.javiersc.hubdle.extensions.kotlin.intellij.hubdleIntellij
 import com.javiersc.hubdle.extensions.kotlin.jvm.HubdleKotlinJvmExtension
 import com.javiersc.hubdle.extensions.kotlin.jvm.hubdleKotlinJvm
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.HubdleKotlinMultiplatformExtension
@@ -47,22 +43,6 @@ constructor(
         android.enableAndExecute(action)
     }
 
-    public val gradle: HubdleKotlinGradleExtension
-        get() = getHubdleExtension()
-
-    @HubdleDslMarker
-    public fun gradle(action: Action<HubdleKotlinGradleExtension> = Action {}) {
-        gradle.enableAndExecute(action)
-    }
-
-    public val intellijPlugin: HubdleKotlinIntellijExtension
-        get() = getHubdleExtension()
-
-    @HubdleDslMarker
-    public fun intellijPlugin(action: Action<HubdleKotlinIntellijExtension> = Action {}) {
-        intellijPlugin.enableAndExecute(action)
-    }
-
     public val jvm: HubdleKotlinJvmExtension
         get() = getHubdleExtension()
 
@@ -88,8 +68,6 @@ internal val HubdleEnableableExtension.hubdleKotlinAny: Set<HubdleConfigurableEx
         setOf(
             hubdleAndroidApplication,
             hubdleAndroidLibrary,
-            hubdleGradlePlugin,
-            hubdleIntellij,
             hubdleKotlinJvm,
             hubdleKotlinMultiplatform,
         )

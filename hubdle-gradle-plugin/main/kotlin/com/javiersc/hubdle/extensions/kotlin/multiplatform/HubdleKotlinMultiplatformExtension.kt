@@ -4,14 +4,13 @@ import com.javiersc.hubdle.extensions.HubdleDslMarker
 import com.javiersc.hubdle.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.extensions._internal.PluginId
-import com.javiersc.hubdle.extensions._internal.configureDefaultJavaSourceSets
-import com.javiersc.hubdle.extensions._internal.configureDefaultKotlinSourceSets
-import com.javiersc.hubdle.extensions._internal.configureDependencies
+import com.javiersc.hubdle.extensions._internal.configurableDependencies
 import com.javiersc.hubdle.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.extensions.apis.enableAndExecute
 import com.javiersc.hubdle.extensions.config.publishing._internal.configurableMavenPublishing
+import com.javiersc.hubdle.extensions.kotlin._internal.configurableSrcDirs
 import com.javiersc.hubdle.extensions.kotlin.hubdleKotlin
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.HubdleKotlinMultiplatformTarget.Common
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.HubdleKotlinMultiplatformTarget.JS
@@ -31,7 +30,7 @@ import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.provider.Property
-import org.gradle.kotlin.dsl.configure
+import org.gradle.api.provider.SetProperty
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinTarget
 import org.jetbrains.kotlin.gradle.plugin.KotlinTargetPreset
@@ -152,30 +151,28 @@ constructor(
             pluginId = PluginId.JetbrainsKotlinMultiplatform
         )
 
-        configurable {
-            configureDependencies()
-            configureDefaultJavaSourceSets()
-            configure<KotlinMultiplatformExtension> {
-                val hubdleTargets: List<String> =
-                    buildSet {
-                            add(Common)
-                            addAll(hubdleJvmTargets)
-                            addAll(hubdleAppleTargets)
-                            addAll(nativeTargets)
-                            add(JS)
-                            add(WAsm)
-                        }
-                        .map { target -> "$target" }
-
-                val targetsPresets: Set<String> = buildSet {
-                    addAll(targets.map(KotlinTarget::getName))
-                    addAll(presets.map(KotlinTargetPreset<*>::getName))
-                    addAll(hubdleTargets)
-                }
-                configureDefaultKotlinSourceSets(targetsPresets)
-            }
-        }
+        configurableSrcDirs(multiplatformTargets())
+        configurableDependencies()
         configurableMavenPublishing(configEmptyJavaDocs = true)
+    }
+
+    private fun multiplatformTargets(): SetProperty<String> = setProperty {
+        val hubdleTargets: List<String> =
+            buildSet {
+                    add(Common)
+                    addAll(hubdleJvmTargets)
+                    addAll(hubdleAppleTargets)
+                    addAll(nativeTargets)
+                    add(JS)
+                    add(WAsm)
+                }
+                .map { target -> "$target" }
+
+        buildSet {
+            addAll(the<KotlinMultiplatformExtension>().targets.map(KotlinTarget::getName))
+            addAll(the<KotlinMultiplatformExtension>().presets.map(KotlinTargetPreset<*>::getName))
+            addAll(hubdleTargets)
+        }
     }
 }
 

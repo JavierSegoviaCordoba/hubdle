@@ -9,9 +9,12 @@ import com.javiersc.hubdle.extensions.kotlin.features.shared.HubdleKotlinExtende
 import com.javiersc.hubdle.extensions.kotlin.features.shared.HubdleKotlinKotestDelegateFeatureExtension
 import com.javiersc.hubdle.extensions.kotlin.features.shared.HubdleKotlinSerializationDelegateFeatureExtension
 import com.javiersc.hubdle.extensions.kotlin.jvm.hubdleKotlinJvm
+import com.javiersc.hubdle.extensions.shared.features.HubdleIntellijDelegateFeatureExtension
 import com.javiersc.hubdle.extensions.shared.features.HubdleJavaApplicationDelegateFeatureExtension
 import com.javiersc.hubdle.extensions.shared.features.HubdleJavaVersionDelegateFeatureExtension
 import com.javiersc.hubdle.extensions.shared.features.HubdleJvmToolchainDelegateFeatureExtension
+import com.javiersc.hubdle.extensions.shared.features.gradle.HubdleGradlePluginDelegateFeatureExtension
+import com.javiersc.hubdle.extensions.shared.features.gradle.HubdleGradleVersionCatalogDelegateFeatureExtension
 import javax.inject.Inject
 import org.gradle.api.Project
 import org.gradle.api.provider.Property
@@ -33,6 +36,9 @@ constructor(
 }
 
 public interface HubdleKotlinJvmDelegateFeaturesExtension :
+    HubdleGradlePluginDelegateFeatureExtension,
+    HubdleGradleVersionCatalogDelegateFeatureExtension,
+    HubdleIntellijDelegateFeatureExtension,
     HubdleJavaApplicationDelegateFeatureExtension,
     HubdleKotlinComposeDelegateFeatureExtension,
     HubdleKotlinCoroutinesDelegateFeatureExtension,

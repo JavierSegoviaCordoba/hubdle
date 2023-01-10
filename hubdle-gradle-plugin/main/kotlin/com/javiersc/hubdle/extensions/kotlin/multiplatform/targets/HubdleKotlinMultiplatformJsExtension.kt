@@ -2,9 +2,9 @@ package com.javiersc.hubdle.extensions.kotlin.multiplatform.targets
 
 import com.javiersc.hubdle.extensions.HubdleDslMarker
 import com.javiersc.hubdle.extensions._internal.Configurable.Priority
-import com.javiersc.hubdle.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.hubdleKotlinMultiplatform
+import com.javiersc.hubdle.extensions.kotlin.shared.HubdleKotlinMinimalSourceSetConfigurableExtension
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
@@ -19,7 +19,7 @@ public open class HubdleKotlinMultiplatformJsExtension
 @Inject
 constructor(
     project: Project,
-) : HubdleConfigurableExtension(project), HubdleKotlinMultiplatformTargetOptions {
+) : HubdleKotlinMinimalSourceSetConfigurableExtension(project) {
 
     override val project: Project
         get() = super.project

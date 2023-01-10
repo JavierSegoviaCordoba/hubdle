@@ -2,7 +2,9 @@ import com.android.build.api.dsl.LibraryExtension
 import org.gradle.kotlin.dsl.the
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
-plugins { id("com.javiersc.hubdle") }
+plugins {
+    id("com.javiersc.hubdle")
+}
 
 version = "7.3.4-beta.2"
 
@@ -10,7 +12,9 @@ hubdle {
     config {
         publishing()
 
-        versioning { enabled(false) }
+        versioning {
+            isEnabled.set(false)
+        }
     }
 
     kotlin {
@@ -20,9 +24,15 @@ hubdle {
                 minimumTargetPerOs()
             }
 
-            kotlin { sourceSets.create("randomMain") }
+            kotlin {
+                sourceSets.create("randomMain")
+            }
 
-            android { android { compileSdk = 29 } }
+            android {
+                android {
+                    compileSdk = 29
+                }
+            }
 
             apple {
                 ios {
@@ -66,7 +76,9 @@ hubdle {
                 mingwX86()
             }
             native()
-            wasm { wasm32() }
+            wasm {
+                wasm32()
+            }
         }
     }
 }

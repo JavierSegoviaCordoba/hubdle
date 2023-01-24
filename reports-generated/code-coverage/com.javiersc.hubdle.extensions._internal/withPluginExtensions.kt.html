@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>withPluginExtensions.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">:</a> &gt; <a href="index.source.html" class="el_package">com.javiersc.hubdle.extensions._internal</a> &gt; <span class="el_source">withPluginExtensions.kt</span></div><h1>withPluginExtensions.kt</h1><pre class="source lang-java linenums">package com.javiersc.hubdle.extensions._internal
+
+import com.android.build.api.dsl.ApplicationExtension
+import com.android.build.api.dsl.LibraryExtension
+import com.diffplug.gradle.spotless.SpotlessExtension
+import com.diffplug.gradle.spotless.SpotlessExtensionPredeclare
+import com.javiersc.semver.gradle.plugin.SemverExtension
+import io.gitlab.arturbosch.detekt.extensions.DetektExtension
+import kotlinx.kover.api.KoverProjectConfig
+import kotlinx.validation.ApiValidationExtension
+import org.gradle.api.Project
+import org.gradle.api.plugins.JavaApplication
+import org.gradle.api.publish.PublishingExtension as GradlePublishingExtension
+import org.gradle.kotlin.dsl.getByType
+import org.gradle.plugin.devel.GradlePluginDevelopmentExtension
+import org.gradle.plugins.signing.SigningExtension
+import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
+import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
+import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
+
+internal fun Project.withId(id: PluginId, block: () -&gt; Unit) {
+<span class="nc" id="L23">    pluginManager.withPlugin(&quot;$id&quot;) { block() }</span>
+<span class="nc" id="L24">}</span>
+
+internal inline fun &lt;reified T : Any&gt; Project.withId(
+    id: PluginId,
+    crossinline block: T.() -&gt; Unit
+) {
+<span class="nc" id="L30">    pluginManager.withPlugin(&quot;$id&quot;) { block(extensions.getByType()) }</span>
+}
+
+internal fun Project.withAndroidApplication(block: ApplicationExtension.() -&gt; Unit) =
+<span class="nc" id="L34">    withId(id = PluginId.AndroidApplication, block = block)</span>
+
+internal fun Project.withAndroidLibrary(block: LibraryExtension.() -&gt; Unit) =
+<span class="nc" id="L37">    withId(id = PluginId.AndroidLibrary, block = block)</span>
+
+internal fun Project.withCompose(block: () -&gt; Unit) =
+<span class="nc" id="L40">    withId(id = PluginId.JetbrainsCompose, block = block)</span>
+
+internal fun Project.withDetekt(block: DetektExtension.() -&gt; Unit) =
+<span class="nc" id="L43">    withId(id = PluginId.Detekt, block = block)</span>
+
+internal fun Project.withGradleApplication(block: JavaApplication.() -&gt; Unit) =
+<span class="nc" id="L46">    withId(id = PluginId.GradleApplication, block = block)</span>
+
+internal fun Project.withGradlePlugin(block: GradlePluginDevelopmentExtension.() -&gt; Unit) =
+<span class="nc" id="L49">    withId(id = PluginId.JavaGradlePlugin, block = block)</span>
+
+internal fun Project.withKotlin(block: KotlinProjectExtension.() -&gt; Unit) {
+<span class="nc" id="L52">    withKotlinAndroid(block)</span>
+<span class="nc" id="L53">    withKotlinJvm(block)</span>
+<span class="nc" id="L54">    withKotlinMultiplatform(block)</span>
+<span class="nc" id="L55">}</span>
+
+internal fun Project.withKotlinAndroid(block: KotlinAndroidProjectExtension.() -&gt; Unit) =
+<span class="nc" id="L58">    withId(id = PluginId.JetbrainsKotlinAndroid, block = block)</span>
+
+internal fun Project.withKotlinJvm(block: KotlinJvmProjectExtension.() -&gt; Unit) =
+<span class="nc" id="L61">    withId(id = PluginId.JetbrainsKotlinJvm, block = block)</span>
+
+internal fun Project.withKotlinMultiplatform(block: KotlinMultiplatformExtension.() -&gt; Unit) =
+<span class="nc" id="L64">    withId(id = PluginId.JetbrainsKotlinMultiplatform, block = block)</span>
+
+internal fun Project.withKotlinBinaryCompatibilityValidator(
+    block: ApiValidationExtension.() -&gt; Unit
+<span class="nc" id="L68">) = withId(id = PluginId.JetbrainsKotlinxBinaryCompatibilityValidator, block = block)</span>
+
+internal fun Project.withKover(block: KoverProjectConfig.() -&gt; Unit) =
+<span class="nc" id="L71">    withId(id = PluginId.JetbrainsKotlinxKover, block = block)</span>
+
+internal fun Project.withPublishing(block: GradlePublishingExtension.() -&gt; Unit) =
+<span class="nc" id="L74">    withId(id = PluginId.MavenPublish, block = block)</span>
+
+internal fun Project.withSemver(block: SemverExtension.() -&gt; Unit) =
+<span class="nc" id="L77">    withId(id = PluginId.JavierscSemverGradlePlugin, block = block)</span>
+
+internal fun Project.withSigning(block: SigningExtension.() -&gt; Unit) =
+<span class="nc" id="L80">    withId(id = PluginId.GradleSigning, block = block)</span>
+
+internal fun Project.withSpotless(block: SpotlessExtension.() -&gt; Unit) =
+<span class="nc" id="L83">    withId(id = PluginId.DiffplugSpotless, block = block)</span>
+
+internal fun Project.withSpotlessPredeclare(block: SpotlessExtensionPredeclare.() -&gt; Unit) =
+<span class="nc" id="L86">    withId(id = PluginId.DiffplugSpotless, block = block)</span>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

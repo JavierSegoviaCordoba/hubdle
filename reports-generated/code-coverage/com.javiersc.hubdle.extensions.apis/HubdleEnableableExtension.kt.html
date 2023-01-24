@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>HubdleEnableableExtension.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">:</a> &gt; <a href="index.source.html" class="el_package">com.javiersc.hubdle.extensions.apis</a> &gt; <span class="el_source">HubdleEnableableExtension.kt</span></div><h1>HubdleEnableableExtension.kt</h1><pre class="source lang-java linenums">package com.javiersc.hubdle.extensions.apis
+
+import com.javiersc.hubdle.extensions._internal.ApplicablePlugin
+import com.javiersc.hubdle.extensions._internal.Configurable
+import com.javiersc.hubdle.extensions._internal.Configurable.Priority
+import com.javiersc.hubdle.extensions._internal.HubdleState
+import com.javiersc.hubdle.extensions._internal.PluginId
+import com.javiersc.hubdle.extensions._internal.hubdleState
+import com.javiersc.hubdle.extensions._internal.listProperty
+import com.javiersc.hubdle.extensions._internal.property
+import com.javiersc.hubdle.extensions._internal.setProperty
+import org.gradle.api.Action
+import org.gradle.api.Project
+import org.gradle.api.provider.ListProperty
+import org.gradle.api.provider.Property
+import org.gradle.api.provider.Provider
+import org.gradle.api.provider.SetProperty
+import org.gradle.kotlin.dsl.configure
+import org.gradle.kotlin.dsl.the
+
+<span class="fc" id="L21">public abstract class HubdleEnableableExtension(</span>
+<span class="fc" id="L22">    internal open val project: Project,</span>
+) : BaseHubdleEnableableExtension {
+
+<span class="nc" id="L25">    internal val name: String =</span>
+<span class="pc bpc" id="L26" title="2 of 4 branches missed.">        this::class.simpleName?.substringBeforeLast(&quot;_Decorated&quot;) ?: &quot;UnknownHubdleExtension&quot;</span>
+
+    internal open val oneOfExtensions: Set&lt;HubdleEnableableExtension&gt;
+<span class="fc" id="L29">        get() = emptySet()</span>
+
+    internal open val noneOfExtensions: Set&lt;HubdleEnableableExtension&gt;
+<span class="fc" id="L32">        get() = emptySet()</span>
+
+    internal open val requiredExtensions: Set&lt;HubdleEnableableExtension&gt;
+<span class="fc" id="L35">        get() = emptySet()</span>
+
+    internal val hubdleState: HubdleState
+<span class="fc" id="L38">        get() = project.hubdleState</span>
+
+<span class="fc" id="L40">    internal val isFullEnabled: Property&lt;Boolean&gt; = property {</span>
+        isEnabled.get() &amp;&amp; oneOfCondition.get() &amp;&amp; requiredCondition.get() &amp;&amp; noneCondition.get()
+    }
+
+    private val oneOfCondition: Property&lt;Boolean&gt;
+<span class="fc" id="L45">        get() = property {</span>
+            (oneOfExtensions.any { it.isFullEnabled.get() } || oneOfExtensions.isEmpty())
+<span class="fc" id="L47">        }</span>
+
+    private val requiredCondition: Property&lt;Boolean&gt;
+<span class="fc" id="L50">        get() = property {</span>
+            (requiredExtensions.all { it.isFullEnabled.get() || requiredExtensions.isEmpty() })
+<span class="fc" id="L52">        }</span>
+
+    private val noneCondition: Property&lt;Boolean&gt;
+<span class="fc" id="L55">        get() = property {</span>
+            noneOfExtensions.isEmpty() || noneOfExtensions.none { it.isFullEnabled.get() }
+<span class="fc" id="L57">        }</span>
+
+    internal fun applicablePlugin(
+        isEnabled: Property&lt;Boolean&gt;,
+        priority: Priority,
+        scope: ApplicablePlugin.Scope,
+        pluginId: PluginId,
+    ) {
+<span class="fc" id="L65">        hubdleState.applicablePlugin(isEnabled, priority, scope, pluginId)</span>
+<span class="fc" id="L66">    }</span>
+
+    internal fun applicablePlugin(
+        priority: Priority,
+        scope: ApplicablePlugin.Scope,
+        pluginId: PluginId,
+    ) {
+<span class="fc" id="L73">        applicablePlugin(isFullEnabled, priority, scope, pluginId)</span>
+<span class="fc" id="L74">    }</span>
+
+    internal fun configurable(
+        isEnabled: Property&lt;Boolean&gt;,
+        priority: Priority,
+        config: Configurable.() -&gt; Unit
+    ) {
+<span class="fc" id="L81">        hubdleState.configurable(name, isEnabled, priority, config)</span>
+<span class="fc" id="L82">    }</span>
+
+    internal fun configurable(priority: Priority, config: Configurable.() -&gt; Unit) {
+<span class="fc" id="L85">        configurable(isFullEnabled, priority, config)</span>
+<span class="fc" id="L86">    }</span>
+
+    internal fun userConfigurable(config: Configurable.() -&gt; Unit) {
+<span class="nc" id="L89">        hubdleState.userConfigurable(name, isFullEnabled, config)</span>
+<span class="nc" id="L90">    }</span>
+
+    internal inline fun &lt;reified T&gt; provider(crossinline block: Project.() -&gt; T): Provider&lt;T&gt; =
+<span class="nc" id="L93">        project.provider { block(project) }</span>
+
+    internal inline fun &lt;reified T&gt; property(crossinline block: Project.() -&gt; T): Property&lt;T&gt; =
+        project.property { block(this) }
+
+    internal inline fun &lt;reified T&gt; listProperty(
+        crossinline block: Project.() -&gt; List&lt;T&gt;
+    ): ListProperty&lt;T&gt; = project.listProperty { block(this) }
+
+    internal inline fun &lt;reified T&gt; setProperty(
+        crossinline block: Project.() -&gt; Set&lt;T&gt;
+    ): SetProperty&lt;T&gt; = project.setProperty { block(this) }
+
+    internal inline fun &lt;reified T&gt; the(): T = project.the()
+
+    internal inline fun &lt;reified T : Any&gt; configure(crossinline block: T.() -&gt; Unit): Unit =
+<span class="nc" id="L109">        project.configure&lt;T&gt; { block(this) }</span>
+}
+
+internal fun &lt;T : HubdleEnableableExtension&gt; T.enableAndExecute(action: Action&lt;T&gt;) {
+<span class="fc" id="L113">    enabled(true)</span>
+<span class="fc" id="L114">    action.execute(this)</span>
+<span class="fc" id="L115">}</span>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

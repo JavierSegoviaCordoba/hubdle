@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>HubdleAutoIncludeExtension.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">:</a> &gt; <a href="index.source.html" class="el_package">com.javiersc.hubdle.settings.extensions</a> &gt; <span class="el_source">HubdleAutoIncludeExtension.kt</span></div><h1>HubdleAutoIncludeExtension.kt</h1><pre class="source lang-java linenums">package com.javiersc.hubdle.settings.extensions
+
+import com.javiersc.hubdle.settings.HubdleSettingsDslMarker
+import java.io.File
+import javax.inject.Inject
+import org.gradle.api.initialization.Settings
+import org.gradle.api.model.ObjectFactory
+import org.gradle.api.provider.Property
+import org.gradle.kotlin.dsl.property
+
+<span class="nc" id="L11">@HubdleSettingsDslMarker</span>
+<span class="nc" id="L12">public open class HubdleAutoIncludeExtension @Inject constructor(objects: ObjectFactory) {</span>
+
+<span class="nc" id="L14">    public val isEnabled: Property&lt;Boolean&gt; = objects.property&lt;Boolean&gt;().convention(true)</span>
+
+<span class="nc" id="L16">    public fun enabled(enabled: Boolean = true) {</span>
+<span class="nc" id="L17">        isEnabled.set(enabled)</span>
+<span class="nc" id="L18">    }</span>
+
+    internal val includableProjects: Set&lt;String&gt;
+<span class="nc bnc" id="L21" title="All 2 branches missed.">        get() = (includes - excludes).filter(String::isNotBlank).toSet()</span>
+
+<span class="nc" id="L23">    private val includes: MutableSet&lt;String&gt; = mutableSetOf()</span>
+<span class="nc" id="L24">    private val excludes: MutableSet&lt;String&gt; = mutableSetOf()</span>
+
+    internal val includableBuilds: Set&lt;String&gt;
+<span class="nc bnc" id="L27" title="All 2 branches missed.">        get() = (includedBuilds - excludedBuilds).filter(String::isNotBlank).toSet()</span>
+
+<span class="nc" id="L29">    private val includedBuilds: MutableSet&lt;String&gt; = mutableSetOf()</span>
+<span class="nc" id="L30">    private val excludedBuilds: MutableSet&lt;String&gt; = mutableSetOf(&quot;buildSrc&quot;)</span>
+
+    @HubdleSettingsDslMarker
+    public fun includes(vararg paths: String) {
+<span class="nc" id="L34">        includes += paths.map(String::toProjectPath)</span>
+<span class="nc" id="L35">    }</span>
+
+    @HubdleSettingsDslMarker
+    public fun excludes(vararg paths: String) {
+<span class="nc" id="L39">        excludes += paths.map(String::toProjectPath)</span>
+<span class="nc" id="L40">    }</span>
+
+    @HubdleSettingsDslMarker
+    public fun includedBuilds(vararg paths: String) {
+<span class="nc" id="L44">        includedBuilds += paths.map(String::toIncludedBuildPath)</span>
+<span class="nc" id="L45">    }</span>
+
+    @HubdleSettingsDslMarker
+    public fun excludedBuilds(vararg paths: String) {
+<span class="nc" id="L49">        excludedBuilds += paths.map(String::toIncludedBuildPath)</span>
+<span class="nc" id="L50">    }</span>
+}
+
+internal fun Settings.extractedProjects(): Set&lt;String&gt; =
+<span class="nc" id="L54">    settingsDir</span>
+<span class="nc" id="L55">        .walkTopDown()</span>
+<span class="nc" id="L56">        .onEnter { file -&gt; file.shouldContinueVisiting(settings) }</span>
+<span class="nc" id="L57">        .flatMap { file -&gt;</span>
+<span class="nc bnc" id="L58" title="All 2 branches missed.">            val children = file.listFiles()?.filter { child -&gt; child.isProject }</span>
+<span class="nc bnc" id="L59" title="All 4 branches missed.">            children?.map { child -&gt; child.relativeTo(settingsDir).path }.orEmpty()</span>
+        }
+<span class="nc" id="L61">        .toSet()</span>
+
+internal fun Settings.extractedBuildProjects(): Set&lt;String&gt; =
+<span class="nc" id="L64">    settingsDir</span>
+<span class="nc" id="L65">        .walkTopDown()</span>
+<span class="nc" id="L66">        .onEnter { file -&gt; file.shouldContinueVisiting(settings) }</span>
+<span class="nc" id="L67">        .flatMap { file -&gt;</span>
+<span class="nc bnc" id="L68" title="All 2 branches missed.">            val children = file.listFiles()?.filter { child -&gt; child.isSettingsProject }</span>
+<span class="nc bnc" id="L69" title="All 4 branches missed.">            children?.map { child -&gt; child.relativeTo(settingsDir).path }.orEmpty()</span>
+        }
+<span class="nc" id="L71">        .toSet()</span>
+
+private fun File.shouldContinueVisiting(settings: Settings): Boolean =
+<span class="nc bnc" id="L74" title="All 8 branches missed.">    if (isRootDir(settings)) true else !isProject &amp;&amp; !isSettingsProject &amp;&amp; !isSpecialDirectory</span>
+
+private val File.isSpecialDirectory: Boolean
+<span class="nc bnc" id="L77" title="All 6 branches missed.">    get() = name.startsWith(&quot;.&quot;) || name.startsWith(&quot;build&quot;) || name == &quot;gradle&quot;</span>
+
+private fun File.isRootDir(settings: Settings): Boolean =
+<span class="nc" id="L80">    absoluteFile == settings.settingsDir.absoluteFile</span>
+
+private val File.isProject: Boolean
+<span class="nc bnc" id="L83" title="All 4 branches missed.">    get() = hasBuildGradle &amp;&amp; !isSettingsProject</span>
+
+private val File.isSettingsProject: Boolean
+<span class="nc" id="L86">    get() = hasSettingsGradle</span>
+
+private val File.hasBuildGradle: Boolean
+<span class="nc bnc" id="L89" title="All 6 branches missed.">    get() = listFiles()?.any { it.name == &quot;build.gradle.kts&quot; || it.name == &quot;build.gradle&quot; } ?: false</span>
+
+private val File.hasSettingsGradle: Boolean
+    get() =
+<span class="nc bnc" id="L93" title="All 6 branches missed.">        listFiles()?.any { it.name == &quot;settings.gradle.kts&quot; || it.name == &quot;settings.gradle&quot; }</span>
+<span class="nc" id="L94">            ?: false</span>
+
+private fun String.toProjectPath(): String {
+<span class="nc" id="L97">    val project = replace(File.separator, &quot;:&quot;).replace(&quot;/&quot;, &quot;:&quot;).replace(&quot;\\&quot;, &quot;:&quot;)</span>
+<span class="nc bnc" id="L98" title="All 2 branches missed.">    return if (project.startsWith(&quot;:&quot;)) project else &quot;:$project&quot;</span>
+}
+
+private fun String.toIncludedBuildPath(): String =
+<span class="nc" id="L102">    replace(File.separator, &quot;/&quot;).replace(&quot;:&quot;, &quot;/&quot;).replace(&quot;\\&quot;, &quot;:&quot;).dropWhile {</span>
+<span class="nc bnc" id="L103" title="All 6 branches missed.">        it == File.separatorChar || it == '/' || it == '\\'</span>
+<span class="nc" id="L104">    }</span>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

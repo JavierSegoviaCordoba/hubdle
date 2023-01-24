@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PrebuildSiteTask.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">:</a> &gt; <a href="index.source.html" class="el_package">com.javiersc.hubdle.extensions.config.documentation.site</a> &gt; <span class="el_source">PrebuildSiteTask.kt</span></div><h1>PrebuildSiteTask.kt</h1><pre class="source lang-java linenums">@file:Suppress(&quot;TooManyFunctions&quot;)
+
+package com.javiersc.hubdle.extensions.config.documentation.site
+
+import com.javiersc.kotlin.stdlib.endWithNewLine
+import com.javiersc.kotlin.stdlib.removeDuplicateEmptyLines
+import java.io.File
+import javax.inject.Inject
+import org.gradle.api.DefaultTask
+import org.gradle.api.Project
+import org.gradle.api.file.FileSystemOperations
+import org.gradle.api.file.ProjectLayout
+import org.gradle.api.provider.ListProperty
+import org.gradle.api.provider.Property
+import org.gradle.api.tasks.CacheableTask
+import org.gradle.api.tasks.Input
+import org.gradle.api.tasks.InputDirectory
+import org.gradle.api.tasks.Internal
+import org.gradle.api.tasks.Nested
+import org.gradle.api.tasks.OutputDirectory
+import org.gradle.api.tasks.PathSensitive
+import org.gradle.api.tasks.PathSensitivity
+import org.gradle.api.tasks.TaskAction
+import org.gradle.api.tasks.TaskProvider
+import org.gradle.kotlin.dsl.register
+import org.jetbrains.kotlin.gradle.internal.ensureParentDirsCreated
+
+@CacheableTask
+public abstract class PrebuildSiteTask
+@Inject
+<span class="nc" id="L31">constructor(</span>
+<span class="nc" id="L32">    private val layout: ProjectLayout,</span>
+<span class="nc" id="L33">    private val fileSystemOperations: FileSystemOperations,</span>
+<span class="nc" id="L34">) : DefaultTask() {</span>
+
+<span class="nc" id="L36">    init {</span>
+<span class="nc" id="L37">        group = &quot;documentation&quot;</span>
+<span class="nc" id="L38">    }</span>
+
+    @get:Internal
+    public val rootDirectory: File
+<span class="nc" id="L42">        get() = layout.projectDirectory.asFile</span>
+
+    @get:InputDirectory
+    @get:PathSensitive(PathSensitivity.ABSOLUTE)
+    public val dotDocsDirectory: File
+<span class="nc" id="L47">        get() = File(&quot;${layout.projectDirectory.asFile}/.docs/&quot;).apply(File::mkdirs)</span>
+
+    @get:Nested public abstract val projectsInfo: ListProperty&lt;ProjectInfo&gt;
+
+    @get:Input public abstract val allTests: Property&lt;Boolean&gt;
+
+    @get:Input public abstract val codeAnalysis: Property&lt;Boolean&gt;
+
+    @get:Input public abstract val codeCoverage: Property&lt;Boolean&gt;
+
+    @get:Input public abstract val codeQuality: Property&lt;Boolean&gt;
+
+    @get:OutputDirectory
+    public val outputDotDocsDirectory: File
+<span class="nc" id="L61">        get() = dotDocsDirectory</span>
+
+    @get:OutputDirectory
+    public val buildDotDocsDirectory: File
+<span class="nc" id="L65">        get() = File(&quot;${layout.projectDirectory.asFile}/build/.docs/&quot;).apply(File::mkdirs)</span>
+
+    @TaskAction
+    public fun run() {
+<span class="nc" id="L69">        buildDotDocsDirectory(dotDocsDirectory)</span>
+<span class="nc" id="L70">        fileSystemOperations.buildBuildDotDocs(</span>
+<span class="nc" id="L71">            rootDirectory,</span>
+<span class="nc" id="L72">            dotDocsDirectory,</span>
+<span class="nc" id="L73">            buildDotDocsDirectory</span>
+        )
+<span class="nc" id="L75">        buildChangelogInDocs(rootDirectory, fileSystemOperations)</span>
+<span class="nc" id="L76">        buildApiInDocs()</span>
+<span class="nc" id="L77">        buildProjectsInDocs(rootDirectory, projectsInfo.get(), fileSystemOperations)</span>
+<span class="nc" id="L78">        buildReportsInDocs(</span>
+<span class="nc" id="L79">            rootDirectory,</span>
+<span class="nc" id="L80">            allTests.get(),</span>
+<span class="nc" id="L81">            codeAnalysis.get(),</span>
+<span class="nc" id="L82">            codeCoverage.get(),</span>
+<span class="nc" id="L83">            codeQuality.get(),</span>
+        )
+<span class="nc" id="L85">        sanitizeMkDocsFile()</span>
+<span class="nc" id="L86">    }</span>
+
+    public companion object {
+        public const val name: String = &quot;preBuildSite&quot;
+
+        internal fun register(
+            project: Project,
+            configure: PrebuildSiteTask.() -&gt; Unit
+        ): TaskProvider&lt;PrebuildSiteTask&gt; =
+<span class="nc" id="L95">            project.tasks.register&lt;PrebuildSiteTask&gt;(name) { configure(this) }</span>
+    }
+
+    private fun buildDotDocsDirectory(dotDocsDirectory: File) {
+<span class="nc" id="L99">        val mkDocsFile = File(&quot;$dotDocsDirectory/mkdocs.yml&quot;)</span>
+<span class="nc bnc" id="L100" title="All 2 branches missed.">        if (!mkDocsFile.exists()) {</span>
+<span class="nc" id="L101">            mkDocsFile.apply {</span>
+<span class="nc" id="L102">                ensureParentDirsCreated()</span>
+<span class="nc" id="L103">                createNewFile()</span>
+<span class="nc" id="L104">                writeText(defaultMkdocsYaml)</span>
+<span class="nc" id="L105">            }</span>
+
+<span class="nc" id="L107">            File(&quot;$dotDocsDirectory/docs/css/all.css&quot;).apply {</span>
+<span class="nc" id="L108">                ensureParentDirsCreated()</span>
+<span class="nc" id="L109">                createNewFile()</span>
+<span class="nc" id="L110">                writeText(defaultAllCss)</span>
+<span class="nc" id="L111">            }</span>
+
+<span class="nc" id="L113">            File(&quot;$dotDocsDirectory/docs/assets/empty.file&quot;).apply {</span>
+<span class="nc" id="L114">                ensureParentDirsCreated()</span>
+<span class="nc" id="L115">                createNewFile()</span>
+<span class="nc" id="L116">            }</span>
+        }
+<span class="nc" id="L118">    }</span>
+
+    private val defaultMkdocsYaml: String
+        get() =
+<span class="nc" id="L122">            &quot;&quot;&quot; |# TODO: Change all necessary properties</span>
+                |site_name: NAME # TODO
+                |site_description: DESCRIPTION # TODO
+                |site_author: AUTHOR # TODO
+                |remote_branch: gh-pages
+                |
+                |repo_name: REPO NAME # TODO
+                |repo_url: https://github.com/USER/REPO-NAME # TODO
+                |
+                |copyright: 'Copyright &amp;copy; 2021 AUTHOR' # TODO
+                |
+                |theme:
+                |  name: 'material'
+                |  language: 'en'
+                |  # TODO favicon: 'assets/favicon.png'
+                |  # TODO logo: 'assets/logo.svg'
+                |  font:
+                |    text: 'Fira Sans'
+                |    code: 'JetBrains Mono'
+                |  palette:
+                |    - media: &quot;(prefers-color-scheme: light)&quot;
+                |      scheme: default
+                |      primary: 'white'
+                |      accent: 'white'
+                |      toggle:
+                |        icon: material/weather-sunny
+                |        name: Switch to dark mode
+                |    - media: &quot;(prefers-color-scheme: dark)&quot;
+                |      primary: 'indigo'
+                |      accent: 'light blue'
+                |      scheme: slate
+                |      toggle:
+                |        icon: material/weather-night
+                |        name: Switch to light mode
+                |
+                |nav:
+                |  - Overview: index.md
+                |
+                |plugins:
+                |  - search
+                |
+                |markdown_extensions:
+                |  - admonition
+                |  - smarty
+                |  - codehilite:
+                |      guess_lang: false
+                |      linenums: True
+                |  - footnotes
+                |  - meta
+                |  - toc:
+                |      permalink: true
+                |  - pymdownx.betterem:
+                |      smart_enable: all
+                |  - pymdownx.caret
+                |  - pymdownx.details
+                |  - pymdownx.inlinehilite
+                |  - pymdownx.magiclink
+                |  - pymdownx.smartsymbols
+                |  - pymdownx.superfences
+                |  - tables
+                |
+                |extra:
+                |  social:
+                |    - icon: fontawesome/brands/github
+                |      link: https://github.com/USER # TODO
+                |    - icon: fontawesome/brands/twitter
+                |      link: https://twitter.com/USER # TODO
+                |
+                |extra_css:
+                |  - css/all.css
+                |
+            &quot;&quot;&quot;
+<span class="nc" id="L194">                .trimMargin()</span>
+
+    private val defaultAllCss: String
+        get() =
+<span class="nc" id="L198">            &quot;&quot;&quot; |code {</span>
+                |    font-weight: 600;
+                |}
+                |
+                |@media screen and (min-width: 76.1875em) {
+                |    .md-nav--primary .md-nav__title {
+                |        display: none;
+                |    }
+                |}
+                |
+                |.md-nav__link--active {
+                |    font-weight: bold;
+                |}
+                |
+            &quot;&quot;&quot;
+<span class="nc" id="L213">                .trimMargin()</span>
+
+    private fun FileSystemOperations.buildBuildDotDocs(
+        rootDirectory: File,
+        dotDocsDirectory: File,
+        buildDotDocsDirectory: File,
+    ) {
+<span class="nc" id="L220">        copy { copy -&gt;</span>
+<span class="nc" id="L221">            copy.from(dotDocsDirectory)</span>
+<span class="nc" id="L222">            copy.into(buildDotDocsDirectory)</span>
+<span class="nc" id="L223">        }</span>
+
+<span class="nc bnc" id="L225" title="All 2 branches missed.">        if (File(&quot;$dotDocsDirectory/docs/index.md&quot;).exists().not()) {</span>
+<span class="nc" id="L226">            copy { copy -&gt;</span>
+<span class="nc" id="L227">                copy.from(&quot;$rootDirectory/README.md&quot;)</span>
+<span class="nc" id="L228">                copy.into(&quot;$rootDirectory/build/.docs/docs&quot;)</span>
+<span class="nc" id="L229">                copy.rename { fileName -&gt; fileName.replace(fileName, &quot;index.md&quot;) }</span>
+<span class="nc" id="L230">            }</span>
+
+<span class="nc" id="L232">            File(&quot;$rootDirectory/build/.docs/docs/index.md&quot;).apply {</span>
+<span class="nc" id="L233">                writeText(</span>
+<span class="nc" id="L234">                    readLines().joinToString(&quot;\n&quot;) { line -&gt;</span>
+<span class="nc" id="L235">                        line.replace(&quot;.docs/docs/assets&quot;, &quot;assets&quot;)</span>
+                    }
+                )
+<span class="nc" id="L238">            }</span>
+        }
+<span class="nc" id="L240">    }</span>
+
+    private fun buildApiInDocs() {
+<span class="nc" id="L243">        val docsNavigation = getDocsNavigation()</span>
+<span class="nc" id="L244">        val navsPlusApiDocs =</span>
+<span class="nc" id="L245">            docsNavigation.navs +</span>
+<span class="nc" id="L246">                &quot;&quot;&quot;</span>
+                |  - API docs:
+                |    - Latest: api/
+                |    - Snapshot: api/snapshot/
+            &quot;&quot;&quot;
+<span class="nc" id="L251">                    .trimMargin()</span>
+
+<span class="nc" id="L253">        writeNavigation(navsPlusApiDocs)</span>
+<span class="nc" id="L254">    }</span>
+
+    private fun buildChangelogInDocs(
+        rootDirectory: File,
+        fileSystemOperations: FileSystemOperations
+    ) {
+<span class="nc" id="L260">        with(fileSystemOperations) {</span>
+<span class="nc bnc" id="L261" title="All 2 branches missed.">            if (File(&quot;$rootDirectory/CHANGELOG.md&quot;).exists()) {</span>
+<span class="nc" id="L262">                copy { copy -&gt;</span>
+<span class="nc" id="L263">                    copy.from(&quot;$rootDirectory/CHANGELOG.md&quot;)</span>
+<span class="nc" id="L264">                    copy.into(&quot;$rootDirectory/build/.docs/docs&quot;)</span>
+<span class="nc" id="L265">                }</span>
+
+<span class="nc" id="L267">                File(&quot;$rootDirectory/build/.docs/docs/CHANGELOG.md&quot;).apply {</span>
+<span class="nc" id="L268">                    val content = readLines()</span>
+<span class="nc" id="L269">                    val firstVersionLine =</span>
+<span class="nc" id="L270">                        content.indexOfFirst { line -&gt;</span>
+<span class="nc bnc" id="L271" title="All 4 branches missed.">                            line.contains(&quot;## [&quot;) &amp;&amp; !line.contains(&quot;[Unreleased]&quot;)</span>
+<span class="nc" id="L272">                        } - 1</span>
+
+<span class="nc" id="L274">                    runCatching {</span>
+<span class="nc" id="L275">                        val contentUpdated =</span>
+<span class="nc" id="L276">                            (content.subList(0, 1) +</span>
+<span class="nc" id="L277">                                    content.subList(firstVersionLine, content.count()))</span>
+<span class="nc" id="L278">                                .joinToString(&quot;\n&quot;)</span>
+<span class="nc" id="L279">                        writeText(contentUpdated)</span>
+<span class="nc" id="L280">                    }</span>
+<span class="nc" id="L281">                }</span>
+
+<span class="nc" id="L283">                val docsNavigation = getDocsNavigation()</span>
+<span class="nc" id="L284">                val navsPlusChangelog = docsNavigation.navs + &quot;  - Changelog: CHANGELOG.md&quot;</span>
+
+<span class="nc" id="L286">                writeNavigation(navsPlusChangelog)</span>
+            }
+<span class="nc" id="L288">        }</span>
+<span class="nc" id="L289">    }</span>
+
+    private fun buildProjectsInDocs(
+        rootDirectory: File,
+        projectsInfo: List&lt;ProjectInfo&gt;,
+        fileSystemOperations: FileSystemOperations
+    ) {
+<span class="nc" id="L296">        with(fileSystemOperations) {</span>
+<span class="nc" id="L297">            val projectsPath = &quot;$rootDirectory/build/.docs/docs/projects&quot;</span>
+
+<span class="nc" id="L299">            projectsInfo.forEach { projectInfo -&gt;</span>
+<span class="nc" id="L300">                val projectsNavPath = &quot;$projectsPath/${projectInfo.filePath}&quot;</span>
+
+<span class="nc" id="L302">                copy { copy -&gt;</span>
+<span class="nc" id="L303">                    copy.from(projectInfo.mdFile)</span>
+<span class="nc" id="L304">                    copy.into(projectsNavPath)</span>
+<span class="nc" id="L305">                    copy.rename { fileName -&gt; fileName.replace(fileName, &quot;${projectInfo.name}.md&quot;) }</span>
+<span class="nc" id="L306">                }</span>
+
+<span class="nc" id="L308">                File(&quot;$projectsNavPath/${projectInfo.name}.md&quot;).apply {</span>
+<span class="nc" id="L309">                    writeText(</span>
+<span class="nc" id="L310">                        readLines().joinToString(&quot;\n&quot;) { line -&gt;</span>
+<span class="nc" id="L311">                            line.replace(&quot;.docs/docs/assets&quot;, &quot;assets&quot;)</span>
+                        }
+                    )
+<span class="nc" id="L314">                }</span>
+<span class="nc" id="L315">            }</span>
+
+<span class="nc" id="L317">            val docsNavigation = getDocsNavigation()</span>
+<span class="nc" id="L318">            val navProjects: List&lt;String&gt; =</span>
+<span class="nc" id="L319">                buildMap&lt;String, List&lt;String&gt;&gt; {</span>
+<span class="nc" id="L320">                        projectsInfo.forEach { projectInfo -&gt;</span>
+<span class="nc" id="L321">                            val fullPath =</span>
+<span class="nc" id="L322">                                &quot;projects/${projectInfo.projectPath.drop(1).replace(&quot;:&quot;, &quot;/&quot;)}&quot;</span>
+<span class="nc" id="L323">                            val parentPath = fullPath.replaceAfterLast(projectInfo.name, &quot;&quot;)</span>
+<span class="nc bnc" id="L324" title="All 2 branches missed.">                            val projects = this[parentPath].orEmpty()</span>
+<span class="nc" id="L325">                            val paths = parentPath.split(&quot;/&quot;)</span>
+<span class="nc" id="L326">                            paths.reduce { previousPath, path -&gt;</span>
+<span class="nc" id="L327">                                val accumulatedPath = &quot;$previousPath/$path&quot;</span>
+<span class="nc bnc" id="L328" title="All 2 branches missed.">                                put(accumulatedPath, this[accumulatedPath].orEmpty())</span>
+<span class="nc" id="L329">                                accumulatedPath</span>
+                            }
+<span class="nc" id="L331">                            put(parentPath, projects + projectInfo.name)</span>
+<span class="nc" id="L332">                        }</span>
+<span class="nc" id="L333">                    }</span>
+<span class="nc" id="L334">                    .flatMap { (path, projects) -&gt;</span>
+<span class="nc bnc" id="L335" title="All 2 branches missed.">                        val count = path.count { it == '/' } + 1</span>
+<span class="nc bnc" id="L336" title="All 2 branches missed.">                        val indent = buildString { repeat(count) { append(&quot;  &quot;) } }</span>
+<span class="nc" id="L337">                        buildList {</span>
+<span class="nc" id="L338">                            add(&quot;- ${path.split('/').last()}:&quot;.prependIndent(indent))</span>
+<span class="nc" id="L339">                            addAll(</span>
+<span class="nc" id="L340">                                projects.map { project -&gt;</span>
+<span class="nc" id="L341">                                    &quot;- $project: $path/$project.md&quot;.prependIndent(&quot;$indent  &quot;)</span>
+                                }
+                            )
+<span class="nc" id="L344">                        }</span>
+                    }
+<span class="nc" id="L346">                    .cleanNavProjects()</span>
+
+<span class="nc" id="L348">            val navsPlusProjects = docsNavigation.navs + &quot;  - Projects:&quot; + navProjects</span>
+
+<span class="nc" id="L350">            writeNavigation(navsPlusProjects)</span>
+<span class="nc" id="L351">        }</span>
+<span class="nc" id="L352">    }</span>
+
+    private fun buildReportsInDocs(
+        rootDirectory: File,
+        allTests: Boolean,
+        codeAnalysis: Boolean,
+        codeCoverage: Boolean,
+        codeQuality: Boolean,
+    ) {
+        fun MutableList&lt;String&gt;.createReportSection(title: String, pathAndFileName: String) {
+<span class="nc" id="L362">            val src = &quot;/reports-generated/$pathAndFileName&quot;</span>
+<span class="nc" id="L363">            val style = &quot;height: 65vh; width: 100vw; overflow: hidden&quot;</span>
+<span class="nc" id="L364">            val content =</span>
+                &quot;&quot;&quot;
+<span class="nc" id="L366">                |# $title</span>
+                |
+<span class="nc" id="L368">                |&lt;iframe src=&quot;$src&quot; style=&quot;$style&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;</span>
+                |
+            &quot;&quot;&quot;
+<span class="nc" id="L371">                    .trimMargin()</span>
+
+<span class="nc" id="L373">            File(&quot;$rootDirectory/build/.docs/docs/reports/$pathAndFileName.md&quot;).apply {</span>
+<span class="nc" id="L374">                ensureParentDirsCreated()</span>
+<span class="nc" id="L375">                createNewFile()</span>
+<span class="nc" id="L376">                writeText(content)</span>
+<span class="nc" id="L377">            }</span>
+<span class="nc" id="L378">            add(&quot;    - $title: reports/$pathAndFileName.md&quot;)</span>
+<span class="nc" id="L379">        }</span>
+
+<span class="nc" id="L381">        val navReports: String =</span>
+<span class="nc" id="L382">            buildList {</span>
+<span class="nc bnc" id="L383" title="All 8 branches missed.">                    if (allTests &amp;&amp; codeAnalysis || codeCoverage || codeQuality) add(&quot;  - Reports:&quot;)</span>
+<span class="nc bnc" id="L384" title="All 2 branches missed.">                    if (allTests) createReportSection(&quot;All tests&quot;, &quot;all-tests&quot;)</span>
+<span class="nc bnc" id="L385" title="All 2 branches missed.">                    if (codeAnalysis) createReportSection(&quot;Code analysis&quot;, &quot;code-analysis&quot;)</span>
+<span class="nc bnc" id="L386" title="All 2 branches missed.">                    if (codeCoverage) createReportSection(&quot;Code coverage&quot;, &quot;code-coverage&quot;)</span>
+<span class="nc bnc" id="L387" title="All 2 branches missed.">                    if (codeQuality) createReportSection(&quot;Code quality&quot;, &quot;code-quality&quot;)</span>
+<span class="nc" id="L388">                }</span>
+<span class="nc" id="L389">                .joinToString(&quot;\n&quot;)</span>
+
+<span class="nc" id="L391">        val docsNavigation = getDocsNavigation()</span>
+
+<span class="nc" id="L393">        val navsPlusReports = docsNavigation.navs + navReports.lines()</span>
+
+<span class="nc" id="L395">        writeNavigation(navsPlusReports)</span>
+<span class="nc" id="L396">    }</span>
+
+    private val mkDocsBuildFile: File
+        get() =
+<span class="nc" id="L400">            File(&quot;${layout.projectDirectory.asFile}/build/.docs/mkdocs.yml&quot;).apply {</span>
+<span class="nc" id="L401">                ensureParentDirsCreated()</span>
+<span class="nc" id="L402">                createNewFile()</span>
+<span class="nc" id="L403">            }</span>
+
+<span class="nc" id="L405">    private data class DocsNavigation(val index: Int, val navs: List&lt;String&gt;)</span>
+
+    private fun writeNavigation(newNavigations: List&lt;String&gt;) {
+<span class="nc" id="L408">        mkDocsBuildFile.writeText(</span>
+<span class="nc" id="L409">            buildList {</span>
+<span class="nc" id="L410">                    addAll(mkDocsBuildFile.readLines())</span>
+<span class="nc" id="L411">                    removeAt(getDocsNavigation().index)</span>
+<span class="nc" id="L412">                    removeAll(getDocsNavigation().navs)</span>
+<span class="nc" id="L413">                    add(&quot;&quot;)</span>
+<span class="nc" id="L414">                    add(&quot;nav:&quot;)</span>
+<span class="nc" id="L415">                    addAll(newNavigations)</span>
+<span class="nc" id="L416">                    add(&quot;&quot;)</span>
+<span class="nc" id="L417">                }</span>
+<span class="nc" id="L418">                .joinToString(&quot;\n&quot;)</span>
+        )
+<span class="nc" id="L420">    }</span>
+
+    private fun getDocsNavigation(): DocsNavigation {
+<span class="nc" id="L423">        val content = mkDocsBuildFile.readLines()</span>
+<span class="nc" id="L424">        val navIndex = content.indexOfFirst { it.replace(&quot; &quot;, &quot;&quot;).startsWith(&quot;nav:&quot;, true) }</span>
+<span class="nc" id="L425">        return DocsNavigation(</span>
+<span class="nc" id="L426">            index = navIndex,</span>
+            navs =
+<span class="nc" id="L428">                content.subList(navIndex + 1, content.count()).takeWhile {</span>
+<span class="nc" id="L429">                    it.replace(&quot; &quot;, &quot;&quot;).startsWith(&quot;-&quot;)</span>
+                }
+        )
+    }
+
+    private fun List&lt;String&gt;.cleanNavProjects(): List&lt;String&gt; =
+<span class="nc" id="L435">        buildList {</span>
+<span class="nc" id="L436">                val lines = this@cleanNavProjects</span>
+
+                fun String.isReference() =
+<span class="nc bnc" id="L439" title="All 2 branches missed.">                    filterNot(Char::isWhitespace).replaceBefore(&quot;:&quot;, &quot;&quot;).drop(1).isEmpty()</span>
+
+                fun String.isReferenceOf(reference: String) =
+<span class="nc bnc" id="L442" title="All 2 branches missed.">                    trimIndent().takeWhile { it != ':' } ==</span>
+<span class="nc bnc" id="L443" title="All 2 branches missed.">                        reference.trimIndent().takeWhile { it != ':' }</span>
+
+<span class="nc" id="L445">                lines.reduce { previous, line -&gt;</span>
+<span class="nc" id="L446">                    when {</span>
+<span class="nc bnc" id="L447" title="All 2 branches missed.">                        previous == line -&gt; {</span>
+<span class="nc" id="L448">                            removeLast()</span>
+<span class="nc" id="L449">                            add(line)</span>
+<span class="nc" id="L450">                            line</span>
+                        }
+<span class="nc bnc" id="L452" title="All 4 branches missed.">                        previous.isReference() &amp;&amp; line.isReferenceOf(previous) -&gt; {</span>
+<span class="nc" id="L453">                            add(previous.takeWhile(Char::isWhitespace) + line.trimIndent())</span>
+<span class="nc" id="L454">                            line</span>
+                        }
+<span class="nc bnc" id="L456" title="All 4 branches missed.">                        line.isReferenceOf(previous) &amp;&amp; line.isReference() -&gt; {</span>
+<span class="nc" id="L457">                            add(previous)</span>
+<span class="nc" id="L458">                            previous</span>
+                        }
+                        else -&gt; {
+<span class="nc" id="L461">                            add(previous)</span>
+<span class="nc" id="L462">                            line</span>
+                        }
+                    }
+                }
+<span class="nc" id="L466">            }</span>
+<span class="nc" id="L467">            .distinctBy(String::trimIndent)</span>
+
+    private fun sanitizeMkDocsFile() {
+<span class="nc" id="L470">        val content = mkDocsBuildFile.readLines().removeDuplicateEmptyLines().endWithNewLine()</span>
+<span class="nc" id="L471">        mkDocsBuildFile.writeText(content)</span>
+<span class="nc" id="L472">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

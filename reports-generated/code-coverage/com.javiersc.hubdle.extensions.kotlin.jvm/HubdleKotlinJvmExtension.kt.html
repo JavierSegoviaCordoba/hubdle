@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>HubdleKotlinJvmExtension.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">:</a> &gt; <a href="index.source.html" class="el_package">com.javiersc.hubdle.extensions.kotlin.jvm</a> &gt; <span class="el_source">HubdleKotlinJvmExtension.kt</span></div><h1>HubdleKotlinJvmExtension.kt</h1><pre class="source lang-java linenums">package com.javiersc.hubdle.extensions.kotlin.jvm
+
+import com.javiersc.hubdle.extensions.HubdleDslMarker
+import com.javiersc.hubdle.extensions._internal.ApplicablePlugin.Scope
+import com.javiersc.hubdle.extensions._internal.Configurable.Priority
+import com.javiersc.hubdle.extensions._internal.PluginId
+import com.javiersc.hubdle.extensions._internal.configurableDependencies
+import com.javiersc.hubdle.extensions._internal.getHubdleExtension
+import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
+import com.javiersc.hubdle.extensions.apis.enableAndExecute
+import com.javiersc.hubdle.extensions.config.publishing._internal.configurableMavenPublishing
+import com.javiersc.hubdle.extensions.kotlin._internal.configurableSrcDirs
+import com.javiersc.hubdle.extensions.kotlin._internal.configureKotlinTestFunctionalSourceSets
+import com.javiersc.hubdle.extensions.kotlin._internal.configureKotlinTestIntegrationSourceSets
+import com.javiersc.hubdle.extensions.kotlin._internal.configureTestFunctionalSourceSets
+import com.javiersc.hubdle.extensions.kotlin._internal.configureTestIntegrationSourceSets
+import com.javiersc.hubdle.extensions.kotlin.hubdleKotlin
+import com.javiersc.hubdle.extensions.kotlin.jvm.features.HubdleKotlinJvmFeaturesExtension
+import com.javiersc.hubdle.extensions.kotlin.shared.HubdleKotlinSourceSetConfigurableExtension
+import com.javiersc.hubdle.extensions.shared.HubdleGradleDependencies
+import javax.inject.Inject
+import org.gradle.api.Action
+import org.gradle.api.Project
+import org.gradle.api.provider.Property
+import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
+
+<span class="nc" id="L27">@HubdleDslMarker</span>
+public open class HubdleKotlinJvmExtension
+@Inject
+<span class="fc" id="L30">constructor(</span>
+    project: Project,
+<span class="fc" id="L32">) : HubdleKotlinSourceSetConfigurableExtension(project), HubdleGradleDependencies {</span>
+
+    override val project: Project
+<span class="fc" id="L35">        get() = super.project</span>
+
+<span class="fc" id="L37">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
+
+    override val requiredExtensions: Set&lt;HubdleEnableableExtension&gt;
+<span class="fc" id="L40">        get() = setOf(hubdleKotlin)</span>
+
+<span class="fc" id="L42">    override val priority: Priority = Priority.P3</span>
+
+    public val features: HubdleKotlinJvmFeaturesExtension
+<span class="nc" id="L45">        get() = getHubdleExtension()</span>
+
+    @HubdleDslMarker
+    public fun features(action: Action&lt;HubdleKotlinJvmFeaturesExtension&gt;) {
+<span class="nc" id="L49">        features.enableAndExecute(action)</span>
+<span class="nc" id="L50">    }</span>
+
+    @HubdleDslMarker
+    public fun kotlin(action: Action&lt;KotlinJvmProjectExtension&gt;) {
+<span class="nc" id="L54">        userConfigurable { action.execute(the()) }</span>
+<span class="nc" id="L55">    }</span>
+
+    override fun Project.defaultConfiguration() {
+<span class="fc" id="L58">        applicablePlugin(</span>
+<span class="fc" id="L59">            priority = Priority.P3,</span>
+<span class="fc" id="L60">            scope = Scope.CurrentProject,</span>
+<span class="fc" id="L61">            pluginId = PluginId.JetbrainsKotlinJvm</span>
+        )
+
+<span class="fc" id="L64">        configurableSrcDirs()</span>
+<span class="fc" id="L65">        configureKotlinTestFunctionalSourceSets()</span>
+<span class="fc" id="L66">        configureTestIntegrationSourceSets()</span>
+<span class="fc" id="L67">        configureKotlinTestIntegrationSourceSets()</span>
+<span class="fc" id="L68">        configureTestFunctionalSourceSets()</span>
+<span class="fc" id="L69">        configureKotlinTestFunctionalSourceSets()</span>
+<span class="fc" id="L70">        configurableDependencies()</span>
+<span class="fc" id="L71">        configurableMavenPublishing(mavenPublicationName = &quot;java&quot;, configJavaExtension = true)</span>
+<span class="fc" id="L72">    }</span>
+}
+
+internal val HubdleEnableableExtension.hubdleKotlinJvm: HubdleKotlinJvmExtension
+<span class="nc" id="L76">    get() = getHubdleExtension()</span>
+
+internal val Project.hubdleKotlinJvm: HubdleKotlinJvmExtension
+<span class="fc" id="L79">    get() = getHubdleExtension()</span>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

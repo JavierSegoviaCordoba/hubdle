@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GenerateChangelogHtmlTask.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">:</a> &gt; <a href="index.source.html" class="el_package">com.javiersc.hubdle.extensions.config.documentation.changelog</a> &gt; <span class="el_source">GenerateChangelogHtmlTask.kt</span></div><h1>GenerateChangelogHtmlTask.kt</h1><pre class="source lang-java linenums">package com.javiersc.hubdle.extensions.config.documentation.changelog
+
+import javax.inject.Inject
+import org.gradle.api.DefaultTask
+import org.gradle.api.file.ProjectLayout
+import org.gradle.api.file.RegularFileProperty
+import org.gradle.api.model.ObjectFactory
+import org.gradle.api.provider.Property
+import org.gradle.api.tasks.Input
+import org.gradle.api.tasks.OutputFile
+import org.gradle.api.tasks.TaskAction
+
+public abstract class GenerateChangelogHtmlTask
+@Inject
+<span class="nc" id="L15">constructor(</span>
+    objects: ObjectFactory,
+    layout: ProjectLayout,
+<span class="nc" id="L18">) : DefaultTask() {</span>
+
+    @get:Input public abstract val html: Property&lt;String?&gt;
+
+    @OutputFile
+<span class="nc" id="L23">    public val htmlFile: RegularFileProperty =</span>
+<span class="nc" id="L24">        objects</span>
+<span class="nc" id="L25">            .fileProperty()</span>
+<span class="nc" id="L26">            .convention(layout.buildDirectory.file(GENERATED_CHANGELOG_HTML_FILE_PATH))</span>
+
+    @TaskAction
+    public fun run() {
+<span class="nc" id="L30">        htmlFile.get().asFile.apply {</span>
+<span class="nc" id="L31">            parentFile.mkdirs()</span>
+<span class="nc" id="L32">            createNewFile()</span>
+<span class="nc bnc" id="L33" title="All 2 branches missed.">            html.orNull?.let(::writeText)</span>
+<span class="nc" id="L34">        }</span>
+<span class="nc" id="L35">    }</span>
+
+    public companion object {
+        public const val name: String = &quot;generateChangelogHtml&quot;
+    }
+}
+
+internal const val GENERATED_CHANGELOG_HTML_DIR_PATH = &quot;generated/changelog&quot;
+internal const val GENERATED_CHANGELOG_HTML_FILE_PATH =
+    &quot;$GENERATED_CHANGELOG_HTML_DIR_PATH/CHANGELOG.html&quot;
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

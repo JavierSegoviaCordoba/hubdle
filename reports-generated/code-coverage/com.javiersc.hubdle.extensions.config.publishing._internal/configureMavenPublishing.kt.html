@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>configureMavenPublishing.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">:</a> &gt; <a href="index.source.html" class="el_package">com.javiersc.hubdle.extensions.config.publishing._internal</a> &gt; <span class="el_source">configureMavenPublishing.kt</span></div><h1>configureMavenPublishing.kt</h1><pre class="source lang-java linenums">package com.javiersc.hubdle.extensions.config.publishing._internal
+
+import com.javiersc.gradle.project.extensions.isNotSnapshot
+import com.javiersc.gradle.properties.extensions.getBooleanProperty
+import com.javiersc.gradle.properties.extensions.getProperty
+import com.javiersc.gradle.properties.extensions.getPropertyOrNull
+import com.javiersc.gradle.tasks.extensions.maybeRegisterLazily
+import com.javiersc.gradle.tasks.extensions.namedLazily
+import com.javiersc.hubdle.HubdleProperty
+import com.javiersc.hubdle.extensions._internal.ApplicablePlugin.Scope
+import com.javiersc.hubdle.extensions._internal.Configurable
+import com.javiersc.hubdle.extensions._internal.Configurable.Priority
+import com.javiersc.hubdle.extensions._internal.PluginId
+import com.javiersc.hubdle.extensions.apis.HubdleConfigurableExtension
+import com.javiersc.hubdle.extensions.config.publishing.hubdlePublishing
+import com.javiersc.semver.Version
+import org.gradle.api.Project
+import org.gradle.api.Task
+import org.gradle.api.plugins.JavaPluginExtension
+import org.gradle.api.publish.PublishingExtension
+import org.gradle.api.publish.maven.MavenPublication
+import org.gradle.api.tasks.TaskCollection
+import org.gradle.jvm.tasks.Jar
+import org.gradle.kotlin.dsl.configure
+import org.gradle.kotlin.dsl.get
+import org.gradle.kotlin.dsl.register
+import org.gradle.kotlin.dsl.the
+import org.gradle.kotlin.dsl.withType
+import org.gradle.plugins.signing.SigningExtension
+
+<span class="fc" id="L31">internal fun HubdleConfigurableExtension.configurableMavenPublishing(</span>
+<span class="fc" id="L32">    mavenPublicationName: String? = null,</span>
+<span class="fc" id="L33">    configJavaExtension: Boolean = false,</span>
+<span class="fc" id="L34">    configEmptyJavaDocs: Boolean = false,</span>
+<span class="pc" id="L35">    additionalConfig: Configurable.() -&gt; Unit = {},</span>
+) =
+<span class="fc" id="L37">    with(project) {</span>
+<span class="fc" id="L38">        applicablePlugin(</span>
+<span class="fc" id="L39">            isEnabled = property { isEnabled.get() &amp;&amp; hubdlePublishing.isFullEnabled.get() },</span>
+<span class="fc" id="L40">            priority = Priority.P3,</span>
+<span class="fc" id="L41">            scope = Scope.CurrentProject,</span>
+<span class="fc" id="L42">            pluginId = PluginId.MavenPublish,</span>
+        )
+<span class="fc" id="L44">        applicablePlugin(</span>
+<span class="fc" id="L45">            isEnabled = property { isEnabled.get() &amp;&amp; hubdlePublishing.isFullEnabled.get() },</span>
+<span class="fc" id="L46">            priority = Priority.P3,</span>
+<span class="fc" id="L47">            scope = Scope.CurrentProject,</span>
+<span class="fc" id="L48">            pluginId = PluginId.GradleSigning,</span>
+        )
+<span class="fc" id="L50">        configurable(</span>
+<span class="fc" id="L51">            isEnabled = property { isEnabled.get() &amp;&amp; hubdlePublishing.isFullEnabled.get() },</span>
+<span class="fc" id="L52">            priority = Priority.P3,</span>
+        ) {
+<span class="nc" id="L54">            configurePublishingExtension()</span>
+<span class="nc" id="L55">            configureSigningForPublishing()</span>
+<span class="nc bnc" id="L56" title="All 2 branches missed.">            if (configJavaExtension) {</span>
+<span class="nc" id="L57">                configure&lt;JavaPluginExtension&gt; {</span>
+<span class="nc" id="L58">                    withSourcesJar()</span>
+<span class="nc" id="L59">                    withJavadocJar()</span>
+<span class="nc" id="L60">                }</span>
+            }
+<span class="nc bnc" id="L62" title="All 2 branches missed.">            if (mavenPublicationName != null) {</span>
+<span class="nc" id="L63">                configureMavenPublication(mavenPublicationName)</span>
+            }
+<span class="nc bnc" id="L65" title="All 2 branches missed.">            if (configEmptyJavaDocs) {</span>
+<span class="nc" id="L66">                configureEmptyJavadocs()</span>
+            }
+<span class="nc" id="L68">            additionalConfig()</span>
+<span class="nc" id="L69">        }</span>
+<span class="fc" id="L70">    }</span>
+
+private fun HubdleConfigurableExtension.configurePublishingExtension() =
+<span class="nc" id="L73">    with(project) {</span>
+<span class="nc" id="L74">        configure&lt;PublishingExtension&gt; {</span>
+<span class="nc" id="L75">            configureRepositories(this)</span>
+
+<span class="nc" id="L77">            publications { container -&gt;</span>
+<span class="nc" id="L78">                container.withType&lt;MavenPublication&gt; {</span>
+<span class="nc" id="L79">                    pom.name.set(getProperty(HubdleProperty.POM.name))</span>
+<span class="nc" id="L80">                    pom.description.set(getProperty(HubdleProperty.POM.description))</span>
+<span class="nc" id="L81">                    pom.url.set(getProperty(HubdleProperty.POM.url))</span>
+<span class="nc" id="L82">                    pom.licenses { licenses -&gt;</span>
+<span class="nc" id="L83">                        licenses.license { license -&gt;</span>
+<span class="nc" id="L84">                            license.name.set(getProperty(HubdleProperty.POM.licenseName))</span>
+<span class="nc" id="L85">                            license.url.set(getProperty(HubdleProperty.POM.licenseUrl))</span>
+<span class="nc" id="L86">                        }</span>
+<span class="nc" id="L87">                    }</span>
+<span class="nc" id="L88">                    pom.developers { developers -&gt;</span>
+<span class="nc" id="L89">                        developers.developer { developer -&gt;</span>
+<span class="nc" id="L90">                            developer.id.set(getProperty(HubdleProperty.POM.developerId))</span>
+<span class="nc" id="L91">                            developer.name.set(getProperty(HubdleProperty.POM.developerName))</span>
+<span class="nc" id="L92">                            developer.email.set(getProperty(HubdleProperty.POM.developerEmail))</span>
+<span class="nc" id="L93">                        }</span>
+<span class="nc" id="L94">                    }</span>
+<span class="nc" id="L95">                    pom.scm { scm -&gt;</span>
+<span class="nc" id="L96">                        scm.url.set(getProperty(HubdleProperty.POM.scmUrl))</span>
+<span class="nc" id="L97">                        scm.connection.set(getProperty(HubdleProperty.POM.scmConnection))</span>
+<span class="nc" id="L98">                        scm.developerConnection.set(</span>
+<span class="nc" id="L99">                            getProperty(HubdleProperty.POM.scmDeveloperConnection)</span>
+                        )
+<span class="nc" id="L101">                    }</span>
+<span class="nc" id="L102">                }</span>
+<span class="nc" id="L103">            }</span>
+<span class="nc" id="L104">        }</span>
+
+<span class="nc" id="L106">        configurePublishOnlySemver()</span>
+<span class="nc" id="L107">    }</span>
+
+private fun HubdleConfigurableExtension.configurePublishOnlySemver() =
+<span class="nc" id="L110">    with(project) {</span>
+<span class="nc" id="L111">        val checkIsSemver: TaskCollection&lt;Task&gt; =</span>
+<span class="nc" id="L112">            tasks.maybeRegisterLazily(&quot;checkIsSemver&quot;) { task -&gt;</span>
+<span class="nc" id="L113">                task.doLast {</span>
+<span class="nc" id="L114">                    val publishNonSemver = getBooleanProperty(HubdleProperty.Publishing.nonSemver)</span>
+<span class="nc bnc" id="L115" title="All 6 branches missed.">                    check(isSemver || publishNonSemver) {</span>
+                        // TODO: inject `$version` instead of getting it from the `project`
+<span class="nc" id="L117">                        &quot;&quot;&quot;|Only semantic versions can be published (current: $version)</span>
+                           |Use `&quot;-Ppublishing.nonSemver=true&quot;` to force the publication 
+                        &quot;&quot;&quot;
+<span class="nc" id="L120">                            .trimMargin()</span>
+                    }
+<span class="nc" id="L122">                }</span>
+<span class="nc" id="L123">            }</span>
+
+<span class="nc" id="L125">        tasks.namedLazily&lt;Task&gt;(&quot;initializeSonatypeStagingRepository&quot;).configureEach { task -&gt;</span>
+<span class="nc" id="L126">            task.dependsOn(checkIsSemver)</span>
+<span class="nc" id="L127">        }</span>
+<span class="nc" id="L128">        tasks.namedLazily&lt;Task&gt;(&quot;publish&quot;).configureEach { task -&gt; task.dependsOn(checkIsSemver) }</span>
+<span class="nc" id="L129">        tasks.namedLazily&lt;Task&gt;(&quot;publishToSonatype&quot;).configureEach { task -&gt;</span>
+<span class="nc" id="L130">            task.dependsOn(checkIsSemver)</span>
+<span class="nc" id="L131">        }</span>
+<span class="nc" id="L132">        tasks.namedLazily&lt;Task&gt;(&quot;publishToMavenLocal&quot;).configureEach { task -&gt;</span>
+<span class="nc" id="L133">            task.dependsOn(checkIsSemver)</span>
+<span class="nc" id="L134">        }</span>
+<span class="nc" id="L135">        tasks.namedLazily&lt;Task&gt;(&quot;publishPlugins&quot;).configureEach { task -&gt;</span>
+<span class="nc" id="L136">            task.dependsOn(checkIsSemver)</span>
+<span class="nc" id="L137">        }</span>
+<span class="nc" id="L138">    }</span>
+
+private val Project.isSemver: Boolean
+<span class="nc" id="L141">    get() = Version.regex.matches(&quot;$version&quot;)</span>
+
+private fun HubdleConfigurableExtension.configureRepositories(
+    publishingExtension: PublishingExtension
+) =
+<span class="nc" id="L146">    with(project) {</span>
+<span class="nc" id="L147">        publishingExtension.repositories.configureEach { repository -&gt;</span>
+<span class="nc" id="L148">            when (repository.name) {</span>
+<span class="nc bnc" id="L149" title="All 2 branches missed.">                &quot;mavenLocalTest&quot; -&gt; {</span>
+<span class="nc" id="L150">                    val childTask =</span>
+<span class="nc" id="L151">                        tasks.namedLazily&lt;Task&gt;(&quot;publishAllPublicationsToMavenLocalTestRepository&quot;)</span>
+<span class="nc" id="L152">                    tasks.maybeRegisterLazily&lt;Task&gt;(&quot;publishToMavenLocalTest&quot;).configureEach { task</span>
+                        -&gt;
+<span class="nc" id="L154">                        task.group = &quot;publishing&quot;</span>
+<span class="nc" id="L155">                        task.dependsOn(childTask)</span>
+<span class="nc" id="L156">                    }</span>
+                }
+<span class="nc bnc" id="L158" title="All 2 branches missed.">                &quot;mavenLocalBuildTest&quot; -&gt; {</span>
+<span class="nc" id="L159">                    val childTask =</span>
+<span class="nc" id="L160">                        tasks.namedLazily&lt;Task&gt;(</span>
+<span class="nc" id="L161">                            &quot;publishAllPublicationsToMavenLocalBuildTestRepository&quot;</span>
+                        )
+<span class="nc" id="L163">                    tasks.maybeRegisterLazily&lt;Task&gt;(&quot;publishToMavenLocalBuildTest&quot;).configureEach {</span>
+                        task -&gt;
+<span class="nc" id="L165">                        task.group = &quot;publishing&quot;</span>
+<span class="nc" id="L166">                        task.dependsOn(childTask)</span>
+<span class="nc" id="L167">                    }</span>
+                }
+            }
+<span class="nc" id="L170">        }</span>
+<span class="nc" id="L171">    }</span>
+
+private fun HubdleConfigurableExtension.configureMavenPublication(name: String) =
+<span class="nc" id="L174">    with(project) {</span>
+<span class="nc" id="L175">        configure&lt;PublishingExtension&gt; {</span>
+<span class="nc" id="L176">            publications { container -&gt;</span>
+<span class="nc" id="L177">                container.register&lt;MavenPublication&gt;(name) { from(components[name]) }</span>
+<span class="nc" id="L178">            }</span>
+<span class="nc" id="L179">        }</span>
+<span class="nc" id="L180">    }</span>
+
+private fun HubdleConfigurableExtension.configureSigningForPublishing() =
+<span class="nc" id="L183">    with(project) {</span>
+<span class="nc" id="L184">        configure&lt;SigningExtension&gt; {</span>
+<span class="nc" id="L185">            val allTasks: List&lt;String&gt; = gradle.startParameter.taskRequests.flatMap { it.args }</span>
+<span class="nc" id="L186">            val hasPublishTask = allTasks.any { it.startsWith(&quot;publish&quot;) }</span>
+<span class="nc" id="L187">            val hasPublishToMavenLocalTasks =</span>
+<span class="nc" id="L188">                allTasks.any {</span>
+<span class="nc bnc" id="L189" title="All 2 branches missed.">                    it == &quot;publishToMavenLocal&quot; ||</span>
+<span class="nc bnc" id="L190" title="All 2 branches missed.">                        it == &quot;publishToMavenLocalTest&quot; ||</span>
+<span class="nc bnc" id="L191" title="All 2 branches missed.">                        it == &quot;publishToMavenLocalBuildTest&quot; ||</span>
+<span class="nc bnc" id="L192" title="All 2 branches missed.">                        it == &quot;publishAllPublicationsToMavenLocalTestRepository&quot; ||</span>
+<span class="nc bnc" id="L193" title="All 2 branches missed.">                        it == &quot;publishAllPublicationsToMavenLocalBuildTestRepository&quot;</span>
+                }
+<span class="nc bnc" id="L195" title="All 2 branches missed.">            val shouldSign = getPropertyOrNull(HubdleProperty.Publishing.sign)?.toBoolean() ?: false</span>
+
+<span class="nc bnc" id="L197" title="All 4 branches missed.">            val hasTaskCondition = (hasPublishTask &amp;&amp; !hasPublishToMavenLocalTasks)</span>
+<span class="nc bnc" id="L198" title="All 4 branches missed.">            val hasSemverCondition = project.isNotSnapshot &amp;&amp; project.isSemver</span>
+
+<span class="nc bnc" id="L200" title="All 6 branches missed.">            isRequired = (hasTaskCondition &amp;&amp; hasSemverCondition) || shouldSign</span>
+
+<span class="nc bnc" id="L202" title="All 2 branches missed.">            if (isRequired) {</span>
+<span class="nc" id="L203">                signInMemory()</span>
+<span class="nc" id="L204">                sign(project.the&lt;PublishingExtension&gt;().publications)</span>
+            }
+<span class="nc" id="L206">        }</span>
+<span class="nc" id="L207">    }</span>
+
+private fun SigningExtension.signInMemory() =
+<span class="nc" id="L210">    with(project) {</span>
+<span class="nc" id="L211">        val keyId = project.getPropertyOrNull(HubdleProperty.Signing.keyId)</span>
+<span class="nc" id="L212">        val gnupgKey =</span>
+<span class="nc bnc" id="L213" title="All 2 branches missed.">            project.getPropertyOrNull(HubdleProperty.Signing.gnupgKey)?.replace(&quot;\\n&quot;, &quot;\n&quot;)</span>
+<span class="nc" id="L214">        val gnupgPassphrase = project.getPropertyOrNull(HubdleProperty.Signing.gnupgPassphrase)</span>
+
+<span class="nc" id="L216">        when {</span>
+<span class="nc bnc" id="L217" title="All 6 branches missed.">            keyId != null &amp;&amp; gnupgKey != null &amp;&amp; gnupgPassphrase != null -&gt; {</span>
+<span class="nc" id="L218">                useInMemoryPgpKeys(keyId, gnupgKey, gnupgPassphrase)</span>
+            }
+<span class="nc bnc" id="L220" title="All 4 branches missed.">            gnupgKey != null &amp;&amp; gnupgPassphrase != null -&gt; {</span>
+<span class="nc" id="L221">                useInMemoryPgpKeys(gnupgKey, gnupgPassphrase)</span>
+            }
+        }
+<span class="nc" id="L224">    }</span>
+
+private fun HubdleConfigurableExtension.configureEmptyJavadocs() =
+<span class="nc" id="L227">    with(project) {</span>
+<span class="nc" id="L228">        val emptyJavadocsJarTask: TaskCollection&lt;Jar&gt; =</span>
+<span class="nc" id="L229">            tasks.maybeRegisterLazily(&quot;emptyJavadocsJar&quot;)</span>
+<span class="nc" id="L230">        emptyJavadocsJarTask.configureEach { task -&gt;</span>
+<span class="nc" id="L231">            task.group = &quot;build&quot;</span>
+<span class="nc" id="L232">            task.description = &quot;Assembles an empty Javadoc jar file for publishing&quot;</span>
+<span class="nc" id="L233">            task.archiveClassifier.set(&quot;javadoc&quot;)</span>
+<span class="nc" id="L234">        }</span>
+<span class="nc" id="L235">        val emptyJavadocsJar: Jar = emptyJavadocsJarTask.first()</span>
+<span class="nc" id="L236">        the&lt;PublishingExtension&gt;().publications.withType&lt;MavenPublication&gt; {</span>
+<span class="nc" id="L237">            artifact(emptyJavadocsJar)</span>
+<span class="nc" id="L238">        }</span>
+<span class="nc" id="L239">    }</span>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -10,6 +10,7 @@ import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.api.internal.artifacts.DefaultModuleIdentifier
 import org.gradle.api.internal.artifacts.dependencies.DefaultMinimalDependency
 import org.gradle.api.internal.artifacts.dependencies.DefaultMutableVersionConstraint
+import org.gradle.api.provider.Provider
 import org.gradle.kotlin.dsl.findByType
 import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
 
@@ -17,17 +18,16 @@ internal val userCatalogsDependencies: UserCatalogsDependencies = UserCatalogsDe
 
 internal val hubdleCatalogsDependencies: HubdleCatalogsDependencies = HubdleCatalogsDependencies()
 
-internal fun Project.catalogDependency(module: String): MinimalExternalModuleDependency =
-    checkNotNull(getDependency(module)) {
-        "The dependency $module has not been found in any catalog"
+internal fun Project.catalogDependency(module: String): Provider<MinimalExternalModuleDependency> =
+    provider {
+        checkNotNull(getDependency(module)) {
+            "The dependency $module has not been found in any catalog"
+        }
     }
 
 internal fun KotlinDependencyHandler.catalogDependency(
     module: String
-): MinimalExternalModuleDependency =
-    checkNotNull(project.getDependency(module)) {
-        "The dependency $module has not been found in any catalog"
-    }
+): Provider<MinimalExternalModuleDependency> = project.catalogDependency(module)
 
 private fun Project.getDependency(module: String): MinimalExternalModuleDependency? =
     getCatalogsDependency(module).takeIf { project.module != "${it.module}" }

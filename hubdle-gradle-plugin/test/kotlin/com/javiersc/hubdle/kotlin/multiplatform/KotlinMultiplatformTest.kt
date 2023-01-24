@@ -136,6 +136,7 @@ internal class KotlinMultiplatformTest : GradleTest() {
     fun `publish normal 2 on WINDOWS`() {
         val multiplatformDir = repositoryPath.resolve("com/kotlin/normal-two")
         gradleTestKitTest("$basePath/publishing/normal-2") {
+            gradlew("kotlinUpgradeYarnLock")
             gradlewArgumentFromTXT()
             val multiplatformDirs: List<File> =
                 multiplatformDir.listFiles().shouldNotBeEmpty().sorted()

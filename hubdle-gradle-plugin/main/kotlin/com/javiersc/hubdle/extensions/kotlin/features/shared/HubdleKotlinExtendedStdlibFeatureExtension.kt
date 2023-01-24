@@ -17,7 +17,7 @@ import com.javiersc.hubdle.extensions.kotlin.hubdleKotlinAny
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
-import org.gradle.api.artifacts.Dependency
+import org.gradle.api.artifacts.MinimalExternalModuleDependency
 import org.gradle.api.provider.Property
 import org.gradle.api.provider.Provider
 import org.gradle.api.tasks.testing.Test
@@ -66,14 +66,13 @@ public interface HubdleKotlinExtendedStdlibDelegateFeatureExtension : BaseHubdle
     }
 }
 
-private fun KotlinDependencyHandler.calculateJavierScKotlinTestDependency(): Provider<Dependency> =
-    project.provider {
-        when (project.tasks.withType<Test>().firstOrNull()?.options) {
-            is JUnitOptions -> catalogDependency(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_JUNIT_MODULE)
-            is JUnitPlatformOptions -> catalogDependency(JAVIER_SC_KOTLIN_JUNIT5_MODULE)
-            is TestNGOptions -> catalogDependency(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_TESTNG_MODULE)
-            else -> catalogDependency(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_JUNIT_MODULE)
-        }.run { implementation(this) }
+private fun KotlinDependencyHandler.calculateJavierScKotlinTestDependency():
+    Provider<MinimalExternalModuleDependency> =
+    when (project.tasks.withType<Test>().firstOrNull()?.options) {
+        is JUnitOptions -> catalogDependency(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_JUNIT_MODULE)
+        is JUnitPlatformOptions -> catalogDependency(JAVIER_SC_KOTLIN_JUNIT5_MODULE)
+        is TestNGOptions -> catalogDependency(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_TESTNG_MODULE)
+        else -> catalogDependency(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_JUNIT_MODULE)
     }
 
 internal val HubdleEnableableExtension.hubdleExtendedStdlibFeature:

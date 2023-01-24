@@ -214,7 +214,7 @@ fun Project.buildHubdleDependencies() {
                             """
                                 |@HubdleDslMarker
                                 |public fun Project.$dependencyName(): Provider<MinimalExternalModuleDependency> =
-                                |    provider { catalogDependency(${dependencyVariableName}_MODULE) }
+                                |    catalogDependency(${dependencyVariableName}_MODULE)
                             """
                         }
                         .lines()

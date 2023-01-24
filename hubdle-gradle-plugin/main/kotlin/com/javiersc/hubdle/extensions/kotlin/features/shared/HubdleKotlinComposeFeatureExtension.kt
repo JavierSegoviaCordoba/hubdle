@@ -37,6 +37,13 @@ constructor(
 
     override val priority: Priority = Priority.P4
 
+    public val compiler: Property<String?> = property { androidxComposeCompiler().get().toString() }
+
+    @HubdleDslMarker
+    public fun compiler(dependencyNotation: String) {
+        compiler.set(dependencyNotation)
+    }
+
     public val compilerVersion: Property<String?> = property {
         androidxComposeCompiler().get().versionConstraint.displayName
     }
@@ -58,7 +65,7 @@ constructor(
             pluginId = PluginId.JetbrainsCompose
         )
         configurable {
-            configure<ComposeExtension> { kotlinCompilerPlugin.set(compilerVersion) }
+            configure<ComposeExtension> { kotlinCompilerPlugin.set(compiler) }
             if (hubdleAndroidFeatures.isFullEnabled.get()) {
                 forKotlinSetsDependencies("main") {
                     implementation(catalogDependency(ANDROIDX_ACTIVITY_ACTIVITY_COMPOSE_MODULE))

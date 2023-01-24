@@ -11,8 +11,8 @@ internal class AnalysisStateTest : GradleTest() {
 
     @Test
     fun `analysis 1`() {
-        gradleTestKitTest("$basePath/1") {
-            gradlewArgumentFromTXT()
+        gradleTestKitTest("$basePath/1", withDebug = true) {
+            gradlewArgumentFromTXT(stacktrace())
             val detektDir = projectDir.resolve("build/reports/detekt")
             detektDir.shouldBeADirectory()
             detektDir.resolve("detekt.md").shouldBeAFile()

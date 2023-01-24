@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.12.0`
 - `com.android.tools.build:gradle -> 7.4.0`
 - `com.android.library:com.android.library.gradle.plugin -> 7.4.0`
 - `com.android.application:com.android.application.gradle.plugin -> 7.4.0`

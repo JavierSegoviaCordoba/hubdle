@@ -14,6 +14,13 @@
 
 ### Updated
 
+- `org.jetbrains.kotlin:kotlin-test-testng -> 1.8.0`
+- `org.jetbrains.kotlin:kotlin-test-junit5 -> 1.8.0`
+- `org.jetbrains.kotlin:kotlin-test-junit -> 1.8.0`
+- `org.jetbrains.kotlin:kotlin-test-annotations-common -> 1.8.0`
+- `org.jetbrains.kotlin:kotlin-test -> 1.8.0`
+- `org.jetbrains.kotlin:kotlin-gradle-plugin -> 1.8.0`
+- `org.jetbrains.kotlin:kotlin-serialization -> 1.8.0`
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.12.0`
 - `androidx.appcompat:appcompat -> 1.6.0`
 - `com.android.tools.build:gradle -> 7.4.0`

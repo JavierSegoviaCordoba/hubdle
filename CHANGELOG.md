@@ -14,6 +14,9 @@
 
 ### Updated
 
+- `org.junit.jupiter:junit-jupiter-params -> 5.9.2`
+- `org.junit.jupiter:junit-jupiter-api -> 5.9.2`
+
 ## [0.3.0-alpha.4] - 2023-01-09
 
 ### Updated

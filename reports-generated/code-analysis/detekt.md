@@ -14,17 +14,17 @@
 
 ## Complexity Report
 
-* 12,413 lines of code (loc)
+* 12,416 lines of code (loc)
 
-* 10,184 source lines of code (sloc)
+* 10,186 source lines of code (sloc)
 
-* 6,745 logical lines of code (lloc)
+* 6,744 logical lines of code (lloc)
 
 * 97 comment lines of code (cloc)
 
-* 898 cyclomatic complexity (mcc)
+* 897 cyclomatic complexity (mcc)
 
-* 471 cognitive complexity
+* 472 cognitive complexity
 
 * 87 number of total code smells
 
@@ -952,7 +952,7 @@ Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*
 ! ^ error
 2 
 3 import org.gradle.api.Project
-4 import org.gradle.kotlin.dsl.the
+4 import org.gradle.kotlin.dsl.configure
 
 ```
 
@@ -1368,4 +1368,4 @@ Private property `apiValidationExtension` is unused.
 
 ```
 
-generated with [detekt version 1.22.0](https://detekt.dev/) on 2023-01-24 13:59:52 UTC
+generated with [detekt version 1.22.0](https://detekt.dev/) on 2023-01-24 20:45:59 UTC

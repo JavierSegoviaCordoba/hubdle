@@ -17,7 +17,7 @@ import com.javiersc.hubdle.extensions.kotlin.hubdleKotlinAny
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
-import org.gradle.api.artifacts.Dependency
+import org.gradle.api.artifacts.MinimalExternalModuleDependency
 import org.gradle.api.provider.Property
 import org.gradle.api.provider.Provider
 import org.gradle.api.tasks.testing.Test
@@ -66,17 +66,16 @@ public interface HubdleKotlinExtendedStdlibDelegateFeatureExtension : BaseHubdle
 <span class="nc" id="L66">    }</span>
 }
 
-private fun KotlinDependencyHandler.calculateJavierScKotlinTestDependency(): Provider&lt;Dependency&gt; =
-<span class="nc" id="L70">    project.provider {</span>
-<span class="nc bnc" id="L71" title="All 2 branches missed.">        when (project.tasks.withType&lt;Test&gt;().firstOrNull()?.options) {</span>
-<span class="nc bnc" id="L72" title="All 2 branches missed.">            is JUnitOptions -&gt; catalogDependency(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_JUNIT_MODULE)</span>
-<span class="nc bnc" id="L73" title="All 2 branches missed.">            is JUnitPlatformOptions -&gt; catalogDependency(JAVIER_SC_KOTLIN_JUNIT5_MODULE)</span>
-<span class="nc bnc" id="L74" title="All 2 branches missed.">            is TestNGOptions -&gt; catalogDependency(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_TESTNG_MODULE)</span>
-<span class="nc" id="L75">            else -&gt; catalogDependency(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_JUNIT_MODULE)</span>
-<span class="nc" id="L76">        }.run { implementation(this) }</span>
-<span class="nc" id="L77">    }</span>
+private fun KotlinDependencyHandler.calculateJavierScKotlinTestDependency():
+    Provider&lt;MinimalExternalModuleDependency&gt; =
+<span class="nc bnc" id="L71" title="All 2 branches missed.">    when (project.tasks.withType&lt;Test&gt;().firstOrNull()?.options) {</span>
+<span class="nc bnc" id="L72" title="All 2 branches missed.">        is JUnitOptions -&gt; catalogDependency(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_JUNIT_MODULE)</span>
+<span class="nc bnc" id="L73" title="All 2 branches missed.">        is JUnitPlatformOptions -&gt; catalogDependency(JAVIER_SC_KOTLIN_JUNIT5_MODULE)</span>
+<span class="nc bnc" id="L74" title="All 2 branches missed.">        is TestNGOptions -&gt; catalogDependency(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_TESTNG_MODULE)</span>
+<span class="nc" id="L75">        else -&gt; catalogDependency(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_JUNIT_MODULE)</span>
+<span class="nc" id="L76">    }</span>
 
 internal val HubdleEnableableExtension.hubdleExtendedStdlibFeature:
     HubdleKotlinCoroutinesFeatureExtension
-<span class="nc" id="L81">    get() = getHubdleExtension()</span>
+<span class="nc" id="L80">    get() = getHubdleExtension()</span>
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

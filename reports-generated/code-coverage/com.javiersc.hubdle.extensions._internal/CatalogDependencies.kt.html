@@ -10,24 +10,24 @@ import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.api.internal.artifacts.DefaultModuleIdentifier
 import org.gradle.api.internal.artifacts.dependencies.DefaultMinimalDependency
 import org.gradle.api.internal.artifacts.dependencies.DefaultMutableVersionConstraint
+import org.gradle.api.provider.Provider
 import org.gradle.kotlin.dsl.findByType
 import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
 
-<span class="fc" id="L16">internal val userCatalogsDependencies: UserCatalogsDependencies = UserCatalogsDependencies()</span>
+<span class="fc" id="L17">internal val userCatalogsDependencies: UserCatalogsDependencies = UserCatalogsDependencies()</span>
 
-<span class="fc" id="L18">internal val hubdleCatalogsDependencies: HubdleCatalogsDependencies = HubdleCatalogsDependencies()</span>
+<span class="fc" id="L19">internal val hubdleCatalogsDependencies: HubdleCatalogsDependencies = HubdleCatalogsDependencies()</span>
 
-internal fun Project.catalogDependency(module: String): MinimalExternalModuleDependency =
-<span class="nc bnc" id="L21" title="All 2 branches missed.">    checkNotNull(getDependency(module)) {</span>
-<span class="nc" id="L22">        &quot;The dependency $module has not been found in any catalog&quot;</span>
-<span class="nc" id="L23">    }</span>
+internal fun Project.catalogDependency(module: String): Provider&lt;MinimalExternalModuleDependency&gt; =
+<span class="nc" id="L22">    provider {</span>
+<span class="nc bnc" id="L23" title="All 2 branches missed.">        checkNotNull(getDependency(module)) {</span>
+<span class="nc" id="L24">            &quot;The dependency $module has not been found in any catalog&quot;</span>
+        }
+<span class="nc" id="L26">    }</span>
 
 internal fun KotlinDependencyHandler.catalogDependency(
     module: String
-): MinimalExternalModuleDependency =
-<span class="nc bnc" id="L28" title="All 2 branches missed.">    checkNotNull(project.getDependency(module)) {</span>
-<span class="nc" id="L29">        &quot;The dependency $module has not been found in any catalog&quot;</span>
-<span class="nc" id="L30">    }</span>
+<span class="nc" id="L30">): Provider&lt;MinimalExternalModuleDependency&gt; = project.catalogDependency(module)</span>
 
 private fun Project.getDependency(module: String): MinimalExternalModuleDependency? =
 <span class="nc bnc" id="L33" title="All 4 branches missed.">    getCatalogsDependency(module).takeIf { project.module != &quot;${it.module}&quot; }</span>

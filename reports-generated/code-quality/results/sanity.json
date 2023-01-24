@@ -99,6 +99,37 @@
     "Sanity"
   ],
   "severity": "Critical",
+  "comment": "Unresolved reference: COM_FACEBOOK_KTFMT_VERSION",
+  "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/format/HubdleConfigFormatExtension.kt",
+      "language": "kotlin",
+      "line": 16,
+      "offset": 72,
+      "length": 26,
+      "code": {
+        "startLine": 14,
+        "length": 26,
+        "offset": 198,
+        "surroundingCode": "import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension\nimport com.javiersc.hubdle.extensions.config.hubdleConfig\nimport com.javiersc.hubdle.extensions.dependencies._internal.constants.COM_FACEBOOK_KTFMT_VERSION\nimport com.javiersc.hubdle.extensions.kotlin.hubdleKotlin\nimport java.io.File"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-gradle-plugin.main",
+    "inspectionName": "KotlinAnnotator"
+  },
+  "hash": "a7875573313fd0a7a88b90fa3a0423b854b51316376e28050468351410e9e673"
+},{
+  "tool": "Code Inspection",
+  "category": "General",
+  "type": "Kotlin annotator",
+  "tags": [
+    "Sanity"
+  ],
+  "severity": "Critical",
   "comment": "Type mismatch: inferred type is Unit but String was expected",
   "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
   "sources": [
@@ -153,37 +184,6 @@
     "inspectionName": "KotlinAnnotator"
   },
   "hash": "8d0a79528bb20afdf865f971f719a41db8226f708051f710c3714ccff63d8c91"
-},{
-  "tool": "Code Inspection",
-  "category": "General",
-  "type": "Kotlin annotator",
-  "tags": [
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Unresolved reference: COM_FACEBOOK_KTFMT_VERSION",
-  "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/format/HubdleConfigFormatExtension.kt",
-      "language": "kotlin",
-      "line": 16,
-      "offset": 72,
-      "length": 26,
-      "code": {
-        "startLine": 14,
-        "length": 26,
-        "offset": 198,
-        "surroundingCode": "import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension\nimport com.javiersc.hubdle.extensions.config.hubdleConfig\nimport com.javiersc.hubdle.extensions.dependencies._internal.constants.COM_FACEBOOK_KTFMT_VERSION\nimport com.javiersc.hubdle.extensions.kotlin.hubdleKotlin\nimport java.io.File"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "hubdle.hubdle-gradle-plugin.main",
-    "inspectionName": "KotlinAnnotator"
-  },
-  "hash": "a7875573313fd0a7a88b90fa3a0423b854b51316376e28050468351410e9e673"
 },{
   "tool": "Code Inspection",
   "category": "General",
@@ -324,13 +324,13 @@
       "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinExtendedStdlibFeatureExtension.kt",
       "language": "kotlin",
       "line": 72,
-      "offset": 50,
+      "offset": 46,
       "length": 44,
       "code": {
         "startLine": 70,
         "length": 44,
-        "offset": 143,
-        "surroundingCode": "    project.provider {\n        when (project.tasks.withType<Test>().firstOrNull()?.options) {\n            is JUnitOptions -> catalogDependency(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_JUNIT_MODULE)\n            is JUnitPlatformOptions -> catalogDependency(JAVIER_SC_KOTLIN_JUNIT5_MODULE)\n            is TestNGOptions -> catalogDependency(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_TESTNG_MODULE)"
+        "offset": 160,
+        "surroundingCode": "    Provider<MinimalExternalModuleDependency> =\n    when (project.tasks.withType<Test>().firstOrNull()?.options) {\n        is JUnitOptions -> catalogDependency(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_JUNIT_MODULE)\n        is JUnitPlatformOptions -> catalogDependency(JAVIER_SC_KOTLIN_JUNIT5_MODULE)\n        is TestNGOptions -> catalogDependency(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_TESTNG_MODULE)"
       }
     }
   ],
@@ -338,7 +338,7 @@
     "module": "hubdle.hubdle-gradle-plugin.main",
     "inspectionName": "KotlinAnnotator"
   },
-  "hash": "dd7657d43af8257358db7723d52baae8b69182b8e5497a8a83f8104b6db2e42f"
+  "hash": "ab22d97706fb5d9dc2d7745e57cefdbd83c49ac7613485fed68668f64eeff8d6"
 },{
   "tool": "Code Inspection",
   "category": "General",
@@ -355,13 +355,13 @@
       "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinExtendedStdlibFeatureExtension.kt",
       "language": "kotlin",
       "line": 73,
-      "offset": 58,
+      "offset": 54,
       "length": 30,
       "code": {
         "startLine": 71,
         "length": 30,
-        "offset": 223,
-        "surroundingCode": "        when (project.tasks.withType<Test>().firstOrNull()?.options) {\n            is JUnitOptions -> catalogDependency(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_JUNIT_MODULE)\n            is JUnitPlatformOptions -> catalogDependency(JAVIER_SC_KOTLIN_JUNIT5_MODULE)\n            is TestNGOptions -> catalogDependency(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_TESTNG_MODULE)\n            else -> catalogDependency(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_JUNIT_MODULE)"
+        "offset": 211,
+        "surroundingCode": "    when (project.tasks.withType<Test>().firstOrNull()?.options) {\n        is JUnitOptions -> catalogDependency(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_JUNIT_MODULE)\n        is JUnitPlatformOptions -> catalogDependency(JAVIER_SC_KOTLIN_JUNIT5_MODULE)\n        is TestNGOptions -> catalogDependency(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_TESTNG_MODULE)\n        else -> catalogDependency(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_JUNIT_MODULE)"
       }
     }
   ],
@@ -369,7 +369,7 @@
     "module": "hubdle.hubdle-gradle-plugin.main",
     "inspectionName": "KotlinAnnotator"
   },
-  "hash": "345f6d118979b9943f37cc62605ae13d83944635168d8930a3b62256358bdf39"
+  "hash": "a0437287c78c41c3dab58e9e5bddc930cd52dce6e13baaf5a320054fcbe6ba8f"
 },{
   "tool": "Code Inspection",
   "category": "General",
@@ -386,13 +386,13 @@
       "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinExtendedStdlibFeatureExtension.kt",
       "language": "kotlin",
       "line": 74,
-      "offset": 51,
+      "offset": 47,
       "length": 45,
       "code": {
         "startLine": 72,
         "length": 45,
-        "offset": 234,
-        "surroundingCode": "            is JUnitOptions -> catalogDependency(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_JUNIT_MODULE)\n            is JUnitPlatformOptions -> catalogDependency(JAVIER_SC_KOTLIN_JUNIT5_MODULE)\n            is TestNGOptions -> catalogDependency(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_TESTNG_MODULE)\n            else -> catalogDependency(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_JUNIT_MODULE)\n        }.run { implementation(this) }"
+        "offset": 222,
+        "surroundingCode": "        is JUnitOptions -> catalogDependency(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_JUNIT_MODULE)\n        is JUnitPlatformOptions -> catalogDependency(JAVIER_SC_KOTLIN_JUNIT5_MODULE)\n        is TestNGOptions -> catalogDependency(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_TESTNG_MODULE)\n        else -> catalogDependency(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_JUNIT_MODULE)\n    }"
       }
     }
   ],
@@ -400,7 +400,7 @@
     "module": "hubdle.hubdle-gradle-plugin.main",
     "inspectionName": "KotlinAnnotator"
   },
-  "hash": "a7c1ceaa46ac85c3ab68383785cd5a4f4420d7472bfa4e0a9e710f3cd98dc628"
+  "hash": "760b9e37ea24f319a3f19b369193b964d5806a38b87c26e94ce88c8f096500e6"
 },{
   "tool": "Code Inspection",
   "category": "General",
@@ -417,13 +417,13 @@
       "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinExtendedStdlibFeatureExtension.kt",
       "language": "kotlin",
       "line": 75,
-      "offset": 39,
+      "offset": 35,
       "length": 44,
       "code": {
         "startLine": 73,
         "length": 44,
-        "offset": 224,
-        "surroundingCode": "            is JUnitPlatformOptions -> catalogDependency(JAVIER_SC_KOTLIN_JUNIT5_MODULE)\n            is TestNGOptions -> catalogDependency(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_TESTNG_MODULE)\n            else -> catalogDependency(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_JUNIT_MODULE)\n        }.run { implementation(this) }\n    }"
+        "offset": 212,
+        "surroundingCode": "        is JUnitPlatformOptions -> catalogDependency(JAVIER_SC_KOTLIN_JUNIT5_MODULE)\n        is TestNGOptions -> catalogDependency(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_TESTNG_MODULE)\n        else -> catalogDependency(COM_JAVIERSC_KOTLIN_KOTLIN_TEST_JUNIT_MODULE)\n    }\n"
       }
     }
   ],
@@ -431,38 +431,7 @@
     "module": "hubdle.hubdle-gradle-plugin.main",
     "inspectionName": "KotlinAnnotator"
   },
-  "hash": "3344f3c13def139baed7504532e26391a37c01169a7a96546996e19a010aaa3e"
-},{
-  "tool": "Code Inspection",
-  "category": "General",
-  "type": "Kotlin annotator",
-  "tags": [
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Unresolved reference: androidxComposeCompiler",
-  "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinComposeFeatureExtension.kt",
-      "language": "kotlin",
-      "line": 41,
-      "offset": 9,
-      "length": 23,
-      "code": {
-        "startLine": 39,
-        "length": 23,
-        "offset": 72,
-        "surroundingCode": "\n    public val compilerVersion: Property<String?> = property {\n        androidxComposeCompiler().get().versionConstraint.displayName\n    }\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "hubdle.hubdle-gradle-plugin.main",
-    "inspectionName": "KotlinAnnotator"
-  },
-  "hash": "13cf504e23926f3b37e75e046e446b384471cfdc85b9ba800c19202992ee8cc1"
+  "hash": "44d930d8222c34a357c6ad09a083a9ec4568354ac451b651228ac0b9cb3c2bbf"
 },{
   "tool": "Code Inspection",
   "category": "General",
@@ -478,11 +447,11 @@
       "type": "file",
       "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinComposeFeatureExtension.kt",
       "language": "kotlin",
-      "line": 64,
+      "line": 71,
       "offset": 54,
       "length": 41,
       "code": {
-        "startLine": 62,
+        "startLine": 69,
         "length": 41,
         "offset": 166,
         "surroundingCode": "            if (hubdleAndroidFeatures.isFullEnabled.get()) {\n                forKotlinSetsDependencies(\"main\") {\n                    implementation(catalogDependency(ANDROIDX_ACTIVITY_ACTIVITY_COMPOSE_MODULE))\n                }\n                configureAndroidCommonExtension {"
@@ -493,7 +462,38 @@
     "module": "hubdle.hubdle-gradle-plugin.main",
     "inspectionName": "KotlinAnnotator"
   },
-  "hash": "09cac78d93761832e5e504688a2109e92bdddc0339e0f08b9cc1ed69b5a9a904"
+  "hash": "e6d3fa658773a4a7969d7ea174cd1aa9b7341deb0d9cfe7812102519a782f958"
+},{
+  "tool": "Code Inspection",
+  "category": "General",
+  "type": "Kotlin annotator",
+  "tags": [
+    "Sanity"
+  ],
+  "severity": "Critical",
+  "comment": "Unresolved reference: androidxComposeCompiler",
+  "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinComposeFeatureExtension.kt",
+      "language": "kotlin",
+      "line": 40,
+      "offset": 57,
+      "length": 23,
+      "code": {
+        "startLine": 38,
+        "length": 23,
+        "offset": 107,
+        "surroundingCode": "    override val priority: Priority = Priority.P4\n\n    public val compiler: Property<String?> = property { androidxComposeCompiler().get().toString() }\n\n    @HubdleDslMarker"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-gradle-plugin.main",
+    "inspectionName": "KotlinAnnotator"
+  },
+  "hash": "77aaf45d1fbe02dacdc1a8c1012abecc2754c0017701152fd03232204862d988"
 },{
   "tool": "Code Inspection",
   "category": "General",
@@ -587,35 +587,4 @@
     "inspectionName": "KotlinAnnotator"
   },
   "hash": "984d3b01bc0221861360087672fb45eb6de3a4c9badd18d8daf16dad0f314cd7"
-},{
-  "tool": "Code Inspection",
-  "category": "General",
-  "type": "Kotlin annotator",
-  "tags": [
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Unresolved reference: IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE",
-  "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinKotestFeatureExtension.kt",
-      "language": "kotlin",
-      "line": 11,
-      "offset": 72,
-      "length": 39,
-      "code": {
-        "startLine": 9,
-        "length": 39,
-        "offset": 200,
-        "surroundingCode": "import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension\nimport com.javiersc.hubdle.extensions.apis.enableAndExecute\nimport com.javiersc.hubdle.extensions.dependencies._internal.constants.IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE\nimport com.javiersc.hubdle.extensions.kotlin._internal.forKotlinSetsDependencies\nimport com.javiersc.hubdle.extensions.kotlin.hubdleKotlinAny"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "hubdle.hubdle-gradle-plugin.main",
-    "inspectionName": "KotlinAnnotator"
-  },
-  "hash": "d5c27e75e3f4adfb3c336e8888c86402ab47f43ebdf371736dbcd828d4e6c6d2"
 }]}

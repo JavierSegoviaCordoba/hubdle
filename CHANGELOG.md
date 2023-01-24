@@ -14,6 +14,18 @@
 
 ### Updated
 
+- `androidx.compose.ui:ui-util -> 1.3.3`
+- `androidx.compose.ui:ui-tooling-preview -> 1.3.3`
+- `androidx.compose.ui:ui-tooling -> 1.3.3`
+- `androidx.compose.ui:ui-test-manifest -> 1.3.3`
+- `androidx.compose.ui:ui-test -> 1.3.3`
+- `androidx.compose.ui:ui -> 1.3.3`
+- `androidx.compose.runtime:runtime-saveable -> 1.3.3`
+- `androidx.compose.runtime:runtime -> 1.3.3`
+- `androidx.compose.compiler:compiler -> 1.4.0`
+- `androidx.compose.animation:animation-graphics -> 1.3.3`
+- `androidx.compose.animation:animation-core -> 1.3.3`
+- `androidx.compose.animation:animation -> 1.3.3`
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.12.0`
 - `androidx.appcompat:appcompat -> 1.6.0`
 - `com.android.tools.build:gradle -> 7.4.0`

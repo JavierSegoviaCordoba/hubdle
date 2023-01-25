@@ -12,6 +12,7 @@
 
 ### Fixed
 
+- `HubdleKotlinJvmExtension` not applying `java-test-fixtures` when `isTestFixturesEnabled` is `true`
 - `HubdleGradlePluginFeatureExtension` not being configured
 
 ### Updated

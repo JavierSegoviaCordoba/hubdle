@@ -12,6 +12,7 @@ import com.javiersc.hubdle.extensions.config.publishing._internal.configurableMa
 import com.javiersc.hubdle.extensions.kotlin._internal.configurableSrcDirs
 import com.javiersc.hubdle.extensions.kotlin._internal.configureKotlinTestFunctionalSourceSets
 import com.javiersc.hubdle.extensions.kotlin._internal.configureKotlinTestIntegrationSourceSets
+import com.javiersc.hubdle.extensions.kotlin._internal.configureTestFixtures
 import com.javiersc.hubdle.extensions.kotlin._internal.configureTestFunctionalSourceSets
 import com.javiersc.hubdle.extensions.kotlin._internal.configureTestIntegrationSourceSets
 import com.javiersc.hubdle.extensions.kotlin.hubdleKotlin
@@ -63,6 +64,7 @@ constructor(
 
         configurableSrcDirs()
         configureKotlinTestFunctionalSourceSets()
+        configureTestFixtures()
         configureTestIntegrationSourceSets()
         configureKotlinTestIntegrationSourceSets()
         configureTestFunctionalSourceSets()

@@ -1,5 +1,7 @@
 package com.javiersc.hubdle.extensions.kotlin._internal
 
+import com.javiersc.hubdle.extensions._internal.ApplicablePlugin.Scope
+import com.javiersc.hubdle.extensions._internal.PluginId
 import com.javiersc.hubdle.extensions._internal.sourceSetOutput
 import com.javiersc.hubdle.extensions.android._internal.findAndroidCommonExtension
 import com.javiersc.hubdle.extensions.apis.HubdleConfigurableExtension
@@ -17,6 +19,15 @@ import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.findByType
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
+
+internal fun HubdleSrcSetConfExt<*>.configureTestFixtures() {
+    applicablePlugin(
+        isEnabled = isTestFixturesFullEnabled,
+        priority = priority,
+        scope = Scope.CurrentProject,
+        pluginId = PluginId.JavaTestFixtures
+    )
+}
 
 internal fun HubdleSrcSetConfExt<*>.configureTestIntegrationSourceSets() {
     configurable(isEnabled = isTestIntegrationEnabled) {

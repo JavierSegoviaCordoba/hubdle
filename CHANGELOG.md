@@ -12,10 +12,14 @@
 
 ### Fixed
 
+### Updated
+
+## [0.4.0-alpha.2] - 2023-01-25
+
+### Fixed
+
 - `HubdleKotlinJvmExtension` not applying `java-test-fixtures` when `isTestFixturesEnabled` is `true`
 - `HubdleGradlePluginFeatureExtension` not being configured
-
-### Updated
 
 ## [0.4.0-alpha.1] - 2023-01-25
 
@@ -120,7 +124,9 @@
 - `org.eclipse.jgit:org.eclipse.jgit -> 6.4.0.202211300538-r`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.2.0-alpha.46`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.1...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.2...HEAD
+
+[0.4.0-alpha.2]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.1...0.4.0-alpha.2
 
 [0.4.0-alpha.1]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.3.0-alpha.4...0.4.0-alpha.1
 

@@ -121,36 +121,41 @@ import org.gradle.plugin.devel.tasks.PluginUnderTestMetadata
 <span class="nc" id="L121">                    implementation(gradleKotlinDsl())</span>
 <span class="nc" id="L122">                    implementation(catalogDependency(COM_JAVIERSC_GRADLE_GRADLE_EXTENSIONS_MODULE))</span>
 <span class="nc" id="L123">                }</span>
-<span class="nc" id="L124">                forKotlinSetsDependencies(&quot;test&quot;) {</span>
-<span class="nc" id="L125">                    implementation(gradleTestKit())</span>
-<span class="nc" id="L126">                    implementation(</span>
-<span class="nc" id="L127">                        catalogDependency(COM_JAVIERSC_GRADLE_GRADLE_TEST_EXTENSIONS_MODULE)</span>
+<span class="nc" id="L124">                forKotlinSetsDependencies(</span>
+<span class="nc" id="L125">                    &quot;test&quot;,</span>
+<span class="nc" id="L126">                    &quot;testFunctional&quot;,</span>
+<span class="nc" id="L127">                    &quot;testIntegration&quot;,</span>
+<span class="nc" id="L128">                    &quot;testFixtures&quot;</span>
+                ) {
+<span class="nc" id="L130">                    implementation(gradleTestKit())</span>
+<span class="nc" id="L131">                    implementation(</span>
+<span class="nc" id="L132">                        catalogDependency(COM_JAVIERSC_GRADLE_GRADLE_TEST_EXTENSIONS_MODULE)</span>
                     )
-<span class="nc" id="L129">                }</span>
+<span class="nc" id="L134">                }</span>
             }
-<span class="nc" id="L131">        }</span>
+<span class="nc" id="L136">        }</span>
 
-<span class="fc" id="L133">        configurable {</span>
-<span class="nc" id="L134">            configure&lt;PluginBundleExtension&gt; {</span>
+<span class="fc" id="L138">        configurable {</span>
+<span class="nc" id="L139">            configure&lt;PluginBundleExtension&gt; {</span>
                 tags = this@HubdleGradlePluginFeatureExtension.tags.get()
                 website = project.getProperty(HubdleProperty.POM.url)
                 vcsUrl = project.getProperty(HubdleProperty.POM.scmUrl)
             }
-<span class="nc" id="L139">        }</span>
-<span class="fc" id="L140">    }</span>
+<span class="nc" id="L144">        }</span>
+<span class="fc" id="L145">    }</span>
 }
 
 public interface HubdleGradlePluginDelegateFeatureExtension : BaseHubdleDelegateExtension {
 
     public val plugin: HubdleGradlePluginFeatureExtension
-<span class="nc" id="L146">        get() = project.getHubdleExtension()</span>
+<span class="nc" id="L151">        get() = project.getHubdleExtension()</span>
 
     @HubdleDslMarker
-<span class="nc" id="L149">    public fun plugin(action: Action&lt;HubdleGradlePluginFeatureExtension&gt; = Action {}) {</span>
-<span class="nc" id="L150">        plugin.enableAndExecute(action)</span>
-<span class="nc" id="L151">    }</span>
+<span class="nc" id="L154">    public fun plugin(action: Action&lt;HubdleGradlePluginFeatureExtension&gt; = Action {}) {</span>
+<span class="nc" id="L155">        plugin.enableAndExecute(action)</span>
+<span class="nc" id="L156">    }</span>
 }
 
 internal val HubdleEnableableExtension.hubdleGradlePluginFeature: HubdleGradlePluginFeatureExtension
-<span class="nc" id="L155">    get() = getHubdleExtension()</span>
+<span class="nc" id="L160">    get() = getHubdleExtension()</span>
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -16,6 +16,8 @@
 
 ### Updated
 
+- `com.javiersc.semver:semver-core -> 0.1.0-beta.13`
+
 ## [0.4.0-alpha.4] - 2023-01-25
 
 ### Added

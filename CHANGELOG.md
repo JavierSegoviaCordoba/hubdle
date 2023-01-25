@@ -6,6 +6,8 @@
 
 ### Changed
 
+- `extendedGradle` affects `testFunctional`, `testIntegration`, and `testFixtures` source sets 
+
 ### Deprecated
 
 ### Removed

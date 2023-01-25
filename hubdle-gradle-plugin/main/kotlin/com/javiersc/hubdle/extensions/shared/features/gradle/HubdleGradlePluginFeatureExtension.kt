@@ -121,7 +121,12 @@ constructor(
                     implementation(gradleKotlinDsl())
                     implementation(catalogDependency(COM_JAVIERSC_GRADLE_GRADLE_EXTENSIONS_MODULE))
                 }
-                forKotlinSetsDependencies("test") {
+                forKotlinSetsDependencies(
+                    "test",
+                    "testFunctional",
+                    "testIntegration",
+                    "testFixtures"
+                ) {
                     implementation(gradleTestKit())
                     implementation(
                         catalogDependency(COM_JAVIERSC_GRADLE_GRADLE_TEST_EXTENSIONS_MODULE)

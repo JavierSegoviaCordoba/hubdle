@@ -4,8 +4,6 @@
 
 ### Added
 
-- `extendedGradle` to `HubdleGradlePluginFeatureExtension`
-
 ### Changed
 
 ### Deprecated
@@ -15,6 +13,12 @@
 ### Fixed
 
 ### Updated
+
+## [0.4.0-alpha.4] - 2023-01-25
+
+### Added
+
+- `extendedGradle` to `HubdleGradlePluginFeatureExtension`
 
 ## [0.4.0-alpha.3] - 2023-01-25
 
@@ -132,7 +136,9 @@
 - `org.eclipse.jgit:org.eclipse.jgit -> 6.4.0.202211300538-r`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.2.0-alpha.46`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.3...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.4...HEAD
+
+[0.4.0-alpha.4]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.3...0.4.0-alpha.4
 
 [0.4.0-alpha.3]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.2...0.4.0-alpha.3
 

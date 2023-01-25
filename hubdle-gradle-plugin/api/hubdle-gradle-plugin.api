@@ -1023,6 +1023,8 @@ public class com/javiersc/hubdle/extensions/kotlin/jvm/HubdleKotlinJvmExtension 
 	public final fun getFeatures ()Lcom/javiersc/hubdle/extensions/kotlin/jvm/features/HubdleKotlinJvmFeaturesExtension;
 	public fun gradleApi (Lcom/javiersc/hubdle/extensions/apis/HubdleEnableableExtension;)Lorg/gradle/api/artifacts/Dependency;
 	public fun gradleApi (Lorg/gradle/api/Project;)Lorg/gradle/api/artifacts/Dependency;
+	public fun gradleKotlinDsl (Lcom/javiersc/hubdle/extensions/apis/HubdleEnableableExtension;)Lorg/gradle/api/artifacts/Dependency;
+	public fun gradleKotlinDsl (Lorg/gradle/api/Project;)Lorg/gradle/api/artifacts/Dependency;
 	public fun gradleTestKit (Lcom/javiersc/hubdle/extensions/apis/HubdleEnableableExtension;)Lorg/gradle/api/artifacts/Dependency;
 	public fun gradleTestKit (Lorg/gradle/api/Project;)Lorg/gradle/api/artifacts/Dependency;
 	public fun isEnabled ()Lorg/gradle/api/provider/Property;
@@ -1556,6 +1558,8 @@ public abstract class com/javiersc/hubdle/extensions/kotlin/shared/HubdleKotlinS
 public abstract interface class com/javiersc/hubdle/extensions/shared/HubdleGradleDependencies {
 	public abstract fun gradleApi (Lcom/javiersc/hubdle/extensions/apis/HubdleEnableableExtension;)Lorg/gradle/api/artifacts/Dependency;
 	public abstract fun gradleApi (Lorg/gradle/api/Project;)Lorg/gradle/api/artifacts/Dependency;
+	public abstract fun gradleKotlinDsl (Lcom/javiersc/hubdle/extensions/apis/HubdleEnableableExtension;)Lorg/gradle/api/artifacts/Dependency;
+	public abstract fun gradleKotlinDsl (Lorg/gradle/api/Project;)Lorg/gradle/api/artifacts/Dependency;
 	public abstract fun gradleTestKit (Lcom/javiersc/hubdle/extensions/apis/HubdleEnableableExtension;)Lorg/gradle/api/artifacts/Dependency;
 	public abstract fun gradleTestKit (Lorg/gradle/api/Project;)Lorg/gradle/api/artifacts/Dependency;
 	public abstract fun localGroovy (Lcom/javiersc/hubdle/extensions/apis/HubdleEnableableExtension;)Lorg/gradle/api/artifacts/Dependency;
@@ -1565,6 +1569,8 @@ public abstract interface class com/javiersc/hubdle/extensions/shared/HubdleGrad
 public final class com/javiersc/hubdle/extensions/shared/HubdleGradleDependencies$DefaultImpls {
 	public static fun gradleApi (Lcom/javiersc/hubdle/extensions/shared/HubdleGradleDependencies;Lcom/javiersc/hubdle/extensions/apis/HubdleEnableableExtension;)Lorg/gradle/api/artifacts/Dependency;
 	public static fun gradleApi (Lcom/javiersc/hubdle/extensions/shared/HubdleGradleDependencies;Lorg/gradle/api/Project;)Lorg/gradle/api/artifacts/Dependency;
+	public static fun gradleKotlinDsl (Lcom/javiersc/hubdle/extensions/shared/HubdleGradleDependencies;Lcom/javiersc/hubdle/extensions/apis/HubdleEnableableExtension;)Lorg/gradle/api/artifacts/Dependency;
+	public static fun gradleKotlinDsl (Lcom/javiersc/hubdle/extensions/shared/HubdleGradleDependencies;Lorg/gradle/api/Project;)Lorg/gradle/api/artifacts/Dependency;
 	public static fun gradleTestKit (Lcom/javiersc/hubdle/extensions/shared/HubdleGradleDependencies;Lcom/javiersc/hubdle/extensions/apis/HubdleEnableableExtension;)Lorg/gradle/api/artifacts/Dependency;
 	public static fun gradleTestKit (Lcom/javiersc/hubdle/extensions/shared/HubdleGradleDependencies;Lorg/gradle/api/Project;)Lorg/gradle/api/artifacts/Dependency;
 	public static fun localGroovy (Lcom/javiersc/hubdle/extensions/shared/HubdleGradleDependencies;Lcom/javiersc/hubdle/extensions/apis/HubdleEnableableExtension;)Lorg/gradle/api/artifacts/Dependency;
@@ -1681,12 +1687,22 @@ public final class com/javiersc/hubdle/extensions/shared/features/gradle/HubdleG
 	public static synthetic fun plugin$default (Lcom/javiersc/hubdle/extensions/shared/features/gradle/HubdleGradlePluginDelegateFeatureExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 }
 
-public class com/javiersc/hubdle/extensions/shared/features/gradle/HubdleGradlePluginFeatureExtension : com/javiersc/hubdle/extensions/apis/HubdleConfigurableExtension {
+public class com/javiersc/hubdle/extensions/shared/features/gradle/HubdleGradlePluginFeatureExtension : com/javiersc/hubdle/extensions/apis/HubdleConfigurableExtension, com/javiersc/hubdle/extensions/shared/HubdleGradleDependencies {
 	public fun <init> (Lorg/gradle/api/Project;)V
+	public final fun extendedGradle (Z)V
+	public final fun getExtendedGradle ()Lorg/gradle/api/provider/Property;
 	public final fun getPluginUnderTestDependencies ()Lorg/gradle/api/provider/ListProperty;
 	public final fun getTags ()Lorg/gradle/api/provider/SetProperty;
+	public fun gradleApi (Lcom/javiersc/hubdle/extensions/apis/HubdleEnableableExtension;)Lorg/gradle/api/artifacts/Dependency;
+	public fun gradleApi (Lorg/gradle/api/Project;)Lorg/gradle/api/artifacts/Dependency;
+	public fun gradleKotlinDsl (Lcom/javiersc/hubdle/extensions/apis/HubdleEnableableExtension;)Lorg/gradle/api/artifacts/Dependency;
+	public fun gradleKotlinDsl (Lorg/gradle/api/Project;)Lorg/gradle/api/artifacts/Dependency;
 	public final fun gradlePlugin (Lorg/gradle/api/Action;)V
+	public fun gradleTestKit (Lcom/javiersc/hubdle/extensions/apis/HubdleEnableableExtension;)Lorg/gradle/api/artifacts/Dependency;
+	public fun gradleTestKit (Lorg/gradle/api/Project;)Lorg/gradle/api/artifacts/Dependency;
 	public fun isEnabled ()Lorg/gradle/api/provider/Property;
+	public fun localGroovy (Lcom/javiersc/hubdle/extensions/apis/HubdleEnableableExtension;)Lorg/gradle/api/artifacts/Dependency;
+	public fun localGroovy (Lorg/gradle/api/Project;)Lorg/gradle/api/artifacts/Dependency;
 	public final fun pluginUnderTestDependencies ([Lorg/gradle/api/artifacts/MinimalExternalModuleDependency;)V
 	public final fun pluginUnderTestDependencies ([Lorg/gradle/api/provider/Provider;)V
 	public final fun tags ([Ljava/lang/String;)V

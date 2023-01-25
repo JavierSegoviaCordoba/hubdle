@@ -7,12 +7,17 @@ import com.javiersc.hubdle.extensions.HubdleDslMarker
 import com.javiersc.hubdle.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.extensions._internal.PluginId
+import com.javiersc.hubdle.extensions._internal.catalogDependency
 import com.javiersc.hubdle.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.extensions.apis.BaseHubdleDelegateExtension
 import com.javiersc.hubdle.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.extensions.apis.enableAndExecute
+import com.javiersc.hubdle.extensions.dependencies._internal.constants.COM_JAVIERSC_GRADLE_GRADLE_EXTENSIONS_MODULE
+import com.javiersc.hubdle.extensions.dependencies._internal.constants.COM_JAVIERSC_GRADLE_GRADLE_TEST_EXTENSIONS_MODULE
+import com.javiersc.hubdle.extensions.kotlin._internal.forKotlinSetsDependencies
 import com.javiersc.hubdle.extensions.kotlin.jvm.hubdleKotlinJvm
+import com.javiersc.hubdle.extensions.shared.HubdleGradleDependencies
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
@@ -31,7 +36,7 @@ public open class HubdleGradlePluginFeatureExtension
 @Inject
 constructor(
     project: Project,
-) : HubdleConfigurableExtension(project) {
+) : HubdleConfigurableExtension(project), HubdleGradleDependencies {
 
     override val isEnabled: Property<Boolean> = property { false }
 
@@ -39,6 +44,13 @@ constructor(
         get() = setOf(hubdleKotlinJvm)
 
     override val priority: Priority = Priority.P4
+
+    public val extendedGradle: Property<Boolean> = property { true }
+
+    @HubdleDslMarker
+    public fun extendedGradle(extendedGradle: Boolean) {
+        this.extendedGradle.set(extendedGradle)
+    }
 
     public val tags: SetProperty<String> = setProperty { emptySet() }
 
@@ -100,6 +112,20 @@ constructor(
 
                 tasks.withType<PluginUnderTestMetadata>().configureEach { metadata ->
                     metadata.pluginClasspath.from(testPluginClasspath)
+                }
+            }
+
+            if (extendedGradle.get()) {
+                forKotlinSetsDependencies("main") {
+                    implementation(gradleApi())
+                    implementation(gradleKotlinDsl())
+                    implementation(catalogDependency(COM_JAVIERSC_GRADLE_GRADLE_EXTENSIONS_MODULE))
+                }
+                forKotlinSetsDependencies("test") {
+                    implementation(gradleTestKit())
+                    implementation(
+                        catalogDependency(COM_JAVIERSC_GRADLE_GRADLE_TEST_EXTENSIONS_MODULE)
+                    )
                 }
             }
         }

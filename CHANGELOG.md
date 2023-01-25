@@ -4,6 +4,8 @@
 
 ### Added
 
+- `extendedGradle` to `HubdleGradlePluginFeatureExtension`
+
 ### Changed
 
 ### Deprecated

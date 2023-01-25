@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- `HubdleGradlePluginFeatureExtension` duplicates Maven Publication
+
 ### Updated
 
 ## [0.4.0-alpha.2] - 2023-01-25

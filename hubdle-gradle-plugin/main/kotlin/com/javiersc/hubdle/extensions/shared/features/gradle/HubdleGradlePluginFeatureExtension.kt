@@ -12,7 +12,6 @@ import com.javiersc.hubdle.extensions.apis.BaseHubdleDelegateExtension
 import com.javiersc.hubdle.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.extensions.apis.enableAndExecute
-import com.javiersc.hubdle.extensions.config.publishing._internal.configurableMavenPublishing
 import com.javiersc.hubdle.extensions.kotlin.jvm.hubdleKotlinJvm
 import javax.inject.Inject
 import org.gradle.api.Action
@@ -104,8 +103,6 @@ constructor(
                 }
             }
         }
-
-        configurableMavenPublishing(mavenPublicationName = "java", configJavaExtension = true)
 
         configurable {
             configure<PluginBundleExtension> {

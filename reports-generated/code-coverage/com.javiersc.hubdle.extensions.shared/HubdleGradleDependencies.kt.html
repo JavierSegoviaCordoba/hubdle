@@ -3,6 +3,7 @@
 import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
 import org.gradle.api.Project
 import org.gradle.api.artifacts.Dependency
+import org.gradle.kotlin.dsl.gradleKotlinDsl as originalGradleKotlinDsl
 
 /**
  * For missing dependencies or features from `DependencyHandler` in `KotlinDependencyHandler`, they
@@ -13,18 +14,23 @@ import org.gradle.api.artifacts.Dependency
  */
 public interface HubdleGradleDependencies {
 
-<span class="nc" id="L16">    public fun Project.gradleApi(): Dependency = dependencies.gradleApi()</span>
+<span class="nc" id="L17">    public fun Project.gradleApi(): Dependency = dependencies.gradleApi()</span>
 
-<span class="nc" id="L18">    public fun Project.localGroovy(): Dependency = dependencies.localGroovy()</span>
+<span class="nc" id="L19">    public fun Project.gradleKotlinDsl(): Dependency = originalGradleKotlinDsl()</span>
 
-<span class="nc" id="L20">    public fun Project.gradleTestKit(): Dependency = dependencies.gradleTestKit()</span>
+<span class="nc" id="L21">    public fun Project.localGroovy(): Dependency = dependencies.localGroovy()</span>
 
-<span class="nc" id="L22">    public fun HubdleEnableableExtension.gradleApi(): Dependency = project.dependencies.gradleApi()</span>
+<span class="nc" id="L23">    public fun Project.gradleTestKit(): Dependency = dependencies.gradleTestKit()</span>
+
+<span class="nc" id="L25">    public fun HubdleEnableableExtension.gradleApi(): Dependency = project.dependencies.gradleApi()</span>
+
+    public fun HubdleEnableableExtension.gradleKotlinDsl(): Dependency =
+<span class="nc" id="L28">        project.originalGradleKotlinDsl()</span>
 
     public fun HubdleEnableableExtension.localGroovy(): Dependency =
-<span class="nc" id="L25">        project.dependencies.localGroovy()</span>
+<span class="nc" id="L31">        project.dependencies.localGroovy()</span>
 
     public fun HubdleEnableableExtension.gradleTestKit(): Dependency =
-<span class="nc" id="L28">        project.dependencies.gradleTestKit()</span>
+<span class="nc" id="L34">        project.dependencies.gradleTestKit()</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

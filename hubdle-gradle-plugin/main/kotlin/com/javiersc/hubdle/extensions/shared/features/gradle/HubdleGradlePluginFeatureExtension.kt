@@ -1,5 +1,8 @@
 package com.javiersc.hubdle.extensions.shared.features.gradle
 
+import com.gradle.publish.PluginBundleExtension
+import com.javiersc.gradle.properties.extensions.getProperty
+import com.javiersc.hubdle.HubdleProperty
 import com.javiersc.hubdle.extensions.HubdleDslMarker
 import com.javiersc.hubdle.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.extensions._internal.Configurable.Priority
@@ -9,15 +12,21 @@ import com.javiersc.hubdle.extensions.apis.BaseHubdleDelegateExtension
 import com.javiersc.hubdle.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.extensions.apis.enableAndExecute
+import com.javiersc.hubdle.extensions.config.publishing._internal.configurableMavenPublishing
 import com.javiersc.hubdle.extensions.kotlin.jvm.hubdleKotlinJvm
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
+import org.gradle.api.artifacts.Configuration
 import org.gradle.api.artifacts.MinimalExternalModuleDependency
 import org.gradle.api.provider.ListProperty
 import org.gradle.api.provider.Property
+import org.gradle.api.provider.Provider
 import org.gradle.api.provider.SetProperty
+import org.gradle.kotlin.dsl.dependencies
+import org.gradle.kotlin.dsl.withType
 import org.gradle.plugin.devel.GradlePluginDevelopmentExtension
+import org.gradle.plugin.devel.tasks.PluginUnderTestMetadata
 
 public open class HubdleGradlePluginFeatureExtension
 @Inject
@@ -56,12 +65,55 @@ constructor(
         this.pluginUnderTestDependencies.addAll(pluginUnderTestDependencies.toList())
     }
 
+    @HubdleDslMarker
+    public fun pluginUnderTestDependencies(
+        vararg pluginUnderTestDependencies: Provider<MinimalExternalModuleDependency>
+    ) {
+        this.pluginUnderTestDependencies.addAll(
+            provider { pluginUnderTestDependencies.map { it.get() } }
+        )
+    }
+
     override fun Project.defaultConfiguration() {
         applicablePlugin(
             priority = Priority.P3,
             scope = Scope.CurrentProject,
-            pluginId = PluginId.GradleApplication
+            pluginId = PluginId.JavaGradlePlugin
         )
+
+        applicablePlugin(
+            priority = Priority.P3,
+            scope = Scope.CurrentProject,
+            pluginId = PluginId.GradlePluginPublish
+        )
+
+        configurable {
+            val pluginUnderTestDependencies = pluginUnderTestDependencies.get()
+            if (pluginUnderTestDependencies.isNotEmpty()) {
+                val testPluginClasspath: Configuration =
+                    configurations.create("testPluginClasspath")
+
+                dependencies {
+                    for (dependency in pluginUnderTestDependencies) {
+                        testPluginClasspath(dependency)
+                    }
+                }
+
+                tasks.withType<PluginUnderTestMetadata>().configureEach { metadata ->
+                    metadata.pluginClasspath.from(testPluginClasspath)
+                }
+            }
+        }
+
+        configurableMavenPublishing(mavenPublicationName = "java", configJavaExtension = true)
+
+        configurable {
+            configure<PluginBundleExtension> {
+                tags = this@HubdleGradlePluginFeatureExtension.tags.get()
+                website = project.getProperty(HubdleProperty.POM.url)
+                vcsUrl = project.getProperty(HubdleProperty.POM.scmUrl)
+            }
+        }
     }
 }
 

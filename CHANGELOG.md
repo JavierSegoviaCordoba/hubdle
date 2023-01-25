@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- `HubdleGradlePluginFeatureExtension` not being configured
+
 ### Updated
 
 ## [0.4.0-alpha.1] - 2023-01-25

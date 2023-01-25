@@ -12,9 +12,13 @@
 
 ### Fixed
 
-- `HubdleGradlePluginFeatureExtension` duplicates Maven Publication
-
 ### Updated
+
+## [0.4.0-alpha.3] - 2023-01-25
+
+### Fixed
+
+- `HubdleGradlePluginFeatureExtension` duplicates Maven Publication
 
 ## [0.4.0-alpha.2] - 2023-01-25
 
@@ -126,7 +130,9 @@
 - `org.eclipse.jgit:org.eclipse.jgit -> 6.4.0.202211300538-r`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.2.0-alpha.46`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.2...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.3...HEAD
+
+[0.4.0-alpha.3]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.2...0.4.0-alpha.3
 
 [0.4.0-alpha.2]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.1...0.4.0-alpha.2
 

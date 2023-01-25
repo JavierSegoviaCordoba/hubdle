@@ -6,14 +6,20 @@
 
 ### Changed
 
-- `kotlin/gradle` extension to `kotlin/jvm/features/gradle`
-- `kotlin/intellij` extension to `kotlin/jvm/features/intellij`
-
 ### Deprecated
 
 ### Removed
 
 ### Fixed
+
+### Updated
+
+## [0.4.0-alpha.1] - 2023-01-25
+
+### Changed
+
+- `kotlin/gradle` extension to `kotlin/jvm/features/gradle`
+- `kotlin/intellij` extension to `kotlin/jvm/features/intellij`
 
 ### Updated
 
@@ -111,7 +117,9 @@
 - `org.eclipse.jgit:org.eclipse.jgit -> 6.4.0.202211300538-r`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.2.0-alpha.46`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.3.0-alpha.4...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.1...HEAD
+
+[0.4.0-alpha.1]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.3.0-alpha.4...0.4.0-alpha.1
 
 [0.3.0-alpha.4]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.3.0-alpha.3...0.3.0-alpha.4
 

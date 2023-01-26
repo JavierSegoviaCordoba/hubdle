@@ -25,6 +25,7 @@
 ### Added
 
 - `extendedGradle` to `HubdleGradlePluginFeatureExtension`
+- `javiersc-semver-core` to Hubdle catalog
 
 ## [0.4.0-alpha.3] - 2023-01-25
 

@@ -4,6 +4,7 @@ import androidxComposeCompiler
 import com.javiersc.hubdle.extensions.HubdleDslMarker
 import com.javiersc.hubdle.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.extensions._internal.Configurable.Priority
+import com.javiersc.hubdle.extensions._internal.MAIN
 import com.javiersc.hubdle.extensions._internal.PluginId
 import com.javiersc.hubdle.extensions._internal.catalogDependency
 import com.javiersc.hubdle.extensions._internal.getHubdleExtension
@@ -67,7 +68,7 @@ constructor(
         configurable {
             configure<ComposeExtension> { kotlinCompilerPlugin.set(compiler) }
             if (hubdleAndroidFeatures.isFullEnabled.get()) {
-                forKotlinSetsDependencies("main") {
+                forKotlinSetsDependencies(MAIN) {
                     implementation(catalogDependency(ANDROIDX_ACTIVITY_ACTIVITY_COMPOSE_MODULE))
                 }
                 configureAndroidCommonExtension {

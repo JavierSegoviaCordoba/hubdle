@@ -1,7 +1,15 @@
 package com.javiersc.hubdle.extensions.kotlin.features.shared
 
 import com.javiersc.hubdle.extensions.HubdleDslMarker
+import com.javiersc.hubdle.extensions._internal.ANDROID_MAIN
+import com.javiersc.hubdle.extensions._internal.COMMON_MAIN
+import com.javiersc.hubdle.extensions._internal.COMMON_TEST
 import com.javiersc.hubdle.extensions._internal.Configurable.Priority
+import com.javiersc.hubdle.extensions._internal.MAIN
+import com.javiersc.hubdle.extensions._internal.TEST
+import com.javiersc.hubdle.extensions._internal.TEST_FIXTURES
+import com.javiersc.hubdle.extensions._internal.TEST_FUNCTIONAL
+import com.javiersc.hubdle.extensions._internal.TEST_INTEGRATION
 import com.javiersc.hubdle.extensions._internal.catalogDependency
 import com.javiersc.hubdle.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.extensions.apis.BaseHubdleDelegateExtension
@@ -38,13 +46,19 @@ constructor(
     override fun Project.defaultConfiguration() {
         configurable {
             configure<KotlinProjectExtension> {
-                forKotlinSetsDependencies("main", "commonMain") {
+                forKotlinSetsDependencies(MAIN, COMMON_MAIN) {
                     implementation(
                         catalogDependency(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_MODULE)
                     )
                 }
 
-                forKotlinSetsDependencies("test", "commonTest") {
+                forKotlinSetsDependencies(
+                    TEST,
+                    COMMON_TEST,
+                    TEST_FUNCTIONAL,
+                    TEST_INTEGRATION,
+                    TEST_FIXTURES
+                ) {
                     implementation(
                         catalogDependency(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_TEST_MODULE)
                     )
@@ -52,7 +66,7 @@ constructor(
             }
         }
         configurable(isEnabled = isAnyAndroidFullEnabled) {
-            forKotlinSetsDependencies("main", "androidMain") {
+            forKotlinSetsDependencies(MAIN, ANDROID_MAIN) {
                 implementation(
                     catalogDependency(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_ANDROID_MODULE)
                 )

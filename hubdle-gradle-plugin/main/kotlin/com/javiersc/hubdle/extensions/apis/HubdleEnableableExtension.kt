@@ -15,12 +15,16 @@ import org.gradle.api.provider.ListProperty
 import org.gradle.api.provider.Property
 import org.gradle.api.provider.Provider
 import org.gradle.api.provider.SetProperty
+import org.gradle.api.tasks.TaskContainer
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.the
 
 public abstract class HubdleEnableableExtension(
     internal open val project: Project,
 ) : BaseHubdleEnableableExtension {
+
+    internal val tasks: TaskContainer
+        get() = project.tasks
 
     internal val name: String =
         this::class.simpleName?.substringBeforeLast("_Decorated") ?: "UnknownHubdleExtension"

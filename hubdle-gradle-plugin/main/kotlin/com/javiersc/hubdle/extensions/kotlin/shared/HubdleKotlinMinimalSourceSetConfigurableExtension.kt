@@ -1,5 +1,7 @@
 package com.javiersc.hubdle.extensions.kotlin.shared
 
+import com.javiersc.hubdle.extensions._internal.MAIN
+import com.javiersc.hubdle.extensions._internal.TEST
 import com.javiersc.hubdle.extensions.apis.HubdleMinimalSourceSetConfigurableExtension
 import org.gradle.api.NamedDomainObjectProvider
 import org.gradle.api.Project
@@ -12,13 +14,13 @@ public abstract class HubdleKotlinMinimalSourceSetConfigurableExtension(
 
     override val main: NamedDomainObjectProvider<KotlinSourceSet>
         get() {
-            the<KotlinProjectExtension>().sourceSets.maybeCreate(calculateName("main"))
-            return the<KotlinProjectExtension>().sourceSets.named(calculateName("main"))
+            the<KotlinProjectExtension>().sourceSets.maybeCreate(calculateName(MAIN))
+            return the<KotlinProjectExtension>().sourceSets.named(calculateName(MAIN))
         }
 
     override val test: NamedDomainObjectProvider<KotlinSourceSet>
         get() {
-            the<KotlinProjectExtension>().sourceSets.maybeCreate(calculateName("test"))
-            return the<KotlinProjectExtension>().sourceSets.named(calculateName("test"))
+            the<KotlinProjectExtension>().sourceSets.maybeCreate(calculateName(TEST))
+            return the<KotlinProjectExtension>().sourceSets.named(calculateName(TEST))
         }
 }

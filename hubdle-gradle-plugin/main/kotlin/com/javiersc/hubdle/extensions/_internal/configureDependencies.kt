@@ -13,10 +13,10 @@ import com.javiersc.hubdle.extensions.kotlin._internal.forKotlinSetsDependencies
 internal fun HubdleConfigurableExtension.configurableDependencies() {
     configurable {
         project.forKotlinSetsDependencies(
-            "test",
-            "commonTest",
-            "testFunctional",
-            "testIntegration",
+            TEST,
+            COMMON_TEST,
+            TEST_FUNCTIONAL,
+            TEST_INTEGRATION,
         ) {
             implementation(catalogDependency(ORG_JETBRAINS_KOTLIN_KOTLIN_TEST_MODULE))
             implementation(

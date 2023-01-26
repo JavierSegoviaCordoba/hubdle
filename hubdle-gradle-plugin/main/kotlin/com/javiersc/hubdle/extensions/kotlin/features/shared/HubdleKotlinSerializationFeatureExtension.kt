@@ -2,7 +2,9 @@ package com.javiersc.hubdle.extensions.kotlin.features.shared
 
 import com.javiersc.hubdle.extensions.HubdleDslMarker
 import com.javiersc.hubdle.extensions._internal.ApplicablePlugin.Scope
+import com.javiersc.hubdle.extensions._internal.COMMON_MAIN
 import com.javiersc.hubdle.extensions._internal.Configurable.Priority
+import com.javiersc.hubdle.extensions._internal.MAIN
 import com.javiersc.hubdle.extensions._internal.PluginId
 import com.javiersc.hubdle.extensions._internal.catalogDependency
 import com.javiersc.hubdle.extensions._internal.getHubdleExtension
@@ -42,7 +44,7 @@ constructor(
         )
 
         configurable {
-            forKotlinSetsDependencies("main", "commonMain") {
+            forKotlinSetsDependencies(MAIN, COMMON_MAIN) {
                 implementation(
                     catalogDependency(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_CORE_MODULE)
                 )

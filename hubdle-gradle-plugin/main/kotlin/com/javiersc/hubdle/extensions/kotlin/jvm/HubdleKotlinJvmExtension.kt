@@ -9,12 +9,12 @@ import com.javiersc.hubdle.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.extensions.apis.enableAndExecute
 import com.javiersc.hubdle.extensions.config.publishing._internal.configurableMavenPublishing
+import com.javiersc.hubdle.extensions.kotlin._internal.configurableKotlinTestFunctionalSourceSets
+import com.javiersc.hubdle.extensions.kotlin._internal.configurableKotlinTestIntegrationSourceSets
 import com.javiersc.hubdle.extensions.kotlin._internal.configurableSrcDirs
-import com.javiersc.hubdle.extensions.kotlin._internal.configureKotlinTestFunctionalSourceSets
-import com.javiersc.hubdle.extensions.kotlin._internal.configureKotlinTestIntegrationSourceSets
-import com.javiersc.hubdle.extensions.kotlin._internal.configureTestFixtures
-import com.javiersc.hubdle.extensions.kotlin._internal.configureTestFunctionalSourceSets
-import com.javiersc.hubdle.extensions.kotlin._internal.configureTestIntegrationSourceSets
+import com.javiersc.hubdle.extensions.kotlin._internal.configurableTestFixtures
+import com.javiersc.hubdle.extensions.kotlin._internal.configurableTestFunctionalSourceSets
+import com.javiersc.hubdle.extensions.kotlin._internal.configurableTestIntegrationSourceSets
 import com.javiersc.hubdle.extensions.kotlin.hubdleKotlin
 import com.javiersc.hubdle.extensions.kotlin.jvm.features.HubdleKotlinJvmFeaturesExtension
 import com.javiersc.hubdle.extensions.kotlin.shared.HubdleKotlinSourceSetConfigurableExtension
@@ -61,14 +61,13 @@ constructor(
             scope = Scope.CurrentProject,
             pluginId = PluginId.JetbrainsKotlinJvm
         )
-
+        configurableTestFixtures()
         configurableSrcDirs()
-        configureKotlinTestFunctionalSourceSets()
-        configureTestFixtures()
-        configureTestIntegrationSourceSets()
-        configureKotlinTestIntegrationSourceSets()
-        configureTestFunctionalSourceSets()
-        configureKotlinTestFunctionalSourceSets()
+        configurableKotlinTestFunctionalSourceSets()
+        configurableTestIntegrationSourceSets()
+        configurableKotlinTestIntegrationSourceSets()
+        configurableTestFunctionalSourceSets()
+        configurableKotlinTestFunctionalSourceSets()
         configurableDependencies()
         configurableMavenPublishing(mavenPublicationName = "java", configJavaExtension = true)
     }

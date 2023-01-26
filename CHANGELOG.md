@@ -14,6 +14,8 @@
 
 ### Fixed
 
+- `HubdleGradlePluginFeatureExtension` tests source sets
+
 ### Updated
 
 - `com.javiersc.semver:semver-core -> 0.1.0-beta.13`

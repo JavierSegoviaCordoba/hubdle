@@ -6,7 +6,12 @@ import com.javiersc.hubdle.HubdleProperty
 import com.javiersc.hubdle.extensions.HubdleDslMarker
 import com.javiersc.hubdle.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.extensions._internal.Configurable.Priority
+import com.javiersc.hubdle.extensions._internal.MAIN
 import com.javiersc.hubdle.extensions._internal.PluginId
+import com.javiersc.hubdle.extensions._internal.TEST
+import com.javiersc.hubdle.extensions._internal.TEST_FIXTURES
+import com.javiersc.hubdle.extensions._internal.TEST_FUNCTIONAL
+import com.javiersc.hubdle.extensions._internal.TEST_INTEGRATION
 import com.javiersc.hubdle.extensions._internal.catalogDependency
 import com.javiersc.hubdle.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.extensions.apis.BaseHubdleDelegateExtension
@@ -27,6 +32,7 @@ import org.gradle.api.provider.ListProperty
 import org.gradle.api.provider.Property
 import org.gradle.api.provider.Provider
 import org.gradle.api.provider.SetProperty
+import org.gradle.api.tasks.SourceSetContainer
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.withType
 import org.gradle.plugin.devel.GradlePluginDevelopmentExtension
@@ -116,21 +122,25 @@ constructor(
             }
 
             if (extendedGradle.get()) {
-                forKotlinSetsDependencies("main") {
+                forKotlinSetsDependencies(MAIN) {
                     implementation(gradleApi())
                     implementation(gradleKotlinDsl())
                     implementation(catalogDependency(COM_JAVIERSC_GRADLE_GRADLE_EXTENSIONS_MODULE))
                 }
-                forKotlinSetsDependencies(
-                    "test",
-                    "testFunctional",
-                    "testIntegration",
-                    "testFixtures"
-                ) {
+                forKotlinSetsDependencies(TEST, TEST_FUNCTIONAL, TEST_INTEGRATION, TEST_FIXTURES) {
                     implementation(gradleTestKit())
                     implementation(
                         catalogDependency(COM_JAVIERSC_GRADLE_GRADLE_TEST_EXTENSIONS_MODULE)
                     )
+                }
+            }
+        }
+
+        configurable(priority = Priority.P4) {
+            configure<GradlePluginDevelopmentExtension> {
+                configure<SourceSetContainer> {
+                    findByName(TEST_FUNCTIONAL)?.let { testSourceSets(it) }
+                    findByName(TEST_INTEGRATION)?.let { testSourceSets(it) }
                 }
             }
         }

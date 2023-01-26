@@ -49,7 +49,6 @@ constructor(
 
     public val includes: SetProperty<String> = setProperty { setOf("**/*.kt", "**/*.kts") }
 
-    @HubdleDslMarker
     public val excludes: SetProperty<String> = setProperty {
         setOf("**/resources/**", "**/build/**")
     }

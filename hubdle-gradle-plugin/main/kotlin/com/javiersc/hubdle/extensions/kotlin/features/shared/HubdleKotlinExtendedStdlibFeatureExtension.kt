@@ -1,7 +1,14 @@
 package com.javiersc.hubdle.extensions.kotlin.features.shared
 
 import com.javiersc.hubdle.extensions.HubdleDslMarker
+import com.javiersc.hubdle.extensions._internal.COMMON_MAIN
+import com.javiersc.hubdle.extensions._internal.COMMON_TEST
 import com.javiersc.hubdle.extensions._internal.Configurable.Priority
+import com.javiersc.hubdle.extensions._internal.MAIN
+import com.javiersc.hubdle.extensions._internal.TEST
+import com.javiersc.hubdle.extensions._internal.TEST_FIXTURES
+import com.javiersc.hubdle.extensions._internal.TEST_FUNCTIONAL
+import com.javiersc.hubdle.extensions._internal.TEST_INTEGRATION
 import com.javiersc.hubdle.extensions._internal.catalogDependency
 import com.javiersc.hubdle.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.extensions.apis.BaseHubdleDelegateExtension
@@ -42,11 +49,17 @@ constructor(
 
     override fun Project.defaultConfiguration() {
         configurable {
-            forKotlinSetsDependencies("main", "commonMain") {
+            forKotlinSetsDependencies(MAIN, COMMON_MAIN) {
                 implementation(catalogDependency(COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_MODULE))
             }
 
-            forKotlinSetsDependencies("test", "commonTest") {
+            forKotlinSetsDependencies(
+                TEST,
+                COMMON_TEST,
+                TEST_FUNCTIONAL,
+                TEST_INTEGRATION,
+                TEST_FIXTURES,
+            ) {
                 implementation(calculateJavierScKotlinTestDependency())
             }
         }

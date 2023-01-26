@@ -4,11 +4,7 @@
 
 ### Added
 
-- `config.coverage.engine` property
-
 ### Changed
-
-- coverage uses Jacoco by default
 
 ### Deprecated
 
@@ -16,9 +12,21 @@
 
 ### Fixed
 
-- `testIntegration` source set and `integrationTest` task
-
 ### Updated
+
+## [0.4.0-alpha.6] - 2023-01-26
+
+### Added
+
+- `config.coverage.engine` property
+
+### Changed
+
+- coverage uses Jacoco by default
+
+### Fixed
+
+- `testIntegration` source set and `integrationTest` task
 
 ## [0.4.0-alpha.5] - 2023-01-26
 
@@ -157,7 +165,9 @@
 - `org.eclipse.jgit:org.eclipse.jgit -> 6.4.0.202211300538-r`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.2.0-alpha.46`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.5...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.6...HEAD
+
+[0.4.0-alpha.6]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.5...0.4.0-alpha.6
 
 [0.4.0-alpha.5]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.4...0.4.0-alpha.5
 

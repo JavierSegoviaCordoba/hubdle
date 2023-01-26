@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `com.diffplug.spotless:spotless-plugin-gradle -> 6.14.0`
+
 ## [0.4.0-alpha.6] - 2023-01-26
 
 ### Added

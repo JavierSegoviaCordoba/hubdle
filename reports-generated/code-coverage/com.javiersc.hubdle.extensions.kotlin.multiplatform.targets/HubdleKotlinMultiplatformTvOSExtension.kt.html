@@ -23,20 +23,20 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 @HubdleDslMarker
 public open class HubdleKotlinMultiplatformTvOSExtension
 @Inject
-<span class="fc" id="L26">constructor(</span>
+<span class="nc" id="L26">constructor(</span>
     project: Project,
-<span class="fc" id="L28">) : HubdleKotlinMinimalSourceSetConfigurableExtension(project) {</span>
+<span class="nc" id="L28">) : HubdleKotlinMinimalSourceSetConfigurableExtension(project) {</span>
 
     override val project: Project
-<span class="fc" id="L31">        get() = super.project</span>
+<span class="nc" id="L31">        get() = super.project</span>
 
-<span class="pc" id="L33">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
+<span class="nc" id="L33">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
 
-<span class="fc" id="L35">    override val priority: Priority = Priority.P3</span>
+<span class="nc" id="L35">    override val priority: Priority = Priority.P3</span>
 
-<span class="pc" id="L37">    override val targetName: String = &quot;tvos&quot;</span>
+<span class="nc" id="L37">    override val targetName: String = &quot;tvos&quot;</span>
 
-<span class="fc" id="L39">    public val allEnabled: Property&lt;Boolean&gt; = property { false }</span>
+<span class="nc" id="L39">    public val allEnabled: Property&lt;Boolean&gt; = property { false }</span>
 
     @HubdleDslMarker
 <span class="nc" id="L42">    public fun allEnabled(value: Boolean = true) {</span>
@@ -73,14 +73,14 @@ public open class HubdleKotlinMultiplatformTvOSExtension
 <span class="nc" id="L73">    }</span>
 
     override fun Project.defaultConfiguration() {
-<span class="fc" id="L76">        configurable {</span>
+<span class="nc" id="L76">        configurable {</span>
 <span class="nc bnc" id="L77" title="All 2 branches missed.">            if (allEnabled.get()) {</span>
 <span class="nc" id="L78">                tvosArm64()</span>
 <span class="nc" id="L79">                tvosSimulatorArm64()</span>
 <span class="nc" id="L80">                tvosX64()</span>
             }
 <span class="nc" id="L82">        }</span>
-<span class="fc" id="L83">        configurable(priority = Priority.P6) {</span>
+<span class="nc" id="L83">        configurable(priority = Priority.P6) {</span>
 <span class="nc" id="L84">            configure&lt;KotlinMultiplatformExtension&gt; {</span>
 <span class="nc" id="L85">                val commonMain: KotlinSourceSet by sourceSets.getting</span>
 <span class="nc" id="L86">                val tvosArm64Main: KotlinSourceSet? = sourceSets.findByName(&quot;tvosArm64Main&quot;)</span>
@@ -121,6 +121,6 @@ public open class HubdleKotlinMultiplatformTvOSExtension
                 }
 <span class="nc" id="L122">            }</span>
 <span class="nc" id="L123">        }</span>
-<span class="fc" id="L124">    }</span>
+<span class="nc" id="L124">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

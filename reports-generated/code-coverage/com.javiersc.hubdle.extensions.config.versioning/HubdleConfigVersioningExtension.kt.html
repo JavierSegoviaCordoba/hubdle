@@ -18,18 +18,18 @@ import org.gradle.kotlin.dsl.configure
 @HubdleDslMarker
 public abstract class HubdleConfigVersioningExtension
 @Inject
-<span class="fc" id="L21">constructor(</span>
+<span class="nc" id="L21">constructor(</span>
     project: Project,
-<span class="fc" id="L23">) : HubdleConfigurableExtension(project) {</span>
+<span class="nc" id="L23">) : HubdleConfigurableExtension(project) {</span>
 
-<span class="fc" id="L25">    override val isEnabled: Property&lt;Boolean&gt; = property { true }</span>
+<span class="nc" id="L25">    override val isEnabled: Property&lt;Boolean&gt; = property { true }</span>
 
     override val requiredExtensions: Set&lt;HubdleEnableableExtension&gt;
 <span class="nc" id="L28">        get() = setOf(hubdleConfig)</span>
 
-<span class="pc" id="L30">    override val priority: Priority = Priority.P3</span>
+<span class="nc" id="L30">    override val priority: Priority = Priority.P3</span>
 
-<span class="fc" id="L32">    public val tagPrefix: Property&lt;String&gt; = property { &quot;&quot; }</span>
+<span class="nc" id="L32">    public val tagPrefix: Property&lt;String&gt; = property { &quot;&quot; }</span>
 
     @HubdleDslMarker
 <span class="nc" id="L35">    public fun semver(action: Action&lt;SemverExtension&gt; = Action {}) {</span>
@@ -37,15 +37,15 @@ public abstract class HubdleConfigVersioningExtension
 <span class="nc" id="L37">    }</span>
 
     override fun Project.defaultConfiguration() {
-<span class="fc" id="L40">        applicablePlugin(</span>
-<span class="fc" id="L41">            priority = Priority.P1,</span>
-<span class="fc" id="L42">            scope = Scope.CurrentProject,</span>
-<span class="fc" id="L43">            pluginId = PluginId.JavierscSemverGradlePlugin</span>
+<span class="nc" id="L40">        applicablePlugin(</span>
+<span class="nc" id="L41">            priority = Priority.P1,</span>
+<span class="nc" id="L42">            scope = Scope.CurrentProject,</span>
+<span class="nc" id="L43">            pluginId = PluginId.JavierscSemverGradlePlugin</span>
         )
-<span class="fc" id="L45">        configurable(priority = Priority.P1) {</span>
+<span class="nc" id="L45">        configurable(priority = Priority.P1) {</span>
 <span class="nc" id="L46">            configure&lt;SemverExtension&gt; { tagPrefix.set(hubdleVersioning.tagPrefix.get()) }</span>
 <span class="nc" id="L47">        }</span>
-<span class="fc" id="L48">    }</span>
+<span class="nc" id="L48">    }</span>
 }
 
 internal val HubdleEnableableExtension.hubdleVersioning: HubdleConfigVersioningExtension

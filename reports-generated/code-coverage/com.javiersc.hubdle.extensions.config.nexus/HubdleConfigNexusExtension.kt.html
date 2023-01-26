@@ -22,16 +22,16 @@ import org.gradle.kotlin.dsl.configure
 @HubdleDslMarker
 public open class HubdleConfigNexusExtension
 @Inject
-<span class="fc" id="L25">constructor(</span>
+<span class="nc" id="L25">constructor(</span>
     project: Project,
-<span class="fc" id="L27">) : HubdleConfigurableExtension(project) {</span>
+<span class="nc" id="L27">) : HubdleConfigurableExtension(project) {</span>
 
-<span class="pc" id="L29">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
+<span class="nc" id="L29">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
 
     override val requiredExtensions: Set&lt;HubdleEnableableExtension&gt;
 <span class="nc" id="L32">        get() = setOf(hubdleConfig)</span>
 
-<span class="fc" id="L34">    override val priority: Priority = Priority.P3</span>
+<span class="nc" id="L34">    override val priority: Priority = Priority.P3</span>
 
     @HubdleDslMarker
 <span class="nc" id="L37">    public fun nexusPublishing(action: Action&lt;NexusPublishException&gt; = Action {}) {</span>
@@ -39,13 +39,13 @@ public open class HubdleConfigNexusExtension
 <span class="nc" id="L39">    }</span>
 
     override fun Project.defaultConfiguration() {
-<span class="fc" id="L42">        applicablePlugin(</span>
-<span class="fc" id="L43">            priority = Priority.P4,</span>
-<span class="fc" id="L44">            scope = Scope.CurrentProject,</span>
-<span class="fc" id="L45">            pluginId = PluginId.GithubGradleNexusPublishPlugin</span>
+<span class="nc" id="L42">        applicablePlugin(</span>
+<span class="nc" id="L43">            priority = Priority.P4,</span>
+<span class="nc" id="L44">            scope = Scope.CurrentProject,</span>
+<span class="nc" id="L45">            pluginId = PluginId.GithubGradleNexusPublishPlugin</span>
         )
 
-<span class="fc" id="L48">        configurable {</span>
+<span class="nc" id="L48">        configurable {</span>
 <span class="nc" id="L49">            configure&lt;NexusPublishExtension&gt; {</span>
 <span class="nc" id="L50">                repositoryDescription.set(&quot;${rootProject.group} - ${rootProject.version}&quot;)</span>
 
@@ -75,7 +75,7 @@ public open class HubdleConfigNexusExtension
 <span class="nc" id="L75">                }</span>
 <span class="nc" id="L76">            }</span>
 <span class="nc" id="L77">        }</span>
-<span class="fc" id="L78">    }</span>
+<span class="nc" id="L78">    }</span>
 
     internal companion object {
         private const val DEFAULT_CONNECT_TIMEOUT = 30L

@@ -17,21 +17,21 @@ import org.jetbrains.kotlin.gradle.targets.js.dsl.KotlinJsNodeDsl
 @HubdleDslMarker
 public open class HubdleKotlinMultiplatformJsExtension
 @Inject
-<span class="fc" id="L20">constructor(</span>
+<span class="nc" id="L20">constructor(</span>
     project: Project,
-<span class="fc" id="L22">) : HubdleKotlinMinimalSourceSetConfigurableExtension(project) {</span>
+<span class="nc" id="L22">) : HubdleKotlinMinimalSourceSetConfigurableExtension(project) {</span>
 
     override val project: Project
-<span class="fc" id="L25">        get() = super.project</span>
+<span class="nc" id="L25">        get() = super.project</span>
 
-<span class="pc" id="L27">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
+<span class="nc" id="L27">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
 
     override val requiredExtensions: Set&lt;HubdleEnableableExtension&gt;
 <span class="nc" id="L30">        get() = setOf(hubdleKotlinMultiplatform)</span>
 
-<span class="fc" id="L32">    override val priority: Priority = Priority.P3</span>
+<span class="nc" id="L32">    override val priority: Priority = Priority.P3</span>
 
-<span class="pc" id="L34">    override val targetName: String = &quot;js&quot;</span>
+<span class="nc" id="L34">    override val targetName: String = &quot;js&quot;</span>
 
     @HubdleDslMarker
 <span class="nc" id="L37">    public fun browser(action: Action&lt;KotlinJsBrowserDsl&gt; = Action {}) {</span>
@@ -48,7 +48,7 @@ public open class HubdleKotlinMultiplatformJsExtension
 <span class="nc" id="L48">    }</span>
 
     override fun Project.defaultConfiguration() {
-<span class="pc" id="L51">        configurable { configure&lt;KotlinMultiplatformExtension&gt; { js() } }</span>
-<span class="fc" id="L52">    }</span>
+<span class="nc" id="L51">        configurable { configure&lt;KotlinMultiplatformExtension&gt; { js() } }</span>
+<span class="nc" id="L52">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

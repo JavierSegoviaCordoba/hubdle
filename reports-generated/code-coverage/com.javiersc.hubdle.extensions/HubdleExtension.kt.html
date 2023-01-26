@@ -13,27 +13,27 @@ import org.gradle.api.provider.Property
 @HubdleDslMarker
 public open class HubdleExtension
 @Inject
-<span class="fc" id="L16">constructor(</span>
+<span class="nc" id="L16">constructor(</span>
     project: Project,
-<span class="fc" id="L18">) : HubdleEnableableExtension(project) {</span>
+<span class="nc" id="L18">) : HubdleEnableableExtension(project) {</span>
 
-<span class="pc" id="L20">    override val isEnabled: Property&lt;Boolean&gt; = property { true }</span>
+<span class="nc" id="L20">    override val isEnabled: Property&lt;Boolean&gt; = property { true }</span>
 
     public val config: HubdleConfigExtension
-<span class="fc" id="L23">        get() = getHubdleExtension()</span>
+<span class="nc" id="L23">        get() = getHubdleExtension()</span>
 
     @HubdleDslMarker
     public fun config(action: Action&lt;HubdleConfigExtension&gt;) {
-<span class="fc" id="L27">        config.enableAndExecute(action)</span>
-<span class="fc" id="L28">    }</span>
+<span class="nc" id="L27">        config.enableAndExecute(action)</span>
+<span class="nc" id="L28">    }</span>
 
     public val kotlin: HubdleKotlinExtension
-<span class="fc" id="L31">        get() = getHubdleExtension()</span>
+<span class="nc" id="L31">        get() = getHubdleExtension()</span>
 
     @HubdleDslMarker
     public fun kotlin(action: Action&lt;HubdleKotlinExtension&gt;) {
-<span class="fc" id="L35">        kotlin.enableAndExecute(action)</span>
-<span class="fc" id="L36">    }</span>
+<span class="nc" id="L35">        kotlin.enableAndExecute(action)</span>
+<span class="nc" id="L36">    }</span>
 }
 
 @DslMarker public annotation class HubdleDslMarker

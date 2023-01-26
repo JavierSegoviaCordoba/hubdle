@@ -23,35 +23,35 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 
 public open class HubdleJvmToolchainFeatureExtension
 @Inject
-<span class="fc" id="L26">constructor(</span>
+<span class="nc" id="L26">constructor(</span>
     project: Project,
-<span class="fc" id="L28">) : HubdleConfigurableExtension(project) {</span>
+<span class="nc" id="L28">) : HubdleConfigurableExtension(project) {</span>
 
-<span class="pc" id="L30">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
+<span class="nc" id="L30">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
 
-<span class="fc" id="L32">    override val priority: Priority = Priority.P3</span>
+<span class="nc" id="L32">    override val priority: Priority = Priority.P3</span>
 
     override val oneOfExtensions: Set&lt;HubdleEnableableExtension&gt;
 <span class="nc" id="L35">        get() = hubdleKotlinAny</span>
 
-<span class="fc" id="L37">    public val javaVersion: Property&lt;JavaVersion&gt; = property { JavaVersion.VERSION_1_8 }</span>
+<span class="nc" id="L37">    public val javaVersion: Property&lt;JavaVersion&gt; = property { JavaVersion.VERSION_1_8 }</span>
 
     private val javaLanguageVersion: Provider&lt;JavaLanguageVersion&gt; =
-<span class="pc" id="L40">        javaVersion.map { JavaLanguageVersion.of(it.majorVersion) }</span>
+<span class="nc" id="L40">        javaVersion.map { JavaLanguageVersion.of(it.majorVersion) }</span>
 
     @HubdleDslMarker
     public fun javaVersion(version: JavaVersion) {
 <span class="nc" id="L44">        this.javaVersion.set(version)</span>
 <span class="nc" id="L45">    }</span>
 
-<span class="fc" id="L47">    public val vendor: Property&lt;JvmVendorSpec?&gt; = property { null }</span>
+<span class="nc" id="L47">    public val vendor: Property&lt;JvmVendorSpec?&gt; = property { null }</span>
 
     @HubdleDslMarker
     public fun vendor(vendor: JvmVendorSpec) {
 <span class="nc" id="L51">        this.vendor.set(vendor)</span>
 <span class="nc" id="L52">    }</span>
 
-<span class="fc" id="L54">    public val implementation: Property&lt;JvmImplementation?&gt; = property { null }</span>
+<span class="nc" id="L54">    public val implementation: Property&lt;JvmImplementation?&gt; = property { null }</span>
 
     @HubdleDslMarker
     public fun implementation(implementation: JvmImplementation) {
@@ -64,7 +64,7 @@ public open class HubdleJvmToolchainFeatureExtension
 <span class="nc" id="L64">    }</span>
 
     override fun Project.defaultConfiguration() {
-<span class="fc" id="L67">        configurable {</span>
+<span class="nc" id="L67">        configurable {</span>
 <span class="nc" id="L68">            configure&lt;KotlinProjectExtension&gt; {</span>
 <span class="nc" id="L69">                jvmToolchain { chain -&gt;</span>
 <span class="nc" id="L70">                    chain.languageVersion.set(javaLanguageVersion)</span>
@@ -73,7 +73,7 @@ public open class HubdleJvmToolchainFeatureExtension
 <span class="nc" id="L73">                }</span>
 <span class="nc" id="L74">            }</span>
 <span class="nc" id="L75">        }</span>
-<span class="fc" id="L76">    }</span>
+<span class="nc" id="L76">    }</span>
 }
 
 public interface HubdleJvmToolchainDelegateFeatureExtension : BaseHubdleDelegateExtension {

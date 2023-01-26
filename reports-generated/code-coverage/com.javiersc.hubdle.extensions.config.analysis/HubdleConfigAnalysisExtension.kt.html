@@ -34,22 +34,22 @@ import org.sonarqube.gradle.SonarExtension
 @HubdleDslMarker
 public open class HubdleConfigAnalysisExtension
 @Inject
-<span class="fc" id="L37">constructor(</span>
+<span class="nc" id="L37">constructor(</span>
     project: Project,
-<span class="fc" id="L39">) : HubdleConfigurableExtension(project) {</span>
+<span class="nc" id="L39">) : HubdleConfigurableExtension(project) {</span>
 
-<span class="pc" id="L41">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
+<span class="nc" id="L41">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
 
     override val requiredExtensions: Set&lt;HubdleEnableableExtension&gt;
 <span class="nc" id="L44">        get() = setOf(hubdleConfig)</span>
 
-<span class="fc" id="L46">    override val priority: Priority = Priority.P3</span>
+<span class="nc" id="L46">    override val priority: Priority = Priority.P3</span>
 
-<span class="fc" id="L48">    public val ignoreFailures: Property&lt;Boolean&gt; = property { true }</span>
+<span class="nc" id="L48">    public val ignoreFailures: Property&lt;Boolean&gt; = property { true }</span>
 
-<span class="fc" id="L50">    public val includes: SetProperty&lt;String&gt; = setProperty { setOf(&quot;**/*.kt&quot;, &quot;**/*.kts&quot;) }</span>
+<span class="nc" id="L50">    public val includes: SetProperty&lt;String&gt; = setProperty { setOf(&quot;**/*.kt&quot;, &quot;**/*.kts&quot;) }</span>
 
-<span class="fc" id="L52">    public val excludes: SetProperty&lt;String&gt; = setProperty {</span>
+<span class="nc" id="L52">    public val excludes: SetProperty&lt;String&gt; = setProperty {</span>
         setOf(&quot;**/resources/**&quot;, &quot;**/build/**&quot;)
     }
 
@@ -77,19 +77,19 @@ public open class HubdleConfigAnalysisExtension
 <span class="nc" id="L77">    }</span>
 
     override fun Project.defaultConfiguration() {
-<span class="fc" id="L80">        applicablePlugin(</span>
-<span class="fc" id="L81">            priority = Priority.P4,</span>
-<span class="fc" id="L82">            scope = Scope.CurrentProject,</span>
-<span class="fc" id="L83">            pluginId = PluginId.Detekt</span>
+<span class="nc" id="L80">        applicablePlugin(</span>
+<span class="nc" id="L81">            priority = Priority.P4,</span>
+<span class="nc" id="L82">            scope = Scope.CurrentProject,</span>
+<span class="nc" id="L83">            pluginId = PluginId.Detekt</span>
         )
 
-<span class="fc" id="L86">        applicablePlugin(</span>
-<span class="fc" id="L87">            priority = Priority.P4,</span>
-<span class="fc" id="L88">            scope = Scope.CurrentProject,</span>
-<span class="fc" id="L89">            pluginId = PluginId.Sonarqube</span>
+<span class="nc" id="L86">        applicablePlugin(</span>
+<span class="nc" id="L87">            priority = Priority.P4,</span>
+<span class="nc" id="L88">            scope = Scope.CurrentProject,</span>
+<span class="nc" id="L89">            pluginId = PluginId.Sonarqube</span>
         )
 
-<span class="fc" id="L92">        configurable {</span>
+<span class="nc" id="L92">        configurable {</span>
             // TODO: Fix do this per project
 <span class="nc bnc" id="L94" title="All 2 branches missed.">            check(project.isRootProject) {</span>
 <span class="nc" id="L95">                &quot;&quot;&quot;Hubdle `analysis()` must be only configured in the root project&quot;&quot;&quot;</span>
@@ -103,7 +103,7 @@ public open class HubdleConfigAnalysisExtension
 <span class="nc" id="L103">            configureDetekt(project)</span>
 <span class="nc" id="L104">            configureSonarqube(project)</span>
 <span class="nc" id="L105">        }</span>
-<span class="fc" id="L106">    }</span>
+<span class="nc" id="L106">    }</span>
 
     private fun configureDetekt(project: Project) =
 <span class="nc" id="L109">        with(project) {</span>

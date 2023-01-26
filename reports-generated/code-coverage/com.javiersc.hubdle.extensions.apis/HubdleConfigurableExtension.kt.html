@@ -5,19 +5,19 @@ import com.javiersc.hubdle.extensions._internal.Configurable.Priority
 import org.gradle.api.Project
 import org.gradle.api.provider.Property
 
-<span class="fc" id="L8">public abstract class HubdleConfigurableExtension(</span>
+<span class="nc" id="L8">public abstract class HubdleConfigurableExtension(</span>
     project: Project,
-<span class="fc" id="L10">) : HubdleEnableableExtension(project) {</span>
+<span class="nc" id="L10">) : HubdleEnableableExtension(project) {</span>
 
     internal abstract val priority: Priority
 
     internal fun configurable(isEnabled: Property&lt;Boolean&gt;, config: Configurable.() -&gt; Unit) {
-<span class="fc" id="L15">        configurable(isEnabled, priority, config)</span>
-<span class="fc" id="L16">    }</span>
+<span class="nc" id="L15">        configurable(isEnabled, priority, config)</span>
+<span class="nc" id="L16">    }</span>
 
     internal fun configurable(config: Configurable.() -&gt; Unit) {
-<span class="fc" id="L19">        configurable(isFullEnabled, priority, config)</span>
-<span class="fc" id="L20">    }</span>
+<span class="nc" id="L19">        configurable(isFullEnabled, priority, config)</span>
+<span class="nc" id="L20">    }</span>
 
     internal abstract fun Project.defaultConfiguration()
 }

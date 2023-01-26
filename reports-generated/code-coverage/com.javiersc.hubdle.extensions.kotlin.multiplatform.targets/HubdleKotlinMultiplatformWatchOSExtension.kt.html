@@ -25,20 +25,20 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 @HubdleDslMarker
 public open class HubdleKotlinMultiplatformWatchOSExtension
 @Inject
-<span class="fc" id="L28">constructor(</span>
+<span class="nc" id="L28">constructor(</span>
     project: Project,
-<span class="fc" id="L30">) : HubdleKotlinMinimalSourceSetConfigurableExtension(project) {</span>
+<span class="nc" id="L30">) : HubdleKotlinMinimalSourceSetConfigurableExtension(project) {</span>
 
     override val project: Project
-<span class="fc" id="L33">        get() = super.project</span>
+<span class="nc" id="L33">        get() = super.project</span>
 
-<span class="pc" id="L35">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
+<span class="nc" id="L35">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
 
-<span class="fc" id="L37">    override val priority: Priority = Priority.P3</span>
+<span class="nc" id="L37">    override val priority: Priority = Priority.P3</span>
 
-<span class="pc" id="L39">    override val targetName: String = &quot;watchos&quot;</span>
+<span class="nc" id="L39">    override val targetName: String = &quot;watchos&quot;</span>
 
-<span class="fc" id="L41">    public val allEnabled: Property&lt;Boolean&gt; = property { false }</span>
+<span class="nc" id="L41">    public val allEnabled: Property&lt;Boolean&gt; = property { false }</span>
 
     @HubdleDslMarker
 <span class="nc" id="L44">    public fun allEnabled(value: Boolean = true) {</span>
@@ -99,7 +99,7 @@ public open class HubdleKotlinMultiplatformWatchOSExtension
 <span class="nc" id="L99">    }</span>
 
     override fun Project.defaultConfiguration() {
-<span class="fc" id="L102">        configurable {</span>
+<span class="nc" id="L102">        configurable {</span>
 <span class="nc bnc" id="L103" title="All 2 branches missed.">            if (allEnabled.get()) {</span>
 <span class="nc" id="L104">                watchosArm32()</span>
 <span class="nc" id="L105">                watchosArm64()</span>
@@ -108,7 +108,7 @@ public open class HubdleKotlinMultiplatformWatchOSExtension
 <span class="nc" id="L108">                watchosX86()</span>
             }
 <span class="nc" id="L110">        }</span>
-<span class="fc" id="L111">        configurable(priority = Priority.P6) {</span>
+<span class="nc" id="L111">        configurable(priority = Priority.P6) {</span>
 <span class="nc" id="L112">            configure&lt;KotlinMultiplatformExtension&gt; {</span>
 <span class="nc" id="L113">                val commonMain: KotlinSourceSet by sourceSets.getting</span>
 <span class="nc" id="L114">                val watchosArm32Main: KotlinSourceSet? = sourceSets.findByName(&quot;watchosArm32Main&quot;)</span>
@@ -157,6 +157,6 @@ public open class HubdleKotlinMultiplatformWatchOSExtension
                 }
 <span class="nc" id="L158">            }</span>
 <span class="nc" id="L159">        }</span>
-<span class="fc" id="L160">    }</span>
+<span class="nc" id="L160">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

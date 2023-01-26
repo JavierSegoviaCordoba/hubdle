@@ -23,19 +23,19 @@ import org.gradle.api.provider.Property
 
 public open class HubdleKotlinKotestFeatureExtension
 @Inject
-<span class="fc" id="L26">constructor(</span>
+<span class="nc" id="L26">constructor(</span>
     project: Project,
-<span class="fc" id="L28">) : HubdleConfigurableExtension(project) {</span>
+<span class="nc" id="L28">) : HubdleConfigurableExtension(project) {</span>
 
-<span class="pc" id="L30">    override val isEnabled: Property&lt;Boolean&gt; = property { true }</span>
+<span class="nc" id="L30">    override val isEnabled: Property&lt;Boolean&gt; = property { true }</span>
 
     override val oneOfExtensions: Set&lt;HubdleEnableableExtension&gt;
 <span class="nc" id="L33">        get() = hubdleKotlinAny</span>
 
-<span class="fc" id="L35">    override val priority: Priority = Priority.P4</span>
+<span class="nc" id="L35">    override val priority: Priority = Priority.P4</span>
 
     override fun Project.defaultConfiguration() {
-<span class="fc" id="L38">        configurable {</span>
+<span class="nc" id="L38">        configurable {</span>
 <span class="nc" id="L39">            forKotlinSetsDependencies(</span>
 <span class="nc" id="L40">                TEST,</span>
 <span class="nc" id="L41">                COMMON_TEST,</span>
@@ -46,7 +46,7 @@ public open class HubdleKotlinKotestFeatureExtension
 <span class="nc" id="L46">                implementation(catalogDependency(IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE))</span>
 <span class="nc" id="L47">            }</span>
 <span class="nc" id="L48">        }</span>
-<span class="fc" id="L49">    }</span>
+<span class="nc" id="L49">    }</span>
 }
 
 public interface HubdleKotlinKotestDelegateFeatureExtension : BaseHubdleDelegateExtension {

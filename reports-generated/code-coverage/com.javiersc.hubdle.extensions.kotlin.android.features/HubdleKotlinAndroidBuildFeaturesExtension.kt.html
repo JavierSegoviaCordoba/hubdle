@@ -17,27 +17,27 @@ import org.gradle.api.provider.Property
 @HubdleDslMarker
 public open class HubdleKotlinAndroidBuildFeaturesExtension
 @Inject
-<span class="fc" id="L20">constructor(</span>
+<span class="nc" id="L20">constructor(</span>
     project: Project,
-<span class="fc" id="L22">) : HubdleConfigurableExtension(project) {</span>
+<span class="nc" id="L22">) : HubdleConfigurableExtension(project) {</span>
 
-<span class="pc" id="L24">    override val isEnabled: Property&lt;Boolean&gt; = property { true }</span>
+<span class="nc" id="L24">    override val isEnabled: Property&lt;Boolean&gt; = property { true }</span>
 
     override val oneOfExtensions: Set&lt;HubdleEnableableExtension&gt;
 <span class="nc" id="L27">        get() = setOf(hubdleAndroidApplication, hubdleAndroidLibrary)</span>
 
-<span class="fc" id="L29">    override val priority: Priority = Priority.P4</span>
+<span class="nc" id="L29">    override val priority: Priority = Priority.P4</span>
 
-<span class="fc" id="L31">    public val aidl: Property&lt;Boolean?&gt; = property { null }</span>
-<span class="fc" id="L32">    public val buildConfig: Property&lt;Boolean?&gt; = property { null }</span>
-<span class="fc" id="L33">    public val compose: Property&lt;Boolean?&gt; = property { null }</span>
-<span class="fc" id="L34">    public val renderScript: Property&lt;Boolean?&gt; = property { null }</span>
-<span class="fc" id="L35">    public val resValues: Property&lt;Boolean?&gt; = property { null }</span>
-<span class="fc" id="L36">    public val shaders: Property&lt;Boolean?&gt; = property { null }</span>
-<span class="fc" id="L37">    public val viewBinding: Property&lt;Boolean?&gt; = property { null }</span>
+<span class="nc" id="L31">    public val aidl: Property&lt;Boolean?&gt; = property { null }</span>
+<span class="nc" id="L32">    public val buildConfig: Property&lt;Boolean?&gt; = property { null }</span>
+<span class="nc" id="L33">    public val compose: Property&lt;Boolean?&gt; = property { null }</span>
+<span class="nc" id="L34">    public val renderScript: Property&lt;Boolean?&gt; = property { null }</span>
+<span class="nc" id="L35">    public val resValues: Property&lt;Boolean?&gt; = property { null }</span>
+<span class="nc" id="L36">    public val shaders: Property&lt;Boolean?&gt; = property { null }</span>
+<span class="nc" id="L37">    public val viewBinding: Property&lt;Boolean?&gt; = property { null }</span>
 
     override fun Project.defaultConfiguration() {
-<span class="fc" id="L40">        configurable {</span>
+<span class="nc" id="L40">        configurable {</span>
 <span class="nc" id="L41">            val feats = this@HubdleKotlinAndroidBuildFeaturesExtension</span>
 <span class="nc" id="L42">            configureAndroidCommonExtension {</span>
 <span class="nc" id="L43">                buildFeatures.aidl =</span>
@@ -57,7 +57,7 @@ public open class HubdleKotlinAndroidBuildFeaturesExtension
 <span class="nc bnc" id="L57" title="All 4 branches missed.">                    feats.viewBinding.orNull ?: propOrNull(BuildFeatures.viewBinding) ?: false</span>
 <span class="nc" id="L58">            }</span>
 <span class="nc" id="L59">        }</span>
-<span class="fc" id="L60">    }</span>
+<span class="nc" id="L60">    }</span>
 }
 
 <span class="nc bnc" id="L63" title="All 2 branches missed.">private fun Project.propOrNull(key: String): Boolean? = getPropertyOrNull(key)?.toBoolean()</span>

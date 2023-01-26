@@ -36,13 +36,13 @@ import org.jetbrains.intellij.tasks.SignPluginTask
 @HubdleDslMarker
 public open class HubdleIntellijPluginFeatureExtension
 @Inject
-<span class="fc" id="L39">constructor(</span>
+<span class="nc" id="L39">constructor(</span>
     project: Project,
-<span class="fc" id="L41">) : HubdleConfigurableExtension(project) {</span>
+<span class="nc" id="L41">) : HubdleConfigurableExtension(project) {</span>
 
-<span class="pc" id="L43">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
+<span class="nc" id="L43">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
 
-<span class="fc" id="L45">    override val priority: Priority = Priority.P3</span>
+<span class="nc" id="L45">    override val priority: Priority = Priority.P3</span>
 
     override val requiredExtensions: Set&lt;HubdleEnableableExtension&gt;
 <span class="nc" id="L48">        get() = setOf(hubdleKotlin)</span>
@@ -68,32 +68,32 @@ public open class HubdleIntellijPluginFeatureExtension
 <span class="nc" id="L68">    }</span>
 
     override fun Project.defaultConfiguration() {
-<span class="fc" id="L71">        applicablePlugin(</span>
-<span class="fc" id="L72">            priority = Priority.P3,</span>
-<span class="fc" id="L73">            scope = Scope.CurrentProject,</span>
-<span class="fc" id="L74">            pluginId = PluginId.JetbrainsKotlinJvm</span>
+<span class="nc" id="L71">        applicablePlugin(</span>
+<span class="nc" id="L72">            priority = Priority.P3,</span>
+<span class="nc" id="L73">            scope = Scope.CurrentProject,</span>
+<span class="nc" id="L74">            pluginId = PluginId.JetbrainsKotlinJvm</span>
         )
 
-<span class="fc" id="L77">        applicablePlugin(</span>
-<span class="fc" id="L78">            priority = Priority.P3,</span>
-<span class="fc" id="L79">            scope = Scope.CurrentProject,</span>
-<span class="fc" id="L80">            pluginId = PluginId.JetbrainsIntellij</span>
+<span class="nc" id="L77">        applicablePlugin(</span>
+<span class="nc" id="L78">            priority = Priority.P3,</span>
+<span class="nc" id="L79">            scope = Scope.CurrentProject,</span>
+<span class="nc" id="L80">            pluginId = PluginId.JetbrainsIntellij</span>
         )
 
-<span class="fc" id="L83">        configurable {</span>
+<span class="nc" id="L83">        configurable {</span>
 <span class="nc" id="L84">            configureIntellijPluginExtension()</span>
 <span class="nc" id="L85">            configureGeneratedChangelogHtmlDependency()</span>
 <span class="nc" id="L86">            configurePatchPluginXml()</span>
 <span class="nc" id="L87">        }</span>
 
-<span class="fc" id="L89">        configurable(</span>
-<span class="fc" id="L90">            isEnabled = property { isFullEnabled.get() &amp;&amp; hubdlePublishing.isFullEnabled.get() },</span>
-<span class="fc" id="L91">            priority = Priority.P3,</span>
+<span class="nc" id="L89">        configurable(</span>
+<span class="nc" id="L90">            isEnabled = property { isFullEnabled.get() &amp;&amp; hubdlePublishing.isFullEnabled.get() },</span>
+<span class="nc" id="L91">            priority = Priority.P3,</span>
         ) {
 <span class="nc" id="L93">            configurePublishPlugin()</span>
 <span class="nc" id="L94">            configureSignPlugin()</span>
 <span class="nc" id="L95">        }</span>
-<span class="fc" id="L96">    }</span>
+<span class="nc" id="L96">    }</span>
 }
 
 private fun HubdleIntellijPluginFeatureExtension.configureIntellijPluginExtension() =

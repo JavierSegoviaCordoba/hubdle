@@ -14,24 +14,24 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 @HubdleDslMarker
 public open class HubdleKotlinMultiplatformJvmExtension
 @Inject
-<span class="fc" id="L17">constructor(</span>
+<span class="nc" id="L17">constructor(</span>
     project: Project,
-<span class="fc" id="L19">) : HubdleKotlinMinimalSourceSetConfigurableExtension(project) {</span>
+<span class="nc" id="L19">) : HubdleKotlinMinimalSourceSetConfigurableExtension(project) {</span>
 
     override val project: Project
-<span class="fc" id="L22">        get() = super.project</span>
+<span class="nc" id="L22">        get() = super.project</span>
 
-<span class="pc" id="L24">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
+<span class="nc" id="L24">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
 
     override val requiredExtensions: Set&lt;HubdleEnableableExtension&gt;
 <span class="nc" id="L27">        get() = setOf(hubdleKotlinMultiplatform)</span>
 
-<span class="fc" id="L29">    override val priority: Priority = Priority.P3</span>
+<span class="nc" id="L29">    override val priority: Priority = Priority.P3</span>
 
-<span class="pc" id="L31">    override val targetName: String = &quot;jvm&quot;</span>
+<span class="nc" id="L31">    override val targetName: String = &quot;jvm&quot;</span>
 
     override fun Project.defaultConfiguration() {
-<span class="pc" id="L34">        configurable { configure&lt;KotlinMultiplatformExtension&gt; { jvm() } }</span>
-<span class="fc" id="L35">    }</span>
+<span class="nc" id="L34">        configurable { configure&lt;KotlinMultiplatformExtension&gt; { jvm() } }</span>
+<span class="nc" id="L35">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

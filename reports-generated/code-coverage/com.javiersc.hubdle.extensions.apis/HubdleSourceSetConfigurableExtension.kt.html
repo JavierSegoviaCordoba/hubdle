@@ -6,16 +6,16 @@ import org.gradle.api.NamedDomainObjectProvider
 import org.gradle.api.Project
 import org.gradle.api.provider.Property
 
-<span class="fc" id="L9">public abstract class HubdleSourceSetConfigurableExtension&lt;T&gt;(</span>
+<span class="nc" id="L9">public abstract class HubdleSourceSetConfigurableExtension&lt;T&gt;(</span>
     project: Project,
-<span class="fc" id="L11">) : HubdleMinimalSourceSetConfigurableExtension&lt;T&gt;(project) {</span>
+<span class="nc" id="L11">) : HubdleMinimalSourceSetConfigurableExtension&lt;T&gt;(project) {</span>
 
     override val project: Project
-<span class="fc" id="L14">        get() = super.project</span>
+<span class="nc" id="L14">        get() = super.project</span>
 
-<span class="pc" id="L16">    public val isTestFunctionalEnabled: Property&lt;Boolean&gt; = property { false }</span>
+<span class="nc" id="L16">    public val isTestFunctionalEnabled: Property&lt;Boolean&gt; = property { false }</span>
 
-<span class="fc" id="L18">    internal val isTestFunctionalFullEnabled: Property&lt;Boolean&gt; = property {</span>
+<span class="nc" id="L18">    internal val isTestFunctionalFullEnabled: Property&lt;Boolean&gt; = property {</span>
         isTestFunctionalEnabled.get() &amp;&amp; isFullEnabled.get()
     }
 
@@ -27,9 +27,9 @@ import org.gradle.api.provider.Property
 <span class="nc" id="L27">        userConfigurable { testFunctional.configure(action) }</span>
 <span class="nc" id="L28">    }</span>
 
-<span class="fc" id="L30">    public val isTestIntegrationEnabled: Property&lt;Boolean&gt; = property { false }</span>
+<span class="nc" id="L30">    public val isTestIntegrationEnabled: Property&lt;Boolean&gt; = property { false }</span>
 
-<span class="pc" id="L32">    internal val isTestIntegrationFullEnabled: Property&lt;Boolean&gt; = property {</span>
+<span class="nc" id="L32">    internal val isTestIntegrationFullEnabled: Property&lt;Boolean&gt; = property {</span>
         isTestIntegrationEnabled.get() &amp;&amp; isFullEnabled.get()
     }
 
@@ -41,9 +41,9 @@ import org.gradle.api.provider.Property
 <span class="nc" id="L41">        userConfigurable { testIntegration.configure(action) }</span>
 <span class="nc" id="L42">    }</span>
 
-<span class="pc" id="L44">    public val isTestFixturesEnabled: Property&lt;Boolean&gt; = property { false }</span>
+<span class="nc" id="L44">    public val isTestFixturesEnabled: Property&lt;Boolean&gt; = property { false }</span>
 
-<span class="fc" id="L46">    internal val isTestFixturesFullEnabled: Property&lt;Boolean&gt; = property {</span>
+<span class="nc" id="L46">    internal val isTestFixturesFullEnabled: Property&lt;Boolean&gt; = property {</span>
         isTestFixturesEnabled.get() &amp;&amp; isFullEnabled.get()
     }
 

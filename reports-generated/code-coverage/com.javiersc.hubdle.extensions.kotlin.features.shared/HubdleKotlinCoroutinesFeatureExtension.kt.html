@@ -32,19 +32,19 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 
 public open class HubdleKotlinCoroutinesFeatureExtension
 @Inject
-<span class="fc" id="L35">constructor(</span>
+<span class="nc" id="L35">constructor(</span>
     project: Project,
-<span class="fc" id="L37">) : HubdleConfigurableExtension(project) {</span>
+<span class="nc" id="L37">) : HubdleConfigurableExtension(project) {</span>
 
-<span class="pc" id="L39">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
+<span class="nc" id="L39">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
 
     override val oneOfExtensions: Set&lt;HubdleEnableableExtension&gt;
 <span class="nc" id="L42">        get() = hubdleKotlinAny</span>
 
-<span class="fc" id="L44">    override val priority: Priority = Priority.P4</span>
+<span class="nc" id="L44">    override val priority: Priority = Priority.P4</span>
 
     override fun Project.defaultConfiguration() {
-<span class="fc" id="L47">        configurable {</span>
+<span class="nc" id="L47">        configurable {</span>
 <span class="nc" id="L48">            configure&lt;KotlinProjectExtension&gt; {</span>
 <span class="nc" id="L49">                forKotlinSetsDependencies(MAIN, COMMON_MAIN) {</span>
 <span class="nc" id="L50">                    implementation(</span>
@@ -65,22 +65,22 @@ public open class HubdleKotlinCoroutinesFeatureExtension
 <span class="nc" id="L65">                }</span>
 <span class="nc" id="L66">            }</span>
 <span class="nc" id="L67">        }</span>
-<span class="fc" id="L68">        configurable(isEnabled = isAnyAndroidFullEnabled) {</span>
+<span class="nc" id="L68">        configurable(isEnabled = isAnyAndroidFullEnabled) {</span>
 <span class="nc" id="L69">            forKotlinSetsDependencies(MAIN, ANDROID_MAIN) {</span>
 <span class="nc" id="L70">                implementation(</span>
 <span class="nc" id="L71">                    catalogDependency(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_ANDROID_MODULE)</span>
                 )
 <span class="nc" id="L73">            }</span>
 <span class="nc" id="L74">        }</span>
-<span class="fc" id="L75">    }</span>
+<span class="nc" id="L75">    }</span>
 }
 
 private val HubdleKotlinCoroutinesFeatureExtension.isAnyAndroidFullEnabled: Property&lt;Boolean&gt;
-<span class="fc" id="L79">    get() = property {</span>
+<span class="nc" id="L79">    get() = property {</span>
         isFullEnabled.get() &amp;&amp;
             (hubdleAndroidAny.any { it.isFullEnabled.get() } ||
                 hubdleKotlinMultiplatformAndroid.isFullEnabled.get())
-<span class="fc" id="L83">    }</span>
+<span class="nc" id="L83">    }</span>
 
 public interface HubdleKotlinCoroutinesDelegateFeatureExtension : BaseHubdleDelegateExtension {
 

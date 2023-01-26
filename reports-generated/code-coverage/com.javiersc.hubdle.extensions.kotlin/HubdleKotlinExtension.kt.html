@@ -21,11 +21,11 @@ import org.gradle.api.provider.Property
 @HubdleDslMarker
 public open class HubdleKotlinExtension
 @Inject
-<span class="fc" id="L24">constructor(</span>
+<span class="nc" id="L24">constructor(</span>
     project: Project,
-<span class="fc" id="L26">) : HubdleEnableableExtension(project) {</span>
+<span class="nc" id="L26">) : HubdleEnableableExtension(project) {</span>
 
-<span class="fc" id="L28">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
+<span class="nc" id="L28">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
 
     public val features: HubdleKotlinFeaturesExtension
 <span class="nc" id="L31">        get() = getHubdleExtension()</span>
@@ -36,20 +36,20 @@ public open class HubdleKotlinExtension
 <span class="nc" id="L36">    }</span>
 
     public val android: HubdleKotlinAndroidExtension
-<span class="fc" id="L39">        get() = getHubdleExtension()</span>
+<span class="nc" id="L39">        get() = getHubdleExtension()</span>
 
     @HubdleDslMarker
 <span class="nc" id="L42">    public fun android(action: Action&lt;HubdleKotlinAndroidExtension&gt; = Action {}) {</span>
-<span class="fc" id="L43">        android.enableAndExecute(action)</span>
-<span class="fc" id="L44">    }</span>
+<span class="nc" id="L43">        android.enableAndExecute(action)</span>
+<span class="nc" id="L44">    }</span>
 
     public val jvm: HubdleKotlinJvmExtension
-<span class="fc" id="L47">        get() = getHubdleExtension()</span>
+<span class="nc" id="L47">        get() = getHubdleExtension()</span>
 
     @HubdleDslMarker
-<span class="fc" id="L50">    public fun jvm(action: Action&lt;HubdleKotlinJvmExtension&gt; = Action {}) {</span>
-<span class="fc" id="L51">        jvm.enableAndExecute(action)</span>
-<span class="fc" id="L52">    }</span>
+<span class="nc" id="L50">    public fun jvm(action: Action&lt;HubdleKotlinJvmExtension&gt; = Action {}) {</span>
+<span class="nc" id="L51">        jvm.enableAndExecute(action)</span>
+<span class="nc" id="L52">    }</span>
 
     public val multiplatform: HubdleKotlinMultiplatformExtension
 <span class="nc" id="L55">        get() = getHubdleExtension()</span>
@@ -61,7 +61,7 @@ public open class HubdleKotlinExtension
 }
 
 internal val HubdleEnableableExtension.hubdleKotlin: HubdleKotlinExtension
-<span class="fc" id="L64">    get() = getHubdleExtension()</span>
+<span class="nc" id="L64">    get() = getHubdleExtension()</span>
 
 internal val HubdleEnableableExtension.hubdleKotlinAny: Set&lt;HubdleConfigurableExtension&gt;
     get() =

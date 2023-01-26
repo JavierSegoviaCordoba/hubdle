@@ -22,14 +22,14 @@ import org.gradle.api.provider.Property
 <span class="nc" id="L22">@HubdleDslMarker</span>
 public open class HubdleKotlinJvmFeaturesExtension
 @Inject
-<span class="fc" id="L25">constructor(</span>
+<span class="nc" id="L25">constructor(</span>
     project: Project,
-<span class="fc" id="L27">) : HubdleEnableableExtension(project), HubdleKotlinJvmDelegateFeaturesExtension {</span>
+<span class="nc" id="L27">) : HubdleEnableableExtension(project), HubdleKotlinJvmDelegateFeaturesExtension {</span>
 
     override val project: Project
-<span class="fc" id="L30">        get() = super.project</span>
+<span class="nc" id="L30">        get() = super.project</span>
 
-<span class="pc" id="L32">    public override val isEnabled: Property&lt;Boolean&gt; = property { true }</span>
+<span class="nc" id="L32">    public override val isEnabled: Property&lt;Boolean&gt; = property { true }</span>
 
     override val requiredExtensions: Set&lt;HubdleEnableableExtension&gt;
 <span class="nc" id="L35">        get() = setOf(hubdleKotlinJvm)</span>

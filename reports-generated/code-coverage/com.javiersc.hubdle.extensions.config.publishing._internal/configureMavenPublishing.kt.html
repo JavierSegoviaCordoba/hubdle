@@ -28,28 +28,28 @@ import org.gradle.kotlin.dsl.the
 import org.gradle.kotlin.dsl.withType
 import org.gradle.plugins.signing.SigningExtension
 
-<span class="fc" id="L31">internal fun HubdleConfigurableExtension.configurableMavenPublishing(</span>
-<span class="fc" id="L32">    mavenPublicationName: String? = null,</span>
-<span class="fc" id="L33">    configJavaExtension: Boolean = false,</span>
-<span class="fc" id="L34">    configEmptyJavaDocs: Boolean = false,</span>
-<span class="pc" id="L35">    additionalConfig: Configurable.() -&gt; Unit = {},</span>
+<span class="nc" id="L31">internal fun HubdleConfigurableExtension.configurableMavenPublishing(</span>
+<span class="nc" id="L32">    mavenPublicationName: String? = null,</span>
+<span class="nc" id="L33">    configJavaExtension: Boolean = false,</span>
+<span class="nc" id="L34">    configEmptyJavaDocs: Boolean = false,</span>
+<span class="nc" id="L35">    additionalConfig: Configurable.() -&gt; Unit = {},</span>
 ) =
-<span class="fc" id="L37">    with(project) {</span>
-<span class="fc" id="L38">        applicablePlugin(</span>
-<span class="fc" id="L39">            isEnabled = property { isEnabled.get() &amp;&amp; hubdlePublishing.isFullEnabled.get() },</span>
-<span class="fc" id="L40">            priority = Priority.P3,</span>
-<span class="fc" id="L41">            scope = Scope.CurrentProject,</span>
-<span class="fc" id="L42">            pluginId = PluginId.MavenPublish,</span>
+<span class="nc" id="L37">    with(project) {</span>
+<span class="nc" id="L38">        applicablePlugin(</span>
+<span class="nc" id="L39">            isEnabled = property { isEnabled.get() &amp;&amp; hubdlePublishing.isFullEnabled.get() },</span>
+<span class="nc" id="L40">            priority = Priority.P3,</span>
+<span class="nc" id="L41">            scope = Scope.CurrentProject,</span>
+<span class="nc" id="L42">            pluginId = PluginId.MavenPublish,</span>
         )
-<span class="fc" id="L44">        applicablePlugin(</span>
-<span class="fc" id="L45">            isEnabled = property { isEnabled.get() &amp;&amp; hubdlePublishing.isFullEnabled.get() },</span>
-<span class="fc" id="L46">            priority = Priority.P3,</span>
-<span class="fc" id="L47">            scope = Scope.CurrentProject,</span>
-<span class="fc" id="L48">            pluginId = PluginId.GradleSigning,</span>
+<span class="nc" id="L44">        applicablePlugin(</span>
+<span class="nc" id="L45">            isEnabled = property { isEnabled.get() &amp;&amp; hubdlePublishing.isFullEnabled.get() },</span>
+<span class="nc" id="L46">            priority = Priority.P3,</span>
+<span class="nc" id="L47">            scope = Scope.CurrentProject,</span>
+<span class="nc" id="L48">            pluginId = PluginId.GradleSigning,</span>
         )
-<span class="fc" id="L50">        configurable(</span>
-<span class="fc" id="L51">            isEnabled = property { isEnabled.get() &amp;&amp; hubdlePublishing.isFullEnabled.get() },</span>
-<span class="fc" id="L52">            priority = Priority.P3,</span>
+<span class="nc" id="L50">        configurable(</span>
+<span class="nc" id="L51">            isEnabled = property { isEnabled.get() &amp;&amp; hubdlePublishing.isFullEnabled.get() },</span>
+<span class="nc" id="L52">            priority = Priority.P3,</span>
         ) {
 <span class="nc" id="L54">            configurePublishingExtension()</span>
 <span class="nc" id="L55">            configureSigningForPublishing()</span>
@@ -67,7 +67,7 @@ import org.gradle.plugins.signing.SigningExtension
             }
 <span class="nc" id="L68">            additionalConfig()</span>
 <span class="nc" id="L69">        }</span>
-<span class="fc" id="L70">    }</span>
+<span class="nc" id="L70">    }</span>
 
 private fun HubdleConfigurableExtension.configurePublishingExtension() =
 <span class="nc" id="L73">    with(project) {</span>
@@ -195,7 +195,7 @@ private fun HubdleConfigurableExtension.configureSigningForPublishing() =
 <span class="nc bnc" id="L195" title="All 2 branches missed.">            val shouldSign = getPropertyOrNull(HubdleProperty.Publishing.sign)?.toBoolean() ?: false</span>
 
 <span class="nc bnc" id="L197" title="All 4 branches missed.">            val hasTaskCondition = (hasPublishTask &amp;&amp; !hasPublishToMavenLocalTasks)</span>
-<span class="nc bnc" id="L198" title="All 4 branches missed.">            val hasSemverCondition = project.isNotSnapshot &amp;&amp; project.isSemver</span>
+<span class="nc bnc" id="L198" title="All 4 branches missed.">            val hasSemverCondition = project.isNotSnapshot.get() &amp;&amp; project.isSemver</span>
 
 <span class="nc bnc" id="L200" title="All 6 branches missed.">            isRequired = (hasTaskCondition &amp;&amp; hasSemverCondition) || shouldSign</span>
 

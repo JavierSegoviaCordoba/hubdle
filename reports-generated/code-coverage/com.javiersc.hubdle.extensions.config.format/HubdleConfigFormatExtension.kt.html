@@ -29,32 +29,32 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 @HubdleDslMarker
 public open class HubdleConfigFormatExtension
 @Inject
-<span class="fc" id="L32">constructor(</span>
+<span class="nc" id="L32">constructor(</span>
     project: Project,
-<span class="fc" id="L34">) : HubdleConfigurableExtension(project) {</span>
+<span class="nc" id="L34">) : HubdleConfigurableExtension(project) {</span>
 
-<span class="pc" id="L36">    override val isEnabled: Property&lt;Boolean&gt; = property { true }</span>
+<span class="nc" id="L36">    override val isEnabled: Property&lt;Boolean&gt; = property { true }</span>
 
     override val requiredExtensions: Set&lt;HubdleEnableableExtension&gt;
 <span class="nc" id="L39">        get() = setOf(hubdleConfig)</span>
 
-<span class="fc" id="L41">    override val priority: Priority = Priority.P3</span>
+<span class="nc" id="L41">    override val priority: Priority = Priority.P3</span>
 
-<span class="fc" id="L43">    public val includes: SetProperty&lt;String&gt; = setProperty { emptySet() }</span>
+<span class="nc" id="L43">    public val includes: SetProperty&lt;String&gt; = setProperty { emptySet() }</span>
 
     @HubdleDslMarker
     public fun includes(vararg includes: String) {
 <span class="nc" id="L47">        this.includes.addAll(includes.toList())</span>
 <span class="nc" id="L48">    }</span>
 
-<span class="fc" id="L50">    public val excludes: SetProperty&lt;String&gt; = setProperty { emptySet() }</span>
+<span class="nc" id="L50">    public val excludes: SetProperty&lt;String&gt; = setProperty { emptySet() }</span>
 
     @HubdleDslMarker
     public fun excludes(vararg excludes: String) {
 <span class="nc" id="L54">        this.excludes.addAll(excludes.toList())</span>
 <span class="nc" id="L55">    }</span>
 
-<span class="fc" id="L57">    public val ktfmtVersion: Property&lt;String&gt; = property { COM_FACEBOOK_KTFMT_VERSION }</span>
+<span class="nc" id="L57">    public val ktfmtVersion: Property&lt;String&gt; = property { COM_FACEBOOK_KTFMT_VERSION }</span>
 
     @HubdleDslMarker
     public fun ktfmtVersion(version: String) {
@@ -72,13 +72,13 @@ public open class HubdleConfigFormatExtension
 <span class="nc" id="L72">    }</span>
 
     override fun Project.defaultConfiguration() {
-<span class="fc" id="L75">        applicablePlugin(</span>
-<span class="fc" id="L76">            priority = Priority.P4,</span>
-<span class="fc" id="L77">            scope = Scope.CurrentProject,</span>
-<span class="fc" id="L78">            pluginId = PluginId.DiffplugSpotless</span>
+<span class="nc" id="L75">        applicablePlugin(</span>
+<span class="nc" id="L76">            priority = Priority.P4,</span>
+<span class="nc" id="L77">            scope = Scope.CurrentProject,</span>
+<span class="nc" id="L78">            pluginId = PluginId.DiffplugSpotless</span>
         )
 
-<span class="fc" id="L81">        configurable {</span>
+<span class="nc" id="L81">        configurable {</span>
 <span class="nc" id="L82">            val checkTask = tasks.namedLazily&lt;Task&gt;(&quot;check&quot;)</span>
 
 <span class="nc" id="L84">            val checkFormat = tasks.maybeRegisterLazily&lt;Task&gt;(&quot;checkFormat&quot;)</span>
@@ -119,7 +119,7 @@ public open class HubdleConfigFormatExtension
             }
 <span class="nc" id="L120">        }</span>
 
-<span class="fc" id="L122">        configurable(priority = Priority.P6) {</span>
+<span class="nc" id="L122">        configurable(priority = Priority.P6) {</span>
 <span class="nc bnc" id="L123" title="All 2 branches missed.">            if (isRootProject) {</span>
 <span class="nc" id="L124">                configure&lt;SpotlessExtensionPredeclare&gt; {</span>
 <span class="nc" id="L125">                    kotlin { kotlin -&gt; kotlin.ktfmt(ktfmtVersion.get()) }</span>
@@ -134,7 +134,7 @@ public open class HubdleConfigFormatExtension
 <span class="nc" id="L134">                }</span>
 <span class="nc" id="L135">            }</span>
 <span class="nc" id="L136">        }</span>
-<span class="fc" id="L137">    }</span>
+<span class="nc" id="L137">    }</span>
 
     private val includedKotlinSourceSetDirsKotlinFiles: SetProperty&lt;String&gt;
 <span class="nc" id="L140">        get() = setProperty {</span>

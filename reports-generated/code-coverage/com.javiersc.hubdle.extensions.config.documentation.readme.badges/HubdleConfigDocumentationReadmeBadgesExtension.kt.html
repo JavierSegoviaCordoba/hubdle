@@ -17,27 +17,27 @@ import org.jetbrains.kotlin.gradle.plugin.getKotlinPluginVersion
 @HubdleDslMarker
 public open class HubdleConfigDocumentationReadmeBadgesExtension
 @Inject
-<span class="fc" id="L20">constructor(</span>
+<span class="nc" id="L20">constructor(</span>
     project: Project,
-<span class="fc" id="L22">) : HubdleConfigurableExtension(project) {</span>
+<span class="nc" id="L22">) : HubdleConfigurableExtension(project) {</span>
 
-<span class="pc" id="L24">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
+<span class="nc" id="L24">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
 
     override val requiredExtensions: Set&lt;HubdleEnableableExtension&gt;
 <span class="nc" id="L27">        get() = setOf(hubdleReadme)</span>
 
-<span class="fc" id="L29">    override val priority: Priority = Priority.P3</span>
+<span class="nc" id="L29">    override val priority: Priority = Priority.P3</span>
 
-<span class="fc" id="L31">    public val kotlin: Property&lt;Boolean&gt; = property { true }</span>
-<span class="fc" id="L32">    public val mavenCentral: Property&lt;Boolean&gt; = property { true }</span>
-<span class="fc" id="L33">    public val snapshots: Property&lt;Boolean&gt; = property { true }</span>
-<span class="fc" id="L34">    public val build: Property&lt;Boolean&gt; = property { true }</span>
-<span class="fc" id="L35">    public val coverage: Property&lt;Boolean&gt; = property { true }</span>
-<span class="fc" id="L36">    public val quality: Property&lt;Boolean&gt; = property { true }</span>
-<span class="fc" id="L37">    public val techDebt: Property&lt;Boolean&gt; = property { true }</span>
+<span class="nc" id="L31">    public val kotlin: Property&lt;Boolean&gt; = property { true }</span>
+<span class="nc" id="L32">    public val mavenCentral: Property&lt;Boolean&gt; = property { true }</span>
+<span class="nc" id="L33">    public val snapshots: Property&lt;Boolean&gt; = property { true }</span>
+<span class="nc" id="L34">    public val build: Property&lt;Boolean&gt; = property { true }</span>
+<span class="nc" id="L35">    public val coverage: Property&lt;Boolean&gt; = property { true }</span>
+<span class="nc" id="L36">    public val quality: Property&lt;Boolean&gt; = property { true }</span>
+<span class="nc" id="L37">    public val techDebt: Property&lt;Boolean&gt; = property { true }</span>
 
     override fun Project.defaultConfiguration() {
-<span class="fc" id="L40">        configurable {</span>
+<span class="nc" id="L40">        configurable {</span>
 <span class="nc bnc" id="L41" title="All 2 branches missed.">            val projectName = getPropertyOrNull(HubdleProperty.Project.mainProjectName) ?: name</span>
 
 <span class="nc" id="L43">            val projectKey =</span>
@@ -59,6 +59,6 @@ public open class HubdleConfigDocumentationReadmeBadgesExtension
 <span class="nc" id="L59">                task.projectKey.set(projectKey)</span>
 <span class="nc" id="L60">            }</span>
 <span class="nc" id="L61">        }</span>
-<span class="fc" id="L62">    }</span>
+<span class="nc" id="L62">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

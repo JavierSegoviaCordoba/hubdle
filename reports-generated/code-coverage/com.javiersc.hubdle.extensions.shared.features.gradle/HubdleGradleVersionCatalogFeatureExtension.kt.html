@@ -22,18 +22,18 @@ import org.gradle.kotlin.dsl.configure
 
 public open class HubdleGradleVersionCatalogFeatureExtension
 @Inject
-<span class="fc" id="L25">constructor(</span>
+<span class="nc" id="L25">constructor(</span>
     project: Project,
-<span class="fc" id="L27">) : HubdleConfigurableExtension(project) {</span>
+<span class="nc" id="L27">) : HubdleConfigurableExtension(project) {</span>
 
-<span class="pc" id="L29">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
+<span class="nc" id="L29">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
 
     override val requiredExtensions: Set&lt;HubdleEnableableExtension&gt;
 <span class="nc" id="L32">        get() = setOf(hubdleKotlin)</span>
 
-<span class="fc" id="L34">    override val priority: Priority = Priority.P3</span>
+<span class="nc" id="L34">    override val priority: Priority = Priority.P3</span>
 
-<span class="pc" id="L36">    public val catalogs: ConfigurableFileCollection = project.files(emptyList&lt;File&gt;())</span>
+<span class="nc" id="L36">    public val catalogs: ConfigurableFileCollection = project.files(emptyList&lt;File&gt;())</span>
 
     @HubdleDslMarker
     public fun catalogs(vararg files: File) {
@@ -41,20 +41,20 @@ public open class HubdleGradleVersionCatalogFeatureExtension
 <span class="nc" id="L41">    }</span>
 
     override fun Project.defaultConfiguration() {
-<span class="fc" id="L44">        applicablePlugin(</span>
-<span class="fc" id="L45">            priority = Priority.P3,</span>
-<span class="fc" id="L46">            scope = Scope.CurrentProject,</span>
-<span class="fc" id="L47">            PluginId.GradleVersionCatalog,</span>
+<span class="nc" id="L44">        applicablePlugin(</span>
+<span class="nc" id="L45">            priority = Priority.P3,</span>
+<span class="nc" id="L46">            scope = Scope.CurrentProject,</span>
+<span class="nc" id="L47">            PluginId.GradleVersionCatalog,</span>
         )
 
-<span class="fc" id="L50">        configurable {</span>
+<span class="nc" id="L50">        configurable {</span>
 <span class="nc" id="L51">            configure&lt;CatalogPluginExtension&gt; {</span>
 <span class="nc" id="L52">                versionCatalog { catalog -&gt; catalog.from(catalogs) }</span>
 <span class="nc" id="L53">            }</span>
 <span class="nc" id="L54">        }</span>
 
-<span class="fc" id="L56">        configurableMavenPublishing(mavenPublicationName = &quot;versionCatalog&quot;)</span>
-<span class="fc" id="L57">    }</span>
+<span class="nc" id="L56">        configurableMavenPublishing(mavenPublicationName = &quot;versionCatalog&quot;)</span>
+<span class="nc" id="L57">    }</span>
 }
 
 public interface HubdleGradleVersionCatalogDelegateFeatureExtension : BaseHubdleDelegateExtension {

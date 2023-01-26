@@ -26,11 +26,11 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 @HubdleDslMarker
 public open class HubdleConfigExtension
 @Inject
-<span class="fc" id="L29">constructor(</span>
+<span class="nc" id="L29">constructor(</span>
     project: Project,
-<span class="fc" id="L31">) : HubdleEnableableExtension(project) {</span>
+<span class="nc" id="L31">) : HubdleEnableableExtension(project) {</span>
 
-<span class="fc" id="L33">    override val isEnabled: Property&lt;Boolean&gt; = property { true }</span>
+<span class="nc" id="L33">    override val isEnabled: Property&lt;Boolean&gt; = property { true }</span>
 
     public val analysis: HubdleConfigAnalysisExtension
 <span class="nc" id="L36">        get() = getHubdleExtension()</span>
@@ -117,12 +117,12 @@ public open class HubdleConfigExtension
 <span class="nc" id="L117">    }</span>
 
     public val versioning: HubdleConfigVersioningExtension
-<span class="fc" id="L120">        get() = getHubdleExtension()</span>
+<span class="nc" id="L120">        get() = getHubdleExtension()</span>
 
     @HubdleDslMarker
 <span class="nc" id="L123">    public fun versioning(action: Action&lt;HubdleConfigVersioningExtension&gt; = Action {}) {</span>
-<span class="fc" id="L124">        versioning.enableAndExecute(action)</span>
-<span class="fc" id="L125">    }</span>
+<span class="nc" id="L124">        versioning.enableAndExecute(action)</span>
+<span class="nc" id="L125">    }</span>
 }
 
 internal val HubdleEnableableExtension.hubdleConfig: HubdleConfigExtension

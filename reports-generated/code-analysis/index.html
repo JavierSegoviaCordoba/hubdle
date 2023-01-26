@@ -157,11 +157,11 @@
 
 <div>
   <ul>
-    <li>1,287 number of properties</li>
-    <li>537 number of functions</li>
+    <li>1,292 number of properties</li>
+    <li>539 number of functions</li>
     <li>222 number of classes</li>
     <li>73 number of packages</li>
-    <li>204 number of kt files</li>
+    <li>205 number of kt files</li>
   </ul>
 </div>
 
@@ -170,13 +170,13 @@
 
 <div>
   <ul>
-    <li>12,642 lines of code (loc)</li>
-    <li>10,396 source lines of code (sloc)</li>
-    <li>6,857 logical lines of code (lloc)</li>
+    <li>12,674 lines of code (loc)</li>
+    <li>10,419 source lines of code (sloc)</li>
+    <li>6,875 logical lines of code (lloc)</li>
     <li>91 comment lines of code (cloc)</li>
     <li>915 cyclomatic complexity (mcc)</li>
     <li>486 cognitive complexity</li>
-    <li>88 number of total code smells</li>
+    <li>89 number of total code smells</li>
     <li>0% comment source ratio</li>
     <li>133 mcc per 1,000 lloc</li>
     <li>12 code smells per 1,000 lloc</li>
@@ -185,7 +185,7 @@
 
 
 <h2>Findings</h2>
-<div>Total: 88
+<div>Total: 89
   <h3>complexity: 12</h3>
   <details id="ComplexCondition" open="open">
     <summary class="rule-container"><span class="rule">ComplexCondition: 1 </span><span class="description">Complex conditions should be simplified and extracted into well-named methods if necessary.</span></summary>
@@ -360,7 +360,7 @@
       </li>
     </ul>
   </details>
-  <h3>naming: 52</h3>
+  <h3>naming: 53</h3>
   <details id="InvalidPackageDeclaration" open="open">
     <summary class="rule-container"><span class="rule">InvalidPackageDeclaration: 29 </span><span class="description">Kotlin source files should be stored in the directory corresponding to its package statement.</span></summary>
 <a href="https://detekt.dev/docs/rules/naming#invalidpackagedeclaration">Documentation</a>
@@ -587,7 +587,7 @@
     </ul>
   </details>
   <details id="PackageNaming" open="open">
-    <summary class="rule-container"><span class="rule">PackageNaming: 21 </span><span class="description">Package names should match the naming convention set in the configuration.</span></summary>
+    <summary class="rule-container"><span class="rule">PackageNaming: 22 </span><span class="description">Package names should match the naming convention set in the configuration.</span></summary>
 <a href="https://detekt.dev/docs/rules/naming#packagenaming">Documentation</a>
     <ul>
       <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/CatalogDependencies.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
@@ -741,6 +741,13 @@
 <span class="lineno">   2 </span>
 <span class="lineno">   3 </span>import java.io.File
 <span class="lineno">   4 </span>import org.eclipse.jgit.api.Git
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-gradle-plugin/test/kotlin/com/javiersc/hubdle/_utils/resourceFile.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle._utils</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>import java.io.File
+<span class="lineno">   4 </span>
 </code></pre>
       </li>
     </ul>
@@ -999,14 +1006,14 @@
 <span class="lineno">  73 </span>
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/_internal/configureKotlinSourceSets.kt:205:26</span><span class="message">Private property `testCompilation` is unused.</span>
-        <pre><code><span class="lineno"> 202 </span>private val KotlinTarget.mainCompilation: KotlinCompilation&lt;KotlinCommonOptions&gt;?
-<span class="lineno"> 203 </span>    get() = compilation(COMMON_MAIN) ?: compilation(MAIN)
-<span class="lineno"> 204 </span>
-<span class="lineno"> 205 </span>private val KotlinTarget.<span class="error">testCompilation</span>: KotlinCompilation&lt;KotlinCommonOptions&gt;?
-<span class="lineno"> 206 </span>    get() = compilation(COMMON_TEST) ?: compilation(TEST)
-<span class="lineno"> 207 </span>
-<span class="lineno"> 208 </span>private val KotlinTarget.testFixturesCompilation: KotlinCompilation&lt;KotlinCommonOptions&gt;?
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/_internal/configureKotlinSourceSets.kt:219:26</span><span class="message">Private property `testCompilation` is unused.</span>
+        <pre><code><span class="lineno"> 216 </span>private val KotlinTarget.mainCompilation: KotlinCompilation&lt;KotlinCommonOptions&gt;?
+<span class="lineno"> 217 </span>    get() = compilation(COMMON_MAIN) ?: compilation(MAIN)
+<span class="lineno"> 218 </span>
+<span class="lineno"> 219 </span>private val KotlinTarget.<span class="error">testCompilation</span>: KotlinCompilation&lt;KotlinCommonOptions&gt;?
+<span class="lineno"> 220 </span>    get() = compilation(COMMON_TEST) ?: compilation(TEST)
+<span class="lineno"> 221 </span>
+<span class="lineno"> 222 </span>private val KotlinTarget.testFixturesCompilation: KotlinCompilation&lt;KotlinCommonOptions&gt;?
 </code></pre>
       </li>
     </ul>
@@ -1014,7 +1021,7 @@
 </div>
 
 
-generated with <a href="https://detekt.dev/">detekt version 1.22.0</a> on 2023-01-26 01:17:59 UTC.
+generated with <a href="https://detekt.dev/">detekt version 1.22.0</a> on 2023-01-26 16:05:28 UTC.
 
 </body>
 </html>

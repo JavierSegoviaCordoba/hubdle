@@ -23,27 +23,27 @@ import org.gradle.api.provider.Property
 
 public open class HubdleKotlinSerializationFeatureExtension
 @Inject
-<span class="fc" id="L26">constructor(</span>
+<span class="nc" id="L26">constructor(</span>
     project: Project,
-<span class="fc" id="L28">) : HubdleConfigurableExtension(project) {</span>
+<span class="nc" id="L28">) : HubdleConfigurableExtension(project) {</span>
 
-<span class="pc" id="L30">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
+<span class="nc" id="L30">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
 
     override val oneOfExtensions: Set&lt;HubdleEnableableExtension&gt;
 <span class="nc" id="L33">        get() = hubdleKotlinAny</span>
 
-<span class="fc" id="L35">    override val priority: Priority = Priority.P4</span>
+<span class="nc" id="L35">    override val priority: Priority = Priority.P4</span>
 
-<span class="fc" id="L37">    public val json: Property&lt;Boolean&gt; = property { true }</span>
+<span class="nc" id="L37">    public val json: Property&lt;Boolean&gt; = property { true }</span>
 
     override fun Project.defaultConfiguration() {
-<span class="fc" id="L40">        applicablePlugin(</span>
-<span class="fc" id="L41">            priority = Priority.P4,</span>
-<span class="fc" id="L42">            scope = Scope.CurrentProject,</span>
-<span class="fc" id="L43">            pluginId = PluginId.JetbrainsKotlinPluginSerialization</span>
+<span class="nc" id="L40">        applicablePlugin(</span>
+<span class="nc" id="L41">            priority = Priority.P4,</span>
+<span class="nc" id="L42">            scope = Scope.CurrentProject,</span>
+<span class="nc" id="L43">            pluginId = PluginId.JetbrainsKotlinPluginSerialization</span>
         )
 
-<span class="fc" id="L46">        configurable {</span>
+<span class="nc" id="L46">        configurable {</span>
 <span class="nc" id="L47">            forKotlinSetsDependencies(MAIN, COMMON_MAIN) {</span>
 <span class="nc" id="L48">                implementation(</span>
 <span class="nc" id="L49">                    catalogDependency(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_CORE_MODULE)</span>
@@ -55,7 +55,7 @@ public open class HubdleKotlinSerializationFeatureExtension
                 }
 <span class="nc" id="L56">            }</span>
 <span class="nc" id="L57">        }</span>
-<span class="fc" id="L58">    }</span>
+<span class="nc" id="L58">    }</span>
 }
 
 public interface HubdleKotlinSerializationDelegateFeatureExtension : BaseHubdleDelegateExtension {

@@ -38,16 +38,16 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinTargetPreset
 @HubdleDslMarker
 public open class HubdleKotlinMultiplatformExtension
 @Inject
-<span class="fc" id="L41">constructor(</span>
+<span class="nc" id="L41">constructor(</span>
     project: Project,
-<span class="fc" id="L43">) : HubdleConfigurableExtension(project) {</span>
+<span class="nc" id="L43">) : HubdleConfigurableExtension(project) {</span>
 
-<span class="fc" id="L45">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
+<span class="nc" id="L45">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
 
     override val requiredExtensions: Set&lt;HubdleEnableableExtension&gt;
 <span class="nc" id="L48">        get() = setOf(hubdleKotlin)</span>
 
-<span class="fc" id="L50">    override val priority: Priority = Priority.P3</span>
+<span class="nc" id="L50">    override val priority: Priority = Priority.P3</span>
 
     public val features: HubdleKotlinMultiplatformFeaturesExtension
 <span class="nc" id="L53">        get() = getHubdleExtension()</span>
@@ -145,18 +145,18 @@ public open class HubdleKotlinMultiplatformExtension
 <span class="nc" id="L145">    }</span>
 
     override fun Project.defaultConfiguration() {
-<span class="fc" id="L148">        applicablePlugin(</span>
-<span class="fc" id="L149">            priority = Priority.P3,</span>
-<span class="fc" id="L150">            scope = Scope.CurrentProject,</span>
-<span class="fc" id="L151">            pluginId = PluginId.JetbrainsKotlinMultiplatform</span>
+<span class="nc" id="L148">        applicablePlugin(</span>
+<span class="nc" id="L149">            priority = Priority.P3,</span>
+<span class="nc" id="L150">            scope = Scope.CurrentProject,</span>
+<span class="nc" id="L151">            pluginId = PluginId.JetbrainsKotlinMultiplatform</span>
         )
 
-<span class="fc" id="L154">        configurableSrcDirs(multiplatformTargets())</span>
-<span class="fc" id="L155">        configurableDependencies()</span>
-<span class="fc" id="L156">        configurableMavenPublishing(configEmptyJavaDocs = true)</span>
-<span class="fc" id="L157">    }</span>
+<span class="nc" id="L154">        configurableSrcDirs(multiplatformTargets())</span>
+<span class="nc" id="L155">        configurableDependencies()</span>
+<span class="nc" id="L156">        configurableMavenPublishing(configEmptyJavaDocs = true)</span>
+<span class="nc" id="L157">    }</span>
 
-<span class="fc" id="L159">    private fun multiplatformTargets(): SetProperty&lt;String&gt; = setProperty {</span>
+<span class="nc" id="L159">    private fun multiplatformTargets(): SetProperty&lt;String&gt; = setProperty {</span>
         val hubdleTargets: List&lt;String&gt; =
             buildSet {
                     add(Common)
@@ -173,12 +173,12 @@ public open class HubdleKotlinMultiplatformExtension
             addAll(the&lt;KotlinMultiplatformExtension&gt;().presets.map(KotlinTargetPreset&lt;*&gt;::getName))
             addAll(hubdleTargets)
         }
-<span class="fc" id="L176">    }</span>
+<span class="nc" id="L176">    }</span>
 }
 
 internal val HubdleEnableableExtension.hubdleKotlinMultiplatform: HubdleKotlinMultiplatformExtension
 <span class="nc" id="L180">    get() = getHubdleExtension()</span>
 
 internal val Project.hubdleKotlinMultiplatform: HubdleKotlinMultiplatformExtension
-<span class="fc" id="L183">    get() = getHubdleExtension()</span>
+<span class="nc" id="L183">    get() = getHubdleExtension()</span>
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

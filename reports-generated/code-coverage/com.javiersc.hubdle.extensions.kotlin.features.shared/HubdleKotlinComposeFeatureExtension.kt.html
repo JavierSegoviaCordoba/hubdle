@@ -27,25 +27,25 @@ import org.jetbrains.compose.ComposeExtension
 
 public open class HubdleKotlinComposeFeatureExtension
 @Inject
-<span class="fc" id="L30">constructor(</span>
+<span class="nc" id="L30">constructor(</span>
     project: Project,
-<span class="fc" id="L32">) : HubdleConfigurableExtension(project) {</span>
+<span class="nc" id="L32">) : HubdleConfigurableExtension(project) {</span>
 
-<span class="pc" id="L34">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
+<span class="nc" id="L34">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
 
     override val oneOfExtensions: Set&lt;HubdleEnableableExtension&gt;
 <span class="nc" id="L37">        get() = hubdleKotlinAny</span>
 
-<span class="fc" id="L39">    override val priority: Priority = Priority.P4</span>
+<span class="nc" id="L39">    override val priority: Priority = Priority.P4</span>
 
-<span class="fc" id="L41">    public val compiler: Property&lt;String?&gt; = property { androidxComposeCompiler().get().toString() }</span>
+<span class="nc" id="L41">    public val compiler: Property&lt;String?&gt; = property { androidxComposeCompiler().get().toString() }</span>
 
     @HubdleDslMarker
     public fun compiler(dependencyNotation: String) {
 <span class="nc" id="L45">        compiler.set(dependencyNotation)</span>
 <span class="nc" id="L46">    }</span>
 
-<span class="fc" id="L48">    public val compilerVersion: Property&lt;String?&gt; = property {</span>
+<span class="nc" id="L48">    public val compilerVersion: Property&lt;String?&gt; = property {</span>
         androidxComposeCompiler().get().versionConstraint.displayName
     }
 
@@ -60,12 +60,12 @@ public open class HubdleKotlinComposeFeatureExtension
 <span class="nc" id="L60">    }</span>
 
     override fun Project.defaultConfiguration() {
-<span class="fc" id="L63">        applicablePlugin(</span>
-<span class="fc" id="L64">            priority = Priority.P4,</span>
-<span class="fc" id="L65">            scope = Scope.CurrentProject,</span>
-<span class="fc" id="L66">            pluginId = PluginId.JetbrainsCompose</span>
+<span class="nc" id="L63">        applicablePlugin(</span>
+<span class="nc" id="L64">            priority = Priority.P4,</span>
+<span class="nc" id="L65">            scope = Scope.CurrentProject,</span>
+<span class="nc" id="L66">            pluginId = PluginId.JetbrainsCompose</span>
         )
-<span class="fc" id="L68">        configurable {</span>
+<span class="nc" id="L68">        configurable {</span>
 <span class="nc" id="L69">            configure&lt;ComposeExtension&gt; { kotlinCompilerPlugin.set(compiler) }</span>
 <span class="nc bnc" id="L70" title="All 2 branches missed.">            if (hubdleAndroidFeatures.isFullEnabled.get()) {</span>
 <span class="nc" id="L71">                forKotlinSetsDependencies(MAIN) {</span>
@@ -79,7 +79,7 @@ public open class HubdleKotlinComposeFeatureExtension
 <span class="nc" id="L79">                }</span>
             }
 <span class="nc" id="L81">        }</span>
-<span class="fc" id="L82">    }</span>
+<span class="nc" id="L82">    }</span>
 }
 
 public interface HubdleKotlinComposeDelegateFeatureExtension : BaseHubdleDelegateExtension {

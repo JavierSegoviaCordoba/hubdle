@@ -26,19 +26,19 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 @HubdleDslMarker
 public open class HubdleKotlinAndroidLibraryExtension
 @Inject
-<span class="fc" id="L29">constructor(</span>
+<span class="nc" id="L29">constructor(</span>
     project: Project,
-<span class="fc" id="L31">) : HubdleKotlinMinimalSourceSetConfigurableExtension(project) {</span>
+<span class="nc" id="L31">) : HubdleKotlinMinimalSourceSetConfigurableExtension(project) {</span>
 
     override val project: Project
-<span class="fc" id="L34">        get() = super.project</span>
+<span class="nc" id="L34">        get() = super.project</span>
 
-<span class="fc" id="L36">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
+<span class="nc" id="L36">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
 
     override val requiredExtensions: Set&lt;HubdleEnableableExtension&gt;
-<span class="fc" id="L39">        get() = setOf(hubdleAndroid)</span>
+<span class="nc" id="L39">        get() = setOf(hubdleAndroid)</span>
 
-<span class="fc" id="L41">    override val priority: Priority = Priority.P3</span>
+<span class="nc" id="L41">    override val priority: Priority = Priority.P3</span>
 
     public val features: HubdleKotlinAndroidLibraryFeaturesExtension
 <span class="nc" id="L44">        get() = getHubdleExtension()</span>
@@ -75,9 +75,9 @@ public open class HubdleKotlinAndroidLibraryExtension
 <span class="nc" id="L75">    }</span>
 
     override fun Project.defaultConfiguration() {
-<span class="fc" id="L78">        applicablePlugins()</span>
+<span class="nc" id="L78">        applicablePlugins()</span>
 
-<span class="fc" id="L80">        configurable {</span>
+<span class="nc" id="L80">        configurable {</span>
 <span class="nc" id="L81">            configure&lt;LibraryExtension&gt; {</span>
 <span class="nc" id="L82">                compileSdk = hubdleAndroid.compileSdk.get()</span>
 <span class="nc" id="L83">                defaultConfig.minSdk = hubdleAndroid.minSdk.get()</span>
@@ -85,27 +85,27 @@ public open class HubdleKotlinAndroidLibraryExtension
 <span class="nc" id="L85">            }</span>
 <span class="nc" id="L86">        }</span>
 
-<span class="fc" id="L88">        configurableSrcDirs()</span>
-<span class="fc" id="L89">        configurableDependencies()</span>
-<span class="fc" id="L90">        configurePublishing()</span>
-<span class="fc" id="L91">    }</span>
+<span class="nc" id="L88">        configurableSrcDirs()</span>
+<span class="nc" id="L89">        configurableDependencies()</span>
+<span class="nc" id="L90">        configurePublishing()</span>
+<span class="nc" id="L91">    }</span>
 
     private fun applicablePlugins() {
-<span class="fc" id="L94">        applicablePlugin(</span>
-<span class="fc" id="L95">            priority = Priority.P3,</span>
-<span class="fc" id="L96">            scope = Scope.CurrentProject,</span>
-<span class="fc" id="L97">            pluginId = PluginId.AndroidLibrary,</span>
+<span class="nc" id="L94">        applicablePlugin(</span>
+<span class="nc" id="L95">            priority = Priority.P3,</span>
+<span class="nc" id="L96">            scope = Scope.CurrentProject,</span>
+<span class="nc" id="L97">            pluginId = PluginId.AndroidLibrary,</span>
         )
 
-<span class="fc" id="L100">        applicablePlugin(</span>
-<span class="fc" id="L101">            priority = Priority.P3,</span>
-<span class="fc" id="L102">            scope = Scope.CurrentProject,</span>
-<span class="fc" id="L103">            pluginId = PluginId.JetbrainsKotlinAndroid,</span>
+<span class="nc" id="L100">        applicablePlugin(</span>
+<span class="nc" id="L101">            priority = Priority.P3,</span>
+<span class="nc" id="L102">            scope = Scope.CurrentProject,</span>
+<span class="nc" id="L103">            pluginId = PluginId.JetbrainsKotlinAndroid,</span>
         )
-<span class="fc" id="L105">    }</span>
+<span class="nc" id="L105">    }</span>
 
     private fun configurePublishing() {
-<span class="fc" id="L108">        configurableMavenPublishing(mavenPublicationName = &quot;release&quot;) {</span>
+<span class="nc" id="L108">        configurableMavenPublishing(mavenPublicationName = &quot;release&quot;) {</span>
 <span class="nc" id="L109">            configure&lt;LibraryExtension&gt; {</span>
                 publishing {
 <span class="nc" id="L111">                    multipleVariants {</span>
@@ -116,12 +116,12 @@ public open class HubdleKotlinAndroidLibraryExtension
 <span class="nc" id="L116">                }</span>
             }
 <span class="nc" id="L118">        }</span>
-<span class="fc" id="L119">    }</span>
+<span class="nc" id="L119">    }</span>
 }
 
 internal val HubdleEnableableExtension.hubdleAndroidLibrary: HubdleKotlinAndroidLibraryExtension
 <span class="nc" id="L123">    get() = getHubdleExtension()</span>
 
 internal val Project.hubdleAndroidLibrary: HubdleKotlinAndroidLibraryExtension
-<span class="fc" id="L126">    get() = getHubdleExtension()</span>
+<span class="nc" id="L126">    get() = getHubdleExtension()</span>
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

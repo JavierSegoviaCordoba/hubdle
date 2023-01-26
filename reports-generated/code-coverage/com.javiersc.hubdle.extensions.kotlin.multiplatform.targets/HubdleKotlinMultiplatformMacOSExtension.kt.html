@@ -22,20 +22,20 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 @HubdleDslMarker
 public open class HubdleKotlinMultiplatformMacOSExtension
 @Inject
-<span class="fc" id="L25">constructor(</span>
+<span class="nc" id="L25">constructor(</span>
     project: Project,
-<span class="fc" id="L27">) : HubdleKotlinMinimalSourceSetConfigurableExtension(project) {</span>
+<span class="nc" id="L27">) : HubdleKotlinMinimalSourceSetConfigurableExtension(project) {</span>
 
     override val project: Project
-<span class="fc" id="L30">        get() = super.project</span>
+<span class="nc" id="L30">        get() = super.project</span>
 
-<span class="pc" id="L32">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
+<span class="nc" id="L32">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
 
-<span class="fc" id="L34">    override val priority: Priority = Priority.P3</span>
+<span class="nc" id="L34">    override val priority: Priority = Priority.P3</span>
 
-<span class="pc" id="L36">    override val targetName: String = &quot;macos&quot;</span>
+<span class="nc" id="L36">    override val targetName: String = &quot;macos&quot;</span>
 
-<span class="fc" id="L38">    public val allEnabled: Property&lt;Boolean&gt; = property { false }</span>
+<span class="nc" id="L38">    public val allEnabled: Property&lt;Boolean&gt; = property { false }</span>
 
     @HubdleDslMarker
 <span class="nc" id="L41">    public fun allEnabled(value: Boolean = true) {</span>
@@ -64,13 +64,13 @@ public open class HubdleKotlinMultiplatformMacOSExtension
 <span class="nc" id="L64">    }</span>
 
     override fun Project.defaultConfiguration() {
-<span class="fc" id="L67">        configurable {</span>
+<span class="nc" id="L67">        configurable {</span>
 <span class="nc bnc" id="L68" title="All 2 branches missed.">            if (allEnabled.get()) {</span>
 <span class="nc" id="L69">                macosArm64()</span>
 <span class="nc" id="L70">                macosX64()</span>
             }
 <span class="nc" id="L72">        }</span>
-<span class="fc" id="L73">        configurable(priority = Priority.P6) {</span>
+<span class="nc" id="L73">        configurable(priority = Priority.P6) {</span>
 <span class="nc" id="L74">            configure&lt;KotlinMultiplatformExtension&gt; {</span>
 <span class="nc" id="L75">                val commonMain: KotlinSourceSet by sourceSets.getting</span>
 <span class="nc" id="L76">                val macosX64Main: KotlinSourceSet? = sourceSets.findByName(&quot;macosX64Main&quot;)</span>
@@ -105,6 +105,6 @@ public open class HubdleKotlinMultiplatformMacOSExtension
                 }
 <span class="nc" id="L106">            }</span>
 <span class="nc" id="L107">        }</span>
-<span class="fc" id="L108">    }</span>
+<span class="nc" id="L108">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

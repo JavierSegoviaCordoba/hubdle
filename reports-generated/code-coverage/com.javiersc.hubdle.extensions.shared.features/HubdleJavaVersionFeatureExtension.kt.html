@@ -17,13 +17,13 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 public open class HubdleJavaVersionFeatureExtension
 @Inject
-<span class="fc" id="L20">constructor(</span>
+<span class="nc" id="L20">constructor(</span>
     project: Project,
-<span class="fc" id="L22">) : HubdleConfigurableExtension(project) {</span>
+<span class="nc" id="L22">) : HubdleConfigurableExtension(project) {</span>
 
-<span class="pc" id="L24">    override val isEnabled: Property&lt;Boolean&gt; = property { true }</span>
+<span class="nc" id="L24">    override val isEnabled: Property&lt;Boolean&gt; = property { true }</span>
 
-<span class="fc" id="L26">    override val priority: Priority = Priority.P3</span>
+<span class="nc" id="L26">    override val priority: Priority = Priority.P3</span>
 
     override val oneOfExtensions: Set&lt;HubdleEnableableExtension&gt;
 <span class="nc" id="L29">        get() = hubdleKotlinAny</span>
@@ -31,7 +31,7 @@ public open class HubdleJavaVersionFeatureExtension
     override val noneOfExtensions: Set&lt;HubdleEnableableExtension&gt;
 <span class="nc" id="L32">        get() = setOf(hubdleJvmToolchainFeature)</span>
 
-<span class="fc" id="L34">    public val jvmVersion: Property&lt;JavaVersion&gt; = property { JavaVersion.VERSION_1_8 }</span>
+<span class="nc" id="L34">    public val jvmVersion: Property&lt;JavaVersion&gt; = property { JavaVersion.VERSION_1_8 }</span>
 
     @HubdleDslMarker
     public fun jvmVersion(version: JavaVersion) {
@@ -39,7 +39,7 @@ public open class HubdleJavaVersionFeatureExtension
 <span class="nc" id="L39">    }</span>
 
     override fun Project.defaultConfiguration() {
-<span class="fc" id="L42">        configurable {</span>
+<span class="nc" id="L42">        configurable {</span>
 <span class="nc" id="L43">            tasks.withType&lt;JavaCompile&gt;().configureEach {</span>
 <span class="nc" id="L44">                it.sourceCompatibility = &quot;${jvmVersion.get()}&quot;</span>
 <span class="nc" id="L45">                it.targetCompatibility = &quot;${jvmVersion.get()}&quot;</span>
@@ -49,7 +49,7 @@ public open class HubdleJavaVersionFeatureExtension
 <span class="nc" id="L49">                it.kotlinOptions.jvmTarget = &quot;${jvmVersion.get()}&quot;</span>
 <span class="nc" id="L50">            }</span>
 <span class="nc" id="L51">        }</span>
-<span class="fc" id="L52">    }</span>
+<span class="nc" id="L52">    }</span>
 }
 
 public interface HubdleJavaVersionDelegateFeatureExtension : BaseHubdleDelegateExtension {

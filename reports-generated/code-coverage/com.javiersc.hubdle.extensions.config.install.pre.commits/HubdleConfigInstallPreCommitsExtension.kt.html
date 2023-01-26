@@ -20,27 +20,27 @@ import org.gradle.api.provider.Property
 
 public open class HubdleConfigInstallPreCommitsExtension
 @Inject
-<span class="fc" id="L23">constructor(</span>
+<span class="nc" id="L23">constructor(</span>
     project: Project,
-<span class="fc" id="L25">) : HubdleConfigurableExtension(project) {</span>
+<span class="nc" id="L25">) : HubdleConfigurableExtension(project) {</span>
 
-<span class="pc" id="L27">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
+<span class="nc" id="L27">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
 
     override val requiredExtensions: Set&lt;HubdleEnableableExtension&gt;
 <span class="nc" id="L30">        get() = setOf(hubdleInstall)</span>
 
-<span class="fc" id="L32">    override val priority: Priority = Priority.P3</span>
+<span class="nc" id="L32">    override val priority: Priority = Priority.P3</span>
 
-<span class="fc" id="L34">    public val allTests: Property&lt;Boolean&gt; = property { false }</span>
-<span class="fc" id="L35">    public val applyFormat: Property&lt;Boolean&gt; = property { false }</span>
-<span class="fc" id="L36">    public val assemble: Property&lt;Boolean&gt; = property { false }</span>
-<span class="fc" id="L37">    public val checkAnalysis: Property&lt;Boolean&gt; = property { false }</span>
-<span class="fc" id="L38">    public val checkApi: Property&lt;Boolean&gt; = property { false }</span>
-<span class="fc" id="L39">    public val checkFormat: Property&lt;Boolean&gt; = property { false }</span>
-<span class="fc" id="L40">    public val dumpApi: Property&lt;Boolean&gt; = property { false }</span>
+<span class="nc" id="L34">    public val allTests: Property&lt;Boolean&gt; = property { false }</span>
+<span class="nc" id="L35">    public val applyFormat: Property&lt;Boolean&gt; = property { false }</span>
+<span class="nc" id="L36">    public val assemble: Property&lt;Boolean&gt; = property { false }</span>
+<span class="nc" id="L37">    public val checkAnalysis: Property&lt;Boolean&gt; = property { false }</span>
+<span class="nc" id="L38">    public val checkApi: Property&lt;Boolean&gt; = property { false }</span>
+<span class="nc" id="L39">    public val checkFormat: Property&lt;Boolean&gt; = property { false }</span>
+<span class="nc" id="L40">    public val dumpApi: Property&lt;Boolean&gt; = property { false }</span>
 
     override fun Project.defaultConfiguration() {
-<span class="fc" id="L43">        configurable {</span>
+<span class="nc" id="L43">        configurable {</span>
 <span class="nc bnc" id="L44" title="All 2 branches missed.">            check(isRootProject) { &quot;Hubdle `install` must be configured only in the root project&quot; }</span>
 
 <span class="nc" id="L46">            InstallPreCommitTask.register(project)</span>
@@ -54,7 +54,7 @@ public open class HubdleConfigInstallPreCommitsExtension
 <span class="nc bnc" id="L54" title="All 2 branches missed.">            if (checkFormat.get()) InstallCheckFormatPreCommitTask.register(project)</span>
 <span class="nc bnc" id="L55" title="All 2 branches missed.">            if (dumpApi.get()) InstallDumpApiPreCommitTask.register(project)</span>
 <span class="nc" id="L56">        }</span>
-<span class="fc" id="L57">    }</span>
+<span class="nc" id="L57">    }</span>
 }
 
 internal val HubdleEnableableExtension.hubdlePreCommits: HubdleConfigInstallPreCommitsExtension

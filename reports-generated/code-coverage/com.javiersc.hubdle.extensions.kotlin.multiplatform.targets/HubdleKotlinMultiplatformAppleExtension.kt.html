@@ -20,23 +20,23 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 @HubdleDslMarker
 public open class HubdleKotlinMultiplatformAppleExtension
 @Inject
-<span class="fc" id="L23">constructor(</span>
+<span class="nc" id="L23">constructor(</span>
     project: Project,
-<span class="fc" id="L25">) : HubdleKotlinMinimalSourceSetConfigurableExtension(project) {</span>
+<span class="nc" id="L25">) : HubdleKotlinMinimalSourceSetConfigurableExtension(project) {</span>
 
     override val project: Project
-<span class="fc" id="L28">        get() = super.project</span>
+<span class="nc" id="L28">        get() = super.project</span>
 
-<span class="pc" id="L30">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
+<span class="nc" id="L30">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
 
-<span class="fc" id="L32">    override val priority: Priority = Priority.P3</span>
+<span class="nc" id="L32">    override val priority: Priority = Priority.P3</span>
 
     override val requiredExtensions: Set&lt;HubdleEnableableExtension&gt;
 <span class="nc" id="L35">        get() = setOf(hubdleKotlinMultiplatform)</span>
 
-<span class="pc" id="L37">    override val targetName: String = &quot;apple&quot;</span>
+<span class="nc" id="L37">    override val targetName: String = &quot;apple&quot;</span>
 
-<span class="fc" id="L39">    public val allEnabled: Property&lt;Boolean&gt; = property { false }</span>
+<span class="nc" id="L39">    public val allEnabled: Property&lt;Boolean&gt; = property { false }</span>
 
     @HubdleDslMarker
 <span class="nc" id="L42">    public fun allEnabled(value: Boolean = true) {</span>
@@ -76,7 +76,7 @@ public open class HubdleKotlinMultiplatformAppleExtension
 <span class="nc" id="L76">    }</span>
 
     override fun Project.defaultConfiguration() {
-<span class="fc" id="L79">        configurable {</span>
+<span class="nc" id="L79">        configurable {</span>
 <span class="nc bnc" id="L80" title="All 2 branches missed.">            if (allEnabled.get()) {</span>
 <span class="nc" id="L81">                ios.allEnabled()</span>
 <span class="nc" id="L82">                macos.allEnabled()</span>
@@ -85,7 +85,7 @@ public open class HubdleKotlinMultiplatformAppleExtension
             }
 <span class="nc" id="L86">        }</span>
 
-<span class="fc" id="L88">        configurable(priority = Priority.P6) {</span>
+<span class="nc" id="L88">        configurable(priority = Priority.P6) {</span>
 <span class="nc" id="L89">            configure&lt;KotlinMultiplatformExtension&gt; {</span>
 <span class="nc" id="L90">                val commonMain: KotlinSourceSet by sourceSets.getting</span>
 <span class="nc" id="L91">                val iosArm32Main: KotlinSourceSet? = sourceSets.findByName(&quot;iosArm32Main&quot;)</span>
@@ -175,6 +175,6 @@ public open class HubdleKotlinMultiplatformAppleExtension
                 }
 <span class="nc" id="L176">            }</span>
 <span class="nc" id="L177">        }</span>
-<span class="fc" id="L178">    }</span>
+<span class="nc" id="L178">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

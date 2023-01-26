@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>HubdleKotlinCoroutinesFeatureExtension.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">:</a> &gt; <a href="index.source.html" class="el_package">com.javiersc.hubdle.extensions.kotlin.features.shared</a> &gt; <span class="el_source">HubdleKotlinCoroutinesFeatureExtension.kt</span></div><h1>HubdleKotlinCoroutinesFeatureExtension.kt</h1><pre class="source lang-java linenums">package com.javiersc.hubdle.extensions.kotlin.features.shared
 
 import com.javiersc.hubdle.extensions.HubdleDslMarker
+import com.javiersc.hubdle.extensions._internal.ANDROID_MAIN
+import com.javiersc.hubdle.extensions._internal.COMMON_MAIN
+import com.javiersc.hubdle.extensions._internal.COMMON_TEST
 import com.javiersc.hubdle.extensions._internal.Configurable.Priority
+import com.javiersc.hubdle.extensions._internal.MAIN
+import com.javiersc.hubdle.extensions._internal.TEST
+import com.javiersc.hubdle.extensions._internal.TEST_FIXTURES
+import com.javiersc.hubdle.extensions._internal.TEST_FUNCTIONAL
+import com.javiersc.hubdle.extensions._internal.TEST_INTEGRATION
 import com.javiersc.hubdle.extensions._internal.catalogDependency
 import com.javiersc.hubdle.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.extensions.apis.BaseHubdleDelegateExtension
@@ -24,62 +32,68 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 
 public open class HubdleKotlinCoroutinesFeatureExtension
 @Inject
-<span class="fc" id="L27">constructor(</span>
+<span class="fc" id="L35">constructor(</span>
     project: Project,
-<span class="fc" id="L29">) : HubdleConfigurableExtension(project) {</span>
+<span class="fc" id="L37">) : HubdleConfigurableExtension(project) {</span>
 
-<span class="pc" id="L31">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
+<span class="pc" id="L39">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
 
     override val oneOfExtensions: Set&lt;HubdleEnableableExtension&gt;
-<span class="nc" id="L34">        get() = hubdleKotlinAny</span>
+<span class="nc" id="L42">        get() = hubdleKotlinAny</span>
 
-<span class="fc" id="L36">    override val priority: Priority = Priority.P4</span>
+<span class="fc" id="L44">    override val priority: Priority = Priority.P4</span>
 
     override fun Project.defaultConfiguration() {
-<span class="fc" id="L39">        configurable {</span>
-<span class="nc" id="L40">            configure&lt;KotlinProjectExtension&gt; {</span>
-<span class="nc" id="L41">                forKotlinSetsDependencies(&quot;main&quot;, &quot;commonMain&quot;) {</span>
-<span class="nc" id="L42">                    implementation(</span>
-<span class="nc" id="L43">                        catalogDependency(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_MODULE)</span>
+<span class="fc" id="L47">        configurable {</span>
+<span class="nc" id="L48">            configure&lt;KotlinProjectExtension&gt; {</span>
+<span class="nc" id="L49">                forKotlinSetsDependencies(MAIN, COMMON_MAIN) {</span>
+<span class="nc" id="L50">                    implementation(</span>
+<span class="nc" id="L51">                        catalogDependency(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_CORE_MODULE)</span>
                     )
-<span class="nc" id="L45">                }</span>
+<span class="nc" id="L53">                }</span>
 
-<span class="nc" id="L47">                forKotlinSetsDependencies(&quot;test&quot;, &quot;commonTest&quot;) {</span>
-<span class="nc" id="L48">                    implementation(</span>
-<span class="nc" id="L49">                        catalogDependency(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_TEST_MODULE)</span>
+<span class="nc" id="L55">                forKotlinSetsDependencies(</span>
+<span class="nc" id="L56">                    TEST,</span>
+<span class="nc" id="L57">                    COMMON_TEST,</span>
+<span class="nc" id="L58">                    TEST_FUNCTIONAL,</span>
+<span class="nc" id="L59">                    TEST_INTEGRATION,</span>
+<span class="nc" id="L60">                    TEST_FIXTURES</span>
+                ) {
+<span class="nc" id="L62">                    implementation(</span>
+<span class="nc" id="L63">                        catalogDependency(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_TEST_MODULE)</span>
                     )
-<span class="nc" id="L51">                }</span>
-<span class="nc" id="L52">            }</span>
-<span class="nc" id="L53">        }</span>
-<span class="fc" id="L54">        configurable(isEnabled = isAnyAndroidFullEnabled) {</span>
-<span class="nc" id="L55">            forKotlinSetsDependencies(&quot;main&quot;, &quot;androidMain&quot;) {</span>
-<span class="nc" id="L56">                implementation(</span>
-<span class="nc" id="L57">                    catalogDependency(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_ANDROID_MODULE)</span>
+<span class="nc" id="L65">                }</span>
+<span class="nc" id="L66">            }</span>
+<span class="nc" id="L67">        }</span>
+<span class="fc" id="L68">        configurable(isEnabled = isAnyAndroidFullEnabled) {</span>
+<span class="nc" id="L69">            forKotlinSetsDependencies(MAIN, ANDROID_MAIN) {</span>
+<span class="nc" id="L70">                implementation(</span>
+<span class="nc" id="L71">                    catalogDependency(ORG_JETBRAINS_KOTLINX_KOTLINX_COROUTINES_ANDROID_MODULE)</span>
                 )
-<span class="nc" id="L59">            }</span>
-<span class="nc" id="L60">        }</span>
-<span class="fc" id="L61">    }</span>
+<span class="nc" id="L73">            }</span>
+<span class="nc" id="L74">        }</span>
+<span class="fc" id="L75">    }</span>
 }
 
 private val HubdleKotlinCoroutinesFeatureExtension.isAnyAndroidFullEnabled: Property&lt;Boolean&gt;
-<span class="fc" id="L65">    get() = property {</span>
+<span class="fc" id="L79">    get() = property {</span>
         isFullEnabled.get() &amp;&amp;
             (hubdleAndroidAny.any { it.isFullEnabled.get() } ||
                 hubdleKotlinMultiplatformAndroid.isFullEnabled.get())
-<span class="fc" id="L69">    }</span>
+<span class="fc" id="L83">    }</span>
 
 public interface HubdleKotlinCoroutinesDelegateFeatureExtension : BaseHubdleDelegateExtension {
 
     public val coroutines: HubdleKotlinCoroutinesFeatureExtension
-<span class="nc" id="L74">        get() = project.getHubdleExtension()</span>
+<span class="nc" id="L88">        get() = project.getHubdleExtension()</span>
 
     @HubdleDslMarker
-<span class="nc" id="L77">    public fun coroutines(action: Action&lt;HubdleKotlinCoroutinesFeatureExtension&gt; = Action {}) {</span>
-<span class="nc" id="L78">        coroutines.enableAndExecute(action)</span>
-<span class="nc" id="L79">    }</span>
+<span class="nc" id="L91">    public fun coroutines(action: Action&lt;HubdleKotlinCoroutinesFeatureExtension&gt; = Action {}) {</span>
+<span class="nc" id="L92">        coroutines.enableAndExecute(action)</span>
+<span class="nc" id="L93">    }</span>
 }
 
 internal val HubdleEnableableExtension.hubdleCoroutinesFeature:
     HubdleKotlinCoroutinesFeatureExtension
-<span class="nc" id="L84">    get() = getHubdleExtension()</span>
+<span class="nc" id="L98">    get() = getHubdleExtension()</span>
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

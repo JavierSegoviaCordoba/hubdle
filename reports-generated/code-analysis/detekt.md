@@ -2,9 +2,9 @@
 
 ## Metrics
 
-* 1,268 number of properties
+* 1,287 number of properties
 
-* 536 number of functions
+* 537 number of functions
 
 * 222 number of classes
 
@@ -14,19 +14,19 @@
 
 ## Complexity Report
 
-* 12,515 lines of code (loc)
+* 12,642 lines of code (loc)
 
-* 10,273 source lines of code (sloc)
+* 10,396 source lines of code (sloc)
 
-* 6,798 logical lines of code (lloc)
+* 6,857 logical lines of code (lloc)
 
-* 97 comment lines of code (cloc)
+* 91 comment lines of code (cloc)
 
-* 905 cyclomatic complexity (mcc)
+* 915 cyclomatic complexity (mcc)
 
-* 480 cognitive complexity
+* 486 cognitive complexity
 
-* 87 number of total code smells
+* 88 number of total code smells
 
 * 0% comment source ratio
 
@@ -34,7 +34,7 @@
 
 * 12 code smells per 1,000 lloc
 
-## Findings (87)
+## Findings (88)
 
 ### complexity, ComplexCondition (1)
 
@@ -191,19 +191,19 @@ File '/home/runner/work/hubdle/hubdle/hubdle-gradle-plugin/main/kotlin/com/javie
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/apis/HubdleEnableableExtension.kt:21:23
+* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/apis/HubdleEnableableExtension.kt:22:23
 ```
 Class 'HubdleEnableableExtension' with '11' functions detected. Defined threshold inside classes is set to '11'
 ```
 ```kotlin
-18 import org.gradle.kotlin.dsl.configure
-19 import org.gradle.kotlin.dsl.the
-20 
-21 public abstract class HubdleEnableableExtension(
+19 import org.gradle.kotlin.dsl.configure
+20 import org.gradle.kotlin.dsl.the
+21 
+22 public abstract class HubdleEnableableExtension(
 !!                       ^ error
-22     internal open val project: Project,
-23 ) : BaseHubdleEnableableExtension {
-24 
+23     internal open val project: Project,
+24 ) : BaseHubdleEnableableExtension {
+25 
 
 ```
 
@@ -744,6 +744,19 @@ Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*
 
 ```
 
+* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/SourceSetsConstant.kt:1:1
+```
+Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*
+```
+```kotlin
+1 package com.javiersc.hubdle.extensions._internal
+! ^ error
+2 
+3 internal const val ANDROID_MAIN = "androidMain"
+4 internal const val MAIN = "main"
+
+```
+
 * hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/checkCompatibility.kt:1:1
 ```
 Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*
@@ -806,19 +819,6 @@ Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*
 2 
 3 import org.gradle.api.Project
 4 import org.gradle.api.provider.ListProperty
-
-```
-
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/sourceSetOutput.kt:1:1
-```
-Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*
-```
-```kotlin
-1 package com.javiersc.hubdle.extensions._internal
-! ^ error
-2 
-3 import com.javiersc.hubdle.extensions.apis.HubdleSourceSetConfigurableExtension
-4 import org.gradle.api.provider.Provider
 
 ```
 
@@ -925,8 +925,8 @@ Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*
 1 package com.javiersc.hubdle.extensions.kotlin._internal
 ! ^ error
 2 
-3 import com.javiersc.hubdle.extensions._internal.ApplicablePlugin.Scope
-4 import com.javiersc.hubdle.extensions._internal.PluginId
+3 import com.javiersc.gradle.tasks.extensions.namedLazily
+4 import com.javiersc.hubdle.extensions._internal.ApplicablePlugin.Scope
 
 ```
 
@@ -1111,19 +1111,19 @@ This comment contains 'TODO:' that has been defined as forbidden in detekt.
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/analysis/HubdleConfigAnalysisExtension.kt:94:13
+* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/analysis/HubdleConfigAnalysisExtension.kt:93:13
 ```
 This comment contains 'TODO:' that has been defined as forbidden in detekt.
 ```
 ```kotlin
-91         )
-92 
-93         configurable {
-94             // TODO: Fix do this per project
+90         )
+91 
+92         configurable {
+93             // TODO: Fix do this per project
 !!             ^ error
-95             check(project.isRootProject) {
-96                 """Hubdle `analysis()` must be only configured in the root project"""
-97             }
+94             check(project.isRootProject) {
+95                 """Hubdle `analysis()` must be only configured in the root project"""
+96             }
 
 ```
 
@@ -1347,7 +1347,7 @@ Line detected, which is longer than the defined maximum line length in the code 
 
 ```
 
-### style, UnusedPrivateMember (1)
+### style, UnusedPrivateMember (2)
 
 Private member is unused and should be removed.
 
@@ -1368,4 +1368,20 @@ Private property `apiValidationExtension` is unused.
 
 ```
 
-generated with [detekt version 1.22.0](https://detekt.dev/) on 2023-01-25 16:42:42 UTC
+* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/_internal/configureKotlinSourceSets.kt:205:26
+```
+Private property `testCompilation` is unused.
+```
+```kotlin
+202 private val KotlinTarget.mainCompilation: KotlinCompilation<KotlinCommonOptions>?
+203     get() = compilation(COMMON_MAIN) ?: compilation(MAIN)
+204 
+205 private val KotlinTarget.testCompilation: KotlinCompilation<KotlinCommonOptions>?
+!!!                          ^ error
+206     get() = compilation(COMMON_TEST) ?: compilation(TEST)
+207 
+208 private val KotlinTarget.testFixturesCompilation: KotlinCompilation<KotlinCommonOptions>?
+
+```
+
+generated with [detekt version 1.22.0](https://detekt.dev/) on 2023-01-26 00:51:10 UTC

@@ -157,8 +157,8 @@
 
 <div>
   <ul>
-    <li>1,268 number of properties</li>
-    <li>536 number of functions</li>
+    <li>1,287 number of properties</li>
+    <li>537 number of functions</li>
     <li>222 number of classes</li>
     <li>73 number of packages</li>
     <li>204 number of kt files</li>
@@ -170,13 +170,13 @@
 
 <div>
   <ul>
-    <li>12,515 lines of code (loc)</li>
-    <li>10,273 source lines of code (sloc)</li>
-    <li>6,798 logical lines of code (lloc)</li>
-    <li>97 comment lines of code (cloc)</li>
-    <li>905 cyclomatic complexity (mcc)</li>
-    <li>480 cognitive complexity</li>
-    <li>87 number of total code smells</li>
+    <li>12,642 lines of code (loc)</li>
+    <li>10,396 source lines of code (sloc)</li>
+    <li>6,857 logical lines of code (lloc)</li>
+    <li>91 comment lines of code (cloc)</li>
+    <li>915 cyclomatic complexity (mcc)</li>
+    <li>486 cognitive complexity</li>
+    <li>88 number of total code smells</li>
     <li>0% comment source ratio</li>
     <li>133 mcc per 1,000 lloc</li>
     <li>12 code smells per 1,000 lloc</li>
@@ -185,7 +185,7 @@
 
 
 <h2>Findings</h2>
-<div>Total: 87
+<div>Total: 88
   <h3>complexity: 12</h3>
   <details id="ComplexCondition" open="open">
     <summary class="rule-container"><span class="rule">ComplexCondition: 1 </span><span class="description">Complex conditions should be simplified and extracted into well-named methods if necessary.</span></summary>
@@ -292,14 +292,14 @@
 <span class="lineno">   4 </span>import com.android.build.api.dsl.LibraryExtension
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/apis/HubdleEnableableExtension.kt:21:23</span><span class="message">Class 'HubdleEnableableExtension' with '11' functions detected. Defined threshold inside classes is set to '11'</span>
-        <pre><code><span class="lineno">  18 </span>import org.gradle.kotlin.dsl.configure
-<span class="lineno">  19 </span>import org.gradle.kotlin.dsl.the
-<span class="lineno">  20 </span>
-<span class="lineno">  21 </span>public abstract class <span class="error">HubdleEnableableExtension</span>(
-<span class="lineno">  22 </span>    internal open val project: Project,
-<span class="lineno">  23 </span>) : BaseHubdleEnableableExtension {
-<span class="lineno">  24 </span>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/apis/HubdleEnableableExtension.kt:22:23</span><span class="message">Class 'HubdleEnableableExtension' with '11' functions detected. Defined threshold inside classes is set to '11'</span>
+        <pre><code><span class="lineno">  19 </span>import org.gradle.kotlin.dsl.configure
+<span class="lineno">  20 </span>import org.gradle.kotlin.dsl.the
+<span class="lineno">  21 </span>
+<span class="lineno">  22 </span>public abstract class <span class="error">HubdleEnableableExtension</span>(
+<span class="lineno">  23 </span>    internal open val project: Project,
+<span class="lineno">  24 </span>) : BaseHubdleEnableableExtension {
+<span class="lineno">  25 </span>
 </code></pre>
       </li>
       <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/HubdleConfigExtension.kt:27:19</span><span class="message">Class 'HubdleConfigExtension' with '11' functions detected. Defined threshold inside classes is set to '11'</span>
@@ -613,6 +613,13 @@
 <span class="lineno">   4 </span>    AdarshrTestLogger(&quot;com.adarshr.test-logger&quot;),
 </code></pre>
       </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/SourceSetsConstant.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
+        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions._internal</span>
+<span class="lineno">   2 </span>
+<span class="lineno">   3 </span>internal const val ANDROID_MAIN = &quot;androidMain&quot;
+<span class="lineno">   4 </span>internal const val MAIN = &quot;main&quot;
+</code></pre>
+      </li>
       <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/checkCompatibility.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
         <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions._internal</span>
 <span class="lineno">   2 </span>
@@ -646,13 +653,6 @@
 <span class="lineno">   2 </span>
 <span class="lineno">   3 </span>import org.gradle.api.Project
 <span class="lineno">   4 </span>import org.gradle.api.provider.ListProperty
-</code></pre>
-      </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/sourceSetOutput.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
-        <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions._internal</span>
-<span class="lineno">   2 </span>
-<span class="lineno">   3 </span>import com.javiersc.hubdle.extensions.apis.HubdleSourceSetConfigurableExtension
-<span class="lineno">   4 </span>import org.gradle.api.provider.Provider
 </code></pre>
       </li>
       <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/withPluginExtensions.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
@@ -711,8 +711,8 @@
       <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/_internal/configureKotlinSourceSets.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
         <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.kotlin._internal</span>
 <span class="lineno">   2 </span>
-<span class="lineno">   3 </span>import com.javiersc.hubdle.extensions._internal.ApplicablePlugin.Scope
-<span class="lineno">   4 </span>import com.javiersc.hubdle.extensions._internal.PluginId
+<span class="lineno">   3 </span>import com.javiersc.gradle.tasks.extensions.namedLazily
+<span class="lineno">   4 </span>import com.javiersc.hubdle.extensions._internal.ApplicablePlugin.Scope
 </code></pre>
       </li>
       <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/_internal/createAndConfigureHubdleKotlinExtensions.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
@@ -797,7 +797,7 @@
       </li>
     </ul>
   </details>
-  <h3>style: 18</h3>
+  <h3>style: 19</h3>
   <details id="ForbiddenComment" open="open">
     <summary class="rule-container"><span class="rule">ForbiddenComment: 10 </span><span class="description">Flags a forbidden comment.</span></summary>
 <a href="https://detekt.dev/docs/rules/style#forbiddencomment">Documentation</a>
@@ -832,14 +832,14 @@
 <span class="lineno">  23 </span>): SetProperty&lt;T&gt; = objects.setProperty&lt;T&gt;().convention(project.provider { block(this) })
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/analysis/HubdleConfigAnalysisExtension.kt:94:13</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
-        <pre><code><span class="lineno">  91 </span>        )
-<span class="lineno">  92 </span>
-<span class="lineno">  93 </span>        configurable {
-<span class="lineno">  94 </span>            <span class="error">// TODO: Fix do this per project</span>
-<span class="lineno">  95 </span>            check(project.isRootProject) {
-<span class="lineno">  96 </span>                &quot;&quot;&quot;Hubdle `analysis()` must be only configured in the root project&quot;&quot;&quot;
-<span class="lineno">  97 </span>            }
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/analysis/HubdleConfigAnalysisExtension.kt:93:13</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
+        <pre><code><span class="lineno">  90 </span>        )
+<span class="lineno">  91 </span>
+<span class="lineno">  92 </span>        configurable {
+<span class="lineno">  93 </span>            <span class="error">// TODO: Fix do this per project</span>
+<span class="lineno">  94 </span>            check(project.isRootProject) {
+<span class="lineno">  95 </span>                &quot;&quot;&quot;Hubdle `analysis()` must be only configured in the root project&quot;&quot;&quot;
+<span class="lineno">  96 </span>            }
 </code></pre>
       </li>
       <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/documentation/site/HubdleConfigDocumentationSiteExtension.kt:99:13</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
@@ -987,7 +987,7 @@
     </ul>
   </details>
   <details id="UnusedPrivateMember" open="open">
-    <summary class="rule-container"><span class="rule">UnusedPrivateMember: 1 </span><span class="description">Private member is unused and should be removed.</span></summary>
+    <summary class="rule-container"><span class="rule">UnusedPrivateMember: 2 </span><span class="description">Private member is unused and should be removed.</span></summary>
 <a href="https://detekt.dev/docs/rules/style#unusedprivatemember">Documentation</a>
     <ul>
       <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/binary/compatibility/validator/HubdleConfigBinaryCompatibilityValidatorExtension.kt:71:21</span><span class="message">Private property `apiValidationExtension` is unused.</span>
@@ -999,12 +999,22 @@
 <span class="lineno">  73 </span>
 </code></pre>
       </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/_internal/configureKotlinSourceSets.kt:205:26</span><span class="message">Private property `testCompilation` is unused.</span>
+        <pre><code><span class="lineno"> 202 </span>private val KotlinTarget.mainCompilation: KotlinCompilation&lt;KotlinCommonOptions&gt;?
+<span class="lineno"> 203 </span>    get() = compilation(COMMON_MAIN) ?: compilation(MAIN)
+<span class="lineno"> 204 </span>
+<span class="lineno"> 205 </span>private val KotlinTarget.<span class="error">testCompilation</span>: KotlinCompilation&lt;KotlinCommonOptions&gt;?
+<span class="lineno"> 206 </span>    get() = compilation(COMMON_TEST) ?: compilation(TEST)
+<span class="lineno"> 207 </span>
+<span class="lineno"> 208 </span>private val KotlinTarget.testFixturesCompilation: KotlinCompilation&lt;KotlinCommonOptions&gt;?
+</code></pre>
+      </li>
     </ul>
   </details>
 </div>
 
 
-generated with <a href="https://detekt.dev/">detekt version 1.22.0</a> on 2023-01-25 16:42:42 UTC.
+generated with <a href="https://detekt.dev/">detekt version 1.22.0</a> on 2023-01-26 00:51:10 UTC.
 
 </body>
 </html>

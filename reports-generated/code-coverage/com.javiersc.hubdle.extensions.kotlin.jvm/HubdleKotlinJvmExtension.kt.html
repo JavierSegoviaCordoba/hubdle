@@ -9,12 +9,12 @@ import com.javiersc.hubdle.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.extensions.apis.enableAndExecute
 import com.javiersc.hubdle.extensions.config.publishing._internal.configurableMavenPublishing
+import com.javiersc.hubdle.extensions.kotlin._internal.configurableKotlinTestFunctionalSourceSets
+import com.javiersc.hubdle.extensions.kotlin._internal.configurableKotlinTestIntegrationSourceSets
 import com.javiersc.hubdle.extensions.kotlin._internal.configurableSrcDirs
-import com.javiersc.hubdle.extensions.kotlin._internal.configureKotlinTestFunctionalSourceSets
-import com.javiersc.hubdle.extensions.kotlin._internal.configureKotlinTestIntegrationSourceSets
-import com.javiersc.hubdle.extensions.kotlin._internal.configureTestFixtures
-import com.javiersc.hubdle.extensions.kotlin._internal.configureTestFunctionalSourceSets
-import com.javiersc.hubdle.extensions.kotlin._internal.configureTestIntegrationSourceSets
+import com.javiersc.hubdle.extensions.kotlin._internal.configurableTestFixtures
+import com.javiersc.hubdle.extensions.kotlin._internal.configurableTestFunctionalSourceSets
+import com.javiersc.hubdle.extensions.kotlin._internal.configurableTestIntegrationSourceSets
 import com.javiersc.hubdle.extensions.kotlin.hubdleKotlin
 import com.javiersc.hubdle.extensions.kotlin.jvm.features.HubdleKotlinJvmFeaturesExtension
 import com.javiersc.hubdle.extensions.kotlin.shared.HubdleKotlinSourceSetConfigurableExtension
@@ -61,22 +61,21 @@ public open class HubdleKotlinJvmExtension
 <span class="fc" id="L61">            scope = Scope.CurrentProject,</span>
 <span class="fc" id="L62">            pluginId = PluginId.JetbrainsKotlinJvm</span>
         )
-
+<span class="fc" id="L64">        configurableTestFixtures()</span>
 <span class="fc" id="L65">        configurableSrcDirs()</span>
-<span class="fc" id="L66">        configureKotlinTestFunctionalSourceSets()</span>
-<span class="fc" id="L67">        configureTestFixtures()</span>
-<span class="fc" id="L68">        configureTestIntegrationSourceSets()</span>
-<span class="fc" id="L69">        configureKotlinTestIntegrationSourceSets()</span>
-<span class="fc" id="L70">        configureTestFunctionalSourceSets()</span>
-<span class="fc" id="L71">        configureKotlinTestFunctionalSourceSets()</span>
-<span class="fc" id="L72">        configurableDependencies()</span>
-<span class="fc" id="L73">        configurableMavenPublishing(mavenPublicationName = &quot;java&quot;, configJavaExtension = true)</span>
-<span class="fc" id="L74">    }</span>
+<span class="fc" id="L66">        configurableKotlinTestFunctionalSourceSets()</span>
+<span class="fc" id="L67">        configurableTestIntegrationSourceSets()</span>
+<span class="fc" id="L68">        configurableKotlinTestIntegrationSourceSets()</span>
+<span class="fc" id="L69">        configurableTestFunctionalSourceSets()</span>
+<span class="fc" id="L70">        configurableKotlinTestFunctionalSourceSets()</span>
+<span class="fc" id="L71">        configurableDependencies()</span>
+<span class="fc" id="L72">        configurableMavenPublishing(mavenPublicationName = &quot;java&quot;, configJavaExtension = true)</span>
+<span class="fc" id="L73">    }</span>
 }
 
 internal val HubdleEnableableExtension.hubdleKotlinJvm: HubdleKotlinJvmExtension
-<span class="nc" id="L78">    get() = getHubdleExtension()</span>
+<span class="nc" id="L77">    get() = getHubdleExtension()</span>
 
 internal val Project.hubdleKotlinJvm: HubdleKotlinJvmExtension
-<span class="fc" id="L81">    get() = getHubdleExtension()</span>
+<span class="fc" id="L80">    get() = getHubdleExtension()</span>
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

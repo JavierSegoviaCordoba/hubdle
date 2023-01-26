@@ -2,7 +2,9 @@
 
 import com.javiersc.hubdle.extensions.HubdleDslMarker
 import com.javiersc.hubdle.extensions._internal.ApplicablePlugin.Scope
+import com.javiersc.hubdle.extensions._internal.COMMON_MAIN
 import com.javiersc.hubdle.extensions._internal.Configurable.Priority
+import com.javiersc.hubdle.extensions._internal.MAIN
 import com.javiersc.hubdle.extensions._internal.PluginId
 import com.javiersc.hubdle.extensions._internal.catalogDependency
 import com.javiersc.hubdle.extensions._internal.getHubdleExtension
@@ -21,55 +23,55 @@ import org.gradle.api.provider.Property
 
 public open class HubdleKotlinSerializationFeatureExtension
 @Inject
-<span class="fc" id="L24">constructor(</span>
+<span class="fc" id="L26">constructor(</span>
     project: Project,
-<span class="fc" id="L26">) : HubdleConfigurableExtension(project) {</span>
+<span class="fc" id="L28">) : HubdleConfigurableExtension(project) {</span>
 
-<span class="pc" id="L28">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
+<span class="pc" id="L30">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
 
     override val oneOfExtensions: Set&lt;HubdleEnableableExtension&gt;
-<span class="nc" id="L31">        get() = hubdleKotlinAny</span>
+<span class="nc" id="L33">        get() = hubdleKotlinAny</span>
 
-<span class="fc" id="L33">    override val priority: Priority = Priority.P4</span>
+<span class="fc" id="L35">    override val priority: Priority = Priority.P4</span>
 
-<span class="fc" id="L35">    public val json: Property&lt;Boolean&gt; = property { true }</span>
+<span class="fc" id="L37">    public val json: Property&lt;Boolean&gt; = property { true }</span>
 
     override fun Project.defaultConfiguration() {
-<span class="fc" id="L38">        applicablePlugin(</span>
-<span class="fc" id="L39">            priority = Priority.P4,</span>
-<span class="fc" id="L40">            scope = Scope.CurrentProject,</span>
-<span class="fc" id="L41">            pluginId = PluginId.JetbrainsKotlinPluginSerialization</span>
+<span class="fc" id="L40">        applicablePlugin(</span>
+<span class="fc" id="L41">            priority = Priority.P4,</span>
+<span class="fc" id="L42">            scope = Scope.CurrentProject,</span>
+<span class="fc" id="L43">            pluginId = PluginId.JetbrainsKotlinPluginSerialization</span>
         )
 
-<span class="fc" id="L44">        configurable {</span>
-<span class="nc" id="L45">            forKotlinSetsDependencies(&quot;main&quot;, &quot;commonMain&quot;) {</span>
-<span class="nc" id="L46">                implementation(</span>
-<span class="nc" id="L47">                    catalogDependency(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_CORE_MODULE)</span>
+<span class="fc" id="L46">        configurable {</span>
+<span class="nc" id="L47">            forKotlinSetsDependencies(MAIN, COMMON_MAIN) {</span>
+<span class="nc" id="L48">                implementation(</span>
+<span class="nc" id="L49">                    catalogDependency(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_CORE_MODULE)</span>
                 )
-<span class="nc bnc" id="L49" title="All 2 branches missed.">                if (json.get()) {</span>
-<span class="nc" id="L50">                    implementation(</span>
-<span class="nc" id="L51">                        catalogDependency(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_JSON_MODULE)</span>
+<span class="nc bnc" id="L51" title="All 2 branches missed.">                if (json.get()) {</span>
+<span class="nc" id="L52">                    implementation(</span>
+<span class="nc" id="L53">                        catalogDependency(ORG_JETBRAINS_KOTLINX_KOTLINX_SERIALIZATION_JSON_MODULE)</span>
                     )
                 }
-<span class="nc" id="L54">            }</span>
-<span class="nc" id="L55">        }</span>
-<span class="fc" id="L56">    }</span>
+<span class="nc" id="L56">            }</span>
+<span class="nc" id="L57">        }</span>
+<span class="fc" id="L58">    }</span>
 }
 
 public interface HubdleKotlinSerializationDelegateFeatureExtension : BaseHubdleDelegateExtension {
 
     public val serialization: HubdleKotlinSerializationFeatureExtension
-<span class="nc" id="L62">        get() = project.getHubdleExtension()</span>
+<span class="nc" id="L64">        get() = project.getHubdleExtension()</span>
 
     @HubdleDslMarker
-<span class="nc" id="L65">    public fun serialization(</span>
-<span class="nc" id="L66">        action: Action&lt;HubdleKotlinSerializationFeatureExtension&gt; = Action {}</span>
+<span class="nc" id="L67">    public fun serialization(</span>
+<span class="nc" id="L68">        action: Action&lt;HubdleKotlinSerializationFeatureExtension&gt; = Action {}</span>
     ) {
-<span class="nc" id="L68">        serialization.enableAndExecute(action)</span>
-<span class="nc" id="L69">    }</span>
+<span class="nc" id="L70">        serialization.enableAndExecute(action)</span>
+<span class="nc" id="L71">    }</span>
 }
 
 internal val HubdleEnableableExtension.hubdleSerializationFeature:
     HubdleKotlinSerializationFeatureExtension
-<span class="nc" id="L74">    get() = getHubdleExtension()</span>
+<span class="nc" id="L76">    get() = getHubdleExtension()</span>
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -12,6 +12,8 @@ import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.extensions.config.hubdleConfig
 import com.javiersc.hubdle.extensions.config.testing.ALL_TEST_TASK_NAME
 import javax.inject.Inject
+import kotlinx.kover.api.CoverageEngineVariant
+import kotlinx.kover.api.DefaultJacocoEngine
 import kotlinx.kover.api.KoverMergedConfig
 import kotlinx.kover.api.KoverProjectConfig
 import org.gradle.api.Action
@@ -36,6 +38,13 @@ constructor(
 
     override val priority: Priority = Priority.P3
 
+    public val engine: Property<CoverageEngineVariant> = property { DefaultJacocoEngine }
+
+    @HubdleDslMarker
+    public fun engine(engine: CoverageEngineVariant) {
+        this.engine.set(engine)
+    }
+
     @HubdleDslMarker
     public fun kover(action: Action<KoverProjectConfig>) {
         userConfigurable { action.execute(the()) }
@@ -52,7 +61,11 @@ constructor(
             check(isRootProject) {
                 "Hubdle `coverage()` must be only configured in the root project"
             }
-            allprojects { allproject -> allproject.the<KoverMergedConfig>().enable() }
+            allprojects { allproject ->
+                val hubdleKoverEngine = this@HubdleConfigCoverageExtension.engine
+                allproject.the<KoverProjectConfig>().engine.set(hubdleKoverEngine)
+                allproject.the<KoverMergedConfig>().enable()
+            }
             afterEvaluate {
                 val shouldMergeCodeCoverageReports =
                     it.gradle.startParameter.taskNames.any { taskName ->

@@ -4,7 +4,11 @@
 
 ### Added
 
+- `config.coverage.engine` property
+
 ### Changed
+
+- coverage uses Jacoco by default
 
 ### Deprecated
 

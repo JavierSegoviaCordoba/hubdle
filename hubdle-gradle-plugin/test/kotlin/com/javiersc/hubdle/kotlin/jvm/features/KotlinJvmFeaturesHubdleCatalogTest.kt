@@ -2,7 +2,7 @@
 
 package com.javiersc.hubdle.kotlin.jvm.features
 
-import com.javiersc.gradle.testkit.test.extensions.GradleTest
+import com.javiersc.gradle.testkit.test.extensions.GradleTestKitTest
 import com.javiersc.hubdle.extensions.dependencies._internal.constants.COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_VERSION
 import com.javiersc.hubdle.extensions.dependencies._internal.constants.COM_JAVIERSC_KOTLIN_KOTLIN_TEST_JUNIT5_VERSION
 import com.javiersc.hubdle.extensions.dependencies._internal.constants.IO_KOTEST_KOTEST_ASSERTIONS_CORE_VERSION
@@ -14,7 +14,7 @@ import io.kotest.matchers.string.shouldContain
 import io.kotest.matchers.string.shouldNotContain
 import org.junit.jupiter.api.Test
 
-internal class KotlinJvmFeaturesHubdleCatalogTest : GradleTest() {
+internal class KotlinJvmFeaturesHubdleCatalogTest : GradleTestKitTest() {
 
     @Test
     fun `catalog disable javiersc stdlib`() {

@@ -2,12 +2,12 @@
 
 package com.javiersc.hubdle.kotlin.jvm.features
 
-import com.javiersc.gradle.testkit.test.extensions.GradleTest
+import com.javiersc.gradle.testkit.test.extensions.GradleTestKitTest
 import com.javiersc.hubdle.extensions.dependencies._internal.constants.COM_JAVIERSC_KOTLIN_KOTLIN_STDLIB_VERSION
 import io.kotest.matchers.string.shouldContain
 import kotlin.test.Test
 
-internal class KotlinJvmFeaturesUserCatalogTest : GradleTest() {
+internal class KotlinJvmFeaturesUserCatalogTest : GradleTestKitTest() {
 
     @Test
     fun `user catalog coroutines`() {

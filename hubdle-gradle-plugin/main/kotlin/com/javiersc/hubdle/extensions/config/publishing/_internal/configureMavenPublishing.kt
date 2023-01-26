@@ -195,7 +195,7 @@ private fun HubdleConfigurableExtension.configureSigningForPublishing() =
             val shouldSign = getPropertyOrNull(HubdleProperty.Publishing.sign)?.toBoolean() ?: false
 
             val hasTaskCondition = (hasPublishTask && !hasPublishToMavenLocalTasks)
-            val hasSemverCondition = project.isNotSnapshot && project.isSemver
+            val hasSemverCondition = project.isNotSnapshot.get() && project.isSemver
 
             isRequired = (hasTaskCondition && hasSemverCondition) || shouldSign
 

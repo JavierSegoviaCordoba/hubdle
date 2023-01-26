@@ -1,14 +1,14 @@
 package com.javiersc.hubdle
 
-import com.javiersc.gradle.testkit.test.extensions.GradleTest
+import com.javiersc.gradle.testkit.test.extensions.GradleTestKitTest
 import io.kotest.matchers.string.shouldContain
 import kotlin.test.Test
 
-class CheckCompatibilityTest : GradleTest() {
+class CheckCompatibilityTest : GradleTestKitTest() {
 
     @Test
     fun `check compatibility`() {
-        gradleTestKitTest("check-compatibility/1", withDebug = true) {
+        gradleTestKitTest("check-compatibility/1") {
             withArguments("build")
 
             val expectOutput =

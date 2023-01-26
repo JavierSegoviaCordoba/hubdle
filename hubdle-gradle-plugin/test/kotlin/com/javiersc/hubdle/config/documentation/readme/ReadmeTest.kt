@@ -1,12 +1,11 @@
 package com.javiersc.hubdle.config.documentation.readme
 
-import com.javiersc.gradle.testkit.test.extensions.GradleTest
-import com.javiersc.gradle.testkit.test.extensions.resourceFile
+import com.javiersc.gradle.testkit.test.extensions.GradleTestKitTest
 import io.kotest.matchers.shouldBe
 import java.io.File
 import kotlin.test.Test
 
-internal class ReadmeTest : GradleTest() {
+internal class ReadmeTest : GradleTestKitTest() {
 
     @Test
     fun `readme badges`() {

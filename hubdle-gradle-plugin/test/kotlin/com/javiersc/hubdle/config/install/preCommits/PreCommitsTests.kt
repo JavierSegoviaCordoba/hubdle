@@ -1,13 +1,13 @@
 package com.javiersc.hubdle.config.install.preCommits
 
-import com.javiersc.gradle.testkit.test.extensions.GradleTest
+import com.javiersc.gradle.testkit.test.extensions.GradleTestKitTest
 import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.collections.shouldNotContain
 import kotlin.test.Test
 import org.gradle.testkit.runner.GradleRunner
 
-class PreCommitsTests : GradleTest() {
+class PreCommitsTests : GradleTestKitTest() {
 
     private val basePath = "config/install/pre-commits"
 

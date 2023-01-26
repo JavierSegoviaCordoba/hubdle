@@ -1,6 +1,4 @@
-import kotlinx.kover.api.CoverageEngineVariant
 import kotlinx.kover.api.DefaultJacocoEngine
-import kotlinx.kover.api.KoverMergedConfig
 import kotlinx.kover.api.KoverProjectConfig
 
 plugins {

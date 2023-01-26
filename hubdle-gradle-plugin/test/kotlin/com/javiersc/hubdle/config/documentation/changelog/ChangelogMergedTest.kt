@@ -1,6 +1,6 @@
 package com.javiersc.hubdle.config.documentation.changelog
 
-import com.javiersc.gradle.testkit.test.extensions.resourceFile
+import com.javiersc.hubdle._utils.resourceFile
 import com.javiersc.hubdle.extensions.config.documentation.changelog._internal.Changelog
 import com.javiersc.hubdle.extensions.config.documentation.changelog._internal.fromString
 import com.javiersc.hubdle.extensions.config.documentation.changelog._internal.merged

@@ -59,8 +59,22 @@ internal fun HubdleSrcSetConfExt<*>.configurableTestFixtures() {
 }
 
 internal fun HubdleSrcSetConfExt<*>.configurableTestIntegrationSourceSets() {
-    configurable(isEnabled = isTestIntegrationEnabled) {
-        configure<SourceSetContainer> { maybeCreate(TEST_INTEGRATION) }
+    configurable(isEnabled = isTestFunctionalFullEnabled) {
+        val testIntegrationSourceSet = the<SourceSetContainer>().maybeCreate(TEST_INTEGRATION)
+
+        val integrationTestTask: TaskProvider<Test> =
+            tasks.register<Test>("integrationTest") {
+                testClassesDirs = testIntegrationSourceSet.output.classesDirs
+                classpath = testIntegrationSourceSet.runtimeClasspath
+                mustRunAfter(tasks.findByName("test"))
+            }
+
+        tasks.named<Task>(CHECK_TASK_NAME) { dependsOn(integrationTestTask) }
+
+        tasks.namedLazily<Task>(ALL_TEST_TASK_NAME).configureEach {
+            it.dependsOn(integrationTestTask)
+        }
+
         project.dependencies {
             "testIntegrationImplementation"(project)
             if (isTestFixturesFullEnabled.get()) {

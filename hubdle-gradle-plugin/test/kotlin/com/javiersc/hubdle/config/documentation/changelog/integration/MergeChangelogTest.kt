@@ -1,10 +1,10 @@
 package com.javiersc.hubdle.config.documentation.changelog.integration
 
-import com.javiersc.gradle.testkit.test.extensions.GradleTest
+import com.javiersc.gradle.testkit.test.extensions.GradleTestKitTest
 import com.javiersc.hubdle.config.documentation.changelog.utils.testChangelog
 import kotlin.test.Test
 
-internal class MergeChangelogTest : GradleTest() {
+internal class MergeChangelogTest : GradleTestKitTest() {
 
     private val basePath = "config/documentation/changelog/merge-changelog"
 

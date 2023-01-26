@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- `testIntegration` source set and `integrationTest` task
+
 ### Updated
 
 ## [0.4.0-alpha.5] - 2023-01-26

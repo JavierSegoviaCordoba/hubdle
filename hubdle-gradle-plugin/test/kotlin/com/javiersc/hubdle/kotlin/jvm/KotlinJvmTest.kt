@@ -1,6 +1,6 @@
 package com.javiersc.hubdle.kotlin.jvm
 
-import com.javiersc.gradle.testkit.test.extensions.GradleTest
+import com.javiersc.gradle.testkit.test.extensions.GradleTestKitTest
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.file.shouldBeADirectory
 import io.kotest.matchers.file.shouldBeAFile
@@ -10,7 +10,7 @@ import kotlin.test.BeforeTest
 import kotlin.test.Test
 import org.gradle.testkit.runner.GradleRunner
 
-internal class KotlinJvmTest : GradleTest() {
+internal class KotlinJvmTest : GradleTestKitTest() {
 
     private val basePath = "kotlin/jvm"
 

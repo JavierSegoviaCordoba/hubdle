@@ -1,11 +1,11 @@
 package com.javiersc.hubdle.config.documentation.changelog.integration
 
-import com.javiersc.gradle.testkit.test.extensions.GradleTest
+import com.javiersc.gradle.testkit.test.extensions.GradleTestKitTest
 import com.javiersc.hubdle.config.documentation.changelog.utils.testChangelog
 import kotlin.test.Test
 import org.gradle.testkit.runner.TaskOutcome
 
-internal class PatchChangelogTest : GradleTest() {
+internal class PatchChangelogTest : GradleTestKitTest() {
 
     private val basePath = "config/documentation/changelog/patch-changelog"
 

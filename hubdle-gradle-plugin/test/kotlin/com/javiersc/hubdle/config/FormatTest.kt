@@ -1,12 +1,12 @@
 package com.javiersc.hubdle.config
 
-import com.javiersc.gradle.testkit.test.extensions.GradleTest
+import com.javiersc.gradle.testkit.test.extensions.GradleTestKitTest
 import com.javiersc.kotlin.stdlib.fifth
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
 import kotlin.test.Test
 
-internal class FormatTest : GradleTest() {
+internal class FormatTest : GradleTestKitTest() {
 
     private val basePath = "config/format"
 

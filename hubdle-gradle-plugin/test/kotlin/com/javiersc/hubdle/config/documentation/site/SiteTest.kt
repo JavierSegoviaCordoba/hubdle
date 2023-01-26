@@ -1,14 +1,13 @@
 package com.javiersc.hubdle.config.documentation.site
 
-import com.javiersc.gradle.testkit.test.extensions.GradleTest
-import com.javiersc.gradle.testkit.test.extensions.resourceFile
+import com.javiersc.gradle.testkit.test.extensions.GradleTestKitTest
 import io.kotest.matchers.file.shouldBeADirectory
 import io.kotest.matchers.file.shouldBeAFile
 import io.kotest.matchers.file.shouldHaveSameStructureAndContentAs
 import java.io.File
 import kotlin.test.Test
 
-internal class SiteTest : GradleTest() {
+internal class SiteTest : GradleTestKitTest() {
 
     @Test
     fun `site docs`() {

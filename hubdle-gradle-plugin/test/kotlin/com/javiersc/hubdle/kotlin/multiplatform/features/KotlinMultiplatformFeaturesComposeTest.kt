@@ -1,12 +1,12 @@
 package com.javiersc.hubdle.kotlin.multiplatform.features
 
-import com.javiersc.gradle.testkit.test.extensions.GradleTest
+import com.javiersc.gradle.testkit.test.extensions.GradleTestKitTest
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import kotlin.test.Test
 import org.gradle.testkit.runner.TaskOutcome
 
-internal class KotlinMultiplatformFeaturesComposeTest : GradleTest() {
+internal class KotlinMultiplatformFeaturesComposeTest : GradleTestKitTest() {
 
     @Test
     fun compose() {

@@ -32,6 +32,7 @@ import org.gradle.api.provider.ListProperty
 import org.gradle.api.provider.Property
 import org.gradle.api.provider.Provider
 import org.gradle.api.provider.SetProperty
+import org.gradle.api.tasks.SourceSet
 import org.gradle.api.tasks.SourceSetContainer
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.withType
@@ -139,8 +140,9 @@ constructor(
         configurable(priority = Priority.P4) {
             configure<GradlePluginDevelopmentExtension> {
                 configure<SourceSetContainer> {
-                    findByName(TEST_FUNCTIONAL)?.let { testSourceSets(it) }
-                    findByName(TEST_INTEGRATION)?.let { testSourceSets(it) }
+                    val sets: List<SourceSet> =
+                        listOfNotNull(findByName(TEST_FUNCTIONAL), findByName(TEST_INTEGRATION))
+                    testSourceSets.addAll(sets)
                 }
             }
         }

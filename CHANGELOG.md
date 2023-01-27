@@ -6,11 +6,19 @@
 
 ### Changed
 
-- apply `jvmVersion` to `android.compilerOptions` compatibility properties 
-
 ### Deprecated
 
 ### Removed
+
+### Fixed
+
+### Updated
+
+## [0.4.0-alpha.7] - 2023-01-27
+
+### Changed
+
+- apply `jvmVersion` to `android.compilerOptions` compatibility properties
 
 ### Fixed
 
@@ -171,7 +179,9 @@
 - `org.eclipse.jgit:org.eclipse.jgit -> 6.4.0.202211300538-r`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.2.0-alpha.46`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.6...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.7...HEAD
+
+[0.4.0-alpha.7]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.6...0.4.0-alpha.7
 
 [0.4.0-alpha.6]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.5...0.4.0-alpha.6
 

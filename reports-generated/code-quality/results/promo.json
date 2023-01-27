@@ -1,31 +1,31 @@
 {"version":"3","listProblem":[{
   "tool": "Code Inspection",
-  "category": "Redundant constructs",
-  "type": "Unnecessary type argument",
+  "category": "Style issues",
+  "type": "Class member can have 'private' visibility",
   "severity": "Moderate",
-  "comment": "Remove explicit type arguments",
-  "detailsInfo": "Reports function calls with type arguments that can be automatically inferred. Such type arguments are redundant and can be safely omitted.\n\nUse the 'Remove explicit type arguments' quick-fix to clean up the code.\n\n**Examples:**\n\n\n      // 'String' type can be inferred here\n      fun foo(): MutableList<String> = mutableListOf<String>()\n\n      // Here 'String' cannot be inferred, type argument is required.\n      fun bar() = mutableListOf<String>()\n\nAfter the quick-fix is applied:\n\n\n      fun foo(): MutableList<String> = mutableListOf() <== Updated\n\n      fun bar() = mutableListOf<String>()\n",
+  "comment": "Property 'hubdleState' could be private",
+  "detailsInfo": "Reports declarations that can be made `private` to follow the encapsulation principle.\n\n**Example:**\n\n\n    class Service(val url: String) {\n        fun connect(): URLConnection = URL(url).openConnection()\n    }\n\nAfter the quick-fix is applied (considering there are no usages of `url` outside of `Service` class):\n\n\n    class Service(private val url: String) {\n        fun connect(): URLConnection = URL(url).openConnection()\n    }\n",
   "sources": [
     {
       "type": "file",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/documentation/changelog/AddChangelogItemTask.kt",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/apis/HubdleEnableableExtension.kt",
       "language": "kotlin",
-      "line": 155,
-      "offset": 14,
+      "line": 41,
+      "offset": 5,
       "length": 8,
       "code": {
-        "startLine": 153,
+        "startLine": 39,
         "length": 8,
-        "offset": 96,
-        "surroundingCode": "\nprivate fun String.addChanges(header: String, changes: List<String>): Changelog =\n    buildList<String> {\n            val firstVersionIndex =\n                lines().indexOfFirst {"
+        "offset": 32,
+        "surroundingCode": "        get() = emptySet()\n\n    internal val hubdleState: HubdleState\n        get() = project.hubdleState\n"
       }
     }
   ],
   "attributes": {
     "module": "hubdle.hubdle-gradle-plugin.main",
-    "inspectionName": "RemoveExplicitTypeArguments"
+    "inspectionName": "MemberVisibilityCanBePrivate"
   },
-  "hash": "9c311299c9e508748c5771094de88bff9d38933dc141392c264e0b9005d96d9b"
+  "hash": "65e138d107ccbff099bf7df3f4d48d29b3b5436729672705e2b26b2626733232"
 },{
   "tool": "Code Inspection",
   "category": "Style issues",
@@ -59,21 +59,21 @@
   "category": "Redundant constructs",
   "type": "Unused symbol",
   "severity": "High",
-  "comment": "Property \"hubdleLanguageSettings\" is never used",
+  "comment": "Property \"hubdleKotlinJvmFeatures\" is never used",
   "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
   "sources": [
     {
       "type": "file",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/language/settings/HubdleConfigLanguageSettingsExtension.kt",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/jvm/features/HubdleKotlinJvmFeaturesExtension.kt",
       "language": "kotlin",
-      "line": 93,
+      "line": 51,
       "offset": 40,
-      "length": 22,
+      "length": 23,
       "code": {
-        "startLine": 91,
-        "length": 22,
-        "offset": 42,
-        "surroundingCode": "}\n\ninternal val HubdleEnableableExtension.hubdleLanguageSettings: HubdleConfigLanguageSettingsExtension\n    get() = hubdleConfig.languageSettings\n"
+        "startLine": 49,
+        "length": 23,
+        "offset": 87,
+        "surroundingCode": "    HubdleJvmToolchainDelegateFeatureExtension\n\ninternal val HubdleEnableableExtension.hubdleKotlinJvmFeatures: HubdleKotlinJvmFeaturesExtension\n    get() = getHubdleExtension()\n"
       }
     }
   ],
@@ -81,27 +81,27 @@
     "module": "hubdle.hubdle-gradle-plugin.main",
     "inspectionName": "UnusedSymbol"
   },
-  "hash": "7ebf5564cb522638a8aedf50f6c3df6615de4e13e86d862eae6a838cf4e67d83"
+  "hash": "87b1bcf4f17d79caa3eac8b52f8a600ac1fe40f0333eeb8ce96e0ca4b3691263"
 },{
   "tool": "Code Inspection",
   "category": "Redundant constructs",
   "type": "Unused symbol",
   "severity": "High",
-  "comment": "Property \"hubdleKotlinFeatures\" is never used",
+  "comment": "Property \"hubdleAndroidApplicationFeatures\" is never used",
   "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
   "sources": [
     {
       "type": "file",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/features/HubdleKotlinFeaturesExtension.kt",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/application/features/HubdleKotlinAndroidApplicationFeaturesExtension.kt",
       "language": "kotlin",
-      "line": 24,
+      "line": 43,
       "offset": 40,
-      "length": 20,
+      "length": 32,
       "code": {
-        "startLine": 22,
-        "length": 20,
-        "offset": 42,
-        "surroundingCode": "}\n\ninternal val HubdleEnableableExtension.hubdleKotlinFeatures: HubdleKotlinFeaturesExtension\n    get() = getHubdleExtension()\n"
+        "startLine": 41,
+        "length": 32,
+        "offset": 87,
+        "surroundingCode": "    HubdleJvmToolchainDelegateFeatureExtension\n\ninternal val HubdleEnableableExtension.hubdleAndroidApplicationFeatures:\n    HubdleKotlinAndroidApplicationFeaturesExtension\n    get() = getHubdleExtension()"
       }
     }
   ],
@@ -109,5 +109,537 @@
     "module": "hubdle.hubdle-gradle-plugin.main",
     "inspectionName": "UnusedSymbol"
   },
-  "hash": "6f30291373d5bfcc693b937b38eeeccc78b34a63302c05de8b1ccd31d2ce6627"
+  "hash": "4ffc1e94dc9c77318422891fdc5509a6bdeaa40bc1851f393f103eb9b0a8936a"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "severity": "High",
+  "comment": "Property \"hubdleCoroutinesFeature\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinCoroutinesFeatureExtension.kt",
+      "language": "kotlin",
+      "line": 96,
+      "offset": 40,
+      "length": 23,
+      "code": {
+        "startLine": 94,
+        "length": 23,
+        "offset": 42,
+        "surroundingCode": "}\n\ninternal val HubdleEnableableExtension.hubdleCoroutinesFeature:\n    HubdleKotlinCoroutinesFeatureExtension\n    get() = getHubdleExtension()"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-gradle-plugin.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "eeacedc9f7a69d56a5e18066aff9d1b7b7d77f181b132ce49748ad471644dc64"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "severity": "High",
+  "comment": "Property \"hubdleComposeFeature\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinComposeFeatureExtension.kt",
+      "language": "kotlin",
+      "line": 99,
+      "offset": 22,
+      "length": 20,
+      "code": {
+        "startLine": 97,
+        "length": 20,
+        "offset": 55,
+        "surroundingCode": "    get() = getHubdleExtension()\n\ninternal val Project.hubdleComposeFeature: HubdleKotlinComposeFeatureExtension\n    get() = getHubdleExtension()\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-gradle-plugin.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "c81eeb06e070656e69dc734a8ac8cd8df701a7c20c513f0159920aceba47a52d"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "severity": "High",
+  "comment": "Property \"hubdleComposeFeature\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinComposeFeatureExtension.kt",
+      "language": "kotlin",
+      "line": 96,
+      "offset": 40,
+      "length": 20,
+      "code": {
+        "startLine": 94,
+        "length": 20,
+        "offset": 42,
+        "surroundingCode": "}\n\ninternal val HubdleEnableableExtension.hubdleComposeFeature: HubdleKotlinComposeFeatureExtension\n    get() = getHubdleExtension()\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-gradle-plugin.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "f34c35ca4290c08c9db8925bb93bf7e5a9f6c5bfb108f4be8edd3f8b2d592c3d"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "severity": "High",
+  "comment": "Property \"hubdleJavaVersionFeature\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/shared/features/HubdleJavaVersionFeatureExtension.kt",
+      "language": "kotlin",
+      "line": 66,
+      "offset": 40,
+      "length": 24,
+      "code": {
+        "startLine": 64,
+        "length": 24,
+        "offset": 42,
+        "surroundingCode": "}\n\ninternal val HubdleEnableableExtension.hubdleJavaVersionFeature: HubdleJavaVersionFeatureExtension\n    get() = getHubdleExtension()\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-gradle-plugin.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "d9eabe7e5931dd38e1f4e712ac08e974b2262cd592168e15ea5cfa91b6e44912"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "severity": "High",
+  "comment": "Property \"hubdleGradleVersionCatalog\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/shared/features/gradle/HubdleGradleVersionCatalogFeatureExtension.kt",
+      "language": "kotlin",
+      "line": 73,
+      "offset": 40,
+      "length": 26,
+      "code": {
+        "startLine": 71,
+        "length": 26,
+        "offset": 42,
+        "surroundingCode": "}\n\ninternal val HubdleEnableableExtension.hubdleGradleVersionCatalog:\n    HubdleGradleVersionCatalogFeatureExtension\n    get() = getHubdleExtension()"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-gradle-plugin.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "b4506897fe881bf2ee57b0a8b141e8f08cc162fd9806d524ab46ee7e0b6e9941"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "severity": "High",
+  "comment": "Function \"withKotlinBinaryCompatibilityValidator\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/withPluginExtensions.kt",
+      "language": "kotlin",
+      "line": 66,
+      "offset": 22,
+      "length": 38,
+      "code": {
+        "startLine": 64,
+        "length": 38,
+        "offset": 92,
+        "surroundingCode": "    withId(id = PluginId.JetbrainsKotlinMultiplatform, block = block)\n\ninternal fun Project.withKotlinBinaryCompatibilityValidator(\n    block: ApiValidationExtension.() -> Unit\n) = withId(id = PluginId.JetbrainsKotlinxBinaryCompatibilityValidator, block = block)"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-gradle-plugin.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "a49eb360f701c6b90ae9077fc6715d7ef5258068c674bc3921e2531bbd1c715a"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "severity": "High",
+  "comment": "Function \"withSpotlessPredeclare\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/withPluginExtensions.kt",
+      "language": "kotlin",
+      "line": 85,
+      "offset": 22,
+      "length": 22,
+      "code": {
+        "startLine": 83,
+        "length": 22,
+        "offset": 80,
+        "surroundingCode": "    withId(id = PluginId.DiffplugSpotless, block = block)\n\ninternal fun Project.withSpotlessPredeclare(block: SpotlessExtensionPredeclare.() -> Unit) =\n    withId(id = PluginId.DiffplugSpotless, block = block)\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-gradle-plugin.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "d44499450819774acca9143a1f17181edb65510fcb866e30a324c85082e1ad32"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "severity": "High",
+  "comment": "Function \"withCompose\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/withPluginExtensions.kt",
+      "language": "kotlin",
+      "line": 39,
+      "offset": 22,
+      "length": 11,
+      "code": {
+        "startLine": 37,
+        "length": 11,
+        "offset": 78,
+        "surroundingCode": "    withId(id = PluginId.AndroidLibrary, block = block)\n\ninternal fun Project.withCompose(block: () -> Unit) =\n    withId(id = PluginId.JetbrainsCompose, block = block)\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-gradle-plugin.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "f6a83ba04cf94062a3bb82489289f3d686edb94f92c6e95dc20866cc9d9b304b"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "severity": "High",
+  "comment": "Function \"withGradleApplication\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/withPluginExtensions.kt",
+      "language": "kotlin",
+      "line": 45,
+      "offset": 22,
+      "length": 21,
+      "code": {
+        "startLine": 43,
+        "length": 21,
+        "offset": 70,
+        "surroundingCode": "    withId(id = PluginId.Detekt, block = block)\n\ninternal fun Project.withGradleApplication(block: JavaApplication.() -> Unit) =\n    withId(id = PluginId.GradleApplication, block = block)\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-gradle-plugin.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "3896fa244a8eb05f5a1dd72ae09d30778782d596e08e62519eaa9ae4fcd08a9b"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "severity": "High",
+  "comment": "Function \"withKover\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/withPluginExtensions.kt",
+      "language": "kotlin",
+      "line": 70,
+      "offset": 22,
+      "length": 9,
+      "code": {
+        "startLine": 68,
+        "length": 9,
+        "offset": 108,
+        "surroundingCode": ") = withId(id = PluginId.JetbrainsKotlinxBinaryCompatibilityValidator, block = block)\n\ninternal fun Project.withKover(block: KoverProjectConfig.() -> Unit) =\n    withId(id = PluginId.JetbrainsKotlinxKover, block = block)\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-gradle-plugin.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "8d8bca11bb7bb7ea24b01ad1d1150720666a3aae87188bcb64bf71b09d242949"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "severity": "High",
+  "comment": "Function \"withSpotless\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/withPluginExtensions.kt",
+      "language": "kotlin",
+      "line": 82,
+      "offset": 22,
+      "length": 12,
+      "code": {
+        "startLine": 80,
+        "length": 12,
+        "offset": 77,
+        "surroundingCode": "    withId(id = PluginId.GradleSigning, block = block)\n\ninternal fun Project.withSpotless(block: SpotlessExtension.() -> Unit) =\n    withId(id = PluginId.DiffplugSpotless, block = block)\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-gradle-plugin.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "520a84673c82acf532e4580922b679b094b154bf22fab31e806d0740333b4fd3"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "severity": "High",
+  "comment": "Function \"withGradlePlugin\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/withPluginExtensions.kt",
+      "language": "kotlin",
+      "line": 48,
+      "offset": 22,
+      "length": 16,
+      "code": {
+        "startLine": 46,
+        "length": 16,
+        "offset": 81,
+        "surroundingCode": "    withId(id = PluginId.GradleApplication, block = block)\n\ninternal fun Project.withGradlePlugin(block: GradlePluginDevelopmentExtension.() -> Unit) =\n    withId(id = PluginId.JavaGradlePlugin, block = block)\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-gradle-plugin.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "f8826c55fdfa6f66771c1ad4258337b60efa9421bb4dd9d016607c3b7b1fcf39"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "severity": "High",
+  "comment": "Function \"withSigning\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/withPluginExtensions.kt",
+      "language": "kotlin",
+      "line": 79,
+      "offset": 22,
+      "length": 11,
+      "code": {
+        "startLine": 77,
+        "length": 11,
+        "offset": 90,
+        "surroundingCode": "    withId(id = PluginId.JavierscSemverGradlePlugin, block = block)\n\ninternal fun Project.withSigning(block: SigningExtension.() -> Unit) =\n    withId(id = PluginId.GradleSigning, block = block)\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-gradle-plugin.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "4e52c283a4d65c2e9a5ef999e27e7ecfbe8733d795954e40e80aa42c1e06583a"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "severity": "High",
+  "comment": "Function \"withPublishing\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/withPluginExtensions.kt",
+      "language": "kotlin",
+      "line": 73,
+      "offset": 22,
+      "length": 14,
+      "code": {
+        "startLine": 71,
+        "length": 14,
+        "offset": 85,
+        "surroundingCode": "    withId(id = PluginId.JetbrainsKotlinxKover, block = block)\n\ninternal fun Project.withPublishing(block: GradlePublishingExtension.() -> Unit) =\n    withId(id = PluginId.MavenPublish, block = block)\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-gradle-plugin.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "ea1b3018d17341c193c6b260c42f880f8ddac02d604775329dcbfc93eac478ed"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "severity": "High",
+  "comment": "Function \"withKotlin\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/withPluginExtensions.kt",
+      "language": "kotlin",
+      "line": 51,
+      "offset": 22,
+      "length": 10,
+      "code": {
+        "startLine": 49,
+        "length": 10,
+        "offset": 80,
+        "surroundingCode": "    withId(id = PluginId.JavaGradlePlugin, block = block)\n\ninternal fun Project.withKotlin(block: KotlinProjectExtension.() -> Unit) {\n    withKotlinAndroid(block)\n    withKotlinJvm(block)"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-gradle-plugin.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "5ff342fe328266f72da00712316f10944f3f88753c0e5c26639254af49c74588"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "severity": "High",
+  "comment": "Function \"withAndroidApplication\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/withPluginExtensions.kt",
+      "language": "kotlin",
+      "line": 33,
+      "offset": 22,
+      "length": 22,
+      "code": {
+        "startLine": 31,
+        "length": 22,
+        "offset": 24,
+        "surroundingCode": "}\n\ninternal fun Project.withAndroidApplication(block: ApplicationExtension.() -> Unit) =\n    withId(id = PluginId.AndroidApplication, block = block)\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-gradle-plugin.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "242929cfd0f46d2d7894b62005d0613ef4a562153275bcb9cc7d961542390403"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "severity": "High",
+  "comment": "Function \"withDetekt\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/withPluginExtensions.kt",
+      "language": "kotlin",
+      "line": 42,
+      "offset": 22,
+      "length": 10,
+      "code": {
+        "startLine": 40,
+        "length": 10,
+        "offset": 80,
+        "surroundingCode": "    withId(id = PluginId.JetbrainsCompose, block = block)\n\ninternal fun Project.withDetekt(block: DetektExtension.() -> Unit) =\n    withId(id = PluginId.Detekt, block = block)\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-gradle-plugin.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "b8bfadbde83479564a482193004cb5e04849c3676cd393de40e44e11450a9390"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "severity": "High",
+  "comment": "Function \"withSemver\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/withPluginExtensions.kt",
+      "language": "kotlin",
+      "line": 76,
+      "offset": 22,
+      "length": 10,
+      "code": {
+        "startLine": 74,
+        "length": 10,
+        "offset": 76,
+        "surroundingCode": "    withId(id = PluginId.MavenPublish, block = block)\n\ninternal fun Project.withSemver(block: SemverExtension.() -> Unit) =\n    withId(id = PluginId.JavierscSemverGradlePlugin, block = block)\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-gradle-plugin.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "ee1e6cbdcf192cae6ec3a60e93ba5734e17359ef824c961ffa8ff2b079287b52"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "severity": "High",
+  "comment": "Function \"withAndroidLibrary\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/withPluginExtensions.kt",
+      "language": "kotlin",
+      "line": 36,
+      "offset": 22,
+      "length": 18,
+      "code": {
+        "startLine": 34,
+        "length": 18,
+        "offset": 82,
+        "surroundingCode": "    withId(id = PluginId.AndroidApplication, block = block)\n\ninternal fun Project.withAndroidLibrary(block: LibraryExtension.() -> Unit) =\n    withId(id = PluginId.AndroidLibrary, block = block)\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-gradle-plugin.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "f39b1d306e5d7ef75b4d6e3d4898ba6a803aed97047c20a6505c62219579b8ac"
 }]}

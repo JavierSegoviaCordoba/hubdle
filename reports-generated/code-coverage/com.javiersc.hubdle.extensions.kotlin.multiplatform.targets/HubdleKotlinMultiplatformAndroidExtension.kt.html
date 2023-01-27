@@ -6,8 +6,10 @@ import com.javiersc.hubdle.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.extensions._internal.PluginId
 import com.javiersc.hubdle.extensions._internal.getHubdleExtension
+import com.javiersc.hubdle.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.extensions.kotlin.android._internal.calculateAndroidNamespace
+import com.javiersc.hubdle.extensions.kotlin.android._internal.configureAndroidLibraryJavaVersion
 import com.javiersc.hubdle.extensions.kotlin.android.features.HubdleKotlinAndroidBuildFeaturesExtension
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.hubdleKotlinMultiplatform
 import com.javiersc.hubdle.extensions.kotlin.shared.HubdleKotlinMinimalSourceSetConfigurableExtension
@@ -22,89 +24,94 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 @HubdleDslMarker
 public open class HubdleKotlinMultiplatformAndroidExtension
 @Inject
-<span class="nc" id="L25">constructor(</span>
+<span class="nc" id="L27">constructor(</span>
     project: Project,
-<span class="nc" id="L27">) : HubdleKotlinMinimalSourceSetConfigurableExtension(project) {</span>
+<span class="nc" id="L29">) : HubdleKotlinMinimalSourceSetConfigurableExtension(project) {</span>
 
     override val project: Project
-<span class="nc" id="L30">        get() = super.project</span>
+<span class="nc" id="L32">        get() = super.project</span>
 
-<span class="nc" id="L32">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
+<span class="nc" id="L34">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
 
-<span class="nc" id="L34">    override val priority: Priority = Priority.P3</span>
+<span class="nc" id="L36">    override val priority: Priority = Priority.P3</span>
 
-<span class="nc" id="L36">    public override val targetName: String = &quot;android&quot;</span>
+<span class="nc" id="L38">    public override val targetName: String = &quot;android&quot;</span>
 
     override val requiredExtensions: Set&lt;HubdleEnableableExtension&gt;
-<span class="nc" id="L39">        get() = setOf(hubdleKotlinMultiplatform)</span>
+<span class="nc" id="L41">        get() = setOf(hubdleKotlinMultiplatform)</span>
 
-<span class="nc" id="L41">    public val namespace: Property&lt;String?&gt; = property { null }</span>
+<span class="nc" id="L43">    public val namespace: Property&lt;String?&gt; = property { null }</span>
 
-<span class="nc" id="L43">    public val minSdk: Property&lt;Int&gt; = property { 23 }</span>
+<span class="nc" id="L45">    public val minSdk: Property&lt;Int&gt; = property { 23 }</span>
 
-<span class="nc" id="L45">    public val compileSdk: Property&lt;Int&gt; = property { 33 }</span>
+<span class="nc" id="L47">    public val compileSdk: Property&lt;Int&gt; = property { 33 }</span>
 
-<span class="nc" id="L47">    public val targetSdk: Property&lt;Int&gt; = property { 33 }</span>
+<span class="nc" id="L49">    public val targetSdk: Property&lt;Int&gt; = property { 33 }</span>
 
     public val buildFeatures: HubdleKotlinAndroidBuildFeaturesExtension
-<span class="nc" id="L50">        get() = getHubdleExtension()</span>
+<span class="nc" id="L52">        get() = getHubdleExtension()</span>
 
-<span class="nc" id="L52">    public val publishLibraryVariants: SetProperty&lt;String&gt; = setProperty { emptySet() }</span>
+<span class="nc" id="L54">    public val publishLibraryVariants: SetProperty&lt;String&gt; = setProperty { emptySet() }</span>
 
     @HubdleDslMarker
     public fun publishLibraryVariants(vararg names: String) {
-<span class="nc" id="L56">        publishLibraryVariants.addAll(names.toList())</span>
-<span class="nc" id="L57">        publishAllLibraryVariants.set(false)</span>
-<span class="nc" id="L58">        configurable {</span>
-<span class="nc" id="L59">            configure&lt;KotlinMultiplatformExtension&gt; { android { publishLibraryVariants(*names) } }</span>
-<span class="nc" id="L60">        }</span>
-<span class="nc" id="L61">    }</span>
+<span class="nc" id="L58">        publishLibraryVariants.addAll(names.toList())</span>
+<span class="nc" id="L59">        publishAllLibraryVariants.set(false)</span>
+<span class="nc" id="L60">        configurable {</span>
+<span class="nc" id="L61">            configure&lt;KotlinMultiplatformExtension&gt; { android { publishLibraryVariants(*names) } }</span>
+<span class="nc" id="L62">        }</span>
+<span class="nc" id="L63">    }</span>
 
-<span class="nc" id="L63">    public val publishAllLibraryVariants: Property&lt;Boolean&gt; = property { true }</span>
+<span class="nc" id="L65">    public val publishAllLibraryVariants: Property&lt;Boolean&gt; = property { true }</span>
 
     @HubdleDslMarker
     public fun publishAllLibraryVariants() {
-<span class="nc" id="L67">        publishAllLibraryVariants.set(true)</span>
-<span class="nc" id="L68">        configurable {</span>
-<span class="nc" id="L69">            configure&lt;KotlinMultiplatformExtension&gt; { android { publishAllLibraryVariants() } }</span>
-<span class="nc" id="L70">        }</span>
-<span class="nc" id="L71">    }</span>
+<span class="nc" id="L69">        publishAllLibraryVariants.set(true)</span>
+<span class="nc" id="L70">        configurable {</span>
+<span class="nc" id="L71">            configure&lt;KotlinMultiplatformExtension&gt; { android { publishAllLibraryVariants() } }</span>
+<span class="nc" id="L72">        }</span>
+<span class="nc" id="L73">    }</span>
 
     @HubdleDslMarker
     public fun android(action: Action&lt;LibraryExtension&gt;) {
-<span class="nc" id="L75">        userConfigurable { action.execute(the()) }</span>
-<span class="nc" id="L76">    }</span>
+<span class="nc" id="L77">        userConfigurable { action.execute(the()) }</span>
+<span class="nc" id="L78">    }</span>
 
     override fun Project.defaultConfiguration() {
-<span class="nc" id="L79">        applicablePlugin(</span>
-<span class="nc" id="L80">            priority = Priority.P3,</span>
-<span class="nc" id="L81">            scope = Scope.CurrentProject,</span>
-<span class="nc" id="L82">            pluginId = PluginId.AndroidLibrary</span>
+<span class="nc" id="L81">        applicablePlugin(</span>
+<span class="nc" id="L82">            priority = Priority.P3,</span>
+<span class="nc" id="L83">            scope = Scope.CurrentProject,</span>
+<span class="nc" id="L84">            pluginId = PluginId.AndroidLibrary</span>
         )
 
-<span class="nc" id="L85">        configurable {</span>
-<span class="nc" id="L86">            val hubdleAndroid = this@HubdleKotlinMultiplatformAndroidExtension</span>
-<span class="nc" id="L87">            configure&lt;KotlinMultiplatformExtension&gt; {</span>
-<span class="nc" id="L88">                val publishVariants = hubdleAndroid.publishLibraryVariants.get().toTypedArray()</span>
-<span class="nc" id="L89">                val publishAllVariants = hubdleAndroid.publishAllLibraryVariants.get()</span>
-<span class="nc" id="L90">                android {</span>
-<span class="nc bnc" id="L91" title="All 8 branches missed.">                    if (publishVariants.isNotEmpty() &amp;&amp; !publishAllVariants) {</span>
-<span class="nc" id="L92">                        publishLibraryVariants(*publishVariants)</span>
+<span class="nc" id="L87">        configurable {</span>
+<span class="nc" id="L88">            val hubdleAndroid = this@HubdleKotlinMultiplatformAndroidExtension</span>
+<span class="nc" id="L89">            configure&lt;KotlinMultiplatformExtension&gt; {</span>
+<span class="nc" id="L90">                val publishVariants = hubdleAndroid.publishLibraryVariants.get().toTypedArray()</span>
+<span class="nc" id="L91">                val publishAllVariants = hubdleAndroid.publishAllLibraryVariants.get()</span>
+<span class="nc" id="L92">                android {</span>
+<span class="nc bnc" id="L93" title="All 8 branches missed.">                    if (publishVariants.isNotEmpty() &amp;&amp; !publishAllVariants) {</span>
+<span class="nc" id="L94">                        publishLibraryVariants(*publishVariants)</span>
                     }
-<span class="nc bnc" id="L94" title="All 2 branches missed.">                    if (publishAllVariants) {</span>
-<span class="nc" id="L95">                        publishAllLibraryVariants()</span>
+<span class="nc bnc" id="L96" title="All 2 branches missed.">                    if (publishAllVariants) {</span>
+<span class="nc" id="L97">                        publishAllLibraryVariants()</span>
                     }
-<span class="nc" id="L97">                }</span>
-<span class="nc" id="L98">            }</span>
-<span class="nc" id="L99">            configure&lt;LibraryExtension&gt; {</span>
-<span class="nc" id="L100">                compileSdk = hubdleAndroid.compileSdk.get()</span>
-<span class="nc" id="L101">                defaultConfig.minSdk = hubdleAndroid.minSdk.get()</span>
-<span class="nc" id="L102">                namespace = calculateAndroidNamespace(hubdleAndroid.namespace.orNull)</span>
-<span class="nc" id="L103">            }</span>
-<span class="nc" id="L104">        }</span>
-<span class="nc" id="L105">    }</span>
+<span class="nc" id="L99">                }</span>
+<span class="nc" id="L100">            }</span>
+<span class="nc" id="L101">            configure&lt;LibraryExtension&gt; {</span>
+<span class="nc" id="L102">                compileSdk = hubdleAndroid.compileSdk.get()</span>
+<span class="nc" id="L103">                defaultConfig.minSdk = hubdleAndroid.minSdk.get()</span>
+<span class="nc" id="L104">                namespace = calculateAndroidNamespace(hubdleAndroid.namespace.orNull)</span>
+<span class="nc" id="L105">            }</span>
+<span class="nc" id="L106">            configureAndroidLibraryJavaVersion()</span>
+<span class="nc" id="L107">        }</span>
+<span class="nc" id="L108">    }</span>
 }
 
 internal val Project.hubdleKotlinMultiplatformAndroid: HubdleKotlinMultiplatformAndroidExtension
-<span class="nc" id="L109">    get() = getHubdleExtension()</span>
+<span class="nc" id="L112">    get() = getHubdleExtension()</span>
+
+internal val HubdleConfigurableExtension.hubdleKotlinMultiplatformAndroid:
+    HubdleKotlinMultiplatformAndroidExtension
+<span class="nc" id="L116">    get() = getHubdleExtension()</span>
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

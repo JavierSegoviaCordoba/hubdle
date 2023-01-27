@@ -10,6 +10,7 @@ import com.javiersc.hubdle.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.extensions.kotlin._internal.configurableSrcDirs
 import com.javiersc.hubdle.extensions.kotlin.android._internal.calculateAndroidNamespace
+import com.javiersc.hubdle.extensions.kotlin.android._internal.configureAndroidApplicationJavaVersion
 import com.javiersc.hubdle.extensions.kotlin.android.application.features.HubdleKotlinAndroidApplicationFeaturesExtension
 import com.javiersc.hubdle.extensions.kotlin.android.hubdleAndroid
 import com.javiersc.hubdle.extensions.kotlin.shared.HubdleKotlinMinimalSourceSetConfigurableExtension
@@ -25,50 +26,49 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 @HubdleDslMarker
 public open class HubdleKotlinAndroidApplicationExtension
 @Inject
-<span class="nc" id="L28">constructor(</span>
+<span class="nc" id="L29">constructor(</span>
     project: Project,
-<span class="nc" id="L30">) : HubdleKotlinMinimalSourceSetConfigurableExtension(project) {</span>
+<span class="nc" id="L31">) : HubdleKotlinMinimalSourceSetConfigurableExtension(project) {</span>
 
     override val project: Project
-<span class="nc" id="L33">        get() = super.project</span>
+<span class="nc" id="L34">        get() = super.project</span>
 
-<span class="nc" id="L35">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
+<span class="nc" id="L36">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
 
-<span class="nc" id="L37">    override val priority: Priority = Priority.P3</span>
+<span class="nc" id="L38">    override val priority: Priority = Priority.P3</span>
 
     override val requiredExtensions: Set&lt;HubdleEnableableExtension&gt;
-<span class="nc" id="L40">        get() = setOf(hubdleAndroid)</span>
+<span class="nc" id="L41">        get() = setOf(hubdleAndroid)</span>
 
     public val features: HubdleKotlinAndroidApplicationFeaturesExtension
-<span class="nc" id="L43">        get() = getHubdleExtension()</span>
+<span class="nc" id="L44">        get() = getHubdleExtension()</span>
 
-<span class="nc" id="L45">    public val applicationId: Property&lt;String?&gt; = property { hubdleAndroid.namespace.get() }</span>
+<span class="nc" id="L46">    public val applicationId: Property&lt;String?&gt; = property { hubdleAndroid.namespace.get() }</span>
 
-<span class="nc" id="L47">    public val versionCode: Property&lt;Int&gt; = property { 1 }</span>
+<span class="nc" id="L48">    public val versionCode: Property&lt;Int&gt; = property { 1 }</span>
 
-<span class="nc" id="L49">    public val versionName: Property&lt;String?&gt; = property { &quot;0.1.0&quot; }</span>
+<span class="nc" id="L50">    public val versionName: Property&lt;String?&gt; = property { &quot;0.1.0&quot; }</span>
 
     @HubdleDslMarker
     public fun configuration(name: String, action: Action&lt;Configuration&gt;) {
-<span class="nc" id="L53">        userConfigurable {</span>
-<span class="nc" id="L54">            configure&lt;ApplicationExtension&gt; { project.configurations.named(name, action::execute) }</span>
-<span class="nc" id="L55">        }</span>
-<span class="nc" id="L56">    }</span>
+<span class="nc" id="L54">        userConfigurable {</span>
+<span class="nc" id="L55">            configure&lt;ApplicationExtension&gt; { project.configurations.named(name, action::execute) }</span>
+<span class="nc" id="L56">        }</span>
+<span class="nc" id="L57">    }</span>
 
     @HubdleDslMarker
     public fun sourceSet(name: String, action: Action&lt;KotlinSourceSet&gt;) {
-<span class="nc" id="L60">        userConfigurable {</span>
-<span class="nc" id="L61">            configure&lt;KotlinProjectExtension&gt; { sourceSets.named(name, action::execute) }</span>
-<span class="nc" id="L62">        }</span>
-<span class="nc" id="L63">    }</span>
+<span class="nc" id="L61">        userConfigurable {</span>
+<span class="nc" id="L62">            configure&lt;KotlinProjectExtension&gt; { sourceSets.named(name, action::execute) }</span>
+<span class="nc" id="L63">        }</span>
+<span class="nc" id="L64">    }</span>
 
     @HubdleDslMarker
     public fun android(action: Action&lt;ApplicationExtension&gt;) {
-<span class="nc" id="L67">        userConfigurable { action.execute(the()) }</span>
-<span class="nc" id="L68">    }</span>
+<span class="nc" id="L68">        userConfigurable { action.execute(the()) }</span>
+<span class="nc" id="L69">    }</span>
 
     override fun Project.defaultConfiguration() {
-
 <span class="nc" id="L72">        val application = hubdleAndroidApplication</span>
 <span class="nc" id="L73">        applicablePlugin(</span>
 <span class="nc" id="L74">            priority = Priority.P3,</span>
@@ -91,16 +91,17 @@ public open class HubdleKotlinAndroidApplicationExtension
 <span class="nc" id="L91">                defaultConfig.minSdk = hubdleAndroid.minSdk.get()</span>
 <span class="nc" id="L92">                namespace = project.calculateAndroidNamespace(hubdleAndroid.namespace.orNull)</span>
 <span class="nc" id="L93">            }</span>
-<span class="nc" id="L94">        }</span>
-<span class="nc" id="L95">        configurableSrcDirs()</span>
-<span class="nc" id="L96">        configurableDependencies()</span>
-<span class="nc" id="L97">    }</span>
+<span class="nc" id="L94">            configureAndroidApplicationJavaVersion()</span>
+<span class="nc" id="L95">        }</span>
+<span class="nc" id="L96">        configurableSrcDirs()</span>
+<span class="nc" id="L97">        configurableDependencies()</span>
+<span class="nc" id="L98">    }</span>
 }
 
 internal val HubdleEnableableExtension.hubdleAndroidApplication:
     HubdleKotlinAndroidApplicationExtension
-<span class="nc" id="L102">    get() = getHubdleExtension()</span>
+<span class="nc" id="L103">    get() = getHubdleExtension()</span>
 
 internal val Project.hubdleAndroidApplication: HubdleKotlinAndroidApplicationExtension
-<span class="nc" id="L105">    get() = getHubdleExtension()</span>
+<span class="nc" id="L106">    get() = getHubdleExtension()</span>
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

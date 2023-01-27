@@ -10,6 +10,7 @@ import com.javiersc.hubdle.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.extensions.kotlin.android.application.hubdleAndroidApplication
 import com.javiersc.hubdle.extensions.kotlin.android.library.hubdleAndroidLibrary
+import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.hubdleKotlinMultiplatformAndroid
 import javax.inject.Inject
 import org.gradle.api.Project
 import org.gradle.api.provider.Property
@@ -17,55 +18,60 @@ import org.gradle.api.provider.Property
 @HubdleDslMarker
 public open class HubdleKotlinAndroidBuildFeaturesExtension
 @Inject
-<span class="nc" id="L20">constructor(</span>
+<span class="nc" id="L21">constructor(</span>
     project: Project,
-<span class="nc" id="L22">) : HubdleConfigurableExtension(project) {</span>
+<span class="nc" id="L23">) : HubdleConfigurableExtension(project) {</span>
 
-<span class="nc" id="L24">    override val isEnabled: Property&lt;Boolean&gt; = property { true }</span>
+<span class="nc" id="L25">    override val isEnabled: Property&lt;Boolean&gt; = property { true }</span>
 
     override val oneOfExtensions: Set&lt;HubdleEnableableExtension&gt;
-<span class="nc" id="L27">        get() = setOf(hubdleAndroidApplication, hubdleAndroidLibrary)</span>
+        get() =
+<span class="nc" id="L29">            setOf(</span>
+<span class="nc" id="L30">                hubdleAndroidApplication,</span>
+<span class="nc" id="L31">                hubdleAndroidLibrary,</span>
+<span class="nc" id="L32">                hubdleKotlinMultiplatformAndroid,</span>
+<span class="nc" id="L33">            )</span>
 
-<span class="nc" id="L29">    override val priority: Priority = Priority.P4</span>
+<span class="nc" id="L35">    override val priority: Priority = Priority.P4</span>
 
-<span class="nc" id="L31">    public val aidl: Property&lt;Boolean?&gt; = property { null }</span>
-<span class="nc" id="L32">    public val buildConfig: Property&lt;Boolean?&gt; = property { null }</span>
-<span class="nc" id="L33">    public val compose: Property&lt;Boolean?&gt; = property { null }</span>
-<span class="nc" id="L34">    public val renderScript: Property&lt;Boolean?&gt; = property { null }</span>
-<span class="nc" id="L35">    public val resValues: Property&lt;Boolean?&gt; = property { null }</span>
-<span class="nc" id="L36">    public val shaders: Property&lt;Boolean?&gt; = property { null }</span>
-<span class="nc" id="L37">    public val viewBinding: Property&lt;Boolean?&gt; = property { null }</span>
+<span class="nc" id="L37">    public val aidl: Property&lt;Boolean?&gt; = property { null }</span>
+<span class="nc" id="L38">    public val buildConfig: Property&lt;Boolean?&gt; = property { null }</span>
+<span class="nc" id="L39">    public val compose: Property&lt;Boolean?&gt; = property { null }</span>
+<span class="nc" id="L40">    public val renderScript: Property&lt;Boolean?&gt; = property { null }</span>
+<span class="nc" id="L41">    public val resValues: Property&lt;Boolean?&gt; = property { null }</span>
+<span class="nc" id="L42">    public val shaders: Property&lt;Boolean?&gt; = property { null }</span>
+<span class="nc" id="L43">    public val viewBinding: Property&lt;Boolean?&gt; = property { null }</span>
 
     override fun Project.defaultConfiguration() {
-<span class="nc" id="L40">        configurable {</span>
-<span class="nc" id="L41">            val feats = this@HubdleKotlinAndroidBuildFeaturesExtension</span>
-<span class="nc" id="L42">            configureAndroidCommonExtension {</span>
-<span class="nc" id="L43">                buildFeatures.aidl =</span>
-<span class="nc bnc" id="L44" title="All 4 branches missed.">                    feats.aidl.orNull ?: propOrNull(BuildFeatures.aidl) ?: trueIfApp()</span>
-<span class="nc" id="L45">                buildFeatures.buildConfig =</span>
-<span class="nc bnc" id="L46" title="All 4 branches missed.">                    feats.buildConfig.orNull ?: propOrNull(BuildFeatures.buildConfig) ?: trueIfApp()</span>
-<span class="nc" id="L47">                buildFeatures.compose =</span>
-<span class="nc bnc" id="L48" title="All 4 branches missed.">                    feats.compose.orNull ?: propOrNull(BuildFeatures.compose) ?: false</span>
-<span class="nc" id="L49">                buildFeatures.renderScript =</span>
-<span class="nc bnc" id="L50" title="All 4 branches missed.">                    feats.renderScript.orNull</span>
-<span class="nc" id="L51">                        ?: propOrNull(BuildFeatures.renderScript) ?: trueIfApp()</span>
-<span class="nc" id="L52">                buildFeatures.resValues =</span>
-<span class="nc bnc" id="L53" title="All 4 branches missed.">                    feats.resValues.orNull ?: propOrNull(BuildFeatures.resValues) ?: trueIfApp()</span>
-<span class="nc" id="L54">                buildFeatures.shaders =</span>
-<span class="nc bnc" id="L55" title="All 4 branches missed.">                    feats.shaders.orNull ?: propOrNull(BuildFeatures.shaders) ?: trueIfApp()</span>
-<span class="nc" id="L56">                buildFeatures.viewBinding =</span>
-<span class="nc bnc" id="L57" title="All 4 branches missed.">                    feats.viewBinding.orNull ?: propOrNull(BuildFeatures.viewBinding) ?: false</span>
-<span class="nc" id="L58">            }</span>
-<span class="nc" id="L59">        }</span>
-<span class="nc" id="L60">    }</span>
+<span class="nc" id="L46">        configurable {</span>
+<span class="nc" id="L47">            val feats = this@HubdleKotlinAndroidBuildFeaturesExtension</span>
+<span class="nc" id="L48">            configureAndroidCommonExtension {</span>
+<span class="nc" id="L49">                buildFeatures.aidl =</span>
+<span class="nc bnc" id="L50" title="All 4 branches missed.">                    feats.aidl.orNull ?: propOrNull(BuildFeatures.aidl) ?: trueIfApp()</span>
+<span class="nc" id="L51">                buildFeatures.buildConfig =</span>
+<span class="nc bnc" id="L52" title="All 4 branches missed.">                    feats.buildConfig.orNull ?: propOrNull(BuildFeatures.buildConfig) ?: trueIfApp()</span>
+<span class="nc" id="L53">                buildFeatures.compose =</span>
+<span class="nc bnc" id="L54" title="All 4 branches missed.">                    feats.compose.orNull ?: propOrNull(BuildFeatures.compose) ?: false</span>
+<span class="nc" id="L55">                buildFeatures.renderScript =</span>
+<span class="nc bnc" id="L56" title="All 4 branches missed.">                    feats.renderScript.orNull</span>
+<span class="nc" id="L57">                        ?: propOrNull(BuildFeatures.renderScript) ?: trueIfApp()</span>
+<span class="nc" id="L58">                buildFeatures.resValues =</span>
+<span class="nc bnc" id="L59" title="All 4 branches missed.">                    feats.resValues.orNull ?: propOrNull(BuildFeatures.resValues) ?: trueIfApp()</span>
+<span class="nc" id="L60">                buildFeatures.shaders =</span>
+<span class="nc bnc" id="L61" title="All 4 branches missed.">                    feats.shaders.orNull ?: propOrNull(BuildFeatures.shaders) ?: trueIfApp()</span>
+<span class="nc" id="L62">                buildFeatures.viewBinding =</span>
+<span class="nc bnc" id="L63" title="All 4 branches missed.">                    feats.viewBinding.orNull ?: propOrNull(BuildFeatures.viewBinding) ?: false</span>
+<span class="nc" id="L64">            }</span>
+<span class="nc" id="L65">        }</span>
+<span class="nc" id="L66">    }</span>
 }
 
-<span class="nc bnc" id="L63" title="All 2 branches missed.">private fun Project.propOrNull(key: String): Boolean? = getPropertyOrNull(key)?.toBoolean()</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">private fun Project.propOrNull(key: String): Boolean? = getPropertyOrNull(key)?.toBoolean()</span>
 
 private fun HubdleEnableableExtension.trueIfApp(): Boolean =
-<span class="nc" id="L66">    hubdleAndroidApplication.isFullEnabled.get()</span>
+<span class="nc" id="L72">    hubdleAndroidApplication.isFullEnabled.get()</span>
 
 internal val HubdleEnableableExtension.hubdleAndroidBuildFeatures:
     HubdleKotlinAndroidBuildFeaturesExtension
-<span class="nc" id="L70">    get() = getHubdleExtension()</span>
+<span class="nc" id="L76">    get() = getHubdleExtension()</span>
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

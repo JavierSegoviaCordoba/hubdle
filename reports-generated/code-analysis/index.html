@@ -157,8 +157,8 @@
 
 <div>
   <ul>
-    <li>1,292 number of properties</li>
-    <li>539 number of functions</li>
+    <li>1,293 number of properties</li>
+    <li>541 number of functions</li>
     <li>222 number of classes</li>
     <li>73 number of packages</li>
     <li>205 number of kt files</li>
@@ -170,15 +170,15 @@
 
 <div>
   <ul>
-    <li>12,674 lines of code (loc)</li>
-    <li>10,419 source lines of code (sloc)</li>
-    <li>6,875 logical lines of code (lloc)</li>
+    <li>12,712 lines of code (loc)</li>
+    <li>10,455 source lines of code (sloc)</li>
+    <li>6,895 logical lines of code (lloc)</li>
     <li>91 comment lines of code (cloc)</li>
-    <li>915 cyclomatic complexity (mcc)</li>
+    <li>917 cyclomatic complexity (mcc)</li>
     <li>486 cognitive complexity</li>
     <li>89 number of total code smells</li>
     <li>0% comment source ratio</li>
-    <li>133 mcc per 1,000 lloc</li>
+    <li>132 mcc per 1,000 lloc</li>
     <li>12 code smells per 1,000 lloc</li>
   </ul>
 </div>
@@ -207,14 +207,14 @@
     <summary class="rule-container"><span class="rule">CyclomaticComplexMethod: 1 </span><span class="description">Prefer splitting up complex methods into smaller, easier to test methods.</span></summary>
 <a href="https://detekt.dev/docs/rules/complexity#cyclomaticcomplexmethod">Documentation</a>
     <ul>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/features/HubdleKotlinAndroidBuildFeaturesExtension.kt:39:26</span><span class="message">The function defaultConfiguration appears to be too complex based on Cyclomatic Complexity (complexity: 15). Defined complexity threshold for methods is set to '15'</span>
-        <pre><code><span class="lineno">  36 </span>    public val shaders: Property&lt;Boolean?&gt; = property { null }
-<span class="lineno">  37 </span>    public val viewBinding: Property&lt;Boolean?&gt; = property { null }
-<span class="lineno">  38 </span>
-<span class="lineno">  39 </span>    override fun Project.<span class="error">defaultConfiguration</span>() {
-<span class="lineno">  40 </span>        configurable {
-<span class="lineno">  41 </span>            val feats = this@HubdleKotlinAndroidBuildFeaturesExtension
-<span class="lineno">  42 </span>            configureAndroidCommonExtension {
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/features/HubdleKotlinAndroidBuildFeaturesExtension.kt:45:26</span><span class="message">The function defaultConfiguration appears to be too complex based on Cyclomatic Complexity (complexity: 15). Defined complexity threshold for methods is set to '15'</span>
+        <pre><code><span class="lineno">  42 </span>    public val shaders: Property&lt;Boolean?&gt; = property { null }
+<span class="lineno">  43 </span>    public val viewBinding: Property&lt;Boolean?&gt; = property { null }
+<span class="lineno">  44 </span>
+<span class="lineno">  45 </span>    override fun Project.<span class="error">defaultConfiguration</span>() {
+<span class="lineno">  46 </span>        configurable {
+<span class="lineno">  47 </span>            val feats = this@HubdleKotlinAndroidBuildFeaturesExtension
+<span class="lineno">  48 </span>            configureAndroidCommonExtension {
 </code></pre>
       </li>
     </ul>
@@ -732,8 +732,8 @@
       <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/_internal/calculateAndroidNamespace.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
         <pre><code><span class="lineno">   1 </span><span class="error">package com.javiersc.hubdle.extensions.kotlin.android._internal</span>
 <span class="lineno">   2 </span>
-<span class="lineno">   3 </span>import com.javiersc.gradle.properties.extensions.getBooleanProperty
-<span class="lineno">   4 </span>import com.javiersc.hubdle.HubdleProperty.Android
+<span class="lineno">   3 </span>import com.android.build.api.dsl.ApplicationExtension
+<span class="lineno">   4 </span>import com.android.build.api.dsl.LibraryExtension
 </code></pre>
       </li>
       <li><span class="location">hubdle-gradle-plugin/test/kotlin/com/javiersc/hubdle/_utils/commitAndCheckout.kt:1:1</span><span class="message">Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*</span>
@@ -772,14 +772,14 @@
     <summary class="rule-container"><span class="rule">SpreadOperator: 3 </span><span class="description">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span></summary>
 <a href="https://detekt.dev/docs/rules/performance#spreadoperator">Documentation</a>
     <ul>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidExtension.kt:92:47</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
-        <pre><code><span class="lineno">  89 </span>                val publishAllVariants = hubdleAndroid.publishAllLibraryVariants.get()
-<span class="lineno">  90 </span>                android {
-<span class="lineno">  91 </span>                    if (publishVariants.isNotEmpty() &amp;&amp; !publishAllVariants) {
-<span class="lineno">  92 </span>                        publishLibraryVariants<span class="error">(*publishVariants)</span>
-<span class="lineno">  93 </span>                    }
-<span class="lineno">  94 </span>                    if (publishAllVariants) {
-<span class="lineno">  95 </span>                        publishAllLibraryVariants()
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidExtension.kt:94:47</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
+        <pre><code><span class="lineno">  91 </span>                val publishAllVariants = hubdleAndroid.publishAllLibraryVariants.get()
+<span class="lineno">  92 </span>                android {
+<span class="lineno">  93 </span>                    if (publishVariants.isNotEmpty() &amp;&amp; !publishAllVariants) {
+<span class="lineno">  94 </span>                        publishLibraryVariants<span class="error">(*publishVariants)</span>
+<span class="lineno">  95 </span>                    }
+<span class="lineno">  96 </span>                    if (publishAllVariants) {
+<span class="lineno">  97 </span>                        publishAllLibraryVariants()
 </code></pre>
       </li>
       <li><span class="location">hubdle-settings-gradle-plugin/main/kotlin/com/javiersc/hubdle/settings/HubdleSettingsPlugin.kt:62:29</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
@@ -879,14 +879,14 @@
 <span class="lineno">  23 </span>@Inject
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/library/HubdleKotlinAndroidLibraryExtension.kt:60:5</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
-        <pre><code><span class="lineno">  57 </span>        }
-<span class="lineno">  58 </span>    }
-<span class="lineno">  59 </span>
-<span class="lineno">  60 </span>    <span class="error">// TODO: improve and enable using this docs:</span>
-<span class="lineno">  61 </span>    //  https://developer.android.com/studio/publish-library/configure-pub-variants
-<span class="lineno">  62 </span>    // @HubdleDslMarker
-<span class="lineno">  63 </span>    // public fun publishLibraryVariants(vararg names: String) {
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/library/HubdleKotlinAndroidLibraryExtension.kt:61:5</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
+        <pre><code><span class="lineno">  58 </span>        }
+<span class="lineno">  59 </span>    }
+<span class="lineno">  60 </span>
+<span class="lineno">  61 </span>    <span class="error">// TODO: improve and enable using this docs:</span>
+<span class="lineno">  62 </span>    //  https://developer.android.com/studio/publish-library/configure-pub-variants
+<span class="lineno">  63 </span>    // @HubdleDslMarker
+<span class="lineno">  64 </span>    // public fun publishLibraryVariants(vararg names: String) {
 </code></pre>
       </li>
       <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformJvmAndAndroidExtension.kt:36:17</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
@@ -945,34 +945,34 @@
 <span class="lineno">  42 </span>        get() = getHubdleExtension()
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidExtension.kt:43:51</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
-        <pre><code><span class="lineno">  40 </span>
-<span class="lineno">  41 </span>    public val namespace: Property&lt;String?&gt; = property { null }
-<span class="lineno">  42 </span>
-<span class="lineno">  43 </span>    public val minSdk: Property&lt;Int&gt; = property { <span class="error">23</span> }
-<span class="lineno">  44 </span>
-<span class="lineno">  45 </span>    public val compileSdk: Property&lt;Int&gt; = property { 33 }
-<span class="lineno">  46 </span>
-</code></pre>
-      </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidExtension.kt:45:55</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidExtension.kt:45:51</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
         <pre><code><span class="lineno">  42 </span>
-<span class="lineno">  43 </span>    public val minSdk: Property&lt;Int&gt; = property { 23 }
+<span class="lineno">  43 </span>    public val namespace: Property&lt;String?&gt; = property { null }
 <span class="lineno">  44 </span>
-<span class="lineno">  45 </span>    public val compileSdk: Property&lt;Int&gt; = property { <span class="error">33</span> }
+<span class="lineno">  45 </span>    public val minSdk: Property&lt;Int&gt; = property { <span class="error">23</span> }
 <span class="lineno">  46 </span>
-<span class="lineno">  47 </span>    public val targetSdk: Property&lt;Int&gt; = property { 33 }
+<span class="lineno">  47 </span>    public val compileSdk: Property&lt;Int&gt; = property { 33 }
 <span class="lineno">  48 </span>
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidExtension.kt:47:54</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidExtension.kt:47:55</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
         <pre><code><span class="lineno">  44 </span>
-<span class="lineno">  45 </span>    public val compileSdk: Property&lt;Int&gt; = property { 33 }
+<span class="lineno">  45 </span>    public val minSdk: Property&lt;Int&gt; = property { 23 }
 <span class="lineno">  46 </span>
-<span class="lineno">  47 </span>    public val targetSdk: Property&lt;Int&gt; = property { <span class="error">33</span> }
+<span class="lineno">  47 </span>    public val compileSdk: Property&lt;Int&gt; = property { <span class="error">33</span> }
 <span class="lineno">  48 </span>
-<span class="lineno">  49 </span>    public val buildFeatures: HubdleKotlinAndroidBuildFeaturesExtension
-<span class="lineno">  50 </span>        get() = getHubdleExtension()
+<span class="lineno">  49 </span>    public val targetSdk: Property&lt;Int&gt; = property { 33 }
+<span class="lineno">  50 </span>
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidExtension.kt:49:54</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  46 </span>
+<span class="lineno">  47 </span>    public val compileSdk: Property&lt;Int&gt; = property { 33 }
+<span class="lineno">  48 </span>
+<span class="lineno">  49 </span>    public val targetSdk: Property&lt;Int&gt; = property { <span class="error">33</span> }
+<span class="lineno">  50 </span>
+<span class="lineno">  51 </span>    public val buildFeatures: HubdleKotlinAndroidBuildFeaturesExtension
+<span class="lineno">  52 </span>        get() = getHubdleExtension()
 </code></pre>
       </li>
     </ul>
@@ -1021,7 +1021,7 @@
 </div>
 
 
-generated with <a href="https://detekt.dev/">detekt version 1.22.0</a> on 2023-01-26 15:42:07 UTC.
+generated with <a href="https://detekt.dev/">detekt version 1.22.0</a> on 2023-01-27 10:44:34 UTC.
 
 </body>
 </html>

@@ -2,9 +2,9 @@
 
 ## Metrics
 
-* 1,292 number of properties
+* 1,293 number of properties
 
-* 539 number of functions
+* 541 number of functions
 
 * 222 number of classes
 
@@ -14,15 +14,15 @@
 
 ## Complexity Report
 
-* 12,674 lines of code (loc)
+* 12,712 lines of code (loc)
 
-* 10,419 source lines of code (sloc)
+* 10,455 source lines of code (sloc)
 
-* 6,875 logical lines of code (lloc)
+* 6,895 logical lines of code (lloc)
 
 * 91 comment lines of code (cloc)
 
-* 915 cyclomatic complexity (mcc)
+* 917 cyclomatic complexity (mcc)
 
 * 486 cognitive complexity
 
@@ -30,7 +30,7 @@
 
 * 0% comment source ratio
 
-* 133 mcc per 1,000 lloc
+* 132 mcc per 1,000 lloc
 
 * 12 code smells per 1,000 lloc
 
@@ -64,19 +64,19 @@ Prefer splitting up complex methods into smaller, easier to test methods.
 
 [Documentation](https://detekt.dev/docs/rules/complexity#cyclomaticcomplexmethod)
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/features/HubdleKotlinAndroidBuildFeaturesExtension.kt:39:26
+* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/features/HubdleKotlinAndroidBuildFeaturesExtension.kt:45:26
 ```
 The function defaultConfiguration appears to be too complex based on Cyclomatic Complexity (complexity: 15). Defined complexity threshold for methods is set to '15'
 ```
 ```kotlin
-36     public val shaders: Property<Boolean?> = property { null }
-37     public val viewBinding: Property<Boolean?> = property { null }
-38 
-39     override fun Project.defaultConfiguration() {
+42     public val shaders: Property<Boolean?> = property { null }
+43     public val viewBinding: Property<Boolean?> = property { null }
+44 
+45     override fun Project.defaultConfiguration() {
 !!                          ^ error
-40         configurable {
-41             val feats = this@HubdleKotlinAndroidBuildFeaturesExtension
-42             configureAndroidCommonExtension {
+46         configurable {
+47             val feats = this@HubdleKotlinAndroidBuildFeaturesExtension
+48             configureAndroidCommonExtension {
 
 ```
 
@@ -964,8 +964,8 @@ Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*
 1 package com.javiersc.hubdle.extensions.kotlin.android._internal
 ! ^ error
 2 
-3 import com.javiersc.gradle.properties.extensions.getBooleanProperty
-4 import com.javiersc.hubdle.HubdleProperty.Android
+3 import com.android.build.api.dsl.ApplicationExtension
+4 import com.android.build.api.dsl.LibraryExtension
 
 ```
 
@@ -1022,19 +1022,19 @@ In most cases using a spread operator causes a full copy of the array to be crea
 
 [Documentation](https://detekt.dev/docs/rules/performance#spreadoperator)
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidExtension.kt:92:47
+* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidExtension.kt:94:47
 ```
 In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.
 ```
 ```kotlin
-89                 val publishAllVariants = hubdleAndroid.publishAllLibraryVariants.get()
-90                 android {
-91                     if (publishVariants.isNotEmpty() && !publishAllVariants) {
-92                         publishLibraryVariants(*publishVariants)
+91                 val publishAllVariants = hubdleAndroid.publishAllLibraryVariants.get()
+92                 android {
+93                     if (publishVariants.isNotEmpty() && !publishAllVariants) {
+94                         publishLibraryVariants(*publishVariants)
 !!                                               ^ error
-93                     }
-94                     if (publishAllVariants) {
-95                         publishAllLibraryVariants()
+95                     }
+96                     if (publishAllVariants) {
+97                         publishAllLibraryVariants()
 
 ```
 
@@ -1188,19 +1188,19 @@ This comment contains 'TODO:' that has been defined as forbidden in detekt.
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/library/HubdleKotlinAndroidLibraryExtension.kt:60:5
+* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/library/HubdleKotlinAndroidLibraryExtension.kt:61:5
 ```
 This comment contains 'TODO:' that has been defined as forbidden in detekt.
 ```
 ```kotlin
-57         }
-58     }
-59 
-60     // TODO: improve and enable using this docs:
+58         }
+59     }
+60 
+61     // TODO: improve and enable using this docs:
 !!     ^ error
-61     //  https://developer.android.com/studio/publish-library/configure-pub-variants
-62     // @HubdleDslMarker
-63     // public fun publishLibraryVariants(vararg names: String) {
+62     //  https://developer.android.com/studio/publish-library/configure-pub-variants
+63     // @HubdleDslMarker
+64     // public fun publishLibraryVariants(vararg names: String) {
 
 ```
 
@@ -1290,51 +1290,51 @@ This expression contains a magic number. Consider defining it to a well named co
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidExtension.kt:43:51
+* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidExtension.kt:45:51
 ```
 This expression contains a magic number. Consider defining it to a well named constant.
 ```
 ```kotlin
-40 
-41     public val namespace: Property<String?> = property { null }
 42 
-43     public val minSdk: Property<Int> = property { 23 }
+43     public val namespace: Property<String?> = property { null }
+44 
+45     public val minSdk: Property<Int> = property { 23 }
 !!                                                   ^ error
-44 
-45     public val compileSdk: Property<Int> = property { 33 }
 46 
+47     public val compileSdk: Property<Int> = property { 33 }
+48 
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidExtension.kt:45:55
+* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidExtension.kt:47:55
 ```
 This expression contains a magic number. Consider defining it to a well named constant.
 ```
 ```kotlin
-42 
-43     public val minSdk: Property<Int> = property { 23 }
 44 
-45     public val compileSdk: Property<Int> = property { 33 }
+45     public val minSdk: Property<Int> = property { 23 }
+46 
+47     public val compileSdk: Property<Int> = property { 33 }
 !!                                                       ^ error
-46 
-47     public val targetSdk: Property<Int> = property { 33 }
 48 
+49     public val targetSdk: Property<Int> = property { 33 }
+50 
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidExtension.kt:47:54
+* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidExtension.kt:49:54
 ```
 This expression contains a magic number. Consider defining it to a well named constant.
 ```
 ```kotlin
-44 
-45     public val compileSdk: Property<Int> = property { 33 }
 46 
-47     public val targetSdk: Property<Int> = property { 33 }
-!!                                                      ^ error
+47     public val compileSdk: Property<Int> = property { 33 }
 48 
-49     public val buildFeatures: HubdleKotlinAndroidBuildFeaturesExtension
-50         get() = getHubdleExtension()
+49     public val targetSdk: Property<Int> = property { 33 }
+!!                                                      ^ error
+50 
+51     public val buildFeatures: HubdleKotlinAndroidBuildFeaturesExtension
+52         get() = getHubdleExtension()
 
 ```
 
@@ -1397,4 +1397,4 @@ Private property `testCompilation` is unused.
 
 ```
 
-generated with [detekt version 1.22.0](https://detekt.dev/) on 2023-01-26 15:42:07 UTC
+generated with [detekt version 1.22.0](https://detekt.dev/) on 2023-01-27 10:44:34 UTC

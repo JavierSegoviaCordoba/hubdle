@@ -6,7 +6,7 @@ import com.javiersc.hubdle.extensions.apis.BaseHubdleDelegateExtension
 import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.extensions.apis.enableAndExecute
 import com.javiersc.hubdle.extensions.kotlin.jvm.hubdleKotlinJvm
-import com.javiersc.hubdle.extensions.shared.features.gradle.HubdleGradlePluginFeatureExtension
+import com.javiersc.hubdle.extensions.shared.features.intellij.HubdleIntellijPluginFeatureExtension
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
@@ -23,23 +23,23 @@ public open class HubdleIntellijFeatureExtension
     override val oneOfExtensions: Set&lt;HubdleEnableableExtension&gt;
 <span class="nc" id="L24">        get() = setOf(hubdleKotlinJvm)</span>
 
-    public val plugin: HubdleGradlePluginFeatureExtension
+    public val plugin: HubdleIntellijPluginFeatureExtension
 <span class="nc" id="L27">        get() = getHubdleExtension()</span>
 
     @HubdleDslMarker
-<span class="nc" id="L30">    public fun plugin(action: Action&lt;HubdleGradlePluginFeatureExtension&gt; = Action {}) {</span>
+<span class="nc" id="L30">    public fun plugin(action: Action&lt;HubdleIntellijPluginFeatureExtension&gt; = Action {}) {</span>
 <span class="nc" id="L31">        plugin.enableAndExecute(action)</span>
 <span class="nc" id="L32">    }</span>
 }
 
 public interface HubdleIntellijDelegateFeatureExtension : BaseHubdleDelegateExtension {
 
-    public val gradle: HubdleGradleFeatureExtension
+    public val intellij: HubdleIntellijFeatureExtension
 <span class="nc" id="L38">        get() = project.getHubdleExtension()</span>
 
     @HubdleDslMarker
-<span class="nc" id="L41">    public fun gradle(action: Action&lt;HubdleGradleFeatureExtension&gt; = Action {}) {</span>
-<span class="nc" id="L42">        gradle.enableAndExecute(action)</span>
+<span class="nc" id="L41">    public fun intellij(action: Action&lt;HubdleIntellijFeatureExtension&gt; = Action {}) {</span>
+<span class="nc" id="L42">        intellij.enableAndExecute(action)</span>
 <span class="nc" id="L43">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

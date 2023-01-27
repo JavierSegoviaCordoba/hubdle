@@ -10,6 +10,7 @@ import com.javiersc.hubdle.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.extensions.kotlin._internal.configurableSrcDirs
 import com.javiersc.hubdle.extensions.kotlin.android._internal.calculateAndroidNamespace
+import com.javiersc.hubdle.extensions.kotlin.android._internal.configureAndroidApplicationJavaVersion
 import com.javiersc.hubdle.extensions.kotlin.android.application.features.HubdleKotlinAndroidApplicationFeaturesExtension
 import com.javiersc.hubdle.extensions.kotlin.android.hubdleAndroid
 import com.javiersc.hubdle.extensions.kotlin.shared.HubdleKotlinMinimalSourceSetConfigurableExtension
@@ -68,7 +69,6 @@ constructor(
     }
 
     override fun Project.defaultConfiguration() {
-
         val application = hubdleAndroidApplication
         applicablePlugin(
             priority = Priority.P3,
@@ -91,6 +91,7 @@ constructor(
                 defaultConfig.minSdk = hubdleAndroid.minSdk.get()
                 namespace = project.calculateAndroidNamespace(hubdleAndroid.namespace.orNull)
             }
+            configureAndroidApplicationJavaVersion()
         }
         configurableSrcDirs()
         configurableDependencies()

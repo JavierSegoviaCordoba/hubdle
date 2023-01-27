@@ -11,6 +11,7 @@ import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.extensions.config.publishing._internal.configurableMavenPublishing
 import com.javiersc.hubdle.extensions.kotlin._internal.configurableSrcDirs
 import com.javiersc.hubdle.extensions.kotlin.android._internal.calculateAndroidNamespace
+import com.javiersc.hubdle.extensions.kotlin.android._internal.configureAndroidLibraryJavaVersion
 import com.javiersc.hubdle.extensions.kotlin.android.hubdleAndroid
 import com.javiersc.hubdle.extensions.kotlin.android.library.features.HubdleKotlinAndroidLibraryFeaturesExtension
 import com.javiersc.hubdle.extensions.kotlin.shared.HubdleKotlinMinimalSourceSetConfigurableExtension
@@ -83,6 +84,7 @@ constructor(
                 defaultConfig.minSdk = hubdleAndroid.minSdk.get()
                 namespace = calculateAndroidNamespace(hubdleAndroid.namespace.orNull)
             }
+            configureAndroidLibraryJavaVersion()
         }
 
         configurableSrcDirs()

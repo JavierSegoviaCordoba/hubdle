@@ -6,8 +6,10 @@ import com.javiersc.hubdle.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.extensions._internal.PluginId
 import com.javiersc.hubdle.extensions._internal.getHubdleExtension
+import com.javiersc.hubdle.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.extensions.kotlin.android._internal.calculateAndroidNamespace
+import com.javiersc.hubdle.extensions.kotlin.android._internal.configureAndroidLibraryJavaVersion
 import com.javiersc.hubdle.extensions.kotlin.android.features.HubdleKotlinAndroidBuildFeaturesExtension
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.hubdleKotlinMultiplatform
 import com.javiersc.hubdle.extensions.kotlin.shared.HubdleKotlinMinimalSourceSetConfigurableExtension
@@ -101,9 +103,14 @@ constructor(
                 defaultConfig.minSdk = hubdleAndroid.minSdk.get()
                 namespace = calculateAndroidNamespace(hubdleAndroid.namespace.orNull)
             }
+            configureAndroidLibraryJavaVersion()
         }
     }
 }
 
 internal val Project.hubdleKotlinMultiplatformAndroid: HubdleKotlinMultiplatformAndroidExtension
+    get() = getHubdleExtension()
+
+internal val HubdleConfigurableExtension.hubdleKotlinMultiplatformAndroid:
+    HubdleKotlinMultiplatformAndroidExtension
     get() = getHubdleExtension()

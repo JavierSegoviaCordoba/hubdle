@@ -6,11 +6,15 @@
 
 ### Changed
 
+- apply `jvmVersion` to `android.compilerOptions` compatibility properties 
+
 ### Deprecated
 
 ### Removed
 
 ### Fixed
+
+- Android `buildFeatures` doesn't work on Kotlin Multiplatform
 
 ### Updated
 

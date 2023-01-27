@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- `HubdleIntellijDelegateFeatureExtension` was totally wrong
+
 ### Updated
 
 ## [0.4.0-alpha.7] - 2023-01-27

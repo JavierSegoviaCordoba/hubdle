@@ -6,7 +6,7 @@ import com.javiersc.hubdle.extensions.apis.BaseHubdleDelegateExtension
 import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.extensions.apis.enableAndExecute
 import com.javiersc.hubdle.extensions.kotlin.jvm.hubdleKotlinJvm
-import com.javiersc.hubdle.extensions.shared.features.gradle.HubdleGradlePluginFeatureExtension
+import com.javiersc.hubdle.extensions.shared.features.intellij.HubdleIntellijPluginFeatureExtension
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
@@ -23,22 +23,22 @@ constructor(
     override val oneOfExtensions: Set<HubdleEnableableExtension>
         get() = setOf(hubdleKotlinJvm)
 
-    public val plugin: HubdleGradlePluginFeatureExtension
+    public val plugin: HubdleIntellijPluginFeatureExtension
         get() = getHubdleExtension()
 
     @HubdleDslMarker
-    public fun plugin(action: Action<HubdleGradlePluginFeatureExtension> = Action {}) {
+    public fun plugin(action: Action<HubdleIntellijPluginFeatureExtension> = Action {}) {
         plugin.enableAndExecute(action)
     }
 }
 
 public interface HubdleIntellijDelegateFeatureExtension : BaseHubdleDelegateExtension {
 
-    public val gradle: HubdleGradleFeatureExtension
+    public val intellij: HubdleIntellijFeatureExtension
         get() = project.getHubdleExtension()
 
     @HubdleDslMarker
-    public fun gradle(action: Action<HubdleGradleFeatureExtension> = Action {}) {
-        gradle.enableAndExecute(action)
+    public fun intellij(action: Action<HubdleIntellijFeatureExtension> = Action {}) {
+        intellij.enableAndExecute(action)
     }
 }

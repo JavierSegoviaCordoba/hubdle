@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `actions/cache -> v3.2.4`
+
 ## [0.4.0-alpha.8] - 2023-01-27
 
 ### Fixed

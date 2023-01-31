@@ -14,6 +14,12 @@
 
 ### Updated
 
+- `io.ktor:ktor-serialization-kotlinx-json -> 2.2.3`
+- `io.ktor:ktor-client-okhttp -> 2.2.3`
+- `io.ktor:ktor-client-mock -> 2.2.3`
+- `io.ktor:ktor-client-core -> 2.2.3`
+- `io.ktor:ktor-client-content-negotiation -> 2.2.3`
+- `io.ktor:ktor-client-cio -> 2.2.3`
 - `actions/cache -> v3.2.4`
 
 ## [0.4.0-alpha.8] - 2023-01-27

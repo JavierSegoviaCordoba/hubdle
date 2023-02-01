@@ -14,6 +14,9 @@
 
 ### Updated
 
+- `com.android.tools.build:gradle -> 7.4.1`
+- `com.android.library:com.android.library.gradle.plugin -> 7.4.1`
+- `com.android.application:com.android.application.gradle.plugin -> 7.4.1`
 - `com.github.triplet.gradle:play-publisher -> 3.8.0`
 - `io.ktor:ktor-serialization-kotlinx-json -> 2.2.3`
 - `io.ktor:ktor-client-okhttp -> 2.2.3`

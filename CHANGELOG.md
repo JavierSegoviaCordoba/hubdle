@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.github.triplet.gradle:play-publisher -> 3.8.0`
 - `io.ktor:ktor-serialization-kotlinx-json -> 2.2.3`
 - `io.ktor:ktor-client-okhttp -> 2.2.3`
 - `io.ktor:ktor-client-mock -> 2.2.3`

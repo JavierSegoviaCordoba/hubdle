@@ -12,6 +12,12 @@
 
 ### Fixed
 
+### Updated
+
+## [0.4.0-alpha.9] - 2023-02-02
+
+### Fixed
+
 - `kotlin.jvm.features` doesn't include `gradle` extension
 
 ### Updated
@@ -200,7 +206,9 @@
 - `org.eclipse.jgit:org.eclipse.jgit -> 6.4.0.202211300538-r`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.2.0-alpha.46`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.8...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.9...HEAD
+
+[0.4.0-alpha.9]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.8...0.4.0-alpha.9
 
 [0.4.0-alpha.8]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.7...0.4.0-alpha.8
 

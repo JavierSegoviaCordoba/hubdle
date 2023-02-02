@@ -14,6 +14,13 @@
 
 ### Updated
 
+- `org.jetbrains.kotlin:kotlin-test-testng -> 1.8.10`
+- `org.jetbrains.kotlin:kotlin-test-junit5 -> 1.8.10`
+- `org.jetbrains.kotlin:kotlin-test-junit -> 1.8.10`
+- `org.jetbrains.kotlin:kotlin-test-annotations-common -> 1.8.10`
+- `org.jetbrains.kotlin:kotlin-test -> 1.8.10`
+- `org.jetbrains.kotlin:kotlin-gradle-plugin -> 1.8.10`
+- `org.jetbrains.kotlin:kotlin-serialization -> 1.8.10`
 - `com.android.tools:desugar_jdk_libs -> 2.0.1`
 - `com.android.tools.build:gradle -> 7.4.1`
 - `com.android.library:com.android.library.gradle.plugin -> 7.4.1`

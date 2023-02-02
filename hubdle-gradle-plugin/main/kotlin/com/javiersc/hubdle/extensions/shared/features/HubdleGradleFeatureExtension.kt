@@ -7,6 +7,7 @@ import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.extensions.apis.enableAndExecute
 import com.javiersc.hubdle.extensions.kotlin.jvm.hubdleKotlinJvm
 import com.javiersc.hubdle.extensions.shared.features.gradle.HubdleGradlePluginFeatureExtension
+import com.javiersc.hubdle.extensions.shared.features.gradle.HubdleGradleVersionCatalogFeatureExtension
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
@@ -29,6 +30,16 @@ constructor(
     @HubdleDslMarker
     public fun plugin(action: Action<HubdleGradlePluginFeatureExtension> = Action {}) {
         plugin.enableAndExecute(action)
+    }
+
+    public val versionCatalog: HubdleGradleVersionCatalogFeatureExtension
+        get() = getHubdleExtension()
+
+    @HubdleDslMarker
+    public fun versionCatalog(
+        action: Action<HubdleGradleVersionCatalogFeatureExtension> = Action {}
+    ) {
+        versionCatalog.enableAndExecute(action)
     }
 }
 

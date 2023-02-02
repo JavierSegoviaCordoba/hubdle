@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- `kotlin.jvm.features` doesn't include `gradle` extension
+
 ### Updated
 
 - `com.android.tools:desugar_jdk_libs -> 2.0.1`

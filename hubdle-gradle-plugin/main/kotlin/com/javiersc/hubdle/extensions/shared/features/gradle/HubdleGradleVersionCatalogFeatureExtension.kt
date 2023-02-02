@@ -5,15 +5,12 @@ import com.javiersc.hubdle.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.extensions._internal.PluginId
 import com.javiersc.hubdle.extensions._internal.getHubdleExtension
-import com.javiersc.hubdle.extensions.apis.BaseHubdleDelegateExtension
 import com.javiersc.hubdle.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
-import com.javiersc.hubdle.extensions.apis.enableAndExecute
 import com.javiersc.hubdle.extensions.config.publishing._internal.configurableMavenPublishing
 import com.javiersc.hubdle.extensions.kotlin.hubdleKotlin
 import java.io.File
 import javax.inject.Inject
-import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.file.ConfigurableFileCollection
 import org.gradle.api.plugins.catalog.CatalogPluginExtension
@@ -54,19 +51,6 @@ constructor(
         }
 
         configurableMavenPublishing(mavenPublicationName = "versionCatalog")
-    }
-}
-
-public interface HubdleGradleVersionCatalogDelegateFeatureExtension : BaseHubdleDelegateExtension {
-
-    public val versionCatalog: HubdleGradleVersionCatalogFeatureExtension
-        get() = project.getHubdleExtension()
-
-    @HubdleDslMarker
-    public fun versionCatalog(
-        action: Action<HubdleGradleVersionCatalogFeatureExtension> = Action {}
-    ) {
-        versionCatalog.enableAndExecute(action)
     }
 }
 

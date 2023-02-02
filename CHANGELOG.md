@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.android.tools:desugar_jdk_libs -> 2.0.1`
 - `com.android.tools.build:gradle -> 7.4.1`
 - `com.android.library:com.android.library.gradle.plugin -> 7.4.1`
 - `com.android.application:com.android.application.gradle.plugin -> 7.4.1`

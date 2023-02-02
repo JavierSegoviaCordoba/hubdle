@@ -6,7 +6,7 @@
 
 * 541 number of functions
 
-* 222 number of classes
+* 221 number of classes
 
 * 73 number of packages
 
@@ -14,11 +14,11 @@
 
 ## Complexity Report
 
-* 12,712 lines of code (loc)
+* 12,705 lines of code (loc)
 
-* 10,455 source lines of code (sloc)
+* 10,449 source lines of code (sloc)
 
-* 6,895 logical lines of code (lloc)
+* 6,893 logical lines of code (lloc)
 
 * 91 comment lines of code (cloc)
 
@@ -30,7 +30,7 @@
 
 * 0% comment source ratio
 
-* 132 mcc per 1,000 lloc
+* 133 mcc per 1,000 lloc
 
 * 12 code smells per 1,000 lloc
 
@@ -1397,4 +1397,4 @@ Private property `testCompilation` is unused.
 
 ```
 
-generated with [detekt version 1.22.0](https://detekt.dev/) on 2023-01-27 21:32:18 UTC
+generated with [detekt version 1.22.0](https://detekt.dev/) on 2023-02-02 13:37:45 UTC

@@ -7,6 +7,7 @@ import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.extensions.apis.enableAndExecute
 import com.javiersc.hubdle.extensions.kotlin.jvm.hubdleKotlinJvm
 import com.javiersc.hubdle.extensions.shared.features.gradle.HubdleGradlePluginFeatureExtension
+import com.javiersc.hubdle.extensions.shared.features.gradle.HubdleGradleVersionCatalogFeatureExtension
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
@@ -14,32 +15,42 @@ import org.gradle.api.provider.Property
 
 public open class HubdleGradleFeatureExtension
 @Inject
-<span class="nc" id="L17">constructor(</span>
+<span class="nc" id="L18">constructor(</span>
     project: Project,
-<span class="nc" id="L19">) : HubdleEnableableExtension(project) {</span>
+<span class="nc" id="L20">) : HubdleEnableableExtension(project) {</span>
 
-<span class="nc" id="L21">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
+<span class="nc" id="L22">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
 
     override val oneOfExtensions: Set&lt;HubdleEnableableExtension&gt;
-<span class="nc" id="L24">        get() = setOf(hubdleKotlinJvm)</span>
+<span class="nc" id="L25">        get() = setOf(hubdleKotlinJvm)</span>
 
     public val plugin: HubdleGradlePluginFeatureExtension
-<span class="nc" id="L27">        get() = getHubdleExtension()</span>
+<span class="nc" id="L28">        get() = getHubdleExtension()</span>
 
     @HubdleDslMarker
-<span class="nc" id="L30">    public fun plugin(action: Action&lt;HubdleGradlePluginFeatureExtension&gt; = Action {}) {</span>
-<span class="nc" id="L31">        plugin.enableAndExecute(action)</span>
-<span class="nc" id="L32">    }</span>
+<span class="nc" id="L31">    public fun plugin(action: Action&lt;HubdleGradlePluginFeatureExtension&gt; = Action {}) {</span>
+<span class="nc" id="L32">        plugin.enableAndExecute(action)</span>
+<span class="nc" id="L33">    }</span>
+
+    public val versionCatalog: HubdleGradleVersionCatalogFeatureExtension
+<span class="nc" id="L36">        get() = getHubdleExtension()</span>
+
+    @HubdleDslMarker
+<span class="nc" id="L39">    public fun versionCatalog(</span>
+<span class="nc" id="L40">        action: Action&lt;HubdleGradleVersionCatalogFeatureExtension&gt; = Action {}</span>
+    ) {
+<span class="nc" id="L42">        versionCatalog.enableAndExecute(action)</span>
+<span class="nc" id="L43">    }</span>
 }
 
 public interface HubdleGradleDelegateFeatureExtension : BaseHubdleDelegateExtension {
 
     public val gradle: HubdleGradleFeatureExtension
-<span class="nc" id="L38">        get() = project.getHubdleExtension()</span>
+<span class="nc" id="L49">        get() = project.getHubdleExtension()</span>
 
     @HubdleDslMarker
-<span class="nc" id="L41">    public fun gradle(action: Action&lt;HubdleGradleFeatureExtension&gt; = Action {}) {</span>
-<span class="nc" id="L42">        gradle.enableAndExecute(action)</span>
-<span class="nc" id="L43">    }</span>
+<span class="nc" id="L52">    public fun gradle(action: Action&lt;HubdleGradleFeatureExtension&gt; = Action {}) {</span>
+<span class="nc" id="L53">        gradle.enableAndExecute(action)</span>
+<span class="nc" id="L54">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

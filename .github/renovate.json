@@ -1,5 +1,15 @@
 {
   "extends": [
     "github>JavierSegoviaCordoba/reusable-workflows//.github/renovate-reusable.json"
-  ]
+  ],
+  "packageRules": [
+    {
+      "matchPackagePatterns": [
+        "androidx.compose.compiler:compiler",
+        "org.jetbrains.kotlin*"
+      ],
+      "groupName": "Compose Compiler and Kotlin"
+    }
+  ],
+  "prConcurrentLimit": 2
 }

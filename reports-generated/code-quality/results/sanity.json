@@ -440,21 +440,21 @@
     "Sanity"
   ],
   "severity": "Critical",
-  "comment": "Unresolved reference: androidxComposeCompiler",
+  "comment": "Unresolved reference: ANDROIDX_ACTIVITY_ACTIVITY_COMPOSE_MODULE",
   "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
   "sources": [
     {
       "type": "file",
       "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinComposeFeatureExtension.kt",
       "language": "kotlin",
-      "line": 41,
-      "offset": 57,
-      "length": 23,
+      "line": 72,
+      "offset": 54,
+      "length": 41,
       "code": {
-        "startLine": 39,
-        "length": 23,
-        "offset": 107,
-        "surroundingCode": "    override val priority: Priority = Priority.P4\n\n    public val compiler: Property<String?> = property { androidxComposeCompiler().get().toString() }\n\n    @HubdleDslMarker"
+        "startLine": 70,
+        "length": 41,
+        "offset": 164,
+        "surroundingCode": "            if (hubdleAndroidFeatures.isFullEnabled.get()) {\n                forKotlinSetsDependencies(MAIN) {\n                    implementation(catalogDependency(ANDROIDX_ACTIVITY_ACTIVITY_COMPOSE_MODULE))\n                }\n                configureAndroidCommonExtension {"
       }
     }
   ],
@@ -462,7 +462,7 @@
     "module": "hubdle.hubdle-gradle-plugin.main",
     "inspectionName": "KotlinAnnotator"
   },
-  "hash": "cbb8e9c53fe41131a6785b30312a1f3ceb2a745c1b57b1ce54f46a873517d362"
+  "hash": "784f32e0ec73b5a4d3a60cd08796b901b123d442ea4d3aab97e64e5eb8a8ce0d"
 },{
   "tool": "Code Inspection",
   "category": "General",
@@ -533,21 +533,21 @@
     "Sanity"
   ],
   "severity": "Critical",
-  "comment": "Unresolved reference: ANDROIDX_ACTIVITY_ACTIVITY_COMPOSE_MODULE",
+  "comment": "Unresolved reference: androidxComposeCompiler",
   "detailsInfo": "Allows viewing the problems reported by the Kotlin annotator: compilation problems, references unresolved by the IDE, and so on.",
   "sources": [
     {
       "type": "file",
       "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinComposeFeatureExtension.kt",
       "language": "kotlin",
-      "line": 72,
-      "offset": 54,
-      "length": 41,
+      "line": 41,
+      "offset": 57,
+      "length": 23,
       "code": {
-        "startLine": 70,
-        "length": 41,
-        "offset": 164,
-        "surroundingCode": "            if (hubdleAndroidFeatures.isFullEnabled.get()) {\n                forKotlinSetsDependencies(MAIN) {\n                    implementation(catalogDependency(ANDROIDX_ACTIVITY_ACTIVITY_COMPOSE_MODULE))\n                }\n                configureAndroidCommonExtension {"
+        "startLine": 39,
+        "length": 23,
+        "offset": 107,
+        "surroundingCode": "    override val priority: Priority = Priority.P4\n\n    public val compiler: Property<String?> = property { androidxComposeCompiler().get().toString() }\n\n    @HubdleDslMarker"
       }
     }
   ],
@@ -555,7 +555,7 @@
     "module": "hubdle.hubdle-gradle-plugin.main",
     "inspectionName": "KotlinAnnotator"
   },
-  "hash": "784f32e0ec73b5a4d3a60cd08796b901b123d442ea4d3aab97e64e5eb8a8ce0d"
+  "hash": "cbb8e9c53fe41131a6785b30312a1f3ceb2a745c1b57b1ce54f46a873517d362"
 },{
   "tool": "Code Inspection",
   "category": "General",
@@ -571,14 +571,14 @@
       "type": "file",
       "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinKotestFeatureExtension.kt",
       "language": "kotlin",
-      "line": 16,
-      "offset": 72,
+      "line": 46,
+      "offset": 50,
       "length": 39,
       "code": {
-        "startLine": 14,
+        "startLine": 44,
         "length": 39,
-        "offset": 200,
-        "surroundingCode": "import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension\nimport com.javiersc.hubdle.extensions.apis.enableAndExecute\nimport com.javiersc.hubdle.extensions.dependencies._internal.constants.IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE\nimport com.javiersc.hubdle.extensions.kotlin._internal.forKotlinSetsDependencies\nimport com.javiersc.hubdle.extensions.kotlin.hubdleKotlinAny"
+        "offset": 96,
+        "surroundingCode": "                TEST_FIXTURES,\n            ) {\n                implementation(catalogDependency(IO_KOTEST_KOTEST_ASSERTIONS_CORE_MODULE))\n            }\n        }"
       }
     }
   ],
@@ -586,5 +586,5 @@
     "module": "hubdle.hubdle-gradle-plugin.main",
     "inspectionName": "KotlinAnnotator"
   },
-  "hash": "3cc6454faeb1599a857a4094a3a5a4cdf2de64309865c75418f8a53983b3e7b2"
+  "hash": "c33caae0192f49dce5212e093c67b6572d76fc18d56a053a7f2a9c8b136eae0b"
 }]}

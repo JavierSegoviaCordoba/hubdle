@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `org.jetbrains.compose:compose-gradle-plugin -> 1.3.0`
+
 ## [0.4.0-alpha.9] - 2023-02-02
 
 ### Fixed

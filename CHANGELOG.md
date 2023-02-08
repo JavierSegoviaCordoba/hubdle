@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `androidx.appcompat:appcompat -> 1.6.1`
 - `org.jetbrains.kotlin:kotlin-test-testng -> 1.8.10`
 - `org.jetbrains.kotlin:kotlin-test-junit5 -> 1.8.10`
 - `org.jetbrains.kotlin:kotlin-test-junit -> 1.8.10`

@@ -3,21 +3,21 @@
   "category": "Style issues",
   "type": "Class member can have 'private' visibility",
   "severity": "Moderate",
-  "comment": "Property 'engine' could be private",
+  "comment": "Property 'includes' could be private",
   "detailsInfo": "Reports declarations that can be made `private` to follow the encapsulation principle.\n\n**Example:**\n\n\n    class Service(val url: String) {\n        fun connect(): URLConnection = URL(url).openConnection()\n    }\n\nAfter the quick-fix is applied (considering there are no usages of `url` outside of `Service` class):\n\n\n    class Service(private val url: String) {\n        fun connect(): URLConnection = URL(url).openConnection()\n    }\n",
   "sources": [
     {
       "type": "file",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/coverage/HubdleConfigCoverageExtension.kt",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/analysis/HubdleConfigAnalysisExtension.kt",
       "language": "kotlin",
-      "line": 41,
+      "line": 50,
       "offset": 5,
       "length": 6,
       "code": {
-        "startLine": 39,
+        "startLine": 48,
         "length": 6,
-        "offset": 55,
-        "surroundingCode": "    override val priority: Priority = Priority.P3\n\n    public val engine: Property<CoverageEngineVariant> = property { DefaultJacocoEngine }\n\n    @HubdleDslMarker"
+        "offset": 74,
+        "surroundingCode": "    public val ignoreFailures: Property<Boolean> = property { true }\n\n    public val includes: SetProperty<String> = setProperty { setOf(\"**/*.kt\", \"**/*.kts\") }\n\n    public val excludes: SetProperty<String> = setProperty {"
       }
     }
   ],
@@ -25,27 +25,27 @@
     "module": "hubdle.hubdle-gradle-plugin.main",
     "inspectionName": "MemberVisibilityCanBePrivate"
   },
-  "hash": "d96ea16412df3ee950fa41375de3ce18dd80255a5785d1b5e1069146bdd0816b"
+  "hash": "b46b97aa774e1fc718d5505e59b002f3e8cb62a7bdba4eb82e95cb05c5848e73"
 },{
   "tool": "Code Inspection",
   "category": "Style issues",
   "type": "Class member can have 'private' visibility",
   "severity": "Moderate",
-  "comment": "Property 'macosX64' could be private",
+  "comment": "Property 'excludes' could be private",
   "detailsInfo": "Reports declarations that can be made `private` to follow the encapsulation principle.\n\n**Example:**\n\n\n    class Service(val url: String) {\n        fun connect(): URLConnection = URL(url).openConnection()\n    }\n\nAfter the quick-fix is applied (considering there are no usages of `url` outside of `Service` class):\n\n\n    class Service(private val url: String) {\n        fun connect(): URLConnection = URL(url).openConnection()\n    }\n",
   "sources": [
     {
       "type": "file",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformMacOSExtension.kt",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/analysis/HubdleConfigAnalysisExtension.kt",
       "language": "kotlin",
-      "line": 58,
+      "line": 52,
       "offset": 5,
       "length": 6,
       "code": {
-        "startLine": 56,
+        "startLine": 50,
         "length": 6,
-        "offset": 11,
-        "surroundingCode": "    }\n\n    public val macosX64: HubdleKotlinMultiplatformMacOSX64Extension\n        get() = getHubdleExtension()\n"
+        "offset": 97,
+        "surroundingCode": "    public val includes: SetProperty<String> = setProperty { setOf(\"**/*.kt\", \"**/*.kts\") }\n\n    public val excludes: SetProperty<String> = setProperty {\n        setOf(\"**/resources/**\", \"**/build/**\")\n    }"
       }
     }
   ],
@@ -53,46 +53,18 @@
     "module": "hubdle.hubdle-gradle-plugin.main",
     "inspectionName": "MemberVisibilityCanBePrivate"
   },
-  "hash": "aaee3768a9b98b83141bf4e1dd6986ad3ac0360c4fec9d3ca48c9ab508aa12ac"
+  "hash": "ec3b0209af9223453bb04ddee53a699b8e1f26adaea27b06146d32cbccdd136b"
 },{
   "tool": "Code Inspection",
   "category": "Style issues",
   "type": "Class member can have 'private' visibility",
   "severity": "Moderate",
-  "comment": "Property 'allEnabled' could be private",
+  "comment": "Property 'ignoreFailures' could be private",
   "detailsInfo": "Reports declarations that can be made `private` to follow the encapsulation principle.\n\n**Example:**\n\n\n    class Service(val url: String) {\n        fun connect(): URLConnection = URL(url).openConnection()\n    }\n\nAfter the quick-fix is applied (considering there are no usages of `url` outside of `Service` class):\n\n\n    class Service(private val url: String) {\n        fun connect(): URLConnection = URL(url).openConnection()\n    }\n",
   "sources": [
     {
       "type": "file",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformMacOSExtension.kt",
-      "language": "kotlin",
-      "line": 38,
-      "offset": 5,
-      "length": 6,
-      "code": {
-        "startLine": 36,
-        "length": 6,
-        "offset": 51,
-        "surroundingCode": "    override val targetName: String = \"macos\"\n\n    public val allEnabled: Property<Boolean> = property { false }\n\n    @HubdleDslMarker"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "hubdle.hubdle-gradle-plugin.main",
-    "inspectionName": "MemberVisibilityCanBePrivate"
-  },
-  "hash": "cdb9cc4a2e819b1a5637423f69b070ab0a4a8f2b228d73c41c7a851145840bbf"
-},{
-  "tool": "Code Inspection",
-  "category": "Style issues",
-  "type": "Class member can have 'private' visibility",
-  "severity": "Moderate",
-  "comment": "Property 'macosArm64' could be private",
-  "detailsInfo": "Reports declarations that can be made `private` to follow the encapsulation principle.\n\n**Example:**\n\n\n    class Service(val url: String) {\n        fun connect(): URLConnection = URL(url).openConnection()\n    }\n\nAfter the quick-fix is applied (considering there are no usages of `url` outside of `Service` class):\n\n\n    class Service(private val url: String) {\n        fun connect(): URLConnection = URL(url).openConnection()\n    }\n",
-  "sources": [
-    {
-      "type": "file",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformMacOSExtension.kt",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/analysis/HubdleConfigAnalysisExtension.kt",
       "language": "kotlin",
       "line": 48,
       "offset": 5,
@@ -100,8 +72,8 @@
       "code": {
         "startLine": 46,
         "length": 6,
-        "offset": 54,
-        "surroundingCode": "        get() = setOf(hubdleKotlinMultiplatform)\n\n    public val macosArm64: HubdleKotlinMultiplatformMacOSArm64Extension\n        get() = getHubdleExtension()\n"
+        "offset": 55,
+        "surroundingCode": "    override val priority: Priority = Priority.P3\n\n    public val ignoreFailures: Property<Boolean> = property { true }\n\n    public val includes: SetProperty<String> = setProperty { setOf(\"**/*.kt\", \"**/*.kts\") }"
       }
     }
   ],
@@ -109,35 +81,7 @@
     "module": "hubdle.hubdle-gradle-plugin.main",
     "inspectionName": "MemberVisibilityCanBePrivate"
   },
-  "hash": "295193f4f80cd18f78acf34d70bc412913dca276843cdfed05dca629ae21e593"
-},{
-  "tool": "Code Inspection",
-  "category": "Style issues",
-  "type": "Class member can have 'private' visibility",
-  "severity": "Moderate",
-  "comment": "Property 'versionCatalog' could be private",
-  "detailsInfo": "Reports declarations that can be made `private` to follow the encapsulation principle.\n\n**Example:**\n\n\n    class Service(val url: String) {\n        fun connect(): URLConnection = URL(url).openConnection()\n    }\n\nAfter the quick-fix is applied (considering there are no usages of `url` outside of `Service` class):\n\n\n    class Service(private val url: String) {\n        fun connect(): URLConnection = URL(url).openConnection()\n    }\n",
-  "sources": [
-    {
-      "type": "file",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/shared/features/HubdleGradleFeatureExtension.kt",
-      "language": "kotlin",
-      "line": 35,
-      "offset": 5,
-      "length": 6,
-      "code": {
-        "startLine": 33,
-        "length": 6,
-        "offset": 11,
-        "surroundingCode": "    }\n\n    public val versionCatalog: HubdleGradleVersionCatalogFeatureExtension\n        get() = getHubdleExtension()\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "hubdle.hubdle-gradle-plugin.main",
-    "inspectionName": "MemberVisibilityCanBePrivate"
-  },
-  "hash": "3227e8b84154a9fc8cd2c321d9eb9e05a9ed559cc6f613e4d1bd4c02014ad656"
+  "hash": "a82c140e834e101765933b5ca70b031546cbcff125fc79044a162a3ff0084730"
 },{
   "tool": "Code Inspection",
   "category": "Style issues",
@@ -168,108 +112,24 @@
   "hash": "c5f3e89cc2d3c8ecb0d9089aa9cf724c2d69465618eaea3e4237562ca4869cf3"
 },{
   "tool": "Code Inspection",
-  "category": "Style issues",
-  "type": "Class member can have 'private' visibility",
-  "severity": "Moderate",
-  "comment": "Property 'configurables' could be private",
-  "detailsInfo": "Reports declarations that can be made `private` to follow the encapsulation principle.\n\n**Example:**\n\n\n    class Service(val url: String) {\n        fun connect(): URLConnection = URL(url).openConnection()\n    }\n\nAfter the quick-fix is applied (considering there are no usages of `url` outside of `Service` class):\n\n\n    class Service(private val url: String) {\n        fun connect(): URLConnection = URL(url).openConnection()\n    }\n",
-  "sources": [
-    {
-      "type": "file",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/HubdleState.kt",
-      "language": "kotlin",
-      "line": 69,
-      "offset": 9,
-      "length": 13,
-      "code": {
-        "startLine": 67,
-        "length": 13,
-        "offset": 85,
-        "surroundingCode": "\n    private val _configurables: MutableList<Configurable> = mutableListOf()\n    val configurables: List<Configurable>\n        get() = _configurables.toList().sortedBy { it.priority }\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "hubdle.hubdle-gradle-plugin.main",
-    "inspectionName": "MemberVisibilityCanBePrivate"
-  },
-  "hash": "df6d0ad7cc46523dd07f9025f9c6dcf7e3c2eb8004d5fc495cc7946b09ede286"
-},{
-  "tool": "Code Inspection",
-  "category": "Style issues",
-  "type": "Class member can have 'private' visibility",
-  "severity": "Moderate",
-  "comment": "Property 'applicablePlugins' could be private",
-  "detailsInfo": "Reports declarations that can be made `private` to follow the encapsulation principle.\n\n**Example:**\n\n\n    class Service(val url: String) {\n        fun connect(): URLConnection = URL(url).openConnection()\n    }\n\nAfter the quick-fix is applied (considering there are no usages of `url` outside of `Service` class):\n\n\n    class Service(private val url: String) {\n        fun connect(): URLConnection = URL(url).openConnection()\n    }\n",
-  "sources": [
-    {
-      "type": "file",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/HubdleState.kt",
-      "language": "kotlin",
-      "line": 49,
-      "offset": 9,
-      "length": 17,
-      "code": {
-        "startLine": 47,
-        "length": 17,
-        "offset": 93,
-        "surroundingCode": "\n    private val _applicablePlugins: MutableList<ApplicablePlugin> = mutableListOf()\n    val applicablePlugins: List<ApplicablePlugin>\n        get() = _applicablePlugins.toList().sortedBy { it.priority }\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "hubdle.hubdle-gradle-plugin.main",
-    "inspectionName": "MemberVisibilityCanBePrivate"
-  },
-  "hash": "086520b7c61abc1bb046cb5300bc9d16139cfb707799865af6b5605f4e4c3b03"
-},{
-  "tool": "Code Inspection",
   "category": "Redundant constructs",
   "type": "Unused symbol",
   "severity": "High",
-  "comment": "Property \"apiValidationExtension\" is never used",
+  "comment": "Property \"hubdleKotestFeature\" is never used",
   "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
   "sources": [
     {
       "type": "file",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/binary/compatibility/validator/HubdleConfigBinaryCompatibilityValidatorExtension.kt",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinKotestFeatureExtension.kt",
       "language": "kotlin",
-      "line": 71,
-      "offset": 21,
-      "length": 22,
-      "code": {
-        "startLine": 69,
-        "length": 22,
-        "offset": 54,
-        "surroundingCode": "    get() = getHubdleExtension()\n\nprivate val Project.apiValidationExtension: ApiValidationExtension\n    get() = getHubdleExtension()\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "hubdle.hubdle-gradle-plugin.main",
-    "inspectionName": "UnusedSymbol"
-  },
-  "hash": "c87ae4a23cbdaff9b9e79ad10dfcc556c07e7d6fd28bc00bdd5465086d7d55e3"
-},{
-  "tool": "Code Inspection",
-  "category": "Redundant constructs",
-  "type": "Unused symbol",
-  "severity": "High",
-  "comment": "Property \"hubdleBinaryCompatibilityValidator\" is never used",
-  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/binary/compatibility/validator/HubdleConfigBinaryCompatibilityValidatorExtension.kt",
-      "language": "kotlin",
-      "line": 67,
+      "line": 63,
       "offset": 40,
-      "length": 34,
+      "length": 19,
       "code": {
-        "startLine": 65,
-        "length": 34,
+        "startLine": 61,
+        "length": 19,
         "offset": 42,
-        "surroundingCode": "}\n\ninternal val HubdleEnableableExtension.hubdleBinaryCompatibilityValidator:\n    HubdleConfigBinaryCompatibilityValidatorExtension\n    get() = getHubdleExtension()"
+        "surroundingCode": "}\n\ninternal val HubdleEnableableExtension.hubdleKotestFeature: HubdleKotlinKotestFeatureExtension\n    get() = getHubdleExtension()\n"
       }
     }
   ],
@@ -277,111 +137,27 @@
     "module": "hubdle.hubdle-gradle-plugin.main",
     "inspectionName": "UnusedSymbol"
   },
-  "hash": "a1e628319d08fc84b32290977efb882599ccd29477ba6cb025847dac8616c8d9"
+  "hash": "51ca2741a438f5b6b2d8a6989dca28a568705dad3a0f731066685ebfcc266aef"
 },{
   "tool": "Code Inspection",
   "category": "Redundant constructs",
   "type": "Unused symbol",
   "severity": "High",
-  "comment": "Property \"hubdleSerializationFeature\" is never used",
+  "comment": "Property \"hubdleJavaVersionFeature\" is never used",
   "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
   "sources": [
     {
       "type": "file",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinSerializationFeatureExtension.kt",
-      "language": "kotlin",
-      "line": 74,
-      "offset": 40,
-      "length": 26,
-      "code": {
-        "startLine": 72,
-        "length": 26,
-        "offset": 42,
-        "surroundingCode": "}\n\ninternal val HubdleEnableableExtension.hubdleSerializationFeature:\n    HubdleKotlinSerializationFeatureExtension\n    get() = getHubdleExtension()"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "hubdle.hubdle-gradle-plugin.main",
-    "inspectionName": "UnusedSymbol"
-  },
-  "hash": "4b6ebbd6a241b9a9b133a4ea8b9ad1958b2158a390a2eb53d582fea380fce25c"
-},{
-  "tool": "Code Inspection",
-  "category": "Redundant constructs",
-  "type": "Unused symbol",
-  "severity": "High",
-  "comment": "Function \"withSigning\" is never used",
-  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/withPluginExtensions.kt",
-      "language": "kotlin",
-      "line": 79,
-      "offset": 22,
-      "length": 11,
-      "code": {
-        "startLine": 77,
-        "length": 11,
-        "offset": 90,
-        "surroundingCode": "    withId(id = PluginId.JavierscSemverGradlePlugin, block = block)\n\ninternal fun Project.withSigning(block: SigningExtension.() -> Unit) =\n    withId(id = PluginId.GradleSigning, block = block)\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "hubdle.hubdle-gradle-plugin.main",
-    "inspectionName": "UnusedSymbol"
-  },
-  "hash": "4e52c283a4d65c2e9a5ef999e27e7ecfbe8733d795954e40e80aa42c1e06583a"
-},{
-  "tool": "Code Inspection",
-  "category": "Redundant constructs",
-  "type": "Unused symbol",
-  "severity": "High",
-  "comment": "Function \"withGradleApplication\" is never used",
-  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/withPluginExtensions.kt",
-      "language": "kotlin",
-      "line": 45,
-      "offset": 22,
-      "length": 21,
-      "code": {
-        "startLine": 43,
-        "length": 21,
-        "offset": 70,
-        "surroundingCode": "    withId(id = PluginId.Detekt, block = block)\n\ninternal fun Project.withGradleApplication(block: JavaApplication.() -> Unit) =\n    withId(id = PluginId.GradleApplication, block = block)\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "hubdle.hubdle-gradle-plugin.main",
-    "inspectionName": "UnusedSymbol"
-  },
-  "hash": "3896fa244a8eb05f5a1dd72ae09d30778782d596e08e62519eaa9ae4fcd08a9b"
-},{
-  "tool": "Code Inspection",
-  "category": "Redundant constructs",
-  "type": "Unused symbol",
-  "severity": "High",
-  "comment": "Function \"withKotlinBinaryCompatibilityValidator\" is never used",
-  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/withPluginExtensions.kt",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/shared/features/HubdleJavaVersionFeatureExtension.kt",
       "language": "kotlin",
       "line": 66,
-      "offset": 22,
-      "length": 38,
+      "offset": 40,
+      "length": 24,
       "code": {
         "startLine": 64,
-        "length": 38,
-        "offset": 92,
-        "surroundingCode": "    withId(id = PluginId.JetbrainsKotlinMultiplatform, block = block)\n\ninternal fun Project.withKotlinBinaryCompatibilityValidator(\n    block: ApiValidationExtension.() -> Unit\n) = withId(id = PluginId.JetbrainsKotlinxBinaryCompatibilityValidator, block = block)"
+        "length": 24,
+        "offset": 42,
+        "surroundingCode": "}\n\ninternal val HubdleEnableableExtension.hubdleJavaVersionFeature: HubdleJavaVersionFeatureExtension\n    get() = getHubdleExtension()\n"
       }
     }
   ],
@@ -389,195 +165,27 @@
     "module": "hubdle.hubdle-gradle-plugin.main",
     "inspectionName": "UnusedSymbol"
   },
-  "hash": "a49eb360f701c6b90ae9077fc6715d7ef5258068c674bc3921e2531bbd1c715a"
+  "hash": "d9eabe7e5931dd38e1f4e712ac08e974b2262cd592168e15ea5cfa91b6e44912"
 },{
   "tool": "Code Inspection",
   "category": "Redundant constructs",
   "type": "Unused symbol",
   "severity": "High",
-  "comment": "Function \"withDetekt\" is never used",
+  "comment": "Property \"isVersionCatalog\" is never used",
   "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
   "sources": [
     {
       "type": "file",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/withPluginExtensions.kt",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/hasPluginExensions.kt",
       "language": "kotlin",
-      "line": 42,
-      "offset": 22,
-      "length": 10,
-      "code": {
-        "startLine": 40,
-        "length": 10,
-        "offset": 80,
-        "surroundingCode": "    withId(id = PluginId.JetbrainsCompose, block = block)\n\ninternal fun Project.withDetekt(block: DetektExtension.() -> Unit) =\n    withId(id = PluginId.Detekt, block = block)\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "hubdle.hubdle-gradle-plugin.main",
-    "inspectionName": "UnusedSymbol"
-  },
-  "hash": "b8bfadbde83479564a482193004cb5e04849c3676cd393de40e44e11450a9390"
-},{
-  "tool": "Code Inspection",
-  "category": "Redundant constructs",
-  "type": "Unused symbol",
-  "severity": "High",
-  "comment": "Function \"withKotlin\" is never used",
-  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/withPluginExtensions.kt",
-      "language": "kotlin",
-      "line": 51,
-      "offset": 22,
-      "length": 10,
-      "code": {
-        "startLine": 49,
-        "length": 10,
-        "offset": 80,
-        "surroundingCode": "    withId(id = PluginId.JavaGradlePlugin, block = block)\n\ninternal fun Project.withKotlin(block: KotlinProjectExtension.() -> Unit) {\n    withKotlinAndroid(block)\n    withKotlinJvm(block)"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "hubdle.hubdle-gradle-plugin.main",
-    "inspectionName": "UnusedSymbol"
-  },
-  "hash": "5ff342fe328266f72da00712316f10944f3f88753c0e5c26639254af49c74588"
-},{
-  "tool": "Code Inspection",
-  "category": "Redundant constructs",
-  "type": "Unused symbol",
-  "severity": "High",
-  "comment": "Function \"withAndroidLibrary\" is never used",
-  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/withPluginExtensions.kt",
-      "language": "kotlin",
-      "line": 36,
-      "offset": 22,
-      "length": 18,
-      "code": {
-        "startLine": 34,
-        "length": 18,
-        "offset": 82,
-        "surroundingCode": "    withId(id = PluginId.AndroidApplication, block = block)\n\ninternal fun Project.withAndroidLibrary(block: LibraryExtension.() -> Unit) =\n    withId(id = PluginId.AndroidLibrary, block = block)\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "hubdle.hubdle-gradle-plugin.main",
-    "inspectionName": "UnusedSymbol"
-  },
-  "hash": "f39b1d306e5d7ef75b4d6e3d4898ba6a803aed97047c20a6505c62219579b8ac"
-},{
-  "tool": "Code Inspection",
-  "category": "Redundant constructs",
-  "type": "Unused symbol",
-  "severity": "High",
-  "comment": "Function \"withSpotlessPredeclare\" is never used",
-  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/withPluginExtensions.kt",
-      "language": "kotlin",
-      "line": 85,
-      "offset": 22,
-      "length": 22,
-      "code": {
-        "startLine": 83,
-        "length": 22,
-        "offset": 80,
-        "surroundingCode": "    withId(id = PluginId.DiffplugSpotless, block = block)\n\ninternal fun Project.withSpotlessPredeclare(block: SpotlessExtensionPredeclare.() -> Unit) =\n    withId(id = PluginId.DiffplugSpotless, block = block)\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "hubdle.hubdle-gradle-plugin.main",
-    "inspectionName": "UnusedSymbol"
-  },
-  "hash": "d44499450819774acca9143a1f17181edb65510fcb866e30a324c85082e1ad32"
-},{
-  "tool": "Code Inspection",
-  "category": "Redundant constructs",
-  "type": "Unused symbol",
-  "severity": "High",
-  "comment": "Function \"withKover\" is never used",
-  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/withPluginExtensions.kt",
-      "language": "kotlin",
-      "line": 70,
-      "offset": 22,
-      "length": 9,
-      "code": {
-        "startLine": 68,
-        "length": 9,
-        "offset": 108,
-        "surroundingCode": ") = withId(id = PluginId.JetbrainsKotlinxBinaryCompatibilityValidator, block = block)\n\ninternal fun Project.withKover(block: KoverProjectConfig.() -> Unit) =\n    withId(id = PluginId.JetbrainsKotlinxKover, block = block)\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "hubdle.hubdle-gradle-plugin.main",
-    "inspectionName": "UnusedSymbol"
-  },
-  "hash": "8d8bca11bb7bb7ea24b01ad1d1150720666a3aae87188bcb64bf71b09d242949"
-},{
-  "tool": "Code Inspection",
-  "category": "Redundant constructs",
-  "type": "Unused symbol",
-  "severity": "High",
-  "comment": "Function \"withSemver\" is never used",
-  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/withPluginExtensions.kt",
-      "language": "kotlin",
-      "line": 76,
-      "offset": 22,
-      "length": 10,
-      "code": {
-        "startLine": 74,
-        "length": 10,
-        "offset": 76,
-        "surroundingCode": "    withId(id = PluginId.MavenPublish, block = block)\n\ninternal fun Project.withSemver(block: SemverExtension.() -> Unit) =\n    withId(id = PluginId.JavierscSemverGradlePlugin, block = block)\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "hubdle.hubdle-gradle-plugin.main",
-    "inspectionName": "UnusedSymbol"
-  },
-  "hash": "ee1e6cbdcf192cae6ec3a60e93ba5734e17359ef824c961ffa8ff2b079287b52"
-},{
-  "tool": "Code Inspection",
-  "category": "Redundant constructs",
-  "type": "Unused symbol",
-  "severity": "High",
-  "comment": "Function \"withGradlePlugin\" is never used",
-  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/withPluginExtensions.kt",
-      "language": "kotlin",
-      "line": 48,
+      "line": 34,
       "offset": 22,
       "length": 16,
       "code": {
-        "startLine": 46,
+        "startLine": 32,
         "length": 16,
-        "offset": 81,
-        "surroundingCode": "    withId(id = PluginId.GradleApplication, block = block)\n\ninternal fun Project.withGradlePlugin(block: GradlePluginDevelopmentExtension.() -> Unit) =\n    withId(id = PluginId.JavaGradlePlugin, block = block)\n"
+        "offset": 106,
+        "surroundingCode": "    get() = isKotlinMultiplatform && pluginManager.hasPlugin(\"com.android.library\")\n\ninternal val Project.isVersionCatalog: Boolean\n    get() = pluginManager.hasPlugin(\"org.gradle.version-catalog\")\n"
       }
     }
   ],
@@ -585,27 +193,27 @@
     "module": "hubdle.hubdle-gradle-plugin.main",
     "inspectionName": "UnusedSymbol"
   },
-  "hash": "f8826c55fdfa6f66771c1ad4258337b60efa9421bb4dd9d016607c3b7b1fcf39"
+  "hash": "4c361b7761b2b90ddfa7dc477f953443daa02ef681392478ed696286cf5371cd"
 },{
   "tool": "Code Inspection",
   "category": "Redundant constructs",
   "type": "Unused symbol",
   "severity": "High",
-  "comment": "Function \"withCompose\" is never used",
+  "comment": "Property \"isKotlin\" is never used",
   "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
   "sources": [
     {
       "type": "file",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/withPluginExtensions.kt",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/hasPluginExensions.kt",
       "language": "kotlin",
-      "line": 39,
+      "line": 18,
       "offset": 22,
-      "length": 11,
+      "length": 8,
       "code": {
-        "startLine": 37,
-        "length": 11,
-        "offset": 78,
-        "surroundingCode": "    withId(id = PluginId.AndroidLibrary, block = block)\n\ninternal fun Project.withCompose(block: () -> Unit) =\n    withId(id = PluginId.JetbrainsCompose, block = block)\n"
+        "startLine": 16,
+        "length": 8,
+        "offset": 86,
+        "surroundingCode": "    get() = pluginManager.hasPlugin(\"org.gradle.java-platform\")\n\ninternal val Project.isKotlin: Boolean\n    get() =\n        isKotlinJvm ||"
       }
     }
   ],
@@ -613,27 +221,27 @@
     "module": "hubdle.hubdle-gradle-plugin.main",
     "inspectionName": "UnusedSymbol"
   },
-  "hash": "f6a83ba04cf94062a3bb82489289f3d686edb94f92c6e95dc20866cc9d9b304b"
+  "hash": "f08fdb680acc4348411831b964a27c8ca0d41ce6f1f62417062bf7879b09b857"
 },{
   "tool": "Code Inspection",
   "category": "Redundant constructs",
   "type": "Unused symbol",
   "severity": "High",
-  "comment": "Function \"withAndroidApplication\" is never used",
+  "comment": "Property \"isAndroidApplication\" is never used",
   "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
   "sources": [
     {
       "type": "file",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/withPluginExtensions.kt",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/hasPluginExensions.kt",
       "language": "kotlin",
-      "line": 33,
+      "line": 6,
       "offset": 22,
-      "length": 22,
+      "length": 20,
       "code": {
-        "startLine": 31,
-        "length": 22,
-        "offset": 24,
-        "surroundingCode": "}\n\ninternal fun Project.withAndroidApplication(block: ApplicationExtension.() -> Unit) =\n    withId(id = PluginId.AndroidApplication, block = block)\n"
+        "startLine": 4,
+        "length": 20,
+        "offset": 88,
+        "surroundingCode": "import org.jetbrains.kotlin.gradle.plugin.KotlinBasePluginWrapper\n\ninternal val Project.isAndroidApplication: Boolean\n    get() = pluginManager.hasPlugin(\"com.android.application\")\n"
       }
     }
   ],
@@ -641,27 +249,27 @@
     "module": "hubdle.hubdle-gradle-plugin.main",
     "inspectionName": "UnusedSymbol"
   },
-  "hash": "242929cfd0f46d2d7894b62005d0613ef4a562153275bcb9cc7d961542390403"
+  "hash": "d65ae1895db0392901c9b8dd0714b9c19e38214996079547363b603754b71a78"
 },{
   "tool": "Code Inspection",
   "category": "Redundant constructs",
   "type": "Unused symbol",
   "severity": "High",
-  "comment": "Function \"withPublishing\" is never used",
+  "comment": "Property \"isJavaPlatform\" is never used",
   "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
   "sources": [
     {
       "type": "file",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/withPluginExtensions.kt",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/hasPluginExensions.kt",
       "language": "kotlin",
-      "line": 73,
+      "line": 15,
       "offset": 22,
       "length": 14,
       "code": {
-        "startLine": 71,
+        "startLine": 13,
         "length": 14,
-        "offset": 85,
-        "surroundingCode": "    withId(id = PluginId.JetbrainsKotlinxKover, block = block)\n\ninternal fun Project.withPublishing(block: GradlePublishingExtension.() -> Unit) =\n    withId(id = PluginId.MavenPublish, block = block)\n"
+        "offset": 91,
+        "surroundingCode": "    get() = pluginManager.hasPlugin(\"org.gradle.java-gradle-plugin\")\n\ninternal val Project.isJavaPlatform: Boolean\n    get() = pluginManager.hasPlugin(\"org.gradle.java-platform\")\n"
       }
     }
   ],
@@ -669,27 +277,27 @@
     "module": "hubdle.hubdle-gradle-plugin.main",
     "inspectionName": "UnusedSymbol"
   },
-  "hash": "ea1b3018d17341c193c6b260c42f880f8ddac02d604775329dcbfc93eac478ed"
+  "hash": "b5f042a97b7f5e359ea7cf59a56746f2b29697c1d507f0c18669a71e762b5385"
 },{
   "tool": "Code Inspection",
   "category": "Redundant constructs",
   "type": "Unused symbol",
   "severity": "High",
-  "comment": "Function \"withSpotless\" is never used",
+  "comment": "Property \"isGradlePlugin\" is never used",
   "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
   "sources": [
     {
       "type": "file",
-      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/withPluginExtensions.kt",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/hasPluginExensions.kt",
       "language": "kotlin",
-      "line": 82,
+      "line": 12,
       "offset": 22,
-      "length": 12,
+      "length": 14,
       "code": {
-        "startLine": 80,
-        "length": 12,
-        "offset": 77,
-        "surroundingCode": "    withId(id = PluginId.GradleSigning, block = block)\n\ninternal fun Project.withSpotless(block: SpotlessExtension.() -> Unit) =\n    withId(id = PluginId.DiffplugSpotless, block = block)\n"
+        "startLine": 10,
+        "length": 14,
+        "offset": 112,
+        "surroundingCode": "    get() = pluginManager.hasPlugin(\"com.android.library\") && isKotlinMultiplatform.not()\n\ninternal val Project.isGradlePlugin: Boolean\n    get() = pluginManager.hasPlugin(\"org.gradle.java-gradle-plugin\")\n"
       }
     }
   ],
@@ -697,5 +305,33 @@
     "module": "hubdle.hubdle-gradle-plugin.main",
     "inspectionName": "UnusedSymbol"
   },
-  "hash": "520a84673c82acf532e4580922b679b094b154bf22fab31e806d0740333b4fd3"
+  "hash": "39a2b49f01482863e9f6b6c219c62311007749e0f719150ce01465487bc94526"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "severity": "High",
+  "comment": "Property \"isAndroidLibrary\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/hasPluginExensions.kt",
+      "language": "kotlin",
+      "line": 9,
+      "offset": 22,
+      "length": 16,
+      "code": {
+        "startLine": 7,
+        "length": 16,
+        "offset": 85,
+        "surroundingCode": "    get() = pluginManager.hasPlugin(\"com.android.application\")\n\ninternal val Project.isAndroidLibrary: Boolean\n    get() = pluginManager.hasPlugin(\"com.android.library\") && isKotlinMultiplatform.not()\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-gradle-plugin.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "214c3823e8626cb0c8341e64c233d69af5942674f277df3f08f8cac69a3f3031"
 }]}

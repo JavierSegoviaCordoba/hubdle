@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `actions/setup-java -> v3.10.0`
 - `com.android.tools:desugar_jdk_libs -> 2.0.2`
 - `io.kotest:kotest-runner-junit5 -> 5.5.5`
 - `io.kotest:kotest-runner-junit4 -> 5.5.5`

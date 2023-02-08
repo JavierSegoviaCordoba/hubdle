@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.12.3`
 - `org.jetbrains.compose:compose-gradle-plugin -> 1.3.0`
 
 ## [0.4.0-alpha.9] - 2023-02-02

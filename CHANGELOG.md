@@ -14,6 +14,14 @@
 
 ### Updated
 
+- `org.jetbrains.kotlin:kotlin-test-testng -> 1.8.10`
+- `org.jetbrains.kotlin:kotlin-test-junit5 -> 1.8.10`
+- `org.jetbrains.kotlin:kotlin-test-junit -> 1.8.10`
+- `org.jetbrains.kotlin:kotlin-test-annotations-common -> 1.8.10`
+- `org.jetbrains.kotlin:kotlin-test -> 1.8.10`
+- `org.jetbrains.kotlin:kotlin-gradle-plugin -> 1.8.10`
+- `androidx.compose.compiler:compiler -> 1.4.2`
+- `org.jetbrains.kotlin:kotlin-serialization -> 1.8.10`
 - `com.facebook:ktfmt -> 0.43`
 - `com.github.triplet.gradle:play-publisher -> 3.8.1`
 - `actions/setup-java -> v3.10.0`

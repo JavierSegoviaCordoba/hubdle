@@ -1397,4 +1397,4 @@ Private property `testCompilation` is unused.
 
 ```
 
-generated with [detekt version 1.22.0](https://detekt.dev/) on 2023-02-02 13:37:45 UTC
+generated with [detekt version 1.22.0](https://detekt.dev/) on 2023-02-08 16:11:01 UTC

@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.facebook:ktfmt -> 0.43`
 - `com.github.triplet.gradle:play-publisher -> 3.8.1`
 - `actions/setup-java -> v3.10.0`
 - `com.android.tools:desugar_jdk_libs -> 2.0.2`

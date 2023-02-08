@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `androidx.compose.runtime:runtime-tracing -> 1.0.0-alpha02`
 - `androidx.appcompat:appcompat -> 1.6.1`
 - `org.jetbrains.kotlin:kotlin-test-testng -> 1.8.10`
 - `org.jetbrains.kotlin:kotlin-test-junit5 -> 1.8.10`

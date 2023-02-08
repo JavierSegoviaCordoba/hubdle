@@ -1,9 +1,9 @@
 import com.javiersc.gradle.properties.extensions.getPropertyOrNull
 
 pluginManagement {
-    val hubdleVersionProp = providers.gradleProperty("hubdleVersion").orNull
-    val hubdleVersion: String =
-        hubdleVersionProp
+    val itselfVersionFromProp: String? = providers.gradleProperty("itselfVersion").orNull
+    val itselfVersion: String =
+        itselfVersionFromProp
             ?: file("$rootDir/gradle/libs.versions.toml")
                 .readLines()
                 .first { it.contains("hubdle") }
@@ -13,15 +13,15 @@ pluginManagement {
         mavenCentral()
         gradlePluginPortal()
         google()
-        if (hubdleVersionProp != null) mavenLocal()
+        if (itselfVersionFromProp != null) mavenLocal()
     }
 
-    plugins { id("com.javiersc.hubdle.settings") version hubdleVersion }
+    plugins { id("com.javiersc.hubdle.settings") version itselfVersion }
 }
 
 plugins { id("com.javiersc.hubdle.settings") }
 
-val hubdleVersion: String? = providers.gradleProperty("hubdleVersion").orNull
+val itselfVersion: String? = providers.gradleProperty("itselfVersion").orNull
 
 dependencyResolutionManagement {
     repositories {
@@ -29,10 +29,10 @@ dependencyResolutionManagement {
         google()
         gradlePluginPortal()
         maven(url = "https://maven.pkg.jetbrains.space/public/p/compose/dev/")
-        if (hubdleVersion != null) mavenLocal()
+        if (itselfVersion != null) mavenLocal()
     }
-    if (hubdleVersion != null) {
-        versionCatalogs { create("libs") { version("hubdle", hubdleVersion) } }
+    if (itselfVersion != null) {
+        versionCatalogs { create("libs") { version("hubdle", itselfVersion) } }
     }
 }
 

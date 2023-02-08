@@ -1,0 +1,21 @@
+name: build-itself-kotlin
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '**.md'
+
+  pull_request:
+    branches:
+      - main
+    paths-ignore:
+      - '**.md'
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    uses: JavierSegoviaCordoba/reusable-workflows/.github/workflows/build-itself-kotlin.yaml@hubdle
+    secrets: inherit

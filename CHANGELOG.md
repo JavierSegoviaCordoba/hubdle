@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.diffplug.spotless:spotless-plugin-gradle -> 6.15.0`
 - `androidx.compose.runtime:runtime-tracing -> 1.0.0-alpha02`
 - `androidx.appcompat:appcompat -> 1.6.1`
 - `org.jetbrains.kotlin:kotlin-test-testng -> 1.8.10`
@@ -34,7 +35,6 @@
 - `io.kotest:kotest-assertions-sql -> 5.5.5`
 - `io.kotest:kotest-assertions-json -> 5.5.5`
 - `io.kotest:kotest-assertions-core -> 5.5.5`
-- `com.diffplug.spotless:spotless-plugin-gradle -> 6.14.1`
 - `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.12.3`
 - `org.jetbrains.compose:compose-gradle-plugin -> 1.3.0`
 

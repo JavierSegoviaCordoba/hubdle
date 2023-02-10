@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.0`
 - `com.diffplug.spotless:spotless-plugin-gradle -> 6.15.0`
 - `androidx.compose.runtime:runtime-tracing -> 1.0.0-alpha02`
 - `androidx.appcompat:appcompat -> 1.6.1`

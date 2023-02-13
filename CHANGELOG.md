@@ -4,9 +4,6 @@
 
 ### Added
 
-- `mainClass` to `HubdleJavaApplicationFeatureExtension`
-- `molecule` feature to all Kotlin projects
-
 ### Changed
 
 ### Deprecated
@@ -14,6 +11,15 @@
 ### Removed
 
 ### Fixed
+
+### Updated
+
+## [0.4.0-alpha.10] - 2023-02-13
+
+### Added
+
+- `mainClass` to `HubdleJavaApplicationFeatureExtension`
+- `molecule` feature to all Kotlin projects
 
 ### Updated
 
@@ -234,7 +240,9 @@
 - `org.eclipse.jgit:org.eclipse.jgit -> 6.4.0.202211300538-r`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.2.0-alpha.46`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.9...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.10...HEAD
+
+[0.4.0-alpha.10]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.9...0.4.0-alpha.10
 
 [0.4.0-alpha.9]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.8...0.4.0-alpha.9
 

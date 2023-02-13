@@ -1,5 +1,5 @@
 plugins {
-    id("com.javiersc.hubdle") version "0.5.0-SNAPSHOT"
+    id("com.javiersc.hubdle")
 }
 
 hubdle {
@@ -13,11 +13,11 @@ hubdle {
         jvm {
             features {
                 application {
-                    application {
-                        mainClass.set("com.javiersc.hubdle.kotlin.jvm.features.molecule.MainKt")
-                    }
+                     mainClass.set("com.javiersc.kotlin.jvm.molecule.MainKt")
                 }
+                compose()
                 coroutines()
+                molecule()
             }
         }
     }

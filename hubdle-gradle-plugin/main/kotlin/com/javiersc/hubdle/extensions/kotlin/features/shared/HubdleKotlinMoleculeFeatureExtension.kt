@@ -1,4 +1,4 @@
-package com.javiersc.hubdle.extensions.shared.features
+package com.javiersc.hubdle.extensions.kotlin.features.shared
 
 import com.javiersc.hubdle.extensions.HubdleDslMarker
 import com.javiersc.hubdle.extensions._internal.ApplicablePlugin.Scope
@@ -9,14 +9,13 @@ import com.javiersc.hubdle.extensions.apis.BaseHubdleDelegateExtension
 import com.javiersc.hubdle.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.extensions.apis.enableAndExecute
-import com.javiersc.hubdle.extensions.kotlin.jvm.hubdleKotlinJvm
+import com.javiersc.hubdle.extensions.kotlin.hubdleKotlinAny
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
-import org.gradle.api.plugins.JavaApplication
 import org.gradle.api.provider.Property
 
-public open class HubdleJavaApplicationFeatureExtension
+public open class HubdleKotlinMoleculeFeatureExtension
 @Inject
 constructor(
     project: Project,
@@ -25,39 +24,32 @@ constructor(
     override val isEnabled: Property<Boolean> = property { false }
 
     override val oneOfExtensions: Set<HubdleEnableableExtension>
-        get() = setOf(hubdleKotlinJvm)
+        get() = hubdleKotlinAny
 
     override val priority: Priority = Priority.P4
 
-    public val mainClass: Property<String?> = property { null }
-
-    @HubdleDslMarker
-    public fun application(action: Action<JavaApplication> = Action {}) {
-        userConfigurable { action.execute(the()) }
-    }
-
     override fun Project.defaultConfiguration() {
         applicablePlugin(
-            priority = Priority.P3,
+            priority = Priority.P4,
             scope = Scope.CurrentProject,
-            pluginId = PluginId.GradleApplication
+            pluginId = PluginId.Molecule
         )
-
-        configurable { the<JavaApplication>().mainClass.set(mainClass) }
     }
 }
 
-public interface HubdleJavaApplicationDelegateFeatureExtension : BaseHubdleDelegateExtension {
+public interface HubdleKotlinMoleculeDelegateFeatureExtension : BaseHubdleDelegateExtension {
 
-    public val application: HubdleJavaApplicationFeatureExtension
+    public val molecule: HubdleKotlinMoleculeFeatureExtension
         get() = project.getHubdleExtension()
 
     @HubdleDslMarker
-    public fun application(action: Action<HubdleJavaApplicationFeatureExtension> = Action {}) {
-        application.enableAndExecute(action)
+    public fun molecule(action: Action<HubdleKotlinMoleculeFeatureExtension> = Action {}) {
+        molecule.enableAndExecute(action)
     }
 }
 
-internal val HubdleEnableableExtension.hubdleJavaApplicationFeature:
-    HubdleJavaApplicationFeatureExtension
+internal val HubdleEnableableExtension.hubdleMoleculeFeature: HubdleKotlinMoleculeFeatureExtension
+    get() = getHubdleExtension()
+
+internal val Project.hubdleMoleculeFeature: HubdleKotlinMoleculeFeatureExtension
     get() = getHubdleExtension()

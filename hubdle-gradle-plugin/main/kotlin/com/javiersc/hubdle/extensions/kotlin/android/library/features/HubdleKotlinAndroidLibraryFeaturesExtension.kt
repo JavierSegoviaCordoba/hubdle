@@ -9,6 +9,7 @@ import com.javiersc.hubdle.extensions.kotlin.features.shared.HubdleKotlinCompose
 import com.javiersc.hubdle.extensions.kotlin.features.shared.HubdleKotlinCoroutinesDelegateFeatureExtension
 import com.javiersc.hubdle.extensions.kotlin.features.shared.HubdleKotlinExtendedStdlibDelegateFeatureExtension
 import com.javiersc.hubdle.extensions.kotlin.features.shared.HubdleKotlinKotestDelegateFeatureExtension
+import com.javiersc.hubdle.extensions.kotlin.features.shared.HubdleKotlinMoleculeDelegateFeatureExtension
 import com.javiersc.hubdle.extensions.kotlin.features.shared.HubdleKotlinSerializationDelegateFeatureExtension
 import com.javiersc.hubdle.extensions.shared.features.HubdleJavaVersionDelegateFeatureExtension
 import com.javiersc.hubdle.extensions.shared.features.HubdleJvmToolchainDelegateFeatureExtension
@@ -38,6 +39,7 @@ public interface HubdleKotlinAndroidLibraryDelegateFeaturesExtension :
     HubdleKotlinExtendedStdlibDelegateFeatureExtension,
     HubdleJavaVersionDelegateFeatureExtension,
     HubdleKotlinKotestDelegateFeatureExtension,
+    HubdleKotlinMoleculeDelegateFeatureExtension,
     HubdleKotlinSerializationDelegateFeatureExtension,
     HubdleJvmToolchainDelegateFeatureExtension
 

@@ -24,7 +24,7 @@ dependencyResolutionManagement {
     }
 }
 
-include(":consumer-kotlin-android")
+//include(":consumer-kotlin-android")
 include(":consumer-kotlin-jvm")
-include(":consumer-kotlin-multiplatform")
+//include(":consumer-kotlin-multiplatform")
 //includeBuild("consumer-settings")

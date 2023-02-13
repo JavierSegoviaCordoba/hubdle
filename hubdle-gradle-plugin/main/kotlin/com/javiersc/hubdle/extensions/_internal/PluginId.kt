@@ -25,6 +25,7 @@ internal enum class PluginId(val id: String) {
     JetbrainsKotlinxBinaryCompatibilityValidator(KotlinBinaryCompatibilityValidator),
     JetbrainsKotlinxKover("org.jetbrains.kotlinx.kover"),
     MavenPublish("org.gradle.maven-publish"),
+    Molecule("app.cash.molecule"),
     Sonarqube("org.sonarqube"),
     VyarusMkdocsBuild("ru.vyarus.mkdocs-build"),
     ;

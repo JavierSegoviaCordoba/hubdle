@@ -4,6 +4,9 @@
 
 ### Added
 
+- `mainClass` to `HubdleJavaApplicationFeatureExtension`
+- `molecule` feature to all Kotlin projects
+
 ### Changed
 
 ### Deprecated

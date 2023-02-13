@@ -14,6 +14,7 @@ import com.javiersc.hubdle.extensions.kotlin.features.shared.HubdleKotlinCompose
 import com.javiersc.hubdle.extensions.kotlin.features.shared.HubdleKotlinCoroutinesFeatureExtension
 import com.javiersc.hubdle.extensions.kotlin.features.shared.HubdleKotlinExtendedStdlibFeatureExtension
 import com.javiersc.hubdle.extensions.kotlin.features.shared.HubdleKotlinKotestFeatureExtension
+import com.javiersc.hubdle.extensions.kotlin.features.shared.HubdleKotlinMoleculeFeatureExtension
 import com.javiersc.hubdle.extensions.kotlin.features.shared.HubdleKotlinSerializationFeatureExtension
 import com.javiersc.hubdle.extensions.kotlin.jvm.HubdleKotlinJvmExtension
 import com.javiersc.hubdle.extensions.kotlin.jvm.features.HubdleKotlinJvmFeaturesExtension
@@ -89,6 +90,7 @@ private fun HubdleState.createKotlinFeatureExtensions() {
         createExtension<HubdleKotlinCoroutinesFeatureExtension>()
         createExtension<HubdleKotlinExtendedStdlibFeatureExtension>()
         createExtension<HubdleKotlinKotestFeatureExtension>()
+        createExtension<HubdleKotlinMoleculeFeatureExtension>()
         createExtension<HubdleKotlinSerializationFeatureExtension>()
         createExtension<HubdleJvmToolchainFeatureExtension>()
     }

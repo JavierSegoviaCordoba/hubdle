@@ -51,6 +51,7 @@ hubdle {
                         api(libs.jetbrains.kotlinx.kover)
                         api(libs.jetbrains.kotlinx.serialization)
                         api(libs.sonarqube.scannerGradle.sonarqubeGradlePlugin)
+                        api(libs.cash.molecule.gradlePlugin)
                         api(libs.vyarus.gradleMkdocsPlugin)
 
                         implementation(libs.eclipse.jgit)

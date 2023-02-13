@@ -6,8 +6,6 @@
 
 ### Changed
 
-- downgrade Kotest to 5.5.4
-
 ### Deprecated
 
 ### Removed
@@ -15,6 +13,12 @@
 ### Fixed
 
 ### Updated
+
+## [0.4.0-alpha.11] - 2023-02-13
+
+### Changed
+
+- downgrade Kotest to 5.5.4
 
 ## [0.4.0-alpha.10] - 2023-02-13
 
@@ -237,7 +241,9 @@
 - `org.eclipse.jgit:org.eclipse.jgit -> 6.4.0.202211300538-r`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.2.0-alpha.46`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.10...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.11...HEAD
+
+[0.4.0-alpha.11]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.10...0.4.0-alpha.11
 
 [0.4.0-alpha.10]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.9...0.4.0-alpha.10
 

@@ -29,6 +29,8 @@ constructor(
 
     override val priority: Priority = Priority.P4
 
+    public val mainClass: Property<String?> = property { null }
+
     @HubdleDslMarker
     public fun application(action: Action<JavaApplication> = Action {}) {
         userConfigurable { action.execute(the()) }
@@ -40,6 +42,10 @@ constructor(
             scope = Scope.CurrentProject,
             pluginId = PluginId.GradleApplication
         )
+
+        configurable {
+            the<JavaApplication>().mainClass.set(mainClass)
+        }
     }
 }
 

@@ -6,6 +6,8 @@
 
 ### Changed
 
+- downgrade Kotest to 5.5.4
+
 ### Deprecated
 
 ### Removed
@@ -39,12 +41,7 @@
 - `com.github.triplet.gradle:play-publisher -> 3.8.1`
 - `actions/setup-java -> v3.10.0`
 - `com.android.tools:desugar_jdk_libs -> 2.0.2`
-- `io.kotest:kotest-runner-junit5 -> 5.5.5`
-- `io.kotest:kotest-runner-junit4 -> 5.5.5`
-- `io.kotest:kotest-property -> 5.5.5`
-- `io.kotest:kotest-assertions-sql -> 5.5.5`
-- `io.kotest:kotest-assertions-json -> 5.5.5`
-- `io.kotest:kotest-assertions-core -> 5.5.5`
+- `com.diffplug.spotless:spotless-plugin-gradle -> 6.14.1`
 - `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.12.3`
 - `org.jetbrains.compose:compose-gradle-plugin -> 1.3.0`
 

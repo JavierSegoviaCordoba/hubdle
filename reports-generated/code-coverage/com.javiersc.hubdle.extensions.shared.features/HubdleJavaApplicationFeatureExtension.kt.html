@@ -29,32 +29,36 @@ public open class HubdleJavaApplicationFeatureExtension
 
 <span class="nc" id="L30">    override val priority: Priority = Priority.P4</span>
 
+<span class="nc" id="L32">    public val mainClass: Property&lt;String?&gt; = property { null }</span>
+
     @HubdleDslMarker
-<span class="nc" id="L33">    public fun application(action: Action&lt;JavaApplication&gt; = Action {}) {</span>
-<span class="nc" id="L34">        userConfigurable { action.execute(the()) }</span>
-<span class="nc" id="L35">    }</span>
+<span class="nc" id="L35">    public fun application(action: Action&lt;JavaApplication&gt; = Action {}) {</span>
+<span class="nc" id="L36">        userConfigurable { action.execute(the()) }</span>
+<span class="nc" id="L37">    }</span>
 
     override fun Project.defaultConfiguration() {
-<span class="nc" id="L38">        applicablePlugin(</span>
-<span class="nc" id="L39">            priority = Priority.P3,</span>
-<span class="nc" id="L40">            scope = Scope.CurrentProject,</span>
-<span class="nc" id="L41">            pluginId = PluginId.GradleApplication</span>
+<span class="nc" id="L40">        applicablePlugin(</span>
+<span class="nc" id="L41">            priority = Priority.P3,</span>
+<span class="nc" id="L42">            scope = Scope.CurrentProject,</span>
+<span class="nc" id="L43">            pluginId = PluginId.GradleApplication</span>
         )
-<span class="nc" id="L43">    }</span>
+
+<span class="nc" id="L46">        configurable { the&lt;JavaApplication&gt;().mainClass.set(mainClass) }</span>
+<span class="nc" id="L47">    }</span>
 }
 
 public interface HubdleJavaApplicationDelegateFeatureExtension : BaseHubdleDelegateExtension {
 
     public val application: HubdleJavaApplicationFeatureExtension
-<span class="nc" id="L49">        get() = project.getHubdleExtension()</span>
+<span class="nc" id="L53">        get() = project.getHubdleExtension()</span>
 
     @HubdleDslMarker
-<span class="nc" id="L52">    public fun application(action: Action&lt;HubdleJavaApplicationFeatureExtension&gt; = Action {}) {</span>
-<span class="nc" id="L53">        application.enableAndExecute(action)</span>
-<span class="nc" id="L54">    }</span>
+<span class="nc" id="L56">    public fun application(action: Action&lt;HubdleJavaApplicationFeatureExtension&gt; = Action {}) {</span>
+<span class="nc" id="L57">        application.enableAndExecute(action)</span>
+<span class="nc" id="L58">    }</span>
 }
 
 internal val HubdleEnableableExtension.hubdleJavaApplicationFeature:
     HubdleJavaApplicationFeatureExtension
-<span class="nc" id="L59">    get() = getHubdleExtension()</span>
+<span class="nc" id="L63">    get() = getHubdleExtension()</span>
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -7,6 +7,7 @@ import com.javiersc.hubdle.extensions.kotlin.features.shared.HubdleKotlinCompose
 import com.javiersc.hubdle.extensions.kotlin.features.shared.HubdleKotlinCoroutinesDelegateFeatureExtension
 import com.javiersc.hubdle.extensions.kotlin.features.shared.HubdleKotlinExtendedStdlibDelegateFeatureExtension
 import com.javiersc.hubdle.extensions.kotlin.features.shared.HubdleKotlinKotestDelegateFeatureExtension
+import com.javiersc.hubdle.extensions.kotlin.features.shared.HubdleKotlinMoleculeDelegateFeatureExtension
 import com.javiersc.hubdle.extensions.kotlin.features.shared.HubdleKotlinSerializationDelegateFeatureExtension
 import com.javiersc.hubdle.extensions.kotlin.jvm.hubdleKotlinJvm
 import com.javiersc.hubdle.extensions.shared.features.HubdleGradleDelegateFeatureExtension
@@ -18,23 +19,23 @@ import javax.inject.Inject
 import org.gradle.api.Project
 import org.gradle.api.provider.Property
 
-<span class="nc" id="L21">@HubdleDslMarker</span>
+<span class="nc" id="L22">@HubdleDslMarker</span>
 public open class HubdleKotlinJvmFeaturesExtension
 @Inject
-<span class="nc" id="L24">constructor(</span>
+<span class="nc" id="L25">constructor(</span>
     project: Project,
-<span class="nc" id="L26">) : HubdleEnableableExtension(project), HubdleKotlinJvmDelegateFeaturesExtension {</span>
+<span class="nc" id="L27">) : HubdleEnableableExtension(project), HubdleKotlinJvmDelegateFeaturesExtension {</span>
 
     override val project: Project
-<span class="nc" id="L29">        get() = super.project</span>
+<span class="nc" id="L30">        get() = super.project</span>
 
-<span class="nc" id="L31">    public override val isEnabled: Property&lt;Boolean&gt; = property { true }</span>
+<span class="nc" id="L32">    public override val isEnabled: Property&lt;Boolean&gt; = property { true }</span>
 
     override val requiredExtensions: Set&lt;HubdleEnableableExtension&gt;
-<span class="nc" id="L34">        get() = setOf(hubdleKotlinJvm)</span>
+<span class="nc" id="L35">        get() = setOf(hubdleKotlinJvm)</span>
 }
 
-<span class="nc" id="L37">public interface HubdleKotlinJvmDelegateFeaturesExtension :</span>
+<span class="nc" id="L38">public interface HubdleKotlinJvmDelegateFeaturesExtension :</span>
     HubdleGradleDelegateFeatureExtension,
     HubdleIntellijDelegateFeatureExtension,
     HubdleJavaApplicationDelegateFeatureExtension,
@@ -43,9 +44,10 @@ public open class HubdleKotlinJvmFeaturesExtension
     HubdleKotlinExtendedStdlibDelegateFeatureExtension,
     HubdleJavaVersionDelegateFeatureExtension,
     HubdleKotlinKotestDelegateFeatureExtension,
+    HubdleKotlinMoleculeDelegateFeatureExtension,
     HubdleKotlinSerializationDelegateFeatureExtension,
-<span class="nc" id="L47">    HubdleJvmToolchainDelegateFeatureExtension</span>
+<span class="nc" id="L49">    HubdleJvmToolchainDelegateFeatureExtension</span>
 
 internal val HubdleEnableableExtension.hubdleKotlinJvmFeatures: HubdleKotlinJvmFeaturesExtension
-<span class="nc" id="L50">    get() = getHubdleExtension()</span>
+<span class="nc" id="L52">    get() = getHubdleExtension()</span>
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

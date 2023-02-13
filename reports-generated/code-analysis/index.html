@@ -157,11 +157,11 @@
 
 <div>
   <ul>
-    <li>1,293 number of properties</li>
-    <li>541 number of functions</li>
-    <li>221 number of classes</li>
+    <li>1,301 number of properties</li>
+    <li>544 number of functions</li>
+    <li>225 number of classes</li>
     <li>73 number of packages</li>
-    <li>205 number of kt files</li>
+    <li>207 number of kt files</li>
   </ul>
 </div>
 
@@ -170,15 +170,15 @@
 
 <div>
   <ul>
-    <li>12,705 lines of code (loc)</li>
-    <li>10,449 source lines of code (sloc)</li>
-    <li>6,893 logical lines of code (lloc)</li>
-    <li>91 comment lines of code (cloc)</li>
-    <li>917 cyclomatic complexity (mcc)</li>
+    <li>12,808 lines of code (loc)</li>
+    <li>10,522 source lines of code (sloc)</li>
+    <li>6,938 logical lines of code (lloc)</li>
+    <li>104 comment lines of code (cloc)</li>
+    <li>920 cyclomatic complexity (mcc)</li>
     <li>486 cognitive complexity</li>
     <li>89 number of total code smells</li>
     <li>0% comment source ratio</li>
-    <li>133 mcc per 1,000 lloc</li>
+    <li>132 mcc per 1,000 lloc</li>
     <li>12 code smells per 1,000 lloc</li>
   </ul>
 </div>
@@ -223,14 +223,14 @@
     <summary class="rule-container"><span class="rule">LongMethod: 4 </span><span class="description">One method should have one responsibility. Long methods tend to handle many things at once. Prefer smaller methods to make them easier to understand.</span></summary>
 <a href="https://detekt.dev/docs/rules/complexity#longmethod">Documentation</a>
     <ul>
-      <li><span class="location">hubdle-gradle-plugin/build.gradle.kts:170:13</span><span class="message">The function buildHubdleDependencies is too long (71). The maximum length is 60.</span>
-        <pre><code><span class="lineno"> 167 </span>        }
-<span class="lineno"> 168 </span>}
-<span class="lineno"> 169 </span>
-<span class="lineno"> 170 </span>fun Project.<span class="error">buildHubdleDependencies</span>() {
-<span class="lineno"> 171 </span>    buildDir.resolve(&quot;generated/main/kotlin/hubdle_dependencies.kt&quot;).apply {
-<span class="lineno"> 172 </span>        parentFile.mkdirs()
-<span class="lineno"> 173 </span>        createNewFile()
+      <li><span class="location">hubdle-gradle-plugin/build.gradle.kts:171:13</span><span class="message">The function buildHubdleDependencies is too long (71). The maximum length is 60.</span>
+        <pre><code><span class="lineno"> 168 </span>        }
+<span class="lineno"> 169 </span>}
+<span class="lineno"> 170 </span>
+<span class="lineno"> 171 </span>fun Project.<span class="error">buildHubdleDependencies</span>() {
+<span class="lineno"> 172 </span>    buildDir.resolve(&quot;generated/main/kotlin/hubdle_dependencies.kt&quot;).apply {
+<span class="lineno"> 173 </span>        parentFile.mkdirs()
+<span class="lineno"> 174 </span>        createNewFile()
 </code></pre>
       </li>
       <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/documentation/site/HubdleConfigDocumentationSiteExtension.kt:61:26</span><span class="message">The function defaultConfiguration is too long (64). The maximum length is 60.</span>
@@ -269,14 +269,14 @@
     <summary class="rule-container"><span class="rule">NestedBlockDepth: 1 </span><span class="description">Excessive nesting leads to hidden complexity. Prefer extracting code to make it easier to understand.</span></summary>
 <a href="https://detekt.dev/docs/rules/complexity#nestedblockdepth">Documentation</a>
     <ul>
-      <li><span class="location">hubdle-gradle-plugin/build.gradle.kts:170:13</span><span class="message">Function buildHubdleDependencies is nested too deeply.</span>
-        <pre><code><span class="lineno"> 167 </span>        }
-<span class="lineno"> 168 </span>}
-<span class="lineno"> 169 </span>
-<span class="lineno"> 170 </span>fun Project.<span class="error">buildHubdleDependencies</span>() {
-<span class="lineno"> 171 </span>    buildDir.resolve(&quot;generated/main/kotlin/hubdle_dependencies.kt&quot;).apply {
-<span class="lineno"> 172 </span>        parentFile.mkdirs()
-<span class="lineno"> 173 </span>        createNewFile()
+      <li><span class="location">hubdle-gradle-plugin/build.gradle.kts:171:13</span><span class="message">Function buildHubdleDependencies is nested too deeply.</span>
+        <pre><code><span class="lineno"> 168 </span>        }
+<span class="lineno"> 169 </span>}
+<span class="lineno"> 170 </span>
+<span class="lineno"> 171 </span>fun Project.<span class="error">buildHubdleDependencies</span>() {
+<span class="lineno"> 172 </span>    buildDir.resolve(&quot;generated/main/kotlin/hubdle_dependencies.kt&quot;).apply {
+<span class="lineno"> 173 </span>        parentFile.mkdirs()
+<span class="lineno"> 174 </span>        createNewFile()
 </code></pre>
       </li>
     </ul>
@@ -756,13 +756,13 @@
     <summary class="rule-container"><span class="rule">TopLevelPropertyNaming: 1 </span><span class="description">Top level property names should follow the naming convention set in the projects configuration.</span></summary>
 <a href="https://detekt.dev/docs/rules/naming#toplevelpropertynaming">Documentation</a>
     <ul>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/PluginId.kt:35:19</span><span class="message">Top level constant names should match the pattern: [A-Z][_A-Z0-9]*</span>
-        <pre><code><span class="lineno">  32 </span>    override fun toString(): String = id
-<span class="lineno">  33 </span>}
-<span class="lineno">  34 </span>
-<span class="lineno">  35 </span>private const val <span class="error">KotlinBinaryCompatibilityValidator</span> =
-<span class="lineno">  36 </span>    &quot;org.jetbrains.kotlinx.binary-compatibility-validator&quot;
-<span class="lineno">  37 </span>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/PluginId.kt:36:19</span><span class="message">Top level constant names should match the pattern: [A-Z][_A-Z0-9]*</span>
+        <pre><code><span class="lineno">  33 </span>    override fun toString(): String = id
+<span class="lineno">  34 </span>}
+<span class="lineno">  35 </span>
+<span class="lineno">  36 </span>private const val <span class="error">KotlinBinaryCompatibilityValidator</span> =
+<span class="lineno">  37 </span>    &quot;org.jetbrains.kotlinx.binary-compatibility-validator&quot;
+<span class="lineno">  38 </span>
 </code></pre>
       </li>
     </ul>
@@ -1021,7 +1021,7 @@
 </div>
 
 
-generated with <a href="https://detekt.dev/">detekt version 1.22.0</a> on 2023-02-08 16:11:01 UTC.
+generated with <a href="https://detekt.dev/">detekt version 1.22.0</a> on 2023-02-13 20:31:09 UTC.
 
 </body>
 </html>

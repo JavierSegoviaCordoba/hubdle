@@ -103,6 +103,12 @@ public final class Hubdle_dependenciesKt {
 	public static final fun ktorClientMock (Lorg/gradle/api/Project;)Lorg/gradle/api/provider/Provider;
 	public static final fun ktorClientOkhttp (Lorg/gradle/api/Project;)Lorg/gradle/api/provider/Provider;
 	public static final fun ktorSerializationKotlinxJson (Lorg/gradle/api/Project;)Lorg/gradle/api/provider/Provider;
+	public static final fun russhwolfMultiplatformSettings (Lorg/gradle/api/Project;)Lorg/gradle/api/provider/Provider;
+	public static final fun russhwolfMultiplatformSettingsCoroutines (Lorg/gradle/api/Project;)Lorg/gradle/api/provider/Provider;
+	public static final fun russhwolfMultiplatformSettingsDatastore (Lorg/gradle/api/Project;)Lorg/gradle/api/provider/Provider;
+	public static final fun russhwolfMultiplatformSettingsNoArg (Lorg/gradle/api/Project;)Lorg/gradle/api/provider/Provider;
+	public static final fun russhwolfMultiplatformSettingsSerialization (Lorg/gradle/api/Project;)Lorg/gradle/api/provider/Provider;
+	public static final fun russhwolfMultiplatformSettingsTest (Lorg/gradle/api/Project;)Lorg/gradle/api/provider/Provider;
 	public static final fun squareupMoshi (Lorg/gradle/api/Project;)Lorg/gradle/api/provider/Provider;
 	public static final fun squareupOkhttp3Mockwebserver (Lorg/gradle/api/Project;)Lorg/gradle/api/provider/Provider;
 	public static final fun squareupOkhttp3Mockwebserver3Junit4 (Lorg/gradle/api/Project;)Lorg/gradle/api/provider/Provider;
@@ -406,8 +412,11 @@ public final class com/javiersc/hubdle/extensions/config/coverage/HubdleConfigCo
 
 public class com/javiersc/hubdle/extensions/config/documentation/HubdleConfigDocumentationExtension : com/javiersc/hubdle/extensions/apis/HubdleEnableableExtension {
 	public fun <init> (Lorg/gradle/api/Project;)V
+	public final fun api (Lorg/gradle/api/Action;)V
+	public static synthetic fun api$default (Lcom/javiersc/hubdle/extensions/config/documentation/HubdleConfigDocumentationExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 	public final fun changelog (Lorg/gradle/api/Action;)V
 	public static synthetic fun changelog$default (Lcom/javiersc/hubdle/extensions/config/documentation/HubdleConfigDocumentationExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+	public final fun getApi ()Lcom/javiersc/hubdle/extensions/config/documentation/api/HubdleConfigDocumentationApiExtension;
 	public final fun getChangelog ()Lcom/javiersc/hubdle/extensions/config/documentation/changelog/HubdleConfigDocumentationChangelogExtension;
 	public final fun getReadme ()Lcom/javiersc/hubdle/extensions/config/documentation/readme/HubdleConfigDocumentationReadmeExtension;
 	public final fun getSite ()Lcom/javiersc/hubdle/extensions/config/documentation/site/HubdleConfigDocumentationSiteExtension;
@@ -416,6 +425,11 @@ public class com/javiersc/hubdle/extensions/config/documentation/HubdleConfigDoc
 	public static synthetic fun readme$default (Lcom/javiersc/hubdle/extensions/config/documentation/HubdleConfigDocumentationExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 	public final fun site (Lorg/gradle/api/Action;)V
 	public static synthetic fun site$default (Lcom/javiersc/hubdle/extensions/config/documentation/HubdleConfigDocumentationExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+}
+
+public class com/javiersc/hubdle/extensions/config/documentation/api/HubdleConfigDocumentationApiExtension : com/javiersc/hubdle/extensions/apis/HubdleConfigurableExtension {
+	public fun <init> (Lorg/gradle/api/Project;)V
+	public fun isEnabled ()Lorg/gradle/api/provider/Property;
 }
 
 public abstract class com/javiersc/hubdle/extensions/config/documentation/changelog/AddChangelogItemTask : org/gradle/api/DefaultTask {
@@ -551,8 +565,6 @@ public final class com/javiersc/hubdle/extensions/config/documentation/site/Buil
 
 public class com/javiersc/hubdle/extensions/config/documentation/site/HubdleConfigDocumentationSiteExtension : com/javiersc/hubdle/extensions/apis/HubdleConfigurableExtension {
 	public fun <init> (Lorg/gradle/api/Project;)V
-	public final fun excludes ([Lorg/gradle/api/artifacts/ProjectDependency;)V
-	public final fun getExcludes ()Lorg/gradle/api/provider/ListProperty;
 	public final fun getReports ()Lcom/javiersc/hubdle/extensions/config/documentation/site/reports/HubdleConfigDocumentationSiteReportsExtension;
 	public fun isEnabled ()Lorg/gradle/api/provider/Property;
 	public final fun mkdocs (Lorg/gradle/api/Action;)V

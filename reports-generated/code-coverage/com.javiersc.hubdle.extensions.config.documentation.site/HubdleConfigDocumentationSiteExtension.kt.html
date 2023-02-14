@@ -6,7 +6,6 @@ import com.javiersc.hubdle.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.extensions._internal.PluginId
 import com.javiersc.hubdle.extensions._internal.getHubdleExtension
-import com.javiersc.hubdle.extensions._internal.hasKotlinGradlePlugin
 import com.javiersc.hubdle.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.extensions.apis.enableAndExecute
@@ -15,124 +14,71 @@ import com.javiersc.hubdle.extensions.config.documentation.site.reports.HubdleCo
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
-import org.gradle.api.artifacts.ProjectDependency
-import org.gradle.api.provider.ListProperty
 import org.gradle.api.provider.Property
 import org.gradle.kotlin.dsl.configure
-import org.gradle.kotlin.dsl.withType
-import org.jetbrains.dokka.gradle.DokkaMultiModuleTask
-import org.jetbrains.dokka.gradle.DokkaTaskPartial
 import ru.vyarus.gradle.plugin.mkdocs.MkdocsExtension
 
 @HubdleDslMarker
 public open class HubdleConfigDocumentationSiteExtension
 @Inject
-<span class="nc" id="L30">constructor(</span>
+<span class="nc" id="L24">constructor(</span>
     project: Project,
-<span class="nc" id="L32">) : HubdleConfigurableExtension(project) {</span>
+<span class="nc" id="L26">) : HubdleConfigurableExtension(project) {</span>
 
-<span class="nc" id="L34">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
+<span class="nc" id="L28">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
 
     override val requiredExtensions: Set&lt;HubdleEnableableExtension&gt;
-<span class="nc" id="L37">        get() = setOf(hubdleDocumentation)</span>
+<span class="nc" id="L31">        get() = setOf(hubdleDocumentation)</span>
 
-<span class="nc" id="L39">    override val priority: Priority = Priority.P3</span>
-
-<span class="nc" id="L41">    public val excludes: ListProperty&lt;ProjectDependency&gt; = listProperty { emptyList() }</span>
-
-    @HubdleDslMarker
-    public fun excludes(vararg excludes: ProjectDependency) {
-<span class="nc" id="L45">        this.excludes.set(excludes.toList())</span>
-<span class="nc" id="L46">    }</span>
+<span class="nc" id="L33">    override val priority: Priority = Priority.P3</span>
 
     public val reports: HubdleConfigDocumentationSiteReportsExtension
-<span class="nc" id="L49">        get() = getHubdleExtension()</span>
+<span class="nc" id="L36">        get() = getHubdleExtension()</span>
 
     @HubdleDslMarker
     public fun reports(action: Action&lt;HubdleConfigDocumentationSiteReportsExtension&gt;) {
-<span class="nc" id="L53">        reports.enableAndExecute(action)</span>
-<span class="nc" id="L54">    }</span>
+<span class="nc" id="L40">        reports.enableAndExecute(action)</span>
+<span class="nc" id="L41">    }</span>
 
     @HubdleDslMarker
     public fun mkdocs(action: Action&lt;MkdocsExtension&gt;) {
-<span class="nc" id="L58">        userConfigurable { action.execute(the()) }</span>
-<span class="nc" id="L59">    }</span>
+<span class="nc" id="L45">        userConfigurable { action.execute(the()) }</span>
+<span class="nc" id="L46">    }</span>
 
     override fun Project.defaultConfiguration() {
-<span class="nc" id="L62">        val project = this</span>
-<span class="nc" id="L63">        applicablePlugin(</span>
-<span class="nc" id="L64">            priority = Priority.P4,</span>
-<span class="nc" id="L65">            scope = Scope.AllProjects,</span>
-<span class="nc" id="L66">            pluginId = PluginId.JetbrainsDokka</span>
+<span class="nc" id="L49">        applicablePlugin(</span>
+<span class="nc" id="L50">            priority = Priority.P4,</span>
+<span class="nc" id="L51">            scope = Scope.CurrentProject,</span>
+<span class="nc" id="L52">            pluginId = PluginId.VyarusMkdocsBuild</span>
         )
-<span class="nc" id="L68">        applicablePlugin(</span>
-<span class="nc" id="L69">            priority = Priority.P4,</span>
-<span class="nc" id="L70">            scope = Scope.CurrentProject,</span>
-<span class="nc" id="L71">            pluginId = PluginId.VyarusMkdocsBuild</span>
-        )
-
-<span class="nc" id="L74">        configurable {</span>
-<span class="nc bnc" id="L75" title="All 2 branches missed.">            check(isRootProject) {</span>
+<span class="nc" id="L54">        configurable {</span>
+<span class="nc bnc" id="L55" title="All 2 branches missed.">            check(isRootProject) {</span>
                 &quot;&quot;&quot;
                     |`site` can be only used in the root project, and it is being applied in:
-<span class="nc" id="L78">                    |  - `${displayName}`</span>
+<span class="nc" id="L58">                    |  - `${displayName}`</span>
                 &quot;&quot;&quot;
-<span class="nc" id="L80">                    .trimMargin()</span>
+<span class="nc" id="L60">                    .trimMargin()</span>
             }
+<span class="nc" id="L62">            configure&lt;MkdocsExtension&gt; {</span>
+<span class="nc" id="L63">                strict = false</span>
+<span class="nc" id="L64">                sourcesDir = &quot;${rootProject.rootDir}/build/.docs&quot;</span>
+<span class="nc" id="L65">                buildDir = &quot;${rootProject.rootDir}/build/docs&quot;</span>
+<span class="nc" id="L66">                publish.docPath = &quot;_site&quot;</span>
+<span class="nc" id="L67">            }</span>
+<span class="nc" id="L68">            val preBuildDocsTask =</span>
+<span class="nc" id="L69">                PrebuildSiteTask.register(project) {</span>
+<span class="nc" id="L70">                    projectsInfo.set(project.projectsInfo)</span>
+<span class="nc" id="L71">                    allTests.set(reports.allTests)</span>
+<span class="nc" id="L72">                    codeAnalysis.set(reports.codeAnalysis)</span>
+<span class="nc" id="L73">                    codeCoverage.set(reports.codeCoverage)</span>
+<span class="nc" id="L74">                    codeQuality.set(reports.codeQuality)</span>
+<span class="nc" id="L75">                }</span>
 
-<span class="nc" id="L83">            tasks.withType&lt;DokkaMultiModuleTask&gt;().configureEach { task -&gt;</span>
-<span class="nc" id="L84">                val excludedProjects =</span>
-<span class="nc" id="L85">                    excludes.map { dependencyProjects -&gt;</span>
-<span class="nc" id="L86">                        dependencyProjects.map { it.dependencyProject }</span>
-                    }
-
-<span class="nc" id="L89">                task.removeChildTasks(excludedProjects.get())</span>
-<span class="nc" id="L90">            }</span>
-
-<span class="nc" id="L92">            configure&lt;MkdocsExtension&gt; {</span>
-<span class="nc" id="L93">                strict = false</span>
-<span class="nc" id="L94">                sourcesDir = &quot;${rootProject.rootDir}/build/.docs&quot;</span>
-<span class="nc" id="L95">                buildDir = &quot;${rootProject.rootDir}/build/docs&quot;</span>
-<span class="nc" id="L96">                publish.docPath = &quot;_site&quot;</span>
-<span class="nc" id="L97">            }</span>
-
-            // TODO: fix project isolation
-<span class="nc" id="L100">            allprojects { allproject -&gt;</span>
-<span class="nc" id="L101">                allproject.afterEvaluate { allprojectAfterEvaluate -&gt;</span>
-<span class="nc bnc" id="L102" title="All 2 branches missed.">                    if (allprojectAfterEvaluate.hasKotlinGradlePlugin) {</span>
-<span class="nc" id="L103">                        allprojectAfterEvaluate.tasks.withType&lt;DokkaTaskPartial&gt; {</span>
-<span class="nc" id="L104">                            dokkaSourceSets.configureEach { set -&gt;</span>
-<span class="nc" id="L105">                                val includes: List&lt;String&gt; = buildList {</span>
-<span class="nc" id="L106">                                    val projectDir = allprojectAfterEvaluate.projectDir</span>
-<span class="nc bnc" id="L107" title="All 2 branches missed.">                                    if (projectDir.resolve(&quot;MODULE.md&quot;).exists()) {</span>
-<span class="nc" id="L108">                                        add(&quot;MODULE.md&quot;)</span>
-                                    }
-<span class="nc bnc" id="L110" title="All 2 branches missed.">                                    if (projectDir.resolve(&quot;README.md&quot;).exists()) {</span>
-<span class="nc" id="L111">                                        add(&quot;README.md&quot;)</span>
-                                    }
-<span class="nc" id="L113">                                }</span>
-
-<span class="nc bnc" id="L115" title="All 4 branches missed.">                                if (includes.isNotEmpty()) set.includes.from(includes)</span>
-<span class="nc" id="L116">                            }</span>
-<span class="nc" id="L117">                        }</span>
-                    }
-<span class="nc" id="L119">                }</span>
-<span class="nc" id="L120">            }</span>
-
-<span class="nc" id="L122">            val preBuildDocsTask =</span>
-<span class="nc" id="L123">                PrebuildSiteTask.register(project) {</span>
-<span class="nc" id="L124">                    projectsInfo.set(project.projectsInfo)</span>
-<span class="nc" id="L125">                    allTests.set(reports.allTests)</span>
-<span class="nc" id="L126">                    codeAnalysis.set(reports.codeAnalysis)</span>
-<span class="nc" id="L127">                    codeCoverage.set(reports.codeCoverage)</span>
-<span class="nc" id="L128">                    codeQuality.set(reports.codeQuality)</span>
-<span class="nc" id="L129">                }</span>
-
-<span class="nc" id="L131">            BuildSiteTask.register(project, preBuildDocsTask)</span>
-<span class="nc" id="L132">        }</span>
-<span class="nc" id="L133">    }</span>
+<span class="nc" id="L77">            BuildSiteTask.register(project, preBuildDocsTask)</span>
+<span class="nc" id="L78">        }</span>
+<span class="nc" id="L79">    }</span>
 }
 
 internal val HubdleEnableableExtension.hubdleSite: HubdleConfigDocumentationSiteExtension
-<span class="nc" id="L137">    get() = getHubdleExtension()</span>
+<span class="nc" id="L83">    get() = getHubdleExtension()</span>
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>HubdleConfigDocumentationApiExtension.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">:</a> &gt; <a href="index.source.html" class="el_package">com.javiersc.hubdle.extensions.config.documentation.api</a> &gt; <span class="el_source">HubdleConfigDocumentationApiExtension.kt</span></div><h1>HubdleConfigDocumentationApiExtension.kt</h1><pre class="source lang-java linenums">package com.javiersc.hubdle.extensions.config.documentation.api
+
+import com.javiersc.hubdle.extensions.HubdleDslMarker
+import com.javiersc.hubdle.extensions._internal.ApplicablePlugin.Scope
+import com.javiersc.hubdle.extensions._internal.Configurable.Priority
+import com.javiersc.hubdle.extensions._internal.PluginId
+import com.javiersc.hubdle.extensions._internal.getHubdleExtension
+import com.javiersc.hubdle.extensions._internal.hasKotlinGradlePlugin
+import com.javiersc.hubdle.extensions.apis.HubdleConfigurableExtension
+import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
+import com.javiersc.hubdle.extensions.config.documentation.hubdleDocumentation
+import javax.inject.Inject
+import org.gradle.api.Project
+import org.gradle.api.provider.Property
+import org.gradle.kotlin.dsl.withType
+import org.jetbrains.dokka.gradle.DokkaTaskPartial
+
+@HubdleDslMarker
+public open class HubdleConfigDocumentationApiExtension
+@Inject
+<span class="nc" id="L21">constructor(</span>
+    project: Project,
+<span class="nc" id="L23">) : HubdleConfigurableExtension(project) {</span>
+
+<span class="nc" id="L25">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
+
+    override val requiredExtensions: Set&lt;HubdleEnableableExtension&gt;
+<span class="nc" id="L28">        get() = setOf(hubdleDocumentation)</span>
+
+<span class="nc" id="L30">    override val priority: Priority = Priority.P3</span>
+
+    override fun Project.defaultConfiguration() {
+<span class="nc" id="L33">        applicablePlugin(</span>
+<span class="nc" id="L34">            priority = Priority.P4,</span>
+<span class="nc" id="L35">            scope = Scope.CurrentProject,</span>
+<span class="nc" id="L36">            pluginId = PluginId.JetbrainsDokka</span>
+        )
+
+<span class="nc" id="L39">        configurable {</span>
+<span class="nc bnc" id="L40" title="All 2 branches missed.">            if (project.hasKotlinGradlePlugin) {</span>
+<span class="nc" id="L41">                tasks.withType&lt;DokkaTaskPartial&gt; {</span>
+<span class="nc" id="L42">                    dokkaSourceSets.configureEach { set -&gt;</span>
+<span class="nc" id="L43">                        val includes: List&lt;String&gt; = buildList {</span>
+<span class="nc bnc" id="L44" title="All 2 branches missed.">                            if (projectDir.resolve(&quot;MODULE.md&quot;).exists()) add(&quot;MODULE.md&quot;)</span>
+<span class="nc bnc" id="L45" title="All 2 branches missed.">                            if (projectDir.resolve(&quot;README.md&quot;).exists()) add(&quot;README.md&quot;)</span>
+<span class="nc" id="L46">                        }</span>
+
+<span class="nc bnc" id="L48" title="All 4 branches missed.">                        if (includes.isNotEmpty()) set.includes.from(includes)</span>
+<span class="nc" id="L49">                    }</span>
+<span class="nc" id="L50">                }</span>
+            }
+<span class="nc" id="L52">        }</span>
+<span class="nc" id="L53">    }</span>
+}
+
+internal val HubdleEnableableExtension.hubdleApi: HubdleConfigDocumentationApiExtension
+<span class="nc" id="L57">    get() = getHubdleExtension()</span>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

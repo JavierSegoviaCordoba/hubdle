@@ -7,6 +7,7 @@ import com.javiersc.hubdle.extensions.config.analysis.reports.HubdleConfigAnalys
 import com.javiersc.hubdle.extensions.config.binary.compatibility.validator.HubdleConfigBinaryCompatibilityValidatorExtension
 import com.javiersc.hubdle.extensions.config.coverage.HubdleConfigCoverageExtension
 import com.javiersc.hubdle.extensions.config.documentation.HubdleConfigDocumentationExtension
+import com.javiersc.hubdle.extensions.config.documentation.api.HubdleConfigDocumentationApiExtension
 import com.javiersc.hubdle.extensions.config.documentation.changelog.HubdleConfigDocumentationChangelogExtension
 import com.javiersc.hubdle.extensions.config.documentation.readme.HubdleConfigDocumentationReadmeExtension
 import com.javiersc.hubdle.extensions.config.documentation.readme.badges.HubdleConfigDocumentationReadmeBadgesExtension
@@ -47,6 +48,7 @@ private fun HubdleState.configureAnalysisExtensions() {
 
 private fun HubdleState.configureDocumentationExtensions() {
     createExtension<HubdleConfigDocumentationExtension> {
+        createExtension<HubdleConfigDocumentationApiExtension>()
         createExtension<HubdleConfigDocumentationChangelogExtension>()
         createExtension<HubdleConfigDocumentationReadmeExtension> {
             createExtension<HubdleConfigDocumentationReadmeBadgesExtension>()

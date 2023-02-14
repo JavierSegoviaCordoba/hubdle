@@ -9,6 +9,7 @@ allprojects {
 hubdle {
     config {
         documentation {
+            api()
             site {
                 reports {
                     allTests.set(false)

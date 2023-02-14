@@ -4,6 +4,9 @@ plugins {
 
 hubdle {
     config {
+        documentation {
+            api()
+        }
         versioning {
             isEnabled.set(false)
         }

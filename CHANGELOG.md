@@ -6,6 +6,8 @@
 
 ### Changed
 
+- `site` to extract API docs into its own `api` extension
+
 ### Deprecated
 
 ### Removed

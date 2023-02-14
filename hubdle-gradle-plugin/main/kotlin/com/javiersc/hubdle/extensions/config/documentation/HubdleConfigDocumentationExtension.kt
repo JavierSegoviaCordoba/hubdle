@@ -4,6 +4,7 @@ import com.javiersc.hubdle.extensions.HubdleDslMarker
 import com.javiersc.hubdle.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.extensions.apis.enableAndExecute
+import com.javiersc.hubdle.extensions.config.documentation.api.HubdleConfigDocumentationApiExtension
 import com.javiersc.hubdle.extensions.config.documentation.changelog.HubdleConfigDocumentationChangelogExtension
 import com.javiersc.hubdle.extensions.config.documentation.readme.HubdleConfigDocumentationReadmeExtension
 import com.javiersc.hubdle.extensions.config.documentation.site.HubdleConfigDocumentationSiteExtension
@@ -24,6 +25,14 @@ constructor(
 
     override val requiredExtensions: Set<HubdleEnableableExtension>
         get() = setOf(hubdleConfig)
+
+    public val api: HubdleConfigDocumentationApiExtension
+        get() = getHubdleExtension()
+
+    @HubdleDslMarker
+    public fun api(action: Action<HubdleConfigDocumentationApiExtension> = Action {}) {
+        api.enableAndExecute(action)
+    }
 
     public val changelog: HubdleConfigDocumentationChangelogExtension
         get() = getHubdleExtension()

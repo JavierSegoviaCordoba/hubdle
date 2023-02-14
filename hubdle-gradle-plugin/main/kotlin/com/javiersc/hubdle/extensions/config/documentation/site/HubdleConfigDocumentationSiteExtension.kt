@@ -6,7 +6,6 @@ import com.javiersc.hubdle.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.extensions._internal.PluginId
 import com.javiersc.hubdle.extensions._internal.getHubdleExtension
-import com.javiersc.hubdle.extensions._internal.hasKotlinGradlePlugin
 import com.javiersc.hubdle.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.extensions.apis.enableAndExecute
@@ -15,13 +14,8 @@ import com.javiersc.hubdle.extensions.config.documentation.site.reports.HubdleCo
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
-import org.gradle.api.artifacts.ProjectDependency
-import org.gradle.api.provider.ListProperty
 import org.gradle.api.provider.Property
 import org.gradle.kotlin.dsl.configure
-import org.gradle.kotlin.dsl.withType
-import org.jetbrains.dokka.gradle.DokkaMultiModuleTask
-import org.jetbrains.dokka.gradle.DokkaTaskPartial
 import ru.vyarus.gradle.plugin.mkdocs.MkdocsExtension
 
 @HubdleDslMarker
@@ -38,13 +32,6 @@ constructor(
 
     override val priority: Priority = Priority.P3
 
-    public val excludes: ListProperty<ProjectDependency> = listProperty { emptyList() }
-
-    @HubdleDslMarker
-    public fun excludes(vararg excludes: ProjectDependency) {
-        this.excludes.set(excludes.toList())
-    }
-
     public val reports: HubdleConfigDocumentationSiteReportsExtension
         get() = getHubdleExtension()
 
@@ -59,18 +46,11 @@ constructor(
     }
 
     override fun Project.defaultConfiguration() {
-        val project = this
-        applicablePlugin(
-            priority = Priority.P4,
-            scope = Scope.AllProjects,
-            pluginId = PluginId.JetbrainsDokka
-        )
         applicablePlugin(
             priority = Priority.P4,
             scope = Scope.CurrentProject,
             pluginId = PluginId.VyarusMkdocsBuild
         )
-
         configurable {
             check(isRootProject) {
                 """
@@ -79,46 +59,12 @@ constructor(
                 """
                     .trimMargin()
             }
-
-            tasks.withType<DokkaMultiModuleTask>().configureEach { task ->
-                val excludedProjects =
-                    excludes.map { dependencyProjects ->
-                        dependencyProjects.map { it.dependencyProject }
-                    }
-
-                task.removeChildTasks(excludedProjects.get())
-            }
-
             configure<MkdocsExtension> {
                 strict = false
                 sourcesDir = "${rootProject.rootDir}/build/.docs"
                 buildDir = "${rootProject.rootDir}/build/docs"
                 publish.docPath = "_site"
             }
-
-            // TODO: fix project isolation
-            allprojects { allproject ->
-                allproject.afterEvaluate { allprojectAfterEvaluate ->
-                    if (allprojectAfterEvaluate.hasKotlinGradlePlugin) {
-                        allprojectAfterEvaluate.tasks.withType<DokkaTaskPartial> {
-                            dokkaSourceSets.configureEach { set ->
-                                val includes: List<String> = buildList {
-                                    val projectDir = allprojectAfterEvaluate.projectDir
-                                    if (projectDir.resolve("MODULE.md").exists()) {
-                                        add("MODULE.md")
-                                    }
-                                    if (projectDir.resolve("README.md").exists()) {
-                                        add("README.md")
-                                    }
-                                }
-
-                                if (includes.isNotEmpty()) set.includes.from(includes)
-                            }
-                        }
-                    }
-                }
-            }
-
             val preBuildDocsTask =
                 PrebuildSiteTask.register(project) {
                     projectsInfo.set(project.projectsInfo)

@@ -15,6 +15,7 @@ import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.extensions.apis.enableAndExecute
 import com.javiersc.hubdle.extensions.dependencies._internal.constants.ANDROIDX_ACTIVITY_ACTIVITY_COMPOSE_MODULE
 import com.javiersc.hubdle.extensions.kotlin._internal.forKotlinSetsDependencies
+import com.javiersc.hubdle.extensions.kotlin.android.features.hubdleAndroidBuildFeatures
 import com.javiersc.hubdle.extensions.kotlin.android.features.hubdleAndroidFeatures
 import com.javiersc.hubdle.extensions.kotlin.hubdleKotlinAny
 import javax.inject.Inject
@@ -71,6 +72,7 @@ constructor(
                 forKotlinSetsDependencies(MAIN) {
                     implementation(catalogDependency(ANDROIDX_ACTIVITY_ACTIVITY_COMPOSE_MODULE))
                 }
+                hubdleAndroidBuildFeatures.compose.set(true)
                 configureAndroidCommonExtension {
                     defaultConfig {
                         buildFeatures.compose = true

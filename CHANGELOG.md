@@ -18,6 +18,7 @@
 
 - Android manifest file name
 - Android features DSL
+- Android build feature doesn't enable compose correctly
 
 ### Updated
 

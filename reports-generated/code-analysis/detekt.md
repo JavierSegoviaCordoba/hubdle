@@ -4,7 +4,7 @@
 
 * 1,301 number of properties
 
-* 545 number of functions
+* 547 number of functions
 
 * 226 number of classes
 
@@ -14,15 +14,15 @@
 
 ## Complexity Report
 
-* 12,816 lines of code (loc)
+* 12,828 lines of code (loc)
 
-* 10,528 source lines of code (sloc)
+* 10,538 source lines of code (sloc)
 
-* 6,936 logical lines of code (lloc)
+* 6,942 logical lines of code (lloc)
 
 * 103 comment lines of code (cloc)
 
-* 922 cyclomatic complexity (mcc)
+* 924 cyclomatic complexity (mcc)
 
 * 478 cognitive complexity
 
@@ -30,7 +30,7 @@
 
 * 0% comment source ratio
 
-* 132 mcc per 1,000 lloc
+* 133 mcc per 1,000 lloc
 
 * 12 code smells per 1,000 lloc
 
@@ -1156,19 +1156,19 @@ This comment contains 'TODO:' that has been defined as forbidden in detekt.
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/library/HubdleKotlinAndroidLibraryExtension.kt:61:5
+* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/library/HubdleKotlinAndroidLibraryExtension.kt:67:5
 ```
 This comment contains 'TODO:' that has been defined as forbidden in detekt.
 ```
 ```kotlin
-58         }
-59     }
-60 
-61     // TODO: improve and enable using this docs:
+64         }
+65     }
+66 
+67     // TODO: improve and enable using this docs:
 !!     ^ error
-62     //  https://developer.android.com/studio/publish-library/configure-pub-variants
-63     // @HubdleDslMarker
-64     // public fun publishLibraryVariants(vararg names: String) {
+68     //  https://developer.android.com/studio/publish-library/configure-pub-variants
+69     // @HubdleDslMarker
+70     // public fun publishLibraryVariants(vararg names: String) {
 
 ```
 
@@ -1365,4 +1365,4 @@ Private property `testCompilation` is unused.
 
 ```
 
-generated with [detekt version 1.22.0](https://detekt.dev/) on 2023-02-14 20:07:09 UTC
+generated with [detekt version 1.22.0](https://detekt.dev/) on 2023-02-15 13:45:02 UTC

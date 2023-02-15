@@ -158,11 +158,11 @@ internal fun HubdleConfigurableExtension.configurableSrcDirs(
                 set.assets.setSrcDirs(listOf("$name/assets"))
                 set.java.setSrcDirs(listOf("$name/java"))
                 set.kotlin.setSrcDirs(listOf("$name/kotlin"))
-                set.manifest.srcFile("$name/manifest")
+                set.manifest.srcFile("$name/AndroidManifest.xml")
                 set.res.setSrcDirs(listOf("$name/res"))
                 set.resources.setSrcDirs(listOf("$name/resources"))
             } else {
-                set.manifest.srcFile("$name/manifest")
+                set.manifest.srcFile("$name/AndroidManifest.xml")
             }
         }
 

@@ -16,6 +16,9 @@
 
 ### Fixed
 
+- Android manifest file name
+- Android features DSL
+
 ### Updated
 
 ## [0.4.0-alpha.11] - 2023-02-13

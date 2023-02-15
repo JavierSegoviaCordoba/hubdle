@@ -8,6 +8,7 @@ import com.javiersc.hubdle.extensions._internal.PluginId
 import com.javiersc.hubdle.extensions._internal.configurableDependencies
 import com.javiersc.hubdle.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
+import com.javiersc.hubdle.extensions.apis.enableAndExecute
 import com.javiersc.hubdle.extensions.config.publishing._internal.configurableMavenPublishing
 import com.javiersc.hubdle.extensions.kotlin._internal.configurableSrcDirs
 import com.javiersc.hubdle.extensions.kotlin.android._internal.calculateAndroidNamespace
@@ -43,6 +44,11 @@ constructor(
 
     public val features: HubdleKotlinAndroidLibraryFeaturesExtension
         get() = getHubdleExtension()
+
+    @HubdleDslMarker
+    public fun features(action: Action<HubdleKotlinAndroidLibraryFeaturesExtension>) {
+        features.enableAndExecute(action)
+    }
 
     @HubdleDslMarker
     public fun configuration(name: String, action: Action<Configuration>) {

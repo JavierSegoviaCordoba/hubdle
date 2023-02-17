@@ -21,6 +21,7 @@
 
 ### Updated
 
+- `org.sonarsource.scanner.gradle:sonarqube-gradle-plugin -> 4.0.0.2929`
 - `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.13.0`
 
 ## [0.4.0-alpha.11] - 2023-02-13

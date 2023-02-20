@@ -1,13 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="4.3">
-<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/documentation/site/PrebuildSiteTask.kt">
-	<error line="383" column="25" severity="warning" message="This condition is too complex (4). Defined complexity threshold for conditions is set to &apos;4&apos;" source="detekt.ComplexCondition" />
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/HubdleKotlinMultiplatformExtension.kt">
+	<error line="39" column="19" severity="warning" message="Class &apos;HubdleKotlinMultiplatformExtension&apos; with &apos;14&apos; functions detected. Defined threshold inside classes is set to &apos;11&apos;" source="detekt.TooManyFunctions" />
+</file>
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformNativeExtension.kt">
+	<error line="43" column="26" severity="warning" message="The function defaultConfiguration is too long (125). The maximum length is 60." source="detekt.LongMethod" />
+</file>
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAppleExtension.kt">
+	<error line="78" column="26" severity="warning" message="The function defaultConfiguration is too long (94). The maximum length is 60." source="detekt.LongMethod" />
+</file>
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/features/HubdleKotlinAndroidBuildFeaturesExtension.kt">
+	<error line="45" column="26" severity="warning" message="The function defaultConfiguration appears to be too complex based on Cyclomatic Complexity (complexity: 15). Defined complexity threshold for methods is set to &apos;15&apos;" source="detekt.CyclomaticComplexMethod" />
+</file>
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/language/settings/HubdleConfigLanguageSettingsExtension.kt">
+	<error line="15" column="19" severity="warning" message="Class &apos;HubdleConfigLanguageSettingsExtension&apos; with &apos;11&apos; functions detected. Defined threshold inside classes is set to &apos;11&apos;" source="detekt.TooManyFunctions" />
 </file>
 <file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/HubdleConfigExtension.kt">
 	<error line="27" column="19" severity="warning" message="Class &apos;HubdleConfigExtension&apos; with &apos;11&apos; functions detected. Defined threshold inside classes is set to &apos;11&apos;" source="detekt.TooManyFunctions" />
 </file>
-<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/language/settings/HubdleConfigLanguageSettingsExtension.kt">
-	<error line="15" column="19" severity="warning" message="Class &apos;HubdleConfigLanguageSettingsExtension&apos; with &apos;11&apos; functions detected. Defined threshold inside classes is set to &apos;11&apos;" source="detekt.TooManyFunctions" />
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/documentation/site/PrebuildSiteTask.kt">
+	<error line="383" column="25" severity="warning" message="This condition is too complex (4). Defined complexity threshold for conditions is set to &apos;4&apos;" source="detekt.ComplexCondition" />
 </file>
 <file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/apis/HubdleEnableableExtension.kt">
 	<error line="22" column="23" severity="warning" message="Class &apos;HubdleEnableableExtension&apos; with &apos;11&apos; functions detected. Defined threshold inside classes is set to &apos;11&apos;" source="detekt.TooManyFunctions" />
@@ -15,18 +27,6 @@
 <file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/withPluginExtensions.kt">
 	<error line="1" column="1" severity="warning" message="File &apos;/home/runner/work/hubdle/hubdle/hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/withPluginExtensions.kt&apos; with &apos;19&apos; functions detected. Defined threshold inside files is set to &apos;11&apos;" source="detekt.TooManyFunctions" />
 	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
-</file>
-<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/features/HubdleKotlinAndroidBuildFeaturesExtension.kt">
-	<error line="45" column="26" severity="warning" message="The function defaultConfiguration appears to be too complex based on Cyclomatic Complexity (complexity: 15). Defined complexity threshold for methods is set to &apos;15&apos;" source="detekt.CyclomaticComplexMethod" />
-</file>
-<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAppleExtension.kt">
-	<error line="78" column="26" severity="warning" message="The function defaultConfiguration is too long (94). The maximum length is 60." source="detekt.LongMethod" />
-</file>
-<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformNativeExtension.kt">
-	<error line="43" column="26" severity="warning" message="The function defaultConfiguration is too long (125). The maximum length is 60." source="detekt.LongMethod" />
-</file>
-<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/HubdleKotlinMultiplatformExtension.kt">
-	<error line="39" column="19" severity="warning" message="Class &apos;HubdleKotlinMultiplatformExtension&apos; with &apos;14&apos; functions detected. Defined threshold inside classes is set to &apos;11&apos;" source="detekt.TooManyFunctions" />
 </file>
 <file name="hubdle-gradle-plugin/build.gradle.kts">
 	<error line="171" column="13" severity="warning" message="The function buildHubdleDependencies is too long (71). The maximum length is 60." source="detekt.LongMethod" />
@@ -38,68 +38,10 @@
 <file name="sandbox/consumer-settings/included-library/settings.gradle.kts">
 	<error line="1" column="1" severity="warning" message="The empty Kotlin file /home/runner/work/hubdle/hubdle/sandbox/consumer-settings/included-library/settings.gradle.kts can be removed." source="detekt.EmptyKtFile" />
 </file>
-<file name="hubdle-gradle-plugin/test/kotlin/com/javiersc/hubdle/_utils/resourceFile.kt">
-	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
-</file>
-<file name="hubdle-gradle-plugin/test/kotlin/com/javiersc/hubdle/_utils/commitAndCheckout.kt">
-	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
-</file>
-<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/publishing/_internal/configureMavenPublishing.kt">
-	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
-	<error line="116" column="25" severity="warning" message="This comment contains &apos;TODO:&apos; that has been defined as forbidden in detekt." source="detekt.ForbiddenComment" />
-</file>
-<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/documentation/changelog/_internal/Changelog.kt">
-	<error line="41" column="9" severity="warning" message="A member is named after the class. This might result in confusion. Either rename the member or change it to a constructor." source="detekt.MemberNameEqualsClassName" />
-	<error line="3" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
-</file>
-<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/documentation/changelog/_internal/MergeChangelog.kt">
-	<error line="3" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
-</file>
-<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/documentation/changelog/_internal/Extensions.kt">
-	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
-</file>
-<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/_internal/createAndConfigureHubdleConfigExtensions.kt">
-	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
-</file>
-<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/projectExtensions.kt">
-	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
-	<error line="11" column="1" severity="warning" message="This comment contains &apos;TODO:&apos; that has been defined as forbidden in detekt." source="detekt.ForbiddenComment" />
-	<error line="15" column="1" severity="warning" message="This comment contains &apos;TODO:&apos; that has been defined as forbidden in detekt." source="detekt.ForbiddenComment" />
-	<error line="20" column="1" severity="warning" message="This comment contains &apos;TODO:&apos; that has been defined as forbidden in detekt." source="detekt.ForbiddenComment" />
-</file>
-<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/SourceSetsConstant.kt">
-	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
-</file>
-<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/configureDependencies.kt">
-	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
-</file>
-<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/checkCompatibility.kt">
-	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
-</file>
-<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/CatalogDependencies.kt">
-	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
-</file>
-<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/HubdleState.kt">
-	<error line="3" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
-	<error line="139" column="21" severity="warning" message="Line detected, which is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
-</file>
-<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/hubdleExtension.kt">
-	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
-</file>
-<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/PluginId.kt">
-	<error line="36" column="19" severity="warning" message="Top level constant names should match the pattern: [A-Z][_A-Z0-9]*" source="detekt.TopLevelPropertyNaming" />
-	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
-</file>
-<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/hasPluginExensions.kt">
-	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
-</file>
-<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/android/_internal/AndroidCommonExtension.kt">
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/_internal/createAndConfigureHubdleKotlinExtensions.kt">
 	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
 </file>
 <file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/_internal/forKotlinSets.kt">
-	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
-</file>
-<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/_internal/createAndConfigureHubdleKotlinExtensions.kt">
 	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
 </file>
 <file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/_internal/configureKotlinSourceSets.kt">
@@ -109,91 +51,149 @@
 <file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/_internal/calculateAndroidNamespace.kt">
 	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
 </file>
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/_internal/createAndConfigureHubdleConfigExtensions.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/publishing/_internal/configureMavenPublishing.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="116" column="25" severity="warning" message="This comment contains &apos;TODO:&apos; that has been defined as forbidden in detekt." source="detekt.ForbiddenComment" />
+</file>
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/documentation/changelog/_internal/MergeChangelog.kt">
+	<error line="3" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/documentation/changelog/_internal/Extensions.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/documentation/changelog/_internal/Changelog.kt">
+	<error line="41" column="9" severity="warning" message="A member is named after the class. This might result in confusion. Either rename the member or change it to a constructor." source="detekt.MemberNameEqualsClassName" />
+	<error line="3" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/hasPluginExensions.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/HubdleState.kt">
+	<error line="3" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="139" column="21" severity="warning" message="Line detected, which is longer than the defined maximum line length in the code style." source="detekt.MaxLineLength" />
+</file>
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/SourceSetsConstant.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/CatalogDependencies.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/configureDependencies.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/hubdleExtension.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/projectExtensions.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+	<error line="11" column="1" severity="warning" message="This comment contains &apos;TODO:&apos; that has been defined as forbidden in detekt." source="detekt.ForbiddenComment" />
+	<error line="15" column="1" severity="warning" message="This comment contains &apos;TODO:&apos; that has been defined as forbidden in detekt." source="detekt.ForbiddenComment" />
+	<error line="20" column="1" severity="warning" message="This comment contains &apos;TODO:&apos; that has been defined as forbidden in detekt." source="detekt.ForbiddenComment" />
+</file>
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/checkCompatibility.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/PluginId.kt">
+	<error line="36" column="19" severity="warning" message="Top level constant names should match the pattern: [A-Z][_A-Z0-9]*" source="detekt.TopLevelPropertyNaming" />
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/android/_internal/AndroidCommonExtension.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="hubdle-gradle-plugin/test/kotlin/com/javiersc/hubdle/_utils/commitAndCheckout.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
+<file name="hubdle-gradle-plugin/test/kotlin/com/javiersc/hubdle/_utils/resourceFile.kt">
+	<error line="1" column="1" severity="warning" message="Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*" source="detekt.PackageNaming" />
+</file>
 <file name="sandbox/consumer-kotlin-jvm/main/kotlin/Main.kt">
 	<error line="1" column="1" severity="warning" message="The package declaration does not match the actual file location." source="detekt.InvalidPackageDeclaration" />
 </file>
 <file name="sandbox/consumer-kotlin-android/main/kotlin/Main.kt">
 	<error line="1" column="1" severity="warning" message="The package declaration does not match the actual file location." source="detekt.InvalidPackageDeclaration" />
 </file>
-<file name="sandbox/consumer-kotlin-multiplatform/watchosArm64Main/kotlin/Platform.kt">
-	<error line="1" column="1" severity="warning" message="The package declaration does not match the actual file location." source="detekt.InvalidPackageDeclaration" />
-</file>
-<file name="sandbox/consumer-kotlin-multiplatform/tvosSimulatorArm64Main/kotlin/Platform.kt">
-	<error line="1" column="1" severity="warning" message="The package declaration does not match the actual file location." source="detekt.InvalidPackageDeclaration" />
-</file>
-<file name="sandbox/consumer-kotlin-multiplatform/watchosX86Main/kotlin/Platform.kt">
-	<error line="1" column="1" severity="warning" message="The package declaration does not match the actual file location." source="detekt.InvalidPackageDeclaration" />
-</file>
-<file name="sandbox/consumer-kotlin-multiplatform/wasm32Main/kotlin/Platform.kt">
-	<error line="1" column="1" severity="warning" message="The package declaration does not match the actual file location." source="detekt.InvalidPackageDeclaration" />
-</file>
-<file name="sandbox/consumer-kotlin-multiplatform/tvosX64Main/kotlin/Platform.kt">
-	<error line="1" column="1" severity="warning" message="The package declaration does not match the actual file location." source="detekt.InvalidPackageDeclaration" />
-</file>
-<file name="sandbox/consumer-kotlin-multiplatform/linuxMipsel32Main/kotlin/Platform.kt">
-	<error line="1" column="1" severity="warning" message="The package declaration does not match the actual file location." source="detekt.InvalidPackageDeclaration" />
-</file>
 <file name="sandbox/consumer-kotlin-multiplatform/macosMain/kotlin/MacosMain.kt">
-	<error line="1" column="1" severity="warning" message="The package declaration does not match the actual file location." source="detekt.InvalidPackageDeclaration" />
-</file>
-<file name="sandbox/consumer-kotlin-multiplatform/jvm/main/kotlin/Platform.kt">
 	<error line="1" column="1" severity="warning" message="The package declaration does not match the actual file location." source="detekt.InvalidPackageDeclaration" />
 </file>
 <file name="sandbox/consumer-kotlin-multiplatform/linuxArm64Main/kotlin/Platform.kt">
 	<error line="1" column="1" severity="warning" message="The package declaration does not match the actual file location." source="detekt.InvalidPackageDeclaration" />
 </file>
-<file name="sandbox/consumer-kotlin-multiplatform/jsMain/kotlin/Platform.kt">
-	<error line="1" column="1" severity="warning" message="The package declaration does not match the actual file location." source="detekt.InvalidPackageDeclaration" />
-</file>
-<file name="sandbox/consumer-kotlin-multiplatform/common/main/kotlin/Platform.kt">
-	<error line="1" column="1" severity="warning" message="The package declaration does not match the actual file location." source="detekt.InvalidPackageDeclaration" />
-</file>
-<file name="sandbox/consumer-kotlin-multiplatform/watchosSimulatorArm64Main/kotlin/Platform.kt">
-	<error line="1" column="1" severity="warning" message="The package declaration does not match the actual file location." source="detekt.InvalidPackageDeclaration" />
-</file>
-<file name="sandbox/consumer-kotlin-multiplatform/macosArm64Main/kotlin/Platform.kt">
-	<error line="1" column="1" severity="warning" message="The package declaration does not match the actual file location." source="detekt.InvalidPackageDeclaration" />
-</file>
-<file name="sandbox/consumer-kotlin-multiplatform/iosX64Main/kotlin/Platform.kt">
-	<error line="1" column="1" severity="warning" message="The package declaration does not match the actual file location." source="detekt.InvalidPackageDeclaration" />
-</file>
-<file name="sandbox/consumer-kotlin-multiplatform/iosArm32Main/kotlin/Platform.kt">
-	<error line="1" column="1" severity="warning" message="The package declaration does not match the actual file location." source="detekt.InvalidPackageDeclaration" />
-</file>
-<file name="sandbox/consumer-kotlin-multiplatform/linuxMips32Main/kotlin/Platform.kt">
-	<error line="1" column="1" severity="warning" message="The package declaration does not match the actual file location." source="detekt.InvalidPackageDeclaration" />
-</file>
-<file name="sandbox/consumer-kotlin-multiplatform/linuxX64Main/kotlin/Platform.kt">
-	<error line="1" column="1" severity="warning" message="The package declaration does not match the actual file location." source="detekt.InvalidPackageDeclaration" />
-</file>
 <file name="sandbox/consumer-kotlin-multiplatform/linuxArm32HfpMain/kotlin/Platform.kt">
-	<error line="1" column="1" severity="warning" message="The package declaration does not match the actual file location." source="detekt.InvalidPackageDeclaration" />
-</file>
-<file name="sandbox/consumer-kotlin-multiplatform/tvosArm64Main/kotlin/Platform.kt">
-	<error line="1" column="1" severity="warning" message="The package declaration does not match the actual file location." source="detekt.InvalidPackageDeclaration" />
-</file>
-<file name="sandbox/consumer-kotlin-multiplatform/iosSimulatorArm64Main/kotlin/Platform.kt">
 	<error line="1" column="1" severity="warning" message="The package declaration does not match the actual file location." source="detekt.InvalidPackageDeclaration" />
 </file>
 <file name="sandbox/consumer-kotlin-multiplatform/macosX64Main/kotlin/Platform.kt">
 	<error line="1" column="1" severity="warning" message="The package declaration does not match the actual file location." source="detekt.InvalidPackageDeclaration" />
 </file>
-<file name="sandbox/consumer-kotlin-multiplatform/android/main/kotlin/Platform.kt">
-	<error line="1" column="1" severity="warning" message="The package declaration does not match the actual file location." source="detekt.InvalidPackageDeclaration" />
-</file>
 <file name="sandbox/consumer-kotlin-multiplatform/mingwX64Main/kotlin/Platform.kt">
 	<error line="1" column="1" severity="warning" message="The package declaration does not match the actual file location." source="detekt.InvalidPackageDeclaration" />
 </file>
-<file name="sandbox/consumer-kotlin-multiplatform/watchosX64Main/kotlin/Platform.kt">
+<file name="sandbox/consumer-kotlin-multiplatform/wasm32Main/kotlin/Platform.kt">
 	<error line="1" column="1" severity="warning" message="The package declaration does not match the actual file location." source="detekt.InvalidPackageDeclaration" />
 </file>
 <file name="sandbox/consumer-kotlin-multiplatform/mingwX86Main/kotlin/Platform.kt">
 	<error line="1" column="1" severity="warning" message="The package declaration does not match the actual file location." source="detekt.InvalidPackageDeclaration" />
 </file>
-<file name="sandbox/consumer-kotlin-multiplatform/watchosArm32Main/kotlin/Platform.kt">
+<file name="sandbox/consumer-kotlin-multiplatform/linuxMips32Main/kotlin/Platform.kt">
+	<error line="1" column="1" severity="warning" message="The package declaration does not match the actual file location." source="detekt.InvalidPackageDeclaration" />
+</file>
+<file name="sandbox/consumer-kotlin-multiplatform/linuxMipsel32Main/kotlin/Platform.kt">
+	<error line="1" column="1" severity="warning" message="The package declaration does not match the actual file location." source="detekt.InvalidPackageDeclaration" />
+</file>
+<file name="sandbox/consumer-kotlin-multiplatform/watchosArm64Main/kotlin/Platform.kt">
+	<error line="1" column="1" severity="warning" message="The package declaration does not match the actual file location." source="detekt.InvalidPackageDeclaration" />
+</file>
+<file name="sandbox/consumer-kotlin-multiplatform/iosArm32Main/kotlin/Platform.kt">
 	<error line="1" column="1" severity="warning" message="The package declaration does not match the actual file location." source="detekt.InvalidPackageDeclaration" />
 </file>
 <file name="sandbox/consumer-kotlin-multiplatform/iosArm64Main/kotlin/Platform.kt">
+	<error line="1" column="1" severity="warning" message="The package declaration does not match the actual file location." source="detekt.InvalidPackageDeclaration" />
+</file>
+<file name="sandbox/consumer-kotlin-multiplatform/iosX64Main/kotlin/Platform.kt">
+	<error line="1" column="1" severity="warning" message="The package declaration does not match the actual file location." source="detekt.InvalidPackageDeclaration" />
+</file>
+<file name="sandbox/consumer-kotlin-multiplatform/android/main/kotlin/Platform.kt">
+	<error line="1" column="1" severity="warning" message="The package declaration does not match the actual file location." source="detekt.InvalidPackageDeclaration" />
+</file>
+<file name="sandbox/consumer-kotlin-multiplatform/jsMain/kotlin/Platform.kt">
+	<error line="1" column="1" severity="warning" message="The package declaration does not match the actual file location." source="detekt.InvalidPackageDeclaration" />
+</file>
+<file name="sandbox/consumer-kotlin-multiplatform/iosSimulatorArm64Main/kotlin/Platform.kt">
+	<error line="1" column="1" severity="warning" message="The package declaration does not match the actual file location." source="detekt.InvalidPackageDeclaration" />
+</file>
+<file name="sandbox/consumer-kotlin-multiplatform/watchosX64Main/kotlin/Platform.kt">
+	<error line="1" column="1" severity="warning" message="The package declaration does not match the actual file location." source="detekt.InvalidPackageDeclaration" />
+</file>
+<file name="sandbox/consumer-kotlin-multiplatform/tvosX64Main/kotlin/Platform.kt">
+	<error line="1" column="1" severity="warning" message="The package declaration does not match the actual file location." source="detekt.InvalidPackageDeclaration" />
+</file>
+<file name="sandbox/consumer-kotlin-multiplatform/watchosSimulatorArm64Main/kotlin/Platform.kt">
+	<error line="1" column="1" severity="warning" message="The package declaration does not match the actual file location." source="detekt.InvalidPackageDeclaration" />
+</file>
+<file name="sandbox/consumer-kotlin-multiplatform/tvosSimulatorArm64Main/kotlin/Platform.kt">
+	<error line="1" column="1" severity="warning" message="The package declaration does not match the actual file location." source="detekt.InvalidPackageDeclaration" />
+</file>
+<file name="sandbox/consumer-kotlin-multiplatform/macosArm64Main/kotlin/Platform.kt">
+	<error line="1" column="1" severity="warning" message="The package declaration does not match the actual file location." source="detekt.InvalidPackageDeclaration" />
+</file>
+<file name="sandbox/consumer-kotlin-multiplatform/jvm/main/kotlin/Platform.kt">
+	<error line="1" column="1" severity="warning" message="The package declaration does not match the actual file location." source="detekt.InvalidPackageDeclaration" />
+</file>
+<file name="sandbox/consumer-kotlin-multiplatform/common/main/kotlin/Platform.kt">
+	<error line="1" column="1" severity="warning" message="The package declaration does not match the actual file location." source="detekt.InvalidPackageDeclaration" />
+</file>
+<file name="sandbox/consumer-kotlin-multiplatform/watchosArm32Main/kotlin/Platform.kt">
+	<error line="1" column="1" severity="warning" message="The package declaration does not match the actual file location." source="detekt.InvalidPackageDeclaration" />
+</file>
+<file name="sandbox/consumer-kotlin-multiplatform/tvosArm64Main/kotlin/Platform.kt">
+	<error line="1" column="1" severity="warning" message="The package declaration does not match the actual file location." source="detekt.InvalidPackageDeclaration" />
+</file>
+<file name="sandbox/consumer-kotlin-multiplatform/watchosX86Main/kotlin/Platform.kt">
+	<error line="1" column="1" severity="warning" message="The package declaration does not match the actual file location." source="detekt.InvalidPackageDeclaration" />
+</file>
+<file name="sandbox/consumer-kotlin-multiplatform/linuxX64Main/kotlin/Platform.kt">
 	<error line="1" column="1" severity="warning" message="The package declaration does not match the actual file location." source="detekt.InvalidPackageDeclaration" />
 </file>
 <file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidExtension.kt">
@@ -206,11 +206,12 @@
 	<error line="62" column="29" severity="warning" message="In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty." source="detekt.SpreadOperator" />
 	<error line="63" column="35" severity="warning" message="In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty." source="detekt.SpreadOperator" />
 </file>
-<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/binary/compatibility/validator/HubdleConfigBinaryCompatibilityValidatorExtension.kt">
-	<error line="71" column="21" severity="warning" message="Private property `apiValidationExtension` is unused." source="detekt.UnusedPrivateMember" />
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformJvmAndAndroidExtension.kt">
+	<error line="36" column="17" severity="warning" message="This comment contains &apos;TODO:&apos; that has been defined as forbidden in detekt." source="detekt.ForbiddenComment" />
+	<error line="50" column="17" severity="warning" message="This comment contains &apos;TODO:&apos; that has been defined as forbidden in detekt." source="detekt.ForbiddenComment" />
 </file>
-<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/analysis/HubdleConfigAnalysisExtension.kt">
-	<error line="93" column="13" severity="warning" message="This comment contains &apos;TODO:&apos; that has been defined as forbidden in detekt." source="detekt.ForbiddenComment" />
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/library/HubdleKotlinAndroidLibraryExtension.kt">
+	<error line="67" column="5" severity="warning" message="This comment contains &apos;TODO:&apos; that has been defined as forbidden in detekt." source="detekt.ForbiddenComment" />
 </file>
 <file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/HubdleKotlinAndroidExtension.kt">
 	<error line="20" column="1" severity="warning" message="This comment contains &apos;TODO:&apos; that has been defined as forbidden in detekt." source="detekt.ForbiddenComment" />
@@ -218,11 +219,10 @@
 	<error line="37" column="55" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
 	<error line="39" column="54" severity="warning" message="This expression contains a magic number. Consider defining it to a well named constant." source="detekt.MagicNumber" />
 </file>
-<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/library/HubdleKotlinAndroidLibraryExtension.kt">
-	<error line="67" column="5" severity="warning" message="This comment contains &apos;TODO:&apos; that has been defined as forbidden in detekt." source="detekt.ForbiddenComment" />
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/binary/compatibility/validator/HubdleConfigBinaryCompatibilityValidatorExtension.kt">
+	<error line="71" column="21" severity="warning" message="Private property `apiValidationExtension` is unused." source="detekt.UnusedPrivateMember" />
 </file>
-<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformJvmAndAndroidExtension.kt">
-	<error line="36" column="17" severity="warning" message="This comment contains &apos;TODO:&apos; that has been defined as forbidden in detekt." source="detekt.ForbiddenComment" />
-	<error line="50" column="17" severity="warning" message="This comment contains &apos;TODO:&apos; that has been defined as forbidden in detekt." source="detekt.ForbiddenComment" />
+<file name="hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/analysis/HubdleConfigAnalysisExtension.kt">
+	<error line="93" column="13" severity="warning" message="This comment contains &apos;TODO:&apos; that has been defined as forbidden in detekt." source="detekt.ForbiddenComment" />
 </file>
 </checkstyle>

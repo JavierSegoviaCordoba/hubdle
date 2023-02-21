@@ -21,6 +21,7 @@
 
 ### Updated
 
+- `app.cash.molecule:molecule-gradle-plugin -> 0.7.1`
 - `com.javiersc.network:resource-either -> 0.2.0-alpha.2`
 - `com.javiersc.network:network-resource-either-extensions -> 0.2.0-alpha.2`
 - `com.javiersc.network:network-either-logger -> 0.2.0-alpha.2`

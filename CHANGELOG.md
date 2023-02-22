@@ -21,6 +21,7 @@
 
 ### Updated
 
+- `androidx.compose.compiler:compiler -> 1.4.3`
 - `io.github.gradle-nexus:publish-plugin -> 1.2.0`
 - `app.cash.molecule:molecule-gradle-plugin -> 0.7.1`
 - `com.javiersc.network:resource-either -> 0.2.0-alpha.2`

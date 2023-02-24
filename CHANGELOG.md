@@ -21,6 +21,8 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx:kotlinx-serialization-json -> 1.5.0`
+- `org.jetbrains.kotlinx:kotlinx-serialization-core -> 1.5.0`
 - `gradle -> 7.6.1`
 - `androidx.compose.compiler:compiler -> 1.4.3`
 - `io.github.gradle-nexus:publish-plugin -> 1.2.0`

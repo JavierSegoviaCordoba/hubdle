@@ -17,7 +17,7 @@ hubdle {
                 tags("hubdle settings")
                 gradlePlugin {
                     plugins {
-                        create("com.javiersc.hubdle.settings") {
+                        create("hubdle settings") {
                             id = "com.javiersc.hubdle.settings"
                             displayName = "Hubdle settings"
                             description = "Easy settings setup"

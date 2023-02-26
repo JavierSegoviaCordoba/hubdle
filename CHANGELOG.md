@@ -13,6 +13,7 @@
 
 ### Changed
 
+- `com.javiersc.hubdle` as unique id for projects and settings
 - Coverage Agent use the IntelliJ engine instead of JaCoCo
 - `site` to extract API docs into its own `api` extension
 

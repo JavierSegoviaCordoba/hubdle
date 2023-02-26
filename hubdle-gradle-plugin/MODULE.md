@@ -4,28 +4,18 @@
 
 ## Usage
 
+Apply the plugin in your `build.gradle.kts` or in your `settings.gradle.kts`:
+
 ```kotlin
 plugins {
     id("com.javiersc.hubdle") version "$version"
 }
-
-// basic config to get a Kotlin jvm project with coroutines and a custom dependency
-hubdle {
-    kotlin {
-        jvm {
-            features {
-                coroutines()
-            }
-            
-            main {
-                dependencies {
-                    implementation("org.example-group:example:1.0.0")
-                }
-            }
-        }
-    }
-}
 ```
+
+## Plugins applied
+
+- [hubdle-project-gradle-plugin](../hubdle-project-gradle-plugin/MODULE.md)
+- [hubdle-settings-gradle-plugin](../hubdle-settings-gradle-plugin/MODULE.md)
 
 ## Configurations
 

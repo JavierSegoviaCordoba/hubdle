@@ -2,39 +2,39 @@
 
 ## Metrics
 
-* 1,301 number of properties
+* 1,312 number of properties
 
-* 547 number of functions
+* 550 number of functions
 
-* 226 number of classes
+* 230 number of classes
 
-* 74 number of packages
+* 75 number of packages
 
-* 208 number of kt files
+* 210 number of kt files
 
 ## Complexity Report
 
-* 12,828 lines of code (loc)
+* 12,949 lines of code (loc)
 
-* 10,538 source lines of code (sloc)
+* 10,639 source lines of code (sloc)
 
-* 6,942 logical lines of code (lloc)
+* 7,002 logical lines of code (lloc)
 
 * 103 comment lines of code (cloc)
 
-* 924 cyclomatic complexity (mcc)
+* 928 cyclomatic complexity (mcc)
 
 * 478 cognitive complexity
 
-* 87 number of total code smells
+* 90 number of total code smells
 
 * 0% comment source ratio
 
-* 133 mcc per 1,000 lloc
+* 132 mcc per 1,000 lloc
 
 * 12 code smells per 1,000 lloc
 
-## Findings (87)
+## Findings (90)
 
 ### complexity, ComplexCondition (1)
 
@@ -86,19 +86,19 @@ One method should have one responsibility. Long methods tend to handle many thin
 
 [Documentation](https://detekt.dev/docs/rules/complexity#longmethod)
 
-* hubdle-gradle-plugin/build.gradle.kts:171:13
+* hubdle-gradle-plugin/build.gradle.kts:184:13
 ```
 The function buildHubdleDependencies is too long (71). The maximum length is 60.
 ```
 ```kotlin
-168         }
-169 }
-170 
-171 fun Project.buildHubdleDependencies() {
+181         }
+182 }
+183 
+184 fun Project.buildHubdleDependencies() {
 !!!             ^ error
-172     buildDir.resolve("generated/main/kotlin/hubdle_dependencies.kt").apply {
-173         parentFile.mkdirs()
-174         createNewFile()
+185     buildDir.resolve("generated/main/kotlin/hubdle_dependencies.kt").apply {
+186         parentFile.mkdirs()
+187         createNewFile()
 
 ```
 
@@ -140,19 +140,19 @@ Excessive nesting leads to hidden complexity. Prefer extracting code to make it 
 
 [Documentation](https://detekt.dev/docs/rules/complexity#nestedblockdepth)
 
-* hubdle-gradle-plugin/build.gradle.kts:171:13
+* hubdle-gradle-plugin/build.gradle.kts:184:13
 ```
 Function buildHubdleDependencies is nested too deeply.
 ```
 ```kotlin
-168         }
-169 }
-170 
-171 fun Project.buildHubdleDependencies() {
+181         }
+182 }
+183 
+184 fun Project.buildHubdleDependencies() {
 !!!             ^ error
-172     buildDir.resolve("generated/main/kotlin/hubdle_dependencies.kt").apply {
-173         parentFile.mkdirs()
-174         createNewFile()
+185     buildDir.resolve("generated/main/kotlin/hubdle_dependencies.kt").apply {
+186         parentFile.mkdirs()
+187         createNewFile()
 
 ```
 
@@ -985,18 +985,72 @@ Top level property names should follow the naming convention set in the projects
 
 [Documentation](https://detekt.dev/docs/rules/naming#toplevelpropertynaming)
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/PluginId.kt:36:19
+* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/PluginId.kt:37:19
 ```
 Top level constant names should match the pattern: [A-Z][_A-Z0-9]*
 ```
 ```kotlin
-33     override fun toString(): String = id
-34 }
-35 
-36 private const val KotlinBinaryCompatibilityValidator =
+34     override fun toString(): String = id
+35 }
+36 
+37 private const val KotlinBinaryCompatibilityValidator =
 !!                   ^ error
-37     "org.jetbrains.kotlinx.binary-compatibility-validator"
-38 
+38     "org.jetbrains.kotlinx.binary-compatibility-validator"
+39 
+
+```
+
+### naming, VariableNaming (3)
+
+Variable names should follow the naming convention set in the projects configuration.
+
+[Documentation](https://detekt.dev/docs/rules/naming#variablenaming)
+
+* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinSqlDelightFeatureExtension.kt:48:16
+```
+Variable names should match the pattern: [a-z][A-Za-z0-9]*
+```
+```kotlin
+45         userConfigurable { action.invoke(the()) }
+46     }
+47 
+48     public val HSqlDialect: String = "app.cash.sqldeight:hsql-dialect:$SQLDELIGHT_VERSION"
+!!                ^ error
+49 
+50     public val MySqlDialect: String = "app.cash.sqldeight:mysql-dialect:$SQLDELIGHT_VERSION"
+51 
+
+```
+
+* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinSqlDelightFeatureExtension.kt:50:16
+```
+Variable names should match the pattern: [a-z][A-Za-z0-9]*
+```
+```kotlin
+47 
+48     public val HSqlDialect: String = "app.cash.sqldeight:hsql-dialect:$SQLDELIGHT_VERSION"
+49 
+50     public val MySqlDialect: String = "app.cash.sqldeight:mysql-dialect:$SQLDELIGHT_VERSION"
+!!                ^ error
+51 
+52     public val PostgresDialect: String = "app.cash.sqldeight:postgres-dialect:$SQLDELIGHT_VERSION"
+53 
+
+```
+
+* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinSqlDelightFeatureExtension.kt:52:16
+```
+Variable names should match the pattern: [a-z][A-Za-z0-9]*
+```
+```kotlin
+49 
+50     public val MySqlDialect: String = "app.cash.sqldeight:mysql-dialect:$SQLDELIGHT_VERSION"
+51 
+52     public val PostgresDialect: String = "app.cash.sqldeight:postgres-dialect:$SQLDELIGHT_VERSION"
+!!                ^ error
+53 
+54     override fun Project.defaultConfiguration() {
+55         applicablePlugin(
 
 ```
 
@@ -1006,19 +1060,19 @@ In most cases using a spread operator causes a full copy of the array to be crea
 
 [Documentation](https://detekt.dev/docs/rules/performance#spreadoperator)
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidExtension.kt:94:47
+* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidExtension.kt:90:47
 ```
 In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.
 ```
 ```kotlin
-91                 val publishAllVariants = hubdleAndroid.publishAllLibraryVariants.get()
-92                 android {
-93                     if (publishVariants.isNotEmpty() && !publishAllVariants) {
-94                         publishLibraryVariants(*publishVariants)
+87                 val publishAllVariants = hubdleAndroid.publishAllLibraryVariants.get()
+88                 android {
+89                     if (publishVariants.isNotEmpty() && !publishAllVariants) {
+90                         publishLibraryVariants(*publishVariants)
 !!                                               ^ error
-95                     }
-96                     if (publishAllVariants) {
-97                         publishAllLibraryVariants()
+91                     }
+92                     if (publishAllVariants) {
+93                         publishAllLibraryVariants()
 
 ```
 
@@ -1140,35 +1194,35 @@ This comment contains 'TODO:' that has been defined as forbidden in detekt.
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/HubdleKotlinAndroidExtension.kt:20:1
+* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/HubdleKotlinAndroidExtension.kt:19:1
 ```
 This comment contains 'TODO:' that has been defined as forbidden in detekt.
 ```
 ```kotlin
-17 import org.gradle.api.Project
-18 import org.gradle.api.provider.Property
-19 
-20 // TODO: transform into `HubdleConfigurableExtension`
+16 import org.gradle.api.Project
+17 import org.gradle.api.provider.Property
+18 
+19 // TODO: transform into `HubdleConfigurableExtension`
 !! ^ error
-21 @HubdleDslMarker
-22 public open class HubdleKotlinAndroidExtension
-23 @Inject
+20 @HubdleDslMarker
+21 public open class HubdleKotlinAndroidExtension
+22 @Inject
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/library/HubdleKotlinAndroidLibraryExtension.kt:67:5
+* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/library/HubdleKotlinAndroidLibraryExtension.kt:51:5
 ```
 This comment contains 'TODO:' that has been defined as forbidden in detekt.
 ```
 ```kotlin
-64         }
-65     }
-66 
-67     // TODO: improve and enable using this docs:
+48         features.enableAndExecute(action)
+49     }
+50 
+51     // TODO: improve and enable using this docs:
 !!     ^ error
-68     //  https://developer.android.com/studio/publish-library/configure-pub-variants
-69     // @HubdleDslMarker
-70     // public fun publishLibraryVariants(vararg names: String) {
+52     //  https://developer.android.com/studio/publish-library/configure-pub-variants
+53     // @HubdleDslMarker
+54     // public fun publishLibraryVariants(vararg names: String) {
 
 ```
 
@@ -1210,99 +1264,99 @@ Report magic numbers. Magic number is a numeric literal that is not defined as a
 
 [Documentation](https://detekt.dev/docs/rules/style#magicnumber)
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/HubdleKotlinAndroidExtension.kt:35:51
+* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/HubdleKotlinAndroidExtension.kt:34:51
 ```
 This expression contains a magic number. Consider defining it to a well named constant.
 ```
 ```kotlin
-32 
-33     public val namespace: Property<String?> = property { null }
-34 
-35     public val minSdk: Property<Int> = property { 23 }
+31 
+32     public val namespace: Property<String?> = property { null }
+33 
+34     public val minSdk: Property<Int> = property { 23 }
 !!                                                   ^ error
-36 
-37     public val compileSdk: Property<Int> = property { 33 }
-38 
+35 
+36     public val compileSdk: Property<Int> = property { 33 }
+37 
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/HubdleKotlinAndroidExtension.kt:37:55
+* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/HubdleKotlinAndroidExtension.kt:36:55
 ```
 This expression contains a magic number. Consider defining it to a well named constant.
 ```
 ```kotlin
-34 
-35     public val minSdk: Property<Int> = property { 23 }
-36 
-37     public val compileSdk: Property<Int> = property { 33 }
+33 
+34     public val minSdk: Property<Int> = property { 23 }
+35 
+36     public val compileSdk: Property<Int> = property { 33 }
 !!                                                       ^ error
-38 
-39     public val targetSdk: Property<Int> = property { 33 }
-40 
+37 
+38     public val targetSdk: Property<Int> = property { 33 }
+39 
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/HubdleKotlinAndroidExtension.kt:39:54
+* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/HubdleKotlinAndroidExtension.kt:38:54
 ```
 This expression contains a magic number. Consider defining it to a well named constant.
 ```
 ```kotlin
-36 
-37     public val compileSdk: Property<Int> = property { 33 }
-38 
-39     public val targetSdk: Property<Int> = property { 33 }
+35 
+36     public val compileSdk: Property<Int> = property { 33 }
+37 
+38     public val targetSdk: Property<Int> = property { 33 }
 !!                                                      ^ error
-40 
-41     public val buildFeatures: HubdleKotlinAndroidBuildFeaturesExtension
-42         get() = getHubdleExtension()
+39 
+40     public val features: HubdleKotlinAndroidFeaturesExtension
+41         get() = getHubdleExtension()
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidExtension.kt:45:51
+* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidExtension.kt:44:51
 ```
 This expression contains a magic number. Consider defining it to a well named constant.
 ```
 ```kotlin
-42 
-43     public val namespace: Property<String?> = property { null }
-44 
-45     public val minSdk: Property<Int> = property { 23 }
+41 
+42     public val namespace: Property<String?> = property { null }
+43 
+44     public val minSdk: Property<Int> = property { 23 }
 !!                                                   ^ error
-46 
-47     public val compileSdk: Property<Int> = property { 33 }
-48 
+45 
+46     public val compileSdk: Property<Int> = property { 33 }
+47 
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidExtension.kt:47:55
+* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidExtension.kt:46:55
 ```
 This expression contains a magic number. Consider defining it to a well named constant.
 ```
 ```kotlin
-44 
-45     public val minSdk: Property<Int> = property { 23 }
-46 
-47     public val compileSdk: Property<Int> = property { 33 }
+43 
+44     public val minSdk: Property<Int> = property { 23 }
+45 
+46     public val compileSdk: Property<Int> = property { 33 }
 !!                                                       ^ error
-48 
-49     public val targetSdk: Property<Int> = property { 33 }
-50 
+47 
+48     public val targetSdk: Property<Int> = property { 33 }
+49 
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidExtension.kt:49:54
+* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidExtension.kt:48:54
 ```
 This expression contains a magic number. Consider defining it to a well named constant.
 ```
 ```kotlin
-46 
-47     public val compileSdk: Property<Int> = property { 33 }
-48 
-49     public val targetSdk: Property<Int> = property { 33 }
+45 
+46     public val compileSdk: Property<Int> = property { 33 }
+47 
+48     public val targetSdk: Property<Int> = property { 33 }
 !!                                                      ^ error
-50 
-51     public val buildFeatures: HubdleKotlinAndroidBuildFeaturesExtension
-52         get() = getHubdleExtension()
+49 
+50     public val publishLibraryVariants: SetProperty<String> = setProperty { emptySet() }
+51 
 
 ```
 
@@ -1365,4 +1419,4 @@ Private property `testCompilation` is unused.
 
 ```
 
-generated with [detekt version 1.22.0](https://detekt.dev/) on 2023-02-24 20:32:50 UTC
+generated with [detekt version 1.22.0](https://detekt.dev/) on 2023-02-26 18:15:26 UTC

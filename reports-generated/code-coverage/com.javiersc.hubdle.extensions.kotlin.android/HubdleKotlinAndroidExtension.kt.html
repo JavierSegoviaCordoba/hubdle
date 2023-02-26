@@ -7,7 +7,6 @@ import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.extensions.apis.enableAndExecute
 import com.javiersc.hubdle.extensions.kotlin.android.application.HubdleKotlinAndroidApplicationExtension
 import com.javiersc.hubdle.extensions.kotlin.android.application.hubdleAndroidApplication
-import com.javiersc.hubdle.extensions.kotlin.android.features.HubdleKotlinAndroidBuildFeaturesExtension
 import com.javiersc.hubdle.extensions.kotlin.android.features.HubdleKotlinAndroidFeaturesExtension
 import com.javiersc.hubdle.extensions.kotlin.android.library.HubdleKotlinAndroidLibraryExtension
 import com.javiersc.hubdle.extensions.kotlin.android.library.hubdleAndroidLibrary
@@ -21,75 +20,65 @@ import org.gradle.api.provider.Property
 @HubdleDslMarker
 public open class HubdleKotlinAndroidExtension
 @Inject
-<span class="nc" id="L24">constructor(</span>
+<span class="nc" id="L23">constructor(</span>
     project: Project,
-<span class="nc" id="L26">) : HubdleEnableableExtension(project) {</span>
+<span class="nc" id="L25">) : HubdleEnableableExtension(project) {</span>
 
-<span class="nc" id="L28">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
+<span class="nc" id="L27">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
 
     override val requiredExtensions: Set&lt;HubdleEnableableExtension&gt;
-<span class="nc" id="L31">        get() = setOf(hubdleKotlin)</span>
+<span class="nc" id="L30">        get() = setOf(hubdleKotlin)</span>
 
-<span class="nc" id="L33">    public val namespace: Property&lt;String?&gt; = property { null }</span>
+<span class="nc" id="L32">    public val namespace: Property&lt;String?&gt; = property { null }</span>
 
-<span class="nc" id="L35">    public val minSdk: Property&lt;Int&gt; = property { 23 }</span>
+<span class="nc" id="L34">    public val minSdk: Property&lt;Int&gt; = property { 23 }</span>
 
-<span class="nc" id="L37">    public val compileSdk: Property&lt;Int&gt; = property { 33 }</span>
+<span class="nc" id="L36">    public val compileSdk: Property&lt;Int&gt; = property { 33 }</span>
 
-<span class="nc" id="L39">    public val targetSdk: Property&lt;Int&gt; = property { 33 }</span>
-
-    public val buildFeatures: HubdleKotlinAndroidBuildFeaturesExtension
-<span class="nc" id="L42">        get() = getHubdleExtension()</span>
-
-    @HubdleDslMarker
-<span class="nc" id="L45">    public fun buildFeatures(</span>
-<span class="nc" id="L46">        action: Action&lt;HubdleKotlinAndroidBuildFeaturesExtension&gt; = Action {}</span>
-    ) {
-<span class="nc" id="L48">        buildFeatures.enableAndExecute(action)</span>
-<span class="nc" id="L49">    }</span>
+<span class="nc" id="L38">    public val targetSdk: Property&lt;Int&gt; = property { 33 }</span>
 
     public val features: HubdleKotlinAndroidFeaturesExtension
-<span class="nc" id="L52">        get() = getHubdleExtension()</span>
+<span class="nc" id="L41">        get() = getHubdleExtension()</span>
 
     @HubdleDslMarker
-<span class="nc" id="L55">    public fun features(action: Action&lt;HubdleKotlinAndroidFeaturesExtension&gt; = Action {}) {</span>
-<span class="nc" id="L56">        features.enableAndExecute(action)</span>
-<span class="nc" id="L57">    }</span>
+<span class="nc" id="L44">    public fun features(action: Action&lt;HubdleKotlinAndroidFeaturesExtension&gt; = Action {}) {</span>
+<span class="nc" id="L45">        features.enableAndExecute(action)</span>
+<span class="nc" id="L46">    }</span>
 
     public val application: HubdleKotlinAndroidApplicationExtension
-<span class="nc" id="L60">        get() = getHubdleExtension()</span>
+<span class="nc" id="L49">        get() = getHubdleExtension()</span>
 
     @HubdleDslMarker
-<span class="nc" id="L63">    public fun application(action: Action&lt;HubdleKotlinAndroidApplicationExtension&gt; = Action {}) {</span>
-<span class="nc" id="L64">        application.enableAndExecute(action)</span>
-<span class="nc" id="L65">    }</span>
+<span class="nc" id="L52">    public fun application(action: Action&lt;HubdleKotlinAndroidApplicationExtension&gt; = Action {}) {</span>
+<span class="nc" id="L53">        application.enableAndExecute(action)</span>
+<span class="nc" id="L54">    }</span>
 
     public val library: HubdleKotlinAndroidLibraryExtension
-<span class="nc" id="L68">        get() = getHubdleExtension()</span>
+<span class="nc" id="L57">        get() = getHubdleExtension()</span>
 
     @HubdleDslMarker
-<span class="nc" id="L71">    public fun library(action: Action&lt;HubdleKotlinAndroidLibraryExtension&gt; = Action {}) {</span>
-<span class="nc" id="L72">        library.enableAndExecute(action)</span>
-<span class="nc" id="L73">    }</span>
+<span class="nc" id="L60">    public fun library(action: Action&lt;HubdleKotlinAndroidLibraryExtension&gt; = Action {}) {</span>
+<span class="nc" id="L61">        library.enableAndExecute(action)</span>
+<span class="nc" id="L62">    }</span>
 }
 
 internal val HubdleEnableableExtension.hubdleAndroid: HubdleKotlinAndroidExtension
-<span class="nc" id="L77">    get() = getHubdleExtension()</span>
+<span class="nc" id="L66">    get() = getHubdleExtension()</span>
 
 internal val Project.hubdleAndroid: HubdleKotlinAndroidExtension
-<span class="nc" id="L80">    get() = getHubdleExtension()</span>
+<span class="nc" id="L69">    get() = getHubdleExtension()</span>
 
 internal val HubdleEnableableExtension.hubdleAndroidAny: Set&lt;HubdleConfigurableExtension&gt;
     get() =
-<span class="nc" id="L84">        setOf(</span>
-<span class="nc" id="L85">            hubdleAndroidApplication,</span>
-<span class="nc" id="L86">            hubdleAndroidLibrary,</span>
-<span class="nc" id="L87">        )</span>
+<span class="nc" id="L73">        setOf(</span>
+<span class="nc" id="L74">            hubdleAndroidApplication,</span>
+<span class="nc" id="L75">            hubdleAndroidLibrary,</span>
+<span class="nc" id="L76">        )</span>
 
 internal val Project.hubdleAndroidAny: Set&lt;HubdleConfigurableExtension&gt;
     get() =
-<span class="nc" id="L91">        setOf(</span>
-<span class="nc" id="L92">            hubdleAndroidApplication,</span>
-<span class="nc" id="L93">            hubdleAndroidLibrary,</span>
-<span class="nc" id="L94">        )</span>
+<span class="nc" id="L80">        setOf(</span>
+<span class="nc" id="L81">            hubdleAndroidApplication,</span>
+<span class="nc" id="L82">            hubdleAndroidLibrary,</span>
+<span class="nc" id="L83">        )</span>
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

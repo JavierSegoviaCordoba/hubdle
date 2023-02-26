@@ -5,31 +5,40 @@ import com.javiersc.kotlin.stdlib.capitalize
 import org.gradle.api.Action
 import org.gradle.api.NamedDomainObjectProvider
 import org.gradle.api.Project
+import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
+import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 
-<span class="nc" id="L9">public abstract class HubdleMinimalSourceSetConfigurableExtension&lt;T&gt;(</span>
+<span class="nc" id="L11">public abstract class HubdleMinimalSourceSetConfigurableExtension&lt;T&gt;(</span>
     project: Project,
-<span class="nc" id="L11">) : HubdleConfigurableExtension(project) {</span>
+<span class="nc" id="L13">) : HubdleConfigurableExtension(project) {</span>
 
     override val project: Project
-<span class="nc" id="L14">        get() = super.project</span>
+<span class="nc" id="L16">        get() = super.project</span>
 
-<span class="nc" id="L16">    internal open val targetName: String? = null</span>
+<span class="nc" id="L18">    internal open val targetName: String? = null</span>
 
     public abstract val main: NamedDomainObjectProvider&lt;T&gt;
 
     @HubdleDslMarker
     public fun main(action: Action&lt;T&gt;) {
-<span class="nc" id="L22">        userConfigurable { main.configure(action) }</span>
-<span class="nc" id="L23">    }</span>
+<span class="nc" id="L24">        userConfigurable { main.configure(action) }</span>
+<span class="nc" id="L25">    }</span>
 
     public abstract val test: NamedDomainObjectProvider&lt;T&gt;
 
     @HubdleDslMarker
     public fun test(action: Action&lt;T&gt;) {
-<span class="nc" id="L29">        userConfigurable { test.configure(action) }</span>
-<span class="nc" id="L30">    }</span>
+<span class="nc" id="L31">        userConfigurable { test.configure(action) }</span>
+<span class="nc" id="L32">    }</span>
+
+    @HubdleDslMarker
+    public fun sourceSet(name: String, action: Action&lt;KotlinSourceSet&gt;) {
+<span class="nc" id="L36">        userConfigurable {</span>
+<span class="nc" id="L37">            configure&lt;KotlinProjectExtension&gt; { sourceSets.named(name, action::execute) }</span>
+<span class="nc" id="L38">        }</span>
+<span class="nc" id="L39">    }</span>
 
     internal fun calculateName(name: String): String =
-<span class="nc bnc" id="L33" title="All 2 branches missed.">        if (targetName != null) &quot;${targetName}${name.capitalize()}&quot; else name</span>
+<span class="nc bnc" id="L42" title="All 2 branches missed.">        if (targetName != null) &quot;${targetName}${name.capitalize()}&quot; else name</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

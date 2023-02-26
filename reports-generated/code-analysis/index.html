@@ -157,11 +157,11 @@
 
 <div>
   <ul>
-    <li>1,301 number of properties</li>
-    <li>547 number of functions</li>
-    <li>226 number of classes</li>
-    <li>74 number of packages</li>
-    <li>208 number of kt files</li>
+    <li>1,312 number of properties</li>
+    <li>550 number of functions</li>
+    <li>230 number of classes</li>
+    <li>75 number of packages</li>
+    <li>210 number of kt files</li>
   </ul>
 </div>
 
@@ -170,22 +170,22 @@
 
 <div>
   <ul>
-    <li>12,828 lines of code (loc)</li>
-    <li>10,538 source lines of code (sloc)</li>
-    <li>6,942 logical lines of code (lloc)</li>
+    <li>12,949 lines of code (loc)</li>
+    <li>10,639 source lines of code (sloc)</li>
+    <li>7,002 logical lines of code (lloc)</li>
     <li>103 comment lines of code (cloc)</li>
-    <li>924 cyclomatic complexity (mcc)</li>
+    <li>928 cyclomatic complexity (mcc)</li>
     <li>478 cognitive complexity</li>
-    <li>87 number of total code smells</li>
+    <li>90 number of total code smells</li>
     <li>0% comment source ratio</li>
-    <li>133 mcc per 1,000 lloc</li>
+    <li>132 mcc per 1,000 lloc</li>
     <li>12 code smells per 1,000 lloc</li>
   </ul>
 </div>
 
 
 <h2>Findings</h2>
-<div>Total: 87
+<div>Total: 90
   <h3>complexity: 11</h3>
   <details id="ComplexCondition" open="open">
     <summary class="rule-container"><span class="rule">ComplexCondition: 1 </span><span class="description">Complex conditions should be simplified and extracted into well-named methods if necessary.</span></summary>
@@ -223,14 +223,14 @@
     <summary class="rule-container"><span class="rule">LongMethod: 3 </span><span class="description">One method should have one responsibility. Long methods tend to handle many things at once. Prefer smaller methods to make them easier to understand.</span></summary>
 <a href="https://detekt.dev/docs/rules/complexity#longmethod">Documentation</a>
     <ul>
-      <li><span class="location">hubdle-gradle-plugin/build.gradle.kts:171:13</span><span class="message">The function buildHubdleDependencies is too long (71). The maximum length is 60.</span>
-        <pre><code><span class="lineno"> 168 </span>        }
-<span class="lineno"> 169 </span>}
-<span class="lineno"> 170 </span>
-<span class="lineno"> 171 </span>fun Project.<span class="error">buildHubdleDependencies</span>() {
-<span class="lineno"> 172 </span>    buildDir.resolve(&quot;generated/main/kotlin/hubdle_dependencies.kt&quot;).apply {
-<span class="lineno"> 173 </span>        parentFile.mkdirs()
-<span class="lineno"> 174 </span>        createNewFile()
+      <li><span class="location">hubdle-gradle-plugin/build.gradle.kts:184:13</span><span class="message">The function buildHubdleDependencies is too long (71). The maximum length is 60.</span>
+        <pre><code><span class="lineno"> 181 </span>        }
+<span class="lineno"> 182 </span>}
+<span class="lineno"> 183 </span>
+<span class="lineno"> 184 </span>fun Project.<span class="error">buildHubdleDependencies</span>() {
+<span class="lineno"> 185 </span>    buildDir.resolve(&quot;generated/main/kotlin/hubdle_dependencies.kt&quot;).apply {
+<span class="lineno"> 186 </span>        parentFile.mkdirs()
+<span class="lineno"> 187 </span>        createNewFile()
 </code></pre>
       </li>
       <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAppleExtension.kt:78:26</span><span class="message">The function defaultConfiguration is too long (94). The maximum length is 60.</span>
@@ -259,14 +259,14 @@
     <summary class="rule-container"><span class="rule">NestedBlockDepth: 1 </span><span class="description">Excessive nesting leads to hidden complexity. Prefer extracting code to make it easier to understand.</span></summary>
 <a href="https://detekt.dev/docs/rules/complexity#nestedblockdepth">Documentation</a>
     <ul>
-      <li><span class="location">hubdle-gradle-plugin/build.gradle.kts:171:13</span><span class="message">Function buildHubdleDependencies is nested too deeply.</span>
-        <pre><code><span class="lineno"> 168 </span>        }
-<span class="lineno"> 169 </span>}
-<span class="lineno"> 170 </span>
-<span class="lineno"> 171 </span>fun Project.<span class="error">buildHubdleDependencies</span>() {
-<span class="lineno"> 172 </span>    buildDir.resolve(&quot;generated/main/kotlin/hubdle_dependencies.kt&quot;).apply {
-<span class="lineno"> 173 </span>        parentFile.mkdirs()
-<span class="lineno"> 174 </span>        createNewFile()
+      <li><span class="location">hubdle-gradle-plugin/build.gradle.kts:184:13</span><span class="message">Function buildHubdleDependencies is nested too deeply.</span>
+        <pre><code><span class="lineno"> 181 </span>        }
+<span class="lineno"> 182 </span>}
+<span class="lineno"> 183 </span>
+<span class="lineno"> 184 </span>fun Project.<span class="error">buildHubdleDependencies</span>() {
+<span class="lineno"> 185 </span>    buildDir.resolve(&quot;generated/main/kotlin/hubdle_dependencies.kt&quot;).apply {
+<span class="lineno"> 186 </span>        parentFile.mkdirs()
+<span class="lineno"> 187 </span>        createNewFile()
 </code></pre>
       </li>
     </ul>
@@ -350,7 +350,7 @@
       </li>
     </ul>
   </details>
-  <h3>naming: 53</h3>
+  <h3>naming: 56</h3>
   <details id="InvalidPackageDeclaration" open="open">
     <summary class="rule-container"><span class="rule">InvalidPackageDeclaration: 29 </span><span class="description">Kotlin source files should be stored in the directory corresponding to its package statement.</span></summary>
 <a href="https://detekt.dev/docs/rules/naming#invalidpackagedeclaration">Documentation</a>
@@ -746,13 +746,49 @@
     <summary class="rule-container"><span class="rule">TopLevelPropertyNaming: 1 </span><span class="description">Top level property names should follow the naming convention set in the projects configuration.</span></summary>
 <a href="https://detekt.dev/docs/rules/naming#toplevelpropertynaming">Documentation</a>
     <ul>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/PluginId.kt:36:19</span><span class="message">Top level constant names should match the pattern: [A-Z][_A-Z0-9]*</span>
-        <pre><code><span class="lineno">  33 </span>    override fun toString(): String = id
-<span class="lineno">  34 </span>}
-<span class="lineno">  35 </span>
-<span class="lineno">  36 </span>private const val <span class="error">KotlinBinaryCompatibilityValidator</span> =
-<span class="lineno">  37 </span>    &quot;org.jetbrains.kotlinx.binary-compatibility-validator&quot;
-<span class="lineno">  38 </span>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/PluginId.kt:37:19</span><span class="message">Top level constant names should match the pattern: [A-Z][_A-Z0-9]*</span>
+        <pre><code><span class="lineno">  34 </span>    override fun toString(): String = id
+<span class="lineno">  35 </span>}
+<span class="lineno">  36 </span>
+<span class="lineno">  37 </span>private const val <span class="error">KotlinBinaryCompatibilityValidator</span> =
+<span class="lineno">  38 </span>    &quot;org.jetbrains.kotlinx.binary-compatibility-validator&quot;
+<span class="lineno">  39 </span>
+</code></pre>
+      </li>
+    </ul>
+  </details>
+  <details id="VariableNaming" open="open">
+    <summary class="rule-container"><span class="rule">VariableNaming: 3 </span><span class="description">Variable names should follow the naming convention set in the projects configuration.</span></summary>
+<a href="https://detekt.dev/docs/rules/naming#variablenaming">Documentation</a>
+    <ul>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinSqlDelightFeatureExtension.kt:48:16</span><span class="message">Variable names should match the pattern: [a-z][A-Za-z0-9]*</span>
+        <pre><code><span class="lineno">  45 </span>        userConfigurable { action.invoke(the()) }
+<span class="lineno">  46 </span>    }
+<span class="lineno">  47 </span>
+<span class="lineno">  48 </span>    public val <span class="error">HSqlDialect</span>: String = &quot;app.cash.sqldeight:hsql-dialect:$SQLDELIGHT_VERSION&quot;
+<span class="lineno">  49 </span>
+<span class="lineno">  50 </span>    public val MySqlDialect: String = &quot;app.cash.sqldeight:mysql-dialect:$SQLDELIGHT_VERSION&quot;
+<span class="lineno">  51 </span>
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinSqlDelightFeatureExtension.kt:50:16</span><span class="message">Variable names should match the pattern: [a-z][A-Za-z0-9]*</span>
+        <pre><code><span class="lineno">  47 </span>
+<span class="lineno">  48 </span>    public val HSqlDialect: String = &quot;app.cash.sqldeight:hsql-dialect:$SQLDELIGHT_VERSION&quot;
+<span class="lineno">  49 </span>
+<span class="lineno">  50 </span>    public val <span class="error">MySqlDialect</span>: String = &quot;app.cash.sqldeight:mysql-dialect:$SQLDELIGHT_VERSION&quot;
+<span class="lineno">  51 </span>
+<span class="lineno">  52 </span>    public val PostgresDialect: String = &quot;app.cash.sqldeight:postgres-dialect:$SQLDELIGHT_VERSION&quot;
+<span class="lineno">  53 </span>
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinSqlDelightFeatureExtension.kt:52:16</span><span class="message">Variable names should match the pattern: [a-z][A-Za-z0-9]*</span>
+        <pre><code><span class="lineno">  49 </span>
+<span class="lineno">  50 </span>    public val MySqlDialect: String = &quot;app.cash.sqldeight:mysql-dialect:$SQLDELIGHT_VERSION&quot;
+<span class="lineno">  51 </span>
+<span class="lineno">  52 </span>    public val <span class="error">PostgresDialect</span>: String = &quot;app.cash.sqldeight:postgres-dialect:$SQLDELIGHT_VERSION&quot;
+<span class="lineno">  53 </span>
+<span class="lineno">  54 </span>    override fun Project.defaultConfiguration() {
+<span class="lineno">  55 </span>        applicablePlugin(
 </code></pre>
       </li>
     </ul>
@@ -762,14 +798,14 @@
     <summary class="rule-container"><span class="rule">SpreadOperator: 3 </span><span class="description">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span></summary>
 <a href="https://detekt.dev/docs/rules/performance#spreadoperator">Documentation</a>
     <ul>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidExtension.kt:94:47</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
-        <pre><code><span class="lineno">  91 </span>                val publishAllVariants = hubdleAndroid.publishAllLibraryVariants.get()
-<span class="lineno">  92 </span>                android {
-<span class="lineno">  93 </span>                    if (publishVariants.isNotEmpty() &amp;&amp; !publishAllVariants) {
-<span class="lineno">  94 </span>                        publishLibraryVariants<span class="error">(*publishVariants)</span>
-<span class="lineno">  95 </span>                    }
-<span class="lineno">  96 </span>                    if (publishAllVariants) {
-<span class="lineno">  97 </span>                        publishAllLibraryVariants()
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidExtension.kt:90:47</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
+        <pre><code><span class="lineno">  87 </span>                val publishAllVariants = hubdleAndroid.publishAllLibraryVariants.get()
+<span class="lineno">  88 </span>                android {
+<span class="lineno">  89 </span>                    if (publishVariants.isNotEmpty() &amp;&amp; !publishAllVariants) {
+<span class="lineno">  90 </span>                        publishLibraryVariants<span class="error">(*publishVariants)</span>
+<span class="lineno">  91 </span>                    }
+<span class="lineno">  92 </span>                    if (publishAllVariants) {
+<span class="lineno">  93 </span>                        publishAllLibraryVariants()
 </code></pre>
       </li>
       <li><span class="location">hubdle-settings-gradle-plugin/main/kotlin/com/javiersc/hubdle/settings/HubdleSettingsPlugin.kt:62:29</span><span class="message">In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.</span>
@@ -849,24 +885,24 @@
 <span class="lineno"> 119 </span>                        &quot;&quot;&quot;
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/HubdleKotlinAndroidExtension.kt:20:1</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
-        <pre><code><span class="lineno">  17 </span>import org.gradle.api.Project
-<span class="lineno">  18 </span>import org.gradle.api.provider.Property
-<span class="lineno">  19 </span>
-<span class="lineno">  20 </span><span class="error">// TODO: transform into `HubdleConfigurableExtension`</span>
-<span class="lineno">  21 </span>@HubdleDslMarker
-<span class="lineno">  22 </span>public open class HubdleKotlinAndroidExtension
-<span class="lineno">  23 </span>@Inject
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/HubdleKotlinAndroidExtension.kt:19:1</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
+        <pre><code><span class="lineno">  16 </span>import org.gradle.api.Project
+<span class="lineno">  17 </span>import org.gradle.api.provider.Property
+<span class="lineno">  18 </span>
+<span class="lineno">  19 </span><span class="error">// TODO: transform into `HubdleConfigurableExtension`</span>
+<span class="lineno">  20 </span>@HubdleDslMarker
+<span class="lineno">  21 </span>public open class HubdleKotlinAndroidExtension
+<span class="lineno">  22 </span>@Inject
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/library/HubdleKotlinAndroidLibraryExtension.kt:67:5</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
-        <pre><code><span class="lineno">  64 </span>        }
-<span class="lineno">  65 </span>    }
-<span class="lineno">  66 </span>
-<span class="lineno">  67 </span>    <span class="error">// TODO: improve and enable using this docs:</span>
-<span class="lineno">  68 </span>    //  https://developer.android.com/studio/publish-library/configure-pub-variants
-<span class="lineno">  69 </span>    // @HubdleDslMarker
-<span class="lineno">  70 </span>    // public fun publishLibraryVariants(vararg names: String) {
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/library/HubdleKotlinAndroidLibraryExtension.kt:51:5</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
+        <pre><code><span class="lineno">  48 </span>        features.enableAndExecute(action)
+<span class="lineno">  49 </span>    }
+<span class="lineno">  50 </span>
+<span class="lineno">  51 </span>    <span class="error">// TODO: improve and enable using this docs:</span>
+<span class="lineno">  52 </span>    //  https://developer.android.com/studio/publish-library/configure-pub-variants
+<span class="lineno">  53 </span>    // @HubdleDslMarker
+<span class="lineno">  54 </span>    // public fun publishLibraryVariants(vararg names: String) {
 </code></pre>
       </li>
       <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformJvmAndAndroidExtension.kt:36:17</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
@@ -895,64 +931,64 @@
     <summary class="rule-container"><span class="rule">MagicNumber: 6 </span><span class="description">Report magic numbers. Magic number is a numeric literal that is not defined as a constant and hence it's unclear what the purpose of this number is. It's better to declare such numbers as constants and give them a proper name. By default, -1, 0, 1, and 2 are not considered to be magic numbers.</span></summary>
 <a href="https://detekt.dev/docs/rules/style#magicnumber">Documentation</a>
     <ul>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/HubdleKotlinAndroidExtension.kt:35:51</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
-        <pre><code><span class="lineno">  32 </span>
-<span class="lineno">  33 </span>    public val namespace: Property&lt;String?&gt; = property { null }
-<span class="lineno">  34 </span>
-<span class="lineno">  35 </span>    public val minSdk: Property&lt;Int&gt; = property { <span class="error">23</span> }
-<span class="lineno">  36 </span>
-<span class="lineno">  37 </span>    public val compileSdk: Property&lt;Int&gt; = property { 33 }
-<span class="lineno">  38 </span>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/HubdleKotlinAndroidExtension.kt:34:51</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  31 </span>
+<span class="lineno">  32 </span>    public val namespace: Property&lt;String?&gt; = property { null }
+<span class="lineno">  33 </span>
+<span class="lineno">  34 </span>    public val minSdk: Property&lt;Int&gt; = property { <span class="error">23</span> }
+<span class="lineno">  35 </span>
+<span class="lineno">  36 </span>    public val compileSdk: Property&lt;Int&gt; = property { 33 }
+<span class="lineno">  37 </span>
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/HubdleKotlinAndroidExtension.kt:37:55</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
-        <pre><code><span class="lineno">  34 </span>
-<span class="lineno">  35 </span>    public val minSdk: Property&lt;Int&gt; = property { 23 }
-<span class="lineno">  36 </span>
-<span class="lineno">  37 </span>    public val compileSdk: Property&lt;Int&gt; = property { <span class="error">33</span> }
-<span class="lineno">  38 </span>
-<span class="lineno">  39 </span>    public val targetSdk: Property&lt;Int&gt; = property { 33 }
-<span class="lineno">  40 </span>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/HubdleKotlinAndroidExtension.kt:36:55</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  33 </span>
+<span class="lineno">  34 </span>    public val minSdk: Property&lt;Int&gt; = property { 23 }
+<span class="lineno">  35 </span>
+<span class="lineno">  36 </span>    public val compileSdk: Property&lt;Int&gt; = property { <span class="error">33</span> }
+<span class="lineno">  37 </span>
+<span class="lineno">  38 </span>    public val targetSdk: Property&lt;Int&gt; = property { 33 }
+<span class="lineno">  39 </span>
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/HubdleKotlinAndroidExtension.kt:39:54</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
-        <pre><code><span class="lineno">  36 </span>
-<span class="lineno">  37 </span>    public val compileSdk: Property&lt;Int&gt; = property { 33 }
-<span class="lineno">  38 </span>
-<span class="lineno">  39 </span>    public val targetSdk: Property&lt;Int&gt; = property { <span class="error">33</span> }
-<span class="lineno">  40 </span>
-<span class="lineno">  41 </span>    public val buildFeatures: HubdleKotlinAndroidBuildFeaturesExtension
-<span class="lineno">  42 </span>        get() = getHubdleExtension()
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/HubdleKotlinAndroidExtension.kt:38:54</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  35 </span>
+<span class="lineno">  36 </span>    public val compileSdk: Property&lt;Int&gt; = property { 33 }
+<span class="lineno">  37 </span>
+<span class="lineno">  38 </span>    public val targetSdk: Property&lt;Int&gt; = property { <span class="error">33</span> }
+<span class="lineno">  39 </span>
+<span class="lineno">  40 </span>    public val features: HubdleKotlinAndroidFeaturesExtension
+<span class="lineno">  41 </span>        get() = getHubdleExtension()
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidExtension.kt:45:51</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
-        <pre><code><span class="lineno">  42 </span>
-<span class="lineno">  43 </span>    public val namespace: Property&lt;String?&gt; = property { null }
-<span class="lineno">  44 </span>
-<span class="lineno">  45 </span>    public val minSdk: Property&lt;Int&gt; = property { <span class="error">23</span> }
-<span class="lineno">  46 </span>
-<span class="lineno">  47 </span>    public val compileSdk: Property&lt;Int&gt; = property { 33 }
-<span class="lineno">  48 </span>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidExtension.kt:44:51</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  41 </span>
+<span class="lineno">  42 </span>    public val namespace: Property&lt;String?&gt; = property { null }
+<span class="lineno">  43 </span>
+<span class="lineno">  44 </span>    public val minSdk: Property&lt;Int&gt; = property { <span class="error">23</span> }
+<span class="lineno">  45 </span>
+<span class="lineno">  46 </span>    public val compileSdk: Property&lt;Int&gt; = property { 33 }
+<span class="lineno">  47 </span>
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidExtension.kt:47:55</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
-        <pre><code><span class="lineno">  44 </span>
-<span class="lineno">  45 </span>    public val minSdk: Property&lt;Int&gt; = property { 23 }
-<span class="lineno">  46 </span>
-<span class="lineno">  47 </span>    public val compileSdk: Property&lt;Int&gt; = property { <span class="error">33</span> }
-<span class="lineno">  48 </span>
-<span class="lineno">  49 </span>    public val targetSdk: Property&lt;Int&gt; = property { 33 }
-<span class="lineno">  50 </span>
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidExtension.kt:46:55</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  43 </span>
+<span class="lineno">  44 </span>    public val minSdk: Property&lt;Int&gt; = property { 23 }
+<span class="lineno">  45 </span>
+<span class="lineno">  46 </span>    public val compileSdk: Property&lt;Int&gt; = property { <span class="error">33</span> }
+<span class="lineno">  47 </span>
+<span class="lineno">  48 </span>    public val targetSdk: Property&lt;Int&gt; = property { 33 }
+<span class="lineno">  49 </span>
 </code></pre>
       </li>
-      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidExtension.kt:49:54</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
-        <pre><code><span class="lineno">  46 </span>
-<span class="lineno">  47 </span>    public val compileSdk: Property&lt;Int&gt; = property { 33 }
-<span class="lineno">  48 </span>
-<span class="lineno">  49 </span>    public val targetSdk: Property&lt;Int&gt; = property { <span class="error">33</span> }
-<span class="lineno">  50 </span>
-<span class="lineno">  51 </span>    public val buildFeatures: HubdleKotlinAndroidBuildFeaturesExtension
-<span class="lineno">  52 </span>        get() = getHubdleExtension()
+      <li><span class="location">hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidExtension.kt:48:54</span><span class="message">This expression contains a magic number. Consider defining it to a well named constant.</span>
+        <pre><code><span class="lineno">  45 </span>
+<span class="lineno">  46 </span>    public val compileSdk: Property&lt;Int&gt; = property { 33 }
+<span class="lineno">  47 </span>
+<span class="lineno">  48 </span>    public val targetSdk: Property&lt;Int&gt; = property { <span class="error">33</span> }
+<span class="lineno">  49 </span>
+<span class="lineno">  50 </span>    public val publishLibraryVariants: SetProperty&lt;String&gt; = setProperty { emptySet() }
+<span class="lineno">  51 </span>
 </code></pre>
       </li>
     </ul>
@@ -1001,7 +1037,7 @@
 </div>
 
 
-generated with <a href="https://detekt.dev/">detekt version 1.22.0</a> on 2023-02-24 20:32:49 UTC.
+generated with <a href="https://detekt.dev/">detekt version 1.22.0</a> on 2023-02-26 18:15:25 UTC.
 
 </body>
 </html>

@@ -11,9 +11,10 @@ import com.javiersc.hubdle.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.extensions.config.hubdleConfig
 import com.javiersc.hubdle.extensions.config.testing.ALL_TEST_TASK_NAME
+import com.javiersc.hubdle.extensions.dependencies._internal.constants.ORG_JETBRAINS_INTELLIJ_DEPS_INTELLIJ_COVERAGE_AGENT_VERSION
 import javax.inject.Inject
 import kotlinx.kover.api.CoverageEngineVariant
-import kotlinx.kover.api.DefaultJacocoEngine
+import kotlinx.kover.api.IntellijEngine
 import kotlinx.kover.api.KoverMergedConfig
 import kotlinx.kover.api.KoverProjectConfig
 import org.gradle.api.Action
@@ -27,69 +28,71 @@ import org.gradle.language.base.plugins.LifecycleBasePlugin.CHECK_TASK_NAME
 @HubdleDslMarker
 public open class HubdleConfigCoverageExtension
 @Inject
-<span class="nc" id="L30">constructor(</span>
+<span class="nc" id="L31">constructor(</span>
     project: Project,
-<span class="nc" id="L32">) : HubdleConfigurableExtension(project) {</span>
+<span class="nc" id="L33">) : HubdleConfigurableExtension(project) {</span>
 
-<span class="nc" id="L34">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
+<span class="nc" id="L35">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
 
     override val requiredExtensions: Set&lt;HubdleEnableableExtension&gt;
-<span class="nc" id="L37">        get() = setOf(hubdleConfig)</span>
+<span class="nc" id="L38">        get() = setOf(hubdleConfig)</span>
 
-<span class="nc" id="L39">    override val priority: Priority = Priority.P3</span>
+<span class="nc" id="L40">    override val priority: Priority = Priority.P3</span>
 
-<span class="nc" id="L41">    public val engine: Property&lt;CoverageEngineVariant&gt; = property { DefaultJacocoEngine }</span>
+<span class="nc" id="L42">    public val engine: Property&lt;CoverageEngineVariant&gt; = property {</span>
+        IntellijEngine(ORG_JETBRAINS_INTELLIJ_DEPS_INTELLIJ_COVERAGE_AGENT_VERSION)
+    }
 
     @HubdleDslMarker
     public fun engine(engine: CoverageEngineVariant) {
-<span class="nc" id="L45">        this.engine.set(engine)</span>
-<span class="nc" id="L46">    }</span>
+<span class="nc" id="L48">        this.engine.set(engine)</span>
+<span class="nc" id="L49">    }</span>
 
     @HubdleDslMarker
     public fun kover(action: Action&lt;KoverProjectConfig&gt;) {
-<span class="nc" id="L50">        userConfigurable { action.execute(the()) }</span>
-<span class="nc" id="L51">    }</span>
+<span class="nc" id="L53">        userConfigurable { action.execute(the()) }</span>
+<span class="nc" id="L54">    }</span>
 
     override fun Project.defaultConfiguration() {
-<span class="nc" id="L54">        applicablePlugin(</span>
-<span class="nc" id="L55">            priority = Priority.P4,</span>
-<span class="nc" id="L56">            scope = Scope.AllProjects,</span>
-<span class="nc" id="L57">            pluginId = PluginId.JetbrainsKotlinxKover</span>
+<span class="nc" id="L57">        applicablePlugin(</span>
+<span class="nc" id="L58">            priority = Priority.P4,</span>
+<span class="nc" id="L59">            scope = Scope.AllProjects,</span>
+<span class="nc" id="L60">            pluginId = PluginId.JetbrainsKotlinxKover</span>
         )
 
-<span class="nc" id="L60">        configurable {</span>
-<span class="nc bnc" id="L61" title="All 2 branches missed.">            check(isRootProject) {</span>
-<span class="nc" id="L62">                &quot;Hubdle `coverage()` must be only configured in the root project&quot;</span>
+<span class="nc" id="L63">        configurable {</span>
+<span class="nc bnc" id="L64" title="All 2 branches missed.">            check(isRootProject) {</span>
+<span class="nc" id="L65">                &quot;Hubdle `coverage()` must be only configured in the root project&quot;</span>
             }
-<span class="nc" id="L64">            allprojects { allproject -&gt;</span>
-<span class="nc" id="L65">                val hubdleKoverEngine = this@HubdleConfigCoverageExtension.engine</span>
-<span class="nc" id="L66">                allproject.the&lt;KoverProjectConfig&gt;().engine.set(hubdleKoverEngine)</span>
-<span class="nc" id="L67">                allproject.the&lt;KoverMergedConfig&gt;().enable()</span>
-<span class="nc" id="L68">            }</span>
-<span class="nc" id="L69">            afterEvaluate {</span>
-<span class="nc" id="L70">                val shouldMergeCodeCoverageReports =</span>
-<span class="nc" id="L71">                    it.gradle.startParameter.taskNames.any { taskName -&gt;</span>
-<span class="nc" id="L72">                        taskName in listOf(ALL_TEST_TASK_NAME, BUILD_TASK_NAME, CHECK_TASK_NAME)</span>
+<span class="nc" id="L67">            allprojects { allproject -&gt;</span>
+<span class="nc" id="L68">                val hubdleKoverEngine = this@HubdleConfigCoverageExtension.engine</span>
+<span class="nc" id="L69">                allproject.the&lt;KoverProjectConfig&gt;().engine.set(hubdleKoverEngine)</span>
+<span class="nc" id="L70">                allproject.the&lt;KoverMergedConfig&gt;().enable()</span>
+<span class="nc" id="L71">            }</span>
+<span class="nc" id="L72">            afterEvaluate {</span>
+<span class="nc" id="L73">                val shouldMergeCodeCoverageReports =</span>
+<span class="nc" id="L74">                    it.gradle.startParameter.taskNames.any { taskName -&gt;</span>
+<span class="nc" id="L75">                        taskName in listOf(ALL_TEST_TASK_NAME, BUILD_TASK_NAME, CHECK_TASK_NAME)</span>
                     } &amp;&amp;
-<span class="nc bnc" id="L74" title="All 2 branches missed.">                        it.rootProject.tasks.names.contains(KOVER_MERGED_REPORT_TASK_NAME) &amp;&amp;</span>
-<span class="nc bnc" id="L75" title="All 2 branches missed.">                        it.rootProject.tasks.names.contains(ALL_TEST_TASK_NAME)</span>
+<span class="nc bnc" id="L77" title="All 2 branches missed.">                        it.rootProject.tasks.names.contains(KOVER_MERGED_REPORT_TASK_NAME) &amp;&amp;</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">                        it.rootProject.tasks.names.contains(ALL_TEST_TASK_NAME)</span>
 
-<span class="nc bnc" id="L77" title="All 2 branches missed.">                if (shouldMergeCodeCoverageReports) {</span>
-<span class="nc" id="L78">                    val koverMergedReportTask =</span>
-<span class="nc" id="L79">                        it.rootProject.tasks.namedLazily&lt;Task&gt;(KOVER_MERGED_REPORT_TASK_NAME)</span>
+<span class="nc bnc" id="L80" title="All 2 branches missed.">                if (shouldMergeCodeCoverageReports) {</span>
+<span class="nc" id="L81">                    val koverMergedReportTask =</span>
+<span class="nc" id="L82">                        it.rootProject.tasks.namedLazily&lt;Task&gt;(KOVER_MERGED_REPORT_TASK_NAME)</span>
 
-<span class="nc" id="L81">                    it.rootProject.tasks.namedLazily&lt;Task&gt;(ALL_TEST_TASK_NAME).configureEach { task</span>
+<span class="nc" id="L84">                    it.rootProject.tasks.namedLazily&lt;Task&gt;(ALL_TEST_TASK_NAME).configureEach { task</span>
                         -&gt;
-<span class="nc" id="L83">                        task.dependsOn(koverMergedReportTask)</span>
-<span class="nc" id="L84">                    }</span>
+<span class="nc" id="L86">                        task.dependsOn(koverMergedReportTask)</span>
+<span class="nc" id="L87">                    }</span>
                 }
-<span class="nc" id="L86">            }</span>
-<span class="nc" id="L87">        }</span>
-<span class="nc" id="L88">    }</span>
+<span class="nc" id="L89">            }</span>
+<span class="nc" id="L90">        }</span>
+<span class="nc" id="L91">    }</span>
 }
 
 private const val KOVER_MERGED_REPORT_TASK_NAME = &quot;koverMergedReport&quot;
 
 internal val HubdleEnableableExtension.hubdleCoverage: HubdleConfigCoverageExtension
-<span class="nc" id="L94">    get() = getHubdleExtension()</span>
+<span class="nc" id="L97">    get() = getHubdleExtension()</span>
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

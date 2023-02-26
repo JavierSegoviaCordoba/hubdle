@@ -15,6 +15,7 @@ import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.extensions.apis.enableAndExecute
 import com.javiersc.hubdle.extensions.dependencies._internal.constants.ANDROIDX_ACTIVITY_ACTIVITY_COMPOSE_MODULE
 import com.javiersc.hubdle.extensions.kotlin._internal.forKotlinSetsDependencies
+import com.javiersc.hubdle.extensions.kotlin.android.features.hubdleAndroidBuildFeatures
 import com.javiersc.hubdle.extensions.kotlin.android.features.hubdleAndroidFeatures
 import com.javiersc.hubdle.extensions.kotlin.hubdleKotlinAny
 import javax.inject.Inject
@@ -27,75 +28,76 @@ import org.jetbrains.compose.ComposeExtension
 
 public open class HubdleKotlinComposeFeatureExtension
 @Inject
-<span class="nc" id="L30">constructor(</span>
+<span class="nc" id="L31">constructor(</span>
     project: Project,
-<span class="nc" id="L32">) : HubdleConfigurableExtension(project) {</span>
+<span class="nc" id="L33">) : HubdleConfigurableExtension(project) {</span>
 
-<span class="nc" id="L34">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
+<span class="nc" id="L35">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
 
     override val oneOfExtensions: Set&lt;HubdleEnableableExtension&gt;
-<span class="nc" id="L37">        get() = hubdleKotlinAny</span>
+<span class="nc" id="L38">        get() = hubdleKotlinAny</span>
 
-<span class="nc" id="L39">    override val priority: Priority = Priority.P4</span>
+<span class="nc" id="L40">    override val priority: Priority = Priority.P4</span>
 
-<span class="nc" id="L41">    public val compiler: Property&lt;String?&gt; = property { androidxComposeCompiler().get().toString() }</span>
+<span class="nc" id="L42">    public val compiler: Property&lt;String?&gt; = property { androidxComposeCompiler().get().toString() }</span>
 
     @HubdleDslMarker
     public fun compiler(dependencyNotation: String) {
-<span class="nc" id="L45">        compiler.set(dependencyNotation)</span>
-<span class="nc" id="L46">    }</span>
+<span class="nc" id="L46">        compiler.set(dependencyNotation)</span>
+<span class="nc" id="L47">    }</span>
 
-<span class="nc" id="L48">    public val compilerVersion: Property&lt;String?&gt; = property {</span>
+<span class="nc" id="L49">    public val compilerVersion: Property&lt;String?&gt; = property {</span>
         androidxComposeCompiler().get().versionConstraint.displayName
     }
 
     @HubdleDslMarker
     public fun compilerVersion(version: String) {
-<span class="nc" id="L54">        compilerVersion.set(version)</span>
-<span class="nc" id="L55">    }</span>
+<span class="nc" id="L55">        compilerVersion.set(version)</span>
+<span class="nc" id="L56">    }</span>
 
     @HubdleDslMarker
-<span class="nc" id="L58">    public fun compose(action: Action&lt;ComposeExtension&gt; = Action {}) {</span>
-<span class="nc" id="L59">        userConfigurable { action.invoke(the()) }</span>
-<span class="nc" id="L60">    }</span>
+<span class="nc" id="L59">    public fun compose(action: Action&lt;ComposeExtension&gt; = Action {}) {</span>
+<span class="nc" id="L60">        userConfigurable { action.invoke(the()) }</span>
+<span class="nc" id="L61">    }</span>
 
     override fun Project.defaultConfiguration() {
-<span class="nc" id="L63">        applicablePlugin(</span>
-<span class="nc" id="L64">            priority = Priority.P4,</span>
-<span class="nc" id="L65">            scope = Scope.CurrentProject,</span>
-<span class="nc" id="L66">            pluginId = PluginId.JetbrainsCompose</span>
+<span class="nc" id="L64">        applicablePlugin(</span>
+<span class="nc" id="L65">            priority = Priority.P4,</span>
+<span class="nc" id="L66">            scope = Scope.CurrentProject,</span>
+<span class="nc" id="L67">            pluginId = PluginId.JetbrainsCompose</span>
         )
-<span class="nc" id="L68">        configurable {</span>
-<span class="nc" id="L69">            configure&lt;ComposeExtension&gt; { kotlinCompilerPlugin.set(compiler) }</span>
-<span class="nc bnc" id="L70" title="All 2 branches missed.">            if (hubdleAndroidFeatures.isFullEnabled.get()) {</span>
-<span class="nc" id="L71">                forKotlinSetsDependencies(MAIN) {</span>
-<span class="nc" id="L72">                    implementation(catalogDependency(ANDROIDX_ACTIVITY_ACTIVITY_COMPOSE_MODULE))</span>
-<span class="nc" id="L73">                }</span>
-<span class="nc" id="L74">                configureAndroidCommonExtension {</span>
-<span class="nc" id="L75">                    defaultConfig {</span>
-<span class="nc" id="L76">                        buildFeatures.compose = true</span>
-<span class="nc" id="L77">                        composeOptions.kotlinCompilerExtensionVersion = compilerVersion.get()</span>
-<span class="nc" id="L78">                    }</span>
-<span class="nc" id="L79">                }</span>
+<span class="nc" id="L69">        configurable {</span>
+<span class="nc" id="L70">            configure&lt;ComposeExtension&gt; { kotlinCompilerPlugin.set(compiler) }</span>
+<span class="nc bnc" id="L71" title="All 2 branches missed.">            if (hubdleAndroidFeatures.isFullEnabled.get()) {</span>
+<span class="nc" id="L72">                forKotlinSetsDependencies(MAIN) {</span>
+<span class="nc" id="L73">                    implementation(catalogDependency(ANDROIDX_ACTIVITY_ACTIVITY_COMPOSE_MODULE))</span>
+<span class="nc" id="L74">                }</span>
+<span class="nc" id="L75">                hubdleAndroidBuildFeatures.compose.set(true)</span>
+<span class="nc" id="L76">                configureAndroidCommonExtension {</span>
+<span class="nc" id="L77">                    defaultConfig {</span>
+<span class="nc" id="L78">                        buildFeatures.compose = true</span>
+<span class="nc" id="L79">                        composeOptions.kotlinCompilerExtensionVersion = compilerVersion.get()</span>
+<span class="nc" id="L80">                    }</span>
+<span class="nc" id="L81">                }</span>
             }
-<span class="nc" id="L81">        }</span>
-<span class="nc" id="L82">    }</span>
+<span class="nc" id="L83">        }</span>
+<span class="nc" id="L84">    }</span>
 }
 
 public interface HubdleKotlinComposeDelegateFeatureExtension : BaseHubdleDelegateExtension {
 
     public val compose: HubdleKotlinComposeFeatureExtension
-<span class="nc" id="L88">        get() = project.getHubdleExtension()</span>
+<span class="nc" id="L90">        get() = project.getHubdleExtension()</span>
 
     @HubdleDslMarker
-<span class="nc" id="L91">    public fun compose(action: Action&lt;HubdleKotlinComposeFeatureExtension&gt; = Action {}) {</span>
-<span class="nc" id="L92">        compose.enableAndExecute(action)</span>
-<span class="nc" id="L93">    }</span>
+<span class="nc" id="L93">    public fun compose(action: Action&lt;HubdleKotlinComposeFeatureExtension&gt; = Action {}) {</span>
+<span class="nc" id="L94">        compose.enableAndExecute(action)</span>
+<span class="nc" id="L95">    }</span>
 }
 
 internal val HubdleEnableableExtension.hubdleComposeFeature: HubdleKotlinComposeFeatureExtension
-<span class="nc" id="L97">    get() = getHubdleExtension()</span>
+<span class="nc" id="L99">    get() = getHubdleExtension()</span>
 
 internal val Project.hubdleComposeFeature: HubdleKotlinComposeFeatureExtension
-<span class="nc" id="L100">    get() = getHubdleExtension()</span>
+<span class="nc" id="L102">    get() = getHubdleExtension()</span>
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

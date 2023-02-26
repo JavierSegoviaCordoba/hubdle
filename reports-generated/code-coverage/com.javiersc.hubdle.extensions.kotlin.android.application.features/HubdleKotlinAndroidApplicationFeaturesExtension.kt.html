@@ -10,29 +10,30 @@ import com.javiersc.hubdle.extensions.kotlin.features.shared.HubdleKotlinExtende
 import com.javiersc.hubdle.extensions.kotlin.features.shared.HubdleKotlinKotestDelegateFeatureExtension
 import com.javiersc.hubdle.extensions.kotlin.features.shared.HubdleKotlinMoleculeDelegateFeatureExtension
 import com.javiersc.hubdle.extensions.kotlin.features.shared.HubdleKotlinSerializationDelegateFeatureExtension
+import com.javiersc.hubdle.extensions.kotlin.features.shared.HubdleKotlinSqlDelightDelegateFeatureExtension
 import com.javiersc.hubdle.extensions.shared.features.HubdleJavaVersionDelegateFeatureExtension
 import com.javiersc.hubdle.extensions.shared.features.HubdleJvmToolchainDelegateFeatureExtension
 import javax.inject.Inject
 import org.gradle.api.Project
 import org.gradle.api.provider.Property
 
-<span class="nc" id="L19">@HubdleDslMarker</span>
+<span class="nc" id="L20">@HubdleDslMarker</span>
 public open class HubdleKotlinAndroidApplicationFeaturesExtension
 @Inject
-<span class="nc" id="L22">constructor(</span>
+<span class="nc" id="L23">constructor(</span>
     project: Project,
-<span class="nc" id="L24">) : HubdleEnableableExtension(project), HubdleKotlinAndroidApplicationDelegateFeaturesExtension {</span>
+<span class="nc" id="L25">) : HubdleEnableableExtension(project), HubdleKotlinAndroidApplicationDelegateFeaturesExtension {</span>
 
     override val project: Project
-<span class="nc" id="L27">        get() = super.project</span>
+<span class="nc" id="L28">        get() = super.project</span>
 
-<span class="nc" id="L29">    public override val isEnabled: Property&lt;Boolean&gt; = property { true }</span>
+<span class="nc" id="L30">    public override val isEnabled: Property&lt;Boolean&gt; = property { true }</span>
 
     override val requiredExtensions: Set&lt;HubdleEnableableExtension&gt;
-<span class="nc" id="L32">        get() = setOf(hubdleAndroidApplication)</span>
+<span class="nc" id="L33">        get() = setOf(hubdleAndroidApplication)</span>
 }
 
-<span class="nc" id="L35">public interface HubdleKotlinAndroidApplicationDelegateFeaturesExtension :</span>
+<span class="nc" id="L36">public interface HubdleKotlinAndroidApplicationDelegateFeaturesExtension :</span>
     HubdleKotlinComposeDelegateFeatureExtension,
     HubdleKotlinCoroutinesDelegateFeatureExtension,
     HubdleKotlinExtendedStdlibDelegateFeatureExtension,
@@ -40,9 +41,10 @@ public open class HubdleKotlinAndroidApplicationFeaturesExtension
     HubdleKotlinKotestDelegateFeatureExtension,
     HubdleKotlinMoleculeDelegateFeatureExtension,
     HubdleKotlinSerializationDelegateFeatureExtension,
-<span class="nc" id="L43">    HubdleJvmToolchainDelegateFeatureExtension</span>
+    HubdleKotlinSqlDelightDelegateFeatureExtension,
+<span class="nc" id="L45">    HubdleJvmToolchainDelegateFeatureExtension</span>
 
 internal val HubdleEnableableExtension.hubdleAndroidApplicationFeatures:
     HubdleKotlinAndroidApplicationFeaturesExtension
-<span class="nc" id="L47">    get() = getHubdleExtension()</span>
+<span class="nc" id="L49">    get() = getHubdleExtension()</span>
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

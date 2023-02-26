@@ -509,11 +509,11 @@
       "type": "file",
       "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinComposeFeatureExtension.kt",
       "language": "kotlin",
-      "line": 76,
+      "line": 78,
       "offset": 25,
       "length": 13,
       "code": {
-        "startLine": 74,
+        "startLine": 76,
         "length": 13,
         "offset": 110,
         "surroundingCode": "                configureAndroidCommonExtension {\n                    defaultConfig {\n                        buildFeatures.compose = true\n                        composeOptions.kotlinCompilerExtensionVersion = compilerVersion.get()\n                    }"
@@ -524,7 +524,7 @@
     "module": "hubdle.hubdle-gradle-plugin.main",
     "inspectionName": "UnstableApiUsage"
   },
-  "hash": "cbf3dcfa4167d365944708dfd761f4cefb8321fa2b386782d40e142255f85d76"
+  "hash": "7db0e03573d2f22b5c199dd796fe4dd1907885ee749e7a1723733eca9a84052e"
 },{
   "tool": "Code Inspection",
   "category": "JVM languages",
@@ -540,11 +540,11 @@
       "type": "file",
       "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinComposeFeatureExtension.kt",
       "language": "kotlin",
-      "line": 76,
+      "line": 78,
       "offset": 39,
       "length": 7,
       "code": {
-        "startLine": 74,
+        "startLine": 76,
         "length": 7,
         "offset": 124,
         "surroundingCode": "                configureAndroidCommonExtension {\n                    defaultConfig {\n                        buildFeatures.compose = true\n                        composeOptions.kotlinCompilerExtensionVersion = compilerVersion.get()\n                    }"
@@ -555,7 +555,7 @@
     "module": "hubdle.hubdle-gradle-plugin.main",
     "inspectionName": "UnstableApiUsage"
   },
-  "hash": "14f7f41c070acf078f9454e81cfa1bae1e2bc6eeae2746929e6ff865001f15cd"
+  "hash": "d117f2abb2dac3fee413b74ffee27feb5e60ad616721abae3f69581f66e6de12"
 },{
   "tool": "Code Inspection",
   "category": "JVM languages",
@@ -571,11 +571,11 @@
       "type": "file",
       "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinComposeFeatureExtension.kt",
       "language": "kotlin",
-      "line": 77,
+      "line": 79,
       "offset": 25,
       "length": 14,
       "code": {
-        "startLine": 75,
+        "startLine": 77,
         "length": 14,
         "offset": 113,
         "surroundingCode": "                    defaultConfig {\n                        buildFeatures.compose = true\n                        composeOptions.kotlinCompilerExtensionVersion = compilerVersion.get()\n                    }\n                }"
@@ -586,7 +586,7 @@
     "module": "hubdle.hubdle-gradle-plugin.main",
     "inspectionName": "UnstableApiUsage"
   },
-  "hash": "b70e56a0e69b86987896c84d16a0ba0b75344c61d7a2f00e2e9fc6dd942e09ab"
+  "hash": "0daa47cb8a97c771165e3391346ab6f866a3e432362de98811c1c4399b83d8ee"
 },{
   "tool": "Code Inspection",
   "category": "JVM languages",
@@ -602,11 +602,11 @@
       "type": "file",
       "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinComposeFeatureExtension.kt",
       "language": "kotlin",
-      "line": 77,
+      "line": 79,
       "offset": 40,
       "length": 30,
       "code": {
-        "startLine": 75,
+        "startLine": 77,
         "length": 30,
         "offset": 128,
         "surroundingCode": "                    defaultConfig {\n                        buildFeatures.compose = true\n                        composeOptions.kotlinCompilerExtensionVersion = compilerVersion.get()\n                    }\n                }"
@@ -617,7 +617,7 @@
     "module": "hubdle.hubdle-gradle-plugin.main",
     "inspectionName": "UnstableApiUsage"
   },
-  "hash": "5d49a299c96f295ab700c465ce0f4332d37b149344d842c407fe25f3969be09d"
+  "hash": "9a2143760c28bfe236f87c54daaaf45da066ddabb6b6902d29209df8a6d8efeb"
 },{
   "tool": "Code Inspection",
   "category": "JVM languages",
@@ -897,6 +897,37 @@
     "inspectionName": "UnstableApiUsage"
   },
   "hash": "d7321748119e35dbc9909316cde37552674356df25ee99253e28fe62ebbc66de"
+},{
+  "tool": "Code Inspection",
+  "category": "JVM languages",
+  "type": "Unstable API Usage",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "'getTestOptions()' is marked unstable with @Incubating",
+  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/shared/android/HubdleAndroidDelegateSharedApis.kt",
+      "language": "kotlin",
+      "line": 19,
+      "offset": 35,
+      "length": 11,
+      "code": {
+        "startLine": 17,
+        "length": 11,
+        "offset": 119,
+        "surroundingCode": "        userConfigurable {\n            val common = project.androidCommonExtension()\n            action.execute(common.testOptions)\n        }\n    }"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-gradle-plugin.main",
+    "inspectionName": "UnstableApiUsage"
+  },
+  "hash": "0a1fc396f8503bb97824e6148e2a94ffc2c9a495dade148a3d86fd35b79fd999"
 },{
   "tool": "Code Inspection",
   "category": "JVM languages",

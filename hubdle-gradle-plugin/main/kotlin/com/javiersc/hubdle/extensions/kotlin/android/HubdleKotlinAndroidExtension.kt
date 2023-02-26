@@ -7,7 +7,6 @@ import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.extensions.apis.enableAndExecute
 import com.javiersc.hubdle.extensions.kotlin.android.application.HubdleKotlinAndroidApplicationExtension
 import com.javiersc.hubdle.extensions.kotlin.android.application.hubdleAndroidApplication
-import com.javiersc.hubdle.extensions.kotlin.android.features.HubdleKotlinAndroidBuildFeaturesExtension
 import com.javiersc.hubdle.extensions.kotlin.android.features.HubdleKotlinAndroidFeaturesExtension
 import com.javiersc.hubdle.extensions.kotlin.android.library.HubdleKotlinAndroidLibraryExtension
 import com.javiersc.hubdle.extensions.kotlin.android.library.hubdleAndroidLibrary
@@ -37,16 +36,6 @@ constructor(
     public val compileSdk: Property<Int> = property { 33 }
 
     public val targetSdk: Property<Int> = property { 33 }
-
-    public val buildFeatures: HubdleKotlinAndroidBuildFeaturesExtension
-        get() = getHubdleExtension()
-
-    @HubdleDslMarker
-    public fun buildFeatures(
-        action: Action<HubdleKotlinAndroidBuildFeaturesExtension> = Action {}
-    ) {
-        buildFeatures.enableAndExecute(action)
-    }
 
     public val features: HubdleKotlinAndroidFeaturesExtension
         get() = getHubdleExtension()

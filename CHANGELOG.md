@@ -4,10 +4,16 @@
 
 ### Added
 
+- `testOptions` dsl to `HubdleAndroidDelegateSharedApis`
+- `org.jetbrains.intellij.deps:intellij-coverage-agent` library
+- `androidx-lifecycle-lifecycleViewmodel-*` libraries
+- `sqldelight` feature to all Kotlin projects
+- `app.cash.sqldelight-*` libraries
 - `com.russhwolf:multiplatform-settings-*` libraries
 
 ### Changed
 
+- Coverage Agent use the IntelliJ engine instead of JaCoCo
 - `site` to extract API docs into its own `api` extension
 
 ### Deprecated

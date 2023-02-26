@@ -27,6 +27,7 @@ internal enum class PluginId(val id: String) {
     MavenPublish("org.gradle.maven-publish"),
     Molecule("app.cash.molecule"),
     Sonarqube("org.sonarqube"),
+    SqlDelight("app.cash.sqldelight"),
     VyarusMkdocsBuild("ru.vyarus.mkdocs-build"),
     ;
 

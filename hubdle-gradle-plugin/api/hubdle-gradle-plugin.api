@@ -40,9 +40,16 @@ public final class Hubdle_dependenciesKt {
 	public static final fun androidxCoreKtx (Lorg/gradle/api/Project;)Lorg/gradle/api/provider/Provider;
 	public static final fun androidxCoreSplashscreen (Lorg/gradle/api/Project;)Lorg/gradle/api/provider/Provider;
 	public static final fun androidxHiltNavigationCompose (Lorg/gradle/api/Project;)Lorg/gradle/api/provider/Provider;
+	public static final fun androidxLifecycleViewmodel (Lorg/gradle/api/Project;)Lorg/gradle/api/provider/Provider;
 	public static final fun androidxLifecycleViewmodelCompose (Lorg/gradle/api/Project;)Lorg/gradle/api/provider/Provider;
+	public static final fun androidxLifecycleViewmodelKtx (Lorg/gradle/api/Project;)Lorg/gradle/api/provider/Provider;
 	public static final fun androidxNavigationCompose (Lorg/gradle/api/Project;)Lorg/gradle/api/provider/Provider;
 	public static final fun arrowKtArrowCore (Lorg/gradle/api/Project;)Lorg/gradle/api/provider/Provider;
+	public static final fun cashSqldelightAndroidDriver (Lorg/gradle/api/Project;)Lorg/gradle/api/provider/Provider;
+	public static final fun cashSqldelightCoroutinesExtensions (Lorg/gradle/api/Project;)Lorg/gradle/api/provider/Provider;
+	public static final fun cashSqldelightJdbcDriver (Lorg/gradle/api/Project;)Lorg/gradle/api/provider/Provider;
+	public static final fun cashSqldelightNativeDriver (Lorg/gradle/api/Project;)Lorg/gradle/api/provider/Provider;
+	public static final fun cashSqldelightSqliteDriver (Lorg/gradle/api/Project;)Lorg/gradle/api/provider/Provider;
 	public static final fun cashTurbine (Lorg/gradle/api/Project;)Lorg/gradle/api/provider/Provider;
 	public static final fun facebookKtfmt (Lorg/gradle/api/Project;)Lorg/gradle/api/provider/Provider;
 	public static final fun insertKoinKoinAndroid (Lorg/gradle/api/Project;)Lorg/gradle/api/provider/Provider;
@@ -69,6 +76,7 @@ public final class Hubdle_dependenciesKt {
 	public static final fun javierscNetworkResourceEither (Lorg/gradle/api/Project;)Lorg/gradle/api/provider/Provider;
 	public static final fun javierscNetworkResourceEitherExtensions (Lorg/gradle/api/Project;)Lorg/gradle/api/provider/Provider;
 	public static final fun javierscSemverCore (Lorg/gradle/api/Project;)Lorg/gradle/api/provider/Provider;
+	public static final fun jetbrainsIntellijDepsIntellijCoverageAgent (Lorg/gradle/api/Project;)Lorg/gradle/api/provider/Provider;
 	public static final fun jetbrainsKotlinGradlePlugin (Lorg/gradle/api/Project;)Lorg/gradle/api/provider/Provider;
 	public static final fun jetbrainsKotlinTest (Lorg/gradle/api/Project;)Lorg/gradle/api/provider/Provider;
 	public static final fun jetbrainsKotlinTestAnnotationsCommon (Lorg/gradle/api/Project;)Lorg/gradle/api/provider/Provider;
@@ -303,6 +311,7 @@ public abstract class com/javiersc/hubdle/extensions/apis/HubdleMinimalSourceSet
 	public abstract fun getMain ()Lorg/gradle/api/NamedDomainObjectProvider;
 	public abstract fun getTest ()Lorg/gradle/api/NamedDomainObjectProvider;
 	public final fun main (Lorg/gradle/api/Action;)V
+	public final fun sourceSet (Ljava/lang/String;Lorg/gradle/api/Action;)V
 	public final fun test (Lorg/gradle/api/Action;)V
 }
 
@@ -927,12 +936,9 @@ public class com/javiersc/hubdle/extensions/kotlin/android/HubdleKotlinAndroidEx
 	public fun <init> (Lorg/gradle/api/Project;)V
 	public final fun application (Lorg/gradle/api/Action;)V
 	public static synthetic fun application$default (Lcom/javiersc/hubdle/extensions/kotlin/android/HubdleKotlinAndroidExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
-	public final fun buildFeatures (Lorg/gradle/api/Action;)V
-	public static synthetic fun buildFeatures$default (Lcom/javiersc/hubdle/extensions/kotlin/android/HubdleKotlinAndroidExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 	public final fun features (Lorg/gradle/api/Action;)V
 	public static synthetic fun features$default (Lcom/javiersc/hubdle/extensions/kotlin/android/HubdleKotlinAndroidExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 	public final fun getApplication ()Lcom/javiersc/hubdle/extensions/kotlin/android/application/HubdleKotlinAndroidApplicationExtension;
-	public final fun getBuildFeatures ()Lcom/javiersc/hubdle/extensions/kotlin/android/features/HubdleKotlinAndroidBuildFeaturesExtension;
 	public final fun getCompileSdk ()Lorg/gradle/api/provider/Property;
 	public final fun getFeatures ()Lcom/javiersc/hubdle/extensions/kotlin/android/features/HubdleKotlinAndroidFeaturesExtension;
 	public final fun getLibrary ()Lcom/javiersc/hubdle/extensions/kotlin/android/library/HubdleKotlinAndroidLibraryExtension;
@@ -944,20 +950,22 @@ public class com/javiersc/hubdle/extensions/kotlin/android/HubdleKotlinAndroidEx
 	public static synthetic fun library$default (Lcom/javiersc/hubdle/extensions/kotlin/android/HubdleKotlinAndroidExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 }
 
-public class com/javiersc/hubdle/extensions/kotlin/android/application/HubdleKotlinAndroidApplicationExtension : com/javiersc/hubdle/extensions/kotlin/shared/HubdleKotlinMinimalSourceSetConfigurableExtension {
+public class com/javiersc/hubdle/extensions/kotlin/android/application/HubdleKotlinAndroidApplicationExtension : com/javiersc/hubdle/extensions/kotlin/shared/HubdleKotlinMinimalSourceSetConfigurableExtension, com/javiersc/hubdle/extensions/shared/android/HubdleAndroidDelegateSharedApis {
 	public fun <init> (Lorg/gradle/api/Project;)V
 	public final fun android (Lorg/gradle/api/Action;)V
-	public final fun configuration (Ljava/lang/String;Lorg/gradle/api/Action;)V
+	public fun buildFeatures (Lcom/javiersc/hubdle/extensions/apis/HubdleEnableableExtension;Lorg/gradle/api/Action;)V
+	public fun configuration (Lcom/javiersc/hubdle/extensions/apis/HubdleEnableableExtension;Ljava/lang/String;Lorg/gradle/api/Action;)V
 	public final fun features (Lorg/gradle/api/Action;)V
 	public final fun getApplicationId ()Lorg/gradle/api/provider/Property;
+	public fun getBuildFeatures (Lcom/javiersc/hubdle/extensions/apis/HubdleEnableableExtension;)Lcom/javiersc/hubdle/extensions/kotlin/android/features/HubdleKotlinAndroidBuildFeaturesExtension;
 	public final fun getFeatures ()Lcom/javiersc/hubdle/extensions/kotlin/android/application/features/HubdleKotlinAndroidApplicationFeaturesExtension;
 	public final fun getVersionCode ()Lorg/gradle/api/provider/Property;
 	public final fun getVersionName ()Lorg/gradle/api/provider/Property;
 	public fun isEnabled ()Lorg/gradle/api/provider/Property;
-	public final fun sourceSet (Ljava/lang/String;Lorg/gradle/api/Action;)V
+	public fun testOptions (Lcom/javiersc/hubdle/extensions/apis/HubdleEnableableExtension;Lorg/gradle/api/Action;)V
 }
 
-public abstract interface class com/javiersc/hubdle/extensions/kotlin/android/application/features/HubdleKotlinAndroidApplicationDelegateFeaturesExtension : com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinComposeDelegateFeatureExtension, com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinCoroutinesDelegateFeatureExtension, com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinExtendedStdlibDelegateFeatureExtension, com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinKotestDelegateFeatureExtension, com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinMoleculeDelegateFeatureExtension, com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinSerializationDelegateFeatureExtension, com/javiersc/hubdle/extensions/shared/features/HubdleJavaVersionDelegateFeatureExtension, com/javiersc/hubdle/extensions/shared/features/HubdleJvmToolchainDelegateFeatureExtension {
+public abstract interface class com/javiersc/hubdle/extensions/kotlin/android/application/features/HubdleKotlinAndroidApplicationDelegateFeaturesExtension : com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinComposeDelegateFeatureExtension, com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinCoroutinesDelegateFeatureExtension, com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinExtendedStdlibDelegateFeatureExtension, com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinKotestDelegateFeatureExtension, com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinMoleculeDelegateFeatureExtension, com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinSerializationDelegateFeatureExtension, com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinSqlDelightDelegateFeatureExtension, com/javiersc/hubdle/extensions/shared/features/HubdleJavaVersionDelegateFeatureExtension, com/javiersc/hubdle/extensions/shared/features/HubdleJvmToolchainDelegateFeatureExtension {
 }
 
 public final class com/javiersc/hubdle/extensions/kotlin/android/application/features/HubdleKotlinAndroidApplicationDelegateFeaturesExtension$DefaultImpls {
@@ -972,12 +980,14 @@ public final class com/javiersc/hubdle/extensions/kotlin/android/application/fea
 	public static fun getKotest (Lcom/javiersc/hubdle/extensions/kotlin/android/application/features/HubdleKotlinAndroidApplicationDelegateFeaturesExtension;)Lcom/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinKotestFeatureExtension;
 	public static fun getMolecule (Lcom/javiersc/hubdle/extensions/kotlin/android/application/features/HubdleKotlinAndroidApplicationDelegateFeaturesExtension;)Lcom/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinMoleculeFeatureExtension;
 	public static fun getSerialization (Lcom/javiersc/hubdle/extensions/kotlin/android/application/features/HubdleKotlinAndroidApplicationDelegateFeaturesExtension;)Lcom/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinSerializationFeatureExtension;
+	public static fun getSqldelight (Lcom/javiersc/hubdle/extensions/kotlin/android/application/features/HubdleKotlinAndroidApplicationDelegateFeaturesExtension;)Lcom/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinSqlDelightFeatureExtension;
 	public static fun javaVersion (Lcom/javiersc/hubdle/extensions/kotlin/android/application/features/HubdleKotlinAndroidApplicationDelegateFeaturesExtension;Lorg/gradle/api/JavaVersion;)V
 	public static fun jvmToolchain (Lcom/javiersc/hubdle/extensions/kotlin/android/application/features/HubdleKotlinAndroidApplicationDelegateFeaturesExtension;Lorg/gradle/api/Action;)V
 	public static fun jvmVersion (Lcom/javiersc/hubdle/extensions/kotlin/android/application/features/HubdleKotlinAndroidApplicationDelegateFeaturesExtension;Lorg/gradle/api/JavaVersion;)V
 	public static fun kotest (Lcom/javiersc/hubdle/extensions/kotlin/android/application/features/HubdleKotlinAndroidApplicationDelegateFeaturesExtension;Lorg/gradle/api/Action;)V
 	public static fun molecule (Lcom/javiersc/hubdle/extensions/kotlin/android/application/features/HubdleKotlinAndroidApplicationDelegateFeaturesExtension;Lorg/gradle/api/Action;)V
 	public static fun serialization (Lcom/javiersc/hubdle/extensions/kotlin/android/application/features/HubdleKotlinAndroidApplicationDelegateFeaturesExtension;Lorg/gradle/api/Action;)V
+	public static fun sqldelight (Lcom/javiersc/hubdle/extensions/kotlin/android/application/features/HubdleKotlinAndroidApplicationDelegateFeaturesExtension;Lorg/gradle/api/Action;)V
 }
 
 public class com/javiersc/hubdle/extensions/kotlin/android/application/features/HubdleKotlinAndroidApplicationFeaturesExtension : com/javiersc/hubdle/extensions/apis/HubdleEnableableExtension, com/javiersc/hubdle/extensions/kotlin/android/application/features/HubdleKotlinAndroidApplicationDelegateFeaturesExtension {
@@ -995,6 +1005,7 @@ public class com/javiersc/hubdle/extensions/kotlin/android/application/features/
 	public fun getProject ()Lorg/gradle/api/Project;
 	public synthetic fun getProject$hubdle_gradle_plugin ()Lorg/gradle/api/Project;
 	public fun getSerialization ()Lcom/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinSerializationFeatureExtension;
+	public fun getSqldelight ()Lcom/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinSqlDelightFeatureExtension;
 	public fun isEnabled ()Lorg/gradle/api/provider/Property;
 	public fun javaVersion (Lorg/gradle/api/JavaVersion;)V
 	public fun jvmToolchain (Lorg/gradle/api/Action;)V
@@ -1002,6 +1013,7 @@ public class com/javiersc/hubdle/extensions/kotlin/android/application/features/
 	public fun kotest (Lorg/gradle/api/Action;)V
 	public fun molecule (Lorg/gradle/api/Action;)V
 	public fun serialization (Lorg/gradle/api/Action;)V
+	public fun sqldelight (Lorg/gradle/api/Action;)V
 }
 
 public class com/javiersc/hubdle/extensions/kotlin/android/features/HubdleKotlinAndroidBuildFeaturesExtension : com/javiersc/hubdle/extensions/apis/HubdleConfigurableExtension {
@@ -1021,17 +1033,19 @@ public class com/javiersc/hubdle/extensions/kotlin/android/features/HubdleKotlin
 	public fun isEnabled ()Lorg/gradle/api/provider/Property;
 }
 
-public class com/javiersc/hubdle/extensions/kotlin/android/library/HubdleKotlinAndroidLibraryExtension : com/javiersc/hubdle/extensions/kotlin/shared/HubdleKotlinMinimalSourceSetConfigurableExtension {
+public class com/javiersc/hubdle/extensions/kotlin/android/library/HubdleKotlinAndroidLibraryExtension : com/javiersc/hubdle/extensions/kotlin/shared/HubdleKotlinMinimalSourceSetConfigurableExtension, com/javiersc/hubdle/extensions/shared/android/HubdleAndroidDelegateSharedApis {
 	public fun <init> (Lorg/gradle/api/Project;)V
 	public final fun android (Lorg/gradle/api/Action;)V
-	public final fun configuration (Ljava/lang/String;Lorg/gradle/api/Action;)V
+	public fun buildFeatures (Lcom/javiersc/hubdle/extensions/apis/HubdleEnableableExtension;Lorg/gradle/api/Action;)V
+	public fun configuration (Lcom/javiersc/hubdle/extensions/apis/HubdleEnableableExtension;Ljava/lang/String;Lorg/gradle/api/Action;)V
 	public final fun features (Lorg/gradle/api/Action;)V
+	public fun getBuildFeatures (Lcom/javiersc/hubdle/extensions/apis/HubdleEnableableExtension;)Lcom/javiersc/hubdle/extensions/kotlin/android/features/HubdleKotlinAndroidBuildFeaturesExtension;
 	public final fun getFeatures ()Lcom/javiersc/hubdle/extensions/kotlin/android/library/features/HubdleKotlinAndroidLibraryFeaturesExtension;
 	public fun isEnabled ()Lorg/gradle/api/provider/Property;
-	public final fun sourceSet (Ljava/lang/String;Lorg/gradle/api/Action;)V
+	public fun testOptions (Lcom/javiersc/hubdle/extensions/apis/HubdleEnableableExtension;Lorg/gradle/api/Action;)V
 }
 
-public abstract interface class com/javiersc/hubdle/extensions/kotlin/android/library/features/HubdleKotlinAndroidLibraryDelegateFeaturesExtension : com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinComposeDelegateFeatureExtension, com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinCoroutinesDelegateFeatureExtension, com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinExtendedStdlibDelegateFeatureExtension, com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinKotestDelegateFeatureExtension, com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinMoleculeDelegateFeatureExtension, com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinSerializationDelegateFeatureExtension, com/javiersc/hubdle/extensions/shared/features/HubdleJavaVersionDelegateFeatureExtension, com/javiersc/hubdle/extensions/shared/features/HubdleJvmToolchainDelegateFeatureExtension {
+public abstract interface class com/javiersc/hubdle/extensions/kotlin/android/library/features/HubdleKotlinAndroidLibraryDelegateFeaturesExtension : com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinComposeDelegateFeatureExtension, com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinCoroutinesDelegateFeatureExtension, com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinExtendedStdlibDelegateFeatureExtension, com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinKotestDelegateFeatureExtension, com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinMoleculeDelegateFeatureExtension, com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinSerializationDelegateFeatureExtension, com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinSqlDelightDelegateFeatureExtension, com/javiersc/hubdle/extensions/shared/features/HubdleJavaVersionDelegateFeatureExtension, com/javiersc/hubdle/extensions/shared/features/HubdleJvmToolchainDelegateFeatureExtension {
 }
 
 public final class com/javiersc/hubdle/extensions/kotlin/android/library/features/HubdleKotlinAndroidLibraryDelegateFeaturesExtension$DefaultImpls {
@@ -1046,12 +1060,14 @@ public final class com/javiersc/hubdle/extensions/kotlin/android/library/feature
 	public static fun getKotest (Lcom/javiersc/hubdle/extensions/kotlin/android/library/features/HubdleKotlinAndroidLibraryDelegateFeaturesExtension;)Lcom/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinKotestFeatureExtension;
 	public static fun getMolecule (Lcom/javiersc/hubdle/extensions/kotlin/android/library/features/HubdleKotlinAndroidLibraryDelegateFeaturesExtension;)Lcom/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinMoleculeFeatureExtension;
 	public static fun getSerialization (Lcom/javiersc/hubdle/extensions/kotlin/android/library/features/HubdleKotlinAndroidLibraryDelegateFeaturesExtension;)Lcom/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinSerializationFeatureExtension;
+	public static fun getSqldelight (Lcom/javiersc/hubdle/extensions/kotlin/android/library/features/HubdleKotlinAndroidLibraryDelegateFeaturesExtension;)Lcom/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinSqlDelightFeatureExtension;
 	public static fun javaVersion (Lcom/javiersc/hubdle/extensions/kotlin/android/library/features/HubdleKotlinAndroidLibraryDelegateFeaturesExtension;Lorg/gradle/api/JavaVersion;)V
 	public static fun jvmToolchain (Lcom/javiersc/hubdle/extensions/kotlin/android/library/features/HubdleKotlinAndroidLibraryDelegateFeaturesExtension;Lorg/gradle/api/Action;)V
 	public static fun jvmVersion (Lcom/javiersc/hubdle/extensions/kotlin/android/library/features/HubdleKotlinAndroidLibraryDelegateFeaturesExtension;Lorg/gradle/api/JavaVersion;)V
 	public static fun kotest (Lcom/javiersc/hubdle/extensions/kotlin/android/library/features/HubdleKotlinAndroidLibraryDelegateFeaturesExtension;Lorg/gradle/api/Action;)V
 	public static fun molecule (Lcom/javiersc/hubdle/extensions/kotlin/android/library/features/HubdleKotlinAndroidLibraryDelegateFeaturesExtension;Lorg/gradle/api/Action;)V
 	public static fun serialization (Lcom/javiersc/hubdle/extensions/kotlin/android/library/features/HubdleKotlinAndroidLibraryDelegateFeaturesExtension;Lorg/gradle/api/Action;)V
+	public static fun sqldelight (Lcom/javiersc/hubdle/extensions/kotlin/android/library/features/HubdleKotlinAndroidLibraryDelegateFeaturesExtension;Lorg/gradle/api/Action;)V
 }
 
 public class com/javiersc/hubdle/extensions/kotlin/android/library/features/HubdleKotlinAndroidLibraryFeaturesExtension : com/javiersc/hubdle/extensions/apis/HubdleEnableableExtension, com/javiersc/hubdle/extensions/kotlin/android/library/features/HubdleKotlinAndroidLibraryDelegateFeaturesExtension {
@@ -1069,6 +1085,7 @@ public class com/javiersc/hubdle/extensions/kotlin/android/library/features/Hubd
 	public fun getProject ()Lorg/gradle/api/Project;
 	public synthetic fun getProject$hubdle_gradle_plugin ()Lorg/gradle/api/Project;
 	public fun getSerialization ()Lcom/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinSerializationFeatureExtension;
+	public fun getSqldelight ()Lcom/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinSqlDelightFeatureExtension;
 	public fun isEnabled ()Lorg/gradle/api/provider/Property;
 	public fun javaVersion (Lorg/gradle/api/JavaVersion;)V
 	public fun jvmToolchain (Lorg/gradle/api/Action;)V
@@ -1076,6 +1093,7 @@ public class com/javiersc/hubdle/extensions/kotlin/android/library/features/Hubd
 	public fun kotest (Lorg/gradle/api/Action;)V
 	public fun molecule (Lorg/gradle/api/Action;)V
 	public fun serialization (Lorg/gradle/api/Action;)V
+	public fun sqldelight (Lorg/gradle/api/Action;)V
 }
 
 public class com/javiersc/hubdle/extensions/kotlin/features/HubdleKotlinFeaturesExtension : com/javiersc/hubdle/extensions/apis/HubdleEnableableExtension {
@@ -1186,6 +1204,29 @@ public class com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinS
 	public fun isEnabled ()Lorg/gradle/api/provider/Property;
 }
 
+public abstract interface class com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinSqlDelightDelegateFeatureExtension : com/javiersc/hubdle/extensions/apis/BaseHubdleDelegateExtension {
+	public abstract fun getSqldelight ()Lcom/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinSqlDelightFeatureExtension;
+	public abstract fun sqldelight (Lorg/gradle/api/Action;)V
+}
+
+public final class com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinSqlDelightDelegateFeatureExtension$DefaultImpls {
+	public static fun getSqldelight (Lcom/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinSqlDelightDelegateFeatureExtension;)Lcom/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinSqlDelightFeatureExtension;
+	public static fun sqldelight (Lcom/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinSqlDelightDelegateFeatureExtension;Lorg/gradle/api/Action;)V
+	public static synthetic fun sqldelight$default (Lcom/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinSqlDelightDelegateFeatureExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+}
+
+public class com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinSqlDelightFeatureExtension : com/javiersc/hubdle/extensions/apis/HubdleConfigurableExtension {
+	public fun <init> (Lorg/gradle/api/Project;)V
+	public final fun databases (Lorg/gradle/api/Action;)V
+	public static synthetic fun databases$default (Lcom/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinSqlDelightFeatureExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+	public final fun getHSqlDialect ()Ljava/lang/String;
+	public final fun getMySqlDialect ()Ljava/lang/String;
+	public final fun getPostgresDialect ()Ljava/lang/String;
+	public fun isEnabled ()Lorg/gradle/api/provider/Property;
+	public final fun sqldelight (Lorg/gradle/api/Action;)V
+	public static synthetic fun sqldelight$default (Lcom/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinSqlDelightFeatureExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+}
+
 public class com/javiersc/hubdle/extensions/kotlin/jvm/HubdleKotlinJvmExtension : com/javiersc/hubdle/extensions/kotlin/shared/HubdleKotlinSourceSetConfigurableExtension, com/javiersc/hubdle/extensions/shared/HubdleGradleDependencies {
 	public fun <init> (Lorg/gradle/api/Project;)V
 	public final fun features (Lorg/gradle/api/Action;)V
@@ -1202,7 +1243,7 @@ public class com/javiersc/hubdle/extensions/kotlin/jvm/HubdleKotlinJvmExtension 
 	public fun localGroovy (Lorg/gradle/api/Project;)Lorg/gradle/api/artifacts/Dependency;
 }
 
-public abstract interface class com/javiersc/hubdle/extensions/kotlin/jvm/features/HubdleKotlinJvmDelegateFeaturesExtension : com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinComposeDelegateFeatureExtension, com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinCoroutinesDelegateFeatureExtension, com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinExtendedStdlibDelegateFeatureExtension, com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinKotestDelegateFeatureExtension, com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinMoleculeDelegateFeatureExtension, com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinSerializationDelegateFeatureExtension, com/javiersc/hubdle/extensions/shared/features/HubdleGradleDelegateFeatureExtension, com/javiersc/hubdle/extensions/shared/features/HubdleIntellijDelegateFeatureExtension, com/javiersc/hubdle/extensions/shared/features/HubdleJavaApplicationDelegateFeatureExtension, com/javiersc/hubdle/extensions/shared/features/HubdleJavaVersionDelegateFeatureExtension, com/javiersc/hubdle/extensions/shared/features/HubdleJvmToolchainDelegateFeatureExtension {
+public abstract interface class com/javiersc/hubdle/extensions/kotlin/jvm/features/HubdleKotlinJvmDelegateFeaturesExtension : com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinComposeDelegateFeatureExtension, com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinCoroutinesDelegateFeatureExtension, com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinExtendedStdlibDelegateFeatureExtension, com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinKotestDelegateFeatureExtension, com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinMoleculeDelegateFeatureExtension, com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinSerializationDelegateFeatureExtension, com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinSqlDelightDelegateFeatureExtension, com/javiersc/hubdle/extensions/shared/features/HubdleGradleDelegateFeatureExtension, com/javiersc/hubdle/extensions/shared/features/HubdleIntellijDelegateFeatureExtension, com/javiersc/hubdle/extensions/shared/features/HubdleJavaApplicationDelegateFeatureExtension, com/javiersc/hubdle/extensions/shared/features/HubdleJavaVersionDelegateFeatureExtension, com/javiersc/hubdle/extensions/shared/features/HubdleJvmToolchainDelegateFeatureExtension {
 }
 
 public final class com/javiersc/hubdle/extensions/kotlin/jvm/features/HubdleKotlinJvmDelegateFeaturesExtension$DefaultImpls {
@@ -1221,6 +1262,7 @@ public final class com/javiersc/hubdle/extensions/kotlin/jvm/features/HubdleKotl
 	public static fun getKotest (Lcom/javiersc/hubdle/extensions/kotlin/jvm/features/HubdleKotlinJvmDelegateFeaturesExtension;)Lcom/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinKotestFeatureExtension;
 	public static fun getMolecule (Lcom/javiersc/hubdle/extensions/kotlin/jvm/features/HubdleKotlinJvmDelegateFeaturesExtension;)Lcom/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinMoleculeFeatureExtension;
 	public static fun getSerialization (Lcom/javiersc/hubdle/extensions/kotlin/jvm/features/HubdleKotlinJvmDelegateFeaturesExtension;)Lcom/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinSerializationFeatureExtension;
+	public static fun getSqldelight (Lcom/javiersc/hubdle/extensions/kotlin/jvm/features/HubdleKotlinJvmDelegateFeaturesExtension;)Lcom/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinSqlDelightFeatureExtension;
 	public static fun gradle (Lcom/javiersc/hubdle/extensions/kotlin/jvm/features/HubdleKotlinJvmDelegateFeaturesExtension;Lorg/gradle/api/Action;)V
 	public static fun intellij (Lcom/javiersc/hubdle/extensions/kotlin/jvm/features/HubdleKotlinJvmDelegateFeaturesExtension;Lorg/gradle/api/Action;)V
 	public static fun javaVersion (Lcom/javiersc/hubdle/extensions/kotlin/jvm/features/HubdleKotlinJvmDelegateFeaturesExtension;Lorg/gradle/api/JavaVersion;)V
@@ -1229,6 +1271,7 @@ public final class com/javiersc/hubdle/extensions/kotlin/jvm/features/HubdleKotl
 	public static fun kotest (Lcom/javiersc/hubdle/extensions/kotlin/jvm/features/HubdleKotlinJvmDelegateFeaturesExtension;Lorg/gradle/api/Action;)V
 	public static fun molecule (Lcom/javiersc/hubdle/extensions/kotlin/jvm/features/HubdleKotlinJvmDelegateFeaturesExtension;Lorg/gradle/api/Action;)V
 	public static fun serialization (Lcom/javiersc/hubdle/extensions/kotlin/jvm/features/HubdleKotlinJvmDelegateFeaturesExtension;Lorg/gradle/api/Action;)V
+	public static fun sqldelight (Lcom/javiersc/hubdle/extensions/kotlin/jvm/features/HubdleKotlinJvmDelegateFeaturesExtension;Lorg/gradle/api/Action;)V
 }
 
 public class com/javiersc/hubdle/extensions/kotlin/jvm/features/HubdleKotlinJvmFeaturesExtension : com/javiersc/hubdle/extensions/apis/HubdleEnableableExtension, com/javiersc/hubdle/extensions/kotlin/jvm/features/HubdleKotlinJvmDelegateFeaturesExtension {
@@ -1250,6 +1293,7 @@ public class com/javiersc/hubdle/extensions/kotlin/jvm/features/HubdleKotlinJvmF
 	public fun getProject ()Lorg/gradle/api/Project;
 	public synthetic fun getProject$hubdle_gradle_plugin ()Lorg/gradle/api/Project;
 	public fun getSerialization ()Lcom/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinSerializationFeatureExtension;
+	public fun getSqldelight ()Lcom/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinSqlDelightFeatureExtension;
 	public fun gradle (Lorg/gradle/api/Action;)V
 	public fun intellij (Lorg/gradle/api/Action;)V
 	public fun isEnabled ()Lorg/gradle/api/provider/Property;
@@ -1259,6 +1303,7 @@ public class com/javiersc/hubdle/extensions/kotlin/jvm/features/HubdleKotlinJvmF
 	public fun kotest (Lorg/gradle/api/Action;)V
 	public fun molecule (Lorg/gradle/api/Action;)V
 	public fun serialization (Lorg/gradle/api/Action;)V
+	public fun sqldelight (Lorg/gradle/api/Action;)V
 }
 
 public class com/javiersc/hubdle/extensions/kotlin/multiplatform/HubdleKotlinMultiplatformExtension : com/javiersc/hubdle/extensions/apis/HubdleConfigurableExtension {
@@ -1300,7 +1345,7 @@ public class com/javiersc/hubdle/extensions/kotlin/multiplatform/HubdleKotlinMul
 	public static synthetic fun wasm$default (Lcom/javiersc/hubdle/extensions/kotlin/multiplatform/HubdleKotlinMultiplatformExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 }
 
-public abstract interface class com/javiersc/hubdle/extensions/kotlin/multiplatform/features/HubdleKotlinMultiplatformDelegateFeaturesExtension : com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinComposeDelegateFeatureExtension, com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinCoroutinesDelegateFeatureExtension, com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinExtendedStdlibDelegateFeatureExtension, com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinKotestDelegateFeatureExtension, com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinMoleculeDelegateFeatureExtension, com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinSerializationDelegateFeatureExtension, com/javiersc/hubdle/extensions/kotlin/multiplatform/features/HubdleKotlinMultiplatformMinimumTargetPerOsDelegateFeatureExtension, com/javiersc/hubdle/extensions/shared/features/HubdleJavaVersionDelegateFeatureExtension, com/javiersc/hubdle/extensions/shared/features/HubdleJvmToolchainDelegateFeatureExtension {
+public abstract interface class com/javiersc/hubdle/extensions/kotlin/multiplatform/features/HubdleKotlinMultiplatformDelegateFeaturesExtension : com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinComposeDelegateFeatureExtension, com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinCoroutinesDelegateFeatureExtension, com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinExtendedStdlibDelegateFeatureExtension, com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinKotestDelegateFeatureExtension, com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinMoleculeDelegateFeatureExtension, com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinSerializationDelegateFeatureExtension, com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinSqlDelightDelegateFeatureExtension, com/javiersc/hubdle/extensions/kotlin/multiplatform/features/HubdleKotlinMultiplatformMinimumTargetPerOsDelegateFeatureExtension, com/javiersc/hubdle/extensions/shared/features/HubdleJavaVersionDelegateFeatureExtension, com/javiersc/hubdle/extensions/shared/features/HubdleJvmToolchainDelegateFeatureExtension {
 }
 
 public final class com/javiersc/hubdle/extensions/kotlin/multiplatform/features/HubdleKotlinMultiplatformDelegateFeaturesExtension$DefaultImpls {
@@ -1316,6 +1361,7 @@ public final class com/javiersc/hubdle/extensions/kotlin/multiplatform/features/
 	public static fun getMinimumTargetPerOs (Lcom/javiersc/hubdle/extensions/kotlin/multiplatform/features/HubdleKotlinMultiplatformDelegateFeaturesExtension;)Lcom/javiersc/hubdle/extensions/kotlin/multiplatform/features/HubdleKotlinMultiplatformMinimumTargetPerOsFeatureExtension;
 	public static fun getMolecule (Lcom/javiersc/hubdle/extensions/kotlin/multiplatform/features/HubdleKotlinMultiplatformDelegateFeaturesExtension;)Lcom/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinMoleculeFeatureExtension;
 	public static fun getSerialization (Lcom/javiersc/hubdle/extensions/kotlin/multiplatform/features/HubdleKotlinMultiplatformDelegateFeaturesExtension;)Lcom/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinSerializationFeatureExtension;
+	public static fun getSqldelight (Lcom/javiersc/hubdle/extensions/kotlin/multiplatform/features/HubdleKotlinMultiplatformDelegateFeaturesExtension;)Lcom/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinSqlDelightFeatureExtension;
 	public static fun javaVersion (Lcom/javiersc/hubdle/extensions/kotlin/multiplatform/features/HubdleKotlinMultiplatformDelegateFeaturesExtension;Lorg/gradle/api/JavaVersion;)V
 	public static fun jvmToolchain (Lcom/javiersc/hubdle/extensions/kotlin/multiplatform/features/HubdleKotlinMultiplatformDelegateFeaturesExtension;Lorg/gradle/api/Action;)V
 	public static fun jvmVersion (Lcom/javiersc/hubdle/extensions/kotlin/multiplatform/features/HubdleKotlinMultiplatformDelegateFeaturesExtension;Lorg/gradle/api/JavaVersion;)V
@@ -1323,6 +1369,7 @@ public final class com/javiersc/hubdle/extensions/kotlin/multiplatform/features/
 	public static fun minimumTargetPerOs (Lcom/javiersc/hubdle/extensions/kotlin/multiplatform/features/HubdleKotlinMultiplatformDelegateFeaturesExtension;Lorg/gradle/api/Action;)V
 	public static fun molecule (Lcom/javiersc/hubdle/extensions/kotlin/multiplatform/features/HubdleKotlinMultiplatformDelegateFeaturesExtension;Lorg/gradle/api/Action;)V
 	public static fun serialization (Lcom/javiersc/hubdle/extensions/kotlin/multiplatform/features/HubdleKotlinMultiplatformDelegateFeaturesExtension;Lorg/gradle/api/Action;)V
+	public static fun sqldelight (Lcom/javiersc/hubdle/extensions/kotlin/multiplatform/features/HubdleKotlinMultiplatformDelegateFeaturesExtension;Lorg/gradle/api/Action;)V
 }
 
 public class com/javiersc/hubdle/extensions/kotlin/multiplatform/features/HubdleKotlinMultiplatformFeaturesExtension : com/javiersc/hubdle/extensions/apis/HubdleEnableableExtension, com/javiersc/hubdle/extensions/kotlin/multiplatform/features/HubdleKotlinMultiplatformDelegateFeaturesExtension {
@@ -1341,6 +1388,7 @@ public class com/javiersc/hubdle/extensions/kotlin/multiplatform/features/Hubdle
 	public fun getProject ()Lorg/gradle/api/Project;
 	public synthetic fun getProject$hubdle_gradle_plugin ()Lorg/gradle/api/Project;
 	public fun getSerialization ()Lcom/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinSerializationFeatureExtension;
+	public fun getSqldelight ()Lcom/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinSqlDelightFeatureExtension;
 	public fun isEnabled ()Lorg/gradle/api/provider/Property;
 	public fun javaVersion (Lorg/gradle/api/JavaVersion;)V
 	public fun jvmToolchain (Lorg/gradle/api/Action;)V
@@ -1349,6 +1397,7 @@ public class com/javiersc/hubdle/extensions/kotlin/multiplatform/features/Hubdle
 	public fun minimumTargetPerOs (Lorg/gradle/api/Action;)V
 	public fun molecule (Lorg/gradle/api/Action;)V
 	public fun serialization (Lorg/gradle/api/Action;)V
+	public fun sqldelight (Lorg/gradle/api/Action;)V
 }
 
 public abstract interface class com/javiersc/hubdle/extensions/kotlin/multiplatform/features/HubdleKotlinMultiplatformMinimumTargetPerOsDelegateFeatureExtension : com/javiersc/hubdle/extensions/apis/BaseHubdleDelegateExtension {
@@ -1367,10 +1416,12 @@ public class com/javiersc/hubdle/extensions/kotlin/multiplatform/features/Hubdle
 	public fun isEnabled ()Lorg/gradle/api/provider/Property;
 }
 
-public class com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidExtension : com/javiersc/hubdle/extensions/kotlin/shared/HubdleKotlinMinimalSourceSetConfigurableExtension {
+public class com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidExtension : com/javiersc/hubdle/extensions/kotlin/shared/HubdleKotlinMinimalSourceSetConfigurableExtension, com/javiersc/hubdle/extensions/shared/android/HubdleAndroidDelegateSharedApis {
 	public fun <init> (Lorg/gradle/api/Project;)V
 	public final fun android (Lorg/gradle/api/Action;)V
-	public final fun getBuildFeatures ()Lcom/javiersc/hubdle/extensions/kotlin/android/features/HubdleKotlinAndroidBuildFeaturesExtension;
+	public fun buildFeatures (Lcom/javiersc/hubdle/extensions/apis/HubdleEnableableExtension;Lorg/gradle/api/Action;)V
+	public fun configuration (Lcom/javiersc/hubdle/extensions/apis/HubdleEnableableExtension;Ljava/lang/String;Lorg/gradle/api/Action;)V
+	public fun getBuildFeatures (Lcom/javiersc/hubdle/extensions/apis/HubdleEnableableExtension;)Lcom/javiersc/hubdle/extensions/kotlin/android/features/HubdleKotlinAndroidBuildFeaturesExtension;
 	public final fun getCompileSdk ()Lorg/gradle/api/provider/Property;
 	public final fun getMinSdk ()Lorg/gradle/api/provider/Property;
 	public final fun getNamespace ()Lorg/gradle/api/provider/Property;
@@ -1382,6 +1433,7 @@ public class com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleK
 	public fun isEnabled ()Lorg/gradle/api/provider/Property;
 	public final fun publishAllLibraryVariants ()V
 	public final fun publishLibraryVariants ([Ljava/lang/String;)V
+	public fun testOptions (Lcom/javiersc/hubdle/extensions/apis/HubdleEnableableExtension;Lorg/gradle/api/Action;)V
 }
 
 public class com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAppleExtension : com/javiersc/hubdle/extensions/kotlin/shared/HubdleKotlinMinimalSourceSetConfigurableExtension {
@@ -1748,6 +1800,21 @@ public final class com/javiersc/hubdle/extensions/shared/HubdleGradleDependencie
 	public static fun gradleTestKit (Lcom/javiersc/hubdle/extensions/shared/HubdleGradleDependencies;Lorg/gradle/api/Project;)Lorg/gradle/api/artifacts/Dependency;
 	public static fun localGroovy (Lcom/javiersc/hubdle/extensions/shared/HubdleGradleDependencies;Lcom/javiersc/hubdle/extensions/apis/HubdleEnableableExtension;)Lorg/gradle/api/artifacts/Dependency;
 	public static fun localGroovy (Lcom/javiersc/hubdle/extensions/shared/HubdleGradleDependencies;Lorg/gradle/api/Project;)Lorg/gradle/api/artifacts/Dependency;
+}
+
+public abstract interface class com/javiersc/hubdle/extensions/shared/android/HubdleAndroidDelegateSharedApis {
+	public abstract fun buildFeatures (Lcom/javiersc/hubdle/extensions/apis/HubdleEnableableExtension;Lorg/gradle/api/Action;)V
+	public abstract fun configuration (Lcom/javiersc/hubdle/extensions/apis/HubdleEnableableExtension;Ljava/lang/String;Lorg/gradle/api/Action;)V
+	public abstract fun getBuildFeatures (Lcom/javiersc/hubdle/extensions/apis/HubdleEnableableExtension;)Lcom/javiersc/hubdle/extensions/kotlin/android/features/HubdleKotlinAndroidBuildFeaturesExtension;
+	public abstract fun testOptions (Lcom/javiersc/hubdle/extensions/apis/HubdleEnableableExtension;Lorg/gradle/api/Action;)V
+}
+
+public final class com/javiersc/hubdle/extensions/shared/android/HubdleAndroidDelegateSharedApis$DefaultImpls {
+	public static fun buildFeatures (Lcom/javiersc/hubdle/extensions/shared/android/HubdleAndroidDelegateSharedApis;Lcom/javiersc/hubdle/extensions/apis/HubdleEnableableExtension;Lorg/gradle/api/Action;)V
+	public static synthetic fun buildFeatures$default (Lcom/javiersc/hubdle/extensions/shared/android/HubdleAndroidDelegateSharedApis;Lcom/javiersc/hubdle/extensions/apis/HubdleEnableableExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+	public static fun configuration (Lcom/javiersc/hubdle/extensions/shared/android/HubdleAndroidDelegateSharedApis;Lcom/javiersc/hubdle/extensions/apis/HubdleEnableableExtension;Ljava/lang/String;Lorg/gradle/api/Action;)V
+	public static fun getBuildFeatures (Lcom/javiersc/hubdle/extensions/shared/android/HubdleAndroidDelegateSharedApis;Lcom/javiersc/hubdle/extensions/apis/HubdleEnableableExtension;)Lcom/javiersc/hubdle/extensions/kotlin/android/features/HubdleKotlinAndroidBuildFeaturesExtension;
+	public static fun testOptions (Lcom/javiersc/hubdle/extensions/shared/android/HubdleAndroidDelegateSharedApis;Lcom/javiersc/hubdle/extensions/apis/HubdleEnableableExtension;Lorg/gradle/api/Action;)V
 }
 
 public abstract interface class com/javiersc/hubdle/extensions/shared/features/HubdleGradleDelegateFeatureExtension : com/javiersc/hubdle/extensions/apis/BaseHubdleDelegateExtension {

@@ -11,9 +11,10 @@ import com.javiersc.hubdle.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.extensions.config.hubdleConfig
 import com.javiersc.hubdle.extensions.config.testing.ALL_TEST_TASK_NAME
+import com.javiersc.hubdle.extensions.dependencies._internal.constants.ORG_JETBRAINS_INTELLIJ_DEPS_INTELLIJ_COVERAGE_AGENT_VERSION
 import javax.inject.Inject
 import kotlinx.kover.api.CoverageEngineVariant
-import kotlinx.kover.api.DefaultJacocoEngine
+import kotlinx.kover.api.IntellijEngine
 import kotlinx.kover.api.KoverMergedConfig
 import kotlinx.kover.api.KoverProjectConfig
 import org.gradle.api.Action
@@ -38,7 +39,9 @@ constructor(
 
     override val priority: Priority = Priority.P3
 
-    public val engine: Property<CoverageEngineVariant> = property { DefaultJacocoEngine }
+    public val engine: Property<CoverageEngineVariant> = property {
+        IntellijEngine(ORG_JETBRAINS_INTELLIJ_DEPS_INTELLIJ_COVERAGE_AGENT_VERSION)
+    }
 
     @HubdleDslMarker
     public fun engine(engine: CoverageEngineVariant) {

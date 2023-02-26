@@ -13,6 +13,7 @@ import com.javiersc.hubdle.extensions.kotlin.jvm.HubdleKotlinJvmExtension
 import com.javiersc.hubdle.extensions.kotlin.jvm.hubdleKotlinJvm
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.HubdleKotlinMultiplatformExtension
 import com.javiersc.hubdle.extensions.kotlin.multiplatform.hubdleKotlinMultiplatform
+import com.javiersc.hubdle.extensions.kotlin.multiplatform.targets.hubdleKotlinMultiplatformAndroid
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
@@ -70,4 +71,12 @@ internal val HubdleEnableableExtension.hubdleKotlinAny: Set<HubdleConfigurableEx
             hubdleAndroidLibrary,
             hubdleKotlinJvm,
             hubdleKotlinMultiplatform,
+        )
+
+internal val HubdleEnableableExtension.hubdleAndroidAny: Set<HubdleConfigurableExtension>
+    get() =
+        setOf(
+            hubdleAndroidApplication,
+            hubdleAndroidLibrary,
+            hubdleKotlinMultiplatformAndroid,
         )

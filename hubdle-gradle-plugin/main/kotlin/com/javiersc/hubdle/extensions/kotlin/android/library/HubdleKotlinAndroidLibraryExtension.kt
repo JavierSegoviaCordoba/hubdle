@@ -16,21 +16,19 @@ import com.javiersc.hubdle.extensions.kotlin.android._internal.configureAndroidL
 import com.javiersc.hubdle.extensions.kotlin.android.hubdleAndroid
 import com.javiersc.hubdle.extensions.kotlin.android.library.features.HubdleKotlinAndroidLibraryFeaturesExtension
 import com.javiersc.hubdle.extensions.kotlin.shared.HubdleKotlinMinimalSourceSetConfigurableExtension
+import com.javiersc.hubdle.extensions.shared.android.HubdleAndroidDelegateSharedApis
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
-import org.gradle.api.artifacts.Configuration
 import org.gradle.api.provider.Property
 import org.gradle.kotlin.dsl.configure
-import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
-import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 
 @HubdleDslMarker
 public open class HubdleKotlinAndroidLibraryExtension
 @Inject
 constructor(
     project: Project,
-) : HubdleKotlinMinimalSourceSetConfigurableExtension(project) {
+) : HubdleKotlinMinimalSourceSetConfigurableExtension(project), HubdleAndroidDelegateSharedApis {
 
     override val project: Project
         get() = super.project
@@ -48,20 +46,6 @@ constructor(
     @HubdleDslMarker
     public fun features(action: Action<HubdleKotlinAndroidLibraryFeaturesExtension>) {
         features.enableAndExecute(action)
-    }
-
-    @HubdleDslMarker
-    public fun configuration(name: String, action: Action<Configuration>) {
-        userConfigurable {
-            configure<LibraryExtension> { project.configurations.named(name, action::execute) }
-        }
-    }
-
-    @HubdleDslMarker
-    public fun sourceSet(name: String, action: Action<KotlinSourceSet>) {
-        userConfigurable {
-            configure<KotlinProjectExtension> { sourceSets.named(name, action::execute) }
-        }
     }
 
     // TODO: improve and enable using this docs:

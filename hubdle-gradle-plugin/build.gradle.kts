@@ -37,6 +37,8 @@ hubdle {
                     dependencies {
                         api(libs.adarshr.gradleTestLoggerPlugin)
                         api(libs.android.toolsBuild.gradle)
+                        api(libs.cash.molecule.gradlePlugin)
+                        api(libs.cash.sqldelight.gradlePlugin)
                         api(libs.diffplug.spotless.spotlessPluginGradle)
                         api(libs.github.gradleNexus.publishPlugin)
                         api(libs.gitlab.arturboschDetekt.detektGradlePlugin)
@@ -51,7 +53,6 @@ hubdle {
                         api(libs.jetbrains.kotlinx.kover)
                         api(libs.jetbrains.kotlinx.serialization)
                         api(libs.sonarqube.scannerGradle.sonarqubeGradlePlugin)
-                        api(libs.cash.molecule.gradlePlugin)
                         api(libs.vyarus.gradleMkdocsPlugin)
 
                         implementation(libs.eclipse.jgit)
@@ -103,21 +104,35 @@ fun Project.generateHubdleDependencies() {
     tasks.withType<KotlinCompile>().configureEach { dependsOn(dependenciesCodegen) }
 }
 
+val generatedDependenciesInternalDir =
+    "generated/main/kotlin/com/javiersc/hubdle/extensions/dependencies/_internal"
+
 fun Project.buildConstants() {
+    buildDir
+        .resolve(generatedDependenciesInternalDir)
+        .resolve("constants/SQLDELIGHT_VERSION.kt")
+        .apply {
+            parentFile.mkdirs()
+            createNewFile()
+        }
+        .writeText(
+            """
+                |package com.javiersc.hubdle.extensions.dependencies._internal.constants
+                |
+                |internal const val SQLDELIGHT_VERSION: String = "${libs.versions.sqldelight.get()}"
+                |
+            """
+                .trimMargin()
+        )
     catalogDependencies.forEach { minimalDependency ->
         val fileName = minimalDependency.module.toString().replace(":", "_")
         val dependencyVariableName = fileName.buildDependencyVariableName()
         val dependencyVersion = minimalDependency.versionConstraint.displayName
-        buildDir
-            .resolve(
-                "generated/main/kotlin/" +
-                    "com/javiersc/hubdle/extensions/dependencies/_internal/constants/$fileName.kt",
-            )
-            .apply {
-                parentFile.mkdirs()
-                createNewFile()
-                writeText(
-                    """
+        buildDir.resolve(generatedDependenciesInternalDir).resolve("constants/$fileName.kt").apply {
+            parentFile.mkdirs()
+            createNewFile()
+            writeText(
+                """
                         |package com.javiersc.hubdle.extensions.dependencies._internal.constants
                         |
                         |internal const val ${dependencyVariableName}_LIBRARY: String =
@@ -130,18 +145,16 @@ fun Project.buildConstants() {
                         |    "$dependencyVersion"
                         |
                     """
-                        .trimMargin(),
-                )
-            }
+                    .trimMargin(),
+            )
+        }
     }
 }
 
 fun Project.buildHubdleDependenciesList() {
     buildDir
-        .resolve(
-            "generated/main/kotlin/" +
-                "com/javiersc/hubdle/extensions/dependencies/_internal/hubdle_dependencies_list.kt",
-        )
+        .resolve(generatedDependenciesInternalDir)
+        .resolve("hubdle_dependencies_list.kt")
         .apply {
             parentFile.mkdirs()
             createNewFile()

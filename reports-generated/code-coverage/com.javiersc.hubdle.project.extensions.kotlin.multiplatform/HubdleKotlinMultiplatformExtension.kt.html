@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>HubdleKotlinMultiplatformExtension.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">:</a> &gt; <a href="index.source.html" class="el_package">com.javiersc.hubdle.project.extensions.kotlin.multiplatform</a> &gt; <span class="el_source">HubdleKotlinMultiplatformExtension.kt</span></div><h1>HubdleKotlinMultiplatformExtension.kt</h1><pre class="source lang-java linenums">package com.javiersc.hubdle.project.extensions.kotlin.multiplatform
+
+import com.javiersc.hubdle.project.extensions.HubdleDslMarker
+import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
+import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
+import com.javiersc.hubdle.project.extensions._internal.PluginId
+import com.javiersc.hubdle.project.extensions._internal.configurableDependencies
+import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
+import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
+import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
+import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
+import com.javiersc.hubdle.project.extensions.config.publishing._internal.configurableMavenPublishing
+import com.javiersc.hubdle.project.extensions.kotlin._internal.configurableSrcDirs
+import com.javiersc.hubdle.project.extensions.kotlin.hubdleKotlin
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.HubdleKotlinMultiplatformTarget.Common
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.HubdleKotlinMultiplatformTarget.JS
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.HubdleKotlinMultiplatformTarget.WAsm
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.features.HubdleKotlinMultiplatformFeaturesExtension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformAndroidExtension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformAppleExtension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformCommonExtension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformJsExtension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformJvmAndAndroidExtension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformJvmExtension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformLinuxExtension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformMinGWExtension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformNativeExtension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformWAsmExtension
+import javax.inject.Inject
+import org.gradle.api.Action
+import org.gradle.api.Project
+import org.gradle.api.provider.Property
+import org.gradle.api.provider.SetProperty
+import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+import org.jetbrains.kotlin.gradle.plugin.KotlinTarget
+import org.jetbrains.kotlin.gradle.plugin.KotlinTargetPreset
+
+@HubdleDslMarker
+public open class HubdleKotlinMultiplatformExtension
+@Inject
+<span class="nc" id="L41">constructor(</span>
+    project: Project,
+<span class="nc" id="L43">) : HubdleConfigurableExtension(project) {</span>
+
+<span class="nc" id="L45">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
+
+    override val requiredExtensions: Set&lt;HubdleEnableableExtension&gt;
+<span class="nc" id="L48">        get() = setOf(hubdleKotlin)</span>
+
+<span class="nc" id="L50">    override val priority: Priority = Priority.P3</span>
+
+    public val features: HubdleKotlinMultiplatformFeaturesExtension
+<span class="nc" id="L53">        get() = getHubdleExtension()</span>
+
+    @HubdleDslMarker
+<span class="nc" id="L56">    public fun features(action: Action&lt;HubdleKotlinMultiplatformFeaturesExtension&gt; = Action {}) {</span>
+<span class="nc" id="L57">        features.enableAndExecute(action)</span>
+<span class="nc" id="L58">    }</span>
+
+    public val common: HubdleKotlinMultiplatformCommonExtension
+<span class="nc" id="L61">        get() = getHubdleExtension()</span>
+
+    @HubdleDslMarker
+<span class="nc" id="L64">    public fun common(action: Action&lt;HubdleKotlinMultiplatformCommonExtension&gt; = Action {}) {</span>
+<span class="nc" id="L65">        common.enableAndExecute(action)</span>
+<span class="nc" id="L66">    }</span>
+
+    public val android: HubdleKotlinMultiplatformAndroidExtension
+<span class="nc" id="L69">        get() = getHubdleExtension()</span>
+
+    @HubdleDslMarker
+<span class="nc" id="L72">    public fun android(action: Action&lt;HubdleKotlinMultiplatformAndroidExtension&gt; = Action {}) {</span>
+<span class="nc" id="L73">        android.enableAndExecute(action)</span>
+<span class="nc" id="L74">    }</span>
+
+    public val apple: HubdleKotlinMultiplatformAppleExtension
+<span class="nc" id="L77">        get() = getHubdleExtension()</span>
+
+    @HubdleDslMarker
+<span class="nc" id="L80">    public fun apple(action: Action&lt;HubdleKotlinMultiplatformAppleExtension&gt; = Action {}) {</span>
+<span class="nc" id="L81">        apple.enableAndExecute(action)</span>
+<span class="nc" id="L82">    }</span>
+
+    public val jvm: HubdleKotlinMultiplatformJvmExtension
+<span class="nc" id="L85">        get() = getHubdleExtension()</span>
+
+    @HubdleDslMarker
+<span class="nc" id="L88">    public fun jvm(action: Action&lt;HubdleKotlinMultiplatformJvmExtension&gt; = Action {}) {</span>
+<span class="nc" id="L89">        jvm.enableAndExecute(action)</span>
+<span class="nc" id="L90">    }</span>
+
+    public val jvmAndAndroid: HubdleKotlinMultiplatformJvmAndAndroidExtension
+<span class="nc" id="L93">        get() = getHubdleExtension()</span>
+
+    @HubdleDslMarker
+<span class="nc" id="L96">    public fun jvmAndAndroid(</span>
+<span class="nc" id="L97">        action: Action&lt;HubdleKotlinMultiplatformJvmAndAndroidExtension&gt; = Action {}</span>
+    ) {
+<span class="nc" id="L99">        jvmAndAndroid.enableAndExecute(action)</span>
+<span class="nc" id="L100">    }</span>
+
+    public val js: HubdleKotlinMultiplatformJsExtension
+<span class="nc" id="L103">        get() = getHubdleExtension()</span>
+
+    @HubdleDslMarker
+<span class="nc" id="L106">    public fun js(action: Action&lt;HubdleKotlinMultiplatformJsExtension&gt; = Action {}) {</span>
+<span class="nc" id="L107">        js.enableAndExecute(action)</span>
+<span class="nc" id="L108">    }</span>
+
+    public val linux: HubdleKotlinMultiplatformLinuxExtension
+<span class="nc" id="L111">        get() = getHubdleExtension()</span>
+
+    @HubdleDslMarker
+<span class="nc" id="L114">    public fun linux(action: Action&lt;HubdleKotlinMultiplatformLinuxExtension&gt; = Action {}) {</span>
+<span class="nc" id="L115">        linux.enableAndExecute(action)</span>
+<span class="nc" id="L116">    }</span>
+
+    public val mingw: HubdleKotlinMultiplatformMinGWExtension
+<span class="nc" id="L119">        get() = getHubdleExtension()</span>
+
+    @HubdleDslMarker
+<span class="nc" id="L122">    public fun mingw(action: Action&lt;HubdleKotlinMultiplatformMinGWExtension&gt; = Action {}) {</span>
+<span class="nc" id="L123">        mingw.enableAndExecute(action)</span>
+<span class="nc" id="L124">    }</span>
+
+    public val native: HubdleKotlinMultiplatformNativeExtension
+<span class="nc" id="L127">        get() = getHubdleExtension()</span>
+
+    @HubdleDslMarker
+<span class="nc" id="L130">    public fun native(action: Action&lt;HubdleKotlinMultiplatformNativeExtension&gt; = Action {}) {</span>
+<span class="nc" id="L131">        native.enableAndExecute(action)</span>
+<span class="nc" id="L132">    }</span>
+
+    public val wasm: HubdleKotlinMultiplatformWAsmExtension
+<span class="nc" id="L135">        get() = getHubdleExtension()</span>
+
+    @HubdleDslMarker
+<span class="nc" id="L138">    public fun wasm(action: Action&lt;HubdleKotlinMultiplatformWAsmExtension&gt; = Action {}) {</span>
+<span class="nc" id="L139">        wasm.enableAndExecute(action)</span>
+<span class="nc" id="L140">    }</span>
+
+    @HubdleDslMarker
+    public fun kotlin(action: Action&lt;KotlinMultiplatformExtension&gt;) {
+<span class="nc" id="L144">        userConfigurable { action.execute(the()) }</span>
+<span class="nc" id="L145">    }</span>
+
+    override fun Project.defaultConfiguration() {
+<span class="nc" id="L148">        applicablePlugin(</span>
+<span class="nc" id="L149">            priority = Priority.P3,</span>
+<span class="nc" id="L150">            scope = Scope.CurrentProject,</span>
+<span class="nc" id="L151">            pluginId = PluginId.JetbrainsKotlinMultiplatform</span>
+        )
+
+<span class="nc" id="L154">        configurableSrcDirs(multiplatformTargets())</span>
+<span class="nc" id="L155">        configurableDependencies()</span>
+<span class="nc" id="L156">        configurableMavenPublishing(configEmptyJavaDocs = true)</span>
+<span class="nc" id="L157">    }</span>
+
+<span class="nc" id="L159">    private fun multiplatformTargets(): SetProperty&lt;String&gt; = setProperty {</span>
+        val hubdleTargets: List&lt;String&gt; =
+            buildSet {
+                    add(Common)
+                    addAll(hubdleJvmTargets)
+                    addAll(hubdleAppleTargets)
+                    addAll(nativeTargets)
+                    add(JS)
+                    add(WAsm)
+                }
+                .map { target -&gt; &quot;$target&quot; }
+
+        buildSet {
+            addAll(the&lt;KotlinMultiplatformExtension&gt;().targets.map(KotlinTarget::getName))
+            addAll(the&lt;KotlinMultiplatformExtension&gt;().presets.map(KotlinTargetPreset&lt;*&gt;::getName))
+            addAll(hubdleTargets)
+        }
+<span class="nc" id="L176">    }</span>
+}
+
+internal val HubdleEnableableExtension.hubdleKotlinMultiplatform: HubdleKotlinMultiplatformExtension
+<span class="nc" id="L180">    get() = getHubdleExtension()</span>
+
+internal val Project.hubdleKotlinMultiplatform: HubdleKotlinMultiplatformExtension
+<span class="nc" id="L183">    get() = getHubdleExtension()</span>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

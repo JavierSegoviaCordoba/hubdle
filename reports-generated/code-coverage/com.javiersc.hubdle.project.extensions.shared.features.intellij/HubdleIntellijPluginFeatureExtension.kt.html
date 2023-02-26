@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>HubdleIntellijPluginFeatureExtension.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">:</a> &gt; <a href="index.source.html" class="el_package">com.javiersc.hubdle.project.extensions.shared.features.intellij</a> &gt; <span class="el_source">HubdleIntellijPluginFeatureExtension.kt</span></div><h1>HubdleIntellijPluginFeatureExtension.kt</h1><pre class="source lang-java linenums">package com.javiersc.hubdle.project.extensions.shared.features.intellij
+
+import com.javiersc.gradle.properties.extensions.getProperty
+import com.javiersc.gradle.properties.extensions.getPropertyOrNull
+import com.javiersc.hubdle.project.extensions.HubdleDslMarker
+import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
+import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
+import com.javiersc.hubdle.project.extensions._internal.PluginId
+import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
+import com.javiersc.hubdle.project.extensions.apis.BaseHubdleDelegateExtension
+import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
+import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
+import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
+import com.javiersc.hubdle.project.extensions.config.documentation.changelog.HubdleConfigDocumentationChangelogExtension
+import com.javiersc.hubdle.project.extensions.config.publishing.hubdlePublishing
+import com.javiersc.hubdle.project.extensions.kotlin.hubdleKotlin
+import javax.inject.Inject
+import org.gradle.api.Action
+import org.gradle.api.Project
+import org.gradle.api.attributes.LibraryElements
+import org.gradle.api.provider.Property
+import org.gradle.api.tasks.Copy
+import org.gradle.kotlin.dsl.dependencies
+import org.gradle.kotlin.dsl.named
+import org.gradle.kotlin.dsl.project
+import org.gradle.kotlin.dsl.register
+import org.gradle.kotlin.dsl.withType
+import org.jetbrains.intellij.IntelliJPluginExtension
+import org.jetbrains.intellij.tasks.PatchPluginXmlTask
+import org.jetbrains.intellij.tasks.PublishPluginTask
+import org.jetbrains.intellij.tasks.SignPluginTask
+
+@HubdleDslMarker
+public open class HubdleIntellijPluginFeatureExtension
+@Inject
+<span class="nc" id="L36">constructor(</span>
+    project: Project,
+<span class="nc" id="L38">) : HubdleConfigurableExtension(project) {</span>
+
+<span class="nc" id="L40">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
+
+<span class="nc" id="L42">    override val priority: Priority = Priority.P3</span>
+
+    override val requiredExtensions: Set&lt;HubdleEnableableExtension&gt;
+<span class="nc" id="L45">        get() = setOf(hubdleKotlin)</span>
+
+    @HubdleDslMarker
+<span class="nc" id="L48">    public fun intellij(action: Action&lt;IntelliJPluginExtension&gt; = Action {}) {</span>
+<span class="nc" id="L49">        userConfigurable { action.execute(the()) }</span>
+<span class="nc" id="L50">    }</span>
+
+    @HubdleDslMarker
+<span class="nc" id="L53">    public fun patchPluginXml(action: Action&lt;PatchPluginXmlTask&gt; = Action {}) {</span>
+<span class="nc" id="L54">        userConfigurable { action.execute(the()) }</span>
+<span class="nc" id="L55">    }</span>
+
+    @HubdleDslMarker
+<span class="nc" id="L58">    public fun publishPlugin(action: Action&lt;PublishPluginTask&gt; = Action {}) {</span>
+<span class="nc" id="L59">        userConfigurable { action.execute(the()) }</span>
+<span class="nc" id="L60">    }</span>
+
+    @HubdleDslMarker
+<span class="nc" id="L63">    public fun signPlugin(action: Action&lt;SignPluginTask&gt; = Action {}) {</span>
+<span class="nc" id="L64">        userConfigurable { action.execute(the()) }</span>
+<span class="nc" id="L65">    }</span>
+
+    override fun Project.defaultConfiguration() {
+<span class="nc" id="L68">        applicablePlugin(</span>
+<span class="nc" id="L69">            priority = Priority.P3,</span>
+<span class="nc" id="L70">            scope = Scope.CurrentProject,</span>
+<span class="nc" id="L71">            pluginId = PluginId.JetbrainsKotlinJvm</span>
+        )
+
+<span class="nc" id="L74">        applicablePlugin(</span>
+<span class="nc" id="L75">            priority = Priority.P3,</span>
+<span class="nc" id="L76">            scope = Scope.CurrentProject,</span>
+<span class="nc" id="L77">            pluginId = PluginId.JetbrainsIntellij</span>
+        )
+
+<span class="nc" id="L80">        configurable {</span>
+<span class="nc" id="L81">            configureIntellijPluginExtension()</span>
+<span class="nc" id="L82">            configureGeneratedChangelogHtmlDependency()</span>
+<span class="nc" id="L83">            configurePatchPluginXml()</span>
+<span class="nc" id="L84">        }</span>
+
+<span class="nc" id="L86">        configurable(</span>
+<span class="nc" id="L87">            isEnabled = property { isFullEnabled.get() &amp;&amp; hubdlePublishing.isFullEnabled.get() },</span>
+<span class="nc" id="L88">            priority = Priority.P3,</span>
+        ) {
+<span class="nc" id="L90">            configurePublishPlugin()</span>
+<span class="nc" id="L91">            configureSignPlugin()</span>
+<span class="nc" id="L92">        }</span>
+<span class="nc" id="L93">    }</span>
+}
+
+private fun HubdleIntellijPluginFeatureExtension.configureIntellijPluginExtension() =
+<span class="nc" id="L97">    with(project) {</span>
+<span class="nc" id="L98">        val downloadSourcesProperty =</span>
+<span class="nc" id="L99">            getPropertyOrNull(com.javiersc.hubdle.project.HubdleProperty.IntelliJ.downloadSources)</span>
+<span class="nc bnc" id="L100" title="All 2 branches missed.">                ?.toBoolean()</span>
+<span class="nc" id="L101">                ?: true</span>
+
+<span class="nc" id="L103">        val updateSinceUntilBuildProperty =</span>
+<span class="nc" id="L104">            getPropertyOrNull(</span>
+<span class="nc" id="L105">                    com.javiersc.hubdle.project.HubdleProperty.IntelliJ.updateSinceUntilBuild</span>
+                )
+<span class="nc bnc" id="L107" title="All 2 branches missed.">                ?.toBoolean()</span>
+<span class="nc" id="L108">                ?: true</span>
+
+<span class="nc" id="L110">        configure&lt;IntelliJPluginExtension&gt; {</span>
+            pluginName.set(getProperty(com.javiersc.hubdle.project.HubdleProperty.POM.name))
+            downloadSources.set(downloadSourcesProperty)
+            type.set(getProperty(com.javiersc.hubdle.project.HubdleProperty.IntelliJ.type))
+            version.set(getProperty(com.javiersc.hubdle.project.HubdleProperty.IntelliJ.version))
+            updateSinceUntilBuild.set(updateSinceUntilBuildProperty)
+        }
+<span class="nc" id="L117">    }</span>
+
+private fun HubdleIntellijPluginFeatureExtension.configurePatchPluginXml() =
+<span class="nc" id="L120">    with(project) {</span>
+<span class="nc" id="L121">        tasks.withType&lt;PatchPluginXmlTask&gt;().configureEach { task -&gt;</span>
+<span class="nc" id="L122">            task.dependsOn(tasks.named(&quot;copyGeneratedChangelogHtml&quot;))</span>
+
+<span class="nc" id="L124">            task.version.set(&quot;$version&quot;)</span>
+<span class="nc" id="L125">            task.sinceBuild.set(</span>
+<span class="nc" id="L126">                getProperty(com.javiersc.hubdle.project.HubdleProperty.IntelliJ.sinceBuild)</span>
+            )
+<span class="nc" id="L128">            task.untilBuild.set(</span>
+<span class="nc" id="L129">                getProperty(com.javiersc.hubdle.project.HubdleProperty.IntelliJ.untilBuild)</span>
+            )
+
+<span class="nc" id="L132">            val changelogFile =</span>
+<span class="nc" id="L133">                layout.buildDirectory.file(</span>
+                    com.javiersc.hubdle.project.extensions.config.documentation.changelog
+<span class="nc" id="L135">                        .GENERATED_CHANGELOG_HTML_FILE_PATH</span>
+                )
+<span class="nc" id="L137">            val notes =</span>
+<span class="nc" id="L138">                changelogFile.flatMap {</span>
+<span class="nc" id="L139">                    provider {</span>
+<span class="nc bnc" id="L140" title="All 2 branches missed.">                        if (it.asFile.exists()) it.asFile.readText() else &quot;No changelog found&quot;</span>
+                    }
+                }
+<span class="nc" id="L143">            task.changeNotes.set(notes)</span>
+<span class="nc" id="L144">        }</span>
+<span class="nc" id="L145">    }</span>
+
+private fun HubdleIntellijPluginFeatureExtension.configurePublishPlugin() =
+<span class="nc" id="L148">    with(project) {</span>
+<span class="nc" id="L149">        tasks.withType&lt;PublishPluginTask&gt;().configureEach { task -&gt;</span>
+<span class="nc" id="L150">            task.token.set(</span>
+<span class="nc bnc" id="L151" title="All 2 branches missed.">                project.getPropertyOrNull(</span>
+<span class="nc" id="L152">                    com.javiersc.hubdle.project.HubdleProperty.IntelliJ.publishToken</span>
+                )
+<span class="nc" id="L154">                    ?: &quot;&quot;</span>
+            )
+<span class="nc" id="L156">        }</span>
+<span class="nc" id="L157">    }</span>
+
+private fun HubdleIntellijPluginFeatureExtension.configureSignPlugin() =
+<span class="nc" id="L160">    with(project) {</span>
+<span class="nc" id="L161">        tasks.withType&lt;SignPluginTask&gt;().configureEach { task -&gt;</span>
+<span class="nc" id="L162">            val certificate =</span>
+<span class="nc bnc" id="L163" title="All 2 branches missed.">                getPropertyOrNull(</span>
+<span class="nc" id="L164">                    com.javiersc.hubdle.project.HubdleProperty.JetBrains.marketplaceCertificateChain</span>
+                )
+<span class="nc" id="L166">                    ?: &quot;&quot;</span>
+<span class="nc" id="L167">            val key =</span>
+<span class="nc bnc" id="L168" title="All 4 branches missed.">                getPropertyOrNull(</span>
+<span class="nc" id="L169">                    com.javiersc.hubdle.project.HubdleProperty.JetBrains.marketplaceKey</span>
+                )
+<span class="nc" id="L171">                    ?: getPropertyOrNull(</span>
+<span class="nc" id="L172">                        com.javiersc.hubdle.project.HubdleProperty.Signing.gnupgKey</span>
+                    )
+<span class="nc" id="L174">                        ?: &quot;&quot;</span>
+
+<span class="nc" id="L176">            val passphrase =</span>
+<span class="nc bnc" id="L177" title="All 4 branches missed.">                getPropertyOrNull(</span>
+<span class="nc" id="L178">                    com.javiersc.hubdle.project.HubdleProperty.JetBrains.marketplaceKeyPassphrase</span>
+                )
+<span class="nc" id="L180">                    ?: getPropertyOrNull(</span>
+<span class="nc" id="L181">                        com.javiersc.hubdle.project.HubdleProperty.Signing.gnupgPassphrase</span>
+                    )
+<span class="nc" id="L183">                        ?: &quot;&quot;</span>
+
+<span class="nc" id="L185">            task.certificateChain.set(certificate)</span>
+<span class="nc" id="L186">            task.privateKey.set(key)</span>
+<span class="nc" id="L187">            task.password.set(passphrase)</span>
+<span class="nc" id="L188">        }</span>
+<span class="nc" id="L189">    }</span>
+
+private fun HubdleIntellijPluginFeatureExtension.configureGeneratedChangelogHtmlDependency() =
+<span class="nc" id="L192">    with(project) {</span>
+<span class="nc" id="L193">        val generatedChangelogHtml =</span>
+<span class="nc" id="L194">            configurations.create(&quot;generatedChangelogHtml&quot;).apply {</span>
+<span class="nc" id="L195">                isCanBeConsumed = false</span>
+<span class="nc" id="L196">                isCanBeResolved = true</span>
+<span class="nc" id="L197">                attributes { attributes -&gt;</span>
+<span class="nc" id="L198">                    attributes.attribute(</span>
+<span class="nc" id="L199">                        LibraryElements.LIBRARY_ELEMENTS_ATTRIBUTE,</span>
+<span class="nc" id="L200">                        objects.named(</span>
+                            HubdleConfigDocumentationChangelogExtension
+<span class="nc" id="L202">                                .GENERATED_CHANGELOG_HTML_ATTRIBUTE</span>
+                        )
+                    )
+<span class="nc" id="L205">                }</span>
+<span class="nc" id="L206">            }</span>
+
+<span class="nc" id="L208">        dependencies { generatedChangelogHtml(project(&quot;:&quot;)) }</span>
+
+<span class="nc" id="L210">        tasks.register&lt;Copy&gt;(&quot;copyGeneratedChangelogHtml&quot;) {</span>
+<span class="nc" id="L211">            from(generatedChangelogHtml)</span>
+<span class="nc" id="L212">            into(</span>
+<span class="nc" id="L213">                layout.buildDirectory.dir(</span>
+                    com.javiersc.hubdle.project.extensions.config.documentation.changelog
+<span class="nc" id="L215">                        .GENERATED_CHANGELOG_HTML_DIR_PATH</span>
+                )
+            )
+<span class="nc" id="L218">        }</span>
+<span class="nc" id="L219">    }</span>
+
+public interface HubdleIntellijPluginDelegateFeatureExtension : BaseHubdleDelegateExtension {
+
+    public val plugin: HubdleIntellijPluginFeatureExtension
+<span class="nc" id="L224">        get() = project.getHubdleExtension()</span>
+
+    @HubdleDslMarker
+<span class="nc" id="L227">    public fun plugin(action: Action&lt;HubdleIntellijPluginFeatureExtension&gt; = Action {}) {</span>
+<span class="nc" id="L228">        plugin.enableAndExecute(action)</span>
+<span class="nc" id="L229">    }</span>
+}
+
+internal val HubdleEnableableExtension.hubdleGradlePluginFeature:
+    HubdleIntellijPluginFeatureExtension
+<span class="nc" id="L234">    get() = getHubdleExtension()</span>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

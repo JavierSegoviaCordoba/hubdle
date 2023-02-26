@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>HubdleKotlinMultiplatformJsExtension.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">:</a> &gt; <a href="index.source.html" class="el_package">com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets</a> &gt; <span class="el_source">HubdleKotlinMultiplatformJsExtension.kt</span></div><h1>HubdleKotlinMultiplatformJsExtension.kt</h1><pre class="source lang-java linenums">package com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets
+
+import com.javiersc.hubdle.project.extensions.HubdleDslMarker
+import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
+import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.hubdleKotlinMultiplatform
+import com.javiersc.hubdle.project.extensions.kotlin.shared.HubdleKotlinMinimalSourceSetConfigurableExtension
+import javax.inject.Inject
+import org.gradle.api.Action
+import org.gradle.api.Project
+import org.gradle.api.provider.Property
+import org.gradle.kotlin.dsl.configure
+import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+import org.jetbrains.kotlin.gradle.targets.js.dsl.KotlinJsBrowserDsl
+import org.jetbrains.kotlin.gradle.targets.js.dsl.KotlinJsNodeDsl
+
+@HubdleDslMarker
+public open class HubdleKotlinMultiplatformJsExtension
+@Inject
+<span class="nc" id="L20">constructor(</span>
+    project: Project,
+<span class="nc" id="L22">) : HubdleKotlinMinimalSourceSetConfigurableExtension(project) {</span>
+
+    override val project: Project
+<span class="nc" id="L25">        get() = super.project</span>
+
+<span class="nc" id="L27">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
+
+    override val requiredExtensions: Set&lt;HubdleEnableableExtension&gt;
+<span class="nc" id="L30">        get() = setOf(hubdleKotlinMultiplatform)</span>
+
+<span class="nc" id="L32">    override val priority: Priority = Priority.P3</span>
+
+<span class="nc" id="L34">    override val targetName: String = &quot;js&quot;</span>
+
+    @HubdleDslMarker
+<span class="nc" id="L37">    public fun browser(action: Action&lt;KotlinJsBrowserDsl&gt; = Action {}) {</span>
+<span class="nc" id="L38">        userConfigurable {</span>
+<span class="nc" id="L39">            configure&lt;KotlinMultiplatformExtension&gt; { js { browser { action.execute(this) } } }</span>
+<span class="nc" id="L40">        }</span>
+<span class="nc" id="L41">    }</span>
+
+    @HubdleDslMarker
+<span class="nc" id="L44">    public fun nodejs(action: Action&lt;KotlinJsNodeDsl&gt; = Action {}) {</span>
+<span class="nc" id="L45">        userConfigurable {</span>
+<span class="nc" id="L46">            configure&lt;KotlinMultiplatformExtension&gt; { js { nodejs { action.execute(this) } } }</span>
+<span class="nc" id="L47">        }</span>
+<span class="nc" id="L48">    }</span>
+
+    override fun Project.defaultConfiguration() {
+<span class="nc" id="L51">        configurable { configure&lt;KotlinMultiplatformExtension&gt; { js() } }</span>
+<span class="nc" id="L52">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

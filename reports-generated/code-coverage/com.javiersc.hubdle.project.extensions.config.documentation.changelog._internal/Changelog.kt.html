@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Changelog.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">:</a> &gt; <a href="index.source.html" class="el_package">com.javiersc.hubdle.project.extensions.config.documentation.changelog._internal</a> &gt; <span class="el_source">Changelog.kt</span></div><h1>Changelog.kt</h1><pre class="source lang-java linenums">@file:Suppress(&quot;SpreadOperator&quot;)
+
+package com.javiersc.hubdle.project.extensions.config.documentation.changelog._internal
+
+import com.javiersc.hubdle.project.extensions.config.documentation.changelog._internal.Changelog.Reference
+import com.javiersc.hubdle.project.extensions.config.documentation.changelog._internal.Changelog.Version
+import com.javiersc.hubdle.project.extensions.config.documentation.changelog._internal.Changelog.Version.Group
+import com.javiersc.hubdle.project.extensions.config.documentation.changelog._internal.Changelog.Version.Group.Item
+import com.javiersc.kotlin.stdlib.endWithNewLine
+import com.javiersc.kotlin.stdlib.removeDuplicateEmptyLines
+import com.javiersc.semver.Version as SemVer
+import java.io.File
+
+<span class="fc" id="L14">internal class Changelog(</span>
+<span class="fc" id="L15">    val header: String,</span>
+<span class="fc" id="L16">    val versions: List&lt;Version&gt;,</span>
+<span class="fc" id="L17">    val references: List&lt;Reference&gt;</span>
+) {
+
+    override fun toString(): String =
+<span class="fc" id="L21">        buildString {</span>
+<span class="fc" id="L22">                appendLine(header)</span>
+<span class="fc" id="L23">                appendLine()</span>
+<span class="fc bfc" id="L24" title="All 2 branches covered.">                for (version in versions) {</span>
+<span class="fc" id="L25">                    append(&quot;$version&quot;)</span>
+                }
+<span class="pc bpc" id="L27" title="2 of 4 branches missed.">                if (versions.isNotEmpty()) appendLine()</span>
+<span class="pc bpc" id="L28" title="1 of 2 branches missed.">                for (reference in references) {</span>
+<span class="nc" id="L29">                    appendLine(reference)</span>
+<span class="nc" id="L30">                    appendLine()</span>
+                }
+<span class="fc" id="L32">            }</span>
+<span class="fc" id="L33">            .lines()</span>
+<span class="fc" id="L34">            .dropLastWhile(String::isBlank)</span>
+<span class="fc" id="L35">            .joinToString(&quot;\n&quot;)</span>
+<span class="fc" id="L36">            .removeDuplicateEmptyLines()</span>
+<span class="fc" id="L37">            .endWithNewLine()</span>
+
+<span class="fc" id="L39">    internal class Version(val value: String, val groups: List&lt;Group&gt;) {</span>
+
+        val version: String
+            get() =
+<span class="pc bpc" id="L43" title="1 of 2 branches missed.">                if (value.contains(&quot;[&quot;)) value.substringAfter(&quot;[&quot;).substringBefore(&quot;]&quot;)</span>
+                else
+<span class="nc" id="L45">                    value</span>
+<span class="nc" id="L46">                        .substringAfterLast('#')</span>
+<span class="nc" id="L47">                        .substringBefore(&quot; - &quot;)</span>
+<span class="pc" id="L48">                        .filterNot(Char::isWhitespace)</span>
+
+<span class="fc" id="L50">        override fun toString(): String = buildString {</span>
+<span class="fc" id="L51">            appendLine(value)</span>
+<span class="fc" id="L52">            appendLine()</span>
+<span class="fc bfc" id="L53" title="All 2 branches covered.">            for (group in groups) {</span>
+<span class="fc" id="L54">                append(&quot;$group&quot;)</span>
+            }
+<span class="fc bfc" id="L56" title="All 2 branches covered.">            if (groups.isEmpty()) {</span>
+<span class="fc" id="L57">                appendLine(&quot;${Item.itemPrefix} ${Item.noChanges}&quot;)</span>
+<span class="fc" id="L58">                appendLine()</span>
+            }
+<span class="fc" id="L60">        }</span>
+
+<span class="fc" id="L62">        internal class Group(val value: String, val items: List&lt;Item&gt;) {</span>
+
+<span class="fc" id="L64">            override fun toString(): String = buildString {</span>
+<span class="fc" id="L65">                appendLine(value)</span>
+<span class="fc" id="L66">                appendLine()</span>
+<span class="fc bfc" id="L67" title="All 2 branches covered.">                for (item in items) {</span>
+<span class="fc" id="L68">                    appendLine(&quot;$item&quot;)</span>
+                }
+<span class="fc bfc" id="L70" title="All 4 branches covered.">                if (items.isNotEmpty()) appendLine()</span>
+<span class="fc" id="L71">            }</span>
+
+<span class="pc" id="L73">            internal class Item(val value: String) {</span>
+
+<span class="fc" id="L75">                override fun toString(): String = value.replace(&quot;- -&quot;, &quot;-&quot;)</span>
+                companion object {
+<span class="pc" id="L77">                    var itemPrefix: String = &quot;-&quot;</span>
+<span class="pc" id="L78">                    var noChanges: String = &quot;No changes&quot;</span>
+<span class="pc" id="L79">                    var unreleased: String = &quot;Unreleased&quot;</span>
+                }
+            }
+        }
+    }
+
+<span class="nc" id="L85">    internal class Reference(val value: String) {</span>
+
+        val version: String
+<span class="nc" id="L88">            get() = value.substringAfter(&quot;[&quot;).substringBefore(&quot;]&quot;)</span>
+
+<span class="nc" id="L90">        override fun toString(): String = value</span>
+    }
+
+    internal companion object
+}
+
+internal fun Changelog.Companion.fromFile(changelogFile: File): Changelog =
+<span class="nc" id="L97">    Changelog.fromString(changelogFile.readText())</span>
+
+internal fun Changelog.Companion.fromString(changelogText: String): Changelog {
+<span class="fc" id="L100">    val lines = changelogText.lines()</span>
+<span class="fc" id="L101">    val header = lines.first { it.startsWith(&quot;# &quot;) }</span>
+<span class="fc" id="L102">    val versions: List&lt;Version&gt; = buildVersions(lines)</span>
+<span class="fc" id="L103">    val references: List&lt;Reference&gt; = buildReferences(lines)</span>
+
+<span class="fc" id="L105">    return Changelog(header, versions, references)</span>
+}
+
+<span class="fc" id="L108">private fun buildVersions(lines: List&lt;String&gt;): List&lt;Version&gt; = buildList {</span>
+<span class="fc" id="L109">    val versions =</span>
+<span class="fc" id="L110">        buildMap&lt;String, List&lt;String&gt;&gt; {</span>
+<span class="fc bfc" id="L111" title="All 2 branches covered.">            lines.filter(String::isNotBlank).filter(String::isNotReference).forEach { line -&gt;</span>
+<span class="fc" id="L112">                when {</span>
+<span class="fc bfc" id="L113" title="All 2 branches covered.">                    line.startsWith(&quot;## &quot;) -&gt; set(line, getOrDefault(line, emptyList()))</span>
+<span class="pc bpc" id="L114" title="1 of 2 branches missed.">                    !line.startsWith(&quot;## &quot;) -&gt; {</span>
+<span class="fc bfc" id="L115" title="All 2 branches covered.">                        val key = entries.lastOrNull()?.key</span>
+<span class="fc bfc" id="L116" title="All 2 branches covered.">                        if (key != null) {</span>
+<span class="fc" id="L117">                            set(key, getOrDefault(key, emptyList()) + listOf(line))</span>
+                        }
+                    }
+                }
+<span class="fc" id="L121">            }</span>
+<span class="fc" id="L122">        }</span>
+
+<span class="fc" id="L124">    versions.forEach { (value, items) -&gt; add(Version(value, buildGroups(items))) }</span>
+<span class="fc" id="L125">}</span>
+
+<span class="fc" id="L127">private fun buildGroups(lines: List&lt;String&gt;): List&lt;Group&gt; = buildList {</span>
+<span class="fc" id="L128">    val groups =</span>
+<span class="fc" id="L129">        buildMap&lt;String, List&lt;String&gt;&gt; {</span>
+<span class="pc bpc" id="L130" title="1 of 2 branches missed.">            lines.filter(String::isNotBlank).forEach { line -&gt;</span>
+<span class="fc" id="L131">                when {</span>
+<span class="fc bfc" id="L132" title="All 2 branches covered.">                    line.startsWith(&quot;### &quot;) -&gt; set(line, getOrDefault(line, emptyList()))</span>
+<span class="pc bpc" id="L133" title="1 of 2 branches missed.">                    !line.startsWith(&quot;### &quot;) -&gt; {</span>
+<span class="fc bfc" id="L134" title="All 2 branches covered.">                        val key = entries.lastOrNull()?.key</span>
+<span class="fc bfc" id="L135" title="All 2 branches covered.">                        if (key != null) {</span>
+<span class="fc" id="L136">                            set(key, getOrDefault(key, emptyList()) + listOf(line))</span>
+                        }
+                    }
+                }
+<span class="fc" id="L140">            }</span>
+<span class="fc" id="L141">        }</span>
+<span class="fc" id="L142">    groups.forEach { (value, items) -&gt; add(Group(value, buildItems(items))) }</span>
+<span class="fc" id="L143">}</span>
+
+private fun buildReferences(lines: List&lt;String&gt;): List&lt;Reference&gt; {
+<span class="fc" id="L146">    val index = lines.indexOfLast { it.startsWith(&quot;[Unreleased]:&quot;) }</span>
+<span class="fc" id="L147">    val references =</span>
+<span class="pc bpc" id="L148" title="1 of 2 branches missed.">        if (index == -1) emptyList()</span>
+        else {
+<span class="nc" id="L150">            listOf(Reference(lines[index])) +</span>
+<span class="nc" id="L151">                lines</span>
+<span class="nc" id="L152">                    .subList(index + 1, lines.lastIndex)</span>
+<span class="nc bnc" id="L153" title="All 2 branches missed.">                    .filter(String::isNotBlank)</span>
+<span class="nc" id="L154">                    .map(::Reference)</span>
+<span class="nc" id="L155">                    .sortedByDescending { SemVer(it.version) }</span>
+        }
+<span class="fc" id="L157">    return references</span>
+}
+
+private fun buildItems(lines: List&lt;String&gt;): List&lt;Item&gt; =
+<span class="pc bpc" id="L161" title="1 of 2 branches missed.">    lines.filter(String::isNotBlank).filterNot { it.startsWith(&quot;#&quot;) }.map(::Item)</span>
+
+private val String.isNotReference: Boolean
+<span class="pc bpc" id="L164" title="1 of 2 branches missed.">    get() = !Regex(&quot;&quot;&quot;^(\[.*]:)&quot;&quot;&quot;).containsMatchIn(this)</span>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>HubdleKotlinComposeFeatureExtension.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">:</a> &gt; <a href="index.source.html" class="el_package">com.javiersc.hubdle.project.extensions.kotlin.features.shared</a> &gt; <span class="el_source">HubdleKotlinComposeFeatureExtension.kt</span></div><h1>HubdleKotlinComposeFeatureExtension.kt</h1><pre class="source lang-java linenums">package com.javiersc.hubdle.project.extensions.kotlin.features.shared
+
+import androidxComposeCompiler
+import com.javiersc.hubdle.project.extensions.HubdleDslMarker
+import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
+import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
+import com.javiersc.hubdle.project.extensions._internal.MAIN
+import com.javiersc.hubdle.project.extensions._internal.PluginId
+import com.javiersc.hubdle.project.extensions._internal.catalogDependency
+import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
+import com.javiersc.hubdle.project.extensions.android._internal.configureAndroidCommonExtension
+import com.javiersc.hubdle.project.extensions.apis.BaseHubdleDelegateExtension
+import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
+import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
+import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
+import com.javiersc.hubdle.project.extensions.dependencies._internal.constants.ANDROIDX_ACTIVITY_ACTIVITY_COMPOSE_MODULE
+import com.javiersc.hubdle.project.extensions.kotlin._internal.forKotlinSetsDependencies
+import com.javiersc.hubdle.project.extensions.kotlin.android.features.hubdleAndroidBuildFeatures
+import com.javiersc.hubdle.project.extensions.kotlin.android.features.hubdleAndroidFeatures
+import com.javiersc.hubdle.project.extensions.kotlin.hubdleKotlinAny
+import javax.inject.Inject
+import org.gradle.api.Action
+import org.gradle.api.Project
+import org.gradle.api.provider.Property
+import org.gradle.kotlin.dsl.configure
+import org.gradle.kotlin.dsl.invoke
+import org.jetbrains.compose.ComposeExtension
+
+public open class HubdleKotlinComposeFeatureExtension
+@Inject
+<span class="nc" id="L31">constructor(</span>
+    project: Project,
+<span class="nc" id="L33">) : HubdleConfigurableExtension(project) {</span>
+
+<span class="nc" id="L35">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
+
+    override val oneOfExtensions: Set&lt;HubdleEnableableExtension&gt;
+<span class="nc" id="L38">        get() = hubdleKotlinAny</span>
+
+<span class="nc" id="L40">    override val priority: Priority = Priority.P4</span>
+
+<span class="nc" id="L42">    public val compiler: Property&lt;String?&gt; = property { androidxComposeCompiler().get().toString() }</span>
+
+    @HubdleDslMarker
+    public fun compiler(dependencyNotation: String) {
+<span class="nc" id="L46">        compiler.set(dependencyNotation)</span>
+<span class="nc" id="L47">    }</span>
+
+<span class="nc" id="L49">    public val compilerVersion: Property&lt;String?&gt; = property {</span>
+        androidxComposeCompiler().get().versionConstraint.displayName
+    }
+
+    @HubdleDslMarker
+    public fun compilerVersion(version: String) {
+<span class="nc" id="L55">        compilerVersion.set(version)</span>
+<span class="nc" id="L56">    }</span>
+
+    @HubdleDslMarker
+<span class="nc" id="L59">    public fun compose(action: Action&lt;ComposeExtension&gt; = Action {}) {</span>
+<span class="nc" id="L60">        userConfigurable { action.invoke(the()) }</span>
+<span class="nc" id="L61">    }</span>
+
+    override fun Project.defaultConfiguration() {
+<span class="nc" id="L64">        applicablePlugin(</span>
+<span class="nc" id="L65">            priority = Priority.P4,</span>
+<span class="nc" id="L66">            scope = Scope.CurrentProject,</span>
+<span class="nc" id="L67">            pluginId = PluginId.JetbrainsCompose</span>
+        )
+<span class="nc" id="L69">        configurable {</span>
+<span class="nc" id="L70">            configure&lt;ComposeExtension&gt; { kotlinCompilerPlugin.set(compiler) }</span>
+<span class="nc bnc" id="L71" title="All 2 branches missed.">            if (hubdleAndroidFeatures.isFullEnabled.get()) {</span>
+<span class="nc" id="L72">                forKotlinSetsDependencies(MAIN) {</span>
+<span class="nc" id="L73">                    implementation(catalogDependency(ANDROIDX_ACTIVITY_ACTIVITY_COMPOSE_MODULE))</span>
+<span class="nc" id="L74">                }</span>
+<span class="nc" id="L75">                hubdleAndroidBuildFeatures.compose.set(true)</span>
+<span class="nc" id="L76">                configureAndroidCommonExtension {</span>
+<span class="nc" id="L77">                    defaultConfig {</span>
+<span class="nc" id="L78">                        buildFeatures.compose = true</span>
+<span class="nc" id="L79">                        composeOptions.kotlinCompilerExtensionVersion = compilerVersion.get()</span>
+<span class="nc" id="L80">                    }</span>
+<span class="nc" id="L81">                }</span>
+            }
+<span class="nc" id="L83">        }</span>
+<span class="nc" id="L84">    }</span>
+}
+
+public interface HubdleKotlinComposeDelegateFeatureExtension : BaseHubdleDelegateExtension {
+
+    public val compose: HubdleKotlinComposeFeatureExtension
+<span class="nc" id="L90">        get() = project.getHubdleExtension()</span>
+
+    @HubdleDslMarker
+<span class="nc" id="L93">    public fun compose(action: Action&lt;HubdleKotlinComposeFeatureExtension&gt; = Action {}) {</span>
+<span class="nc" id="L94">        compose.enableAndExecute(action)</span>
+<span class="nc" id="L95">    }</span>
+}
+
+internal val HubdleEnableableExtension.hubdleComposeFeature: HubdleKotlinComposeFeatureExtension
+<span class="nc" id="L99">    get() = getHubdleExtension()</span>
+
+internal val Project.hubdleComposeFeature: HubdleKotlinComposeFeatureExtension
+<span class="nc" id="L102">    get() = getHubdleExtension()</span>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

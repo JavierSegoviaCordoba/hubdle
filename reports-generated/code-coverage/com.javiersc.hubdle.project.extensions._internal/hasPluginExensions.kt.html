@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>hasPluginExensions.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">:</a> &gt; <a href="index.source.html" class="el_package">com.javiersc.hubdle.project.extensions._internal</a> &gt; <span class="el_source">hasPluginExensions.kt</span></div><h1>hasPluginExensions.kt</h1><pre class="source lang-java linenums">package com.javiersc.hubdle.project.extensions._internal
+
+import org.gradle.api.Project
+import org.jetbrains.kotlin.gradle.plugin.KotlinBasePluginWrapper
+
+internal val Project.isAndroidApplication: Boolean
+<span class="nc" id="L7">    get() = pluginManager.hasPlugin(&quot;com.android.application&quot;)</span>
+
+internal val Project.isAndroidLibrary: Boolean
+<span class="nc bnc" id="L10" title="All 4 branches missed.">    get() = pluginManager.hasPlugin(&quot;com.android.library&quot;) &amp;&amp; isKotlinMultiplatform.not()</span>
+
+internal val Project.isGradlePlugin: Boolean
+<span class="nc" id="L13">    get() = pluginManager.hasPlugin(&quot;org.gradle.java-gradle-plugin&quot;)</span>
+
+internal val Project.isJavaPlatform: Boolean
+<span class="nc" id="L16">    get() = pluginManager.hasPlugin(&quot;org.gradle.java-platform&quot;)</span>
+
+internal val Project.isKotlin: Boolean
+    get() =
+<span class="nc bnc" id="L20" title="All 2 branches missed.">        isKotlinJvm ||</span>
+<span class="nc bnc" id="L21" title="All 2 branches missed.">            isKotlinMultiplatform ||</span>
+<span class="nc bnc" id="L22" title="All 2 branches missed.">            isKotlinMultiplatformWithAndroid ||</span>
+<span class="nc bnc" id="L23" title="All 2 branches missed.">            hasKotlinGradlePlugin</span>
+
+internal val Project.isKotlinJvm: Boolean
+<span class="nc" id="L26">    get() = pluginManager.hasPlugin(&quot;org.jetbrains.kotlin.jvm&quot;)</span>
+
+internal val Project.isKotlinMultiplatform: Boolean
+<span class="nc" id="L29">    get() = pluginManager.hasPlugin(&quot;org.jetbrains.kotlin.multiplatform&quot;)</span>
+
+internal val Project.isKotlinMultiplatformWithAndroid: Boolean
+<span class="nc bnc" id="L32" title="All 4 branches missed.">    get() = isKotlinMultiplatform &amp;&amp; pluginManager.hasPlugin(&quot;com.android.library&quot;)</span>
+
+internal val Project.isVersionCatalog: Boolean
+<span class="nc" id="L35">    get() = pluginManager.hasPlugin(&quot;org.gradle.version-catalog&quot;)</span>
+
+internal val Project.hasKotlinGradlePlugin: Boolean
+<span class="nc bnc" id="L38" title="All 4 branches missed.">    get() = plugins.asSequence().mapNotNull { (it as? KotlinBasePluginWrapper) }.count() &gt; 0</span>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

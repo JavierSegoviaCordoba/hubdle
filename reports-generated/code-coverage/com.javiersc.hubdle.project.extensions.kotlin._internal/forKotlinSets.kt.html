@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>forKotlinSets.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">:</a> &gt; <a href="index.source.html" class="el_package">com.javiersc.hubdle.project.extensions.kotlin._internal</a> &gt; <span class="el_source">forKotlinSets.kt</span></div><h1>forKotlinSets.kt</h1><pre class="source lang-java linenums">package com.javiersc.hubdle.project.extensions.kotlin._internal
+
+import org.gradle.api.Project
+import org.gradle.kotlin.dsl.configure
+import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
+import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
+
+internal fun Project.forKotlinSetsDependencies(
+    vararg names: String,
+    action: KotlinDependencyHandler.() -&gt; Unit
+) {
+<span class="nc" id="L12">    configure&lt;KotlinProjectExtension&gt; {</span>
+<span class="nc bnc" id="L13" title="All 2 branches missed.">        sourceSets.configureEach { set -&gt; if (set.name in names) set.dependencies(action) }</span>
+<span class="nc" id="L14">    }</span>
+<span class="nc" id="L15">}</span>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

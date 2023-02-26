@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>HubdleKotlinExtension.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">:</a> &gt; <a href="index.source.html" class="el_package">com.javiersc.hubdle.project.extensions.kotlin</a> &gt; <span class="el_source">HubdleKotlinExtension.kt</span></div><h1>HubdleKotlinExtension.kt</h1><pre class="source lang-java linenums">package com.javiersc.hubdle.project.extensions.kotlin
+
+import com.javiersc.hubdle.project.extensions.HubdleDslMarker
+import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
+import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
+import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
+import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
+import com.javiersc.hubdle.project.extensions.kotlin.android.HubdleKotlinAndroidExtension
+import com.javiersc.hubdle.project.extensions.kotlin.android.application.hubdleAndroidApplication
+import com.javiersc.hubdle.project.extensions.kotlin.android.library.hubdleAndroidLibrary
+import com.javiersc.hubdle.project.extensions.kotlin.features.HubdleKotlinFeaturesExtension
+import com.javiersc.hubdle.project.extensions.kotlin.jvm.HubdleKotlinJvmExtension
+import com.javiersc.hubdle.project.extensions.kotlin.jvm.hubdleKotlinJvm
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.HubdleKotlinMultiplatformExtension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.hubdleKotlinMultiplatform
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.hubdleKotlinMultiplatformAndroid
+import javax.inject.Inject
+import org.gradle.api.Action
+import org.gradle.api.Project
+import org.gradle.api.provider.Property
+
+@HubdleDslMarker
+public open class HubdleKotlinExtension
+@Inject
+<span class="nc" id="L25">constructor(</span>
+    project: Project,
+<span class="nc" id="L27">) : HubdleEnableableExtension(project) {</span>
+
+<span class="nc" id="L29">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
+
+    public val features: HubdleKotlinFeaturesExtension
+<span class="nc" id="L32">        get() = getHubdleExtension()</span>
+
+    @HubdleDslMarker
+<span class="nc" id="L35">    public fun features(action: Action&lt;HubdleKotlinFeaturesExtension&gt; = Action {}) {</span>
+<span class="nc" id="L36">        features.enableAndExecute(action)</span>
+<span class="nc" id="L37">    }</span>
+
+    public val android: HubdleKotlinAndroidExtension
+<span class="nc" id="L40">        get() = getHubdleExtension()</span>
+
+    @HubdleDslMarker
+<span class="nc" id="L43">    public fun android(action: Action&lt;HubdleKotlinAndroidExtension&gt; = Action {}) {</span>
+<span class="nc" id="L44">        android.enableAndExecute(action)</span>
+<span class="nc" id="L45">    }</span>
+
+    public val jvm: HubdleKotlinJvmExtension
+<span class="nc" id="L48">        get() = getHubdleExtension()</span>
+
+    @HubdleDslMarker
+<span class="nc" id="L51">    public fun jvm(action: Action&lt;HubdleKotlinJvmExtension&gt; = Action {}) {</span>
+<span class="nc" id="L52">        jvm.enableAndExecute(action)</span>
+<span class="nc" id="L53">    }</span>
+
+    public val multiplatform: HubdleKotlinMultiplatformExtension
+<span class="nc" id="L56">        get() = getHubdleExtension()</span>
+
+    @HubdleDslMarker
+<span class="nc" id="L59">    public fun multiplatform(action: Action&lt;HubdleKotlinMultiplatformExtension&gt; = Action {}) {</span>
+<span class="nc" id="L60">        multiplatform.enableAndExecute(action)</span>
+<span class="nc" id="L61">    }</span>
+}
+
+internal val HubdleEnableableExtension.hubdleKotlin: HubdleKotlinExtension
+<span class="nc" id="L65">    get() = getHubdleExtension()</span>
+
+internal val HubdleEnableableExtension.hubdleKotlinAny: Set&lt;HubdleConfigurableExtension&gt;
+    get() =
+<span class="nc" id="L69">        setOf(</span>
+<span class="nc" id="L70">            hubdleAndroidApplication,</span>
+<span class="nc" id="L71">            hubdleAndroidLibrary,</span>
+<span class="nc" id="L72">            hubdleKotlinJvm,</span>
+<span class="nc" id="L73">            hubdleKotlinMultiplatform,</span>
+<span class="nc" id="L74">        )</span>
+
+internal val HubdleEnableableExtension.hubdleAndroidAny: Set&lt;HubdleConfigurableExtension&gt;
+    get() =
+<span class="nc" id="L78">        setOf(</span>
+<span class="nc" id="L79">            hubdleAndroidApplication,</span>
+<span class="nc" id="L80">            hubdleAndroidLibrary,</span>
+<span class="nc" id="L81">            hubdleKotlinMultiplatformAndroid,</span>
+<span class="nc" id="L82">        )</span>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

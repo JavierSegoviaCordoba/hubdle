@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>HubdleAndroidDelegateSharedApis.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">:</a> &gt; <a href="index.source.html" class="el_package">com.javiersc.hubdle.project.extensions.shared.android</a> &gt; <span class="el_source">HubdleAndroidDelegateSharedApis.kt</span></div><h1>HubdleAndroidDelegateSharedApis.kt</h1><pre class="source lang-java linenums">package com.javiersc.hubdle.project.extensions.shared.android
+
+import com.android.build.api.dsl.TestOptions
+import com.javiersc.hubdle.project.extensions.HubdleDslMarker
+import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
+import com.javiersc.hubdle.project.extensions.android._internal.androidCommonExtension
+import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
+import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
+import com.javiersc.hubdle.project.extensions.kotlin.android.features.HubdleKotlinAndroidBuildFeaturesExtension
+import org.gradle.api.Action
+import org.gradle.api.artifacts.Configuration
+
+public interface HubdleAndroidDelegateSharedApis {
+
+    @HubdleDslMarker
+    public fun HubdleEnableableExtension.testOptions(action: Action&lt;TestOptions&gt;) {
+<span class="nc" id="L17">        userConfigurable {</span>
+<span class="nc" id="L18">            val common = project.androidCommonExtension()</span>
+<span class="nc" id="L19">            action.execute(common.testOptions)</span>
+<span class="nc" id="L20">        }</span>
+<span class="nc" id="L21">    }</span>
+
+    @HubdleDslMarker
+    public fun HubdleEnableableExtension.configuration(
+        name: String,
+        action: Action&lt;Configuration&gt;
+    ) {
+<span class="nc" id="L28">        userConfigurable { project.configurations.named(name, action::execute) }</span>
+<span class="nc" id="L29">    }</span>
+
+    public val HubdleEnableableExtension.buildFeatures: HubdleKotlinAndroidBuildFeaturesExtension
+<span class="nc" id="L32">        get() = getHubdleExtension()</span>
+
+    @HubdleDslMarker
+<span class="nc" id="L35">    public fun HubdleEnableableExtension.buildFeatures(</span>
+<span class="nc" id="L36">        action: Action&lt;HubdleKotlinAndroidBuildFeaturesExtension&gt; = Action {}</span>
+    ) {
+<span class="nc" id="L38">        buildFeatures.enableAndExecute(action)</span>
+<span class="nc" id="L39">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

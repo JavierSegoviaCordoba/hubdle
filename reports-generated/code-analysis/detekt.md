@@ -4,37 +4,37 @@
 
 * 1,312 number of properties
 
-* 550 number of functions
+* 551 number of functions
 
-* 230 number of classes
+* 231 number of classes
 
-* 75 number of packages
+* 76 number of packages
 
-* 210 number of kt files
+* 212 number of kt files
 
 ## Complexity Report
 
-* 12,949 lines of code (loc)
+* 13,095 lines of code (loc)
 
-* 10,639 source lines of code (sloc)
+* 10,776 source lines of code (sloc)
 
-* 7,002 logical lines of code (lloc)
+* 7,089 logical lines of code (lloc)
 
 * 103 comment lines of code (cloc)
 
-* 928 cyclomatic complexity (mcc)
+* 932 cyclomatic complexity (mcc)
 
-* 478 cognitive complexity
+* 479 cognitive complexity
 
-* 90 number of total code smells
+* 91 number of total code smells
 
 * 0% comment source ratio
 
-* 132 mcc per 1,000 lloc
+* 131 mcc per 1,000 lloc
 
 * 12 code smells per 1,000 lloc
 
-## Findings (90)
+## Findings (91)
 
 ### complexity, ComplexCondition (1)
 
@@ -42,7 +42,7 @@ Complex conditions should be simplified and extracted into well-named methods if
 
 [Documentation](https://detekt.dev/docs/rules/complexity#complexcondition)
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/documentation/site/PrebuildSiteTask.kt:383:25
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/config/documentation/site/PrebuildSiteTask.kt:383:25
 ```
 This condition is too complex (4). Defined complexity threshold for conditions is set to '4'
 ```
@@ -64,7 +64,7 @@ Prefer splitting up complex methods into smaller, easier to test methods.
 
 [Documentation](https://detekt.dev/docs/rules/complexity#cyclomaticcomplexmethod)
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/features/HubdleKotlinAndroidBuildFeaturesExtension.kt:45:26
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/kotlin/android/features/HubdleKotlinAndroidBuildFeaturesExtension.kt:45:26
 ```
 The function defaultConfiguration appears to be too complex based on Cyclomatic Complexity (complexity: 15). Defined complexity threshold for methods is set to '15'
 ```
@@ -80,29 +80,45 @@ The function defaultConfiguration appears to be too complex based on Cyclomatic 
 
 ```
 
-### complexity, LongMethod (3)
+### complexity, LongMethod (4)
 
 One method should have one responsibility. Long methods tend to handle many things at once. Prefer smaller methods to make them easier to understand.
 
 [Documentation](https://detekt.dev/docs/rules/complexity#longmethod)
 
-* hubdle-gradle-plugin/build.gradle.kts:184:13
+* hubdle-project-gradle-plugin/build.gradle.kts:186:13
 ```
 The function buildHubdleDependencies is too long (71). The maximum length is 60.
 ```
 ```kotlin
-181         }
-182 }
-183 
-184 fun Project.buildHubdleDependencies() {
+183         }
+184 }
+185 
+186 fun Project.buildHubdleDependencies() {
 !!!             ^ error
-185     buildDir.resolve("generated/main/kotlin/hubdle_dependencies.kt").apply {
-186         parentFile.mkdirs()
-187         createNewFile()
+187     buildDir.resolve("generated/main/kotlin/hubdle_dependencies.kt").apply {
+188         parentFile.mkdirs()
+189         createNewFile()
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAppleExtension.kt:78:26
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/config/publishing/_internal/configureMavenPublishing.kt:72:41
+```
+The function configurePublishingExtension is too long (64). The maximum length is 60.
+```
+```kotlin
+69         }
+70     }
+71 
+72 private fun HubdleConfigurableExtension.configurePublishingExtension() =
+!!                                         ^ error
+73     with(project) {
+74         configure<PublishingExtension> {
+75             configureRepositories(this)
+
+```
+
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAppleExtension.kt:78:26
 ```
 The function defaultConfiguration is too long (94). The maximum length is 60.
 ```
@@ -118,7 +134,7 @@ The function defaultConfiguration is too long (94). The maximum length is 60.
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformNativeExtension.kt:43:26
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformNativeExtension.kt:43:26
 ```
 The function defaultConfiguration is too long (125). The maximum length is 60.
 ```
@@ -140,19 +156,19 @@ Excessive nesting leads to hidden complexity. Prefer extracting code to make it 
 
 [Documentation](https://detekt.dev/docs/rules/complexity#nestedblockdepth)
 
-* hubdle-gradle-plugin/build.gradle.kts:184:13
+* hubdle-project-gradle-plugin/build.gradle.kts:186:13
 ```
 Function buildHubdleDependencies is nested too deeply.
 ```
 ```kotlin
-181         }
-182 }
-183 
-184 fun Project.buildHubdleDependencies() {
+183         }
+184 }
+185 
+186 fun Project.buildHubdleDependencies() {
 !!!             ^ error
-185     buildDir.resolve("generated/main/kotlin/hubdle_dependencies.kt").apply {
-186         parentFile.mkdirs()
-187         createNewFile()
+187     buildDir.resolve("generated/main/kotlin/hubdle_dependencies.kt").apply {
+188         parentFile.mkdirs()
+189         createNewFile()
 
 ```
 
@@ -162,12 +178,12 @@ Too many functions inside a/an file/class/object/interface always indicate a vio
 
 [Documentation](https://detekt.dev/docs/rules/complexity#toomanyfunctions)
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/withPluginExtensions.kt:1:1
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/_internal/withPluginExtensions.kt:1:1
 ```
-File '/home/runner/work/hubdle/hubdle/hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/withPluginExtensions.kt' with '19' functions detected. Defined threshold inside files is set to '11'
+File '/home/runner/work/hubdle/hubdle/hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/_internal/withPluginExtensions.kt' with '19' functions detected. Defined threshold inside files is set to '11'
 ```
 ```kotlin
-1 package com.javiersc.hubdle.extensions._internal
+1 package com.javiersc.hubdle.project.extensions._internal
 ! ^ error
 2 
 3 import com.android.build.api.dsl.ApplicationExtension
@@ -175,7 +191,7 @@ File '/home/runner/work/hubdle/hubdle/hubdle-gradle-plugin/main/kotlin/com/javie
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/apis/HubdleEnableableExtension.kt:22:23
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/apis/HubdleEnableableExtension.kt:22:23
 ```
 Class 'HubdleEnableableExtension' with '11' functions detected. Defined threshold inside classes is set to '11'
 ```
@@ -191,7 +207,7 @@ Class 'HubdleEnableableExtension' with '11' functions detected. Defined threshol
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/HubdleConfigExtension.kt:27:19
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/config/HubdleConfigExtension.kt:27:19
 ```
 Class 'HubdleConfigExtension' with '11' functions detected. Defined threshold inside classes is set to '11'
 ```
@@ -207,7 +223,7 @@ Class 'HubdleConfigExtension' with '11' functions detected. Defined threshold in
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/language/settings/HubdleConfigLanguageSettingsExtension.kt:15:19
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/config/language/settings/HubdleConfigLanguageSettingsExtension.kt:15:19
 ```
 Class 'HubdleConfigLanguageSettingsExtension' with '11' functions detected. Defined threshold inside classes is set to '11'
 ```
@@ -223,7 +239,7 @@ Class 'HubdleConfigLanguageSettingsExtension' with '11' functions detected. Defi
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/HubdleKotlinMultiplatformExtension.kt:39:19
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/kotlin/multiplatform/HubdleKotlinMultiplatformExtension.kt:39:19
 ```
 Class 'HubdleKotlinMultiplatformExtension' with '14' functions detected. Defined threshold inside classes is set to '11'
 ```
@@ -245,7 +261,7 @@ Empty block of code detected. As they serve no purpose they should be removed.
 
 [Documentation](https://detekt.dev/docs/rules/empty-blocks#emptyfunctionblock)
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformCommonExtension.kt:31:49
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformCommonExtension.kt:31:49
 ```
 This empty block of code can be removed.
 ```
@@ -665,7 +681,7 @@ A member should not be given the same name as its parent class or object.
 
 [Documentation](https://detekt.dev/docs/rules/naming#membernameequalsclassname)
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/documentation/changelog/_internal/Changelog.kt:41:9
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/config/documentation/changelog/_internal/Changelog.kt:41:9
 ```
 A member is named after the class. This might result in confusion. Either rename the member or change it to a constructor.
 ```
@@ -687,12 +703,12 @@ Package names should match the naming convention set in the configuration.
 
 [Documentation](https://detekt.dev/docs/rules/naming#packagenaming)
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/CatalogDependencies.kt:1:1
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/_internal/CatalogDependencies.kt:1:1
 ```
 Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*
 ```
 ```kotlin
-1 package com.javiersc.hubdle.extensions._internal
+1 package com.javiersc.hubdle.project.extensions._internal
 ! ^ error
 2 
 3 import com.javiersc.gradle.extensions.version.catalogs.catalogNamesWithLibsAtFirst
@@ -700,27 +716,27 @@ Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/HubdleState.kt:3:1
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/_internal/HubdleState.kt:3:1
 ```
 Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*
 ```
 ```kotlin
 1 @file:Suppress("MagicNumber")
 2 
-3 package com.javiersc.hubdle.extensions._internal
+3 package com.javiersc.hubdle.project.extensions._internal
 ! ^ error
 4 
-5 import com.javiersc.hubdle.extensions._internal.ApplicablePlugin.Scope
-6 import com.javiersc.hubdle.extensions._internal.Configurable.Priority
+5 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
+6 import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/PluginId.kt:1:1
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/_internal/PluginId.kt:1:1
 ```
 Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*
 ```
 ```kotlin
-1 package com.javiersc.hubdle.extensions._internal
+1 package com.javiersc.hubdle.project.extensions._internal
 ! ^ error
 2 
 3 internal enum class PluginId(val id: String) {
@@ -728,12 +744,12 @@ Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/SourceSetsConstant.kt:1:1
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/_internal/SourceSetsConstant.kt:1:1
 ```
 Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*
 ```
 ```kotlin
-1 package com.javiersc.hubdle.extensions._internal
+1 package com.javiersc.hubdle.project.extensions._internal
 ! ^ error
 2 
 3 internal const val ANDROID_MAIN = "androidMain"
@@ -741,38 +757,38 @@ Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/checkCompatibility.kt:1:1
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/_internal/checkCompatibility.kt:1:1
 ```
 Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*
 ```
 ```kotlin
-1 package com.javiersc.hubdle.extensions._internal
+1 package com.javiersc.hubdle.project.extensions._internal
 ! ^ error
 2 
-3 import com.javiersc.hubdle.extensions.kotlin.android.application.hubdleAndroidApplication
-4 import com.javiersc.hubdle.extensions.kotlin.android.hubdleAndroid
+3 import com.javiersc.hubdle.project.extensions.kotlin.android.application.hubdleAndroidApplication
+4 import com.javiersc.hubdle.project.extensions.kotlin.android.hubdleAndroid
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/configureDependencies.kt:1:1
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/_internal/configureDependencies.kt:1:1
 ```
 Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*
 ```
 ```kotlin
-1 package com.javiersc.hubdle.extensions._internal
+1 package com.javiersc.hubdle.project.extensions._internal
 ! ^ error
 2 
-3 import com.javiersc.hubdle.extensions.apis.HubdleConfigurableExtension
-4 import com.javiersc.hubdle.extensions.config.testing.HubdleConfigTestingExtension.Options
+3 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
+4 import com.javiersc.hubdle.project.extensions.config.testing.HubdleConfigTestingExtension.Options
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/hasPluginExensions.kt:1:1
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/_internal/hasPluginExensions.kt:1:1
 ```
 Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*
 ```
 ```kotlin
-1 package com.javiersc.hubdle.extensions._internal
+1 package com.javiersc.hubdle.project.extensions._internal
 ! ^ error
 2 
 3 import org.gradle.api.Project
@@ -780,25 +796,25 @@ Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/hubdleExtension.kt:1:1
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/_internal/hubdleExtension.kt:1:1
 ```
 Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*
 ```
 ```kotlin
-1 package com.javiersc.hubdle.extensions._internal
+1 package com.javiersc.hubdle.project.extensions._internal
 ! ^ error
 2 
-3 import com.javiersc.hubdle.extensions.apis.BaseHubdleExtension as BaseHubdleExt
-4 import com.javiersc.hubdle.extensions.apis.HubdleEnableableExtension as HubdleEnableableExt
+3 import com.javiersc.hubdle.project.extensions.apis.BaseHubdleExtension as BaseHubdleExt
+4 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension as HubdleEnableableExt
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/projectExtensions.kt:1:1
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/_internal/projectExtensions.kt:1:1
 ```
 Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*
 ```
 ```kotlin
-1 package com.javiersc.hubdle.extensions._internal
+1 package com.javiersc.hubdle.project.extensions._internal
 ! ^ error
 2 
 3 import org.gradle.api.Project
@@ -806,12 +822,12 @@ Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/withPluginExtensions.kt:1:1
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/_internal/withPluginExtensions.kt:1:1
 ```
 Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*
 ```
 ```kotlin
-1 package com.javiersc.hubdle.extensions._internal
+1 package com.javiersc.hubdle.project.extensions._internal
 ! ^ error
 2 
 3 import com.android.build.api.dsl.ApplicationExtension
@@ -819,12 +835,12 @@ Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/android/_internal/AndroidCommonExtension.kt:1:1
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/android/_internal/AndroidCommonExtension.kt:1:1
 ```
 Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*
 ```
 ```kotlin
-1 package com.javiersc.hubdle.extensions.android._internal
+1 package com.javiersc.hubdle.project.extensions.android._internal
 ! ^ error
 2 
 3 import com.android.build.api.dsl.ApplicationExtension
@@ -832,40 +848,40 @@ Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/_internal/createAndConfigureHubdleConfigExtensions.kt:1:1
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/config/_internal/createAndConfigureHubdleConfigExtensions.kt:1:1
 ```
 Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*
 ```
 ```kotlin
-1 package com.javiersc.hubdle.extensions.config._internal
+1 package com.javiersc.hubdle.project.extensions.config._internal
 ! ^ error
 2 
-3 import com.javiersc.hubdle.extensions._internal.HubdleState
-4 import com.javiersc.hubdle.extensions.config.HubdleConfigExtension
+3 import com.javiersc.hubdle.project.extensions._internal.HubdleState
+4 import com.javiersc.hubdle.project.extensions.config.HubdleConfigExtension
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/documentation/changelog/_internal/Changelog.kt:3:1
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/config/documentation/changelog/_internal/Changelog.kt:3:1
 ```
 Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*
 ```
 ```kotlin
 1 @file:Suppress("SpreadOperator")
 2 
-3 package com.javiersc.hubdle.extensions.config.documentation.changelog._internal
+3 package com.javiersc.hubdle.project.extensions.config.documentation.changelog._internal
 ! ^ error
 4 
-5 import com.javiersc.hubdle.extensions.config.documentation.changelog._internal.Changelog.Reference
-6 import com.javiersc.hubdle.extensions.config.documentation.changelog._internal.Changelog.Version
+5 import com.javiersc.hubdle.project.extensions.config.documentation.changelog._internal.Changelog.Reference
+6 import com.javiersc.hubdle.project.extensions.config.documentation.changelog._internal.Changelog.Version
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/documentation/changelog/_internal/Extensions.kt:1:1
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/config/documentation/changelog/_internal/Extensions.kt:1:1
 ```
 Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*
 ```
 ```kotlin
-1 package com.javiersc.hubdle.extensions.config.documentation.changelog._internal
+1 package com.javiersc.hubdle.project.extensions.config.documentation.changelog._internal
 ! ^ error
 2 
 3 import java.io.File
@@ -873,14 +889,14 @@ Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/documentation/changelog/_internal/MergeChangelog.kt:3:1
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/config/documentation/changelog/_internal/MergeChangelog.kt:3:1
 ```
 Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*
 ```
 ```kotlin
 1 @file:Suppress("SpreadOperator")
 2 
-3 package com.javiersc.hubdle.extensions.config.documentation.changelog._internal
+3 package com.javiersc.hubdle.project.extensions.config.documentation.changelog._internal
 ! ^ error
 4 
 5 internal fun Changelog.merged(): Changelog {
@@ -888,12 +904,12 @@ Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/publishing/_internal/configureMavenPublishing.kt:1:1
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/config/publishing/_internal/configureMavenPublishing.kt:1:1
 ```
 Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*
 ```
 ```kotlin
-1 package com.javiersc.hubdle.extensions.config.publishing._internal
+1 package com.javiersc.hubdle.project.extensions.config.publishing._internal
 ! ^ error
 2 
 3 import com.javiersc.gradle.project.extensions.isNotSnapshot
@@ -901,38 +917,38 @@ Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/_internal/configureKotlinSourceSets.kt:1:1
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/kotlin/_internal/configureKotlinSourceSets.kt:1:1
 ```
 Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*
 ```
 ```kotlin
-1 package com.javiersc.hubdle.extensions.kotlin._internal
+1 package com.javiersc.hubdle.project.extensions.kotlin._internal
 ! ^ error
 2 
 3 import com.javiersc.gradle.tasks.extensions.namedLazily
-4 import com.javiersc.hubdle.extensions._internal.ApplicablePlugin.Scope
+4 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/_internal/createAndConfigureHubdleKotlinExtensions.kt:1:1
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/kotlin/_internal/createAndConfigureHubdleKotlinExtensions.kt:1:1
 ```
 Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*
 ```
 ```kotlin
-1 package com.javiersc.hubdle.extensions.kotlin._internal
+1 package com.javiersc.hubdle.project.extensions.kotlin._internal
 ! ^ error
 2 
-3 import com.javiersc.hubdle.extensions._internal.HubdleState
-4 import com.javiersc.hubdle.extensions.kotlin.HubdleKotlinExtension
+3 import com.javiersc.hubdle.project.extensions._internal.HubdleState
+4 import com.javiersc.hubdle.project.extensions.kotlin.HubdleKotlinExtension
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/_internal/forKotlinSets.kt:1:1
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/kotlin/_internal/forKotlinSets.kt:1:1
 ```
 Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*
 ```
 ```kotlin
-1 package com.javiersc.hubdle.extensions.kotlin._internal
+1 package com.javiersc.hubdle.project.extensions.kotlin._internal
 ! ^ error
 2 
 3 import org.gradle.api.Project
@@ -940,12 +956,12 @@ Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/_internal/calculateAndroidNamespace.kt:1:1
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/kotlin/android/_internal/calculateAndroidNamespace.kt:1:1
 ```
 Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*
 ```
 ```kotlin
-1 package com.javiersc.hubdle.extensions.kotlin.android._internal
+1 package com.javiersc.hubdle.project.extensions.kotlin.android._internal
 ! ^ error
 2 
 3 import com.android.build.api.dsl.ApplicationExtension
@@ -953,12 +969,12 @@ Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*
 
 ```
 
-* hubdle-gradle-plugin/test/kotlin/com/javiersc/hubdle/_utils/commitAndCheckout.kt:1:1
+* hubdle-project-gradle-plugin/test/kotlin/com/javiersc/hubdle/project/_utils/commitAndCheckout.kt:1:1
 ```
 Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*
 ```
 ```kotlin
-1 package com.javiersc.hubdle._utils
+1 package com.javiersc.hubdle.project._utils
 ! ^ error
 2 
 3 import java.io.File
@@ -966,12 +982,12 @@ Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*
 
 ```
 
-* hubdle-gradle-plugin/test/kotlin/com/javiersc/hubdle/_utils/resourceFile.kt:1:1
+* hubdle-project-gradle-plugin/test/kotlin/com/javiersc/hubdle/project/_utils/resourceFile.kt:1:1
 ```
 Package name should match the pattern: [a-z]+(\.[a-z][A-Za-z0-9]*)*
 ```
 ```kotlin
-1 package com.javiersc.hubdle._utils
+1 package com.javiersc.hubdle.project._utils
 ! ^ error
 2 
 3 import java.io.File
@@ -985,7 +1001,7 @@ Top level property names should follow the naming convention set in the projects
 
 [Documentation](https://detekt.dev/docs/rules/naming#toplevelpropertynaming)
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/PluginId.kt:37:19
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/_internal/PluginId.kt:37:19
 ```
 Top level constant names should match the pattern: [A-Z][_A-Z0-9]*
 ```
@@ -1006,7 +1022,7 @@ Variable names should follow the naming convention set in the projects configura
 
 [Documentation](https://detekt.dev/docs/rules/naming#variablenaming)
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinSqlDelightFeatureExtension.kt:48:16
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinSqlDelightFeatureExtension.kt:48:16
 ```
 Variable names should match the pattern: [a-z][A-Za-z0-9]*
 ```
@@ -1022,7 +1038,7 @@ Variable names should match the pattern: [a-z][A-Za-z0-9]*
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinSqlDelightFeatureExtension.kt:50:16
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinSqlDelightFeatureExtension.kt:50:16
 ```
 Variable names should match the pattern: [a-z][A-Za-z0-9]*
 ```
@@ -1038,7 +1054,7 @@ Variable names should match the pattern: [a-z][A-Za-z0-9]*
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/features/shared/HubdleKotlinSqlDelightFeatureExtension.kt:52:16
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinSqlDelightFeatureExtension.kt:52:16
 ```
 Variable names should match the pattern: [a-z][A-Za-z0-9]*
 ```
@@ -1060,7 +1076,7 @@ In most cases using a spread operator causes a full copy of the array to be crea
 
 [Documentation](https://detekt.dev/docs/rules/performance#spreadoperator)
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidExtension.kt:90:47
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidExtension.kt:90:47
 ```
 In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.
 ```
@@ -1114,7 +1130,7 @@ Flags a forbidden comment.
 
 [Documentation](https://detekt.dev/docs/rules/style#forbiddencomment)
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/projectExtensions.kt:11:1
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/_internal/projectExtensions.kt:11:1
 ```
 This comment contains 'TODO:' that has been defined as forbidden in detekt.
 ```
@@ -1130,7 +1146,7 @@ This comment contains 'TODO:' that has been defined as forbidden in detekt.
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/projectExtensions.kt:15:1
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/_internal/projectExtensions.kt:15:1
 ```
 This comment contains 'TODO:' that has been defined as forbidden in detekt.
 ```
@@ -1146,7 +1162,7 @@ This comment contains 'TODO:' that has been defined as forbidden in detekt.
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/projectExtensions.kt:20:1
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/_internal/projectExtensions.kt:20:1
 ```
 This comment contains 'TODO:' that has been defined as forbidden in detekt.
 ```
@@ -1162,7 +1178,7 @@ This comment contains 'TODO:' that has been defined as forbidden in detekt.
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/analysis/HubdleConfigAnalysisExtension.kt:93:13
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/config/analysis/HubdleConfigAnalysisExtension.kt:93:13
 ```
 This comment contains 'TODO:' that has been defined as forbidden in detekt.
 ```
@@ -1178,23 +1194,23 @@ This comment contains 'TODO:' that has been defined as forbidden in detekt.
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/publishing/_internal/configureMavenPublishing.kt:116:25
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/config/publishing/_internal/configureMavenPublishing.kt:150:25
 ```
 This comment contains 'TODO:' that has been defined as forbidden in detekt.
 ```
 ```kotlin
-113                 task.doLast {
-114                     val publishNonSemver = getBooleanProperty(HubdleProperty.Publishing.nonSemver)
-115                     check(isSemver || publishNonSemver) {
-116                         // TODO: inject `$version` instead of getting it from the `project`
+147                             com.javiersc.hubdle.project.HubdleProperty.Publishing.nonSemver
+148                         )
+149                     check(isSemver || publishNonSemver) {
+150                         // TODO: inject `$version` instead of getting it from the `project`
 !!!                         ^ error
-117                         """|Only semantic versions can be published (current: $version)
-118                            |Use `"-Ppublishing.nonSemver=true"` to force the publication 
-119                         """
+151                         """|Only semantic versions can be published (current: $version)
+152                            |Use `"-Ppublishing.nonSemver=true"` to force the publication 
+153                         """
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/HubdleKotlinAndroidExtension.kt:19:1
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/kotlin/android/HubdleKotlinAndroidExtension.kt:19:1
 ```
 This comment contains 'TODO:' that has been defined as forbidden in detekt.
 ```
@@ -1210,7 +1226,7 @@ This comment contains 'TODO:' that has been defined as forbidden in detekt.
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/library/HubdleKotlinAndroidLibraryExtension.kt:51:5
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/kotlin/android/library/HubdleKotlinAndroidLibraryExtension.kt:51:5
 ```
 This comment contains 'TODO:' that has been defined as forbidden in detekt.
 ```
@@ -1226,7 +1242,7 @@ This comment contains 'TODO:' that has been defined as forbidden in detekt.
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformJvmAndAndroidExtension.kt:36:17
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformJvmAndAndroidExtension.kt:36:17
 ```
 This comment contains 'TODO:' that has been defined as forbidden in detekt.
 ```
@@ -1242,7 +1258,7 @@ This comment contains 'TODO:' that has been defined as forbidden in detekt.
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformJvmAndAndroidExtension.kt:50:17
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformJvmAndAndroidExtension.kt:50:17
 ```
 This comment contains 'TODO:' that has been defined as forbidden in detekt.
 ```
@@ -1264,7 +1280,7 @@ Report magic numbers. Magic number is a numeric literal that is not defined as a
 
 [Documentation](https://detekt.dev/docs/rules/style#magicnumber)
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/HubdleKotlinAndroidExtension.kt:34:51
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/kotlin/android/HubdleKotlinAndroidExtension.kt:34:51
 ```
 This expression contains a magic number. Consider defining it to a well named constant.
 ```
@@ -1280,7 +1296,7 @@ This expression contains a magic number. Consider defining it to a well named co
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/HubdleKotlinAndroidExtension.kt:36:55
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/kotlin/android/HubdleKotlinAndroidExtension.kt:36:55
 ```
 This expression contains a magic number. Consider defining it to a well named constant.
 ```
@@ -1296,7 +1312,7 @@ This expression contains a magic number. Consider defining it to a well named co
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/android/HubdleKotlinAndroidExtension.kt:38:54
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/kotlin/android/HubdleKotlinAndroidExtension.kt:38:54
 ```
 This expression contains a magic number. Consider defining it to a well named constant.
 ```
@@ -1312,7 +1328,7 @@ This expression contains a magic number. Consider defining it to a well named co
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidExtension.kt:44:51
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidExtension.kt:44:51
 ```
 This expression contains a magic number. Consider defining it to a well named constant.
 ```
@@ -1328,7 +1344,7 @@ This expression contains a magic number. Consider defining it to a well named co
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidExtension.kt:46:55
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidExtension.kt:46:55
 ```
 This expression contains a magic number. Consider defining it to a well named constant.
 ```
@@ -1344,7 +1360,7 @@ This expression contains a magic number. Consider defining it to a well named co
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidExtension.kt:48:54
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidExtension.kt:48:54
 ```
 This expression contains a magic number. Consider defining it to a well named constant.
 ```
@@ -1366,7 +1382,7 @@ Line detected, which is longer than the defined maximum line length in the code 
 
 [Documentation](https://detekt.dev/docs/rules/style#maxlinelength)
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/_internal/HubdleState.kt:139:21
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/_internal/HubdleState.kt:139:21
 ```
 Line detected, which is longer than the defined maximum line length in the code style.
 ```
@@ -1388,7 +1404,7 @@ Private member is unused and should be removed.
 
 [Documentation](https://detekt.dev/docs/rules/style#unusedprivatemember)
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/config/binary/compatibility/validator/HubdleConfigBinaryCompatibilityValidatorExtension.kt:71:21
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/config/binary/compatibility/validator/HubdleConfigBinaryCompatibilityValidatorExtension.kt:71:21
 ```
 Private property `apiValidationExtension` is unused.
 ```
@@ -1403,20 +1419,20 @@ Private property `apiValidationExtension` is unused.
 
 ```
 
-* hubdle-gradle-plugin/main/kotlin/com/javiersc/hubdle/extensions/kotlin/_internal/configureKotlinSourceSets.kt:219:26
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/kotlin/_internal/configureKotlinSourceSets.kt:230:26
 ```
 Private property `testCompilation` is unused.
 ```
 ```kotlin
-216 private val KotlinTarget.mainCompilation: KotlinCompilation<KotlinCommonOptions>?
-217     get() = compilation(COMMON_MAIN) ?: compilation(MAIN)
-218 
-219 private val KotlinTarget.testCompilation: KotlinCompilation<KotlinCommonOptions>?
+227 private val KotlinTarget.mainCompilation: KotlinCompilation<KotlinCommonOptions>?
+228     get() = compilation(COMMON_MAIN) ?: compilation(MAIN)
+229 
+230 private val KotlinTarget.testCompilation: KotlinCompilation<KotlinCommonOptions>?
 !!!                          ^ error
-220     get() = compilation(COMMON_TEST) ?: compilation(TEST)
-221 
-222 private val KotlinTarget.testFixturesCompilation: KotlinCompilation<KotlinCommonOptions>?
+231     get() = compilation(COMMON_TEST) ?: compilation(TEST)
+232 
+233 private val KotlinTarget.testFixturesCompilation: KotlinCompilation<KotlinCommonOptions>?
 
 ```
 
-generated with [detekt version 1.22.0](https://detekt.dev/) on 2023-02-26 18:15:26 UTC
+generated with [detekt version 1.22.0](https://detekt.dev/) on 2023-02-26 19:49:06 UTC

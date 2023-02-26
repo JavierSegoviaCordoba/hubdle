@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AddChangelogItemTask.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">:</a> &gt; <a href="index.source.html" class="el_package">com.javiersc.hubdle.project.extensions.config.documentation.changelog</a> &gt; <span class="el_source">AddChangelogItemTask.kt</span></div><h1>AddChangelogItemTask.kt</h1><pre class="source lang-java linenums">package com.javiersc.hubdle.project.extensions.config.documentation.changelog
+
+import com.javiersc.hubdle.project.extensions.config.documentation.changelog._internal.Changelog
+import com.javiersc.hubdle.project.extensions.config.documentation.changelog._internal.changelogFile
+import com.javiersc.hubdle.project.extensions.config.documentation.changelog._internal.fromString
+import com.javiersc.kotlin.stdlib.isNotNullNorEmpty
+import java.io.File
+import javax.inject.Inject
+import org.eclipse.jgit.api.Git
+import org.eclipse.jgit.lib.Constants
+import org.eclipse.jgit.lib.Repository
+import org.eclipse.jgit.revwalk.RevCommit
+import org.eclipse.jgit.storage.file.FileRepositoryBuilder
+import org.gradle.api.DefaultTask
+import org.gradle.api.Project
+import org.gradle.api.model.ObjectFactory
+import org.gradle.api.provider.Property
+import org.gradle.api.tasks.Input
+import org.gradle.api.tasks.Optional
+import org.gradle.api.tasks.TaskAction
+import org.gradle.api.tasks.options.Option
+import org.gradle.kotlin.dsl.property
+
+public abstract class AddChangelogItemTask
+@Inject
+<span class="nc" id="L26">constructor(</span>
+    objects: ObjectFactory,
+<span class="nc" id="L28">) : DefaultTask() {</span>
+
+    @Input
+    @Option(option = &quot;added&quot;, description = &quot;Add an item to the `added` section&quot;)
+    @Optional
+<span class="nc" id="L33">    public val added: Property&lt;String?&gt; = objects.property()</span>
+
+    @Input
+    @Option(option = &quot;changed&quot;, description = &quot;Add an item to the `changed` section&quot;)
+    @Optional
+<span class="nc" id="L38">    public val changed: Property&lt;String?&gt; = objects.property()</span>
+
+    @Input
+    @Option(option = &quot;deprecated&quot;, description = &quot;Add an item to the `deprecated` section&quot;)
+    @Optional
+<span class="nc" id="L43">    public val deprecated: Property&lt;String?&gt; = objects.property()</span>
+
+    @Input
+    @Option(option = &quot;removed&quot;, description = &quot;Add an item to the `removed` section&quot;)
+    @Optional
+<span class="nc" id="L48">    public val removed: Property&lt;String?&gt; = objects.property()</span>
+
+    @Input
+    @Option(option = &quot;fixed&quot;, description = &quot;Add an item to the `fixed` section&quot;)
+    @Optional
+<span class="nc" id="L53">    public val fixed: Property&lt;String?&gt; = objects.property()</span>
+
+    @Input
+    @Option(option = &quot;updated&quot;, description = &quot;Add an item to the `updated` section&quot;)
+    @Optional
+<span class="nc" id="L58">    public val updated: Property&lt;String?&gt; = objects.property()</span>
+
+    @Input
+    @Option(
+        option = &quot;renovate&quot;,
+        description = &quot;Extract dependencies from the table in the PR body&quot;,
+    )
+    @Optional
+<span class="nc" id="L66">    public val renovate: Property&lt;String?&gt; = objects.property()</span>
+
+    @Input
+    @Option(
+        option = &quot;renovatePath&quot;,
+        description = &quot;Extract dependencies from the table in the PR body from a file&quot;,
+    )
+    @Optional
+<span class="nc" id="L74">    public val renovatePath: Property&lt;String?&gt; = objects.property()</span>
+
+    @Input
+    @Option(
+        option = &quot;renovateCommitTable&quot;,
+        description =
+            &quot;&quot;&quot;
+               Extract dependencies from the table in the commit body
+               Add `&quot;commitBodyTable&quot;: true` to Renovate config
+            &quot;&quot;&quot;,
+    )
+<span class="nc" id="L85">    public val renovateCommitTable: Property&lt;Boolean&gt; =</span>
+<span class="nc" id="L86">        objects.property&lt;Boolean&gt;().convention(false)</span>
+
+<span class="nc" id="L88">    init {</span>
+<span class="nc" id="L89">        group = &quot;changelog&quot;</span>
+<span class="nc" id="L90">    }</span>
+
+    @TaskAction
+    public fun run() {
+<span class="nc bnc" id="L94" title="All 2 branches missed.">        check(project.changelogFile.exists()) { &quot;CHANGELOG.md file doesn't found&quot; }</span>
+<span class="nc" id="L95">        setupSection(&quot;### Added&quot;, added.orNull)</span>
+<span class="nc" id="L96">        setupSection(&quot;### Changed&quot;, changed.orNull)</span>
+<span class="nc" id="L97">        setupSection(&quot;### Deprecated&quot;, deprecated.orNull)</span>
+<span class="nc" id="L98">        setupSection(&quot;### Removed&quot;, removed.orNull)</span>
+<span class="nc" id="L99">        setupSection(&quot;### Fixed&quot;, fixed.orNull)</span>
+<span class="nc" id="L100">        setupSection(&quot;### Updated&quot;, updated.orNull)</span>
+<span class="nc" id="L101">        setupRenovate()</span>
+<span class="nc" id="L102">    }</span>
+
+    public companion object {
+        public const val name: String = &quot;addChangelogItem&quot;
+    }
+}
+
+private val Project.changelog: String
+<span class="nc" id="L110">    get() = changelogFile.readText()</span>
+
+private fun AddChangelogItemTask.setupSection(header: String, item: String?) {
+<span class="nc bnc" id="L113" title="All 2 branches missed.">    if (item.isNotNullNorEmpty()) {</span>
+<span class="nc" id="L114">        with(project) {</span>
+<span class="nc" id="L115">            val updatedChangelog = changelog.addChanges(header, listOf(item))</span>
+<span class="nc" id="L116">            changelogFile.writeText(updatedChangelog.toString())</span>
+<span class="nc" id="L117">        }</span>
+    }
+<span class="nc" id="L119">}</span>
+
+private fun AddChangelogItemTask.setupRenovate(): Unit =
+<span class="nc" id="L122">    with(project) {</span>
+<span class="nc" id="L123">        val dependenciesFromPullRequest: List&lt;String&gt; =</span>
+<span class="nc" id="L124">            dependenciesFromRenovatePullRequestBody(renovate.orNull, renovatePath.orNull)</span>
+
+<span class="nc" id="L126">        val dependenciesFromCommit: List&lt;String&gt; =</span>
+<span class="nc bnc" id="L127" title="All 2 branches missed.">            if (renovateCommitTable.get()) dependenciesFromRenovateCommit() else emptyList()</span>
+
+<span class="nc" id="L129">        val updatedLabel = &quot;### Updated&quot;</span>
+
+<span class="nc" id="L131">        when {</span>
+<span class="nc bnc" id="L132" title="All 4 branches missed.">            dependenciesFromPullRequest.isNotEmpty() -&gt; {</span>
+<span class="nc" id="L133">                logger.lifecycle(updatedLabel)</span>
+<span class="nc bnc" id="L134" title="All 2 branches missed.">                for (dependencyFromPullRequest in dependenciesFromPullRequest) {</span>
+<span class="nc" id="L135">                    logger.lifecycle(&quot;- $dependencyFromPullRequest&quot;)</span>
+                }
+
+<span class="nc" id="L138">                val updatedChangelog =</span>
+<span class="nc" id="L139">                    changelog.addChanges(updatedLabel, dependenciesFromPullRequest)</span>
+<span class="nc" id="L140">                changelogFile.writeText(updatedChangelog.toString())</span>
+            }
+<span class="nc bnc" id="L142" title="All 4 branches missed.">            dependenciesFromCommit.isNotEmpty() -&gt; {</span>
+<span class="nc" id="L143">                logger.lifecycle(updatedLabel)</span>
+<span class="nc bnc" id="L144" title="All 2 branches missed.">                for (dependencyFromCommit in dependenciesFromCommit) {</span>
+<span class="nc" id="L145">                    logger.lifecycle(&quot;- $dependencyFromCommit&quot;)</span>
+                }
+
+<span class="nc" id="L148">                val updatedChangelog = changelog.addChanges(updatedLabel, dependenciesFromCommit)</span>
+<span class="nc" id="L149">                changelogFile.writeText(updatedChangelog.toString())</span>
+            }
+        }
+<span class="nc" id="L152">    }</span>
+
+private fun String.addChanges(header: String, changes: List&lt;String&gt;): Changelog =
+<span class="nc" id="L155">    buildList&lt;String&gt; {</span>
+<span class="nc" id="L156">            val firstVersionIndex =</span>
+<span class="nc" id="L157">                lines().indexOfFirst {</span>
+<span class="nc" id="L158">                    val isUnreleased: Boolean =</span>
+<span class="nc bnc" id="L159" title="All 4 branches missed.">                        it.contains(&quot;## [Unreleased]&quot;, true) || it.contains(&quot;## Unreleased&quot;, true)</span>
+<span class="nc bnc" id="L160" title="All 2 branches missed.">                    val isNotUnreleased = !isUnreleased</span>
+<span class="nc bnc" id="L161" title="All 4 branches missed.">                    val isHeader = it.startsWith(&quot;## [&quot;) || it.startsWith(&quot;## &quot;)</span>
+
+<span class="nc bnc" id="L163" title="All 4 branches missed.">                    isHeader &amp;&amp; isNotUnreleased</span>
+                }
+<span class="nc" id="L165">            var shouldAddUpdate = true</span>
+<span class="nc" id="L166">            lines().onEach { line -&gt;</span>
+<span class="nc bnc" id="L167" title="All 4 branches missed.">                if (line.startsWith(header) &amp;&amp; shouldAddUpdate) {</span>
+<span class="nc" id="L168">                    shouldAddUpdate = false</span>
+<span class="nc" id="L169">                    add(line)</span>
+<span class="nc bnc" id="L170" title="All 2 branches missed.">                    for (change in changes) {</span>
+<span class="nc bnc" id="L171" title="All 2 branches missed.">                        if (lines().subList(0, firstVersionIndex).none { it.contains(change) }) {</span>
+<span class="nc" id="L172">                            add(&quot;- $change&quot;)</span>
+                        }
+                    }
+                } else {
+<span class="nc" id="L176">                    add(line)</span>
+                }
+<span class="nc" id="L178">            }</span>
+<span class="nc" id="L179">            runCatching {</span>
+<span class="nc" id="L180">                forEachIndexed { index: Int, line -&gt;</span>
+<span class="nc" id="L181">                    val updateRegex = &quot;&quot;&quot;(- `)(.*)( )(-&gt;)( )(.*)(`)&quot;&quot;&quot;</span>
+<span class="nc bnc" id="L182" title="All 2 branches missed.">                    if (Regex(updateRegex).matches(line)) {</span>
+<span class="nc bnc" id="L183" title="All 2 branches missed.">                        for (j in index + 1 until firstVersionIndex) {</span>
+<span class="nc" id="L184">                            val lineToRemove = this[j]</span>
+<span class="nc" id="L185">                            val shouldRemovePreviousUpdate =</span>
+<span class="nc bnc" id="L186" title="All 2 branches missed.">                                lineToRemove.module == line.module &amp;&amp;</span>
+<span class="nc bnc" id="L187" title="All 2 branches missed.">                                    Regex(updateRegex).matches(lineToRemove)</span>
+
+<span class="nc bnc" id="L189" title="All 2 branches missed.">                            if (shouldRemovePreviousUpdate) removeAt(j)</span>
+                        }
+                    }
+<span class="nc" id="L192">                }</span>
+<span class="nc" id="L193">            }</span>
+<span class="nc" id="L194">        }</span>
+<span class="nc" id="L195">        .joinToString(&quot;\n&quot;)</span>
+<span class="nc" id="L196">        .run(Changelog.Companion::fromString)</span>
+
+private fun Project.dependenciesFromRenovatePullRequestBody(
+    body: String?,
+    path: String?
+): List&lt;String&gt; {
+<span class="nc" id="L202">    val renovateLines: List&lt;String&gt; =</span>
+<span class="nc" id="L203">        when {</span>
+<span class="nc bnc" id="L204" title="All 8 branches missed.">            body?.isNotBlank() == true -&gt; body.split(&quot;&quot;&quot;\n&quot;&quot;&quot;)</span>
+<span class="nc bnc" id="L205" title="All 8 branches missed.">            path?.isNotBlank() == true -&gt; File(&quot;$rootDir/$path&quot;).readText().split(&quot;\n&quot;)</span>
+<span class="nc" id="L206">            else -&gt; emptyList()</span>
+        }
+
+<span class="nc" id="L209">    return renovateLines</span>
+<span class="nc" id="L210">        .asSequence()</span>
+<span class="nc" id="L211">        .filter(String::isNotBlank)</span>
+<span class="nc" id="L212">        .map { it.replace(&quot;&quot;&quot;\n&quot;&quot;&quot;, &quot;\n&quot;) }</span>
+<span class="nc bnc" id="L213" title="All 2 branches missed.">        .dropWhile { it.startsWith(&quot;| Package | Change |&quot;).not() }</span>
+<span class="nc bnc" id="L214" title="All 2 branches missed.">        .dropWhile { it.startsWith(&quot;|---&quot;).not() }</span>
+<span class="nc" id="L215">        .drop(1)</span>
+<span class="nc" id="L216">        .takeWhile { it.startsWith(&quot;| &quot;) }</span>
+<span class="nc" id="L217">        .flatMap { it.split(&quot;|&quot;) }</span>
+<span class="nc" id="L218">        .map { it.replace(&quot; &quot;, &quot;&quot;) }</span>
+<span class="nc bnc" id="L219" title="All 2 branches missed.">        .map { if (it.startsWith(&quot;`&quot;).not()) it else it.replace(&quot;`&quot;, &quot;&quot;).split(&quot;-&gt;&quot;)[1] }</span>
+<span class="nc" id="L220">        .filter(String::isNotBlank)</span>
+<span class="nc bnc" id="L221" title="All 2 branches missed.">        .filter { it.startsWith(&quot;[!&quot;).not() }</span>
+<span class="nc bnc" id="L222" title="All 4 branches missed.">        .map { if (it.startsWith(&quot;[&quot;)) it.drop(1).takeWhile { char -&gt; char != ']' } else it }</span>
+<span class="nc" id="L223">        .zipWithNext { a: String, b: String -&gt;</span>
+<span class="nc bnc" id="L224" title="All 6 branches missed.">            if (a.first().run { isLetter() || this == '[' }) &quot;`$a -&gt; $b`&quot; else null</span>
+        }
+<span class="nc" id="L226">        .filterNotNull()</span>
+<span class="nc" id="L227">        .toList()</span>
+}
+
+private fun Project.dependenciesFromRenovateCommit(): List&lt;String&gt; {
+<span class="nc" id="L231">    val gitFolder = File(&quot;${rootProject.rootDir}&quot;).walkTopDown().first { it.name == &quot;.git&quot; }</span>
+
+<span class="nc" id="L233">    val repository: Repository =</span>
+<span class="nc" id="L234">        FileRepositoryBuilder().setGitDir(gitFolder).readEnvironment().findGitDir().build()</span>
+
+<span class="nc" id="L236">    val head = repository.resolve(Constants.HEAD).name</span>
+
+<span class="nc" id="L238">    val commits: List&lt;RevCommit&gt; =</span>
+<span class="nc" id="L239">        Git(repository).log().add(repository.resolve(head)).call().toList()</span>
+
+<span class="nc" id="L241">    val latestCommit: RevCommit =</span>
+<span class="nc" id="L242">        commits.first { commit -&gt;</span>
+<span class="nc" id="L243">            listOf(&quot;datasource&quot;, &quot;package&quot;, &quot;from&quot;, &quot;to&quot;).all { keyword -&gt;</span>
+<span class="nc" id="L244">                keyword in commit.fullMessage</span>
+            }
+        }
+
+<span class="nc" id="L248">    return latestCommit.fullMessage</span>
+<span class="nc" id="L249">        .lines()</span>
+<span class="nc bnc" id="L250" title="All 2 branches missed.">        .dropWhile { it.startsWith(&quot;| ----&quot;).not() }</span>
+<span class="nc" id="L251">        .drop(1)</span>
+<span class="nc bnc" id="L252" title="All 4 branches missed.">        .dropLastWhile { it.startsWith(&quot;|&quot;).not() &amp;&amp; it.endsWith(&quot;|&quot;).not() }</span>
+<span class="nc" id="L253">        .map {</span>
+<span class="nc" id="L254">            val data = it.filterNot(Char::isWhitespace).split(&quot;|&quot;).drop(2).dropLast(1)</span>
+<span class="nc" id="L255">            &quot;`${data.first()} -&gt; ${data.last()}`&quot;</span>
+        }
+<span class="nc" id="L257">        .distinct()</span>
+}
+
+private val String.module: String
+    get() =
+<span class="nc" id="L262">        filterNot(Char::isWhitespace)</span>
+<span class="nc" id="L263">            .replace(&quot;`&quot;, &quot;&quot;)</span>
+<span class="nc" id="L264">            .replaceAfter(&quot;-&gt;&quot;, &quot;&quot;)</span>
+<span class="nc" id="L265">            .replace(&quot;-&gt;&quot;, &quot;&quot;)</span>
+<span class="nc" id="L266">            .drop(1)</span>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

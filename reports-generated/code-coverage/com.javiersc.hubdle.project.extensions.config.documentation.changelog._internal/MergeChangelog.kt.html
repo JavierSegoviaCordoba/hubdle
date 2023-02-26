@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MergeChangelog.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">:</a> &gt; <a href="index.source.html" class="el_package">com.javiersc.hubdle.project.extensions.config.documentation.changelog._internal</a> &gt; <span class="el_source">MergeChangelog.kt</span></div><h1>MergeChangelog.kt</h1><pre class="source lang-java linenums">@file:Suppress(&quot;SpreadOperator&quot;)
+
+package com.javiersc.hubdle.project.extensions.config.documentation.changelog._internal
+
+internal fun Changelog.merged(): Changelog {
+<span class="fc" id="L6">    val versionsMap: Map&lt;Changelog.Version, List&lt;Changelog.Version&gt;&gt; = buildMap {</span>
+<span class="fc bfc" id="L7" title="All 2 branches covered.">        for (version in versions) {</span>
+<span class="fc" id="L8">            when {</span>
+<span class="fc bfc" id="L9" title="All 2 branches covered.">                version.isFinal -&gt; put(version, getOrDefault(version, emptyList()))</span>
+<span class="pc bpc" id="L10" title="1 of 4 branches missed.">                !version.isFinal &amp;&amp; version.hasFinal(keys) -&gt; {</span>
+<span class="fc" id="L11">                    val versionKey = keys.versionKey(version)</span>
+<span class="pc bpc" id="L12" title="1 of 2 branches missed.">                    versionKey?.let {</span>
+<span class="fc" id="L13">                        put(versionKey, getOrDefault(versionKey, emptyList()) + listOf(version))</span>
+                    }
+                }
+                else -&gt; {
+<span class="fc" id="L17">                    put(version, emptyList())</span>
+                }
+            }
+        }
+<span class="fc" id="L21">    }</span>
+
+<span class="fc" id="L23">    val versions: List&lt;Changelog.Version&gt; =</span>
+<span class="fc" id="L24">        versionsMap.map { (version, subVersions) -&gt;</span>
+<span class="fc" id="L25">            val groups: List&lt;Changelog.Version.Group&gt; =</span>
+<span class="fc" id="L26">                (listOf(version) + subVersions).map { it.groups.toList() }.flatten()</span>
+
+<span class="fc" id="L28">            val groupedGroups = groups.groupBy { it.value }</span>
+
+<span class="fc" id="L30">            val mergedGroups: List&lt;Changelog.Version.Group&gt; =</span>
+<span class="fc" id="L31">                groupedGroups.mapNotNull { (key, groups) -&gt;</span>
+<span class="fc" id="L32">                    val items: List&lt;Changelog.Version.Group.Item&gt; =</span>
+<span class="fc" id="L33">                        groups.filter { it.value == key }.flatMap { it.items.toList() }</span>
+
+<span class="fc" id="L35">                    when {</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">                        version.unreleased -&gt; Changelog.Version.Group(key, items)</span>
+<span class="pc bpc" id="L37" title="2 of 4 branches missed.">                        items.isNotEmpty() -&gt; Changelog.Version.Group(key, items)</span>
+<span class="nc" id="L38">                        else -&gt; null</span>
+                    }
+                }
+
+<span class="fc" id="L42">            Changelog.Version(version.value, mergedGroups)</span>
+        }
+
+<span class="fc" id="L45">    val references: List&lt;Changelog.Reference&gt; =</span>
+<span class="pc" id="L46">        references.filter { it.version in versions.map(Changelog.Version::version) }</span>
+
+<span class="fc" id="L48">    return Changelog(header, versions, references)</span>
+}
+
+private fun Changelog.Version.extractVersionWithoutStage(): String =
+<span class="fc bfc" id="L52" title="All 4 branches covered.">    version.takeWhile { it.isDigit() || it == '.' }</span>
+
+private val Changelog.Version.unreleased: Boolean
+<span class="fc" id="L55">    get() = version.contains(&quot;Unreleased&quot;, ignoreCase = true)</span>
+
+private val Changelog.Version.isFinal: Boolean
+<span class="fc bfc" id="L58" title="All 4 branches covered.">    get() = version.all { it.isDigit() || it == '.' }</span>
+
+private fun Changelog.Version.hasFinal(finalVersions: Iterable&lt;Changelog.Version&gt;): Boolean =
+<span class="fc" id="L61">    finalVersions.any { it.version == extractVersionWithoutStage() }</span>
+
+private fun Iterable&lt;Changelog.Version&gt;.versionKey(version: Changelog.Version): Changelog.Version? =
+<span class="fc" id="L64">    firstOrNull {</span>
+<span class="fc" id="L65">        it.value.contains(version.extractVersionWithoutStage())</span>
+<span class="fc" id="L66">    }</span>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

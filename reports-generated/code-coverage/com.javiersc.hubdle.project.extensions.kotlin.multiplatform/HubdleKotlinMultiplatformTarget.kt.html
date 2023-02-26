@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>HubdleKotlinMultiplatformTarget.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">:</a> &gt; <a href="index.source.html" class="el_package">com.javiersc.hubdle.project.extensions.kotlin.multiplatform</a> &gt; <span class="el_source">HubdleKotlinMultiplatformTarget.kt</span></div><h1>HubdleKotlinMultiplatformTarget.kt</h1><pre class="source lang-java linenums">package com.javiersc.hubdle.project.extensions.kotlin.multiplatform
+
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.HubdleKotlinMultiplatformTarget.Android
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.HubdleKotlinMultiplatformTarget.Apple
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.HubdleKotlinMultiplatformTarget.IOS
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.HubdleKotlinMultiplatformTarget.Jvm
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.HubdleKotlinMultiplatformTarget.JvmAndAndroid
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.HubdleKotlinMultiplatformTarget.Linux
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.HubdleKotlinMultiplatformTarget.MacOS
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.HubdleKotlinMultiplatformTarget.MinGW
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.HubdleKotlinMultiplatformTarget.Native
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.HubdleKotlinMultiplatformTarget.TvOS
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.HubdleKotlinMultiplatformTarget.WatchOS
+
+<span class="nc" id="L15">internal enum class HubdleKotlinMultiplatformTarget(val target: String) {</span>
+<span class="nc" id="L16">    Apple(target = &quot;apple&quot;),</span>
+<span class="nc" id="L17">    Common(target = &quot;common&quot;),</span>
+<span class="nc" id="L18">    Android(target = &quot;android&quot;),</span>
+<span class="nc" id="L19">    Jvm(target = &quot;jvm&quot;),</span>
+<span class="nc" id="L20">    JvmAndAndroid(target = &quot;jvmAndAndroid&quot;),</span>
+<span class="nc" id="L21">    IOS(target = &quot;ios&quot;),</span>
+<span class="nc" id="L22">    MacOS(target = &quot;macos&quot;),</span>
+<span class="nc" id="L23">    WatchOS(target = &quot;watchos&quot;),</span>
+<span class="nc" id="L24">    TvOS(target = &quot;tvos&quot;),</span>
+<span class="nc" id="L25">    Native(target = &quot;native&quot;),</span>
+<span class="nc" id="L26">    Linux(target = &quot;linux&quot;),</span>
+<span class="nc" id="L27">    MinGW(target = &quot;mingw&quot;),</span>
+<span class="nc" id="L28">    JS(target = &quot;js&quot;),</span>
+<span class="nc" id="L29">    WAsm(target = &quot;wasm&quot;),</span>
+    ;
+
+<span class="nc" id="L32">    override fun toString(): String = target</span>
+}
+
+<span class="nc" id="L35">internal val hubdleAppleTargets = setOf(Apple, IOS, MacOS, WatchOS, TvOS)</span>
+<span class="nc" id="L36">internal val nativeTargets = setOf(Native, IOS, Linux, MacOS, MinGW, WatchOS, TvOS)</span>
+<span class="nc" id="L37">internal val hubdleJvmTargets = setOf(Android, Jvm, JvmAndAndroid)</span>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

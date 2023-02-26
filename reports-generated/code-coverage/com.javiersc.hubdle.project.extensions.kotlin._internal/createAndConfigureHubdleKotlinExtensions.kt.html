@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>createAndConfigureHubdleKotlinExtensions.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">:</a> &gt; <a href="index.source.html" class="el_package">com.javiersc.hubdle.project.extensions.kotlin._internal</a> &gt; <span class="el_source">createAndConfigureHubdleKotlinExtensions.kt</span></div><h1>createAndConfigureHubdleKotlinExtensions.kt</h1><pre class="source lang-java linenums">package com.javiersc.hubdle.project.extensions.kotlin._internal
+
+import com.javiersc.hubdle.project.extensions._internal.HubdleState
+import com.javiersc.hubdle.project.extensions.kotlin.HubdleKotlinExtension
+import com.javiersc.hubdle.project.extensions.kotlin.android.HubdleKotlinAndroidExtension
+import com.javiersc.hubdle.project.extensions.kotlin.android.application.HubdleKotlinAndroidApplicationExtension
+import com.javiersc.hubdle.project.extensions.kotlin.android.application.features.HubdleKotlinAndroidApplicationFeaturesExtension
+import com.javiersc.hubdle.project.extensions.kotlin.android.features.HubdleKotlinAndroidBuildFeaturesExtension
+import com.javiersc.hubdle.project.extensions.kotlin.android.features.HubdleKotlinAndroidFeaturesExtension
+import com.javiersc.hubdle.project.extensions.kotlin.android.library.HubdleKotlinAndroidLibraryExtension
+import com.javiersc.hubdle.project.extensions.kotlin.android.library.features.HubdleKotlinAndroidLibraryFeaturesExtension
+import com.javiersc.hubdle.project.extensions.kotlin.features.HubdleKotlinFeaturesExtension
+import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotlinComposeFeatureExtension
+import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotlinCoroutinesFeatureExtension
+import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotlinExtendedStdlibFeatureExtension
+import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotlinKotestFeatureExtension
+import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotlinMoleculeFeatureExtension
+import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotlinSerializationFeatureExtension
+import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotlinSqlDelightFeatureExtension
+import com.javiersc.hubdle.project.extensions.kotlin.jvm.HubdleKotlinJvmExtension
+import com.javiersc.hubdle.project.extensions.kotlin.jvm.features.HubdleKotlinJvmFeaturesExtension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.HubdleKotlinMultiplatformExtension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.features.HubdleKotlinMultiplatformFeaturesExtension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.features.HubdleKotlinMultiplatformMinimumTargetPerOsFeatureExtension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformAndroidExtension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformAppleExtension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformCommonExtension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformIOSExtension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformJsExtension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformJvmAndAndroidExtension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformJvmExtension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformLinuxExtension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformMacOSExtension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformMinGWExtension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformNativeExtension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformTvOSExtension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformWAsmExtension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformWatchOSExtension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.ios.HubdleKotlinMultiplatformIOSArm32Extension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.ios.HubdleKotlinMultiplatformIOSArm64Extension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.ios.HubdleKotlinMultiplatformIOSSimulatorArm64Extension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.ios.HubdleKotlinMultiplatformIOSX64Extension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.linux.KotlinMultiplatformLinuxArm32HfpExtension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.linux.KotlinMultiplatformLinuxArm64Extension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.linux.KotlinMultiplatformLinuxMips32Extension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.linux.KotlinMultiplatformLinuxMipsel32Extension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.linux.KotlinMultiplatformLinuxX64Extension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.macos.HubdleKotlinMultiplatformMacOSArm64Extension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.macos.HubdleKotlinMultiplatformMacOSX64Extension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.mingw.HubdleKotlinMultiplatformMinGWX64Extension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.mingw.HubdleKotlinMultiplatformMinGWX86Extension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.tvos.HubdleKotlinMultiplatformTvOSArm64Extension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.tvos.HubdleKotlinMultiplatformTvOSSimulatorArm64Extension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.tvos.HubdleKotlinMultiplatformTvOSX64Extension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.wasm.HubdleKotlinMultiplatformWAsm32Extension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.watchos.HubdleKotlinMultiplatformWatchOSArm32Extension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.watchos.HubdleKotlinMultiplatformWatchOSArm64Extension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.watchos.HubdleKotlinMultiplatformWatchOSSimulatorArm64Extension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.watchos.HubdleKotlinMultiplatformWatchOSX64Extension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.watchos.HubdleKotlinMultiplatformWatchOSX86Extension
+import com.javiersc.hubdle.project.extensions.shared.features.HubdleGradleFeatureExtension
+import com.javiersc.hubdle.project.extensions.shared.features.HubdleIntellijFeatureExtension
+import com.javiersc.hubdle.project.extensions.shared.features.HubdleJavaApplicationFeatureExtension
+import com.javiersc.hubdle.project.extensions.shared.features.HubdleJavaVersionFeatureExtension
+import com.javiersc.hubdle.project.extensions.shared.features.HubdleJvmToolchainFeatureExtension
+import com.javiersc.hubdle.project.extensions.shared.features.gradle.HubdleGradlePluginFeatureExtension
+import com.javiersc.hubdle.project.extensions.shared.features.gradle.HubdleGradleVersionCatalogFeatureExtension
+import com.javiersc.hubdle.project.extensions.shared.features.intellij.HubdleIntellijPluginFeatureExtension
+
+internal fun HubdleState.createHubdleKotlinExtensions() {
+<span class="nc" id="L71">    createExtension&lt;HubdleKotlinExtension&gt; {</span>
+<span class="nc" id="L72">        createKotlinFeatureExtensions()</span>
+<span class="nc" id="L73">        createKotlinAndroidExtensions()</span>
+<span class="nc" id="L74">        createKotlinJvmExtensions()</span>
+<span class="nc" id="L75">        createKotlinMultiplatformAndroidExtensions()</span>
+<span class="nc" id="L76">    }</span>
+<span class="nc" id="L77">}</span>
+
+private fun HubdleState.createKotlinFeatureExtensions() {
+<span class="nc" id="L80">    createExtension&lt;HubdleKotlinFeaturesExtension&gt; {</span>
+<span class="nc" id="L81">        createExtension&lt;HubdleJavaApplicationFeatureExtension&gt;()</span>
+<span class="nc" id="L82">        createExtension&lt;HubdleJavaVersionFeatureExtension&gt;()</span>
+<span class="nc" id="L83">        createExtension&lt;HubdleGradleFeatureExtension&gt; {</span>
+<span class="nc" id="L84">            createExtension&lt;HubdleGradlePluginFeatureExtension&gt;()</span>
+<span class="nc" id="L85">            createExtension&lt;HubdleGradleVersionCatalogFeatureExtension&gt;()</span>
+<span class="nc" id="L86">        }</span>
+<span class="nc" id="L87">        createExtension&lt;HubdleIntellijFeatureExtension&gt; {</span>
+<span class="nc" id="L88">            createExtension&lt;HubdleIntellijPluginFeatureExtension&gt;()</span>
+<span class="nc" id="L89">        }</span>
+<span class="nc" id="L90">        createExtension&lt;HubdleKotlinComposeFeatureExtension&gt;()</span>
+<span class="nc" id="L91">        createExtension&lt;HubdleKotlinCoroutinesFeatureExtension&gt;()</span>
+<span class="nc" id="L92">        createExtension&lt;HubdleKotlinExtendedStdlibFeatureExtension&gt;()</span>
+<span class="nc" id="L93">        createExtension&lt;HubdleKotlinKotestFeatureExtension&gt;()</span>
+<span class="nc" id="L94">        createExtension&lt;HubdleKotlinMoleculeFeatureExtension&gt;()</span>
+<span class="nc" id="L95">        createExtension&lt;HubdleKotlinSerializationFeatureExtension&gt;()</span>
+<span class="nc" id="L96">        createExtension&lt;HubdleKotlinSqlDelightFeatureExtension&gt;()</span>
+<span class="nc" id="L97">        createExtension&lt;HubdleJvmToolchainFeatureExtension&gt;()</span>
+<span class="nc" id="L98">    }</span>
+<span class="nc" id="L99">}</span>
+
+private fun HubdleState.createKotlinAndroidExtensions() {
+<span class="nc" id="L102">    createExtension&lt;HubdleKotlinAndroidExtension&gt; {</span>
+<span class="nc" id="L103">        createExtension&lt;HubdleKotlinAndroidFeaturesExtension&gt;()</span>
+<span class="nc" id="L104">        createExtension&lt;HubdleKotlinAndroidApplicationExtension&gt; {</span>
+<span class="nc" id="L105">            createExtension&lt;HubdleKotlinAndroidApplicationFeaturesExtension&gt;()</span>
+<span class="nc" id="L106">        }</span>
+<span class="nc" id="L107">        createExtension&lt;HubdleKotlinAndroidLibraryExtension&gt; {</span>
+<span class="nc" id="L108">            createExtension&lt;HubdleKotlinAndroidLibraryFeaturesExtension&gt;()</span>
+<span class="nc" id="L109">        }</span>
+<span class="nc" id="L110">        createExtension&lt;HubdleKotlinAndroidBuildFeaturesExtension&gt;()</span>
+<span class="nc" id="L111">    }</span>
+<span class="nc" id="L112">}</span>
+
+private fun HubdleState.createKotlinJvmExtensions() {
+<span class="nc" id="L115">    createExtension&lt;HubdleKotlinJvmExtension&gt; {</span>
+<span class="nc" id="L116">        createExtension&lt;HubdleKotlinJvmFeaturesExtension&gt;()</span>
+<span class="nc" id="L117">    }</span>
+<span class="nc" id="L118">}</span>
+
+private fun HubdleState.createKotlinMultiplatformAndroidExtensions() {
+<span class="nc" id="L121">    createExtension&lt;HubdleKotlinMultiplatformExtension&gt; {</span>
+<span class="nc" id="L122">        createExtension&lt;HubdleKotlinMultiplatformFeaturesExtension&gt;()</span>
+<span class="nc" id="L123">        createExtension&lt;HubdleKotlinMultiplatformMinimumTargetPerOsFeatureExtension&gt;()</span>
+<span class="nc" id="L124">        createExtension&lt;HubdleKotlinMultiplatformAndroidExtension&gt;()</span>
+<span class="nc" id="L125">        createExtension&lt;HubdleKotlinMultiplatformAppleExtension&gt; {</span>
+<span class="nc" id="L126">            createExtension&lt;HubdleKotlinMultiplatformIOSExtension&gt; {</span>
+<span class="nc" id="L127">                createExtension&lt;HubdleKotlinMultiplatformIOSArm32Extension&gt;()</span>
+<span class="nc" id="L128">                createExtension&lt;HubdleKotlinMultiplatformIOSArm64Extension&gt;()</span>
+<span class="nc" id="L129">                createExtension&lt;HubdleKotlinMultiplatformIOSSimulatorArm64Extension&gt;()</span>
+<span class="nc" id="L130">                createExtension&lt;HubdleKotlinMultiplatformIOSX64Extension&gt;()</span>
+<span class="nc" id="L131">            }</span>
+<span class="nc" id="L132">            createExtension&lt;HubdleKotlinMultiplatformMacOSExtension&gt; {</span>
+<span class="nc" id="L133">                createExtension&lt;HubdleKotlinMultiplatformMacOSArm64Extension&gt;()</span>
+<span class="nc" id="L134">                createExtension&lt;HubdleKotlinMultiplatformMacOSX64Extension&gt;()</span>
+<span class="nc" id="L135">            }</span>
+<span class="nc" id="L136">            createExtension&lt;HubdleKotlinMultiplatformTvOSExtension&gt; {</span>
+<span class="nc" id="L137">                createExtension&lt;HubdleKotlinMultiplatformTvOSArm64Extension&gt;()</span>
+<span class="nc" id="L138">                createExtension&lt;HubdleKotlinMultiplatformTvOSSimulatorArm64Extension&gt;()</span>
+<span class="nc" id="L139">                createExtension&lt;HubdleKotlinMultiplatformTvOSX64Extension&gt;()</span>
+<span class="nc" id="L140">            }</span>
+<span class="nc" id="L141">            createExtension&lt;HubdleKotlinMultiplatformWatchOSExtension&gt; {</span>
+<span class="nc" id="L142">                createExtension&lt;HubdleKotlinMultiplatformWatchOSArm32Extension&gt;()</span>
+<span class="nc" id="L143">                createExtension&lt;HubdleKotlinMultiplatformWatchOSArm64Extension&gt;()</span>
+<span class="nc" id="L144">                createExtension&lt;HubdleKotlinMultiplatformWatchOSSimulatorArm64Extension&gt;()</span>
+<span class="nc" id="L145">                createExtension&lt;HubdleKotlinMultiplatformWatchOSX64Extension&gt;()</span>
+<span class="nc" id="L146">                createExtension&lt;HubdleKotlinMultiplatformWatchOSX86Extension&gt;()</span>
+<span class="nc" id="L147">            }</span>
+<span class="nc" id="L148">        }</span>
+<span class="nc" id="L149">        createExtension&lt;HubdleKotlinMultiplatformCommonExtension&gt;()</span>
+<span class="nc" id="L150">        createExtension&lt;HubdleKotlinMultiplatformJsExtension&gt;()</span>
+<span class="nc" id="L151">        createExtension&lt;HubdleKotlinMultiplatformJvmAndAndroidExtension&gt;()</span>
+<span class="nc" id="L152">        createExtension&lt;HubdleKotlinMultiplatformJvmExtension&gt;()</span>
+<span class="nc" id="L153">        createExtension&lt;HubdleKotlinMultiplatformLinuxExtension&gt; {</span>
+<span class="nc" id="L154">            createExtension&lt;KotlinMultiplatformLinuxArm32HfpExtension&gt;()</span>
+<span class="nc" id="L155">            createExtension&lt;KotlinMultiplatformLinuxArm64Extension&gt;()</span>
+<span class="nc" id="L156">            createExtension&lt;KotlinMultiplatformLinuxMips32Extension&gt;()</span>
+<span class="nc" id="L157">            createExtension&lt;KotlinMultiplatformLinuxMipsel32Extension&gt;()</span>
+<span class="nc" id="L158">            createExtension&lt;KotlinMultiplatformLinuxX64Extension&gt;()</span>
+<span class="nc" id="L159">        }</span>
+<span class="nc" id="L160">        createExtension&lt;HubdleKotlinMultiplatformMinGWExtension&gt; {</span>
+<span class="nc" id="L161">            createExtension&lt;HubdleKotlinMultiplatformMinGWX64Extension&gt;()</span>
+<span class="nc" id="L162">            createExtension&lt;HubdleKotlinMultiplatformMinGWX86Extension&gt;()</span>
+<span class="nc" id="L163">        }</span>
+<span class="nc" id="L164">        createExtension&lt;HubdleKotlinMultiplatformNativeExtension&gt;()</span>
+<span class="nc" id="L165">        createExtension&lt;HubdleKotlinMultiplatformWAsmExtension&gt; {</span>
+<span class="nc" id="L166">            createExtension&lt;HubdleKotlinMultiplatformWAsm32Extension&gt;()</span>
+<span class="nc" id="L167">        }</span>
+<span class="nc" id="L168">    }</span>
+<span class="nc" id="L169">}</span>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

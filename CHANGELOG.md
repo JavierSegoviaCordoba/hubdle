@@ -4,6 +4,20 @@
 
 ### Added
 
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Updated
+
+## [0.4.0-alpha.12] - 2023-02-26
+
+### Added
+
 - `testOptions` dsl to `HubdleAndroidDelegateSharedApis`
 - `org.jetbrains.intellij.deps:intellij-coverage-agent` library
 - `androidx-lifecycle-lifecycleViewmodel-*` libraries
@@ -16,10 +30,6 @@
 - `com.javiersc.hubdle` as unique id for projects and settings
 - Coverage Agent use the IntelliJ engine instead of JaCoCo
 - `site` to extract API docs into its own `api` extension
-
-### Deprecated
-
-### Removed
 
 ### Fixed
 
@@ -204,7 +214,9 @@
 - `org.junit.jupiter:junit-jupiter-params -> 5.9.2`
 - `org.junit.jupiter:junit-jupiter-api -> 5.9.2`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.11...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.12...HEAD
+
+[0.4.0-alpha.12]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.11...0.4.0-alpha.12
 
 [0.4.0-alpha.11]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.10...0.4.0-alpha.11
 
@@ -226,4 +238,4 @@
 
 [0.4.0-alpha.2]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.1...0.4.0-alpha.2
 
-[0.4.0-alpha.1]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.3.0-alpha.4...0.4.0-alpha.1
+[0.4.0-alpha.1]: https://github.com/JavierSegoviaCordoba/hubdle/commits/0.4.0-alpha.1

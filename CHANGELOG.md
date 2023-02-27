@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `androidx.compose.runtime:runtime-tracing -> 1.0.0-alpha03`
 - `com.android.tools.build:gradle -> 7.4.2`
 - `com.android.library:com.android.library.gradle.plugin -> 7.4.2`
 - `com.android.application:com.android.application.gradle.plugin -> 7.4.2`

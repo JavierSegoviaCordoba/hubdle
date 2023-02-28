@@ -14,6 +14,12 @@
 
 ### Updated
 
+- `io.ktor:ktor-serialization-kotlinx-json -> 2.2.4`
+- `io.ktor:ktor-client-okhttp -> 2.2.4`
+- `io.ktor:ktor-client-mock -> 2.2.4`
+- `io.ktor:ktor-client-core -> 2.2.4`
+- `io.ktor:ktor-client-content-negotiation -> 2.2.4`
+- `io.ktor:ktor-client-cio -> 2.2.4`
 - `com.diffplug.spotless:spotless-plugin-gradle -> 6.16.0`
 - `org.jetbrains.intellij.deps:intellij-coverage-agent -> 1.0.709`
 - `androidx.compose.runtime:runtime-tracing -> 1.0.0-alpha03`

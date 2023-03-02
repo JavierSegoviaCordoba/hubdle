@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.12.4`
 - `io.ktor:ktor-serialization-kotlinx-json -> 2.2.4`
 - `io.ktor:ktor-client-okhttp -> 2.2.4`
 - `io.ktor:ktor-client-mock -> 2.2.4`

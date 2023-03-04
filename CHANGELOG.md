@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.dokka:dokka-gradle-plugin -> 1.8.10`
 - `org.jetbrains.intellij.deps:intellij-coverage-agent -> 1.0.711`
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.1`
 - `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.12.4`

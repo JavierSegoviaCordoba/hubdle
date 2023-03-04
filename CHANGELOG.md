@@ -14,6 +14,10 @@
 
 ### Updated
 
+## [0.4.0-alpha.13] - 2023-03-04
+
+### Updated
+
 - `org.jetbrains.dokka:dokka-gradle-plugin -> 1.8.10`
 - `org.jetbrains.intellij.deps:intellij-coverage-agent -> 1.0.711`
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.1`
@@ -230,7 +234,9 @@
 - `org.junit.jupiter:junit-jupiter-params -> 5.9.2`
 - `org.junit.jupiter:junit-jupiter-api -> 5.9.2`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.12...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.13...HEAD
+
+[0.4.0-alpha.13]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.12...0.4.0-alpha.13
 
 [0.4.0-alpha.12]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.11...0.4.0-alpha.12
 

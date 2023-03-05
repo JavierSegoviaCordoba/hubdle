@@ -12,9 +12,13 @@
 
 ### Fixed
 
-- `mergeChangelog` task compatibility with Gradle 8
-
 ### Updated
+
+## [0.4.0-alpha.16] - 2023-03-05
+
+### Fixed
+
+- `mergeChangelog` task compatibility with Gradle 8
 
 ## [0.4.0-alpha.15] - 2023-03-05
 
@@ -248,7 +252,9 @@
 - `org.junit.jupiter:junit-jupiter-params -> 5.9.2`
 - `org.junit.jupiter:junit-jupiter-api -> 5.9.2`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.15...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.16...HEAD
+
+[0.4.0-alpha.16]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.15...0.4.0-alpha.16
 
 [0.4.0-alpha.15]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.14...0.4.0-alpha.15
 

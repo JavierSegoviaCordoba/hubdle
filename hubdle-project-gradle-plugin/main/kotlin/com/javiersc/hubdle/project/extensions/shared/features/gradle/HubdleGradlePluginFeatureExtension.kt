@@ -18,6 +18,7 @@ import com.javiersc.hubdle.project.extensions.apis.BaseHubdleDelegateExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
+import com.javiersc.hubdle.project.extensions.config.publishing.hubdlePublishing
 import com.javiersc.hubdle.project.extensions.dependencies._internal.constants.COM_JAVIERSC_GRADLE_GRADLE_EXTENSIONS_MODULE
 import com.javiersc.hubdle.project.extensions.dependencies._internal.constants.COM_JAVIERSC_GRADLE_GRADLE_TEST_EXTENSIONS_MODULE
 import com.javiersc.hubdle.project.extensions.kotlin._internal.forKotlinSetsDependencies
@@ -100,6 +101,7 @@ constructor(
         )
 
         applicablePlugin(
+            isEnabled = property { isFullEnabled.get() && hubdlePublishing.isFullEnabled.get() },
             priority = Priority.P3,
             scope = Scope.CurrentProject,
             pluginId = PluginId.GradlePluginPublish
@@ -147,13 +149,16 @@ constructor(
             }
         }
 
-        configurable {
-            configure<PluginBundleExtension> {
-                tags = this@HubdleGradlePluginFeatureExtension.tags.get()
-                website = project.getProperty(HubdleProperty.POM.url)
-                vcsUrl = project.getProperty(HubdleProperty.POM.scmUrl)
+        configurable(
+            isEnabled = property { isFullEnabled.get() && hubdlePublishing.isFullEnabled.get() },
+            config = {
+                configure<PluginBundleExtension> {
+                    tags = this@HubdleGradlePluginFeatureExtension.tags.get()
+                    website = project.getProperty(HubdleProperty.POM.url)
+                    vcsUrl = project.getProperty(HubdleProperty.POM.scmUrl)
+                }
             }
-        }
+        )
     }
 }
 

@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- Gradle plugin config does not check publishing config
+
 ### Updated
 
 ## [0.4.0-alpha.13] - 2023-03-04

@@ -18,6 +18,7 @@ import com.javiersc.hubdle.project.extensions.apis.BaseHubdleDelegateExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
+import com.javiersc.hubdle.project.extensions.config.publishing.hubdlePublishing
 import com.javiersc.hubdle.project.extensions.dependencies._internal.constants.COM_JAVIERSC_GRADLE_GRADLE_EXTENSIONS_MODULE
 import com.javiersc.hubdle.project.extensions.dependencies._internal.constants.COM_JAVIERSC_GRADLE_GRADLE_TEST_EXTENSIONS_MODULE
 import com.javiersc.hubdle.project.extensions.kotlin._internal.forKotlinSetsDependencies
@@ -39,40 +40,40 @@ import org.gradle.kotlin.dsl.withType
 import org.gradle.plugin.devel.GradlePluginDevelopmentExtension
 import org.gradle.plugin.devel.tasks.PluginUnderTestMetadata
 
-<span class="nc" id="L42">public open class HubdleGradlePluginFeatureExtension</span>
+<span class="nc" id="L43">public open class HubdleGradlePluginFeatureExtension</span>
 @Inject
-<span class="nc" id="L44">constructor(</span>
+<span class="nc" id="L45">constructor(</span>
     project: Project,
-<span class="nc" id="L46">) : HubdleConfigurableExtension(project), HubdleGradleDependencies {</span>
+<span class="nc" id="L47">) : HubdleConfigurableExtension(project), HubdleGradleDependencies {</span>
 
-<span class="nc" id="L48">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
+<span class="nc" id="L49">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
 
     override val oneOfExtensions: Set&lt;HubdleEnableableExtension&gt;
-<span class="nc" id="L51">        get() = setOf(hubdleKotlinJvm)</span>
+<span class="nc" id="L52">        get() = setOf(hubdleKotlinJvm)</span>
 
-<span class="nc" id="L53">    override val priority: Priority = Priority.P4</span>
+<span class="nc" id="L54">    override val priority: Priority = Priority.P4</span>
 
-<span class="nc" id="L55">    public val extendedGradle: Property&lt;Boolean&gt; = property { true }</span>
+<span class="nc" id="L56">    public val extendedGradle: Property&lt;Boolean&gt; = property { true }</span>
 
     @HubdleDslMarker
     public fun extendedGradle(extendedGradle: Boolean) {
-<span class="nc" id="L59">        this.extendedGradle.set(extendedGradle)</span>
-<span class="nc" id="L60">    }</span>
+<span class="nc" id="L60">        this.extendedGradle.set(extendedGradle)</span>
+<span class="nc" id="L61">    }</span>
 
-<span class="nc" id="L62">    public val tags: SetProperty&lt;String&gt; = setProperty { emptySet() }</span>
+<span class="nc" id="L63">    public val tags: SetProperty&lt;String&gt; = setProperty { emptySet() }</span>
 
     @HubdleDslMarker
     public fun tags(vararg tags: String) {
-<span class="nc" id="L66">        this.tags.addAll(tags.toList())</span>
-<span class="nc" id="L67">    }</span>
+<span class="nc" id="L67">        this.tags.addAll(tags.toList())</span>
+<span class="nc" id="L68">    }</span>
 
     @HubdleDslMarker
     public fun gradlePlugin(action: Action&lt;GradlePluginDevelopmentExtension&gt;) {
-<span class="nc" id="L71">        userConfigurable { action.execute(the()) }</span>
-<span class="nc" id="L72">    }</span>
+<span class="nc" id="L72">        userConfigurable { action.execute(the()) }</span>
+<span class="nc" id="L73">    }</span>
 
-<span class="nc" id="L74">    public val pluginUnderTestDependencies: ListProperty&lt;MinimalExternalModuleDependency&gt; =</span>
-<span class="nc" id="L75">        listProperty {</span>
+<span class="nc" id="L75">    public val pluginUnderTestDependencies: ListProperty&lt;MinimalExternalModuleDependency&gt; =</span>
+<span class="nc" id="L76">        listProperty {</span>
             emptyList()
         }
 
@@ -80,94 +81,98 @@ import org.gradle.plugin.devel.tasks.PluginUnderTestMetadata
     public fun pluginUnderTestDependencies(
         vararg pluginUnderTestDependencies: MinimalExternalModuleDependency
     ) {
-<span class="nc" id="L83">        this.pluginUnderTestDependencies.addAll(pluginUnderTestDependencies.toList())</span>
-<span class="nc" id="L84">    }</span>
+<span class="nc" id="L84">        this.pluginUnderTestDependencies.addAll(pluginUnderTestDependencies.toList())</span>
+<span class="nc" id="L85">    }</span>
 
     @HubdleDslMarker
     public fun pluginUnderTestDependencies(
         vararg pluginUnderTestDependencies: Provider&lt;MinimalExternalModuleDependency&gt;
     ) {
-<span class="nc" id="L90">        this.pluginUnderTestDependencies.addAll(</span>
-<span class="nc" id="L91">            provider { pluginUnderTestDependencies.map { it.get() } }</span>
+<span class="nc" id="L91">        this.pluginUnderTestDependencies.addAll(</span>
+<span class="nc" id="L92">            provider { pluginUnderTestDependencies.map { it.get() } }</span>
         )
-<span class="nc" id="L93">    }</span>
+<span class="nc" id="L94">    }</span>
 
     override fun Project.defaultConfiguration() {
-<span class="nc" id="L96">        applicablePlugin(</span>
-<span class="nc" id="L97">            priority = Priority.P3,</span>
-<span class="nc" id="L98">            scope = Scope.CurrentProject,</span>
-<span class="nc" id="L99">            pluginId = PluginId.JavaGradlePlugin</span>
+<span class="nc" id="L97">        applicablePlugin(</span>
+<span class="nc" id="L98">            priority = Priority.P3,</span>
+<span class="nc" id="L99">            scope = Scope.CurrentProject,</span>
+<span class="nc" id="L100">            pluginId = PluginId.JavaGradlePlugin</span>
         )
 
-<span class="nc" id="L102">        applicablePlugin(</span>
-<span class="nc" id="L103">            priority = Priority.P3,</span>
-<span class="nc" id="L104">            scope = Scope.CurrentProject,</span>
-<span class="nc" id="L105">            pluginId = PluginId.GradlePluginPublish</span>
+<span class="nc" id="L103">        applicablePlugin(</span>
+<span class="nc" id="L104">            isEnabled = property { isFullEnabled.get() &amp;&amp; hubdlePublishing.isFullEnabled.get() },</span>
+<span class="nc" id="L105">            priority = Priority.P3,</span>
+<span class="nc" id="L106">            scope = Scope.CurrentProject,</span>
+<span class="nc" id="L107">            pluginId = PluginId.GradlePluginPublish</span>
         )
 
-<span class="nc" id="L108">        configurable {</span>
-<span class="nc" id="L109">            val pluginUnderTestDependencies = pluginUnderTestDependencies.get()</span>
-<span class="nc bnc" id="L110" title="All 4 branches missed.">            if (pluginUnderTestDependencies.isNotEmpty()) {</span>
-<span class="nc" id="L111">                val testPluginClasspath: Configuration =</span>
-<span class="nc" id="L112">                    configurations.create(&quot;testPluginClasspath&quot;)</span>
+<span class="nc" id="L110">        configurable {</span>
+<span class="nc" id="L111">            val pluginUnderTestDependencies = pluginUnderTestDependencies.get()</span>
+<span class="nc bnc" id="L112" title="All 4 branches missed.">            if (pluginUnderTestDependencies.isNotEmpty()) {</span>
+<span class="nc" id="L113">                val testPluginClasspath: Configuration =</span>
+<span class="nc" id="L114">                    configurations.create(&quot;testPluginClasspath&quot;)</span>
 
-<span class="nc" id="L114">                dependencies {</span>
-<span class="nc bnc" id="L115" title="All 2 branches missed.">                    for (dependency in pluginUnderTestDependencies) {</span>
-<span class="nc" id="L116">                        testPluginClasspath(dependency)</span>
+<span class="nc" id="L116">                dependencies {</span>
+<span class="nc bnc" id="L117" title="All 2 branches missed.">                    for (dependency in pluginUnderTestDependencies) {</span>
+<span class="nc" id="L118">                        testPluginClasspath(dependency)</span>
                     }
-<span class="nc" id="L118">                }</span>
+<span class="nc" id="L120">                }</span>
 
-<span class="nc" id="L120">                tasks.withType&lt;PluginUnderTestMetadata&gt;().configureEach { metadata -&gt;</span>
-<span class="nc" id="L121">                    metadata.pluginClasspath.from(testPluginClasspath)</span>
-<span class="nc" id="L122">                }</span>
+<span class="nc" id="L122">                tasks.withType&lt;PluginUnderTestMetadata&gt;().configureEach { metadata -&gt;</span>
+<span class="nc" id="L123">                    metadata.pluginClasspath.from(testPluginClasspath)</span>
+<span class="nc" id="L124">                }</span>
             }
 
-<span class="nc bnc" id="L125" title="All 2 branches missed.">            if (extendedGradle.get()) {</span>
-<span class="nc" id="L126">                forKotlinSetsDependencies(MAIN) {</span>
-<span class="nc" id="L127">                    implementation(gradleApi())</span>
-<span class="nc" id="L128">                    implementation(gradleKotlinDsl())</span>
-<span class="nc" id="L129">                    implementation(catalogDependency(COM_JAVIERSC_GRADLE_GRADLE_EXTENSIONS_MODULE))</span>
-<span class="nc" id="L130">                }</span>
-<span class="nc" id="L131">                forKotlinSetsDependencies(TEST, TEST_FUNCTIONAL, TEST_INTEGRATION, TEST_FIXTURES) {</span>
-<span class="nc" id="L132">                    implementation(gradleTestKit())</span>
-<span class="nc" id="L133">                    implementation(</span>
-<span class="nc" id="L134">                        catalogDependency(COM_JAVIERSC_GRADLE_GRADLE_TEST_EXTENSIONS_MODULE)</span>
+<span class="nc bnc" id="L127" title="All 2 branches missed.">            if (extendedGradle.get()) {</span>
+<span class="nc" id="L128">                forKotlinSetsDependencies(MAIN) {</span>
+<span class="nc" id="L129">                    implementation(gradleApi())</span>
+<span class="nc" id="L130">                    implementation(gradleKotlinDsl())</span>
+<span class="nc" id="L131">                    implementation(catalogDependency(COM_JAVIERSC_GRADLE_GRADLE_EXTENSIONS_MODULE))</span>
+<span class="nc" id="L132">                }</span>
+<span class="nc" id="L133">                forKotlinSetsDependencies(TEST, TEST_FUNCTIONAL, TEST_INTEGRATION, TEST_FIXTURES) {</span>
+<span class="nc" id="L134">                    implementation(gradleTestKit())</span>
+<span class="nc" id="L135">                    implementation(</span>
+<span class="nc" id="L136">                        catalogDependency(COM_JAVIERSC_GRADLE_GRADLE_TEST_EXTENSIONS_MODULE)</span>
                     )
-<span class="nc" id="L136">                }</span>
+<span class="nc" id="L138">                }</span>
             }
-<span class="nc" id="L138">        }</span>
+<span class="nc" id="L140">        }</span>
 
-<span class="nc" id="L140">        configurable(priority = Priority.P4) {</span>
-<span class="nc" id="L141">            configure&lt;GradlePluginDevelopmentExtension&gt; {</span>
+<span class="nc" id="L142">        configurable(priority = Priority.P4) {</span>
+<span class="nc" id="L143">            configure&lt;GradlePluginDevelopmentExtension&gt; {</span>
                 configure&lt;SourceSetContainer&gt; {
                     val sets: List&lt;SourceSet&gt; =
                         listOfNotNull(findByName(TEST_FUNCTIONAL), findByName(TEST_INTEGRATION))
                     testSourceSets.addAll(sets)
                 }
             }
-<span class="nc" id="L148">        }</span>
+<span class="nc" id="L150">        }</span>
 
-<span class="nc" id="L150">        configurable {</span>
-<span class="nc" id="L151">            configure&lt;PluginBundleExtension&gt; {</span>
-                tags = this@HubdleGradlePluginFeatureExtension.tags.get()
-                website = project.getProperty(HubdleProperty.POM.url)
-                vcsUrl = project.getProperty(HubdleProperty.POM.scmUrl)
-            }
-<span class="nc" id="L156">        }</span>
-<span class="nc" id="L157">    }</span>
+<span class="nc" id="L152">        configurable(</span>
+<span class="nc" id="L153">            isEnabled = property { isFullEnabled.get() &amp;&amp; hubdlePublishing.isFullEnabled.get() },</span>
+            config = {
+<span class="nc" id="L155">                configure&lt;PluginBundleExtension&gt; {</span>
+                    tags = this@HubdleGradlePluginFeatureExtension.tags.get()
+                    website = project.getProperty(HubdleProperty.POM.url)
+                    vcsUrl = project.getProperty(HubdleProperty.POM.scmUrl)
+                }
+<span class="nc" id="L160">            }</span>
+        )
+<span class="nc" id="L162">    }</span>
 }
 
 public interface HubdleGradlePluginDelegateFeatureExtension : BaseHubdleDelegateExtension {
 
     public val plugin: HubdleGradlePluginFeatureExtension
-<span class="nc" id="L163">        get() = project.getHubdleExtension()</span>
+<span class="nc" id="L168">        get() = project.getHubdleExtension()</span>
 
     @HubdleDslMarker
-<span class="nc" id="L166">    public fun plugin(action: Action&lt;HubdleGradlePluginFeatureExtension&gt; = Action {}) {</span>
-<span class="nc" id="L167">        plugin.enableAndExecute(action)</span>
-<span class="nc" id="L168">    }</span>
+<span class="nc" id="L171">    public fun plugin(action: Action&lt;HubdleGradlePluginFeatureExtension&gt; = Action {}) {</span>
+<span class="nc" id="L172">        plugin.enableAndExecute(action)</span>
+<span class="nc" id="L173">    }</span>
 }
 
 internal val HubdleEnableableExtension.hubdleGradlePluginFeature: HubdleGradlePluginFeatureExtension
-<span class="nc" id="L172">    get() = getHubdleExtension()</span>
+<span class="nc" id="L177">    get() = getHubdleExtension()</span>
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

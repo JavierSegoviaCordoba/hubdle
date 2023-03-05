@@ -12,9 +12,13 @@
 
 ### Fixed
 
-- Gradle plugin config does not check publishing config
-
 ### Updated
+
+## [0.4.0-alpha.14] - 2023-03-05
+
+### Fixed
+
+- Gradle plugin config does not check publishing config
 
 ## [0.4.0-alpha.13] - 2023-03-04
 
@@ -236,7 +240,9 @@
 - `org.junit.jupiter:junit-jupiter-params -> 5.9.2`
 - `org.junit.jupiter:junit-jupiter-api -> 5.9.2`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.13...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.14...HEAD
+
+[0.4.0-alpha.14]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.13...0.4.0-alpha.14
 
 [0.4.0-alpha.13]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.12...0.4.0-alpha.13
 

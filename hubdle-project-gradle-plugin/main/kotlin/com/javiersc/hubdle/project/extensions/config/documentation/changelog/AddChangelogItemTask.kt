@@ -102,7 +102,7 @@ constructor(
     }
 
     public companion object {
-        public const val name: String = "addChangelogItem"
+        public const val NAME: String = "addChangelogItem"
     }
 }
 

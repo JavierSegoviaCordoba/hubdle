@@ -22,6 +22,6 @@ public abstract class ApplyFormatChangelogTask : DefaultTask() {
     }
 
     public companion object {
-        public const val name: String = "applyFormatChangelog"
+        public const val NAME: String = "applyFormatChangelog"
     }
 }

@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- `mergeChangelog` task compatibility with Gradle 8
+
 ### Updated
 
 ## [0.4.0-alpha.15] - 2023-03-05

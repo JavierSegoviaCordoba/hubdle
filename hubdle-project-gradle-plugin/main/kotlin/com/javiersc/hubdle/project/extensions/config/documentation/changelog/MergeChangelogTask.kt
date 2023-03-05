@@ -24,6 +24,6 @@ public abstract class MergeChangelogTask : DefaultTask() {
     }
 
     public companion object {
-        public const val name: String = "mergeChangelog"
+        public const val NAME: String = "mergeChangelog"
     }
 }

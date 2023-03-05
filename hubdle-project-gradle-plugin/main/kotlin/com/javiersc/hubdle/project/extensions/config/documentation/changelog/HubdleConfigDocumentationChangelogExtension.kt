@@ -100,24 +100,24 @@ constructor(
                 sectionUrlBuilder.set(customSectionUrlBuilder)
             }
 
-            tasks.register<ApplyFormatChangelogTask>(ApplyFormatChangelogTask.name)
+            tasks.register<ApplyFormatChangelogTask>(ApplyFormatChangelogTask.NAME)
 
             val patchChangelogTask: TaskCollection<PatchChangelogTask> =
                 tasks.namedLazily<PatchChangelogTask>("patchChangelog").apply {
-                    configureEach { task -> task.finalizedBy(ApplyFormatChangelogTask.name) }
+                    configureEach { task -> task.finalizedBy(ApplyFormatChangelogTask.NAME) }
                 }
 
-            tasks.register<MergeChangelogTask>(MergeChangelogTask.name).configure { task ->
-                task.shouldRunAfter(patchChangelogTask)
-                task.finalizedBy(ApplyFormatChangelogTask.name)
+            tasks.register<MergeChangelogTask>(MergeChangelogTask.NAME).configure { task ->
+                task.mustRunAfter(patchChangelogTask)
+                task.finalizedBy(ApplyFormatChangelogTask.NAME)
             }
 
-            tasks.register<AddChangelogItemTask>(AddChangelogItemTask.name).configure { task ->
-                task.finalizedBy(ApplyFormatChangelogTask.name)
+            tasks.register<AddChangelogItemTask>(AddChangelogItemTask.NAME).configure { task ->
+                task.finalizedBy(ApplyFormatChangelogTask.NAME)
             }
 
             val generateChangelogHtmlTask =
-                tasks.register<GenerateChangelogHtmlTask>(GenerateChangelogHtmlTask.name)
+                tasks.register<GenerateChangelogHtmlTask>(GenerateChangelogHtmlTask.NAME)
 
             generateChangelogHtmlTask.configure { task ->
                 val changelogExt = the<ChangelogPluginExtension>()

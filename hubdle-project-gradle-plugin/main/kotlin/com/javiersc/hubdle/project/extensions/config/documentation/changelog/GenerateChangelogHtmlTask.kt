@@ -35,7 +35,7 @@ constructor(
     }
 
     public companion object {
-        public const val name: String = "generateChangelogHtml"
+        public const val NAME: String = "generateChangelogHtml"
     }
 }
 

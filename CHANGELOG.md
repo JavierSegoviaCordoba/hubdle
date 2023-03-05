@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- Gradle Publish plugin removed `PluginBundleExtension` compatibility
+
 ### Updated
 
 ## [0.4.0-alpha.14] - 2023-03-05

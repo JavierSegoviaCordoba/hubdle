@@ -1,8 +1,7 @@
 package com.javiersc.hubdle.project.extensions.shared.features.gradle
 
-import com.gradle.publish.PluginBundleExtension
 import com.javiersc.gradle.properties.extensions.getProperty
-import com.javiersc.hubdle.project.HubdleProperty
+import com.javiersc.hubdle.project.HubdleProperty.POM
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
@@ -32,7 +31,6 @@ import org.gradle.api.artifacts.MinimalExternalModuleDependency
 import org.gradle.api.provider.ListProperty
 import org.gradle.api.provider.Property
 import org.gradle.api.provider.Provider
-import org.gradle.api.provider.SetProperty
 import org.gradle.api.tasks.SourceSet
 import org.gradle.api.tasks.SourceSetContainer
 import org.gradle.kotlin.dsl.dependencies
@@ -58,13 +56,6 @@ constructor(
     @HubdleDslMarker
     public fun extendedGradle(extendedGradle: Boolean) {
         this.extendedGradle.set(extendedGradle)
-    }
-
-    public val tags: SetProperty<String> = setProperty { emptySet() }
-
-    @HubdleDslMarker
-    public fun tags(vararg tags: String) {
-        this.tags.addAll(tags.toList())
     }
 
     @HubdleDslMarker
@@ -150,12 +141,11 @@ constructor(
         }
 
         configurable(
-            isEnabled = property { isFullEnabled.get() && hubdlePublishing.isFullEnabled.get() },
             config = {
-                configure<PluginBundleExtension> {
-                    tags = this@HubdleGradlePluginFeatureExtension.tags.get()
-                    website = project.getProperty(HubdleProperty.POM.url)
-                    vcsUrl = project.getProperty(HubdleProperty.POM.scmUrl)
+                configure<GradlePluginDevelopmentExtension> {
+                    val gradlePluginDevelopmentExtension = this
+                    gradlePluginDevelopmentExtension.website.set(project.getProperty(POM.url))
+                    gradlePluginDevelopmentExtension.vcsUrl.set(project.getProperty(POM.scmUrl))
                 }
             }
         )

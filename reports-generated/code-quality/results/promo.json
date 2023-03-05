@@ -3,21 +3,21 @@
   "category": "Style issues",
   "type": "Class member can have 'private' visibility",
   "severity": "Moderate",
-  "comment": "Property 'linuxArm64' could be private",
+  "comment": "Property 'ktfmtVersion' could be private",
   "detailsInfo": "Reports declarations that can be made `private` to follow the encapsulation principle.\n\n**Example:**\n\n\n    class Service(val url: String) {\n        fun connect(): URLConnection = URL(url).openConnection()\n    }\n\nAfter the quick-fix is applied (considering there are no usages of `url` outside of `Service` class):\n\n\n    class Service(private val url: String) {\n        fun connect(): URLConnection = URL(url).openConnection()\n    }\n",
   "sources": [
     {
       "type": "file",
-      "path": "hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformLinuxExtension.kt",
+      "path": "hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/config/format/HubdleConfigFormatExtension.kt",
       "language": "kotlin",
-      "line": 61,
+      "line": 57,
       "offset": 5,
       "length": 6,
       "code": {
-        "startLine": 59,
+        "startLine": 55,
         "length": 6,
         "offset": 11,
-        "surroundingCode": "    }\n\n    public val linuxArm64: KotlinMultiplatformLinuxArm64Extension\n        get() = getHubdleExtension()\n"
+        "surroundingCode": "    }\n\n    public val ktfmtVersion: Property<String> = property { COM_FACEBOOK_KTFMT_VERSION }\n\n    @HubdleDslMarker"
       }
     }
   ],
@@ -25,214 +25,18 @@
     "module": "hubdle.hubdle-project-gradle-plugin.main",
     "inspectionName": "MemberVisibilityCanBePrivate"
   },
-  "hash": "82923b5ea201aac893df4771330437dd89938c7fa5e56cde715e9263114057c2"
+  "hash": "31987cdacb4e17dd8ae5dbbe73bc34fbfcbbe5e74094e13450b601718233a62d"
 },{
   "tool": "Code Inspection",
   "category": "Style issues",
   "type": "Class member can have 'private' visibility",
   "severity": "Moderate",
-  "comment": "Property 'linuxArm32Hfp' could be private",
+  "comment": "Property 'excludes' could be private",
   "detailsInfo": "Reports declarations that can be made `private` to follow the encapsulation principle.\n\n**Example:**\n\n\n    class Service(val url: String) {\n        fun connect(): URLConnection = URL(url).openConnection()\n    }\n\nAfter the quick-fix is applied (considering there are no usages of `url` outside of `Service` class):\n\n\n    class Service(private val url: String) {\n        fun connect(): URLConnection = URL(url).openConnection()\n    }\n",
   "sources": [
     {
       "type": "file",
-      "path": "hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformLinuxExtension.kt",
-      "language": "kotlin",
-      "line": 51,
-      "offset": 5,
-      "length": 6,
-      "code": {
-        "startLine": 49,
-        "length": 6,
-        "offset": 54,
-        "surroundingCode": "        get() = setOf(hubdleKotlinMultiplatform)\n\n    public val linuxArm32Hfp: KotlinMultiplatformLinuxArm32HfpExtension\n        get() = getHubdleExtension()\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "hubdle.hubdle-project-gradle-plugin.main",
-    "inspectionName": "MemberVisibilityCanBePrivate"
-  },
-  "hash": "588f11a830d8ef963b1f04f4cfcbb7ce25ad947aa5f674908fccf76fa8795524"
-},{
-  "tool": "Code Inspection",
-  "category": "Style issues",
-  "type": "Class member can have 'private' visibility",
-  "severity": "Moderate",
-  "comment": "Property 'linuxX64' could be private",
-  "detailsInfo": "Reports declarations that can be made `private` to follow the encapsulation principle.\n\n**Example:**\n\n\n    class Service(val url: String) {\n        fun connect(): URLConnection = URL(url).openConnection()\n    }\n\nAfter the quick-fix is applied (considering there are no usages of `url` outside of `Service` class):\n\n\n    class Service(private val url: String) {\n        fun connect(): URLConnection = URL(url).openConnection()\n    }\n",
-  "sources": [
-    {
-      "type": "file",
-      "path": "hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformLinuxExtension.kt",
-      "language": "kotlin",
-      "line": 87,
-      "offset": 5,
-      "length": 6,
-      "code": {
-        "startLine": 85,
-        "length": 6,
-        "offset": 11,
-        "surroundingCode": "    }\n\n    public val linuxX64: KotlinMultiplatformLinuxX64Extension\n        get() = getHubdleExtension()\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "hubdle.hubdle-project-gradle-plugin.main",
-    "inspectionName": "MemberVisibilityCanBePrivate"
-  },
-  "hash": "761192df00b837ea98593151891f75cf1ffae0f1837bb598c382ad8c5dd556b7"
-},{
-  "tool": "Code Inspection",
-  "category": "Style issues",
-  "type": "Class member can have 'private' visibility",
-  "severity": "Moderate",
-  "comment": "Property 'allEnabled' could be private",
-  "detailsInfo": "Reports declarations that can be made `private` to follow the encapsulation principle.\n\n**Example:**\n\n\n    class Service(val url: String) {\n        fun connect(): URLConnection = URL(url).openConnection()\n    }\n\nAfter the quick-fix is applied (considering there are no usages of `url` outside of `Service` class):\n\n\n    class Service(private val url: String) {\n        fun connect(): URLConnection = URL(url).openConnection()\n    }\n",
-  "sources": [
-    {
-      "type": "file",
-      "path": "hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformLinuxExtension.kt",
-      "language": "kotlin",
-      "line": 41,
-      "offset": 5,
-      "length": 6,
-      "code": {
-        "startLine": 39,
-        "length": 6,
-        "offset": 51,
-        "surroundingCode": "    override val targetName: String = \"linux\"\n\n    public val allEnabled: Property<Boolean> = property { false }\n\n    @HubdleDslMarker"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "hubdle.hubdle-project-gradle-plugin.main",
-    "inspectionName": "MemberVisibilityCanBePrivate"
-  },
-  "hash": "c26dd445e998c47b6a785487b393fc9ae0ea7b246a461fc18f5c05b7737691d9"
-},{
-  "tool": "Code Inspection",
-  "category": "Style issues",
-  "type": "Class member can have 'private' visibility",
-  "severity": "Moderate",
-  "comment": "Property 'linuxMipsel32' could be private",
-  "detailsInfo": "Reports declarations that can be made `private` to follow the encapsulation principle.\n\n**Example:**\n\n\n    class Service(val url: String) {\n        fun connect(): URLConnection = URL(url).openConnection()\n    }\n\nAfter the quick-fix is applied (considering there are no usages of `url` outside of `Service` class):\n\n\n    class Service(private val url: String) {\n        fun connect(): URLConnection = URL(url).openConnection()\n    }\n",
-  "sources": [
-    {
-      "type": "file",
-      "path": "hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformLinuxExtension.kt",
-      "language": "kotlin",
-      "line": 77,
-      "offset": 5,
-      "length": 6,
-      "code": {
-        "startLine": 75,
-        "length": 6,
-        "offset": 11,
-        "surroundingCode": "    }\n\n    public val linuxMipsel32: KotlinMultiplatformLinuxMipsel32Extension\n        get() = getHubdleExtension()\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "hubdle.hubdle-project-gradle-plugin.main",
-    "inspectionName": "MemberVisibilityCanBePrivate"
-  },
-  "hash": "c5b305285f99af3e976516a2bb0db05506a7bf1d7b5ed9a202d1324e37dbd2f3"
-},{
-  "tool": "Code Inspection",
-  "category": "Style issues",
-  "type": "Class member can have 'private' visibility",
-  "severity": "Moderate",
-  "comment": "Property 'linuxMips32' could be private",
-  "detailsInfo": "Reports declarations that can be made `private` to follow the encapsulation principle.\n\n**Example:**\n\n\n    class Service(val url: String) {\n        fun connect(): URLConnection = URL(url).openConnection()\n    }\n\nAfter the quick-fix is applied (considering there are no usages of `url` outside of `Service` class):\n\n\n    class Service(private val url: String) {\n        fun connect(): URLConnection = URL(url).openConnection()\n    }\n",
-  "sources": [
-    {
-      "type": "file",
-      "path": "hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformLinuxExtension.kt",
-      "language": "kotlin",
-      "line": 69,
-      "offset": 5,
-      "length": 6,
-      "code": {
-        "startLine": 67,
-        "length": 6,
-        "offset": 11,
-        "surroundingCode": "    }\n\n    public val linuxMips32: KotlinMultiplatformLinuxMips32Extension\n        get() = getHubdleExtension()\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "hubdle.hubdle-project-gradle-plugin.main",
-    "inspectionName": "MemberVisibilityCanBePrivate"
-  },
-  "hash": "ae9b44c76f481f6b15b482d391bfd8fa11eeab875086fe8badf80217dc2c2b06"
-},{
-  "tool": "Code Inspection",
-  "category": "Style issues",
-  "type": "Class member can have 'private' visibility",
-  "severity": "Moderate",
-  "comment": "Property 'iosX64' could be private",
-  "detailsInfo": "Reports declarations that can be made `private` to follow the encapsulation principle.\n\n**Example:**\n\n\n    class Service(val url: String) {\n        fun connect(): URLConnection = URL(url).openConnection()\n    }\n\nAfter the quick-fix is applied (considering there are no usages of `url` outside of `Service` class):\n\n\n    class Service(private val url: String) {\n        fun connect(): URLConnection = URL(url).openConnection()\n    }\n",
-  "sources": [
-    {
-      "type": "file",
-      "path": "hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformIOSExtension.kt",
-      "language": "kotlin",
-      "line": 76,
-      "offset": 5,
-      "length": 6,
-      "code": {
-        "startLine": 74,
-        "length": 6,
-        "offset": 11,
-        "surroundingCode": "    }\n\n    public val iosX64: HubdleKotlinMultiplatformIOSX64Extension\n        get() = getHubdleExtension()\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "hubdle.hubdle-project-gradle-plugin.main",
-    "inspectionName": "MemberVisibilityCanBePrivate"
-  },
-  "hash": "30a24b79268a55656fb02979263c0cfe9db1cc58986bf1ce97693c12ba764015"
-},{
-  "tool": "Code Inspection",
-  "category": "Style issues",
-  "type": "Class member can have 'private' visibility",
-  "severity": "Moderate",
-  "comment": "Property 'allEnabled' could be private",
-  "detailsInfo": "Reports declarations that can be made `private` to follow the encapsulation principle.\n\n**Example:**\n\n\n    class Service(val url: String) {\n        fun connect(): URLConnection = URL(url).openConnection()\n    }\n\nAfter the quick-fix is applied (considering there are no usages of `url` outside of `Service` class):\n\n\n    class Service(private val url: String) {\n        fun connect(): URLConnection = URL(url).openConnection()\n    }\n",
-  "sources": [
-    {
-      "type": "file",
-      "path": "hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformIOSExtension.kt",
-      "language": "kotlin",
-      "line": 43,
-      "offset": 5,
-      "length": 6,
-      "code": {
-        "startLine": 41,
-        "length": 6,
-        "offset": 54,
-        "surroundingCode": "        get() = setOf(hubdleKotlinMultiplatform)\n\n    public val allEnabled: Property<Boolean> = property { false }\n\n    @HubdleDslMarker"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "hubdle.hubdle-project-gradle-plugin.main",
-    "inspectionName": "MemberVisibilityCanBePrivate"
-  },
-  "hash": "ac335b4a97b3328fb40d81af9c8af12e784d0660052f7917fdd96b58fec63804"
-},{
-  "tool": "Code Inspection",
-  "category": "Style issues",
-  "type": "Class member can have 'private' visibility",
-  "severity": "Moderate",
-  "comment": "Property 'iosArm32' could be private",
-  "detailsInfo": "Reports declarations that can be made `private` to follow the encapsulation principle.\n\n**Example:**\n\n\n    class Service(val url: String) {\n        fun connect(): URLConnection = URL(url).openConnection()\n    }\n\nAfter the quick-fix is applied (considering there are no usages of `url` outside of `Service` class):\n\n\n    class Service(private val url: String) {\n        fun connect(): URLConnection = URL(url).openConnection()\n    }\n",
-  "sources": [
-    {
-      "type": "file",
-      "path": "hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformIOSExtension.kt",
+      "path": "hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/config/format/HubdleConfigFormatExtension.kt",
       "language": "kotlin",
       "line": 50,
       "offset": 5,
@@ -241,7 +45,7 @@
         "startLine": 48,
         "length": 6,
         "offset": 11,
-        "surroundingCode": "    }\n\n    public val iosArm32: HubdleKotlinMultiplatformIOSArm32Extension\n        get() = getHubdleExtension()\n"
+        "surroundingCode": "    }\n\n    public val excludes: SetProperty<String> = setProperty { emptySet() }\n\n    @HubdleDslMarker"
       }
     }
   ],
@@ -249,27 +53,27 @@
     "module": "hubdle.hubdle-project-gradle-plugin.main",
     "inspectionName": "MemberVisibilityCanBePrivate"
   },
-  "hash": "eb334808925601a8dff0d466120cc4586493fc91a8dfa61fac3d81744124e52f"
+  "hash": "cda3f624e320ea8770c86ee448ce2eff461a060f1d548cddaf48b91f0c845b9d"
 },{
   "tool": "Code Inspection",
   "category": "Style issues",
   "type": "Class member can have 'private' visibility",
   "severity": "Moderate",
-  "comment": "Property 'iosArm64' could be private",
+  "comment": "Property 'includes' could be private",
   "detailsInfo": "Reports declarations that can be made `private` to follow the encapsulation principle.\n\n**Example:**\n\n\n    class Service(val url: String) {\n        fun connect(): URLConnection = URL(url).openConnection()\n    }\n\nAfter the quick-fix is applied (considering there are no usages of `url` outside of `Service` class):\n\n\n    class Service(private val url: String) {\n        fun connect(): URLConnection = URL(url).openConnection()\n    }\n",
   "sources": [
     {
       "type": "file",
-      "path": "hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformIOSExtension.kt",
+      "path": "hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/config/format/HubdleConfigFormatExtension.kt",
       "language": "kotlin",
-      "line": 58,
+      "line": 43,
       "offset": 5,
       "length": 6,
       "code": {
-        "startLine": 56,
+        "startLine": 41,
         "length": 6,
-        "offset": 11,
-        "surroundingCode": "    }\n\n    public val iosArm64: HubdleKotlinMultiplatformIOSArm64Extension\n        get() = getHubdleExtension()\n"
+        "offset": 55,
+        "surroundingCode": "    override val priority: Priority = Priority.P3\n\n    public val includes: SetProperty<String> = setProperty { emptySet() }\n\n    @HubdleDslMarker"
       }
     }
   ],
@@ -277,27 +81,27 @@
     "module": "hubdle.hubdle-project-gradle-plugin.main",
     "inspectionName": "MemberVisibilityCanBePrivate"
   },
-  "hash": "2b43c86edc81ad4ed80b159e5ce4a8891422d0027045a9ed577e415eb404b9a5"
+  "hash": "84ae8e3f29f07fa0fc0e5ab67ef0ab412b7bc89e731e03a50458d6c6ad44ebd9"
 },{
   "tool": "Code Inspection",
   "category": "Style issues",
   "type": "Class member can have 'private' visibility",
   "severity": "Moderate",
-  "comment": "Property 'iosSimulatorArm64' could be private",
+  "comment": "Property 'versionCatalog' could be private",
   "detailsInfo": "Reports declarations that can be made `private` to follow the encapsulation principle.\n\n**Example:**\n\n\n    class Service(val url: String) {\n        fun connect(): URLConnection = URL(url).openConnection()\n    }\n\nAfter the quick-fix is applied (considering there are no usages of `url` outside of `Service` class):\n\n\n    class Service(private val url: String) {\n        fun connect(): URLConnection = URL(url).openConnection()\n    }\n",
   "sources": [
     {
       "type": "file",
-      "path": "hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformIOSExtension.kt",
+      "path": "hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/shared/features/HubdleGradleFeatureExtension.kt",
       "language": "kotlin",
-      "line": 66,
+      "line": 35,
       "offset": 5,
       "length": 6,
       "code": {
-        "startLine": 64,
+        "startLine": 33,
         "length": 6,
         "offset": 11,
-        "surroundingCode": "    }\n\n    public val iosSimulatorArm64: HubdleKotlinMultiplatformIOSSimulatorArm64Extension\n        get() = getHubdleExtension()\n"
+        "surroundingCode": "    }\n\n    public val versionCatalog: HubdleGradleVersionCatalogFeatureExtension\n        get() = getHubdleExtension()\n"
       }
     }
   ],
@@ -305,27 +109,27 @@
     "module": "hubdle.hubdle-project-gradle-plugin.main",
     "inspectionName": "MemberVisibilityCanBePrivate"
   },
-  "hash": "56da8614b11d8a91216d7e273d41995a6647d8b96945900548059df3ce740a78"
+  "hash": "bad4c523afb8027e6e4306e88cc6be154b8181e0fa72bf91d494c4450bfddec5"
 },{
   "tool": "Code Inspection",
   "category": "Redundant constructs",
   "type": "Unused symbol",
   "severity": "High",
-  "comment": "Property \"hubdleAndroidApplicationFeatures\" is never used",
+  "comment": "Property \"hubdleAndroidAny\" is never used",
   "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
   "sources": [
     {
       "type": "file",
-      "path": "hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/kotlin/android/application/features/HubdleKotlinAndroidApplicationFeaturesExtension.kt",
+      "path": "hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/kotlin/android/HubdleKotlinAndroidExtension.kt",
       "language": "kotlin",
-      "line": 47,
+      "line": 71,
       "offset": 40,
-      "length": 32,
+      "length": 16,
       "code": {
-        "startLine": 45,
-        "length": 32,
-        "offset": 87,
-        "surroundingCode": "    HubdleJvmToolchainDelegateFeatureExtension\n\ninternal val HubdleEnableableExtension.hubdleAndroidApplicationFeatures:\n    HubdleKotlinAndroidApplicationFeaturesExtension\n    get() = getHubdleExtension()"
+        "startLine": 69,
+        "length": 16,
+        "offset": 73,
+        "surroundingCode": "    get() = getHubdleExtension()\n\ninternal val HubdleEnableableExtension.hubdleAndroidAny: Set<HubdleConfigurableExtension>\n    get() =\n        setOf("
       }
     }
   ],
@@ -333,5 +137,61 @@
     "module": "hubdle.hubdle-project-gradle-plugin.main",
     "inspectionName": "UnusedSymbol"
   },
-  "hash": "a1622b2974750461170715203db1a4edaf4e9ef054504f3b58df2988de72fd6c"
+  "hash": "14471caed9278f5ae200a9d54db7ee91f1d7f17415f49091dba064d50b2bf5b4"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "severity": "High",
+  "comment": "Property \"hubdleAndroidLibraryFeatures\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/kotlin/android/library/features/HubdleKotlinAndroidLibraryFeaturesExtension.kt",
+      "language": "kotlin",
+      "line": 48,
+      "offset": 40,
+      "length": 28,
+      "code": {
+        "startLine": 46,
+        "length": 28,
+        "offset": 87,
+        "surroundingCode": "    HubdleJvmToolchainDelegateFeatureExtension\n\ninternal val HubdleEnableableExtension.hubdleAndroidLibraryFeatures:\n    HubdleKotlinAndroidLibraryExtension\n    get() = getHubdleExtension()"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-project-gradle-plugin.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "d10ee5b8dd8a305246ac6aad133725c24577cf0b8220a6106d79b3229b989da7"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Unused symbol",
+  "severity": "High",
+  "comment": "Property \"hubdleKotestFeature\" is never used",
+  "detailsInfo": "Reports symbols that are not used or not reachable from entry points.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinKotestFeatureExtension.kt",
+      "language": "kotlin",
+      "line": 63,
+      "offset": 40,
+      "length": 19,
+      "code": {
+        "startLine": 61,
+        "length": 19,
+        "offset": 42,
+        "surroundingCode": "}\n\ninternal val HubdleEnableableExtension.hubdleKotestFeature: HubdleKotlinKotestFeatureExtension\n    get() = getHubdleExtension()\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-project-gradle-plugin.main",
+    "inspectionName": "UnusedSymbol"
+  },
+  "hash": "006f8dae1d7f9fa66803936348621ac61b2d370faf52e91abab50cfe4a25acf4"
 }]}

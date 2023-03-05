@@ -936,29 +936,29 @@
     "kotlin"
   ],
   "severity": "High",
-  "comment": "'dependencyResolutionManagement(org.gradle.api.Action)' is marked unstable with @Incubating",
+  "comment": "'getWebsite()' is marked unstable with @Incubating",
   "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
   "sources": [
     {
       "type": "file",
-      "path": "hubdle-settings-gradle-plugin/main/kotlin/com/javiersc/hubdle/settings/HubdleSettingsPlugin.kt",
+      "path": "hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/shared/features/gradle/HubdleGradlePluginFeatureExtension.kt",
       "language": "kotlin",
-      "line": 48,
-      "offset": 5,
-      "length": 30,
+      "line": 147,
+      "offset": 54,
+      "length": 7,
       "code": {
-        "startLine": 46,
-        "length": 30,
-        "offset": 52,
-        "surroundingCode": "\nprivate fun Settings.configureRepositories() {\n    dependencyResolutionManagement { management ->\n        management.repositories { repository ->\n            repository.mavenCentral()"
+        "startLine": 145,
+        "length": 7,
+        "offset": 179,
+        "surroundingCode": "                configure<GradlePluginDevelopmentExtension> {\n                    val gradlePluginDevelopmentExtension = this\n                    gradlePluginDevelopmentExtension.website.set(project.getProperty(POM.url))\n                    gradlePluginDevelopmentExtension.vcsUrl.set(project.getProperty(POM.scmUrl))\n                }"
       }
     }
   ],
   "attributes": {
-    "module": "hubdle.hubdle-settings-gradle-plugin.main",
+    "module": "hubdle.hubdle-project-gradle-plugin.main",
     "inspectionName": "UnstableApiUsage"
   },
-  "hash": "9064bb345b020dd55122b0a2b385a64c6d253b0f9770f0d96e9cbd451af49ee1"
+  "hash": "006ecf081e344adf64b77273cf1d95c582905d331561f5c8dc87a5d7db95eb82"
 },{
   "tool": "Code Inspection",
   "category": "JVM languages",
@@ -967,29 +967,29 @@
     "kotlin"
   ],
   "severity": "High",
-  "comment": "'repositories(org.gradle.api.Action)' is declared in unstable interface 'org.gradle.api.initialization.resolve.DependencyResolutionManagement' marked with @Incubating",
+  "comment": "'getVcsUrl()' is marked unstable with @Incubating",
   "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
   "sources": [
     {
       "type": "file",
-      "path": "hubdle-settings-gradle-plugin/main/kotlin/com/javiersc/hubdle/settings/HubdleSettingsPlugin.kt",
+      "path": "hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/shared/features/gradle/HubdleGradlePluginFeatureExtension.kt",
       "language": "kotlin",
-      "line": 49,
-      "offset": 20,
-      "length": 12,
+      "line": 148,
+      "offset": 54,
+      "length": 6,
       "code": {
-        "startLine": 47,
-        "length": 12,
-        "offset": 117,
-        "surroundingCode": "private fun Settings.configureRepositories() {\n    dependencyResolutionManagement { management ->\n        management.repositories { repository ->\n            repository.mavenCentral()\n            repository.google()"
+        "startLine": 146,
+        "length": 6,
+        "offset": 212,
+        "surroundingCode": "                    val gradlePluginDevelopmentExtension = this\n                    gradlePluginDevelopmentExtension.website.set(project.getProperty(POM.url))\n                    gradlePluginDevelopmentExtension.vcsUrl.set(project.getProperty(POM.scmUrl))\n                }\n            }"
       }
     }
   ],
   "attributes": {
-    "module": "hubdle.hubdle-settings-gradle-plugin.main",
+    "module": "hubdle.hubdle-project-gradle-plugin.main",
     "inspectionName": "UnstableApiUsage"
   },
-  "hash": "90a2759ac2cad00bd45cf0e3e81aaab98be9e3efaf084b4b76432eb89a50c0ad"
+  "hash": "b1b82867544f99544553538ba3cf175ddfc39d7fa0a6042c561bfb07dc38bad5"
 },{
   "tool": "Code Inspection",
   "category": "JVM languages",
@@ -1052,4 +1052,66 @@
     "inspectionName": "UnstableApiUsage"
   },
   "hash": "c74f5a5ee7dfaa3ca93f9226d4d97dfd445513a7be8eeee39f67f63705616176"
+},{
+  "tool": "Code Inspection",
+  "category": "JVM languages",
+  "type": "Unstable API Usage",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "'dependencyResolutionManagement(org.gradle.api.Action)' is marked unstable with @Incubating",
+  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "hubdle-settings-gradle-plugin/main/kotlin/com/javiersc/hubdle/settings/HubdleSettingsPlugin.kt",
+      "language": "kotlin",
+      "line": 48,
+      "offset": 5,
+      "length": 30,
+      "code": {
+        "startLine": 46,
+        "length": 30,
+        "offset": 52,
+        "surroundingCode": "\nprivate fun Settings.configureRepositories() {\n    dependencyResolutionManagement { management ->\n        management.repositories { repository ->\n            repository.mavenCentral()"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-settings-gradle-plugin.main",
+    "inspectionName": "UnstableApiUsage"
+  },
+  "hash": "9064bb345b020dd55122b0a2b385a64c6d253b0f9770f0d96e9cbd451af49ee1"
+},{
+  "tool": "Code Inspection",
+  "category": "JVM languages",
+  "type": "Unstable API Usage",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "'repositories(org.gradle.api.Action)' is declared in unstable interface 'org.gradle.api.initialization.resolve.DependencyResolutionManagement' marked with @Incubating",
+  "detailsInfo": "Reports usages of an API marked with one of the annotations as unstable. Such an API may be changed or removed in future versions, breaking the code that uses it.\n\nThe annotations which are used to mark unstable APIs are shown in the list below.\n\nBy default, the inspection ignores usages of unstable APIs\nif their declarations are located in sources of the same project. In such cases it'll be possible to update the usages when you change APIs.\nHowever, it may be inconvenient if the project is big, so one can switch off the **Ignore API declared in this project** option to report\nthe usages of unstable APIs declared in both the project sources and libraries.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "hubdle-settings-gradle-plugin/main/kotlin/com/javiersc/hubdle/settings/HubdleSettingsPlugin.kt",
+      "language": "kotlin",
+      "line": 49,
+      "offset": 20,
+      "length": 12,
+      "code": {
+        "startLine": 47,
+        "length": 12,
+        "offset": 117,
+        "surroundingCode": "private fun Settings.configureRepositories() {\n    dependencyResolutionManagement { management ->\n        management.repositories { repository ->\n            repository.mavenCentral()\n            repository.google()"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "hubdle.hubdle-settings-gradle-plugin.main",
+    "inspectionName": "UnstableApiUsage"
+  },
+  "hash": "90a2759ac2cad00bd45cf0e3e81aaab98be9e3efaf084b4b76432eb89a50c0ad"
 }]}

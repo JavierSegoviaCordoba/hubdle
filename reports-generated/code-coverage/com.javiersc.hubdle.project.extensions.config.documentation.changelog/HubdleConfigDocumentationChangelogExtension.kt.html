@@ -100,24 +100,24 @@ public open class HubdleConfigDocumentationChangelogExtension
 <span class="nc" id="L100">                sectionUrlBuilder.set(customSectionUrlBuilder)</span>
 <span class="nc" id="L101">            }</span>
 
-<span class="nc" id="L103">            tasks.register&lt;ApplyFormatChangelogTask&gt;(ApplyFormatChangelogTask.name)</span>
+<span class="nc" id="L103">            tasks.register&lt;ApplyFormatChangelogTask&gt;(ApplyFormatChangelogTask.NAME)</span>
 
 <span class="nc" id="L105">            val patchChangelogTask: TaskCollection&lt;PatchChangelogTask&gt; =</span>
 <span class="nc" id="L106">                tasks.namedLazily&lt;PatchChangelogTask&gt;(&quot;patchChangelog&quot;).apply {</span>
-<span class="nc" id="L107">                    configureEach { task -&gt; task.finalizedBy(ApplyFormatChangelogTask.name) }</span>
+<span class="nc" id="L107">                    configureEach { task -&gt; task.finalizedBy(ApplyFormatChangelogTask.NAME) }</span>
 <span class="nc" id="L108">                }</span>
 
-<span class="nc" id="L110">            tasks.register&lt;MergeChangelogTask&gt;(MergeChangelogTask.name).configure { task -&gt;</span>
-<span class="nc" id="L111">                task.shouldRunAfter(patchChangelogTask)</span>
-<span class="nc" id="L112">                task.finalizedBy(ApplyFormatChangelogTask.name)</span>
+<span class="nc" id="L110">            tasks.register&lt;MergeChangelogTask&gt;(MergeChangelogTask.NAME).configure { task -&gt;</span>
+<span class="nc" id="L111">                task.mustRunAfter(patchChangelogTask)</span>
+<span class="nc" id="L112">                task.finalizedBy(ApplyFormatChangelogTask.NAME)</span>
 <span class="nc" id="L113">            }</span>
 
-<span class="nc" id="L115">            tasks.register&lt;AddChangelogItemTask&gt;(AddChangelogItemTask.name).configure { task -&gt;</span>
-<span class="nc" id="L116">                task.finalizedBy(ApplyFormatChangelogTask.name)</span>
+<span class="nc" id="L115">            tasks.register&lt;AddChangelogItemTask&gt;(AddChangelogItemTask.NAME).configure { task -&gt;</span>
+<span class="nc" id="L116">                task.finalizedBy(ApplyFormatChangelogTask.NAME)</span>
 <span class="nc" id="L117">            }</span>
 
 <span class="nc" id="L119">            val generateChangelogHtmlTask =</span>
-<span class="nc" id="L120">                tasks.register&lt;GenerateChangelogHtmlTask&gt;(GenerateChangelogHtmlTask.name)</span>
+<span class="nc" id="L120">                tasks.register&lt;GenerateChangelogHtmlTask&gt;(GenerateChangelogHtmlTask.NAME)</span>
 
 <span class="nc" id="L122">            generateChangelogHtmlTask.configure { task -&gt;</span>
 <span class="nc" id="L123">                val changelogExt = the&lt;ChangelogPluginExtension&gt;()</span>

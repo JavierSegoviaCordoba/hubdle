@@ -14,6 +14,9 @@
 
 ### Updated
 
+- `com.javiersc.gradle:gradle-test-extensions -> 1.0.0-alpha.30`
+- `com.javiersc.gradle:gradle-extensions -> 1.0.0-alpha.30`
+
 ## [0.4.0-alpha.16] - 2023-03-05
 
 ### Fixed

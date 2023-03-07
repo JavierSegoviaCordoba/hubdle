@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `io.github.gradle-nexus:publish-plugin -> 1.3.0`
+
 ## [0.4.0-alpha.17] - 2023-03-05
 
 ### Updated

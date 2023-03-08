@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.intellij.deps:intellij-coverage-agent -> 1.0.712`
 - `org.eclipse.jgit:org.eclipse.jgit -> 6.5.0.202303070854-r`
 - `io.github.gradle-nexus:publish-plugin -> 1.3.0`
 

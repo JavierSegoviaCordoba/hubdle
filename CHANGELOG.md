@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.compose:compose-gradle-plugin -> 1.3.1`
 - `androidx.lifecycle:lifecycle-viewmodel-compose -> 2.6.0`
 - `androidx.lifecycle:lifecycle-viewmodel-ktx -> 2.6.0`
 - `androidx.lifecycle:lifecycle-viewmodel -> 2.6.0`

@@ -1,5 +1,6 @@
 package com.javiersc.hubdle.project.extensions.config.analysis
 
+import com.javiersc.gradle.project.extensions.isRootProject
 import com.javiersc.gradle.properties.extensions.getProperty
 import com.javiersc.gradle.properties.extensions.getPropertyOrNull
 import com.javiersc.gradle.tasks.extensions.maybeRegisterLazily
@@ -10,6 +11,7 @@ import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
+import com.javiersc.hubdle.project.extensions._internal.setProperty
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
@@ -17,15 +19,20 @@ import com.javiersc.hubdle.project.extensions.config.analysis.reports.HubdleConf
 import com.javiersc.hubdle.project.extensions.config.hubdleConfig
 import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.extensions.DetektExtension
+import io.gitlab.arturbosch.detekt.report.ReportMergeTask
 import java.io.File
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.Task
+import org.gradle.api.file.DirectoryProperty
 import org.gradle.api.provider.Property
 import org.gradle.api.provider.SetProperty
+import org.gradle.api.tasks.TaskCollection
+import org.gradle.api.tasks.TaskProvider
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.findByType
+import org.gradle.kotlin.dsl.register
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 import org.sonarqube.gradle.SonarExtension
@@ -94,7 +101,6 @@ constructor(
             project.tasks.namedLazily<Task>("check").configureEach { task ->
                 task.dependsOn(checkAnalysisTask)
             }
-
             configureDetekt(project)
             configureSonarqube(project)
         }
@@ -106,7 +112,7 @@ constructor(
                 parallel = true
                 isIgnoreFailures = hubdleAnalysis.ignoreFailures.get()
                 buildUponDefaultConfig = true
-                basePath = project.rootProject.projectDir.path
+                basePath = project.projectDir.path
                 source = files(provider { kotlinSrcDirs.get() + kotlinTestsSrcDirs.get() })
             }
 
@@ -114,19 +120,66 @@ constructor(
                 task.dependsOn("detekt")
             }
 
-            tasks.withType<Detekt>().configureEach { detekt ->
-                detekt.include(hubdleAnalysis.includes.get())
-                detekt.exclude(hubdleAnalysis.excludes.get())
+            configureDetektTask(project)
+            configureMergeDetektReports(project)
+        }
 
-                detekt.reports { reports ->
-                    reports.md.required.set(hubdleAnalysis.reports.md)
-                    reports.html.required.set(hubdleAnalysis.reports.html)
-                    reports.sarif.required.set(hubdleAnalysis.reports.sarif)
-                    reports.txt.required.set(hubdleAnalysis.reports.txt)
-                    reports.xml.required.set(hubdleAnalysis.reports.xml)
+    private fun configureDetektTask(project: Project) {
+        project.tasks.withType<Detekt>().configureEach { detekt ->
+            detekt.include(hubdleAnalysis.includes.get())
+            detekt.exclude(hubdleAnalysis.excludes.get())
+
+            detekt.reports { reports ->
+                reports.md.required.set(hubdleAnalysis.reports.md)
+                reports.html.required.set(hubdleAnalysis.reports.html)
+                reports.sarif.required.set(hubdleAnalysis.reports.sarif)
+                reports.txt.required.set(hubdleAnalysis.reports.txt)
+                reports.xml.required.set(hubdleAnalysis.reports.xml)
+            }
+        }
+    }
+
+    private fun configureMergeDetektReports(project: Project) {
+        if (project.isRootProject) {
+            val buildDirectory: DirectoryProperty = project.layout.buildDirectory
+            val detektReportMergeHtml: TaskProvider<ReportMergeTask> =
+                tasks.register<ReportMergeTask>("detektReportMergeHtml") {
+                    output.set(buildDirectory.file("reports/detekt/detekt.html"))
+                }
+            val detektReportMergeMd: TaskProvider<ReportMergeTask> =
+                tasks.register<ReportMergeTask>("detektReportMergeMd") {
+                    output.set(buildDirectory.file("reports/detekt/detekt.md"))
+                }
+            val detektReportMergeSarif: TaskProvider<ReportMergeTask> =
+                tasks.register<ReportMergeTask>("detektReportMergeSarif") {
+                    output.set(buildDirectory.file("reports/detekt/detekt.sarif"))
+                }
+            val detektReportMergeTxt: TaskProvider<ReportMergeTask> =
+                tasks.register<ReportMergeTask>("detektReportMergeTxt") {
+                    output.set(buildDirectory.file("reports/detekt/detekt.txt"))
+                }
+            val detektReportMergeXml: TaskProvider<ReportMergeTask> =
+                tasks.register<ReportMergeTask>("detektReportMergeXml") {
+                    output.set(buildDirectory.file("reports/detekt/detekt.xml"))
+                }
+
+            project.subprojects { subproject ->
+                val detektTasks: TaskCollection<Detekt> = subproject.tasks.withType<Detekt>()
+                detektTasks.configureEach { detekt ->
+                    detekt.finalizedBy(detektReportMergeHtml)
+                    detekt.finalizedBy(detektReportMergeMd)
+                    detekt.finalizedBy(detektReportMergeSarif)
+                    detekt.finalizedBy(detektReportMergeTxt)
+                    detekt.finalizedBy(detektReportMergeXml)
+                    detektReportMergeHtml.configure { it.input.from(detekt.htmlReportFile) }
+                    detektReportMergeMd.configure { it.input.from(detekt.mdReportFile) }
+                    detektReportMergeSarif.configure { it.input.from(detekt.sarifReportFile) }
+                    detektReportMergeTxt.configure { it.input.from(detekt.txtReportFile) }
+                    detektReportMergeXml.configure { it.input.from(detekt.xmlReportFile) }
                 }
             }
         }
+    }
 
     private fun configureSonarqube(project: Project) {
         project.configure<SonarExtension> {
@@ -164,45 +217,50 @@ constructor(
                     "sonar.coverage.jacoco.xmlReportPaths",
                     "${project.buildDir}/reports/kover/report.xml"
                 )
-                properties.property("sonar.sources", kotlinSrcDirs.get())
-                properties.property("sonar.tests", kotlinTestsSrcDirs.get())
+
+                // TODO: use `includes` and `excludes` from Hubdle when Detekt aggregated reports is
+                //  fixed: https://github.com/detekt/detekt/issues/5041
+                properties.property("sonar.sources", project.kotlinSrcDirs.get())
+                properties.property("sonar.tests", project.kotlinTestsSrcDirs.get())
             }
         }
     }
 
-    private val kotlinSrcDirs: SetProperty<String>
-        get() = setProperty {
-            extensions
-                .findByType<KotlinProjectExtension>()
-                ?.sourceSets
-                ?.flatMap { kotlinSourceSet -> kotlinSourceSet.kotlin.srcDirs }
-                ?.filterNot { file ->
-                    val relativePath = file.relativeTo(projectDir)
-                    val dirs = relativePath.path.split(File.separatorChar)
-                    dirs.any { dir -> dir.endsWith("Test") || dir == "test" }
-                }
-                ?.filter { file -> file.exists() }
-                ?.mapNotNull(File::getPath)
-                .orEmpty()
-                .toSet()
-        }
+    private val Project.kotlinSrcDirs: SetProperty<String>
+        get() =
+            this.setProperty {
+                extensions
+                    .findByType<KotlinProjectExtension>()
+                    ?.sourceSets
+                    ?.flatMap { kotlinSourceSet -> kotlinSourceSet.kotlin.srcDirs }
+                    ?.filterNot { file ->
+                        val relativePath = file.relativeTo(projectDir)
+                        val dirs = relativePath.path.split(File.separatorChar)
+                        dirs.any { dir -> dir.endsWith("Test") || dir == "test" }
+                    }
+                    ?.filter { file -> file.exists() }
+                    ?.mapNotNull(File::getPath)
+                    .orEmpty()
+                    .toSet()
+            }
 
-    private val kotlinTestsSrcDirs: SetProperty<String>
-        get() = setProperty {
-            extensions
-                .findByType<KotlinProjectExtension>()
-                ?.sourceSets
-                ?.flatMap { kotlinSourceSet -> kotlinSourceSet.kotlin.srcDirs }
-                ?.filter { file ->
-                    val relativePath = file.relativeTo(projectDir)
-                    val dirs = relativePath.path.split(File.separatorChar)
-                    dirs.any { dir -> dir.endsWith("Test") || dir == "test" }
-                }
-                ?.filter { file -> file.exists() }
-                ?.mapNotNull(File::getPath)
-                .orEmpty()
-                .toSet()
-        }
+    private val Project.kotlinTestsSrcDirs: SetProperty<String>
+        get() =
+            this.setProperty {
+                extensions
+                    .findByType<KotlinProjectExtension>()
+                    ?.sourceSets
+                    ?.flatMap { kotlinSourceSet -> kotlinSourceSet.kotlin.srcDirs }
+                    ?.filter { file ->
+                        val relativePath = file.relativeTo(projectDir)
+                        val dirs = relativePath.path.split(File.separatorChar)
+                        dirs.any { dir -> dir.endsWith("Test") || dir == "test" }
+                    }
+                    ?.filter { file -> file.exists() }
+                    ?.mapNotNull(File::getPath)
+                    .orEmpty()
+                    .toSet()
+            }
 }
 
 internal val HubdleEnableableExtension.hubdleAnalysis: HubdleConfigAnalysisExtension

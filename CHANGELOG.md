@@ -6,13 +6,19 @@
 
 ### Changed
 
-- `analysis` must be applied to each project
-
 ### Deprecated
 
 ### Removed
 
 ### Fixed
+
+### Updated
+
+## [0.4.0-alpha.18] - 2023-03-10
+
+### Changed
+
+- `analysis` must be applied to each project
 
 ### Updated
 
@@ -269,7 +275,9 @@
 - `org.junit.jupiter:junit-jupiter-params -> 5.9.2`
 - `org.junit.jupiter:junit-jupiter-api -> 5.9.2`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.17...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.18...HEAD
+
+[0.4.0-alpha.18]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.17...0.4.0-alpha.18
 
 [0.4.0-alpha.17]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.16...0.4.0-alpha.17
 

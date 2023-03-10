@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `app.cash.molecule:molecule-gradle-plugin -> 0.8.0`
+
 ## [0.4.0-alpha.18] - 2023-03-10
 
 ### Changed

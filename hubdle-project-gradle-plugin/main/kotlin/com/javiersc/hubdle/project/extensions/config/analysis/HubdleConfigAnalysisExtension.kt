@@ -1,6 +1,5 @@
 package com.javiersc.hubdle.project.extensions.config.analysis
 
-import com.javiersc.gradle.project.extensions.isRootProject
 import com.javiersc.gradle.properties.extensions.getProperty
 import com.javiersc.gradle.properties.extensions.getPropertyOrNull
 import com.javiersc.gradle.tasks.extensions.maybeRegisterLazily
@@ -47,20 +46,20 @@ constructor(
 
     public val ignoreFailures: Property<Boolean> = property { true }
 
-    public val includes: SetProperty<String> = setProperty { setOf("**/*.kt", "**/*.kts") }
-
-    public val excludes: SetProperty<String> = setProperty {
-        setOf("**/resources/**", "**/build/**")
+    public val includes: SetProperty<String> = setProperty {
+        kotlinSrcDirs.get() + kotlinTestsSrcDirs.get()
     }
 
     @HubdleDslMarker
-    public fun includes(vararg paths: String) {
-        includes.addAll(paths.toList())
+    public fun includes(vararg includes: String) {
+        this.includes.addAll(includes.toList())
     }
 
+    public val excludes: SetProperty<String> = setProperty { emptySet() }
+
     @HubdleDslMarker
-    public fun excludes(vararg paths: String) {
-        excludes.addAll(paths.toList())
+    public fun excludes(vararg excludes: String) {
+        this.excludes.addAll(excludes.toList())
     }
 
     public val reports: HubdleConfigAnalysisReportsExtension
@@ -89,11 +88,7 @@ constructor(
             pluginId = PluginId.Sonarqube
         )
 
-        configurable {
-            // TODO: Fix do this per project
-            check(project.isRootProject) {
-                """Hubdle `analysis()` must be only configured in the root project"""
-            }
+        configurable(priority = Priority.P4) {
             val checkAnalysisTask = project.tasks.maybeRegisterLazily<Task>("checkAnalysis")
             checkAnalysisTask.configureEach { task -> task.group = "verification" }
             project.tasks.namedLazily<Task>("check").configureEach { task ->
@@ -107,19 +102,19 @@ constructor(
 
     private fun configureDetekt(project: Project) =
         with(project) {
-            project.configure<DetektExtension> {
+            configure<DetektExtension> {
                 parallel = true
                 isIgnoreFailures = hubdleAnalysis.ignoreFailures.get()
                 buildUponDefaultConfig = true
                 basePath = project.rootProject.projectDir.path
+                source = files(provider { kotlinSrcDirs.get() + kotlinTestsSrcDirs.get() })
             }
 
-            project.tasks.namedLazily<Task>("checkAnalysis").configureEach { task ->
+            tasks.namedLazily<Task>("checkAnalysis").configureEach { task ->
                 task.dependsOn("detekt")
             }
 
-            project.tasks.withType<Detekt>().configureEach { detekt ->
-                detekt.setSource(project.files(project.rootDir))
+            tasks.withType<Detekt>().configureEach { detekt ->
                 detekt.include(hubdleAnalysis.includes.get())
                 detekt.exclude(hubdleAnalysis.excludes.get())
 
@@ -134,11 +129,6 @@ constructor(
         }
 
     private fun configureSonarqube(project: Project) {
-        // project.tasks.namedLazily<Task>("sonarqube").configureEach { it.dependsOn("detekt") }
-
-        // project.tasks.namedLazily<Task>("checkAnalysis").configureEach {
-        // it.dependsOn("sonarqube") }
-
         project.configure<SonarExtension> {
             properties { properties ->
                 properties.property(
@@ -162,7 +152,6 @@ constructor(
                     project.getPropertyOrNull(HubdleProperty.Analysis.hostUrl)
                         ?: "https://sonarcloud.io"
                 )
-
                 properties.property(
                     "sonar.organization",
                     project.getPropertyOrNull(HubdleProperty.Analysis.organization) ?: ""
@@ -175,48 +164,45 @@ constructor(
                     "sonar.coverage.jacoco.xmlReportPaths",
                     "${project.buildDir}/reports/kover/report.xml"
                 )
-            }
-        }
-
-        project.allprojects { allproject ->
-            allproject.afterEvaluate {
-                allproject.extensions.findByType<SonarExtension>()?.apply {
-                    properties { properties ->
-                        properties.property("sonar.sources", allproject.kotlinSrcDirs())
-                        properties.property("sonar.tests", allproject.kotlinTestsSrcDirs())
-                    }
-                }
+                properties.property("sonar.sources", kotlinSrcDirs.get())
+                properties.property("sonar.tests", kotlinTestsSrcDirs.get())
             }
         }
     }
 
-    private fun Project.kotlinSrcDirs(): Set<File> =
-        extensions
-            .findByType<KotlinProjectExtension>()
-            ?.sourceSets
-            ?.flatMap { kotlinSourceSet -> kotlinSourceSet.kotlin.srcDirs }
-            ?.filterNot { file ->
-                val relativePath = file.relativeTo(projectDir)
-                val dirs = relativePath.path.split(File.separatorChar)
-                dirs.any { dir -> dir.endsWith("Test") || dir == "test" }
-            }
-            ?.filter { file -> file.exists() }
-            .orEmpty()
-            .toSet()
+    private val kotlinSrcDirs: SetProperty<String>
+        get() = setProperty {
+            extensions
+                .findByType<KotlinProjectExtension>()
+                ?.sourceSets
+                ?.flatMap { kotlinSourceSet -> kotlinSourceSet.kotlin.srcDirs }
+                ?.filterNot { file ->
+                    val relativePath = file.relativeTo(projectDir)
+                    val dirs = relativePath.path.split(File.separatorChar)
+                    dirs.any { dir -> dir.endsWith("Test") || dir == "test" }
+                }
+                ?.filter { file -> file.exists() }
+                ?.mapNotNull(File::getPath)
+                .orEmpty()
+                .toSet()
+        }
 
-    private fun Project.kotlinTestsSrcDirs(): Set<File> =
-        extensions
-            .findByType<KotlinProjectExtension>()
-            ?.sourceSets
-            ?.flatMap { kotlinSourceSet -> kotlinSourceSet.kotlin.srcDirs }
-            ?.filter { file ->
-                val relativePath = file.relativeTo(projectDir)
-                val dirs = relativePath.path.split(File.separatorChar)
-                dirs.any { dir -> dir.endsWith("Test") || dir == "test" }
-            }
-            ?.filter { file -> file.exists() }
-            .orEmpty()
-            .toSet()
+    private val kotlinTestsSrcDirs: SetProperty<String>
+        get() = setProperty {
+            extensions
+                .findByType<KotlinProjectExtension>()
+                ?.sourceSets
+                ?.flatMap { kotlinSourceSet -> kotlinSourceSet.kotlin.srcDirs }
+                ?.filter { file ->
+                    val relativePath = file.relativeTo(projectDir)
+                    val dirs = relativePath.path.split(File.separatorChar)
+                    dirs.any { dir -> dir.endsWith("Test") || dir == "test" }
+                }
+                ?.filter { file -> file.exists() }
+                ?.mapNotNull(File::getPath)
+                .orEmpty()
+                .toSet()
+        }
 }
 
 internal val HubdleEnableableExtension.hubdleAnalysis: HubdleConfigAnalysisExtension

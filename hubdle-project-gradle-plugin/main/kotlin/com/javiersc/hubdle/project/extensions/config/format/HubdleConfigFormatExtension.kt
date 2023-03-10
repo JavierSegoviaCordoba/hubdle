@@ -23,7 +23,7 @@ import org.gradle.api.Task
 import org.gradle.api.provider.Property
 import org.gradle.api.provider.SetProperty
 import org.gradle.kotlin.dsl.configure
-import org.gradle.kotlin.dsl.the
+import org.gradle.kotlin.dsl.findByType
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 
 @HubdleDslMarker
@@ -40,14 +40,18 @@ constructor(
 
     override val priority: Priority = Priority.P3
 
-    public val includes: SetProperty<String> = setProperty { emptySet() }
+    public val includes: SetProperty<String> = setProperty {
+        includedKotlinSourceSetDirsKotlinFiles.get()
+    }
 
     @HubdleDslMarker
     public fun includes(vararg includes: String) {
         this.includes.addAll(includes.toList())
     }
 
-    public val excludes: SetProperty<String> = setProperty { emptySet() }
+    public val excludes: SetProperty<String> = setProperty {
+        excludedSpecialDirs.get() + excludedResourceSourceSetDirsKotlinFiles.get()
+    }
 
     @HubdleDslMarker
     public fun excludes(vararg excludes: String) {
@@ -112,10 +116,6 @@ constructor(
                     task.group = "verification"
                     task.dependsOn("spotlessKotlinApply")
                 }
-
-                includes.addAll(includedKotlinSourceSetDirsKotlinFiles)
-                excludes.addAll(excludedSpecialDirs)
-                excludes.addAll(excludedResourceSourceSetDirsKotlinFiles)
             }
         }
 
@@ -138,19 +138,21 @@ constructor(
 
     private val includedKotlinSourceSetDirsKotlinFiles: SetProperty<String>
         get() = setProperty {
-            the<KotlinProjectExtension>()
-                .sourceSets
-                .asSequence()
-                .flatMap { it.kotlin.srcDirs }
-                .map { it.relativeTo(projectDir) }
-                .filterNot { it.path.startsWith(buildDir.name) }
-                .flatMap {
+            extensions
+                .findByType<KotlinProjectExtension>()
+                ?.sourceSets
+                ?.asSequence()
+                ?.flatMap { it.kotlin.srcDirs }
+                ?.map { it.relativeTo(projectDir) }
+                ?.filterNot { it.path.startsWith(buildDir.name) }
+                ?.flatMap {
                     listOf(
                         "${it.unixPath}/**/*.kt",
                         "${it.unixPath}/*.kt",
                     )
                 }
-                .toSet()
+                ?.toSet()
+                .orEmpty()
         }
 
     private val excludedSpecialDirs: SetProperty<String>
@@ -165,18 +167,20 @@ constructor(
 
     private val excludedResourceSourceSetDirsKotlinFiles: SetProperty<String>
         get() = setProperty {
-            the<KotlinProjectExtension>()
-                .sourceSets
-                .asSequence()
-                .flatMap { it.resources.srcDirs }
-                .map { it.relativeTo(projectDir) }
-                .flatMap {
+            extensions
+                .findByType<KotlinProjectExtension>()
+                ?.sourceSets
+                ?.asSequence()
+                ?.flatMap { it.resources.srcDirs }
+                ?.map { it.relativeTo(projectDir) }
+                ?.flatMap {
                     listOf(
                         "${it.unixPath}/**/*.kt",
                         "${it.unixPath}/*.kt",
                     )
                 }
-                .toSet()
+                ?.toSet()
+                .orEmpty()
         }
 
     private val File.unixPath: String

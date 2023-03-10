@@ -45,6 +45,7 @@ constructor(
         )
 
         configurable {
+            // TODO: Change this configurable with 0.7.0 as it must be applied on each project
             check(isRootProject) {
                 "`binaryCompatibilityValidator` must be applied only on root project"
             }

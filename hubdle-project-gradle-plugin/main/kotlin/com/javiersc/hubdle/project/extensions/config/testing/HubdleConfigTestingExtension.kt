@@ -16,9 +16,13 @@ import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.Task
+import org.gradle.api.plugins.BasePlugin
 import org.gradle.api.provider.Property
+import org.gradle.api.tasks.TaskProvider
 import org.gradle.api.tasks.testing.Test
 import org.gradle.api.tasks.testing.TestReport
+import org.gradle.kotlin.dsl.apply
+import org.gradle.kotlin.dsl.register
 import org.gradle.kotlin.dsl.withType
 import org.gradle.language.base.plugins.LifecycleBasePlugin.BUILD_TASK_NAME
 import org.gradle.language.base.plugins.LifecycleBasePlugin.CHECK_TASK_NAME
@@ -57,6 +61,8 @@ constructor(
     }
 
     override fun Project.defaultConfiguration() {
+        pluginManager.apply(BasePlugin::class)
+
         applicablePlugin(
             priority = Priority.P4,
             scope = Scope.CurrentProject,
@@ -64,39 +70,33 @@ constructor(
         )
 
         configurable {
-            tasks.withType<Test>().configureEach { test ->
-                test.testLogging.showStandardStreams = showStandardStreams.get()
+            val testReport: TaskProvider<TestReport> =
+                tasks.register<TestReport>(ALL_TEST_REPORT_TASK_NAME)
 
-                when (options.get()) {
-                    Options.JUnit -> test.useJUnit()
-                    Options.JUnitPlatform -> test.useJUnitPlatform()
-                    Options.TestNG -> test.useTestNG()
-                    else -> test.useJUnitPlatform()
-                }
-            }
-
-            tasks.configureEach { task ->
-                if (task.name == CHECK_TASK_NAME) task.dependsOn(ALL_TEST_TASK_NAME)
-            }
-
-            val testReport = tasks.maybeRegisterLazily<TestReport>(ALL_TEST_REPORT_TASK_NAME)
-            testReport.configureEach { task ->
-                task.group = VERIFICATION_GROUP
-                task.destinationDirectory.set(file("$buildDir/reports/allTests"))
-                task.testResults.from(allprojects.map { it.tasks.withType<Test>() })
-            }
-
-            val shouldRunAllTestsReport =
+            val shouldRunAllTestsReport: Boolean =
                 gradle.startParameter.taskNames.any { taskName ->
                     taskName in listOf(ALL_TEST_TASK_NAME, BUILD_TASK_NAME, CHECK_TASK_NAME)
                 }
+            tasks.withType<Test>().configureEach { task ->
+                task.testLogging.showStandardStreams = showStandardStreams.get()
 
-            if (shouldRunAllTestsReport) {
-                allprojects {
-                    it.project.tasks.withType<Test>().configureEach { task ->
-                        task.finalizedBy(testReport)
-                    }
+                when (options.get()) {
+                    Options.JUnit -> task.useJUnit()
+                    Options.JUnitPlatform -> task.useJUnitPlatform()
+                    Options.TestNG -> task.useTestNG()
+                    else -> task.useJUnitPlatform()
                 }
+
+                if (shouldRunAllTestsReport) task.finalizedBy(testReport)
+            }
+
+            tasks.named(CHECK_TASK_NAME) { task -> task.dependsOn(ALL_TEST_TASK_NAME) }
+
+            testReport.configure { task ->
+                task.group = VERIFICATION_GROUP
+                task.destinationDirectory.set(file("$buildDir/reports/allTests"))
+                // TODO: Remove allprojects as it is incompatible with project isolation
+                task.testResults.from(allprojects.map { it.tasks.withType<Test>() })
             }
         }
 

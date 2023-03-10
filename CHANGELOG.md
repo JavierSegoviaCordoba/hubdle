@@ -6,6 +6,8 @@
 
 ### Changed
 
+- `analysis` must be applied to each project
+
 ### Deprecated
 
 ### Removed

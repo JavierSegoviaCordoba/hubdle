@@ -157,8 +157,8 @@
 
 <div>
   <ul>
-    <li>1,312 number of properties</li>
-    <li>550 number of functions</li>
+    <li>1,314 number of properties</li>
+    <li>548 number of functions</li>
     <li>231 number of classes</li>
     <li>76 number of packages</li>
     <li>212 number of kt files</li>
@@ -170,22 +170,22 @@
 
 <div>
   <ul>
-    <li>13,090 lines of code (loc)</li>
-    <li>10,773 source lines of code (sloc)</li>
-    <li>7,087 logical lines of code (lloc)</li>
-    <li>103 comment lines of code (cloc)</li>
-    <li>932 cyclomatic complexity (mcc)</li>
-    <li>480 cognitive complexity</li>
-    <li>91 number of total code smells</li>
+    <li>13,081 lines of code (loc)</li>
+    <li>10,770 source lines of code (sloc)</li>
+    <li>7,086 logical lines of code (lloc)</li>
+    <li>101 comment lines of code (cloc)</li>
+    <li>928 cyclomatic complexity (mcc)</li>
+    <li>476 cognitive complexity</li>
+    <li>92 number of total code smells</li>
     <li>0% comment source ratio</li>
-    <li>131 mcc per 1,000 lloc</li>
+    <li>130 mcc per 1,000 lloc</li>
     <li>12 code smells per 1,000 lloc</li>
   </ul>
 </div>
 
 
 <h2>Findings</h2>
-<div>Total: 91
+<div>Total: 92
   <h3>complexity: 12</h3>
   <details id="ComplexCondition" open="open">
     <summary class="rule-container"><span class="rule">ComplexCondition: 1 </span><span class="description">Complex conditions should be simplified and extracted into well-named methods if necessary.</span></summary>
@@ -840,9 +840,9 @@
       </li>
     </ul>
   </details>
-  <h3>style: 18</h3>
+  <h3>style: 19</h3>
   <details id="ForbiddenComment" open="open">
-    <summary class="rule-container"><span class="rule">ForbiddenComment: 9 </span><span class="description">Flags a forbidden comment.</span></summary>
+    <summary class="rule-container"><span class="rule">ForbiddenComment: 10 </span><span class="description">Flags a forbidden comment.</span></summary>
 <a href="https://detekt.dev/docs/rules/style#forbiddencomment">Documentation</a>
     <ul>
       <li><span class="location">hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/_internal/projectExtensions.kt:11:1</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
@@ -875,14 +875,14 @@
 <span class="lineno">  23 </span>): SetProperty&lt;T&gt; = objects.setProperty&lt;T&gt;().convention(project.provider { block(this) })
 </code></pre>
       </li>
-      <li><span class="location">hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/config/analysis/HubdleConfigAnalysisExtension.kt:93:13</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
-        <pre><code><span class="lineno">  90 </span>        )
-<span class="lineno">  91 </span>
-<span class="lineno">  92 </span>        configurable {
-<span class="lineno">  93 </span>            <span class="error">// TODO: Fix do this per project</span>
-<span class="lineno">  94 </span>            check(project.isRootProject) {
-<span class="lineno">  95 </span>                &quot;&quot;&quot;Hubdle `analysis()` must be only configured in the root project&quot;&quot;&quot;
-<span class="lineno">  96 </span>            }
+      <li><span class="location">hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/config/binary/compatibility/validator/HubdleConfigBinaryCompatibilityValidatorExtension.kt:48:13</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
+        <pre><code><span class="lineno">  45 </span>        )
+<span class="lineno">  46 </span>
+<span class="lineno">  47 </span>        configurable {
+<span class="lineno">  48 </span>            <span class="error">// TODO: Change this configurable with 0.7.0 as it must be applied on each project</span>
+<span class="lineno">  49 </span>            check(isRootProject) {
+<span class="lineno">  50 </span>                &quot;`binaryCompatibilityValidator` must be applied only on root project&quot;
+<span class="lineno">  51 </span>            }
 </code></pre>
       </li>
       <li><span class="location">hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/config/publishing/_internal/configureMavenPublishing.kt:150:25</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
@@ -893,6 +893,16 @@
 <span class="lineno"> 151 </span>                        &quot;&quot;&quot;|Only semantic versions can be published (current: $version)
 <span class="lineno"> 152 </span>                           |Use `&quot;-Ppublishing.nonSemver=true&quot;` to force the publication 
 <span class="lineno"> 153 </span>                        &quot;&quot;&quot;
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/config/testing/HubdleConfigTestingExtension.kt:98:17</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
+        <pre><code><span class="lineno">  95 </span>            testReport.configure { task -&gt;
+<span class="lineno">  96 </span>                task.group = VERIFICATION_GROUP
+<span class="lineno">  97 </span>                task.destinationDirectory.set(file(&quot;$buildDir/reports/allTests&quot;))
+<span class="lineno">  98 </span>                <span class="error">// TODO: Remove allprojects as it is incompatible with project isolation</span>
+<span class="lineno">  99 </span>                task.testResults.from(allprojects.map { it.tasks.withType&lt;Test&gt;() })
+<span class="lineno"> 100 </span>            }
+<span class="lineno"> 101 </span>        }
 </code></pre>
       </li>
       <li><span class="location">hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/kotlin/android/HubdleKotlinAndroidExtension.kt:19:1</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
@@ -1023,13 +1033,13 @@
     <summary class="rule-container"><span class="rule">UnusedPrivateMember: 2 </span><span class="description">Private member is unused and should be removed.</span></summary>
 <a href="https://detekt.dev/docs/rules/style#unusedprivatemember">Documentation</a>
     <ul>
-      <li><span class="location">hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/config/binary/compatibility/validator/HubdleConfigBinaryCompatibilityValidatorExtension.kt:71:21</span><span class="message">Private property `apiValidationExtension` is unused.</span>
-        <pre><code><span class="lineno">  68 </span>    HubdleConfigBinaryCompatibilityValidatorExtension
-<span class="lineno">  69 </span>    get() = getHubdleExtension()
-<span class="lineno">  70 </span>
-<span class="lineno">  71 </span>private val Project.<span class="error">apiValidationExtension</span>: ApiValidationExtension
-<span class="lineno">  72 </span>    get() = getHubdleExtension()
-<span class="lineno">  73 </span>
+      <li><span class="location">hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/config/binary/compatibility/validator/HubdleConfigBinaryCompatibilityValidatorExtension.kt:72:21</span><span class="message">Private property `apiValidationExtension` is unused.</span>
+        <pre><code><span class="lineno">  69 </span>    HubdleConfigBinaryCompatibilityValidatorExtension
+<span class="lineno">  70 </span>    get() = getHubdleExtension()
+<span class="lineno">  71 </span>
+<span class="lineno">  72 </span>private val Project.<span class="error">apiValidationExtension</span>: ApiValidationExtension
+<span class="lineno">  73 </span>    get() = getHubdleExtension()
+<span class="lineno">  74 </span>
 </code></pre>
       </li>
       <li><span class="location">hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/kotlin/_internal/configureKotlinSourceSets.kt:230:26</span><span class="message">Private property `testCompilation` is unused.</span>
@@ -1047,7 +1057,7 @@
 </div>
 
 
-generated with <a href="https://detekt.dev/">detekt version 1.22.0</a> on 2023-03-05 21:35:56 UTC.
+generated with <a href="https://detekt.dev/">detekt version 1.22.0</a> on 2023-03-10 01:13:36 UTC.
 
 </body>
 </html>

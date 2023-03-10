@@ -16,9 +16,13 @@ import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.Task
+import org.gradle.api.plugins.BasePlugin
 import org.gradle.api.provider.Property
+import org.gradle.api.tasks.TaskProvider
 import org.gradle.api.tasks.testing.Test
 import org.gradle.api.tasks.testing.TestReport
+import org.gradle.kotlin.dsl.apply
+import org.gradle.kotlin.dsl.register
 import org.gradle.kotlin.dsl.withType
 import org.gradle.language.base.plugins.LifecycleBasePlugin.BUILD_TASK_NAME
 import org.gradle.language.base.plugins.LifecycleBasePlugin.CHECK_TASK_NAME
@@ -27,77 +31,73 @@ import org.gradle.language.base.plugins.LifecycleBasePlugin.VERIFICATION_GROUP
 @HubdleDslMarker
 public abstract class HubdleConfigTestingExtension
 @Inject
-<span class="nc" id="L30">constructor(</span>
+<span class="nc" id="L34">constructor(</span>
     project: Project,
-<span class="nc" id="L32">) : HubdleConfigurableExtension(project) {</span>
+<span class="nc" id="L36">) : HubdleConfigurableExtension(project) {</span>
 
-<span class="nc" id="L34">    override val isEnabled: Property&lt;Boolean&gt; = property { true }</span>
+<span class="nc" id="L38">    override val isEnabled: Property&lt;Boolean&gt; = property { true }</span>
 
     override val requiredExtensions: Set&lt;HubdleEnableableExtension&gt;
-<span class="nc" id="L37">        get() = setOf(hubdleConfig)</span>
+<span class="nc" id="L41">        get() = setOf(hubdleConfig)</span>
 
-<span class="nc" id="L39">    override val priority: Priority = Priority.P3</span>
+<span class="nc" id="L43">    override val priority: Priority = Priority.P3</span>
 
-<span class="nc" id="L41">    public val showStandardStreams: Property&lt;Boolean&gt; = property { true }</span>
+<span class="nc" id="L45">    public val showStandardStreams: Property&lt;Boolean&gt; = property { true }</span>
 
-<span class="nc" id="L43">    public val options: Property&lt;Options&gt; = property {</span>
+<span class="nc" id="L47">    public val options: Property&lt;Options&gt; = property {</span>
         if (hasAndroid.get()) Options.JUnit else Options.JUnitPlatform
     }
 
     @HubdleDslMarker
-<span class="nc" id="L48">    public fun showStandardStreams(enabled: Boolean = true) {</span>
-<span class="nc" id="L49">        showStandardStreams.set(enabled)</span>
-<span class="nc" id="L50">    }</span>
+<span class="nc" id="L52">    public fun showStandardStreams(enabled: Boolean = true) {</span>
+<span class="nc" id="L53">        showStandardStreams.set(enabled)</span>
+<span class="nc" id="L54">    }</span>
 
     @HubdleDslMarker
     public fun test(action: Action&lt;Test&gt;) {
-<span class="nc" id="L54">        userConfigurable {</span>
-<span class="nc" id="L55">            project.tasks.withType&lt;Test&gt;().configureEach { test -&gt; action.execute(test) }</span>
-<span class="nc" id="L56">        }</span>
-<span class="nc" id="L57">    }</span>
+<span class="nc" id="L58">        userConfigurable {</span>
+<span class="nc" id="L59">            project.tasks.withType&lt;Test&gt;().configureEach { test -&gt; action.execute(test) }</span>
+<span class="nc" id="L60">        }</span>
+<span class="nc" id="L61">    }</span>
 
     override fun Project.defaultConfiguration() {
-<span class="nc" id="L60">        applicablePlugin(</span>
-<span class="nc" id="L61">            priority = Priority.P4,</span>
-<span class="nc" id="L62">            scope = Scope.CurrentProject,</span>
-<span class="nc" id="L63">            pluginId = PluginId.AdarshrTestLogger</span>
+<span class="nc" id="L64">        pluginManager.apply(BasePlugin::class)</span>
+
+<span class="nc" id="L66">        applicablePlugin(</span>
+<span class="nc" id="L67">            priority = Priority.P4,</span>
+<span class="nc" id="L68">            scope = Scope.CurrentProject,</span>
+<span class="nc" id="L69">            pluginId = PluginId.AdarshrTestLogger</span>
         )
 
-<span class="nc" id="L66">        configurable {</span>
-<span class="nc" id="L67">            tasks.withType&lt;Test&gt;().configureEach { test -&gt;</span>
-<span class="nc" id="L68">                test.testLogging.showStandardStreams = showStandardStreams.get()</span>
+<span class="nc" id="L72">        configurable {</span>
+<span class="nc" id="L73">            val testReport: TaskProvider&lt;TestReport&gt; =</span>
+<span class="nc" id="L74">                tasks.register&lt;TestReport&gt;(ALL_TEST_REPORT_TASK_NAME)</span>
 
-<span class="nc bnc" id="L70" title="All 6 branches missed.">                when (options.get()) {</span>
-<span class="nc" id="L71">                    Options.JUnit -&gt; test.useJUnit()</span>
-<span class="nc" id="L72">                    Options.JUnitPlatform -&gt; test.useJUnitPlatform()</span>
-<span class="nc" id="L73">                    Options.TestNG -&gt; test.useTestNG()</span>
-<span class="nc" id="L74">                    else -&gt; test.useJUnitPlatform()</span>
+<span class="nc" id="L76">            val shouldRunAllTestsReport: Boolean =</span>
+<span class="nc" id="L77">                gradle.startParameter.taskNames.any { taskName -&gt;</span>
+<span class="nc" id="L78">                    taskName in listOf(ALL_TEST_TASK_NAME, BUILD_TASK_NAME, CHECK_TASK_NAME)</span>
                 }
-<span class="nc" id="L76">            }</span>
+<span class="nc" id="L80">            tasks.withType&lt;Test&gt;().configureEach { task -&gt;</span>
+<span class="nc" id="L81">                task.testLogging.showStandardStreams = showStandardStreams.get()</span>
 
-<span class="nc" id="L78">            tasks.configureEach { task -&gt;</span>
-<span class="nc bnc" id="L79" title="All 2 branches missed.">                if (task.name == CHECK_TASK_NAME) task.dependsOn(ALL_TEST_TASK_NAME)</span>
-<span class="nc" id="L80">            }</span>
-
-<span class="nc" id="L82">            val testReport = tasks.maybeRegisterLazily&lt;TestReport&gt;(ALL_TEST_REPORT_TASK_NAME)</span>
-<span class="nc" id="L83">            testReport.configureEach { task -&gt;</span>
-<span class="nc" id="L84">                task.group = VERIFICATION_GROUP</span>
-<span class="nc" id="L85">                task.destinationDirectory.set(file(&quot;$buildDir/reports/allTests&quot;))</span>
-<span class="nc" id="L86">                task.testResults.from(allprojects.map { it.tasks.withType&lt;Test&gt;() })</span>
-<span class="nc" id="L87">            }</span>
-
-<span class="nc" id="L89">            val shouldRunAllTestsReport =</span>
-<span class="nc" id="L90">                gradle.startParameter.taskNames.any { taskName -&gt;</span>
-<span class="nc" id="L91">                    taskName in listOf(ALL_TEST_TASK_NAME, BUILD_TASK_NAME, CHECK_TASK_NAME)</span>
+<span class="nc bnc" id="L83" title="All 6 branches missed.">                when (options.get()) {</span>
+<span class="nc" id="L84">                    Options.JUnit -&gt; task.useJUnit()</span>
+<span class="nc" id="L85">                    Options.JUnitPlatform -&gt; task.useJUnitPlatform()</span>
+<span class="nc" id="L86">                    Options.TestNG -&gt; task.useTestNG()</span>
+<span class="nc" id="L87">                    else -&gt; task.useJUnitPlatform()</span>
                 }
 
-<span class="nc bnc" id="L94" title="All 2 branches missed.">            if (shouldRunAllTestsReport) {</span>
-<span class="nc" id="L95">                allprojects {</span>
-<span class="nc" id="L96">                    it.project.tasks.withType&lt;Test&gt;().configureEach { task -&gt;</span>
-<span class="nc" id="L97">                        task.finalizedBy(testReport)</span>
-<span class="nc" id="L98">                    }</span>
-<span class="nc" id="L99">                }</span>
-            }
+<span class="nc bnc" id="L90" title="All 2 branches missed.">                if (shouldRunAllTestsReport) task.finalizedBy(testReport)</span>
+<span class="nc" id="L91">            }</span>
+
+<span class="nc" id="L93">            tasks.named(CHECK_TASK_NAME) { task -&gt; task.dependsOn(ALL_TEST_TASK_NAME) }</span>
+
+<span class="nc" id="L95">            testReport.configure { task -&gt;</span>
+<span class="nc" id="L96">                task.group = VERIFICATION_GROUP</span>
+<span class="nc" id="L97">                task.destinationDirectory.set(file(&quot;$buildDir/reports/allTests&quot;))</span>
+                // TODO: Remove allprojects as it is incompatible with project isolation
+<span class="nc" id="L99">                task.testResults.from(allprojects.map { it.tasks.withType&lt;Test&gt;() })</span>
+<span class="nc" id="L100">            }</span>
 <span class="nc" id="L101">        }</span>
 
 <span class="nc" id="L103">        configurable(priority = Priority.P6) {</span>

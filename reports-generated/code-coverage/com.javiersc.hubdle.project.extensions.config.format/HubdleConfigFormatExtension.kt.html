@@ -23,7 +23,7 @@ import org.gradle.api.Task
 import org.gradle.api.provider.Property
 import org.gradle.api.provider.SetProperty
 import org.gradle.kotlin.dsl.configure
-import org.gradle.kotlin.dsl.the
+import org.gradle.kotlin.dsl.findByType
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 
 @HubdleDslMarker
@@ -40,82 +40,82 @@ public open class HubdleConfigFormatExtension
 
 <span class="nc" id="L41">    override val priority: Priority = Priority.P3</span>
 
-<span class="nc" id="L43">    public val includes: SetProperty&lt;String&gt; = setProperty { emptySet() }</span>
+<span class="nc" id="L43">    public val includes: SetProperty&lt;String&gt; = setProperty {</span>
+        includedKotlinSourceSetDirsKotlinFiles.get()
+    }
 
     @HubdleDslMarker
     public fun includes(vararg includes: String) {
-<span class="nc" id="L47">        this.includes.addAll(includes.toList())</span>
-<span class="nc" id="L48">    }</span>
+<span class="nc" id="L49">        this.includes.addAll(includes.toList())</span>
+<span class="nc" id="L50">    }</span>
 
-<span class="nc" id="L50">    public val excludes: SetProperty&lt;String&gt; = setProperty { emptySet() }</span>
+<span class="nc" id="L52">    public val excludes: SetProperty&lt;String&gt; = setProperty {</span>
+        excludedSpecialDirs.get() + excludedResourceSourceSetDirsKotlinFiles.get()
+    }
 
     @HubdleDslMarker
     public fun excludes(vararg excludes: String) {
-<span class="nc" id="L54">        this.excludes.addAll(excludes.toList())</span>
-<span class="nc" id="L55">    }</span>
+<span class="nc" id="L58">        this.excludes.addAll(excludes.toList())</span>
+<span class="nc" id="L59">    }</span>
 
-<span class="nc" id="L57">    public val ktfmtVersion: Property&lt;String&gt; = property { COM_FACEBOOK_KTFMT_VERSION }</span>
+<span class="nc" id="L61">    public val ktfmtVersion: Property&lt;String&gt; = property { COM_FACEBOOK_KTFMT_VERSION }</span>
 
     @HubdleDslMarker
     public fun ktfmtVersion(version: String) {
-<span class="nc" id="L61">        ktfmtVersion.set(version)</span>
-<span class="nc" id="L62">    }</span>
+<span class="nc" id="L65">        ktfmtVersion.set(version)</span>
+<span class="nc" id="L66">    }</span>
 
     @HubdleDslMarker
     public fun spotless(action: Action&lt;SpotlessExtension&gt;) {
-<span class="nc" id="L66">        userConfigurable { action.execute(the()) }</span>
-<span class="nc" id="L67">    }</span>
+<span class="nc" id="L70">        userConfigurable { action.execute(the()) }</span>
+<span class="nc" id="L71">    }</span>
 
     @HubdleDslMarker
     public fun spotlessPredeclare(action: Action&lt;SpotlessExtensionPredeclare&gt;) {
-<span class="nc" id="L71">        userConfigurable { action.execute(the()) }</span>
-<span class="nc" id="L72">    }</span>
+<span class="nc" id="L75">        userConfigurable { action.execute(the()) }</span>
+<span class="nc" id="L76">    }</span>
 
     override fun Project.defaultConfiguration() {
-<span class="nc" id="L75">        applicablePlugin(</span>
-<span class="nc" id="L76">            priority = Priority.P4,</span>
-<span class="nc" id="L77">            scope = Scope.CurrentProject,</span>
-<span class="nc" id="L78">            pluginId = PluginId.DiffplugSpotless</span>
+<span class="nc" id="L79">        applicablePlugin(</span>
+<span class="nc" id="L80">            priority = Priority.P4,</span>
+<span class="nc" id="L81">            scope = Scope.CurrentProject,</span>
+<span class="nc" id="L82">            pluginId = PluginId.DiffplugSpotless</span>
         )
 
-<span class="nc" id="L81">        configurable {</span>
-<span class="nc" id="L82">            val checkTask = tasks.namedLazily&lt;Task&gt;(&quot;check&quot;)</span>
+<span class="nc" id="L85">        configurable {</span>
+<span class="nc" id="L86">            val checkTask = tasks.namedLazily&lt;Task&gt;(&quot;check&quot;)</span>
 
-<span class="nc" id="L84">            val checkFormat = tasks.maybeRegisterLazily&lt;Task&gt;(&quot;checkFormat&quot;)</span>
-<span class="nc" id="L85">            checkFormat.configureEach { task -&gt;</span>
-<span class="nc" id="L86">                task.group = &quot;verification&quot;</span>
-<span class="nc" id="L87">                task.dependsOn(&quot;spotlessCheck&quot;)</span>
-<span class="nc" id="L88">            }</span>
+<span class="nc" id="L88">            val checkFormat = tasks.maybeRegisterLazily&lt;Task&gt;(&quot;checkFormat&quot;)</span>
+<span class="nc" id="L89">            checkFormat.configureEach { task -&gt;</span>
+<span class="nc" id="L90">                task.group = &quot;verification&quot;</span>
+<span class="nc" id="L91">                task.dependsOn(&quot;spotlessCheck&quot;)</span>
+<span class="nc" id="L92">            }</span>
 
-<span class="nc" id="L90">            checkTask.configureEach { task -&gt; task.dependsOn(checkFormat) }</span>
+<span class="nc" id="L94">            checkTask.configureEach { task -&gt; task.dependsOn(checkFormat) }</span>
 
-<span class="nc" id="L92">            val applyFormat = tasks.maybeRegisterLazily&lt;Task&gt;(&quot;applyFormat&quot;)</span>
-<span class="nc" id="L93">            applyFormat.configureEach { task -&gt;</span>
-<span class="nc" id="L94">                task.group = &quot;verification&quot;</span>
-<span class="nc" id="L95">                task.dependsOn(&quot;spotlessApply&quot;)</span>
-<span class="nc" id="L96">            }</span>
+<span class="nc" id="L96">            val applyFormat = tasks.maybeRegisterLazily&lt;Task&gt;(&quot;applyFormat&quot;)</span>
+<span class="nc" id="L97">            applyFormat.configureEach { task -&gt;</span>
+<span class="nc" id="L98">                task.group = &quot;verification&quot;</span>
+<span class="nc" id="L99">                task.dependsOn(&quot;spotlessApply&quot;)</span>
+<span class="nc" id="L100">            }</span>
 
-<span class="nc bnc" id="L98" title="All 2 branches missed.">            if (isRootProject) {</span>
-<span class="nc" id="L99">                configure&lt;SpotlessExtension&gt; { predeclareDepsFromBuildscript() }</span>
+<span class="nc bnc" id="L102" title="All 2 branches missed.">            if (isRootProject) {</span>
+<span class="nc" id="L103">                configure&lt;SpotlessExtension&gt; { predeclareDepsFromBuildscript() }</span>
             }
 
-<span class="nc bnc" id="L102" title="All 2 branches missed.">            if (hubdleKotlin.isFullEnabled.get()) {</span>
-<span class="nc" id="L103">                val checkKotlinFormat = tasks.maybeRegisterLazily&lt;Task&gt;(&quot;checkKotlinFormat&quot;)</span>
-<span class="nc" id="L104">                checkKotlinFormat.configureEach { task -&gt;</span>
-<span class="nc" id="L105">                    task.group = &quot;verification&quot;</span>
-<span class="nc" id="L106">                    task.dependsOn(&quot;spotlessKotlinCheck&quot;)</span>
-<span class="nc" id="L107">                }</span>
+<span class="nc bnc" id="L106" title="All 2 branches missed.">            if (hubdleKotlin.isFullEnabled.get()) {</span>
+<span class="nc" id="L107">                val checkKotlinFormat = tasks.maybeRegisterLazily&lt;Task&gt;(&quot;checkKotlinFormat&quot;)</span>
+<span class="nc" id="L108">                checkKotlinFormat.configureEach { task -&gt;</span>
+<span class="nc" id="L109">                    task.group = &quot;verification&quot;</span>
+<span class="nc" id="L110">                    task.dependsOn(&quot;spotlessKotlinCheck&quot;)</span>
+<span class="nc" id="L111">                }</span>
 
-<span class="nc" id="L109">                checkTask.configureEach { task -&gt; task.dependsOn(checkKotlinFormat) }</span>
+<span class="nc" id="L113">                checkTask.configureEach { task -&gt; task.dependsOn(checkKotlinFormat) }</span>
 
-<span class="nc" id="L111">                tasks.maybeRegisterLazily&lt;Task&gt;(&quot;applyKotlinFormat&quot;).configureEach { task -&gt;</span>
-<span class="nc" id="L112">                    task.group = &quot;verification&quot;</span>
-<span class="nc" id="L113">                    task.dependsOn(&quot;spotlessKotlinApply&quot;)</span>
-<span class="nc" id="L114">                }</span>
-
-<span class="nc" id="L116">                includes.addAll(includedKotlinSourceSetDirsKotlinFiles)</span>
-<span class="nc" id="L117">                excludes.addAll(excludedSpecialDirs)</span>
-<span class="nc" id="L118">                excludes.addAll(excludedResourceSourceSetDirsKotlinFiles)</span>
+<span class="nc" id="L115">                tasks.maybeRegisterLazily&lt;Task&gt;(&quot;applyKotlinFormat&quot;).configureEach { task -&gt;</span>
+<span class="nc" id="L116">                    task.group = &quot;verification&quot;</span>
+<span class="nc" id="L117">                    task.dependsOn(&quot;spotlessKotlinApply&quot;)</span>
+<span class="nc" id="L118">                }</span>
             }
 <span class="nc" id="L120">        }</span>
 
@@ -138,51 +138,55 @@ public open class HubdleConfigFormatExtension
 
     private val includedKotlinSourceSetDirsKotlinFiles: SetProperty&lt;String&gt;
 <span class="nc" id="L140">        get() = setProperty {</span>
-            the&lt;KotlinProjectExtension&gt;()
-                .sourceSets
-                .asSequence()
-<span class="nc" id="L144">                .flatMap { it.kotlin.srcDirs }</span>
-<span class="nc" id="L145">                .map { it.relativeTo(projectDir) }</span>
-<span class="nc" id="L146">                .filterNot { it.path.startsWith(buildDir.name) }</span>
-                .flatMap {
-<span class="nc" id="L148">                    listOf(</span>
-<span class="nc" id="L149">                        &quot;${it.unixPath}/**/*.kt&quot;,</span>
-<span class="nc" id="L150">                        &quot;${it.unixPath}/*.kt&quot;,</span>
+            extensions
+                .findByType&lt;KotlinProjectExtension&gt;()
+                ?.sourceSets
+                ?.asSequence()
+<span class="nc" id="L145">                ?.flatMap { it.kotlin.srcDirs }</span>
+<span class="nc" id="L146">                ?.map { it.relativeTo(projectDir) }</span>
+<span class="nc" id="L147">                ?.filterNot { it.path.startsWith(buildDir.name) }</span>
+                ?.flatMap {
+<span class="nc" id="L149">                    listOf(</span>
+<span class="nc" id="L150">                        &quot;${it.unixPath}/**/*.kt&quot;,</span>
+<span class="nc" id="L151">                        &quot;${it.unixPath}/*.kt&quot;,</span>
                     )
                 }
-                .toSet()
-<span class="nc" id="L154">        }</span>
+                ?.toSet()
+                .orEmpty()
+<span class="nc" id="L156">        }</span>
 
     private val excludedSpecialDirs: SetProperty&lt;String&gt;
-<span class="nc" id="L157">        get() = setProperty {</span>
+<span class="nc" id="L159">        get() = setProperty {</span>
             setOf(
                 &quot;${buildDir.name}/**/*.kt&quot;,
                 &quot;${buildDir.name}/*.kt&quot;,
                 &quot;.gradle/**/*.kt&quot;,
                 &quot;.gradle/*.kt&quot;,
             )
-<span class="nc" id="L164">        }</span>
+<span class="nc" id="L166">        }</span>
 
     private val excludedResourceSourceSetDirsKotlinFiles: SetProperty&lt;String&gt;
-<span class="nc" id="L167">        get() = setProperty {</span>
-            the&lt;KotlinProjectExtension&gt;()
-                .sourceSets
-                .asSequence()
-<span class="nc" id="L171">                .flatMap { it.resources.srcDirs }</span>
-<span class="nc" id="L172">                .map { it.relativeTo(projectDir) }</span>
-                .flatMap {
-<span class="nc" id="L174">                    listOf(</span>
-<span class="nc" id="L175">                        &quot;${it.unixPath}/**/*.kt&quot;,</span>
-<span class="nc" id="L176">                        &quot;${it.unixPath}/*.kt&quot;,</span>
+<span class="nc" id="L169">        get() = setProperty {</span>
+            extensions
+                .findByType&lt;KotlinProjectExtension&gt;()
+                ?.sourceSets
+                ?.asSequence()
+<span class="nc" id="L174">                ?.flatMap { it.resources.srcDirs }</span>
+<span class="nc" id="L175">                ?.map { it.relativeTo(projectDir) }</span>
+                ?.flatMap {
+<span class="nc" id="L177">                    listOf(</span>
+<span class="nc" id="L178">                        &quot;${it.unixPath}/**/*.kt&quot;,</span>
+<span class="nc" id="L179">                        &quot;${it.unixPath}/*.kt&quot;,</span>
                     )
                 }
-                .toSet()
-<span class="nc" id="L180">        }</span>
+                ?.toSet()
+                .orEmpty()
+<span class="nc" id="L184">        }</span>
 
     private val File.unixPath: String
-<span class="nc" id="L183">        get() = path.replace(&quot;\\&quot;, &quot;/&quot;)</span>
+<span class="nc" id="L187">        get() = path.replace(&quot;\\&quot;, &quot;/&quot;)</span>
 }
 
 internal val HubdleEnableableExtension.hubdleFormat: HubdleConfigFormatExtension
-<span class="nc" id="L187">    get() = getHubdleExtension()</span>
+<span class="nc" id="L191">    get() = getHubdleExtension()</span>
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -5,23 +5,27 @@ import com.javiersc.hubdle.settings.extensions.HubdleBuildScanExtension
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.model.ObjectFactory
+import org.gradle.api.provider.Property
 import org.gradle.kotlin.dsl.newInstance
+import org.gradle.kotlin.dsl.property
 
-<span class="nc" id="L10">@HubdleSettingsDslMarker</span>
-<span class="nc" id="L11">public open class HubdleSettingsExtension @Inject constructor(objects: ObjectFactory) {</span>
+<span class="nc" id="L12">@HubdleSettingsDslMarker</span>
+<span class="nc" id="L13">public open class HubdleSettingsExtension @Inject constructor(objects: ObjectFactory) {</span>
 
-<span class="nc" id="L13">    public val autoInclude: HubdleAutoIncludeExtension = objects.newInstance()</span>
-
-    @HubdleSettingsDslMarker
-<span class="nc" id="L16">    public fun autoInclude(action: Action&lt;HubdleAutoIncludeExtension&gt; = Action {}) {</span>
-<span class="nc" id="L17">        action.execute(autoInclude)</span>
-<span class="nc" id="L18">    }</span>
-
-<span class="nc" id="L20">    public val buildScan: HubdleBuildScanExtension = objects.newInstance()</span>
+<span class="nc" id="L15">    public val autoInclude: HubdleAutoIncludeExtension = objects.newInstance()</span>
 
     @HubdleSettingsDslMarker
-<span class="nc" id="L23">    public fun buildScan(action: Action&lt;HubdleBuildScanExtension&gt; = Action {}) {</span>
-<span class="nc" id="L24">        action.execute(buildScan)</span>
-<span class="nc" id="L25">    }</span>
+<span class="nc" id="L18">    public fun autoInclude(action: Action&lt;HubdleAutoIncludeExtension&gt; = Action {}) {</span>
+<span class="nc" id="L19">        action.execute(autoInclude)</span>
+<span class="nc" id="L20">    }</span>
+
+<span class="nc" id="L22">    public val buildScan: HubdleBuildScanExtension = objects.newInstance()</span>
+
+    @HubdleSettingsDslMarker
+<span class="nc" id="L25">    public fun buildScan(action: Action&lt;HubdleBuildScanExtension&gt; = Action {}) {</span>
+<span class="nc" id="L26">        action.execute(buildScan)</span>
+<span class="nc" id="L27">    }</span>
+
+<span class="nc" id="L29">    public val useOnAllProjects: Property&lt;Boolean&gt; = objects.property&lt;Boolean&gt;().convention(true)</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -2,6 +2,7 @@
 
 import com.gradle.enterprise.gradleplugin.GradleEnterpriseExtension
 import com.javiersc.gradle.properties.extensions.getPropertyOrNull
+import com.javiersc.hubdle.project.HubdleProjectPlugin
 import com.javiersc.hubdle.settings.extensions.extractedBuildProjects
 import com.javiersc.hubdle.settings.extensions.extractedProjects
 import java.io.File
@@ -9,118 +10,128 @@ import javax.inject.Inject
 import org.gradle.api.Plugin
 import org.gradle.api.initialization.Settings
 import org.gradle.api.model.ObjectFactory
+import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.create
 import org.gradle.kotlin.dsl.findByType
 import org.gradle.kotlin.dsl.maven
 
-<span class="nc" id="L17">public open class HubdleSettingsPlugin</span>
+<span class="nc" id="L19">public open class HubdleSettingsPlugin</span>
 @Inject
-<span class="nc" id="L19">constructor(</span>
-<span class="nc" id="L20">    private val objects: ObjectFactory,</span>
+<span class="nc" id="L21">constructor(</span>
+<span class="nc" id="L22">    private val objects: ObjectFactory,</span>
 ) : Plugin&lt;Settings&gt; {
 
     override fun apply(target: Settings) {
-<span class="nc" id="L24">        val rootProjectName = target.getPropertyOrNull(&quot;root.project.name&quot;)</span>
-<span class="nc bnc" id="L25" title="All 2 branches missed.">        if (rootProjectName != null) {</span>
-<span class="nc" id="L26">            target.rootProject.name = rootProjectName</span>
+<span class="nc" id="L26">        val rootProjectName = target.getPropertyOrNull(&quot;root.project.name&quot;)</span>
+<span class="nc bnc" id="L27" title="All 2 branches missed.">        if (rootProjectName != null) {</span>
+<span class="nc" id="L28">            target.rootProject.name = rootProjectName</span>
         }
-<span class="nc" id="L28">        target.enableFeaturePreview(&quot;TYPESAFE_PROJECT_ACCESSORS&quot;)</span>
+<span class="nc" id="L30">        target.enableFeaturePreview(&quot;TYPESAFE_PROJECT_ACCESSORS&quot;)</span>
 
-<span class="nc" id="L30">        target.extensions.create&lt;HubdleSettingsExtension&gt;(&quot;hubdleSettings&quot;)</span>
+<span class="nc" id="L32">        target.extensions.create&lt;HubdleSettingsExtension&gt;(&quot;hubdleSettings&quot;)</span>
 
-<span class="nc" id="L32">        target.configureRepositories()</span>
+<span class="nc" id="L34">        target.configureRepositories()</span>
 
-<span class="nc" id="L34">        target.gradle.settingsEvaluated { settings -&gt;</span>
-<span class="nc" id="L35">            settings.configureGradleEnterprise()</span>
-<span class="nc" id="L36">            settings.configureAutoInclude()</span>
-<span class="nc" id="L37">            settings.configureAutoIncludeVersionCatalogs(objects)</span>
-<span class="nc" id="L38">        }</span>
-<span class="nc" id="L39">    }</span>
+<span class="nc" id="L36">        target.gradle.settingsEvaluated { settings -&gt;</span>
+<span class="nc" id="L37">            target.useHubdleOnAllProjects()</span>
+<span class="nc" id="L38">            settings.configureGradleEnterprise()</span>
+<span class="nc" id="L39">            settings.configureAutoInclude()</span>
+<span class="nc" id="L40">            settings.configureAutoIncludeVersionCatalogs(objects)</span>
+<span class="nc" id="L41">        }</span>
+<span class="nc" id="L42">    }</span>
 }
 
 @DslMarker public annotation class HubdleSettingsDslMarker
 
 internal val Settings.hubdleSettings: HubdleSettingsExtension
-<span class="nc bnc" id="L45" title="All 2 branches missed.">    get() = checkNotNull(extensions.findByType())</span>
+<span class="nc bnc" id="L48" title="All 2 branches missed.">    get() = checkNotNull(extensions.findByType())</span>
 
-private fun Settings.configureRepositories() {
-<span class="nc" id="L48">    dependencyResolutionManagement { management -&gt;</span>
-<span class="nc" id="L49">        management.repositories { repository -&gt;</span>
-<span class="nc" id="L50">            repository.mavenCentral()</span>
-<span class="nc" id="L51">            repository.google()</span>
-<span class="nc" id="L52">            repository.gradlePluginPortal()</span>
-<span class="nc" id="L53">            repository.maven(url = &quot;https://maven.pkg.jetbrains.space/public/p/compose/dev&quot;)</span>
-<span class="nc" id="L54">        }</span>
+private fun Settings.useHubdleOnAllProjects() {
+<span class="nc" id="L51">    gradle.beforeProject { project -&gt;</span>
+<span class="nc bnc" id="L52" title="All 2 branches missed.">        if (hubdleSettings.useOnAllProjects.get()) {</span>
+<span class="nc" id="L53">            project.pluginManager.apply(HubdleProjectPlugin::class)</span>
+        }
 <span class="nc" id="L55">    }</span>
 <span class="nc" id="L56">}</span>
 
+private fun Settings.configureRepositories() {
+<span class="nc" id="L59">    dependencyResolutionManagement { management -&gt;</span>
+<span class="nc" id="L60">        management.repositories { repository -&gt;</span>
+<span class="nc" id="L61">            repository.mavenCentral()</span>
+<span class="nc" id="L62">            repository.google()</span>
+<span class="nc" id="L63">            repository.gradlePluginPortal()</span>
+<span class="nc" id="L64">            repository.maven(url = &quot;https://maven.pkg.jetbrains.space/public/p/compose/dev&quot;)</span>
+<span class="nc" id="L65">        }</span>
+<span class="nc" id="L66">    }</span>
+<span class="nc" id="L67">}</span>
+
 private fun Settings.configureAutoInclude() {
-<span class="nc" id="L59">    val autoInclude = hubdleSettings.autoInclude</span>
+<span class="nc" id="L70">    val autoInclude = hubdleSettings.autoInclude</span>
 
-<span class="nc bnc" id="L61" title="All 2 branches missed.">    if (autoInclude.isEnabled.get()) {</span>
-<span class="nc" id="L62">        autoInclude.includes(*extractedProjects().toTypedArray())</span>
-<span class="nc" id="L63">        autoInclude.includedBuilds(*extractedBuildProjects().toTypedArray())</span>
+<span class="nc bnc" id="L72" title="All 2 branches missed.">    if (autoInclude.isEnabled.get()) {</span>
+<span class="nc" id="L73">        autoInclude.includes(*extractedProjects().toTypedArray())</span>
+<span class="nc" id="L74">        autoInclude.includedBuilds(*extractedBuildProjects().toTypedArray())</span>
 
-<span class="nc bnc" id="L65" title="All 2 branches missed.">        for (include in autoInclude.includableProjects) {</span>
-<span class="nc" id="L66">            include(include)</span>
+<span class="nc bnc" id="L76" title="All 2 branches missed.">        for (include in autoInclude.includableProjects) {</span>
+<span class="nc" id="L77">            include(include)</span>
         }
 
-<span class="nc bnc" id="L69" title="All 2 branches missed.">        for (includeBuild in autoInclude.includableBuilds) {</span>
-<span class="nc" id="L70">            includeBuild(includeBuild)</span>
+<span class="nc bnc" id="L80" title="All 2 branches missed.">        for (includeBuild in autoInclude.includableBuilds) {</span>
+<span class="nc" id="L81">            includeBuild(includeBuild)</span>
         }
     }
-<span class="nc" id="L73">}</span>
+<span class="nc" id="L84">}</span>
 
 private fun Settings.configureGradleEnterprise() {
-<span class="nc" id="L76">    pluginManager.apply(&quot;com.gradle.enterprise&quot;)</span>
+<span class="nc" id="L87">    pluginManager.apply(&quot;com.gradle.enterprise&quot;)</span>
 
-<span class="nc" id="L78">    configure&lt;GradleEnterpriseExtension&gt; {</span>
-<span class="nc" id="L79">        buildScan { scan -&gt;</span>
-<span class="nc" id="L80">            scan.publishAlwaysIf(hubdleSettings.buildScan.publishAlways.get())</span>
-<span class="nc" id="L81">            scan.termsOfServiceUrl = &quot;https://gradle.com/terms-of-service&quot;</span>
-<span class="nc" id="L82">            scan.termsOfServiceAgree = &quot;yes&quot;</span>
-<span class="nc" id="L83">        }</span>
-<span class="nc" id="L84">    }</span>
-<span class="nc" id="L85">}</span>
+<span class="nc" id="L89">    configure&lt;GradleEnterpriseExtension&gt; {</span>
+<span class="nc" id="L90">        buildScan { scan -&gt;</span>
+<span class="nc" id="L91">            scan.publishAlwaysIf(hubdleSettings.buildScan.publishAlways.get())</span>
+<span class="nc" id="L92">            scan.termsOfServiceUrl = &quot;https://gradle.com/terms-of-service&quot;</span>
+<span class="nc" id="L93">            scan.termsOfServiceAgree = &quot;yes&quot;</span>
+<span class="nc" id="L94">        }</span>
+<span class="nc" id="L95">    }</span>
+<span class="nc" id="L96">}</span>
 
 private fun Settings.configureAutoIncludeVersionCatalogs(objects: ObjectFactory) {
-<span class="nc" id="L88">    dependencyResolutionManagement { management -&gt;</span>
-<span class="nc" id="L89">        management.versionCatalogs { container -&gt;</span>
-<span class="nc" id="L90">            val catalogs: Map&lt;String, File&gt; = tomlFileInGradleDirs.getCatalogs()</span>
-<span class="nc bnc" id="L91" title="All 2 branches missed.">            for ((name, file) in catalogs) {</span>
-<span class="nc" id="L92">                container.create(name) { catalog -&gt;</span>
-<span class="nc" id="L93">                    catalog.from(objects.fileCollection().from(file.absolutePath))</span>
-<span class="nc" id="L94">                }</span>
+<span class="nc" id="L99">    dependencyResolutionManagement { management -&gt;</span>
+<span class="nc" id="L100">        management.versionCatalogs { container -&gt;</span>
+<span class="nc" id="L101">            val catalogs: Map&lt;String, File&gt; = tomlFileInGradleDirs.getCatalogs()</span>
+<span class="nc bnc" id="L102" title="All 2 branches missed.">            for ((name, file) in catalogs) {</span>
+<span class="nc" id="L103">                container.create(name) { catalog -&gt;</span>
+<span class="nc" id="L104">                    catalog.from(objects.fileCollection().from(file.absolutePath))</span>
+<span class="nc" id="L105">                }</span>
             }
-<span class="nc" id="L96">        }</span>
-<span class="nc" id="L97">    }</span>
-<span class="nc" id="L98">}</span>
+<span class="nc" id="L107">        }</span>
+<span class="nc" id="L108">    }</span>
+<span class="nc" id="L109">}</span>
 
 private val Settings.tomlFileInGradleDirs: Set&lt;File&gt;
     get() =
-<span class="nc" id="L102">        (rootDir.resolve(&quot;gradle&quot;).listFiles().orEmpty().toSet() +</span>
-<span class="nc" id="L103">                settingsDir.resolve(&quot;gradle&quot;).listFiles().orEmpty().toSet())</span>
-<span class="nc" id="L104">            .filter { it.extension == &quot;toml&quot; }</span>
-<span class="nc" id="L105">            .toSet()</span>
+<span class="nc" id="L113">        (rootDir.resolve(&quot;gradle&quot;).listFiles().orEmpty().toSet() +</span>
+<span class="nc" id="L114">                settingsDir.resolve(&quot;gradle&quot;).listFiles().orEmpty().toSet())</span>
+<span class="nc" id="L115">            .filter { it.extension == &quot;toml&quot; }</span>
+<span class="nc" id="L116">            .toSet()</span>
 
 private fun Set&lt;File&gt;.getCatalogs(): Map&lt;String, File&gt; =
-<span class="nc bnc" id="L108" title="All 2 branches missed.">    mapNotNull { file -&gt; if (file.isCatalog) file else null }</span>
-<span class="nc" id="L109">        .mapNotNull { catalog -&gt;</span>
-<span class="nc" id="L110">            val catalogName =</span>
-<span class="nc" id="L111">                when {</span>
-<span class="nc bnc" id="L112" title="All 2 branches missed.">                    catalog.name.contains(&quot;-libs&quot;) -&gt; catalog.name.substringBefore(&quot;-&quot;)</span>
-<span class="nc bnc" id="L113" title="All 2 branches missed.">                    catalog.name.contains(&quot;.libs&quot;) -&gt; catalog.name.substringBefore(&quot;.&quot;)</span>
-<span class="nc" id="L114">                    else -&gt; null</span>
+<span class="nc bnc" id="L119" title="All 2 branches missed.">    mapNotNull { file -&gt; if (file.isCatalog) file else null }</span>
+<span class="nc" id="L120">        .mapNotNull { catalog -&gt;</span>
+<span class="nc" id="L121">            val catalogName =</span>
+<span class="nc" id="L122">                when {</span>
+<span class="nc bnc" id="L123" title="All 2 branches missed.">                    catalog.name.contains(&quot;-libs&quot;) -&gt; catalog.name.substringBefore(&quot;-&quot;)</span>
+<span class="nc bnc" id="L124" title="All 2 branches missed.">                    catalog.name.contains(&quot;.libs&quot;) -&gt; catalog.name.substringBefore(&quot;.&quot;)</span>
+<span class="nc" id="L125">                    else -&gt; null</span>
                 }
-<span class="nc" id="L116">            when {</span>
-<span class="nc bnc" id="L117" title="All 2 branches missed.">                catalog.name == &quot;libs.versions.catalog&quot; -&gt; null</span>
-<span class="nc bnc" id="L118" title="All 8 branches missed.">                catalogName?.isNotBlank() == true -&gt; &quot;${catalogName}Libs&quot; to catalog</span>
-<span class="nc" id="L119">                else -&gt; null</span>
+<span class="nc" id="L127">            when {</span>
+<span class="nc bnc" id="L128" title="All 2 branches missed.">                catalog.name == &quot;libs.versions.catalog&quot; -&gt; null</span>
+<span class="nc bnc" id="L129" title="All 8 branches missed.">                catalogName?.isNotBlank() == true -&gt; &quot;${catalogName}Libs&quot; to catalog</span>
+<span class="nc" id="L130">                else -&gt; null</span>
             }
         }
-<span class="nc" id="L122">        .toMap()</span>
+<span class="nc" id="L133">        .toMap()</span>
 
 private val File.isCatalog: Boolean
-<span class="nc" id="L125">    get() = name.endsWith(&quot;libs.versions.toml&quot;)</span>
+<span class="nc" id="L136">    get() = name.endsWith(&quot;libs.versions.toml&quot;)</span>
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

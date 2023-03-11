@@ -2,9 +2,9 @@
 
 ## Metrics
 
-* 1,317 number of properties
+* 1,318 number of properties
 
-* 549 number of functions
+* 550 number of functions
 
 * 232 number of classes
 
@@ -14,17 +14,17 @@
 
 ## Complexity Report
 
-* 13,094 lines of code (loc)
+* 13,113 lines of code (loc)
 
-* 10,779 source lines of code (sloc)
+* 10,794 source lines of code (sloc)
 
-* 7,075 logical lines of code (lloc)
+* 7,083 logical lines of code (lloc)
 
 * 101 comment lines of code (cloc)
 
-* 924 cyclomatic complexity (mcc)
+* 926 cyclomatic complexity (mcc)
 
-* 471 cognitive complexity
+* 473 cognitive complexity
 
 * 91 number of total code smells
 
@@ -1070,35 +1070,35 @@ In most cases using a spread operator causes a full copy of the array to be crea
 
 ```
 
-* hubdle-settings-gradle-plugin/main/kotlin/com/javiersc/hubdle/settings/HubdleSettingsPlugin.kt:62:29
+* hubdle-settings-gradle-plugin/main/kotlin/com/javiersc/hubdle/settings/HubdleSettingsPlugin.kt:73:29
 ```
 In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.
 ```
 ```kotlin
-59     val autoInclude = hubdleSettings.autoInclude
-60 
-61     if (autoInclude.isEnabled.get()) {
-62         autoInclude.includes(*extractedProjects().toTypedArray())
+70     val autoInclude = hubdleSettings.autoInclude
+71 
+72     if (autoInclude.isEnabled.get()) {
+73         autoInclude.includes(*extractedProjects().toTypedArray())
 !!                             ^ error
-63         autoInclude.includedBuilds(*extractedBuildProjects().toTypedArray())
-64 
-65         for (include in autoInclude.includableProjects) {
+74         autoInclude.includedBuilds(*extractedBuildProjects().toTypedArray())
+75 
+76         for (include in autoInclude.includableProjects) {
 
 ```
 
-* hubdle-settings-gradle-plugin/main/kotlin/com/javiersc/hubdle/settings/HubdleSettingsPlugin.kt:63:35
+* hubdle-settings-gradle-plugin/main/kotlin/com/javiersc/hubdle/settings/HubdleSettingsPlugin.kt:74:35
 ```
 In most cases using a spread operator causes a full copy of the array to be created before calling a method. This may result in a performance penalty.
 ```
 ```kotlin
-60 
-61     if (autoInclude.isEnabled.get()) {
-62         autoInclude.includes(*extractedProjects().toTypedArray())
-63         autoInclude.includedBuilds(*extractedBuildProjects().toTypedArray())
+71 
+72     if (autoInclude.isEnabled.get()) {
+73         autoInclude.includes(*extractedProjects().toTypedArray())
+74         autoInclude.includedBuilds(*extractedBuildProjects().toTypedArray())
 !!                                   ^ error
-64 
-65         for (include in autoInclude.includableProjects) {
-66             include(include)
+75 
+76         for (include in autoInclude.includableProjects) {
+77             include(include)
 
 ```
 
@@ -1429,4 +1429,4 @@ Private property `testCompilation` is unused.
 
 ```
 
-generated with [detekt version 1.22.0](https://detekt.dev/) on 2023-03-11 16:22:45 UTC
+generated with [detekt version 1.22.0](https://detekt.dev/) on 2023-03-11 17:40:40 UTC

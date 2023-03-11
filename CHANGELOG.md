@@ -4,6 +4,8 @@
 
 ### Added
 
+- `buildScan` to `hubdleSettings` extension
+
 ### Changed
 
 - `site` shows Qodana and Sonar in the navigation bar 

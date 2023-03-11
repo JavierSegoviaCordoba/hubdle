@@ -16,10 +16,14 @@ pluginManagement {
         if (itselfVersionFromProp != null) mavenLocal()
     }
 
-    plugins { id("com.javiersc.hubdle.settings") version itselfVersion }
+    plugins {
+        id("com.javiersc.hubdle.settings") version itselfVersion
+    }
 }
 
-plugins { id("com.javiersc.hubdle.settings") }
+plugins {
+    id("com.javiersc.hubdle.settings")
+}
 
 val itselfVersion: String? = providers.gradleProperty("itselfVersion").orNull
 
@@ -32,7 +36,11 @@ dependencyResolutionManagement {
         if (itselfVersion != null) mavenLocal()
     }
     if (itselfVersion != null) {
-        versionCatalogs { create("libs") { version("hubdle", itselfVersion) } }
+        versionCatalogs {
+            create("libs") {
+                version("hubdle", itselfVersion)
+            }
+        }
     }
 }
 

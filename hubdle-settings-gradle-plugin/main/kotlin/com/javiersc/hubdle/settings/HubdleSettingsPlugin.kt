@@ -77,6 +77,7 @@ private fun Settings.configureGradleEnterprise() {
 
     configure<GradleEnterpriseExtension> {
         buildScan { scan ->
+            scan.publishAlwaysIf(hubdleSettings.buildScan.publishAlways.get())
             scan.termsOfServiceUrl = "https://gradle.com/terms-of-service"
             scan.termsOfServiceAgree = "yes"
         }

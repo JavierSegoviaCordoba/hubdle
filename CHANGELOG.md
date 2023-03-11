@@ -4,17 +4,27 @@
 
 ### Added
 
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Updated
+
+## [0.5.0-alpha.1] - 2023-03-11
+
+### Added
+
 - `useOnAllProjects` to `hubdleSettings` extension
 - `buildScan` to `hubdleSettings` extension
 
 ### Changed
 
-- `site` shows Qodana and Sonar in the navigation bar 
+- `site` shows Qodana and Sonar in the navigation bar
 - `site` doesn't upload reports to GitHub Pages
-
-### Deprecated
-
-### Removed
 
 ### Fixed
 
@@ -286,7 +296,9 @@
 - `org.junit.jupiter:junit-jupiter-params -> 5.9.2`
 - `org.junit.jupiter:junit-jupiter-api -> 5.9.2`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.18...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.1...HEAD
+
+[0.5.0-alpha.1]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.18...0.5.0-alpha.1
 
 [0.4.0-alpha.18]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.17...0.4.0-alpha.18
 

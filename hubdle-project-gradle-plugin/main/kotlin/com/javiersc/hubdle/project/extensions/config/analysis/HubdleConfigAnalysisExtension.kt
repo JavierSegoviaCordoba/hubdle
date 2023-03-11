@@ -143,21 +143,9 @@ constructor(
     private fun configureMergeDetektReports(project: Project) {
         if (project.isRootProject) {
             val buildDirectory: DirectoryProperty = project.layout.buildDirectory
-            val detektReportMergeHtml: TaskProvider<ReportMergeTask> =
-                tasks.register<ReportMergeTask>("detektReportMergeHtml") {
-                    output.set(buildDirectory.file("reports/detekt/detekt.html"))
-                }
-            val detektReportMergeMd: TaskProvider<ReportMergeTask> =
-                tasks.register<ReportMergeTask>("detektReportMergeMd") {
-                    output.set(buildDirectory.file("reports/detekt/detekt.md"))
-                }
             val detektReportMergeSarif: TaskProvider<ReportMergeTask> =
                 tasks.register<ReportMergeTask>("detektReportMergeSarif") {
                     output.set(buildDirectory.file("reports/detekt/detekt.sarif"))
-                }
-            val detektReportMergeTxt: TaskProvider<ReportMergeTask> =
-                tasks.register<ReportMergeTask>("detektReportMergeTxt") {
-                    output.set(buildDirectory.file("reports/detekt/detekt.txt"))
                 }
             val detektReportMergeXml: TaskProvider<ReportMergeTask> =
                 tasks.register<ReportMergeTask>("detektReportMergeXml") {
@@ -167,15 +155,9 @@ constructor(
             project.subprojects { subproject ->
                 val detektTasks: TaskCollection<Detekt> = subproject.tasks.withType<Detekt>()
                 detektTasks.configureEach { detekt ->
-                    detekt.finalizedBy(detektReportMergeHtml)
-                    detekt.finalizedBy(detektReportMergeMd)
                     detekt.finalizedBy(detektReportMergeSarif)
-                    detekt.finalizedBy(detektReportMergeTxt)
                     detekt.finalizedBy(detektReportMergeXml)
-                    detektReportMergeHtml.configure { it.input.from(detekt.htmlReportFile) }
-                    detektReportMergeMd.configure { it.input.from(detekt.mdReportFile) }
                     detektReportMergeSarif.configure { it.input.from(detekt.sarifReportFile) }
-                    detektReportMergeTxt.configure { it.input.from(detekt.txtReportFile) }
                     detektReportMergeXml.configure { it.input.from(detekt.xmlReportFile) }
                 }
             }

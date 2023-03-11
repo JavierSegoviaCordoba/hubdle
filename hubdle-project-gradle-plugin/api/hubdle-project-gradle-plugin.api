@@ -171,6 +171,15 @@ public final class com/javiersc/hubdle/project/HubdleProperty {
 
 public final class com/javiersc/hubdle/project/HubdleProperty$Analysis {
 	public static final field INSTANCE Lcom/javiersc/hubdle/project/HubdleProperty$Analysis;
+}
+
+public final class com/javiersc/hubdle/project/HubdleProperty$Analysis$Qodana {
+	public static final field INSTANCE Lcom/javiersc/hubdle/project/HubdleProperty$Analysis$Qodana;
+	public static final field projectKey Ljava/lang/String;
+}
+
+public final class com/javiersc/hubdle/project/HubdleProperty$Analysis$Sonar {
+	public static final field INSTANCE Lcom/javiersc/hubdle/project/HubdleProperty$Analysis$Sonar;
 	public static final field hostUrl Ljava/lang/String;
 	public static final field login Ljava/lang/String;
 	public static final field organization Ljava/lang/String;
@@ -579,25 +588,23 @@ public final class com/javiersc/hubdle/project/extensions/config/documentation/s
 
 public class com/javiersc/hubdle/project/extensions/config/documentation/site/HubdleConfigDocumentationSiteExtension : com/javiersc/hubdle/project/extensions/apis/HubdleConfigurableExtension {
 	public fun <init> (Lorg/gradle/api/Project;)V
-	public final fun getReports ()Lcom/javiersc/hubdle/project/extensions/config/documentation/site/reports/HubdleConfigDocumentationSiteReportsExtension;
+	public final fun analysis (Lorg/gradle/api/Action;)V
+	public final fun getAnalysis ()Lcom/javiersc/hubdle/project/extensions/config/documentation/site/analysis/HubdleConfigDocumentationSiteAnalysisExtension;
 	public fun isEnabled ()Lorg/gradle/api/provider/Property;
 	public final fun mkdocs (Lorg/gradle/api/Action;)V
-	public final fun reports (Lorg/gradle/api/Action;)V
 }
 
 public abstract class com/javiersc/hubdle/project/extensions/config/documentation/site/PrebuildSiteTask : org/gradle/api/DefaultTask {
 	public static final field Companion Lcom/javiersc/hubdle/project/extensions/config/documentation/site/PrebuildSiteTask$Companion;
 	public static final field name Ljava/lang/String;
 	public fun <init> (Lorg/gradle/api/file/ProjectLayout;Lorg/gradle/api/file/FileSystemOperations;)V
-	public abstract fun getAllTests ()Lorg/gradle/api/provider/Property;
 	public final fun getBuildDotDocsDirectory ()Ljava/io/File;
-	public abstract fun getCodeAnalysis ()Lorg/gradle/api/provider/Property;
-	public abstract fun getCodeCoverage ()Lorg/gradle/api/provider/Property;
-	public abstract fun getCodeQuality ()Lorg/gradle/api/provider/Property;
 	public final fun getDotDocsDirectory ()Ljava/io/File;
 	public final fun getOutputDotDocsDirectory ()Ljava/io/File;
 	public abstract fun getProjectsInfo ()Lorg/gradle/api/provider/ListProperty;
+	public abstract fun getQodana ()Lorg/gradle/api/provider/Property;
 	public final fun getRootDirectory ()Ljava/io/File;
+	public abstract fun getSonar ()Lorg/gradle/api/provider/Property;
 	public final fun run ()V
 }
 
@@ -620,12 +627,10 @@ public final class com/javiersc/hubdle/project/extensions/config/documentation/s
 	public fun toString ()Ljava/lang/String;
 }
 
-public class com/javiersc/hubdle/project/extensions/config/documentation/site/reports/HubdleConfigDocumentationSiteReportsExtension : com/javiersc/hubdle/project/extensions/apis/HubdleEnableableExtension {
+public class com/javiersc/hubdle/project/extensions/config/documentation/site/analysis/HubdleConfigDocumentationSiteAnalysisExtension : com/javiersc/hubdle/project/extensions/apis/HubdleEnableableExtension {
 	public fun <init> (Lorg/gradle/api/Project;)V
-	public final fun getAllTests ()Lorg/gradle/api/provider/Property;
-	public final fun getCodeAnalysis ()Lorg/gradle/api/provider/Property;
-	public final fun getCodeCoverage ()Lorg/gradle/api/provider/Property;
-	public final fun getCodeQuality ()Lorg/gradle/api/provider/Property;
+	public final fun getQodana ()Lorg/gradle/api/provider/Property;
+	public final fun getSonar ()Lorg/gradle/api/provider/Property;
 	public fun isEnabled ()Lorg/gradle/api/provider/Property;
 }
 

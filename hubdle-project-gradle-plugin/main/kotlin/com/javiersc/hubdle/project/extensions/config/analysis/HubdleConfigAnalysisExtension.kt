@@ -6,6 +6,7 @@ import com.javiersc.gradle.properties.extensions.getPropertyOrNull
 import com.javiersc.gradle.tasks.extensions.maybeRegisterLazily
 import com.javiersc.gradle.tasks.extensions.namedLazily
 import com.javiersc.hubdle.project.HubdleProperty
+import com.javiersc.hubdle.project.HubdleProperty.Analysis.Sonar
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
@@ -186,28 +187,27 @@ constructor(
             properties { properties ->
                 properties.property(
                     "sonar.projectName",
-                    project.getPropertyOrNull(HubdleProperty.Analysis.projectName)
+                    project.getPropertyOrNull(Sonar.projectName)
                         ?: project.getPropertyOrNull(HubdleProperty.Project.rootProjectDirName)
                             ?: project.name
                 )
                 properties.property(
                     "sonar.projectKey",
-                    project.getPropertyOrNull(HubdleProperty.Analysis.projectKey)
+                    project.getPropertyOrNull(Sonar.projectKey)
                         ?: project.getPropertyOrNull(HubdleProperty.Project.rootProjectDirName)
                             ?: "${project.group}:${project.name}"
                 )
                 properties.property(
                     "sonar.login",
-                    project.getProperty(HubdleProperty.Analysis.login),
+                    project.getProperty(Sonar.login),
                 )
                 properties.property(
                     "sonar.host.url",
-                    project.getPropertyOrNull(HubdleProperty.Analysis.hostUrl)
-                        ?: "https://sonarcloud.io"
+                    project.getPropertyOrNull(Sonar.hostUrl) ?: "https://sonarcloud.io"
                 )
                 properties.property(
                     "sonar.organization",
-                    project.getPropertyOrNull(HubdleProperty.Analysis.organization) ?: ""
+                    project.getPropertyOrNull(Sonar.organization) ?: ""
                 )
                 properties.property(
                     "sonar.kotlin.detekt.reportPaths",

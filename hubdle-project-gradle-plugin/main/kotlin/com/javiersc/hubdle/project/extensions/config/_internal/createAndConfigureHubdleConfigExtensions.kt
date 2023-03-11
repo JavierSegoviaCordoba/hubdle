@@ -12,7 +12,7 @@ import com.javiersc.hubdle.project.extensions.config.documentation.changelog.Hub
 import com.javiersc.hubdle.project.extensions.config.documentation.readme.HubdleConfigDocumentationReadmeExtension
 import com.javiersc.hubdle.project.extensions.config.documentation.readme.badges.HubdleConfigDocumentationReadmeBadgesExtension
 import com.javiersc.hubdle.project.extensions.config.documentation.site.HubdleConfigDocumentationSiteExtension
-import com.javiersc.hubdle.project.extensions.config.documentation.site.reports.HubdleConfigDocumentationSiteReportsExtension
+import com.javiersc.hubdle.project.extensions.config.documentation.site.analysis.HubdleConfigDocumentationSiteAnalysisExtension
 import com.javiersc.hubdle.project.extensions.config.format.HubdleConfigFormatExtension
 import com.javiersc.hubdle.project.extensions.config.install.HubdleConfigInstallExtension
 import com.javiersc.hubdle.project.extensions.config.install.pre.commits.HubdleConfigInstallPreCommitsExtension
@@ -54,7 +54,7 @@ private fun HubdleState.configureDocumentationExtensions() {
             createExtension<HubdleConfigDocumentationReadmeBadgesExtension>()
         }
         createExtension<HubdleConfigDocumentationSiteExtension> {
-            createExtension<HubdleConfigDocumentationSiteReportsExtension>()
+            createExtension<HubdleConfigDocumentationSiteAnalysisExtension>()
         }
     }
 }

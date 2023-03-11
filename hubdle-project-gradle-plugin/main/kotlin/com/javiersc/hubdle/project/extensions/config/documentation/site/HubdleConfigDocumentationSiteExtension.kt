@@ -10,7 +10,7 @@ import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
 import com.javiersc.hubdle.project.extensions.config.documentation.hubdleDocumentation
-import com.javiersc.hubdle.project.extensions.config.documentation.site.reports.HubdleConfigDocumentationSiteReportsExtension
+import com.javiersc.hubdle.project.extensions.config.documentation.site.analysis.HubdleConfigDocumentationSiteAnalysisExtension
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
@@ -32,12 +32,12 @@ constructor(
 
     override val priority: Priority = Priority.P3
 
-    public val reports: HubdleConfigDocumentationSiteReportsExtension
+    public val analysis: HubdleConfigDocumentationSiteAnalysisExtension
         get() = getHubdleExtension()
 
     @HubdleDslMarker
-    public fun reports(action: Action<HubdleConfigDocumentationSiteReportsExtension>) {
-        reports.enableAndExecute(action)
+    public fun analysis(action: Action<HubdleConfigDocumentationSiteAnalysisExtension>) {
+        analysis.enableAndExecute(action)
     }
 
     @HubdleDslMarker
@@ -68,10 +68,8 @@ constructor(
             val preBuildDocsTask =
                 PrebuildSiteTask.register(project) {
                     projectsInfo.set(project.projectsInfo)
-                    allTests.set(reports.allTests)
-                    codeAnalysis.set(reports.codeAnalysis)
-                    codeCoverage.set(reports.codeCoverage)
-                    codeQuality.set(reports.codeQuality)
+                    qodana.set(analysis.qodana)
+                    sonar.set(analysis.sonar)
                 }
 
             BuildSiteTask.register(project, preBuildDocsTask)

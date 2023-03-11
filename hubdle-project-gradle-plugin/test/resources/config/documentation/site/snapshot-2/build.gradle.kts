@@ -11,11 +11,9 @@ hubdle {
         documentation {
             api()
             site {
-                reports {
-                    allTests.set(false)
-                    codeAnalysis.set(false)
-                    codeCoverage.set(false)
-                    codeQuality.set(false)
+                analysis {
+                    qodana.set(false)
+                    sonar.set(false)
                 }
             }
         }

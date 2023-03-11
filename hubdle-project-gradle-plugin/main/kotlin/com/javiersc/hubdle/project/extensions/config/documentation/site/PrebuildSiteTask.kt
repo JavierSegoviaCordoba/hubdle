@@ -2,6 +2,9 @@
 
 package com.javiersc.hubdle.project.extensions.config.documentation.site
 
+import com.javiersc.gradle.properties.extensions.getStringPropertyOrNull
+import com.javiersc.hubdle.project.HubdleProperty.Analysis.Qodana
+import com.javiersc.hubdle.project.HubdleProperty.Analysis.Sonar
 import com.javiersc.kotlin.stdlib.endWithNewLine
 import com.javiersc.kotlin.stdlib.removeDuplicateEmptyLines
 import java.io.File
@@ -48,13 +51,9 @@ constructor(
 
     @get:Nested public abstract val projectsInfo: ListProperty<ProjectInfo>
 
-    @get:Input public abstract val allTests: Property<Boolean>
+    @get:Input public abstract val qodana: Property<Boolean>
 
-    @get:Input public abstract val codeAnalysis: Property<Boolean>
-
-    @get:Input public abstract val codeCoverage: Property<Boolean>
-
-    @get:Input public abstract val codeQuality: Property<Boolean>
+    @get:Input public abstract val sonar: Property<Boolean>
 
     @get:OutputDirectory
     public val outputDotDocsDirectory: File
@@ -75,13 +74,7 @@ constructor(
         buildChangelogInDocs(rootDirectory, fileSystemOperations)
         buildApiInDocs()
         buildProjectsInDocs(rootDirectory, projectsInfo.get(), fileSystemOperations)
-        buildReportsInDocs(
-            rootDirectory,
-            allTests.get(),
-            codeAnalysis.get(),
-            codeCoverage.get(),
-            codeQuality.get(),
-        )
+        buildAnalysisInDocs(qodana.get(), sonar.get())
         sanitizeMkDocsFile()
     }
 
@@ -351,40 +344,17 @@ constructor(
         }
     }
 
-    private fun buildReportsInDocs(
-        rootDirectory: File,
-        allTests: Boolean,
-        codeAnalysis: Boolean,
-        codeCoverage: Boolean,
-        codeQuality: Boolean,
-    ) {
-        fun MutableList<String>.createReportSection(title: String, pathAndFileName: String) {
-            val src = "/reports-generated/$pathAndFileName"
-            val style = "height: 65vh; width: 100vw; overflow: hidden"
-            val content =
-                """
-                |# $title
-                |
-                |<iframe src="$src" style="$style" frameborder="0"></iframe>
-                |
-            """
-                    .trimMargin()
-
-            File("$rootDirectory/build/.docs/docs/reports/$pathAndFileName.md").apply {
-                ensureParentDirsCreated()
-                createNewFile()
-                writeText(content)
-            }
-            add("    - $title: reports/$pathAndFileName.md")
-        }
-
+    private fun buildAnalysisInDocs(qodana: Boolean, sonar: Boolean) {
+        val qodanaUrlProjects = "https://qodana.cloud/projects"
+        val qodanaKey = project.getStringPropertyOrNull(Qodana.projectKey)
+        val sonarUrlId = "https://sonarcloud.io/project/overview?id"
+        val sonarId = project.getStringPropertyOrNull(Sonar.projectKey)
+        val newTab = """" target="_blank"""
         val navReports: String =
             buildList {
-                    if (allTests && codeAnalysis || codeCoverage || codeQuality) add("  - Reports:")
-                    if (allTests) createReportSection("All tests", "all-tests")
-                    if (codeAnalysis) createReportSection("Code analysis", "code-analysis")
-                    if (codeCoverage) createReportSection("Code coverage", "code-coverage")
-                    if (codeQuality) createReportSection("Code quality", "code-quality")
+                    if (qodana || sonar) add("  - Analysis:")
+                    if (qodana) add("    - Qodana: $qodanaUrlProjects/$qodanaKey$newTab")
+                    if (sonar) add("    - Sonar: $sonarUrlId=$sonarId$newTab")
                 }
                 .joinToString("\n")
 

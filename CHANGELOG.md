@@ -6,6 +6,9 @@
 
 ### Changed
 
+- `site` shows Qodana and Sonar in the navigation bar 
+- `site` doesn't upload reports to GitHub Pages
+
 ### Deprecated
 
 ### Removed

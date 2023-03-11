@@ -1,4 +1,4 @@
-package com.javiersc.hubdle.project.extensions.config.documentation.site.reports
+package com.javiersc.hubdle.project.extensions.config.documentation.site.analysis
 
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.config.documentation.site.hubdleSite
@@ -6,7 +6,7 @@ import javax.inject.Inject
 import org.gradle.api.Project
 import org.gradle.api.provider.Property
 
-public open class HubdleConfigDocumentationSiteReportsExtension
+public open class HubdleConfigDocumentationSiteAnalysisExtension
 @Inject
 constructor(
     project: Project,
@@ -17,8 +17,6 @@ constructor(
     override val requiredExtensions: Set<HubdleEnableableExtension>
         get() = setOf(hubdleSite)
 
-    public val allTests: Property<Boolean> = property { true }
-    public val codeAnalysis: Property<Boolean> = property { true }
-    public val codeCoverage: Property<Boolean> = property { true }
-    public val codeQuality: Property<Boolean> = property { true }
+    public val qodana: Property<Boolean> = property { true }
+    public val sonar: Property<Boolean> = property { true }
 }

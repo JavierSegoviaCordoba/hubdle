@@ -12,9 +12,13 @@
 
 ### Fixed
 
-- `publishAlways` doesn't check for `true` or `false`
-
 ### Updated
+
+## [0.5.0-alpha.2] - 2023-03-11
+
+### Fixed
+
+- `publishAlways` doesn't check for `true` or `false`
 
 ## [0.5.0-alpha.1] - 2023-03-11
 
@@ -37,6 +41,8 @@
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.2`
 - `app.cash.molecule:molecule-gradle-plugin -> 0.8.0`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.1...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.2...HEAD
 
-[0.5.0-alpha.1]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.4.0-alpha.18...0.5.0-alpha.1
+[0.5.0-alpha.2]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.1...0.5.0-alpha.2
+
+[0.5.0-alpha.1]: https://github.com/JavierSegoviaCordoba/hubdle/commits/0.5.0-alpha.1

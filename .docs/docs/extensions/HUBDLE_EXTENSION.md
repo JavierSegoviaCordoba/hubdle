@@ -1,0 +1,26 @@
+# Hubdle extension Overview
+
+- hubdle
+    - config
+        - `isEnabled: Property<Boolean>` // true
+        - `enabled(value: Boolean = true)`
+        - `analysis`
+        - `binaryCompatibilityValidator`
+        - `coverage`
+        - `documentation`
+        - `explicitApi`
+        - `format`
+        - `install`
+        - `languageSettings`
+        - `nexus`
+        - `publishing`
+        - `versioning`
+    - kotlin
+        - `isEnabled: Property<Boolean>` // false
+        - `enabled(value: Boolean = true)`
+        - features
+            - `isEnabled: Property<Boolean>` // true
+            - `enabled(value: Boolean = true)`
+        - `android`
+        - `jvm`
+        - `multiplatform`

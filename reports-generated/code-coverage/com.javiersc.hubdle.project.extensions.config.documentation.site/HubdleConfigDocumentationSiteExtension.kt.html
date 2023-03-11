@@ -10,7 +10,7 @@ import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
 import com.javiersc.hubdle.project.extensions.config.documentation.hubdleDocumentation
-import com.javiersc.hubdle.project.extensions.config.documentation.site.reports.HubdleConfigDocumentationSiteReportsExtension
+import com.javiersc.hubdle.project.extensions.config.documentation.site.analysis.HubdleConfigDocumentationSiteAnalysisExtension
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
@@ -32,12 +32,12 @@ public open class HubdleConfigDocumentationSiteExtension
 
 <span class="nc" id="L33">    override val priority: Priority = Priority.P3</span>
 
-    public val reports: HubdleConfigDocumentationSiteReportsExtension
+    public val analysis: HubdleConfigDocumentationSiteAnalysisExtension
 <span class="nc" id="L36">        get() = getHubdleExtension()</span>
 
     @HubdleDslMarker
-    public fun reports(action: Action&lt;HubdleConfigDocumentationSiteReportsExtension&gt;) {
-<span class="nc" id="L40">        reports.enableAndExecute(action)</span>
+    public fun analysis(action: Action&lt;HubdleConfigDocumentationSiteAnalysisExtension&gt;) {
+<span class="nc" id="L40">        analysis.enableAndExecute(action)</span>
 <span class="nc" id="L41">    }</span>
 
     @HubdleDslMarker
@@ -68,17 +68,15 @@ public open class HubdleConfigDocumentationSiteExtension
 <span class="nc" id="L68">            val preBuildDocsTask =</span>
 <span class="nc" id="L69">                PrebuildSiteTask.register(project) {</span>
 <span class="nc" id="L70">                    projectsInfo.set(project.projectsInfo)</span>
-<span class="nc" id="L71">                    allTests.set(reports.allTests)</span>
-<span class="nc" id="L72">                    codeAnalysis.set(reports.codeAnalysis)</span>
-<span class="nc" id="L73">                    codeCoverage.set(reports.codeCoverage)</span>
-<span class="nc" id="L74">                    codeQuality.set(reports.codeQuality)</span>
-<span class="nc" id="L75">                }</span>
+<span class="nc" id="L71">                    qodana.set(analysis.qodana)</span>
+<span class="nc" id="L72">                    sonar.set(analysis.sonar)</span>
+<span class="nc" id="L73">                }</span>
 
-<span class="nc" id="L77">            BuildSiteTask.register(project, preBuildDocsTask)</span>
-<span class="nc" id="L78">        }</span>
-<span class="nc" id="L79">    }</span>
+<span class="nc" id="L75">            BuildSiteTask.register(project, preBuildDocsTask)</span>
+<span class="nc" id="L76">        }</span>
+<span class="nc" id="L77">    }</span>
 }
 
 internal val HubdleEnableableExtension.hubdleSite: HubdleConfigDocumentationSiteExtension
-<span class="nc" id="L83">    get() = getHubdleExtension()</span>
+<span class="nc" id="L81">    get() = getHubdleExtension()</span>
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

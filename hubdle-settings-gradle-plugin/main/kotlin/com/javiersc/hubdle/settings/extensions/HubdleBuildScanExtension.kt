@@ -16,5 +16,5 @@ public open class HubdleBuildScanExtension @Inject constructor(objects: ObjectFa
     }
 
     public val publishAlways: Property<Boolean> =
-        objects.property<Boolean>().convention(System.getenv("CI") != null)
+        objects.property<Boolean>().convention(System.getenv("CI") == "true")
 }

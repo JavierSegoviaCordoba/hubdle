@@ -4,6 +4,7 @@
 
 ### Added
 
+- `useOnAllProjects` to `hubdleSettings` extension
 - `buildScan` to `hubdleSettings` extension
 
 ### Changed

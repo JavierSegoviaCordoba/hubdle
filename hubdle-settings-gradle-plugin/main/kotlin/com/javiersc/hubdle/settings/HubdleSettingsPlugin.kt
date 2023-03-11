@@ -2,6 +2,7 @@ package com.javiersc.hubdle.settings
 
 import com.gradle.enterprise.gradleplugin.GradleEnterpriseExtension
 import com.javiersc.gradle.properties.extensions.getPropertyOrNull
+import com.javiersc.hubdle.project.HubdleProjectPlugin
 import com.javiersc.hubdle.settings.extensions.extractedBuildProjects
 import com.javiersc.hubdle.settings.extensions.extractedProjects
 import java.io.File
@@ -9,6 +10,7 @@ import javax.inject.Inject
 import org.gradle.api.Plugin
 import org.gradle.api.initialization.Settings
 import org.gradle.api.model.ObjectFactory
+import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.create
 import org.gradle.kotlin.dsl.findByType
@@ -32,6 +34,7 @@ constructor(
         target.configureRepositories()
 
         target.gradle.settingsEvaluated { settings ->
+            target.useHubdleOnAllProjects()
             settings.configureGradleEnterprise()
             settings.configureAutoInclude()
             settings.configureAutoIncludeVersionCatalogs(objects)
@@ -43,6 +46,14 @@ constructor(
 
 internal val Settings.hubdleSettings: HubdleSettingsExtension
     get() = checkNotNull(extensions.findByType())
+
+private fun Settings.useHubdleOnAllProjects() {
+    gradle.beforeProject { project ->
+        if (hubdleSettings.useOnAllProjects.get()) {
+            project.pluginManager.apply(HubdleProjectPlugin::class)
+        }
+    }
+}
 
 private fun Settings.configureRepositories() {
     dependencyResolutionManagement { management ->

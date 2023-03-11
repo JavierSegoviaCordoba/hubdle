@@ -14,7 +14,10 @@ hubdle {
     kotlin {
         gradle {
             plugin {
+                jvmVersion = 11
+
                 tags("hubdle settings")
+
                 gradlePlugin {
                     plugins {
                         create("hubdle settings") {
@@ -28,6 +31,7 @@ hubdle {
                 }
                 main {
                     dependencies {
+                        api(projects.hubdleProjectGradlePlugin)
                         api(javierscGradleExtensions())
                         api(libs.gradle.enterprise.comGradleEnterpriseGradlePlugin)
                     }

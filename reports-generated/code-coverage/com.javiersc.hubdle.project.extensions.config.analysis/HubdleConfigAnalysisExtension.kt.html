@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>HubdleConfigAnalysisExtension.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">:</a> &gt; <a href="index.source.html" class="el_package">com.javiersc.hubdle.project.extensions.config.analysis</a> &gt; <span class="el_source">HubdleConfigAnalysisExtension.kt</span></div><h1>HubdleConfigAnalysisExtension.kt</h1><pre class="source lang-java linenums">package com.javiersc.hubdle.project.extensions.config.analysis
 
+import com.javiersc.gradle.project.extensions.isRootProject
 import com.javiersc.gradle.properties.extensions.getProperty
 import com.javiersc.gradle.properties.extensions.getPropertyOrNull
 import com.javiersc.gradle.tasks.extensions.maybeRegisterLazily
@@ -11,6 +12,7 @@ import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
+import com.javiersc.hubdle.project.extensions._internal.setProperty
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
@@ -18,15 +20,20 @@ import com.javiersc.hubdle.project.extensions.config.analysis.reports.HubdleConf
 import com.javiersc.hubdle.project.extensions.config.hubdleConfig
 import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.extensions.DetektExtension
+import io.gitlab.arturbosch.detekt.report.ReportMergeTask
 import java.io.File
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.Task
+import org.gradle.api.file.DirectoryProperty
 import org.gradle.api.provider.Property
 import org.gradle.api.provider.SetProperty
+import org.gradle.api.tasks.TaskCollection
+import org.gradle.api.tasks.TaskProvider
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.findByType
+import org.gradle.kotlin.dsl.register
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 import org.sonarqube.gradle.SonarExtension
@@ -34,177 +41,228 @@ import org.sonarqube.gradle.SonarExtension
 @HubdleDslMarker
 public open class HubdleConfigAnalysisExtension
 @Inject
-<span class="nc" id="L37">constructor(</span>
+<span class="nc" id="L44">constructor(</span>
     project: Project,
-<span class="nc" id="L39">) : HubdleConfigurableExtension(project) {</span>
+<span class="nc" id="L46">) : HubdleConfigurableExtension(project) {</span>
 
-<span class="nc" id="L41">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
+<span class="nc" id="L48">    override val isEnabled: Property&lt;Boolean&gt; = property { false }</span>
 
     override val requiredExtensions: Set&lt;HubdleEnableableExtension&gt;
-<span class="nc" id="L44">        get() = setOf(hubdleConfig)</span>
+<span class="nc" id="L51">        get() = setOf(hubdleConfig)</span>
 
-<span class="nc" id="L46">    override val priority: Priority = Priority.P3</span>
+<span class="nc" id="L53">    override val priority: Priority = Priority.P3</span>
 
-<span class="nc" id="L48">    public val ignoreFailures: Property&lt;Boolean&gt; = property { true }</span>
+<span class="nc" id="L55">    public val ignoreFailures: Property&lt;Boolean&gt; = property { true }</span>
 
-<span class="nc" id="L50">    public val includes: SetProperty&lt;String&gt; = setProperty {</span>
+<span class="nc" id="L57">    public val includes: SetProperty&lt;String&gt; = setProperty {</span>
         kotlinSrcDirs.get() + kotlinTestsSrcDirs.get()
     }
 
     @HubdleDslMarker
     public fun includes(vararg includes: String) {
-<span class="nc" id="L56">        this.includes.addAll(includes.toList())</span>
-<span class="nc" id="L57">    }</span>
+<span class="nc" id="L63">        this.includes.addAll(includes.toList())</span>
+<span class="nc" id="L64">    }</span>
 
-<span class="nc" id="L59">    public val excludes: SetProperty&lt;String&gt; = setProperty { emptySet() }</span>
+<span class="nc" id="L66">    public val excludes: SetProperty&lt;String&gt; = setProperty { emptySet() }</span>
 
     @HubdleDslMarker
     public fun excludes(vararg excludes: String) {
-<span class="nc" id="L63">        this.excludes.addAll(excludes.toList())</span>
-<span class="nc" id="L64">    }</span>
+<span class="nc" id="L70">        this.excludes.addAll(excludes.toList())</span>
+<span class="nc" id="L71">    }</span>
 
     public val reports: HubdleConfigAnalysisReportsExtension
-<span class="nc" id="L67">        get() = getHubdleExtension()</span>
+<span class="nc" id="L74">        get() = getHubdleExtension()</span>
 
     @HubdleDslMarker
-<span class="nc" id="L70">    public fun reports(action: Action&lt;HubdleConfigAnalysisReportsExtension&gt; = Action {}) {</span>
-<span class="nc" id="L71">        reports.enableAndExecute(action)</span>
-<span class="nc" id="L72">    }</span>
+<span class="nc" id="L77">    public fun reports(action: Action&lt;HubdleConfigAnalysisReportsExtension&gt; = Action {}) {</span>
+<span class="nc" id="L78">        reports.enableAndExecute(action)</span>
+<span class="nc" id="L79">    }</span>
 
     @HubdleDslMarker
-<span class="nc" id="L75">    public fun detekt(action: Action&lt;DetektExtension&gt; = Action {}) {</span>
-<span class="nc" id="L76">        userConfigurable { action.execute(the()) }</span>
-<span class="nc" id="L77">    }</span>
+<span class="nc" id="L82">    public fun detekt(action: Action&lt;DetektExtension&gt; = Action {}) {</span>
+<span class="nc" id="L83">        userConfigurable { action.execute(the()) }</span>
+<span class="nc" id="L84">    }</span>
 
     override fun Project.defaultConfiguration() {
-<span class="nc" id="L80">        applicablePlugin(</span>
-<span class="nc" id="L81">            priority = Priority.P4,</span>
-<span class="nc" id="L82">            scope = Scope.CurrentProject,</span>
-<span class="nc" id="L83">            pluginId = PluginId.Detekt</span>
+<span class="nc" id="L87">        applicablePlugin(</span>
+<span class="nc" id="L88">            priority = Priority.P4,</span>
+<span class="nc" id="L89">            scope = Scope.CurrentProject,</span>
+<span class="nc" id="L90">            pluginId = PluginId.Detekt</span>
         )
 
-<span class="nc" id="L86">        applicablePlugin(</span>
-<span class="nc" id="L87">            priority = Priority.P4,</span>
-<span class="nc" id="L88">            scope = Scope.CurrentProject,</span>
-<span class="nc" id="L89">            pluginId = PluginId.Sonarqube</span>
+<span class="nc" id="L93">        applicablePlugin(</span>
+<span class="nc" id="L94">            priority = Priority.P4,</span>
+<span class="nc" id="L95">            scope = Scope.CurrentProject,</span>
+<span class="nc" id="L96">            pluginId = PluginId.Sonarqube</span>
         )
 
-<span class="nc" id="L92">        configurable(priority = Priority.P4) {</span>
-<span class="nc" id="L93">            val checkAnalysisTask = project.tasks.maybeRegisterLazily&lt;Task&gt;(&quot;checkAnalysis&quot;)</span>
-<span class="nc" id="L94">            checkAnalysisTask.configureEach { task -&gt; task.group = &quot;verification&quot; }</span>
-<span class="nc" id="L95">            project.tasks.namedLazily&lt;Task&gt;(&quot;check&quot;).configureEach { task -&gt;</span>
-<span class="nc" id="L96">                task.dependsOn(checkAnalysisTask)</span>
-<span class="nc" id="L97">            }</span>
-
-<span class="nc" id="L99">            configureDetekt(project)</span>
-<span class="nc" id="L100">            configureSonarqube(project)</span>
-<span class="nc" id="L101">        }</span>
-<span class="nc" id="L102">    }</span>
+<span class="nc" id="L99">        configurable(priority = Priority.P4) {</span>
+<span class="nc" id="L100">            val checkAnalysisTask = project.tasks.maybeRegisterLazily&lt;Task&gt;(&quot;checkAnalysis&quot;)</span>
+<span class="nc" id="L101">            checkAnalysisTask.configureEach { task -&gt; task.group = &quot;verification&quot; }</span>
+<span class="nc" id="L102">            project.tasks.namedLazily&lt;Task&gt;(&quot;check&quot;).configureEach { task -&gt;</span>
+<span class="nc" id="L103">                task.dependsOn(checkAnalysisTask)</span>
+<span class="nc" id="L104">            }</span>
+<span class="nc" id="L105">            configureDetekt(project)</span>
+<span class="nc" id="L106">            configureSonarqube(project)</span>
+<span class="nc" id="L107">        }</span>
+<span class="nc" id="L108">    }</span>
 
     private fun configureDetekt(project: Project) =
-<span class="nc" id="L105">        with(project) {</span>
-<span class="nc" id="L106">            configure&lt;DetektExtension&gt; {</span>
-<span class="nc" id="L107">                parallel = true</span>
-<span class="nc" id="L108">                isIgnoreFailures = hubdleAnalysis.ignoreFailures.get()</span>
-<span class="nc" id="L109">                buildUponDefaultConfig = true</span>
-<span class="nc" id="L110">                basePath = project.rootProject.projectDir.path</span>
-<span class="nc" id="L111">                source = files(provider { kotlinSrcDirs.get() + kotlinTestsSrcDirs.get() })</span>
-<span class="nc" id="L112">            }</span>
+<span class="nc" id="L111">        with(project) {</span>
+<span class="nc" id="L112">            configure&lt;DetektExtension&gt; {</span>
+<span class="nc" id="L113">                parallel = true</span>
+<span class="nc" id="L114">                isIgnoreFailures = hubdleAnalysis.ignoreFailures.get()</span>
+<span class="nc" id="L115">                buildUponDefaultConfig = true</span>
+<span class="nc" id="L116">                basePath = project.projectDir.path</span>
+<span class="nc" id="L117">                source = files(provider { kotlinSrcDirs.get() + kotlinTestsSrcDirs.get() })</span>
+<span class="nc" id="L118">            }</span>
 
-<span class="nc" id="L114">            tasks.namedLazily&lt;Task&gt;(&quot;checkAnalysis&quot;).configureEach { task -&gt;</span>
-<span class="nc" id="L115">                task.dependsOn(&quot;detekt&quot;)</span>
-<span class="nc" id="L116">            }</span>
+<span class="nc" id="L120">            tasks.namedLazily&lt;Task&gt;(&quot;checkAnalysis&quot;).configureEach { task -&gt;</span>
+<span class="nc" id="L121">                task.dependsOn(&quot;detekt&quot;)</span>
+<span class="nc" id="L122">            }</span>
 
-<span class="nc" id="L118">            tasks.withType&lt;Detekt&gt;().configureEach { detekt -&gt;</span>
-<span class="nc" id="L119">                detekt.include(hubdleAnalysis.includes.get())</span>
-<span class="nc" id="L120">                detekt.exclude(hubdleAnalysis.excludes.get())</span>
+<span class="nc" id="L124">            configureDetektTask(project)</span>
+<span class="nc" id="L125">            configureMergeDetektReports(project)</span>
+<span class="nc" id="L126">        }</span>
 
-<span class="nc" id="L122">                detekt.reports { reports -&gt;</span>
-<span class="nc" id="L123">                    reports.md.required.set(hubdleAnalysis.reports.md)</span>
-<span class="nc" id="L124">                    reports.html.required.set(hubdleAnalysis.reports.html)</span>
-<span class="nc" id="L125">                    reports.sarif.required.set(hubdleAnalysis.reports.sarif)</span>
-<span class="nc" id="L126">                    reports.txt.required.set(hubdleAnalysis.reports.txt)</span>
-<span class="nc" id="L127">                    reports.xml.required.set(hubdleAnalysis.reports.xml)</span>
-<span class="nc" id="L128">                }</span>
-<span class="nc" id="L129">            }</span>
-<span class="nc" id="L130">        }</span>
+    private fun configureDetektTask(project: Project) {
+<span class="nc" id="L129">        project.tasks.withType&lt;Detekt&gt;().configureEach { detekt -&gt;</span>
+<span class="nc" id="L130">            detekt.include(hubdleAnalysis.includes.get())</span>
+<span class="nc" id="L131">            detekt.exclude(hubdleAnalysis.excludes.get())</span>
+
+<span class="nc" id="L133">            detekt.reports { reports -&gt;</span>
+<span class="nc" id="L134">                reports.md.required.set(hubdleAnalysis.reports.md)</span>
+<span class="nc" id="L135">                reports.html.required.set(hubdleAnalysis.reports.html)</span>
+<span class="nc" id="L136">                reports.sarif.required.set(hubdleAnalysis.reports.sarif)</span>
+<span class="nc" id="L137">                reports.txt.required.set(hubdleAnalysis.reports.txt)</span>
+<span class="nc" id="L138">                reports.xml.required.set(hubdleAnalysis.reports.xml)</span>
+<span class="nc" id="L139">            }</span>
+<span class="nc" id="L140">        }</span>
+<span class="nc" id="L141">    }</span>
+
+    private fun configureMergeDetektReports(project: Project) {
+<span class="nc bnc" id="L144" title="All 2 branches missed.">        if (project.isRootProject) {</span>
+<span class="nc" id="L145">            val buildDirectory: DirectoryProperty = project.layout.buildDirectory</span>
+<span class="nc" id="L146">            val detektReportMergeHtml: TaskProvider&lt;ReportMergeTask&gt; =</span>
+<span class="nc" id="L147">                tasks.register&lt;ReportMergeTask&gt;(&quot;detektReportMergeHtml&quot;) {</span>
+<span class="nc" id="L148">                    output.set(buildDirectory.file(&quot;reports/detekt/detekt.html&quot;))</span>
+<span class="nc" id="L149">                }</span>
+<span class="nc" id="L150">            val detektReportMergeMd: TaskProvider&lt;ReportMergeTask&gt; =</span>
+<span class="nc" id="L151">                tasks.register&lt;ReportMergeTask&gt;(&quot;detektReportMergeMd&quot;) {</span>
+<span class="nc" id="L152">                    output.set(buildDirectory.file(&quot;reports/detekt/detekt.md&quot;))</span>
+<span class="nc" id="L153">                }</span>
+<span class="nc" id="L154">            val detektReportMergeSarif: TaskProvider&lt;ReportMergeTask&gt; =</span>
+<span class="nc" id="L155">                tasks.register&lt;ReportMergeTask&gt;(&quot;detektReportMergeSarif&quot;) {</span>
+<span class="nc" id="L156">                    output.set(buildDirectory.file(&quot;reports/detekt/detekt.sarif&quot;))</span>
+<span class="nc" id="L157">                }</span>
+<span class="nc" id="L158">            val detektReportMergeTxt: TaskProvider&lt;ReportMergeTask&gt; =</span>
+<span class="nc" id="L159">                tasks.register&lt;ReportMergeTask&gt;(&quot;detektReportMergeTxt&quot;) {</span>
+<span class="nc" id="L160">                    output.set(buildDirectory.file(&quot;reports/detekt/detekt.txt&quot;))</span>
+<span class="nc" id="L161">                }</span>
+<span class="nc" id="L162">            val detektReportMergeXml: TaskProvider&lt;ReportMergeTask&gt; =</span>
+<span class="nc" id="L163">                tasks.register&lt;ReportMergeTask&gt;(&quot;detektReportMergeXml&quot;) {</span>
+<span class="nc" id="L164">                    output.set(buildDirectory.file(&quot;reports/detekt/detekt.xml&quot;))</span>
+<span class="nc" id="L165">                }</span>
+
+<span class="nc" id="L167">            project.subprojects { subproject -&gt;</span>
+<span class="nc" id="L168">                val detektTasks: TaskCollection&lt;Detekt&gt; = subproject.tasks.withType&lt;Detekt&gt;()</span>
+<span class="nc" id="L169">                detektTasks.configureEach { detekt -&gt;</span>
+<span class="nc" id="L170">                    detekt.finalizedBy(detektReportMergeHtml)</span>
+<span class="nc" id="L171">                    detekt.finalizedBy(detektReportMergeMd)</span>
+<span class="nc" id="L172">                    detekt.finalizedBy(detektReportMergeSarif)</span>
+<span class="nc" id="L173">                    detekt.finalizedBy(detektReportMergeTxt)</span>
+<span class="nc" id="L174">                    detekt.finalizedBy(detektReportMergeXml)</span>
+<span class="nc" id="L175">                    detektReportMergeHtml.configure { it.input.from(detekt.htmlReportFile) }</span>
+<span class="nc" id="L176">                    detektReportMergeMd.configure { it.input.from(detekt.mdReportFile) }</span>
+<span class="nc" id="L177">                    detektReportMergeSarif.configure { it.input.from(detekt.sarifReportFile) }</span>
+<span class="nc" id="L178">                    detektReportMergeTxt.configure { it.input.from(detekt.txtReportFile) }</span>
+<span class="nc" id="L179">                    detektReportMergeXml.configure { it.input.from(detekt.xmlReportFile) }</span>
+<span class="nc" id="L180">                }</span>
+<span class="nc" id="L181">            }</span>
+        }
+<span class="nc" id="L183">    }</span>
 
     private fun configureSonarqube(project: Project) {
-<span class="nc" id="L133">        project.configure&lt;SonarExtension&gt; {</span>
-<span class="nc" id="L134">            properties { properties -&gt;</span>
-<span class="nc" id="L135">                properties.property(</span>
-<span class="nc" id="L136">                    &quot;sonar.projectName&quot;,</span>
-<span class="nc bnc" id="L137" title="All 4 branches missed.">                    project.getPropertyOrNull(Sonar.projectName)</span>
-<span class="nc" id="L138">                        ?: project.getPropertyOrNull(HubdleProperty.Project.rootProjectDirName)</span>
-<span class="nc" id="L139">                            ?: project.name</span>
+<span class="nc" id="L186">        project.configure&lt;SonarExtension&gt; {</span>
+<span class="nc" id="L187">            properties { properties -&gt;</span>
+<span class="nc" id="L188">                properties.property(</span>
+<span class="nc" id="L189">                    &quot;sonar.projectName&quot;,</span>
+<span class="nc bnc" id="L190" title="All 4 branches missed.">                    project.getPropertyOrNull(Sonar.projectName)</span>
+<span class="nc" id="L191">                        ?: project.getPropertyOrNull(HubdleProperty.Project.rootProjectDirName)</span>
+<span class="nc" id="L192">                            ?: project.name</span>
                 )
-<span class="nc" id="L141">                properties.property(</span>
-<span class="nc" id="L142">                    &quot;sonar.projectKey&quot;,</span>
-<span class="nc bnc" id="L143" title="All 4 branches missed.">                    project.getPropertyOrNull(Sonar.projectKey)</span>
-<span class="nc" id="L144">                        ?: project.getPropertyOrNull(HubdleProperty.Project.rootProjectDirName)</span>
-<span class="nc" id="L145">                            ?: &quot;${project.group}:${project.name}&quot;</span>
+<span class="nc" id="L194">                properties.property(</span>
+<span class="nc" id="L195">                    &quot;sonar.projectKey&quot;,</span>
+<span class="nc bnc" id="L196" title="All 4 branches missed.">                    project.getPropertyOrNull(Sonar.projectKey)</span>
+<span class="nc" id="L197">                        ?: project.getPropertyOrNull(HubdleProperty.Project.rootProjectDirName)</span>
+<span class="nc" id="L198">                            ?: &quot;${project.group}:${project.name}&quot;</span>
                 )
-<span class="nc" id="L147">                properties.property(</span>
-<span class="nc" id="L148">                    &quot;sonar.login&quot;,</span>
-<span class="nc" id="L149">                    project.getProperty(Sonar.login),</span>
+<span class="nc" id="L200">                properties.property(</span>
+<span class="nc" id="L201">                    &quot;sonar.login&quot;,</span>
+<span class="nc" id="L202">                    project.getProperty(Sonar.login),</span>
                 )
-<span class="nc" id="L151">                properties.property(</span>
-<span class="nc" id="L152">                    &quot;sonar.host.url&quot;,</span>
-<span class="nc bnc" id="L153" title="All 2 branches missed.">                    project.getPropertyOrNull(Sonar.hostUrl) ?: &quot;https://sonarcloud.io&quot;</span>
+<span class="nc" id="L204">                properties.property(</span>
+<span class="nc" id="L205">                    &quot;sonar.host.url&quot;,</span>
+<span class="nc bnc" id="L206" title="All 2 branches missed.">                    project.getPropertyOrNull(Sonar.hostUrl) ?: &quot;https://sonarcloud.io&quot;</span>
                 )
-<span class="nc" id="L155">                properties.property(</span>
-<span class="nc" id="L156">                    &quot;sonar.organization&quot;,</span>
-<span class="nc bnc" id="L157" title="All 2 branches missed.">                    project.getPropertyOrNull(Sonar.organization) ?: &quot;&quot;</span>
+<span class="nc" id="L208">                properties.property(</span>
+<span class="nc" id="L209">                    &quot;sonar.organization&quot;,</span>
+<span class="nc bnc" id="L210" title="All 2 branches missed.">                    project.getPropertyOrNull(Sonar.organization) ?: &quot;&quot;</span>
                 )
-<span class="nc" id="L159">                properties.property(</span>
-<span class="nc" id="L160">                    &quot;sonar.kotlin.detekt.reportPaths&quot;,</span>
-<span class="nc" id="L161">                    &quot;${project.buildDir}/reports/detekt/detekt.xml&quot;</span>
+<span class="nc" id="L212">                properties.property(</span>
+<span class="nc" id="L213">                    &quot;sonar.kotlin.detekt.reportPaths&quot;,</span>
+<span class="nc" id="L214">                    &quot;${project.buildDir}/reports/detekt/detekt.xml&quot;</span>
                 )
-<span class="nc" id="L163">                properties.property(</span>
-<span class="nc" id="L164">                    &quot;sonar.coverage.jacoco.xmlReportPaths&quot;,</span>
-<span class="nc" id="L165">                    &quot;${project.buildDir}/reports/kover/report.xml&quot;</span>
+<span class="nc" id="L216">                properties.property(</span>
+<span class="nc" id="L217">                    &quot;sonar.coverage.jacoco.xmlReportPaths&quot;,</span>
+<span class="nc" id="L218">                    &quot;${project.buildDir}/reports/kover/report.xml&quot;</span>
                 )
-<span class="nc" id="L167">                properties.property(&quot;sonar.sources&quot;, kotlinSrcDirs.get())</span>
-<span class="nc" id="L168">                properties.property(&quot;sonar.tests&quot;, kotlinTestsSrcDirs.get())</span>
-<span class="nc" id="L169">            }</span>
-<span class="nc" id="L170">        }</span>
-<span class="nc" id="L171">    }</span>
 
-    private val kotlinSrcDirs: SetProperty&lt;String&gt;
-<span class="nc" id="L174">        get() = setProperty {</span>
-            extensions
-                .findByType&lt;KotlinProjectExtension&gt;()
-                ?.sourceSets
-                ?.flatMap { kotlinSourceSet -&gt; kotlinSourceSet.kotlin.srcDirs }
-                ?.filterNot { file -&gt;
-                    val relativePath = file.relativeTo(projectDir)
-                    val dirs = relativePath.path.split(File.separatorChar)
-                    dirs.any { dir -&gt; dir.endsWith(&quot;Test&quot;) || dir == &quot;test&quot; }
-                }
-                ?.filter { file -&gt; file.exists() }
-                ?.mapNotNull(File::getPath)
-                .orEmpty()
-                .toSet()
-<span class="nc" id="L188">        }</span>
+                // TODO: use `includes` and `excludes` from Hubdle when Detekt aggregated reports is
+                //  fixed: https://github.com/detekt/detekt/issues/5041
+<span class="nc" id="L223">                properties.property(&quot;sonar.sources&quot;, project.kotlinSrcDirs.get())</span>
+<span class="nc" id="L224">                properties.property(&quot;sonar.tests&quot;, project.kotlinTestsSrcDirs.get())</span>
+<span class="nc" id="L225">            }</span>
+<span class="nc" id="L226">        }</span>
+<span class="nc" id="L227">    }</span>
 
-    private val kotlinTestsSrcDirs: SetProperty&lt;String&gt;
-<span class="nc" id="L191">        get() = setProperty {</span>
-            extensions
-                .findByType&lt;KotlinProjectExtension&gt;()
-                ?.sourceSets
-                ?.flatMap { kotlinSourceSet -&gt; kotlinSourceSet.kotlin.srcDirs }
-                ?.filter { file -&gt;
-                    val relativePath = file.relativeTo(projectDir)
-                    val dirs = relativePath.path.split(File.separatorChar)
-                    dirs.any { dir -&gt; dir.endsWith(&quot;Test&quot;) || dir == &quot;test&quot; }
-                }
-                ?.filter { file -&gt; file.exists() }
-                ?.mapNotNull(File::getPath)
-                .orEmpty()
-                .toSet()
-<span class="nc" id="L205">        }</span>
+    private val Project.kotlinSrcDirs: SetProperty&lt;String&gt;
+        get() =
+<span class="nc" id="L231">            this.setProperty {</span>
+                extensions
+                    .findByType&lt;KotlinProjectExtension&gt;()
+                    ?.sourceSets
+                    ?.flatMap { kotlinSourceSet -&gt; kotlinSourceSet.kotlin.srcDirs }
+                    ?.filterNot { file -&gt;
+                        val relativePath = file.relativeTo(projectDir)
+                        val dirs = relativePath.path.split(File.separatorChar)
+                        dirs.any { dir -&gt; dir.endsWith(&quot;Test&quot;) || dir == &quot;test&quot; }
+                    }
+                    ?.filter { file -&gt; file.exists() }
+                    ?.mapNotNull(File::getPath)
+                    .orEmpty()
+                    .toSet()
+<span class="nc" id="L245">            }</span>
+
+    private val Project.kotlinTestsSrcDirs: SetProperty&lt;String&gt;
+        get() =
+<span class="nc" id="L249">            this.setProperty {</span>
+                extensions
+                    .findByType&lt;KotlinProjectExtension&gt;()
+                    ?.sourceSets
+                    ?.flatMap { kotlinSourceSet -&gt; kotlinSourceSet.kotlin.srcDirs }
+                    ?.filter { file -&gt;
+                        val relativePath = file.relativeTo(projectDir)
+                        val dirs = relativePath.path.split(File.separatorChar)
+                        dirs.any { dir -&gt; dir.endsWith(&quot;Test&quot;) || dir == &quot;test&quot; }
+                    }
+                    ?.filter { file -&gt; file.exists() }
+                    ?.mapNotNull(File::getPath)
+                    .orEmpty()
+                    .toSet()
+<span class="nc" id="L263">            }</span>
 }
 
 internal val HubdleEnableableExtension.hubdleAnalysis: HubdleConfigAnalysisExtension
-<span class="nc" id="L209">    get() = getHubdleExtension()</span>
+<span class="nc" id="L267">    get() = getHubdleExtension()</span>
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

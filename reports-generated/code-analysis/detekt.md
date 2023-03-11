@@ -2,9 +2,9 @@
 
 ## Metrics
 
-* 1,318 number of properties
+* 1,325 number of properties
 
-* 550 number of functions
+* 552 number of functions
 
 * 232 number of classes
 
@@ -14,19 +14,19 @@
 
 ## Complexity Report
 
-* 13,113 lines of code (loc)
+* 13,171 lines of code (loc)
 
-* 10,794 source lines of code (sloc)
+* 10,847 source lines of code (sloc)
 
-* 7,083 logical lines of code (lloc)
+* 7,119 logical lines of code (lloc)
 
-* 101 comment lines of code (cloc)
+* 103 comment lines of code (cloc)
 
-* 926 cyclomatic complexity (mcc)
+* 929 cyclomatic complexity (mcc)
 
-* 473 cognitive complexity
+* 474 cognitive complexity
 
-* 91 number of total code smells
+* 92 number of total code smells
 
 * 0% comment source ratio
 
@@ -34,7 +34,7 @@
 
 * 12 code smells per 1,000 lloc
 
-## Findings (91)
+## Findings (92)
 
 ### complexity, CyclomaticComplexMethod (1)
 
@@ -1102,7 +1102,7 @@ In most cases using a spread operator causes a full copy of the array to be crea
 
 ```
 
-### style, ForbiddenComment (10)
+### style, ForbiddenComment (11)
 
 Flags a forbidden comment.
 
@@ -1153,6 +1153,22 @@ This comment contains 'TODO:' that has been defined as forbidden in detekt.
 21 internal inline fun <reified T> Project.setProperty(
 22     crossinline block: Project.() -> Set<T>
 23 ): SetProperty<T> = objects.setProperty<T>().convention(project.provider { block(this) })
+
+```
+
+* hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/config/analysis/HubdleConfigAnalysisExtension.kt:221:17
+```
+This comment contains 'TODO:' that has been defined as forbidden in detekt.
+```
+```kotlin
+218                     "${project.buildDir}/reports/kover/report.xml"
+219                 )
+220 
+221                 // TODO: use `includes` and `excludes` from Hubdle when Detekt aggregated reports is
+!!!                 ^ error
+222                 //  fixed: https://github.com/detekt/detekt/issues/5041
+223                 properties.property("sonar.sources", project.kotlinSrcDirs.get())
+224                 properties.property("sonar.tests", project.kotlinTestsSrcDirs.get())
 
 ```
 
@@ -1429,4 +1445,4 @@ Private property `testCompilation` is unused.
 
 ```
 
-generated with [detekt version 1.22.0](https://detekt.dev/) on 2023-03-11 17:40:40 UTC
+generated with [detekt version 1.22.0](https://detekt.dev/) on 2023-03-11 17:56:29 UTC

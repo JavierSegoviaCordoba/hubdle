@@ -157,8 +157,8 @@
 
 <div>
   <ul>
-    <li>1,318 number of properties</li>
-    <li>550 number of functions</li>
+    <li>1,325 number of properties</li>
+    <li>552 number of functions</li>
     <li>232 number of classes</li>
     <li>76 number of packages</li>
     <li>213 number of kt files</li>
@@ -170,13 +170,13 @@
 
 <div>
   <ul>
-    <li>13,113 lines of code (loc)</li>
-    <li>10,794 source lines of code (sloc)</li>
-    <li>7,083 logical lines of code (lloc)</li>
-    <li>101 comment lines of code (cloc)</li>
-    <li>926 cyclomatic complexity (mcc)</li>
-    <li>473 cognitive complexity</li>
-    <li>91 number of total code smells</li>
+    <li>13,171 lines of code (loc)</li>
+    <li>10,847 source lines of code (sloc)</li>
+    <li>7,119 logical lines of code (lloc)</li>
+    <li>103 comment lines of code (cloc)</li>
+    <li>929 cyclomatic complexity (mcc)</li>
+    <li>474 cognitive complexity</li>
+    <li>92 number of total code smells</li>
     <li>0% comment source ratio</li>
     <li>130 mcc per 1,000 lloc</li>
     <li>12 code smells per 1,000 lloc</li>
@@ -185,7 +185,7 @@
 
 
 <h2>Findings</h2>
-<div>Total: 91
+<div>Total: 92
   <h3>complexity: 11</h3>
   <details id="CyclomaticComplexMethod" open="open">
     <summary class="rule-container"><span class="rule">CyclomaticComplexMethod: 1 </span><span class="description">Prefer splitting up complex methods into smaller, easier to test methods.</span></summary>
@@ -824,9 +824,9 @@
       </li>
     </ul>
   </details>
-  <h3>style: 19</h3>
+  <h3>style: 20</h3>
   <details id="ForbiddenComment" open="open">
-    <summary class="rule-container"><span class="rule">ForbiddenComment: 10 </span><span class="description">Flags a forbidden comment.</span></summary>
+    <summary class="rule-container"><span class="rule">ForbiddenComment: 11 </span><span class="description">Flags a forbidden comment.</span></summary>
 <a href="https://detekt.dev/docs/rules/style#forbiddencomment">Documentation</a>
     <ul>
       <li><span class="location">hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/_internal/projectExtensions.kt:11:1</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
@@ -857,6 +857,16 @@
 <span class="lineno">  21 </span>internal inline fun &lt;reified T&gt; Project.setProperty(
 <span class="lineno">  22 </span>    crossinline block: Project.() -&gt; Set&lt;T&gt;
 <span class="lineno">  23 </span>): SetProperty&lt;T&gt; = objects.setProperty&lt;T&gt;().convention(project.provider { block(this) })
+</code></pre>
+      </li>
+      <li><span class="location">hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/config/analysis/HubdleConfigAnalysisExtension.kt:221:17</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
+        <pre><code><span class="lineno"> 218 </span>                    &quot;${project.buildDir}/reports/kover/report.xml&quot;
+<span class="lineno"> 219 </span>                )
+<span class="lineno"> 220 </span>
+<span class="lineno"> 221 </span>                <span class="error">// TODO: use `includes` and `excludes` from Hubdle when Detekt aggregated reports is</span>
+<span class="lineno"> 222 </span>                //  fixed: https://github.com/detekt/detekt/issues/5041
+<span class="lineno"> 223 </span>                properties.property(&quot;sonar.sources&quot;, project.kotlinSrcDirs.get())
+<span class="lineno"> 224 </span>                properties.property(&quot;sonar.tests&quot;, project.kotlinTestsSrcDirs.get())
 </code></pre>
       </li>
       <li><span class="location">hubdle-project-gradle-plugin/main/kotlin/com/javiersc/hubdle/project/extensions/config/binary/compatibility/validator/HubdleConfigBinaryCompatibilityValidatorExtension.kt:48:13</span><span class="message">This comment contains 'TODO:' that has been defined as forbidden in detekt.</span>
@@ -1041,7 +1051,7 @@
 </div>
 
 
-generated with <a href="https://detekt.dev/">detekt version 1.22.0</a> on 2023-03-11 17:40:40 UTC.
+generated with <a href="https://detekt.dev/">detekt version 1.22.0</a> on 2023-03-11 17:56:29 UTC.
 
 </body>
 </html>

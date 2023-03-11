@@ -15,6 +15,8 @@
 
 ### Fixed
 
+- `PublishToMavenRepository` tasks must run after `Sign` tasks
+
 ### Updated
 
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.2`

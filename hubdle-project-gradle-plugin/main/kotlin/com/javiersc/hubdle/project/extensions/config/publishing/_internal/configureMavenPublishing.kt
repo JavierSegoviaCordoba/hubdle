@@ -19,6 +19,7 @@ import org.gradle.api.Task
 import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPublication
+import org.gradle.api.publish.maven.tasks.PublishToMavenRepository
 import org.gradle.api.tasks.TaskCollection
 import org.gradle.jvm.tasks.Jar
 import org.gradle.kotlin.dsl.configure
@@ -26,6 +27,7 @@ import org.gradle.kotlin.dsl.get
 import org.gradle.kotlin.dsl.register
 import org.gradle.kotlin.dsl.the
 import org.gradle.kotlin.dsl.withType
+import org.gradle.plugins.signing.Sign
 import org.gradle.plugins.signing.SigningExtension
 
 internal fun HubdleConfigurableExtension.configurableMavenPublishing(
@@ -226,10 +228,7 @@ private fun HubdleConfigurableExtension.configureSigningForPublishing() =
                         it == "publishAllPublicationsToMavenLocalTestRepository" ||
                         it == "publishAllPublicationsToMavenLocalBuildTestRepository"
                 }
-            val shouldSign =
-                getPropertyOrNull(com.javiersc.hubdle.project.HubdleProperty.Publishing.sign)
-                    ?.toBoolean()
-                    ?: false
+            val shouldSign = getPropertyOrNull(HubdleProperty.Publishing.sign)?.toBoolean() ?: false
 
             val hasTaskCondition = (hasPublishTask && !hasPublishToMavenLocalTasks)
             val hasSemverCondition = project.isNotSnapshot.get() && project.isSemver
@@ -240,6 +239,10 @@ private fun HubdleConfigurableExtension.configureSigningForPublishing() =
                 signInMemory()
                 sign(project.the<PublishingExtension>().publications)
             }
+        }
+        val signingTasks: TaskCollection<Sign> = tasks.withType<Sign>()
+        tasks.withType<PublishToMavenRepository>().configureEach { task ->
+            task.mustRunAfter(signingTasks)
         }
     }
 

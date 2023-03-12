@@ -16,6 +16,12 @@
 
 ### Updated
 
+- `org.jetbrains.kotlin:kotlin-test-junit5 -> 1.8.10`
+- `org.jetbrains.kotlin:kotlin-test-annotations-common -> 1.8.10`
+- `org.jetbrains.kotlin:kotlin-test -> 1.8.10`
+- `org.jetbrains.kotlinx:kotlinx-coroutines-test -> 1.6.4`
+- `org.jetbrains.kotlinx:kotlinx-coroutines-core -> 1.6.4`
+- `org.jetbrains.kotlinx:kotlinx-coroutines-android -> 1.6.4`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-alpha.2`
 
 ## [0.5.0-alpha.2] - 2023-03-11

@@ -11,7 +11,7 @@ import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.config.documentation.hubdleDocumentation
-import com.javiersc.hubdle.project.extensions.config.versioning.hubdleVersioning
+import com.javiersc.hubdle.project.extensions.config.versioning.semver.hubdleSemver
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
@@ -69,7 +69,7 @@ constructor(
                 )
                 combinePreReleases.set(false)
 
-                val prefix = hubdleVersioning.tagPrefix.get()
+                val prefix = hubdleSemver.tagPrefix.get()
 
                 val customSectionUrlBuilder = provider {
                     @Suppress("ObjectLiteralToLambda")

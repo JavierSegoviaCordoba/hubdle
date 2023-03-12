@@ -21,6 +21,7 @@ import com.javiersc.hubdle.project.extensions.config.nexus.HubdleConfigNexusExte
 import com.javiersc.hubdle.project.extensions.config.publishing.HubdleConfigPublishingExtension
 import com.javiersc.hubdle.project.extensions.config.testing.HubdleConfigTestingExtension
 import com.javiersc.hubdle.project.extensions.config.versioning.HubdleConfigVersioningExtension
+import com.javiersc.hubdle.project.extensions.config.versioning.semver.HubdleConfigVersioningSemverExtension
 
 internal fun HubdleState.createHubdleConfigExtensions() {
     createExtension<HubdleConfigExtension> {
@@ -36,7 +37,9 @@ internal fun HubdleState.createHubdleConfigExtensions() {
         createExtension<HubdleConfigNexusExtension>()
         createExtension<HubdleConfigPublishingExtension>()
         createExtension<HubdleConfigTestingExtension>()
-        createExtension<HubdleConfigVersioningExtension>()
+        createExtension<HubdleConfigVersioningExtension> {
+            createExtension<HubdleConfigVersioningSemverExtension>()
+        }
     }
 }
 

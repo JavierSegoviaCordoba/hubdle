@@ -3,11 +3,9 @@ package com.javiersc.hubdle.project.extensions.kotlin._internal
 import com.javiersc.gradle.tasks.extensions.namedLazily
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.COMMON_MAIN
-import com.javiersc.hubdle.project.extensions._internal.COMMON_TEST
 import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions._internal.MAIN
 import com.javiersc.hubdle.project.extensions._internal.PluginId
-import com.javiersc.hubdle.project.extensions._internal.TEST
 import com.javiersc.hubdle.project.extensions._internal.TEST_FIXTURES
 import com.javiersc.hubdle.project.extensions.android._internal.findAndroidCommonExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
@@ -226,9 +224,6 @@ private fun KotlinTarget.configureAdditionalTestCompilations(name: String) {
 
 private val KotlinTarget.mainCompilation: KotlinCompilation<KotlinCommonOptions>?
     get() = compilation(COMMON_MAIN) ?: compilation(MAIN)
-
-private val KotlinTarget.testCompilation: KotlinCompilation<KotlinCommonOptions>?
-    get() = compilation(COMMON_TEST) ?: compilation(TEST)
 
 private val KotlinTarget.testFixturesCompilation: KotlinCompilation<KotlinCommonOptions>?
     get() = compilation(TEST_FIXTURES)

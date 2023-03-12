@@ -68,20 +68,20 @@ internal class AddChangelogItemTest : GradleTestKitTest() {
     }
 
     @Test
-    fun `renovate 1`() {
-        gradleTestKitTest("$basePath/sandbox-renovate-1") {
-            gradlewArgumentFromTXT()
-            projectDir.testChangelog()
-        }
-    }
-
-    @Test
     fun `renovate configuration cache 1`() {
         gradleTestKitTest("$basePath/sandbox-renovate-configuration-cache-1") {
             withArgumentsFromTXT()
             build()
             projectDir.testChangelog()
             testConfigurationCache(expectTaskOutcome = TaskOutcome.SUCCESS)
+        }
+    }
+
+    @Test
+    fun `renovate 1`() {
+        gradleTestKitTest("$basePath/sandbox-renovate-1") {
+            gradlewArgumentFromTXT()
+            projectDir.testChangelog()
         }
     }
 

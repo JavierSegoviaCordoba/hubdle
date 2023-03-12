@@ -4,7 +4,7 @@ import com.android.build.api.dsl.ApplicationExtension
 import com.android.build.api.dsl.LibraryExtension
 import com.diffplug.gradle.spotless.SpotlessExtension
 import com.diffplug.gradle.spotless.SpotlessExtensionPredeclare
-import com.javiersc.semver.gradle.plugin.SemverExtension
+import com.javiersc.semver.project.gradle.plugin.SemverExtension
 import io.gitlab.arturbosch.detekt.extensions.DetektExtension
 import kotlinx.kover.api.KoverProjectConfig
 import kotlinx.validation.ApiValidationExtension

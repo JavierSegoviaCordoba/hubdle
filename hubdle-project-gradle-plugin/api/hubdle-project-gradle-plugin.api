@@ -886,12 +886,20 @@ public final class com/javiersc/hubdle/project/extensions/config/testing/HubdleC
 	public final synthetic fun isSatisfiedBy (Ljava/lang/Object;)Z
 }
 
-public abstract class com/javiersc/hubdle/project/extensions/config/versioning/HubdleConfigVersioningExtension : com/javiersc/hubdle/project/extensions/apis/HubdleConfigurableExtension {
+public abstract class com/javiersc/hubdle/project/extensions/config/versioning/HubdleConfigVersioningExtension : com/javiersc/hubdle/project/extensions/apis/HubdleEnableableExtension {
+	public fun <init> (Lorg/gradle/api/Project;)V
+	public final fun getSemver ()Lcom/javiersc/hubdle/project/extensions/config/versioning/semver/HubdleConfigVersioningSemverExtension;
+	public fun isEnabled ()Lorg/gradle/api/provider/Property;
+	public final fun semver (Lorg/gradle/api/Action;)V
+	public static synthetic fun semver$default (Lcom/javiersc/hubdle/project/extensions/config/versioning/HubdleConfigVersioningExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+}
+
+public abstract class com/javiersc/hubdle/project/extensions/config/versioning/semver/HubdleConfigVersioningSemverExtension : com/javiersc/hubdle/project/extensions/apis/HubdleConfigurableExtension {
 	public fun <init> (Lorg/gradle/api/Project;)V
 	public final fun getTagPrefix ()Lorg/gradle/api/provider/Property;
 	public fun isEnabled ()Lorg/gradle/api/provider/Property;
 	public final fun semver (Lorg/gradle/api/Action;)V
-	public static synthetic fun semver$default (Lcom/javiersc/hubdle/project/extensions/config/versioning/HubdleConfigVersioningExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+	public static synthetic fun semver$default (Lcom/javiersc/hubdle/project/extensions/config/versioning/semver/HubdleConfigVersioningSemverExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 }
 
 public class com/javiersc/hubdle/project/extensions/kotlin/HubdleKotlinExtension : com/javiersc/hubdle/project/extensions/apis/HubdleEnableableExtension {

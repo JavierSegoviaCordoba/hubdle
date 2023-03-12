@@ -6,6 +6,8 @@
 
 ### Changed
 
+- `versioning` includes a Hubdle `semver` extension
+
 ### Deprecated
 
 ### Removed
@@ -16,6 +18,7 @@
 
 ### Updated
 
+- `com.javiersc.semver:semver-gradle-plugin -> 0.5.0-alpha.1`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-alpha.2`
 
 ## [0.5.0-alpha.2] - 2023-03-11

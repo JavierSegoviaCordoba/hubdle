@@ -68,6 +68,3 @@ constructor(
 internal val HubdleEnableableExtension.hubdleBinaryCompatibilityValidator:
     HubdleConfigBinaryCompatibilityValidatorExtension
     get() = getHubdleExtension()
-
-private val Project.apiValidationExtension: ApiValidationExtension
-    get() = getHubdleExtension()

@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-alpha.4`
+
 ## [0.5.0-alpha.4] - 2023-03-12
 
 ### Fixed

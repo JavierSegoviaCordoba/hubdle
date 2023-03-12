@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- missing inputs on `PrebuildSiteTask`
+
 ### Updated
 
 ## [0.5.0-alpha.2] - 2023-03-11

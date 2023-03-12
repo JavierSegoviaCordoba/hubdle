@@ -2,9 +2,6 @@
 
 package com.javiersc.hubdle.project.extensions.config.documentation.site
 
-import com.javiersc.gradle.properties.extensions.getStringPropertyOrNull
-import com.javiersc.hubdle.project.HubdleProperty.Analysis.Qodana
-import com.javiersc.hubdle.project.HubdleProperty.Analysis.Sonar
 import com.javiersc.kotlin.stdlib.endWithNewLine
 import com.javiersc.kotlin.stdlib.removeDuplicateEmptyLines
 import java.io.File
@@ -53,7 +50,11 @@ constructor(
 
     @get:Input public abstract val qodana: Property<Boolean>
 
+    @get:Input public abstract val qodanaProjectKey: Property<String>
+
     @get:Input public abstract val sonar: Property<Boolean>
+
+    @get:Input public abstract val sonarProjectId: Property<String>
 
     @get:OutputDirectory
     public val outputDotDocsDirectory: File
@@ -74,7 +75,7 @@ constructor(
         buildChangelogInDocs(rootDirectory, fileSystemOperations)
         buildApiInDocs()
         buildProjectsInDocs(rootDirectory, projectsInfo.get(), fileSystemOperations)
-        buildAnalysisInDocs(qodana.get(), sonar.get())
+        buildAnalysisInDocs()
         sanitizeMkDocsFile()
     }
 
@@ -344,17 +345,19 @@ constructor(
         }
     }
 
-    private fun buildAnalysisInDocs(qodana: Boolean, sonar: Boolean) {
+    private fun buildAnalysisInDocs() {
+        val qodana = this.qodana.get()
+        val qodanaProjectKey = this.qodanaProjectKey.orNull
+        val sonar = this.sonar.get()
+        val sonarProjectId = this.sonarProjectId.orNull
         val qodanaUrlProjects = "https://qodana.cloud/projects"
-        val qodanaKey = project.getStringPropertyOrNull(Qodana.projectKey)
         val sonarUrlId = "https://sonarcloud.io/project/overview?id"
-        val sonarId = project.getStringPropertyOrNull(Sonar.projectKey)
         val newTab = """" target="_blank"""
         val navReports: String =
             buildList {
                     if (qodana || sonar) add("  - Analysis:")
-                    if (qodana) add("    - Qodana: $qodanaUrlProjects/$qodanaKey$newTab")
-                    if (sonar) add("    - Sonar: $sonarUrlId=$sonarId$newTab")
+                    if (qodana) add("    - Qodana: $qodanaUrlProjects/$qodanaProjectKey$newTab")
+                    if (sonar) add("    - Sonar: $sonarUrlId=$sonarProjectId$newTab")
                 }
                 .joinToString("\n")
 

@@ -12,9 +12,13 @@
 
 ### Fixed
 
-- `versioning.semver` doesn't apply the correct semver plugin id
-
 ### Updated
+
+## [0.5.0-alpha.4] - 2023-03-12
+
+### Fixed
+
+- `versioning.semver` doesn't apply the correct semver plugin id
 
 ## [0.5.0-alpha.3] - 2023-03-12
 
@@ -59,7 +63,9 @@
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.2`
 - `app.cash.molecule:molecule-gradle-plugin -> 0.8.0`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.3...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.4...HEAD
+
+[0.5.0-alpha.4]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.3...0.5.0-alpha.4
 
 [0.5.0-alpha.3]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.2...0.5.0-alpha.3
 

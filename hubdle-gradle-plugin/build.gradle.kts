@@ -1,9 +1,9 @@
-plugins {
-    alias(libs.plugins.javiersc.hubdle)
-}
-
 hubdle {
     config {
+        analysis()
+        documentation {
+            api()
+        }
         explicitApi()
         languageSettings {
             experimentalStdlibApi()
@@ -12,27 +12,31 @@ hubdle {
     }
 
     kotlin {
-        gradle {
-            plugin {
-                jvmVersion = 11
+        jvm {
+            features {
+                jvmVersion(JavaVersion.VERSION_11)
 
-                tags("hubdle")
-
-                gradlePlugin {
-                    plugins {
-                        create("hubdle") {
-                            id = "com.javiersc.hubdle"
-                            displayName = "Hubdle"
-                            description = "Easy setup for projects or settings"
-                            implementationClass = "com.javiersc.hubdle.HubdlePlugin"
+                gradle {
+                    plugin {
+                        gradlePlugin {
+                            plugins {
+                                create("hubdle") {
+                                    id = "com.javiersc.hubdle"
+                                    displayName = "Hubdle"
+                                    description = "Easy setup for projects or settings"
+                                    implementationClass = "com.javiersc.hubdle.HubdlePlugin"
+                                    tags.set(listOf("hubdle"))
+                                }
+                            }
                         }
                     }
                 }
-                main {
-                    dependencies {
-                        api(projects.hubdleProjectGradlePlugin)
-                        api(projects.hubdleSettingsGradlePlugin)
-                    }
+            }
+
+            main {
+                dependencies {
+                    api(projects.hubdleProjectGradlePlugin)
+                    api(projects.hubdleSettingsGradlePlugin)
                 }
             }
         }

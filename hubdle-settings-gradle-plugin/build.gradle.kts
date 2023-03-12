@@ -1,9 +1,9 @@
-plugins {
-    alias(libs.plugins.javiersc.hubdle)
-}
-
 hubdle {
     config {
+        analysis()
+        documentation {
+            api()
+        }
         explicitApi()
         languageSettings {
             experimentalStdlibApi()
@@ -12,34 +12,39 @@ hubdle {
     }
 
     kotlin {
-        gradle {
-            plugin {
-                jvmVersion = 11
+        jvm {
+            features {
+                jvmVersion(JavaVersion.VERSION_11)
 
-                tags("hubdle settings")
-
-                gradlePlugin {
-                    plugins {
-                        create("hubdle settings") {
-                            id = "com.javiersc.hubdle.settings"
-                            displayName = "Hubdle settings"
-                            description = "Easy settings setup"
-                            implementationClass =
-                                "com.javiersc.hubdle.settings.HubdleSettingsPlugin"
+                gradle {
+                    plugin {
+                        gradlePlugin {
+                            plugins {
+                                create("hubdle settings") {
+                                    id = "com.javiersc.hubdle.settings"
+                                    displayName = "Hubdle settings"
+                                    description = "Easy settings setup"
+                                    implementationClass =
+                                        "com.javiersc.hubdle.settings.HubdleSettingsPlugin"
+                                    tags.set(listOf("hubdle settings"))
+                                }
+                            }
                         }
+
+                        pluginUnderTestDependencies(
+                            libs.android.toolsBuild.gradle,
+                            libs.jetbrains.kotlin.kotlinGradlePlugin,
+                        )
                     }
                 }
-                main {
-                    dependencies {
-                        api(projects.hubdleProjectGradlePlugin)
-                        api(javierscGradleExtensions())
-                        api(libs.gradle.enterprise.comGradleEnterpriseGradlePlugin)
-                    }
+            }
+
+            main {
+                dependencies {
+                    api(projects.hubdleProjectGradlePlugin)
+                    api(javierscGradleExtensions())
+                    api(libs.gradle.enterprise.comGradleEnterpriseGradlePlugin)
                 }
-                pluginUnderTestDependencies(
-                    libs.android.toolsBuild.gradle,
-                    libs.jetbrains.kotlin.kotlinGradlePlugin,
-                )
             }
         }
     }

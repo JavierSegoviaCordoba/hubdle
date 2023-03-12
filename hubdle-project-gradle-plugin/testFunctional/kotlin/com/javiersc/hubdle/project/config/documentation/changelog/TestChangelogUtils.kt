@@ -1,4 +1,4 @@
-package com.javiersc.hubdle.project.config.documentation.changelog.utils
+package com.javiersc.hubdle.project.config.documentation.changelog
 
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldNotBeBlank

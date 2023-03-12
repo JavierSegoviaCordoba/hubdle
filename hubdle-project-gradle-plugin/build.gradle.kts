@@ -7,65 +7,76 @@ import org.gradle.configurationcache.extensions.capitalized
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-plugins {
-    alias(libs.plugins.javiersc.hubdle)
-}
-
 hubdle {
     config {
+        analysis()
+        documentation {
+            api()
+        }
         explicitApi()
-        languageSettings { experimentalStdlibApi() }
+        languageSettings {
+            experimentalStdlibApi()
+        }
         publishing()
     }
 
     kotlin {
-        gradle {
-            plugin {
-                jvmVersion = 11
+        jvm {
+            features {
+                jvmVersion(JavaVersion.VERSION_11)
 
-                tags("hubdle")
-
-                gradlePlugin {
-                    plugins {
-                        create("hubdle project") {
-                            id = "com.javiersc.hubdle.project"
-                            displayName = "Hubdle project"
-                            description = "Easy setup for each kind of project"
-                            implementationClass = "com.javiersc.hubdle.project.HubdleProjectPlugin"
+                gradle {
+                    plugin {
+                        gradlePlugin {
+                            plugins {
+                                create("hubdle project") {
+                                    id = "com.javiersc.hubdle.project"
+                                    displayName = "Hubdle project"
+                                    description = "Easy setup for each kind of project"
+                                    implementationClass = "com.javiersc.hubdle.project.HubdleProjectPlugin"
+                                    tags.set(listOf("hubdle"))
+                                }
+                            }
                         }
-                    }
-                }
-                main {
-                    dependencies {
-                        api(libs.adarshr.gradleTestLoggerPlugin)
-                        api(libs.android.toolsBuild.gradle)
-                        api(libs.cash.molecule.gradlePlugin)
-                        api(libs.cash.sqldelight.gradlePlugin)
-                        api(libs.diffplug.spotless.spotlessPluginGradle)
-                        api(libs.github.gradleNexus.publishPlugin)
-                        api(libs.gitlab.arturboschDetekt.detektGradlePlugin)
-                        api(libs.gradle.publish.pluginPublishPlugin)
-                        api(libs.javiersc.semver.semverGradlePlugin)
-                        api(libs.jetbrains.compose.composeGradlePlugin)
-                        api(libs.jetbrains.dokka.dokkaGradlePlugin)
-                        api(libs.jetbrains.intellijPlugins.gradleChangelogPlugin)
-                        api(libs.jetbrains.intellijPlugins.gradleIntellijPlugin)
-                        api(libs.jetbrains.kotlin.kotlinGradlePlugin)
-                        api(libs.jetbrains.kotlinx.binaryCompatibilityValidator)
-                        api(libs.jetbrains.kotlinx.kover)
-                        api(libs.jetbrains.kotlinx.serialization)
-                        api(libs.sonarqube.scannerGradle.sonarqubeGradlePlugin)
-                        api(libs.vyarus.gradleMkdocsPlugin)
 
-                        implementation(libs.eclipse.jgit)
-                        implementation(libs.javiersc.semver.semverCore)
+                        pluginUnderTestDependencies(
+                            libs.android.toolsBuild.gradle,
+                            libs.jetbrains.kotlin.kotlinGradlePlugin,
+                        )
                     }
                 }
-                pluginUnderTestDependencies(
-                    libs.android.toolsBuild.gradle,
-                    libs.jetbrains.kotlin.kotlinGradlePlugin,
-                )
             }
+
+            main {
+                dependencies {
+                    api(libs.adarshr.gradleTestLoggerPlugin)
+                    api(libs.android.toolsBuild.gradle)
+                    api(libs.cash.molecule.gradlePlugin)
+                    api(libs.cash.sqldelight.gradlePlugin)
+                    api(libs.diffplug.spotless.spotlessPluginGradle)
+                    api(libs.github.gradleNexus.publishPlugin)
+                    api(libs.gitlab.arturboschDetekt.detektGradlePlugin)
+                    api(libs.gradle.publish.pluginPublishPlugin)
+                    api(libs.javiersc.semver.semverGradlePlugin)
+                    api(libs.jetbrains.compose.composeGradlePlugin)
+                    api(libs.jetbrains.dokka.dokkaGradlePlugin)
+                    api(libs.jetbrains.intellijPlugins.gradleChangelogPlugin)
+                    api(libs.jetbrains.intellijPlugins.gradleIntellijPlugin)
+                    api(libs.jetbrains.kotlin.kotlinGradlePlugin)
+                    api(libs.jetbrains.kotlinx.binaryCompatibilityValidator)
+                    api(libs.jetbrains.kotlinx.kover)
+                    api(libs.jetbrains.kotlinx.serialization)
+                    api(libs.sonarqube.scannerGradle.sonarqubeGradlePlugin)
+                    api(libs.vyarus.gradleMkdocsPlugin)
+
+                    implementation(libs.eclipse.jgit)
+                    implementation(libs.javiersc.semver.semverCore)
+                }
+            }
+
+            testFixtures()
+            testFunctional()
+            testIntegration()
         }
     }
 }
@@ -135,18 +146,18 @@ fun Project.buildConstants() {
             createNewFile()
             writeText(
                 """
-                        |package com.javiersc.hubdle.project.extensions.dependencies._internal.constants
-                        |
-                        |internal const val ${dependencyVariableName}_LIBRARY: String =
-                        |    "${minimalDependency.module}:$dependencyVersion"
-                        |
-                        |internal const val ${dependencyVariableName}_MODULE: String =
-                        |    "${minimalDependency.module}"
-                        |
-                        |internal const val ${dependencyVariableName}_VERSION: String =
-                        |    "$dependencyVersion"
-                        |
-                    """
+                    |package com.javiersc.hubdle.project.extensions.dependencies._internal.constants
+                    |
+                    |internal const val ${dependencyVariableName}_LIBRARY: String =
+                    |    "${minimalDependency.module}:$dependencyVersion"
+                    |
+                    |internal const val ${dependencyVariableName}_MODULE: String =
+                    |    "${minimalDependency.module}"
+                    |
+                    |internal const val ${dependencyVariableName}_VERSION: String =
+                    |    "$dependencyVersion"
+                    |
+                """
                     .trimMargin(),
             )
         }

@@ -1,8 +1,8 @@
 package com.javiersc.hubdle.project.config.documentation.changelog
 
-import com.javiersc.hubdle.project._utils.resourceFile
 import com.javiersc.hubdle.project.extensions.config.documentation.changelog._internal.Changelog
 import com.javiersc.hubdle.project.extensions.config.documentation.changelog._internal.fromString
+import com.javiersc.hubdle.project.fixtures.resourceFile
 import io.kotest.matchers.shouldBe
 import kotlin.test.Test
 
@@ -34,7 +34,7 @@ private fun assert(number: Int) {
 private const val BASE_PATH = "config/documentation/changelog"
 
 private fun getChangelog(number: Int): String =
-    resourceFile("$BASE_PATH/changelog/$number/CHANGELOG.md").readText()
+    resourceFile("$BASE_PATH/$number/CHANGELOG.md").readText()
 
 private fun expectChangelog(number: Int): String =
-    resourceFile("$BASE_PATH/changelog/$number/CHANGELOG_EXPECT.md").readText()
+    resourceFile("$BASE_PATH/$number/CHANGELOG_EXPECT.md").readText()

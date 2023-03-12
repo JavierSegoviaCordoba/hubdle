@@ -1,6 +1,3 @@
-import kotlinx.kover.api.DefaultJacocoEngine
-import kotlinx.kover.api.KoverProjectConfig
-
 plugins {
     alias(libs.plugins.javiersc.hubdle)
 }
@@ -11,8 +8,11 @@ hubdle {
         binaryCompatibilityValidator()
         coverage()
         documentation {
+            api()
             changelog()
-            readme { badges() }
+            readme {
+                badges()
+            }
             site()
         }
         nexus()
@@ -39,11 +39,5 @@ tasks.register("buildItself") {
         val settingsFile = rootDir.resolve("settings.gradle.kts")
         val settingsContent = settingsFile.readText()
         settingsFile.writeText(settingsContent.replace("// mavenLocal()", "mavenLocal()"))
-    }
-}
-
-allprojects {
-    afterEvaluate {
-        extensions.findByType<KoverProjectConfig>()?.engine?.set(DefaultJacocoEngine)
     }
 }

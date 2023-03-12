@@ -1,8 +1,7 @@
-package com.javiersc.hubdle.project.config.documentation.changelog.integration
+package com.javiersc.hubdle.project.config.documentation.changelog
 
 import com.javiersc.gradle.testkit.test.extensions.GradleTestKitTest
 import com.javiersc.hubdle.project._utils.commitAndCheckout
-import com.javiersc.hubdle.project.config.documentation.changelog.utils.testChangelog
 import kotlin.test.Test
 import org.gradle.testkit.runner.TaskOutcome
 

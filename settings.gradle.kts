@@ -17,12 +17,12 @@ pluginManagement {
     }
 
     plugins {
-        id("com.javiersc.hubdle.settings") version itselfVersion
+        id("com.javiersc.hubdle") version itselfVersion
     }
 }
 
 plugins {
-    id("com.javiersc.hubdle.settings")
+    id("com.javiersc.hubdle")
 }
 
 val itselfVersion: String? = providers.gradleProperty("itselfVersion").orNull

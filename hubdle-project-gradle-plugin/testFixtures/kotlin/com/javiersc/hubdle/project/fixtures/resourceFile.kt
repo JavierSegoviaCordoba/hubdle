@@ -1,6 +1,6 @@
-package com.javiersc.hubdle.project._utils
+package com.javiersc.hubdle.project.fixtures
 
 import java.io.File
 
-internal fun resourceFile(resource: String): File =
+fun resourceFile(resource: String): File =
     File(Thread.currentThread().contextClassLoader?.getResource(resource)?.toURI()!!)

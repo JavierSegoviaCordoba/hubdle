@@ -17,6 +17,7 @@ import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.InputDirectory
 import org.gradle.api.tasks.Internal
 import org.gradle.api.tasks.Nested
+import org.gradle.api.tasks.Optional
 import org.gradle.api.tasks.OutputDirectory
 import org.gradle.api.tasks.PathSensitive
 import org.gradle.api.tasks.PathSensitivity
@@ -50,11 +51,11 @@ constructor(
 
     @get:Input public abstract val qodana: Property<Boolean>
 
-    @get:Input public abstract val qodanaProjectKey: Property<String>
+    @get:Optional @get:Input public abstract val qodanaProjectKey: Property<String>
 
     @get:Input public abstract val sonar: Property<Boolean>
 
-    @get:Input public abstract val sonarProjectId: Property<String>
+    @get:Optional @get:Input public abstract val sonarProjectId: Property<String>
 
     @get:OutputDirectory
     public val outputDotDocsDirectory: File

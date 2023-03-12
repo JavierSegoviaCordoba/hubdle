@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- `versioning.semver` doesn't apply the correct semver plugin id
+
 ### Updated
 
 ## [0.5.0-alpha.3] - 2023-03-12

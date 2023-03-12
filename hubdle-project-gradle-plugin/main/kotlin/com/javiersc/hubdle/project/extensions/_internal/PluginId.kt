@@ -13,7 +13,7 @@ internal enum class PluginId(val id: String) {
     GradleVersionCatalog("org.gradle.version-catalog"),
     JavaGradlePlugin("java-gradle-plugin"),
     JavaTestFixtures("java-test-fixtures"),
-    JavierscSemverGradlePlugin("com.javiersc.semver.gradle.plugin"),
+    JavierscSemverGradlePlugin("com.javiersc.semver"),
     JetbrainsChangelog("org.jetbrains.changelog"),
     JetbrainsCompose("org.jetbrains.compose"),
     JetbrainsDokka("org.jetbrains.dokka"),

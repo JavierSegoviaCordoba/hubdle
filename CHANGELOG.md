@@ -6,11 +6,19 @@
 
 ### Changed
 
-- `versioning` includes a Hubdle `semver` extension
-
 ### Deprecated
 
 ### Removed
+
+### Fixed
+
+### Updated
+
+## [0.5.0-alpha.3] - 2023-03-12
+
+### Changed
+
+- `versioning` includes a Hubdle `semver` extension
 
 ### Fixed
 
@@ -49,7 +57,9 @@
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.2`
 - `app.cash.molecule:molecule-gradle-plugin -> 0.8.0`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.2...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.3...HEAD
+
+[0.5.0-alpha.3]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.2...0.5.0-alpha.3
 
 [0.5.0-alpha.2]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.1...0.5.0-alpha.2
 

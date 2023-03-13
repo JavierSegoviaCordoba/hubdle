@@ -10,6 +10,8 @@
 
 ### Removed
 
+- Detekt and Kover merged reports 
+
 ### Fixed
 
 ### Updated

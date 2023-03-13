@@ -1,6 +1,5 @@
 package com.javiersc.hubdle.project.extensions.config.analysis
 
-import com.javiersc.gradle.project.extensions.isRootProject
 import com.javiersc.gradle.properties.extensions.getProperty
 import com.javiersc.gradle.properties.extensions.getPropertyOrNull
 import com.javiersc.gradle.tasks.extensions.maybeRegisterLazily
@@ -20,20 +19,15 @@ import com.javiersc.hubdle.project.extensions.config.analysis.reports.HubdleConf
 import com.javiersc.hubdle.project.extensions.config.hubdleConfig
 import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.extensions.DetektExtension
-import io.gitlab.arturbosch.detekt.report.ReportMergeTask
 import java.io.File
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.Task
-import org.gradle.api.file.DirectoryProperty
 import org.gradle.api.provider.Property
 import org.gradle.api.provider.SetProperty
-import org.gradle.api.tasks.TaskCollection
-import org.gradle.api.tasks.TaskProvider
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.findByType
-import org.gradle.kotlin.dsl.register
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 import org.sonarqube.gradle.SonarExtension
@@ -122,7 +116,6 @@ constructor(
             }
 
             configureDetektTask(project)
-            configureMergeDetektReports(project)
         }
 
     private fun configureDetektTask(project: Project) {
@@ -136,30 +129,6 @@ constructor(
                 reports.sarif.required.set(hubdleAnalysis.reports.sarif)
                 reports.txt.required.set(hubdleAnalysis.reports.txt)
                 reports.xml.required.set(hubdleAnalysis.reports.xml)
-            }
-        }
-    }
-
-    private fun configureMergeDetektReports(project: Project) {
-        if (project.isRootProject) {
-            val buildDirectory: DirectoryProperty = project.layout.buildDirectory
-            val detektReportMergeSarif: TaskProvider<ReportMergeTask> =
-                tasks.register<ReportMergeTask>("detektReportMergeSarif") {
-                    output.set(buildDirectory.file("reports/detekt/detekt.sarif"))
-                }
-            val detektReportMergeXml: TaskProvider<ReportMergeTask> =
-                tasks.register<ReportMergeTask>("detektReportMergeXml") {
-                    output.set(buildDirectory.file("reports/detekt/detekt.xml"))
-                }
-
-            project.subprojects { subproject ->
-                val detektTasks: TaskCollection<Detekt> = subproject.tasks.withType<Detekt>()
-                detektTasks.configureEach { detekt ->
-                    detekt.finalizedBy(detektReportMergeSarif)
-                    detekt.finalizedBy(detektReportMergeXml)
-                    detektReportMergeSarif.configure { it.input.from(detekt.sarifReportFile) }
-                    detektReportMergeXml.configure { it.input.from(detekt.xmlReportFile) }
-                }
             }
         }
     }
@@ -197,11 +166,11 @@ constructor(
                 )
                 properties.property(
                     "sonar.coverage.jacoco.xmlReportPaths",
-                    "${project.buildDir}/reports/kover/merged/xml/report.xml"
+                    "${project.buildDir}/reports/kover/xml/report.xml"
                 )
 
-                // TODO: use `includes` and `excludes` from Hubdle when Detekt aggregated reports is
-                //  fixed: https://github.com/detekt/detekt/issues/5041
+                // TODO: https://github.com/detekt/detekt/issues/5412
+                //  https://github.com/detekt/detekt/issues/5896
                 properties.property("sonar.sources", project.kotlinSrcDirs.get())
                 properties.property("sonar.tests", project.kotlinTestsSrcDirs.get())
             }

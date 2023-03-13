@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- Fix Kover reports are not updated to Sonarcloud
+
 ### Updated
 
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-alpha.4`

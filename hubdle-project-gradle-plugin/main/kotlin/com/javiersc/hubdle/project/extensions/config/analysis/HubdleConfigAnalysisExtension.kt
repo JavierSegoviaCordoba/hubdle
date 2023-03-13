@@ -197,7 +197,7 @@ constructor(
                 )
                 properties.property(
                     "sonar.coverage.jacoco.xmlReportPaths",
-                    "${project.buildDir}/reports/kover/report.xml"
+                    "${project.buildDir}/reports/kover/merged/xml/report.xml"
                 )
 
                 // TODO: use `includes` and `excludes` from Hubdle when Detekt aggregated reports is

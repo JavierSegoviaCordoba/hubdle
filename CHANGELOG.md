@@ -12,6 +12,12 @@
 
 ### Fixed
 
+### Updated
+
+## [0.5.0-alpha.5] - 2023-03-13
+
+### Fixed
+
 - Fix Kover reports are not updated to Sonarcloud
 
 ### Updated
@@ -67,7 +73,9 @@
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.2`
 - `app.cash.molecule:molecule-gradle-plugin -> 0.8.0`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.4...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.5...HEAD
+
+[0.5.0-alpha.5]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.4...0.5.0-alpha.5
 
 [0.5.0-alpha.4]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.3...0.5.0-alpha.4
 

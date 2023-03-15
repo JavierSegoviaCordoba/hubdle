@@ -318,10 +318,12 @@ constructor(
                             val parentPath = fullPath.replaceAfterLast(projectInfo.name, "")
                             val projects = this[parentPath].orEmpty()
                             val paths = parentPath.split("/")
-                            paths.reduce { previousPath, path ->
-                                val accumulatedPath = "$previousPath/$path"
-                                put(accumulatedPath, this[accumulatedPath].orEmpty())
-                                accumulatedPath
+                            if (paths.isNotEmpty()) {
+                                paths.reduce { previousPath, path ->
+                                    val accumulatedPath = "$previousPath/$path"
+                                    put(accumulatedPath, this[accumulatedPath].orEmpty())
+                                    accumulatedPath
+                                }
                             }
                             put(parentPath, projects + projectInfo.name)
                         }
@@ -416,24 +418,26 @@ constructor(
                     trimIndent().takeWhile { it != ':' } ==
                         reference.trimIndent().takeWhile { it != ':' }
 
-                lines.reduce { previous, line ->
-                    when {
-                        previous == line -> {
-                            removeLast()
-                            add(line)
-                            line
-                        }
-                        previous.isReference() && line.isReferenceOf(previous) -> {
-                            add(previous.takeWhile(Char::isWhitespace) + line.trimIndent())
-                            line
-                        }
-                        line.isReferenceOf(previous) && line.isReference() -> {
-                            add(previous)
-                            previous
-                        }
-                        else -> {
-                            add(previous)
-                            line
+                if (lines.isNotEmpty()) {
+                    lines.reduce { previous, line ->
+                        when {
+                            previous == line -> {
+                                removeLast()
+                                add(line)
+                                line
+                            }
+                            previous.isReference() && line.isReferenceOf(previous) -> {
+                                add(previous.takeWhile(Char::isWhitespace) + line.trimIndent())
+                                line
+                            }
+                            line.isReferenceOf(previous) && line.isReference() -> {
+                                add(previous)
+                                previous
+                            }
+                            else -> {
+                                add(previous)
+                                line
+                            }
                         }
                     }
                 }

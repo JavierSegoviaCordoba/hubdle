@@ -12,11 +12,12 @@
 
 ### Fixed
 
-- `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-alpha.6`
+- `PrebuildSiteTask` uses `reduce` on empty lists
 
 ### Updated
 
 - `com.diffplug.spotless:spotless-plugin-gradle -> 6.17.0`
+- `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-alpha.6`
 
 ## [0.5.0-alpha.6] - 2023-03-13
 

@@ -16,6 +16,7 @@
 
 ### Updated
 
+- `io.kotest.extensions:kotest-assertions-ktor -> 2.0.0`
 - `com.diffplug.spotless:spotless-plugin-gradle -> 6.17.0`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-alpha.6`
 

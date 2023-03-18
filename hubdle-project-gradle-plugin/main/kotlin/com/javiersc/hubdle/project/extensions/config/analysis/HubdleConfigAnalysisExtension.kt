@@ -1,5 +1,11 @@
 package com.javiersc.hubdle.project.extensions.config.analysis
 
+import com.android.build.api.dsl.ApplicationBuildType
+import com.android.build.api.dsl.ApplicationExtension
+import com.android.build.api.dsl.ApplicationProductFlavor
+import com.android.build.api.dsl.LibraryBuildType
+import com.android.build.api.dsl.LibraryExtension
+import com.android.build.api.dsl.LibraryProductFlavor
 import com.javiersc.gradle.properties.extensions.getProperty
 import com.javiersc.gradle.properties.extensions.getPropertyOrNull
 import com.javiersc.gradle.tasks.extensions.maybeRegisterLazily
@@ -17,6 +23,7 @@ import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
 import com.javiersc.hubdle.project.extensions.config.analysis.reports.HubdleConfigAnalysisReportsExtension
 import com.javiersc.hubdle.project.extensions.config.hubdleConfig
+import com.javiersc.kotlin.stdlib.capitalize
 import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.extensions.DetektExtension
 import java.io.File
@@ -31,6 +38,7 @@ import org.gradle.kotlin.dsl.findByType
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 import org.sonarqube.gradle.SonarExtension
+import org.sonarqube.gradle.SonarProperties
 
 @HubdleDslMarker
 public open class HubdleConfigAnalysisExtension
@@ -169,11 +177,52 @@ constructor(
                     "${project.buildDir}/reports/kover/xml/report.xml"
                 )
 
+                project.configureAndroidLintReportPaths(properties)
+
                 // TODO: https://github.com/detekt/detekt/issues/5412
                 //  https://github.com/detekt/detekt/issues/5896
                 properties.property("sonar.sources", project.kotlinSrcDirs.get())
                 properties.property("sonar.tests", project.kotlinTestsSrcDirs.get())
             }
+        }
+    }
+
+    private fun Project.configureAndroidLintReportPaths(properties: SonarProperties) {
+        val reportsDir = buildDir.resolve("reports")
+        val sonarAndroidLintReportPaths = "sonar.androidLint.reportPaths"
+        fun variants(buildTypes: List<String>, flavors: List<String>) = buildSet {
+            for (flavor in flavors) {
+                addAll(buildTypes.map { buildType -> "${flavor}${buildType.capitalize()}" })
+            }
+        }
+        val defaultLintFile = "lint-results.xml"
+        fun lintFile(name: String) = "lint-results-$name.xml"
+        fun reportPaths(buildTypes: List<String>, variants: Set<String>) =
+            buildSet {
+                    add(defaultLintFile)
+                    addAll(buildTypes.map(::lintFile))
+                    addAll(variants.map(::lintFile))
+                }
+                .map { reportFile -> reportsDir.resolve(reportFile) }
+
+        pluginManager.withPlugin(PluginId.AndroidApplication.id) {
+            val android = the<ApplicationExtension>()
+            val buildTypes = android.buildTypes.map(ApplicationBuildType::getName)
+            val flavors = android.productFlavors.map(ApplicationProductFlavor::getName)
+            properties.property(
+                sonarAndroidLintReportPaths,
+                reportPaths(buildTypes, variants(buildTypes, flavors)),
+            )
+        }
+
+        pluginManager.withPlugin(PluginId.AndroidLibrary.id) {
+            val android = the<LibraryExtension>()
+            val buildTypes = android.buildTypes.map(LibraryBuildType::getName)
+            val flavors = android.productFlavors.map(LibraryProductFlavor::getName)
+            properties.property(
+                sonarAndroidLintReportPaths,
+                reportPaths(buildTypes, variants(buildTypes, flavors)),
+            )
         }
     }
 

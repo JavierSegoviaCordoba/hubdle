@@ -4,6 +4,8 @@
 
 ### Added
 
+- Android Lint reports to Sonar
+
 ### Changed
 
 ### Deprecated

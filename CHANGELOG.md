@@ -6,17 +6,23 @@
 
 ### Changed
 
-- JUnit 4 as default instead of JUnit 5
-
 ### Deprecated
 
 ### Removed
 
 ### Fixed
 
-- testing framework missing dependency
-
 ### Updated
+
+## [0.5.0-alpha.8] - 2023-03-20
+
+### Changed
+
+- JUnit 4 as default instead of JUnit 5
+
+### Fixed
+
+- testing framework missing dependency
 
 ## [0.5.0-alpha.7] - 2023-03-20
 
@@ -105,7 +111,9 @@
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.2`
 - `app.cash.molecule:molecule-gradle-plugin -> 0.8.0`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.7...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.8...HEAD
+
+[0.5.0-alpha.8]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.7...0.5.0-alpha.8
 
 [0.5.0-alpha.7]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.6...0.5.0-alpha.7
 

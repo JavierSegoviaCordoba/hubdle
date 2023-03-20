@@ -6,6 +6,8 @@
 
 ### Changed
 
+- JUnit 4 as default instead of JUnit 5
+
 ### Deprecated
 
 ### Removed

@@ -29,7 +29,7 @@ internal fun HubdleConfigurableExtension.configurableDependencies() {
                         Options.JUnit -> library(jetbrains_kotlin_kotlinTestJUnit)
                         Options.JUnitPlatform -> library(jetbrains_kotlin_kotlinTestJUnit5)
                         Options.TestNG -> library(jetbrains_kotlin_kotlinTestNG)
-                        else -> library(jetbrains_kotlin_kotlinTestJUnit5)
+                        else -> library(jetbrains_kotlin_kotlinTestJUnit)
                     }.get()
                 }
                 implementation(testModuleFramework)

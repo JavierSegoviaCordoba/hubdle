@@ -84,7 +84,7 @@ private fun Project.calculateJavierScKotlinTestDependency():
         is JUnitOptions -> library(javiersc_kotlin_kotlinTestJunit)
         is JUnitPlatformOptions -> library(javiersc_kotlin_kotlinTestJunit5)
         is TestNGOptions -> library(javiersc_kotlin_kotlinTestNG)
-        else -> library(javiersc_kotlin_kotlinTestJunit5)
+        else -> library(javiersc_kotlin_kotlinTestJunit)
     }
 
 internal val HubdleEnableableExtension.hubdleExtendedStdlibFeature:

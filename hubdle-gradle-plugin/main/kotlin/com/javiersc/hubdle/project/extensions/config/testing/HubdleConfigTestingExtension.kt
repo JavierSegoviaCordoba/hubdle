@@ -84,7 +84,7 @@ constructor(
                     Options.JUnit -> task.useJUnit()
                     Options.JUnitPlatform -> task.useJUnitPlatform()
                     Options.TestNG -> task.useTestNG()
-                    else -> task.useJUnitPlatform()
+                    else -> task.useJUnit()
                 }
 
                 if (shouldRunAllTestsReport) task.finalizedBy(testReport)

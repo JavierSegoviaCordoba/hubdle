@@ -13,8 +13,6 @@ internal fun HubdleEnableableExtension.library(name: String) =
 
 internal fun Project.library(name: String) = hubdleVersionCatalog.findLibrary(name).get()
 
-internal fun Project.libraryModule(name: String) = library(name).map { it.module.toString() }
-
 private val Project.hubdleVersionCatalog
     get() =
         checkNotNull(extensions.findByType<VersionCatalogsExtension>()) {

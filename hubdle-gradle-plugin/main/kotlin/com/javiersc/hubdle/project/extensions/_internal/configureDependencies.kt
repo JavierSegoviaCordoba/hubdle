@@ -9,6 +9,7 @@ import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.jet
 import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.jetbrains_kotlin_kotlinTestJUnit5
 import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.jetbrains_kotlin_kotlinTestNG
 import com.javiersc.hubdle.project.extensions.kotlin._internal.forKotlinSetsDependencies
+import org.gradle.api.artifacts.MinimalExternalModuleDependency
 import org.gradle.api.provider.Provider
 
 internal fun HubdleConfigurableExtension.configurableDependencies() {
@@ -23,12 +24,12 @@ internal fun HubdleConfigurableExtension.configurableDependencies() {
             implementation(library(jetbrains_kotlin_kotlinTestAnnotationsCommon))
 
             if (hubdleTesting.isFullEnabled.get()) {
-                val testModuleFramework: Provider<String> = provider {
+                val testModuleFramework: Provider<MinimalExternalModuleDependency> = provider {
                     when (hubdleTesting.options.get()) {
-                        Options.JUnit -> libraryModule(jetbrains_kotlin_kotlinTestJUnit)
-                        Options.JUnitPlatform -> libraryModule(jetbrains_kotlin_kotlinTestJUnit5)
-                        Options.TestNG -> libraryModule(jetbrains_kotlin_kotlinTestNG)
-                        else -> libraryModule(jetbrains_kotlin_kotlinTestJUnit5)
+                        Options.JUnit -> library(jetbrains_kotlin_kotlinTestJUnit)
+                        Options.JUnitPlatform -> library(jetbrains_kotlin_kotlinTestJUnit5)
+                        Options.TestNG -> library(jetbrains_kotlin_kotlinTestNG)
+                        else -> library(jetbrains_kotlin_kotlinTestJUnit5)
                     }.get()
                 }
                 implementation(testModuleFramework)

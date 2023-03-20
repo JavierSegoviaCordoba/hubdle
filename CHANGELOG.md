@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- testing framework missing dependency
+
 ### Updated
 
 ## [0.5.0-alpha.7] - 2023-03-20

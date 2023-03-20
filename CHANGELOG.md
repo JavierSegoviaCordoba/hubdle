@@ -4,15 +4,25 @@
 
 ### Added
 
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Updated
+
+## [0.5.0-alpha.7] - 2023-03-20
+
+### Added
+
 - Android Lint reports to Sonar
 
 ### Changed
 
 - codegen libraries to use a `hubdle` version catalog
-
-### Deprecated
-
-### Removed
 
 ### Fixed
 
@@ -91,7 +101,9 @@
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.2`
 - `app.cash.molecule:molecule-gradle-plugin -> 0.8.0`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.6...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.7...HEAD
+
+[0.5.0-alpha.7]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.6...0.5.0-alpha.7
 
 [0.5.0-alpha.6]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.5...0.5.0-alpha.6
 

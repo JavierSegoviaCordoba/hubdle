@@ -20,6 +20,7 @@
 
 ### Updated
 
+- `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.12.5`
 - `com.javiersc.semver:semver-gradle-plugin -> 0.5.0-alpha.2`
 - `io.kotest.extensions:kotest-assertions-ktor -> 2.0.0`
 - `com.diffplug.spotless:spotless-plugin-gradle -> 6.17.0`

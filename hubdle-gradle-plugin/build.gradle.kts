@@ -1,11 +1,17 @@
+import com.javiersc.gradle.extensions.version.catalogs.getLibraries
+import com.javiersc.gradle.tasks.extensions.maybeRegisterLazily
+import com.javiersc.gradle.tasks.extensions.namedLazily
+import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 hubdle {
     config {
         analysis()
-        documentation {
+        documentation { //
             api()
         }
         explicitApi()
-        languageSettings {
+        languageSettings { //
             experimentalStdlibApi()
         }
         publishing()
@@ -27,18 +33,244 @@ hubdle {
                                     implementationClass = "com.javiersc.hubdle.HubdlePlugin"
                                     tags.set(listOf("hubdle"))
                                 }
+                                create("hubdle project") {
+                                    id = "com.javiersc.hubdle.project"
+                                    displayName = "Hubdle project"
+                                    description = "Easy setup for each kind of project"
+                                    implementationClass =
+                                        "com.javiersc.hubdle.project.HubdleProjectPlugin"
+                                    tags.set(listOf("hubdle project"))
+                                }
+                                create("hubdle settings") {
+                                    id = "com.javiersc.hubdle.settings"
+                                    displayName = "Hubdle settings"
+                                    description = "Easy settings setup"
+                                    implementationClass =
+                                        "com.javiersc.hubdle.settings.HubdleSettingsPlugin"
+                                    tags.set(listOf("hubdle settings"))
+                                }
                             }
                         }
+
+                        pluginUnderTestDependencies(
+                            libs.android.toolsBuild.gradle,
+                            libs.jetbrains.kotlin.kotlinGradlePlugin,
+                        )
                     }
                 }
             }
 
             main {
                 dependencies {
-                    api(projects.hubdleProjectGradlePlugin)
-                    api(projects.hubdleSettingsGradlePlugin)
+                    api(libs.adarshr.gradleTestLoggerPlugin)
+                    api(libs.android.toolsBuild.gradle)
+                    api(libs.cash.molecule.gradlePlugin)
+                    api(libs.cash.sqldelight.gradlePlugin)
+                    api(libs.diffplug.spotless.spotlessPluginGradle)
+                    api(libs.github.gradleNexus.publishPlugin)
+                    api(libs.gitlab.arturboschDetekt.detektGradlePlugin)
+                    api(libs.gradle.enterprise.comGradleEnterpriseGradlePlugin)
+                    api(libs.gradle.publish.pluginPublishPlugin)
+                    api(libs.javiersc.semver.semverGradlePlugin)
+                    api(libs.jetbrains.compose.composeGradlePlugin)
+                    api(libs.jetbrains.dokka.dokkaGradlePlugin)
+                    api(libs.jetbrains.intellijPlugins.gradleChangelogPlugin)
+                    api(libs.jetbrains.intellijPlugins.gradleIntellijPlugin)
+                    api(libs.jetbrains.kotlin.kotlinGradlePlugin)
+                    api(libs.jetbrains.kotlinx.binaryCompatibilityValidator)
+                    api(libs.jetbrains.kotlinx.kover)
+                    api(libs.jetbrains.kotlinx.serialization)
+                    api(libs.sonarqube.scannerGradle.sonarqubeGradlePlugin)
+                    api(libs.vyarus.gradleMkdocsPlugin)
+
+                    implementation(libs.eclipse.jgit)
+                    implementation(libs.javiersc.semver.semverCore)
                 }
+
+                resources.srcDirs(file(rootDir.resolve("gradle/hubdle")))
             }
+
+            testFixtures()
+            testFunctional()
+            testIntegration()
         }
     }
 }
+
+generateHubdle()
+
+fun Project.generateHubdle() {
+    val hubdleCodegen: TaskCollection<Task> = tasks.maybeRegisterLazily("generateHubdle")
+
+    the<KotlinProjectExtension>()
+        .sourceSets["main"]
+        .kotlin
+        .srcDirs(buildDir.resolve("generated/main/kotlin"))
+
+    hubdleCodegen.configureEach {
+        group = "build"
+
+        doLast {
+            buildConstants()
+            buildHubdleDependencies()
+            buildHubdleCatalog()
+        }
+    }
+
+    tasks.namedLazily<Task>("apiCheck").configureEach { dependsOn(hubdleCodegen) }
+
+    tasks.namedLazily<Task>("apiDump").configureEach { dependsOn(hubdleCodegen) }
+
+    tasks.namedLazily<Task>(LifecycleBasePlugin.ASSEMBLE_TASK_NAME).configureEach {
+        dependsOn(hubdleCodegen)
+    }
+
+    tasks.withType<JavaCompile>().configureEach { dependsOn(hubdleCodegen) }
+
+    tasks.withType<KotlinCompile>().configureEach { dependsOn(hubdleCodegen) }
+}
+
+val generatedDependenciesInternalDir =
+    "generated/main/kotlin/com/javiersc/hubdle/project/extensions/dependencies/_internal"
+
+fun Project.buildConstants() {
+    buildDir
+        .resolve(generatedDependenciesInternalDir)
+        .resolve("constants/SQLDELIGHT_VERSION.kt")
+        .apply {
+            parentFile.mkdirs()
+            createNewFile()
+        }
+        .writeText(
+            """
+                |package com.javiersc.hubdle.project.extensions.dependencies._internal.constants
+                |
+                |internal const val SQLDELIGHT_VERSION: String = "${libs.versions.sqldelight.get()}"
+                |
+            """
+                .trimMargin()
+        )
+
+    catalogDependencies.forEach { minimalDependency ->
+        val fileName = minimalDependency.module.toString().replace(":", "_")
+        val dependencyVariableName = fileName.buildDependencyVariableName()
+        val dependencyVersion = minimalDependency.versionConstraint.displayName
+        buildDir.resolve(generatedDependenciesInternalDir).resolve("constants/$fileName.kt").apply {
+            parentFile.mkdirs()
+            createNewFile()
+            writeText(
+                """
+                    |package com.javiersc.hubdle.project.extensions.dependencies._internal.constants
+                    |
+                    |internal const val ${dependencyVariableName}_LIBRARY: String =
+                    |    "${minimalDependency.module}:$dependencyVersion"
+                    |
+                    |internal const val ${dependencyVariableName}_MODULE: String =
+                    |    "${minimalDependency.module}"
+                    |
+                    |internal const val ${dependencyVariableName}_VERSION: String =
+                    |    "$dependencyVersion"
+                    |
+                """
+                    .trimMargin(),
+            )
+        }
+    }
+}
+
+fun Project.buildHubdleDependencies() {
+    buildDir
+        .resolve(generatedDependenciesInternalDir)
+        .resolve("constants/HUBDLE_ALIASES.kt")
+        .apply {
+            parentFile.mkdirs()
+            createNewFile()
+            val aliases =
+                catalog.libraryAliases.joinToString("\n") { alias ->
+                    """|internal const val ${alias.sanitizeAlias()} = "$alias""""
+                }
+            val content =
+                """ |package com.javiersc.hubdle.project.extensions.dependencies._internal.aliases
+                    |
+                    $aliases
+                    |
+                """
+                    .trimMargin()
+            writeText(content)
+        }
+}
+
+fun Project.buildHubdleCatalog() {
+    val aliases: List<String> = catalog.libraryAliases
+    val aliasToLibraryMap: Map<String, String> =
+        aliases.associateWith { alias ->
+            val dependency: MinimalExternalModuleDependency = catalog.findLibrary(alias).get().get()
+            val version: String? = dependency.version
+            if (version != null) "${dependency.module}:${version}" else "${dependency.module}"
+        }
+
+    val builders =
+        aliasToLibraryMap.map { (alias, library) -> """builder.library("$alias", "$library")""" }
+
+    val indent = " ".repeat(12)
+
+    val hubdleCatalog =
+        """ |package com.javiersc.hubdle.project.extensions.dependencies._internal.catalog
+            |
+            |import org.gradle.api.initialization.Settings
+            |
+            |internal fun Settings.createHubdleCatalog() {
+            |    dependencyResolutionManagement { management ->
+            |        management.versionCatalogs { catalogs ->
+            |            catalogs.create("hubdle") { builder -> //
+            ${builders.joinToString("\n") { builder -> "|${builder.prependIndent(indent)}"}}
+            |            }
+            |        }
+            |    }
+            |}
+            |
+        """
+            .trimMargin()
+
+    buildDir.resolve(generatedDependenciesInternalDir).resolve("catalog/HubdleCatalog.kt").apply {
+        parentFile.mkdirs()
+        createNewFile()
+        writeText(hubdleCatalog)
+    }
+
+    val sanitizedLibraries =
+        aliasToLibraryMap
+            .map { (alias, library) -> """|        "${alias.replace(".", "-")}" to "$library", """ }
+            .joinToString("\n")
+
+    val hubdleCatalogMap =
+        """ |package com.javiersc.hubdle.project.extensions.dependencies._internal.catalog
+            |
+            |internal val hubdleAliasToLibraries =
+            |    mapOf(
+            $sanitizedLibraries
+            |    )
+            |
+        """
+            .trimMargin()
+
+    buildDir
+        .resolve(generatedDependenciesInternalDir)
+        .resolve("catalog/HubdleCatalogMap.kt")
+        .apply {
+            parentFile.mkdirs()
+            createNewFile()
+            writeText(hubdleCatalogMap)
+        }
+}
+
+fun String.buildDependencyVariableName(): String =
+    replace(".", "_").replace("-", "_").toUpperCase(java.util.Locale.getDefault())
+
+fun String.sanitizeAlias() = replace(".", "_")
+
+val Project.catalog: VersionCatalog
+    get() = the<VersionCatalogsExtension>().find("hubdle").get()
+
+val Project.catalogDependencies: List<MinimalExternalModuleDependency>
+    get() = the<VersionCatalogsExtension>().getLibraries(catalog)

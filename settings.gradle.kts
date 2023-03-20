@@ -16,12 +16,12 @@ pluginManagement {
         if (itselfVersionFromProp != null) mavenLocal()
     }
 
-    plugins {
+    plugins { //
         id("com.javiersc.hubdle") version itselfVersion
     }
 }
 
-plugins {
+plugins { //
     id("com.javiersc.hubdle")
 }
 
@@ -35,11 +35,16 @@ dependencyResolutionManagement {
         maven(url = "https://maven.pkg.jetbrains.space/public/p/compose/dev/")
         if (itselfVersion != null) mavenLocal()
     }
-    if (itselfVersion != null) {
-        versionCatalogs {
-            create("libs") {
+
+    versionCatalogs {
+        create("libs") {
+            if (itselfVersion != null) {
                 version("hubdle", itselfVersion)
             }
+        }
+
+        create("hubdle") { //
+            from(files("gradle/hubdle.libs.versions.toml"))
         }
     }
 }

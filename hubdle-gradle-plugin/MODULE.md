@@ -4,18 +4,12 @@
 
 ## Usage
 
-Apply the plugin in your `build.gradle.kts` or in your `settings.gradle.kts`:
-
 ```kotlin
+// settings.gradle.kts
 plugins {
     id("com.javiersc.hubdle") version "$version"
 }
 ```
-
-## Plugins applied
-
-- [hubdle-project-gradle-plugin](../hubdle-project-gradle-plugin/MODULE.md)
-- [hubdle-settings-gradle-plugin](../hubdle-settings-gradle-plugin/MODULE.md)
 
 ## Configurations
 

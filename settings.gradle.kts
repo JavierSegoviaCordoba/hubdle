@@ -42,10 +42,6 @@ dependencyResolutionManagement {
                 version("hubdle", itselfVersion)
             }
         }
-
-        create("hubdle") { //
-            from(files("gradle/hubdle.libs.versions.toml"))
-        }
     }
 }
 

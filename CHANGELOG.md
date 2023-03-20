@@ -8,6 +8,8 @@
 
 ### Changed
 
+- codegen libraries to use a `hubdle` version catalog
+
 ### Deprecated
 
 ### Removed

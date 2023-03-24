@@ -14,6 +14,13 @@
 
 ### Updated
 
+- `io.insert-koin:koin-test-junit5 -> 3.4.0`
+- `io.insert-koin:koin-test-junit4 -> 3.4.0`
+- `io.insert-koin:koin-test -> 3.4.0`
+- `io.insert-koin:koin-logger-slf4j -> 3.4.0`
+- `io.insert-koin:koin-ktor -> 3.4.0`
+- `io.insert-koin:koin-core -> 3.4.0`
+- `io.insert-koin:koin-android -> 3.4.0`
 - `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.12.6`
 - `androidx.lifecycle:lifecycle-viewmodel-compose -> 2.6.1`
 - `androidx.lifecycle:lifecycle-viewmodel-ktx -> 2.6.1`

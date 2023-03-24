@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.12.6`
 - `androidx.lifecycle:lifecycle-viewmodel-compose -> 2.6.1`
 - `androidx.lifecycle:lifecycle-viewmodel-ktx -> 2.6.1`
 - `androidx.lifecycle:lifecycle-viewmodel -> 2.6.1`

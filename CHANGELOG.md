@@ -14,6 +14,13 @@
 
 ### Updated
 
+- `io.kotest:kotest-runner-junit5 -> 5.5.5`
+- `io.kotest:kotest-runner-junit4 -> 5.5.5`
+- `io.kotest:kotest-property -> 5.5.5`
+- `io.kotest:kotest-assertions-sql -> 5.5.5`
+- `io.kotest:kotest-assertions-json -> 5.5.5`
+- `io.kotest:kotest-assertions-core -> 5.5.5`
+- `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
 - `io.insert-koin:koin-androidx-compose -> 3.4.3`
 - `io.insert-koin:koin-test-junit5 -> 3.4.0`
 - `io.insert-koin:koin-test-junit4 -> 3.4.0`

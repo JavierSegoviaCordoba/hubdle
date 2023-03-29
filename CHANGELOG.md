@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.3`
 - `io.insert-koin:koin-androidx-compose -> 3.4.3`
 - `io.insert-koin:koin-test-junit5 -> 3.4.0`
 - `io.insert-koin:koin-test-junit4 -> 3.4.0`

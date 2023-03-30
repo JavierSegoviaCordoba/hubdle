@@ -1,14 +1,14 @@
 package com.javiersc.hubdle.project.extensions.apis
 
+import com.javiersc.gradle.properties.extensions.listProperty
+import com.javiersc.gradle.properties.extensions.property
+import com.javiersc.gradle.properties.extensions.setProperty
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin
 import com.javiersc.hubdle.project.extensions._internal.Configurable
 import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions._internal.HubdleState
 import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.hubdleState
-import com.javiersc.hubdle.project.extensions._internal.listProperty
-import com.javiersc.hubdle.project.extensions._internal.property
-import com.javiersc.hubdle.project.extensions._internal.setProperty
 import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.provider.ListProperty

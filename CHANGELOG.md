@@ -8,6 +8,8 @@
 
 ### Changed
 
+- publish and changelog tasks to be disabled based on tag prefix if semver is enabled
+
 ### Deprecated
 
 ### Removed

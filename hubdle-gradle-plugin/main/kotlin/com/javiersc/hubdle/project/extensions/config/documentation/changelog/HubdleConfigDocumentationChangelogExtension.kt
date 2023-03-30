@@ -11,6 +11,7 @@ import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.config.documentation.hubdleDocumentation
+import com.javiersc.hubdle.project.extensions.config.versioning.semver._internal.isTagPrefixProject
 import com.javiersc.hubdle.project.extensions.config.versioning.semver.hubdleSemver
 import javax.inject.Inject
 import org.gradle.api.Action
@@ -23,9 +24,11 @@ import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.named
 import org.gradle.kotlin.dsl.register
 import org.gradle.kotlin.dsl.the
+import org.gradle.kotlin.dsl.withType
 import org.jetbrains.changelog.Changelog
 import org.jetbrains.changelog.ChangelogPluginExtension
 import org.jetbrains.changelog.ChangelogSectionUrlBuilder
+import org.jetbrains.changelog.tasks.BaseChangelogTask
 import org.jetbrains.changelog.tasks.PatchChangelogTask
 
 @HubdleDslMarker
@@ -102,24 +105,34 @@ constructor(
 
             tasks.register<ApplyFormatChangelogTask>(ApplyFormatChangelogTask.NAME)
 
+            tasks.withType<BaseChangelogTask>().configureEach { task ->
+                task.enabled = isTagPrefixProject
+            }
+
             val patchChangelogTask: TaskCollection<PatchChangelogTask> =
-                tasks.namedLazily<PatchChangelogTask>("patchChangelog").apply {
-                    configureEach { task -> task.finalizedBy(ApplyFormatChangelogTask.NAME) }
-                }
+                tasks.namedLazily<PatchChangelogTask>("patchChangelog")
+
+            patchChangelogTask.configureEach { task ->
+                task.enabled = isTagPrefixProject
+                task.finalizedBy(ApplyFormatChangelogTask.NAME)
+            }
 
             tasks.register<MergeChangelogTask>(MergeChangelogTask.NAME).configure { task ->
+                task.enabled = isTagPrefixProject
                 task.mustRunAfter(patchChangelogTask)
                 task.finalizedBy(ApplyFormatChangelogTask.NAME)
             }
 
             tasks.register<AddChangelogItemTask>(AddChangelogItemTask.NAME).configure { task ->
+                task.enabled = isTagPrefixProject
                 task.finalizedBy(ApplyFormatChangelogTask.NAME)
             }
 
-            val generateChangelogHtmlTask =
+            val generateChangelogHtmlTask: TaskProvider<GenerateChangelogHtmlTask> =
                 tasks.register<GenerateChangelogHtmlTask>(GenerateChangelogHtmlTask.NAME)
 
             generateChangelogHtmlTask.configure { task ->
+                task.enabled = isTagPrefixProject
                 val changelogExt = the<ChangelogPluginExtension>()
                 val htmlText =
                     changelogExt.getOrNull("${project.version}")?.let { item ->

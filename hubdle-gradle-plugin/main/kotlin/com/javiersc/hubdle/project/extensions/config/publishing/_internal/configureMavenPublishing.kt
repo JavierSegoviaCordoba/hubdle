@@ -13,6 +13,7 @@ import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.config.publishing.hubdlePublishing
+import com.javiersc.hubdle.project.extensions.config.versioning.semver._internal.isTagPrefixProject
 import com.javiersc.semver.Version
 import org.gradle.api.Project
 import org.gradle.api.Task
@@ -78,58 +79,27 @@ private fun HubdleConfigurableExtension.configurePublishingExtension() =
 
             publications { container ->
                 container.withType<MavenPublication> {
-                    pom.name.set(getProperty(com.javiersc.hubdle.project.HubdleProperty.POM.name))
-                    pom.description.set(
-                        getProperty(com.javiersc.hubdle.project.HubdleProperty.POM.description)
-                    )
-                    pom.url.set(getProperty(com.javiersc.hubdle.project.HubdleProperty.POM.url))
+                    pom.name.set(getProperty(HubdleProperty.POM.name))
+                    pom.description.set(getProperty(HubdleProperty.POM.description))
+                    pom.url.set(getProperty(HubdleProperty.POM.url))
                     pom.licenses { licenses ->
                         licenses.license { license ->
-                            license.name.set(
-                                getProperty(
-                                    com.javiersc.hubdle.project.HubdleProperty.POM.licenseName
-                                )
-                            )
-                            license.url.set(
-                                getProperty(
-                                    com.javiersc.hubdle.project.HubdleProperty.POM.licenseUrl
-                                )
-                            )
+                            license.name.set(getProperty(HubdleProperty.POM.licenseName))
+                            license.url.set(getProperty(HubdleProperty.POM.licenseUrl))
                         }
                     }
                     pom.developers { developers ->
                         developers.developer { developer ->
-                            developer.id.set(
-                                getProperty(
-                                    com.javiersc.hubdle.project.HubdleProperty.POM.developerId
-                                )
-                            )
-                            developer.name.set(
-                                getProperty(
-                                    com.javiersc.hubdle.project.HubdleProperty.POM.developerName
-                                )
-                            )
-                            developer.email.set(
-                                getProperty(
-                                    com.javiersc.hubdle.project.HubdleProperty.POM.developerEmail
-                                )
-                            )
+                            developer.id.set(getProperty(HubdleProperty.POM.developerId))
+                            developer.name.set(getProperty(HubdleProperty.POM.developerName))
+                            developer.email.set(getProperty(HubdleProperty.POM.developerEmail))
                         }
                     }
                     pom.scm { scm ->
-                        scm.url.set(
-                            getProperty(com.javiersc.hubdle.project.HubdleProperty.POM.scmUrl)
-                        )
-                        scm.connection.set(
-                            getProperty(
-                                com.javiersc.hubdle.project.HubdleProperty.POM.scmConnection
-                            )
-                        )
+                        scm.url.set(getProperty(HubdleProperty.POM.scmUrl))
+                        scm.connection.set(getProperty(HubdleProperty.POM.scmConnection))
                         scm.developerConnection.set(
-                            getProperty(
-                                com.javiersc.hubdle.project.HubdleProperty.POM
-                                    .scmDeveloperConnection
-                            )
+                            getProperty(HubdleProperty.POM.scmDeveloperConnection)
                         )
                     }
                 }
@@ -143,11 +113,9 @@ private fun HubdleConfigurableExtension.configurePublishOnlySemver() =
     with(project) {
         val checkIsSemver: TaskCollection<Task> =
             tasks.maybeRegisterLazily("checkIsSemver") { task ->
+                task.enabled = isTagPrefixProject
                 task.doLast {
-                    val publishNonSemver =
-                        getBooleanProperty(
-                            com.javiersc.hubdle.project.HubdleProperty.Publishing.nonSemver
-                        )
+                    val publishNonSemver = getBooleanProperty(HubdleProperty.Publishing.nonSemver)
                     check(isSemver || publishNonSemver) {
                         // TODO: inject `$version` instead of getting it from the `project`
                         """|Only semantic versions can be published (current: $version)
@@ -159,16 +127,23 @@ private fun HubdleConfigurableExtension.configurePublishOnlySemver() =
             }
 
         tasks.namedLazily<Task>("initializeSonatypeStagingRepository").configureEach { task ->
+            task.enabled = isTagPrefixProject
             task.dependsOn(checkIsSemver)
         }
-        tasks.namedLazily<Task>("publish").configureEach { task -> task.dependsOn(checkIsSemver) }
+        tasks.namedLazily<Task>("publish").configureEach { task ->
+            task.enabled = isTagPrefixProject
+            task.dependsOn(checkIsSemver)
+        }
         tasks.namedLazily<Task>("publishToSonatype").configureEach { task ->
+            task.enabled = isTagPrefixProject
             task.dependsOn(checkIsSemver)
         }
         tasks.namedLazily<Task>("publishToMavenLocal").configureEach { task ->
+            task.enabled = isTagPrefixProject
             task.dependsOn(checkIsSemver)
         }
         tasks.namedLazily<Task>("publishPlugins").configureEach { task ->
+            task.enabled = isTagPrefixProject
             task.dependsOn(checkIsSemver)
         }
     }

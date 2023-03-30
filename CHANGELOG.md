@@ -14,6 +14,11 @@
 
 ### Updated
 
+- `org.jetbrains.kotlin:kotlin-test-testng -> 1.8.20`
+- `org.jetbrains.kotlin:kotlin-test-junit5 -> 1.8.20`
+- `org.jetbrains.kotlin:kotlin-test-junit -> 1.8.20`
+- `org.jetbrains.kotlin:kotlin-test -> 1.8.20`
+- `org.jetbrains.kotlin:kotlin-gradle-plugin -> 1.8.20`
 - `app.cash.turbine:turbine -> 0.12.2`
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.3`
 - `io.insert-koin:koin-androidx-compose -> 3.4.3`

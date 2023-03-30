@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `app.cash.turbine:turbine -> 0.12.2`
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.3`
 - `io.insert-koin:koin-androidx-compose -> 3.4.3`
 - `io.insert-koin:koin-test-junit5 -> 3.4.0`

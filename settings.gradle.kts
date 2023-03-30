@@ -47,6 +47,8 @@ dependencyResolutionManagement {
 
 hubdleSettings {
     autoInclude {
+        excludes(":hubdle-version-catalog")
+
         val sandboxEnabled = getPropertyOrNull("sandbox.enabled")?.toBoolean() ?: false
         if (!sandboxEnabled) excludedBuilds("sandbox")
     }

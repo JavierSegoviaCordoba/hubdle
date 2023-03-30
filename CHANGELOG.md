@@ -4,6 +4,8 @@
 
 ### Added
 
+- hubdle version catalog publication
+
 ### Changed
 
 ### Deprecated

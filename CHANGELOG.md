@@ -14,6 +14,11 @@
 
 ### Updated
 
+- `androidx.compose.ui:ui-tooling-preview -> 1.4.1`
+- `androidx.compose.material:material-icons-extended -> 1.4.1`
+- `androidx.compose.material:material -> 1.4.1`
+- `androidx.compose.foundation:foundation -> 1.4.1`
+- `androidx.compose.animation:animation -> 1.4.1`
 - `androidx.core:core-ktx -> 1.10.0`
 - `androidx.compose.ui:ui-util -> 1.4.1`
 - `androidx.compose.ui:ui-tooling -> 1.4.1`
@@ -42,11 +47,6 @@
 - `androidx.lifecycle:lifecycle-viewmodel-compose -> 2.6.1`
 - `androidx.lifecycle:lifecycle-viewmodel-ktx -> 2.6.1`
 - `androidx.lifecycle:lifecycle-viewmodel -> 2.6.1`
-- `androidx.compose.ui:ui-tooling-preview -> 1.4.0`
-- `androidx.compose.material:material-icons-extended -> 1.4.0`
-- `androidx.compose.material:material -> 1.4.0`
-- `androidx.compose.foundation:foundation -> 1.4.0`
-- `androidx.compose.animation:animation -> 1.4.0`
 - `androidx.activity:activity-ktx -> 1.7.0`
 - `androidx.activity:activity-compose -> 1.7.0`
 - `androidx.compose.compiler:compiler -> 1.4.4`

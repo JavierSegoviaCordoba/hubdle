@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `androidx.core:core-ktx -> 1.10.0`
 - `androidx.compose.ui:ui-util -> 1.4.1`
 - `androidx.compose.ui:ui-tooling -> 1.4.1`
 - `androidx.compose.ui:ui-test-manifest -> 1.4.1`

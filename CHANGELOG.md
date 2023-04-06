@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.intellij.deps:intellij-coverage-agent -> 1.0.713`
 - `com.diffplug.spotless:spotless-plugin-gradle -> 6.18.0`
 - `androidx.compose.ui:ui-tooling-preview -> 1.4.1`
 - `androidx.compose.material:material-icons-extended -> 1.4.1`

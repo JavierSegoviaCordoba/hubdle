@@ -14,6 +14,14 @@
 
 ### Updated
 
+- `io.kotest:kotest-runner-junit5 -> 5.5.5`
+- `io.kotest:kotest-runner-junit4 -> 5.5.5`
+- `io.kotest:kotest-property -> 5.5.5`
+- `io.kotest:kotest-assertions-sql -> 5.5.5`
+- `io.kotest:kotest-assertions-json -> 5.5.5`
+- `io.kotest:kotest-assertions-core -> 5.5.5`
+- `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
+- `io.kotest.extensions:kotest-assertions-arrow -> 1.3.1`
 - `com.gradle.publish:plugin-publish-plugin -> 1.2.0`
 - `org.jetbrains.intellij.deps:intellij-coverage-agent -> 1.0.713`
 - `com.diffplug.spotless:spotless-plugin-gradle -> 6.18.0`

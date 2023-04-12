@@ -42,6 +42,10 @@ dependencyResolutionManagement {
                 version("hubdle", itselfVersion)
             }
         }
+        removeIf { it.name == "hubdle" }
+        register("hubdle") {
+            from(files(rootDir.resolve("gradle/hubdle.libs.versions.toml")))
+        }
     }
 }
 

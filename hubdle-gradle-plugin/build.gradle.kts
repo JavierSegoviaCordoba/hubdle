@@ -101,6 +101,12 @@ generateHubdle()
 
 fun Project.generateHubdle() {
     val hubdleCodegen: TaskCollection<Task> = tasks.maybeRegisterLazily("generateHubdle")
+    tasks.named("sourcesJar").configure {
+        mustRunAfter(hubdleCodegen)
+    }
+    tasks.named("detekt").configure {
+        mustRunAfter(hubdleCodegen)
+    }
 
     the<KotlinProjectExtension>()
         .sourceSets["main"]
@@ -109,6 +115,15 @@ fun Project.generateHubdle() {
 
     hubdleCodegen.configureEach {
         group = "build"
+
+        inputs.files(
+            rootDir.resolve("gradle/hubdle.libs.versions.toml"),
+            rootDir.resolve("gradle/libs.versions.toml"),
+        )
+
+        outputs.dir(
+            buildDir.resolve(generatedDependenciesInternalDir),
+        )
 
         doLast {
             buildConstants()

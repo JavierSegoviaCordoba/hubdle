@@ -18,6 +18,14 @@
 
 ### Updated
 
+- `org.jetbrains.kotlin:kotlin-test-testng -> 1.8.20`
+- `org.jetbrains.kotlin:kotlin-test-junit5 -> 1.8.20`
+- `org.jetbrains.kotlin:kotlin-test-junit -> 1.8.20`
+- `org.jetbrains.kotlin:kotlin-test-annotations-common -> 1.8.20`
+- `org.jetbrains.kotlin:kotlin-test -> 1.8.20`
+- `org.jetbrains.kotlin:kotlin-gradle-plugin -> 1.8.20`
+- `androidx.compose.compiler:compiler -> 1.4.5`
+- `org.jetbrains.kotlin:kotlin-serialization -> 1.8.20`
 - `app.cash.molecule:molecule-gradle-plugin -> 0.9.0`
 - `org.jetbrains.compose:compose-gradle-plugin -> 1.4.0`
 - `com.gradle.publish:plugin-publish-plugin -> 1.2.0`

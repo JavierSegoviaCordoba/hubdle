@@ -18,6 +18,7 @@
 
 ### Updated
 
+- `app.cash.molecule:molecule-gradle-plugin -> 0.9.0`
 - `org.jetbrains.compose:compose-gradle-plugin -> 1.4.0`
 - `com.gradle.publish:plugin-publish-plugin -> 1.2.0`
 - `org.jetbrains.intellij.deps:intellij-coverage-agent -> 1.0.713`

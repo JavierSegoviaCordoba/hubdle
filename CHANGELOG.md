@@ -18,6 +18,7 @@
 
 ### Updated
 
+- `org.jetbrains.intellij.deps:intellij-coverage-agent -> 1.0.715`
 - `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.13`
 - `org.jetbrains.kotlin:kotlin-test-testng -> 1.8.20`
 - `org.jetbrains.kotlin:kotlin-test-junit5 -> 1.8.20`
@@ -30,7 +31,6 @@
 - `app.cash.molecule:molecule-gradle-plugin -> 0.9.0`
 - `org.jetbrains.compose:compose-gradle-plugin -> 1.4.0`
 - `com.gradle.publish:plugin-publish-plugin -> 1.2.0`
-- `org.jetbrains.intellij.deps:intellij-coverage-agent -> 1.0.713`
 - `com.diffplug.spotless:spotless-plugin-gradle -> 6.18.0`
 - `androidx.compose.ui:ui-tooling-preview -> 1.4.1`
 - `androidx.compose.material:material-icons-extended -> 1.4.1`

@@ -18,6 +18,7 @@
 
 ### Updated
 
+- `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.13`
 - `org.jetbrains.kotlin:kotlin-test-testng -> 1.8.20`
 - `org.jetbrains.kotlin:kotlin-test-junit5 -> 1.8.20`
 - `org.jetbrains.kotlin:kotlin-test-junit -> 1.8.20`
@@ -60,13 +61,11 @@
 - `io.insert-koin:koin-ktor -> 3.4.0`
 - `io.insert-koin:koin-core -> 3.4.0`
 - `io.insert-koin:koin-android -> 3.4.0`
-- `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.12.6`
 - `androidx.lifecycle:lifecycle-viewmodel-compose -> 2.6.1`
 - `androidx.lifecycle:lifecycle-viewmodel-ktx -> 2.6.1`
 - `androidx.lifecycle:lifecycle-viewmodel -> 2.6.1`
 - `androidx.activity:activity-ktx -> 1.7.0`
 - `androidx.activity:activity-compose -> 1.7.0`
-- `androidx.compose.compiler:compiler -> 1.4.4`
 - `io.kotest.extensions:kotest-extensions-wiremock -> 2.0.0`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-alpha.8`
 

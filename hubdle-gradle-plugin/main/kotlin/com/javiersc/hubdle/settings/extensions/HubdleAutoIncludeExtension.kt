@@ -55,8 +55,8 @@ internal fun Settings.extractedProjects(): Set<String> =
         .walkTopDown()
         .onEnter { file -> file.shouldContinueVisiting(settings) }
         .flatMap { file ->
-            val children = file.listFiles()?.filter { child -> child.isProject }
-            children?.map { child -> child.relativeTo(settingsDir).path }.orEmpty()
+            val children = file.childFiles.filter { child -> child.isProject }
+            children.map { child -> child.relativeTo(settingsDir).path }
         }
         .toSet()
 
@@ -65,10 +65,14 @@ internal fun Settings.extractedBuildProjects(): Set<String> =
         .walkTopDown()
         .onEnter { file -> file.shouldContinueVisiting(settings) }
         .flatMap { file ->
-            val children = file.listFiles()?.filter { child -> child.isSettingsProject }
-            children?.map { child -> child.relativeTo(settingsDir).path }.orEmpty()
+            val children = file.childFiles.filter { child -> child.isSettingsProject } - file
+            children.map { child -> child.relativeTo(settingsDir).path }
         }
         .toSet()
+
+// TODO: Remove with https://github.com/JavierSegoviaCordoba/kotlin-stdlib/issues/90
+private val File.childFiles: Sequence<File>
+    get() = walkTopDown().maxDepth(1) - this
 
 private fun File.shouldContinueVisiting(settings: Settings): Boolean =
     if (isRootDir(settings)) true else !isProject && !isSettingsProject && !isSpecialDirectory
@@ -86,12 +90,10 @@ private val File.isSettingsProject: Boolean
     get() = hasSettingsGradle
 
 private val File.hasBuildGradle: Boolean
-    get() = listFiles()?.any { it.name == "build.gradle.kts" || it.name == "build.gradle" } ?: false
+    get() = childFiles.any { it.name == "build.gradle.kts" || it.name == "build.gradle" }
 
 private val File.hasSettingsGradle: Boolean
-    get() =
-        listFiles()?.any { it.name == "settings.gradle.kts" || it.name == "settings.gradle" }
-            ?: false
+    get() = childFiles.any { it.name == "settings.gradle.kts" || it.name == "settings.gradle" }
 
 private fun String.toProjectPath(): String {
     val project = replace(File.separator, ":").replace("/", ":").replace("\\", ":")

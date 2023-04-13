@@ -26,7 +26,7 @@ constructor(
     override val requiredExtensions: Set<HubdleEnableableExtension>
         get() = setOf(hubdleKotlinMultiplatform)
 
-    override val priority: Configurable.Priority = Configurable.Priority.P3
+    override val priority: Configurable.Priority = Configurable.Priority.P4
 
     override val targetName: String = "jvmAndAndroid"
 

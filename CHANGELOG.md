@@ -16,6 +16,8 @@
 
 ### Fixed
 
+- `jvmAndAndroid` source set
+
 ### Updated
 
 - `gradle -> 8.1`

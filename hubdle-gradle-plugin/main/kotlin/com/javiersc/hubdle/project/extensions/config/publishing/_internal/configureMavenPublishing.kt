@@ -6,6 +6,7 @@ import com.javiersc.gradle.properties.extensions.getProperty
 import com.javiersc.gradle.properties.extensions.getPropertyOrNull
 import com.javiersc.gradle.tasks.extensions.maybeRegisterLazily
 import com.javiersc.gradle.tasks.extensions.namedLazily
+import com.javiersc.gradle.version.GradleVersion
 import com.javiersc.hubdle.project.HubdleProperty
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.Configurable
@@ -14,7 +15,6 @@ import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.config.publishing.hubdlePublishing
 import com.javiersc.hubdle.project.extensions.config.versioning.semver._internal.isTagPrefixProject
-import com.javiersc.semver.Version
 import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.plugins.JavaPluginExtension
@@ -149,7 +149,7 @@ private fun HubdleConfigurableExtension.configurePublishOnlySemver() =
     }
 
 private val Project.isSemver: Boolean
-    get() = Version.regex.matches("$version")
+    get() = GradleVersion.regex.matches("$version")
 
 private fun HubdleConfigurableExtension.configureRepositories(
     publishingExtension: PublishingExtension

@@ -14,6 +14,9 @@
 
 ### Removed
 
+- `com.android.application` from hubdle catalog
+- `com.android.library` from hubdle catalog
+
 ### Fixed
 
 - `jvmAndAndroid` source set

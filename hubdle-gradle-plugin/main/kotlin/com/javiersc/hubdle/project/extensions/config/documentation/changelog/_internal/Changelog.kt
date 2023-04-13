@@ -2,13 +2,13 @@
 
 package com.javiersc.hubdle.project.extensions.config.documentation.changelog._internal
 
+import com.javiersc.gradle.version.GradleVersion
 import com.javiersc.hubdle.project.extensions.config.documentation.changelog._internal.Changelog.Reference
 import com.javiersc.hubdle.project.extensions.config.documentation.changelog._internal.Changelog.Version
 import com.javiersc.hubdle.project.extensions.config.documentation.changelog._internal.Changelog.Version.Group
 import com.javiersc.hubdle.project.extensions.config.documentation.changelog._internal.Changelog.Version.Group.Item
 import com.javiersc.kotlin.stdlib.endWithNewLine
 import com.javiersc.kotlin.stdlib.removeDuplicateEmptyLines
-import com.javiersc.semver.Version as SemVer
 import java.io.File
 
 internal class Changelog(
@@ -40,12 +40,14 @@ internal class Changelog(
 
         val version: String
             get() =
-                if (value.contains("[")) value.substringAfter("[").substringBefore("]")
-                else
+                if (value.contains("[")) {
+                    value.substringAfter("[").substringBefore("]")
+                } else {
                     value
                         .substringAfterLast('#')
                         .substringBefore(" - ")
                         .filterNot(Char::isWhitespace)
+                }
 
         override fun toString(): String = buildString {
             appendLine(value)
@@ -152,7 +154,7 @@ private fun buildReferences(lines: List<String>): List<Reference> {
                     .subList(index + 1, lines.lastIndex)
                     .filter(String::isNotBlank)
                     .map(::Reference)
-                    .sortedByDescending { SemVer(it.version) }
+                    .sortedByDescending { GradleVersion(it.version) }
         }
     return references
 }

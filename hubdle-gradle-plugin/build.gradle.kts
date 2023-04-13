@@ -1,6 +1,7 @@
 import com.javiersc.gradle.extensions.version.catalogs.getLibraries
 import com.javiersc.gradle.tasks.extensions.maybeRegisterLazily
 import com.javiersc.gradle.tasks.extensions.namedLazily
+import java.util.Locale
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
@@ -84,7 +85,6 @@ hubdle {
                     api(libs.vyarus.gradleMkdocsPlugin)
 
                     implementation(libs.eclipse.jgit)
-                    implementation(libs.javiersc.semver.semverCore)
                 }
 
                 resources.srcDirs(file(rootDir.resolve("gradle/hubdle")))
@@ -101,12 +101,8 @@ generateHubdle()
 
 fun Project.generateHubdle() {
     val hubdleCodegen: TaskCollection<Task> = tasks.maybeRegisterLazily("generateHubdle")
-    tasks.named("sourcesJar").configure {
-        mustRunAfter(hubdleCodegen)
-    }
-    tasks.named("detekt").configure {
-        mustRunAfter(hubdleCodegen)
-    }
+    tasks.named("sourcesJar").configure { mustRunAfter(hubdleCodegen) }
+    tasks.named("detekt").configure { mustRunAfter(hubdleCodegen) }
 
     the<KotlinProjectExtension>()
         .sourceSets["main"]
@@ -149,6 +145,7 @@ val generatedDependenciesInternalDir =
     "generated/main/kotlin/com/javiersc/hubdle/project/extensions/dependencies/_internal"
 
 fun Project.buildConstants() {
+    val sqldelightVersion: String? = libs.cash.sqldelight.gradlePlugin.get().version
     buildDir
         .resolve(generatedDependenciesInternalDir)
         .resolve("constants/SQLDELIGHT_VERSION.kt")
@@ -160,7 +157,7 @@ fun Project.buildConstants() {
             """
                 |package com.javiersc.hubdle.project.extensions.dependencies._internal.constants
                 |
-                |internal const val SQLDELIGHT_VERSION: String = "${libs.versions.sqldelight.get()}"
+                |internal const val SQLDELIGHT_VERSION: String = "$sqldelightVersion"
                 |
             """
                 .trimMargin()
@@ -280,7 +277,7 @@ fun Project.buildHubdleCatalog() {
 }
 
 fun String.buildDependencyVariableName(): String =
-    replace(".", "_").replace("-", "_").toUpperCase(java.util.Locale.getDefault())
+    replace(".", "_").replace("-", "_").uppercase(Locale.getDefault())
 
 fun String.sanitizeAlias() = replace(".", "_")
 

@@ -18,6 +18,7 @@
 
 ### Updated
 
+- `gradle -> 8.1`
 - `org.jetbrains.intellij.deps:intellij-coverage-agent -> 1.0.715`
 - `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.13`
 - `org.jetbrains.kotlin:kotlin-test-testng -> 1.8.20`

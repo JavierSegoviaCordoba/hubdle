@@ -23,6 +23,7 @@
 
 ### Updated
 
+- `com.android.tools.build:gradle -> 8.0.0`
 - `gradle -> 8.1`
 - `org.jetbrains.intellij.deps:intellij-coverage-agent -> 1.0.715`
 - `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.13`

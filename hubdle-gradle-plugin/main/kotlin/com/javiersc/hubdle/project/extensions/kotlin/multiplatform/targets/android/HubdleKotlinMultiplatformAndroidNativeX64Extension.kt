@@ -1,4 +1,4 @@
-package com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets
+package com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.android
 
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
@@ -12,7 +12,7 @@ import org.gradle.kotlin.dsl.configure
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 @HubdleDslMarker
-public open class HubdleKotlinMultiplatformWAsmExtension
+public open class HubdleKotlinMultiplatformAndroidNativeX64Extension
 @Inject
 constructor(
     project: Project,
@@ -23,21 +23,16 @@ constructor(
 
     override val isEnabled: Property<Boolean> = property { false }
 
-    override val requiredExtensions: Set<HubdleEnableableExtension>
-        get() = setOf(hubdleKotlinMultiplatform)
-
     override val priority: Priority = Priority.P3
 
-    override val targetName: String = "wasm"
+    public override val targetName: String = "androidNativeX64"
+
+    override val requiredExtensions: Set<HubdleEnableableExtension>
+        get() = setOf(hubdleKotlinMultiplatform.androidNative)
 
     override fun Project.defaultConfiguration() {
-        configurable {
-            configure<KotlinMultiplatformExtension> {
-                wasm {
-                    browser()
-                    nodejs()
-                }
-            }
+        configurable(priority = Priority.P6) {
+            configure<KotlinMultiplatformExtension> { androidNativeX64() }
         }
     }
 }

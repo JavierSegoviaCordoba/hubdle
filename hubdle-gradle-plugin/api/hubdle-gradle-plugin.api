@@ -1319,6 +1319,8 @@ public class com/javiersc/hubdle/project/extensions/kotlin/multiplatform/HubdleK
 	public fun <init> (Lorg/gradle/api/Project;)V
 	public final fun android (Lorg/gradle/api/Action;)V
 	public static synthetic fun android$default (Lcom/javiersc/hubdle/project/extensions/kotlin/multiplatform/HubdleKotlinMultiplatformExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+	public final fun androidNative (Lorg/gradle/api/Action;)V
+	public static synthetic fun androidNative$default (Lcom/javiersc/hubdle/project/extensions/kotlin/multiplatform/HubdleKotlinMultiplatformExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 	public final fun apple (Lorg/gradle/api/Action;)V
 	public static synthetic fun apple$default (Lcom/javiersc/hubdle/project/extensions/kotlin/multiplatform/HubdleKotlinMultiplatformExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 	public final fun common (Lorg/gradle/api/Action;)V
@@ -1326,6 +1328,7 @@ public class com/javiersc/hubdle/project/extensions/kotlin/multiplatform/HubdleK
 	public final fun features (Lorg/gradle/api/Action;)V
 	public static synthetic fun features$default (Lcom/javiersc/hubdle/project/extensions/kotlin/multiplatform/HubdleKotlinMultiplatformExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 	public final fun getAndroid ()Lcom/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidExtension;
+	public final fun getAndroidNative ()Lcom/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidNativeExtension;
 	public final fun getApple ()Lcom/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAppleExtension;
 	public final fun getCommon ()Lcom/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformCommonExtension;
 	public final fun getFeatures ()Lcom/javiersc/hubdle/project/extensions/kotlin/multiplatform/features/HubdleKotlinMultiplatformFeaturesExtension;
@@ -1446,6 +1449,31 @@ public class com/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets
 }
 
 public final class com/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidExtension$defaultConfiguration$1$inlined$sam$i$org_gradle_api_Action$0 : org/gradle/api/Action {
+	public fun <init> (Lkotlin/jvm/functions/Function1;)V
+	public final synthetic fun execute (Ljava/lang/Object;)V
+}
+
+public class com/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidNativeExtension : com/javiersc/hubdle/project/extensions/kotlin/shared/HubdleKotlinMinimalSourceSetConfigurableExtension {
+	public fun <init> (Lorg/gradle/api/Project;)V
+	public final fun allEnabled (Z)V
+	public static synthetic fun allEnabled$default (Lcom/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidNativeExtension;ZILjava/lang/Object;)V
+	public final fun androidNativeArm32 (Lorg/gradle/api/Action;)V
+	public static synthetic fun androidNativeArm32$default (Lcom/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidNativeExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+	public final fun androidNativeArm64 (Lorg/gradle/api/Action;)V
+	public static synthetic fun androidNativeArm64$default (Lcom/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidNativeExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+	public final fun androidNativeX64 (Lorg/gradle/api/Action;)V
+	public static synthetic fun androidNativeX64$default (Lcom/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidNativeExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+	public final fun androidNativeX86 (Lorg/gradle/api/Action;)V
+	public static synthetic fun androidNativeX86$default (Lcom/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidNativeExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+	public final fun getAllEnabled ()Lorg/gradle/api/provider/Property;
+	public final fun getAndroidNativeArm32 ()Lcom/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/android/HubdleKotlinMultiplatformAndroidNativeArm32Extension;
+	public final fun getAndroidNativeArm64 ()Lcom/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/android/HubdleKotlinMultiplatformAndroidNativeArm64Extension;
+	public final fun getAndroidNativeX64 ()Lcom/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/android/HubdleKotlinMultiplatformAndroidNativeX64Extension;
+	public final fun getAndroidNativeX86 ()Lcom/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/android/HubdleKotlinMultiplatformAndroidNativeX86Extension;
+	public fun isEnabled ()Lorg/gradle/api/provider/Property;
+}
+
+public final class com/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformAndroidNativeExtension$defaultConfiguration$2$inlined$sam$i$org_gradle_api_Action$0 : org/gradle/api/Action {
 	public fun <init> (Lkotlin/jvm/functions/Function1;)V
 	public final synthetic fun execute (Ljava/lang/Object;)V
 }
@@ -1669,6 +1697,54 @@ public class com/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets
 }
 
 public final class com/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformWatchOSExtension$defaultConfiguration$2$inlined$sam$i$org_gradle_api_Action$0 : org/gradle/api/Action {
+	public fun <init> (Lkotlin/jvm/functions/Function1;)V
+	public final synthetic fun execute (Ljava/lang/Object;)V
+}
+
+public class com/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/android/HubdleKotlinMultiplatformAndroidNativeArm32Extension : com/javiersc/hubdle/project/extensions/kotlin/shared/HubdleKotlinMinimalSourceSetConfigurableExtension {
+	public fun <init> (Lorg/gradle/api/Project;)V
+	public fun getTargetName ()Ljava/lang/String;
+	public synthetic fun getTargetName$hubdle_gradle_plugin ()Ljava/lang/String;
+	public fun isEnabled ()Lorg/gradle/api/provider/Property;
+}
+
+public final class com/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/android/HubdleKotlinMultiplatformAndroidNativeArm32Extension$defaultConfiguration$1$inlined$sam$i$org_gradle_api_Action$0 : org/gradle/api/Action {
+	public fun <init> (Lkotlin/jvm/functions/Function1;)V
+	public final synthetic fun execute (Ljava/lang/Object;)V
+}
+
+public class com/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/android/HubdleKotlinMultiplatformAndroidNativeArm64Extension : com/javiersc/hubdle/project/extensions/kotlin/shared/HubdleKotlinMinimalSourceSetConfigurableExtension {
+	public fun <init> (Lorg/gradle/api/Project;)V
+	public fun getTargetName ()Ljava/lang/String;
+	public synthetic fun getTargetName$hubdle_gradle_plugin ()Ljava/lang/String;
+	public fun isEnabled ()Lorg/gradle/api/provider/Property;
+}
+
+public final class com/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/android/HubdleKotlinMultiplatformAndroidNativeArm64Extension$defaultConfiguration$1$inlined$sam$i$org_gradle_api_Action$0 : org/gradle/api/Action {
+	public fun <init> (Lkotlin/jvm/functions/Function1;)V
+	public final synthetic fun execute (Ljava/lang/Object;)V
+}
+
+public class com/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/android/HubdleKotlinMultiplatformAndroidNativeX64Extension : com/javiersc/hubdle/project/extensions/kotlin/shared/HubdleKotlinMinimalSourceSetConfigurableExtension {
+	public fun <init> (Lorg/gradle/api/Project;)V
+	public fun getTargetName ()Ljava/lang/String;
+	public synthetic fun getTargetName$hubdle_gradle_plugin ()Ljava/lang/String;
+	public fun isEnabled ()Lorg/gradle/api/provider/Property;
+}
+
+public final class com/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/android/HubdleKotlinMultiplatformAndroidNativeX64Extension$defaultConfiguration$1$inlined$sam$i$org_gradle_api_Action$0 : org/gradle/api/Action {
+	public fun <init> (Lkotlin/jvm/functions/Function1;)V
+	public final synthetic fun execute (Ljava/lang/Object;)V
+}
+
+public class com/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/android/HubdleKotlinMultiplatformAndroidNativeX86Extension : com/javiersc/hubdle/project/extensions/kotlin/shared/HubdleKotlinMinimalSourceSetConfigurableExtension {
+	public fun <init> (Lorg/gradle/api/Project;)V
+	public fun getTargetName ()Ljava/lang/String;
+	public synthetic fun getTargetName$hubdle_gradle_plugin ()Ljava/lang/String;
+	public fun isEnabled ()Lorg/gradle/api/provider/Property;
+}
+
+public final class com/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/android/HubdleKotlinMultiplatformAndroidNativeX86Extension$defaultConfiguration$1$inlined$sam$i$org_gradle_api_Action$0 : org/gradle/api/Action {
 	public fun <init> (Lkotlin/jvm/functions/Function1;)V
 	public final synthetic fun execute (Ljava/lang/Object;)V
 }

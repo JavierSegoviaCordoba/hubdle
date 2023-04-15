@@ -43,6 +43,7 @@ constructor(
     override fun Project.defaultConfiguration() {
         configurable {
             if (allEnabled.get()) {
+                hubdleKotlinMultiplatform.androidNative.allEnabled()
                 hubdleKotlinMultiplatform.apple.allEnabled()
                 hubdleKotlinMultiplatform.linux.allEnabled()
                 hubdleKotlinMultiplatform.mingw.allEnabled()
@@ -52,6 +53,14 @@ constructor(
         configurable(priority = Priority.P6) {
             configure<KotlinMultiplatformExtension> {
                 val commonMain: KotlinSourceSet by sourceSets.getting
+                val androidNativeArm32Main: KotlinSourceSet? =
+                    sourceSets.findByName("androidNativeArm32Main")
+                val androidNativeArm64Main: KotlinSourceSet? =
+                    sourceSets.findByName("androidNativeArm64Main")
+                val androidNativeX64Main: KotlinSourceSet? =
+                    sourceSets.findByName("androidNativeX64Main")
+                val androidNativeX86Main: KotlinSourceSet? =
+                    sourceSets.findByName("androidNativeX86Main")
                 val iosArm64Main: KotlinSourceSet? = sourceSets.findByName("iosArm64Main")
                 val iosX64Main: KotlinSourceSet? = sourceSets.findByName("iosX64Main")
                 val iosSimulatorArm64Main: KotlinSourceSet? =
@@ -76,6 +85,14 @@ constructor(
                     sourceSets.findByName("watchosSimulatorArm64Main")
 
                 val commonTest: KotlinSourceSet by sourceSets.getting
+                val androidNativeArm32Test: KotlinSourceSet? =
+                    sourceSets.findByName("androidNativeArm32Test")
+                val androidNativeArm64Test: KotlinSourceSet? =
+                    sourceSets.findByName("androidNativeArm64Test")
+                val androidNativeX64Test: KotlinSourceSet? =
+                    sourceSets.findByName("androidNativeX64Test")
+                val androidNativeX86Test: KotlinSourceSet? =
+                    sourceSets.findByName("androidNativeX86Test")
                 val iosArm64Test: KotlinSourceSet? = sourceSets.findByName("iosArm64Test")
                 val iosX64Test: KotlinSourceSet? = sourceSets.findByName("iosX64Test")
                 val iosSimulatorArm64Test: KotlinSourceSet? =
@@ -101,6 +118,10 @@ constructor(
 
                 val nativeMainSourceSets: List<KotlinSourceSet> =
                     listOfNotNull(
+                        androidNativeArm32Main,
+                        androidNativeArm64Main,
+                        androidNativeX64Main,
+                        androidNativeX86Main,
                         iosArm64Main,
                         iosX64Main,
                         iosSimulatorArm64Main,
@@ -124,6 +145,10 @@ constructor(
 
                 val nativeTestSourceSets: List<KotlinSourceSet> =
                     listOfNotNull(
+                        androidNativeArm32Test,
+                        androidNativeArm64Test,
+                        androidNativeX64Test,
+                        androidNativeX86Test,
                         iosArm64Test,
                         iosX64Test,
                         iosSimulatorArm64Test,

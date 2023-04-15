@@ -4,6 +4,7 @@
 
 ### Added
 
+- `androidNative` targets
 -  `wasm` target
 - hubdle version catalog publication
 

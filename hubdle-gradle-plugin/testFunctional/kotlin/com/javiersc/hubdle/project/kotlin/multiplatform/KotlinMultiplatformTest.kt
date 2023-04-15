@@ -218,6 +218,10 @@ internal class KotlinMultiplatformTest : GradleTestKitTest() {
         setOf(
                 "sandbox-project-android",
                 "sandbox-project-android-debug",
+                "sandbox-project-androidnativearm32",
+                "sandbox-project-androidnativearm64",
+                "sandbox-project-androidnativex64",
+                "sandbox-project-androidnativex86",
                 "sandbox-project-js",
                 "sandbox-project-jvm",
                 "sandbox-project-linuxarm32hfp",
@@ -235,6 +239,10 @@ internal class KotlinMultiplatformTest : GradleTestKitTest() {
         setOf(
                 "sandbox-project-android",
                 "sandbox-project-android-debug",
+                "sandbox-project-androidnativearm32",
+                "sandbox-project-androidnativearm64",
+                "sandbox-project-androidnativex64",
+                "sandbox-project-androidnativex86",
                 "sandbox-project-iosarm64",
                 "sandbox-project-iossimulatorarm64",
                 "sandbox-project-iosx64",
@@ -262,6 +270,10 @@ internal class KotlinMultiplatformTest : GradleTestKitTest() {
         setOf(
                 "sandbox-project-android",
                 "sandbox-project-android-debug",
+                "sandbox-project-androidnativearm32",
+                "sandbox-project-androidnativearm64",
+                "sandbox-project-androidnativex64",
+                "sandbox-project-androidnativex86",
                 "sandbox-project-js",
                 "sandbox-project-jvm",
                 // "sandbox-project-linuxarm32hfp",

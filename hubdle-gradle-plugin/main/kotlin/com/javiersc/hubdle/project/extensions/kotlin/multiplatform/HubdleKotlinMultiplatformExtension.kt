@@ -17,6 +17,7 @@ import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.HubdleKotlinM
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.HubdleKotlinMultiplatformTarget.WAsm
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.features.HubdleKotlinMultiplatformFeaturesExtension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformAndroidExtension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformAndroidNativeExtension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformAppleExtension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformCommonExtension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformJsExtension
@@ -71,6 +72,16 @@ constructor(
     @HubdleDslMarker
     public fun android(action: Action<HubdleKotlinMultiplatformAndroidExtension> = Action {}) {
         android.enableAndExecute(action)
+    }
+
+    public val androidNative: HubdleKotlinMultiplatformAndroidNativeExtension
+        get() = getHubdleExtension()
+
+    @HubdleDslMarker
+    public fun androidNative(
+        action: Action<HubdleKotlinMultiplatformAndroidNativeExtension> = Action {}
+    ) {
+        androidNative.enableAndExecute(action)
     }
 
     public val apple: HubdleKotlinMultiplatformAppleExtension

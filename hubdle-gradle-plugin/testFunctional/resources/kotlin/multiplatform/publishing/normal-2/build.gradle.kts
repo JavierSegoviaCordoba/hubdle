@@ -21,6 +21,7 @@ hubdle {
         multiplatform {
             features {
                 extendedStdlib.isEnabled.set(false)
+                kotest.isEnabled.set(false)
                 minimumTargetPerOs()
             }
 
@@ -31,6 +32,12 @@ hubdle {
                 android {
                     compileSdk = 29
                 }
+            }
+            androidNative {
+                androidNativeArm32()
+                androidNativeArm64()
+                androidNativeX64()
+                androidNativeX86()
             }
             apple {
                 ios {

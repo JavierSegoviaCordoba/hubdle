@@ -23,6 +23,7 @@ import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.HubdleKotlinM
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.features.HubdleKotlinMultiplatformFeaturesExtension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.features.HubdleKotlinMultiplatformMinimumTargetPerOsFeatureExtension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformAndroidExtension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformAndroidNativeExtension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformAppleExtension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformCommonExtension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformIOSExtension
@@ -36,6 +37,10 @@ import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.Hubdl
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformTvOSExtension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformWAsmExtension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformWatchOSExtension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.android.HubdleKotlinMultiplatformAndroidNativeArm32Extension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.android.HubdleKotlinMultiplatformAndroidNativeArm64Extension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.android.HubdleKotlinMultiplatformAndroidNativeX64Extension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.android.HubdleKotlinMultiplatformAndroidNativeX86Extension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.ios.HubdleKotlinMultiplatformIOSArm64Extension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.ios.HubdleKotlinMultiplatformIOSSimulatorArm64Extension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.ios.HubdleKotlinMultiplatformIOSX64Extension
@@ -118,6 +123,12 @@ private fun HubdleState.createKotlinMultiplatformAndroidExtensions() {
         createExtension<HubdleKotlinMultiplatformFeaturesExtension>()
         createExtension<HubdleKotlinMultiplatformMinimumTargetPerOsFeatureExtension>()
         createExtension<HubdleKotlinMultiplatformAndroidExtension>()
+        createExtension<HubdleKotlinMultiplatformAndroidNativeExtension> {
+            createExtension<HubdleKotlinMultiplatformAndroidNativeArm32Extension>()
+            createExtension<HubdleKotlinMultiplatformAndroidNativeArm64Extension>()
+            createExtension<HubdleKotlinMultiplatformAndroidNativeX64Extension>()
+            createExtension<HubdleKotlinMultiplatformAndroidNativeX86Extension>()
+        }
         createExtension<HubdleKotlinMultiplatformAppleExtension> {
             createExtension<HubdleKotlinMultiplatformIOSExtension> {
                 createExtension<HubdleKotlinMultiplatformIOSArm64Extension>()

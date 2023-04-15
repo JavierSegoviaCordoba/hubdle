@@ -15,6 +15,11 @@
         - toolchain
     - common
     - android
+    - androidNative
+        - androidNativeArm32
+        - androidNativeArm64
+        - androidNativeX64
+        - androidNativeX86
     - apple
         - ios
             - iosArm64

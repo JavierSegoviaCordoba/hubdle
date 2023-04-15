@@ -1,5 +1,5 @@
 package com.kotlin.multiplatform.sandbox.project
 
 actual object Platform {
-    actual val name: String = "wasm32"
+    actual val name: String = "wasm"
 }

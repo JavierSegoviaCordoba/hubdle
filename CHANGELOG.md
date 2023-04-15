@@ -4,6 +4,7 @@
 
 ### Added
 
+-  `wasm` target
 - hubdle version catalog publication
 
 ### Changed
@@ -11,6 +12,8 @@
 - publish and changelog tasks to be disabled based on tag prefix if semver is enabled
 
 ### Deprecated
+
+- `wasm32` target
 
 ### Removed
 

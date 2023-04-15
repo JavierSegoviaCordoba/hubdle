@@ -27,13 +27,11 @@ hubdle {
             kotlin {
                 sourceSets.create("randomMain")
             }
-
             android {
                 android {
                     compileSdk = 29
                 }
             }
-
             apple {
                 ios {
                     iosArm32()
@@ -58,7 +56,6 @@ hubdle {
                     watchosX86()
                 }
             }
-
             jvm()
             js {
                 browser()
@@ -76,9 +73,7 @@ hubdle {
                 mingwX86()
             }
             native()
-            wasm {
-                wasm32()
-            }
+            wasm()
         }
     }
 }

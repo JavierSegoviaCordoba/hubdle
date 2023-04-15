@@ -52,7 +52,6 @@ import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.mingw
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.tvos.HubdleKotlinMultiplatformTvOSArm64Extension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.tvos.HubdleKotlinMultiplatformTvOSSimulatorArm64Extension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.tvos.HubdleKotlinMultiplatformTvOSX64Extension
-import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.wasm.HubdleKotlinMultiplatformWAsm32Extension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.watchos.HubdleKotlinMultiplatformWatchOSArm32Extension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.watchos.HubdleKotlinMultiplatformWatchOSArm64Extension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.watchos.HubdleKotlinMultiplatformWatchOSSimulatorArm64Extension
@@ -162,8 +161,6 @@ private fun HubdleState.createKotlinMultiplatformAndroidExtensions() {
             createExtension<HubdleKotlinMultiplatformMinGWX86Extension>()
         }
         createExtension<HubdleKotlinMultiplatformNativeExtension>()
-        createExtension<HubdleKotlinMultiplatformWAsmExtension> {
-            createExtension<HubdleKotlinMultiplatformWAsm32Extension>()
-        }
+        createExtension<HubdleKotlinMultiplatformWAsmExtension>()
     }
 }

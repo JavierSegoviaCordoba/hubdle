@@ -64,7 +64,6 @@ constructor(
                 val macosX64Main: KotlinSourceSet? = sourceSets.findByName("macosX64Main")
                 val macosArm64Main: KotlinSourceSet? = sourceSets.findByName("macosArm64Main")
                 val mingwX64Main: KotlinSourceSet? = sourceSets.findByName("mingwX64Main")
-                val mingwX86Main: KotlinSourceSet? = sourceSets.findByName("mingwX86Main")
                 val tvosArm64Main: KotlinSourceSet? = sourceSets.findByName("tvosArm64Main")
                 val tvosX64Main: KotlinSourceSet? = sourceSets.findByName("tvosX64Main")
                 val tvosSimulatorArm64Main: KotlinSourceSet? =
@@ -89,7 +88,6 @@ constructor(
                 val macosX64Test: KotlinSourceSet? = sourceSets.findByName("macosX64Test")
                 val macosArm64Test: KotlinSourceSet? = sourceSets.findByName("macosArm64Test")
                 val mingwX64Test: KotlinSourceSet? = sourceSets.findByName("mingwX64Test")
-                val mingwX86Test: KotlinSourceSet? = sourceSets.findByName("mingwX86Test")
                 val tvosArm64Test: KotlinSourceSet? = sourceSets.findByName("tvosArm64Test")
                 val tvosX64Test: KotlinSourceSet? = sourceSets.findByName("tvosX64Test")
                 val tvosSimulatorArm64Test: KotlinSourceSet? =
@@ -114,7 +112,6 @@ constructor(
                         macosX64Main,
                         macosArm64Main,
                         mingwX64Main,
-                        mingwX86Main,
                         tvosArm64Main,
                         tvosX64Main,
                         tvosSimulatorArm64Main,
@@ -138,7 +135,6 @@ constructor(
                         macosX64Test,
                         macosArm64Test,
                         mingwX64Test,
-                        mingwX86Test,
                         tvosArm64Test,
                         tvosX64Test,
                         tvosSimulatorArm64Test,

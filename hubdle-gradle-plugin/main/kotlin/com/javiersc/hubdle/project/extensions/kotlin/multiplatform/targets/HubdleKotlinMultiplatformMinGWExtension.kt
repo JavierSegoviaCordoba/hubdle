@@ -7,7 +7,6 @@ import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.hubdleKotlinMultiplatform
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.mingw.HubdleKotlinMultiplatformMinGWX64Extension
-import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.mingw.HubdleKotlinMultiplatformMinGWX86Extension
 import com.javiersc.hubdle.project.extensions.kotlin.shared.HubdleKotlinMinimalSourceSetConfigurableExtension
 import javax.inject.Inject
 import org.gradle.api.Action
@@ -53,40 +52,27 @@ constructor(
         mingwX64.enableAndExecute(action)
     }
 
-    public val mingwX86: HubdleKotlinMultiplatformMinGWX86Extension
-        get() = getHubdleExtension()
-
-    @HubdleDslMarker
-    public fun mingwX86(action: Action<HubdleKotlinMultiplatformMinGWX86Extension> = Action {}) {
-        mingwX86.enableAndExecute(action)
-    }
-
     override fun Project.defaultConfiguration() {
         configurable {
             if (allEnabled.get()) {
                 mingwX64()
-                mingwX86()
             }
         }
         configurable(priority = Priority.P6) {
             configure<KotlinMultiplatformExtension> {
                 val commonMain: KotlinSourceSet by sourceSets.getting
                 val mingwX64Main: KotlinSourceSet? = sourceSets.findByName("mingwX64Main")
-                val mingwX86Main: KotlinSourceSet? = sourceSets.findByName("mingwX86Main")
 
                 val commonTest: KotlinSourceSet by sourceSets.getting
                 val mingwX64Test: KotlinSourceSet? = sourceSets.findByName("mingwX64Test")
-                val mingwX86Test: KotlinSourceSet? = sourceSets.findByName("mingwX86Test")
 
                 val mingwMainSourceSets: List<KotlinSourceSet> =
                     listOfNotNull(
                         mingwX64Main,
-                        mingwX86Main,
                     )
                 val mingwTestSourceSets: List<KotlinSourceSet> =
                     listOfNotNull(
                         mingwX64Test,
-                        mingwX86Test,
                     )
 
                 val mingwMain = sourceSets.maybeCreate("mingwMain")

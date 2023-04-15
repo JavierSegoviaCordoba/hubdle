@@ -226,7 +226,6 @@ internal class KotlinMultiplatformTest : GradleTestKitTest() {
                 "sandbox-project-linuxmipsel32",
                 "sandbox-project-linuxx64",
                 // "sandbox-project-mingwx64",
-                // "sandbox-project-mingwx86",
                 "sandbox-project-wasm",
                 "sandbox-project",
             )
@@ -247,7 +246,6 @@ internal class KotlinMultiplatformTest : GradleTestKitTest() {
                 "sandbox-project-macosarm64",
                 "sandbox-project-macosx64",
                 // "sandbox-project-mingwx64",
-                // "sandbox-project-mingwx86",
                 "sandbox-project-tvosarm64",
                 "sandbox-project-tvossimulatorarm64",
                 "sandbox-project-tvosx64",
@@ -270,7 +268,6 @@ internal class KotlinMultiplatformTest : GradleTestKitTest() {
                 // "sandbox-project-linuxarm64",
                 // "sandbox-project-linuxx64",
                 "sandbox-project-mingwx64",
-                "sandbox-project-mingwx86",
                 "sandbox-project-wasm",
                 "sandbox-project",
             )

@@ -68,7 +68,6 @@ hubdle {
             }
             mingw {
                 mingwX64()
-                mingwX86()
             }
             native()
             wasm()

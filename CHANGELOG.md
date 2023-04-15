@@ -15,6 +15,7 @@
 
 ### Removed
 
+- `mingwX86` target
 - `iosArm32` target
 - `watchosX86` target
 - `wasm32` target

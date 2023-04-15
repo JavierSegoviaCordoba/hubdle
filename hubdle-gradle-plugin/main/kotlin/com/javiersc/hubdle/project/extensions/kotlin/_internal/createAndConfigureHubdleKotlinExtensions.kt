@@ -47,7 +47,6 @@ import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.linux
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.macos.HubdleKotlinMultiplatformMacOSArm64Extension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.macos.HubdleKotlinMultiplatformMacOSX64Extension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.mingw.HubdleKotlinMultiplatformMinGWX64Extension
-import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.mingw.HubdleKotlinMultiplatformMinGWX86Extension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.tvos.HubdleKotlinMultiplatformTvOSArm64Extension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.tvos.HubdleKotlinMultiplatformTvOSSimulatorArm64Extension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.tvos.HubdleKotlinMultiplatformTvOSX64Extension
@@ -154,7 +153,6 @@ private fun HubdleState.createKotlinMultiplatformAndroidExtensions() {
         }
         createExtension<HubdleKotlinMultiplatformMinGWExtension> {
             createExtension<HubdleKotlinMultiplatformMinGWX64Extension>()
-            createExtension<HubdleKotlinMultiplatformMinGWX86Extension>()
         }
         createExtension<HubdleKotlinMultiplatformNativeExtension>()
         createExtension<HubdleKotlinMultiplatformWAsmExtension>()

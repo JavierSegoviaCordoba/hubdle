@@ -34,7 +34,6 @@ hubdle {
             }
             apple {
                 ios {
-                    iosArm32()
                     iosArm64()
                     iosX64()
                     iosSimulatorArm64()

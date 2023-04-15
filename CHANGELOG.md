@@ -15,6 +15,7 @@
 
 ### Removed
 
+- `iosArm32` target
 - `watchosX86` target
 - `wasm32` target
 - `com.android.application` from hubdle catalog

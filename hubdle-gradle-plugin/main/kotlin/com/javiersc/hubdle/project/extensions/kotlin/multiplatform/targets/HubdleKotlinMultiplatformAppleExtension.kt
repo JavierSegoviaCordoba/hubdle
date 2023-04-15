@@ -88,7 +88,6 @@ constructor(
         configurable(priority = Priority.P6) {
             configure<KotlinMultiplatformExtension> {
                 val commonMain: KotlinSourceSet by sourceSets.getting
-                val iosArm32Main: KotlinSourceSet? = sourceSets.findByName("iosArm32Main")
                 val iosArm64Main: KotlinSourceSet? = sourceSets.findByName("iosArm64Main")
                 val iosX64Main: KotlinSourceSet? = sourceSets.findByName("iosX64Main")
                 val iosSimulatorArm64Main: KotlinSourceSet? =
@@ -106,7 +105,6 @@ constructor(
                     sourceSets.findByName("watchosSimulatorArm64Main")
 
                 val commonTest: KotlinSourceSet by sourceSets.getting
-                val iosArm32Test: KotlinSourceSet? = sourceSets.findByName("iosArm32Test")
                 val iosArm64Test: KotlinSourceSet? = sourceSets.findByName("iosArm64Test")
                 val iosX64Test: KotlinSourceSet? = sourceSets.findByName("iosX64Test")
                 val iosSimulatorArm64Test: KotlinSourceSet? =
@@ -125,7 +123,6 @@ constructor(
 
                 val appleMainSourceSets: List<KotlinSourceSet> =
                     listOfNotNull(
-                        iosArm32Main,
                         iosArm64Main,
                         iosX64Main,
                         iosSimulatorArm64Main,
@@ -142,7 +139,6 @@ constructor(
 
                 val appleTestSourceSets: List<KotlinSourceSet> =
                     listOfNotNull(
-                        iosArm32Test,
                         iosArm64Test,
                         iosX64Test,
                         iosSimulatorArm64Test,

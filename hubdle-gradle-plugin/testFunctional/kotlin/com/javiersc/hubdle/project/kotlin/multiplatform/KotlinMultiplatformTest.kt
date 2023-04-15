@@ -236,7 +236,6 @@ internal class KotlinMultiplatformTest : GradleTestKitTest() {
         setOf(
                 "sandbox-project-android",
                 "sandbox-project-android-debug",
-                "sandbox-project-iosarm32",
                 "sandbox-project-iosarm64",
                 "sandbox-project-iossimulatorarm64",
                 "sandbox-project-iosx64",

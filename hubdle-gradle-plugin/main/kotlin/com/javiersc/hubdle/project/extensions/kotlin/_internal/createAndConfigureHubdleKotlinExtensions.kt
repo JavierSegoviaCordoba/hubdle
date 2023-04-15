@@ -36,7 +36,6 @@ import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.Hubdl
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformTvOSExtension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformWAsmExtension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformWatchOSExtension
-import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.ios.HubdleKotlinMultiplatformIOSArm32Extension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.ios.HubdleKotlinMultiplatformIOSArm64Extension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.ios.HubdleKotlinMultiplatformIOSSimulatorArm64Extension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.ios.HubdleKotlinMultiplatformIOSX64Extension
@@ -122,7 +121,6 @@ private fun HubdleState.createKotlinMultiplatformAndroidExtensions() {
         createExtension<HubdleKotlinMultiplatformAndroidExtension>()
         createExtension<HubdleKotlinMultiplatformAppleExtension> {
             createExtension<HubdleKotlinMultiplatformIOSExtension> {
-                createExtension<HubdleKotlinMultiplatformIOSArm32Extension>()
                 createExtension<HubdleKotlinMultiplatformIOSArm64Extension>()
                 createExtension<HubdleKotlinMultiplatformIOSSimulatorArm64Extension>()
                 createExtension<HubdleKotlinMultiplatformIOSX64Extension>()

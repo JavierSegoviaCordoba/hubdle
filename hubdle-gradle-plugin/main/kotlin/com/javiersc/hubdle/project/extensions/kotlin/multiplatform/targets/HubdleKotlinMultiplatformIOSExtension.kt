@@ -6,7 +6,6 @@ import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.hubdleKotlinMultiplatform
-import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.ios.HubdleKotlinMultiplatformIOSArm32Extension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.ios.HubdleKotlinMultiplatformIOSArm64Extension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.ios.HubdleKotlinMultiplatformIOSSimulatorArm64Extension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.ios.HubdleKotlinMultiplatformIOSX64Extension
@@ -47,14 +46,6 @@ constructor(
         allEnabled.set(value)
     }
 
-    public val iosArm32: HubdleKotlinMultiplatformIOSArm32Extension
-        get() = getHubdleExtension()
-
-    @HubdleDslMarker
-    public fun iosArm32(action: Action<HubdleKotlinMultiplatformIOSArm32Extension> = Action {}) {
-        iosArm32.enableAndExecute(action)
-    }
-
     public val iosArm64: HubdleKotlinMultiplatformIOSArm64Extension
         get() = getHubdleExtension()
 
@@ -84,7 +75,6 @@ constructor(
     override fun Project.defaultConfiguration() {
         configurable {
             if (allEnabled.get()) {
-                iosArm32()
                 iosArm64()
                 iosSimulatorArm64()
                 iosX64()
@@ -93,14 +83,12 @@ constructor(
         configurable(priority = Priority.P6) {
             configure<KotlinMultiplatformExtension> {
                 val commonMain: KotlinSourceSet by sourceSets.getting
-                val iosArm32Main: KotlinSourceSet? = sourceSets.findByName("iosArm32Main")
                 val iosArm64Main: KotlinSourceSet? = sourceSets.findByName("iosArm64Main")
                 val iosX64Main: KotlinSourceSet? = sourceSets.findByName("iosX64Main")
                 val iosSimulatorArm64Main: KotlinSourceSet? =
                     sourceSets.findByName("iosSimulatorArm64Main")
 
                 val commonTest: KotlinSourceSet by sourceSets.getting
-                val iosArm32Test: KotlinSourceSet? = sourceSets.findByName("iosArm32Test")
                 val iosArm64Test: KotlinSourceSet? = sourceSets.findByName("iosArm64Test")
                 val iosX64Test: KotlinSourceSet? = sourceSets.findByName("iosX64Test")
                 val iosSimulatorArm64Test: KotlinSourceSet? =
@@ -108,7 +96,6 @@ constructor(
 
                 val iosMainSourceSets: List<KotlinSourceSet> =
                     listOfNotNull(
-                        iosArm32Main,
                         iosArm64Main,
                         iosX64Main,
                         iosSimulatorArm64Main,
@@ -116,7 +103,6 @@ constructor(
 
                 val iosTestSourceSets: List<KotlinSourceSet> =
                     listOfNotNull(
-                        iosArm32Test,
                         iosArm64Test,
                         iosX64Test,
                         iosSimulatorArm64Test,

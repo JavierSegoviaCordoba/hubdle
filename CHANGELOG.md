@@ -4,8 +4,9 @@
 
 ### Added
 
+- `watchosDeviceArm64` target
 - `androidNative` targets
--  `wasm` target
+- `wasm` target
 - hubdle version catalog publication
 
 ### Changed

@@ -8,6 +8,7 @@ import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.hubdleKotlinMultiplatform
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.watchos.HubdleKotlinMultiplatformWatchOSArm32Extension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.watchos.HubdleKotlinMultiplatformWatchOSArm64Extension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.watchos.HubdleKotlinMultiplatformWatchOSDeviceArm64Extension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.watchos.HubdleKotlinMultiplatformWatchOSSimulatorArm64Extension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.watchos.HubdleKotlinMultiplatformWatchOSX64Extension
 import com.javiersc.hubdle.project.extensions.kotlin.shared.HubdleKotlinMinimalSourceSetConfigurableExtension
@@ -67,6 +68,16 @@ constructor(
         watchosArm64.enableAndExecute(action)
     }
 
+    public val watchosDeviceArm64: HubdleKotlinMultiplatformWatchOSDeviceArm64Extension
+        get() = getHubdleExtension()
+
+    @HubdleDslMarker
+    public fun watchosDeviceArm64(
+        action: Action<HubdleKotlinMultiplatformWatchOSDeviceArm64Extension> = Action {}
+    ) {
+        watchosDeviceArm64.enableAndExecute(action)
+    }
+
     public val watchosSimulatorArm64: HubdleKotlinMultiplatformWatchOSSimulatorArm64Extension
         get() = getHubdleExtension()
 
@@ -92,6 +103,7 @@ constructor(
             if (allEnabled.get()) {
                 watchosArm32()
                 watchosArm64()
+                watchosDeviceArm64()
                 watchosSimulatorArm64()
                 watchosX64()
             }

@@ -57,8 +57,9 @@ hubdle {
                 watchos {
                     watchosArm32()
                     watchosArm64()
-                    watchosX64()
+                    watchosDeviceArm64()
                     watchosSimulatorArm64()
+                    watchosX64()
                 }
             }
             jvm()

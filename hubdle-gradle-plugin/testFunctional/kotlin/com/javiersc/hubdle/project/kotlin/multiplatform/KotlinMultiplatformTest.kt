@@ -256,6 +256,7 @@ internal class KotlinMultiplatformTest : GradleTestKitTest() {
                 "sandbox-project-wasm",
                 "sandbox-project-watchosarm32",
                 "sandbox-project-watchosarm64",
+                "sandbox-project-watchosdevicearm64",
                 "sandbox-project-watchossimulatorarm64",
                 "sandbox-project-watchosx64",
                 "sandbox-project",

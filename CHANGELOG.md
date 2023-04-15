@@ -4,6 +4,20 @@
 
 ### Added
 
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Updated
+
+## [0.5.0-alpha.9] - 2023-04-15
+
+### Added
+
 - `watchosDeviceArm64` target
 - `androidNative` targets
 - `wasm` target
@@ -12,8 +26,6 @@
 ### Changed
 
 - publish and changelog tasks to be disabled based on tag prefix if semver is enabled
-
-### Deprecated
 
 ### Removed
 
@@ -183,7 +195,9 @@
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.2`
 - `app.cash.molecule:molecule-gradle-plugin -> 0.8.0`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.8...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.9...HEAD
+
+[0.5.0-alpha.9]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.8...0.5.0-alpha.9
 
 [0.5.0-alpha.8]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.7...0.5.0-alpha.8
 

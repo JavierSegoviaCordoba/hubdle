@@ -13,10 +13,10 @@
 
 ### Deprecated
 
-- `wasm32` target
-
 ### Removed
 
+- `watchosX86` target
+- `wasm32` target
 - `com.android.application` from hubdle catalog
 - `com.android.library` from hubdle catalog
 

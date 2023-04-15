@@ -33,7 +33,6 @@
             - watchosArm64
             - watchosSimulatorArm64
             - watchosX64
-            - watchosX86
     - jvm
     - jvmAndAndroid
     - js

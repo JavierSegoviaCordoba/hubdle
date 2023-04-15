@@ -76,7 +76,6 @@ constructor(
                 val watchosX64Main: KotlinSourceSet? = sourceSets.findByName("watchosX64Main")
                 val watchosSimulatorArm64Main: KotlinSourceSet? =
                     sourceSets.findByName("watchosSimulatorArm64Main")
-                val watchosX86Main: KotlinSourceSet? = sourceSets.findByName("watchosX86Main")
 
                 val commonTest: KotlinSourceSet by sourceSets.getting
                 val iosArm32Test: KotlinSourceSet? = sourceSets.findByName("iosArm32Test")
@@ -103,7 +102,6 @@ constructor(
                 val watchosX64Test: KotlinSourceSet? = sourceSets.findByName("watchosX64Test")
                 val watchosSimulatorArm64Test: KotlinSourceSet? =
                     sourceSets.findByName("watchosSimulatorArm64Test")
-                val watchosX86Test: KotlinSourceSet? = sourceSets.findByName("watchosX86Test")
 
                 val nativeMainSourceSets: List<KotlinSourceSet> =
                     listOfNotNull(
@@ -128,7 +126,6 @@ constructor(
                         watchosArm64Main,
                         watchosX64Main,
                         watchosSimulatorArm64Main,
-                        watchosX86Main,
                     )
 
                 val nativeTestSourceSets: List<KotlinSourceSet> =
@@ -154,7 +151,6 @@ constructor(
                         watchosArm64Test,
                         watchosX64Test,
                         watchosSimulatorArm64Test,
-                        watchosX86Test,
                     )
 
                 val nativeMain = sourceSets.maybeCreate("nativeMain")

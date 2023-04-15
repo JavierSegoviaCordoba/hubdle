@@ -56,7 +56,6 @@ import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.watch
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.watchos.HubdleKotlinMultiplatformWatchOSArm64Extension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.watchos.HubdleKotlinMultiplatformWatchOSSimulatorArm64Extension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.watchos.HubdleKotlinMultiplatformWatchOSX64Extension
-import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.watchos.HubdleKotlinMultiplatformWatchOSX86Extension
 import com.javiersc.hubdle.project.extensions.shared.features.HubdleGradleFeatureExtension
 import com.javiersc.hubdle.project.extensions.shared.features.HubdleIntellijFeatureExtension
 import com.javiersc.hubdle.project.extensions.shared.features.HubdleJavaApplicationFeatureExtension
@@ -142,7 +141,6 @@ private fun HubdleState.createKotlinMultiplatformAndroidExtensions() {
                 createExtension<HubdleKotlinMultiplatformWatchOSArm64Extension>()
                 createExtension<HubdleKotlinMultiplatformWatchOSSimulatorArm64Extension>()
                 createExtension<HubdleKotlinMultiplatformWatchOSX64Extension>()
-                createExtension<HubdleKotlinMultiplatformWatchOSX86Extension>()
             }
         }
         createExtension<HubdleKotlinMultiplatformCommonExtension>()

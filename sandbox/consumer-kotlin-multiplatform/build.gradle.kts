@@ -50,7 +50,6 @@ hubdle {
 //            watchosArm64()
 //            watchosX64()
 //            watchosSimulatorArm64()
-//            watchosX86()
         }
     }
 }

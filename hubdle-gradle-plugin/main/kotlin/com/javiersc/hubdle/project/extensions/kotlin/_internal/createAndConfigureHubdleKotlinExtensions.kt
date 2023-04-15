@@ -44,10 +44,7 @@ import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.andro
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.ios.HubdleKotlinMultiplatformIOSArm64Extension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.ios.HubdleKotlinMultiplatformIOSSimulatorArm64Extension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.ios.HubdleKotlinMultiplatformIOSX64Extension
-import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.linux.KotlinMultiplatformLinuxArm32HfpExtension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.linux.KotlinMultiplatformLinuxArm64Extension
-import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.linux.KotlinMultiplatformLinuxMips32Extension
-import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.linux.KotlinMultiplatformLinuxMipsel32Extension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.linux.KotlinMultiplatformLinuxX64Extension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.macos.HubdleKotlinMultiplatformMacOSArm64Extension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.macos.HubdleKotlinMultiplatformMacOSX64Extension
@@ -156,10 +153,7 @@ private fun HubdleState.createKotlinMultiplatformAndroidExtensions() {
         createExtension<HubdleKotlinMultiplatformJvmAndAndroidExtension>()
         createExtension<HubdleKotlinMultiplatformJvmExtension>()
         createExtension<HubdleKotlinMultiplatformLinuxExtension> {
-            createExtension<KotlinMultiplatformLinuxArm32HfpExtension>()
             createExtension<KotlinMultiplatformLinuxArm64Extension>()
-            createExtension<KotlinMultiplatformLinuxMips32Extension>()
-            createExtension<KotlinMultiplatformLinuxMipsel32Extension>()
             createExtension<KotlinMultiplatformLinuxX64Extension>()
         }
         createExtension<HubdleKotlinMultiplatformMinGWExtension> {

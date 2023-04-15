@@ -67,10 +67,7 @@ hubdle {
                 nodejs()
             }
             linux {
-                linuxArm32Hfp()
                 linuxArm64()
-                linuxMips32()
-                linuxMipsel32()
                 linuxX64()
             }
             mingw {

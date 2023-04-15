@@ -66,9 +66,6 @@ constructor(
                 val iosSimulatorArm64Main: KotlinSourceSet? =
                     sourceSets.findByName("iosSimulatorArm64Main")
                 val linuxArm64Main: KotlinSourceSet? = sourceSets.findByName("linuxArm64Main")
-                val linuxArm32HfpMain: KotlinSourceSet? = sourceSets.findByName("linuxArm32HfpMain")
-                val linuxMips32Main: KotlinSourceSet? = sourceSets.findByName("linuxMips32Main")
-                val linuxMipsel32Main: KotlinSourceSet? = sourceSets.findByName("linuxMipsel32Main")
                 val linuxX64Main: KotlinSourceSet? = sourceSets.findByName("linuxX64Main")
                 val macosX64Main: KotlinSourceSet? = sourceSets.findByName("macosX64Main")
                 val macosArm64Main: KotlinSourceSet? = sourceSets.findByName("macosArm64Main")
@@ -98,9 +95,6 @@ constructor(
                 val iosSimulatorArm64Test: KotlinSourceSet? =
                     sourceSets.findByName("iosSimulatorArm64Test")
                 val linuxArm64Test: KotlinSourceSet? = sourceSets.findByName("linuxArm64Test")
-                val linuxArm32HfpTest: KotlinSourceSet? = sourceSets.findByName("linuxArm32HfpTest")
-                val linuxMips32Test: KotlinSourceSet? = sourceSets.findByName("linuxMips32Test")
-                val linuxMipsel32Test: KotlinSourceSet? = sourceSets.findByName("linuxMipsel32Test")
                 val linuxX64Test: KotlinSourceSet? = sourceSets.findByName("linuxX64Test")
                 val macosX64Test: KotlinSourceSet? = sourceSets.findByName("macosX64Test")
                 val macosArm64Test: KotlinSourceSet? = sourceSets.findByName("macosArm64Test")
@@ -126,9 +120,6 @@ constructor(
                         iosX64Main,
                         iosSimulatorArm64Main,
                         linuxArm64Main,
-                        linuxArm32HfpMain,
-                        linuxMips32Main,
-                        linuxMipsel32Main,
                         linuxX64Main,
                         macosX64Main,
                         macosArm64Main,
@@ -153,9 +144,6 @@ constructor(
                         iosX64Test,
                         iosSimulatorArm64Test,
                         linuxArm64Test,
-                        linuxArm32HfpTest,
-                        linuxMips32Test,
-                        linuxMipsel32Test,
                         linuxX64Test,
                         macosX64Test,
                         macosArm64Test,

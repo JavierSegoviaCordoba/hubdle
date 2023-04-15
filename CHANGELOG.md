@@ -16,6 +16,9 @@
 
 ### Removed
 
+- `linuxArm32Hfp` target
+- `linuxMips32` target
+- `linuxMipsel32` target
 - `mingwX86` target
 - `iosArm32` target
 - `watchosX86` target

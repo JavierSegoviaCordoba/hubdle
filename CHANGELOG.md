@@ -4,6 +4,7 @@
 
 ### Added
 
+- `build/generated/*` directories for each source set
 - `org.jetbrains.kotlin:kotlin-gradle-plugin-api` to hubdle catalog
 
 ### Changed

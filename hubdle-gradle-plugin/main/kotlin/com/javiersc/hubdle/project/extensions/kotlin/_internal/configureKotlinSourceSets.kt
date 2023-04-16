@@ -12,6 +12,8 @@ import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleSourceSetConfigurableExtension as HubdleSrcSetConfExt
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.hubdleKotlinMultiplatform
 import com.javiersc.kotlin.stdlib.decapitalize
+import java.io.File
+import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.file.SourceDirectorySet
 import org.gradle.api.plugins.ExtensionAware
@@ -164,12 +166,12 @@ internal fun HubdleConfigurableExtension.configurableSrcDirs(
         project.findAndroidCommonExtension()?.sourceSets?.configureEach { set ->
             val name = set.name.calculateKmpSourceSetDirectory(targets.get())
             if (!hubdleKotlinMultiplatform.isFullEnabled.get()) {
-                set.assets.setSrcDirs(listOf("$name/assets"))
-                set.java.setSrcDirs(listOf("$name/java"))
-                set.kotlin.setSrcDirs(listOf("$name/kotlin"))
+                set.assets.setSrcDirs(project.normalAndGeneratedDirs("$name/assets"))
+                set.java.setSrcDirs(project.normalAndGeneratedDirs("$name/java"))
+                set.kotlin.setSrcDirs(project.normalAndGeneratedDirs("$name/kotlin"))
                 set.manifest.srcFile("$name/AndroidManifest.xml")
-                set.res.setSrcDirs(listOf("$name/res"))
-                set.resources.setSrcDirs(listOf("$name/resources"))
+                set.res.setSrcDirs(project.normalAndGeneratedDirs("$name/res"))
+                set.resources.setSrcDirs(project.normalAndGeneratedDirs("$name/resources"))
             } else {
                 set.manifest.srcFile("$name/AndroidManifest.xml")
             }
@@ -177,18 +179,24 @@ internal fun HubdleConfigurableExtension.configurableSrcDirs(
 
         project.extensions.findByType<JavaPluginExtension>()?.sourceSets?.configureEach { set ->
             val name = set.name.calculateKmpSourceSetDirectory(targets.get())
-            set.java.setSrcDirs(listOf("$name/java"))
-            set.kotlin.setSrcDirs(listOf("$name/kotlin"))
-            set.resources.setSrcDirs(listOf("$name/resources"))
+            set.java.setSrcDirs(project.normalAndGeneratedDirs("$name/java"))
+            set.kotlin.setSrcDirs(project.normalAndGeneratedDirs("$name/kotlin"))
+            set.resources.setSrcDirs(project.normalAndGeneratedDirs("$name/resources"))
         }
 
         project.extensions.findByType<KotlinProjectExtension>()?.sourceSets?.configureEach { set ->
             val name = set.name.calculateKmpSourceSetDirectory(targets.get())
-            set.kotlin.setSrcDirs(listOf("$name/kotlin"))
-            set.resources.setSrcDirs(listOf("$name/resources"))
+            set.kotlin.setSrcDirs(project.normalAndGeneratedDirs("$name/kotlin"))
+            set.resources.setSrcDirs(project.normalAndGeneratedDirs("$name/resources"))
         }
     }
 }
+
+private fun Project.normalAndGeneratedDirs(dir: String): List<File> =
+    listOf(
+        projectDir.resolve(dir),
+        buildDir.resolve("generated").resolve(dir),
+    )
 
 private fun String.calculateKmpSourceSetDirectory(targets: Set<String>): String {
     val name: String = this

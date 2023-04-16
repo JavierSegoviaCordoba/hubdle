@@ -25,6 +25,7 @@ import org.gradle.api.tasks.TaskCollection
 import org.gradle.jvm.tasks.Jar
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.get
+import org.gradle.kotlin.dsl.maybeCreate
 import org.gradle.kotlin.dsl.register
 import org.gradle.kotlin.dsl.the
 import org.gradle.kotlin.dsl.withType
@@ -240,14 +241,12 @@ private fun SigningExtension.signInMemory() =
 
 private fun HubdleConfigurableExtension.configureEmptyJavadocs() =
     with(project) {
-        val emptyJavadocsJarTask: TaskCollection<Jar> =
-            tasks.maybeRegisterLazily("emptyJavadocsJar")
-        emptyJavadocsJarTask.configureEach { task ->
-            task.group = "build"
-            task.description = "Assembles an empty Javadoc jar file for publishing"
-            task.archiveClassifier.set("javadoc")
+        val emptyJavadocsJar: Jar = tasks.maybeCreate("emptyJavadocsJar", Jar::class)
+        emptyJavadocsJar.apply {
+            group = "build"
+            description = "Assembles an empty Javadoc jar file for publishing"
+            archiveClassifier.set("javadoc")
         }
-        val emptyJavadocsJar: Jar = emptyJavadocsJarTask.first()
         the<PublishingExtension>().publications.withType<MavenPublication> {
             artifact(emptyJavadocsJar)
         }

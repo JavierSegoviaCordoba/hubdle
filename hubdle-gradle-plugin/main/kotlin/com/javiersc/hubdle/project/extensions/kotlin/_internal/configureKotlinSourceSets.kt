@@ -191,14 +191,18 @@ internal fun HubdleConfigurableExtension.configurableSrcDirs(
 }
 
 private fun String.calculateKmpSourceSetDirectory(targets: Set<String>): String {
-    val name = this
+    val name: String = this
     val target: String? =
         targets
             .filter { target -> name.startsWith(target) }
             .maxByOrNull { target -> target.count() }
 
-    val directory =
+    val directory: String =
         when {
+            name.startsWith("androidNative") && target == "android" -> {
+                val type = name.substringAfter("androidNative").decapitalize()
+                "androidNative/$type"
+            }
             target != null -> {
                 val type = name.substringAfter(target).decapitalize()
                 "$target/$type"

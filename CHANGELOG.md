@@ -4,6 +4,8 @@
 
 ### Added
 
+- `org.jetbrains.kotlin:kotlin-gradle-plugin-api` to hubdle catalog
+
 ### Changed
 
 ### Deprecated
@@ -11,6 +13,9 @@
 ### Removed
 
 ### Fixed
+
+- emptyJavadocsJar task
+- Android native source sets
 
 ### Updated
 

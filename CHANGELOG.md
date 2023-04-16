@@ -4,9 +4,6 @@
 
 ### Added
 
-- `build/generated/*` directories for each source set
-- `org.jetbrains.kotlin:kotlin-gradle-plugin-api` to hubdle catalog
-
 ### Changed
 
 ### Deprecated
@@ -15,10 +12,19 @@
 
 ### Fixed
 
+### Updated
+
+## [0.5.0-alpha.10] - 2023-04-16
+
+### Added
+
+- `build/generated/*` directories for each source set
+- `org.jetbrains.kotlin:kotlin-gradle-plugin-api` to hubdle catalog
+
+### Fixed
+
 - emptyJavadocsJar task
 - Android native source sets
-
-### Updated
 
 ## [0.5.0-alpha.9] - 2023-04-15
 
@@ -201,7 +207,9 @@
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.2`
 - `app.cash.molecule:molecule-gradle-plugin -> 0.8.0`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.9...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.10...HEAD
+
+[0.5.0-alpha.10]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.9...0.5.0-alpha.10
 
 [0.5.0-alpha.9]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.8...0.5.0-alpha.9
 

@@ -1,6 +1,9 @@
 hubdle {
     config {
         analysis()
+        documentation { //
+            changelog()
+        }
         publishing()
         versioning {
             semver {

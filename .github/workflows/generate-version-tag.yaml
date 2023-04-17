@@ -4,14 +4,14 @@ on:
   workflow_dispatch:
     if: github.ref == 'refs/heads/main'
     inputs:
-      tag-prefix:
-        description: 'Tag prefix'
+      publish-project:
+        description: 'Project to publish'
         required: true
-        default: ''
+        default: 'plugin'
         type: choice
         options:
-          - ''
-          - 'c'
+          - 'plugin'
+          - 'catalog'
       stage:
         description: 'Stage'
         required: true
@@ -35,10 +35,22 @@ on:
           - 'auto'
 
 jobs:
-  generate:
+  plugin:
     uses: JavierSegoviaCordoba/reusable-workflows/.github/workflows/generate-version-tag.yaml@main
+    if: "${{ github.event.inputs.publish-project == 'plugin' }}"
     with:
-      tag-prefix: '${{ github.event.inputs.tag-prefix }}'
+      project-path: ':'
+      stage: '${{ github.event.inputs.stage }}'
+      scope: '${{ github.event.inputs.scope }}'
+    secrets: inherit
+
+  catalog:
+    uses: JavierSegoviaCordoba/reusable-workflows/.github/workflows/generate-version-tag.yaml@main
+    if: "${{ github.event.inputs.publish-project == 'catalog' }}"
+    with:
+      semver-output-field: 'SEMVER_HUBDLE_VERSION_CATALOG'
+      project-path: 'hubdle-version-catalog:'
+      tag-prefix: 'c'
       stage: '${{ github.event.inputs.stage }}'
       scope: '${{ github.event.inputs.scope }}'
     secrets: inherit

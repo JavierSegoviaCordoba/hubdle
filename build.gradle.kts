@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.javiersc.hubdle)
+    alias(hubdle.plugins.javiersc.hubdle)
 }
 
 hubdle {

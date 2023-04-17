@@ -6,6 +6,8 @@
 
 ### Changed
 
+- libs catalog to be merged with hubdle catalog
+
 ### Deprecated
 
 ### Removed

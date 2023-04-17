@@ -54,8 +54,8 @@ hubdle {
                         }
 
                         pluginUnderTestDependencies(
-                            libs.android.toolsBuild.gradle,
-                            libs.jetbrains.kotlin.kotlinGradlePlugin,
+                            hubdle.android.toolsBuild.gradle,
+                            hubdle.jetbrains.kotlin.kotlinGradlePlugin,
                         )
                     }
                 }
@@ -63,28 +63,28 @@ hubdle {
 
             main {
                 dependencies {
-                    api(libs.adarshr.gradleTestLoggerPlugin)
-                    api(libs.android.toolsBuild.gradle)
-                    api(libs.cash.molecule.gradlePlugin)
-                    api(libs.cash.sqldelight.gradlePlugin)
-                    api(libs.diffplug.spotless.spotlessPluginGradle)
-                    api(libs.github.gradleNexus.publishPlugin)
-                    api(libs.gitlab.arturboschDetekt.detektGradlePlugin)
-                    api(libs.gradle.enterprise.comGradleEnterpriseGradlePlugin)
-                    api(libs.gradle.publish.pluginPublishPlugin)
-                    api(libs.javiersc.semver.semverGradlePlugin)
-                    api(libs.jetbrains.compose.composeGradlePlugin)
-                    api(libs.jetbrains.dokka.dokkaGradlePlugin)
-                    api(libs.jetbrains.intellijPlugins.gradleChangelogPlugin)
-                    api(libs.jetbrains.intellijPlugins.gradleIntellijPlugin)
-                    api(libs.jetbrains.kotlin.kotlinGradlePlugin)
-                    api(libs.jetbrains.kotlinx.binaryCompatibilityValidator)
-                    api(libs.jetbrains.kotlinx.kover)
-                    api(libs.jetbrains.kotlinx.serialization)
-                    api(libs.sonarqube.scannerGradle.sonarqubeGradlePlugin)
-                    api(libs.vyarus.gradleMkdocsPlugin)
+                    api(hubdle.adarshr.gradleTestLoggerPlugin)
+                    api(hubdle.android.toolsBuild.gradle)
+                    api(hubdle.cash.molecule.gradlePlugin)
+                    api(hubdle.cash.sqldelight.gradlePlugin)
+                    api(hubdle.diffplug.spotless.spotlessPluginGradle)
+                    api(hubdle.github.gradleNexus.publishPlugin)
+                    api(hubdle.gitlab.arturboschDetekt.detektGradlePlugin)
+                    api(hubdle.gradle.enterprise.comGradleEnterpriseGradlePlugin)
+                    api(hubdle.gradle.publish.pluginPublishPlugin)
+                    api(hubdle.javiersc.semver.semverGradlePlugin)
+                    api(hubdle.jetbrains.compose.composeGradlePlugin)
+                    api(hubdle.jetbrains.dokka.dokkaGradlePlugin)
+                    api(hubdle.jetbrains.intellijPlugins.gradleChangelogPlugin)
+                    api(hubdle.jetbrains.intellijPlugins.gradleIntellijPlugin)
+                    api(hubdle.jetbrains.kotlin.kotlinGradlePlugin)
+                    api(hubdle.jetbrains.kotlinx.binaryCompatibilityValidator)
+                    api(hubdle.jetbrains.kotlinx.kover)
+                    api(hubdle.jetbrains.kotlinx.serialization)
+                    api(hubdle.sonarqube.scannerGradle.sonarqubeGradlePlugin)
+                    api(hubdle.vyarus.gradleMkdocsPlugin)
 
-                    implementation(libs.eclipse.jgit)
+                    implementation(hubdle.eclipse.jgit)
                 }
 
                 resources.srcDirs(file(rootDir.resolve("gradle/hubdle")))
@@ -145,7 +145,7 @@ val generatedDependenciesInternalDir =
     "generated/main/kotlin/com/javiersc/hubdle/project/extensions/dependencies/_internal"
 
 fun Project.buildConstants() {
-    val sqldelightVersion: String? = libs.cash.sqldelight.gradlePlugin.get().version
+    val sqldelightVersion: String? = hubdle.cash.sqldelight.gradlePlugin.get().version
     buildDir
         .resolve(generatedDependenciesInternalDir)
         .resolve("constants/SQLDELIGHT_VERSION.kt")

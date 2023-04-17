@@ -4,7 +4,7 @@ pluginManagement {
     val itselfVersionFromProp: String? = providers.gradleProperty("itselfVersion").orNull
     val itselfVersion: String =
         itselfVersionFromProp
-            ?: file("$rootDir/gradle/libs.versions.toml")
+            ?: file("$rootDir/gradle/hubdle.libs.versions.toml")
                 .readLines()
                 .first { it.contains("hubdle") }
                 .split("\"")[1]
@@ -37,13 +37,11 @@ dependencyResolutionManagement {
     }
 
     versionCatalogs {
-        create("libs") {
+        removeIf { it.name == "hubdle" }
+        register("hubdle") {
             if (itselfVersion != null) {
                 version("hubdle", itselfVersion)
             }
-        }
-        removeIf { it.name == "hubdle" }
-        register("hubdle") {
             from(files(rootDir.resolve("gradle/hubdle.libs.versions.toml")))
         }
     }

@@ -4,6 +4,14 @@ on:
   workflow_dispatch:
     if: github.ref == 'refs/heads/main'
     inputs:
+      tag-prefix:
+        description: 'Tag prefix'
+        required: true
+        default: ''
+        type: choice
+        options:
+          - ''
+          - 'c'
       stage:
         description: 'Stage'
         required: true
@@ -30,6 +38,7 @@ jobs:
   generate:
     uses: JavierSegoviaCordoba/reusable-workflows/.github/workflows/generate-version-tag.yaml@main
     with:
+      tag-prefix: '${{ github.event.inputs.tag-prefix }}'
       stage: '${{ github.event.inputs.stage }}'
       scope: '${{ github.event.inputs.scope }}'
     secrets: inherit

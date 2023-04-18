@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- `PublishToMavenLocal` with signing plugin
+
 ### Updated
 
 ## [0.5.0-alpha.11] - 2023-04-18

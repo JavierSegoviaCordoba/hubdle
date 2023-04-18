@@ -239,6 +239,9 @@ private fun HubdleConfigurableExtension.configureSigningForPublishing() =
         tasks.withType<PublishToMavenRepository>().configureEach { task ->
             task.mustRunAfter(signingTasks)
         }
+        tasks.withType<PublishToMavenLocal>().configureEach { task ->
+            task.mustRunAfter(signingTasks)
+        }
     }
 
 private fun SigningExtension.signInMemory() =

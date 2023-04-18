@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-alpha.11`
 - `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.13.1`
 
 ## [0.0.0] - 2023-04-18

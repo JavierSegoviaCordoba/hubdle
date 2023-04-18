@@ -14,6 +14,14 @@
 
 ### Updated
 
+- `io.kotest:kotest-runner-junit5 -> 5.6.1`
+- `io.kotest:kotest-runner-junit4 -> 5.6.1`
+- `io.kotest:kotest-property -> 5.6.1`
+- `io.kotest:kotest-assertions-sql -> 5.6.1`
+- `io.kotest:kotest-assertions-json -> 5.6.1`
+- `io.kotest:kotest-assertions-core -> 5.6.1`
+- `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
+- `io.kotest.extensions:kotest-assertions-arrow -> 1.3.1`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-alpha.11`
 - `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.13.1`
 

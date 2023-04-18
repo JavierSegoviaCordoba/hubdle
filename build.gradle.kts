@@ -1,4 +1,6 @@
-plugins {
+import com.javiersc.gradle.properties.extensions.getPropertyOrNull
+
+plugins { //
     alias(hubdle.plugins.javiersc.hubdle)
 }
 
@@ -10,12 +12,16 @@ hubdle {
         documentation {
             api()
             changelog()
-            readme {
-                badges()
-            }
+            readme { badges() }
             site()
         }
         nexus()
+        versioning {
+            semver {
+                // TODO: https://github.com/gradle-nexus/publish-plugin/issues/84
+                tagPrefix.set(provider { getPropertyOrNull("semver.tagPrefix") ?: "" })
+            }
+        }
     }
 }
 

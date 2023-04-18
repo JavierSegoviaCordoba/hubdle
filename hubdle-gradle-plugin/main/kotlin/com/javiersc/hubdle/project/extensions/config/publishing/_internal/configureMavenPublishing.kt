@@ -20,6 +20,7 @@ import org.gradle.api.Task
 import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPublication
+import org.gradle.api.publish.maven.tasks.PublishToMavenLocal
 import org.gradle.api.publish.maven.tasks.PublishToMavenRepository
 import org.gradle.api.tasks.TaskCollection
 import org.gradle.jvm.tasks.Jar
@@ -135,7 +136,15 @@ private fun HubdleConfigurableExtension.configurePublishOnlySemver() =
             task.enabled = isTagPrefixProject
             task.dependsOn(checkIsSemver)
         }
+        tasks.withType<PublishToMavenLocal>().configureEach { task ->
+            task.enabled = isTagPrefixProject
+            task.dependsOn(checkIsSemver)
+        }
         tasks.namedLazily<Task>("publishToSonatype").configureEach { task ->
+            task.enabled = isTagPrefixProject
+            task.dependsOn(checkIsSemver)
+        }
+        tasks.withType<PublishToMavenRepository>().configureEach { task ->
             task.enabled = isTagPrefixProject
             task.dependsOn(checkIsSemver)
         }
@@ -147,6 +156,16 @@ private fun HubdleConfigurableExtension.configurePublishOnlySemver() =
             task.enabled = isTagPrefixProject
             task.dependsOn(checkIsSemver)
         }
+
+        tasks
+            .withType()
+            .matching { task ->
+                task.name.startsWith("publishTo") && task.name.endsWith("ToSonatypeRepository")
+            }
+            .configureEach { task ->
+                task.enabled = isTagPrefixProject
+                task.dependsOn(checkIsSemver)
+            }
     }
 
 private val Project.isSemver: Boolean

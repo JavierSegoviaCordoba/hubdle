@@ -14,6 +14,8 @@
 
 ### Fixed
 
+- Some publish tasks are not disabled based on the tag prefix
+
 ### Updated
 
 - `com.javiersc.kotlin:kotlin-test-testng -> 0.1.0-alpha.13`

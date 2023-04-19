@@ -16,6 +16,7 @@
 
 ### Updated
 
+- `org.jetbrains.intellij.deps:intellij-coverage-agent -> 1.0.716`
 - `androidx.core:core-splashscreen -> 1.0.1`
 - `androidx.compose.compiler:compiler -> 1.4.6`
 - `androidx.activity:activity-ktx -> 1.7.1`

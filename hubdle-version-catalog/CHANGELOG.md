@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter -> 1.0.0`
 - `io.kotest:kotest-runner-junit5 -> 5.6.1`
 - `io.kotest:kotest-runner-junit4 -> 5.6.1`
 - `io.kotest:kotest-property -> 5.6.1`

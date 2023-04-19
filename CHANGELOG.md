@@ -16,6 +16,7 @@
 
 ### Updated
 
+- `androidx.compose.compiler:compiler -> 1.4.6`
 - `androidx.activity:activity-ktx -> 1.7.1`
 - `androidx.activity:activity-compose -> 1.7.1`
 - `androidx.compose.ui:ui-util -> 1.4.2`

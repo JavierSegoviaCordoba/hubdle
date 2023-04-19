@@ -16,6 +16,12 @@
 
 ### Updated
 
+- `io.ktor:ktor-serialization-kotlinx-json -> 2.3.0`
+- `io.ktor:ktor-client-okhttp -> 2.3.0`
+- `io.ktor:ktor-client-mock -> 2.3.0`
+- `io.ktor:ktor-client-core -> 2.3.0`
+- `io.ktor:ktor-client-content-negotiation -> 2.3.0`
+- `io.ktor:ktor-client-cio -> 2.3.0`
 - `io.insert-koin:koin-androidx-compose -> 3.4.4`
 - `com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter -> 1.0.0`
 - `io.kotest:kotest-runner-junit5 -> 5.6.1`

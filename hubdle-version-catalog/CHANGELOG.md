@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `androidx.activity:activity-ktx -> 1.7.1`
+- `androidx.activity:activity-compose -> 1.7.1`
 - `androidx.compose.ui:ui-util -> 1.4.2`
 - `androidx.compose.ui:ui-tooling-preview -> 1.4.2`
 - `androidx.compose.ui:ui-tooling -> 1.4.2`

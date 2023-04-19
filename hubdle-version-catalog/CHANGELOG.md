@@ -14,6 +14,23 @@
 
 ### Updated
 
+- `androidx.compose.ui:ui-util -> 1.4.2`
+- `androidx.compose.ui:ui-tooling-preview -> 1.4.2`
+- `androidx.compose.ui:ui-tooling -> 1.4.2`
+- `androidx.compose.ui:ui-test-manifest -> 1.4.2`
+- `androidx.compose.ui:ui-test -> 1.4.2`
+- `androidx.compose.ui:ui -> 1.4.2`
+- `androidx.compose.runtime:runtime-saveable -> 1.4.2`
+- `androidx.compose.runtime:runtime -> 1.4.2`
+- `androidx.compose.material:material-ripple -> 1.4.2`
+- `androidx.compose.material:material-icons-extended -> 1.4.2`
+- `androidx.compose.material:material-icons-core -> 1.4.2`
+- `androidx.compose.material:material -> 1.4.2`
+- `androidx.compose.foundation:foundation-layout -> 1.4.2`
+- `androidx.compose.foundation:foundation -> 1.4.2`
+- `androidx.compose.animation:animation-graphics -> 1.4.2`
+- `androidx.compose.animation:animation-core -> 1.4.2`
+- `androidx.compose.animation:animation -> 1.4.2`
 - `io.ktor:ktor-serialization-kotlinx-json -> 2.3.0`
 - `io.ktor:ktor-client-okhttp -> 2.3.0`
 - `io.ktor:ktor-client-mock -> 2.3.0`

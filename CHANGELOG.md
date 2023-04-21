@@ -16,6 +16,7 @@
 
 ### Updated
 
+- `io.kotest.extensions:kotest-extensions-embedded-kafka -> 2.0.0`
 - `gradle -> 8.1.1`
 - `org.jetbrains.intellij.deps:intellij-coverage-agent -> 1.0.716`
 - `androidx.core:core-splashscreen -> 1.0.1`

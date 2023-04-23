@@ -16,7 +16,7 @@
 
 ### Updated
 
-- `io.kotest.extensions:kotest-assertions-arrow -> 1.3.2`
+- `io.kotest.extensions:kotest-assertions-arrow -> 1.3.3`
 - `io.kotest.extensions:kotest-extensions-spring -> 1.1.3`
 - `io.kotest.extensions:kotest-extensions-embedded-kafka -> 2.0.0`
 - `gradle -> 8.1.1`

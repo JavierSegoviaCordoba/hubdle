@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `io.kotest.extensions:kotest-assertions-arrow -> 1.3.2`
 - `io.kotest.extensions:kotest-extensions-spring -> 1.1.3`
 - `io.kotest.extensions:kotest-extensions-embedded-kafka -> 2.0.0`
 - `gradle -> 8.1.1`
@@ -54,7 +55,6 @@
 - `io.kotest:kotest-assertions-json -> 5.6.1`
 - `io.kotest:kotest-assertions-core -> 5.6.1`
 - `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
-- `io.kotest.extensions:kotest-assertions-arrow -> 1.3.1`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-alpha.11`
 - `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.13.1`
 

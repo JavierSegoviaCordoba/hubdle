@@ -12,6 +12,7 @@
 
 ### Fixed
 
+- Gradle enterprise is applied too late
 - `PublishToMavenLocal` with signing plugin
 
 ### Updated

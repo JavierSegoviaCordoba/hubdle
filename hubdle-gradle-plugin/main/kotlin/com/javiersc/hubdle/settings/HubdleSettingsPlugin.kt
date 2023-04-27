@@ -40,11 +40,11 @@ constructor(
 
         target.configureRepositories()
         target.createHubdleCatalog()
+        target.configureGradleEnterprise()
 
         target.gradle.settingsEvaluated { settings ->
             target.configureHubdleCatalogTask()
             target.useHubdleOnAllProjects()
-            settings.configureGradleEnterprise()
             settings.configureAutoInclude()
             settings.configureAutoIncludeVersionCatalogs(objects)
         }

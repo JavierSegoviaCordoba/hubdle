@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-alpha.12`
 - `com.github.triplet.gradle:play-publisher -> 3.8.2`
 - `org.junit.jupiter:junit-jupiter-params -> 5.9.3`
 - `org.junit.jupiter:junit-jupiter-api -> 5.9.3`
@@ -58,7 +59,6 @@
 - `io.kotest:kotest-assertions-json -> 5.6.1`
 - `io.kotest:kotest-assertions-core -> 5.6.1`
 - `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
-- `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-alpha.11`
 - `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.13.1`
 
 ## [0.0.0] - 2023-04-18

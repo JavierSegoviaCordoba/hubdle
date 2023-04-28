@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.facebook:ktfmt -> 0.44`
 - `com.javiersc.gradle:gradle-test-extensions -> 1.0.0-alpha.31`
 - `com.javiersc.gradle:gradle-extensions -> 1.0.0-alpha.31`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-alpha.12`

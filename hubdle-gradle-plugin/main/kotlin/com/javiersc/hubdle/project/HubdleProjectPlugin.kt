@@ -13,7 +13,7 @@ import org.gradle.kotlin.dsl.apply
 public abstract class HubdleProjectPlugin : Plugin<Project> {
 
     override fun apply(target: Project) {
-        target.group = target.getProperty(HubdleProperty.Project.group)
+        target.group = target.getProperty(HubdleProperty.Project.group).get()
         target.pluginManager.apply(BasePlugin::class)
 
         target.configureHubdleExtensions()

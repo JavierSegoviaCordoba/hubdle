@@ -1,7 +1,7 @@
 package com.javiersc.hubdle.project.extensions.config.documentation.site
 
 import com.javiersc.gradle.project.extensions.isRootProject
-import com.javiersc.gradle.properties.extensions.getStringPropertyOrNull
+import com.javiersc.gradle.properties.extensions.getStringProperty
 import com.javiersc.hubdle.project.HubdleProperty.Analysis.Qodana
 import com.javiersc.hubdle.project.HubdleProperty.Analysis.Sonar
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
@@ -72,9 +72,9 @@ constructor(
                 PrebuildSiteTask.register(project) {
                     projectsInfo.set(project.projectsInfo)
                     qodana.set(analysis.qodana)
-                    qodanaProjectKey.set(provider { getStringPropertyOrNull(Qodana.projectKey) })
+                    qodanaProjectKey.set(getStringProperty(Qodana.projectKey))
                     sonar.set(analysis.sonar)
-                    sonarProjectId.set(provider { getStringPropertyOrNull(Sonar.projectKey) })
+                    sonarProjectId.set(getStringProperty(Sonar.projectKey))
                 }
 
             BuildSiteTask.register(project, preBuildDocsTask)

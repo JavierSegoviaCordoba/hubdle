@@ -1,7 +1,12 @@
 package com.javiersc.hubdle.project.extensions.shared.features.intellij
 
+import com.javiersc.gradle.properties.extensions.getBooleanProperty
 import com.javiersc.gradle.properties.extensions.getProperty
-import com.javiersc.gradle.properties.extensions.getPropertyOrNull
+import com.javiersc.gradle.properties.extensions.getStringProperty
+import com.javiersc.hubdle.project.HubdleProperty
+import com.javiersc.hubdle.project.HubdleProperty.IntelliJ
+import com.javiersc.hubdle.project.HubdleProperty.JetBrains
+import com.javiersc.hubdle.project.HubdleProperty.Signing
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
@@ -95,23 +100,16 @@ constructor(
 
 private fun HubdleIntellijPluginFeatureExtension.configureIntellijPluginExtension() =
     with(project) {
-        val downloadSourcesProperty =
-            getPropertyOrNull(com.javiersc.hubdle.project.HubdleProperty.IntelliJ.downloadSources)
-                ?.toBoolean()
-                ?: true
+        val downloadSourcesProperty = getBooleanProperty(IntelliJ.downloadSources).orNull ?: true
 
         val updateSinceUntilBuildProperty =
-            getPropertyOrNull(
-                    com.javiersc.hubdle.project.HubdleProperty.IntelliJ.updateSinceUntilBuild
-                )
-                ?.toBoolean()
-                ?: true
+            getBooleanProperty(IntelliJ.updateSinceUntilBuild).orNull ?: true
 
         configure<IntelliJPluginExtension> {
-            pluginName.set(getProperty(com.javiersc.hubdle.project.HubdleProperty.POM.name))
+            pluginName.set(getProperty(HubdleProperty.POM.name))
             downloadSources.set(downloadSourcesProperty)
-            type.set(getProperty(com.javiersc.hubdle.project.HubdleProperty.IntelliJ.type))
-            version.set(getProperty(com.javiersc.hubdle.project.HubdleProperty.IntelliJ.version))
+            type.set(getProperty(IntelliJ.type))
+            version.set(getProperty(IntelliJ.version))
             updateSinceUntilBuild.set(updateSinceUntilBuildProperty)
         }
     }
@@ -122,12 +120,8 @@ private fun HubdleIntellijPluginFeatureExtension.configurePatchPluginXml() =
             task.dependsOn(tasks.named("copyGeneratedChangelogHtml"))
 
             task.version.set("$version")
-            task.sinceBuild.set(
-                getProperty(com.javiersc.hubdle.project.HubdleProperty.IntelliJ.sinceBuild)
-            )
-            task.untilBuild.set(
-                getProperty(com.javiersc.hubdle.project.HubdleProperty.IntelliJ.untilBuild)
-            )
+            task.sinceBuild.set(getProperty(IntelliJ.sinceBuild))
+            task.untilBuild.set(getProperty(IntelliJ.untilBuild))
 
             val changelogFile =
                 layout.buildDirectory.file(
@@ -147,40 +141,21 @@ private fun HubdleIntellijPluginFeatureExtension.configurePatchPluginXml() =
 private fun HubdleIntellijPluginFeatureExtension.configurePublishPlugin() =
     with(project) {
         tasks.withType<PublishPluginTask>().configureEach { task ->
-            task.token.set(
-                project.getPropertyOrNull(
-                    com.javiersc.hubdle.project.HubdleProperty.IntelliJ.publishToken
-                )
-                    ?: ""
-            )
+            task.token.set(project.getStringProperty(IntelliJ.publishToken).orElse(""))
         }
     }
 
 private fun HubdleIntellijPluginFeatureExtension.configureSignPlugin() =
     with(project) {
         tasks.withType<SignPluginTask>().configureEach { task ->
-            val certificate =
-                getPropertyOrNull(
-                    com.javiersc.hubdle.project.HubdleProperty.JetBrains.marketplaceCertificateChain
-                )
-                    ?: ""
+            val certificate = getStringProperty(JetBrains.marketplaceCertificateChain).orElse("")
             val key =
-                getPropertyOrNull(
-                    com.javiersc.hubdle.project.HubdleProperty.JetBrains.marketplaceKey
-                )
-                    ?: getPropertyOrNull(
-                        com.javiersc.hubdle.project.HubdleProperty.Signing.gnupgKey
-                    )
-                        ?: ""
+                getStringProperty(JetBrains.marketplaceKey)
+                    .orElse(getStringProperty(Signing.gnupgKey).orElse(""))
 
             val passphrase =
-                getPropertyOrNull(
-                    com.javiersc.hubdle.project.HubdleProperty.JetBrains.marketplaceKeyPassphrase
-                )
-                    ?: getPropertyOrNull(
-                        com.javiersc.hubdle.project.HubdleProperty.Signing.gnupgPassphrase
-                    )
-                        ?: ""
+                getStringProperty(JetBrains.marketplaceKeyPassphrase)
+                    .orElse(getStringProperty(Signing.gnupgPassphrase).orElse(""))
 
             task.certificateChain.set(certificate)
             task.privateKey.set(key)

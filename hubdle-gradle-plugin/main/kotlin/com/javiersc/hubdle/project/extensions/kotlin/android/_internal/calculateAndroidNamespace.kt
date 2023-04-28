@@ -33,9 +33,12 @@ internal fun Project.configureAndroidLibraryJavaVersion() {
 internal fun Project.calculateAndroidNamespace(initial: String?): String? =
     when {
         initial != null -> initial
-        getBooleanProperty(Android.namespaceUseProject) -> calculateAndroidNamespaceWithProject()
-        getBooleanProperty(Android.namespaceUseKotlinFile) ->
+        getBooleanProperty(Android.namespaceUseProject).orNull == true -> {
+            calculateAndroidNamespaceWithProject()
+        }
+        getBooleanProperty(Android.namespaceUseKotlinFile).orNull == true -> {
             calculateAndroidNamespaceWithKotlinFile()
+        }
         else -> calculateAndroidNamespaceWithProject()
     }
 

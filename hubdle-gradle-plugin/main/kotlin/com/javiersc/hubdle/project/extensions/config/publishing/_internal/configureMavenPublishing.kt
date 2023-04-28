@@ -3,11 +3,13 @@ package com.javiersc.hubdle.project.extensions.config.publishing._internal
 import com.javiersc.gradle.project.extensions.isNotSnapshot
 import com.javiersc.gradle.properties.extensions.getBooleanProperty
 import com.javiersc.gradle.properties.extensions.getProperty
-import com.javiersc.gradle.properties.extensions.getPropertyOrNull
+import com.javiersc.gradle.properties.extensions.getStringProperty
 import com.javiersc.gradle.tasks.extensions.maybeRegisterLazily
 import com.javiersc.gradle.tasks.extensions.namedLazily
 import com.javiersc.gradle.version.GradleVersion
 import com.javiersc.hubdle.project.HubdleProperty
+import com.javiersc.hubdle.project.HubdleProperty.Publishing
+import com.javiersc.hubdle.project.HubdleProperty.Signing
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.Configurable
 import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
@@ -117,7 +119,8 @@ private fun HubdleConfigurableExtension.configurePublishOnlySemver() =
             tasks.maybeRegisterLazily("checkIsSemver") { task ->
                 task.enabled = isTagPrefixProject
                 task.doLast {
-                    val publishNonSemver = getBooleanProperty(HubdleProperty.Publishing.nonSemver)
+                    val publishNonSemver =
+                        getBooleanProperty(Publishing.nonSemver).orElse(false).get()
                     check(isSemver || publishNonSemver) {
                         // TODO: inject `$version` instead of getting it from the `project`
                         """|Only semantic versions can be published (current: $version)
@@ -223,7 +226,7 @@ private fun HubdleConfigurableExtension.configureSigningForPublishing() =
                         it == "publishAllPublicationsToMavenLocalTestRepository" ||
                         it == "publishAllPublicationsToMavenLocalBuildTestRepository"
                 }
-            val shouldSign = getPropertyOrNull(HubdleProperty.Publishing.sign)?.toBoolean() ?: false
+            val shouldSign = getBooleanProperty(Publishing.sign).orElse(false).get()
 
             val hasTaskCondition = (hasPublishTask && !hasPublishToMavenLocalTasks)
             val hasSemverCondition = project.isNotSnapshot.get() && project.isSemver
@@ -246,10 +249,9 @@ private fun HubdleConfigurableExtension.configureSigningForPublishing() =
 
 private fun SigningExtension.signInMemory() =
     with(project) {
-        val keyId = project.getPropertyOrNull(HubdleProperty.Signing.keyId)
-        val gnupgKey =
-            project.getPropertyOrNull(HubdleProperty.Signing.gnupgKey)?.replace("\\n", "\n")
-        val gnupgPassphrase = project.getPropertyOrNull(HubdleProperty.Signing.gnupgPassphrase)
+        val keyId = project.getStringProperty(Signing.keyId).orNull
+        val gnupgKey = project.getStringProperty(Signing.gnupgKey).orNull?.replace("\\n", "\n")
+        val gnupgPassphrase = project.getStringProperty(Signing.gnupgPassphrase).orNull
 
         when {
             keyId != null && gnupgKey != null && gnupgPassphrase != null -> {

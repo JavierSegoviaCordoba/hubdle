@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `com.javiersc.gradle:gradle-test-extensions -> 1.0.0-alpha.31`
+- `com.javiersc.gradle:gradle-extensions -> 1.0.0-alpha.31`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-alpha.12`
 - `com.github.triplet.gradle:play-publisher -> 3.8.2`
 - `org.junit.jupiter:junit-jupiter-params -> 5.9.3`

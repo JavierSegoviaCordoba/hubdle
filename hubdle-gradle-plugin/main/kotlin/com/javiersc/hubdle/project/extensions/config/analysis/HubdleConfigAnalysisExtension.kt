@@ -7,7 +7,7 @@ import com.android.build.api.dsl.LibraryBuildType
 import com.android.build.api.dsl.LibraryExtension
 import com.android.build.api.dsl.LibraryProductFlavor
 import com.javiersc.gradle.properties.extensions.getProperty
-import com.javiersc.gradle.properties.extensions.getPropertyOrNull
+import com.javiersc.gradle.properties.extensions.getStringProperty
 import com.javiersc.gradle.properties.extensions.setProperty
 import com.javiersc.gradle.tasks.extensions.maybeRegisterLazily
 import com.javiersc.gradle.tasks.extensions.namedLazily
@@ -142,19 +142,23 @@ constructor(
     }
 
     private fun configureSonarqube(project: Project) {
+        val rootProjectDirName =
+            project.getStringProperty(HubdleProperty.Project.rootProjectDirName)
         project.configure<SonarExtension> {
             properties { properties ->
                 properties.property(
                     "sonar.projectName",
-                    project.getPropertyOrNull(Sonar.projectName)
-                        ?: project.getPropertyOrNull(HubdleProperty.Project.rootProjectDirName)
-                            ?: project.name
+                    project
+                        .getStringProperty(Sonar.projectName)
+                        .orElse(rootProjectDirName)
+                        .orElse(project.name)
                 )
                 properties.property(
                     "sonar.projectKey",
-                    project.getPropertyOrNull(Sonar.projectKey)
-                        ?: project.getPropertyOrNull(HubdleProperty.Project.rootProjectDirName)
-                            ?: "${project.group}:${project.name}"
+                    project
+                        .getStringProperty(Sonar.projectName)
+                        .orElse(rootProjectDirName)
+                        .orElse("${project.group}:${project.name}")
                 )
                 properties.property(
                     "sonar.login",
@@ -162,11 +166,11 @@ constructor(
                 )
                 properties.property(
                     "sonar.host.url",
-                    project.getPropertyOrNull(Sonar.hostUrl) ?: "https://sonarcloud.io"
+                    project.getStringProperty(Sonar.hostUrl).orElse("https://sonarcloud.io")
                 )
                 properties.property(
                     "sonar.organization",
-                    project.getPropertyOrNull(Sonar.organization) ?: ""
+                    project.getStringProperty(Sonar.organization).orElse("")
                 )
                 properties.property(
                     "sonar.kotlin.detekt.reportPaths",

@@ -1,6 +1,6 @@
 package com.javiersc.hubdle.project.extensions.kotlin.android.features
 
-import com.javiersc.gradle.properties.extensions.getPropertyOrNull
+import com.javiersc.gradle.properties.extensions.getBooleanProperty
 import com.javiersc.hubdle.project.HubdleProperty.Android.BuildFeatures
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
@@ -66,7 +66,7 @@ constructor(
     }
 }
 
-private fun Project.propOrNull(key: String): Boolean? = getPropertyOrNull(key)?.toBoolean()
+private fun Project.propOrNull(key: String): Boolean? = getBooleanProperty(key).orNull
 
 private fun HubdleEnableableExtension.trueIfApp(): Boolean =
     hubdleAndroidApplication.isFullEnabled.get()

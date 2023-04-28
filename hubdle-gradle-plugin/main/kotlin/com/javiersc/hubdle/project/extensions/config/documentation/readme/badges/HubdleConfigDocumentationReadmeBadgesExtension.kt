@@ -1,7 +1,7 @@
 package com.javiersc.hubdle.project.extensions.config.documentation.readme.badges
 
 import com.javiersc.gradle.properties.extensions.getProperty
-import com.javiersc.gradle.properties.extensions.getPropertyOrNull
+import com.javiersc.gradle.properties.extensions.getStringProperty
 import com.javiersc.hubdle.project.HubdleProperty
 import com.javiersc.hubdle.project.HubdleProperty.Analysis.Sonar
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
@@ -39,11 +39,14 @@ constructor(
 
     override fun Project.defaultConfiguration() {
         configurable {
-            val projectName = getPropertyOrNull(HubdleProperty.Project.mainProjectName) ?: name
+            val projectName = getStringProperty(HubdleProperty.Project.mainProjectName).orElse(name)
+
+            val rootProjectDirName = getStringProperty(HubdleProperty.Project.rootProjectDirName)
 
             val projectKey =
-                getPropertyOrNull(Sonar.projectKey)
-                    ?: "${group}:${getPropertyOrNull(HubdleProperty.Project.rootProjectDirName) ?: rootDir.name}"
+                getStringProperty(Sonar.projectKey)
+                    .orElse(rootProjectDirName.map { rootDirName -> "$group:$rootDirName" })
+                    .orElse(rootDir.name)
 
             tasks.register<WriteReadmeBadgesTask>(WriteReadmeBadgesTask.NAME).configure { task ->
                 task.projectGroup.set(group.toString())

@@ -1,6 +1,6 @@
 package com.javiersc.hubdle.project.extensions.config.nexus
 
-import com.javiersc.gradle.properties.extensions.getPropertyOrNull
+import com.javiersc.gradle.properties.extensions.getStringProperty
 import com.javiersc.hubdle.project.HubdleProperty.Nexus
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
@@ -18,6 +18,7 @@ import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.provider.Property
 import org.gradle.kotlin.dsl.configure
+import org.jetbrains.intellij.or
 
 @HubdleDslMarker
 public open class HubdleConfigNexusExtension
@@ -51,17 +52,17 @@ constructor(
 
                 repositories { container ->
                     container.sonatype { nexusRepository ->
-                        val nexusUrl = getPropertyOrNull(Nexus.nexusUrl)
+                        val nexusUrl = getStringProperty(Nexus.nexusUrl).orNull
                         val snapshotRepositoryUrl =
-                            getPropertyOrNull(Nexus.nexusSnapshotRepositoryUrl)
+                            getStringProperty(Nexus.nexusSnapshotRepositoryUrl).orNull
                         if (nexusUrl != null && snapshotRepositoryUrl != null) {
                             nexusRepository.nexusUrl.set(uri(nexusUrl))
                             nexusRepository.snapshotRepositoryUrl.set(uri(snapshotRepositoryUrl))
                         }
-                        nexusRepository.username.set(getPropertyOrNull(Nexus.nexusUser))
-                        nexusRepository.password.set(getPropertyOrNull(Nexus.nexusToken))
+                        nexusRepository.username.set(getStringProperty(Nexus.nexusUser))
+                        nexusRepository.password.set(getStringProperty(Nexus.nexusToken))
                         nexusRepository.stagingProfileId.set(
-                            getPropertyOrNull(Nexus.nexusStagingProfileId)
+                            getStringProperty(Nexus.nexusStagingProfileId)
                         )
                     }
                 }

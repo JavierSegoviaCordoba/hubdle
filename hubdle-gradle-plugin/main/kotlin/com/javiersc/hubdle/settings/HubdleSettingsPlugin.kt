@@ -1,7 +1,7 @@
 package com.javiersc.hubdle.settings
 
 import com.gradle.enterprise.gradleplugin.GradleEnterpriseExtension
-import com.javiersc.gradle.properties.extensions.getPropertyOrNull
+import com.javiersc.gradle.properties.extensions.getStringProperty
 import com.javiersc.hubdle.project.HubdleProjectPlugin
 import com.javiersc.hubdle.project.extensions.dependencies._internal.catalog.createHubdleCatalog
 import com.javiersc.hubdle.project.extensions.dependencies._internal.catalog.hubdleAliasToLibraries
@@ -30,7 +30,7 @@ constructor(
 ) : Plugin<Settings> {
 
     override fun apply(target: Settings) {
-        val rootProjectName = target.getPropertyOrNull("root.project.name")
+        val rootProjectName = target.getStringProperty("root.project.name").orNull
         if (rootProjectName != null) {
             target.rootProject.name = rootProjectName
         }

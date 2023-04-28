@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `org.junit.jupiter:junit-jupiter-params -> 5.9.3`
+- `org.junit.jupiter:junit-jupiter-api -> 5.9.3`
 - `io.kotest.extensions:kotest-assertions-arrow -> 1.3.3`
 - `io.kotest.extensions:kotest-extensions-spring -> 1.1.3`
 - `io.kotest.extensions:kotest-extensions-embedded-kafka -> 2.0.0`

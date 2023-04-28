@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.github.triplet.gradle:play-publisher -> 3.8.2`
 - `org.junit.jupiter:junit-jupiter-params -> 5.9.3`
 - `org.junit.jupiter:junit-jupiter-api -> 5.9.3`
 - `io.kotest.extensions:kotest-assertions-arrow -> 1.3.3`

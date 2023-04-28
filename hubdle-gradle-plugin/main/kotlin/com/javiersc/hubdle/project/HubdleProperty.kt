@@ -19,9 +19,11 @@ public object HubdleProperty {
     }
 
     public object Analysis {
+
         public object Qodana {
             public const val projectKey: String = "analysis.qodana.projectKey"
         }
+
         public object Sonar {
             public const val hostUrl: String = "analysis.sonar.host.url"
             public const val login: String = "analysis.sonar.login"

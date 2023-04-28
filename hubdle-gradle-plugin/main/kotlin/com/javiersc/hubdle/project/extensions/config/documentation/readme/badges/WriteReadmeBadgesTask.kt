@@ -85,9 +85,8 @@ constructor(
         get() =
             "![Kotlin version]" +
                 "($shieldsIoUrl/badge/kotlin-${kotlinVersion.get()}-blueviolet" +
-                "?logo=kotlin&logoColor=white)".also {
-                    logger.lifecycle("Kotlin version: ${kotlinVersion.get()}")
-                }
+                "?logo=kotlin&logoColor=white)"
+                    .also { logger.lifecycle("Kotlin version: ${kotlinVersion.get()}") }
 
     private val shieldsIoUrl = "https://img.shields.io"
 

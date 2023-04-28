@@ -208,6 +208,7 @@ internal interface Configurable {
                 override val name: String = name
                 override val isEnabled: Property<Boolean> = isEnabled
                 override val priority: Priority = priority
+
                 override fun configure() {
                     if (isEnabled.get()) config()
                 }

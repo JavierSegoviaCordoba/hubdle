@@ -75,10 +75,11 @@ internal class Changelog(
             internal class Item(val value: String) {
 
                 override fun toString(): String = value.replace("- -", "-")
+
                 companion object {
-                    var itemPrefix: String = "-"
-                    var noChanges: String = "No changes"
-                    var unreleased: String = "Unreleased"
+                    const val itemPrefix: String = "-"
+                    const val noChanges: String = "No changes"
+                    const val unreleased: String = "Unreleased"
                 }
             }
         }

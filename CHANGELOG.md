@@ -12,10 +12,14 @@
 
 ### Fixed
 
+### Updated
+
+## [0.5.0-alpha.12] - 2023-04-28
+
+### Fixed
+
 - Gradle enterprise is applied too late
 - `PublishToMavenLocal` with signing plugin
-
-### Updated
 
 ## [0.5.0-alpha.11] - 2023-04-18
 
@@ -228,7 +232,9 @@
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.2`
 - `app.cash.molecule:molecule-gradle-plugin -> 0.8.0`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.11...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.12...HEAD
+
+[0.5.0-alpha.12]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.11...0.5.0-alpha.12
 
 [0.5.0-alpha.11]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.10...0.5.0-alpha.11
 

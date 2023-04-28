@@ -1,3 +1,4 @@
+import com.javiersc.gradle.properties.extensions.getBooleanPropertyOrNull
 import com.javiersc.gradle.properties.extensions.getPropertyOrNull
 
 plugins { //
@@ -19,7 +20,12 @@ hubdle {
         versioning {
             semver {
                 // TODO: https://github.com/gradle-nexus/publish-plugin/issues/84
-                tagPrefix.set(provider { getPropertyOrNull("semver.tagPrefix") ?: "" })
+                tagPrefix.set(
+                    provider {
+                        if (getBooleanPropertyOrNull("hubdle.catalog.renovate") == true) ""
+                        else getPropertyOrNull("semver.tagPrefix") ?: ""
+                    },
+                )
             }
         }
     }

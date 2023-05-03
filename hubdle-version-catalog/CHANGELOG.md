@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.13.1`
 - `com.android.library:com.android.library.gradle.plugin -> 8.0.1`
 - `com.android.application:com.android.application.gradle.plugin -> 8.0.1`
 - `com.android.tools.build:gradle -> 8.0.1`

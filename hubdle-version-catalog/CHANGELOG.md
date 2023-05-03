@@ -14,6 +14,19 @@
 
 ### Updated
 
+- `org.jetbrains.kotlin:kotlin-test-testng -> 1.8.21`
+- `org.jetbrains.kotlin:kotlin-test-junit5 -> 1.8.21`
+- `org.jetbrains.kotlin:kotlin-test-junit -> 1.8.21`
+- `org.jetbrains.kotlin:kotlin-test-annotations-common -> 1.8.21`
+- `org.jetbrains.kotlin:kotlin-test -> 1.8.21`
+- `org.jetbrains.kotlin:kotlin-gradle-plugin-api -> 1.8.21`
+- `androidx.compose.compiler:compiler -> 1.4.7`
+- `org.jetbrains.kotlin.plugin.serialization:org.jetbrains.kotlin.plugin.serialization.gradle.plugin -> 1.8.21`
+- `org.jetbrains.kotlin.multiplatform:org.jetbrains.kotlin.multiplatform.gradle.plugin -> 1.8.21`
+- `org.jetbrains.kotlin.jvm:org.jetbrains.kotlin.jvm.gradle.plugin -> 1.8.21`
+- `org.jetbrains.kotlin.android:org.jetbrains.kotlin.android.gradle.plugin -> 1.8.21`
+- `org.jetbrains.kotlin:kotlin-serialization -> 1.8.21`
+- `org.jetbrains.kotlin:kotlin-gradle-plugin -> 1.8.21`
 - `androidx.compose.ui:ui-util -> 1.4.3`
 - `androidx.compose.ui:ui-tooling-preview -> 1.4.3`
 - `androidx.compose.ui:ui-tooling -> 1.4.3`
@@ -48,7 +61,6 @@
 - `gradle -> 8.1.1`
 - `org.jetbrains.intellij.deps:intellij-coverage-agent -> 1.0.716`
 - `androidx.core:core-splashscreen -> 1.0.1`
-- `androidx.compose.compiler:compiler -> 1.4.6`
 - `androidx.activity:activity-ktx -> 1.7.1`
 - `androidx.activity:activity-compose -> 1.7.1`
 - `io.ktor:ktor-serialization-kotlinx-json -> 2.3.0`

@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.intellij.deps:intellij-coverage-agent -> 1.0.719`
 - `androidx.compose.ui:ui-util -> 1.4.3`
 - `androidx.compose.ui:ui-tooling-preview -> 1.4.3`
 - `androidx.compose.ui:ui-tooling -> 1.4.3`
@@ -46,7 +47,6 @@
 - `io.kotest.extensions:kotest-extensions-spring -> 1.1.3`
 - `io.kotest.extensions:kotest-extensions-embedded-kafka -> 2.0.0`
 - `gradle -> 8.1.1`
-- `org.jetbrains.intellij.deps:intellij-coverage-agent -> 1.0.716`
 - `androidx.core:core-splashscreen -> 1.0.1`
 - `androidx.compose.compiler:compiler -> 1.4.6`
 - `androidx.activity:activity-ktx -> 1.7.1`

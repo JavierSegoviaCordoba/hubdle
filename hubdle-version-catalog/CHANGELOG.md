@@ -14,6 +14,9 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx:kotlinx-coroutines-test -> 1.7.0`
+- `org.jetbrains.kotlinx:kotlinx-coroutines-core -> 1.7.0`
+- `org.jetbrains.kotlinx:kotlinx-coroutines-android -> 1.7.0`
 - `org.jetbrains.kotlin:kotlin-test-testng -> 1.8.21`
 - `org.jetbrains.kotlin:kotlin-test-junit5 -> 1.8.21`
 - `org.jetbrains.kotlin:kotlin-test-junit -> 1.8.21`

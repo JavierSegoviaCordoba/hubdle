@@ -9,7 +9,8 @@ jobs:
   publish:
     uses: JavierSegoviaCordoba/reusable-workflows/.github/workflows/publish-kotlin.yaml@main
     with:
-      publish-gradle-plugin-portal: true
+      publish-gradle-plugin-portal: ${{ !contains('github.ref_name', 'c') }}
       gradle-args-build: '--exclude-task spotlessCheck'
+      gradle-args-publish-maven-central: '"-Ppublishing.sign=true"'
       changelog-file-c-tag-prefix: 'hubdle-gradle-plugin/CHANGELOG.md'
     secrets: inherit

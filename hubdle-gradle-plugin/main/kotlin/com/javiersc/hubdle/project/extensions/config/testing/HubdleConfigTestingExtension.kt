@@ -42,11 +42,20 @@ constructor(
 
     override val priority: Priority = Priority.P3
 
-    public val showStandardStreams: Property<Boolean> = property { true }
-
     public val options: Property<Options> = property {
         if (hasAndroid.get()) Options.JUnit else Options.JUnitPlatform
     }
+
+    public val maxParallelForks: Property<Int> = property {
+        (Runtime.getRuntime().availableProcessors() - 1).takeIf { it > 0 } ?: 1
+    }
+
+    @HubdleDslMarker
+    public fun maxParallelForks(forks: Int) {
+        maxParallelForks.set(forks)
+    }
+
+    public val showStandardStreams: Property<Boolean> = property { true }
 
     @HubdleDslMarker
     public fun showStandardStreams(enabled: Boolean = true) {
@@ -79,6 +88,7 @@ constructor(
                 }
             tasks.withType<Test>().configureEach { task ->
                 task.testLogging.showStandardStreams = showStandardStreams.get()
+                task.maxParallelForks = maxParallelForks.get()
 
                 when (options.get()) {
                     Options.JUnit -> task.useJUnit()

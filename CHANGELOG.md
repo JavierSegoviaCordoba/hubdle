@@ -4,6 +4,8 @@
 
 ### Added
 
+- `maxParallelForks` to `testing` extension
+
 ### Changed
 
 - hubdle catalog to be used as a dependency instead of codegen it

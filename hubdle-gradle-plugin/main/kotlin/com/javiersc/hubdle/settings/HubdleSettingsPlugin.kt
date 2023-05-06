@@ -3,14 +3,16 @@ package com.javiersc.hubdle.settings
 import com.gradle.enterprise.gradleplugin.GradleEnterpriseExtension
 import com.javiersc.gradle.properties.extensions.getStringProperty
 import com.javiersc.hubdle.project.HubdleProjectPlugin
-import com.javiersc.hubdle.project.extensions.dependencies._internal.catalog.createHubdleCatalog
-import com.javiersc.hubdle.project.extensions.dependencies._internal.catalog.hubdleAliasToLibraries
+import com.javiersc.hubdle.project.extensions._internal.hubdleCatalog
+import com.javiersc.hubdle.project.extensions._internal.library
 import com.javiersc.hubdle.settings.extensions.extractedBuildProjects
 import com.javiersc.hubdle.settings.extensions.extractedProjects
 import com.javiersc.hubdle.settings.tasks.GenerateHubdleCatalogTask
 import java.io.File
 import javax.inject.Inject
 import org.gradle.api.Plugin
+import org.gradle.api.artifacts.MinimalExternalModuleDependency
+import org.gradle.api.artifacts.ModuleIdentifier
 import org.gradle.api.initialization.Settings
 import org.gradle.api.model.ObjectFactory
 import org.gradle.api.plugins.BasePlugin
@@ -39,7 +41,7 @@ constructor(
         target.extensions.create<HubdleSettingsExtension>("hubdleSettings")
 
         target.configureRepositories()
-        target.createHubdleCatalog()
+        target.createHubdleVersionCatalog()
         target.configureGradleEnterprise()
 
         target.gradle.settingsEvaluated { settings ->
@@ -47,6 +49,13 @@ constructor(
             target.useHubdleOnAllProjects()
             settings.configureAutoInclude()
             settings.configureAutoIncludeVersionCatalogs(objects)
+        }
+    }
+
+    private fun Settings.createHubdleVersionCatalog() {
+        dependencyResolutionManagement.versionCatalogs.create("hubdle") { builder ->
+            val hubdleCatalogVersion = hubdleSettings.hubdleVersionCatalogVersion.get()
+            builder.from("com.javiersc.hubdle:hubdle-version-catalog:$hubdleCatalogVersion")
         }
     }
 }
@@ -81,6 +90,16 @@ private fun Settings.configureHubdleCatalogTask() {
 
         val generateHubdleCatalogTask: TaskProvider<GenerateHubdleCatalogTask> =
             project.tasks.register<GenerateHubdleCatalogTask>("generateHubdleCatalog")
+
+        val hubdleAliasToLibraries =
+            project.provider {
+                project.hubdleCatalog.libraryAliases.associateWith { alias ->
+                    val library: MinimalExternalModuleDependency = project.library(alias).get()
+                    val module: ModuleIdentifier = library.module
+                    val version: String? = library.version
+                    if (version != null) "$module:$version" else "$module"
+                }
+            }
 
         generateHubdleCatalogTask.configure { task -> task.libraries.set(hubdleAliasToLibraries) }
 

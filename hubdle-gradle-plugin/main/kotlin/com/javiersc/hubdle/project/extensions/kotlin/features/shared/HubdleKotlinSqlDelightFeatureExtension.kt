@@ -7,17 +7,19 @@ import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
+import com.javiersc.hubdle.project.extensions._internal.hubdleCatalog
 import com.javiersc.hubdle.project.extensions.apis.BaseHubdleDelegateExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
-import com.javiersc.hubdle.project.extensions.dependencies._internal.constants.SQLDELIGHT_VERSION
+import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.cash_sqldelight
 import com.javiersc.hubdle.project.extensions.kotlin.hubdleKotlinAny
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.Project
 import org.gradle.api.provider.Property
+import org.gradle.api.provider.Provider
 import org.gradle.kotlin.dsl.invoke
 
 public open class HubdleKotlinSqlDelightFeatureExtension
@@ -45,11 +47,22 @@ constructor(
         userConfigurable { action.invoke(the()) }
     }
 
-    public val HSqlDialect: String = "app.cash.sqldeight:hsql-dialect:$SQLDELIGHT_VERSION"
+    public val HSqlDialect: Provider<String> = provider {
+        "app.cash.sqldeight:hsql-dialect:${SqldelightVersion.get()}"
+    }
 
-    public val MySqlDialect: String = "app.cash.sqldeight:mysql-dialect:$SQLDELIGHT_VERSION"
+    public val MySqlDialect: Provider<String> = provider {
+        "app.cash.sqldeight:mysql-dialect:${SqldelightVersion.get()}"
+    }
 
-    public val PostgresDialect: String = "app.cash.sqldeight:postgres-dialect:$SQLDELIGHT_VERSION"
+    public val PostgresDialect: Provider<String> = provider {
+        "app.cash.sqldeight:postgres-dialect:${SqldelightVersion.get()}"
+    }
+
+    public val SqldelightVersion: Provider<String>
+        get() = provider {
+            project.hubdleCatalog.findPlugin(cash_sqldelight).get().get().version.displayName
+        }
 
     override fun Project.defaultConfiguration() {
         applicablePlugin(

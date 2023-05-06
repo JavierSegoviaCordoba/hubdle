@@ -6,6 +6,8 @@
 
 ### Changed
 
+- hubdle catalog to be used as a dependency instead of codegen it
+
 ### Deprecated
 
 ### Removed

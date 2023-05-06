@@ -27,4 +27,7 @@ public open class HubdleSettingsExtension @Inject constructor(objects: ObjectFac
     }
 
     public val useOnAllProjects: Property<Boolean> = objects.property<Boolean>().convention(true)
+
+    public val hubdleVersionCatalogVersion: Property<String> =
+        objects.property<String>().convention("latest.release")
 }

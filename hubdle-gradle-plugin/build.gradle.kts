@@ -124,7 +124,6 @@ fun Project.generateHubdle() {
         doLast {
             buildConstants()
             buildHubdleDependencies()
-            buildHubdleCatalog()
         }
     }
 
@@ -145,24 +144,6 @@ val generatedDependenciesInternalDir =
     "generated/main/kotlin/com/javiersc/hubdle/project/extensions/dependencies/_internal"
 
 fun Project.buildConstants() {
-    val sqldelightVersion: String? = hubdle.cash.sqldelight.gradlePlugin.get().version
-    buildDir
-        .resolve(generatedDependenciesInternalDir)
-        .resolve("constants/SQLDELIGHT_VERSION.kt")
-        .apply {
-            parentFile.mkdirs()
-            createNewFile()
-        }
-        .writeText(
-            """
-                |package com.javiersc.hubdle.project.extensions.dependencies._internal.constants
-                |
-                |internal const val SQLDELIGHT_VERSION: String = "$sqldelightVersion"
-                |
-            """
-                .trimMargin()
-        )
-
     catalogDependencies.forEach { minimalDependency ->
         val fileName = minimalDependency.module.toString().replace(":", "_")
         val dependencyVariableName = fileName.buildDependencyVariableName()
@@ -180,8 +161,6 @@ fun Project.buildConstants() {
                     |internal const val ${dependencyVariableName}_MODULE: String =
                     |    "${minimalDependency.module}"
                     |
-                    |internal const val ${dependencyVariableName}_VERSION: String =
-                    |    "$dependencyVersion"
                     |
                 """
                     .trimMargin(),
@@ -197,82 +176,24 @@ fun Project.buildHubdleDependencies() {
         .apply {
             parentFile.mkdirs()
             createNewFile()
-            val aliases =
+            val libraryAliases: String =
                 catalog.libraryAliases.joinToString("\n") { alias ->
+                    """|internal const val ${alias.sanitizeAlias()} = "$alias""""
+                }
+            val pluginAliases: String =
+                catalog.pluginAliases.joinToString("\n") { alias ->
                     """|internal const val ${alias.sanitizeAlias()} = "$alias""""
                 }
             val content =
                 """ |package com.javiersc.hubdle.project.extensions.dependencies._internal.aliases
                     |
-                    $aliases
+                    $libraryAliases
+                    |
+                    $pluginAliases
                     |
                 """
                     .trimMargin()
             writeText(content)
-        }
-}
-
-fun Project.buildHubdleCatalog() {
-    val aliases: List<String> = catalog.libraryAliases
-    val aliasToLibraryMap: Map<String, String> =
-        aliases.associateWith { alias ->
-            val dependency: MinimalExternalModuleDependency = catalog.findLibrary(alias).get().get()
-            val version: String? = dependency.version
-            if (version != null) "${dependency.module}:${version}" else "${dependency.module}"
-        }
-
-    val builders =
-        aliasToLibraryMap.map { (alias, library) -> """builder.library("$alias", "$library")""" }
-
-    val indent = " ".repeat(12)
-
-    val hubdleCatalog =
-        """ |package com.javiersc.hubdle.project.extensions.dependencies._internal.catalog
-            |
-            |import org.gradle.api.initialization.Settings
-            |
-            |internal fun Settings.createHubdleCatalog() {
-            |    dependencyResolutionManagement { management ->
-            |        management.versionCatalogs { catalogs ->
-            |            catalogs.create("hubdle") { builder -> //
-            ${builders.joinToString("\n") { builder -> "|${builder.prependIndent(indent)}"}}
-            |            }
-            |        }
-            |    }
-            |}
-            |
-        """
-            .trimMargin()
-
-    buildDir.resolve(generatedDependenciesInternalDir).resolve("catalog/HubdleCatalog.kt").apply {
-        parentFile.mkdirs()
-        createNewFile()
-        writeText(hubdleCatalog)
-    }
-
-    val sanitizedLibraries =
-        aliasToLibraryMap
-            .map { (alias, library) -> """|        "${alias.replace(".", "-")}" to "$library", """ }
-            .joinToString("\n")
-
-    val hubdleCatalogMap =
-        """ |package com.javiersc.hubdle.project.extensions.dependencies._internal.catalog
-            |
-            |internal val hubdleAliasToLibraries =
-            |    mapOf(
-            $sanitizedLibraries
-            |    )
-            |
-        """
-            .trimMargin()
-
-    buildDir
-        .resolve(generatedDependenciesInternalDir)
-        .resolve("catalog/HubdleCatalogMap.kt")
-        .apply {
-            parentFile.mkdirs()
-            createNewFile()
-            writeText(hubdleCatalogMap)
         }
 }
 

@@ -16,7 +16,7 @@ internal class ReadmeTest : GradleTestKitTest() {
         for (sandbox in sandboxDirs) {
             gradleTestKitTest(sandboxPath = sandbox.relativeTo(rootDir.parentFile).path) {
                 withArgumentsFromTXT()
-                val output = build().output
+                build()
                 val expect: File = projectDir.resolve("README.expect.md")
                 val actual: File = projectDir.resolve("README.md")
 

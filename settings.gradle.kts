@@ -1,4 +1,4 @@
-import com.javiersc.gradle.properties.extensions.getPropertyOrNull
+import com.javiersc.gradle.properties.extensions.getBooleanProperty
 
 pluginManagement {
     val itselfVersionFromProp: String? = providers.gradleProperty("itselfVersion").orNull
@@ -49,7 +49,7 @@ dependencyResolutionManagement {
 
 hubdleSettings {
     autoInclude {
-        val sandboxEnabled = getPropertyOrNull("sandbox.enabled")?.toBoolean() ?: false
+        val sandboxEnabled = getBooleanProperty("sandbox.enabled").orNull ?: false
         if (!sandboxEnabled) excludedBuilds("sandbox")
     }
 }

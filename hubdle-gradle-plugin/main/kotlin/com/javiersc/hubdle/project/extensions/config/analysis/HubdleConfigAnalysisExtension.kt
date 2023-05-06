@@ -6,7 +6,6 @@ import com.android.build.api.dsl.ApplicationProductFlavor
 import com.android.build.api.dsl.LibraryBuildType
 import com.android.build.api.dsl.LibraryExtension
 import com.android.build.api.dsl.LibraryProductFlavor
-import com.javiersc.gradle.properties.extensions.getProperty
 import com.javiersc.gradle.properties.extensions.getStringProperty
 import com.javiersc.gradle.properties.extensions.setProperty
 import com.javiersc.gradle.tasks.extensions.maybeRegisterLazily
@@ -32,6 +31,7 @@ import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.provider.Property
+import org.gradle.api.provider.Provider
 import org.gradle.api.provider.SetProperty
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.findByType
@@ -146,40 +146,30 @@ constructor(
             project.getStringProperty(HubdleProperty.Project.rootProjectDirName)
         project.configure<SonarExtension> {
             properties { properties ->
-                properties.property(
-                    "sonar.projectName",
+                val projectName: Provider<String> =
                     project
                         .getStringProperty(Sonar.projectName)
                         .orElse(rootProjectDirName)
                         .orElse(project.name)
-                )
-                properties.property(
-                    "sonar.projectKey",
+                properties.property("sonar.projectName", projectName.get())
+                val projectKey: Provider<String> =
                     project
                         .getStringProperty(Sonar.projectName)
                         .orElse(rootProjectDirName)
                         .orElse("${project.group}:${project.name}")
-                )
-                properties.property(
-                    "sonar.login",
-                    project.getProperty(Sonar.login),
-                )
-                properties.property(
-                    "sonar.host.url",
+                properties.property("sonar.projectKey", projectKey.get())
+                val login: Provider<String> = project.getStringProperty(Sonar.login)
+                properties.property("sonar.login", login.get())
+                val hostUrl: Provider<String> =
                     project.getStringProperty(Sonar.hostUrl).orElse("https://sonarcloud.io")
-                )
-                properties.property(
-                    "sonar.organization",
+                properties.property("sonar.host.url", hostUrl.get())
+                val organization: Provider<String> =
                     project.getStringProperty(Sonar.organization).orElse("")
-                )
-                properties.property(
-                    "sonar.kotlin.detekt.reportPaths",
-                    "${project.buildDir}/reports/detekt/detekt.xml"
-                )
-                properties.property(
-                    "sonar.coverage.jacoco.xmlReportPaths",
-                    "${project.buildDir}/reports/kover/xml/report.xml"
-                )
+                properties.property("sonar.organization", organization.get())
+                val detektReportPath = "${project.buildDir}/reports/detekt/detekt.xml"
+                properties.property("sonar.kotlin.detekt.reportPaths", detektReportPath)
+                val jacocoXmlReportPaths = "${project.buildDir}/reports/kover/xml/report.xml"
+                properties.property("sonar.coverage.jacoco.xmlReportPaths", jacocoXmlReportPaths)
 
                 project.configureAndroidLintReportPaths(properties)
 

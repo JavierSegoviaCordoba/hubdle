@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- Sonar is using providers instead of real values
+
 ### Updated
 
 ## [0.5.0-alpha.13] - 2023-05-06

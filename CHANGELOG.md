@@ -12,9 +12,13 @@
 
 ### Fixed
 
-- Sonar is using providers instead of real values
-
 ### Updated
+
+## [0.5.0-alpha.14] - 2023-05-06
+
+### Fixed
+
+- Sonar is using providers instead of real values
 
 ## [0.5.0-alpha.13] - 2023-05-06
 
@@ -244,7 +248,9 @@
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.2`
 - `app.cash.molecule:molecule-gradle-plugin -> 0.8.0`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.13...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.14...HEAD
+
+[0.5.0-alpha.14]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.13...0.5.0-alpha.14
 
 [0.5.0-alpha.13]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.12...0.5.0-alpha.13
 

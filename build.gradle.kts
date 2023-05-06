@@ -1,5 +1,5 @@
-import com.javiersc.gradle.properties.extensions.getBooleanPropertyOrNull
-import com.javiersc.gradle.properties.extensions.getPropertyOrNull
+import com.javiersc.gradle.properties.extensions.getBooleanProperty
+import com.javiersc.gradle.properties.extensions.getStringProperty
 
 plugins { //
     alias(hubdle.plugins.javiersc.hubdle)
@@ -22,8 +22,8 @@ hubdle {
                 // TODO: https://github.com/gradle-nexus/publish-plugin/issues/84
                 tagPrefix.set(
                     provider {
-                        if (getBooleanPropertyOrNull("hubdle.catalog.renovate") == true) ""
-                        else getPropertyOrNull("semver.tagPrefix") ?: ""
+                        if (getBooleanProperty("hubdle.catalog.renovate").orNull == true) ""
+                        else getStringProperty("semver.tagPrefix").orNull ?: ""
                     },
                 )
             }

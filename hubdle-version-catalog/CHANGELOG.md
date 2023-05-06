@@ -14,6 +14,10 @@
 
 ### Updated
 
+## [0.1.1-alpha.1] - 2023-05-06
+
+### Updated
+
 - `org.jetbrains.kotlinx:kotlinx-coroutines-test -> 1.7.0`
 - `org.jetbrains.kotlinx:kotlinx-coroutines-core -> 1.7.0`
 - `org.jetbrains.kotlinx:kotlinx-coroutines-android -> 1.7.0`
@@ -89,6 +93,8 @@
 
 - Initial release
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.0.0...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.1-alpha.1...HEAD
+
+[0.1.1-alpha.1]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.0.0...c0.1.1-alpha.1
 
 [0.0.0]: https://github.com/JavierSegoviaCordoba/hubdle/commits/c0.0.0

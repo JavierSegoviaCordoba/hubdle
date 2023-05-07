@@ -154,7 +154,7 @@ constructor(
                 properties.property("sonar.projectName", projectName.get())
                 val projectKey: Provider<String> =
                     project
-                        .getStringProperty(Sonar.projectName)
+                        .getStringProperty(Sonar.projectKey)
                         .orElse(rootProjectDirName)
                         .orElse("${project.group}:${project.name}")
                 properties.property("sonar.projectKey", projectKey.get())

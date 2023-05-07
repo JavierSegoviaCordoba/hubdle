@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- `sonar.projectKey` is using `sonar.projectName`
+
 ### Updated
 
 ## [0.5.0-alpha.14] - 2023-05-06

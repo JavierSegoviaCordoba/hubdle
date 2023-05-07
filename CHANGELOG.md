@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- version is checked when publishing to maven local test repo
+
 ### Updated
 
 ## [0.5.0-alpha.15] - 2023-05-07

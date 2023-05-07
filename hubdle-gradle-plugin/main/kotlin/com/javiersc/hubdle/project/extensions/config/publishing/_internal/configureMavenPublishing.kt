@@ -119,9 +119,16 @@ private fun HubdleConfigurableExtension.configurePublishOnlySemver() =
             tasks.maybeRegisterLazily("checkIsSemver") { task ->
                 task.enabled = isTagPrefixProject
                 task.doLast {
-                    val publishNonSemver =
+                    val allTaskNames: List<String> = gradle.taskGraph.allTasks.map { it.name }
+                    val hasPublishToMavenLocalTest: Boolean =
+                        allTaskNames.any { name -> name == "publishToMavenLocalTest" }
+                    val publishNonSemver: Boolean =
                         getBooleanProperty(Publishing.nonSemver).orElse(false).get()
-                    check(isSemver || publishNonSemver) {
+                    println("isSemver: $isSemver")
+                    println("hasPublishToMavenLocalTest: $hasPublishToMavenLocalTest")
+                    println("publishNonSemver: $publishNonSemver")
+                    val isPublishException: Boolean = publishNonSemver || hasPublishToMavenLocalTest
+                    check(isSemver || isPublishException) {
                         // TODO: inject `$version` instead of getting it from the `project`
                         """|Only semantic versions can be published (current: $version)
                            |Use `"-Ppublishing.nonSemver=true"` to force the publication 

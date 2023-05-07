@@ -12,9 +12,13 @@
 
 ### Fixed
 
-- version is checked when publishing to maven local test repo
-
 ### Updated
+
+## [0.5.0-alpha.16] - 2023-05-07
+
+### Fixed
+
+- version is checked when publishing to maven local test repo
 
 ## [0.5.0-alpha.15] - 2023-05-07
 
@@ -256,7 +260,9 @@
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.2`
 - `app.cash.molecule:molecule-gradle-plugin -> 0.8.0`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.15...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.16...HEAD
+
+[0.5.0-alpha.16]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.15...0.5.0-alpha.16
 
 [0.5.0-alpha.15]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.14...0.5.0-alpha.15
 

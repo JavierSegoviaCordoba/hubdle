@@ -12,9 +12,13 @@
 
 ### Fixed
 
-- `sonar.projectKey` is using `sonar.projectName`
-
 ### Updated
+
+## [0.5.0-alpha.15] - 2023-05-07
+
+### Fixed
+
+- `sonar.projectKey` is using `sonar.projectName`
 
 ## [0.5.0-alpha.14] - 2023-05-06
 
@@ -250,7 +254,9 @@
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.2`
 - `app.cash.molecule:molecule-gradle-plugin -> 0.8.0`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.14...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.15...HEAD
+
+[0.5.0-alpha.15]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.14...0.5.0-alpha.15
 
 [0.5.0-alpha.14]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.13...0.5.0-alpha.14
 

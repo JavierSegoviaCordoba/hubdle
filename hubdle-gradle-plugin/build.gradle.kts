@@ -1,3 +1,4 @@
+import com.gradle.enterprise.gradleplugin.testretry.retry
 import com.javiersc.gradle.extensions.version.catalogs.getLibraries
 import com.javiersc.gradle.tasks.extensions.maybeRegisterLazily
 import com.javiersc.gradle.tasks.extensions.namedLazily
@@ -72,6 +73,7 @@ hubdle {
                     api(hubdle.gitlab.arturboschDetekt.detektGradlePlugin)
                     api(hubdle.gradle.enterprise.comGradleEnterpriseGradlePlugin)
                     api(hubdle.gradle.publish.pluginPublishPlugin)
+                    api(hubdle.gradle.testRetryGradlePlugin)
                     api(hubdle.javiersc.semver.semverGradlePlugin)
                     api(hubdle.jetbrains.compose.composeGradlePlugin)
                     api(hubdle.jetbrains.dokka.dokkaGradlePlugin)

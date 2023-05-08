@@ -4,6 +4,8 @@
 
 ### Added
 
+- Test Retry Gradle plugin
+
 ### Changed
 
 ### Deprecated

@@ -1,5 +1,7 @@
 package com.javiersc.hubdle.project.extensions.config.testing
 
+import com.gradle.enterprise.gradleplugin.testretry.TestRetryExtension
+import com.gradle.enterprise.gradleplugin.testretry.retry
 import com.javiersc.gradle.tasks.extensions.maybeRegisterLazily
 import com.javiersc.gradle.tasks.extensions.namedLazily
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
@@ -53,6 +55,13 @@ constructor(
     @HubdleDslMarker
     public fun maxParallelForks(forks: Int) {
         maxParallelForks.set(forks)
+    }
+
+    @HubdleDslMarker
+    public fun retry(action: Action<TestRetryExtension>) {
+        userConfigurable {
+            tasks.withType<Test>().configureEach { test -> action.execute(test.retry) }
+        }
     }
 
     public val showStandardStreams: Property<Boolean> = property { true }

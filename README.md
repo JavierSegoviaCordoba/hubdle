@@ -9,6 +9,14 @@
 
 # Hubdle
 
+Project and settings convention plugins which allow to create easily projects with different tools:
+
+- Kotlin projects like JVM, Android, Multiplatform, Gradle plugins, with different features, for
+  example Compose,Kotest, Coroutines, Serialization...
+- Autoconfiguration of multiple tools like coverage, analysis, lints, formatting, documentation,
+  publishing...
+- Auto-include projects and version catalogs.
+
 ## Usage
 
 ```kotlin
@@ -21,9 +29,9 @@ hubdle {
     kotlin {
         jvm {
             features {
-                coroutines()                
+                coroutines()
             }
-            
+
             main {
                 dependencies {
                     implementation("org.example:example:1.0.0")

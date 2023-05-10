@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `androidx.core:core-ktx -> 1.10.1`
 - `com.github.triplet.gradle:play-publisher -> 3.8.3`
 - `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.13.2`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-alpha.16`

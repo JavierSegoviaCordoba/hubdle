@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `androidx.compose.material3:material3-window-size-class -> 1.1.0`
+- `androidx.compose.material3:material3 -> 1.1.0`
 - `io.kotest:kotest-runner-junit5 -> 5.6.2`
 - `io.kotest:kotest-runner-junit4 -> 5.6.2`
 - `io.kotest:kotest-property -> 5.6.2`

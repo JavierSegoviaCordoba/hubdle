@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx:kotlinx-serialization-json -> 1.5.1`
+- `org.jetbrains.kotlinx:kotlinx-serialization-core -> 1.5.1`
 - `androidx.compose.material3:material3-window-size-class -> 1.1.0`
 - `androidx.compose.material3:material3 -> 1.1.0`
 - `io.kotest:kotest-runner-junit5 -> 5.6.2`

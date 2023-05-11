@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `app.cash.turbine:turbine -> 0.13.0`
 - `org.jetbrains.kotlinx:kotlinx-serialization-json -> 1.5.1`
 - `org.jetbrains.kotlinx:kotlinx-serialization-core -> 1.5.1`
 - `androidx.compose.material3:material3-window-size-class -> 1.1.0`

@@ -14,6 +14,12 @@
 
 ### Updated
 
+- `io.kotest:kotest-runner-junit5 -> 5.6.2`
+- `io.kotest:kotest-runner-junit4 -> 5.6.2`
+- `io.kotest:kotest-property -> 5.6.2`
+- `io.kotest:kotest-assertions-sql -> 5.6.2`
+- `io.kotest:kotest-assertions-json -> 5.6.2`
+- `io.kotest:kotest-assertions-core -> 5.6.2`
 - `androidx.core:core-ktx -> 1.10.1`
 - `com.github.triplet.gradle:play-publisher -> 3.8.3`
 - `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.13.2`

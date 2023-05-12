@@ -14,6 +14,9 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx:kotlinx-coroutines-test -> 1.7.1`
+- `org.jetbrains.kotlinx:kotlinx-coroutines-core -> 1.7.1`
+- `org.jetbrains.kotlinx:kotlinx-coroutines-android -> 1.7.1`
 - `com.squareup.moshi:moshi -> 1.15.0`
 - `app.cash.turbine:turbine -> 0.13.0`
 - `org.jetbrains.kotlinx:kotlinx-serialization-json -> 1.5.1`

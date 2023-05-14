@@ -107,14 +107,6 @@
 - `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
 - `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.13.1`
 
-## [0.0.0] - 2023-04-18
-
-### Added
-
-- Initial release
-
 [Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.1-alpha.1...HEAD
 
-[0.1.1-alpha.1]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.0.0...c0.1.1-alpha.1
-
-[0.0.0]: https://github.com/JavierSegoviaCordoba/hubdle/commits/c0.0.0
+[0.1.1-alpha.1]: https://github.com/JavierSegoviaCordoba/hubdle/commits/c0.1.1-alpha.1

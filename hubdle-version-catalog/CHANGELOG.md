@@ -14,6 +14,10 @@
 
 ### Updated
 
+## [0.1.1-alpha.2] - 2023-05-14
+
+### Updated
+
 - `org.jetbrains.kotlinx:kotlinx-coroutines-test -> 1.7.1`
 - `org.jetbrains.kotlinx:kotlinx-coroutines-core -> 1.7.1`
 - `org.jetbrains.kotlinx:kotlinx-coroutines-android -> 1.7.1`
@@ -107,6 +111,8 @@
 - `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
 - `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.13.1`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.1-alpha.1...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.1-alpha.2...HEAD
+
+[0.1.1-alpha.2]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.1-alpha.1...c0.1.1-alpha.2
 
 [0.1.1-alpha.1]: https://github.com/JavierSegoviaCordoba/hubdle/commits/c0.1.1-alpha.1

@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `org.jetbrains.intellij.deps:intellij-coverage-agent -> 1.0.720`
+
 ## [0.1.1-alpha.2] - 2023-05-14
 
 ### Updated

@@ -8,7 +8,7 @@ import com.javiersc.hubdle.project.extensions._internal.configurableDependencies
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
-import com.javiersc.hubdle.project.extensions.config.publishing._internal.configurableMavenPublishing
+import com.javiersc.hubdle.project.extensions.config.publishing.maven.configurableMavenPublishing
 import com.javiersc.hubdle.project.extensions.kotlin._internal.configurableKotlinTestFunctionalSourceSets
 import com.javiersc.hubdle.project.extensions.kotlin._internal.configurableKotlinTestIntegrationSourceSets
 import com.javiersc.hubdle.project.extensions.kotlin._internal.configurableSrcDirs
@@ -69,7 +69,10 @@ constructor(
         configurableTestFunctionalSourceSets()
         configurableKotlinTestFunctionalSourceSets()
         configurableDependencies()
-        configurableMavenPublishing(mavenPublicationName = "java", configJavaExtension = true)
+        configurableMavenPublishing(
+            mavenPublicationName = "java",
+            configJavaExtension = true,
+        )
     }
 }
 

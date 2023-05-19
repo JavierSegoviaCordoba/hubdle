@@ -1,9 +1,6 @@
 package com.javiersc.hubdle.project.extensions.config.documentation.site
 
 import com.javiersc.gradle.project.extensions.isRootProject
-import com.javiersc.gradle.properties.extensions.getStringProperty
-import com.javiersc.hubdle.project.HubdleProperty.Analysis.Qodana
-import com.javiersc.hubdle.project.HubdleProperty.Analysis.Sonar
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
@@ -68,16 +65,6 @@ constructor(
                 buildDir = "${rootProject.rootDir}/build/docs"
                 publish.docPath = "_site"
             }
-            val preBuildDocsTask =
-                PrebuildSiteTask.register(project) {
-                    projectsInfo.set(project.projectsInfo)
-                    qodana.set(analysis.qodana)
-                    qodanaProjectKey.set(getStringProperty(Qodana.projectKey))
-                    sonar.set(analysis.sonar)
-                    sonarProjectId.set(getStringProperty(Sonar.projectKey))
-                }
-
-            BuildSiteTask.register(project, preBuildDocsTask)
         }
     }
 }

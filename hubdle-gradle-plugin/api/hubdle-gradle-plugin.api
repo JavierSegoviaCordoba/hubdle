@@ -57,110 +57,6 @@ public abstract class com/javiersc/hubdle/project/HubdleProjectPlugin : org/grad
 	public fun apply (Lorg/gradle/api/Project;)V
 }
 
-public final class com/javiersc/hubdle/project/HubdleProperty {
-	public static final field INSTANCE Lcom/javiersc/hubdle/project/HubdleProperty;
-}
-
-public final class com/javiersc/hubdle/project/HubdleProperty$Analysis {
-	public static final field INSTANCE Lcom/javiersc/hubdle/project/HubdleProperty$Analysis;
-}
-
-public final class com/javiersc/hubdle/project/HubdleProperty$Analysis$Qodana {
-	public static final field INSTANCE Lcom/javiersc/hubdle/project/HubdleProperty$Analysis$Qodana;
-	public static final field projectKey Ljava/lang/String;
-}
-
-public final class com/javiersc/hubdle/project/HubdleProperty$Analysis$Sonar {
-	public static final field INSTANCE Lcom/javiersc/hubdle/project/HubdleProperty$Analysis$Sonar;
-	public static final field hostUrl Ljava/lang/String;
-	public static final field login Ljava/lang/String;
-	public static final field organization Ljava/lang/String;
-	public static final field projectKey Ljava/lang/String;
-	public static final field projectName Ljava/lang/String;
-}
-
-public final class com/javiersc/hubdle/project/HubdleProperty$Android {
-	public static final field INSTANCE Lcom/javiersc/hubdle/project/HubdleProperty$Android;
-	public static final field namespace Ljava/lang/String;
-	public static final field namespaceUseKotlinFile Ljava/lang/String;
-	public static final field namespaceUseProject Ljava/lang/String;
-}
-
-public final class com/javiersc/hubdle/project/HubdleProperty$Android$BuildFeatures {
-	public static final field INSTANCE Lcom/javiersc/hubdle/project/HubdleProperty$Android$BuildFeatures;
-	public static final field aidl Ljava/lang/String;
-	public static final field buildConfig Ljava/lang/String;
-	public static final field compose Ljava/lang/String;
-	public static final field renderScript Ljava/lang/String;
-	public static final field resValues Ljava/lang/String;
-	public static final field shaders Ljava/lang/String;
-	public static final field viewBinding Ljava/lang/String;
-}
-
-public final class com/javiersc/hubdle/project/HubdleProperty$IntelliJ {
-	public static final field INSTANCE Lcom/javiersc/hubdle/project/HubdleProperty$IntelliJ;
-	public static final field downloadSources Ljava/lang/String;
-	public static final field publishToken Ljava/lang/String;
-	public static final field sinceBuild Ljava/lang/String;
-	public static final field type Ljava/lang/String;
-	public static final field untilBuild Ljava/lang/String;
-	public static final field updateSinceUntilBuild Ljava/lang/String;
-	public static final field version Ljava/lang/String;
-}
-
-public final class com/javiersc/hubdle/project/HubdleProperty$JetBrains {
-	public static final field INSTANCE Lcom/javiersc/hubdle/project/HubdleProperty$JetBrains;
-	public static final field marketplaceCertificateChain Ljava/lang/String;
-	public static final field marketplaceKey Ljava/lang/String;
-	public static final field marketplaceKeyPassphrase Ljava/lang/String;
-}
-
-public final class com/javiersc/hubdle/project/HubdleProperty$Nexus {
-	public static final field INSTANCE Lcom/javiersc/hubdle/project/HubdleProperty$Nexus;
-	public static final field nexusSnapshotRepositoryUrl Ljava/lang/String;
-	public static final field nexusStagingProfileId Ljava/lang/String;
-	public static final field nexusToken Ljava/lang/String;
-	public static final field nexusUrl Ljava/lang/String;
-	public static final field nexusUser Ljava/lang/String;
-}
-
-public final class com/javiersc/hubdle/project/HubdleProperty$POM {
-	public static final field INSTANCE Lcom/javiersc/hubdle/project/HubdleProperty$POM;
-	public static final field description Ljava/lang/String;
-	public static final field developerEmail Ljava/lang/String;
-	public static final field developerId Ljava/lang/String;
-	public static final field developerName Ljava/lang/String;
-	public static final field licenseName Ljava/lang/String;
-	public static final field licenseUrl Ljava/lang/String;
-	public static final field name Ljava/lang/String;
-	public static final field scmConnection Ljava/lang/String;
-	public static final field scmDeveloperConnection Ljava/lang/String;
-	public static final field scmUrl Ljava/lang/String;
-	public static final field url Ljava/lang/String;
-}
-
-public final class com/javiersc/hubdle/project/HubdleProperty$Project {
-	public static final field INSTANCE Lcom/javiersc/hubdle/project/HubdleProperty$Project;
-	public static final field group Ljava/lang/String;
-	public static final field mainProjectName Ljava/lang/String;
-	public static final field rootProjectDirName Ljava/lang/String;
-	public static final field rootProjectName Ljava/lang/String;
-	public static final field version Ljava/lang/String;
-}
-
-public final class com/javiersc/hubdle/project/HubdleProperty$Publishing {
-	public static final field INSTANCE Lcom/javiersc/hubdle/project/HubdleProperty$Publishing;
-	public static final field nonSemver Ljava/lang/String;
-	public static final field sign Ljava/lang/String;
-}
-
-public final class com/javiersc/hubdle/project/HubdleProperty$Signing {
-	public static final field INSTANCE Lcom/javiersc/hubdle/project/HubdleProperty$Signing;
-	public static final field gnupgKey Ljava/lang/String;
-	public static final field gnupgPassphrase Ljava/lang/String;
-	public static final field keyId Ljava/lang/String;
-}
-
 public abstract interface annotation class com/javiersc/hubdle/project/extensions/HubdleDslMarker : java/lang/annotation/Annotation {
 }
 
@@ -234,7 +130,7 @@ public abstract class com/javiersc/hubdle/project/extensions/apis/HubdleSourceSe
 	public static synthetic fun testIntegration$default (Lcom/javiersc/hubdle/project/extensions/apis/HubdleSourceSetConfigurableExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 }
 
-public class com/javiersc/hubdle/project/extensions/config/HubdleConfigExtension : com/javiersc/hubdle/project/extensions/apis/HubdleEnableableExtension {
+public class com/javiersc/hubdle/project/extensions/config/HubdleConfigExtension : com/javiersc/hubdle/project/extensions/apis/HubdleConfigurableExtension {
 	public fun <init> (Lorg/gradle/api/Project;)V
 	public final fun analysis (Lorg/gradle/api/Action;)V
 	public static synthetic fun analysis$default (Lcom/javiersc/hubdle/project/extensions/config/HubdleConfigExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
@@ -253,11 +149,13 @@ public class com/javiersc/hubdle/project/extensions/config/HubdleConfigExtension
 	public final fun getCoverage ()Lcom/javiersc/hubdle/project/extensions/config/coverage/HubdleConfigCoverageExtension;
 	public final fun getDocumentation ()Lcom/javiersc/hubdle/project/extensions/config/documentation/HubdleConfigDocumentationExtension;
 	public final fun getFormat ()Lcom/javiersc/hubdle/project/extensions/config/format/HubdleConfigFormatExtension;
+	public final fun getGroup ()Lorg/gradle/api/provider/Property;
 	public final fun getInstall ()Lcom/javiersc/hubdle/project/extensions/config/install/HubdleConfigInstallExtension;
 	public final fun getLanguageSettings ()Lcom/javiersc/hubdle/project/extensions/config/language/settings/HubdleConfigLanguageSettingsExtension;
 	public final fun getNexus ()Lcom/javiersc/hubdle/project/extensions/config/nexus/HubdleConfigNexusExtension;
 	public final fun getPublishing ()Lcom/javiersc/hubdle/project/extensions/config/publishing/HubdleConfigPublishingExtension;
 	public final fun getVersioning ()Lcom/javiersc/hubdle/project/extensions/config/versioning/HubdleConfigVersioningExtension;
+	public final fun group (Ljava/lang/String;)V
 	public final fun install (Lorg/gradle/api/Action;)V
 	public static synthetic fun install$default (Lcom/javiersc/hubdle/project/extensions/config/HubdleConfigExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 	public fun isEnabled ()Lorg/gradle/api/provider/Property;
@@ -271,32 +169,25 @@ public class com/javiersc/hubdle/project/extensions/config/HubdleConfigExtension
 	public static synthetic fun versioning$default (Lcom/javiersc/hubdle/project/extensions/config/HubdleConfigExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 }
 
+public final class com/javiersc/hubdle/project/extensions/config/HubdleConfigExtension$ProjectConfig {
+	public static final field INSTANCE Lcom/javiersc/hubdle/project/extensions/config/HubdleConfigExtension$ProjectConfig;
+	public static final field group Ljava/lang/String;
+	public static final field mainProjectName Ljava/lang/String;
+	public static final field rootProjectName Ljava/lang/String;
+	public static final field version Ljava/lang/String;
+}
+
 public class com/javiersc/hubdle/project/extensions/config/analysis/HubdleConfigAnalysisExtension : com/javiersc/hubdle/project/extensions/apis/HubdleConfigurableExtension {
 	public fun <init> (Lorg/gradle/api/Project;)V
-	public final fun detekt (Lorg/gradle/api/Action;)V
-	public static synthetic fun detekt$default (Lcom/javiersc/hubdle/project/extensions/config/analysis/HubdleConfigAnalysisExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
-	public final fun excludes ([Ljava/lang/String;)V
-	public final fun getExcludes ()Lorg/gradle/api/provider/SetProperty;
-	public final fun getIgnoreFailures ()Lorg/gradle/api/provider/Property;
-	public final fun getIncludes ()Lorg/gradle/api/provider/SetProperty;
-	public final fun getReports ()Lcom/javiersc/hubdle/project/extensions/config/analysis/reports/HubdleConfigAnalysisReportsExtension;
-	public final fun includes ([Ljava/lang/String;)V
 	public fun isEnabled ()Lorg/gradle/api/provider/Property;
-	public final fun reports (Lorg/gradle/api/Action;)V
-	public static synthetic fun reports$default (Lcom/javiersc/hubdle/project/extensions/config/analysis/HubdleConfigAnalysisExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+}
+
+public final class com/javiersc/hubdle/project/extensions/config/analysis/HubdleConfigAnalysisExtension$Qodana {
+	public static final field INSTANCE Lcom/javiersc/hubdle/project/extensions/config/analysis/HubdleConfigAnalysisExtension$Qodana;
+	public static final field projectKey Ljava/lang/String;
 }
 
 public final class com/javiersc/hubdle/project/extensions/config/analysis/HubdleConfigAnalysisExtension$defaultConfiguration$1$inlined$sam$i$org_gradle_api_specs_Spec$0 : org/gradle/api/specs/Spec {
-	public fun <init> (Lkotlin/jvm/functions/Function1;)V
-	public final synthetic fun isSatisfiedBy (Ljava/lang/Object;)Z
-}
-
-public final class com/javiersc/hubdle/project/extensions/config/analysis/HubdleConfigAnalysisExtension$inlined$sam$i$org_gradle_api_Action$0 : org/gradle/api/Action {
-	public fun <init> (Lkotlin/jvm/functions/Function1;)V
-	public final synthetic fun execute (Ljava/lang/Object;)V
-}
-
-public final class com/javiersc/hubdle/project/extensions/config/analysis/HubdleConfigAnalysisExtension$inlined$sam$i$org_gradle_api_specs_Spec$0 : org/gradle/api/specs/Spec {
 	public fun <init> (Lkotlin/jvm/functions/Function1;)V
 	public final synthetic fun isSatisfiedBy (Ljava/lang/Object;)Z
 }
@@ -309,6 +200,55 @@ public class com/javiersc/hubdle/project/extensions/config/analysis/reports/Hubd
 	public final fun getTxt ()Lorg/gradle/api/provider/Property;
 	public final fun getXml ()Lorg/gradle/api/provider/Property;
 	public fun isEnabled ()Lorg/gradle/api/provider/Property;
+}
+
+public class com/javiersc/hubdle/project/extensions/config/analysis/tools/HubdleConfigAnalysisDetektExtension : com/javiersc/hubdle/project/extensions/apis/HubdleConfigurableExtension {
+	public fun <init> (Lorg/gradle/api/Project;)V
+	public final fun detekt (Lorg/gradle/api/Action;)V
+	public static synthetic fun detekt$default (Lcom/javiersc/hubdle/project/extensions/config/analysis/tools/HubdleConfigAnalysisDetektExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+	public final fun excludes ([Ljava/lang/String;)V
+	public final fun getExcludes ()Lorg/gradle/api/provider/SetProperty;
+	public final fun getIgnoreFailures ()Lorg/gradle/api/provider/Property;
+	public final fun getIncludes ()Lorg/gradle/api/provider/SetProperty;
+	public final fun getReports ()Lcom/javiersc/hubdle/project/extensions/config/analysis/reports/HubdleConfigAnalysisReportsExtension;
+	public final fun includes ([Ljava/lang/String;)V
+	public fun isEnabled ()Lorg/gradle/api/provider/Property;
+	public final fun reports (Lorg/gradle/api/Action;)V
+	public static synthetic fun reports$default (Lcom/javiersc/hubdle/project/extensions/config/analysis/tools/HubdleConfigAnalysisDetektExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+}
+
+public final class com/javiersc/hubdle/project/extensions/config/analysis/tools/HubdleConfigAnalysisDetektExtension$inlined$sam$i$org_gradle_api_Action$0 : org/gradle/api/Action {
+	public fun <init> (Lkotlin/jvm/functions/Function1;)V
+	public final synthetic fun execute (Ljava/lang/Object;)V
+}
+
+public final class com/javiersc/hubdle/project/extensions/config/analysis/tools/HubdleConfigAnalysisDetektExtension$inlined$sam$i$org_gradle_api_specs_Spec$0 : org/gradle/api/specs/Spec {
+	public fun <init> (Lkotlin/jvm/functions/Function1;)V
+	public final synthetic fun isSatisfiedBy (Ljava/lang/Object;)Z
+}
+
+public class com/javiersc/hubdle/project/extensions/config/analysis/tools/HubdleConfigAnalysisSonarExtension : com/javiersc/hubdle/project/extensions/apis/HubdleConfigurableExtension {
+	public fun <init> (Lorg/gradle/api/Project;)V
+	public final fun getHostUrl ()Lorg/gradle/api/provider/Property;
+	public final fun getLogin ()Lorg/gradle/api/provider/Property;
+	public final fun getOrganization ()Lorg/gradle/api/provider/Property;
+	public final fun getProjectKey ()Lorg/gradle/api/provider/Property;
+	public final fun getProjectName ()Lorg/gradle/api/provider/Property;
+	public fun isEnabled ()Lorg/gradle/api/provider/Property;
+}
+
+public final class com/javiersc/hubdle/project/extensions/config/analysis/tools/HubdleConfigAnalysisSonarExtension$Sonar {
+	public static final field INSTANCE Lcom/javiersc/hubdle/project/extensions/config/analysis/tools/HubdleConfigAnalysisSonarExtension$Sonar;
+	public static final field hostUrl Ljava/lang/String;
+	public static final field login Ljava/lang/String;
+	public static final field organization Ljava/lang/String;
+	public static final field projectKey Ljava/lang/String;
+	public static final field projectName Ljava/lang/String;
+}
+
+public final class com/javiersc/hubdle/project/extensions/config/analysis/tools/HubdleConfigAnalysisSonarExtension$inlined$sam$i$org_gradle_api_Action$0 : org/gradle/api/Action {
+	public fun <init> (Lkotlin/jvm/functions/Function1;)V
+	public final synthetic fun execute (Ljava/lang/Object;)V
 }
 
 public class com/javiersc/hubdle/project/extensions/config/binary/compatibility/validator/HubdleConfigBinaryCompatibilityValidatorExtension : com/javiersc/hubdle/project/extensions/apis/HubdleConfigurableExtension {
@@ -448,6 +388,7 @@ public class com/javiersc/hubdle/project/extensions/config/documentation/readme/
 	public final fun getBuild ()Lorg/gradle/api/provider/Property;
 	public final fun getCoverage ()Lorg/gradle/api/provider/Property;
 	public final fun getKotlin ()Lorg/gradle/api/provider/Property;
+	public final fun getMainProjectName ()Lorg/gradle/api/provider/Property;
 	public final fun getMavenCentral ()Lorg/gradle/api/provider/Property;
 	public final fun getQuality ()Lorg/gradle/api/provider/Property;
 	public final fun getSnapshots ()Lorg/gradle/api/provider/Property;
@@ -551,9 +492,10 @@ public final class com/javiersc/hubdle/project/extensions/config/documentation/s
 	public fun toString ()Ljava/lang/String;
 }
 
-public class com/javiersc/hubdle/project/extensions/config/documentation/site/analysis/HubdleConfigDocumentationSiteAnalysisExtension : com/javiersc/hubdle/project/extensions/apis/HubdleEnableableExtension {
+public class com/javiersc/hubdle/project/extensions/config/documentation/site/analysis/HubdleConfigDocumentationSiteAnalysisExtension : com/javiersc/hubdle/project/extensions/apis/HubdleConfigurableExtension {
 	public fun <init> (Lorg/gradle/api/Project;)V
 	public final fun getQodana ()Lorg/gradle/api/provider/Property;
+	public final fun getQodanaProjectKey ()Lorg/gradle/api/provider/Property;
 	public final fun getSonar ()Lorg/gradle/api/provider/Property;
 	public fun isEnabled ()Lorg/gradle/api/provider/Property;
 }
@@ -769,9 +711,28 @@ public class com/javiersc/hubdle/project/extensions/config/language/settings/Hub
 
 public class com/javiersc/hubdle/project/extensions/config/nexus/HubdleConfigNexusExtension : com/javiersc/hubdle/project/extensions/apis/HubdleConfigurableExtension {
 	public fun <init> (Lorg/gradle/api/Project;)V
+	public final fun getSnapshotRepositoryUrl ()Lorg/gradle/api/provider/Property;
+	public final fun getStagingProfileId ()Lorg/gradle/api/provider/Property;
+	public final fun getToken ()Lorg/gradle/api/provider/Property;
+	public final fun getUrl ()Lorg/gradle/api/provider/Property;
+	public final fun getUser ()Lorg/gradle/api/provider/Property;
 	public fun isEnabled ()Lorg/gradle/api/provider/Property;
 	public final fun nexusPublishing (Lorg/gradle/api/Action;)V
 	public static synthetic fun nexusPublishing$default (Lcom/javiersc/hubdle/project/extensions/config/nexus/HubdleConfigNexusExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+	public final fun snapshotRepositoryUrl (Ljava/lang/String;)V
+	public final fun stagingProfileId (Ljava/lang/String;)V
+	public final fun token (Ljava/lang/String;)V
+	public final fun url (Ljava/lang/String;)V
+	public final fun user (Ljava/lang/String;)V
+}
+
+public final class com/javiersc/hubdle/project/extensions/config/nexus/HubdleConfigNexusExtension$Nexus {
+	public static final field INSTANCE Lcom/javiersc/hubdle/project/extensions/config/nexus/HubdleConfigNexusExtension$Nexus;
+	public static final field nexusSnapshotRepositoryUrl Ljava/lang/String;
+	public static final field nexusStagingProfileId Ljava/lang/String;
+	public static final field nexusToken Ljava/lang/String;
+	public static final field nexusUrl Ljava/lang/String;
+	public static final field nexusUser Ljava/lang/String;
 }
 
 public final class com/javiersc/hubdle/project/extensions/config/nexus/HubdleConfigNexusExtension$defaultConfiguration$1$inlined$sam$i$org_gradle_api_Action$0 : org/gradle/api/Action {
@@ -781,43 +742,115 @@ public final class com/javiersc/hubdle/project/extensions/config/nexus/HubdleCon
 
 public class com/javiersc/hubdle/project/extensions/config/publishing/HubdleConfigPublishingExtension : com/javiersc/hubdle/project/extensions/apis/HubdleEnableableExtension {
 	public fun <init> (Lorg/gradle/api/Project;)V
+	public final fun getMaven ()Lcom/javiersc/hubdle/project/extensions/config/publishing/maven/HubdleConfigPublishingMavenExtension;
+	public final fun getPublishNonSemver ()Lorg/gradle/api/provider/Property;
+	public final fun getSigning ()Lcom/javiersc/hubdle/project/extensions/config/publishing/signing/HubdleConfigPublishingSigningExtension;
 	public fun isEnabled ()Lorg/gradle/api/provider/Property;
-	public final fun publishing (Lorg/gradle/api/Action;)V
-	public static synthetic fun publishing$default (Lcom/javiersc/hubdle/project/extensions/config/publishing/HubdleConfigPublishingExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
-	public final fun repositories (Lorg/gradle/api/Action;)V
-	public static synthetic fun repositories$default (Lcom/javiersc/hubdle/project/extensions/config/publishing/HubdleConfigPublishingExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+	public final fun maven (Lorg/gradle/api/Action;)V
+	public static synthetic fun maven$default (Lcom/javiersc/hubdle/project/extensions/config/publishing/HubdleConfigPublishingExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+	public final fun publishNonSemver (Z)V
 	public final fun signing (Lorg/gradle/api/Action;)V
 	public static synthetic fun signing$default (Lcom/javiersc/hubdle/project/extensions/config/publishing/HubdleConfigPublishingExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 }
 
-public final class com/javiersc/hubdle/project/extensions/config/publishing/_internal/ConfigureMavenPublishingKt$configurableMavenPublishing$2$4$inlined$sam$i$org_gradle_api_Action$0 : org/gradle/api/Action {
+public final class com/javiersc/hubdle/project/extensions/config/publishing/HubdleConfigPublishingExtension$Publishing {
+	public static final field INSTANCE Lcom/javiersc/hubdle/project/extensions/config/publishing/HubdleConfigPublishingExtension$Publishing;
+	public static final field nonSemver Ljava/lang/String;
+	public static final field sign Ljava/lang/String;
+}
+
+public class com/javiersc/hubdle/project/extensions/config/publishing/maven/HubdleConfigPublishingMavenExtension : com/javiersc/hubdle/project/extensions/apis/HubdleEnableableExtension {
+	public fun <init> (Lorg/gradle/api/Project;)V
+	public final fun getPom ()Lcom/javiersc/hubdle/project/extensions/config/publishing/maven/HubdleConfigPublishingMavenPomExtension;
+	public fun isEnabled ()Lorg/gradle/api/provider/Property;
+	public final fun pom (Lorg/gradle/api/Action;)V
+	public static synthetic fun pom$default (Lcom/javiersc/hubdle/project/extensions/config/publishing/maven/HubdleConfigPublishingMavenExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+	public final fun publishing (Lorg/gradle/api/Action;)V
+	public static synthetic fun publishing$default (Lcom/javiersc/hubdle/project/extensions/config/publishing/maven/HubdleConfigPublishingMavenExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+	public final fun repositories (Lorg/gradle/api/Action;)V
+	public static synthetic fun repositories$default (Lcom/javiersc/hubdle/project/extensions/config/publishing/maven/HubdleConfigPublishingMavenExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+}
+
+public final class com/javiersc/hubdle/project/extensions/config/publishing/maven/HubdleConfigPublishingMavenExtensionKt$configureMavenPublication$1$1$inlined$sam$i$org_gradle_api_Action$0 : org/gradle/api/Action {
 	public fun <init> (Lkotlin/jvm/functions/Function1;)V
 	public final synthetic fun execute (Ljava/lang/Object;)V
 }
 
-public final class com/javiersc/hubdle/project/extensions/config/publishing/_internal/ConfigureMavenPublishingKt$configureMavenPublication$1$1$1$inlined$sam$i$org_gradle_api_Action$0 : org/gradle/api/Action {
-	public fun <init> (Lkotlin/jvm/functions/Function1;)V
-	public final synthetic fun execute (Ljava/lang/Object;)V
-}
-
-public final class com/javiersc/hubdle/project/extensions/config/publishing/_internal/ConfigureMavenPublishingKt$configurePublishingExtension$1$1$1$inlined$sam$i$org_gradle_api_Action$0 : org/gradle/api/Action {
-	public fun <init> (Lkotlin/jvm/functions/Function1;)V
-	public final synthetic fun execute (Ljava/lang/Object;)V
-}
-
-public final class com/javiersc/hubdle/project/extensions/config/publishing/_internal/ConfigureMavenPublishingKt$configureRepositories$1$1$inlined$sam$i$org_gradle_api_specs_Spec$0 : org/gradle/api/specs/Spec {
+public final class com/javiersc/hubdle/project/extensions/config/publishing/maven/HubdleConfigPublishingMavenExtensionKt$configureRepositories$1$inlined$sam$i$org_gradle_api_specs_Spec$0 : org/gradle/api/specs/Spec {
 	public fun <init> (Lkotlin/jvm/functions/Function1;)V
 	public final synthetic fun isSatisfiedBy (Ljava/lang/Object;)Z
 }
 
-public final class com/javiersc/hubdle/project/extensions/config/publishing/_internal/ConfigureMavenPublishingKt$inlined$sam$i$org_gradle_api_Action$0 : org/gradle/api/Action {
+public final class com/javiersc/hubdle/project/extensions/config/publishing/maven/HubdleConfigPublishingMavenExtensionKt$inlined$sam$i$org_gradle_api_Action$0 : org/gradle/api/Action {
 	public fun <init> (Lkotlin/jvm/functions/Function1;)V
 	public final synthetic fun execute (Ljava/lang/Object;)V
 }
 
-public final class com/javiersc/hubdle/project/extensions/config/publishing/_internal/ConfigureMavenPublishingKt$inlined$sam$i$org_gradle_api_specs_Spec$0 : org/gradle/api/specs/Spec {
+public final class com/javiersc/hubdle/project/extensions/config/publishing/maven/HubdleConfigPublishingMavenExtensionKt$inlined$sam$i$org_gradle_api_specs_Spec$0 : org/gradle/api/specs/Spec {
 	public fun <init> (Lkotlin/jvm/functions/Function1;)V
 	public final synthetic fun isSatisfiedBy (Ljava/lang/Object;)Z
+}
+
+public class com/javiersc/hubdle/project/extensions/config/publishing/maven/HubdleConfigPublishingMavenPomExtension : com/javiersc/hubdle/project/extensions/apis/HubdleEnableableExtension {
+	public fun <init> (Lorg/gradle/api/Project;)V
+	public final fun description (Ljava/lang/String;)V
+	public final fun developerEmail (Ljava/lang/String;)V
+	public final fun developerId (Ljava/lang/String;)V
+	public final fun developerName (Ljava/lang/String;)V
+	public final fun getDescription ()Lorg/gradle/api/provider/Property;
+	public final fun getDeveloperEmail ()Lorg/gradle/api/provider/Property;
+	public final fun getDeveloperId ()Lorg/gradle/api/provider/Property;
+	public final fun getDeveloperName ()Lorg/gradle/api/provider/Property;
+	public final fun getLicenseName ()Lorg/gradle/api/provider/Property;
+	public final fun getLicenseUrl ()Lorg/gradle/api/provider/Property;
+	public final fun getName ()Lorg/gradle/api/provider/Property;
+	public final fun getScmConnection ()Lorg/gradle/api/provider/Property;
+	public final fun getScmDeveloperConnection ()Lorg/gradle/api/provider/Property;
+	public final fun getScmUrl ()Lorg/gradle/api/provider/Property;
+	public final fun getUrl ()Lorg/gradle/api/provider/Property;
+	public fun isEnabled ()Lorg/gradle/api/provider/Property;
+	public final fun licenseName (Ljava/lang/String;)V
+	public final fun licenseUrl (Ljava/lang/String;)V
+	public final fun name (Ljava/lang/String;)V
+	public final fun scmConnection (Ljava/lang/String;)V
+	public final fun scmDeveloperConnection (Ljava/lang/String;)V
+	public final fun scmUrl (Ljava/lang/String;)V
+	public final fun url (Ljava/lang/String;)V
+}
+
+public final class com/javiersc/hubdle/project/extensions/config/publishing/maven/HubdleConfigPublishingMavenPomExtension$POM {
+	public static final field INSTANCE Lcom/javiersc/hubdle/project/extensions/config/publishing/maven/HubdleConfigPublishingMavenPomExtension$POM;
+	public static final field description Ljava/lang/String;
+	public static final field developerEmail Ljava/lang/String;
+	public static final field developerId Ljava/lang/String;
+	public static final field developerName Ljava/lang/String;
+	public static final field licenseName Ljava/lang/String;
+	public static final field licenseUrl Ljava/lang/String;
+	public static final field name Ljava/lang/String;
+	public static final field scmConnection Ljava/lang/String;
+	public static final field scmDeveloperConnection Ljava/lang/String;
+	public static final field scmUrl Ljava/lang/String;
+	public static final field url Ljava/lang/String;
+}
+
+public class com/javiersc/hubdle/project/extensions/config/publishing/signing/HubdleConfigPublishingSigningExtension : com/javiersc/hubdle/project/extensions/apis/HubdleConfigurableExtension {
+	public fun <init> (Lorg/gradle/api/Project;)V
+	public final fun getGnupgKey ()Lorg/gradle/api/provider/Property;
+	public final fun getGnupgPassphrase ()Lorg/gradle/api/provider/Property;
+	public final fun getShouldSign ()Lorg/gradle/api/provider/Property;
+	public final fun gnupgKey (Ljava/lang/String;)V
+	public final fun gnupgPassphrase (Ljava/lang/String;)V
+	public fun isEnabled ()Lorg/gradle/api/provider/Property;
+	public final fun shouldSign (Z)V
+	public final fun signing (Lorg/gradle/api/Action;)V
+	public static synthetic fun signing$default (Lcom/javiersc/hubdle/project/extensions/config/publishing/signing/HubdleConfigPublishingSigningExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+}
+
+public final class com/javiersc/hubdle/project/extensions/config/publishing/signing/HubdleConfigPublishingSigningExtension$Signing {
+	public static final field INSTANCE Lcom/javiersc/hubdle/project/extensions/config/publishing/signing/HubdleConfigPublishingSigningExtension$Signing;
+	public static final field gnupgKey Ljava/lang/String;
+	public static final field gnupgPassphrase Ljava/lang/String;
+	public static final field sign Ljava/lang/String;
 }
 
 public abstract class com/javiersc/hubdle/project/extensions/config/testing/HubdleConfigTestingExtension : com/javiersc/hubdle/project/extensions/apis/HubdleConfigurableExtension {
@@ -937,7 +970,14 @@ public class com/javiersc/hubdle/project/extensions/kotlin/android/HubdleKotlinA
 	public static synthetic fun library$default (Lcom/javiersc/hubdle/project/extensions/kotlin/android/HubdleKotlinAndroidExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 }
 
-public final class com/javiersc/hubdle/project/extensions/kotlin/android/_internal/CalculateAndroidNamespaceKt$inlined$sam$i$org_gradle_api_Action$0 : org/gradle/api/Action {
+public final class com/javiersc/hubdle/project/extensions/kotlin/android/HubdleKotlinAndroidExtension$Android {
+	public static final field INSTANCE Lcom/javiersc/hubdle/project/extensions/kotlin/android/HubdleKotlinAndroidExtension$Android;
+	public static final field namespace Ljava/lang/String;
+	public static final field namespaceUseKotlinFile Ljava/lang/String;
+	public static final field namespaceUseProject Ljava/lang/String;
+}
+
+public final class com/javiersc/hubdle/project/extensions/kotlin/android/_internal/ConfigureAndroidJavaVersionKt$inlined$sam$i$org_gradle_api_Action$0 : org/gradle/api/Action {
 	public fun <init> (Lkotlin/jvm/functions/Function1;)V
 	public final synthetic fun execute (Ljava/lang/Object;)V
 }
@@ -1023,6 +1063,17 @@ public class com/javiersc/hubdle/project/extensions/kotlin/android/features/Hubd
 	public final fun getShaders ()Lorg/gradle/api/provider/Property;
 	public final fun getViewBinding ()Lorg/gradle/api/provider/Property;
 	public fun isEnabled ()Lorg/gradle/api/provider/Property;
+}
+
+public final class com/javiersc/hubdle/project/extensions/kotlin/android/features/HubdleKotlinAndroidBuildFeaturesExtension$BuildFeatures {
+	public static final field INSTANCE Lcom/javiersc/hubdle/project/extensions/kotlin/android/features/HubdleKotlinAndroidBuildFeaturesExtension$BuildFeatures;
+	public static final field aidl Ljava/lang/String;
+	public static final field buildConfig Ljava/lang/String;
+	public static final field compose Ljava/lang/String;
+	public static final field renderScript Ljava/lang/String;
+	public static final field resValues Ljava/lang/String;
+	public static final field shaders Ljava/lang/String;
+	public static final field viewBinding Ljava/lang/String;
 }
 
 public class com/javiersc/hubdle/project/extensions/kotlin/android/features/HubdleKotlinAndroidFeaturesExtension : com/javiersc/hubdle/project/extensions/apis/HubdleEnableableExtension {
@@ -2074,15 +2125,53 @@ public final class com/javiersc/hubdle/project/extensions/shared/features/intell
 
 public class com/javiersc/hubdle/project/extensions/shared/features/intellij/HubdleIntellijPluginFeatureExtension : com/javiersc/hubdle/project/extensions/apis/HubdleConfigurableExtension {
 	public fun <init> (Lorg/gradle/api/Project;)V
+	public final fun downloadSources (Z)V
+	public final fun getDownloadSources ()Lorg/gradle/api/provider/Property;
+	public final fun getJetbrainsMarketplaceCertificateChain ()Lorg/gradle/api/provider/Property;
+	public final fun getJetbrainsMarketplaceKey ()Lorg/gradle/api/provider/Property;
+	public final fun getJetbrainsMarketplaceKeyPassphrase ()Lorg/gradle/api/provider/Property;
+	public final fun getSinceBuild ()Lorg/gradle/api/provider/Property;
+	public final fun getToken ()Lorg/gradle/api/provider/Property;
+	public final fun getType ()Lorg/gradle/api/provider/Property;
+	public final fun getUntilBuild ()Lorg/gradle/api/provider/Property;
+	public final fun getUpdateSinceUntilBuild ()Lorg/gradle/api/provider/Property;
+	public final fun getVersion ()Lorg/gradle/api/provider/Property;
 	public final fun intellij (Lorg/gradle/api/Action;)V
 	public static synthetic fun intellij$default (Lcom/javiersc/hubdle/project/extensions/shared/features/intellij/HubdleIntellijPluginFeatureExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 	public fun isEnabled ()Lorg/gradle/api/provider/Property;
+	public final fun jetbrainsMarketplaceCertificateChain (Ljava/lang/String;)V
+	public final fun jetbrainsMarketplaceKey (Ljava/lang/String;)V
+	public final fun jetbrainsMarketplaceKeyPassphrase (Ljava/lang/String;)V
 	public final fun patchPluginXml (Lorg/gradle/api/Action;)V
 	public static synthetic fun patchPluginXml$default (Lcom/javiersc/hubdle/project/extensions/shared/features/intellij/HubdleIntellijPluginFeatureExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 	public final fun publishPlugin (Lorg/gradle/api/Action;)V
 	public static synthetic fun publishPlugin$default (Lcom/javiersc/hubdle/project/extensions/shared/features/intellij/HubdleIntellijPluginFeatureExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 	public final fun signPlugin (Lorg/gradle/api/Action;)V
 	public static synthetic fun signPlugin$default (Lcom/javiersc/hubdle/project/extensions/shared/features/intellij/HubdleIntellijPluginFeatureExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+	public final fun sinceBuild (Ljava/lang/String;)V
+	public final fun token (Ljava/lang/String;)V
+	public final fun type (Ljava/lang/String;)V
+	public final fun untilBuild (Ljava/lang/String;)V
+	public final fun updateSinceUntilBuild (Z)V
+	public final fun version (Ljava/lang/String;)V
+}
+
+public final class com/javiersc/hubdle/project/extensions/shared/features/intellij/HubdleIntellijPluginFeatureExtension$IntelliJ {
+	public static final field INSTANCE Lcom/javiersc/hubdle/project/extensions/shared/features/intellij/HubdleIntellijPluginFeatureExtension$IntelliJ;
+	public static final field downloadSources Ljava/lang/String;
+	public static final field sinceBuild Ljava/lang/String;
+	public static final field token Ljava/lang/String;
+	public static final field type Ljava/lang/String;
+	public static final field untilBuild Ljava/lang/String;
+	public static final field updateSinceUntilBuild Ljava/lang/String;
+	public static final field version Ljava/lang/String;
+}
+
+public final class com/javiersc/hubdle/project/extensions/shared/features/intellij/HubdleIntellijPluginFeatureExtension$JetBrains {
+	public static final field INSTANCE Lcom/javiersc/hubdle/project/extensions/shared/features/intellij/HubdleIntellijPluginFeatureExtension$JetBrains;
+	public static final field marketplaceCertificateChain Ljava/lang/String;
+	public static final field marketplaceKey Ljava/lang/String;
+	public static final field marketplaceKeyPassphrase Ljava/lang/String;
 }
 
 public final class com/javiersc/hubdle/project/extensions/shared/features/intellij/HubdleIntellijPluginFeatureExtensionKt$inlined$sam$i$org_gradle_api_Action$0 : org/gradle/api/Action {
@@ -2094,7 +2183,7 @@ public abstract interface annotation class com/javiersc/hubdle/settings/HubdleSe
 }
 
 public class com/javiersc/hubdle/settings/HubdleSettingsExtension {
-	public fun <init> (Lorg/gradle/api/model/ObjectFactory;)V
+	public fun <init> (Lorg/gradle/api/model/ObjectFactory;Lorg/gradle/api/provider/ProviderFactory;)V
 	public final fun autoInclude (Lorg/gradle/api/Action;)V
 	public static synthetic fun autoInclude$default (Lcom/javiersc/hubdle/settings/HubdleSettingsExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 	public final fun buildScan (Lorg/gradle/api/Action;)V
@@ -2102,6 +2191,7 @@ public class com/javiersc/hubdle/settings/HubdleSettingsExtension {
 	public final fun getAutoInclude ()Lcom/javiersc/hubdle/settings/extensions/HubdleAutoIncludeExtension;
 	public final fun getBuildScan ()Lcom/javiersc/hubdle/settings/extensions/HubdleBuildScanExtension;
 	public final fun getHubdleVersionCatalogVersion ()Lorg/gradle/api/provider/Property;
+	public final fun getRootProjectName ()Lorg/gradle/api/provider/Property;
 	public final fun getUseOnAllProjects ()Lorg/gradle/api/provider/Property;
 }
 

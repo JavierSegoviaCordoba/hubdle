@@ -26,7 +26,7 @@ public abstract class HubdleEnableableExtension(
     internal val tasks: TaskContainer
         get() = project.tasks
 
-    internal val name: String =
+    internal val extensionName: String =
         this::class.simpleName?.substringBeforeLast("_Decorated") ?: "UnknownHubdleExtension"
 
     internal open val oneOfExtensions: Set<HubdleEnableableExtension>
@@ -82,7 +82,7 @@ public abstract class HubdleEnableableExtension(
         priority: Priority,
         config: Configurable.() -> Unit
     ) {
-        hubdleState.configurable(name, isEnabled, priority, config)
+        hubdleState.configurable(extensionName, isEnabled, priority, config)
     }
 
     internal fun configurable(priority: Priority, config: Configurable.() -> Unit) {
@@ -90,7 +90,7 @@ public abstract class HubdleEnableableExtension(
     }
 
     internal fun userConfigurable(config: Configurable.() -> Unit) {
-        hubdleState.userConfigurable(name, isFullEnabled, config)
+        hubdleState.userConfigurable(extensionName, isFullEnabled, config)
     }
 
     internal inline fun <reified T> provider(crossinline block: Project.() -> T): Provider<T> =

@@ -40,7 +40,7 @@ constructor(
     override val priority: Priority = Priority.P4
 
     public val compiler: Property<String?> = property {
-        library(androidx_compose_compiler_compiler).get().toString()
+        library(androidx_compose_compiler_compiler).orNull?.toString()
     }
 
     @HubdleDslMarker
@@ -49,7 +49,7 @@ constructor(
     }
 
     public val compilerVersion: Property<String?> = property {
-        library(androidx_compose_compiler_compiler).get().versionConstraint.displayName
+        library(androidx_compose_compiler_compiler).orNull?.versionConstraint?.displayName
     }
 
     @HubdleDslMarker

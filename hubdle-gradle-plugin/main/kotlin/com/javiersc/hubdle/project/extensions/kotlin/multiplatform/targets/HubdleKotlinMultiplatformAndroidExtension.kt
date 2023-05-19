@@ -7,8 +7,8 @@ import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
-import com.javiersc.hubdle.project.extensions.kotlin.android._internal.calculateAndroidNamespace
 import com.javiersc.hubdle.project.extensions.kotlin.android._internal.configureAndroidLibraryJavaVersion
+import com.javiersc.hubdle.project.extensions.kotlin.android.hubdleAndroid
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.hubdleKotlinMultiplatform
 import com.javiersc.hubdle.project.extensions.kotlin.shared.HubdleKotlinMinimalSourceSetConfigurableExtension
 import com.javiersc.hubdle.project.extensions.shared.android.HubdleAndroidDelegateSharedApis
@@ -39,13 +39,13 @@ constructor(
     override val requiredExtensions: Set<HubdleEnableableExtension>
         get() = setOf(hubdleKotlinMultiplatform)
 
-    public val namespace: Property<String?> = property { null }
+    public val namespace: Property<String?> = property { hubdleAndroid.namespace.orNull }
 
-    public val minSdk: Property<Int> = property { 23 }
+    public val minSdk: Property<Int> = property { hubdleAndroid.minSdk.get() }
 
-    public val compileSdk: Property<Int> = property { 33 }
+    public val compileSdk: Property<Int> = property { hubdleAndroid.compileSdk.get() }
 
-    public val targetSdk: Property<Int> = property { 33 }
+    public val targetSdk: Property<Int> = property { hubdleAndroid.targetSdk.get() }
 
     public val publishLibraryVariants: SetProperty<String> = setProperty { emptySet() }
 
@@ -97,7 +97,7 @@ constructor(
             configure<LibraryExtension> {
                 compileSdk = hubdleAndroid.compileSdk.get()
                 defaultConfig.minSdk = hubdleAndroid.minSdk.get()
-                namespace = calculateAndroidNamespace(hubdleAndroid.namespace.orNull)
+                namespace = hubdleAndroid.namespace.orNull
             }
             configureAndroidLibraryJavaVersion()
         }

@@ -1,7 +1,5 @@
 package com.javiersc.hubdle.project.extensions.shared.features.gradle
 
-import com.javiersc.gradle.properties.extensions.getProperty
-import com.javiersc.hubdle.project.HubdleProperty.POM
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
@@ -18,6 +16,7 @@ import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
 import com.javiersc.hubdle.project.extensions.config.publishing.hubdlePublishing
+import com.javiersc.hubdle.project.extensions.config.publishing.maven.hubdlePublishingMavenPom
 import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.javiersc_gradle_gradleExtensions
 import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.javiersc_gradle_gradleTestExtensions
 import com.javiersc.hubdle.project.extensions.kotlin._internal.forKotlinSetsDependencies
@@ -142,8 +141,8 @@ constructor(
             config = {
                 configure<GradlePluginDevelopmentExtension> {
                     val gradlePluginDevelopmentExtension = this
-                    gradlePluginDevelopmentExtension.website.set(project.getProperty(POM.url))
-                    gradlePluginDevelopmentExtension.vcsUrl.set(project.getProperty(POM.scmUrl))
+                    gradlePluginDevelopmentExtension.website.set(hubdlePublishingMavenPom.url)
+                    gradlePluginDevelopmentExtension.vcsUrl.set(hubdlePublishingMavenPom.scmUrl)
                 }
             }
         )

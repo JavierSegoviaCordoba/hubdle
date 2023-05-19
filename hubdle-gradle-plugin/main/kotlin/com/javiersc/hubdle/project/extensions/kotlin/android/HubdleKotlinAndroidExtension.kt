@@ -1,5 +1,6 @@
 package com.javiersc.hubdle.project.extensions.kotlin.android
 
+import com.javiersc.gradle.properties.extensions.getBooleanProperty
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
@@ -11,10 +12,14 @@ import com.javiersc.hubdle.project.extensions.kotlin.android.features.HubdleKotl
 import com.javiersc.hubdle.project.extensions.kotlin.android.library.HubdleKotlinAndroidLibraryExtension
 import com.javiersc.hubdle.project.extensions.kotlin.android.library.hubdleAndroidLibrary
 import com.javiersc.hubdle.project.extensions.kotlin.hubdleKotlin
+import com.javiersc.kotlin.stdlib.remove
+import java.io.File
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.provider.Property
+import org.gradle.kotlin.dsl.findByType
+import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 
 // TODO: transform into `HubdleConfigurableExtension`
 @HubdleDslMarker
@@ -29,7 +34,7 @@ constructor(
     override val requiredExtensions: Set<HubdleEnableableExtension>
         get() = setOf(hubdleKotlin)
 
-    public val namespace: Property<String?> = property { null }
+    public val namespace: Property<String?> = property { project.calculateAndroidNamespace() }
 
     public val minSdk: Property<Int> = property { 23 }
 
@@ -60,6 +65,64 @@ constructor(
     public fun library(action: Action<HubdleKotlinAndroidLibraryExtension> = Action {}) {
         library.enableAndExecute(action)
     }
+
+    public object Android {
+        public const val namespace: String = "android.namespace"
+        public const val namespaceUseProject: String = "android.namespace.use.project"
+        public const val namespaceUseKotlinFile: String = "android.namespace.use.kotlinFile"
+    }
+
+    private fun Project.calculateAndroidNamespace(): String? =
+        when {
+            getBooleanProperty(Android.namespaceUseProject).orNull == true -> {
+                calculateAndroidNamespaceWithProject()
+            }
+            getBooleanProperty(Android.namespaceUseKotlinFile).orNull == true -> {
+                calculateAndroidNamespaceWithKotlinFile()
+            }
+            else -> calculateAndroidNamespaceWithProject()
+        }
+
+    private fun Project.calculateAndroidNamespaceWithProject(): String {
+        val sanitizedProjectGroup = group.toString().sanitize()
+        val sanitizedProjectName = name.sanitize()
+        val splitByDot = "$sanitizedProjectGroup.$sanitizedProjectName".split(".")
+        return splitByDot.reduce { acc, current ->
+            if (acc.split(".").lastOrNull() == current) acc else "$acc.$current"
+        }
+    }
+
+    private fun Project.calculateAndroidNamespaceWithKotlinFile(): String? =
+        extensions
+            .findByType<KotlinProjectExtension>()
+            ?.sourceSets
+            ?.asMap
+            ?.values
+            ?.asSequence()
+            ?.flatMap { it.kotlin.srcDirs }
+            ?.firstOrNull { it.path.endsWith("main${File.separator}kotlin") }
+            ?.walkTopDown()
+            ?.onEnter { parentFile ->
+                parentFile.listFiles().orEmpty().firstOrNull { it.extension == "kt" } == null
+            }
+            ?.flatMap { it.listFiles().orEmpty().toList() }
+            ?.firstOrNull { it.listFiles().orEmpty().any { it.extension == "kt" } }
+            ?.listFiles()
+            ?.firstOrNull { it.extension == "kt" }
+            ?.readLines()
+            ?.firstOrNull { it.startsWith("package ") }
+            ?.remove("package ")
+
+    private fun String.sanitize(): String =
+        replace(Regex("""\d+"""), "")
+            .replace(File.separator, ".")
+            .replace("--", ".")
+            .replace("-", ".")
+            .replace("__", ".")
+            .replace("_", ".")
+            .replace("..", ".")
+            .remove(" ")
+            .dropLastWhile { !it.isLetter() }
 }
 
 internal val HubdleEnableableExtension.hubdleAndroid: HubdleKotlinAndroidExtension

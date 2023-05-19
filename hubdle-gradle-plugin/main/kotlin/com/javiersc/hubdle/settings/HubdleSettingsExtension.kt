@@ -6,11 +6,17 @@ import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.model.ObjectFactory
 import org.gradle.api.provider.Property
+import org.gradle.api.provider.ProviderFactory
 import org.gradle.kotlin.dsl.newInstance
 import org.gradle.kotlin.dsl.property
 
 @HubdleSettingsDslMarker
-public open class HubdleSettingsExtension @Inject constructor(objects: ObjectFactory) {
+public open class HubdleSettingsExtension
+@Inject
+constructor(
+    private val objects: ObjectFactory,
+    private val providers: ProviderFactory,
+) {
 
     public val autoInclude: HubdleAutoIncludeExtension = objects.newInstance()
 
@@ -26,8 +32,12 @@ public open class HubdleSettingsExtension @Inject constructor(objects: ObjectFac
         action.execute(buildScan)
     }
 
+    public val hubdleVersionCatalogVersion: Property<String> = property { "latest.release" }
+
+    public val rootProjectName: Property<String> = property { "" }
+
     public val useOnAllProjects: Property<Boolean> = objects.property<Boolean>().convention(true)
 
-    public val hubdleVersionCatalogVersion: Property<String> =
-        objects.property<String>().convention("latest.release")
+    private inline fun <reified T> property(crossinline value: () -> T?): Property<T> =
+        objects.property<T>().convention(providers.provider { value() })
 }

@@ -4,6 +4,8 @@ import com.javiersc.hubdle.project.extensions._internal.HubdleState
 import com.javiersc.hubdle.project.extensions.config.HubdleConfigExtension
 import com.javiersc.hubdle.project.extensions.config.analysis.HubdleConfigAnalysisExtension
 import com.javiersc.hubdle.project.extensions.config.analysis.reports.HubdleConfigAnalysisReportsExtension
+import com.javiersc.hubdle.project.extensions.config.analysis.tools.HubdleConfigAnalysisDetektExtension
+import com.javiersc.hubdle.project.extensions.config.analysis.tools.HubdleConfigAnalysisSonarExtension
 import com.javiersc.hubdle.project.extensions.config.binary.compatibility.validator.HubdleConfigBinaryCompatibilityValidatorExtension
 import com.javiersc.hubdle.project.extensions.config.coverage.HubdleConfigCoverageExtension
 import com.javiersc.hubdle.project.extensions.config.documentation.HubdleConfigDocumentationExtension
@@ -19,6 +21,9 @@ import com.javiersc.hubdle.project.extensions.config.install.pre.commits.HubdleC
 import com.javiersc.hubdle.project.extensions.config.language.settings.HubdleConfigLanguageSettingsExtension
 import com.javiersc.hubdle.project.extensions.config.nexus.HubdleConfigNexusExtension
 import com.javiersc.hubdle.project.extensions.config.publishing.HubdleConfigPublishingExtension
+import com.javiersc.hubdle.project.extensions.config.publishing.maven.HubdleConfigPublishingMavenExtension
+import com.javiersc.hubdle.project.extensions.config.publishing.maven.HubdleConfigPublishingMavenPomExtension
+import com.javiersc.hubdle.project.extensions.config.publishing.signing.HubdleConfigPublishingSigningExtension
 import com.javiersc.hubdle.project.extensions.config.testing.HubdleConfigTestingExtension
 import com.javiersc.hubdle.project.extensions.config.versioning.HubdleConfigVersioningExtension
 import com.javiersc.hubdle.project.extensions.config.versioning.semver.HubdleConfigVersioningSemverExtension
@@ -35,7 +40,12 @@ internal fun HubdleState.createHubdleConfigExtensions() {
         }
         createExtension<HubdleConfigLanguageSettingsExtension>()
         createExtension<HubdleConfigNexusExtension>()
-        createExtension<HubdleConfigPublishingExtension>()
+        createExtension<HubdleConfigPublishingExtension> {
+            createExtension<HubdleConfigPublishingMavenExtension> {
+                createExtension<HubdleConfigPublishingMavenPomExtension>()
+            }
+            createExtension<HubdleConfigPublishingSigningExtension>()
+        }
         createExtension<HubdleConfigTestingExtension>()
         createExtension<HubdleConfigVersioningExtension> {
             createExtension<HubdleConfigVersioningSemverExtension>()
@@ -45,6 +55,8 @@ internal fun HubdleState.createHubdleConfigExtensions() {
 
 private fun HubdleState.configureAnalysisExtensions() {
     createExtension<HubdleConfigAnalysisExtension> {
+        createExtension<HubdleConfigAnalysisDetektExtension>()
+        createExtension<HubdleConfigAnalysisSonarExtension>()
         createExtension<HubdleConfigAnalysisReportsExtension>()
     }
 }

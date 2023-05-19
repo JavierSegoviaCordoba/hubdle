@@ -9,9 +9,8 @@ import com.javiersc.hubdle.project.extensions._internal.configurableDependencies
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
-import com.javiersc.hubdle.project.extensions.config.publishing._internal.configurableMavenPublishing
+import com.javiersc.hubdle.project.extensions.config.publishing.maven.configurableMavenPublishing
 import com.javiersc.hubdle.project.extensions.kotlin._internal.configurableSrcDirs
-import com.javiersc.hubdle.project.extensions.kotlin.android._internal.calculateAndroidNamespace
 import com.javiersc.hubdle.project.extensions.kotlin.android._internal.configureAndroidLibraryJavaVersion
 import com.javiersc.hubdle.project.extensions.kotlin.android.hubdleAndroid
 import com.javiersc.hubdle.project.extensions.kotlin.android.library.features.HubdleKotlinAndroidLibraryFeaturesExtension
@@ -72,7 +71,7 @@ constructor(
             configure<LibraryExtension> {
                 compileSdk = hubdleAndroid.compileSdk.get()
                 defaultConfig.minSdk = hubdleAndroid.minSdk.get()
-                namespace = calculateAndroidNamespace(hubdleAndroid.namespace.orNull)
+                namespace = hubdleAndroid.namespace.orNull
             }
             configureAndroidLibraryJavaVersion()
         }

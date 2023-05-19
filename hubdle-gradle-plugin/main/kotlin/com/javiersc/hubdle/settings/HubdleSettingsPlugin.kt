@@ -3,6 +3,7 @@ package com.javiersc.hubdle.settings
 import com.gradle.enterprise.gradleplugin.GradleEnterpriseExtension
 import com.javiersc.gradle.properties.extensions.getStringProperty
 import com.javiersc.hubdle.project.HubdleProjectPlugin
+import com.javiersc.hubdle.project.extensions._internal.PluginId.JetbrainsKotlinxKover
 import com.javiersc.hubdle.project.extensions._internal.hubdleCatalog
 import com.javiersc.hubdle.project.extensions._internal.library
 import com.javiersc.hubdle.settings.extensions.extractedBuildProjects
@@ -11,6 +12,7 @@ import com.javiersc.hubdle.settings.tasks.GenerateHubdleCatalogTask
 import java.io.File
 import javax.inject.Inject
 import org.gradle.api.Plugin
+import org.gradle.api.Project
 import org.gradle.api.artifacts.MinimalExternalModuleDependency
 import org.gradle.api.artifacts.ModuleIdentifier
 import org.gradle.api.initialization.Settings
@@ -20,8 +22,10 @@ import org.gradle.api.tasks.TaskProvider
 import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.create
+import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.findByType
 import org.gradle.kotlin.dsl.maven
+import org.gradle.kotlin.dsl.project
 import org.gradle.kotlin.dsl.register
 import org.gradle.language.base.plugins.LifecycleBasePlugin.ASSEMBLE_TASK_NAME
 
@@ -43,6 +47,7 @@ constructor(
         target.configureRepositories()
         target.createHubdleVersionCatalog()
         target.configureGradleEnterprise()
+        target.configureKoverMergeReports()
 
         target.gradle.settingsEvaluated { settings ->
             target.configureHubdleCatalogTask()
@@ -56,6 +61,17 @@ constructor(
         dependencyResolutionManagement.versionCatalogs.create("hubdle") { builder ->
             val hubdleCatalogVersion = hubdleSettings.hubdleVersionCatalogVersion.get()
             builder.from("com.javiersc.hubdle:hubdle-version-catalog:$hubdleCatalogVersion")
+        }
+    }
+
+    private fun Settings.configureKoverMergeReports() {
+        gradle.allprojects { allprojects ->
+            val rootProject: Project = allprojects.rootProject
+            rootProject.pluginManager.withPlugin(JetbrainsKotlinxKover.id) {
+                allprojects.pluginManager.withPlugin(JetbrainsKotlinxKover.id) {
+                    rootProject.dependencies { "kover"(project(allprojects.path)) }
+                }
+            }
         }
     }
 }

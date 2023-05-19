@@ -16,6 +16,8 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx:kover -> 0.7.0`
+
 ## [0.5.0-alpha.16] - 2023-05-07
 
 ### Fixed

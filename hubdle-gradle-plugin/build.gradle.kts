@@ -1,5 +1,5 @@
-import com.gradle.enterprise.gradleplugin.testretry.retry
 import com.javiersc.gradle.extensions.version.catalogs.getLibraries
+import com.javiersc.gradle.miscellanea.extensions.pluginLibrary
 import com.javiersc.gradle.tasks.extensions.maybeRegisterLazily
 import com.javiersc.gradle.tasks.extensions.namedLazily
 import java.util.Locale
@@ -81,7 +81,7 @@ hubdle {
                     api(hubdle.jetbrains.intellijPlugins.gradleIntellijPlugin)
                     api(hubdle.jetbrains.kotlin.kotlinGradlePlugin)
                     api(hubdle.jetbrains.kotlinx.binaryCompatibilityValidator)
-                    api(hubdle.jetbrains.kotlinx.kover)
+                    api(hubdle.plugins.jetbrains.kotlinx.kover.pluginLibrary)
                     api(hubdle.jetbrains.kotlinx.serialization)
                     api(hubdle.sonarqube.scannerGradle.sonarqubeGradlePlugin)
                     api(hubdle.vyarus.gradleMkdocsPlugin)
@@ -184,7 +184,7 @@ fun Project.buildHubdleDependencies() {
                 }
             val pluginAliases: String =
                 catalog.pluginAliases.joinToString("\n") { alias ->
-                    """|internal const val ${alias.sanitizeAlias()} = "$alias""""
+                    """|internal const val ${alias.sanitizeAlias()}_plugin = "$alias""""
                 }
             val content =
                 """ |package com.javiersc.hubdle.project.extensions.dependencies._internal.aliases

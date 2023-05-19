@@ -12,7 +12,7 @@ import com.javiersc.hubdle.project.extensions.apis.BaseHubdleDelegateExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
-import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.cash_sqldelight
+import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.cash_sqldelight_plugin
 import com.javiersc.hubdle.project.extensions.kotlin.hubdleKotlinAny
 import javax.inject.Inject
 import org.gradle.api.Action
@@ -61,7 +61,7 @@ constructor(
 
     public val SqldelightVersion: Provider<String>
         get() = provider {
-            project.hubdleCatalog.findPlugin(cash_sqldelight).get().get().version.displayName
+            project.hubdleCatalog.findPlugin(cash_sqldelight_plugin).get().get().version.displayName
         }
 
     override fun Project.defaultConfiguration() {

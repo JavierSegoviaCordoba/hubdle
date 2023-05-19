@@ -6,7 +6,6 @@ import com.diffplug.gradle.spotless.SpotlessExtension
 import com.diffplug.gradle.spotless.SpotlessExtensionPredeclare
 import com.javiersc.semver.project.gradle.plugin.SemverExtension
 import io.gitlab.arturbosch.detekt.extensions.DetektExtension
-import kotlinx.kover.api.KoverProjectConfig
 import kotlinx.validation.ApiValidationExtension
 import org.gradle.api.Project
 import org.gradle.api.plugins.JavaApplication
@@ -66,9 +65,6 @@ internal fun Project.withKotlinMultiplatform(block: KotlinMultiplatformExtension
 internal fun Project.withKotlinBinaryCompatibilityValidator(
     block: ApiValidationExtension.() -> Unit
 ) = withId(id = PluginId.JetbrainsKotlinxBinaryCompatibilityValidator, block = block)
-
-internal fun Project.withKover(block: KoverProjectConfig.() -> Unit) =
-    withId(id = PluginId.JetbrainsKotlinxKover, block = block)
 
 internal fun Project.withPublishing(block: GradlePublishingExtension.() -> Unit) =
     withId(id = PluginId.MavenPublish, block = block)

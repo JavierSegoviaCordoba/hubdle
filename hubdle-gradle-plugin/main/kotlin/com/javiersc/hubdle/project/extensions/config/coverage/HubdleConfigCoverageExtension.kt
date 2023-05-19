@@ -13,9 +13,11 @@ import com.javiersc.hubdle.project.extensions.config.hubdleConfig
 import com.javiersc.hubdle.project.extensions.config.testing.ALL_TEST_TASK_NAME
 import javax.inject.Inject
 import kotlinx.kover.gradle.plugin.dsl.KoverProjectExtension
+import kotlinx.kover.gradle.plugin.dsl.KoverReportExtension
 import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.Task
+import org.gradle.api.file.DirectoryProperty
 import org.gradle.api.provider.Property
 import org.gradle.api.tasks.TaskCollection
 import org.gradle.kotlin.dsl.the
@@ -58,6 +60,16 @@ constructor(
             val jacoco: Property<String?> = this@HubdleConfigCoverageExtension.jacoco
             val jacocoVersion: String? = jacoco.orNull
             if (jacocoVersion != null) kover.useJacoco(jacocoVersion)
+
+            configure<KoverReportExtension> {
+                val buildDir: DirectoryProperty = layout.buildDirectory
+                defaults { defaults ->
+                    defaults.html { html -> html.setReportDir(buildDir.dir("reports/kover/html/")) }
+                    defaults.xml { xml ->
+                        xml.setReportFile(buildDir.file("reports/kover/xml/report.xml"))
+                    }
+                }
+            }
 
             val koverHtmlReportTask = tasks.namedLazily<Task>("koverHtmlReport")
             val koverXmlReportTask = tasks.namedLazily<Task>("koverXmlReport")

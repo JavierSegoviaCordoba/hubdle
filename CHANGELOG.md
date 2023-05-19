@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- Kover html and xml reports path
+
 ### Updated
 
 ## [0.5.0-alpha.17] - 2023-05-19

@@ -6,9 +6,13 @@
 
 ### Changed
 
+- `intellij.publishToken` property to `intellij.token`
+
 ### Deprecated
 
 ### Removed
+
+- `root.project.dir.name`
 
 ### Fixed
 

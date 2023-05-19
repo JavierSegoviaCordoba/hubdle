@@ -7,10 +7,12 @@ version = "9.8.3-alpha.4"
 hubdle {
     config {
         publishing {
-            repositories {
-                maven {
-                    name = "mavenLocalBuildTest"
-                    url = rootProject.buildDir.resolve("mavenLocalBuildTest/repository").toURI()
+            maven {
+                repositories {
+                    maven {
+                        name = "mavenLocalBuildTest"
+                        url = rootProject.buildDir.resolve("mavenLocalBuildTest/repository").toURI()
+                    }
                 }
             }
         }

@@ -1,8 +1,6 @@
 package com.javiersc.hubdle.project.extensions.config.documentation.changelog
 
-import com.javiersc.gradle.properties.extensions.getStringProperty
 import com.javiersc.gradle.tasks.extensions.namedLazily
-import com.javiersc.hubdle.project.HubdleProperty
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
@@ -11,6 +9,7 @@ import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.config.documentation.hubdleDocumentation
+import com.javiersc.hubdle.project.extensions.config.publishing.maven.hubdlePublishingMavenPom
 import com.javiersc.hubdle.project.extensions.config.versioning.semver._internal.isTagPrefixProject
 import com.javiersc.hubdle.project.extensions.config.versioning.semver.hubdleSemver
 import javax.inject.Inject
@@ -59,7 +58,7 @@ constructor(
 
         configurable {
             configure<ChangelogPluginExtension> {
-                repositoryUrl.set(project.getStringProperty(HubdleProperty.POM.scmUrl))
+                repositoryUrl.set(hubdlePublishingMavenPom.scmUrl)
                 groups.set(
                     listOf(
                         "Added",

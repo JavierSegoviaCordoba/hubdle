@@ -15,6 +15,7 @@ import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
 import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.cash_sqldelight_plugin
 import com.javiersc.hubdle.project.extensions.kotlin.hubdleKotlinAny
 import javax.inject.Inject
+import kotlin.jvm.optionals.getOrNull
 import org.gradle.api.Action
 import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.Project
@@ -59,9 +60,14 @@ constructor(
         "app.cash.sqldeight:postgres-dialect:${SqldelightVersion.get()}"
     }
 
-    public val SqldelightVersion: Provider<String>
+    public val SqldelightVersion: Provider<String?>
         get() = provider {
-            project.hubdleCatalog.findPlugin(cash_sqldelight_plugin).get().get().version.displayName
+            project.hubdleCatalog
+                ?.findPlugin(cash_sqldelight_plugin)
+                ?.getOrNull()
+                ?.orNull
+                ?.version
+                ?.displayName
         }
 
     override fun Project.defaultConfiguration() {

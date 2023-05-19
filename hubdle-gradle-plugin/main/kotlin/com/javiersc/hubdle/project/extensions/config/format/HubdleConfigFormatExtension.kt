@@ -23,8 +23,10 @@ import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.provider.Property
 import org.gradle.api.provider.SetProperty
+import org.gradle.api.tasks.TaskCollection
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.findByType
+import org.gradle.language.base.plugins.LifecycleBasePlugin.CHECK_TASK_NAME
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 
 @HubdleDslMarker
@@ -59,7 +61,7 @@ constructor(
         this.excludes.addAll(excludes.toList())
     }
 
-    public val ktfmtVersion: Property<String> = property { libraryVersion(facebook_ktfmt)!! }
+    public val ktfmtVersion: Property<String?> = property { libraryVersion(facebook_ktfmt) }
 
     @HubdleDslMarker
     public fun ktfmtVersion(version: String) {
@@ -84,9 +86,9 @@ constructor(
         )
 
         configurable {
-            val checkTask = tasks.namedLazily<Task>("check")
+            val checkTask: TaskCollection<Task> = tasks.namedLazily<Task>(CHECK_TASK_NAME)
 
-            val checkFormat = tasks.maybeRegisterLazily<Task>("checkFormat")
+            val checkFormat: TaskCollection<Task> = tasks.maybeRegisterLazily<Task>("checkFormat")
             checkFormat.configureEach { task ->
                 task.group = "verification"
                 task.dependsOn("spotlessCheck")

@@ -18,6 +18,8 @@ internal class KotlinJvmTest : GradleTestKitTest() {
         File(System.getProperty("user.home"))
             .resolve(".m2/repository/com/kotlin/jvm/sandbox-project/")
 
+    private val projectName = "sandbox-project"
+
     private val GradleRunner.mavenLocalRandomPath
         get() =
             projectDir.resolve("build/mavenLocalRandom/repository/com/kotlin/jvm/sandbox-project/")
@@ -40,7 +42,7 @@ internal class KotlinJvmTest : GradleTestKitTest() {
 
     @Test
     fun `publish maven-local-1`() {
-        gradleTestKitTest("$basePath/publishing/maven-local-1") {
+        gradleTestKitTest("$basePath/publishing/maven-local-1", name = projectName) {
             withEnvironment(gpgMap)
             withArgumentsFromTXT()
             build().output.also(::println)
@@ -55,7 +57,7 @@ internal class KotlinJvmTest : GradleTestKitTest() {
 
     @Test
     fun `publish maven-local-test-1`() {
-        gradleTestKitTest("$basePath/publishing/maven-local-build-test-1") {
+        gradleTestKitTest("$basePath/publishing/maven-local-build-test-1", name = projectName) {
             withEnvironment(gpgMap)
             withArgumentsFromTXT()
             build().output.also(::println)
@@ -70,7 +72,7 @@ internal class KotlinJvmTest : GradleTestKitTest() {
 
     @Test
     fun `publish maven-local-random-1`() {
-        gradleTestKitTest("$basePath/publishing/maven-local-random-1") {
+        gradleTestKitTest("$basePath/publishing/maven-local-random-1", name = projectName) {
             withEnvironment(gpgMap)
             withArgumentsFromTXT()
             build().output.also(::println)
@@ -86,7 +88,7 @@ internal class KotlinJvmTest : GradleTestKitTest() {
     @Test
     fun `publish normal 1`() {
         val versionDir = mavenLocalPath.resolve("9.8.3-alpha.4")
-        gradleTestKitTest("$basePath/publishing/normal-1") {
+        gradleTestKitTest("$basePath/publishing/normal-1", name = projectName) {
             gradlewArgumentFromTXT()
             mavenLocalPath.shouldBeADirectory()
             mavenLocalPath.resolve("maven-metadata-local.xml").shouldBeAFile()
@@ -102,7 +104,7 @@ internal class KotlinJvmTest : GradleTestKitTest() {
     @Test
     fun `publish snapshot 1`() {
         val versionDir = mavenLocalPath.resolve("3.6.7-SNAPSHOT")
-        gradleTestKitTest("$basePath/publishing/snapshot-1") {
+        gradleTestKitTest("$basePath/publishing/snapshot-1", name = projectName) {
             gradlewArgumentFromTXT()
             mavenLocalPath.shouldBeADirectory()
             mavenLocalPath.resolve("maven-metadata-local.xml").shouldBeAFile()

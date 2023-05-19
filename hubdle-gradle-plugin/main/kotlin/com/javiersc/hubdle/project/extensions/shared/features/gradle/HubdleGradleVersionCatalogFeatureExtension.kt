@@ -7,7 +7,7 @@ import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
-import com.javiersc.hubdle.project.extensions.config.publishing._internal.configurableMavenPublishing
+import com.javiersc.hubdle.project.extensions.config.publishing.maven.configurableMavenPublishing
 import com.javiersc.hubdle.project.extensions.kotlin.hubdleKotlin
 import java.io.File
 import javax.inject.Inject

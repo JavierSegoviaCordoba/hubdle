@@ -1,7 +1,6 @@
 package com.javiersc.hubdle.project.extensions.config.nexus
 
 import com.javiersc.gradle.properties.extensions.getStringProperty
-import com.javiersc.hubdle.project.HubdleProperty.Nexus
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
@@ -12,13 +11,13 @@ import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.config.hubdleConfig
 import io.github.gradlenexus.publishplugin.NexusPublishException
 import io.github.gradlenexus.publishplugin.NexusPublishExtension
+import java.net.URI
 import java.time.Duration
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.provider.Property
 import org.gradle.kotlin.dsl.configure
-import org.jetbrains.intellij.or
 
 @HubdleDslMarker
 public open class HubdleConfigNexusExtension
@@ -33,6 +32,47 @@ constructor(
         get() = setOf(hubdleConfig)
 
     override val priority: Priority = Priority.P3
+
+    public val snapshotRepositoryUrl: Property<URI?> = property {
+        getStringProperty(Nexus.nexusSnapshotRepositoryUrl).orNull?.let(project::uri)
+    }
+
+    @HubdleDslMarker
+    public fun snapshotRepositoryUrl(value: String) {
+        snapshotRepositoryUrl.set(project.uri(value))
+    }
+
+    public val stagingProfileId: Property<String?> = property {
+        getStringProperty(Nexus.nexusStagingProfileId).get()
+    }
+
+    @HubdleDslMarker
+    public fun stagingProfileId(value: String) {
+        stagingProfileId.set(value)
+    }
+
+    public val token: Property<String?> = property { getStringProperty(Nexus.nexusToken).get() }
+
+    @HubdleDslMarker
+    public fun token(value: String) {
+        token.set(value)
+    }
+
+    public val url: Property<URI?> = property {
+        getStringProperty(Nexus.nexusUrl).orNull?.let(project::uri)
+    }
+
+    @HubdleDslMarker
+    public fun url(value: String) {
+        url.set(project.uri(value))
+    }
+
+    public val user: Property<String?> = property { getStringProperty(Nexus.nexusUser).get() }
+
+    @HubdleDslMarker
+    public fun user(value: String) {
+        user.set(value)
+    }
 
     @HubdleDslMarker
     public fun nexusPublishing(action: Action<NexusPublishException> = Action {}) {
@@ -52,18 +92,13 @@ constructor(
 
                 repositories { container ->
                     container.sonatype { nexusRepository ->
-                        val nexusUrl = getStringProperty(Nexus.nexusUrl).orNull
-                        val snapshotRepositoryUrl =
-                            getStringProperty(Nexus.nexusSnapshotRepositoryUrl).orNull
-                        if (nexusUrl != null && snapshotRepositoryUrl != null) {
-                            nexusRepository.nexusUrl.set(uri(nexusUrl))
-                            nexusRepository.snapshotRepositoryUrl.set(uri(snapshotRepositoryUrl))
+                        if (url.orNull != null && snapshotRepositoryUrl.orNull != null) {
+                            nexusRepository.nexusUrl.set(url)
+                            nexusRepository.snapshotRepositoryUrl.set(snapshotRepositoryUrl)
                         }
-                        nexusRepository.username.set(getStringProperty(Nexus.nexusUser))
-                        nexusRepository.password.set(getStringProperty(Nexus.nexusToken))
-                        nexusRepository.stagingProfileId.set(
-                            getStringProperty(Nexus.nexusStagingProfileId)
-                        )
+                        nexusRepository.username.set(user)
+                        nexusRepository.password.set(token)
+                        nexusRepository.stagingProfileId.set(stagingProfileId)
                     }
                 }
 
@@ -76,6 +111,14 @@ constructor(
                 }
             }
         }
+    }
+
+    public object Nexus {
+        public const val nexusSnapshotRepositoryUrl: String = "nexus.snapshotRepositoryUrl"
+        public const val nexusStagingProfileId: String = "nexus.stagingProfileId"
+        public const val nexusToken: String = "nexus.token"
+        public const val nexusUrl: String = "nexus.url"
+        public const val nexusUser: String = "nexus.user"
     }
 
     internal companion object {

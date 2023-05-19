@@ -10,7 +10,6 @@ import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
 import com.javiersc.hubdle.project.extensions.kotlin._internal.configurableSrcDirs
-import com.javiersc.hubdle.project.extensions.kotlin.android._internal.calculateAndroidNamespace
 import com.javiersc.hubdle.project.extensions.kotlin.android._internal.configureAndroidApplicationJavaVersion
 import com.javiersc.hubdle.project.extensions.kotlin.android.application.features.HubdleKotlinAndroidApplicationFeaturesExtension
 import com.javiersc.hubdle.project.extensions.kotlin.android.hubdleAndroid
@@ -79,7 +78,7 @@ constructor(
                 defaultConfig.versionName = application.versionName.get()
                 compileSdk = hubdleAndroid.compileSdk.get()
                 defaultConfig.minSdk = hubdleAndroid.minSdk.get()
-                namespace = project.calculateAndroidNamespace(hubdleAndroid.namespace.orNull)
+                namespace = hubdleAndroid.namespace.orNull
             }
             configureAndroidApplicationJavaVersion()
         }

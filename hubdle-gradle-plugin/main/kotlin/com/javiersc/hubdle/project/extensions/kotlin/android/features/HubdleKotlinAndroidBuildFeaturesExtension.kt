@@ -1,7 +1,6 @@
 package com.javiersc.hubdle.project.extensions.kotlin.android.features
 
 import com.javiersc.gradle.properties.extensions.getBooleanProperty
-import com.javiersc.hubdle.project.HubdleProperty.Android.BuildFeatures
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
@@ -34,39 +33,53 @@ constructor(
 
     override val priority: Priority = Priority.P4
 
-    public val aidl: Property<Boolean?> = property { null }
-    public val buildConfig: Property<Boolean?> = property { null }
-    public val compose: Property<Boolean?> = property { null }
-    public val renderScript: Property<Boolean?> = property { null }
-    public val resValues: Property<Boolean?> = property { null }
-    public val shaders: Property<Boolean?> = property { null }
-    public val viewBinding: Property<Boolean?> = property { null }
+    public val aidl: Property<Boolean> = property {
+        getBooleanProperty(BuildFeatures.aidl).orElse(trueIfApp()).get()
+    }
+    public val buildConfig: Property<Boolean> = property {
+        getBooleanProperty(BuildFeatures.buildConfig).orElse(trueIfApp()).get()
+    }
+    public val compose: Property<Boolean> = property {
+        getBooleanProperty(BuildFeatures.compose).orElse(false).get()
+    }
+    public val renderScript: Property<Boolean> = property {
+        getBooleanProperty(BuildFeatures.renderScript).orElse(trueIfApp()).get()
+    }
+    public val resValues: Property<Boolean> = property {
+        getBooleanProperty(BuildFeatures.resValues).orElse(trueIfApp()).get()
+    }
+    public val shaders: Property<Boolean> = property {
+        getBooleanProperty(BuildFeatures.shaders).orElse(trueIfApp()).get()
+    }
+    public val viewBinding: Property<Boolean> = property {
+        getBooleanProperty(BuildFeatures.viewBinding).orElse(false).get()
+    }
 
     override fun Project.defaultConfiguration() {
         configurable {
             val feats = this@HubdleKotlinAndroidBuildFeaturesExtension
             configureAndroidCommonExtension {
-                buildFeatures.aidl =
-                    feats.aidl.orNull ?: propOrNull(BuildFeatures.aidl) ?: trueIfApp()
-                buildFeatures.buildConfig =
-                    feats.buildConfig.orNull ?: propOrNull(BuildFeatures.buildConfig) ?: trueIfApp()
-                buildFeatures.compose =
-                    feats.compose.orNull ?: propOrNull(BuildFeatures.compose) ?: false
-                buildFeatures.renderScript =
-                    feats.renderScript.orNull
-                        ?: propOrNull(BuildFeatures.renderScript) ?: trueIfApp()
-                buildFeatures.resValues =
-                    feats.resValues.orNull ?: propOrNull(BuildFeatures.resValues) ?: trueIfApp()
-                buildFeatures.shaders =
-                    feats.shaders.orNull ?: propOrNull(BuildFeatures.shaders) ?: trueIfApp()
-                buildFeatures.viewBinding =
-                    feats.viewBinding.orNull ?: propOrNull(BuildFeatures.viewBinding) ?: false
+                buildFeatures.aidl = feats.aidl.get()
+                buildFeatures.buildConfig = feats.buildConfig.get()
+                buildFeatures.compose = feats.compose.get()
+                buildFeatures.renderScript = feats.renderScript.get()
+                buildFeatures.resValues = feats.resValues.get()
+                buildFeatures.shaders = feats.shaders.get()
+                buildFeatures.viewBinding = feats.viewBinding.get()
             }
         }
     }
-}
 
-private fun Project.propOrNull(key: String): Boolean? = getBooleanProperty(key).orNull
+    public object BuildFeatures {
+        public const val aidl: String = "android.defaults.buildfeatures.aidl"
+        public const val buildConfig: String = "android.defaults.buildfeatures.buildconfig"
+        public const val compose: String = "android.defaults.buildfeatures.compose"
+        public const val renderScript: String = "android.defaults.buildfeatures.renderscript"
+        public const val resValues: String = "android.defaults.buildfeatures.resvalues"
+        public const val shaders: String = "android.defaults.buildfeatures.shaders"
+        public const val viewBinding: String = "android.defaults.buildfeatures.viewbinding"
+    }
+}
 
 private fun HubdleEnableableExtension.trueIfApp(): Boolean =
     hubdleAndroidApplication.isFullEnabled.get()

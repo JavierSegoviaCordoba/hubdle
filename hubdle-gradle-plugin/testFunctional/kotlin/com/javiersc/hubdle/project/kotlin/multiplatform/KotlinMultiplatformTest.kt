@@ -20,6 +20,8 @@ internal class KotlinMultiplatformTest : GradleTestKitTest() {
 
     private val repositoryPath = File(System.getProperty("user.home")).resolve(".m2/repository")
 
+    private val projectName = "sandbox-project"
+
     @BeforeTest
     fun `clean m2_com_kotlin_multiplatform before test`() {
         repositoryPath.resolve("com/kotlin").deleteRecursively()
@@ -33,14 +35,14 @@ internal class KotlinMultiplatformTest : GradleTestKitTest() {
     @Test
     fun `publish normal 1`() {
         val multiplatformDir = repositoryPath.resolve("com/kotlin/normal-one")
-        val sandboxProjectDir = multiplatformDir.resolve("sandbox-project")
+        val sandboxProjectDir = multiplatformDir.resolve(projectName)
         val androidDir = multiplatformDir.resolve("sandbox-project-android")
         val androidDebugDir = multiplatformDir.resolve("sandbox-project-android-debug")
         val jvmDir = multiplatformDir.resolve("sandbox-project-jvm")
 
         fun File.versionDir(): File = resolve("9.8.3-alpha.4")
 
-        gradleTestKitTest("$basePath/publishing/normal-1") {
+        gradleTestKitTest("$basePath/publishing/normal-1", name = projectName) {
             gradlewArgumentFromTXT()
             sandboxProjectDir.shouldBeADirectory()
             sandboxProjectDir.resolve("maven-metadata-local.xml").shouldBeAFile()
@@ -92,7 +94,7 @@ internal class KotlinMultiplatformTest : GradleTestKitTest() {
     @EnabledOnOs(value = [OS.LINUX])
     fun `publish normal 2 on LINUX`() {
         val multiplatformDir = repositoryPath.resolve("com/kotlin/normal-two")
-        gradleTestKitTest("$basePath/publishing/normal-2") {
+        gradleTestKitTest("$basePath/publishing/normal-2", name = projectName) {
             gradlewArgumentFromTXT()
             val multiplatformDirs: List<File> =
                 multiplatformDir.listFiles().shouldNotBeEmpty().sorted()
@@ -114,7 +116,7 @@ internal class KotlinMultiplatformTest : GradleTestKitTest() {
     @EnabledOnOs(value = [OS.MAC])
     fun `publish normal 2 on MAC`() {
         val multiplatformDir = repositoryPath.resolve("com/kotlin/normal-two")
-        gradleTestKitTest("$basePath/publishing/normal-2") {
+        gradleTestKitTest("$basePath/publishing/normal-2", name = projectName) {
             gradlewArgumentFromTXT()
             val multiplatformDirs: List<File> =
                 multiplatformDir.listFiles().shouldNotBeEmpty().sorted()
@@ -135,7 +137,7 @@ internal class KotlinMultiplatformTest : GradleTestKitTest() {
     @EnabledIfEnvironmentVariable(named = "CI", matches = "((false)|null)")
     fun `publish normal 2 on WINDOWS`() {
         val multiplatformDir = repositoryPath.resolve("com/kotlin/normal-two")
-        gradleTestKitTest("$basePath/publishing/normal-2") {
+        gradleTestKitTest("$basePath/publishing/normal-2", name = projectName) {
             gradlew("kotlinUpgradeYarnLock")
             gradlewArgumentFromTXT()
             val multiplatformDirs: List<File> =
@@ -162,7 +164,7 @@ internal class KotlinMultiplatformTest : GradleTestKitTest() {
 
         fun File.versionDir(): File = resolve("3.6.7-SNAPSHOT")
 
-        gradleTestKitTest("$basePath/publishing/snapshot-1") {
+        gradleTestKitTest("$basePath/publishing/snapshot-1", name = projectName) {
             gradlewArgumentFromTXT()
             sandboxProjectDir.shouldBeADirectory()
             sandboxProjectDir.resolve("maven-metadata-local.xml").shouldBeAFile()

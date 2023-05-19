@@ -1,6 +1,5 @@
 package com.javiersc.hubdle.project
 
-import com.javiersc.gradle.properties.extensions.getProperty
 import com.javiersc.hubdle.project.extensions.HubdleExtension
 import com.javiersc.hubdle.project.extensions._internal.hubdleState
 import com.javiersc.hubdle.project.extensions.config._internal.createHubdleConfigExtensions
@@ -13,7 +12,6 @@ import org.gradle.kotlin.dsl.apply
 public abstract class HubdleProjectPlugin : Plugin<Project> {
 
     override fun apply(target: Project) {
-        target.group = target.getProperty(HubdleProperty.Project.group).get()
         target.pluginManager.apply(BasePlugin::class)
 
         target.configureHubdleExtensions()

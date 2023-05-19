@@ -13,7 +13,7 @@ internal class BinaryCompatibilityStateTest : GradleTestKitTest() {
 
     @Test
     fun `binary compatibility validator 1`() {
-        gradleTestKitTest("$basePath/1") {
+        gradleTestKitTest("$basePath/1", name = "sandbox-project") {
             gradlewArgumentFromTXT()
             val rootApiDir: File = projectDir.resolve("api")
             rootApiDir.shouldBeADirectory()

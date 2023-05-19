@@ -2,10 +2,12 @@ package com.javiersc.hubdle.settings
 
 import com.gradle.enterprise.gradleplugin.GradleEnterpriseExtension
 import com.javiersc.gradle.properties.extensions.getStringProperty
+import com.javiersc.gradle.properties.extensions.provider
 import com.javiersc.hubdle.project.HubdleProjectPlugin
 import com.javiersc.hubdle.project.extensions._internal.PluginId.JetbrainsKotlinxKover
 import com.javiersc.hubdle.project.extensions._internal.hubdleCatalog
 import com.javiersc.hubdle.project.extensions._internal.library
+import com.javiersc.hubdle.project.extensions.config.HubdleConfigExtension.ProjectConfig
 import com.javiersc.hubdle.settings.extensions.extractedBuildProjects
 import com.javiersc.hubdle.settings.extensions.extractedProjects
 import com.javiersc.hubdle.settings.tasks.GenerateHubdleCatalogTask
@@ -18,6 +20,7 @@ import org.gradle.api.artifacts.ModuleIdentifier
 import org.gradle.api.initialization.Settings
 import org.gradle.api.model.ObjectFactory
 import org.gradle.api.plugins.BasePlugin
+import org.gradle.api.provider.Provider
 import org.gradle.api.tasks.TaskProvider
 import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.configure
@@ -27,6 +30,7 @@ import org.gradle.kotlin.dsl.findByType
 import org.gradle.kotlin.dsl.maven
 import org.gradle.kotlin.dsl.project
 import org.gradle.kotlin.dsl.register
+import org.gradle.kotlin.dsl.the
 import org.gradle.language.base.plugins.LifecycleBasePlugin.ASSEMBLE_TASK_NAME
 
 public open class HubdleSettingsPlugin
@@ -36,14 +40,11 @@ constructor(
 ) : Plugin<Settings> {
 
     override fun apply(target: Settings) {
-        val rootProjectName = target.getStringProperty("root.project.name").orNull
-        if (rootProjectName != null) {
-            target.rootProject.name = rootProjectName
-        }
         target.enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
         target.extensions.create<HubdleSettingsExtension>("hubdleSettings")
 
+        target.configureRootProjectName()
         target.configureRepositories()
         target.createHubdleVersionCatalog()
         target.configureGradleEnterprise()
@@ -55,6 +56,16 @@ constructor(
             settings.configureAutoInclude()
             settings.configureAutoIncludeVersionCatalogs(objects)
         }
+    }
+
+    private val Settings.hubdleExtension: HubdleSettingsExtension
+        get() = the()
+
+    private fun Settings.configureRootProjectName() {
+        val rootProjectName: Provider<String> = provider {
+            getStringProperty(ProjectConfig.rootProjectName).orNull ?: ""
+        }
+        hubdleExtension.rootProjectName.set(rootProjectName)
     }
 
     private fun Settings.createHubdleVersionCatalog() {
@@ -107,13 +118,17 @@ private fun Settings.configureHubdleCatalogTask() {
         val generateHubdleCatalogTask: TaskProvider<GenerateHubdleCatalogTask> =
             project.tasks.register<GenerateHubdleCatalogTask>("generateHubdleCatalog")
 
-        val hubdleAliasToLibraries =
+        val hubdleAliasToLibraries: Provider<Map<String, String?>> =
             project.provider {
-                project.hubdleCatalog.libraryAliases.associateWith { alias ->
-                    val library: MinimalExternalModuleDependency = project.library(alias).get()
-                    val module: ModuleIdentifier = library.module
-                    val version: String? = library.version
-                    if (version != null) "$module:$version" else "$module"
+                project.hubdleCatalog?.libraryAliases.orEmpty().associateWith { alias ->
+                    val library: MinimalExternalModuleDependency? = project.library(alias).orNull
+                    val module: ModuleIdentifier? = library?.module
+                    val version: String? = library?.version
+                    when {
+                        module != null && version != null -> "$module:$version"
+                        module != null && version == null -> "$module"
+                        else -> null
+                    }
                 }
             }
 

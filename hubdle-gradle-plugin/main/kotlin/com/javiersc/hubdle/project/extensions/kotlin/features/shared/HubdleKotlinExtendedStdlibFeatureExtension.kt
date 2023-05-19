@@ -79,7 +79,7 @@ public interface HubdleKotlinExtendedStdlibDelegateFeatureExtension : BaseHubdle
 }
 
 private fun Project.calculateJavierScKotlinTestDependency():
-    Provider<MinimalExternalModuleDependency> =
+    Provider<MinimalExternalModuleDependency?> =
     when (tasks.withType<Test>().firstOrNull()?.options) {
         is JUnitOptions -> library(javiersc_kotlin_kotlinTestJunit)
         is JUnitPlatformOptions -> library(javiersc_kotlin_kotlinTestJunit5)

@@ -1,8 +1,10 @@
 package com.javiersc.hubdle.project.extensions.config
 
+import com.javiersc.gradle.properties.extensions.getProperty
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
+import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
 import com.javiersc.hubdle.project.extensions.config.analysis.HubdleConfigAnalysisExtension
@@ -28,9 +30,11 @@ public open class HubdleConfigExtension
 @Inject
 constructor(
     project: Project,
-) : HubdleEnableableExtension(project) {
+) : HubdleConfigurableExtension(project) {
 
     override val isEnabled: Property<Boolean> = property { true }
+
+    override val priority: Priority = Priority.P2
 
     public val analysis: HubdleConfigAnalysisExtension
         get() = getHubdleExtension()
@@ -84,6 +88,15 @@ constructor(
         format.enableAndExecute(action)
     }
 
+    public val group: Property<String?> = property {
+        project.getProperty(ProjectConfig.group).orNull
+    }
+
+    @HubdleDslMarker
+    public fun group(group: String) {
+        this.group.set(group)
+    }
+
     public val languageSettings: HubdleConfigLanguageSettingsExtension
         get() = getHubdleExtension()
 
@@ -122,6 +135,20 @@ constructor(
     @HubdleDslMarker
     public fun versioning(action: Action<HubdleConfigVersioningExtension> = Action {}) {
         versioning.enableAndExecute(action)
+    }
+
+    public object ProjectConfig {
+        public const val group: String = "project.group"
+        public const val mainProjectName: String = "main.project.name"
+        public const val rootProjectName: String = "root.project.name"
+        public const val version: String = "project.version"
+    }
+
+    override fun Project.defaultConfiguration() {
+        configurable(priority = Priority.P1) {
+            val groupOrNull: String? = this@HubdleConfigExtension.group.orNull
+            if (groupOrNull != null) group = groupOrNull
+        }
     }
 }
 

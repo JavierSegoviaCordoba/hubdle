@@ -4,8 +4,6 @@
 
 ### Added
 
-- Test Retry Gradle plugin
-
 ### Changed
 
 ### Deprecated
@@ -13,6 +11,14 @@
 ### Removed
 
 ### Fixed
+
+### Updated
+
+## [0.5.0-alpha.17] - 2023-05-19
+
+### Added
+
+- Test Retry Gradle plugin
 
 ### Updated
 
@@ -264,7 +270,9 @@
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.2`
 - `app.cash.molecule:molecule-gradle-plugin -> 0.8.0`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.16...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.17...HEAD
+
+[0.5.0-alpha.17]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.16...0.5.0-alpha.17
 
 [0.5.0-alpha.16]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.15...0.5.0-alpha.16
 

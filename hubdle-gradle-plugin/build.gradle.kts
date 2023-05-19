@@ -1,5 +1,5 @@
+import com.javiersc.gradle.extensions.version.catalogs.artifact
 import com.javiersc.gradle.extensions.version.catalogs.getLibraries
-import com.javiersc.gradle.miscellanea.extensions.pluginLibrary
 import com.javiersc.gradle.tasks.extensions.maybeRegisterLazily
 import com.javiersc.gradle.tasks.extensions.namedLazily
 import java.util.Locale
@@ -9,6 +9,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 hubdle {
     config {
         analysis()
+        coverage()
         documentation { //
             api()
         }
@@ -81,11 +82,11 @@ hubdle {
                     api(hubdle.jetbrains.intellijPlugins.gradleIntellijPlugin)
                     api(hubdle.jetbrains.kotlin.kotlinGradlePlugin)
                     api(hubdle.jetbrains.kotlinx.binaryCompatibilityValidator)
-                    api(hubdle.plugins.jetbrains.kotlinx.kover.pluginLibrary)
                     api(hubdle.jetbrains.kotlinx.serialization)
                     api(hubdle.sonarqube.scannerGradle.sonarqubeGradlePlugin)
                     api(hubdle.vyarus.gradleMkdocsPlugin)
 
+                    api(hubdle.plugins.jetbrains.kotlinx.kover.artifact)
                     implementation(hubdle.eclipse.jgit)
                 }
 

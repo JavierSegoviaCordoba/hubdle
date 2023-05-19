@@ -9,7 +9,7 @@ hubdle {
     config {
         analysis()
         binaryCompatibilityValidator()
-        // coverage()
+        coverage()
         documentation {
             api()
             changelog()

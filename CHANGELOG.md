@@ -6,9 +6,19 @@
 
 ### Changed
 
-- `intellij.publishToken` property to `intellij.token`
-
 ### Deprecated
+
+### Removed
+
+### Fixed
+
+### Updated
+
+## [0.5.0-alpha.18] - 2023-05-22
+
+### Changed
+
+- `intellij.publishToken` property to `intellij.token`
 
 ### Removed
 
@@ -17,8 +27,6 @@
 ### Fixed
 
 - Kover html and xml reports path
-
-### Updated
 
 ## [0.5.0-alpha.17] - 2023-05-19
 
@@ -276,7 +284,9 @@
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.2`
 - `app.cash.molecule:molecule-gradle-plugin -> 0.8.0`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.17...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.18...HEAD
+
+[0.5.0-alpha.18]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.17...0.5.0-alpha.18
 
 [0.5.0-alpha.17]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.16...0.5.0-alpha.17
 

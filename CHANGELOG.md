@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- `maven-publish` plugin is applied when publishing is disabled
+
 ### Updated
 
 ## [0.5.0-alpha.20] - 2023-05-22

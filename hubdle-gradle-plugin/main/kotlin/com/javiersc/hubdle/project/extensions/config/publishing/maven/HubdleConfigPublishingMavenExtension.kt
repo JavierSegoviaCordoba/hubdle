@@ -70,15 +70,16 @@ internal fun HubdleConfigurableExtension.configurableMavenPublishing(
     configEmptyJavaDocs: Boolean = false,
     additionalConfig: Configurable.() -> Unit = {},
 ) {
+    val isEnabled: Property<Boolean> = property {
+        isEnabled.get() && hubdlePublishingMaven.isFullEnabled.get()
+    }
     applicablePlugin(
+        isEnabled = isEnabled,
         priority = Priority.P3,
         scope = Scope.CurrentProject,
         pluginId = PluginId.MavenPublish,
     )
-    configurable(
-        isEnabled = property { isEnabled.get() && hubdlePublishingMaven.isFullEnabled.get() },
-        priority = Priority.P3,
-    ) {
+    configurable(isEnabled = isEnabled, priority = Priority.P3) {
         configurePublishingExtension()
         if (configJavaExtension) {
             configure<JavaPluginExtension> {

@@ -12,9 +12,13 @@
 
 ### Fixed
 
-- `maven-publish` plugin is applied when publishing is disabled
-
 ### Updated
+
+## [0.5.0-alpha.21] - 2023-05-22
+
+### Fixed
+
+- `maven-publish` plugin is applied when publishing is disabled
 
 ## [0.5.0-alpha.20] - 2023-05-22
 
@@ -298,7 +302,9 @@
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.2`
 - `app.cash.molecule:molecule-gradle-plugin -> 0.8.0`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.20...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.21...HEAD
+
+[0.5.0-alpha.21]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.20...0.5.0-alpha.21
 
 [0.5.0-alpha.20]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.19...0.5.0-alpha.20
 

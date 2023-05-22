@@ -4,6 +4,7 @@ import com.javiersc.gradle.testkit.test.extensions.GradleTestKitTest
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.file.shouldBeADirectory
 import io.kotest.matchers.file.shouldBeAFile
+import io.kotest.matchers.string.shouldContain
 import java.io.File
 import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
@@ -114,6 +115,15 @@ internal class KotlinJvmTest : GradleTestKitTest() {
             versionDir.resolve("sandbox-project-3.6.7-SNAPSHOT.pom").shouldBeAFile()
             versionDir.resolve("sandbox-project-3.6.7-SNAPSHOT-javadoc.jar").shouldBeAFile()
             versionDir.resolve("sandbox-project-3.6.7-SNAPSHOT-sources.jar").shouldBeAFile()
+        }
+    }
+
+    @Test
+    fun `publish gradle-plugin-1`() {
+        gradleTestKitTest("$basePath/publishing/gradle-plugin-1", name = projectName) {
+            withEnvironment(gpgMap)
+            withArgumentsFromTXT()
+            build().output.shouldContain("Publications: [pluginMaven, sandboxPluginMarkerMaven]")
         }
     }
 }

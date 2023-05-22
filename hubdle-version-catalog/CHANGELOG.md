@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.gradle:test-retry-gradle-plugin -> 1.5.3`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-alpha.17`
 - `com.javiersc.gradle:gradle-test-extensions -> 1.0.0-alpha.32`
 - `com.javiersc.gradle:gradle-extensions -> 1.0.0-alpha.32`

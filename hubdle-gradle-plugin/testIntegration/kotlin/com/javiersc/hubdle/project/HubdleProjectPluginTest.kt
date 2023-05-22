@@ -12,8 +12,8 @@ class HubdleProjectPluginTest : GradleProjectTest() {
     @Test
     fun `given local+properties with multiple properties, when hubdle is applied, then properties are assigned`() {
         hubdle("properties") {
-            group shouldBe "com.javiersc.local"
-            the<HubdleConfigPublishingMavenPomExtension>().name.get() shouldBe "Local"
+            group shouldBe "com.javiersc.gradle"
+            the<HubdleConfigPublishingMavenPomExtension>().name.get() shouldBe "Gradle"
         }
     }
 }

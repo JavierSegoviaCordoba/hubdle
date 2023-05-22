@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- Settings plugin doesn't change the root project name
+
 ### Updated
 
 ## [0.5.0-alpha.18] - 2023-05-22

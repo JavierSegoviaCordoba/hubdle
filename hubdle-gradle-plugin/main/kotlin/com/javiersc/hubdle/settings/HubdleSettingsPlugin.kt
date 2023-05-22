@@ -66,6 +66,7 @@ constructor(
             getStringProperty(ProjectConfig.rootProjectName).orNull ?: ""
         }
         hubdleExtension.rootProjectName.set(rootProjectName)
+        rootProject.name = hubdleExtension.rootProjectName.get()
     }
 
     private fun Settings.createHubdleVersionCatalog() {

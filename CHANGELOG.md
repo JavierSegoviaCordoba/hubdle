@@ -12,9 +12,13 @@
 
 ### Fixed
 
-- Nexus properties aren't nullable as default
-
 ### Updated
+
+## [0.5.0-alpha.20] - 2023-05-22
+
+### Fixed
+
+- Nexus properties aren't nullable as default
 
 ## [0.5.0-alpha.19] - 2023-05-22
 
@@ -292,7 +296,9 @@
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.2`
 - `app.cash.molecule:molecule-gradle-plugin -> 0.8.0`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.19...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.20...HEAD
+
+[0.5.0-alpha.20]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.19...0.5.0-alpha.20
 
 [0.5.0-alpha.19]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.18...0.5.0-alpha.19
 

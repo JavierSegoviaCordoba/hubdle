@@ -43,7 +43,7 @@ constructor(
     }
 
     public val stagingProfileId: Property<String?> = property {
-        getStringProperty(Nexus.nexusStagingProfileId).get()
+        getStringProperty(Nexus.nexusStagingProfileId).orNull
     }
 
     @HubdleDslMarker
@@ -51,7 +51,7 @@ constructor(
         stagingProfileId.set(value)
     }
 
-    public val token: Property<String?> = property { getStringProperty(Nexus.nexusToken).get() }
+    public val token: Property<String?> = property { getStringProperty(Nexus.nexusToken).orNull }
 
     @HubdleDslMarker
     public fun token(value: String) {
@@ -67,7 +67,7 @@ constructor(
         url.set(project.uri(value))
     }
 
-    public val user: Property<String?> = property { getStringProperty(Nexus.nexusUser).get() }
+    public val user: Property<String?> = property { getStringProperty(Nexus.nexusUser).orNull }
 
     @HubdleDslMarker
     public fun user(value: String) {

@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- Nexus properties aren't nullable as default
+
 ### Updated
 
 ## [0.5.0-alpha.19] - 2023-05-22

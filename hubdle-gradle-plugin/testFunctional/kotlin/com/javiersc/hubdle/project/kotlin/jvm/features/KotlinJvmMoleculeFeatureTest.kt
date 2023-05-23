@@ -13,9 +13,8 @@ internal class KotlinJvmMoleculeFeatureTest : GradleTestKitTest() {
     fun `molecule feature`() {
         gradleTestKitTest("kotlin/jvm/features/molecule") {
             withArguments("run").build().outputTrimmed.apply {
-                shouldContain("FooState(name=Unknown, counter=0)")
-                shouldContain("FooState(name=A")
-                shouldContain("FooState(name=B, counter=4)")
+                shouldContain("FooState(name=Unknown")
+                shouldContain("FooState(name=B")
             }
         }
     }

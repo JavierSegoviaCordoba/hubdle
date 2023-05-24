@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `androidx.activity:activity-ktx -> 1.7.2`
+- `androidx.activity:activity-compose -> 1.7.2`
 - `com.diffplug.spotless:spotless-plugin-gradle -> 6.19.0`
 - `io.gitlab.arturbosch.detekt:detekt-gradle-plugin -> 1.23.0`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-alpha.21`

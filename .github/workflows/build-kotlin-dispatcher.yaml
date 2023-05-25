@@ -12,11 +12,6 @@ on:
         required: false
         default: false
         type: boolean
-      machines:
-        default: "[ 'macos-latest', 'ubuntu-latest', 'windows-latest' ]"
-        description: 'Operative systems to run the build step'
-        required: false
-        type: string
 
 jobs:
   build:
@@ -25,5 +20,4 @@ jobs:
       allow-github-actor-bots: false
       gradle-args: '${{ github.event.inputs.gradle-args }}'
       publish-all-docs: '${{ github.event.inputs.publish-all-docs }}'
-      machines: '${{ github.event.inputs.machines }}'
     secrets: inherit

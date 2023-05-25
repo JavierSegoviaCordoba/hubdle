@@ -14,6 +14,10 @@
 
 ### Updated
 
+## [0.1.1-alpha.5] - 2023-05-25
+
+### Updated
+
 - `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.13.3`
 - `com.android.library:com.android.library.gradle.plugin -> 8.0.2`
 - `com.android.application:com.android.application.gradle.plugin -> 8.0.2`
@@ -135,7 +139,9 @@
 - `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
 - `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.13.1`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.1-alpha.4...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.1-alpha.5...HEAD
+
+[0.1.1-alpha.5]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.1-alpha.4...c0.1.1-alpha.5
 
 [0.1.1-alpha.4]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.1-alpha.3...c0.1.1-alpha.4
 

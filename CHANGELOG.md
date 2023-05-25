@@ -4,6 +4,7 @@
 
 ### Added
 
+- `testing` to `config`
 - Kotlin `compiler` feature to Kotlin JVM
 
 ### Changed

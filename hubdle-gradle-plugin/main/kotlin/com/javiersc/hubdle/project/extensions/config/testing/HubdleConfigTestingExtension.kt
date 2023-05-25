@@ -49,7 +49,7 @@ constructor(
     }
 
     public val maxParallelForks: Property<Int> = property {
-        (Runtime.getRuntime().availableProcessors() - 1).takeIf { it > 0 } ?: 1
+        (Runtime.getRuntime().availableProcessors() / 2).takeIf { it > 0 } ?: 1
     }
 
     @HubdleDslMarker

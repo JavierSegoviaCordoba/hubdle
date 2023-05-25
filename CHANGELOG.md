@@ -4,10 +4,6 @@
 
 ### Added
 
-- `Provider<MinimalExternalModuleDependency>.asString(): String` function
-- `Provider<MinimalExternalModuleDependency>.moduleAsString(): String` function
-- `Provider<MinimalExternalModuleDependency>.versionAsString(): String?` function
-
 ### Changed
 
 ### Deprecated
@@ -17,6 +13,14 @@
 ### Fixed
 
 ### Updated
+
+## [0.5.0-alpha.23] - 2023-05-25
+
+### Added
+
+- `Provider<MinimalExternalModuleDependency>.asString(): String` function
+- `Provider<MinimalExternalModuleDependency>.moduleAsString(): String` function
+- `Provider<MinimalExternalModuleDependency>.versionAsString(): String?` function
 
 ## [0.5.0-alpha.22] - 2023-05-25
 
@@ -313,7 +317,9 @@
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.2`
 - `app.cash.molecule:molecule-gradle-plugin -> 0.8.0`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.22...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.23...HEAD
+
+[0.5.0-alpha.23]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.22...0.5.0-alpha.23
 
 [0.5.0-alpha.22]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.21...0.5.0-alpha.22
 

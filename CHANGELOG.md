@@ -4,9 +4,6 @@
 
 ### Added
 
-- `testing` to `config`
-- Kotlin `compiler` feature to Kotlin JVM
-
 ### Changed
 
 ### Deprecated
@@ -16,6 +13,13 @@
 ### Fixed
 
 ### Updated
+
+## [0.5.0-alpha.22] - 2023-05-25
+
+### Added
+
+- `testing` to `config`
+- Kotlin `compiler` feature to Kotlin JVM
 
 ## [0.5.0-alpha.21] - 2023-05-22
 
@@ -305,7 +309,9 @@
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.2`
 - `app.cash.molecule:molecule-gradle-plugin -> 0.8.0`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.21...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.22...HEAD
+
+[0.5.0-alpha.22]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.21...0.5.0-alpha.22
 
 [0.5.0-alpha.21]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.20...0.5.0-alpha.21
 

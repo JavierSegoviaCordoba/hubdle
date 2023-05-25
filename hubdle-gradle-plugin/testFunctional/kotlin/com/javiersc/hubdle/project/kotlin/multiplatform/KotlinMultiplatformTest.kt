@@ -33,6 +33,7 @@ internal class KotlinMultiplatformTest : GradleTestKitTest() {
     }
 
     @Test
+    @EnabledOnOs(value = [OS.LINUX, OS.MAC])
     fun `publish normal 1`() {
         val multiplatformDir = repositoryPath.resolve("com/kotlin/normal-one")
         val sandboxProjectDir = multiplatformDir.resolve(projectName)
@@ -155,6 +156,7 @@ internal class KotlinMultiplatformTest : GradleTestKitTest() {
     }
 
     @Test
+    @EnabledOnOs(value = [OS.LINUX, OS.MAC])
     fun `publish snapshot 1`() {
         val multiplatformDir = repositoryPath.resolve("com/kotlin/snapshot-one")
         val sandboxProjectDir = multiplatformDir.resolve("sandbox-project")

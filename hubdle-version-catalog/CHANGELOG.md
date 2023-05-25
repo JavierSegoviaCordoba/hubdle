@@ -14,6 +14,10 @@
 
 ### Updated
 
+## [0.1.1-alpha.3] - 2023-05-25
+
+### Updated
+
 - `androidx.activity:activity-ktx -> 1.7.2`
 - `androidx.activity:activity-compose -> 1.7.2`
 - `com.diffplug.spotless:spotless-plugin-gradle -> 6.19.0`
@@ -120,7 +124,9 @@
 - `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
 - `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.13.1`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.1-alpha.2...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.1-alpha.3...HEAD
+
+[0.1.1-alpha.3]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.1-alpha.2...c0.1.1-alpha.3
 
 [0.1.1-alpha.2]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.1-alpha.1...c0.1.1-alpha.2
 

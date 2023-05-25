@@ -18,6 +18,7 @@
 
 ### Added
 
+- `kotlinVersion` property to Kotlin Compiler feature
 - `Provider<MinimalExternalModuleDependency>.asString(): String` function
 - `Provider<MinimalExternalModuleDependency>.moduleAsString(): String` function
 - `Provider<MinimalExternalModuleDependency>.versionAsString(): String?` function

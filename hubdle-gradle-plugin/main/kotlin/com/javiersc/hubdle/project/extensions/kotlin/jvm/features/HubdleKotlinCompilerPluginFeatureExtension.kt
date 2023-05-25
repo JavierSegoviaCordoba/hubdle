@@ -56,6 +56,13 @@ constructor(
 
     override val priority: Priority = Priority.P4
 
+    public val kotlinVersion: Property<KotlinVersion> = property { KotlinVersion.KOTLIN_2_0 }
+
+    @HubdleDslMarker
+    public fun kotlinVersion(value: KotlinVersion) {
+        kotlinVersion.set(value)
+    }
+
     public val mainClass: Property<String> = property { "" }
 
     @HubdleDslMarker
@@ -115,7 +122,7 @@ constructor(
 
             tasks.apply {
                 withType<KotlinCompile>().configureEach { kotlinCompile ->
-                    kotlinCompile.compilerOptions { languageVersion.set(KotlinVersion.KOTLIN_2_0) }
+                    kotlinCompile.compilerOptions { languageVersion.set(kotlinVersion) }
                 }
 
                 val generateKotlinCompilerTests: TaskProvider<JavaExec> =

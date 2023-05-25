@@ -12,6 +12,14 @@ on:
         required: false
         default: false
         type: boolean
+      publish-snapshot-tag-prefix:
+        description: 'Publish snapshot based on a custom tag prefix'
+        default: 'null'
+        required: false
+        type: choice
+        options:
+          - 'null'
+          - 'c'
 
 jobs:
   build:
@@ -20,4 +28,5 @@ jobs:
       allow-github-actor-bots: false
       gradle-args: '${{ github.event.inputs.gradle-args }}'
       publish-all-docs: '${{ github.event.inputs.publish-all-docs }}'
+      publish-snapshot-tag-prefix: '${{ github.event.inputs.publish-snapshot-tag-prefix }}'
     secrets: inherit

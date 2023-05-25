@@ -18,6 +18,7 @@ import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotli
 import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotlinSerializationFeatureExtension
 import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotlinSqlDelightFeatureExtension
 import com.javiersc.hubdle.project.extensions.kotlin.jvm.HubdleKotlinJvmExtension
+import com.javiersc.hubdle.project.extensions.kotlin.jvm.features.HubdleKotlinCompilerPluginFeatureExtension
 import com.javiersc.hubdle.project.extensions.kotlin.jvm.features.HubdleKotlinJvmFeaturesExtension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.HubdleKotlinMultiplatformExtension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.features.HubdleKotlinMultiplatformFeaturesExtension
@@ -77,8 +78,6 @@ internal fun HubdleState.createHubdleKotlinExtensions() {
 
 private fun HubdleState.createKotlinFeatureExtensions() {
     createExtension<HubdleKotlinFeaturesExtension> {
-        createExtension<HubdleJavaApplicationFeatureExtension>()
-        createExtension<HubdleJavaVersionFeatureExtension>()
         createExtension<HubdleGradleFeatureExtension> {
             createExtension<HubdleGradlePluginFeatureExtension>()
             createExtension<HubdleGradleVersionCatalogFeatureExtension>()
@@ -86,6 +85,9 @@ private fun HubdleState.createKotlinFeatureExtensions() {
         createExtension<HubdleIntellijFeatureExtension> {
             createExtension<HubdleIntellijPluginFeatureExtension>()
         }
+        createExtension<HubdleJavaApplicationFeatureExtension>()
+        createExtension<HubdleJavaVersionFeatureExtension>()
+        createExtension<HubdleKotlinCompilerPluginFeatureExtension>()
         createExtension<HubdleKotlinComposeFeatureExtension>()
         createExtension<HubdleKotlinCoroutinesFeatureExtension>()
         createExtension<HubdleKotlinExtendedStdlibFeatureExtension>()

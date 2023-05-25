@@ -4,6 +4,8 @@
 
 ### Added
 
+- Kotlin `compiler` feature to Kotlin JVM
+
 ### Changed
 
 ### Deprecated

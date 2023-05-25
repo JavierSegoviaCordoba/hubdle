@@ -10,17 +10,25 @@ import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.api.provider.Provider
 import org.gradle.kotlin.dsl.findByType
 
-internal fun HubdleEnableableExtension.libraryVersion(name: String): String? =
-    project.hubdleCatalog?.findLibrary(name)?.get()?.get()?.version
+internal fun HubdleEnableableExtension.libraryVersion(alias: String): String? =
+    project.hubdleCatalog?.findLibrary(alias)?.get()?.get()?.version
 
 internal fun HubdleEnableableExtension.library(
-    name: String
+    alias: String
 ): Provider<MinimalExternalModuleDependency?> = provider {
-    project.hubdleCatalog?.findLibrary(name)?.get()?.orNull
+    project.hubdleCatalog?.findLibrary(alias)?.get()?.orNull
 }
 
-internal fun Project.library(name: String): Provider<MinimalExternalModuleDependency?> = provider {
-    hubdleCatalog?.findLibrary(name)?.getOrNull()?.orNull
+internal fun Project.libraryPlatform(alias: String): String =
+    provider {
+            val bom = hubdleCatalog?.findLibrary(alias)?.getOrNull()?.orNull
+            checkNotNull(bom) { "bom dependency not found" }
+            "${bom.module}:${bom.version}"
+        }
+        .get()
+
+internal fun Project.library(alias: String): Provider<MinimalExternalModuleDependency?> = provider {
+    hubdleCatalog?.findLibrary(alias)?.getOrNull()?.orNull
 }
 
 internal val Project.hubdleCatalog: VersionCatalog?

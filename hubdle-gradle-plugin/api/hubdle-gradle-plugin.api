@@ -1307,15 +1307,44 @@ public class com/javiersc/hubdle/project/extensions/kotlin/jvm/HubdleKotlinJvmEx
 	public fun localGroovy (Lorg/gradle/api/Project;)Lorg/gradle/api/artifacts/Dependency;
 }
 
-public abstract interface class com/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKotlinJvmDelegateFeaturesExtension : com/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinComposeDelegateFeatureExtension, com/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinCoroutinesDelegateFeatureExtension, com/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinExtendedStdlibDelegateFeatureExtension, com/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinKotestDelegateFeatureExtension, com/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinMoleculeDelegateFeatureExtension, com/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinSerializationDelegateFeatureExtension, com/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinSqlDelightDelegateFeatureExtension, com/javiersc/hubdle/project/extensions/shared/features/HubdleGradleDelegateFeatureExtension, com/javiersc/hubdle/project/extensions/shared/features/HubdleIntellijDelegateFeatureExtension, com/javiersc/hubdle/project/extensions/shared/features/HubdleJavaApplicationDelegateFeatureExtension, com/javiersc/hubdle/project/extensions/shared/features/HubdleJavaVersionDelegateFeatureExtension, com/javiersc/hubdle/project/extensions/shared/features/HubdleJvmToolchainDelegateFeatureExtension {
+public abstract interface class com/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKotlinCompilerPluginDelegateFeatureExtension : com/javiersc/hubdle/project/extensions/apis/BaseHubdleDelegateExtension {
+	public abstract fun compiler (Lorg/gradle/api/Action;)V
+	public abstract fun getCompiler ()Lcom/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKotlinCompilerPluginFeatureExtension;
+}
+
+public final class com/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKotlinCompilerPluginDelegateFeatureExtension$DefaultImpls {
+	public static fun compiler (Lcom/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKotlinCompilerPluginDelegateFeatureExtension;Lorg/gradle/api/Action;)V
+	public static synthetic fun compiler$default (Lcom/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKotlinCompilerPluginDelegateFeatureExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+	public static fun getCompiler (Lcom/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKotlinCompilerPluginDelegateFeatureExtension;)Lcom/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKotlinCompilerPluginFeatureExtension;
+}
+
+public class com/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKotlinCompilerPluginFeatureExtension : com/javiersc/hubdle/project/extensions/apis/HubdleConfigurableExtension {
+	public fun <init> (Lorg/gradle/api/Project;)V
+	public final fun getMainClass ()Lorg/gradle/api/provider/Property;
+	public final fun getTestGenDir ()Lorg/gradle/api/provider/Property;
+	public final fun getTestProjects ()Lorg/gradle/api/provider/SetProperty;
+	public fun isEnabled ()Lorg/gradle/api/provider/Property;
+	public final fun mainClass (Ljava/lang/String;)V
+	public final fun testGenDir (Ljava/lang/String;)V
+	public final fun testProjects ([Lorg/gradle/api/artifacts/ProjectDependency;)V
+}
+
+public final class com/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKotlinCompilerPluginFeatureExtension$defaultConfiguration$1$inlined$sam$i$org_gradle_api_Action$0 : org/gradle/api/Action {
+	public fun <init> (Lkotlin/jvm/functions/Function1;)V
+	public final synthetic fun execute (Ljava/lang/Object;)V
+}
+
+public abstract interface class com/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKotlinJvmDelegateFeaturesExtension : com/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinComposeDelegateFeatureExtension, com/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinCoroutinesDelegateFeatureExtension, com/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinExtendedStdlibDelegateFeatureExtension, com/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinKotestDelegateFeatureExtension, com/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinMoleculeDelegateFeatureExtension, com/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinSerializationDelegateFeatureExtension, com/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinSqlDelightDelegateFeatureExtension, com/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKotlinCompilerPluginDelegateFeatureExtension, com/javiersc/hubdle/project/extensions/shared/features/HubdleGradleDelegateFeatureExtension, com/javiersc/hubdle/project/extensions/shared/features/HubdleIntellijDelegateFeatureExtension, com/javiersc/hubdle/project/extensions/shared/features/HubdleJavaApplicationDelegateFeatureExtension, com/javiersc/hubdle/project/extensions/shared/features/HubdleJavaVersionDelegateFeatureExtension, com/javiersc/hubdle/project/extensions/shared/features/HubdleJvmToolchainDelegateFeatureExtension {
 }
 
 public final class com/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKotlinJvmDelegateFeaturesExtension$DefaultImpls {
 	public static fun application (Lcom/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKotlinJvmDelegateFeaturesExtension;Lorg/gradle/api/Action;)V
+	public static fun compiler (Lcom/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKotlinJvmDelegateFeaturesExtension;Lorg/gradle/api/Action;)V
 	public static fun compose (Lcom/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKotlinJvmDelegateFeaturesExtension;Lorg/gradle/api/Action;)V
 	public static fun coroutines (Lcom/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKotlinJvmDelegateFeaturesExtension;Lorg/gradle/api/Action;)V
 	public static fun extendedStdlib (Lcom/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKotlinJvmDelegateFeaturesExtension;Lorg/gradle/api/Action;)V
 	public static fun getApplication (Lcom/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKotlinJvmDelegateFeaturesExtension;)Lcom/javiersc/hubdle/project/extensions/shared/features/HubdleJavaApplicationFeatureExtension;
+	public static fun getCompiler (Lcom/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKotlinJvmDelegateFeaturesExtension;)Lcom/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKotlinCompilerPluginFeatureExtension;
 	public static fun getCompose (Lcom/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKotlinJvmDelegateFeaturesExtension;)Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinComposeFeatureExtension;
 	public static fun getCoroutines (Lcom/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKotlinJvmDelegateFeaturesExtension;)Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinCoroutinesFeatureExtension;
 	public static fun getExtendedStdlib (Lcom/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKotlinJvmDelegateFeaturesExtension;)Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinExtendedStdlibFeatureExtension;
@@ -1341,10 +1370,12 @@ public final class com/javiersc/hubdle/project/extensions/kotlin/jvm/features/Hu
 public class com/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKotlinJvmFeaturesExtension : com/javiersc/hubdle/project/extensions/apis/HubdleEnableableExtension, com/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKotlinJvmDelegateFeaturesExtension {
 	public fun <init> (Lorg/gradle/api/Project;)V
 	public fun application (Lorg/gradle/api/Action;)V
+	public fun compiler (Lorg/gradle/api/Action;)V
 	public fun compose (Lorg/gradle/api/Action;)V
 	public fun coroutines (Lorg/gradle/api/Action;)V
 	public fun extendedStdlib (Lorg/gradle/api/Action;)V
 	public fun getApplication ()Lcom/javiersc/hubdle/project/extensions/shared/features/HubdleJavaApplicationFeatureExtension;
+	public fun getCompiler ()Lcom/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKotlinCompilerPluginFeatureExtension;
 	public fun getCompose ()Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinComposeFeatureExtension;
 	public fun getCoroutines ()Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinCoroutinesFeatureExtension;
 	public fun getExtendedStdlib ()Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinExtendedStdlibFeatureExtension;

@@ -40,6 +40,7 @@ public interface HubdleKotlinJvmDelegateFeaturesExtension :
     HubdleGradleDelegateFeatureExtension,
     HubdleIntellijDelegateFeatureExtension,
     HubdleJavaApplicationDelegateFeatureExtension,
+    HubdleKotlinCompilerPluginDelegateFeatureExtension,
     HubdleKotlinComposeDelegateFeatureExtension,
     HubdleKotlinCoroutinesDelegateFeatureExtension,
     HubdleKotlinExtendedStdlibDelegateFeatureExtension,

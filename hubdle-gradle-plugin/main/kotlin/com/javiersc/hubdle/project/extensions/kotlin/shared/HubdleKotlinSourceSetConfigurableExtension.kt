@@ -7,6 +7,8 @@ import com.javiersc.hubdle.project.extensions._internal.TEST_FUNCTIONAL
 import com.javiersc.hubdle.project.extensions._internal.TEST_INTEGRATION
 import com.javiersc.hubdle.project.extensions.apis.HubdleSourceSetConfigurableExtension
 import com.javiersc.hubdle.project.extensions.kotlin.shared.asString as originalAsString
+import com.javiersc.hubdle.project.extensions.kotlin.shared.moduleAsString as originalModuleAsString
+import com.javiersc.hubdle.project.extensions.kotlin.shared.versionAsString as originalVersionAsString
 import org.gradle.api.NamedDomainObjectProvider
 import org.gradle.api.Project
 import org.gradle.api.artifacts.MinimalExternalModuleDependency
@@ -49,4 +51,10 @@ public abstract class HubdleKotlinSourceSetConfigurableExtension(
         }
 
     public fun Provider<MinimalExternalModuleDependency>.asString(): String = originalAsString()
+
+    public fun Provider<MinimalExternalModuleDependency>.moduleAsString(): String =
+        originalModuleAsString()
+
+    public fun Provider<MinimalExternalModuleDependency>.versionAsString(): String? =
+        originalVersionAsString()
 }

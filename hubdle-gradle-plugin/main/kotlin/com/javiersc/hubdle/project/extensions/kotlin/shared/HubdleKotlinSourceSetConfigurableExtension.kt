@@ -6,8 +6,11 @@ import com.javiersc.hubdle.project.extensions._internal.TEST_FIXTURES
 import com.javiersc.hubdle.project.extensions._internal.TEST_FUNCTIONAL
 import com.javiersc.hubdle.project.extensions._internal.TEST_INTEGRATION
 import com.javiersc.hubdle.project.extensions.apis.HubdleSourceSetConfigurableExtension
+import com.javiersc.hubdle.project.extensions.kotlin.shared.asString as originalAsString
 import org.gradle.api.NamedDomainObjectProvider
 import org.gradle.api.Project
+import org.gradle.api.artifacts.MinimalExternalModuleDependency
+import org.gradle.api.provider.Provider
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 
@@ -44,4 +47,6 @@ public abstract class HubdleKotlinSourceSetConfigurableExtension(
             the<KotlinProjectExtension>().sourceSets.maybeCreate(calculateName(TEST_FIXTURES))
             return the<KotlinProjectExtension>().sourceSets.named(calculateName(TEST_FIXTURES))
         }
+
+    public fun Provider<MinimalExternalModuleDependency>.asString(): String = originalAsString()
 }

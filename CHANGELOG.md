@@ -4,6 +4,8 @@
 
 ### Added
 
+- `Provider<MinimalExternalModuleDependency>.asString(): String` function
+
 ### Changed
 
 ### Deprecated

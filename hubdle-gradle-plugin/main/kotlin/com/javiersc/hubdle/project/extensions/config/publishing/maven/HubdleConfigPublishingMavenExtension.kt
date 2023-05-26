@@ -15,6 +15,7 @@ import com.javiersc.hubdle.project.extensions.config.publishing.hubdlePublishing
 import com.javiersc.hubdle.project.extensions.config.publishing.isSemver
 import com.javiersc.hubdle.project.extensions.config.versioning.semver._internal.isTagPrefixProject
 import com.javiersc.hubdle.project.extensions.shared.features.gradle.hubdleGradlePluginFeature
+import com.javiersc.hubdle.project.extensions.shared.features.gradle.hubdleGradleVersionCatalog
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
@@ -88,7 +89,9 @@ internal fun HubdleConfigurableExtension.configurableMavenPublishing(
             }
         }
         val isNotGradlePlugin: Boolean = hubdleGradlePluginFeature.isFullEnabled.orNull == false
-        if (isNotGradlePlugin && mavenPublicationName != null) {
+        val isNotGradleVersionCatalog: Boolean =
+            hubdleGradleVersionCatalog.isFullEnabled.orNull == false
+        if (isNotGradlePlugin && isNotGradleVersionCatalog && mavenPublicationName != null) {
             configureMavenPublication(mavenPublicationName)
         }
         if (configEmptyJavaDocs) {

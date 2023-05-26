@@ -12,6 +12,7 @@
 
 ### Fixed
 
+- JUnit dependencies
 - Kotlin Compiler feature JUnit dependencies
 
 ### Updated

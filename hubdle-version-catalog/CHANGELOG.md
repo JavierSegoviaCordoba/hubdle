@@ -4,8 +4,6 @@
 
 ### Added
 
-- `com.github.adriankuta:tree-structure -> 3.0.1`
-
 ### Changed
 
 ### Deprecated
@@ -15,6 +13,12 @@
 ### Fixed
 
 ### Updated
+
+## [0.1.1-alpha.6] - 2023-05-26
+
+### Added
+
+- `com.github.adriankuta:tree-structure -> 3.0.1`
 
 ## [0.1.1-alpha.5] - 2023-05-25
 
@@ -141,7 +145,9 @@
 - `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
 - `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.13.1`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.1-alpha.5...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.1-alpha.6...HEAD
+
+[0.1.1-alpha.6]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.1-alpha.5...c0.1.1-alpha.6
 
 [0.1.1-alpha.5]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.1-alpha.4...c0.1.1-alpha.5
 

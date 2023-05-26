@@ -12,10 +12,14 @@
 
 ### Fixed
 
+### Updated
+
+## [0.5.0-alpha.24] - 2023-05-26
+
+### Fixed
+
 - JUnit dependencies
 - Kotlin Compiler feature JUnit dependencies
-
-### Updated
 
 ## [0.5.0-alpha.23] - 2023-05-25
 
@@ -321,7 +325,9 @@
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.2`
 - `app.cash.molecule:molecule-gradle-plugin -> 0.8.0`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.23...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.24...HEAD
+
+[0.5.0-alpha.24]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.23...0.5.0-alpha.24
 
 [0.5.0-alpha.23]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.22...0.5.0-alpha.23
 

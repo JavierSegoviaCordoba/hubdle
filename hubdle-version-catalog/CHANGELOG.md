@@ -4,6 +4,8 @@
 
 ### Added
 
+- `com.github.adriankuta:tree-structure -> 3.0.1`
+
 ### Changed
 
 ### Deprecated

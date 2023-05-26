@@ -76,7 +76,6 @@ hubdle {
                     api(hubdle.gradle.publish.pluginPublishPlugin)
                     api(hubdle.gradle.testRetryGradlePlugin)
                     api(hubdle.javiersc.semver.semverGradlePlugin)
-                    compileOnly(hubdle.jetbrains.kotlin.kotlinCompilerInternalTestFramework)
                     api(hubdle.jetbrains.compose.composeGradlePlugin)
                     api(hubdle.jetbrains.dokka.dokkaGradlePlugin)
                     api(hubdle.jetbrains.intellijPlugins.gradleChangelogPlugin)
@@ -88,6 +87,9 @@ hubdle {
                     api(hubdle.vyarus.gradleMkdocsPlugin)
 
                     api(hubdle.plugins.jetbrains.kotlinx.kover.artifact)
+
+                    compileOnly(hubdle.jetbrains.kotlin.kotlinCompilerInternalTestFramework)
+
                     implementation(hubdle.eclipse.jgit)
                 }
 

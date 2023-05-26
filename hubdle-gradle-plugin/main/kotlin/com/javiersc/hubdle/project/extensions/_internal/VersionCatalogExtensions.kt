@@ -31,6 +31,10 @@ internal fun Project.library(alias: String): Provider<MinimalExternalModuleDepen
     hubdleCatalog?.findLibrary(alias)?.getOrNull()?.orNull
 }
 
+internal fun Project.libraryModule(alias: String): Provider<String?> = provider {
+    hubdleCatalog?.findLibrary(alias)?.getOrNull()?.orNull?.module?.toString()
+}
+
 internal val Project.hubdleCatalog: VersionCatalog?
     get() {
         val versionCatalogExtension: VersionCatalogsExtension? = extensions.findByType()

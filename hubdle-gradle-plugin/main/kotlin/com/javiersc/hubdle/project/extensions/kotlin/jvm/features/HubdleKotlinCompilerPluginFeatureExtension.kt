@@ -4,6 +4,7 @@ import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions._internal.library
+import com.javiersc.hubdle.project.extensions._internal.libraryModule
 import com.javiersc.hubdle.project.extensions._internal.libraryPlatform
 import com.javiersc.hubdle.project.extensions.apis.BaseHubdleDelegateExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
@@ -17,7 +18,7 @@ import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.jet
 import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.jetbrains_kotlin_kotlinTest
 import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.jetbrains_kotlin_kotlinTestAnnotationsCommon
 import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.junit_bom
-import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.junit_jupiter
+import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.junit_jupiter_junitJupiter
 import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.junit_platform_junitCommons
 import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.junit_platform_junitLauncher
 import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.junit_platform_junitRunner
@@ -107,11 +108,11 @@ constructor(
                         )
                         implementation(library(jetbrains_kotlin_kotlinReflect))
                         implementation(library(jetbrains_kotlin_kotlinTestAnnotationsCommon))
-                        implementation(library(junit_jupiter))
-                        implementation(library(junit_platform_junitCommons))
-                        implementation(library(junit_platform_junitLauncher))
-                        implementation(library(junit_platform_junitRunner))
-                        implementation(library(junit_platform_junitSuiteApi))
+                        implementation(libraryModule(junit_jupiter_junitJupiter))
+                        implementation(libraryModule(junit_platform_junitCommons))
+                        implementation(libraryModule(junit_platform_junitLauncher))
+                        implementation(libraryModule(junit_platform_junitRunner))
+                        implementation(libraryModule(junit_platform_junitSuiteApi))
                         implementation(platform(libraryPlatform(junit_bom)))
                         runtimeOnly(library(jetbrains_kotlin_kotlinAnnotationsJvm))
                         runtimeOnly(library(jetbrains_kotlin_kotlinScriptRuntime))

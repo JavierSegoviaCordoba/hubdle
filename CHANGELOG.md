@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- Kotlin Compiler feature JUnit dependencies
+
 ### Updated
 
 ## [0.5.0-alpha.23] - 2023-05-25

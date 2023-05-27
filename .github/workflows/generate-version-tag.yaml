@@ -42,6 +42,7 @@ jobs:
       project-path: ':'
       stage: '${{ github.event.inputs.stage }}'
       scope: '${{ github.event.inputs.scope }}'
+      restore-kotlin-native-cache: false
     secrets: inherit
 
   catalog:
@@ -53,4 +54,5 @@ jobs:
       tag-prefix: 'c'
       stage: '${{ github.event.inputs.stage }}'
       scope: '${{ github.event.inputs.scope }}'
+      restore-kotlin-native-cache: false
     secrets: inherit

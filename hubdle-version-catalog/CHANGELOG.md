@@ -14,6 +14,11 @@
 
 ### Updated
 
+- `app.cash.sqldelight:native-driver -> 2.0.0-rc01`
+- `app.cash.sqldelight:jdbc-driver -> 2.0.0-rc01`
+- `app.cash.sqldelight:gradle-plugin -> 2.0.0-rc01`
+- `app.cash.sqldelight:coroutines-extensions -> 2.0.0-rc01`
+- `app.cash.sqldelight:android-driver -> 2.0.0-rc01`
 - `app.cash.sqldelight:app.cash.sqldelight.gradle.plugin -> 2.0.0-rc01`
 - `org.sonarqube:org.sonarqube.gradle.plugin -> 4.1.0.3113`
 - `org.sonarsource.scanner.gradle:sonarqube-gradle-plugin -> 4.1.0.3113`

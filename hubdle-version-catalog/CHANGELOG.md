@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `app.cash.sqldelight:app.cash.sqldelight.gradle.plugin -> 2.0.0-rc01`
 - `org.sonarqube:org.sonarqube.gradle.plugin -> 4.1.0.3113`
 - `org.sonarsource.scanner.gradle:sonarqube-gradle-plugin -> 4.1.0.3113`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-alpha.24`

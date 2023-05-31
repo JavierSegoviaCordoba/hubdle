@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.sonarsource.scanner.gradle:sonarqube-gradle-plugin -> 4.2.0.3129`
 - `io.ktor:ktor-serialization-kotlinx-json -> 2.3.1`
 - `io.ktor:ktor-client-okhttp -> 2.3.1`
 - `io.ktor:ktor-client-mock -> 2.3.1`
@@ -33,7 +34,6 @@
 - `app.cash.sqldelight:android-driver -> 2.0.0-rc01`
 - `app.cash.sqldelight:app.cash.sqldelight.gradle.plugin -> 2.0.0-rc01`
 - `org.sonarqube:org.sonarqube.gradle.plugin -> 4.1.0.3113`
-- `org.sonarsource.scanner.gradle:sonarqube-gradle-plugin -> 4.1.0.3113`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-alpha.24`
 
 ## [0.1.1-alpha.6] - 2023-05-26

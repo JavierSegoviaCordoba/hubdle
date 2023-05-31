@@ -14,6 +14,12 @@
 
 ### Updated
 
+- `io.ktor:ktor-serialization-kotlinx-json -> 2.3.1`
+- `io.ktor:ktor-client-okhttp -> 2.3.1`
+- `io.ktor:ktor-client-mock -> 2.3.1`
+- `io.ktor:ktor-client-core -> 2.3.1`
+- `io.ktor:ktor-client-content-negotiation -> 2.3.1`
+- `io.ktor:ktor-client-cio -> 2.3.1`
 - `io.insert-koin:koin-test-junit5 -> 3.4.1`
 - `io.insert-koin:koin-test-junit4 -> 3.4.1`
 - `io.insert-koin:koin-test -> 3.4.1`

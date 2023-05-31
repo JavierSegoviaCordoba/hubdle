@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `io.insert-koin:koin-androidx-compose -> 3.4.5`
 - `app.cash.sqldelight:sqlite-driver -> 2.0.0-rc01`
 - `app.cash.sqldelight:native-driver -> 2.0.0-rc01`
 - `app.cash.sqldelight:jdbc-driver -> 2.0.0-rc01`

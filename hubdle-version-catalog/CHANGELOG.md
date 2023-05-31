@@ -14,6 +14,9 @@
 
 ### Updated
 
+- `io.insert-koin:koin-logger-slf4j -> 3.4.1`
+- `io.insert-koin:koin-ktor -> 3.4.1`
+- `io.insert-koin:koin-android -> 3.4.1`
 - `org.sonarqube:org.sonarqube.gradle.plugin -> 4.2.0.3129`
 - `org.sonarsource.scanner.gradle:sonarqube-gradle-plugin -> 4.2.0.3129`
 - `io.ktor:ktor-serialization-kotlinx-json -> 2.3.1`

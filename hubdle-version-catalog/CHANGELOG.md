@@ -10,6 +10,8 @@
 
 ### Removed
 
+- `com.github.adriankuta:tree-structure`
+
 ### Fixed
 
 ### Updated

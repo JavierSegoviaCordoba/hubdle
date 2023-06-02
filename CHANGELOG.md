@@ -6,18 +6,24 @@
 
 ### Changed
 
-- `hubdleVersionCatalogVersion` to `catalogVersion`
-
 ### Deprecated
 
 ### Removed
 
 ### Fixed
 
+### Updated
+
+## [0.5.0-alpha.25] - 2023-06-02
+
+### Changed
+
+- `hubdleVersionCatalogVersion` to `catalogVersion`
+
+### Fixed
+
 - hubdle version is not used on settings extension
 - version catalog is not published
-
-### Updated
 
 ## [0.5.0-alpha.24] - 2023-05-26
 
@@ -330,7 +336,9 @@
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.2`
 - `app.cash.molecule:molecule-gradle-plugin -> 0.8.0`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.24...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.25...HEAD
+
+[0.5.0-alpha.25]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.24...0.5.0-alpha.25
 
 [0.5.0-alpha.24]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.23...0.5.0-alpha.24
 

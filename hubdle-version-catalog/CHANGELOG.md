@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.14.0`
+- `org.jetbrains.intellij.plugins:gradle-changelog-plugin -> 2.1.0`
 - `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.7.1`
 - `io.insert-koin:koin-logger-slf4j -> 3.4.1`
 - `io.insert-koin:koin-ktor -> 3.4.1`

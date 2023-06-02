@@ -26,7 +26,6 @@ import org.gradle.kotlin.dsl.the
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.changelog.Changelog
 import org.jetbrains.changelog.ChangelogPluginExtension
-import org.jetbrains.changelog.ChangelogSectionUrlBuilder
 import org.jetbrains.changelog.tasks.BaseChangelogTask
 import org.jetbrains.changelog.tasks.PatchChangelogTask
 
@@ -71,35 +70,7 @@ constructor(
                 )
                 combinePreReleases.set(false)
 
-                val prefix = hubdleSemver.tagPrefix.get()
-
-                val customSectionUrlBuilder = provider {
-                    @Suppress("ObjectLiteralToLambda")
-                    object : ChangelogSectionUrlBuilder {
-                        override fun build(
-                            repositoryUrl: String,
-                            currentVersion: String?,
-                            previousVersion: String?,
-                            isUnreleased: Boolean
-                        ): String {
-                            val comparison =
-                                when {
-                                    isUnreleased -> {
-                                        when (previousVersion) {
-                                            null -> "/commits"
-                                            else -> "/compare/$prefix$previousVersion...HEAD"
-                                        }
-                                    }
-                                    previousVersion == null -> "/commits/$prefix$currentVersion"
-                                    else ->
-                                        "/compare/$prefix$previousVersion...$prefix$currentVersion"
-                                }
-                            return repositoryUrl + comparison
-                        }
-                    }
-                }
-
-                sectionUrlBuilder.set(customSectionUrlBuilder)
+                versionPrefix.set(hubdleSemver.tagPrefix)
             }
 
             tasks.register<ApplyFormatChangelogTask>(ApplyFormatChangelogTask.NAME)

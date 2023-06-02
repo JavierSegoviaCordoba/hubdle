@@ -14,6 +14,10 @@
 
 ### Updated
 
+- `com.javiersc.kotlin:kotlin-test-testng -> 0.1.0-alpha.14`
+- `com.javiersc.kotlin:kotlin-test-junit5 -> 0.1.0-alpha.14`
+- `com.javiersc.kotlin:kotlin-test-junit -> 0.1.0-alpha.14`
+
 ## [0.1.1-alpha.7] - 2023-06-02
 
 ### Removed

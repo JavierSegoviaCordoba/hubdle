@@ -10,9 +10,15 @@
 
 ### Removed
 
-- `com.github.adriankuta:tree-structure`
-
 ### Fixed
+
+### Updated
+
+## [0.1.1-alpha.7] - 2023-06-02
+
+### Removed
+
+- `com.github.adriankuta:tree-structure`
 
 ### Updated
 
@@ -176,7 +182,9 @@
 - `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
 - `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.13.1`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.1-alpha.6...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.1-alpha.7...HEAD
+
+[0.1.1-alpha.7]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.1-alpha.6...c0.1.1-alpha.7
 
 [0.1.1-alpha.6]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.1-alpha.5...c0.1.1-alpha.6
 

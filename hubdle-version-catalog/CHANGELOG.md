@@ -14,6 +14,10 @@
 
 ### Updated
 
+## [0.1.1-alpha.8] - 2023-06-02
+
+### Updated
+
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-alpha.25`
 - `com.javiersc.kotlin:kotlin-test-testng -> 0.1.0-alpha.14`
 - `com.javiersc.kotlin:kotlin-test-junit5 -> 0.1.0-alpha.14`
@@ -187,7 +191,9 @@
 - `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
 - `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.13.1`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.1-alpha.7...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.1-alpha.8...HEAD
+
+[0.1.1-alpha.8]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.1-alpha.7...c0.1.1-alpha.8
 
 [0.1.1-alpha.7]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.1-alpha.6...c0.1.1-alpha.7
 

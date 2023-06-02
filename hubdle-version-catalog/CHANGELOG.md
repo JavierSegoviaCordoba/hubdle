@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.javiersc.kotlin:kotlin-stdlib -> 0.1.0-alpha.14`
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.14.0`
 - `org.jetbrains.intellij.plugins:gradle-changelog-plugin -> 2.1.0`
 - `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.7.1`

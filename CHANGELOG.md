@@ -6,11 +6,16 @@
 
 ### Changed
 
+- `hubdleVersionCatalogVersion` to `catalogVersion`
+
 ### Deprecated
 
 ### Removed
 
 ### Fixed
+
+- hubdle version is not used on settings extension
+- version catalog is not published
 
 ### Updated
 

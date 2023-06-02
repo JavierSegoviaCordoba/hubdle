@@ -14,6 +14,7 @@ pluginManagement {
         gradlePluginPortal()
         google()
         if (itselfVersionFromProp != null) mavenLocal()
+        mavenLocal()
     }
 
     plugins { //
@@ -23,6 +24,13 @@ pluginManagement {
 
 plugins { //
     id("com.javiersc.hubdle")
+}
+
+hubdleSettings {
+    autoInclude {
+        val sandboxEnabled = getBooleanProperty("sandbox.enabled").orNull ?: false
+        if (!sandboxEnabled) excludedBuilds("sandbox")
+    }
 }
 
 val itselfVersion: String? = providers.gradleProperty("itselfVersion").orNull
@@ -36,20 +44,15 @@ dependencyResolutionManagement {
         if (itselfVersion != null) mavenLocal()
     }
 
-    versionCatalogs {
-        removeIf { it.name == "hubdle" }
-        register("hubdle") {
-            if (itselfVersion != null) {
-                version("hubdle", itselfVersion)
+    gradle.settingsEvaluated {
+        versionCatalogs {
+            removeIf { it.name == "hubdle" }
+            create("hubdle") {
+                if (itselfVersion != null) {
+                    version("hubdle", itselfVersion)
+                }
+                from(files(rootDir.resolve("gradle/hubdle.libs.versions.toml")))
             }
-            from(files(rootDir.resolve("gradle/hubdle.libs.versions.toml")))
         }
-    }
-}
-
-hubdleSettings {
-    autoInclude {
-        val sandboxEnabled = getBooleanProperty("sandbox.enabled").orNull ?: false
-        if (!sandboxEnabled) excludedBuilds("sandbox")
     }
 }

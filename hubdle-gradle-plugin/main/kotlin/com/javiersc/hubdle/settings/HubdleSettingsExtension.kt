@@ -32,7 +32,12 @@ constructor(
         action.execute(buildScan)
     }
 
-    public val hubdleVersionCatalogVersion: Property<String> = property { "latest.release" }
+    public val catalogVersion: Property<String> = property { "latest.release" }
+
+    @HubdleSettingsDslMarker
+    public fun catalogVersion(version: String) {
+        catalogVersion.set(version)
+    }
 
     public val rootProjectName: Property<String> = property { "" }
 

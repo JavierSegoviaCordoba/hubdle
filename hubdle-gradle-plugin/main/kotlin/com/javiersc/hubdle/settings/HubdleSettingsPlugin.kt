@@ -46,11 +46,11 @@ constructor(
 
         target.configureRootProjectName()
         target.configureRepositories()
-        target.createHubdleVersionCatalog()
         target.configureGradleEnterprise()
         target.configureKoverMergeReports()
 
         target.gradle.settingsEvaluated { settings ->
+            target.createHubdleVersionCatalog()
             target.configureHubdleCatalogTask()
             target.useHubdleOnAllProjects()
             settings.configureAutoInclude()
@@ -71,7 +71,7 @@ constructor(
 
     private fun Settings.createHubdleVersionCatalog() {
         dependencyResolutionManagement.versionCatalogs.create("hubdle") { builder ->
-            val hubdleCatalogVersion = hubdleSettings.hubdleVersionCatalogVersion.get()
+            val hubdleCatalogVersion = hubdleSettings.catalogVersion.get()
             builder.from("com.javiersc.hubdle:hubdle-version-catalog:$hubdleCatalogVersion")
         }
     }

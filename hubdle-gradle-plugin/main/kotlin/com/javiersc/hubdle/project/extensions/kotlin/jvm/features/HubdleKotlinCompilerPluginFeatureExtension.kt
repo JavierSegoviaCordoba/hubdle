@@ -138,7 +138,9 @@ constructor(
 
                 val prepareKotlinIdeaImport: TaskProvider<Task> = named("prepareKotlinIdeaImport")
                 prepareKotlinIdeaImport.configure { task ->
-                    task.dependsOn(generateKotlinCompilerTests)
+                    if (mainClass.orNull.isNotNullNorBlank()) {
+                        task.dependsOn(generateKotlinCompilerTests)
+                    }
                 }
 
                 named<Test>("test") {

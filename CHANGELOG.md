@@ -6,6 +6,7 @@
 
 ### Changed
 
+- `prepareKotlinIdeaImport` dependencies based on `mainClass`
 - `generateKotlinCompilerTests` is disabled if `mainClass` is blank
 
 ### Deprecated

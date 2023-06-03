@@ -9,7 +9,8 @@ jobs:
   add-updated-dependencies-to-changelog:
     uses: JavierSegoviaCordoba/reusable-workflows/.github/workflows/build-changelog-renovate-bot.yaml@main
     with:
-      tag-prefix: 'c'
+      auto-approve: false
       gradle-args: '-Phubdle.catalog.renovate=true'
       restore-kotlin-native-cache: false
+      tag-prefix: 'c'
     secrets: inherit

@@ -67,12 +67,9 @@ hubdle {
                 dependencies {
                     api(hubdle.adarshr.gradleTestLoggerPlugin)
                     api(hubdle.android.toolsBuild.gradle)
-                    api(hubdle.cash.molecule.gradlePlugin)
-                    api(hubdle.cash.sqldelight.gradlePlugin)
                     api(hubdle.diffplug.spotless.spotlessPluginGradle)
                     api(hubdle.github.gradleNexus.publishPlugin)
                     api(hubdle.gitlab.arturboschDetekt.detektGradlePlugin)
-                    api(hubdle.gradle.enterprise.comGradleEnterpriseGradlePlugin)
                     api(hubdle.gradle.publish.pluginPublishPlugin)
                     api(hubdle.gradle.testRetryGradlePlugin)
                     api(hubdle.javiersc.semver.semverGradlePlugin)
@@ -83,10 +80,13 @@ hubdle {
                     api(hubdle.jetbrains.kotlin.kotlinGradlePlugin)
                     api(hubdle.jetbrains.kotlinx.binaryCompatibilityValidator)
                     api(hubdle.jetbrains.kotlinx.serialization)
-                    api(hubdle.sonarqube.scannerGradle.sonarqubeGradlePlugin)
                     api(hubdle.vyarus.gradleMkdocsPlugin)
 
+                    api(hubdle.plugins.cash.molecule.artifact)
+                    api(hubdle.plugins.cash.sqldelight.artifact)
+                    api(hubdle.plugins.gradle.enterprise.artifact)
                     api(hubdle.plugins.jetbrains.kotlinx.kover.artifact)
+                    api(hubdle.plugins.sonarqube.artifact)
 
                     compileOnly(hubdle.jetbrains.kotlin.kotlinCompilerInternalTestFramework)
 

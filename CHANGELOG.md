@@ -4,8 +4,6 @@
 
 ### Added
 
-- missing `detekt` and `sonar` extensions on `analysis`
-
 ### Changed
 
 ### Deprecated
@@ -14,9 +12,17 @@
 
 ### Fixed
 
-- Sonar is not being skipped with Hubdle `analysis.sonar.isFullEnabled` disabled
-
 ### Updated
+
+## [0.5.0-alpha.26] - 2023-06-03
+
+### Added
+
+- missing `detekt` and `sonar` extensions on `analysis`
+
+### Fixed
+
+- Sonar is not being skipped with Hubdle `analysis.sonar.isFullEnabled` disabled
 
 ## [0.5.0-alpha.25] - 2023-06-02
 
@@ -340,7 +346,9 @@
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.2`
 - `app.cash.molecule:molecule-gradle-plugin -> 0.8.0`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.25...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.26...HEAD
+
+[0.5.0-alpha.26]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.25...0.5.0-alpha.26
 
 [0.5.0-alpha.25]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.24...0.5.0-alpha.25
 

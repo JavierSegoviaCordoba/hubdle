@@ -22,6 +22,7 @@ import javax.inject.Inject
 import org.gradle.api.Project
 import org.gradle.api.provider.Property
 import org.gradle.kotlin.dsl.configure
+import org.gradle.kotlin.dsl.findByType
 import org.sonarqube.gradle.SonarExtension
 import org.sonarqube.gradle.SonarProperties
 
@@ -62,10 +63,17 @@ constructor(
         )
 
         configurable(priority = Priority.P4) { configureSonarqube(project) }
+        // TODO: Remove when project isolation is fixed in Sonar Gradle plugin as hubdle
+        //       analysis.sonar.isFullEnabled.get() will be false, and the Sonar plugin shouldn't
+        //       pick this project
+        afterEvaluate { proj ->
+            proj.extensions.findByType<SonarExtension>()?.isSkipProject = !isFullEnabled.get()
+        }
     }
 
     private fun configureSonarqube(project: Project) {
         project.configure<SonarExtension> {
+            isSkipProject = !isFullEnabled.get()
             properties { properties ->
                 properties.property("sonar.projectName", projectName.get())
                 properties.property("sonar.projectKey", projectKey.get())

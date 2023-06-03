@@ -4,6 +4,8 @@
 
 ### Added
 
+- missing `detekt` and `sonar` extensions on `analysis`
+
 ### Changed
 
 ### Deprecated
@@ -11,6 +13,8 @@
 ### Removed
 
 ### Fixed
+
+- Sonar is not being skipped with Hubdle `analysis.sonar.isFullEnabled` disabled
 
 ### Updated
 

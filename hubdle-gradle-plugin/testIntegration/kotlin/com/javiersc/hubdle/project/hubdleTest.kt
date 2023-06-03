@@ -1,4 +1,4 @@
-package com.javiersc.hubdle.project._internal
+package com.javiersc.hubdle.project
 
 import com.javiersc.gradle.project.test.extensions.GradleProjectTest
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
@@ -8,7 +8,7 @@ import org.gradle.api.Project
 
 @HubdleDslMarker
 internal fun GradleProjectTest.hubdle(
-    sandboxPath: String?,
+    sandboxPath: String? = null,
     config: (hubdle: HubdleExtension) -> Unit = {},
     test: Project.() -> Unit,
 ) {

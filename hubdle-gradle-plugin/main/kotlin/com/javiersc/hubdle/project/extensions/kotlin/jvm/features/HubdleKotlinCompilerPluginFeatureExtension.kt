@@ -24,6 +24,7 @@ import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.jun
 import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.junit_platform_junitRunner
 import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.junit_platform_junitSuiteApi
 import com.javiersc.hubdle.project.extensions.kotlin.jvm.hubdleKotlinJvm
+import com.javiersc.kotlin.stdlib.isNotNullNorBlank
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
@@ -129,6 +130,7 @@ constructor(
                 val generateKotlinCompilerTests: TaskProvider<JavaExec> =
                     register<JavaExec>("generateKotlinCompilerTests") { group = "build" }
                 generateKotlinCompilerTests.configure { task ->
+                    task.isEnabled = mainClass.orNull.isNotNullNorBlank()
                     task.classpath = testSourceSet.get().runtimeClasspath
                     task.mainClass.set(mainClass)
                     task.dependsOnTestProjects()

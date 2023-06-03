@@ -6,6 +6,8 @@
 
 ### Changed
 
+- `generateKotlinCompilerTests` is disabled if `mainClass` is blank
+
 ### Deprecated
 
 ### Removed

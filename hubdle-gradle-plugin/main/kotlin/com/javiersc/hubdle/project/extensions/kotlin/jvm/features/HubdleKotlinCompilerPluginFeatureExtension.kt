@@ -2,6 +2,7 @@ package com.javiersc.hubdle.project.extensions.kotlin.jvm.features
 
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
+import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions._internal.library
 import com.javiersc.hubdle.project.extensions._internal.libraryModule
@@ -23,6 +24,8 @@ import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.jun
 import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.junit_platform_junitLauncher
 import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.junit_platform_junitRunner
 import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.junit_platform_junitSuiteApi
+import com.javiersc.hubdle.project.extensions.kotlin.jvm.features.KotlinCompilerTestType.Box
+import com.javiersc.hubdle.project.extensions.kotlin.jvm.features.KotlinCompilerTestType.Diagnostics
 import com.javiersc.hubdle.project.extensions.kotlin.jvm.hubdleKotlinJvm
 import com.javiersc.kotlin.stdlib.isNotNullNorBlank
 import javax.inject.Inject
@@ -30,6 +33,7 @@ import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.artifacts.ProjectDependency
+import org.gradle.api.plugins.BasePlugin
 import org.gradle.api.provider.Property
 import org.gradle.api.provider.SetProperty
 import org.gradle.api.tasks.JavaExec
@@ -39,6 +43,7 @@ import org.gradle.api.tasks.testing.Test
 import org.gradle.kotlin.dsl.get
 import org.gradle.kotlin.dsl.named
 import org.gradle.kotlin.dsl.register
+import org.gradle.kotlin.dsl.the
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
@@ -58,6 +63,13 @@ constructor(
 
     override val priority: Priority = Priority.P4
 
+    public val generateTestOnSync: Property<Boolean> = property { true }
+
+    @HubdleDslMarker
+    public fun generateTestOnSync(value: Boolean) {
+        generateTestOnSync.set(value)
+    }
+
     public val kotlinVersion: Property<KotlinVersion> = property { KotlinVersion.KOTLIN_2_0 }
 
     @HubdleDslMarker
@@ -72,6 +84,13 @@ constructor(
         mainClass.set(value)
     }
 
+    public val testDataDir: Property<String> = property { "test-data" }
+
+    @HubdleDslMarker
+    public fun testDataDir(value: String) {
+        testDataDir.set(value)
+    }
+
     public val testGenDir: Property<String> = property { "test-gen/java" }
 
     @HubdleDslMarker
@@ -84,6 +103,15 @@ constructor(
     @HubdleDslMarker
     public fun testProjects(vararg project: ProjectDependency) {
         testProjects.set(project.toSet())
+    }
+
+    public val testTypes: SetProperty<KotlinCompilerTestType> = setProperty {
+        setOf(Box, Diagnostics)
+    }
+
+    @HubdleDslMarker
+    public fun testTypes(vararg values: KotlinCompilerTestType) {
+        testTypes.set(values.toSet())
     }
 
     override fun Project.defaultConfiguration() {
@@ -123,22 +151,41 @@ constructor(
             }
 
             tasks.apply {
+                val generateMetaRuntimeClasspathProvider =
+                    GenerateMetaRuntimeClasspathProviderTask.register(
+                        project,
+                        mainClass,
+                        testProjects
+                    )
+
+                named(BasePlugin.ASSEMBLE_TASK_NAME).configure { task ->
+                    task.dependsOn(generateMetaRuntimeClasspathProvider)
+                }
+
                 withType<KotlinCompile>().configureEach { kotlinCompile ->
                     kotlinCompile.compilerOptions { languageVersion.set(kotlinVersion) }
+                    kotlinCompile.dependsOn(generateMetaRuntimeClasspathProvider)
                 }
 
                 val generateKotlinCompilerTests: TaskProvider<JavaExec> =
                     register<JavaExec>("generateKotlinCompilerTests") { group = "build" }
                 generateKotlinCompilerTests.configure { task ->
+                    task.doFirst {
+                        for (testType: KotlinCompilerTestType in testTypes.get()) {
+                            projectDir.resolve("${testDataDir.get()}/${testType.dir}").mkdirs()
+                        }
+                        projectDir.resolve(testGenDir.get()).mkdirs()
+                    }
                     task.isEnabled = mainClass.orNull.isNotNullNorBlank()
                     task.classpath = testSourceSet.get().runtimeClasspath
                     task.mainClass.set(mainClass)
+                    task.dependsOn(generateMetaRuntimeClasspathProvider)
                     task.dependsOnTestProjects()
                 }
 
-                val prepareKotlinIdeaImport: TaskProvider<Task> = named("prepareKotlinIdeaImport")
-                prepareKotlinIdeaImport.configure { task ->
-                    if (mainClass.orNull.isNotNullNorBlank()) {
+                named("prepareKotlinIdeaImport").configure { task ->
+                    if (mainClass.orNull.isNotNullNorBlank() && generateTestOnSync.orNull == true) {
+                        task.dependsOn(generateMetaRuntimeClasspathProvider)
                         task.dependsOn(generateKotlinCompilerTests)
                     }
                 }
@@ -162,9 +209,16 @@ constructor(
     }
 
     private fun Task.dependsOnTestProjects() {
-        for (project: ProjectDependency in testProjects.get()) {
-            val path = project.dependencyProject.path
-            dependsOn("$path:jar")
+        for (projectDependency: ProjectDependency in testProjects.get()) {
+            val project: Project = projectDependency.dependencyProject
+            val jarTaskName: String =
+                when {
+                    project.pluginManager.hasPlugin(PluginId.JetbrainsKotlinMultiplatform.id) ->
+                        "jvmJar"
+                    project.pluginManager.hasPlugin(PluginId.JetbrainsKotlinJvm.id) -> "jar"
+                    else -> "jar"
+                }
+            dependsOn("${project.path}:$jarTaskName")
         }
     }
 
@@ -197,6 +251,11 @@ constructor(
                 ?: return
         systemProperty(propName, path)
     }
+}
+
+public enum class KotlinCompilerTestType(internal val dir: String) {
+    Box("box"),
+    Diagnostics("diagnostics"),
 }
 
 public interface HubdleKotlinCompilerPluginDelegateFeatureExtension : BaseHubdleDelegateExtension {

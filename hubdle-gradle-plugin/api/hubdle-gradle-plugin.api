@@ -1330,6 +1330,20 @@ public class com/javiersc/hubdle/project/extensions/kotlin/jvm/HubdleKotlinJvmEx
 	public fun localGroovy (Lorg/gradle/api/Project;)Lorg/gradle/api/artifacts/Dependency;
 }
 
+public abstract class com/javiersc/hubdle/project/extensions/kotlin/jvm/features/GenerateMetaRuntimeClasspathProviderTask : org/gradle/api/DefaultTask {
+	public static final field Companion Lcom/javiersc/hubdle/project/extensions/kotlin/jvm/features/GenerateMetaRuntimeClasspathProviderTask$Companion;
+	public static final field NAME Ljava/lang/String;
+	public fun <init> (Lorg/gradle/api/provider/Property;Lorg/gradle/api/provider/Property;Lorg/gradle/api/provider/ListProperty;Lorg/gradle/api/model/ObjectFactory;)V
+	public final fun getGeneratedContentFile ()Lorg/gradle/api/file/RegularFileProperty;
+	public final fun getGeneratedTestSourceSetDir ()Lorg/gradle/api/provider/Property;
+	public final fun getMainClass ()Lorg/gradle/api/provider/Property;
+	public final fun getTestProjectsJarPaths ()Lorg/gradle/api/provider/ListProperty;
+	public final fun run ()V
+}
+
+public final class com/javiersc/hubdle/project/extensions/kotlin/jvm/features/GenerateMetaRuntimeClasspathProviderTask$Companion {
+}
+
 public abstract interface class com/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKotlinCompilerPluginDelegateFeatureExtension : com/javiersc/hubdle/project/extensions/apis/BaseHubdleDelegateExtension {
 	public abstract fun compiler (Lorg/gradle/api/Action;)V
 	public abstract fun getCompiler ()Lcom/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKotlinCompilerPluginFeatureExtension;
@@ -1343,15 +1357,21 @@ public final class com/javiersc/hubdle/project/extensions/kotlin/jvm/features/Hu
 
 public class com/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKotlinCompilerPluginFeatureExtension : com/javiersc/hubdle/project/extensions/apis/HubdleConfigurableExtension {
 	public fun <init> (Lorg/gradle/api/Project;)V
+	public final fun generateTestOnSync (Z)V
+	public final fun getGenerateTestOnSync ()Lorg/gradle/api/provider/Property;
 	public final fun getKotlinVersion ()Lorg/gradle/api/provider/Property;
 	public final fun getMainClass ()Lorg/gradle/api/provider/Property;
+	public final fun getTestDataDir ()Lorg/gradle/api/provider/Property;
 	public final fun getTestGenDir ()Lorg/gradle/api/provider/Property;
 	public final fun getTestProjects ()Lorg/gradle/api/provider/SetProperty;
+	public final fun getTestTypes ()Lorg/gradle/api/provider/SetProperty;
 	public fun isEnabled ()Lorg/gradle/api/provider/Property;
 	public final fun kotlinVersion (Lorg/jetbrains/kotlin/gradle/dsl/KotlinVersion;)V
 	public final fun mainClass (Ljava/lang/String;)V
+	public final fun testDataDir (Ljava/lang/String;)V
 	public final fun testGenDir (Ljava/lang/String;)V
 	public final fun testProjects ([Lorg/gradle/api/artifacts/ProjectDependency;)V
+	public final fun testTypes ([Lcom/javiersc/hubdle/project/extensions/kotlin/jvm/features/KotlinCompilerTestType;)V
 }
 
 public final class com/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKotlinCompilerPluginFeatureExtension$defaultConfiguration$1$inlined$sam$i$org_gradle_api_Action$0 : org/gradle/api/Action {
@@ -1428,6 +1448,13 @@ public class com/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKo
 	public fun molecule (Lorg/gradle/api/Action;)V
 	public fun serialization (Lorg/gradle/api/Action;)V
 	public fun sqldelight (Lorg/gradle/api/Action;)V
+}
+
+public final class com/javiersc/hubdle/project/extensions/kotlin/jvm/features/KotlinCompilerTestType : java/lang/Enum {
+	public static final field Box Lcom/javiersc/hubdle/project/extensions/kotlin/jvm/features/KotlinCompilerTestType;
+	public static final field Diagnostics Lcom/javiersc/hubdle/project/extensions/kotlin/jvm/features/KotlinCompilerTestType;
+	public static fun valueOf (Ljava/lang/String;)Lcom/javiersc/hubdle/project/extensions/kotlin/jvm/features/KotlinCompilerTestType;
+	public static fun values ()[Lcom/javiersc/hubdle/project/extensions/kotlin/jvm/features/KotlinCompilerTestType;
 }
 
 public class com/javiersc/hubdle/project/extensions/kotlin/multiplatform/HubdleKotlinMultiplatformExtension : com/javiersc/hubdle/project/extensions/apis/HubdleConfigurableExtension {

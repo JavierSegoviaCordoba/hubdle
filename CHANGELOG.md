@@ -4,6 +4,10 @@
 
 ### Added
 
+- codegen `MetaRuntimeClasspathProvider` based on test projects
+- `generateTestOnSync: Property<Boolean>` in Kotlin compiler extension
+- codegen directories based on `testTypes` in Kotlin compiler extension
+
 ### Changed
 
 - `prepareKotlinIdeaImport` dependencies based on `mainClass`
@@ -14,6 +18,8 @@
 ### Removed
 
 ### Fixed
+
+- circular dependencies due to `testProject` dependencies in Kotlin compiler extension
 
 ### Updated
 

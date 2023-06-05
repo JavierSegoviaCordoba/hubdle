@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.dokka:dokka-gradle-plugin -> 1.8.20`
 - `com.javiersc.kotlin:kotlin-test-testng -> 0.1.0-alpha.15`
 - `com.javiersc.kotlin:kotlin-test-junit5 -> 0.1.0-alpha.15`
 - `com.javiersc.kotlin:kotlin-test-junit -> 0.1.0-alpha.15`

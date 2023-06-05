@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `io.insert-koin:koin-core -> 3.4.2`
+- `io.insert-koin:koin-android -> 3.4.2`
 - `org.jetbrains.dokka:dokka-gradle-plugin -> 1.8.20`
 - `com.javiersc.kotlin:kotlin-test-testng -> 0.1.0-alpha.15`
 - `com.javiersc.kotlin:kotlin-test-junit5 -> 0.1.0-alpha.15`

@@ -15,6 +15,7 @@ import com.javiersc.hubdle.project.extensions.config.format.HubdleConfigFormatEx
 import com.javiersc.hubdle.project.extensions.config.install.HubdleConfigInstallExtension
 import com.javiersc.hubdle.project.extensions.config.language.settings.HubdleConfigLanguageSettingsExtension
 import com.javiersc.hubdle.project.extensions.config.nexus.HubdleConfigNexusExtension
+import com.javiersc.hubdle.project.extensions.config.project.HubdleProjectExtension
 import com.javiersc.hubdle.project.extensions.config.publishing.HubdleConfigPublishingExtension
 import com.javiersc.hubdle.project.extensions.config.testing.HubdleConfigTestingExtension
 import com.javiersc.hubdle.project.extensions.config.versioning.HubdleConfigVersioningExtension
@@ -120,6 +121,14 @@ constructor(
     @HubdleDslMarker
     public fun nexus(action: Action<HubdleConfigNexusExtension> = Action {}) {
         nexus.enableAndExecute(action)
+    }
+
+    public val projectConfig: HubdleProjectExtension
+        get() = getHubdleExtension()
+
+    @HubdleDslMarker
+    public fun projectConfig(action: Action<HubdleProjectExtension> = Action {}) {
+        projectConfig.enableAndExecute(action)
     }
 
     public val publishing: HubdleConfigPublishingExtension

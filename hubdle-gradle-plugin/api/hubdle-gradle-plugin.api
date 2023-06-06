@@ -153,6 +153,7 @@ public class com/javiersc/hubdle/project/extensions/config/HubdleConfigExtension
 	public final fun getInstall ()Lcom/javiersc/hubdle/project/extensions/config/install/HubdleConfigInstallExtension;
 	public final fun getLanguageSettings ()Lcom/javiersc/hubdle/project/extensions/config/language/settings/HubdleConfigLanguageSettingsExtension;
 	public final fun getNexus ()Lcom/javiersc/hubdle/project/extensions/config/nexus/HubdleConfigNexusExtension;
+	public final fun getProjectConfig ()Lcom/javiersc/hubdle/project/extensions/config/project/HubdleProjectExtension;
 	public final fun getPublishing ()Lcom/javiersc/hubdle/project/extensions/config/publishing/HubdleConfigPublishingExtension;
 	public final fun getTesting ()Lcom/javiersc/hubdle/project/extensions/config/testing/HubdleConfigTestingExtension;
 	public final fun getVersioning ()Lcom/javiersc/hubdle/project/extensions/config/versioning/HubdleConfigVersioningExtension;
@@ -164,6 +165,8 @@ public class com/javiersc/hubdle/project/extensions/config/HubdleConfigExtension
 	public static synthetic fun languageSettings$default (Lcom/javiersc/hubdle/project/extensions/config/HubdleConfigExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 	public final fun nexus (Lorg/gradle/api/Action;)V
 	public static synthetic fun nexus$default (Lcom/javiersc/hubdle/project/extensions/config/HubdleConfigExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+	public final fun projectConfig (Lorg/gradle/api/Action;)V
+	public static synthetic fun projectConfig$default (Lcom/javiersc/hubdle/project/extensions/config/HubdleConfigExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 	public final fun publishing (Lorg/gradle/api/Action;)V
 	public static synthetic fun publishing$default (Lcom/javiersc/hubdle/project/extensions/config/HubdleConfigExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 	public final fun testing (Lorg/gradle/api/Action;)V
@@ -747,6 +750,13 @@ public final class com/javiersc/hubdle/project/extensions/config/nexus/HubdleCon
 	public final synthetic fun execute (Ljava/lang/Object;)V
 }
 
+public class com/javiersc/hubdle/project/extensions/config/project/HubdleProjectExtension : com/javiersc/hubdle/project/extensions/apis/HubdleConfigurableExtension {
+	public fun <init> (Lorg/gradle/api/Project;)V
+	public final fun generateProjectData (Z)V
+	public final fun getGenerateProjectData ()Lorg/gradle/api/provider/Property;
+	public fun isEnabled ()Lorg/gradle/api/provider/Property;
+}
+
 public class com/javiersc/hubdle/project/extensions/config/publishing/HubdleConfigPublishingExtension : com/javiersc/hubdle/project/extensions/apis/HubdleEnableableExtension {
 	public fun <init> (Lorg/gradle/api/Project;)V
 	public final fun getMaven ()Lcom/javiersc/hubdle/project/extensions/config/publishing/maven/HubdleConfigPublishingMavenExtension;
@@ -911,9 +921,12 @@ public class com/javiersc/hubdle/project/extensions/kotlin/HubdleKotlinExtension
 	public fun <init> (Lorg/gradle/api/Project;)V
 	public final fun android (Lorg/gradle/api/Action;)V
 	public static synthetic fun android$default (Lcom/javiersc/hubdle/project/extensions/kotlin/HubdleKotlinExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+	public final fun compilerOptions (Lorg/gradle/api/Action;)V
+	public static synthetic fun compilerOptions$default (Lcom/javiersc/hubdle/project/extensions/kotlin/HubdleKotlinExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 	public final fun features (Lorg/gradle/api/Action;)V
 	public static synthetic fun features$default (Lcom/javiersc/hubdle/project/extensions/kotlin/HubdleKotlinExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 	public final fun getAndroid ()Lcom/javiersc/hubdle/project/extensions/kotlin/android/HubdleKotlinAndroidExtension;
+	public final fun getCompilerOptions ()Lcom/javiersc/hubdle/project/extensions/kotlin/compiler/options/HubdleKotlinCompilerOptionsExtension;
 	public final fun getFeatures ()Lcom/javiersc/hubdle/project/extensions/kotlin/features/HubdleKotlinFeaturesExtension;
 	public final fun getJvm ()Lcom/javiersc/hubdle/project/extensions/kotlin/jvm/HubdleKotlinJvmExtension;
 	public final fun getMultiplatform ()Lcom/javiersc/hubdle/project/extensions/kotlin/multiplatform/HubdleKotlinMultiplatformExtension;
@@ -1156,6 +1169,16 @@ public class com/javiersc/hubdle/project/extensions/kotlin/android/library/featu
 	public fun sqldelight (Lorg/gradle/api/Action;)V
 }
 
+public class com/javiersc/hubdle/project/extensions/kotlin/compiler/options/HubdleKotlinCompilerOptionsExtension : com/javiersc/hubdle/project/extensions/apis/HubdleConfigurableExtension {
+	public fun <init> (Lorg/gradle/api/Project;)V
+	public final fun apiVersion (Lorg/jetbrains/kotlin/gradle/dsl/KotlinVersion;)V
+	public final fun compilerOptions (Lorg/gradle/api/Action;)V
+	public final fun getApiVersion ()Lorg/gradle/api/provider/Property;
+	public final fun getLanguageVersion ()Lorg/gradle/api/provider/Property;
+	public fun isEnabled ()Lorg/gradle/api/provider/Property;
+	public final fun languageVersion (Lorg/jetbrains/kotlin/gradle/dsl/KotlinVersion;)V
+}
+
 public class com/javiersc/hubdle/project/extensions/kotlin/features/HubdleKotlinFeaturesExtension : com/javiersc/hubdle/project/extensions/apis/HubdleEnableableExtension {
 	public fun <init> (Lorg/gradle/api/Project;)V
 	public fun isEnabled ()Lorg/gradle/api/provider/Property;
@@ -1330,20 +1353,6 @@ public class com/javiersc/hubdle/project/extensions/kotlin/jvm/HubdleKotlinJvmEx
 	public fun localGroovy (Lorg/gradle/api/Project;)Lorg/gradle/api/artifacts/Dependency;
 }
 
-public abstract class com/javiersc/hubdle/project/extensions/kotlin/jvm/features/GenerateMetaRuntimeClasspathProviderTask : org/gradle/api/DefaultTask {
-	public static final field Companion Lcom/javiersc/hubdle/project/extensions/kotlin/jvm/features/GenerateMetaRuntimeClasspathProviderTask$Companion;
-	public static final field NAME Ljava/lang/String;
-	public fun <init> (Lorg/gradle/api/provider/Property;Lorg/gradle/api/provider/Property;Lorg/gradle/api/provider/ListProperty;Lorg/gradle/api/model/ObjectFactory;)V
-	public final fun getGeneratedContentFile ()Lorg/gradle/api/file/RegularFileProperty;
-	public final fun getGeneratedTestSourceSetDir ()Lorg/gradle/api/provider/Property;
-	public final fun getMainClass ()Lorg/gradle/api/provider/Property;
-	public final fun getTestProjectsJarPaths ()Lorg/gradle/api/provider/ListProperty;
-	public final fun run ()V
-}
-
-public final class com/javiersc/hubdle/project/extensions/kotlin/jvm/features/GenerateMetaRuntimeClasspathProviderTask$Companion {
-}
-
 public abstract interface class com/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKotlinCompilerPluginDelegateFeatureExtension : com/javiersc/hubdle/project/extensions/apis/BaseHubdleDelegateExtension {
 	public abstract fun compiler (Lorg/gradle/api/Action;)V
 	public abstract fun getCompiler ()Lcom/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKotlinCompilerPluginFeatureExtension;
@@ -1359,16 +1368,16 @@ public class com/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKo
 	public fun <init> (Lorg/gradle/api/Project;)V
 	public final fun generateTestOnSync (Z)V
 	public final fun getGenerateTestOnSync ()Lorg/gradle/api/provider/Property;
-	public final fun getKotlinVersion ()Lorg/gradle/api/provider/Property;
 	public final fun getMainClass ()Lorg/gradle/api/provider/Property;
 	public final fun getTestDataDir ()Lorg/gradle/api/provider/Property;
+	public final fun getTestDependencies ()Lorg/gradle/api/provider/SetProperty;
 	public final fun getTestGenDir ()Lorg/gradle/api/provider/Property;
 	public final fun getTestProjects ()Lorg/gradle/api/provider/SetProperty;
 	public final fun getTestTypes ()Lorg/gradle/api/provider/SetProperty;
 	public fun isEnabled ()Lorg/gradle/api/provider/Property;
-	public final fun kotlinVersion (Lorg/jetbrains/kotlin/gradle/dsl/KotlinVersion;)V
 	public final fun mainClass (Ljava/lang/String;)V
 	public final fun testDataDir (Ljava/lang/String;)V
+	public final fun testDependencies ([Lorg/gradle/api/provider/Provider;)V
 	public final fun testGenDir (Ljava/lang/String;)V
 	public final fun testProjects ([Lorg/gradle/api/artifacts/ProjectDependency;)V
 	public final fun testTypes ([Lcom/javiersc/hubdle/project/extensions/kotlin/jvm/features/KotlinCompilerTestType;)V
@@ -1377,6 +1386,11 @@ public class com/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKo
 public final class com/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKotlinCompilerPluginFeatureExtension$defaultConfiguration$1$inlined$sam$i$org_gradle_api_Action$0 : org/gradle/api/Action {
 	public fun <init> (Lkotlin/jvm/functions/Function1;)V
 	public final synthetic fun execute (Ljava/lang/Object;)V
+}
+
+public final class com/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKotlinCompilerPluginFeatureExtension$defaultConfiguration$1$inlined$sam$i$org_gradle_api_specs_Spec$0 : org/gradle/api/specs/Spec {
+	public fun <init> (Lkotlin/jvm/functions/Function1;)V
+	public final synthetic fun isSatisfiedBy (Ljava/lang/Object;)Z
 }
 
 public abstract interface class com/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKotlinJvmDelegateFeaturesExtension : com/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinComposeDelegateFeatureExtension, com/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinContextReceiversDelegateFeatureExtension, com/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinCoroutinesDelegateFeatureExtension, com/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinExtendedStdlibDelegateFeatureExtension, com/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinKotestDelegateFeatureExtension, com/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinMoleculeDelegateFeatureExtension, com/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinSerializationDelegateFeatureExtension, com/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinSqlDelightDelegateFeatureExtension, com/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKotlinCompilerPluginDelegateFeatureExtension, com/javiersc/hubdle/project/extensions/shared/features/HubdleGradleDelegateFeatureExtension, com/javiersc/hubdle/project/extensions/shared/features/HubdleIntellijDelegateFeatureExtension, com/javiersc/hubdle/project/extensions/shared/features/HubdleJavaApplicationDelegateFeatureExtension, com/javiersc/hubdle/project/extensions/shared/features/HubdleJavaVersionDelegateFeatureExtension, com/javiersc/hubdle/project/extensions/shared/features/HubdleJvmToolchainDelegateFeatureExtension {
@@ -1455,6 +1469,21 @@ public final class com/javiersc/hubdle/project/extensions/kotlin/jvm/features/Ko
 	public static final field Diagnostics Lcom/javiersc/hubdle/project/extensions/kotlin/jvm/features/KotlinCompilerTestType;
 	public static fun valueOf (Ljava/lang/String;)Lcom/javiersc/hubdle/project/extensions/kotlin/jvm/features/KotlinCompilerTestType;
 	public static fun values ()[Lcom/javiersc/hubdle/project/extensions/kotlin/jvm/features/KotlinCompilerTestType;
+}
+
+public abstract class com/javiersc/hubdle/project/extensions/kotlin/jvm/features/compiler/GenerateMetaRuntimeClasspathProviderTask : org/gradle/api/DefaultTask {
+	public static final field Companion Lcom/javiersc/hubdle/project/extensions/kotlin/jvm/features/compiler/GenerateMetaRuntimeClasspathProviderTask$Companion;
+	public static final field NAME Ljava/lang/String;
+	public fun <init> (Lorg/gradle/api/provider/Property;Lorg/gradle/api/provider/Property;Lorg/gradle/api/provider/ListProperty;Lorg/gradle/api/provider/ListProperty;Lorg/gradle/api/model/ObjectFactory;)V
+	public final fun getGeneratedContentFile ()Lorg/gradle/api/file/RegularFileProperty;
+	public final fun getGeneratedTestSourceSetDir ()Lorg/gradle/api/provider/Property;
+	public final fun getMainClass ()Lorg/gradle/api/provider/Property;
+	public final fun getTestDependenciesJarPaths ()Lorg/gradle/api/provider/ListProperty;
+	public final fun getTestProjectsJarPaths ()Lorg/gradle/api/provider/ListProperty;
+	public final fun run ()V
+}
+
+public final class com/javiersc/hubdle/project/extensions/kotlin/jvm/features/compiler/GenerateMetaRuntimeClasspathProviderTask$Companion {
 }
 
 public class com/javiersc/hubdle/project/extensions/kotlin/multiplatform/HubdleKotlinMultiplatformExtension : com/javiersc/hubdle/project/extensions/apis/HubdleConfigurableExtension {
@@ -2016,7 +2045,9 @@ public abstract class com/javiersc/hubdle/project/extensions/kotlin/shared/Hubdl
 }
 
 public final class com/javiersc/hubdle/project/extensions/kotlin/shared/MinimalExternalModuleDependencyExtensionsKt {
+	public static final fun asString (Lorg/gradle/api/artifacts/MinimalExternalModuleDependency;)Ljava/lang/String;
 	public static final fun asString (Lorg/gradle/api/provider/Provider;)Ljava/lang/String;
+	public static final fun moduleAsString (Lorg/gradle/api/artifacts/MinimalExternalModuleDependency;)Ljava/lang/String;
 	public static final fun moduleAsString (Lorg/gradle/api/provider/Provider;)Ljava/lang/String;
 	public static final fun versionAsString (Lorg/gradle/api/provider/Provider;)Ljava/lang/String;
 }
@@ -2273,6 +2304,22 @@ public final class com/javiersc/hubdle/project/extensions/shared/features/intell
 public final class com/javiersc/hubdle/project/extensions/shared/features/intellij/HubdleIntellijPluginFeatureExtensionKt$inlined$sam$i$org_gradle_api_Action$0 : org/gradle/api/Action {
 	public fun <init> (Lkotlin/jvm/functions/Function1;)V
 	public final synthetic fun execute (Ljava/lang/Object;)V
+}
+
+public class com/javiersc/hubdle/project/extensions/shared/features/tasks/GenerateProjectDataTask : org/gradle/api/DefaultTask {
+	public static final field Companion Lcom/javiersc/hubdle/project/extensions/shared/features/tasks/GenerateProjectDataTask$Companion;
+	public static final field NAME Ljava/lang/String;
+	public fun <init> (Lorg/gradle/api/model/ObjectFactory;Lorg/gradle/api/provider/Provider;Lorg/gradle/api/provider/Provider;Lorg/gradle/api/provider/Provider;Lorg/gradle/api/provider/Provider;Lorg/gradle/api/provider/Provider;)V
+	public final fun getObjectName ()Lorg/gradle/api/provider/Provider;
+	public final fun getOutputFile ()Lorg/gradle/api/file/RegularFileProperty;
+	public final fun getPackageName ()Lorg/gradle/api/provider/Property;
+	public final fun getProjectGroup ()Lorg/gradle/api/provider/Property;
+	public final fun getProjectName ()Lorg/gradle/api/provider/Property;
+	public final fun getProjectVersion ()Lorg/gradle/api/provider/Property;
+	public final fun run ()V
+}
+
+public final class com/javiersc/hubdle/project/extensions/shared/features/tasks/GenerateProjectDataTask$Companion {
 }
 
 public abstract interface annotation class com/javiersc/hubdle/settings/HubdleSettingsDslMarker : java/lang/annotation/Annotation {

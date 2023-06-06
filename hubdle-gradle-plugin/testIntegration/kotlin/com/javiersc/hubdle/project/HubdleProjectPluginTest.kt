@@ -7,7 +7,9 @@ import com.javiersc.hubdle.project.extensions.config.publishing.maven.HubdleConf
 import io.kotest.matchers.shouldBe
 import kotlin.test.Test
 import org.gradle.kotlin.dsl.the
-import org.sonarqube.gradle.SonarExtension
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_1_7
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_1_9
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 class HubdleProjectPluginTest : GradleProjectTest() {
 
@@ -20,10 +22,22 @@ class HubdleProjectPluginTest : GradleProjectTest() {
     }
 
     @Test
-    fun `given project without sonar, when project has been evaluated, then sonar is skipped`() {
+    fun `given project with Kotlin versions, when project has been evaluated, then kotlin versions are correct`() {
         hubdle(
-            config = { it.config { it.analysis { it.sonar { it.isEnabled.set(false) } } } },
-            test = { afterEvaluate { it.the<SonarExtension>().isSkipProject shouldBe true } },
+            config = {
+                it.kotlin {
+                    it.jvm()
+                    it.compilerOptions {
+                        it.apiVersion(KOTLIN_1_7)
+                        it.languageVersion(KOTLIN_1_9)
+                    }
+                }
+            },
+            test = {
+                val kotlinCompile = tasks.findByName("compileKotlin") as KotlinCompile
+                kotlinCompile.compilerOptions.apiVersion.get() shouldBe KOTLIN_1_7
+                kotlinCompile.compilerOptions.languageVersion.get() shouldBe KOTLIN_1_9
+            },
         )
     }
 }

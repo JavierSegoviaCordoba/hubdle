@@ -1,12 +1,15 @@
-package com.javiersc.hubdle.project.extensions.kotlin.jvm.features
+package com.javiersc.hubdle.project.extensions.kotlin.jvm.features.compiler
 
 import com.javiersc.gradle.properties.extensions.listProperty
 import com.javiersc.gradle.properties.extensions.property
+import com.javiersc.hubdle.project.extensions.kotlin.shared.moduleAsString
 import com.javiersc.kotlin.stdlib.isNotNullNorBlank
+import io.gitlab.arturbosch.detekt.Detekt
 import java.io.File
 import javax.inject.Inject
 import org.gradle.api.DefaultTask
 import org.gradle.api.Project
+import org.gradle.api.artifacts.MinimalExternalModuleDependency
 import org.gradle.api.artifacts.ProjectDependency
 import org.gradle.api.file.RegularFileProperty
 import org.gradle.api.model.ObjectFactory
@@ -18,11 +21,13 @@ import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.OutputFile
 import org.gradle.api.tasks.TaskAction
 import org.gradle.api.tasks.TaskProvider
+import org.gradle.kotlin.dsl.get
 import org.gradle.kotlin.dsl.listProperty
 import org.gradle.kotlin.dsl.named
 import org.gradle.kotlin.dsl.property
 import org.gradle.kotlin.dsl.register
 import org.gradle.kotlin.dsl.the
+import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 
@@ -32,6 +37,7 @@ public abstract class GenerateMetaRuntimeClasspathProviderTask
 constructor(
     generatedTestSourceSetDir: Property<String>,
     mainClass: Property<String>,
+    testDependenciesJarPaths: ListProperty<String>,
     testProjectsJarPaths: ListProperty<String>,
     objects: ObjectFactory,
 ) : DefaultTask() {
@@ -41,6 +47,10 @@ constructor(
         objects.property<String>().convention(generatedTestSourceSetDir)
 
     @Input public val mainClass: Property<String> = objects.property<String>().convention(mainClass)
+
+    @Input
+    public val testDependenciesJarPaths: ListProperty<String> =
+        objects.listProperty<String>().convention(testDependenciesJarPaths)
 
     @Input
     public val testProjectsJarPaths: ListProperty<String> =
@@ -79,7 +89,8 @@ constructor(
             appendLine(") : MetaRuntimeClasspathProvider(testServices) {")
             appendLine("    override val jarPaths: List<String> =")
             appendLine("        listOf(")
-            for (jarPath: String in testProjectsJarPaths.get()) {
+            val jarPaths: List<String> = testDependenciesJarPaths.get() + testProjectsJarPaths.get()
+            for (jarPath: String in jarPaths) {
                 val sanitizedJarPath = "\"\"\"$jarPath\"\"\""
                 appendLine("""           $sanitizedJarPath,""")
             }
@@ -101,7 +112,8 @@ constructor(
         internal fun register(
             project: Project,
             mainClass: Property<String>,
-            testProjects: SetProperty<ProjectDependency>
+            testDependencies: SetProperty<MinimalExternalModuleDependency>,
+            testProjects: SetProperty<ProjectDependency>,
         ): TaskProvider<GenerateMetaRuntimeClasspathProviderTask> {
             val generatedTestSourceSetDir: Property<String> =
                 project.property {
@@ -113,6 +125,26 @@ constructor(
                             .get()
                     testSet.kotlin.srcDirs.firstOrNull { it.path.contains("generated") }?.path
                         ?: project.buildDir.resolve("generated/test/kotlin").path
+                }
+
+            val testDependenciesJarPaths: ListProperty<String> =
+                project.listProperty {
+                    val artifacts =
+                        project.configurations["runtimeClasspath"]
+                            .resolvedConfiguration
+                            .resolvedArtifacts
+                    val modules = testDependencies.get().map { it.moduleAsString() }
+                    // find Kotlin Multiplatform modules
+                    val modulesJvmSuffix = modules.map { "$it-jvm" }
+                    artifacts
+                        .filter { artifact ->
+                            val module: String =
+                                "${artifact.moduleVersion}"
+                                    .dropLastWhile { char -> char != ':' }
+                                    .dropLast(1)
+                            (module in modules || module in modulesJvmSuffix)
+                        }
+                        .map { it.file.path }
                 }
 
             val testProjectsJarPaths: ListProperty<String> =
@@ -136,12 +168,19 @@ constructor(
                         .map { it.path }
                 }
 
-            return project.tasks.register(
-                NAME,
-                generatedTestSourceSetDir,
-                mainClass,
-                testProjectsJarPaths,
-            )
+            return project.tasks
+                .register<GenerateMetaRuntimeClasspathProviderTask>(
+                    NAME,
+                    generatedTestSourceSetDir,
+                    mainClass,
+                    testDependenciesJarPaths,
+                    testProjectsJarPaths,
+                )
+                .apply {
+                    project.tasks.withType<Detekt>().configureEach { detekt ->
+                        detekt.mustRunAfter(this)
+                    }
+                }
         }
     }
 }

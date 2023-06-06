@@ -1,5 +1,6 @@
 package com.javiersc.hubdle.project.extensions.kotlin.jvm.features
 
+import com.javiersc.gradle.tasks.extensions.namedLazily
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions._internal.PluginId
@@ -26,27 +27,31 @@ import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.jun
 import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.junit_platform_junitSuiteApi
 import com.javiersc.hubdle.project.extensions.kotlin.jvm.features.KotlinCompilerTestType.Box
 import com.javiersc.hubdle.project.extensions.kotlin.jvm.features.KotlinCompilerTestType.Diagnostics
+import com.javiersc.hubdle.project.extensions.kotlin.jvm.features.compiler.GenerateMetaRuntimeClasspathProviderTask
 import com.javiersc.hubdle.project.extensions.kotlin.jvm.hubdleKotlinJvm
+import com.javiersc.hubdle.project.extensions.shared.features.tasks.GenerateProjectDataTask
 import com.javiersc.kotlin.stdlib.isNotNullNorBlank
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.Task
+import org.gradle.api.artifacts.MinimalExternalModuleDependency
 import org.gradle.api.artifacts.ProjectDependency
 import org.gradle.api.plugins.BasePlugin
 import org.gradle.api.provider.Property
+import org.gradle.api.provider.Provider
 import org.gradle.api.provider.SetProperty
 import org.gradle.api.tasks.JavaExec
 import org.gradle.api.tasks.SourceSetContainer
 import org.gradle.api.tasks.TaskProvider
 import org.gradle.api.tasks.testing.Test
+import org.gradle.jvm.tasks.Jar
 import org.gradle.kotlin.dsl.get
 import org.gradle.kotlin.dsl.named
 import org.gradle.kotlin.dsl.register
 import org.gradle.kotlin.dsl.the
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
-import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 import org.jetbrains.kotlin.gradle.plugin.LanguageSettingsBuilder
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
@@ -70,13 +75,6 @@ constructor(
         generateTestOnSync.set(value)
     }
 
-    public val kotlinVersion: Property<KotlinVersion> = property { KotlinVersion.KOTLIN_2_0 }
-
-    @HubdleDslMarker
-    public fun kotlinVersion(value: KotlinVersion) {
-        kotlinVersion.set(value)
-    }
-
     public val mainClass: Property<String> = property { "" }
 
     @HubdleDslMarker
@@ -89,6 +87,15 @@ constructor(
     @HubdleDslMarker
     public fun testDataDir(value: String) {
         testDataDir.set(value)
+    }
+
+    public val testDependencies: SetProperty<MinimalExternalModuleDependency> = setProperty {
+        emptySet()
+    }
+
+    @HubdleDslMarker
+    public fun testDependencies(vararg dependencies: Provider<MinimalExternalModuleDependency>) {
+        testDependencies.set(setProperty { dependencies.map { it.get() }.toSet() })
     }
 
     public val testGenDir: Property<String> = property { "test-gen/java" }
@@ -155,16 +162,21 @@ constructor(
                     GenerateMetaRuntimeClasspathProviderTask.register(
                         project,
                         mainClass,
-                        testProjects
+                        testDependencies,
+                        testProjects,
                     )
+
+                val generateProjectData =
+                    namedLazily<GenerateProjectDataTask>(GenerateProjectDataTask.NAME)
 
                 named(BasePlugin.ASSEMBLE_TASK_NAME).configure { task ->
                     task.dependsOn(generateMetaRuntimeClasspathProvider)
+                    task.dependsOn(generateProjectData)
                 }
 
                 withType<KotlinCompile>().configureEach { kotlinCompile ->
-                    kotlinCompile.compilerOptions { languageVersion.set(kotlinVersion) }
                     kotlinCompile.dependsOn(generateMetaRuntimeClasspathProvider)
+                    kotlinCompile.dependsOn(generateProjectData)
                 }
 
                 val generateKotlinCompilerTests: TaskProvider<JavaExec> =
@@ -185,10 +197,13 @@ constructor(
 
                 named("prepareKotlinIdeaImport").configure { task ->
                     if (mainClass.orNull.isNotNullNorBlank() && generateTestOnSync.orNull == true) {
-                        task.dependsOn(generateMetaRuntimeClasspathProvider)
                         task.dependsOn(generateKotlinCompilerTests)
+                        task.dependsOn(generateMetaRuntimeClasspathProvider)
+                        task.dependsOn(generateProjectData)
                     }
                 }
+
+                tasks.withType<Jar>().configureEach { jar -> jar.dependsOn(generateProjectData) }
 
                 named<Test>("test") {
                     testLogging { it.showStandardStreams = true }

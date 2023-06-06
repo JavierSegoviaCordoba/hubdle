@@ -20,6 +20,7 @@ import com.javiersc.hubdle.project.extensions.config.install.HubdleConfigInstall
 import com.javiersc.hubdle.project.extensions.config.install.pre.commits.HubdleConfigInstallPreCommitsExtension
 import com.javiersc.hubdle.project.extensions.config.language.settings.HubdleConfigLanguageSettingsExtension
 import com.javiersc.hubdle.project.extensions.config.nexus.HubdleConfigNexusExtension
+import com.javiersc.hubdle.project.extensions.config.project.HubdleProjectExtension
 import com.javiersc.hubdle.project.extensions.config.publishing.HubdleConfigPublishingExtension
 import com.javiersc.hubdle.project.extensions.config.publishing.maven.HubdleConfigPublishingMavenExtension
 import com.javiersc.hubdle.project.extensions.config.publishing.maven.HubdleConfigPublishingMavenPomExtension
@@ -40,6 +41,7 @@ internal fun HubdleState.createHubdleConfigExtensions() {
         }
         createExtension<HubdleConfigLanguageSettingsExtension>()
         createExtension<HubdleConfigNexusExtension>()
+        createExtension<HubdleProjectExtension>()
         createExtension<HubdleConfigPublishingExtension> {
             createExtension<HubdleConfigPublishingMavenExtension> {
                 createExtension<HubdleConfigPublishingMavenPomExtension>()

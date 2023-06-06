@@ -19,6 +19,7 @@
 
 ### Removed
 
+- `com.javiersc.semver:semver-gradle-plugin` from hubdle catalog
 - `kotlinVersion` in Kotlin compiler extension
 
 ### Fixed

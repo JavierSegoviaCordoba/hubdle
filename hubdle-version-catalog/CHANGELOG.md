@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.javiersc.semver:com.javiersc.semver.gradle.plugin -> 0.5.0-rc.1`
 - `io.insert-koin:koin-core -> 3.4.2`
 - `io.insert-koin:koin-android -> 3.4.2`
 - `org.jetbrains.dokka:dokka-gradle-plugin -> 1.8.20`

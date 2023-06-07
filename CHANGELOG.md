@@ -4,6 +4,8 @@
 
 ### Added
 
+- apply JavierSC Kotlin compiler dependencies in Kotlin Compiler feature 
+
 ### Changed
 
 ### Deprecated

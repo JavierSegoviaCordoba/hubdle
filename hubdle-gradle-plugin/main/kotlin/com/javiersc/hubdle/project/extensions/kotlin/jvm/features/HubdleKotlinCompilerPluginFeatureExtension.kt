@@ -12,6 +12,8 @@ import com.javiersc.hubdle.project.extensions.apis.BaseHubdleDelegateExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
+import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.javiersc_kotlin_kotlinCompilerExtensions
+import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.javiersc_kotlin_kotlinCompilerTestExtensions
 import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.jetbrains_kotlin_kotlinAnnotationsJvm
 import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.jetbrains_kotlin_kotlinCompiler
 import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.jetbrains_kotlin_kotlinCompilerInternalTestFramework
@@ -133,11 +135,13 @@ constructor(
                 sourceSets.named("main").configure { kotlinSourceSet ->
                     kotlinSourceSet.dependencies {
                         compileOnly(library(jetbrains_kotlin_kotlinCompiler))
+                        implementation(library(javiersc_kotlin_kotlinCompilerExtensions))
                     }
                 }
 
                 sourceSets.named("test").configure { kotlinSourceSet ->
                     kotlinSourceSet.dependencies {
+                        implementation(library(javiersc_kotlin_kotlinCompilerTestExtensions))
                         implementation(library(jetbrains_kotlin_kotlinCompiler))
                         implementation(
                             library(jetbrains_kotlin_kotlinCompilerInternalTestFramework)

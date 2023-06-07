@@ -14,6 +14,19 @@
 
 ### Updated
 
+- `org.jetbrains.kotlin:kotlin-serialization -> 1.8.22`
+- `org.jetbrains.kotlin:kotlin-test-testng -> 1.8.22`
+- `org.jetbrains.kotlin:kotlin-test-junit5 -> 1.8.22`
+- `org.jetbrains.kotlin:kotlin-test-junit -> 1.8.22`
+- `org.jetbrains.kotlin:kotlin-test-annotations-common -> 1.8.22`
+- `org.jetbrains.kotlin:kotlin-test -> 1.8.22`
+- `org.jetbrains.kotlin:kotlin-script-runtime -> 1.8.22`
+- `org.jetbrains.kotlin:kotlin-reflect -> 1.8.22`
+- `org.jetbrains.kotlin:kotlin-gradle-plugin-api -> 1.8.22`
+- `org.jetbrains.kotlin:kotlin-gradle-plugin -> 1.8.22`
+- `org.jetbrains.kotlin:kotlin-compiler-internal-test-framework -> 1.8.22`
+- `org.jetbrains.kotlin:kotlin-compiler -> 1.8.22`
+- `org.jetbrains.kotlin:kotlin-annotations-jvm -> 1.8.22`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-alpha.28`
 
 ## [0.1.2] - 2023-06-07

@@ -4,6 +4,20 @@
 
 ### Added
 
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Updated
+
+## [0.5.0-alpha.27] - 2023-06-07
+
+### Added
+
 - `compilerOptions` to Kotlin extension
 - `testDependencies` to Kotlin compiler extension
 - codegen `MetaRuntimeClasspathProvider` based on test projects
@@ -15,8 +29,6 @@
 - `prepareKotlinIdeaImport` dependencies based on `mainClass`
 - `generateKotlinCompilerTests` is disabled if `mainClass` is blank
 
-### Deprecated
-
 ### Removed
 
 - `com.javiersc.semver:semver-gradle-plugin` from hubdle catalog
@@ -25,8 +37,6 @@
 ### Fixed
 
 - circular dependencies on `testProject` dependencies in Kotlin compiler extension
-
-### Updated
 
 ## [0.5.0-alpha.26] - 2023-06-03
 
@@ -360,7 +370,9 @@
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.2`
 - `app.cash.molecule:molecule-gradle-plugin -> 0.8.0`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.26...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.27...HEAD
+
+[0.5.0-alpha.27]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.26...0.5.0-alpha.27
 
 [0.5.0-alpha.26]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.25...0.5.0-alpha.26
 

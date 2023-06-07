@@ -62,16 +62,12 @@ constructor(
             pluginId = PluginId.Sonarqube
         )
 
-        configurable(priority = Priority.P4) {
-            configureSonarqube(project)
-            // TODO: Remove both when project isolation is fixed in Sonar Gradle plugin as hubdle
-            //       analysis.sonar.isFullEnabled.get() will be false, and the Sonar plugin
-            // shouldn't
-            //       pick this project
-            extensions.findByType<SonarExtension>()?.isSkipProject = !isFullEnabled.get()
-            afterEvaluate { proj ->
-                proj.extensions.findByType<SonarExtension>()?.isSkipProject = !isFullEnabled.get()
-            }
+        configurable(priority = Priority.P4) { configureSonarqube(project) }
+        // TODO: Remove both when project isolation is fixed in Sonar Gradle plugin as hubdle
+        //       analysis.sonar.isFullEnabled.get() will be false, and the Sonar plugin shouldn't
+        //       pick this project
+        afterEvaluate { proj ->
+            proj.extensions.findByType<SonarExtension>()?.isSkipProject = !isFullEnabled.get()
         }
     }
 

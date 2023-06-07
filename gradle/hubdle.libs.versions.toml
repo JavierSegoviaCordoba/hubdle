@@ -1,6 +1,10 @@
 [versions]
 android = { strictly = "8.0.2" }
 hubdle = "0.5.0-alpha.26"
+javiersc-gradle-gradleExtensions = "1.0.0-alpha.32"
+javiersc-kotlin-kotlinCompiler = "0.1.1-alpha.1"
+javiersc-kotlin-kotlinStdlibAndTest = "0.1.0-alpha.15"
+javiersc-kotlinx-coroutinesRunBlocking = "0.1.0-rc.1"
 kotlin = { strictly = "1.8.21" }
 
 [libraries]
@@ -62,14 +66,16 @@ insert-koin-loggerSlf4j = { module = "io.insert-koin:koin-logger-slf4j", version
 insert-koin-test = { module = "io.insert-koin:koin-test", version = "3.4.1" }
 insert-koin-testJunit4 = { module = "io.insert-koin:koin-test-junit4", version = "3.4.1" }
 insert-koin-testJunit5 = { module = "io.insert-koin:koin-test-junit5", version = "3.4.1" }
-javiersc-gradle-gradleExtensions = { module = "com.javiersc.gradle:gradle-extensions", version = "1.0.0-alpha.32" }
-javiersc-gradle-gradleTestExtensions = { module = "com.javiersc.gradle:gradle-test-extensions", version = "1.0.0-alpha.32" }
-javiersc-kotlin-kotlinStdlib = { module = "com.javiersc.kotlin:kotlin-stdlib", version = "0.1.0-alpha.15" }
-javiersc-kotlin-kotlinTestJunit = { module = "com.javiersc.kotlin:kotlin-test-junit", version = "0.1.0-alpha.15" }
-javiersc-kotlin-kotlinTestJunit5 = { module = "com.javiersc.kotlin:kotlin-test-junit5", version = "0.1.0-alpha.15" }
-javiersc-kotlin-kotlinTestNG = { module = "com.javiersc.kotlin:kotlin-test-testng", version = "0.1.0-alpha.15" }
-javiersc-kotlinx-coroutinesRunBlocking = { module = "com.javiersc.kotlinx:coroutines-run-blocking", version = "0.1.0-rc.1" }
-javiersc-kotlinx-coroutinesRunBlockingAll = { module = "com.javiersc.kotlinx:coroutines-run-blocking-all", version = "0.1.0-rc.1" }
+javiersc-gradle-gradleExtensions = { module = "com.javiersc.gradle:gradle-extensions", version.ref = "javiersc-gradle-gradleExtensions" }
+javiersc-gradle-gradleTestExtensions = { module = "com.javiersc.gradle:gradle-test-extensions", version.ref = "javiersc-gradle-gradleExtensions" }
+javiersc-kotlin-kotlinCompilerExtensions = { module = "com.javiersc.kotlin:kotlin-compiler-extensions", version.ref = "javiersc-kotlin-kotlinCompiler" }
+javiersc-kotlin-kotlinCompilerTest = { module = "com.javiersc.kotlin:kotlin-compiler-test", version.ref = "javiersc-kotlin-kotlinCompiler" }
+javiersc-kotlin-kotlinStdlib = { module = "com.javiersc.kotlin:kotlin-stdlib", version.ref = "javiersc-kotlin-kotlinStdlibAndTest" }
+javiersc-kotlin-kotlinTestJunit = { module = "com.javiersc.kotlin:kotlin-test-junit", version.ref = "javiersc-kotlin-kotlinStdlibAndTest" }
+javiersc-kotlin-kotlinTestJunit5 = { module = "com.javiersc.kotlin:kotlin-test-junit5", version.ref = "javiersc-kotlin-kotlinStdlibAndTest" }
+javiersc-kotlin-kotlinTestNG = { module = "com.javiersc.kotlin:kotlin-test-testng", version.ref = "javiersc-kotlin-kotlinStdlibAndTest" }
+javiersc-kotlinx-coroutinesRunBlocking = { module = "com.javiersc.kotlinx:coroutines-run-blocking", version.ref = "javiersc-kotlinx-coroutinesRunBlocking" }
+javiersc-kotlinx-coroutinesRunBlockingAll = { module = "com.javiersc.kotlinx:coroutines-run-blocking-all", version.ref = "javiersc-kotlinx-coroutinesRunBlocking" }
 javiersc-mokoki-mokoki = { module = "com.javiersc.mokoki:mokoki", version = "0.2.0-alpha.1" }
 javiersc-mokoki-mokokiSerialization = { module = "com.javiersc.mokoki:mokoki-serialization", version = "0.2.0-alpha.1" }
 javiersc-network-networkEither = { module = "com.javiersc.network:network-either", version = "0.2.0-alpha.2" }

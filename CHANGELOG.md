@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- Sonar is not being skipped with Hubdle `analysis.sonar.isFullEnabled` disabled (again)
+
 ### Updated
 
 ## [0.5.0-alpha.27] - 2023-06-07

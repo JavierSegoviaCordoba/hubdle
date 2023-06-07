@@ -14,6 +14,10 @@
 
 ### Updated
 
+## [0.1.2] - 2023-06-07
+
+### Updated
+
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.14.1`
 
 ## [0.1.1] - 2023-06-07
@@ -161,6 +165,8 @@
 - `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
 - `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.13.1`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.1...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.2...HEAD
+
+[0.1.2]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.1...c0.1.2
 
 [0.1.1]: https://github.com/JavierSegoviaCordoba/hubdle/commits/c0.1.1

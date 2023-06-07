@@ -14,6 +14,10 @@
 
 ### Updated
 
+- `org.jetbrains.kotlin.plugin.serialization:org.jetbrains.kotlin.plugin.serialization.gradle.plugin -> 1.8.22`
+- `org.jetbrains.kotlin.multiplatform:org.jetbrains.kotlin.multiplatform.gradle.plugin -> 1.8.22`
+- `org.jetbrains.kotlin.jvm:org.jetbrains.kotlin.jvm.gradle.plugin -> 1.8.22`
+- `org.jetbrains.kotlin.android:org.jetbrains.kotlin.android.gradle.plugin -> 1.8.22`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-alpha.28`
 
 ## [0.1.2] - 2023-06-07

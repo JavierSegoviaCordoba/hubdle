@@ -14,6 +14,10 @@
 
 ### Updated
 
+## [0.1.1] - 2023-06-07
+
+### Updated
+
 - `com.javiersc.semver:com.javiersc.semver.gradle.plugin -> 0.5.0-rc.1`
 - `io.insert-koin:koin-core -> 3.4.2`
 - `io.insert-koin:koin-android -> 3.4.2`
@@ -23,25 +27,9 @@
 - `com.javiersc.kotlin:kotlin-test-junit -> 0.1.0-alpha.15`
 - `com.javiersc.kotlin:kotlin-stdlib -> 0.1.0-alpha.15`
 - `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.13.2`
-- `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-alpha.26`
-
-## [0.1.1-alpha.8] - 2023-06-02
-
-### Updated
-
-- `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-alpha.25`
 - `com.javiersc.kotlin:kotlin-test-testng -> 0.1.0-alpha.14`
 - `com.javiersc.kotlin:kotlin-test-junit5 -> 0.1.0-alpha.14`
 - `com.javiersc.kotlin:kotlin-test-junit -> 0.1.0-alpha.14`
-
-## [0.1.1-alpha.7] - 2023-06-02
-
-### Removed
-
-- `com.github.adriankuta:tree-structure`
-
-### Updated
-
 - `com.javiersc.kotlin:kotlin-stdlib -> 0.1.0-alpha.14`
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.14.0`
 - `org.jetbrains.intellij.plugins:gradle-changelog-plugin -> 2.1.0`
@@ -70,32 +58,11 @@
 - `app.cash.sqldelight:android-driver -> 2.0.0-rc01`
 - `app.cash.sqldelight:app.cash.sqldelight.gradle.plugin -> 2.0.0-rc01`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-alpha.24`
-
-## [0.1.1-alpha.6] - 2023-05-26
-
-### Added
-
-- `com.github.adriankuta:tree-structure -> 3.0.1`
-
-## [0.1.1-alpha.5] - 2023-05-25
-
-### Updated
-
 - `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.13.3`
 - `com.android.library:com.android.library.gradle.plugin -> 8.0.2`
 - `com.android.application:com.android.application.gradle.plugin -> 8.0.2`
 - `com.android.tools.build:gradle -> 8.0.2`
-
-## [0.1.1-alpha.4] - 2023-05-25
-
-### Updated
-
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-alpha.22`
-
-## [0.1.1-alpha.3] - 2023-05-25
-
-### Updated
-
 - `androidx.activity:activity-ktx -> 1.7.2`
 - `androidx.activity:activity-compose -> 1.7.2`
 - `com.diffplug.spotless:spotless-plugin-gradle -> 6.19.0`
@@ -104,11 +71,6 @@
 - `org.gradle:test-retry-gradle-plugin -> 1.5.3`
 - `com.javiersc.gradle:gradle-test-extensions -> 1.0.0-alpha.32`
 - `com.javiersc.gradle:gradle-extensions -> 1.0.0-alpha.32`
-
-## [0.1.1-alpha.2] - 2023-05-14
-
-### Updated
-
 - `org.jetbrains.kotlinx:kotlinx-coroutines-test -> 1.7.1`
 - `org.jetbrains.kotlinx:kotlinx-coroutines-core -> 1.7.1`
 - `org.jetbrains.kotlinx:kotlinx-coroutines-android -> 1.7.1`
@@ -128,11 +90,6 @@
 - `com.github.triplet.gradle:play-publisher -> 3.8.3`
 - `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.13.2`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-alpha.16`
-
-## [0.1.1-alpha.1] - 2023-05-06
-
-### Updated
-
 - `org.jetbrains.kotlinx:kotlinx-coroutines-test -> 1.7.0`
 - `org.jetbrains.kotlinx:kotlinx-coroutines-core -> 1.7.0`
 - `org.jetbrains.kotlinx:kotlinx-coroutines-android -> 1.7.0`
@@ -202,20 +159,6 @@
 - `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
 - `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.13.1`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.1-alpha.8...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.1...HEAD
 
-[0.1.1-alpha.8]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.1-alpha.7...c0.1.1-alpha.8
-
-[0.1.1-alpha.7]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.1-alpha.6...c0.1.1-alpha.7
-
-[0.1.1-alpha.6]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.1-alpha.5...c0.1.1-alpha.6
-
-[0.1.1-alpha.5]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.1-alpha.4...c0.1.1-alpha.5
-
-[0.1.1-alpha.4]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.1-alpha.3...c0.1.1-alpha.4
-
-[0.1.1-alpha.3]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.1-alpha.2...c0.1.1-alpha.3
-
-[0.1.1-alpha.2]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.1-alpha.1...c0.1.1-alpha.2
-
-[0.1.1-alpha.1]: https://github.com/JavierSegoviaCordoba/hubdle/commits/c0.1.1-alpha.1
+[0.1.1]: https://github.com/JavierSegoviaCordoba/hubdle/commits/c0.1.1

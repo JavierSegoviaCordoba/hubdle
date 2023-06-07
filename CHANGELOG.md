@@ -4,8 +4,6 @@
 
 ### Added
 
-- apply JavierSC Kotlin compiler dependencies in Kotlin Compiler feature 
-
 ### Changed
 
 ### Deprecated
@@ -14,9 +12,17 @@
 
 ### Fixed
 
-- Sonar is not being skipped with Hubdle `analysis.sonar.isFullEnabled` disabled (again)
-
 ### Updated
+
+## [0.5.0-alpha.28] - 2023-06-07
+
+### Added
+
+- apply JavierSC Kotlin compiler dependencies in Kotlin Compiler feature 
+
+### Fixed
+
+- Sonar is not being skipped with Hubdle `analysis.sonar.isFullEnabled` disabled (again)
 
 ## [0.5.0-alpha.27] - 2023-06-07
 
@@ -374,7 +380,9 @@
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.2`
 - `app.cash.molecule:molecule-gradle-plugin -> 0.8.0`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.27...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.28...HEAD
+
+[0.5.0-alpha.28]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.27...0.5.0-alpha.28
 
 [0.5.0-alpha.27]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.26...0.5.0-alpha.27
 

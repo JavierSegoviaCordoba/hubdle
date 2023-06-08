@@ -14,6 +14,9 @@
 
 ### Updated
 
+- `com.javiersc.kotlin:kotlin-compiler-test-extensions -> 0.1.1-alpha.3`
+- `com.javiersc.kotlin:kotlin-compiler-extensions -> 0.1.1-alpha.3`
+
 ## [0.1.3] - 2023-06-08
 
 ### Updated

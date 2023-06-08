@@ -89,11 +89,29 @@ constructor(
 
                 // TODO: https://github.com/detekt/detekt/issues/5412
                 //  https://github.com/detekt/detekt/issues/5896
-                properties.property("sonar.sources", project.kotlinSrcDirsWithoutBuild.get())
-                properties.property("sonar.tests", project.kotlinTestsSrcDirsWithoutBuild.get())
+                properties.property("sonar.sources", project.kotlinDirs)
+                properties.property("sonar.tests", project.kotlinTestDirs)
             }
         }
     }
+
+    private val Project.kotlinDirs: List<String>
+        get() =
+            kotlinSrcDirsWithoutBuild.orNull
+                .orEmpty()
+                .asSequence()
+                .filter(File::exists)
+                .map(File::getPath)
+                .toList()
+
+    private val Project.kotlinTestDirs: List<String>
+        get() =
+            kotlinTestsSrcDirsWithoutBuild.orNull
+                .orEmpty()
+                .asSequence()
+                .filter(File::exists)
+                .map(File::getPath)
+                .toList()
 
     private fun Project.configureAndroidLintReportPaths(properties: SonarProperties) {
         val reportsDir: File = buildDir.resolve("reports")

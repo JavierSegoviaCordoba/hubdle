@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- `sonar.sources` and `sonar.tests`
+
 ### Updated
 
 ## [0.5.0-alpha.30] - 2023-06-08
@@ -35,7 +37,7 @@
 
 ### Added
 
-- apply JavierSC Kotlin compiler dependencies in Kotlin Compiler feature 
+- apply JavierSC Kotlin compiler dependencies in Kotlin Compiler feature
 
 ### Fixed
 

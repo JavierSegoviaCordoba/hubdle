@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `com.javiersc.kotlin:kotlin-compiler-test-extensions -> 0.1.1-alpha.2`
+- `com.javiersc.kotlin:kotlin-compiler-extensions -> 0.1.1-alpha.2`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-alpha.28`
 
 ## [0.1.2] - 2023-06-07

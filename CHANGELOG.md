@@ -12,9 +12,13 @@
 
 ### Fixed
 
-- `sonar.sources` and `sonar.tests`
-
 ### Updated
+
+## [0.5.0-alpha.31] - 2023-06-08
+
+### Fixed
+
+- `sonar.sources` and `sonar.tests`
 
 ## [0.5.0-alpha.30] - 2023-06-08
 
@@ -399,7 +403,9 @@
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.2`
 - `app.cash.molecule:molecule-gradle-plugin -> 0.8.0`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.30...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.31...HEAD
+
+[0.5.0-alpha.31]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.30...0.5.0-alpha.31
 
 [0.5.0-alpha.30]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.29...0.5.0-alpha.30
 

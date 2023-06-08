@@ -1,6 +1,5 @@
 package com.javiersc.hubdle.project.extensions.config.analysis
 
-import com.javiersc.gradle.properties.extensions.setProperty
 import com.javiersc.gradle.tasks.extensions.maybeRegisterLazily
 import com.javiersc.gradle.tasks.extensions.namedLazily
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
@@ -12,17 +11,13 @@ import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
 import com.javiersc.hubdle.project.extensions.config.analysis.tools.HubdleConfigAnalysisDetektExtension
 import com.javiersc.hubdle.project.extensions.config.analysis.tools.HubdleConfigAnalysisSonarExtension
 import com.javiersc.hubdle.project.extensions.config.hubdleConfig
-import java.io.File
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.provider.Property
-import org.gradle.api.provider.SetProperty
 import org.gradle.api.tasks.TaskCollection
-import org.gradle.kotlin.dsl.findByType
 import org.gradle.language.base.plugins.LifecycleBasePlugin.CHECK_TASK_NAME
-import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 
 @HubdleDslMarker
 public open class HubdleConfigAnalysisExtension
@@ -69,42 +64,6 @@ constructor(
         }
     }
 }
-
-internal val Project.kotlinSrcDirs: SetProperty<String>
-    get() =
-        this.setProperty {
-            extensions
-                .findByType<KotlinProjectExtension>()
-                ?.sourceSets
-                ?.flatMap { kotlinSourceSet -> kotlinSourceSet.kotlin.srcDirs }
-                ?.filterNot { file ->
-                    val relativePath = file.relativeTo(projectDir)
-                    val dirs = relativePath.path.split(File.separatorChar)
-                    dirs.any { dir -> dir.endsWith("Test") || dir == "test" }
-                }
-                ?.filter { file -> file.exists() }
-                ?.mapNotNull(File::getPath)
-                .orEmpty()
-                .toSet()
-        }
-
-internal val Project.kotlinTestsSrcDirs: SetProperty<String>
-    get() =
-        this.setProperty {
-            extensions
-                .findByType<KotlinProjectExtension>()
-                ?.sourceSets
-                ?.flatMap { kotlinSourceSet -> kotlinSourceSet.kotlin.srcDirs }
-                ?.filter { file ->
-                    val relativePath = file.relativeTo(projectDir)
-                    val dirs = relativePath.path.split(File.separatorChar)
-                    dirs.any { dir -> dir.endsWith("Test") || dir == "test" }
-                }
-                ?.filter { file -> file.exists() }
-                ?.mapNotNull(File::getPath)
-                .orEmpty()
-                .toSet()
-        }
 
 internal val HubdleEnableableExtension.hubdleAnalysis: HubdleConfigAnalysisExtension
     get() = getHubdleExtension()

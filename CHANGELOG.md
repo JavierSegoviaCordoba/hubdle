@@ -12,6 +12,9 @@
 
 ### Fixed
 
+- `GenerateProjectDataTask` dependency
+- `GenerateMetaRuntimeClasspathProviderTask` dependency
+
 ### Updated
 
 ## [0.5.0-alpha.29] - 2023-06-08

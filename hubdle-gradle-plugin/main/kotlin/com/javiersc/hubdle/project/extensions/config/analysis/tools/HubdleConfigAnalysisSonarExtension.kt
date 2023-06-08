@@ -11,11 +11,11 @@ import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin
 import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
+import com.javiersc.hubdle.project.extensions._internal.kotlinSrcDirsWithoutBuild
+import com.javiersc.hubdle.project.extensions._internal.kotlinTestsSrcDirsWithoutBuild
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.config.analysis.hubdleAnalysis
-import com.javiersc.hubdle.project.extensions.config.analysis.kotlinSrcDirs
-import com.javiersc.hubdle.project.extensions.config.analysis.kotlinTestsSrcDirs
 import com.javiersc.kotlin.stdlib.capitalize
 import java.io.File
 import javax.inject.Inject
@@ -89,8 +89,8 @@ constructor(
 
                 // TODO: https://github.com/detekt/detekt/issues/5412
                 //  https://github.com/detekt/detekt/issues/5896
-                properties.property("sonar.sources", project.kotlinSrcDirs.get())
-                properties.property("sonar.tests", project.kotlinTestsSrcDirs.get())
+                properties.property("sonar.sources", project.kotlinSrcDirsWithoutBuild.get())
+                properties.property("sonar.tests", project.kotlinTestsSrcDirsWithoutBuild.get())
             }
         }
     }

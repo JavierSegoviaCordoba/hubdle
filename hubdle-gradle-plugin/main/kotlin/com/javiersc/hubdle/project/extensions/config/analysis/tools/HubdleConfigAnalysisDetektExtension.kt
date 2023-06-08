@@ -5,16 +5,16 @@ import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin
 import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions._internal.PluginId
+import com.javiersc.hubdle.project.extensions._internal.allKotlinSrcDirsWithoutBuild
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
 import com.javiersc.hubdle.project.extensions.config.analysis.hubdleAnalysis
-import com.javiersc.hubdle.project.extensions.config.analysis.kotlinSrcDirs
-import com.javiersc.hubdle.project.extensions.config.analysis.kotlinTestsSrcDirs
 import com.javiersc.hubdle.project.extensions.config.analysis.reports.HubdleConfigAnalysisReportsExtension
 import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.extensions.DetektExtension
+import java.io.File
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
@@ -40,7 +40,7 @@ constructor(
     public val ignoreFailures: Property<Boolean> = property { true }
 
     public val includes: SetProperty<String> = setProperty {
-        kotlinSrcDirs.get() + kotlinTestsSrcDirs.get()
+        allKotlinSrcDirsWithoutBuild.get().map(File::getPath).toSet()
     }
 
     @HubdleDslMarker
@@ -48,7 +48,7 @@ constructor(
         this.includes.addAll(includes.toList())
     }
 
-    public val excludes: SetProperty<String> = setProperty { emptySet() }
+    public val excludes: SetProperty<String> = setProperty { setOf("**/build/**") }
 
     @HubdleDslMarker
     public fun excludes(vararg excludes: String) {
@@ -84,7 +84,7 @@ constructor(
             isIgnoreFailures = hubdleDetekt.ignoreFailures.get()
             buildUponDefaultConfig = true
             basePath = projectDir.path
-            source = files(provider { kotlinSrcDirs.get() + kotlinTestsSrcDirs.get() })
+            source.from(allKotlinSrcDirsWithoutBuild)
         }
 
         tasks.namedLazily<Task>("checkAnalysis").configureEach { task -> task.dependsOn("detekt") }

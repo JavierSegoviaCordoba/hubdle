@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-alpha.31`
 - `io.kotest.extensions:kotest-extensions-allure -> 1.3.0`
 
 ## [0.1.4] - 2023-06-08

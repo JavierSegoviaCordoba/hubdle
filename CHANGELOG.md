@@ -4,11 +4,7 @@
 
 ### Added
 
-- `catalog` extension in Settings plugin
-
 ### Changed
-
-- removed `catalogVersion` in Settings plugin
 
 ### Deprecated
 
@@ -17,6 +13,16 @@
 ### Fixed
 
 ### Updated
+
+## [0.5.0-alpha.29] - 2023-06-08
+
+### Added
+
+- `catalog` extension in Settings plugin
+
+### Changed
+
+- removed `catalogVersion` in Settings plugin
 
 ## [0.5.0-alpha.28] - 2023-06-07
 
@@ -384,7 +390,9 @@
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.2`
 - `app.cash.molecule:molecule-gradle-plugin -> 0.8.0`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.28...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.29...HEAD
+
+[0.5.0-alpha.29]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.28...0.5.0-alpha.29
 
 [0.5.0-alpha.28]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.27...0.5.0-alpha.28
 

@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `io.kotest.extensions:kotest-extensions-allure -> 1.3.0`
+
 ## [0.1.4] - 2023-06-08
 
 ### Updated

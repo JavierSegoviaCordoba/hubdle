@@ -14,6 +14,10 @@
 
 ### Updated
 
+## [0.1.3] - 2023-06-08
+
+### Updated
+
 - `com.javiersc.kotlin:kotlin-compiler-test-extensions -> 0.1.1-alpha.2`
 - `com.javiersc.kotlin:kotlin-compiler-extensions -> 0.1.1-alpha.2`
 - `androidx.navigation:navigation-compose -> 2.6.0`
@@ -170,7 +174,9 @@
 - `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
 - `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.13.1`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.2...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.3...HEAD
+
+[0.1.3]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.2...c0.1.3
 
 [0.1.2]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.1...c0.1.2
 

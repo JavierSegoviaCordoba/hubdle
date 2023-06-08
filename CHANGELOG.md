@@ -4,7 +4,11 @@
 
 ### Added
 
+- `catalog` extension in Settings plugin
+
 ### Changed
+
+- removed `catalogVersion` in Settings plugin
 
 ### Deprecated
 

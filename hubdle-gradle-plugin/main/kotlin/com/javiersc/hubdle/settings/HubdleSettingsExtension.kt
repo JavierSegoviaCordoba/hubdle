@@ -2,6 +2,7 @@ package com.javiersc.hubdle.settings
 
 import com.javiersc.hubdle.settings.extensions.HubdleAutoIncludeExtension
 import com.javiersc.hubdle.settings.extensions.HubdleBuildScanExtension
+import com.javiersc.hubdle.settings.extensions.HubdleVersionCatalogExtension
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.model.ObjectFactory
@@ -32,11 +33,11 @@ constructor(
         action.execute(buildScan)
     }
 
-    public val catalogVersion: Property<String> = property { "latest.release" }
+    public val catalog: HubdleVersionCatalogExtension = objects.newInstance()
 
     @HubdleSettingsDslMarker
-    public fun catalogVersion(version: String) {
-        catalogVersion.set(version)
+    public fun catalog(action: Action<HubdleVersionCatalogExtension> = Action {}) {
+        action.execute(catalog)
     }
 
     public val rootProjectName: Property<String> = property { "" }

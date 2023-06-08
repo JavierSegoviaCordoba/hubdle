@@ -2331,10 +2331,11 @@ public class com/javiersc/hubdle/settings/HubdleSettingsExtension {
 	public static synthetic fun autoInclude$default (Lcom/javiersc/hubdle/settings/HubdleSettingsExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 	public final fun buildScan (Lorg/gradle/api/Action;)V
 	public static synthetic fun buildScan$default (Lcom/javiersc/hubdle/settings/HubdleSettingsExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
-	public final fun catalogVersion (Ljava/lang/String;)V
+	public final fun catalog (Lorg/gradle/api/Action;)V
+	public static synthetic fun catalog$default (Lcom/javiersc/hubdle/settings/HubdleSettingsExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 	public final fun getAutoInclude ()Lcom/javiersc/hubdle/settings/extensions/HubdleAutoIncludeExtension;
 	public final fun getBuildScan ()Lcom/javiersc/hubdle/settings/extensions/HubdleBuildScanExtension;
-	public final fun getCatalogVersion ()Lorg/gradle/api/provider/Property;
+	public final fun getCatalog ()Lcom/javiersc/hubdle/settings/extensions/HubdleVersionCatalogExtension;
 	public final fun getRootProjectName ()Lorg/gradle/api/provider/Property;
 	public final fun getUseOnAllProjects ()Lorg/gradle/api/provider/Property;
 }
@@ -2367,6 +2368,17 @@ public class com/javiersc/hubdle/settings/extensions/HubdleBuildScanExtension {
 	public static synthetic fun enabled$default (Lcom/javiersc/hubdle/settings/extensions/HubdleBuildScanExtension;ZILjava/lang/Object;)V
 	public final fun getPublishAlways ()Lorg/gradle/api/provider/Property;
 	public final fun isEnabled ()Lorg/gradle/api/provider/Property;
+}
+
+public class com/javiersc/hubdle/settings/extensions/HubdleVersionCatalogExtension {
+	public fun <init> (Lorg/gradle/api/model/ObjectFactory;)V
+	public final fun enabled (Z)V
+	public static synthetic fun enabled$default (Lcom/javiersc/hubdle/settings/extensions/HubdleVersionCatalogExtension;ZILjava/lang/Object;)V
+	public final fun getReplaceableVersions ()Lorg/gradle/api/provider/MapProperty;
+	public final fun getVersion ()Lorg/gradle/api/provider/Property;
+	public final fun isEnabled ()Lorg/gradle/api/provider/Property;
+	public final fun replaceVersion ([Lkotlin/Pair;)V
+	public final fun version (Ljava/lang/String;)V
 }
 
 public class com/javiersc/hubdle/settings/tasks/GenerateHubdleCatalogTask : org/gradle/api/DefaultTask {

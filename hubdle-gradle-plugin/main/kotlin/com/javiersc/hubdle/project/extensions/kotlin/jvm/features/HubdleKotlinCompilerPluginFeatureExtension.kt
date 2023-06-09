@@ -3,7 +3,6 @@ package com.javiersc.hubdle.project.extensions.kotlin.jvm.features
 import com.javiersc.gradle.tasks.extensions.namedLazily
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
-import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions._internal.library
 import com.javiersc.hubdle.project.extensions._internal.libraryModule
@@ -235,17 +234,13 @@ constructor(
     }
 
     private fun Task.dependsOnTestProjects() {
-        for (projectDependency: ProjectDependency in testProjects.get()) {
-            val project: Project = projectDependency.dependencyProject
-            val jarTaskName: String =
-                when {
-                    project.pluginManager.hasPlugin(PluginId.JetbrainsKotlinMultiplatform.id) ->
-                        "jvmJar"
-                    project.pluginManager.hasPlugin(PluginId.JetbrainsKotlinJvm.id) -> "jar"
-                    else -> "jar"
+        dependsOn(
+            testProjects.map { projectDependencies ->
+                projectDependencies.map { projectDependency: ProjectDependency ->
+                    projectDependency.dependencyProject.tasks.withType<Jar>()
                 }
-            dependsOn("${project.path}:$jarTaskName")
-        }
+            }
+        )
     }
 
     private fun LanguageSettingsBuilder.optInExperimentalAPIs() {

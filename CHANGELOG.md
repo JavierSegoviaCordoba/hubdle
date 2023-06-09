@@ -14,6 +14,7 @@
 ### Removed
 
 ### Fixed
+- `testProjects` aren't added as Jar tasks in Kotlin Compiler feature
 
 ### Updated
 

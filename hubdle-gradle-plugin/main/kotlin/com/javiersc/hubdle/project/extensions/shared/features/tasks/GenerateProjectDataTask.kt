@@ -44,11 +44,15 @@ constructor(
 
     @Input public val packageName: Property<String> = objects.property<String>()
 
+    @Input public val projectDir: Property<String> = objects.property<String>()
+
     @Input public val projectGroup: Property<String> = objects.property<String>()
 
     @Input public val projectName: Property<String> = objects.property<String>()
 
     @Input public val projectVersion: Property<String> = objects.property<String>()
+
+    @Input public val rootDir: Property<String> = objects.property<String>()
 
     @Internal
     public val objectName: Provider<String> =
@@ -69,10 +73,38 @@ constructor(
         val packageLine =
             if (packageName.get().isNotNullNorBlank()) "package ${packageName.get()}" else null
         val library = "${projectGroup.get()}:${projectName.get()}:${projectVersion.get()}"
+
         val groupLine = """public const val Group: String = "${projectGroup.get()}""""
         val nameLine = """public const val Name: String = "${projectName.get()}""""
         val versionLine = """public const val Version: String = "${projectVersion.get()}""""
         val libraryLine = """public const val Library: String = "$library""""
+
+        val projectDirFile = File(projectDir.get())
+        val rootDirFile = File(rootDir.get())
+        val relativeDirFile = projectDirFile.relativeTo(rootDirFile)
+
+        val rootDirAbsolutePathLine = buildString {
+            appendLine("public const val RootDirAbsolutePath: String =")
+            appendLine("    \"\"\"${rootDirFile.absolutePath}\"\"\"")
+        }
+        val rootDirPathLine = buildString {
+            appendLine("public const val RootDirPath: String =")
+            appendLine("    \"\"\"${rootDirFile.path}\"\"\"")
+        }
+
+        val projectDirAbsolutePathLine = buildString {
+            appendLine("public const val ProjectDirAbsolutePath: String =")
+            appendLine("    \"\"\"${projectDirFile.absolutePath}\"\"\"")
+        }
+        val projectDirPathLine = buildString {
+            appendLine("public const val ProjectDirPath: String =")
+            appendLine("    \"\"\"${projectDirFile.path}\"\"\"")
+        }
+
+        val relativeDirPathLine = buildString {
+            appendLine("public const val RelativeDirPath: String =")
+            appendLine("    \"\"\"${relativeDirFile.path}\"\"\"")
+        }
 
         val content: String = buildString {
             if (packageLine != null) {
@@ -85,6 +117,11 @@ constructor(
             appendLine(groupLine.prependIndent())
             appendLine(nameLine.prependIndent())
             appendLine(versionLine.prependIndent())
+            appendLine(rootDirAbsolutePathLine.prependIndent())
+            appendLine(rootDirPathLine.prependIndent())
+            appendLine(projectDirAbsolutePathLine.prependIndent())
+            appendLine(projectDirPathLine.prependIndent())
+            appendLine(relativeDirPathLine.prependIndent())
             appendLine("}")
             appendLine()
         }
@@ -110,9 +147,11 @@ constructor(
             generateProjectDataTask.configure {
                 it.source(project.allKotlinSrcDirsWithoutBuild)
                 it.packageName.set(packageName)
+                it.projectDir.set(project.projectDir.absolutePath)
                 it.projectGroup.set(projectGroup)
                 it.projectName.set(projectName)
                 it.projectVersion.set(projectVersion)
+                it.rootDir.set(project.rootDir.absolutePath)
                 it.outputFile.convention {
                     val fileName = it.objectName.map { objectName -> "$objectName.kt" }.get()
                     outputDir.get().file(fileName).asFile

@@ -4,6 +4,9 @@
 
 ### Added
 
+- `test-data` source set to Kotlin Compiler feature
+- multiple project directory and root directory paths to `GenerateProjectDataTask`
+
 ### Changed
 
 ### Deprecated

@@ -127,6 +127,13 @@ constructor(
         configurable {
             val testSourceSet = the<SourceSetContainer>().named("test")
             testSourceSet.configure { sourceSet -> sourceSet.java.srcDirs(testGenDir.get()) }
+            configure<SourceSetContainer> {
+                register("test-data").configure {
+                    val testData = objects.sourceDirectorySet("test-data", "test-data")
+                    testData.filter.include("**/*.fir.ir.txt", "**/*.fir.txt", "**/*.kt")
+                }
+            }
+
             configure<KotlinProjectExtension> {
                 sourceSets.configureEach { kotlinSourceSet ->
                     kotlinSourceSet.languageSettings { optInExperimentalAPIs() }

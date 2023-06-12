@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.eclipse.jgit:org.eclipse.jgit -> 6.6.0.202305301015-r`
 - `org.sonarqube:org.sonarqube.gradle.plugin -> 4.2.1.3168`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-alpha.31`
 - `io.kotest.extensions:kotest-extensions-allure -> 1.3.0`

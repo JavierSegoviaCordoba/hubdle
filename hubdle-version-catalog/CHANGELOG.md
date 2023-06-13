@@ -14,6 +14,10 @@
 
 ### Updated
 
+## [0.1.5] - 2023-06-13
+
+### Updated
+
 - `com.javiersc.kotlin:kotlin-compiler-test-extensions -> 0.1.1-alpha.4`
 - `org.eclipse.jgit:org.eclipse.jgit -> 6.6.0.202305301015-r`
 - `org.sonarqube:org.sonarqube.gradle.plugin -> 4.2.1.3168`
@@ -187,7 +191,9 @@
 - `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
 - `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.13.1`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.4...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.5...HEAD
+
+[0.1.5]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.4...c0.1.5
 
 [0.1.4]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.3...c0.1.4
 

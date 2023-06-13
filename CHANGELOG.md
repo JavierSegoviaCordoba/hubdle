@@ -4,9 +4,6 @@
 
 ### Added
 
-- `test-data` source set to Kotlin Compiler feature
-- multiple project directory and root directory paths to `GenerateProjectDataTask`
-
 ### Changed
 
 ### Deprecated
@@ -15,10 +12,19 @@
 
 ### Fixed
 
+### Updated
+
+## [0.1.5] - 2023-06-13
+
+### Added
+
+- `test-data` source set to Kotlin Compiler feature
+- multiple project directory and root directory paths to `GenerateProjectDataTask`
+
+### Fixed
+
 - `generateProjectDataTask` calculated package name
 - `testProjects` aren't added as Jar tasks in Kotlin Compiler feature
-
-### Updated
 
 ## [0.5.0-alpha.31] - 2023-06-08
 
@@ -409,66 +415,68 @@
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.2`
 - `app.cash.molecule:molecule-gradle-plugin -> 0.8.0`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.31...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.5...HEAD
 
-[0.5.0-alpha.31]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.30...0.5.0-alpha.31
+[0.5.0-alpha.31]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0-alpha.30...c0.5.0-alpha.31
 
-[0.5.0-alpha.30]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.29...0.5.0-alpha.30
+[0.5.0-alpha.30]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0-alpha.29...c0.5.0-alpha.30
 
-[0.5.0-alpha.29]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.28...0.5.0-alpha.29
+[0.5.0-alpha.29]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0-alpha.28...c0.5.0-alpha.29
 
-[0.5.0-alpha.28]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.27...0.5.0-alpha.28
+[0.5.0-alpha.28]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0-alpha.27...c0.5.0-alpha.28
 
-[0.5.0-alpha.27]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.26...0.5.0-alpha.27
+[0.5.0-alpha.27]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0-alpha.26...c0.5.0-alpha.27
 
-[0.5.0-alpha.26]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.25...0.5.0-alpha.26
+[0.5.0-alpha.26]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0-alpha.25...c0.5.0-alpha.26
 
-[0.5.0-alpha.25]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.24...0.5.0-alpha.25
+[0.5.0-alpha.25]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0-alpha.24...c0.5.0-alpha.25
 
-[0.5.0-alpha.24]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.23...0.5.0-alpha.24
+[0.5.0-alpha.24]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0-alpha.23...c0.5.0-alpha.24
 
-[0.5.0-alpha.23]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.22...0.5.0-alpha.23
+[0.5.0-alpha.23]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0-alpha.22...c0.5.0-alpha.23
 
-[0.5.0-alpha.22]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.21...0.5.0-alpha.22
+[0.5.0-alpha.22]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0-alpha.21...c0.5.0-alpha.22
 
-[0.5.0-alpha.21]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.20...0.5.0-alpha.21
+[0.5.0-alpha.21]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0-alpha.20...c0.5.0-alpha.21
 
-[0.5.0-alpha.20]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.19...0.5.0-alpha.20
+[0.5.0-alpha.20]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0-alpha.19...c0.5.0-alpha.20
 
-[0.5.0-alpha.19]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.18...0.5.0-alpha.19
+[0.5.0-alpha.19]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0-alpha.18...c0.5.0-alpha.19
 
-[0.5.0-alpha.18]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.17...0.5.0-alpha.18
+[0.5.0-alpha.18]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0-alpha.17...c0.5.0-alpha.18
 
-[0.5.0-alpha.17]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.16...0.5.0-alpha.17
+[0.5.0-alpha.17]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0-alpha.16...c0.5.0-alpha.17
 
-[0.5.0-alpha.16]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.15...0.5.0-alpha.16
+[0.5.0-alpha.16]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0-alpha.15...c0.5.0-alpha.16
 
-[0.5.0-alpha.15]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.14...0.5.0-alpha.15
+[0.5.0-alpha.15]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0-alpha.14...c0.5.0-alpha.15
 
-[0.5.0-alpha.14]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.13...0.5.0-alpha.14
+[0.5.0-alpha.14]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0-alpha.13...c0.5.0-alpha.14
 
-[0.5.0-alpha.13]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.12...0.5.0-alpha.13
+[0.5.0-alpha.13]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0-alpha.12...c0.5.0-alpha.13
 
-[0.5.0-alpha.12]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.11...0.5.0-alpha.12
+[0.5.0-alpha.12]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0-alpha.11...c0.5.0-alpha.12
 
-[0.5.0-alpha.11]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.10...0.5.0-alpha.11
+[0.5.0-alpha.11]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0-alpha.10...c0.5.0-alpha.11
 
-[0.5.0-alpha.10]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.9...0.5.0-alpha.10
+[0.5.0-alpha.10]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0-alpha.9...c0.5.0-alpha.10
 
-[0.5.0-alpha.9]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.8...0.5.0-alpha.9
+[0.5.0-alpha.9]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0-alpha.8...c0.5.0-alpha.9
 
-[0.5.0-alpha.8]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.7...0.5.0-alpha.8
+[0.5.0-alpha.8]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0-alpha.7...c0.5.0-alpha.8
 
-[0.5.0-alpha.7]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.6...0.5.0-alpha.7
+[0.5.0-alpha.7]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0-alpha.6...c0.5.0-alpha.7
 
-[0.5.0-alpha.6]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.5...0.5.0-alpha.6
+[0.5.0-alpha.6]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0-alpha.5...c0.5.0-alpha.6
 
-[0.5.0-alpha.5]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.4...0.5.0-alpha.5
+[0.5.0-alpha.5]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0-alpha.4...c0.5.0-alpha.5
 
-[0.5.0-alpha.4]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.3...0.5.0-alpha.4
+[0.5.0-alpha.4]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0-alpha.3...c0.5.0-alpha.4
 
-[0.5.0-alpha.3]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.2...0.5.0-alpha.3
+[0.5.0-alpha.3]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0-alpha.2...c0.5.0-alpha.3
 
-[0.5.0-alpha.2]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.1...0.5.0-alpha.2
+[0.5.0-alpha.2]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0-alpha.1...c0.5.0-alpha.2
 
-[0.5.0-alpha.1]: https://github.com/JavierSegoviaCordoba/hubdle/commits/0.5.0-alpha.1
+[0.5.0-alpha.1]: https://github.com/JavierSegoviaCordoba/hubdle/commits/c0.5.0-alpha.1
+
+[0.1.5]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0-alpha.31...c0.1.5

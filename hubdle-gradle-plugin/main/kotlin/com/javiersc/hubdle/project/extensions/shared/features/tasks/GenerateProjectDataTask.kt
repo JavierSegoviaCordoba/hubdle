@@ -2,7 +2,7 @@ package com.javiersc.hubdle.project.extensions.shared.features.tasks
 
 import com.javiersc.hubdle.project.extensions._internal.allKotlinSrcDirsWithoutBuild
 import com.javiersc.hubdle.project.extensions._internal.kotlinGeneratedSrcDirs
-import com.javiersc.hubdle.project.extensions._internal.kotlinSrcDirs
+import com.javiersc.hubdle.project.extensions._internal.kotlinSrcDirsWithoutBuild
 import com.javiersc.kotlin.stdlib.TransformString
 import com.javiersc.kotlin.stdlib.isNotNullNorBlank
 import com.javiersc.kotlin.stdlib.remove
@@ -171,10 +171,13 @@ constructor(
         }
 
         private fun Project.calculatePackageName(): Provider<String> = provider {
-            kotlinSrcDirs
+            kotlinSrcDirsWithoutBuild
                 .get()
-                .flatMap { it.walkTopDown().onLeave { file -> !file.isFile } }
-                .firstOrNull { it.isFile }
+                .flatMap { it.walkTopDown() }
+                .firstOrNull { file -> file.walkTopDown().maxDepth(1).any { it.isFile } }
+                ?.walkTopDown()
+                ?.maxDepth(1)
+                ?.firstOrNull { it.isFile }
                 ?.readLines()
                 ?.firstOrNull { line -> line.startsWith("package") }
                 ?.substringAfter("package")

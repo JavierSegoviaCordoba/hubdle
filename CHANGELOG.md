@@ -15,6 +15,7 @@
 
 ### Fixed
 
+- `generateProjectDataTask` calculated package name
 - `testProjects` aren't added as Jar tasks in Kotlin Compiler feature
 
 ### Updated

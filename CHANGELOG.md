@@ -14,7 +14,7 @@
 
 ### Updated
 
-## [0.1.5] - 2023-06-13
+## [0.5.0-alpha.32] - 2023-06-14
 
 ### Added
 
@@ -415,7 +415,9 @@
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.2`
 - `app.cash.molecule:molecule-gradle-plugin -> 0.8.0`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.5...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.32...HEAD
+
+[0.5.0-alpha.32]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.31...0.5.0-alpha.32
 
 [0.5.0-alpha.31]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0-alpha.30...c0.5.0-alpha.31
 

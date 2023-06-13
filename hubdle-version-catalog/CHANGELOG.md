@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.javiersc.kotlin:kotlin-compiler-test-extensions -> 0.1.1-alpha.4`
 - `org.eclipse.jgit:org.eclipse.jgit -> 6.6.0.202305301015-r`
 - `org.sonarqube:org.sonarqube.gradle.plugin -> 4.2.1.3168`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-alpha.31`

@@ -4,8 +4,6 @@
 
 ### Added
 
-- `addExtensionDependencies` to Kotlin Compiler feature
-
 ### Changed
 
 ### Deprecated
@@ -15,6 +13,12 @@
 ### Fixed
 
 ### Updated
+
+## [0.5.0-alpha.33] - 2023-06-14
+
+### Added
+
+- `addExtensionDependencies` to Kotlin Compiler feature
 
 ## [0.5.0-alpha.32] - 2023-06-14
 
@@ -417,7 +421,9 @@
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.2`
 - `app.cash.molecule:molecule-gradle-plugin -> 0.8.0`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.32...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.33...HEAD
+
+[0.5.0-alpha.33]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.32...0.5.0-alpha.33
 
 [0.5.0-alpha.32]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.31...0.5.0-alpha.32
 
@@ -482,5 +488,3 @@
 [0.5.0-alpha.2]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0-alpha.1...c0.5.0-alpha.2
 
 [0.5.0-alpha.1]: https://github.com/JavierSegoviaCordoba/hubdle/commits/c0.5.0-alpha.1
-
-[0.1.5]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0-alpha.31...c0.1.5

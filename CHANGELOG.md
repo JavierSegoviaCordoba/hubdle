@@ -4,6 +4,8 @@
 
 ### Added
 
+- `addExtensionDependencies` to Kotlin Compiler feature
+
 ### Changed
 
 ### Deprecated

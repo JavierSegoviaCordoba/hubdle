@@ -69,6 +69,13 @@ constructor(
 
     override val priority: Priority = Priority.P4
 
+    public val addExtensionDependencies: Property<Boolean> = property { true }
+
+    @HubdleDslMarker
+    public fun addExtensionDependencies(value: Boolean) {
+        addExtensionDependencies.set(value)
+    }
+
     public val generateTestOnSync: Property<Boolean> = property { true }
 
     @HubdleDslMarker
@@ -141,13 +148,17 @@ constructor(
                 sourceSets.named("main").configure { kotlinSourceSet ->
                     kotlinSourceSet.dependencies {
                         compileOnly(library(jetbrains_kotlin_kotlinCompiler))
-                        implementation(library(javiersc_kotlin_kotlinCompilerExtensions))
+                        if (addExtensionDependencies.get()) {
+                            implementation(library(javiersc_kotlin_kotlinCompilerExtensions))
+                        }
                     }
                 }
 
                 sourceSets.named("test").configure { kotlinSourceSet ->
                     kotlinSourceSet.dependencies {
-                        implementation(library(javiersc_kotlin_kotlinCompilerTestExtensions))
+                        if (addExtensionDependencies.get()) {
+                            implementation(library(javiersc_kotlin_kotlinCompilerTestExtensions))
+                        }
                         implementation(library(jetbrains_kotlin_kotlinCompiler))
                         implementation(
                             library(jetbrains_kotlin_kotlinCompilerInternalTestFramework)

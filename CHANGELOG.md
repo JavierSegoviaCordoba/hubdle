@@ -4,6 +4,7 @@
 
 ### Added
 
+-` builder` to Hubdle settings catalog extension
 - `replaceStrictVersion` to Hubdle settings catalog extension
 
 ### Changed

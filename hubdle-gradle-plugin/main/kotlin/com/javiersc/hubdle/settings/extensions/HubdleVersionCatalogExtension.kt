@@ -2,6 +2,9 @@ package com.javiersc.hubdle.settings.extensions
 
 import com.javiersc.hubdle.settings.HubdleSettingsDslMarker
 import javax.inject.Inject
+import org.gradle.api.Action
+import org.gradle.api.initialization.Settings
+import org.gradle.api.initialization.dsl.VersionCatalogBuilder
 import org.gradle.api.model.ObjectFactory
 import org.gradle.api.provider.MapProperty
 import org.gradle.api.provider.Property
@@ -15,6 +18,15 @@ public open class HubdleVersionCatalogExtension @Inject constructor(objects: Obj
 
     public fun enabled(enabled: Boolean = true) {
         isEnabled.set(enabled)
+    }
+
+    @HubdleSettingsDslMarker
+    public fun Settings.builder(block: Action<VersionCatalogBuilder>) {
+        gradle.settingsEvaluated { settings ->
+            settings.dependencyResolutionManagement.versionCatalogs.named("hubdle").configure {
+                block.execute(it)
+            }
+        }
     }
 
     public val replaceableVersions: MapProperty<String, String> =

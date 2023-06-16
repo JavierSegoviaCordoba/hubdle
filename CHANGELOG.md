@@ -4,9 +4,6 @@
 
 ### Added
 
--` builder` to Hubdle settings catalog extension
-- `replaceStrictVersion` to Hubdle settings catalog extension
-
 ### Changed
 
 ### Deprecated
@@ -16,6 +13,12 @@
 ### Fixed
 
 ### Updated
+
+## [0.5.0-alpha.34] - 2023-06-16
+
+### Added
+
+- `replaceStrictVersion` to Hubdle settings catalog extension
 
 ## [0.5.0-alpha.33] - 2023-06-14
 
@@ -424,7 +427,9 @@
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.2`
 - `app.cash.molecule:molecule-gradle-plugin -> 0.8.0`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.33...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.34...HEAD
+
+[0.5.0-alpha.34]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.33...0.5.0-alpha.34
 
 [0.5.0-alpha.33]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.32...0.5.0-alpha.33
 

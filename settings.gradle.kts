@@ -14,7 +14,6 @@ pluginManagement {
         gradlePluginPortal()
         google()
         if (itselfVersionFromProp != null) mavenLocal()
-        mavenLocal()
     }
 
     plugins { //

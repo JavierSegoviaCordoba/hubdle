@@ -4,6 +4,8 @@
 
 ### Added
 
+- `replaceStrictVersion` to Hubdle settings catalog extension
+
 ### Changed
 
 ### Deprecated

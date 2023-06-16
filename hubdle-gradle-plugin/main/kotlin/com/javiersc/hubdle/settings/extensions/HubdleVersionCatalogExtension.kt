@@ -25,6 +25,14 @@ public open class HubdleVersionCatalogExtension @Inject constructor(objects: Obj
         replaceableVersions.putAll(aliasVersion.toMap())
     }
 
+    public val replaceableStrictVersions: MapProperty<String, String> =
+        objects.mapProperty<String, String>().convention(mapOf())
+
+    @HubdleSettingsDslMarker
+    public fun replaceStrictVersion(vararg aliasVersion: Pair<String, String>) {
+        replaceableStrictVersions.putAll(aliasVersion.toMap())
+    }
+
     public val version: Property<String> = objects.property<String>().convention("latest.release")
 
     @HubdleSettingsDslMarker

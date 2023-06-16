@@ -73,8 +73,12 @@ constructor(
         dependencyResolutionManagement.versionCatalogs.register("hubdle") { builder ->
             val hubdleCatalogVersion: String = hubdleSettings.catalog.version.get()
             builder.from("com.javiersc.hubdle:hubdle-version-catalog:$hubdleCatalogVersion")
-            for ((alias, version) in hubdleSettings.catalog.replaceableVersions.get().entries) {
+            val catalog = hubdleSettings.catalog
+            for ((alias, version) in catalog.replaceableVersions.get().entries) {
                 builder.version(alias, version)
+            }
+            for ((alias, version) in catalog.replaceableStrictVersions.get().entries) {
+                builder.version(alias) { it.strictly(version) }
             }
         }
     }

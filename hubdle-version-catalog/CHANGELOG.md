@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `io.kotest.extensions:kotest-extensions-testcontainers -> 2.0.0`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-alpha.34`
 
 ## [0.1.5] - 2023-06-13

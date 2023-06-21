@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `app.cash.turbine:turbine -> 1.0.0`
 - `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.13.4`
 - `io.kotest.extensions:kotest-extensions-testcontainers -> 2.0.0`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-alpha.34`

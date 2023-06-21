@@ -4,6 +4,8 @@
 
 ### Added
 
+- `org.jetbrains.kotlin:kotlin-compiler-embeddable`
+
 ### Changed
 
 ### Deprecated

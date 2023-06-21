@@ -16,6 +16,8 @@
 
 ### Updated
 
+- `androidx.compose.material3:material3-window-size-class -> 1.1.1`
+- `androidx.compose.material3:material3 -> 1.1.1`
 - `app.cash.turbine:turbine -> 1.0.0`
 - `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.13.4`
 - `io.kotest.extensions:kotest-extensions-testcontainers -> 2.0.0`

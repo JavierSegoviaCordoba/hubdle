@@ -16,6 +16,7 @@
 
 ### Updated
 
+- `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.4.1`
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.14.2`
 - `io.kotest.extensions:kotest-extensions-testcontainers -> 2.0.1`
 - `androidx.compose.material3:material3-window-size-class -> 1.1.1`

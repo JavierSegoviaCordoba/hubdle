@@ -72,7 +72,6 @@ hubdle {
                     api(hubdle.gitlab.arturboschDetekt.detektGradlePlugin)
                     api(hubdle.gradle.publish.pluginPublishPlugin)
                     api(hubdle.gradle.testRetryGradlePlugin)
-                    api(hubdle.jetbrains.compose.composeGradlePlugin)
                     api(hubdle.jetbrains.dokka.dokkaGradlePlugin)
                     api(hubdle.jetbrains.intellijPlugins.gradleChangelogPlugin)
                     api(hubdle.jetbrains.intellijPlugins.gradleIntellijPlugin)
@@ -85,6 +84,7 @@ hubdle {
                     api(hubdle.plugins.cash.sqldelight.artifact)
                     api(hubdle.plugins.gradle.enterprise.artifact)
                     api(hubdle.plugins.javiersc.semver.artifact)
+                    api(hubdle.plugins.jetbrains.compose.artifact)
                     api(hubdle.plugins.jetbrains.kotlinx.kover.artifact)
                     api(hubdle.plugins.sonarqube.artifact)
 

@@ -16,6 +16,12 @@
 
 ### Updated
 
+- `app.cash.sqldelight:app.cash.sqldelight.gradle.plugin -> 2.0.0-rc02`
+- `app.cash.sqldelight:sqlite-driver -> 2.0.0-rc02`
+- `app.cash.sqldelight:native-driver -> 2.0.0-rc02`
+- `app.cash.sqldelight:jdbc-driver -> 2.0.0-rc02`
+- `app.cash.sqldelight:coroutines-extensions -> 2.0.0-rc02`
+- `app.cash.sqldelight:android-driver -> 2.0.0-rc02`
 - `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.7.2`
 - `io.kotest.extensions:kotest-extensions-testcontainers -> 2.0.2`
 - `app.cash.molecule:app.cash.molecule.gradle.plugin -> 0.10.0`

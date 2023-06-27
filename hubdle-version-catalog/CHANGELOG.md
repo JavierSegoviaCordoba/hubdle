@@ -16,6 +16,7 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.7.2`
 - `io.kotest.extensions:kotest-extensions-testcontainers -> 2.0.2`
 - `app.cash.molecule:app.cash.molecule.gradle.plugin -> 0.10.0`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.4.1`

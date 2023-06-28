@@ -16,6 +16,12 @@
 
 ### Updated
 
+- `io.ktor:ktor-serialization-kotlinx-json -> 2.3.2`
+- `io.ktor:ktor-client-okhttp -> 2.3.2`
+- `io.ktor:ktor-client-mock -> 2.3.2`
+- `io.ktor:ktor-client-core -> 2.3.2`
+- `io.ktor:ktor-client-content-negotiation -> 2.3.2`
+- `io.ktor:ktor-client-cio -> 2.3.2`
 - `app.cash.sqldelight:app.cash.sqldelight.gradle.plugin -> 2.0.0-rc02`
 - `app.cash.sqldelight:sqlite-driver -> 2.0.0-rc02`
 - `app.cash.sqldelight:native-driver -> 2.0.0-rc02`

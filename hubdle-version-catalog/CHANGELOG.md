@@ -16,6 +16,7 @@
 
 ### Updated
 
+- `com.github.triplet.gradle:play-publisher -> 3.8.4`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-alpha.39`
 - `io.ktor:ktor-serialization-kotlinx-json -> 2.3.2`
 - `io.ktor:ktor-client-okhttp -> 2.3.2`

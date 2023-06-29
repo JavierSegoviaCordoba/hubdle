@@ -30,6 +30,7 @@ hubdleSettings {
         val sandboxEnabled = getBooleanProperty("sandbox.enabled").orNull ?: false
         if (!sandboxEnabled) excludedBuilds("sandbox")
     }
+    catalog.isEnabled.set(false)
 }
 
 val itselfVersion: String? = providers.gradleProperty("itselfVersion").orNull

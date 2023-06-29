@@ -2,6 +2,7 @@ package com.javiersc.hubdle.project.extensions.shared.features.tasks
 
 import com.javiersc.hubdle.project.extensions._internal.allKotlinSrcDirsWithoutBuild
 import com.javiersc.hubdle.project.extensions._internal.isKotlinMultiplatform
+import com.javiersc.hubdle.project.extensions._internal.kotlinSourceSetMainOrCommonMain
 import com.javiersc.kotlin.stdlib.TransformString
 import com.javiersc.kotlin.stdlib.isNotNullNorBlank
 import java.io.File
@@ -171,6 +172,7 @@ constructor(
                 it.outputDir.convention(outputDir)
             }
             prepareKotlinIdeaImport.dependsOn(generateProjectDataTask)
+            project.kotlinSourceSetMainOrCommonMain?.kotlin?.srcDir(generateProjectDataTask)
             return generateProjectDataTask
         }
     }

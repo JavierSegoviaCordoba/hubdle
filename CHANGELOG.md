@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- `generateProjectData` is not picking the correct Kotlin source sets
+
 ### Updated
 
 ## [0.5.0-alpha.38] - 2023-06-29

@@ -6,6 +6,10 @@
 
 ### Changed
 
+- `prepareKotlinIdeaImport` task depends on `generateProjectData`
+- `compileKotlin` task depends on `generateProjectData`
+- `assemble` task depends on `generateProjectData`
+
 ### Deprecated
 
 ### Removed

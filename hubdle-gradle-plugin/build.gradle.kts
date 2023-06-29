@@ -17,6 +17,7 @@ hubdle {
         languageSettings { //
             experimentalStdlibApi()
         }
+        projectConfig()
         publishing()
     }
 

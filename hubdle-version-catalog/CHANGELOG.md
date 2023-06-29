@@ -16,6 +16,7 @@
 
 ### Updated
 
+- `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-alpha.35`
 - `io.ktor:ktor-serialization-kotlinx-json -> 2.3.2`
 - `io.ktor:ktor-client-okhttp -> 2.3.2`
 - `io.ktor:ktor-client-mock -> 2.3.2`
@@ -37,7 +38,6 @@
 - `androidx.compose.material3:material3 -> 1.1.1`
 - `app.cash.turbine:turbine -> 1.0.0`
 - `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.13.4`
-- `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-alpha.34`
 
 ## [0.1.5] - 2023-06-13
 

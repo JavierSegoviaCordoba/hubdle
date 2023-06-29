@@ -12,9 +12,13 @@
 
 ### Fixed
 
-- `generateProjectData` is not picking the correct Kotlin source sets
-
 ### Updated
+
+## [0.5.0-alpha.39] - 2023-06-29
+
+### Fixed
+
+- `generateProjectData` is not picking the correct Kotlin source sets
 
 ## [0.5.0-alpha.38] - 2023-06-29
 
@@ -460,7 +464,9 @@
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.2`
 - `app.cash.molecule:molecule-gradle-plugin -> 0.8.0`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.38...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.39...HEAD
+
+[0.5.0-alpha.39]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.38...0.5.0-alpha.39
 
 [0.5.0-alpha.38]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.37...0.5.0-alpha.38
 

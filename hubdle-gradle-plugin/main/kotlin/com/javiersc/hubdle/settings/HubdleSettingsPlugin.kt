@@ -70,6 +70,8 @@ constructor(
     }
 
     private fun Settings.createHubdleVersionCatalog() {
+        if (hubdleSettings.catalog.isEnabled.orNull == false) return
+
         dependencyResolutionManagement.versionCatalogs.register("hubdle") { builder ->
             val hubdleCatalogVersion: String = hubdleSettings.catalog.version.get()
             builder.from("com.javiersc.hubdle:hubdle-version-catalog:$hubdleCatalogVersion")

@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- Hubdle Settings is not checking if catalog is enabled
+
 ### Updated
 
 ## [0.5.0-alpha.34] - 2023-06-16

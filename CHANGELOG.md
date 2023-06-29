@@ -10,7 +10,12 @@
 
 ### Removed
 
+- `compileKotlin` task depends on `generateProjectData`
+- `assemble` task depends on `generateProjectData`
+
 ### Fixed
+
+- main Kotlin source set takes `generateProjectData` as input
 
 ### Updated
 

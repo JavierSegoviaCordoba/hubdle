@@ -1,47 +1,36 @@
 package com.javiersc.hubdle.project.extensions.shared.features.tasks
 
-import com.android.build.gradle.internal.tasks.factory.dependsOn
-import com.javiersc.hubdle.project.extensions._internal.allKotlinSrcDirsWithoutBuild
 import com.javiersc.hubdle.project.extensions._internal.kotlinGeneratedSrcDirs
+import com.javiersc.hubdle.project.extensions._internal.kotlinSourceSetMainOrCommonMain
 import com.javiersc.hubdle.project.extensions._internal.kotlinSrcDirsWithoutBuild
 import com.javiersc.kotlin.stdlib.TransformString
 import com.javiersc.kotlin.stdlib.isNotNullNorBlank
 import com.javiersc.kotlin.stdlib.remove
 import java.io.File
 import javax.inject.Inject
+import org.gradle.api.DefaultTask
 import org.gradle.api.Project
-import org.gradle.api.Task
 import org.gradle.api.file.Directory
-import org.gradle.api.file.FileTree
 import org.gradle.api.file.RegularFileProperty
 import org.gradle.api.model.ObjectFactory
 import org.gradle.api.plugins.BasePlugin
 import org.gradle.api.provider.Property
 import org.gradle.api.provider.Provider
 import org.gradle.api.tasks.CacheableTask
-import org.gradle.api.tasks.IgnoreEmptyDirectories
 import org.gradle.api.tasks.Input
-import org.gradle.api.tasks.InputFiles
 import org.gradle.api.tasks.Internal
 import org.gradle.api.tasks.OutputFile
-import org.gradle.api.tasks.PathSensitive
-import org.gradle.api.tasks.PathSensitivity
-import org.gradle.api.tasks.SkipWhenEmpty
-import org.gradle.api.tasks.SourceTask
 import org.gradle.api.tasks.TaskAction
-import org.gradle.api.tasks.TaskCollection
 import org.gradle.api.tasks.TaskProvider
 import org.gradle.kotlin.dsl.property
 import org.gradle.kotlin.dsl.register
-import org.gradle.kotlin.dsl.withType
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 @CacheableTask
 public open class GenerateProjectDataTask
 @Inject
 constructor(
     objects: ObjectFactory,
-) : SourceTask() {
+) : DefaultTask() {
 
     init {
         group = BasePlugin.BUILD_GROUP
@@ -64,14 +53,6 @@ constructor(
         projectName.map { "${it.TransformString()}ProjectData" }
 
     @OutputFile public val outputFile: RegularFileProperty = objects.fileProperty()
-
-    @InputFiles
-    @SkipWhenEmpty
-    @IgnoreEmptyDirectories
-    @PathSensitive(PathSensitivity.RELATIVE)
-    override fun getSource(): FileTree {
-        return super.getSource()
-    }
 
     @TaskAction
     public fun run() {
@@ -148,14 +129,10 @@ constructor(
             val projectGroup = project.provider { "${project.group}" }
             val projectName = project.provider { project.name }
             val projectVersion = project.provider { "${project.version}" }
-            val assemble: TaskProvider<Task> = project.tasks.named(BasePlugin.ASSEMBLE_TASK_NAME)
-            val kotlinCompile: TaskCollection<KotlinCompile> =
-                project.tasks.withType<KotlinCompile>()
             val generateProjectDataTask = project.tasks.register<GenerateProjectDataTask>(NAME)
             val prepareKotlinIdeaImport = project.tasks.maybeCreate("prepareKotlinIdeaImport")
 
             generateProjectDataTask.configure {
-                it.source(project.allKotlinSrcDirsWithoutBuild)
                 it.packageName.set(packageName)
                 it.projectDir.set(project.projectDir.absolutePath)
                 it.projectGroup.set(projectGroup)
@@ -168,8 +145,7 @@ constructor(
                 }
             }
             prepareKotlinIdeaImport.dependsOn(generateProjectDataTask)
-            kotlinCompile.configureEach { it.dependsOn(generateProjectDataTask) }
-            assemble.dependsOn(generateProjectDataTask)
+            project.kotlinSourceSetMainOrCommonMain?.kotlin?.srcDir(generateProjectDataTask)
             return generateProjectDataTask
         }
 

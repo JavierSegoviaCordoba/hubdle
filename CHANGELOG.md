@@ -10,14 +10,20 @@
 
 ### Removed
 
+### Fixed
+
+### Updated
+
+## [0.5.0-alpha.37] - 2023-06-29
+
+### Removed
+
 - `compileKotlin` task depends on `generateProjectData`
 - `assemble` task depends on `generateProjectData`
 
 ### Fixed
 
 - main Kotlin source set takes `generateProjectData` as input
-
-### Updated
 
 ## [0.5.0-alpha.36] - 2023-06-29
 
@@ -446,7 +452,9 @@
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.2`
 - `app.cash.molecule:molecule-gradle-plugin -> 0.8.0`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.36...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.37...HEAD
+
+[0.5.0-alpha.37]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.36...0.5.0-alpha.37
 
 [0.5.0-alpha.36]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.35...0.5.0-alpha.36
 

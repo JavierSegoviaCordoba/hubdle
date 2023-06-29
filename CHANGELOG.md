@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- `generateProjectData` task stack overflow error
+
 ### Updated
 
 ## [0.5.0-alpha.37] - 2023-06-29
@@ -452,7 +454,9 @@
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.2`
 - `app.cash.molecule:molecule-gradle-plugin -> 0.8.0`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.37...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.38...HEAD
+
+[0.5.0-alpha.38]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.37...0.5.0-alpha.38
 
 [0.5.0-alpha.37]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.36...0.5.0-alpha.37
 

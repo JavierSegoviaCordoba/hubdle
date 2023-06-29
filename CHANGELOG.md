@@ -12,9 +12,13 @@
 
 ### Fixed
 
-- `generateProjectData` task stack overflow error
-
 ### Updated
+
+## [0.5.0-alpha.38] - 2023-06-29
+
+### Fixed
+
+- `generateProjectData` task stack overflow error
 
 ## [0.5.0-alpha.37] - 2023-06-29
 

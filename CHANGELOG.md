@@ -12,9 +12,13 @@
 
 ### Fixed
 
-- Hubdle Settings is not checking if catalog is enabled
-
 ### Updated
+
+## [0.5.0-alpha.35] - 2023-06-29
+
+### Fixed
+
+- Hubdle Settings is not checking if catalog is enabled
 
 ## [0.5.0-alpha.34] - 2023-06-16
 
@@ -429,7 +433,9 @@
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.2`
 - `app.cash.molecule:molecule-gradle-plugin -> 0.8.0`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.34...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.35...HEAD
+
+[0.5.0-alpha.35]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.34...0.5.0-alpha.35
 
 [0.5.0-alpha.34]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.33...0.5.0-alpha.34
 

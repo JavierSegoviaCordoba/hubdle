@@ -16,6 +16,9 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx:kotlinx-coroutines-test -> 1.7.2`
+- `org.jetbrains.kotlinx:kotlinx-coroutines-core -> 1.7.2`
+- `org.jetbrains.kotlinx:kotlinx-coroutines-android -> 1.7.2`
 - `com.github.triplet.gradle:play-publisher -> 3.8.4`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-alpha.39`
 - `io.ktor:ktor-serialization-kotlinx-json -> 2.3.2`

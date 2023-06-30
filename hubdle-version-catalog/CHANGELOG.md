@@ -16,6 +16,7 @@
 
 ### Updated
 
+- `app.cash.molecule:app.cash.molecule.gradle.plugin -> 0.11.0`
 - `androidx.compose.compiler:compiler -> 1.4.8`
 - `org.jetbrains.kotlin.plugin.serialization:org.jetbrains.kotlin.plugin.serialization.gradle.plugin -> 1.8.22`
 - `org.jetbrains.kotlin.multiplatform:org.jetbrains.kotlin.multiplatform.gradle.plugin -> 1.8.22`
@@ -54,7 +55,6 @@
 - `app.cash.sqldelight:android-driver -> 2.0.0-rc02`
 - `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.7.2`
 - `io.kotest.extensions:kotest-extensions-testcontainers -> 2.0.2`
-- `app.cash.molecule:app.cash.molecule.gradle.plugin -> 0.10.0`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.4.1`
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.14.2`
 - `androidx.compose.material3:material3-window-size-class -> 1.1.1`

@@ -16,6 +16,7 @@
 
 ### Updated
 
+- `gradle -> 8.2`
 - `app.cash.molecule:app.cash.molecule.gradle.plugin -> 0.11.0`
 - `androidx.compose.compiler:compiler -> 1.4.8`
 - `org.jetbrains.kotlin.plugin.serialization:org.jetbrains.kotlin.plugin.serialization.gradle.plugin -> 1.8.22`

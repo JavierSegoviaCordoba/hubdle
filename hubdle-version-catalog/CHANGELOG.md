@@ -4,8 +4,6 @@
 
 ### Added
 
-- `org.jetbrains.kotlin:kotlin-compiler-embeddable`
-
 ### Changed
 
 ### Deprecated
@@ -13,6 +11,14 @@
 ### Removed
 
 ### Fixed
+
+### Updated
+
+## [0.1.6] - 2023-07-01
+
+### Added
+
+- `org.jetbrains.kotlin:kotlin-compiler-embeddable`
 
 ### Updated
 
@@ -240,7 +246,9 @@
 - `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
 - `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.13.1`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.5...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.6...HEAD
+
+[0.1.6]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.5...c0.1.6
 
 [0.1.5]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.4...c0.1.5
 

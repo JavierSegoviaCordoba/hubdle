@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.15.0`
 - `com.squareup.okio:okio -> 3.4.0`
 - `org.jetbrains.intellij.plugins:gradle-changelog-plugin -> 2.1.1`
 

@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `org.jetbrains.intellij.plugins:gradle-changelog-plugin -> 2.1.1`
+
 ## [0.1.6] - 2023-07-01
 
 ### Added

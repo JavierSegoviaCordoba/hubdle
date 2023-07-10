@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `org.jetbrains.kotlin:kotlin-gradle-plugin -> 1.8.22`
+
 ## [0.5.0-alpha.39] - 2023-06-29
 
 ### Fixed

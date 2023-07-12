@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `io.arrow-kt:arrow-core -> 1.2.0`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-beta.1`
 - `org.jetbrains.intellij.plugins:gradle-changelog-plugin -> 2.1.2`
 - `gradle -> 8.2.1`

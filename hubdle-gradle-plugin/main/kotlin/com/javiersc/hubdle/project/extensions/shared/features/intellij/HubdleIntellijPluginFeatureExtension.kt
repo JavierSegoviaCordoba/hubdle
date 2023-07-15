@@ -27,14 +27,17 @@ import org.gradle.api.file.RegularFile
 import org.gradle.api.provider.Property
 import org.gradle.api.provider.Provider
 import org.gradle.api.tasks.Copy
+import org.gradle.api.tasks.TaskCollection
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.named
 import org.gradle.kotlin.dsl.project
 import org.gradle.kotlin.dsl.register
 import org.gradle.kotlin.dsl.withType
+import org.gradle.language.base.plugins.LifecycleBasePlugin.CHECK_TASK_NAME
 import org.jetbrains.intellij.IntelliJPluginExtension
 import org.jetbrains.intellij.tasks.PatchPluginXmlTask
 import org.jetbrains.intellij.tasks.PublishPluginTask
+import org.jetbrains.intellij.tasks.RunPluginVerifierTask
 import org.jetbrains.intellij.tasks.SignPluginTask
 
 @HubdleDslMarker
@@ -218,6 +221,9 @@ private fun HubdleIntellijPluginFeatureExtension.configureIntellijPluginExtensio
             version.set(hubdleIntellij.version)
             updateSinceUntilBuild.set(hubdleIntellij.updateSinceUntilBuild)
         }
+
+        val runPluginVerifierTask: TaskCollection<RunPluginVerifierTask> = tasks.withType()
+        tasks.named(CHECK_TASK_NAME).configure { it.dependsOn(runPluginVerifierTask) }
     }
 
 private fun HubdleIntellijPluginFeatureExtension.configurePatchPluginXml() =

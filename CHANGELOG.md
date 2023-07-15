@@ -4,6 +4,7 @@
 
 ### Added
 
+- `check` task depends on `runPluginVerifier` task
 - `java` extension
 
 ### Changed

@@ -5,6 +5,7 @@ import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.BaseHubdleDelegateExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
+import com.javiersc.hubdle.project.extensions.java.hubdleJava
 import com.javiersc.hubdle.project.extensions.kotlin.jvm.hubdleKotlinJvm
 import com.javiersc.hubdle.project.extensions.shared.features.intellij.HubdleIntellijPluginFeatureExtension
 import javax.inject.Inject
@@ -21,7 +22,7 @@ constructor(
     override val isEnabled: Property<Boolean> = property { false }
 
     override val oneOfExtensions: Set<HubdleEnableableExtension>
-        get() = setOf(hubdleKotlinJvm)
+        get() = setOf(hubdleJava, hubdleKotlinJvm)
 
     public val plugin: HubdleIntellijPluginFeatureExtension
         get() = getHubdleExtension()

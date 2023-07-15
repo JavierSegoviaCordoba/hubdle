@@ -4,6 +4,7 @@ import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
 import com.javiersc.hubdle.project.extensions.config.HubdleConfigExtension
+import com.javiersc.hubdle.project.extensions.java.HubdleJavaExtension
 import com.javiersc.hubdle.project.extensions.kotlin.HubdleKotlinExtension
 import javax.inject.Inject
 import org.gradle.api.Action
@@ -25,6 +26,14 @@ constructor(
     @HubdleDslMarker
     public fun config(action: Action<HubdleConfigExtension>) {
         config.enableAndExecute(action)
+    }
+
+    public val java: HubdleJavaExtension
+        get() = getHubdleExtension()
+
+    @HubdleDslMarker
+    public fun java(action: Action<HubdleJavaExtension>) {
+        java.enableAndExecute(action)
     }
 
     public val kotlin: HubdleKotlinExtension

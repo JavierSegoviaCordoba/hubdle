@@ -192,7 +192,7 @@ internal fun HubdleConfigurableExtension.configurableSrcDirs(
     }
 }
 
-private fun Project.normalAndGeneratedDirs(dir: String): List<File> =
+internal fun Project.normalAndGeneratedDirs(dir: String): List<File> =
     listOf(
         projectDir.resolve(dir),
         buildDir.resolve("generated").resolve(dir),

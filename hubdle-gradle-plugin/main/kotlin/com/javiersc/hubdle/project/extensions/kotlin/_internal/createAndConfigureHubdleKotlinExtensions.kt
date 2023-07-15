@@ -60,14 +60,6 @@ import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.watch
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.watchos.HubdleKotlinMultiplatformWatchOSDeviceArm64Extension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.watchos.HubdleKotlinMultiplatformWatchOSSimulatorArm64Extension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.watchos.HubdleKotlinMultiplatformWatchOSX64Extension
-import com.javiersc.hubdle.project.extensions.shared.features.HubdleGradleFeatureExtension
-import com.javiersc.hubdle.project.extensions.shared.features.HubdleIntellijFeatureExtension
-import com.javiersc.hubdle.project.extensions.shared.features.HubdleJavaApplicationFeatureExtension
-import com.javiersc.hubdle.project.extensions.shared.features.HubdleJavaVersionFeatureExtension
-import com.javiersc.hubdle.project.extensions.shared.features.HubdleJvmToolchainFeatureExtension
-import com.javiersc.hubdle.project.extensions.shared.features.gradle.HubdleGradlePluginFeatureExtension
-import com.javiersc.hubdle.project.extensions.shared.features.gradle.HubdleGradleVersionCatalogFeatureExtension
-import com.javiersc.hubdle.project.extensions.shared.features.intellij.HubdleIntellijPluginFeatureExtension
 
 internal fun HubdleState.createHubdleKotlinExtensions() {
     createExtension<HubdleKotlinExtension> {
@@ -81,15 +73,6 @@ internal fun HubdleState.createHubdleKotlinExtensions() {
 
 private fun HubdleState.createKotlinFeatureExtensions() {
     createExtension<HubdleKotlinFeaturesExtension> {
-        createExtension<HubdleGradleFeatureExtension> {
-            createExtension<HubdleGradlePluginFeatureExtension>()
-            createExtension<HubdleGradleVersionCatalogFeatureExtension>()
-        }
-        createExtension<HubdleIntellijFeatureExtension> {
-            createExtension<HubdleIntellijPluginFeatureExtension>()
-        }
-        createExtension<HubdleJavaApplicationFeatureExtension>()
-        createExtension<HubdleJavaVersionFeatureExtension>()
         createExtension<HubdleKotlinCompilerPluginFeatureExtension>()
         createExtension<HubdleKotlinComposeFeatureExtension>()
         createExtension<HubdleKotlinContextReceiversFeatureExtension>()
@@ -99,7 +82,6 @@ private fun HubdleState.createKotlinFeatureExtensions() {
         createExtension<HubdleKotlinMoleculeFeatureExtension>()
         createExtension<HubdleKotlinSerializationFeatureExtension>()
         createExtension<HubdleKotlinSqlDelightFeatureExtension>()
-        createExtension<HubdleJvmToolchainFeatureExtension>()
     }
 }
 

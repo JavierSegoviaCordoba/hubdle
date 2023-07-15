@@ -4,6 +4,8 @@
 
 ### Added
 
+- `java` extension
+
 ### Changed
 
 ### Deprecated
@@ -11,6 +13,8 @@
 ### Removed
 
 ### Fixed
+
+- `kotlin` must not be enabled by default
 
 ### Updated
 

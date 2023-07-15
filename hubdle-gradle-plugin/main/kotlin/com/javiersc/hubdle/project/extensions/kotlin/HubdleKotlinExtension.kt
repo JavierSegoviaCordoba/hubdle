@@ -27,7 +27,7 @@ constructor(
     project: Project,
 ) : HubdleEnableableExtension(project) {
 
-    override val isEnabled: Property<Boolean> = property { true }
+    override val isEnabled: Property<Boolean> = property { false }
 
     public val features: HubdleKotlinFeaturesExtension
         get() = getHubdleExtension()

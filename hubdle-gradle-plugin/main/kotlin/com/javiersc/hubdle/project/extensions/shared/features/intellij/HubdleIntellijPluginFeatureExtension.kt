@@ -16,7 +16,8 @@ import com.javiersc.hubdle.project.extensions.config.documentation.changelog.GEN
 import com.javiersc.hubdle.project.extensions.config.documentation.changelog.HubdleConfigDocumentationChangelogExtension.Companion.GENERATED_CHANGELOG_HTML_ATTRIBUTE
 import com.javiersc.hubdle.project.extensions.config.publishing.hubdlePublishing
 import com.javiersc.hubdle.project.extensions.config.publishing.maven.hubdlePublishingMavenPom
-import com.javiersc.hubdle.project.extensions.kotlin.hubdleKotlin
+import com.javiersc.hubdle.project.extensions.java.hubdleJava
+import com.javiersc.hubdle.project.extensions.kotlin.jvm.hubdleKotlinJvm
 import java.io.File
 import javax.inject.Inject
 import org.gradle.api.Action
@@ -47,8 +48,8 @@ constructor(
 
     override val priority: Priority = Priority.P3
 
-    override val requiredExtensions: Set<HubdleEnableableExtension>
-        get() = setOf(hubdleKotlin)
+    override val oneOfExtensions: Set<HubdleEnableableExtension>
+        get() = setOf(hubdleJava, hubdleKotlinJvm)
 
     public val downloadSources: Property<Boolean> = property {
         getBooleanProperty(IntelliJ.downloadSources).orElse(true).get()

@@ -6,6 +6,7 @@ import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.BaseHubdleDelegateExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
+import com.javiersc.hubdle.project.extensions.java.hubdleJava
 import com.javiersc.hubdle.project.extensions.kotlin.hubdleKotlinAny
 import javax.inject.Inject
 import org.gradle.api.JavaVersion
@@ -26,7 +27,7 @@ constructor(
     override val priority: Priority = Priority.P3
 
     override val oneOfExtensions: Set<HubdleEnableableExtension>
-        get() = hubdleKotlinAny
+        get() = hubdleKotlinAny + hubdleJava
 
     override val noneOfExtensions: Set<HubdleEnableableExtension>
         get() = setOf(hubdleJvmToolchainFeature)

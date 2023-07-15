@@ -19,6 +19,7 @@ import com.javiersc.hubdle.project.extensions.config.publishing.hubdlePublishing
 import com.javiersc.hubdle.project.extensions.config.publishing.maven.hubdlePublishingMavenPom
 import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.javiersc_gradle_gradleExtensions
 import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.javiersc_gradle_gradleTestExtensions
+import com.javiersc.hubdle.project.extensions.java.hubdleJava
 import com.javiersc.hubdle.project.extensions.kotlin._internal.forKotlinSetsDependencies
 import com.javiersc.hubdle.project.extensions.kotlin.jvm.hubdleKotlinJvm
 import com.javiersc.hubdle.project.extensions.shared.HubdleGradleDependencies
@@ -46,7 +47,7 @@ constructor(
     override val isEnabled: Property<Boolean> = property { false }
 
     override val oneOfExtensions: Set<HubdleEnableableExtension>
-        get() = setOf(hubdleKotlinJvm)
+        get() = setOf(hubdleJava, hubdleKotlinJvm)
 
     override val priority: Priority = Priority.P4
 

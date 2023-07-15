@@ -7,6 +7,7 @@ import com.javiersc.hubdle.project.extensions.apis.BaseHubdleDelegateExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
+import com.javiersc.hubdle.project.extensions.java.hubdleJava
 import com.javiersc.hubdle.project.extensions.kotlin.hubdleKotlinAny
 import javax.inject.Inject
 import org.gradle.api.Action
@@ -32,7 +33,7 @@ constructor(
     override val priority: Priority = Priority.P3
 
     override val oneOfExtensions: Set<HubdleEnableableExtension>
-        get() = hubdleKotlinAny
+        get() = hubdleKotlinAny + hubdleJava
 
     public val javaVersion: Property<JavaVersion> = property { JavaVersion.VERSION_1_8 }
 

@@ -1,4 +1,4 @@
-package com.javiersc.hubdle.project.extensions.shared.features.gradle
+package com.javiersc.hubdle.project.extensions.java
 
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
@@ -7,18 +7,18 @@ import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
-import com.javiersc.hubdle.project.extensions.config.publishing.maven.configurableMavenPublishing
-import com.javiersc.hubdle.project.extensions.java.hubdleJava
-import com.javiersc.hubdle.project.extensions.kotlin.jvm.hubdleKotlinJvm
-import java.io.File
+import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
+import com.javiersc.hubdle.project.extensions.java.features.HubdleJavaFeaturesExtension
+import com.javiersc.hubdle.project.extensions.kotlin._internal.normalAndGeneratedDirs
 import javax.inject.Inject
+import org.gradle.api.Action
 import org.gradle.api.Project
-import org.gradle.api.file.ConfigurableFileCollection
-import org.gradle.api.plugins.catalog.CatalogPluginExtension
+import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.api.provider.Property
 import org.gradle.kotlin.dsl.configure
 
-public open class HubdleGradleVersionCatalogFeatureExtension
+@HubdleDslMarker
+public open class HubdleJavaExtension
 @Inject
 constructor(
     project: Project,
@@ -26,35 +26,36 @@ constructor(
 
     override val isEnabled: Property<Boolean> = property { false }
 
-    override val oneOfExtensions: Set<HubdleEnableableExtension>
-        get() = setOf(hubdleJava, hubdleKotlinJvm)
-
     override val priority: Priority = Priority.P3
 
-    public val catalogs: ConfigurableFileCollection = project.files(emptyList<File>())
+    public val features: HubdleJavaFeaturesExtension
+        get() = getHubdleExtension()
 
     @HubdleDslMarker
-    public fun catalogs(vararg files: File) {
-        catalogs.setFrom(files)
+    public fun features(action: Action<HubdleJavaFeaturesExtension> = Action {}) {
+        features.enableAndExecute(action)
     }
 
     override fun Project.defaultConfiguration() {
         applicablePlugin(
             priority = Priority.P3,
             scope = Scope.CurrentProject,
-            PluginId.GradleVersionCatalog,
+            pluginId = PluginId.GradleJava
         )
+        configurableSourceSet()
+    }
 
+    private fun Project.configurableSourceSet() {
         configurable {
-            configure<CatalogPluginExtension> {
-                versionCatalog { catalog -> catalog.from(catalogs) }
+            configure<JavaPluginExtension> {
+                sourceSets.configureEach { set ->
+                    set.java.setSrcDirs(normalAndGeneratedDirs("${set.name}/java"))
+                    set.resources.setSrcDirs(normalAndGeneratedDirs("${set.name}/resources"))
+                }
             }
         }
-
-        configurableMavenPublishing(mavenPublicationName = "versionCatalog")
     }
 }
 
-internal val HubdleEnableableExtension.hubdleGradleVersionCatalog:
-    HubdleGradleVersionCatalogFeatureExtension
+internal val HubdleEnableableExtension.hubdleJava: HubdleJavaExtension
     get() = getHubdleExtension()

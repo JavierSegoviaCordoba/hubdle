@@ -9,6 +9,7 @@ import com.javiersc.hubdle.project.extensions.apis.BaseHubdleDelegateExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
+import com.javiersc.hubdle.project.extensions.java.hubdleJava
 import com.javiersc.hubdle.project.extensions.kotlin.jvm.hubdleKotlinJvm
 import javax.inject.Inject
 import org.gradle.api.Action
@@ -25,7 +26,7 @@ constructor(
     override val isEnabled: Property<Boolean> = property { false }
 
     override val oneOfExtensions: Set<HubdleEnableableExtension>
-        get() = setOf(hubdleKotlinJvm)
+        get() = setOf(hubdleJava, hubdleKotlinJvm)
 
     override val priority: Priority = Priority.P4
 

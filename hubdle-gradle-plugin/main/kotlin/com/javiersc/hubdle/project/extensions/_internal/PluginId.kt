@@ -8,6 +8,7 @@ internal enum class PluginId(val id: String) {
     DiffplugSpotless("com.diffplug.spotless"),
     GithubGradleNexusPublishPlugin("io.github.gradle-nexus.publish-plugin"),
     GradleApplication("org.gradle.application"),
+    GradleJava("org.gradle.java"),
     GradlePluginPublish("com.gradle.plugin-publish"),
     GradleSigning("org.gradle.signing"),
     GradleVersionCatalog("org.gradle.version-catalog"),

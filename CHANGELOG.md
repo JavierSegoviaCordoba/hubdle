@@ -4,9 +4,6 @@
 
 ### Added
 
-- `check` task depends on `runPluginVerifier` task
-- `java` extension
-
 ### Changed
 
 ### Deprecated
@@ -15,9 +12,18 @@
 
 ### Fixed
 
-- `kotlin` must not be enabled by default
-
 ### Updated
+
+## [0.5.0-beta.2] - 2023-07-15
+
+### Added
+
+- `check` task depends on `runPluginVerifier` task
+- `java` extension
+
+### Fixed
+
+- `kotlin` must not be enabled by default
 
 ## [0.5.0-beta.1] - 2023-07-10
 
@@ -475,7 +481,9 @@
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.2`
 - `app.cash.molecule:molecule-gradle-plugin -> 0.8.0`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-beta.1...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-beta.2...HEAD
+
+[0.5.0-beta.2]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-beta.1...0.5.0-beta.2
 
 [0.5.0-beta.1]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.39...0.5.0-beta.1
 

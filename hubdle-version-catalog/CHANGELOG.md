@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.sonarqube:org.sonarqube.gradle.plugin -> 4.3.0.3225`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-beta.2`
 - `io.arrow-kt:arrow-core -> 1.2.0`
 - `org.jetbrains.intellij.plugins:gradle-changelog-plugin -> 2.1.2`

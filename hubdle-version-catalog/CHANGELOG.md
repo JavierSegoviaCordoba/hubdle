@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.14`
 - `com.diffplug.spotless:spotless-plugin-gradle -> 6.20.0`
 - `org.sonarqube:org.sonarqube.gradle.plugin -> 4.3.0.3225`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-beta.2`

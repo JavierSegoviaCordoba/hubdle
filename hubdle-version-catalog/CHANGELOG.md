@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `app.cash.molecule:app.cash.molecule.gradle.plugin -> 1.0.0`
 - `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.14`
 - `com.diffplug.spotless:spotless-plugin-gradle -> 6.20.0`
 - `org.sonarqube:org.sonarqube.gradle.plugin -> 4.3.0.3225`

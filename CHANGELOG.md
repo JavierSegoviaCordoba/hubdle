@@ -6,8 +6,6 @@
 
 ### Changed
 
-- Androidx Compose compiler to JetBrains one
-
 ### Deprecated
 
 ### Removed
@@ -15,6 +13,12 @@
 ### Fixed
 
 ### Updated
+
+## [0.5.0-beta.3] - 2023-07-21
+
+### Changed
+
+- Androidx Compose compiler to JetBrains one
 
 ## [0.5.0-beta.2] - 2023-07-15
 
@@ -483,7 +487,9 @@
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.2`
 - `app.cash.molecule:molecule-gradle-plugin -> 0.8.0`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.7...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-beta.3...HEAD
+
+[0.5.0-beta.3]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-beta.2...0.5.0-beta.3
 
 [0.5.0-beta.2]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0-beta.1...c0.5.0-beta.2
 
@@ -566,5 +572,3 @@
 [0.5.0-alpha.2]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0-alpha.1...c0.5.0-alpha.2
 
 [0.5.0-alpha.1]: https://github.com/JavierSegoviaCordoba/hubdle/commits/c0.5.0-alpha.1
-
-[0.1.7]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0-beta.2...c0.1.7

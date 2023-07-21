@@ -6,6 +6,8 @@
 
 ### Changed
 
+- Androidx Compose compiler to JetBrains one
+
 ### Deprecated
 
 ### Removed
@@ -13,12 +15,6 @@
 ### Fixed
 
 ### Updated
-
-## [0.1.7] - 2023-07-21
-
-### Changed
-
-- Androidx Compose compiler to JetBrains one
 
 ## [0.5.0-beta.2] - 2023-07-15
 

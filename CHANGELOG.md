@@ -6,8 +6,6 @@
 
 ### Changed
 
-- Androidx Compose compiler to JetBrains one
-
 ### Deprecated
 
 ### Removed
@@ -15,6 +13,12 @@
 ### Fixed
 
 ### Updated
+
+## [0.1.7] - 2023-07-21
+
+### Changed
+
+- Androidx Compose compiler to JetBrains one
 
 ## [0.5.0-beta.2] - 2023-07-15
 
@@ -483,27 +487,27 @@
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.2`
 - `app.cash.molecule:molecule-gradle-plugin -> 0.8.0`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-beta.2...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.7...HEAD
 
-[0.5.0-beta.2]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-beta.1...0.5.0-beta.2
+[0.5.0-beta.2]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0-beta.1...c0.5.0-beta.2
 
-[0.5.0-beta.1]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.39...0.5.0-beta.1
+[0.5.0-beta.1]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0-alpha.39...c0.5.0-beta.1
 
-[0.5.0-alpha.39]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.38...0.5.0-alpha.39
+[0.5.0-alpha.39]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0-alpha.38...c0.5.0-alpha.39
 
-[0.5.0-alpha.38]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.37...0.5.0-alpha.38
+[0.5.0-alpha.38]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0-alpha.37...c0.5.0-alpha.38
 
-[0.5.0-alpha.37]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.36...0.5.0-alpha.37
+[0.5.0-alpha.37]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0-alpha.36...c0.5.0-alpha.37
 
-[0.5.0-alpha.36]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.35...0.5.0-alpha.36
+[0.5.0-alpha.36]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0-alpha.35...c0.5.0-alpha.36
 
-[0.5.0-alpha.35]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.34...0.5.0-alpha.35
+[0.5.0-alpha.35]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0-alpha.34...c0.5.0-alpha.35
 
-[0.5.0-alpha.34]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.33...0.5.0-alpha.34
+[0.5.0-alpha.34]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0-alpha.33...c0.5.0-alpha.34
 
-[0.5.0-alpha.33]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.32...0.5.0-alpha.33
+[0.5.0-alpha.33]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0-alpha.32...c0.5.0-alpha.33
 
-[0.5.0-alpha.32]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-alpha.31...0.5.0-alpha.32
+[0.5.0-alpha.32]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0-alpha.31...c0.5.0-alpha.32
 
 [0.5.0-alpha.31]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0-alpha.30...c0.5.0-alpha.31
 
@@ -566,3 +570,5 @@
 [0.5.0-alpha.2]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0-alpha.1...c0.5.0-alpha.2
 
 [0.5.0-alpha.1]: https://github.com/JavierSegoviaCordoba/hubdle/commits/c0.5.0-alpha.1
+
+[0.1.7]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0-beta.2...c0.1.7

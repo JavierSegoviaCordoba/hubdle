@@ -14,6 +14,10 @@
 
 ### Updated
 
+## [0.1.7] - 2023-07-21
+
+### Updated
+
 - `app.cash.molecule:app.cash.molecule.gradle.plugin -> 1.1.0`
 - `androidx.compose.compiler:compiler -> 1.5.0`
 - `org.jetbrains.kotlin.plugin.serialization:org.jetbrains.kotlin.plugin.serialization.gradle.plugin -> 1.9.0`
@@ -276,7 +280,9 @@
 - `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
 - `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.13.1`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.6...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.7...HEAD
+
+[0.1.7]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.6...c0.1.7
 
 [0.1.6]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.5...c0.1.6
 

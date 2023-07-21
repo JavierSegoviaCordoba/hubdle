@@ -61,7 +61,7 @@ public abstract class HubdleEnableableExtension(
         }
 
     internal fun applicablePlugin(
-        isEnabled: Property<Boolean>,
+        isEnabled: Provider<Boolean>,
         priority: Priority,
         scope: ApplicablePlugin.Scope,
         pluginId: PluginId,

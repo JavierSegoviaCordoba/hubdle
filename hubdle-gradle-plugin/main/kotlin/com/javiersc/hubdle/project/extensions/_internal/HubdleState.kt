@@ -8,6 +8,7 @@ import com.javiersc.hubdle.project.extensions.apis.BaseHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import org.gradle.api.Project
 import org.gradle.api.provider.Property
+import org.gradle.api.provider.Provider
 import org.gradle.kotlin.dsl.create
 
 internal val hubdleStateCache: MutableMap<Project, HubdleState> = mutableMapOf()
@@ -50,7 +51,7 @@ internal class HubdleState(private val project: Project) {
         get() = _applicablePlugins.toList().sortedBy { it.priority }
 
     fun applicablePlugin(
-        isEnabled: Property<Boolean>,
+        isEnabled: Provider<Boolean>,
         priority: Priority,
         scope: Scope,
         pluginId: PluginId,
@@ -97,7 +98,7 @@ internal class HubdleState(private val project: Project) {
 }
 
 internal interface ApplicablePlugin {
-    val isEnabled: Property<Boolean>
+    val isEnabled: Provider<Boolean>
     val priority: Priority
     val scope: Scope
     val pluginId: PluginId
@@ -116,12 +117,12 @@ internal interface ApplicablePlugin {
 
         operator fun invoke(
             priority: Priority,
-            isEnabled: Property<Boolean>,
+            isEnabled: Provider<Boolean>,
             scope: Scope,
             pluginId: PluginId,
         ): ApplicablePlugin =
             object : ApplicablePlugin {
-                override val isEnabled: Property<Boolean> = isEnabled
+                override val isEnabled: Provider<Boolean> = isEnabled
                 override val priority: Priority = priority
                 override val scope: Scope = scope
                 override val pluginId: PluginId = pluginId

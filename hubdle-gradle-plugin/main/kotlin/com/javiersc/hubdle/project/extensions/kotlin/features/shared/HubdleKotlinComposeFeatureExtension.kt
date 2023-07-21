@@ -13,7 +13,7 @@ import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
 import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.androidx_activity_activityCompose
-import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.androidx_compose_compiler_compiler
+import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.jetbrains_compose_compiler
 import com.javiersc.hubdle.project.extensions.kotlin._internal.forKotlinSetsDependencies
 import com.javiersc.hubdle.project.extensions.kotlin.android.features.hubdleAndroidBuildFeatures
 import com.javiersc.hubdle.project.extensions.kotlin.android.features.hubdleAndroidFeatures
@@ -40,7 +40,7 @@ constructor(
     override val priority: Priority = Priority.P4
 
     public val compiler: Property<String?> = property {
-        library(androidx_compose_compiler_compiler).orNull?.toString()
+        library(jetbrains_compose_compiler).orNull?.toString()
     }
 
     @HubdleDslMarker
@@ -49,7 +49,7 @@ constructor(
     }
 
     public val compilerVersion: Property<String?> = property {
-        library(androidx_compose_compiler_compiler).orNull?.versionConstraint?.displayName
+        library(jetbrains_compose_compiler).orNull?.versionConstraint?.displayName
     }
 
     @HubdleDslMarker

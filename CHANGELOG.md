@@ -6,6 +6,8 @@
 
 ### Changed
 
+- Androidx Compose compiler to JetBrains one
+
 ### Deprecated
 
 ### Removed

@@ -2,8 +2,8 @@ package com.javiersc.hubdle.project.extensions.kotlin.features.shared
 
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.COMMON_MAIN
-import com.javiersc.hubdle.project.extensions._internal.COMMON_TEST
 import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
+import com.javiersc.hubdle.project.extensions._internal.JVM_TEST
 import com.javiersc.hubdle.project.extensions._internal.MAIN
 import com.javiersc.hubdle.project.extensions._internal.TEST
 import com.javiersc.hubdle.project.extensions._internal.TEST_FIXTURES
@@ -54,12 +54,12 @@ constructor(
 
             forKotlinSetsDependencies(
                 TEST,
-                COMMON_TEST,
+                JVM_TEST,
                 TEST_FUNCTIONAL,
                 TEST_INTEGRATION,
                 TEST_FIXTURES,
             ) {
-                implementation(calculateJavierScKotlinTestDependency())
+                implementation(calculateJavierScKotlinTestJvmDependency())
             }
         }
     }
@@ -78,7 +78,7 @@ public interface HubdleKotlinExtendedStdlibDelegateFeatureExtension : BaseHubdle
     }
 }
 
-private fun Project.calculateJavierScKotlinTestDependency():
+private fun Project.calculateJavierScKotlinTestJvmDependency():
     Provider<MinimalExternalModuleDependency?> =
     when (tasks.withType<Test>().firstOrNull()?.options) {
         is JUnitOptions -> library(javiersc_kotlin_kotlinTestJunit)

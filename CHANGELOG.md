@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- Kotlin JVM test dependencies applied in common source sets
+
 ### Updated
 
 ## [0.5.0-beta.3] - 2023-07-21

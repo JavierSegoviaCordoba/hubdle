@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `org.junit.platform:junit-platform-suite-api -> 1.10.0`
+- `org.junit.platform:junit-platform-commons -> 1.10.0`
 - `org.junit.platform:junit-platform-runner -> 1.10.0`
 - `org.junit.platform:junit-platform-launcher -> 1.10.0`
 - `org.junit.jupiter:junit-jupiter-params -> 5.10.0`

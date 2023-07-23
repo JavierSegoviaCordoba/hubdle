@@ -14,6 +14,12 @@
 
 ### Updated
 
+- `org.junit.platform:junit-platform-runner -> 1.10.0`
+- `org.junit.platform:junit-platform-launcher -> 1.10.0`
+- `org.junit.jupiter:junit-jupiter-params -> 5.10.0`
+- `org.junit.jupiter:junit-jupiter-api -> 5.10.0`
+- `org.junit.jupiter:junit-jupiter -> 5.10.0`
+- `org.junit:junit-bom -> 5.10.0`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-beta.4`
 
 ## [0.1.7] - 2023-07-21

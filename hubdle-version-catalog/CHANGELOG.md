@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.gradle:test-retry-gradle-plugin -> 1.5.4`
 - `org.junit.platform:junit-platform-suite-api -> 1.10.0`
 - `org.junit.platform:junit-platform-commons -> 1.10.0`
 - `org.junit.platform:junit-platform-runner -> 1.10.0`

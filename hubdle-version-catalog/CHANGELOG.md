@@ -14,6 +14,9 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx:kotlinx-coroutines-test -> 1.7.3`
+- `org.jetbrains.kotlinx:kotlinx-coroutines-core -> 1.7.3`
+- `org.jetbrains.kotlinx:kotlinx-coroutines-android -> 1.7.3`
 - `org.gradle:test-retry-gradle-plugin -> 1.5.4`
 - `org.junit.platform:junit-platform-suite-api -> 1.10.0`
 - `org.junit.platform:junit-platform-commons -> 1.10.0`

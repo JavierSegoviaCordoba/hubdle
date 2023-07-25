@@ -1,5 +1,6 @@
 package com.javiersc.hubdle.project.extensions.kotlin._internal
 
+import com.android.build.api.dsl.AndroidSourceSet
 import com.javiersc.gradle.tasks.extensions.namedLazily
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.COMMON_MAIN
@@ -163,7 +164,7 @@ internal fun HubdleConfigurableExtension.configurableSrcDirs(
     targets: SetProperty<String> = setProperty { emptySet() }
 ) {
     configurable {
-        project.findAndroidCommonExtension()?.sourceSets?.configureEach { set ->
+        project.findAndroidCommonExtension()?.sourceSets?.configureEach { set: AndroidSourceSet ->
             val name = set.name.calculateKmpSourceSetDirectory(targets.get())
             if (!hubdleKotlinMultiplatform.isFullEnabled.get()) {
                 set.assets.setSrcDirs(project.normalAndGeneratedDirs("$name/assets"))

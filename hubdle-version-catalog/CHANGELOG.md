@@ -14,6 +14,9 @@
 
 ### Updated
 
+- `com.android.library:com.android.library.gradle.plugin -> 8.1.0`
+- `com.android.application:com.android.application.gradle.plugin -> 8.1.0`
+- `com.android.tools.build:gradle -> 8.1.0`
 - `org.jetbrains.kotlinx:kotlinx-coroutines-test -> 1.7.3`
 - `org.jetbrains.kotlinx:kotlinx-coroutines-core -> 1.7.3`
 - `org.jetbrains.kotlinx:kotlinx-coroutines-android -> 1.7.3`

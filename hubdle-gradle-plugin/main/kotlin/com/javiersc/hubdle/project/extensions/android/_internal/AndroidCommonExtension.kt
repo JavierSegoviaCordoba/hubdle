@@ -6,7 +6,7 @@ import com.android.build.api.dsl.LibraryExtension
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.findByType
 
-internal typealias AndroidCommonExtension = CommonExtension<*, *, *, *>
+internal typealias AndroidCommonExtension = CommonExtension<*, *, *, *, *>
 
 internal fun Project.findAndroidCommonExtension(): AndroidCommonExtension? =
     extensions.findByType<LibraryExtension>() ?: extensions.findByType<ApplicationExtension>()

@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.4.3`
 - `com.android.library:com.android.library.gradle.plugin -> 8.1.0`
 - `com.android.application:com.android.application.gradle.plugin -> 8.1.0`
 - `com.android.tools.build:gradle -> 8.1.0`

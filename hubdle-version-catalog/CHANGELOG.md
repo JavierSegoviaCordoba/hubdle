@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `app.cash.sqldelight:app.cash.sqldelight.gradle.plugin -> 2.0.0`
+- `app.cash.sqldelight:android-driver -> 2.0.0`
 - `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.14.1`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.4.3`
 - `com.android.library:com.android.library.gradle.plugin -> 8.1.0`

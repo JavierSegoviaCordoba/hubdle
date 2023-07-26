@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `androidx.compose.compiler:compiler -> 1.5.1`
 - `app.cash.sqldelight:app.cash.sqldelight.gradle.plugin -> 2.0.0`
 - `app.cash.sqldelight:android-driver -> 2.0.0`
 - `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.14.1`

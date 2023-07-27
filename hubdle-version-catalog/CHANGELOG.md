@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.7.3`
 - `app.cash.sqldelight:sqlite-driver -> 2.0.0`
 - `app.cash.sqldelight:native-driver -> 2.0.0`
 - `app.cash.sqldelight:jdbc-driver -> 2.0.0`

@@ -14,6 +14,13 @@
 
 ### Updated
 
+- `io.insert-koin:koin-test-junit5 -> 3.4.3`
+- `io.insert-koin:koin-test-junit4 -> 3.4.3`
+- `io.insert-koin:koin-test -> 3.4.3`
+- `io.insert-koin:koin-logger-slf4j -> 3.4.3`
+- `io.insert-koin:koin-ktor -> 3.4.3`
+- `io.insert-koin:koin-core -> 3.4.3`
+- `io.insert-koin:koin-android -> 3.4.3`
 - `io.insert-koin:koin-androidx-compose -> 3.4.6`
 - `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.7.3`
 - `app.cash.sqldelight:sqlite-driver -> 2.0.0`

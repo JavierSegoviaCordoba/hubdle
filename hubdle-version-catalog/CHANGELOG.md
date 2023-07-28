@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `io.insert-koin:koin-androidx-compose -> 3.4.6`
 - `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.7.3`
 - `app.cash.sqldelight:sqlite-driver -> 2.0.0`
 - `app.cash.sqldelight:native-driver -> 2.0.0`

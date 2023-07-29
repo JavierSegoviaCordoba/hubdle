@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `io.gitlab.arturbosch.detekt:detekt-gradle-plugin -> 1.23.1`
 - `io.insert-koin:koin-test-junit5 -> 3.4.3`
 - `io.insert-koin:koin-test-junit4 -> 3.4.3`
 - `io.insert-koin:koin-test -> 3.4.3`

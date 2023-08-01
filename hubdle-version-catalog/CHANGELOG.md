@@ -14,6 +14,12 @@
 
 ### Updated
 
+- `io.ktor:ktor-serialization-kotlinx-json -> 2.3.3`
+- `io.ktor:ktor-client-okhttp -> 2.3.3`
+- `io.ktor:ktor-client-mock -> 2.3.3`
+- `io.ktor:ktor-client-core -> 2.3.3`
+- `io.ktor:ktor-client-content-negotiation -> 2.3.3`
+- `io.ktor:ktor-client-cio -> 2.3.3`
 - `io.gitlab.arturbosch.detekt:detekt-gradle-plugin -> 1.23.1`
 - `io.insert-koin:koin-test-junit5 -> 3.4.3`
 - `io.insert-koin:koin-test-junit4 -> 3.4.3`

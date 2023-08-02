@@ -4,6 +4,8 @@
 
 ### Added
 
+- Support to add projects to the test classpath for Gradle plugins
+
 ### Changed
 
 ### Deprecated

@@ -28,6 +28,7 @@ import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.artifacts.Configuration
 import org.gradle.api.artifacts.MinimalExternalModuleDependency
+import org.gradle.api.internal.catalog.DelegatingProjectDependency
 import org.gradle.api.provider.ListProperty
 import org.gradle.api.provider.Property
 import org.gradle.api.provider.Provider
@@ -63,25 +64,37 @@ constructor(
         userConfigurable { action.execute(the()) }
     }
 
-    public val pluginUnderTestDependencies: ListProperty<MinimalExternalModuleDependency> =
+    public val pluginUnderTestExternalDependencies: ListProperty<MinimalExternalModuleDependency> =
         listProperty {
             emptyList()
         }
 
-    @HubdleDslMarker
-    public fun pluginUnderTestDependencies(
-        vararg pluginUnderTestDependencies: MinimalExternalModuleDependency
-    ) {
-        this.pluginUnderTestDependencies.addAll(pluginUnderTestDependencies.toList())
+    public val pluginUnderTestProjects: ListProperty<DelegatingProjectDependency> = listProperty {
+        emptyList()
     }
 
     @HubdleDslMarker
-    public fun pluginUnderTestDependencies(
-        vararg pluginUnderTestDependencies: Provider<MinimalExternalModuleDependency>
+    public fun pluginUnderTestExternalDependencies(
+        vararg dependencies: MinimalExternalModuleDependency
     ) {
-        this.pluginUnderTestDependencies.addAll(
-            provider { pluginUnderTestDependencies.map { it.get() } }
-        )
+        this.pluginUnderTestExternalDependencies.addAll(dependencies.toList())
+    }
+
+    @HubdleDslMarker
+    public fun pluginUnderTestExternalDependencies(
+        vararg dependencies: Provider<MinimalExternalModuleDependency>
+    ) {
+        this.pluginUnderTestExternalDependencies.addAll(provider { dependencies.map { it.get() } })
+    }
+
+    @HubdleDslMarker
+    public fun pluginUnderTestProjects(vararg projects: DelegatingProjectDependency) {
+        this.pluginUnderTestProjects.addAll(projects.toList())
+    }
+
+    @HubdleDslMarker
+    public fun pluginUnderTestProjects(vararg projects: Provider<DelegatingProjectDependency>) {
+        this.pluginUnderTestProjects.addAll(provider { projects.map { it.get() } })
     }
 
     override fun Project.defaultConfiguration() {
@@ -99,13 +112,18 @@ constructor(
         )
 
         configurable {
-            val pluginUnderTestDependencies = pluginUnderTestDependencies.get()
-            if (pluginUnderTestDependencies.isNotEmpty()) {
+            val externalDependencies = pluginUnderTestExternalDependencies.get()
+            val projects = pluginUnderTestProjects.get()
+
+            if (externalDependencies.isNotEmpty() || projects.isNotEmpty()) {
                 val testPluginClasspath: Configuration =
                     configurations.create("testPluginClasspath")
 
                 dependencies {
-                    for (dependency in pluginUnderTestDependencies) {
+                    for (dependency in externalDependencies) {
+                        testPluginClasspath(dependency)
+                    }
+                    for (dependency in projects) {
                         testPluginClasspath(dependency)
                     }
                 }

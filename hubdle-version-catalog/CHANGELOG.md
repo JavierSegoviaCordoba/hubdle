@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `com.javiersc.semver:com.javiersc.semver.gradle.plugin -> 0.5.0-rc.3`
+
 ## [0.1.8] - 2023-08-04
 
 ### Updated

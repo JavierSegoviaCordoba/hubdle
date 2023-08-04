@@ -4,8 +4,6 @@
 
 ### Added
 
-- Support to add projects to the test classpath for Gradle plugins
-
 ### Changed
 
 ### Deprecated
@@ -15,6 +13,12 @@
 ### Fixed
 
 ### Updated
+
+## [0.5.0-beta.5] - 2023-08-04
+
+### Added
+
+- Support to add projects to the test classpath for Gradle plugins
 
 ## [0.5.0-beta.4] - 2023-07-22
 
@@ -495,7 +499,9 @@
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.2`
 - `app.cash.molecule:molecule-gradle-plugin -> 0.8.0`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-beta.4...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-beta.5...HEAD
+
+[0.5.0-beta.5]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-beta.4...0.5.0-beta.5
 
 [0.5.0-beta.4]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-beta.3...0.5.0-beta.4
 

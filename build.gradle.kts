@@ -36,6 +36,10 @@ tasks.named("patchChangelog").configure { //
     onlyIf { isGradlePlugin }
 }
 
+tasks.named("addChangelogItem").configure { //
+    onlyIf { isGradlePlugin }
+}
+
 tasks.register("buildItself") {
     val publishToMavenLocalTasks: List<Task> =
         allprojects.mapNotNull { it.tasks.findByName("publishToMavenLocal") }

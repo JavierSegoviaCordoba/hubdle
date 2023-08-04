@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- `semver` being invalid when it is valid 
+
 ### Updated
 
 ## [0.5.0-beta.5] - 2023-08-04

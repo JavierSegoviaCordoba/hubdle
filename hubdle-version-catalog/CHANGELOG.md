@@ -14,6 +14,10 @@
 
 ### Updated
 
+## [0.1.8] - 2023-08-04
+
+### Updated
+
 - `com.javiersc.semver:com.javiersc.semver.gradle.plugin -> 0.5.0-rc.2`
 - `com.squareup.okio:okio -> 3.5.0`
 - `io.ktor:ktor-serialization-kotlinx-json -> 2.3.3`
@@ -324,7 +328,9 @@
 - `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
 - `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.13.1`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.7...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.8...HEAD
+
+[0.1.8]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.7...c0.1.8
 
 [0.1.7]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.6...c0.1.7
 

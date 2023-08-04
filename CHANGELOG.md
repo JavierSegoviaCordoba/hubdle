@@ -12,9 +12,13 @@
 
 ### Fixed
 
-- `semver` being invalid when it is valid 
-
 ### Updated
+
+## [0.5.0-beta.6] - 2023-08-04
+
+### Fixed
+
+- `semver` being invalid when it is valid
 
 ## [0.5.0-beta.5] - 2023-08-04
 
@@ -501,7 +505,9 @@
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.2`
 - `app.cash.molecule:molecule-gradle-plugin -> 0.8.0`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-beta.5...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-beta.6...HEAD
+
+[0.5.0-beta.6]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-beta.5...0.5.0-beta.6
 
 [0.5.0-beta.5]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-beta.4...0.5.0-beta.5
 

@@ -10,7 +10,7 @@ import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.config.publishing.hubdlePublishing
-import com.javiersc.hubdle.project.extensions.config.publishing.isSemver
+import com.javiersc.hubdle.project.extensions.config.publishing.isSignificantSemver
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
@@ -100,7 +100,8 @@ constructor(
                 }
 
             val hasTaskCondition: Boolean = (hasPublishTask && !hasPublishToMavenLocalTasks)
-            val hasSemverCondition: Boolean = project.isNotSnapshot.get() && project.isSemver
+            val hasSemverCondition: Boolean =
+                project.isNotSnapshot.get() && project.isSignificantSemver
 
             isRequired = (hasTaskCondition && hasSemverCondition) || shouldSign.get()
 

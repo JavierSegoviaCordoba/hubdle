@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.javiersc.semver:com.javiersc.semver.gradle.plugin -> 0.5.0-rc.2`
 - `com.squareup.okio:okio -> 3.5.0`
 - `io.ktor:ktor-serialization-kotlinx-json -> 2.3.3`
 - `io.ktor:ktor-client-okhttp -> 2.3.3`

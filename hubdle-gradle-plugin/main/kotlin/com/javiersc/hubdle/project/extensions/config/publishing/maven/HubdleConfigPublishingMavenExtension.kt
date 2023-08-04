@@ -12,7 +12,7 @@ import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
 import com.javiersc.hubdle.project.extensions.config.publishing.hubdlePublishing
-import com.javiersc.hubdle.project.extensions.config.publishing.isSemver
+import com.javiersc.hubdle.project.extensions.config.publishing.isSignificantSemver
 import com.javiersc.hubdle.project.extensions.config.versioning.semver._internal.isTagPrefixProject
 import com.javiersc.hubdle.project.extensions.shared.features.gradle.hubdleGradlePluginFeature
 import javax.inject.Inject
@@ -143,7 +143,7 @@ private fun HubdleConfigurableExtension.configurePublishOnlySemver() {
                     allTaskNames.any { name -> name == "publishToMavenLocalTest" }
                 val publishNonSemver: Boolean = hubdlePublishing.publishNonSemver.get()
                 val isPublishException: Boolean = publishNonSemver || hasPublishToMavenLocalTest
-                check(project.isSemver || isPublishException) {
+                check(project.isSignificantSemver || isPublishException) {
                     // TODO: inject `$version` instead of getting it from the `project`
                     """|Only semantic versions can be published (current: ${project.version})
                        |Use `"-Ppublishing.nonSemver=true"` to force the publication 

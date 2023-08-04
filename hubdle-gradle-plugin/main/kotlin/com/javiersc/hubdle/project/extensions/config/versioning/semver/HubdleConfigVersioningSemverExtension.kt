@@ -1,5 +1,6 @@
 package com.javiersc.hubdle.project.extensions.config.versioning.semver
 
+import com.javiersc.gradle.version.GradleVersion
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
@@ -30,6 +31,10 @@ constructor(
     override val priority: Priority = Priority.P3
 
     public val tagPrefix: Property<String> = property { "" }
+
+    public fun mapVersion(gradleVersion: (GradleVersion) -> String) {
+        configurable { the<SemverExtension>().mapVersion(gradleVersion) }
+    }
 
     @HubdleDslMarker
     public fun semver(action: Action<SemverExtension> = Action {}) {

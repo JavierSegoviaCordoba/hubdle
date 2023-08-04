@@ -57,8 +57,8 @@ constructor(
     }
 }
 
-internal val Project.isSemver: Boolean
-    get() = GradleVersion.regex.matches("$version")
+internal val Project.isSignificantSemver: Boolean
+    get() = GradleVersion.significantRegex.matches("$version")
 
 internal val Project.hubdlePublishing: HubdleConfigPublishingExtension
     get() = getHubdleExtension()

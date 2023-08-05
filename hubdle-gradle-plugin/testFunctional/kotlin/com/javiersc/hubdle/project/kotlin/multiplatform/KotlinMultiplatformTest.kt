@@ -1,6 +1,8 @@
 package com.javiersc.hubdle.project.kotlin.multiplatform
 
 import com.javiersc.gradle.testkit.test.extensions.GradleTestKitTest
+import com.javiersc.hubdle.project.fixtures.CiEnv
+import com.javiersc.hubdle.project.fixtures.FalseOrNullPattern
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.collections.shouldNotBeEmpty
 import io.kotest.matchers.file.shouldBeADirectory
@@ -135,7 +137,7 @@ internal class KotlinMultiplatformTest : GradleTestKitTest() {
 
     @Test
     @EnabledOnOs(value = [OS.WINDOWS])
-    @EnabledIfEnvironmentVariable(named = "CI", matches = "((false)|null)")
+    @EnabledIfEnvironmentVariable(named = CiEnv, matches = FalseOrNullPattern)
     fun `publish normal 2 on WINDOWS`() {
         val multiplatformDir = repositoryPath.resolve("com/kotlin/normal-two")
         gradleTestKitTest("$basePath/publishing/normal-2", name = projectName) {

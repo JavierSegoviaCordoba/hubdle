@@ -7,6 +7,12 @@ on:
         description: 'Gradle args for every step'
         default: ''
         required: false
+        type: string
+      deploy-docs:
+        description: 'Deploy docs to GitHub Pages'
+        default: false
+        required: false
+        type: boolean
       publish-all-docs:
         description: 'Publish all docs instead of only API docs and reports'
         required: false
@@ -20,13 +26,24 @@ on:
         options:
           - 'null'
           - 'c'
+      kotlin-dev-version:
+        description: 'Kotlin dev version, for example `1.9.20-dev-5788`'
+        default: ''
+        required: false
+        type: string
+      semver-checkClean:
+        description: 'Check the repo status at each step with `-P semver.checkClean=true`'
+        default: false
+        required: false
+        type: boolean
 
 jobs:
   build:
     uses: JavierSegoviaCordoba/reusable-workflows/.github/workflows/build-kotlin.yaml@main
     with:
       allow-github-actor-bots: false
-      gradle-args: '${{ github.event.inputs.gradle-args }}'
+      gradle-args: '${{ github.event.inputs.gradle-args }} -P semver.stage=snapshot -P semver.checkClean=${{ github.event.inputs.semver-checkClean }} -P kotlinVersion=${{ github.event.inputs.kotlin-dev-version }}'
+      deploy-docs: ${{ github.event.inputs.deploy-docs }}
       publish-all-docs: '${{ github.event.inputs.publish-all-docs }}'
       publish-snapshot-tag-prefix: '${{ github.event.inputs.publish-snapshot-tag-prefix }}'
       restore-kotlin-native-cache: false

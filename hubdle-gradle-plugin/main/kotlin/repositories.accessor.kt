@@ -10,6 +10,18 @@ public fun RepositoryHandler.sonatypeSnapshot(action: MavenArtifactRepository.()
 }
 
 @HubdleSettingsDslMarker
+public fun RepositoryHandler.jetbrainsKotlinBootstrap(
+    action: MavenArtifactRepository.() -> Unit = {}
+) {
+    maven("https://maven.pkg.jetbrains.space/kotlin/p/kotlin/bootstrap", action)
+}
+
+@HubdleSettingsDslMarker
+public fun RepositoryHandler.jetbrainsComposeDev(action: MavenArtifactRepository.() -> Unit = {}) {
+    maven("https://maven.pkg.jetbrains.space/public/p/compose/dev", action)
+}
+
+@HubdleSettingsDslMarker
 public fun RepositoryHandler.mavenLocalTest(action: MavenArtifactRepository.() -> Unit = {}) {
     val userHome = File(System.getProperty("user.home"))
     maven(url = userHome.resolve("mavenLocalTest/repository").toURI()) {

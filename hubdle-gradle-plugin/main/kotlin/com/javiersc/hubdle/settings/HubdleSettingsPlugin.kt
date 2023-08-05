@@ -13,6 +13,8 @@ import com.javiersc.hubdle.settings.extensions.extractedProjects
 import com.javiersc.hubdle.settings.tasks.GenerateHubdleCatalogTask
 import java.io.File
 import javax.inject.Inject
+import jetbrainsComposeDev
+import jetbrainsKotlinBootstrap
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.MinimalExternalModuleDependency
@@ -27,7 +29,6 @@ import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.create
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.findByType
-import org.gradle.kotlin.dsl.maven
 import org.gradle.kotlin.dsl.project
 import org.gradle.kotlin.dsl.register
 import org.gradle.kotlin.dsl.the
@@ -116,7 +117,8 @@ private fun Settings.configureRepositories() {
             repository.mavenCentral()
             repository.google()
             repository.gradlePluginPortal()
-            repository.maven(url = "https://maven.pkg.jetbrains.space/public/p/compose/dev")
+            repository.jetbrainsKotlinBootstrap()
+            repository.jetbrainsComposeDev()
         }
     }
 }

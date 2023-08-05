@@ -6,18 +6,27 @@ pluginManagement {
         itselfVersionFromProp
             ?: file("$rootDir/gradle/hubdle.libs.versions.toml")
                 .readLines()
-                .first { it.contains("hubdle") }
+                .first { it.startsWith("hubdle") }
                 .split("\"")[1]
+
+    val kotlinVersionFromProp: String? = providers.gradleProperty("kotlinVersion").orNull
+    val kotlinVersion: String? = kotlinVersionFromProp
 
     repositories {
         mavenCentral()
         gradlePluginPortal()
         google()
-        if (itselfVersionFromProp != null) mavenLocal()
+        if (kotlinVersion != null) {
+            maven(url = "https://maven.pkg.jetbrains.space/kotlin/p/kotlin/bootstrap")
+        }
+        if (itselfVersionFromProp != null) {
+            mavenLocal()
+        }
     }
 
     plugins { //
         id("com.javiersc.hubdle") version itselfVersion
+        if (kotlinVersion != null) id("org.jetbrains.kotlin.jvm") version kotlinVersion apply false
     }
 }
 
@@ -34,14 +43,19 @@ hubdleSettings {
 }
 
 val itselfVersion: String? = providers.gradleProperty("itselfVersion").orNull
+val kotlinVersion: String? = providers.gradleProperty("kotlinVersion").orNull
 
 dependencyResolutionManagement {
     repositories {
         mavenCentral()
         google()
         gradlePluginPortal()
-        maven(url = "https://maven.pkg.jetbrains.space/public/p/compose/dev/")
-        if (itselfVersion != null) mavenLocal()
+        if (kotlinVersion != null) {
+            maven(url = "https://maven.pkg.jetbrains.space/kotlin/p/kotlin/bootstrap")
+        }
+        if (itselfVersion != null) {
+            mavenLocal()
+        }
     }
 
     gradle.settingsEvaluated {
@@ -50,6 +64,11 @@ dependencyResolutionManagement {
             create("hubdle") {
                 if (itselfVersion != null) {
                     version("hubdle", itselfVersion)
+                }
+                if (kotlinVersion != null) {
+                    version("kotlin") { //
+                        strictly(kotlinVersion)
+                    }
                 }
                 from(files(rootDir.resolve("gradle/hubdle.libs.versions.toml")))
             }

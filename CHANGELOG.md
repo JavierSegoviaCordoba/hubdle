@@ -4,6 +4,8 @@
 
 ### Added
 
+- support to publish Hubdle SNAPSHOT based on Kotlin `dev` versions
+
 ### Changed
 
 ### Deprecated

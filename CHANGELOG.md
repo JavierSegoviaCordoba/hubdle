@@ -12,9 +12,13 @@
 
 ### Fixed
 
-- `semver` `metadata` doesn't allow `.`, `-`, or `_` characters
-
 ### Updated
+
+## [0.5.0-beta.7] - 2023-08-05
+
+### Fixed
+
+- `semver` `metadata` doesn't allow `.`, `-`, or `_` characters
 
 ## [0.5.0-beta.6] - 2023-08-04
 
@@ -507,7 +511,9 @@
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.2`
 - `app.cash.molecule:molecule-gradle-plugin -> 0.8.0`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-beta.6...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-beta.7...HEAD
+
+[0.5.0-beta.7]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-beta.6...0.5.0-beta.7
 
 [0.5.0-beta.6]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-beta.5...0.5.0-beta.6
 

@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- `semver` `metadata` doesn't allow `.`, `-`, or `_` characters
+
 ### Updated
 
 ## [0.5.0-beta.6] - 2023-08-04

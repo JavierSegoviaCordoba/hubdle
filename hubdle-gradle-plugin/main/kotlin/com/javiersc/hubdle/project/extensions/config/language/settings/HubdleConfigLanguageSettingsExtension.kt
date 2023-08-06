@@ -27,6 +27,16 @@ constructor(
         get() = setOf(hubdleConfig)
 
     @HubdleDslMarker
+    public fun experimentalCompilerApi() {
+        optIn("org.jetbrains.kotlin.compiler.plugin.ExperimentalCompilerApi")
+    }
+
+    @HubdleDslMarker
+    public fun experimentalComposeUiApi() {
+        optIn("androidx.compose.ui.ExperimentalComposeUiApi")
+    }
+
+    @HubdleDslMarker
     public fun experimentalContracts() {
         optIn("kotlin.contracts.ExperimentalContracts")
     }
@@ -34,6 +44,31 @@ constructor(
     @HubdleDslMarker
     public fun experimentalCoroutinesApi() {
         optIn("kotlinx.coroutines.ExperimentalCoroutinesApi")
+    }
+
+    @HubdleDslMarker
+    public fun experimentalFoundationApi() {
+        optIn("androidx.compose.foundation.ExperimentalFoundationApi")
+    }
+
+    @HubdleDslMarker
+    public fun experimentalMaterial3Api() {
+        optIn("androidx.compose.material3.ExperimentalMaterial3Api")
+    }
+
+    @HubdleDslMarker
+    public fun experimentalMaterial3WindowSizeClassApi() {
+        optIn("androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi")
+    }
+
+    @HubdleDslMarker
+    public fun experimentalMetricApi() {
+        optIn("androidx.benchmark.macro.ExperimentalMetricApi")
+    }
+
+    @HubdleDslMarker
+    public fun experimentalLayoutApi() {
+        optIn("androidx.compose.foundation.layout.ExperimentalLayoutApi")
     }
 
     @HubdleDslMarker

@@ -4,6 +4,8 @@
 
 ### Added
 
+- `optIns` for Compose and Compiler experimental APIs
+
 ### Changed
 
 ### Deprecated

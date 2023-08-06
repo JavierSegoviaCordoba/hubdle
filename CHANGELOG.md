@@ -4,8 +4,6 @@
 
 ### Added
 
-- support to publish Hubdle SNAPSHOT based on Kotlin `dev` versions
-
 ### Changed
 
 ### Deprecated
@@ -15,6 +13,12 @@
 ### Fixed
 
 ### Updated
+
+## [0.5.0-beta.8] - 2023-08-06
+
+### Added
+
+- support to publish Hubdle SNAPSHOT based on Kotlin `dev` versions
 
 ## [0.5.0-beta.7] - 2023-08-05
 
@@ -513,7 +517,9 @@
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.2`
 - `app.cash.molecule:molecule-gradle-plugin -> 0.8.0`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-beta.7...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-beta.8...HEAD
+
+[0.5.0-beta.8]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-beta.7...0.5.0-beta.8
 
 [0.5.0-beta.7]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-beta.6...0.5.0-beta.7
 

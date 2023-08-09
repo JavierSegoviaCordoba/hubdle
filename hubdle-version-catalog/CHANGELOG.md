@@ -14,6 +14,10 @@
 
 ### Updated
 
+- `androidx.compose.runtime:runtime-saveable -> 1.5.0`
+- `androidx.compose.runtime:runtime -> 1.5.0`
+- `androidx.compose.material:material-icons-extended -> 1.5.0`
+- `androidx.compose.animation:animation-graphics -> 1.5.0`
 - `app.cash.molecule:app.cash.molecule.gradle.plugin -> 1.2.0`
 - `app.cash.molecule:molecule-runtime -> 1.2.0`
 - `androidx.navigation:navigation-compose -> 2.7.0`

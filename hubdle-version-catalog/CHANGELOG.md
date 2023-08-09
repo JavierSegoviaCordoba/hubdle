@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `app.cash.molecule:app.cash.molecule.gradle.plugin -> 1.2.0`
+- `app.cash.molecule:molecule-runtime -> 1.2.0`
 - `androidx.navigation:navigation-compose -> 2.7.0`
 - `androidx.compose.ui:ui-util -> 1.5.0`
 - `androidx.compose.ui:ui-tooling-preview -> 1.5.0`

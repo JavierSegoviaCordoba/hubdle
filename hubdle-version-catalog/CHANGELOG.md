@@ -4,6 +4,8 @@
 
 ### Added
 
+- `org.jetbrains:markdown`
+
 ### Changed
 
 ### Deprecated

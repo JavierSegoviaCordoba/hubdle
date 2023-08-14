@@ -4,8 +4,6 @@
 
 ### Added
 
-- `org.jetbrains:markdown`
-
 ### Changed
 
 ### Deprecated
@@ -13,6 +11,14 @@
 ### Removed
 
 ### Fixed
+
+### Updated
+
+## [0.1.9] - 2023-08-14
+
+### Added
+
+- `org.jetbrains:markdown`
 
 ### Updated
 
@@ -353,7 +359,9 @@
 - `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
 - `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.13.1`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.8...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.9...HEAD
+
+[0.1.9]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.8...c0.1.9
 
 [0.1.8]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.7...c0.1.8
 

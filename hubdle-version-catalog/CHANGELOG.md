@@ -4,8 +4,6 @@
 
 ### Added
 
-- `app.softwork:kotlinx-serialization-csv`
-
 ### Changed
 
 ### Deprecated
@@ -15,6 +13,12 @@
 ### Fixed
 
 ### Updated
+
+## [0.1.10] - 2023-08-16
+
+### Added
+
+- `app.softwork:kotlinx-serialization-csv`
 
 ## [0.1.9] - 2023-08-14
 
@@ -361,7 +365,9 @@
 - `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
 - `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.13.1`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.9...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.10...HEAD
+
+[0.1.10]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.9...c0.1.10
 
 [0.1.9]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.8...c0.1.9
 

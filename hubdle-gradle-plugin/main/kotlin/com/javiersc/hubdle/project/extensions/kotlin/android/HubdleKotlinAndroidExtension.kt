@@ -38,9 +38,9 @@ constructor(
 
     public val minSdk: Property<Int> = property { 23 }
 
-    public val compileSdk: Property<Int> = property { 33 }
+    public val compileSdk: Property<Int> = property { 34 }
 
-    public val targetSdk: Property<Int> = property { 33 }
+    public val targetSdk: Property<Int> = property { 34 }
 
     public val features: HubdleKotlinAndroidFeaturesExtension
         get() = getHubdleExtension()

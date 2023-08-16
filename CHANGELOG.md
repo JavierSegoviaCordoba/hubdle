@@ -4,6 +4,8 @@
 
 ### Added
 
+- `csv` to `serialization` feature
+- `flf` to `serialization` feature
 - `optIns` for Compose and Compiler experimental APIs
 
 ### Changed

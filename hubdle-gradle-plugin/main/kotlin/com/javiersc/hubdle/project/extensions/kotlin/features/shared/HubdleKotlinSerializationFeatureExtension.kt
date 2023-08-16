@@ -14,6 +14,8 @@ import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
 import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.jetbrains_kotlinx_kotlinxSerializationCore
 import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.jetbrains_kotlinx_kotlinxSerializationJson
+import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.softwork_kotlinxSerializationCsv
+import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.softwork_kotlinxSerializationFlf
 import com.javiersc.hubdle.project.extensions.kotlin._internal.forKotlinSetsDependencies
 import com.javiersc.hubdle.project.extensions.kotlin.hubdleKotlinAny
 import javax.inject.Inject
@@ -34,7 +36,23 @@ constructor(
 
     override val priority: Priority = Priority.P4
 
+    public val csv: Property<Boolean> = property { false }
+
+    public fun csv(enabled: Boolean = true) {
+        csv.set(enabled)
+    }
+
+    public val flf: Property<Boolean> = property { false }
+
+    public fun flf(enabled: Boolean = true) {
+        flf.set(enabled)
+    }
+
     public val json: Property<Boolean> = property { true }
+
+    public fun json(enabled: Boolean = true) {
+        json.set(enabled)
+    }
 
     override fun Project.defaultConfiguration() {
         applicablePlugin(
@@ -46,9 +64,9 @@ constructor(
         configurable {
             forKotlinSetsDependencies(MAIN, COMMON_MAIN) {
                 implementation(library(jetbrains_kotlinx_kotlinxSerializationCore))
-                if (json.get()) {
-                    implementation(library(jetbrains_kotlinx_kotlinxSerializationJson))
-                }
+                if (csv.get()) implementation(library(softwork_kotlinxSerializationCsv))
+                if (flf.get()) implementation(library(softwork_kotlinxSerializationFlf))
+                if (json.get()) implementation(library(jetbrains_kotlinx_kotlinxSerializationJson))
             }
         }
     }

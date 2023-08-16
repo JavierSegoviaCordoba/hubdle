@@ -4,6 +4,8 @@
 
 ### Added
 
+- `app.softwork:kotlinx-serialization-csv`
+
 ### Changed
 
 ### Deprecated

@@ -38,18 +38,21 @@ constructor(
 
     public val csv: Property<Boolean> = property { false }
 
+    @HubdleDslMarker
     public fun csv(enabled: Boolean = true) {
         csv.set(enabled)
     }
 
     public val flf: Property<Boolean> = property { false }
 
+    @HubdleDslMarker
     public fun flf(enabled: Boolean = true) {
         flf.set(enabled)
     }
 
     public val json: Property<Boolean> = property { true }
 
+    @HubdleDslMarker
     public fun json(enabled: Boolean = true) {
         json.set(enabled)
     }

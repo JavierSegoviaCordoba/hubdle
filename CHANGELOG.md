@@ -4,10 +4,6 @@
 
 ### Added
 
-- `csv` to `serialization` feature
-- `flf` to `serialization` feature
-- `optIns` for Compose and Compiler experimental APIs
-
 ### Changed
 
 ### Deprecated
@@ -17,6 +13,14 @@
 ### Fixed
 
 ### Updated
+
+## [0.5.0-beta.9] - 2023-08-16
+
+### Added
+
+- `csv` to `serialization` feature
+- `flf` to `serialization` feature
+- `optIns` for Compose and Compiler experimental APIs
 
 ## [0.5.0-beta.8] - 2023-08-06
 
@@ -521,7 +525,9 @@
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.2`
 - `app.cash.molecule:molecule-gradle-plugin -> 0.8.0`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-beta.8...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-beta.9...HEAD
+
+[0.5.0-beta.9]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-beta.8...0.5.0-beta.9
 
 [0.5.0-beta.8]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-beta.7...0.5.0-beta.8
 

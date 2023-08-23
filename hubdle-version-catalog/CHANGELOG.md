@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `androidx.compose.runtime:runtime-tracing -> 1.0.0-alpha04`
 - `org.jetbrains.kotlinx:kotlinx-serialization-json -> 1.6.0`
 - `org.jetbrains.kotlinx:kotlinx-serialization-core -> 1.6.0`
 - `com.android.library:com.android.library.gradle.plugin -> 8.1.1`

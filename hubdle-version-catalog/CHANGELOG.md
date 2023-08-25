@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.compose.compiler:compiler -> 1.5.1`
 - `androidx.navigation:navigation-compose -> 2.7.1`
 - `androidx.compose.runtime:runtime-tracing -> 1.0.0-alpha04`
 - `org.jetbrains.kotlinx:kotlinx-serialization-json -> 1.6.0`

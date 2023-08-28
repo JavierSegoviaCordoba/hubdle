@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.5.0`
 - `org.jetbrains.intellij.plugins:gradle-changelog-plugin -> 2.2.0`
 - `org.jetbrains.compose.compiler:compiler -> 1.5.1`
 - `androidx.navigation:navigation-compose -> 2.7.1`

@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.diffplug.spotless:spotless-plugin-gradle -> 6.21.0`
 - `io.kotest.extensions:kotest-assertions-jsoup -> 1.0.1`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.5.0`
 - `org.jetbrains.intellij.plugins:gradle-changelog-plugin -> 2.2.0`

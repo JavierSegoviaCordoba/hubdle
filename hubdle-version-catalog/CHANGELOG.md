@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `io.kotest.extensions:kotest-extensions-koin -> 1.2.0`
 - `io.kotest.extensions:kotest-assertions-kotlinx-datetime -> 1.1.0`
 - `com.diffplug.spotless:spotless-plugin-gradle -> 6.21.0`
 - `io.kotest.extensions:kotest-assertions-jsoup -> 1.0.1`

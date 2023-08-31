@@ -14,6 +14,12 @@
 
 ### Updated
 
+- `io.ktor:ktor-serialization-kotlinx-json -> 2.3.4`
+- `io.ktor:ktor-client-okhttp -> 2.3.4`
+- `io.ktor:ktor-client-mock -> 2.3.4`
+- `io.ktor:ktor-client-core -> 2.3.4`
+- `io.ktor:ktor-client-content-negotiation -> 2.3.4`
+- `io.ktor:ktor-client-cio -> 2.3.4`
 - `io.kotest.extensions:kotest-extensions-koin -> 1.2.0`
 - `io.kotest.extensions:kotest-assertions-kotlinx-datetime -> 1.1.0`
 - `com.diffplug.spotless:spotless-plugin-gradle -> 6.21.0`

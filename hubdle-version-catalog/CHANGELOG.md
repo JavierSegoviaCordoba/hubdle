@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.sonarqube:org.sonarqube.gradle.plugin -> 4.3.1.3277`
 - `org.jetbrains.dokka:dokka-gradle-plugin -> 1.9.0`
 - `io.ktor:ktor-serialization-kotlinx-json -> 2.3.4`
 - `io.ktor:ktor-client-okhttp -> 2.3.4`

@@ -14,6 +14,12 @@
 
 ### Updated
 
+- `io.kotest:kotest-runner-junit5 -> 5.7.0`
+- `io.kotest:kotest-runner-junit4 -> 5.7.0`
+- `io.kotest:kotest-property -> 5.7.0`
+- `io.kotest:kotest-assertions-sql -> 5.7.0`
+- `io.kotest:kotest-assertions-json -> 5.7.0`
+- `io.kotest:kotest-assertions-core -> 5.7.0`
 - `org.sonarqube:org.sonarqube.gradle.plugin -> 4.3.1.3277`
 - `org.jetbrains.dokka:dokka-gradle-plugin -> 1.9.0`
 - `io.ktor:ktor-serialization-kotlinx-json -> 2.3.4`

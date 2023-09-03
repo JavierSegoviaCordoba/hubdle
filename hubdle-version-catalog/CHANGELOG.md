@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.eclipse.jgit:org.eclipse.jgit -> 6.6.1.202309021850-r`
 - `io.kotest:kotest-runner-junit5 -> 5.7.0`
 - `io.kotest:kotest-runner-junit4 -> 5.7.0`
 - `io.kotest:kotest-property -> 5.7.0`

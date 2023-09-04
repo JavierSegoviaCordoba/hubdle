@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.compose.compiler:compiler -> 1.5.2`
 - `io.kotest:kotest-runner-junit5 -> 5.7.1`
 - `io.kotest:kotest-assertions-json -> 5.7.1`
 - `io.kotest:kotest-runner-junit4 -> 5.7.1`
@@ -36,7 +37,6 @@
 - `io.kotest.extensions:kotest-assertions-jsoup -> 1.0.1`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.5.0`
 - `org.jetbrains.intellij.plugins:gradle-changelog-plugin -> 2.2.0`
-- `org.jetbrains.compose.compiler:compiler -> 1.5.1`
 - `androidx.navigation:navigation-compose -> 2.7.1`
 - `androidx.compose.runtime:runtime-tracing -> 1.0.0-alpha04`
 - `org.jetbrains.kotlinx:kotlinx-serialization-json -> 1.6.0`

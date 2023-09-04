@@ -42,8 +42,8 @@ constructor(
     public val hostUrl: Property<String> = property {
         getStringProperty(Sonar.hostUrl).orElse("https://sonarcloud.io").get()
     }
-    public val login: Property<String> = property {
-        getStringProperty(Sonar.login).orElse("").get()
+    public val token: Property<String> = property {
+        getStringProperty(Sonar.token).orElse("").get()
     }
     public val organization: Property<String> = property {
         getStringProperty(Sonar.organization).orElse("").get()
@@ -77,7 +77,7 @@ constructor(
             properties { properties ->
                 properties.property("sonar.projectName", projectName.get())
                 properties.property("sonar.projectKey", projectKey.get())
-                properties.property("sonar.login", login.get())
+                properties.property("sonar.token", token.get())
                 properties.property("sonar.host.url", hostUrl.get())
                 properties.property("sonar.organization", organization.get())
                 val detektReportPath = "${project.buildDir}/reports/detekt/detekt.xml"
@@ -155,7 +155,7 @@ constructor(
 
     public object Sonar {
         public const val hostUrl: String = "analysis.sonar.host.url"
-        public const val login: String = "analysis.sonar.login"
+        public const val token: String = "analysis.sonar.token"
         public const val organization: String = "analysis.sonar.organization"
         public const val projectKey: String = "analysis.sonar.projectKey"
         public const val projectName: String = "analysis.sonar.projectName"

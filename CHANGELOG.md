@@ -6,6 +6,9 @@
 
 ### Changed
 
+- `sonar.login` to `sonar.token`
+- `analysis.sonar.login` to `analysis.sonar.token`
+
 ### Deprecated
 
 ### Removed

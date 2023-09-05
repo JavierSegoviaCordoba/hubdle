@@ -14,6 +14,12 @@
 
 ### Updated
 
+- `io.kotest:kotest-runner-junit5 -> 5.7.2`
+- `io.kotest:kotest-runner-junit4 -> 5.7.2`
+- `io.kotest:kotest-property -> 5.7.2`
+- `io.kotest:kotest-assertions-sql -> 5.7.2`
+- `io.kotest:kotest-assertions-json -> 5.7.2`
+- `io.kotest:kotest-assertions-core -> 5.7.2`
 - `org.jetbrains.kotlinx:kotlinx-datetime -> 0.4.1`
 - `androidx.compose.compiler:compiler -> 1.5.3`
 - `org.jetbrains.kotlin.plugin.serialization:org.jetbrains.kotlin.plugin.serialization.gradle.plugin -> 1.9.10`
@@ -35,12 +41,6 @@
 - `org.jetbrains.kotlin:kotlin-compiler -> 1.9.10`
 - `org.jetbrains.kotlin:kotlin-annotations-jvm -> 1.9.10`
 - `org.jetbrains.compose.compiler:compiler -> 1.5.2`
-- `io.kotest:kotest-runner-junit5 -> 5.7.1`
-- `io.kotest:kotest-assertions-json -> 5.7.1`
-- `io.kotest:kotest-runner-junit4 -> 5.7.1`
-- `io.kotest:kotest-property -> 5.7.1`
-- `io.kotest:kotest-assertions-sql -> 5.7.1`
-- `io.kotest:kotest-assertions-core -> 5.7.1`
 - `io.kotest.extensions:kotest-extensions-wiremock -> 2.0.1`
 - `org.eclipse.jgit:org.eclipse.jgit -> 6.6.1.202309021850-r`
 - `org.sonarqube:org.sonarqube.gradle.plugin -> 4.3.1.3277`

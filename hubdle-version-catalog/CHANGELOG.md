@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.5.1`
 - `io.kotest:kotest-runner-junit5 -> 5.7.2`
 - `io.kotest:kotest-runner-junit4 -> 5.7.2`
 - `io.kotest:kotest-property -> 5.7.2`
@@ -55,7 +56,6 @@
 - `io.kotest.extensions:kotest-assertions-kotlinx-datetime -> 1.1.0`
 - `com.diffplug.spotless:spotless-plugin-gradle -> 6.21.0`
 - `io.kotest.extensions:kotest-assertions-jsoup -> 1.0.1`
-- `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.5.0`
 - `org.jetbrains.intellij.plugins:gradle-changelog-plugin -> 2.2.0`
 - `androidx.navigation:navigation-compose -> 2.7.1`
 - `androidx.compose.runtime:runtime-tracing -> 1.0.0-alpha04`

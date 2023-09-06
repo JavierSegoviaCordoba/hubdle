@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.eclipse.jgit:org.eclipse.jgit -> 6.7.0.202309050840-r`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.5.1`
 - `io.kotest:kotest-runner-junit5 -> 5.7.2`
 - `io.kotest:kotest-runner-junit4 -> 5.7.2`
@@ -43,7 +44,6 @@
 - `org.jetbrains.kotlin:kotlin-annotations-jvm -> 1.9.10`
 - `org.jetbrains.compose.compiler:compiler -> 1.5.2`
 - `io.kotest.extensions:kotest-extensions-wiremock -> 2.0.1`
-- `org.eclipse.jgit:org.eclipse.jgit -> 6.6.1.202309021850-r`
 - `org.sonarqube:org.sonarqube.gradle.plugin -> 4.3.1.3277`
 - `org.jetbrains.dokka:dokka-gradle-plugin -> 1.9.0`
 - `io.ktor:ktor-serialization-kotlinx-json -> 2.3.4`

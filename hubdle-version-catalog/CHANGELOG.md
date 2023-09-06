@@ -14,6 +14,9 @@
 
 ### Updated
 
+- `androidx.lifecycle:lifecycle-viewmodel-compose -> 2.6.2`
+- `androidx.lifecycle:lifecycle-viewmodel-ktx -> 2.6.2`
+- `androidx.lifecycle:lifecycle-viewmodel -> 2.6.2`
 - `androidx.compose.ui:ui-util -> 1.5.1`
 - `androidx.compose.ui:ui-tooling-preview -> 1.5.1`
 - `androidx.compose.ui:ui-tooling -> 1.5.1`

@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `androidx.navigation:navigation-compose -> 2.7.2`
 - `androidx.lifecycle:lifecycle-viewmodel-compose -> 2.6.2`
 - `androidx.lifecycle:lifecycle-viewmodel-ktx -> 2.6.2`
 - `androidx.lifecycle:lifecycle-viewmodel -> 2.6.2`
@@ -77,7 +78,6 @@
 - `com.diffplug.spotless:spotless-plugin-gradle -> 6.21.0`
 - `io.kotest.extensions:kotest-assertions-jsoup -> 1.0.1`
 - `org.jetbrains.intellij.plugins:gradle-changelog-plugin -> 2.2.0`
-- `androidx.navigation:navigation-compose -> 2.7.1`
 - `androidx.compose.runtime:runtime-tracing -> 1.0.0-alpha04`
 - `org.jetbrains.kotlinx:kotlinx-serialization-json -> 1.6.0`
 - `org.jetbrains.kotlinx:kotlinx-serialization-core -> 1.6.0`

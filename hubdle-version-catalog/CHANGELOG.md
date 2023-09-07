@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `androidx.core:core-ktx -> 1.12.0`
 - `io.arrow-kt:arrow-core -> 1.2.1`
 - `androidx.navigation:navigation-compose -> 2.7.2`
 - `androidx.lifecycle:lifecycle-viewmodel-compose -> 2.6.2`

@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.gradle:test-retry-gradle-plugin -> 1.5.5`
 - `androidx.core:core-ktx -> 1.12.0`
 - `io.arrow-kt:arrow-core -> 1.2.1`
 - `androidx.navigation:navigation-compose -> 2.7.2`

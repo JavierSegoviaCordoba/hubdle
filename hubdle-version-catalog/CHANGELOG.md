@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.15`
 - `io.insert-koin:koin-androidx-compose -> 3.5.0`
 - `io.insert-koin:koin-test-junit5 -> 3.5.0`
 - `io.insert-koin:koin-test-junit4 -> 3.5.0`

@@ -14,6 +14,13 @@
 
 ### Updated
 
+- `io.insert-koin:koin-test-junit5 -> 3.5.0`
+- `io.insert-koin:koin-test-junit4 -> 3.5.0`
+- `io.insert-koin:koin-test -> 3.5.0`
+- `io.insert-koin:koin-logger-slf4j -> 3.5.0`
+- `io.insert-koin:koin-ktor -> 3.5.0`
+- `io.insert-koin:koin-core -> 3.5.0`
+- `io.insert-koin:koin-android -> 3.5.0`
 - `org.gradle:test-retry-gradle-plugin -> 1.5.5`
 - `androidx.core:core-ktx -> 1.12.0`
 - `io.arrow-kt:arrow-core -> 1.2.1`

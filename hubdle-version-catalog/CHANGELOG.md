@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `io.insert-koin:koin-androidx-compose -> 3.5.0`
 - `io.insert-koin:koin-test-junit5 -> 3.5.0`
 - `io.insert-koin:koin-test-junit4 -> 3.5.0`
 - `io.insert-koin:koin-test -> 3.5.0`

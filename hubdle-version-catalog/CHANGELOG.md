@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `app.cash.molecule:app.cash.molecule.gradle.plugin -> 1.2.1`
+- `app.cash.molecule:molecule-runtime -> 1.2.1`
 - `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.15`
 - `io.insert-koin:koin-androidx-compose -> 3.5.0`
 - `io.insert-koin:koin-test-junit5 -> 3.5.0`

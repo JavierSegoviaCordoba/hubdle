@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `io.kotest.extensions:kotest-extensions-mockserver -> 1.3.0`
 - `io.insert-koin:koin-logger-slf4j -> 3.5.1`
 - `io.insert-koin:koin-ktor -> 3.5.1`
 - `app.cash.molecule:app.cash.molecule.gradle.plugin -> 1.2.1`

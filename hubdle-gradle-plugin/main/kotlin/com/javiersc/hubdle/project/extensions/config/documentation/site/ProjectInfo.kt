@@ -28,7 +28,7 @@ internal val Project.projectsInfo: List<ProjectInfo>
             val mdFile =
                 mdFiles.find { file -> file.name.contains("MODULE", true) }
                     ?: mdFiles.find { file -> file.name.contains("README", true) }
-                        ?: mdFiles.firstOrNull()
+                    ?: mdFiles.firstOrNull()
 
             if (mdFile != null) {
                 ProjectInfo(project.name, project.path, mdFile)

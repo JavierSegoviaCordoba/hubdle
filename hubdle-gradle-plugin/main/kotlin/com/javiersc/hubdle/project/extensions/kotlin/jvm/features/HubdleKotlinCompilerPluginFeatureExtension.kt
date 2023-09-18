@@ -279,8 +279,7 @@ constructor(
             project.configurations["testRuntimeClasspath"]
                 .files
                 .find { """$jarName-\d.*jar""".toRegex().matches(it.name) }
-                ?.absolutePath
-                ?: return
+                ?.absolutePath ?: return
         systemProperty(propName, path)
     }
 }

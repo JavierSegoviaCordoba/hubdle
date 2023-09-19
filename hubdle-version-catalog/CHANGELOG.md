@@ -14,7 +14,7 @@
 
 ### Updated
 
-- `com.facebook:ktfmt -> 0.45`
+- `com.facebook:ktfmt -> 0.46`
 - `io.kotest.extensions:kotest-extensions-mockserver -> 1.3.0`
 - `io.insert-koin:koin-logger-slf4j -> 3.5.1`
 - `io.insert-koin:koin-ktor -> 3.5.1`

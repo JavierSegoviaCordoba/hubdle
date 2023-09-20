@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `androidx.compose.material3:material3-window-size-class -> 1.1.2`
+- `androidx.compose.material3:material3 -> 1.1.2`
 - `androidx.navigation:navigation-compose -> 2.7.3`
 - `com.facebook:ktfmt -> 0.46`
 - `io.kotest.extensions:kotest-extensions-mockserver -> 1.3.0`

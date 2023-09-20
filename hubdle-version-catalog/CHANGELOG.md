@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `androidx.navigation:navigation-compose -> 2.7.3`
 - `com.facebook:ktfmt -> 0.46`
 - `io.kotest.extensions:kotest-extensions-mockserver -> 1.3.0`
 - `io.insert-koin:koin-logger-slf4j -> 3.5.1`
@@ -30,7 +31,6 @@
 - `org.gradle:test-retry-gradle-plugin -> 1.5.5`
 - `androidx.core:core-ktx -> 1.12.0`
 - `io.arrow-kt:arrow-core -> 1.2.1`
-- `androidx.navigation:navigation-compose -> 2.7.2`
 - `androidx.lifecycle:lifecycle-viewmodel-compose -> 2.6.2`
 - `androidx.lifecycle:lifecycle-viewmodel-ktx -> 2.6.2`
 - `androidx.lifecycle:lifecycle-viewmodel -> 2.6.2`

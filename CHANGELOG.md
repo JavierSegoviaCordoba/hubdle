@@ -6,9 +6,6 @@
 
 ### Changed
 
-- `sonar.login` to `sonar.token`
-- `analysis.sonar.login` to `analysis.sonar.token`
-
 ### Deprecated
 
 ### Removed
@@ -16,6 +13,13 @@
 ### Fixed
 
 ### Updated
+
+## [0.5.0-beta.11] - 2023-09-20
+
+### Changed
+
+- `sonar.login` to `sonar.token`
+- `analysis.sonar.login` to `analysis.sonar.token`
 
 ## [0.5.0-beta.10] - 2023-08-16
 
@@ -534,7 +538,9 @@
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.2`
 - `app.cash.molecule:molecule-gradle-plugin -> 0.8.0`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-beta.10...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-beta.11...HEAD
+
+[0.5.0-beta.11]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-beta.10...0.5.0-beta.11
 
 [0.5.0-beta.10]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-beta.9...0.5.0-beta.10
 

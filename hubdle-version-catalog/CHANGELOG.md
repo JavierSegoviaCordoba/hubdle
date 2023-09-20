@@ -14,6 +14,10 @@
 
 ### Updated
 
+## [0.1.11] - 2023-09-20
+
+### Updated
+
 - `androidx.compose.material3:material3-window-size-class -> 1.1.2`
 - `androidx.compose.material3:material3 -> 1.1.2`
 - `androidx.navigation:navigation-compose -> 2.7.3`
@@ -457,7 +461,9 @@
 - `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
 - `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.13.1`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.10...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.11...HEAD
+
+[0.1.11]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.10...c0.1.11
 
 [0.1.10]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.9...c0.1.10
 

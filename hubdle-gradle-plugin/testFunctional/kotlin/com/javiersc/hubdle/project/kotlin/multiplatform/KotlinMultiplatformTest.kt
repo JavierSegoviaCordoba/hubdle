@@ -3,6 +3,8 @@ package com.javiersc.hubdle.project.kotlin.multiplatform
 import com.javiersc.gradle.testkit.test.extensions.GradleTestKitTest
 import com.javiersc.hubdle.project.fixtures.CiEnv
 import com.javiersc.hubdle.project.fixtures.FalseOrNullPattern
+import com.javiersc.hubdle.project.fixtures.KotlinVersionEnv
+import com.javiersc.hubdle.project.fixtures.KotlinVersionRegexOrEmptyOrNull
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.collections.shouldNotBeEmpty
 import io.kotest.matchers.file.shouldBeADirectory
@@ -13,6 +15,7 @@ import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable
+import org.junit.jupiter.api.condition.EnabledIfSystemProperty
 import org.junit.jupiter.api.condition.EnabledOnOs
 import org.junit.jupiter.api.condition.OS
 
@@ -95,6 +98,7 @@ internal class KotlinMultiplatformTest : GradleTestKitTest() {
 
     @Test
     @EnabledOnOs(value = [OS.LINUX])
+    @EnabledIfSystemProperty(named = KotlinVersionEnv, matches = KotlinVersionRegexOrEmptyOrNull)
     fun `publish normal 2 on LINUX`() {
         val multiplatformDir = repositoryPath.resolve("com/kotlin/normal-two")
         gradleTestKitTest("$basePath/publishing/normal-2", name = projectName) {
@@ -117,6 +121,7 @@ internal class KotlinMultiplatformTest : GradleTestKitTest() {
 
     @Test
     @EnabledOnOs(value = [OS.MAC])
+    @EnabledIfSystemProperty(named = KotlinVersionEnv, matches = KotlinVersionRegexOrEmptyOrNull)
     fun `publish normal 2 on MAC`() {
         val multiplatformDir = repositoryPath.resolve("com/kotlin/normal-two")
         gradleTestKitTest("$basePath/publishing/normal-2", name = projectName) {
@@ -138,6 +143,7 @@ internal class KotlinMultiplatformTest : GradleTestKitTest() {
     @Test
     @EnabledOnOs(value = [OS.WINDOWS])
     @EnabledIfEnvironmentVariable(named = CiEnv, matches = FalseOrNullPattern)
+    @EnabledIfSystemProperty(named = KotlinVersionEnv, matches = KotlinVersionRegexOrEmptyOrNull)
     fun `publish normal 2 on WINDOWS`() {
         val multiplatformDir = repositoryPath.resolve("com/kotlin/normal-two")
         gradleTestKitTest("$basePath/publishing/normal-2", name = projectName) {

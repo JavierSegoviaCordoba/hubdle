@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `io.kotest.extensions:kotest-assertions-konform -> 1.1.0`
+- `io.kotest.extensions:kotest-assertions-arrow -> 1.4.0`
 - `org.jetbrains:markdown -> 0.5.1`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-beta.11`
 

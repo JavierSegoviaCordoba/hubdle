@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.sonarqube:org.sonarqube.gradle.plugin -> 4.4.0.3356`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.5.2`
 - `io.kotest.extensions:kotest-extensions-koin -> 1.3.0`
 - `io.kotest.extensions:kotest-assertions-konform -> 1.1.0`

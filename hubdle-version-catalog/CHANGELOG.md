@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains:markdown -> 0.5.2`
 - `androidx.compose.ui:ui-util -> 1.5.2`
 - `androidx.compose.ui:ui-tooling-preview -> 1.5.2`
 - `androidx.compose.ui:ui-tooling -> 1.5.2`
@@ -36,7 +37,6 @@
 - `io.kotest.extensions:kotest-extensions-koin -> 1.3.0`
 - `io.kotest.extensions:kotest-assertions-konform -> 1.1.0`
 - `io.kotest.extensions:kotest-assertions-arrow -> 1.4.0`
-- `org.jetbrains:markdown -> 0.5.1`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-beta.11`
 
 ## [0.1.11] - 2023-09-20

@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `com.android.library:com.android.library.gradle.plugin -> 8.1.2`
+- `com.android.application:com.android.application.gradle.plugin -> 8.1.2`
 - `org.jetbrains:markdown -> 0.5.2`
 - `androidx.compose.ui:ui-util -> 1.5.2`
 - `androidx.compose.ui:ui-tooling-preview -> 1.5.2`

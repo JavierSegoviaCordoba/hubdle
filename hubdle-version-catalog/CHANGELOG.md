@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.diffplug.spotless:spotless-plugin-gradle -> 6.22.0`
 - `com.android.library:com.android.library.gradle.plugin -> 8.1.2`
 - `com.android.application:com.android.application.gradle.plugin -> 8.1.2`
 - `org.jetbrains:markdown -> 0.5.2`

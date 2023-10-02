@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.squareup.okio:okio -> 3.6.0`
 - `com.javiersc.kotlin:kotlin-compiler-test-extensions -> 0.1.1-alpha.5+1.9.30-dev-2548`
 - `com.javiersc.kotlin:kotlin-compiler-extensions -> 0.1.1-alpha.5+1.9.30-dev-2548`
 - `com.diffplug.spotless:spotless-plugin-gradle -> 6.22.0`

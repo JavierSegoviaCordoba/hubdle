@@ -4,6 +4,8 @@
 
 ### Added
 
+- `koverReport` to `coverage`
+
 ### Changed
 
 ### Deprecated

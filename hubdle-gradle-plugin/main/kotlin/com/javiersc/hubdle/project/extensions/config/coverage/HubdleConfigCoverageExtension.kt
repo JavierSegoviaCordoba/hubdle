@@ -48,6 +48,11 @@ constructor(
         userConfigurable { action.execute(the()) }
     }
 
+    @HubdleDslMarker
+    public fun koverReport(action: Action<KoverReportExtension>) {
+        userConfigurable { action.execute(the()) }
+    }
+
     override fun Project.defaultConfiguration() {
         applicablePlugin(
             priority = Priority.P4,

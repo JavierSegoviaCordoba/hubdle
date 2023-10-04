@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `androidx.activity:activity-ktx -> 1.8.0`
 - `androidx.navigation:navigation-compose -> 2.7.4`
 - `androidx.compose.ui:ui-util -> 1.5.3`
 - `androidx.compose.ui:ui-tooling-preview -> 1.5.3`

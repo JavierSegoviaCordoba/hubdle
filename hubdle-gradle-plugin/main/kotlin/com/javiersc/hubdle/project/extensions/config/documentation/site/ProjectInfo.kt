@@ -10,7 +10,7 @@ import org.gradle.api.tasks.PathSensitivity
 public data class ProjectInfo(
     @Input val name: String,
     @Input val projectPath: String,
-    @get:PathSensitive(PathSensitivity.ABSOLUTE) @InputFile val mdFile: File,
+    @get:PathSensitive(PathSensitivity.RELATIVE) @InputFile val mdFile: File,
 ) {
 
     @get:Input

@@ -43,7 +43,7 @@ constructor(
         get() = layout.projectDirectory.asFile
 
     @get:InputDirectory
-    @get:PathSensitive(PathSensitivity.ABSOLUTE)
+    @get:PathSensitive(PathSensitivity.RELATIVE)
     public val dotDocsDirectory: File
         get() = File("${layout.projectDirectory.asFile}/.docs/").apply(File::mkdirs)
 

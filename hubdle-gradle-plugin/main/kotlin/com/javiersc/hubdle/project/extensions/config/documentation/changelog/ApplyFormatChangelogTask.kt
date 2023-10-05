@@ -5,12 +5,21 @@ import com.javiersc.hubdle.project.extensions.config.documentation.changelog._in
 import com.javiersc.hubdle.project.extensions.config.documentation.changelog._internal.fromFile
 import java.io.File
 import org.gradle.api.DefaultTask
+import org.gradle.api.tasks.CacheableTask
 import org.gradle.api.tasks.InputFile
+import org.gradle.api.tasks.OutputFile
+import org.gradle.api.tasks.PathSensitive
+import org.gradle.api.tasks.PathSensitivity
 import org.gradle.api.tasks.TaskAction
 
+@CacheableTask
 public abstract class ApplyFormatChangelogTask : DefaultTask() {
 
-    @InputFile public val changelogFile: File = project.changelogFile
+    @InputFile
+    @PathSensitive(PathSensitivity.RELATIVE)
+    public val inputFile: File = project.changelogFile
+
+    @OutputFile public val outputFile: File = project.changelogFile
 
     init {
         group = "changelog"
@@ -18,7 +27,8 @@ public abstract class ApplyFormatChangelogTask : DefaultTask() {
 
     @TaskAction
     public fun run() {
-        changelogFile.writeText(Changelog.fromFile(changelogFile).toString())
+        val changelogPatchedContent = "${Changelog.fromFile(inputFile)}"
+        outputFile.writeText(changelogPatchedContent)
     }
 
     public companion object {

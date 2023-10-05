@@ -26,7 +26,7 @@ constructor(
     }
 
     @get:InputFile
-    @get:PathSensitive(PathSensitivity.ABSOLUTE)
+    @get:PathSensitive(PathSensitivity.RELATIVE)
     public val readmeFile: File
         get() = File("${layout.projectDirectory.asFile}/README.md")
 

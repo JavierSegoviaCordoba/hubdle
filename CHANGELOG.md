@@ -14,6 +14,8 @@
 
 ### Fixed
 
+- `ApplyFormatChangelogTask` doesn't have an output
+
 ### Updated
 
 ## [0.5.0-beta.11] - 2023-09-20

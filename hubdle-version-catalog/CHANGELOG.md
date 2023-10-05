@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `gradle -> 8.4`
 - `io.ktor:ktor-serialization-kotlinx-json -> 2.3.5`
 - `io.ktor:ktor-client-okhttp -> 2.3.5`
 - `io.ktor:ktor-client-mock -> 2.3.5`

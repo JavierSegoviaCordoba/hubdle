@@ -14,6 +14,12 @@
 
 ### Updated
 
+- `io.ktor:ktor-serialization-kotlinx-json -> 2.3.5`
+- `io.ktor:ktor-client-okhttp -> 2.3.5`
+- `io.ktor:ktor-client-mock -> 2.3.5`
+- `io.ktor:ktor-client-core -> 2.3.5`
+- `io.ktor:ktor-client-content-negotiation -> 2.3.5`
+- `io.ktor:ktor-client-cio -> 2.3.5`
 - `app.softwork:kotlinx-serialization-flf -> 0.0.15`
 - `app.softwork:kotlinx-serialization-csv -> 0.0.15`
 - `androidx.activity:activity-compose -> 1.8.0`

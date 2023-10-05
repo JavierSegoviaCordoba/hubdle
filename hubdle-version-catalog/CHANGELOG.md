@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `app.softwork:kotlinx-serialization-flf -> 0.0.15`
 - `app.softwork:kotlinx-serialization-csv -> 0.0.15`
 - `androidx.activity:activity-compose -> 1.8.0`
 - `androidx.activity:activity-ktx -> 1.8.0`

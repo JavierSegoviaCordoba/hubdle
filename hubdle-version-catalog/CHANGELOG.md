@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.16.0`
 - `org.jetbrains.kotlinx:kotlinx-collections-immutable -> 0.3.6`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.5.3`
 - `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.15.1`

@@ -4,8 +4,6 @@
 
 ### Added
 
-- `koverReport` to `coverage`
-
 ### Changed
 
 ### Deprecated
@@ -14,9 +12,17 @@
 
 ### Fixed
 
-- `ApplyFormatChangelogTask` doesn't have an output
-
 ### Updated
+
+## [0.5.0-beta.12] - 2023-10-06
+
+### Added
+
+- `koverReport` to `coverage`
+
+### Fixed
+
+- `ApplyFormatChangelogTask` doesn't have an output
 
 ## [0.5.0-beta.11] - 2023-09-20
 
@@ -542,7 +548,9 @@
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.2`
 - `app.cash.molecule:molecule-gradle-plugin -> 0.8.0`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-beta.11...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-beta.12...HEAD
+
+[0.5.0-beta.12]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-beta.11...0.5.0-beta.12
 
 [0.5.0-beta.11]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-beta.10...0.5.0-beta.11
 

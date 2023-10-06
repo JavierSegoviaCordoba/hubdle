@@ -14,6 +14,10 @@
 
 ### Updated
 
+## [0.1.12] - 2023-10-06
+
+### Updated
+
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.16.0`
 - `org.jetbrains.kotlinx:kotlinx-collections-immutable -> 0.3.6`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.5.3`
@@ -508,7 +512,9 @@
 - `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
 - `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.13.1`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.11...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.12...HEAD
+
+[0.1.12]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.11...c0.1.12
 
 [0.1.11]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.10...c0.1.11
 

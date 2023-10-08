@@ -27,7 +27,9 @@ hubdle {
         publishing()
         versioning {
             semver { //
-                if (kotlinVersion.isNotNullNorBlank()) {
+                val hasSameTagPrefix =
+                    getStringProperty("semver.tagPrefix").orNull == tagPrefix.get()
+                if (kotlinVersion.isNotNullNorBlank() && hasSameTagPrefix) {
                     mapVersion { gradleVersion ->
                         gradleVersion.mapIfKotlinVersionIsProvided(kotlinVersion)
                     }

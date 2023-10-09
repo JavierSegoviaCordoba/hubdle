@@ -4,11 +4,7 @@
 
 ### Added
 
-- `catalog` and `toml` extensions for Version catalog in Hubdle Gradle extension
-
 ### Changed
-
-- `versionCatalogs` in Hubdle Gradle extension
 
 ### Deprecated
 
@@ -17,6 +13,16 @@
 ### Fixed
 
 ### Updated
+
+## [0.5.0-beta.13] - 2023-10-09
+
+### Added
+
+- `catalog` and `toml` extensions for Version catalog in Hubdle Gradle extension
+
+### Changed
+
+- `versionCatalogs` in Hubdle Gradle extension
 
 ## [0.5.0-beta.12] - 2023-10-06
 
@@ -552,7 +558,9 @@
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.2`
 - `app.cash.molecule:molecule-gradle-plugin -> 0.8.0`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-beta.12...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-beta.13...HEAD
+
+[0.5.0-beta.13]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-beta.12...0.5.0-beta.13
 
 [0.5.0-beta.12]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-beta.11...0.5.0-beta.12
 

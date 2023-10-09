@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.russhwolf:multiplatform-settings-coroutines -> 1.1.0`
 - `com.russhwolf:multiplatform-settings -> 1.1.0`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-beta.12`
 

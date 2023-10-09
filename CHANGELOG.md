@@ -4,7 +4,11 @@
 
 ### Added
 
+- `catalog` and `toml` extensions for Version catalog in Hubdle Gradle extension
+
 ### Changed
+
+- `versionCatalogs` in Hubdle Gradle extension
 
 ### Deprecated
 

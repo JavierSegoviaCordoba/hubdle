@@ -2189,15 +2189,17 @@ public final class com/javiersc/hubdle/project/extensions/shared/features/Hubdle
 	public static synthetic fun gradle$default (Lcom/javiersc/hubdle/project/extensions/shared/features/HubdleGradleDelegateFeatureExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 }
 
-public class com/javiersc/hubdle/project/extensions/shared/features/HubdleGradleFeatureExtension : com/javiersc/hubdle/project/extensions/apis/HubdleEnableableExtension {
+public class com/javiersc/hubdle/project/extensions/shared/features/HubdleGradleFeatureExtension : com/javiersc/hubdle/project/extensions/apis/HubdleConfigurableExtension {
 	public fun <init> (Lorg/gradle/api/Project;)V
+	public final fun catalog (Lorg/gradle/api/plugins/catalog/CatalogPluginExtension;Lorg/gradle/api/Action;)V
+	public static synthetic fun catalog$default (Lcom/javiersc/hubdle/project/extensions/shared/features/HubdleGradleFeatureExtension;Lorg/gradle/api/plugins/catalog/CatalogPluginExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 	public final fun getPlugin ()Lcom/javiersc/hubdle/project/extensions/shared/features/gradle/HubdleGradlePluginFeatureExtension;
-	public final fun getVersionCatalog ()Lcom/javiersc/hubdle/project/extensions/shared/features/gradle/HubdleGradleVersionCatalogFeatureExtension;
 	public fun isEnabled ()Lorg/gradle/api/provider/Property;
 	public final fun plugin (Lorg/gradle/api/Action;)V
 	public static synthetic fun plugin$default (Lcom/javiersc/hubdle/project/extensions/shared/features/HubdleGradleFeatureExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
-	public final fun versionCatalog (Lorg/gradle/api/Action;)V
-	public static synthetic fun versionCatalog$default (Lcom/javiersc/hubdle/project/extensions/shared/features/HubdleGradleFeatureExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+	public final fun toml (Lorg/gradle/api/initialization/dsl/VersionCatalogBuilder;Ljava/io/File;)V
+	public final fun versionCatalogs (Lorg/gradle/api/Action;)V
+	public static synthetic fun versionCatalogs$default (Lcom/javiersc/hubdle/project/extensions/shared/features/HubdleGradleFeatureExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 }
 
 public abstract interface class com/javiersc/hubdle/project/extensions/shared/features/HubdleIntellijDelegateFeatureExtension : com/javiersc/hubdle/project/extensions/apis/BaseHubdleDelegateExtension {
@@ -2321,14 +2323,7 @@ public class com/javiersc/hubdle/project/extensions/shared/features/gradle/Hubdl
 
 public class com/javiersc/hubdle/project/extensions/shared/features/gradle/HubdleGradleVersionCatalogFeatureExtension : com/javiersc/hubdle/project/extensions/apis/HubdleConfigurableExtension {
 	public fun <init> (Lorg/gradle/api/Project;)V
-	public final fun catalogs ([Ljava/io/File;)V
-	public final fun getCatalogs ()Lorg/gradle/api/file/ConfigurableFileCollection;
 	public fun isEnabled ()Lorg/gradle/api/provider/Property;
-}
-
-public final class com/javiersc/hubdle/project/extensions/shared/features/gradle/HubdleGradleVersionCatalogFeatureExtension$defaultConfiguration$1$inlined$sam$i$org_gradle_api_Action$0 : org/gradle/api/Action {
-	public fun <init> (Lkotlin/jvm/functions/Function1;)V
-	public final synthetic fun execute (Ljava/lang/Object;)V
 }
 
 public abstract interface class com/javiersc/hubdle/project/extensions/shared/features/intellij/HubdleIntellijPluginDelegateFeatureExtension : com/javiersc/hubdle/project/extensions/apis/BaseHubdleDelegateExtension {

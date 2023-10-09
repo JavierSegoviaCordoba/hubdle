@@ -31,8 +31,15 @@ hubdle {
         jvm {
             features {
                 gradle {
-                    versionCatalog {
-                        catalogs(rootDir.resolve("gradle/hubdle.libs.versions.toml"))
+                    versionCatalogs {
+                        catalog {
+                            toml(rootDir.resolve("gradle/hubdle.libs.versions.toml"))
+                            if (kotlinVersion.isNotNullNorBlank()) {
+                                version("kotlin") {
+                                    strictly(kotlinVersion)
+                                }
+                            }
+                        }
                     }
                 }
             }

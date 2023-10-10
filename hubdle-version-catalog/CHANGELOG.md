@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.7.4`
+
 ## [0.1.13] - 2023-10-09
 
 ### Updated

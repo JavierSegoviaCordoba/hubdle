@@ -49,7 +49,9 @@ constructor(
     }
 
     public val maxParallelForks: Property<Int> = property {
-        (Runtime.getRuntime().availableProcessors() / 2).takeIf { it > 0 } ?: 1
+        val isCI: Boolean = System.getenv("CI")?.toBoolean() ?: false
+        val factor: Int = if (isCI) 1 else 2
+        (Runtime.getRuntime().availableProcessors() / factor).takeIf { it > 0 } ?: 1
     }
 
     @HubdleDslMarker

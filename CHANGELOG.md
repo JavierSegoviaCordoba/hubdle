@@ -6,6 +6,8 @@
 
 ### Changed
 
+- `maxParallelForks` default value to use all available processors on CI
+
 ### Deprecated
 
 ### Removed

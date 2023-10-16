@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.dokka:dokka-gradle-plugin -> 1.9.10`
 - `com.adarshr:gradle-test-logger-plugin -> 4.0.0`
 - `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.7.4`
 

@@ -14,6 +14,23 @@
 
 ### Updated
 
+- `androidx.compose.ui:ui-util -> 1.5.4`
+- `androidx.compose.ui:ui-tooling-preview -> 1.5.4`
+- `androidx.compose.ui:ui-tooling -> 1.5.4`
+- `androidx.compose.ui:ui-test-manifest -> 1.5.4`
+- `androidx.compose.ui:ui-test -> 1.5.4`
+- `androidx.compose.ui:ui -> 1.5.4`
+- `androidx.compose.runtime:runtime-saveable -> 1.5.4`
+- `androidx.compose.runtime:runtime -> 1.5.4`
+- `androidx.compose.material:material-ripple -> 1.5.4`
+- `androidx.compose.material:material-icons-extended -> 1.5.4`
+- `androidx.compose.material:material-icons-core -> 1.5.4`
+- `androidx.compose.material:material -> 1.5.4`
+- `androidx.compose.foundation:foundation-layout -> 1.5.4`
+- `androidx.compose.foundation:foundation -> 1.5.4`
+- `androidx.compose.animation:animation-graphics -> 1.5.4`
+- `androidx.compose.animation:animation-core -> 1.5.4`
+- `androidx.compose.animation:animation -> 1.5.4`
 - `org.jetbrains.dokka:dokka-gradle-plugin -> 1.9.10`
 - `com.adarshr:gradle-test-logger-plugin -> 4.0.0`
 - `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.7.4`

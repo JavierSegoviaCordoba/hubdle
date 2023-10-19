@@ -11,6 +11,8 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val kotlinVersion: String? = getStringProperty("kotlinVersion").orNull
+val semverTagPrefix: String =
+    getStringProperty("semver.tagPrefix").orNull.takeIf { it != "null" } ?: ""
 
 hubdle {
     config {
@@ -27,8 +29,7 @@ hubdle {
         publishing()
         versioning {
             semver { //
-                val hasSameTagPrefix =
-                    getStringProperty("semver.tagPrefix").orNull == tagPrefix.get()
+                val hasSameTagPrefix = semverTagPrefix == tagPrefix.get()
                 if (kotlinVersion.isNotNullNorBlank() && hasSameTagPrefix) {
                     mapVersion { gradleVersion ->
                         gradleVersion.mapIfKotlinVersionIsProvided(kotlinVersion)

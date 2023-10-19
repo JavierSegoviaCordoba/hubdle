@@ -42,7 +42,7 @@ jobs:
     uses: JavierSegoviaCordoba/reusable-workflows/.github/workflows/build-kotlin.yaml@main
     with:
       allow-github-actor-bots: false
-      gradle-args: '${{ github.event.inputs.gradle-args }} -P semver.stage=snapshot -P semver.checkClean=${{ github.event.inputs.semver-checkClean }} -P kotlinVersion=${{ github.event.inputs.kotlin-dev-version }}'
+      gradle-args: '${{ github.event.inputs.gradle-args }} -P semver.checkClean=${{ github.event.inputs.semver-checkClean }} -P kotlinVersion=${{ github.event.inputs.kotlin-dev-version }}'
       deploy-docs: ${{ github.event.inputs.deploy-docs }}
       publish-all-docs: '${{ github.event.inputs.publish-all-docs }}'
       publish-snapshot-tag-prefix: '${{ github.event.inputs.publish-snapshot-tag-prefix }}'

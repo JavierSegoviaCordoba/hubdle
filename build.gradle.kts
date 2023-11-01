@@ -18,17 +18,6 @@ hubdle {
             site()
         }
         nexus()
-        versioning {
-            semver {
-                // TODO: https://github.com/gradle-nexus/publish-plugin/issues/84
-                tagPrefix.set(
-                    provider {
-                        if (isGradlePlugin) ""
-                        else getStringProperty("semver.tagPrefix").orNull ?: ""
-                    },
-                )
-            }
-        }
     }
 }
 

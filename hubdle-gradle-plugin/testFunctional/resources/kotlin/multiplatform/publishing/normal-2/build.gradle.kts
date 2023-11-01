@@ -75,7 +75,7 @@ hubdle {
                 mingwX64()
             }
             native()
-            wasm()
+            wasmJs()
         }
     }
 }

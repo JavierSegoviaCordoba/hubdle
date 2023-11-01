@@ -14,6 +14,29 @@
 
 ### Updated
 
+- `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.5.10`
+- `app.cash.molecule:app.cash.molecule.gradle.plugin -> 1.3.0`
+- `org.jetbrains.compose.compiler:compiler -> 1.5.3`
+- `io.gitlab.arturbosch.detekt:detekt-gradle-plugin -> 1.23.3`
+- `app.cash.molecule:molecule-runtime -> 1.3.0`
+- `org.jetbrains.kotlin.plugin.serialization:org.jetbrains.kotlin.plugin.serialization.gradle.plugin -> 1.9.20`
+- `org.jetbrains.kotlin.multiplatform:org.jetbrains.kotlin.multiplatform.gradle.plugin -> 1.9.20`
+- `org.jetbrains.kotlin.jvm:org.jetbrains.kotlin.jvm.gradle.plugin -> 1.9.20`
+- `org.jetbrains.kotlin.android:org.jetbrains.kotlin.android.gradle.plugin -> 1.9.20`
+- `org.jetbrains.kotlin:kotlin-serialization -> 1.9.20`
+- `org.jetbrains.kotlin:kotlin-test-testng -> 1.9.20`
+- `org.jetbrains.kotlin:kotlin-test-junit5 -> 1.9.20`
+- `org.jetbrains.kotlin:kotlin-test-junit -> 1.9.20`
+- `org.jetbrains.kotlin:kotlin-test-annotations-common -> 1.9.20`
+- `org.jetbrains.kotlin:kotlin-test -> 1.9.20`
+- `org.jetbrains.kotlin:kotlin-script-runtime -> 1.9.20`
+- `org.jetbrains.kotlin:kotlin-reflect -> 1.9.20`
+- `org.jetbrains.kotlin:kotlin-gradle-plugin-api -> 1.9.20`
+- `org.jetbrains.kotlin:kotlin-gradle-plugin -> 1.9.20`
+- `org.jetbrains.kotlin:kotlin-compiler-internal-test-framework -> 1.9.20`
+- `org.jetbrains.kotlin:kotlin-compiler-embeddable -> 1.9.20`
+- `org.jetbrains.kotlin:kotlin-compiler -> 1.9.20`
+- `org.jetbrains.kotlin:kotlin-annotations-jvm -> 1.9.20`
 - `androidx.compose.ui:ui-util -> 1.5.4`
 - `androidx.compose.ui:ui-tooling-preview -> 1.5.4`
 - `androidx.compose.ui:ui-tooling -> 1.5.4`

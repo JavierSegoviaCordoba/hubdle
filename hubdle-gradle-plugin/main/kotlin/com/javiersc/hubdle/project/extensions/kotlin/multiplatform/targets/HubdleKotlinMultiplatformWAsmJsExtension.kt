@@ -12,7 +12,7 @@ import org.gradle.kotlin.dsl.configure
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 @HubdleDslMarker
-public open class HubdleKotlinMultiplatformWAsmExtension
+public open class HubdleKotlinMultiplatformWAsmJsExtension
 @Inject
 constructor(
     project: Project,
@@ -33,7 +33,7 @@ constructor(
     override fun Project.defaultConfiguration() {
         configurable {
             configure<KotlinMultiplatformExtension> {
-                wasm {
+                wasmJs {
                     browser()
                     nodejs()
                 }

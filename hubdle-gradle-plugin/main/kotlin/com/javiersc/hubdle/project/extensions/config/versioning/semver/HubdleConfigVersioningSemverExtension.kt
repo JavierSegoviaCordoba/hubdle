@@ -1,5 +1,7 @@
 package com.javiersc.hubdle.project.extensions.config.versioning.semver
 
+import com.javiersc.gradle.project.extensions.isRootProject
+import com.javiersc.gradle.properties.extensions.getStringProperty
 import com.javiersc.gradle.version.GradleVersion
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
@@ -30,7 +32,7 @@ constructor(
 
     override val priority: Priority = Priority.P3
 
-    public val tagPrefix: Property<String> = property { "" }
+    public val tagPrefix: Property<String> = defaultTagPrefix()
 
     public fun mapVersion(gradleVersion: (GradleVersion) -> String) {
         configurable { the<SemverExtension>().mapVersion(gradleVersion) }
@@ -50,6 +52,10 @@ constructor(
         configurable(priority = Priority.P1) {
             configure<SemverExtension> { tagPrefix.set(hubdleSemver.tagPrefix.get()) }
         }
+    }
+
+    private fun defaultTagPrefix(): Property<String> = property {
+        if (isRootProject) getStringProperty("semver.tagPrefix").orNull ?: "" else ""
     }
 }
 

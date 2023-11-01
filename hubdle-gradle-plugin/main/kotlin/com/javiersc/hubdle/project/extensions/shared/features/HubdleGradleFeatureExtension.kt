@@ -3,7 +3,7 @@ package com.javiersc.hubdle.project.extensions.shared.features
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
-import com.javiersc.hubdle.project.extensions.apis.BaseHubdleDelegateExtension
+import com.javiersc.hubdle.project.extensions.apis.BaseHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
@@ -62,7 +62,7 @@ constructor(
     override fun Project.defaultConfiguration() {}
 }
 
-public interface HubdleGradleDelegateFeatureExtension : BaseHubdleDelegateExtension {
+public interface HubdleGradleDelegateFeatureExtension : BaseHubdleExtension {
 
     public val gradle: HubdleGradleFeatureExtension
         get() = project.getHubdleExtension()

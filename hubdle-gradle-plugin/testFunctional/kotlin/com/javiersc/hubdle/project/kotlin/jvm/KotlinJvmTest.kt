@@ -4,6 +4,7 @@ import com.javiersc.gradle.testkit.test.extensions.GradleTestKitTest
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.file.shouldBeADirectory
 import io.kotest.matchers.file.shouldBeAFile
+import io.kotest.matchers.file.shouldNotExist
 import io.kotest.matchers.string.shouldContain
 import java.io.File
 import kotlin.test.AfterTest
@@ -83,6 +84,26 @@ internal class KotlinJvmTest : GradleTestKitTest() {
                 .orEmpty()
                 .filter { it.isFile && it.extension == "asc" }
                 .shouldHaveSize(5)
+        }
+    }
+
+    @Test
+    fun `publish conditional 1`() {
+        gradleTestKitTest("$basePath/publishing/conditional-1", name = projectName) {
+            gradlewArgumentFromTXT()
+            val publicationDir = mavenLocalPath.parentFile
+            publicationDir.shouldBeADirectory()
+            val publishedProjectDir = publicationDir.resolve("one")
+            publishedProjectDir.shouldBeADirectory()
+            publicationDir.resolve("two").shouldNotExist()
+            publishedProjectDir.resolve("maven-metadata-local.xml").shouldBeAFile()
+            val versionDir = publishedProjectDir.resolve("9.8.3-alpha.4")
+            versionDir.shouldBeADirectory()
+            versionDir.resolve("one-9.8.3-alpha.4.jar").shouldBeAFile()
+            versionDir.resolve("one-9.8.3-alpha.4.module").shouldBeAFile()
+            versionDir.resolve("one-9.8.3-alpha.4.pom").shouldBeAFile()
+            versionDir.resolve("one-9.8.3-alpha.4-javadoc.jar").shouldBeAFile()
+            versionDir.resolve("one-9.8.3-alpha.4-sources.jar").shouldBeAFile()
         }
     }
 

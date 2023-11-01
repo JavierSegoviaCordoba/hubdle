@@ -7,7 +7,7 @@ import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
-import com.javiersc.hubdle.project.extensions.apis.BaseHubdleDelegateExtension
+import com.javiersc.hubdle.project.extensions.apis.BaseHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
@@ -282,7 +282,7 @@ private fun HubdleIntellijPluginFeatureExtension.configureGeneratedChangelogHtml
         }
     }
 
-public interface HubdleIntellijPluginDelegateFeatureExtension : BaseHubdleDelegateExtension {
+public interface HubdleIntellijPluginDelegateFeatureExtension : BaseHubdleExtension {
 
     public val plugin: HubdleIntellijPluginFeatureExtension
         get() = project.getHubdleExtension()

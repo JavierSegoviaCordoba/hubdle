@@ -9,7 +9,7 @@ import com.javiersc.hubdle.project.extensions._internal.TEST_FUNCTIONAL
 import com.javiersc.hubdle.project.extensions._internal.TEST_INTEGRATION
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions._internal.library
-import com.javiersc.hubdle.project.extensions.apis.BaseHubdleDelegateExtension
+import com.javiersc.hubdle.project.extensions.apis.BaseHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
@@ -49,7 +49,7 @@ constructor(
     }
 }
 
-public interface HubdleKotlinKotestDelegateFeatureExtension : BaseHubdleDelegateExtension {
+public interface HubdleKotlinKotestDelegateFeatureExtension : BaseHubdleExtension {
 
     public val kotest: HubdleKotlinKotestFeatureExtension
         get() = project.getHubdleExtension()

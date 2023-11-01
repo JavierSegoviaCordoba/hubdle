@@ -12,7 +12,7 @@ import com.javiersc.hubdle.project.extensions._internal.TEST_FUNCTIONAL
 import com.javiersc.hubdle.project.extensions._internal.TEST_INTEGRATION
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions._internal.library
-import com.javiersc.hubdle.project.extensions.apis.BaseHubdleDelegateExtension
+import com.javiersc.hubdle.project.extensions.apis.BaseHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
@@ -76,7 +76,7 @@ private val HubdleKotlinCoroutinesFeatureExtension.isAnyAndroidFullEnabled: Prop
                 hubdleKotlinMultiplatformAndroid.isFullEnabled.get())
     }
 
-public interface HubdleKotlinCoroutinesDelegateFeatureExtension : BaseHubdleDelegateExtension {
+public interface HubdleKotlinCoroutinesDelegateFeatureExtension : BaseHubdleExtension {
 
     public val coroutines: HubdleKotlinCoroutinesFeatureExtension
         get() = project.getHubdleExtension()

@@ -8,7 +8,7 @@ import com.javiersc.hubdle.project.extensions._internal.MAIN
 import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions._internal.library
-import com.javiersc.hubdle.project.extensions.apis.BaseHubdleDelegateExtension
+import com.javiersc.hubdle.project.extensions.apis.BaseHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
@@ -75,7 +75,7 @@ constructor(
     }
 }
 
-public interface HubdleKotlinSerializationDelegateFeatureExtension : BaseHubdleDelegateExtension {
+public interface HubdleKotlinSerializationDelegateFeatureExtension : BaseHubdleExtension {
 
     public val serialization: HubdleKotlinSerializationFeatureExtension
         get() = project.getHubdleExtension()

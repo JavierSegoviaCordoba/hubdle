@@ -20,7 +20,7 @@ import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.the
 
 public abstract class HubdleEnableableExtension(
-    internal open val project: Project,
+    override val project: Project,
 ) : BaseHubdleEnableableExtension {
 
     internal val tasks: TaskContainer
@@ -115,5 +115,13 @@ public abstract class HubdleEnableableExtension(
 
 internal fun <T : HubdleEnableableExtension> T.enableAndExecute(action: Action<T>) {
     enabled(true)
+    action.execute(this)
+}
+
+internal fun <T : HubdleEnableableExtension> T.enableAndExecute(
+    enabled: Provider<Boolean> = provider { true },
+    action: Action<T>
+) {
+    enabled(enabled)
     action.execute(this)
 }

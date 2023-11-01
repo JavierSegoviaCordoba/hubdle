@@ -19,11 +19,13 @@ import com.javiersc.hubdle.project.extensions.config.project.HubdleProjectExtens
 import com.javiersc.hubdle.project.extensions.config.publishing.HubdleConfigPublishingExtension
 import com.javiersc.hubdle.project.extensions.config.testing.HubdleConfigTestingExtension
 import com.javiersc.hubdle.project.extensions.config.versioning.HubdleConfigVersioningExtension
+import com.javiersc.hubdle.project.extensions.config.versioning.semver._internal.isTagPrefixProject
 import com.javiersc.hubdle.project.extensions.kotlin.hubdleKotlinAny
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.provider.Property
+import org.gradle.api.provider.Provider
 import org.jetbrains.kotlin.gradle.dsl.ExplicitApiMode
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 
@@ -135,8 +137,11 @@ constructor(
         get() = getHubdleExtension()
 
     @HubdleDslMarker
-    public fun publishing(action: Action<HubdleConfigPublishingExtension> = Action {}) {
-        publishing.enableAndExecute(action)
+    public fun publishing(
+        enabled: Provider<Boolean> = provider { isTagPrefixProject },
+        action: Action<HubdleConfigPublishingExtension> = Action {}
+    ) {
+        publishing.enableAndExecute(enabled, action)
     }
 
     public val testing: HubdleConfigTestingExtension

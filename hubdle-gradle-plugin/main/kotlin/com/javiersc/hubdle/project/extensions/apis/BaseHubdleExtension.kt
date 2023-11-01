@@ -1,3 +1,8 @@
 package com.javiersc.hubdle.project.extensions.apis
 
-public interface BaseHubdleExtension
+import org.gradle.api.Project
+
+public interface BaseHubdleExtension {
+
+    public val project: Project
+}

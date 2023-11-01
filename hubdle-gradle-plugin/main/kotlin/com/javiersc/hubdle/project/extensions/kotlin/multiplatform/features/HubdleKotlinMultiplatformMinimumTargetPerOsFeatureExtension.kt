@@ -2,7 +2,7 @@ package com.javiersc.hubdle.project.extensions.kotlin.multiplatform.features
 
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
-import com.javiersc.hubdle.project.extensions.apis.BaseHubdleDelegateExtension
+import com.javiersc.hubdle.project.extensions.apis.BaseHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
@@ -27,7 +27,7 @@ constructor(
 }
 
 public interface HubdleKotlinMultiplatformMinimumTargetPerOsDelegateFeatureExtension :
-    BaseHubdleDelegateExtension {
+    BaseHubdleExtension {
 
     public val minimumTargetPerOs: HubdleKotlinMultiplatformMinimumTargetPerOsFeatureExtension
         get() = project.getHubdleExtension()

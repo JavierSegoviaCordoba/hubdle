@@ -4,8 +4,11 @@
 
 ### Added
 
+- `enabled` flag to the `publishing` function 
+
 ### Changed
 
+- root project changes the semver tag prefix following the `semver.tagPrefix` Gradle property
 - `maxParallelForks` default value to use all available processors on CI
 
 ### Deprecated

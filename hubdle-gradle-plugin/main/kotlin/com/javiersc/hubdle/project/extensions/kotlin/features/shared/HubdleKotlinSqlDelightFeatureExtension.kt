@@ -8,7 +8,7 @@ import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions._internal.hubdleCatalog
-import com.javiersc.hubdle.project.extensions.apis.BaseHubdleDelegateExtension
+import com.javiersc.hubdle.project.extensions.apis.BaseHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
@@ -80,7 +80,7 @@ constructor(
     }
 }
 
-public interface HubdleKotlinSqlDelightDelegateFeatureExtension : BaseHubdleDelegateExtension {
+public interface HubdleKotlinSqlDelightDelegateFeatureExtension : BaseHubdleExtension {
 
     public val sqldelight: HubdleKotlinSqlDelightFeatureExtension
         get() = project.getHubdleExtension()

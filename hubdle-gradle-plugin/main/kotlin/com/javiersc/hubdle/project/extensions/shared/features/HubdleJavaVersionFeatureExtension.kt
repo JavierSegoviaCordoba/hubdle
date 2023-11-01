@@ -3,7 +3,7 @@ package com.javiersc.hubdle.project.extensions.shared.features
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
-import com.javiersc.hubdle.project.extensions.apis.BaseHubdleDelegateExtension
+import com.javiersc.hubdle.project.extensions.apis.BaseHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.java.hubdleJava
@@ -53,7 +53,7 @@ constructor(
     }
 }
 
-public interface HubdleJavaVersionDelegateFeatureExtension : BaseHubdleDelegateExtension {
+public interface HubdleJavaVersionDelegateFeatureExtension : BaseHubdleExtension {
 
     public val jvmVersion: HubdleJavaVersionFeatureExtension
         get() = project.getHubdleExtension()

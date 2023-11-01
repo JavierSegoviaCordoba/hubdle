@@ -3,7 +3,7 @@ package com.javiersc.hubdle.project.extensions.kotlin.features.shared
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
-import com.javiersc.hubdle.project.extensions.apis.BaseHubdleDelegateExtension
+import com.javiersc.hubdle.project.extensions.apis.BaseHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
@@ -37,8 +37,7 @@ constructor(
     }
 }
 
-public interface HubdleKotlinContextReceiversDelegateFeatureExtension :
-    BaseHubdleDelegateExtension {
+public interface HubdleKotlinContextReceiversDelegateFeatureExtension : BaseHubdleExtension {
 
     public val contextReceivers: HubdleKotlinContextReceiversFeatureExtension
         get() = project.getHubdleExtension()

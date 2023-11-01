@@ -11,7 +11,7 @@ jobs:
     with:
       publish-gradle-plugin-portal: ${{ !contains('github.ref_name', 'c') }}
       gradle-args-build: '--exclude-task spotlessCheck'
-      gradle-args-publish-maven-central: '"-Ppublishing.sign=true"'
+      gradle-args-publish-maven-central: '-P publishing.sign=true'
       changelog-file-c-tag-prefix: 'hubdle-version-catalog/CHANGELOG.md'
       restore-kotlin-native-cache: false
     secrets: inherit

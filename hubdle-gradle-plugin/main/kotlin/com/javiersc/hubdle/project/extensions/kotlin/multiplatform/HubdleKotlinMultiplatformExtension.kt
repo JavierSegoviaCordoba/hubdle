@@ -26,7 +26,7 @@ import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.Hubdl
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformLinuxExtension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformMinGWExtension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformNativeExtension
-import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformWAsmExtension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformWAsmJsExtension
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
@@ -142,12 +142,12 @@ constructor(
         native.enableAndExecute(action)
     }
 
-    public val wasm: HubdleKotlinMultiplatformWAsmExtension
+    public val wasmJs: HubdleKotlinMultiplatformWAsmJsExtension
         get() = getHubdleExtension()
 
     @HubdleDslMarker
-    public fun wasm(action: Action<HubdleKotlinMultiplatformWAsmExtension> = Action {}) {
-        wasm.enableAndExecute(action)
+    public fun wasmJs(action: Action<HubdleKotlinMultiplatformWAsmJsExtension> = Action {}) {
+        wasmJs.enableAndExecute(action)
     }
 
     @HubdleDslMarker

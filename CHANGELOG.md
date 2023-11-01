@@ -4,12 +4,7 @@
 
 ### Added
 
-- `enabled` flag to the `publishing` function 
-
 ### Changed
-
-- root project changes the semver tag prefix following the `semver.tagPrefix` Gradle property
-- `maxParallelForks` default value to use all available processors on CI
 
 ### Deprecated
 
@@ -18,6 +13,17 @@
 ### Fixed
 
 ### Updated
+
+## [0.5.0-beta.14] - 2023-11-01
+
+### Added
+
+- `enabled` flag to the `publishing` function 
+
+### Changed
+
+- root project changes the semver tag prefix following the `semver.tagPrefix` Gradle property
+- `maxParallelForks` default value to use all available processors on CI
 
 ## [0.5.0-beta.13] - 2023-10-09
 
@@ -563,7 +569,9 @@
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.2`
 - `app.cash.molecule:molecule-gradle-plugin -> 0.8.0`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-beta.13...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-beta.14...HEAD
+
+[0.5.0-beta.14]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-beta.13...0.5.0-beta.14
 
 [0.5.0-beta.13]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-beta.12...0.5.0-beta.13
 

@@ -14,6 +14,10 @@
 
 ### Updated
 
+## [0.1.14] - 2023-11-01
+
+### Updated
+
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.5.10`
 - `app.cash.molecule:app.cash.molecule.gradle.plugin -> 1.3.0`
 - `org.jetbrains.compose.compiler:compiler -> 1.5.3`
@@ -563,7 +567,9 @@
 - `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
 - `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.13.1`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.13...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.14...HEAD
+
+[0.1.14]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.13...c0.1.14
 
 [0.1.13]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.12...c0.1.13
 

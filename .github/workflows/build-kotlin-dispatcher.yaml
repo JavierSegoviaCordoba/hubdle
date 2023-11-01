@@ -31,6 +31,11 @@ on:
         default: ''
         required: false
         type: string
+      build-snapshot:
+        description: 'Add `-P semver.stage=snapshot` to the build job'
+        default: true
+        required: false
+        type: boolean
       semver-checkClean:
         description: 'Check the repo status at each step with `-P semver.checkClean=true`'
         default: false
@@ -42,7 +47,7 @@ jobs:
     uses: JavierSegoviaCordoba/reusable-workflows/.github/workflows/build-kotlin.yaml@main
     with:
       allow-github-actor-bots: false
-      gradle-args: '${{ github.event.inputs.gradle-args }} -P semver.checkClean=${{ github.event.inputs.semver-checkClean }} -P kotlinVersion=${{ github.event.inputs.kotlin-dev-version }}'
+      gradle-args: '${{ github.event.inputs.gradle-args }} -P kotlinVersion=${{ github.event.inputs.kotlin-dev-version }} -P semver.stage=${{ github.event.inputs.build-snapshot }} -P semver.checkClean=${{ github.event.inputs.semver-checkClean }}'
       deploy-docs: ${{ github.event.inputs.deploy-docs }}
       publish-all-docs: '${{ github.event.inputs.publish-all-docs }}'
       publish-snapshot-tag-prefix: '${{ github.event.inputs.publish-snapshot-tag-prefix }}'

@@ -6,6 +6,7 @@ import com.javiersc.gradle.tasks.extensions.namedLazily
 import com.javiersc.gradle.version.GradleVersion
 import com.javiersc.gradle.version.isSnapshot
 import com.javiersc.kotlin.stdlib.isNotNullNorBlank
+import io.gitlab.arturbosch.detekt.Detekt
 import java.util.Locale
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
@@ -38,7 +39,7 @@ hubdle {
             }
         }
         testing {
-            test {
+            test { //
                 systemProperties["KOTLIN_VERSION"] = kotlinVersion.orEmpty()
             }
         }
@@ -157,15 +158,18 @@ fun String.isKotlinDevVersion(): Boolean =
 
 generateHubdle()
 
+val Project.buildDirectory: File
+    get() = layout.buildDirectory.get().asFile
+
 fun Project.generateHubdle() {
     val hubdleCodegen: TaskCollection<Task> = tasks.maybeRegisterLazily("generateHubdle")
-    tasks.named("sourcesJar").configure { mustRunAfter(hubdleCodegen) }
-    tasks.named("detekt").configure { mustRunAfter(hubdleCodegen) }
+    tasks.withType<Jar>().configureEach { mustRunAfter(hubdleCodegen) }
+    tasks.withType<Detekt>().configureEach { mustRunAfter(hubdleCodegen) }
 
     the<KotlinProjectExtension>()
         .sourceSets["main"]
         .kotlin
-        .srcDirs(buildDir.resolve("generated/main/kotlin"))
+        .srcDirs(buildDirectory.resolve("generated/main/kotlin"))
 
     hubdleCodegen.configureEach {
         group = "build"
@@ -175,9 +179,7 @@ fun Project.generateHubdle() {
             rootDir.resolve("gradle/libs.versions.toml"),
         )
 
-        outputs.dir(
-            buildDir.resolve(generatedDependenciesInternalDir),
-        )
+        outputs.dir(buildDirectory.resolve(generatedDependenciesInternalDir))
 
         doLast {
             buildConstants()
@@ -206,29 +208,34 @@ fun Project.buildConstants() {
         val fileName = minimalDependency.module.toString().replace(":", "_")
         val dependencyVariableName = fileName.buildDependencyVariableName()
         val dependencyVersion = minimalDependency.versionConstraint.displayName
-        buildDir.resolve(generatedDependenciesInternalDir).resolve("constants/$fileName.kt").apply {
-            parentFile.mkdirs()
-            createNewFile()
-            writeText(
-                """
-                    |package com.javiersc.hubdle.project.extensions.dependencies._internal.constants
-                    |
-                    |internal const val ${dependencyVariableName}_LIBRARY: String =
-                    |    "${minimalDependency.module}:$dependencyVersion"
-                    |
-                    |internal const val ${dependencyVariableName}_MODULE: String =
-                    |    "${minimalDependency.module}"
-                    |
-                    |
-                """
-                    .trimMargin(),
-            )
-        }
+        buildDirectory
+            .resolve(generatedDependenciesInternalDir)
+            .resolve("constants/$fileName.kt")
+            .apply {
+                parentFile.mkdirs()
+                createNewFile()
+                writeText(
+                    """
+                        |package com.javiersc.hubdle.project.extensions.dependencies._internal.constants
+                        |
+                        |internal const val ${dependencyVariableName}_LIBRARY: String =
+                        |    "${minimalDependency.module}:$dependencyVersion"
+                        |
+                        |internal const val ${dependencyVariableName}_MODULE: String =
+                        |    "${minimalDependency.module}"
+                        |
+                        |
+                    """
+                        .trimMargin(),
+                )
+            }
     }
 }
 
 fun Project.buildHubdleDependencies() {
-    buildDir
+    layout.buildDirectory
+        .get()
+        .asFile
         .resolve(generatedDependenciesInternalDir)
         .resolve("constants/HUBDLE_ALIASES.kt")
         .apply {

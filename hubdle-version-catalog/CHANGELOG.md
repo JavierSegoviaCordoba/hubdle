@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `androidx.navigation:navigation-compose -> 2.7.5`
+- `androidx.hilt:hilt-navigation-compose -> 1.1.0`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-beta.14`
 
 ## [0.1.15] - 2023-11-01

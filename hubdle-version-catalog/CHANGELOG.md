@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.android.tools:desugar_jdk_libs -> 2.0.4`
 - `androidx.navigation:navigation-compose -> 2.7.5`
 - `androidx.hilt:hilt-navigation-compose -> 1.1.0`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-beta.14`

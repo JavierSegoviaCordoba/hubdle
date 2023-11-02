@@ -13,9 +13,9 @@ pluginManagement {
     val kotlinVersion: String? = kotlinVersionFromProp
 
     repositories {
+        google()
         mavenCentral()
         gradlePluginPortal()
-        google()
         if (kotlinVersion != null) {
             maven(url = "https://maven.pkg.jetbrains.space/kotlin/p/kotlin/bootstrap")
         }
@@ -47,8 +47,8 @@ val kotlinVersion: String? = providers.gradleProperty("kotlinVersion").orNull
 
 dependencyResolutionManagement {
     repositories {
-        mavenCentral()
         google()
+        mavenCentral()
         gradlePluginPortal()
         if (kotlinVersion != null) {
             maven(url = "https://maven.pkg.jetbrains.space/kotlin/p/kotlin/bootstrap")

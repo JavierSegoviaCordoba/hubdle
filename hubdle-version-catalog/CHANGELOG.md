@@ -14,6 +14,12 @@
 
 ### Updated
 
+- `io.kotest:kotest-runner-junit5 -> 5.8.0`
+- `io.kotest:kotest-runner-junit4 -> 5.8.0`
+- `io.kotest:kotest-property -> 5.8.0`
+- `io.kotest:kotest-assertions-sql -> 5.8.0`
+- `io.kotest:kotest-assertions-json -> 5.8.0`
+- `io.kotest:kotest-assertions-core -> 5.8.0`
 - `com.android.tools:desugar_jdk_libs -> 2.0.4`
 - `androidx.navigation:navigation-compose -> 2.7.5`
 - `androidx.hilt:hilt-navigation-compose -> 1.1.0`

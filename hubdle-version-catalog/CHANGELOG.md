@@ -14,6 +14,9 @@
 
 ### Updated
 
+- `com.android.library:com.android.library.gradle.plugin -> 8.1.4`
+- `com.android.application:com.android.application.gradle.plugin -> 8.1.4`
+- `com.android.tools.build:gradle -> 8.1.4`
 - `io.ktor:ktor-serialization-kotlinx-json -> 2.3.6`
 - `io.ktor:ktor-client-okhttp -> 2.3.6`
 - `io.ktor:ktor-client-mock -> 2.3.6`
@@ -35,9 +38,6 @@
 - `androidx.compose.compiler:compiler -> 1.5.4`
 - `androidx.activity:activity-ktx -> 1.8.1`
 - `androidx.activity:activity-compose -> 1.8.1`
-- `com.android.library:com.android.library.gradle.plugin -> 8.1.3`
-- `com.android.application:com.android.application.gradle.plugin -> 8.1.3`
-- `com.android.tools.build:gradle -> 8.1.3`
 - `io.kotest:kotest-runner-junit5 -> 5.8.0`
 - `io.kotest:kotest-runner-junit4 -> 5.8.0`
 - `io.kotest:kotest-property -> 5.8.0`

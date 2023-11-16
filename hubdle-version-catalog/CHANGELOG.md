@@ -14,6 +14,30 @@
 
 ### Updated
 
+- `io.ktor:ktor-serialization-kotlinx-json -> 2.3.6`
+- `io.ktor:ktor-client-okhttp -> 2.3.6`
+- `io.ktor:ktor-client-mock -> 2.3.6`
+- `io.ktor:ktor-client-core -> 2.3.6`
+- `io.ktor:ktor-client-content-negotiation -> 2.3.6`
+- `io.ktor:ktor-client-cio -> 2.3.6`
+- `org.junit.platform:junit-platform-suite-api -> 1.10.1`
+- `org.junit.platform:junit-platform-runner -> 1.10.1`
+- `org.junit.platform:junit-platform-launcher -> 1.10.1`
+- `org.junit.platform:junit-platform-commons -> 1.10.1`
+- `org.junit.jupiter:junit-jupiter-params -> 5.10.1`
+- `org.junit.jupiter:junit-jupiter-api -> 5.10.1`
+- `org.junit.jupiter:junit-jupiter -> 5.10.1`
+- `org.junit:junit-bom -> 5.10.1`
+- `org.jetbrains.kotlinx:kotlinx-serialization-json -> 1.6.1`
+- `org.jetbrains.kotlinx:kotlinx-serialization-core -> 1.6.1`
+- `com.github.triplet.gradle:play-publisher -> 3.8.5`
+- `androidx.compose.runtime:runtime-tracing -> 1.0.0-alpha05`
+- `androidx.compose.compiler:compiler -> 1.5.4`
+- `androidx.activity:activity-ktx -> 1.8.1`
+- `androidx.activity:activity-compose -> 1.8.1`
+- `com.android.library:com.android.library.gradle.plugin -> 8.1.3`
+- `com.android.application:com.android.application.gradle.plugin -> 8.1.3`
+- `com.android.tools.build:gradle -> 8.1.3`
 - `io.kotest:kotest-runner-junit5 -> 5.8.0`
 - `io.kotest:kotest-runner-junit4 -> 5.8.0`
 - `io.kotest:kotest-property -> 5.8.0`

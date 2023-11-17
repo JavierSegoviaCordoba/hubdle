@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.github.triplet.gradle:play-publisher -> 3.8.6`
 - `com.android.library:com.android.library.gradle.plugin -> 8.1.4`
 - `com.android.application:com.android.application.gradle.plugin -> 8.1.4`
 - `com.android.tools.build:gradle -> 8.1.4`
@@ -33,7 +34,6 @@
 - `org.junit:junit-bom -> 5.10.1`
 - `org.jetbrains.kotlinx:kotlinx-serialization-json -> 1.6.1`
 - `org.jetbrains.kotlinx:kotlinx-serialization-core -> 1.6.1`
-- `com.github.triplet.gradle:play-publisher -> 3.8.5`
 - `androidx.compose.runtime:runtime-tracing -> 1.0.0-alpha05`
 - `androidx.compose.compiler:compiler -> 1.5.4`
 - `androidx.activity:activity-ktx -> 1.8.1`

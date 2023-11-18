@@ -27,7 +27,7 @@ import org.gradle.kotlin.dsl.register
 import org.jetbrains.kotlin.gradle.internal.ensureParentDirsCreated
 
 @CacheableTask
-public abstract class PrebuildSiteTask
+public abstract class PreBuildSiteTask
 @Inject
 constructor(
     private val layout: ProjectLayout,
@@ -85,9 +85,9 @@ constructor(
 
         internal fun register(
             project: Project,
-            configure: PrebuildSiteTask.() -> Unit
-        ): TaskProvider<PrebuildSiteTask> =
-            project.tasks.register<PrebuildSiteTask>(name) { configure(this) }
+            configure: PreBuildSiteTask.() -> Unit
+        ): TaskProvider<PreBuildSiteTask> =
+            project.tasks.register<PreBuildSiteTask>(name) { configure(this) }
     }
 
     private fun buildDotDocsDirectory(dotDocsDirectory: File) {

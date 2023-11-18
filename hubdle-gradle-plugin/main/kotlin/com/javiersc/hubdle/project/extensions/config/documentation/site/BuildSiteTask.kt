@@ -49,12 +49,12 @@ constructor(
 
         public fun register(
             project: Project,
-            preBuildDocsTask: TaskProvider<PrebuildSiteTask>
+            preBuildSiteTask: TaskProvider<PreBuildSiteTask>
         ): TaskCollection<BuildSiteTask> {
             val dokkaHtmlMultiModuleTask =
                 project.tasks.namedLazily<DokkaMultiModuleTask>("dokkaHtmlMultiModule")
             val mkdocsBuildTask = project.tasks.namedLazily<MkdocsBuildTask>("mkdocsBuild")
-            mkdocsBuildTask.configureEach { task -> task.dependsOn(preBuildDocsTask) }
+            mkdocsBuildTask.configureEach { task -> task.dependsOn(preBuildSiteTask) }
 
             dokkaHtmlMultiModuleTask.configureEach { task -> task.dependsOn(mkdocsBuildTask) }
 
@@ -63,6 +63,7 @@ constructor(
                 task.notCompatibleWithConfigurationCache("mkDocsBuild(grgit) task is incompatible")
                 task.dependsOn(mkdocsBuildTask)
                 task.dependsOn(dokkaHtmlMultiModuleTask)
+                task.inputs.files(preBuildSiteTask)
             }
             return buildSiteTask
         }

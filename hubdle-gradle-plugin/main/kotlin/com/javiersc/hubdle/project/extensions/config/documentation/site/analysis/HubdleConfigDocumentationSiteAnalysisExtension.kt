@@ -7,7 +7,7 @@ import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.config.analysis.HubdleConfigAnalysisExtension.Qodana
 import com.javiersc.hubdle.project.extensions.config.analysis.tools.hubdleSonar
 import com.javiersc.hubdle.project.extensions.config.documentation.site.BuildSiteTask
-import com.javiersc.hubdle.project.extensions.config.documentation.site.PrebuildSiteTask
+import com.javiersc.hubdle.project.extensions.config.documentation.site.PreBuildSiteTask
 import com.javiersc.hubdle.project.extensions.config.documentation.site.hubdleSite
 import com.javiersc.hubdle.project.extensions.config.documentation.site.projectsInfo
 import javax.inject.Inject
@@ -39,8 +39,8 @@ constructor(
     override fun Project.defaultConfiguration() {
         configurable {
             val analysis = this@HubdleConfigDocumentationSiteAnalysisExtension
-            val preBuildDocsTask: TaskProvider<PrebuildSiteTask> =
-                PrebuildSiteTask.register(project) {
+            val preBuildDocsTask: TaskProvider<PreBuildSiteTask> =
+                PreBuildSiteTask.register(project) {
                     projectsInfo.set(project.projectsInfo)
                     qodana.set(analysis.qodana)
                     qodanaProjectKey.set(analysis.qodanaProjectKey)

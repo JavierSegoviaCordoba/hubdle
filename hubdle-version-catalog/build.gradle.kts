@@ -3,7 +3,8 @@ import com.javiersc.gradle.version.GradleVersion
 import com.javiersc.gradle.version.isSnapshot
 import com.javiersc.kotlin.stdlib.isNotNullNorBlank
 
-val kotlinVersion: String? = getStringProperty("kotlinVersion").orNull
+val kotlinVersion: String? =
+    getStringProperty("kotlinVersion").orNull.takeIf(String?::isNotNullNorBlank)
 
 hubdle {
     config {

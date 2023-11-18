@@ -1,7 +1,8 @@
 import com.javiersc.gradle.properties.extensions.getBooleanProperty
 
 pluginManagement {
-    val itselfVersionFromProp: String? = providers.gradleProperty("itselfVersion").orNull
+    fun prop(name: String): String? = providers.gradleProperty(name).orNull?.takeIf(String::isNotBlank)
+    val itselfVersionFromProp: String? = prop("itselfVersion")
     val itselfVersion: String =
         itselfVersionFromProp
             ?: file("$rootDir/gradle/hubdle.libs.versions.toml")
@@ -9,7 +10,7 @@ pluginManagement {
                 .first { it.startsWith("hubdle") }
                 .split("\"")[1]
 
-    val kotlinVersionFromProp: String? = providers.gradleProperty("kotlinVersion").orNull
+    val kotlinVersionFromProp: String? = prop("kotlinVersion")
     val kotlinVersion: String? = kotlinVersionFromProp
 
     repositories {
@@ -42,8 +43,10 @@ hubdleSettings {
     catalog.isEnabled.set(false)
 }
 
-val itselfVersion: String? = providers.gradleProperty("itselfVersion").orNull
-val kotlinVersion: String? = providers.gradleProperty("kotlinVersion").orNull
+fun prop(name: String): String? = providers.gradleProperty(name).orNull?.takeIf(String::isNotBlank)
+
+val itselfVersion: String? = prop("itselfVersion")
+val kotlinVersion: String? = prop("kotlinVersion")
 
 dependencyResolutionManagement {
     repositories {

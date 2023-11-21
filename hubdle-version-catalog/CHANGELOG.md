@@ -14,6 +14,12 @@
 
 ### Updated
 
+- `com.russhwolf:multiplatform-settings-test -> 1.1.1`
+- `com.russhwolf:multiplatform-settings-serialization -> 1.1.1`
+- `com.russhwolf:multiplatform-settings-no-arg -> 1.1.1`
+- `com.russhwolf:multiplatform-settings-datastore -> 1.1.1`
+- `com.russhwolf:multiplatform-settings-coroutines -> 1.1.1`
+- `com.russhwolf:multiplatform-settings -> 1.1.1`
 - `com.github.triplet.gradle:play-publisher -> 3.8.6`
 - `com.android.library:com.android.library.gradle.plugin -> 8.1.4`
 - `com.android.application:com.android.application.gradle.plugin -> 8.1.4`

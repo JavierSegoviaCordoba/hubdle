@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `app.cash.molecule:molecule-runtime -> 1.3.1`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.5.11`
 - `org.jetbrains.compose.compiler:compiler -> 1.5.4`
 - `org.jetbrains.kotlin.plugin.serialization:org.jetbrains.kotlin.plugin.serialization.gradle.plugin -> 1.9.21`

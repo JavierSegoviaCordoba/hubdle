@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `app.cash.molecule:app.cash.molecule.gradle.plugin -> 1.3.1`
 - `app.cash.molecule:molecule-runtime -> 1.3.1`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.5.11`
 - `org.jetbrains.compose.compiler:compiler -> 1.5.4`

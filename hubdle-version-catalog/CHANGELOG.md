@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `io.gitlab.arturbosch.detekt:detekt-gradle-plugin -> 1.23.4`
 - `app.cash.molecule:app.cash.molecule.gradle.plugin -> 1.3.1`
 - `app.cash.molecule:molecule-runtime -> 1.3.1`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.5.11`

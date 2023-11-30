@@ -6,6 +6,8 @@
 
 ### Changed
 
+- Google Maven repo to filter based on some regex
+
 ### Deprecated
 
 ### Removed

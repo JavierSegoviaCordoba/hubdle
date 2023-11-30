@@ -114,8 +114,14 @@ private fun Settings.useHubdleOnAllProjects() {
 private fun Settings.configureRepositories() {
     dependencyResolutionManagement { management ->
         management.repositories { repository ->
+            repository.google { google ->
+                google.mavenContent { content ->
+                    content.includeGroupByRegex("androidx.*")
+                    content.includeGroupByRegex("com\\.android.*")
+                    content.includeGroupByRegex("com\\.google.*")
+                }
+            }
             repository.mavenCentral()
-            repository.google()
             repository.gradlePluginPortal()
             repository.jetbrainsKotlinBootstrap()
             repository.jetbrainsComposeDev()

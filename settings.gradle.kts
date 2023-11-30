@@ -1,7 +1,8 @@
 import com.javiersc.gradle.properties.extensions.getBooleanProperty
 
 pluginManagement {
-    fun prop(name: String): String? = providers.gradleProperty(name).orNull?.takeIf(String::isNotBlank)
+    fun prop(name: String): String? =
+        providers.gradleProperty(name).orNull?.takeIf(String::isNotBlank)
     val itselfVersionFromProp: String? = prop("itselfVersion")
     val itselfVersion: String =
         itselfVersionFromProp
@@ -14,12 +15,17 @@ pluginManagement {
     val kotlinVersion: String? = kotlinVersionFromProp
 
     repositories {
-        google()
+        google {
+            mavenContent {
+                includeGroupByRegex("androidx.*")
+                includeGroupByRegex("com\\.android.*")
+                includeGroupByRegex("com\\.google.*")
+            }
+        }
         mavenCentral()
         gradlePluginPortal()
-        if (kotlinVersion != null) {
-            maven(url = "https://maven.pkg.jetbrains.space/kotlin/p/kotlin/bootstrap")
-        }
+        maven(url = "https://maven.pkg.jetbrains.space/kotlin/p/kotlin/bootstrap")
+
         if (itselfVersionFromProp != null) {
             mavenLocal()
         }
@@ -50,12 +56,6 @@ val kotlinVersion: String? = prop("kotlinVersion")
 
 dependencyResolutionManagement {
     repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
-        if (kotlinVersion != null) {
-            maven(url = "https://maven.pkg.jetbrains.space/kotlin/p/kotlin/bootstrap")
-        }
         if (itselfVersion != null) {
             mavenLocal()
         }

@@ -1,7 +1,13 @@
 pluginManagement {
     repositories {
+        google {
+            mavenContent {
+                includeGroupByRegex("androidx.*")
+                includeGroupByRegex("com\\.android.*")
+                includeGroupByRegex("com\\.google.*")
+            }
+        }
         mavenCentral()
-        google()
         gradlePluginPortal()
         maven(url = "https://maven.pkg.jetbrains.space/public/p/compose/dev/")
     }
@@ -19,8 +25,14 @@ hubdleSettings {
 
 dependencyResolutionManagement {
     repositories {
+        google {
+            mavenContent {
+                includeGroupByRegex("androidx.*")
+                includeGroupByRegex("com\\.android.*")
+                includeGroupByRegex("com\\.google.*")
+            }
+        }
         mavenCentral()
-        google()
         gradlePluginPortal()
         maven(url = "https://maven.pkg.jetbrains.space/public/p/compose/dev/")
     }

@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx:kotlinx-serialization-json -> 1.6.2`
+- `org.jetbrains.kotlinx:kotlinx-serialization-core -> 1.6.2`
 - `gradle -> 8.5`
 - `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.7.5`
 - `org.jetbrains:markdown -> 0.6.0`
@@ -67,7 +69,6 @@
 - `org.junit.jupiter:junit-jupiter-api -> 5.10.1`
 - `org.junit.jupiter:junit-jupiter -> 5.10.1`
 - `org.junit:junit-bom -> 5.10.1`
-- `org.jetbrains.kotlinx:kotlinx-serialization-json -> 1.6.1`
 - `org.jetbrains.kotlinx:kotlinx-serialization-core -> 1.6.1`
 - `androidx.compose.compiler:compiler -> 1.5.4`
 - `androidx.activity:activity-ktx -> 1.8.1`

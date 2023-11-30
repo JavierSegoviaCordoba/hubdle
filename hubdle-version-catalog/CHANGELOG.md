@@ -14,6 +14,13 @@
 
 ### Updated
 
+- `gradle -> 8.5`
+- `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.7.5`
+- `org.jetbrains:markdown -> 0.6.0`
+- `org.gradle:test-retry-gradle-plugin -> 1.5.7`
+- `com.diffplug.spotless:spotless-plugin-gradle -> 6.23.0`
+- `androidx.compose.runtime:runtime-tracing -> 1.0.0-beta01`
+- `androidx.compose.compiler:compiler -> 1.5.5`
 - `io.gitlab.arturbosch.detekt:detekt-gradle-plugin -> 1.23.4`
 - `app.cash.molecule:app.cash.molecule.gradle.plugin -> 1.3.1`
 - `app.cash.molecule:molecule-runtime -> 1.3.1`
@@ -62,7 +69,6 @@
 - `org.junit:junit-bom -> 5.10.1`
 - `org.jetbrains.kotlinx:kotlinx-serialization-json -> 1.6.1`
 - `org.jetbrains.kotlinx:kotlinx-serialization-core -> 1.6.1`
-- `androidx.compose.runtime:runtime-tracing -> 1.0.0-alpha05`
 - `androidx.compose.compiler:compiler -> 1.5.4`
 - `androidx.activity:activity-ktx -> 1.8.1`
 - `androidx.activity:activity-compose -> 1.8.1`

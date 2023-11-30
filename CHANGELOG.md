@@ -14,6 +14,14 @@
 
 ### Updated
 
+- `gradle -> 8.5`
+- `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.7.5`
+- `org.jetbrains:markdown -> 0.6.0`
+- `org.gradle:test-retry-gradle-plugin -> 1.5.7`
+- `com.diffplug.spotless:spotless-plugin-gradle -> 6.23.2`
+- `androidx.compose.runtime:runtime-tracing -> 1.0.0-beta01`
+- `androidx.compose.compiler:compiler -> 1.5.5`
+
 ## [0.5.0-beta.14] - 2023-11-01
 
 ### Added

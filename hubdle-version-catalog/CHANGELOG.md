@@ -14,6 +14,9 @@
 
 ### Updated
 
+- `com.android.library:com.android.library.gradle.plugin -> 8.2.0`
+- `com.android.application:com.android.application.gradle.plugin -> 8.2.0`
+- `com.android.tools.build:gradle -> 8.2.0`
 - `org.jetbrains.kotlinx:kotlinx-serialization-json -> 1.6.2`
 - `org.jetbrains.kotlinx:kotlinx-serialization-core -> 1.6.2`
 - `gradle -> 8.5`
@@ -52,7 +55,6 @@
 - `com.russhwolf:multiplatform-settings-coroutines -> 1.1.1`
 - `com.russhwolf:multiplatform-settings -> 1.1.1`
 - `com.github.triplet.gradle:play-publisher -> 3.8.6`
-- `com.android.library:com.android.library.gradle.plugin -> 8.1.4`
 - `com.android.application:com.android.application.gradle.plugin -> 8.1.4`
 - `com.android.tools.build:gradle -> 8.1.4`
 - `io.ktor:ktor-serialization-kotlinx-json -> 2.3.6`

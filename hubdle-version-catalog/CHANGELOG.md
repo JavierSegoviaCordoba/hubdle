@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx:kotlinx-datetime -> 0.5.0`
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.16.1`
 - `com.android.library:com.android.library.gradle.plugin -> 8.2.0`
 - `com.android.application:com.android.application.gradle.plugin -> 8.2.0`
@@ -56,7 +57,6 @@
 - `com.russhwolf:multiplatform-settings-coroutines -> 1.1.1`
 - `com.russhwolf:multiplatform-settings -> 1.1.1`
 - `com.github.triplet.gradle:play-publisher -> 3.8.6`
-- `com.android.tools.build:gradle -> 8.1.4`
 - `io.ktor:ktor-serialization-kotlinx-json -> 2.3.6`
 - `io.ktor:ktor-client-okhttp -> 2.3.6`
 - `io.ktor:ktor-client-mock -> 2.3.6`

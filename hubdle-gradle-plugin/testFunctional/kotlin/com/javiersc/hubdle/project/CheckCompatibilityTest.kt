@@ -9,7 +9,7 @@ class CheckCompatibilityTest : GradleTestKitTest() {
     @Test
     fun `check compatibility`() {
         gradleTestKitTest("check-compatibility/1") {
-            withArguments("build")
+            withArguments("build", "--no-scan")
 
             val expectOutput =
                 """ 

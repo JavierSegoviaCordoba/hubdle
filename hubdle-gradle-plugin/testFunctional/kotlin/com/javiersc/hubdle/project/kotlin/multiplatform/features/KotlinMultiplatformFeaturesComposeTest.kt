@@ -25,7 +25,7 @@ internal class KotlinMultiplatformFeaturesComposeTest : GradleTestKitTest() {
             File(RootDirAbsolutePath)
                 .resolve("gradle/hubdle.libs.versions.toml")
                 .copyTo(target = hubdleTomlDestination, overwrite = true)
-            gradlew("build", stacktrace())
+            gradlew("build", stacktrace(), "--no-scan")
                 .apply { println(output) }
                 .task(":build")
                 .shouldNotBeNull()

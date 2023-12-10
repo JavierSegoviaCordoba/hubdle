@@ -26,7 +26,7 @@ internal class KotlinJvmMoleculeFeatureTest : GradleTestKitTest() {
             File(HubdleGradlePluginProjectData.RootDirAbsolutePath)
                 .resolve("gradle/hubdle.libs.versions.toml")
                 .copyTo(target = hubdleTomlDestination, overwrite = true)
-            withArguments("run").build().outputTrimmed.apply {
+            withArguments("run", "--no-scan").build().outputTrimmed.apply {
                 shouldContain("FooState(name=Unknown")
                 shouldContain("FooState(name=B")
             }

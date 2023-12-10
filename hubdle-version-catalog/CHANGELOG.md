@@ -14,6 +14,16 @@
 
 ### Updated
 
+- `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.16`
+- `org.gradle:test-retry-gradle-plugin -> 1.5.8`
+- `org.eclipse.jgit:org.eclipse.jgit -> 6.8.0.202311291450-r`
+- `com.diffplug.spotless:spotless-plugin-gradle -> 6.23.3`
+- `io.ktor:ktor-serialization-kotlinx-json -> 2.3.7`
+- `io.ktor:ktor-client-okhttp -> 2.3.7`
+- `io.ktor:ktor-client-mock -> 2.3.7`
+- `io.ktor:ktor-client-core -> 2.3.7`
+- `io.ktor:ktor-client-content-negotiation -> 2.3.7`
+- `io.ktor:ktor-client-cio -> 2.3.7`
 - `org.jetbrains.kotlinx:kotlinx-datetime -> 0.5.0`
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.16.1`
 - `com.android.library:com.android.library.gradle.plugin -> 8.2.0`
@@ -24,7 +34,6 @@
 - `gradle -> 8.5`
 - `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.7.5`
 - `org.jetbrains:markdown -> 0.6.0`
-- `org.gradle:test-retry-gradle-plugin -> 1.5.7`
 - `com.diffplug.spotless:spotless-plugin-gradle -> 6.23.0`
 - `androidx.compose.runtime:runtime-tracing -> 1.0.0-beta01`
 - `androidx.compose.compiler:compiler -> 1.5.5`

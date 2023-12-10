@@ -14,6 +14,12 @@
 
 ### Updated
 
+- `app.cash.sqldelight:app.cash.sqldelight.gradle.plugin -> 2.0.1`
+- `app.cash.sqldelight:sqlite-driver -> 2.0.1`
+- `app.cash.sqldelight:native-driver -> 2.0.1`
+- `app.cash.sqldelight:jdbc-driver -> 2.0.1`
+- `app.cash.sqldelight:coroutines-extensions -> 2.0.1`
+- `app.cash.sqldelight:android-driver -> 2.0.1`
 - `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.16`
 - `org.gradle:test-retry-gradle-plugin -> 1.5.8`
 - `org.eclipse.jgit:org.eclipse.jgit -> 6.8.0.202311291450-r`
@@ -34,7 +40,6 @@
 - `gradle -> 8.5`
 - `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.7.5`
 - `org.jetbrains:markdown -> 0.6.0`
-- `com.diffplug.spotless:spotless-plugin-gradle -> 6.23.0`
 - `androidx.compose.runtime:runtime-tracing -> 1.0.0-beta01`
 - `androidx.compose.compiler:compiler -> 1.5.5`
 - `io.gitlab.arturbosch.detekt:detekt-gradle-plugin -> 1.23.4`

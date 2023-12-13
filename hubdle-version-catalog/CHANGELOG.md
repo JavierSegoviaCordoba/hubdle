@@ -14,6 +14,10 @@
 
 ### Updated
 
+## [0.1.16] - 2023-12-13
+
+### Updated
+
 - `androidx.compose.compiler:compiler -> 1.5.6`
 - `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.16`
 - `org.gradle:test-retry-gradle-plugin -> 1.5.8`
@@ -695,7 +699,9 @@
 - `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
 - `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.13.1`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.15...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.16...HEAD
+
+[0.1.16]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.15...c0.1.16
 
 [0.1.15]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.14...c0.1.15
 

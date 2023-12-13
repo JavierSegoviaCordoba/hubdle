@@ -6,10 +6,20 @@ on:
       - '**'
 
 jobs:
+  echo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo GitHub ref starts with c
+        run: |
+          echo "${{ github.ref_name }}"
+          echo "${{ 'github.ref_name' }}"
+          echo "${{ startsWith('github.ref_name', 'c') }}"
+          echo "${{ !startsWith('github.ref_name', 'c') == true }}"
+
   publish:
     uses: JavierSegoviaCordoba/reusable-workflows/.github/workflows/publish-kotlin.yaml@main
     with:
-      publish-gradle-plugin-portal: ${{ !contains('github.ref_name', 'c') }}
+      publish-gradle-plugin-portal: "${{ startsWith('github.ref_name', 'c') }}"
       gradle-args-build: '--exclude-task spotlessCheck'
       gradle-args-publish-maven-central: '-P publishing.sign=true'
       changelog-file-c-tag-prefix: 'hubdle-version-catalog/CHANGELOG.md'

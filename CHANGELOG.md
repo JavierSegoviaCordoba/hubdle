@@ -6,13 +6,19 @@
 
 ### Changed
 
-- Google Maven repo to filter based on some regex
-
 ### Deprecated
 
 ### Removed
 
 ### Fixed
+
+### Updated
+
+## [0.5.0-beta.15] - 2023-12-13
+
+### Changed
+
+- Google Maven repo to filter based on some regex
 
 ### Updated
 
@@ -579,7 +585,9 @@
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.13.2`
 - `app.cash.molecule:molecule-gradle-plugin -> 0.8.0`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-beta.14...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-beta.15...HEAD
+
+[0.5.0-beta.15]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-beta.14...0.5.0-beta.15
 
 [0.5.0-beta.14]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-beta.13...0.5.0-beta.14
 

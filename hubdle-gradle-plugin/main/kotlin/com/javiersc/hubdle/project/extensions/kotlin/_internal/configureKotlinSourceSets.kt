@@ -8,9 +8,12 @@ import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions._internal.MAIN
 import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.TEST_FIXTURES
+import com.javiersc.hubdle.project.extensions._internal.TEST_FUNCTIONAL
+import com.javiersc.hubdle.project.extensions._internal.TEST_INTEGRATION
 import com.javiersc.hubdle.project.extensions.android._internal.findAndroidCommonExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleSourceSetConfigurableExtension as HubdleSrcSetConfExt
+import com.javiersc.hubdle.project.extensions.config.testing.ALL_TEST_TASK_NAME
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.hubdleKotlinMultiplatform
 import com.javiersc.kotlin.stdlib.decapitalize
 import java.io.File
@@ -58,9 +61,7 @@ internal fun HubdleSrcSetConfExt<*>.configurableTestFixtures() {
 
 internal fun HubdleSrcSetConfExt<*>.configurableTestIntegrationSourceSets() {
     configurable(isEnabled = isTestFunctionalFullEnabled) {
-        val testIntegrationSourceSet =
-            the<SourceSetContainer>()
-                .maybeCreate(com.javiersc.hubdle.project.extensions._internal.TEST_INTEGRATION)
+        val testIntegrationSourceSet = the<SourceSetContainer>().maybeCreate(TEST_INTEGRATION)
 
         val integrationTestTask: TaskProvider<Test> =
             tasks.register<Test>("integrationTest") {
@@ -71,11 +72,9 @@ internal fun HubdleSrcSetConfExt<*>.configurableTestIntegrationSourceSets() {
 
         tasks.named<Task>(CHECK_TASK_NAME) { dependsOn(integrationTestTask) }
 
-        tasks
-            .namedLazily<Task>(
-                com.javiersc.hubdle.project.extensions.config.testing.ALL_TEST_TASK_NAME
-            )
-            .configureEach { it.dependsOn(integrationTestTask) }
+        tasks.namedLazily<Task>(ALL_TEST_TASK_NAME).configureEach {
+            it.dependsOn(integrationTestTask)
+        }
 
         project.dependencies {
             "testIntegrationImplementation"(project)
@@ -89,13 +88,9 @@ internal fun HubdleSrcSetConfExt<*>.configurableTestIntegrationSourceSets() {
 internal fun HubdleSrcSetConfExt<KotlinSourceSet>.configurableKotlinTestIntegrationSourceSets() {
     configurable(isEnabled = isTestIntegrationEnabled) {
         configure<KotlinProjectExtension> {
-            sourceSets.maybeCreate(
-                com.javiersc.hubdle.project.extensions._internal.TEST_INTEGRATION
-            )
+            sourceSets.maybeCreate(TEST_INTEGRATION)
             targets.forEach { target ->
-                target.configureAdditionalTestCompilations(
-                    com.javiersc.hubdle.project.extensions._internal.TEST_INTEGRATION
-                )
+                target.configureAdditionalTestCompilations(TEST_INTEGRATION)
             }
         }
         testIntegration.configure {
@@ -111,9 +106,7 @@ internal fun HubdleSrcSetConfExt<KotlinSourceSet>.configurableKotlinTestIntegrat
 
 internal fun HubdleSrcSetConfExt<*>.configurableTestFunctionalSourceSets() {
     configurable(isEnabled = isTestFunctionalFullEnabled) {
-        val testFunctionalSourceSet =
-            the<SourceSetContainer>()
-                .maybeCreate(com.javiersc.hubdle.project.extensions._internal.TEST_FUNCTIONAL)
+        val testFunctionalSourceSet = the<SourceSetContainer>().maybeCreate(TEST_FUNCTIONAL)
 
         val functionalTestTask: TaskProvider<Test> =
             tasks.register<Test>("functionalTest") {
@@ -124,11 +117,9 @@ internal fun HubdleSrcSetConfExt<*>.configurableTestFunctionalSourceSets() {
 
         tasks.named<Task>(CHECK_TASK_NAME) { dependsOn(functionalTestTask) }
 
-        tasks
-            .namedLazily<Task>(
-                com.javiersc.hubdle.project.extensions.config.testing.ALL_TEST_TASK_NAME
-            )
-            .configureEach { it.dependsOn(functionalTestTask) }
+        tasks.namedLazily<Task>(ALL_TEST_TASK_NAME).configureEach {
+            it.dependsOn(functionalTestTask)
+        }
 
         project.dependencies {
             "testFunctionalImplementation"(project)
@@ -142,11 +133,9 @@ internal fun HubdleSrcSetConfExt<*>.configurableTestFunctionalSourceSets() {
 internal fun HubdleSrcSetConfExt<KotlinSourceSet>.configurableKotlinTestFunctionalSourceSets() {
     configurable(isEnabled = isTestFunctionalFullEnabled, priority = Priority.P6) {
         configure<KotlinProjectExtension> {
-            sourceSets.maybeCreate(com.javiersc.hubdle.project.extensions._internal.TEST_FUNCTIONAL)
+            sourceSets.maybeCreate(TEST_FUNCTIONAL)
             targets.forEach { target ->
-                target.configureAdditionalTestCompilations(
-                    com.javiersc.hubdle.project.extensions._internal.TEST_FUNCTIONAL
-                )
+                target.configureAdditionalTestCompilations(TEST_FUNCTIONAL)
             }
         }
         testFunctional.configure {

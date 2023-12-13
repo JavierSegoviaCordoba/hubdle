@@ -81,13 +81,13 @@ constructor(
     }
 
     public companion object {
-        public const val name: String = "preBuildSite"
+        public const val NAME: String = "preBuildSite"
 
         internal fun register(
             project: Project,
             configure: PreBuildSiteTask.() -> Unit
         ): TaskProvider<PreBuildSiteTask> =
-            project.tasks.register<PreBuildSiteTask>(name) { configure(this) }
+            project.tasks.register<PreBuildSiteTask>(NAME) { configure(this) }
     }
 
     private fun buildDotDocsDirectory(dotDocsDirectory: File) {
@@ -378,9 +378,9 @@ constructor(
                 createNewFile()
             }
 
-    private data class DocsNavigation(val index: Int, val navs: List<String>)
+    private data class DocsNavigation(val index: Int, val navs: Set<String>)
 
-    private fun writeNavigation(newNavigations: List<String>) {
+    private fun writeNavigation(newNavigations: Set<String>) {
         mkDocsBuildFile.writeText(
             buildList {
                     addAll(mkDocsBuildFile.readLines())
@@ -401,9 +401,10 @@ constructor(
         return DocsNavigation(
             index = navIndex,
             navs =
-                content.subList(navIndex + 1, content.count()).takeWhile {
-                    it.replace(" ", "").startsWith("-")
-                }
+                content
+                    .subList(navIndex + 1, content.count())
+                    .takeWhile { it.replace(" ", "").startsWith("-") }
+                    .toSet()
         )
     }
 

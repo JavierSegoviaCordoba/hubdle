@@ -1,3 +1,5 @@
+@file:Suppress("PackageDirectoryMismatch")
+
 package com.javiersc.kotlin.jvm.molecule
 
 import app.cash.molecule.RecompositionMode

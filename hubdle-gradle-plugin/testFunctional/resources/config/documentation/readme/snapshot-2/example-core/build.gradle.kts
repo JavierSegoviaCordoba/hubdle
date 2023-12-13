@@ -1,1 +1,5 @@
-plugins { kotlin("jvm") }
+@file:Suppress("PackageDirectoryMismatch")
+
+plugins {
+    kotlin("jvm")
+}

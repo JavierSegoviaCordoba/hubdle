@@ -1,3 +1,5 @@
+@file:Suppress("PackageDirectoryMismatch")
+
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.kotlin.dsl.plugin
 import org.gradle.kotlin.dsl.the

@@ -157,37 +157,25 @@ internal interface Configurable {
     sealed class Priority(private val value: Int) : Comparable<Priority> {
 
         /** Configuration that can affect to all configurations like versioning plugins. */
-        object P1 : Priority(1) {
-            override fun toString(): String = "P1"
-        }
+        data object P1 : Priority(1)
 
         /** Important configurations that affect to other configurations but not all of them. */
-        object P2 : Priority(2) {
-            override fun toString(): String = "P2"
-        }
+        data object P2 : Priority(2)
 
         /** Default configurations */
-        object P3 : Priority(3) {
-            override fun toString(): String = "P3"
-        }
+        data object P3 : Priority(3)
 
         /** Less important configurations like secondary ones that are not Kotlin or Android */
-        object P4 : Priority(4) {
-            override fun toString(): String = "P4"
-        }
+        data object P4 : Priority(4)
 
         /** User configurations */
-        object P5 : Priority(5) {
-            override fun toString(): String = "P5"
-        }
+        data object P5 : Priority(5)
 
         /**
          * Default configurations which depends on some user ones in third-party plugin
          * configurations that are not lazy
          */
-        object P6 : Priority(6) {
-            override fun toString(): String = "P6"
-        }
+        data object P6 : Priority(6)
 
         override fun compareTo(other: Priority): Int =
             when {

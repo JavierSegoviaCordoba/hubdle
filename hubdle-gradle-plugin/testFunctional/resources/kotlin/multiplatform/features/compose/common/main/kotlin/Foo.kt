@@ -1,3 +1,5 @@
+@file:Suppress("PackageDirectoryMismatch")
+
 package multiplatform.features.compose
 
 import androidx.compose.foundation.layout.Column

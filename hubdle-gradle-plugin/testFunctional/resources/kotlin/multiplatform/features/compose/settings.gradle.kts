@@ -1,3 +1,5 @@
+@file:Suppress("PackageDirectoryMismatch")
+
 pluginManagement {
     repositories {
         google {

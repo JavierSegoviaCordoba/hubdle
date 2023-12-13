@@ -1,3 +1,5 @@
+@file:Suppress("PackageDirectoryMismatch")
+
 rootProject.name = "sandbox-project"
 
 plugins {

@@ -1,3 +1,5 @@
+@file:Suppress("PackageDirectoryMismatch")
+
 package com.javiersc.gradle.plugins.docs.sandbox
 
 /**

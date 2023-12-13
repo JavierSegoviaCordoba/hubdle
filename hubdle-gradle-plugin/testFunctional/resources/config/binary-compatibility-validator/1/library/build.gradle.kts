@@ -1,3 +1,5 @@
+@file:Suppress("PackageDirectoryMismatch")
+
 version = "1.0.0"
 
 hubdle {

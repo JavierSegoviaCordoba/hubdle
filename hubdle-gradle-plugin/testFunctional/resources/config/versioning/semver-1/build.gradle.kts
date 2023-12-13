@@ -1,3 +1,5 @@
+@file:Suppress("PackageDirectoryMismatch")
+
 import com.javiersc.semver.project.gradle.plugin.SemverExtension
 
 plugins {

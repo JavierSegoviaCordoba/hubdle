@@ -1,9 +1,7 @@
+@file:Suppress("PackageDirectoryMismatch")
+
 package com.kotlin.jvm.sandbox.project
 
-class Format {
+const val format =
 
-    val hello =
-
-
-        1
-}
+    1

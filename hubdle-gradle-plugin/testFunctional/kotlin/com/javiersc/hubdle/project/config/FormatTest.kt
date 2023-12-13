@@ -18,7 +18,7 @@ internal class FormatTest : GradleTestKitTest() {
                 .resolve("main/kotlin/Format.kt")
                 .readLines()
                 .fifth()
-                .shouldBe("val hello = 1".prependIndent())
+                .shouldBe("const val format = 1")
         }
     }
 

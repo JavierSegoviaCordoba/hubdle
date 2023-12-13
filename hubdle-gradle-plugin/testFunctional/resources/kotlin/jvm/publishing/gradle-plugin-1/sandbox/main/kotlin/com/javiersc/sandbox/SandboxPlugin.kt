@@ -1,3 +1,5 @@
+@file:Suppress("PackageDirectoryMismatch")
+
 package com.javiersc.sandbox
 
 import com.javiersc.gradle.logging.extensions.infoColored

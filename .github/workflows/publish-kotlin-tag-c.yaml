@@ -1,16 +1,18 @@
-name: publish-kotlin
+name: publish-kotlin-tag-c
 
 on:
   push:
     tags:
-      - '[1-9]+.[1-9]+'
+      - 'c[1-9]+.[1-9]+'
 
 jobs:
   publish:
     uses: JavierSegoviaCordoba/reusable-workflows/.github/workflows/publish-kotlin.yaml@main
     with:
-      publish-gradle-plugin-portal: true
+      publish-gradle-plugin-portal: false
       gradle-args-build: '--exclude-task spotlessCheck'
       gradle-args-publish-maven-central: '-P publishing.sign=true'
+      changelog-file: 'hubdle-version-catalog/CHANGELOG.md'
+      tag-prefix-regex: '[c]*'
       restore-kotlin-native-cache: false
     secrets: inherit

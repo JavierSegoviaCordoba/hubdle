@@ -14,6 +14,10 @@
 
 ### Updated
 
+- `androidx.navigation:navigation-compose -> 2.7.6`
+- `androidx.activity:activity-ktx -> 1.8.2`
+- `androidx.activity:activity-compose -> 1.8.2`
+
 ## [0.1.16] - 2023-12-13
 
 ### Updated

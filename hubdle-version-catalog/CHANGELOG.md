@@ -14,7 +14,7 @@
 
 ### Updated
 
-- `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-beta.15`
+- `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-beta.16`
 - `com.javiersc.semver:com.javiersc.semver.gradle.plugin -> 0.5.0-rc.6`
 - `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.16.1`
 - `androidx.navigation:navigation-compose -> 2.7.6`

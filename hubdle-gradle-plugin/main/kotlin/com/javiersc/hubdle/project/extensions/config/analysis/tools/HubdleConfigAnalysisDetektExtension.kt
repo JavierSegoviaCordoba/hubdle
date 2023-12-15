@@ -1,6 +1,5 @@
 package com.javiersc.hubdle.project.extensions.config.analysis.tools
 
-import com.javiersc.gradle.tasks.extensions.namedLazily
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin
 import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
@@ -18,7 +17,6 @@ import java.io.File
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
-import org.gradle.api.Task
 import org.gradle.api.provider.Property
 import org.gradle.api.provider.SetProperty
 import org.gradle.kotlin.dsl.configure
@@ -86,8 +84,6 @@ constructor(
             basePath = projectDir.path
             source.from(allKotlinSrcDirsWithoutBuild)
         }
-
-        tasks.namedLazily<Task>("checkAnalysis").configureEach { task -> task.dependsOn("detekt") }
 
         configureDetektTask()
     }

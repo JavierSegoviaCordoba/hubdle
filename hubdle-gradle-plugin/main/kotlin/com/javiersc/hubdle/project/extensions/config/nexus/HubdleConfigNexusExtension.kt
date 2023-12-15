@@ -9,6 +9,8 @@ import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.config.hubdleConfig
+import com.javiersc.hubdle.project.extensions.config.publishing.tasks.CheckIsSemverTask
+import com.javiersc.hubdle.project.extensions.config.versioning.semver._internal.isTagPrefixProject
 import io.github.gradlenexus.publishplugin.NexusPublishException
 import io.github.gradlenexus.publishplugin.NexusPublishExtension
 import java.net.URI
@@ -109,6 +111,11 @@ constructor(
                     options.maxRetries.set(DEFAULT_MAX_RETRIES)
                     options.delayBetween.set(Duration.ofSeconds(DEFAULT_DELAY_BETWEEN))
                 }
+            }
+
+            tasks.named("initializeSonatypeStagingRepository").configure { task ->
+                task.enabled = isTagPrefixProject
+                task.dependsOn(CheckIsSemverTask.NAME)
             }
         }
     }

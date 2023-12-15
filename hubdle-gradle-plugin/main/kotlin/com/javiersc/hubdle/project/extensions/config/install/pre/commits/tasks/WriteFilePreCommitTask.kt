@@ -52,13 +52,13 @@ constructor(
     }
 
     public companion object {
-        public const val name: String = "writeFilePreCommit"
+        public const val NAME: String = "writeFilePreCommit"
 
         internal fun register(project: Project) {
-            project.tasks.register<WriteFilePreCommitTask>(name)
+            project.tasks.register<WriteFilePreCommitTask>(NAME)
         }
 
         internal fun getTask(project: Project): TaskProvider<WriteFilePreCommitTask> =
-            project.tasks.named<WriteFilePreCommitTask>(name)
+            project.tasks.named<WriteFilePreCommitTask>(NAME)
     }
 }

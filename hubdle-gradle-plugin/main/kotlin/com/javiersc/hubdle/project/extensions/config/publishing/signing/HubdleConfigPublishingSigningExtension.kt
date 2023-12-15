@@ -1,5 +1,7 @@
 package com.javiersc.hubdle.project.extensions.config.publishing.signing
 
+import PUBLISH_ALL_TO_MAVEN_LOCAL_TEST
+import PUBLISH_TO_MAVEN_LOCAL_TEST
 import com.javiersc.gradle.project.extensions.isNotSnapshot
 import com.javiersc.gradle.properties.extensions.getBooleanProperty
 import com.javiersc.gradle.properties.extensions.getStringProperty
@@ -93,9 +95,9 @@ constructor(
             val hasPublishToMavenLocalTasks: Boolean =
                 allTasks.any { task ->
                     task == "publishToMavenLocal" ||
-                        task == "publishToMavenLocalTest" ||
+                        task == PUBLISH_TO_MAVEN_LOCAL_TEST ||
                         task == "publishToMavenLocalBuildTest" ||
-                        task == "publishAllPublicationsToMavenLocalTestRepository" ||
+                        task == PUBLISH_ALL_TO_MAVEN_LOCAL_TEST ||
                         task == "publishAllPublicationsToMavenLocalBuildTestRepository"
                 }
 

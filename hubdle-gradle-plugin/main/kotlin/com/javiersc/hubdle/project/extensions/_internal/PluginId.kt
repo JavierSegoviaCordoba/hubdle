@@ -14,6 +14,7 @@ internal enum class PluginId(val id: String) {
     GradleVersionCatalog("org.gradle.version-catalog"),
     JavaGradlePlugin("java-gradle-plugin"),
     JavaTestFixtures("java-test-fixtures"),
+    JavierscHubdle("com.javiersc.hubdle"),
     JavierscSemverGradlePlugin("com.javiersc.semver"),
     JetbrainsChangelog("org.jetbrains.changelog"),
     JetbrainsCompose("org.jetbrains.compose"),

@@ -4,15 +4,28 @@
 
 ### Added
 
+- `tests` task to run all `Test` tasks
+- `fixChecks` task
+- `applyFormat` depends on `fixChecks` task
+- `dumpApi` depends on `fixChecks` task
+
 ### Changed
 
 ### Deprecated
 
 ### Removed
 
+- `allTests` task
+
 ### Fixed
 
 ### Updated
+
+## [0.5.0-beta.16] - 2023-12-13
+
+### Updated
+
+- `Hubdle` to `0.5.0-beta.15`
 
 ## [0.5.0-beta.15] - 2023-12-13
 

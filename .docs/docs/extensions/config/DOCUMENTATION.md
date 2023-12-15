@@ -146,7 +146,6 @@ Build a site easily by running
   - reports
     - `isEnabled: Property<Boolean>` // true
     - `enabled(value: Boolean = true)`
-    - `allTests: Property<Boolean>` // true
     - `codeAnalysis: Property<Boolean>` // true
     - `codeCoverage: Property<Boolean>` // true
     - `codeQuality: Property<Boolean>` // true
@@ -175,7 +174,6 @@ hubdle {
             site {
                 isEnabled = true
                 reports {
-                    allTests = true
                     codeAnalysis = true
                     codeCoverage = true
                     codeQuality = true

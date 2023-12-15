@@ -1,8 +1,6 @@
 import com.javiersc.gradle.extensions.version.catalogs.artifact
 import com.javiersc.gradle.extensions.version.catalogs.getLibraries
 import com.javiersc.gradle.properties.extensions.getStringProperty
-import com.javiersc.gradle.tasks.extensions.maybeRegisterLazily
-import com.javiersc.gradle.tasks.extensions.namedLazily
 import com.javiersc.gradle.version.GradleVersion
 import com.javiersc.gradle.version.isSnapshot
 import com.javiersc.kotlin.stdlib.isNotNullNorBlank
@@ -163,7 +161,7 @@ val Project.buildDirectory: File
     get() = layout.buildDirectory.get().asFile
 
 fun Project.generateHubdle() {
-    val hubdleCodegen: TaskCollection<Task> = tasks.maybeRegisterLazily("generateHubdle")
+    val hubdleCodegen: TaskProvider<Task> = tasks.register("generateHubdle")
     tasks.withType<Jar>().configureEach { mustRunAfter(hubdleCodegen) }
     tasks.withType<Detekt>().configureEach { mustRunAfter(hubdleCodegen) }
 
@@ -172,7 +170,7 @@ fun Project.generateHubdle() {
         .kotlin
         .srcDirs(buildDirectory.resolve("generated/main/kotlin"))
 
-    hubdleCodegen.configureEach {
+    hubdleCodegen.configure {
         group = "build"
 
         inputs.files(
@@ -188,13 +186,11 @@ fun Project.generateHubdle() {
         }
     }
 
-    tasks.namedLazily<Task>("apiCheck").configureEach { dependsOn(hubdleCodegen) }
+    tasks.named("apiCheck").configure { dependsOn(hubdleCodegen) }
 
-    tasks.namedLazily<Task>("apiDump").configureEach { dependsOn(hubdleCodegen) }
+    tasks.named("apiDump").configure { dependsOn(hubdleCodegen) }
 
-    tasks.namedLazily<Task>(LifecycleBasePlugin.ASSEMBLE_TASK_NAME).configureEach {
-        dependsOn(hubdleCodegen)
-    }
+    tasks.named(LifecycleBasePlugin.ASSEMBLE_TASK_NAME).configure { dependsOn(hubdleCodegen) }
 
     tasks.withType<JavaCompile>().configureEach { dependsOn(hubdleCodegen) }
 

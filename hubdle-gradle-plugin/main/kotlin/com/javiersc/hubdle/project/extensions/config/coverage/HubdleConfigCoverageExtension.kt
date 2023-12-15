@@ -1,7 +1,5 @@
 package com.javiersc.hubdle.project.extensions.config.coverage
 
-import com.javiersc.gradle.tasks.extensions.maybeRegisterLazily
-import com.javiersc.gradle.tasks.extensions.namedLazily
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
@@ -10,7 +8,7 @@ import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.config.hubdleConfig
-import com.javiersc.hubdle.project.extensions.config.testing.ALL_TEST_TASK_NAME
+import com.javiersc.hubdle.project.tasks.lifecycle.TestsTask
 import javax.inject.Inject
 import kotlinx.kover.gradle.plugin.dsl.KoverProjectExtension
 import kotlinx.kover.gradle.plugin.dsl.KoverReportExtension
@@ -19,7 +17,7 @@ import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.file.DirectoryProperty
 import org.gradle.api.provider.Property
-import org.gradle.api.tasks.TaskCollection
+import org.gradle.api.tasks.TaskProvider
 import org.gradle.kotlin.dsl.the
 
 @HubdleDslMarker
@@ -76,21 +74,21 @@ constructor(
                 }
             }
 
-            val koverHtmlReportTask = tasks.namedLazily<Task>("koverHtmlReport")
-            val koverXmlReportTask = tasks.namedLazily<Task>("koverXmlReport")
+            val koverHtmlReportTask = tasks.named("koverHtmlReport")
+            val koverXmlReportTask = tasks.named("koverXmlReport")
 
-            val koverReportTask: TaskCollection<Task> =
-                tasks.maybeRegisterLazily<Task>("koverReport")
+            val koverReportTask: TaskProvider<Task> =
+                // TODO: replace with `maybeRegister("koverReport")`
+                if (!tasks.names.contains("koverReport")) tasks.register("koverReport")
+                else tasks.named("koverReport")
 
-            koverReportTask.configureEach { task ->
+            koverReportTask.configure { task ->
                 task.group = "verification"
                 task.dependsOn(koverHtmlReportTask)
                 task.dependsOn(koverXmlReportTask)
             }
 
-            tasks.namedLazily<Task>(ALL_TEST_TASK_NAME).configureEach { task ->
-                task.dependsOn(koverReportTask)
-            }
+            tasks.named(TestsTask.NAME).configure { task -> task.dependsOn(koverReportTask) }
         }
     }
 }

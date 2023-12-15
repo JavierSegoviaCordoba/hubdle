@@ -1,8 +1,7 @@
 package com.javiersc.hubdle.project.extensions.config.binary.compatibility.validator
 
+import com.android.build.gradle.internal.tasks.factory.dependsOn
 import com.javiersc.gradle.project.extensions.isRootProject
-import com.javiersc.gradle.tasks.extensions.maybeRegisterLazily
-import com.javiersc.gradle.tasks.extensions.namedLazily
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
@@ -11,12 +10,14 @@ import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.config.hubdleConfig
+import com.javiersc.hubdle.project.tasks.lifecycle.FixChecksTask
 import javax.inject.Inject
 import kotlinx.validation.ApiValidationExtension
 import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.provider.Property
+import org.gradle.api.tasks.TaskProvider
 
 @HubdleDslMarker
 public open class HubdleConfigBinaryCompatibilityValidatorExtension
@@ -50,16 +51,23 @@ constructor(
                 "`binaryCompatibilityValidator` must be applied only on root project"
             }
             allprojects { allproject ->
-                val apiCheckTask = allproject.tasks.namedLazily<Task>("apiCheck")
-                val checkApiTask = allproject.tasks.maybeRegisterLazily<Task>("checkApi")
-                checkApiTask.configureEach { task ->
-                    task.group = "verification"
-                    task.dependsOn(apiCheckTask)
-                }
+                val checkApiTask: TaskProvider<Task> = allproject.tasks.register("checkApi")
+                val dumpApiTask: TaskProvider<Task> = allproject.tasks.register("dumpApi")
+                tasks.named(FixChecksTask.NAME).dependsOn(dumpApiTask)
 
-                val apiDumpTask = allproject.tasks.namedLazily<Task>("apiDump")
-                val dumpApiTask = allproject.tasks.maybeRegisterLazily<Task>("dumpApi")
-                dumpApiTask.configureEach { task -> task.dependsOn(apiDumpTask) }
+                allproject.afterEvaluate {
+                    val apiCheckTask: TaskProvider<Task> = allproject.tasks.named("apiCheck")
+                    checkApiTask.configure { task ->
+                        task.group = "verification"
+                        task.dependsOn(apiCheckTask)
+                    }
+
+                    val apiDumpTask: TaskProvider<Task> = allproject.tasks.named("apiDump")
+                    dumpApiTask.configure { task ->
+                        task.group = "verification"
+                        task.dependsOn(apiDumpTask)
+                    }
+                }
             }
         }
     }

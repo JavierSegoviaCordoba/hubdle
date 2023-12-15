@@ -1,7 +1,7 @@
 package com.javiersc.hubdle.project.extensions.kotlin._internal
 
 import com.android.build.api.dsl.AndroidSourceSet
-import com.javiersc.gradle.tasks.extensions.namedLazily
+import com.android.build.gradle.internal.tasks.factory.dependsOn
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.COMMON_MAIN
 import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
@@ -13,12 +13,11 @@ import com.javiersc.hubdle.project.extensions._internal.TEST_INTEGRATION
 import com.javiersc.hubdle.project.extensions.android._internal.findAndroidCommonExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleSourceSetConfigurableExtension as HubdleSrcSetConfExt
-import com.javiersc.hubdle.project.extensions.config.testing.ALL_TEST_TASK_NAME
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.hubdleKotlinMultiplatform
+import com.javiersc.hubdle.project.tasks.lifecycle.TestsTask
 import com.javiersc.kotlin.stdlib.decapitalize
 import java.io.File
 import org.gradle.api.Project
-import org.gradle.api.Task
 import org.gradle.api.file.SourceDirectorySet
 import org.gradle.api.plugins.ExtensionAware
 import org.gradle.api.plugins.JavaPluginExtension
@@ -29,7 +28,6 @@ import org.gradle.api.tasks.TaskProvider
 import org.gradle.api.tasks.testing.Test
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.findByType
-import org.gradle.kotlin.dsl.named
 import org.gradle.kotlin.dsl.register
 import org.gradle.language.base.plugins.LifecycleBasePlugin.CHECK_TASK_NAME
 import org.jetbrains.kotlin.gradle.dsl.KotlinCommonOptions
@@ -70,11 +68,9 @@ internal fun HubdleSrcSetConfExt<*>.configurableTestIntegrationSourceSets() {
                 mustRunAfter(tasks.findByName("test"))
             }
 
-        tasks.named<Task>(CHECK_TASK_NAME) { dependsOn(integrationTestTask) }
+        tasks.named(CHECK_TASK_NAME).dependsOn(integrationTestTask)
 
-        tasks.namedLazily<Task>(ALL_TEST_TASK_NAME).configureEach {
-            it.dependsOn(integrationTestTask)
-        }
+        tasks.named(TestsTask.NAME).dependsOn(integrationTestTask)
 
         project.dependencies {
             "testIntegrationImplementation"(project)
@@ -115,11 +111,9 @@ internal fun HubdleSrcSetConfExt<*>.configurableTestFunctionalSourceSets() {
                 mustRunAfter(tasks.findByName("test"))
             }
 
-        tasks.named<Task>(CHECK_TASK_NAME) { dependsOn(functionalTestTask) }
+        tasks.named(CHECK_TASK_NAME).dependsOn(functionalTestTask)
 
-        tasks.namedLazily<Task>(ALL_TEST_TASK_NAME).configureEach {
-            it.dependsOn(functionalTestTask)
-        }
+        tasks.named(TestsTask.NAME).dependsOn(functionalTestTask)
 
         project.dependencies {
             "testFunctionalImplementation"(project)

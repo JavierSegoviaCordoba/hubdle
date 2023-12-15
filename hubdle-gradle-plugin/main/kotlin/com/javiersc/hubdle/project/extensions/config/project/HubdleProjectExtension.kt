@@ -37,7 +37,7 @@ constructor(
     }
 
     override fun Project.defaultConfiguration() {
-        configurable(priority = Priority.P5) {
+        configurable(priority = Priority.P1) {
             GenerateProjectDataTask.register(project).configure { task ->
                 task.enabled = isFullEnabled.get()
             }

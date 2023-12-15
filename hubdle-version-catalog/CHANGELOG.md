@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `com.javiersc.gradle:gradle-test-extensions -> 1.0.0-alpha.33`
+- `com.javiersc.gradle:gradle-extensions -> 1.0.0-alpha.33`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-beta.16`
 - `com.javiersc.semver:com.javiersc.semver.gradle.plugin -> 0.5.0-rc.6`
 - `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.16.1`

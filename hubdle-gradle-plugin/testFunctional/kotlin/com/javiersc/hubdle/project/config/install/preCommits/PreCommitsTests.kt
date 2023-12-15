@@ -15,7 +15,7 @@ class PreCommitsTests : GradleTestKitTest() {
     fun `all projects all pre-commits enabled 1`() {
         gradleTestKitTest("$basePath/enabled-1") {
             gradlewArgumentFromTXT()
-            preCommitFileLines.shouldContain("./gradlew allTests")
+            preCommitFileLines.shouldContain("./gradlew tests")
             preCommitFileLines.shouldContain("./gradlew applyFormat")
             preCommitFileLines.shouldContain("./gradlew assemble")
             preCommitFileLines.shouldContain("./gradlew checkAnalysis")
@@ -31,7 +31,7 @@ class PreCommitsTests : GradleTestKitTest() {
         gradleTestKitTest("$basePath/enabled-configuration-cache-1") {
             withArgumentsFromTXT()
             build()
-            preCommitFileLines.shouldContain("./gradlew allTests")
+            preCommitFileLines.shouldContain("./gradlew tests")
             preCommitFileLines.shouldContain("./gradlew applyFormat")
             preCommitFileLines.shouldContain("./gradlew assemble")
             preCommitFileLines.shouldContain("./gradlew checkAnalysis")
@@ -45,7 +45,7 @@ class PreCommitsTests : GradleTestKitTest() {
     fun `all projects all pre-commits enabled except checkApi 1`() {
         gradleTestKitTest("$basePath/enabled-except-api-check-1") {
             gradlewArgumentFromTXT()
-            preCommitFileLines.shouldContain("./gradlew allTests")
+            preCommitFileLines.shouldContain("./gradlew tests")
             preCommitFileLines.shouldContain("./gradlew applyFormat")
             preCommitFileLines.shouldContain("./gradlew assemble")
             preCommitFileLines.shouldContain("./gradlew checkAnalysis")

@@ -1,6 +1,5 @@
 package com.javiersc.hubdle.project.extensions.kotlin.jvm.features
 
-import com.javiersc.gradle.tasks.extensions.namedLazily
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
@@ -179,7 +178,8 @@ constructor(
             }
 
             tasks.apply {
-                val generateMetaRuntimeClasspathProvider =
+                val generateMetaRuntimeClasspathProvider:
+                    TaskProvider<GenerateMetaRuntimeClasspathProviderTask> =
                     GenerateMetaRuntimeClasspathProviderTask.register(
                         project,
                         mainClass,
@@ -187,8 +187,7 @@ constructor(
                         testProjects,
                     )
 
-                val generateProjectData =
-                    namedLazily<GenerateProjectDataTask>(GenerateProjectDataTask.NAME)
+                val generateProjectData: TaskProvider<Task> = named(GenerateProjectDataTask.NAME)
 
                 named(BasePlugin.ASSEMBLE_TASK_NAME).configure { task ->
                     task.dependsOn(generateMetaRuntimeClasspathProvider)

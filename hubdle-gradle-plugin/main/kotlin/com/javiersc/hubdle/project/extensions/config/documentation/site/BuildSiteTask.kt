@@ -1,7 +1,7 @@
 package com.javiersc.hubdle.project.extensions.config.documentation.site
 
-import com.javiersc.gradle.tasks.extensions.maybeRegisterLazily
-import com.javiersc.gradle.tasks.extensions.namedLazily
+import com.android.build.gradle.internal.tasks.factory.dependsOn
+import com.javiersc.hubdle.project.extensions.config.documentation.api.hubdleApi
 import java.io.File
 import javax.inject.Inject
 import org.gradle.api.DefaultTask
@@ -11,10 +11,8 @@ import org.gradle.api.file.ProjectLayout
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.OutputDirectory
 import org.gradle.api.tasks.TaskAction
-import org.gradle.api.tasks.TaskCollection
 import org.gradle.api.tasks.TaskProvider
-import org.jetbrains.dokka.gradle.DokkaMultiModuleTask
-import ru.vyarus.gradle.plugin.mkdocs.task.MkdocsBuildTask
+import org.gradle.kotlin.dsl.register
 
 public abstract class BuildSiteTask
 @Inject
@@ -50,21 +48,33 @@ constructor(
         public fun register(
             project: Project,
             preBuildSiteTask: TaskProvider<PreBuildSiteTask>
-        ): TaskCollection<BuildSiteTask> {
-            val dokkaHtmlMultiModuleTask =
-                project.tasks.namedLazily<DokkaMultiModuleTask>("dokkaHtmlMultiModule")
-            val mkdocsBuildTask = project.tasks.namedLazily<MkdocsBuildTask>("mkdocsBuild")
-            mkdocsBuildTask.configureEach { task -> task.dependsOn(preBuildSiteTask) }
+        ): TaskProvider<BuildSiteTask> {
+            val buildSiteTask = project.tasks.register<BuildSiteTask>(name)
+            buildSiteTask.configure { task -> task.inputs.files(preBuildSiteTask) }
 
-            dokkaHtmlMultiModuleTask.configureEach { task -> task.dependsOn(mkdocsBuildTask) }
+            val isDokkaEnabled = project.hubdleApi.isFullEnabled.get()
+            val isMkdocsEnabled = project.hubdleSite.isFullEnabled.get()
 
-            val buildSiteTask = project.tasks.maybeRegisterLazily<BuildSiteTask>(name)
-            buildSiteTask.configureEach { task ->
-                task.notCompatibleWithConfigurationCache("mkDocsBuild(grgit) task is incompatible")
-                task.dependsOn(mkdocsBuildTask)
-                task.dependsOn(dokkaHtmlMultiModuleTask)
-                task.inputs.files(preBuildSiteTask)
+            fun getDokkaTask() = project.tasks.named("dokkaHtmlMultiModule")
+            fun getMkdocsBuildTask() = project.tasks.named("mkdocsBuild")
+
+            if (isDokkaEnabled) {
+                val dokkaHtmlMultiModuleTask = getDokkaTask()
+                buildSiteTask.dependsOn(dokkaHtmlMultiModuleTask)
             }
+
+            if (isMkdocsEnabled) {
+                val mkdocsBuildTask = getMkdocsBuildTask()
+                mkdocsBuildTask.configure { task -> task.dependsOn(preBuildSiteTask) }
+                buildSiteTask.dependsOn(mkdocsBuildTask)
+            }
+
+            if (isDokkaEnabled && isMkdocsEnabled) {
+                val dokkaHtmlMultiModuleTask = getDokkaTask()
+                val mkdocsBuildTask = getMkdocsBuildTask()
+                dokkaHtmlMultiModuleTask.configure { task -> task.dependsOn(mkdocsBuildTask) }
+            }
+
             return buildSiteTask
         }
     }

@@ -71,3 +71,6 @@ constructor(
 
 internal val HubdleEnableableExtension.hubdleSite: HubdleConfigDocumentationSiteExtension
     get() = getHubdleExtension()
+
+internal val Project.hubdleSite: HubdleConfigDocumentationSiteExtension
+    get() = getHubdleExtension()

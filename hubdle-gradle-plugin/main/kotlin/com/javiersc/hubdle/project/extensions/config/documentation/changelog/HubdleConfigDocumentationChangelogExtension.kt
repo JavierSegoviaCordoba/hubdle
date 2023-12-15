@@ -1,6 +1,5 @@
 package com.javiersc.hubdle.project.extensions.config.documentation.changelog
 
-import com.javiersc.gradle.tasks.extensions.namedLazily
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
@@ -17,7 +16,6 @@ import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.attributes.LibraryElements
 import org.gradle.api.provider.Property
-import org.gradle.api.tasks.TaskCollection
 import org.gradle.api.tasks.TaskProvider
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.named
@@ -79,10 +77,10 @@ constructor(
                 task.enabled = isTagPrefixProject
             }
 
-            val patchChangelogTask: TaskCollection<PatchChangelogTask> =
-                tasks.namedLazily<PatchChangelogTask>("patchChangelog")
+            val patchChangelogTask: TaskProvider<PatchChangelogTask> =
+                tasks.named<PatchChangelogTask>("patchChangelog")
 
-            patchChangelogTask.configureEach { task ->
+            patchChangelogTask.configure { task ->
                 task.enabled = isTagPrefixProject
                 task.finalizedBy(ApplyFormatChangelogTask.NAME)
             }

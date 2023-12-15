@@ -1,10 +1,9 @@
 package com.javiersc.hubdle.project.extensions.config.format
 
+import com.android.build.gradle.internal.tasks.factory.dependsOn
 import com.diffplug.gradle.spotless.SpotlessExtension
 import com.diffplug.gradle.spotless.SpotlessExtensionPredeclare
 import com.javiersc.gradle.project.extensions.isRootProject
-import com.javiersc.gradle.tasks.extensions.maybeRegisterLazily
-import com.javiersc.gradle.tasks.extensions.namedLazily
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
@@ -16,6 +15,7 @@ import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.config.hubdleConfig
 import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.facebook_ktfmt
 import com.javiersc.hubdle.project.extensions.kotlin.hubdleKotlin
+import com.javiersc.hubdle.project.tasks.lifecycle.FixChecksTask
 import java.io.File
 import javax.inject.Inject
 import org.gradle.api.Action
@@ -23,9 +23,10 @@ import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.provider.Property
 import org.gradle.api.provider.SetProperty
-import org.gradle.api.tasks.TaskCollection
+import org.gradle.api.tasks.TaskProvider
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.findByType
+import org.gradle.kotlin.dsl.named
 import org.gradle.language.base.plugins.LifecycleBasePlugin.CHECK_TASK_NAME
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 
@@ -86,39 +87,41 @@ constructor(
         )
 
         configurable {
-            val checkTask: TaskCollection<Task> = tasks.namedLazily<Task>(CHECK_TASK_NAME)
-
-            val checkFormat: TaskCollection<Task> = tasks.maybeRegisterLazily<Task>("checkFormat")
-            checkFormat.configureEach { task ->
+            val checkFormat: TaskProvider<Task> = tasks.register("checkFormat")
+            checkFormat.configure { task ->
                 task.group = "verification"
                 task.dependsOn("spotlessCheck")
             }
 
-            checkTask.configureEach { task -> task.dependsOn(checkFormat) }
+            tasks.named(CHECK_TASK_NAME).dependsOn(checkFormat)
 
-            val applyFormat = tasks.maybeRegisterLazily<Task>("applyFormat")
-            applyFormat.configureEach { task ->
+            val applyFormat: TaskProvider<Task> = tasks.register("applyFormat")
+            applyFormat.configure { task ->
                 task.group = "verification"
                 task.dependsOn("spotlessApply")
             }
+            tasks.named(FixChecksTask.NAME).dependsOn(applyFormat)
 
             if (isRootProject) {
                 configure<SpotlessExtension> { predeclareDepsFromBuildscript() }
             }
 
             if (hubdleKotlin.isFullEnabled.get()) {
-                val checkKotlinFormat = tasks.maybeRegisterLazily<Task>("checkKotlinFormat")
-                checkKotlinFormat.configureEach { task ->
+                val checkKotlinFormat: TaskProvider<Task> = tasks.register("checkKotlinFormat")
+                checkKotlinFormat.configure { task ->
                     task.group = "verification"
                     task.dependsOn("spotlessKotlinCheck")
                 }
 
-                checkTask.configureEach { task -> task.dependsOn(checkKotlinFormat) }
+                checkFormat.dependsOn(checkKotlinFormat)
 
-                tasks.maybeRegisterLazily<Task>("applyKotlinFormat").configureEach { task ->
+                val applyKotlinFormat: TaskProvider<Task> = tasks.register("applyKotlinFormat")
+                applyKotlinFormat.configure { task ->
                     task.group = "verification"
                     task.dependsOn("spotlessKotlinApply")
                 }
+
+                applyFormat.dependsOn(applyKotlinFormat)
             }
         }
 

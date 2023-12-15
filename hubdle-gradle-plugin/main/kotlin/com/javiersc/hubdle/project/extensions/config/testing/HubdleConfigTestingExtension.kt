@@ -2,8 +2,6 @@ package com.javiersc.hubdle.project.extensions.config.testing
 
 import com.gradle.enterprise.gradleplugin.testretry.TestRetryExtension
 import com.gradle.enterprise.gradleplugin.testretry.retry
-import com.javiersc.gradle.tasks.extensions.maybeRegisterLazily
-import com.javiersc.gradle.tasks.extensions.namedLazily
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
@@ -17,18 +15,12 @@ import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.hubdleKotlinM
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
-import org.gradle.api.Task
 import org.gradle.api.plugins.BasePlugin
 import org.gradle.api.provider.Property
-import org.gradle.api.tasks.TaskProvider
+import org.gradle.api.tasks.TaskCollection
 import org.gradle.api.tasks.testing.Test
-import org.gradle.api.tasks.testing.TestReport
 import org.gradle.kotlin.dsl.apply
-import org.gradle.kotlin.dsl.register
 import org.gradle.kotlin.dsl.withType
-import org.gradle.language.base.plugins.LifecycleBasePlugin.BUILD_TASK_NAME
-import org.gradle.language.base.plugins.LifecycleBasePlugin.CHECK_TASK_NAME
-import org.gradle.language.base.plugins.LifecycleBasePlugin.VERIFICATION_GROUP
 
 @HubdleDslMarker
 public abstract class HubdleConfigTestingExtension
@@ -90,14 +82,8 @@ constructor(
         )
 
         configurable {
-            val testReport: TaskProvider<TestReport> =
-                tasks.register<TestReport>(ALL_TEST_REPORT_TASK_NAME)
-
-            val shouldRunAllTestsReport: Boolean =
-                gradle.startParameter.taskNames.any { taskName ->
-                    taskName in listOf(ALL_TEST_TASK_NAME, BUILD_TASK_NAME, CHECK_TASK_NAME)
-                }
-            tasks.withType<Test>().configureEach { task ->
+            val testTasks: TaskCollection<Test> = tasks.withType<Test>()
+            testTasks.configureEach { task ->
                 task.testLogging.showStandardStreams = showStandardStreams.get()
                 task.maxParallelForks = maxParallelForks.get()
 
@@ -107,26 +93,6 @@ constructor(
                     Options.TestNG -> task.useTestNG()
                     else -> task.useJUnit()
                 }
-
-                if (shouldRunAllTestsReport) task.finalizedBy(testReport)
-            }
-
-            tasks.named(CHECK_TASK_NAME) { task -> task.dependsOn(ALL_TEST_TASK_NAME) }
-
-            testReport.configure { task ->
-                task.group = VERIFICATION_GROUP
-                task.destinationDirectory.set(file("$buildDir/reports/allTests"))
-                // TODO: Remove allprojects as it is incompatible with project isolation
-                task.testResults.from(allprojects.map { it.tasks.withType<Test>() })
-            }
-        }
-
-        configurable(priority = Priority.P6) {
-            tasks.maybeRegisterLazily<TestReport>(ALL_TEST_TASK_NAME) { task ->
-                task.group = VERIFICATION_GROUP
-            }
-            tasks.namedLazily<Task>(ALL_TEST_TASK_NAME).configureEach { task ->
-                task.dependsOn(tasks.withType<Test>())
             }
         }
     }
@@ -143,9 +109,6 @@ private val HubdleConfigTestingExtension.hasAndroid: Property<Boolean>
         hubdleAndroidAny.any { it.isFullEnabled.get() } ||
             hubdleKotlinMultiplatform.isFullEnabled.get()
     }
-
-internal const val ALL_TEST_TASK_NAME = "allTests"
-internal const val ALL_TEST_REPORT_TASK_NAME = "allTestsReport"
 
 internal val HubdleEnableableExtension.hubdleTesting: HubdleConfigTestingExtension
     get() = getHubdleExtension()

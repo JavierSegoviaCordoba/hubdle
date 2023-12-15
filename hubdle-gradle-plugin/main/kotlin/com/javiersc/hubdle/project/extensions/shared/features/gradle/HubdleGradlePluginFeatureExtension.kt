@@ -17,6 +17,8 @@ import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
 import com.javiersc.hubdle.project.extensions.config.publishing.hubdlePublishing
 import com.javiersc.hubdle.project.extensions.config.publishing.maven.hubdlePublishingMavenPom
+import com.javiersc.hubdle.project.extensions.config.publishing.tasks.CheckIsSemverTask
+import com.javiersc.hubdle.project.extensions.config.versioning.semver._internal.isTagPrefixProject
 import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.javiersc_gradle_gradleExtensions
 import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.javiersc_gradle_gradleTestExtensions
 import com.javiersc.hubdle.project.extensions.java.hubdleJava
@@ -112,6 +114,11 @@ constructor(
         )
 
         configurable {
+            tasks.named("publishPlugins").configure { task ->
+                task.enabled = isTagPrefixProject
+                task.dependsOn(CheckIsSemverTask.NAME)
+            }
+
             val externalDependencies = pluginUnderTestExternalDependencies.get()
             val projects = pluginUnderTestProjects.get()
 

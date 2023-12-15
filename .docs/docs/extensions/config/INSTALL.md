@@ -10,7 +10,7 @@ Any pre-commit can be installed easily by running:
     - preCommits
         - `isEnabled: Property<Boolean>` // false
         - `enabled(value: Boolean = true)`
-        - `allTests: Property<Boolean>` // false
+        - `tests: Property<Boolean>` // false
         - `applyFormat: Property<Boolean>` // false
         - `assemble: Property<Boolean>` // false
         - `checkAnalysis: Property<Boolean>` // false
@@ -40,7 +40,7 @@ hubdle {
         install {
             preCommits {
                 isEnabled.set(true)
-                allTests.set(true)
+                tests.set(true)
                 applyFormat.set(true)
                 assemble.set(true)
                 checkAnalysis.set(true)
@@ -56,7 +56,7 @@ hubdle {
 ## Tasks
 
 ```shell
-./gradlew installAllTestsPreCommit
+./gradlew installTestsPreCommit
 ```
 
 ```shell

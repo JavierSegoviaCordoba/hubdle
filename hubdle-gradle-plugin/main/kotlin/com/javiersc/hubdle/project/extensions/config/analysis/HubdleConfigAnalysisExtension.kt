@@ -1,7 +1,5 @@
 package com.javiersc.hubdle.project.extensions.config.analysis
 
-import com.javiersc.gradle.tasks.extensions.maybeRegisterLazily
-import com.javiersc.gradle.tasks.extensions.namedLazily
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
@@ -14,10 +12,7 @@ import com.javiersc.hubdle.project.extensions.config.hubdleConfig
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
-import org.gradle.api.Task
 import org.gradle.api.provider.Property
-import org.gradle.api.tasks.TaskCollection
-import org.gradle.language.base.plugins.LifecycleBasePlugin.CHECK_TASK_NAME
 
 @HubdleDslMarker
 public open class HubdleConfigAnalysisExtension
@@ -53,16 +48,7 @@ constructor(
         public const val projectKey: String = "analysis.qodana.projectKey"
     }
 
-    override fun Project.defaultConfiguration() {
-        configurable {
-            val checkAnalysisTask: TaskCollection<Task> =
-                tasks.maybeRegisterLazily<Task>("checkAnalysis")
-            checkAnalysisTask.configureEach { task -> task.group = "verification" }
-            tasks.namedLazily<Task>(CHECK_TASK_NAME).configureEach { task ->
-                task.dependsOn(checkAnalysisTask)
-            }
-        }
-    }
+    override fun Project.defaultConfiguration() {}
 }
 
 internal val HubdleEnableableExtension.hubdleAnalysis: HubdleConfigAnalysisExtension

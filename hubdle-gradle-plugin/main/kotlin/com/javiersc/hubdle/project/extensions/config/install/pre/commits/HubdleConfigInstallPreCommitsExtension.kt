@@ -5,7 +5,6 @@ import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.config.install.hubdleInstall
-import com.javiersc.hubdle.project.extensions.config.install.pre.commits.tasks.InstallAllTestsPreCommitTask
 import com.javiersc.hubdle.project.extensions.config.install.pre.commits.tasks.InstallApplyFormatPreCommitTask
 import com.javiersc.hubdle.project.extensions.config.install.pre.commits.tasks.InstallAssemblePreCommitTask
 import com.javiersc.hubdle.project.extensions.config.install.pre.commits.tasks.InstallCheckAnalysisPreCommitTask
@@ -13,6 +12,7 @@ import com.javiersc.hubdle.project.extensions.config.install.pre.commits.tasks.I
 import com.javiersc.hubdle.project.extensions.config.install.pre.commits.tasks.InstallCheckFormatPreCommitTask
 import com.javiersc.hubdle.project.extensions.config.install.pre.commits.tasks.InstallDumpApiPreCommitTask
 import com.javiersc.hubdle.project.extensions.config.install.pre.commits.tasks.InstallPreCommitTask
+import com.javiersc.hubdle.project.extensions.config.install.pre.commits.tasks.InstallTestsPreCommitTask
 import com.javiersc.hubdle.project.extensions.config.install.pre.commits.tasks.WriteFilePreCommitTask
 import javax.inject.Inject
 import org.gradle.api.Project
@@ -31,7 +31,7 @@ constructor(
 
     override val priority: Priority = Priority.P3
 
-    public val allTests: Property<Boolean> = property { false }
+    public val tests: Property<Boolean> = property { false }
     public val applyFormat: Property<Boolean> = property { false }
     public val assemble: Property<Boolean> = property { false }
     public val checkAnalysis: Property<Boolean> = property { false }
@@ -46,7 +46,7 @@ constructor(
             InstallPreCommitTask.register(project)
             WriteFilePreCommitTask.register(project)
 
-            if (allTests.get()) InstallAllTestsPreCommitTask.register(project)
+            if (tests.get()) InstallTestsPreCommitTask.register(project)
             if (applyFormat.get()) InstallApplyFormatPreCommitTask.register(project)
             if (assemble.get()) InstallAssemblePreCommitTask.register(project)
             if (checkAnalysis.get()) InstallCheckAnalysisPreCommitTask.register(project)

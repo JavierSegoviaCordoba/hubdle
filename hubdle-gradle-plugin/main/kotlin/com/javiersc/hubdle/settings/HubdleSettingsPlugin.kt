@@ -3,7 +3,7 @@ package com.javiersc.hubdle.settings
 import com.gradle.enterprise.gradleplugin.GradleEnterpriseExtension
 import com.javiersc.gradle.properties.extensions.getStringProperty
 import com.javiersc.gradle.properties.extensions.provider
-import com.javiersc.hubdle.project.HubdleProjectPlugin
+import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.PluginId.JetbrainsKotlinxKover
 import com.javiersc.hubdle.project.extensions._internal.hubdleCatalog
 import com.javiersc.hubdle.project.extensions._internal.library
@@ -106,7 +106,7 @@ internal val Settings.hubdleSettings: HubdleSettingsExtension
 private fun Settings.useHubdleOnAllProjects() {
     gradle.beforeProject { project ->
         if (hubdleSettings.useOnAllProjects.get()) {
-            project.pluginManager.apply(HubdleProjectPlugin::class)
+            project.pluginManager.apply(PluginId.JavierscHubdle.id)
         }
     }
 }

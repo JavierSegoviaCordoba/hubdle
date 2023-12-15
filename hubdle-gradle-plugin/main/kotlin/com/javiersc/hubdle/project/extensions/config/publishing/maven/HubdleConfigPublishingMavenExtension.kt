@@ -1,7 +1,8 @@
 package com.javiersc.hubdle.project.extensions.config.publishing.maven
 
-import com.javiersc.gradle.tasks.extensions.maybeRegisterLazily
-import com.javiersc.gradle.tasks.extensions.namedLazily
+import PUBLISH_ALL_TO_MAVEN_LOCAL_TEST
+import PUBLISH_TO_MAVEN_LOCAL_TEST
+import com.javiersc.gradle.tasks.extensions.maybeNamed
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.Configurable
@@ -12,7 +13,7 @@ import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
 import com.javiersc.hubdle.project.extensions.config.publishing.hubdlePublishing
-import com.javiersc.hubdle.project.extensions.config.publishing.isSignificantSemver
+import com.javiersc.hubdle.project.extensions.config.publishing.tasks.CheckIsSemverTask
 import com.javiersc.hubdle.project.extensions.config.versioning.semver._internal.isTagPrefixProject
 import com.javiersc.hubdle.project.extensions.shared.features.gradle.hubdleGradlePluginFeature
 import javax.inject.Inject
@@ -26,7 +27,7 @@ import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.api.publish.maven.tasks.PublishToMavenLocal
 import org.gradle.api.publish.maven.tasks.PublishToMavenRepository
-import org.gradle.api.tasks.TaskCollection
+import org.gradle.api.tasks.TaskProvider
 import org.gradle.jvm.tasks.Jar
 import org.gradle.kotlin.dsl.get
 import org.gradle.kotlin.dsl.maybeCreate
@@ -134,52 +135,25 @@ private fun HubdleConfigurableExtension.configurePublishingExtension() {
 }
 
 private fun HubdleConfigurableExtension.configurePublishOnlySemver() {
-    val checkIsSemver: TaskCollection<Task> =
-        tasks.maybeRegisterLazily("checkIsSemver") { task ->
-            task.enabled = isTagPrefixProject
-            task.doLast {
-                val allTaskNames: List<String> = project.gradle.taskGraph.allTasks.map { it.name }
-                val hasPublishToMavenLocalTest: Boolean =
-                    allTaskNames.any { name -> name == "publishToMavenLocalTest" }
-                val publishNonSemver: Boolean = hubdlePublishing.publishNonSemver.get()
-                val isPublishException: Boolean = publishNonSemver || hasPublishToMavenLocalTest
-                check(project.isSignificantSemver || isPublishException) {
-                    // TODO: inject `$version` instead of getting it from the `project`
-                    """|Only semantic versions can be published (current: ${project.version})
-                       |Use `"-Ppublishing.nonSemver=true"` to force the publication 
-                    """
-                        .trimMargin()
-                }
-            }
-        }
-
-    tasks.namedLazily<Task>("initializeSonatypeStagingRepository").configureEach { task ->
+    tasks.named("publish").configure { task ->
         task.enabled = isTagPrefixProject
-        task.dependsOn(checkIsSemver)
-    }
-    tasks.namedLazily<Task>("publish").configureEach { task ->
-        task.enabled = isTagPrefixProject
-        task.dependsOn(checkIsSemver)
+        task.dependsOn(CheckIsSemverTask.NAME)
     }
     tasks.withType<PublishToMavenLocal>().configureEach { task ->
         task.enabled = isTagPrefixProject
-        task.dependsOn(checkIsSemver)
+        task.dependsOn(CheckIsSemverTask.NAME)
     }
-    tasks.namedLazily<Task>("publishToSonatype").configureEach { task ->
+    tasks.maybeNamed("publishToSonatype") { task ->
         task.enabled = isTagPrefixProject
-        task.dependsOn(checkIsSemver)
+        task.dependsOn(CheckIsSemverTask.NAME)
     }
     tasks.withType<PublishToMavenRepository>().configureEach { task ->
         task.enabled = isTagPrefixProject
-        task.dependsOn(checkIsSemver)
+        task.dependsOn(CheckIsSemverTask.NAME)
     }
-    tasks.namedLazily<Task>("publishToMavenLocal").configureEach { task ->
+    tasks.named("publishToMavenLocal").configure { task ->
         task.enabled = isTagPrefixProject
-        task.dependsOn(checkIsSemver)
-    }
-    tasks.namedLazily<Task>("publishPlugins").configureEach { task ->
-        task.enabled = isTagPrefixProject
-        task.dependsOn(checkIsSemver)
+        task.dependsOn(CheckIsSemverTask.NAME)
     }
 
     tasks
@@ -189,7 +163,7 @@ private fun HubdleConfigurableExtension.configurePublishOnlySemver() {
         }
         .configureEach { task ->
             task.enabled = isTagPrefixProject
-            task.dependsOn(checkIsSemver)
+            task.dependsOn(CheckIsSemverTask.NAME)
         }
 }
 
@@ -197,18 +171,16 @@ private fun HubdleConfigurableExtension.configureRepositories(publishing: Publis
     publishing.repositories.configureEach { repository ->
         when (repository.name) {
             "mavenLocalTest" -> {
-                val childTask =
-                    tasks.namedLazily<Task>("publishAllPublicationsToMavenLocalTestRepository")
-                tasks.maybeRegisterLazily<Task>("publishToMavenLocalTest").configureEach { task ->
+                val childTask: TaskProvider<Task> = tasks.named(PUBLISH_ALL_TO_MAVEN_LOCAL_TEST)
+                tasks.register(PUBLISH_TO_MAVEN_LOCAL_TEST).configure { task ->
                     task.group = "publishing"
                     task.dependsOn(childTask)
                 }
             }
             "mavenLocalBuildTest" -> {
-                val childTask =
-                    tasks.namedLazily<Task>("publishAllPublicationsToMavenLocalBuildTestRepository")
-                tasks.maybeRegisterLazily<Task>("publishToMavenLocalBuildTest").configureEach { task
-                    ->
+                val childTask: TaskProvider<Task> =
+                    tasks.named("publishAllPublicationsToMavenLocalBuildTestRepository")
+                tasks.register("publishToMavenLocalBuildTest").configure { task ->
                     task.group = "publishing"
                     task.dependsOn(childTask)
                 }

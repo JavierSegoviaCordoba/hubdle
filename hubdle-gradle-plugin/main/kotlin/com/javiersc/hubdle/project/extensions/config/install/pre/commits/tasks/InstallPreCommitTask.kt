@@ -1,7 +1,6 @@
 package com.javiersc.hubdle.project.extensions.config.install.pre.commits.tasks
 
 import com.javiersc.gradle.logging.extensions.debugColored
-import com.javiersc.gradle.tasks.extensions.maybeRegisterLazily
 import com.javiersc.hubdle.project.extensions.config.install.InstallTask
 import java.io.File
 import javax.inject.Inject
@@ -14,6 +13,7 @@ import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.OutputDirectory
 import org.gradle.api.tasks.OutputFile
 import org.gradle.api.tasks.TaskAction
+import org.gradle.kotlin.dsl.register
 
 @CacheableTask
 public abstract class InstallPreCommitTask
@@ -42,10 +42,10 @@ constructor(
     }
 
     public companion object {
-        public const val name: String = "installPreCommit"
+        public const val NAME: String = "installPreCommit"
 
         internal fun register(project: Project) =
-            project.tasks.maybeRegisterLazily<InstallPreCommitTask>(name).configureEach { task ->
+            project.tasks.register<InstallPreCommitTask>(NAME).configure { task ->
                 task.preCommitName.set("")
             }
     }

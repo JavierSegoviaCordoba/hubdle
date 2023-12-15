@@ -1,6 +1,5 @@
 package com.javiersc.hubdle.project.extensions.config.install.pre.commits.tasks
 
-import com.javiersc.gradle.tasks.extensions.namedLazily
 import javax.inject.Inject
 import org.gradle.api.Project
 import org.gradle.api.file.ProjectLayout
@@ -9,6 +8,7 @@ import org.gradle.api.provider.Property
 import org.gradle.api.tasks.CacheableTask
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.TaskAction
+import org.gradle.kotlin.dsl.named
 import org.gradle.kotlin.dsl.property
 import org.gradle.kotlin.dsl.register
 
@@ -33,19 +33,19 @@ constructor(
     }
 
     public companion object {
-        public const val name: String = "installCheckApiPreCommit"
+        public const val NAME: String = "installCheckApiPreCommit"
 
         internal fun register(project: Project) {
             val installApiCheckPreCommitTask =
-                project.tasks.register<InstallCheckApiPreCommitTask>(name)
+                project.tasks.register<InstallCheckApiPreCommitTask>(NAME)
 
             installApiCheckPreCommitTask.configure { task ->
                 task.finalizedBy(WriteFilePreCommitTask.getTask(project))
             }
 
-            project.tasks
-                .namedLazily<InstallPreCommitTask>(InstallPreCommitTask.name)
-                .configureEach { task -> task.dependsOn(installApiCheckPreCommitTask) }
+            project.tasks.named<InstallPreCommitTask>(InstallPreCommitTask.NAME).configure { task ->
+                task.dependsOn(installApiCheckPreCommitTask)
+            }
         }
     }
 }

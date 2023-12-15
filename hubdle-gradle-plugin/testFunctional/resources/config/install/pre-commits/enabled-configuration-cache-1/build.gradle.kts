@@ -8,7 +8,7 @@ hubdle {
     config {
         install {
             preCommits {
-                allTests.set(true)
+                tests.set(true)
                 applyFormat.set(true)
                 assemble.set(true)
                 checkAnalysis.set(true)

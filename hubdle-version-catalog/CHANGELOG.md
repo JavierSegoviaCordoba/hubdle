@@ -14,6 +14,10 @@
 
 ### Updated
 
+## [0.1.17] - 2023-12-16
+
+### Updated
+
 - `org.jetbrains.kotlinx:kotlinx-collections-immutable -> 0.3.7`
 - `com.javiersc.gradle:gradle-test-extensions -> 1.0.0-alpha.33`
 - `com.javiersc.gradle:gradle-extensions -> 1.0.0-alpha.33`
@@ -709,7 +713,9 @@
 - `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
 - `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.13.1`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.16...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.17...HEAD
+
+[0.1.17]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.16...c0.1.17
 
 [0.1.16]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.15...c0.1.16
 

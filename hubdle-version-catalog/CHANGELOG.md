@@ -14,6 +14,9 @@
 
 ### Updated
 
+- `com.squareup.okhttp3:mockwebserver3-junit5 -> 5.0.0-alpha.12`
+- `com.squareup.okhttp3:mockwebserver3-junit4 -> 5.0.0-alpha.12`
+- `com.squareup.okhttp3:mockwebserver -> 5.0.0-alpha.12`
 - `com.squareup.okio:okio -> 3.7.0`
 
 ## [0.1.17] - 2023-12-16

@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `com.squareup.okio:okio -> 3.7.0`
+
 ## [0.1.17] - 2023-12-16
 
 ### Updated

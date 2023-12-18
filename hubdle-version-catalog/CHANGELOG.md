@@ -14,6 +14,10 @@
 
 ### Updated
 
+- `io.insert-koin:koin-test-junit5 -> 3.5.2`
+- `io.insert-koin:koin-test-junit4 -> 3.5.2`
+- `io.insert-koin:koin-test -> 3.5.2`
+- `io.insert-koin:koin-core -> 3.5.2`
 - `com.squareup.okhttp3:mockwebserver3-junit5 -> 5.0.0-alpha.12`
 - `com.squareup.okhttp3:mockwebserver3-junit4 -> 5.0.0-alpha.12`
 - `com.squareup.okhttp3:mockwebserver -> 5.0.0-alpha.12`

@@ -14,8 +14,15 @@
 
 ### Updated
 
+- `io.insert-koin:koin-test-junit5 -> 3.5.3`
+- `io.insert-koin:koin-test-junit4 -> 3.5.3`
+- `io.insert-koin:koin-test -> 3.5.3`
+- `io.insert-koin:koin-logger-slf4j -> 3.5.3`
+- `io.insert-koin:koin-ktor -> 3.5.3`
+- `io.insert-koin:koin-core -> 3.5.3`
+- `io.insert-koin:koin-androidx-compose -> 3.5.3`
+- `io.insert-koin:koin-android -> 3.5.3`
 - `androidx.compose.compiler:compiler -> 1.5.7`
-- `io.insert-koin:koin-test-junit5 -> 3.5.2`
 - `io.insert-koin:koin-test-junit4 -> 3.5.2`
 - `io.insert-koin:koin-test -> 3.5.2`
 - `io.insert-koin:koin-core -> 3.5.2`

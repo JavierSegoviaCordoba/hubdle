@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `androidx.compose.compiler:compiler -> 1.5.7`
 - `io.insert-koin:koin-test-junit5 -> 3.5.2`
 - `io.insert-koin:koin-test-junit4 -> 3.5.2`
 - `io.insert-koin:koin-test -> 3.5.2`

@@ -2,6 +2,7 @@ package com.javiersc.hubdle.project.extensions.config.binary.compatibility.valid
 
 import com.android.build.gradle.internal.tasks.factory.dependsOn
 import com.javiersc.gradle.project.extensions.isRootProject
+import com.javiersc.gradle.tasks.extensions.maybeNamed
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
@@ -56,16 +57,16 @@ constructor(
                 tasks.named(FixChecksTask.NAME).dependsOn(dumpApiTask)
 
                 allproject.afterEvaluate {
-                    val apiCheckTask: TaskProvider<Task> = allproject.tasks.named("apiCheck")
+                    val apiCheckTask: TaskProvider<Task>? = allproject.tasks.maybeNamed("apiCheck")
                     checkApiTask.configure { task ->
                         task.group = "verification"
-                        task.dependsOn(apiCheckTask)
+                        apiCheckTask?.let { task.dependsOn(it) }
                     }
 
-                    val apiDumpTask: TaskProvider<Task> = allproject.tasks.named("apiDump")
+                    val apiDumpTask: TaskProvider<Task>? = allproject.tasks.maybeNamed("apiDump")
                     dumpApiTask.configure { task ->
                         task.group = "verification"
-                        task.dependsOn(apiDumpTask)
+                        apiDumpTask?.let { task.dependsOn(it) }
                     }
                 }
             }

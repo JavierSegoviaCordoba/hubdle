@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains:markdown -> 0.6.1`
 - `io.insert-koin:koin-test-junit5 -> 3.5.3`
 - `io.insert-koin:koin-test-junit4 -> 3.5.3`
 - `io.insert-koin:koin-test -> 3.5.3`
@@ -23,7 +24,6 @@
 - `io.insert-koin:koin-androidx-compose -> 3.5.3`
 - `io.insert-koin:koin-android -> 3.5.3`
 - `androidx.compose.compiler:compiler -> 1.5.7`
-- `io.insert-koin:koin-test-junit4 -> 3.5.2`
 - `io.insert-koin:koin-test -> 3.5.2`
 - `io.insert-koin:koin-core -> 3.5.2`
 - `com.squareup.okhttp3:mockwebserver3-junit5 -> 5.0.0-alpha.12`

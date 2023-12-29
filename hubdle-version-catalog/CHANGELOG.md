@@ -14,6 +14,25 @@
 
 ### Updated
 
+- `org.jetbrains.compose.compiler:compiler -> 1.5.7`
+- `org.jetbrains.kotlin.plugin.serialization:org.jetbrains.kotlin.plugin.serialization.gradle.plugin -> 1.9.22`
+- `org.jetbrains.kotlin.multiplatform:org.jetbrains.kotlin.multiplatform.gradle.plugin -> 1.9.22`
+- `org.jetbrains.kotlin.jvm:org.jetbrains.kotlin.jvm.gradle.plugin -> 1.9.22`
+- `org.jetbrains.kotlin.android:org.jetbrains.kotlin.android.gradle.plugin -> 1.9.22`
+- `org.jetbrains.kotlin:kotlin-serialization -> 1.9.22`
+- `org.jetbrains.kotlin:kotlin-test-testng -> 1.9.22`
+- `org.jetbrains.kotlin:kotlin-test-junit5 -> 1.9.22`
+- `org.jetbrains.kotlin:kotlin-test-junit -> 1.9.22`
+- `org.jetbrains.kotlin:kotlin-test-annotations-common -> 1.9.22`
+- `org.jetbrains.kotlin:kotlin-test -> 1.9.22`
+- `org.jetbrains.kotlin:kotlin-script-runtime -> 1.9.22`
+- `org.jetbrains.kotlin:kotlin-reflect -> 1.9.22`
+- `org.jetbrains.kotlin:kotlin-gradle-plugin-api -> 1.9.22`
+- `org.jetbrains.kotlin:kotlin-gradle-plugin -> 1.9.22`
+- `org.jetbrains.kotlin:kotlin-compiler-internal-test-framework -> 1.9.22`
+- `org.jetbrains.kotlin:kotlin-compiler-embeddable -> 1.9.22`
+- `org.jetbrains.kotlin:kotlin-compiler -> 1.9.22`
+- `org.jetbrains.kotlin:kotlin-annotations-jvm -> 1.9.22`
 - `org.jetbrains:markdown -> 0.6.1`
 - `io.insert-koin:koin-test-junit5 -> 3.5.3`
 - `io.insert-koin:koin-test-junit4 -> 3.5.3`

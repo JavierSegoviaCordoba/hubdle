@@ -14,7 +14,7 @@
 
 ### Updated
 
-- `org.jetbrains.compose.compiler:compiler -> 1.5.7`
+- `org.jetbrains.compose.compiler:compiler -> 1.5.7.1`
 - `org.jetbrains.kotlin.plugin.serialization:org.jetbrains.kotlin.plugin.serialization.gradle.plugin -> 1.9.22`
 - `org.jetbrains.kotlin.multiplatform:org.jetbrains.kotlin.multiplatform.gradle.plugin -> 1.9.22`
 - `org.jetbrains.kotlin.jvm:org.jetbrains.kotlin.jvm.gradle.plugin -> 1.9.22`

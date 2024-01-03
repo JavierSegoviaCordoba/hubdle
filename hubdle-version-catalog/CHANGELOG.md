@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `app.cash.molecule:app.cash.molecule.gradle.plugin -> 1.3.2`
+- `app.cash.molecule:molecule-runtime -> 1.3.2`
 - `org.jetbrains.compose.compiler:compiler -> 1.5.7.1`
 - `org.jetbrains.kotlin.plugin.serialization:org.jetbrains.kotlin.plugin.serialization.gradle.plugin -> 1.9.22`
 - `org.jetbrains.kotlin.multiplatform:org.jetbrains.kotlin.multiplatform.gradle.plugin -> 1.9.22`
@@ -43,7 +45,6 @@
 - `io.insert-koin:koin-androidx-compose -> 3.5.3`
 - `io.insert-koin:koin-android -> 3.5.3`
 - `androidx.compose.compiler:compiler -> 1.5.7`
-- `io.insert-koin:koin-test -> 3.5.2`
 - `io.insert-koin:koin-core -> 3.5.2`
 - `com.squareup.okhttp3:mockwebserver3-junit5 -> 5.0.0-alpha.12`
 - `com.squareup.okhttp3:mockwebserver3-junit4 -> 5.0.0-alpha.12`

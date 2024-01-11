@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `androidx.compose.compiler:compiler -> 1.5.8`
 - `com.android.library:com.android.library.gradle.plugin -> 8.2.1`
 - `com.android.application:com.android.application.gradle.plugin -> 8.2.1`
 - `com.android.tools.build:gradle -> 8.2.1`
@@ -47,7 +48,6 @@
 - `io.insert-koin:koin-core -> 3.5.3`
 - `io.insert-koin:koin-androidx-compose -> 3.5.3`
 - `io.insert-koin:koin-android -> 3.5.3`
-- `androidx.compose.compiler:compiler -> 1.5.7`
 - `com.squareup.okhttp3:mockwebserver3-junit5 -> 5.0.0-alpha.12`
 - `com.squareup.okhttp3:mockwebserver3-junit4 -> 5.0.0-alpha.12`
 - `com.squareup.okhttp3:mockwebserver -> 5.0.0-alpha.12`

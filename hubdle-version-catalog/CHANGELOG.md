@@ -14,6 +14,9 @@
 
 ### Updated
 
+- `androidx.lifecycle:lifecycle-viewmodel-compose -> 2.7.0`
+- `androidx.lifecycle:lifecycle-viewmodel-ktx -> 2.7.0`
+- `androidx.lifecycle:lifecycle-viewmodel -> 2.7.0`
 - `androidx.compose.compiler:compiler -> 1.5.8`
 - `com.android.library:com.android.library.gradle.plugin -> 8.2.1`
 - `com.android.application:com.android.application.gradle.plugin -> 8.2.1`

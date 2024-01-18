@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.17.0`
 - `com.facebook:ktfmt -> 0.47`
 - `com.diffplug.spotless:spotless-plugin-gradle -> 6.24.0`
 - `androidx.lifecycle:lifecycle-viewmodel-compose -> 2.7.0`

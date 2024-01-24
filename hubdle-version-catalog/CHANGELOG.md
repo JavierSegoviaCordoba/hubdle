@@ -14,6 +14,9 @@
 
 ### Updated
 
+- `com.android.library:com.android.library.gradle.plugin -> 8.2.2`
+- `com.android.application:com.android.application.gradle.plugin -> 8.2.2`
+- `com.android.tools.build:gradle -> 8.2.2`
 - `com.diffplug.spotless:spotless-plugin-gradle -> 6.25.0`
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.17.0`
 - `com.facebook:ktfmt -> 0.47`
@@ -21,7 +24,6 @@
 - `androidx.lifecycle:lifecycle-viewmodel-ktx -> 2.7.0`
 - `androidx.lifecycle:lifecycle-viewmodel -> 2.7.0`
 - `androidx.compose.compiler:compiler -> 1.5.8`
-- `com.android.library:com.android.library.gradle.plugin -> 8.2.1`
 - `com.android.application:com.android.application.gradle.plugin -> 8.2.1`
 - `com.android.tools.build:gradle -> 8.2.1`
 - `app.cash.molecule:app.cash.molecule.gradle.plugin -> 1.3.2`

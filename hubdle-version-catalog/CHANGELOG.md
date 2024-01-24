@@ -14,6 +14,23 @@
 
 ### Updated
 
+- `androidx.compose.ui:ui-util -> 1.6.0`
+- `androidx.compose.ui:ui-tooling-preview -> 1.6.0`
+- `androidx.compose.ui:ui-tooling -> 1.6.0`
+- `androidx.compose.ui:ui-test-manifest -> 1.6.0`
+- `androidx.compose.ui:ui-test -> 1.6.0`
+- `androidx.compose.ui:ui -> 1.6.0`
+- `androidx.compose.runtime:runtime-saveable -> 1.6.0`
+- `androidx.compose.runtime:runtime -> 1.6.0`
+- `androidx.compose.material:material-ripple -> 1.6.0`
+- `androidx.compose.material:material-icons-extended -> 1.6.0`
+- `androidx.compose.material:material-icons-core -> 1.6.0`
+- `androidx.compose.material:material -> 1.6.0`
+- `androidx.compose.foundation:foundation-layout -> 1.6.0`
+- `androidx.compose.foundation:foundation -> 1.6.0`
+- `androidx.compose.animation:animation-graphics -> 1.6.0`
+- `androidx.compose.animation:animation-core -> 1.6.0`
+- `androidx.compose.animation:animation -> 1.6.0`
 - `com.android.library:com.android.library.gradle.plugin -> 8.2.2`
 - `com.android.application:com.android.application.gradle.plugin -> 8.2.2`
 - `com.android.tools.build:gradle -> 8.2.2`
@@ -24,7 +41,6 @@
 - `androidx.lifecycle:lifecycle-viewmodel-ktx -> 2.7.0`
 - `androidx.lifecycle:lifecycle-viewmodel -> 2.7.0`
 - `androidx.compose.compiler:compiler -> 1.5.8`
-- `com.android.application:com.android.application.gradle.plugin -> 8.2.1`
 - `com.android.tools.build:gradle -> 8.2.1`
 - `app.cash.molecule:app.cash.molecule.gradle.plugin -> 1.3.2`
 - `app.cash.molecule:molecule-runtime -> 1.3.2`

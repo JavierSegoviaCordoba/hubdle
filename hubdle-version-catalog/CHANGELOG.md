@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.16.2`
 - `androidx.compose.ui:ui-util -> 1.6.0`
 - `androidx.compose.ui:ui-tooling-preview -> 1.6.0`
 - `androidx.compose.ui:ui-tooling -> 1.6.0`
@@ -41,7 +42,6 @@
 - `androidx.lifecycle:lifecycle-viewmodel-ktx -> 2.7.0`
 - `androidx.lifecycle:lifecycle-viewmodel -> 2.7.0`
 - `androidx.compose.compiler:compiler -> 1.5.8`
-- `com.android.tools.build:gradle -> 8.2.1`
 - `app.cash.molecule:app.cash.molecule.gradle.plugin -> 1.3.2`
 - `app.cash.molecule:molecule-runtime -> 1.3.2`
 - `org.jetbrains.compose.compiler:compiler -> 1.5.7.1`

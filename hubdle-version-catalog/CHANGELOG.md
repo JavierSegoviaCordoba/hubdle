@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.14.0`
 - `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.16.2`
 - `androidx.compose.ui:ui-util -> 1.6.0`
 - `androidx.compose.ui:ui-tooling-preview -> 1.6.0`

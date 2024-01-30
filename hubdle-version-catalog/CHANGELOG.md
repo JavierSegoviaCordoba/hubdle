@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.compose.compiler:compiler -> 1.5.8`
 - `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.14.0`
 - `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.16.2`
 - `androidx.compose.ui:ui-util -> 1.6.0`
@@ -45,7 +46,6 @@
 - `androidx.compose.compiler:compiler -> 1.5.8`
 - `app.cash.molecule:app.cash.molecule.gradle.plugin -> 1.3.2`
 - `app.cash.molecule:molecule-runtime -> 1.3.2`
-- `org.jetbrains.compose.compiler:compiler -> 1.5.7.1`
 - `org.jetbrains.kotlin.plugin.serialization:org.jetbrains.kotlin.plugin.serialization.gradle.plugin -> 1.9.22`
 - `org.jetbrains.kotlin.multiplatform:org.jetbrains.kotlin.multiplatform.gradle.plugin -> 1.9.22`
 - `org.jetbrains.kotlin.jvm:org.jetbrains.kotlin.jvm.gradle.plugin -> 1.9.22`

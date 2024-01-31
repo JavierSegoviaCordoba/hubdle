@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `io.gitlab.arturbosch.detekt:detekt-gradle-plugin -> 1.23.5`
 - `com.squareup.moshi:moshi -> 1.15.1`
 - `org.jetbrains.compose.compiler:compiler -> 1.5.8`
 - `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.14.0`

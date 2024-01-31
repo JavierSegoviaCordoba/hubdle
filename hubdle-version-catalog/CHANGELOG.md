@@ -14,6 +14,14 @@
 
 ### Updated
 
+- `app.softwork:kotlinx-serialization-flf -> 0.0.16`
+- `app.softwork:kotlinx-serialization-csv -> 0.0.16`
+- `io.ktor:ktor-serialization-kotlinx-json -> 2.3.8`
+- `io.ktor:ktor-client-okhttp -> 2.3.8`
+- `io.ktor:ktor-client-mock -> 2.3.8`
+- `io.ktor:ktor-client-core -> 2.3.8`
+- `io.ktor:ktor-client-content-negotiation -> 2.3.8`
+- `io.ktor:ktor-client-cio -> 2.3.8`
 - `io.gitlab.arturbosch.detekt:detekt-gradle-plugin -> 1.23.5`
 - `com.squareup.moshi:moshi -> 1.15.1`
 - `org.jetbrains.compose.compiler:compiler -> 1.5.8`

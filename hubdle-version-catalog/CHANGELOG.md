@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `gradle -> 8.6`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.5.12`
 - `app.softwork:kotlinx-serialization-flf -> 0.0.16`
 - `app.softwork:kotlinx-serialization-csv -> 0.0.16`

@@ -6,6 +6,9 @@ import com.javiersc.kotlin.stdlib.isNotNullNorBlank
 val kotlinVersion: String? =
     getStringProperty("kotlinVersion").orNull.takeIf(String?::isNotNullNorBlank)
 
+val isPublishToMavenLocalTest: Boolean =
+    gradle.startParameter.taskNames.contains("publishToMavenLocalTest")
+
 hubdle {
     config {
         analysis()
@@ -13,10 +16,17 @@ hubdle {
         documentation { //
             changelog()
         }
-        publishing()
+        publishing {
+            maven {
+                repositories { //
+                    mavenLocalTest()
+                }
+            }
+        }
         versioning {
             semver {
-                tagPrefix.set("c")
+                val prefix = if (!isPublishToMavenLocalTest) "c" else ""
+                tagPrefix.set(prefix)
                 val hasSameTagPrefix =
                     getStringProperty("semver.tagPrefix").orNull == tagPrefix.get()
                 if (kotlinVersion.isNotNullNorBlank() && hasSameTagPrefix) {
@@ -36,9 +46,7 @@ hubdle {
                         catalog {
                             toml(rootDir.resolve("gradle/hubdle.libs.versions.toml"))
                             if (kotlinVersion.isNotNullNorBlank()) {
-                                version("kotlin") {
-                                    strictly(kotlinVersion)
-                                }
+                                version("kotlin") { strictly(kotlinVersion) }
                             }
                         }
                     }

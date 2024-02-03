@@ -79,9 +79,10 @@ hubdle {
                             }
                         }
 
+                        // TODO: Fix when fixed
                         pluginUnderTestExternalDependencies(
-                            hubdle.android.toolsBuild.gradle,
-                            hubdle.jetbrains.kotlin.kotlinGradlePlugin,
+                            hubdle.android.tools.build.gradle,
+                            hubdle.jetbrains.kotlin.gradle.plugin.asProvider(),
                         )
                     }
                 }
@@ -89,30 +90,34 @@ hubdle {
 
             main {
                 dependencies {
-                    api(hubdle.adarshr.gradleTestLoggerPlugin)
-                    api(hubdle.android.toolsBuild.gradle)
-                    api(hubdle.diffplug.spotless.spotlessPluginGradle)
-                    api(hubdle.github.gradleNexus.publishPlugin)
-                    api(hubdle.gitlab.arturboschDetekt.detektGradlePlugin)
-                    api(hubdle.gradle.publish.pluginPublishPlugin)
-                    api(hubdle.gradle.testRetryGradlePlugin)
-                    api(hubdle.jetbrains.dokka.dokkaGradlePlugin)
-                    api(hubdle.jetbrains.intellijPlugins.gradleChangelogPlugin)
-                    api(hubdle.jetbrains.intellijPlugins.gradleIntellijPlugin)
-                    api(hubdle.jetbrains.kotlin.kotlinGradlePlugin)
-                    api(hubdle.jetbrains.kotlinx.binaryCompatibilityValidator)
-                    api(hubdle.jetbrains.kotlinx.serialization)
-                    api(hubdle.vyarus.gradleMkdocsPlugin)
+                    // TODO: REMOVE WHEN FIXED
+                    implementation(hubdle.javiersc.gradle.extensions)
+                    implementation(hubdle.javiersc.gradle.test.extensions)
 
+                    api(hubdle.android.tools.build.gradle)
+                    api(hubdle.jetbrains.kotlin.gradle.plugin)
+                    api(hubdle.jetbrains.kotlin.serialization)
+
+                    api(hubdle.plugins.adarshr.test.logger.artifact)
                     api(hubdle.plugins.cash.molecule.artifact)
                     api(hubdle.plugins.cash.sqldelight.artifact)
+                    api(hubdle.plugins.diffplug.gradle.spotless.artifact)
+                    api(hubdle.plugins.github.gradle.nexus.publish.plugin.artifact)
+                    api(hubdle.plugins.gitlab.arturbosch.detekt.artifact)
                     api(hubdle.plugins.gradle.enterprise.artifact)
+                    api(hubdle.plugins.gradle.plugin.publish.artifact)
+                    api(hubdle.plugins.gradle.test.retry.artifact)
                     api(hubdle.plugins.javiersc.semver.artifact)
+                    api(hubdle.plugins.jetbrains.changelog.artifact)
                     api(hubdle.plugins.jetbrains.compose.artifact)
+                    api(hubdle.plugins.jetbrains.dokka.artifact)
+                    api(hubdle.plugins.jetbrains.intellij.artifact)
+                    api(hubdle.plugins.jetbrains.kotlinx.binary.compatibility.validator.artifact)
                     api(hubdle.plugins.jetbrains.kotlinx.kover.artifact)
                     api(hubdle.plugins.sonarqube.artifact)
+                    api(hubdle.plugins.vyarus.mkdocs.artifact)
 
-                    compileOnly(hubdle.jetbrains.kotlin.kotlinCompilerInternalTestFramework)
+                    compileOnly(hubdle.jetbrains.kotlin.compiler.internal.test.framework)
 
                     implementation(hubdle.eclipse.jgit)
                 }

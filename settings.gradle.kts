@@ -8,7 +8,7 @@ pluginManagement {
         itselfVersionFromProp
             ?: file("$rootDir/gradle/hubdle.libs.versions.toml")
                 .readLines()
-                .first { it.startsWith("hubdle") }
+                .first { it.startsWith("javiersc-hubdle") }
                 .split("\"")[1]
 
     val kotlinVersionFromProp: String? = prop("kotlinVersion")
@@ -29,6 +29,7 @@ pluginManagement {
         if (itselfVersionFromProp != null) {
             mavenLocal()
         }
+        mavenLocal()
     }
 
     plugins { //
@@ -59,6 +60,7 @@ dependencyResolutionManagement {
         if (itselfVersion != null) {
             mavenLocal()
         }
+        mavenLocal()
     }
 
     gradle.settingsEvaluated {

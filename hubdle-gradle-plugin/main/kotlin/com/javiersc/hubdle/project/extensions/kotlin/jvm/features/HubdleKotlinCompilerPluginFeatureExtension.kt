@@ -10,21 +10,22 @@ import com.javiersc.hubdle.project.extensions.apis.BaseHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
-import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.javiersc_kotlin_kotlinCompilerExtensions
-import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.javiersc_kotlin_kotlinCompilerTestExtensions
-import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.jetbrains_kotlin_kotlinAnnotationsJvm
-import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.jetbrains_kotlin_kotlinCompiler
-import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.jetbrains_kotlin_kotlinCompilerInternalTestFramework
-import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.jetbrains_kotlin_kotlinReflect
-import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.jetbrains_kotlin_kotlinScriptRuntime
-import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.jetbrains_kotlin_kotlinTest
-import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.jetbrains_kotlin_kotlinTestAnnotationsCommon
+import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.javiersc_kotlin_compiler_extensions
+import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.javiersc_kotlin_compiler_test_extensions
+import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.jetbrains_kotlin_annotations_jvm
+import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.jetbrains_kotlin_compiler
+import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.jetbrains_kotlin_compiler_internal_test_framework
+import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.jetbrains_kotlin_reflect
+import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.jetbrains_kotlin_script_runtime
+import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.jetbrains_kotlin_test
+import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.jetbrains_kotlin_test_annotations_common
 import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.junit_bom
-import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.junit_jupiter_junitJupiter
-import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.junit_platform_junitCommons
-import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.junit_platform_junitLauncher
-import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.junit_platform_junitRunner
-import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.junit_platform_junitSuiteApi
+import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.junit_jupiter_junit_jupiter
+import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.junit_jupiter_junit_jupiter_api
+import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.junit_platform_junit_platform_commons
+import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.junit_platform_junit_platform_launcher
+import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.junit_platform_junit_platform_runner
+import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.junit_platform_junit_platform_suite_api
 import com.javiersc.hubdle.project.extensions.kotlin.jvm.features.KotlinCompilerTestType.Box
 import com.javiersc.hubdle.project.extensions.kotlin.jvm.features.KotlinCompilerTestType.Diagnostics
 import com.javiersc.hubdle.project.extensions.kotlin.jvm.features.compiler.GenerateMetaRuntimeClasspathProviderTask
@@ -146,9 +147,9 @@ constructor(
 
                 sourceSets.named("main").configure { kotlinSourceSet ->
                     kotlinSourceSet.dependencies {
-                        compileOnly(library(jetbrains_kotlin_kotlinCompiler))
+                        compileOnly(library(jetbrains_kotlin_compiler))
                         if (addExtensionDependencies.get()) {
-                            implementation(library(javiersc_kotlin_kotlinCompilerExtensions))
+                            implementation(library(javiersc_kotlin_compiler_extensions))
                         }
                     }
                 }
@@ -156,23 +157,22 @@ constructor(
                 sourceSets.named("test").configure { kotlinSourceSet ->
                     kotlinSourceSet.dependencies {
                         if (addExtensionDependencies.get()) {
-                            implementation(library(javiersc_kotlin_kotlinCompilerTestExtensions))
+                            implementation(library(javiersc_kotlin_compiler_test_extensions))
                         }
-                        implementation(library(jetbrains_kotlin_kotlinCompiler))
-                        implementation(
-                            library(jetbrains_kotlin_kotlinCompilerInternalTestFramework)
-                        )
-                        implementation(library(jetbrains_kotlin_kotlinReflect))
-                        implementation(library(jetbrains_kotlin_kotlinTestAnnotationsCommon))
-                        implementation(libraryModule(junit_jupiter_junitJupiter))
-                        implementation(libraryModule(junit_platform_junitCommons))
-                        implementation(libraryModule(junit_platform_junitLauncher))
-                        implementation(libraryModule(junit_platform_junitRunner))
-                        implementation(libraryModule(junit_platform_junitSuiteApi))
+                        implementation(library(jetbrains_kotlin_compiler))
+                        implementation(library(jetbrains_kotlin_compiler_internal_test_framework))
+                        implementation(library(jetbrains_kotlin_reflect))
+                        implementation(library(jetbrains_kotlin_test_annotations_common))
+                        implementation(libraryModule(junit_jupiter_junit_jupiter))
+                        implementation(libraryModule(junit_jupiter_junit_jupiter_api))
+                        implementation(libraryModule(junit_platform_junit_platform_commons))
+                        implementation(libraryModule(junit_platform_junit_platform_launcher))
+                        implementation(libraryModule(junit_platform_junit_platform_runner))
+                        implementation(libraryModule(junit_platform_junit_platform_suite_api))
                         implementation(platform(libraryPlatform(junit_bom)))
-                        runtimeOnly(library(jetbrains_kotlin_kotlinAnnotationsJvm))
-                        runtimeOnly(library(jetbrains_kotlin_kotlinScriptRuntime))
-                        runtimeOnly(library(jetbrains_kotlin_kotlinTest))
+                        runtimeOnly(library(jetbrains_kotlin_annotations_jvm))
+                        runtimeOnly(library(jetbrains_kotlin_script_runtime))
+                        runtimeOnly(library(jetbrains_kotlin_test))
                     }
                 }
             }

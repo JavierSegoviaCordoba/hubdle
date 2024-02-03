@@ -47,7 +47,7 @@ internal class KotlinJvmTest : GradleTestKitTest() {
         gradleTestKitTest("$basePath/publishing/maven-local-1", name = projectName) {
             withEnvironment(gpgMap)
             withArgumentsFromTXT()
-            build().output.also(::println)
+            build()
             mavenLocalPath
                 .resolve("9.8.3-alpha.4")
                 .listFiles()
@@ -62,7 +62,7 @@ internal class KotlinJvmTest : GradleTestKitTest() {
         gradleTestKitTest("$basePath/publishing/maven-local-build-test-1", name = projectName) {
             withEnvironment(gpgMap)
             withArgumentsFromTXT()
-            build().output.also(::println)
+            build()
             mavenLocalBuildTestPath
                 .resolve("9.8.3-alpha.4")
                 .listFiles()
@@ -77,7 +77,7 @@ internal class KotlinJvmTest : GradleTestKitTest() {
         gradleTestKitTest("$basePath/publishing/maven-local-random-1", name = projectName) {
             withEnvironment(gpgMap)
             withArgumentsFromTXT()
-            build().output.also(::println)
+            build()
             mavenLocalRandomPath
                 .resolve("9.8.3-alpha.4")
                 .listFiles()

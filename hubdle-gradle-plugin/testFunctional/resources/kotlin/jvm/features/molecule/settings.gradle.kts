@@ -14,20 +14,23 @@ pluginManagement {
     }
 }
 
-plugins {
+plugins { //
     id("com.javiersc.hubdle")
 }
 
 hubdleSettings {
-    catalog {
+    catalog { //
         isEnabled.set(false)
     }
 }
 
 dependencyResolutionManagement {
     versionCatalogs {
-        register("hubdle") {
+        register("hubdle") { //
             from(files("gradle/hubdle.libs.versions.toml"))
         }
+    }
+    repositories { //
+        mavenLocalTest()
     }
 }

@@ -12,7 +12,7 @@ import com.javiersc.hubdle.project.extensions.apis.BaseHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
-import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.androidx_activity_activityCompose
+import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.androidx_activity_compose
 import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.jetbrains_compose_compiler
 import com.javiersc.hubdle.project.extensions.kotlin._internal.forKotlinSetsDependencies
 import com.javiersc.hubdle.project.extensions.kotlin.android.features.hubdleAndroidBuildFeatures
@@ -73,7 +73,7 @@ constructor(
             configure<ComposeExtension> { kotlinCompilerPlugin.set(compiler) }
             if (hubdleAndroidFeatures.isFullEnabled.get()) {
                 forKotlinSetsDependencies(MAIN) {
-                    implementation(library(androidx_activity_activityCompose))
+                    implementation(library(androidx_activity_compose))
                 }
                 hubdleAndroidBuildFeatures.compose.set(true)
                 configureAndroidCommonExtension {

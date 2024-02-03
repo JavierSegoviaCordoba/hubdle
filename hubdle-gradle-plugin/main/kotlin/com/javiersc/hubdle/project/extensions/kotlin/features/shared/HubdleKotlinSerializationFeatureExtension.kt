@@ -12,10 +12,10 @@ import com.javiersc.hubdle.project.extensions.apis.BaseHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
-import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.jetbrains_kotlinx_kotlinxSerializationCore
-import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.jetbrains_kotlinx_kotlinxSerializationJson
-import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.softwork_kotlinxSerializationCsv
-import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.softwork_kotlinxSerializationFlf
+import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.jetbrains_kotlinx_serialization_core
+import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.jetbrains_kotlinx_serialization_json
+import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.softwork_kotlinx_serialization_csv
+import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.softwork_kotlinx_serialization_flf
 import com.javiersc.hubdle.project.extensions.kotlin._internal.forKotlinSetsDependencies
 import com.javiersc.hubdle.project.extensions.kotlin.hubdleKotlinAny
 import javax.inject.Inject
@@ -66,10 +66,10 @@ constructor(
 
         configurable {
             forKotlinSetsDependencies(MAIN, COMMON_MAIN) {
-                implementation(library(jetbrains_kotlinx_kotlinxSerializationCore))
-                if (csv.get()) implementation(library(softwork_kotlinxSerializationCsv))
-                if (flf.get()) implementation(library(softwork_kotlinxSerializationFlf))
-                if (json.get()) implementation(library(jetbrains_kotlinx_kotlinxSerializationJson))
+                implementation(library(jetbrains_kotlinx_serialization_core))
+                if (csv.get()) implementation(library(softwork_kotlinx_serialization_csv))
+                if (flf.get()) implementation(library(softwork_kotlinx_serialization_flf))
+                if (json.get()) implementation(library(jetbrains_kotlinx_serialization_json))
             }
         }
     }

@@ -2,6 +2,12 @@
 
 rootProject.name = "sandbox-project"
 
-plugins {
+plugins { //
     id("com.javiersc.hubdle")
+}
+
+dependencyResolutionManagement {
+    repositories { //
+        mavenLocalTest()
+    }
 }

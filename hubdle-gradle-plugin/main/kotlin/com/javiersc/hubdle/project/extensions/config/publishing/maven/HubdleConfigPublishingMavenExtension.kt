@@ -3,6 +3,7 @@ package com.javiersc.hubdle.project.extensions.config.publishing.maven
 import PUBLISH_ALL_TO_MAVEN_LOCAL_TEST
 import PUBLISH_TO_MAVEN_LOCAL_TEST
 import com.javiersc.gradle.tasks.extensions.maybeNamed
+import com.javiersc.gradle.tasks.extensions.maybeRegister
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.Configurable
@@ -172,7 +173,7 @@ private fun HubdleConfigurableExtension.configureRepositories(publishing: Publis
         when (repository.name) {
             "mavenLocalTest" -> {
                 val childTask: TaskProvider<Task> = tasks.named(PUBLISH_ALL_TO_MAVEN_LOCAL_TEST)
-                tasks.register(PUBLISH_TO_MAVEN_LOCAL_TEST).configure { task ->
+                tasks.maybeRegister(PUBLISH_TO_MAVEN_LOCAL_TEST).configure { task ->
                     task.group = "publishing"
                     task.dependsOn(childTask)
                 }
@@ -180,7 +181,7 @@ private fun HubdleConfigurableExtension.configureRepositories(publishing: Publis
             "mavenLocalBuildTest" -> {
                 val childTask: TaskProvider<Task> =
                     tasks.named("publishAllPublicationsToMavenLocalBuildTestRepository")
-                tasks.register("publishToMavenLocalBuildTest").configure { task ->
+                tasks.maybeRegister("publishToMavenLocalBuildTest").configure { task ->
                     task.group = "publishing"
                     task.dependsOn(childTask)
                 }

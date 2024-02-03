@@ -15,10 +15,10 @@ import com.javiersc.hubdle.project.extensions.apis.BaseHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
-import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.javiersc_kotlin_kotlinStdlib
-import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.javiersc_kotlin_kotlinTestJunit
-import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.javiersc_kotlin_kotlinTestJunit5
-import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.javiersc_kotlin_kotlinTestNG
+import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.javiersc_kotlin_stdlib
+import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.javiersc_kotlin_test_junit
+import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.javiersc_kotlin_test_junit5
+import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.javiersc_kotlin_test_testng
 import com.javiersc.hubdle.project.extensions.kotlin._internal.forKotlinSetsDependencies
 import com.javiersc.hubdle.project.extensions.kotlin.hubdleKotlinAny
 import javax.inject.Inject
@@ -49,7 +49,7 @@ constructor(
     override fun Project.defaultConfiguration() {
         configurable {
             forKotlinSetsDependencies(MAIN, COMMON_MAIN) {
-                implementation(library(javiersc_kotlin_kotlinStdlib))
+                implementation(library(javiersc_kotlin_stdlib))
             }
 
             forKotlinSetsDependencies(
@@ -81,10 +81,10 @@ public interface HubdleKotlinExtendedStdlibDelegateFeatureExtension : BaseHubdle
 private fun Project.calculateJavierScKotlinTestJvmDependency():
     Provider<MinimalExternalModuleDependency?> =
     when (tasks.withType<Test>().firstOrNull()?.options) {
-        is JUnitOptions -> library(javiersc_kotlin_kotlinTestJunit)
-        is JUnitPlatformOptions -> library(javiersc_kotlin_kotlinTestJunit5)
-        is TestNGOptions -> library(javiersc_kotlin_kotlinTestNG)
-        else -> library(javiersc_kotlin_kotlinTestJunit)
+        is JUnitOptions -> library(javiersc_kotlin_test_junit)
+        is JUnitPlatformOptions -> library(javiersc_kotlin_test_junit5)
+        is TestNGOptions -> library(javiersc_kotlin_test_testng)
+        else -> library(javiersc_kotlin_test_junit)
     }
 
 internal val HubdleEnableableExtension.hubdleExtendedStdlibFeature:

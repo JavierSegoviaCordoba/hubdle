@@ -15,7 +15,7 @@ pluginManagement {
     }
 }
 
-plugins {
+plugins { //
     id("com.javiersc.hubdle")
 }
 
@@ -37,6 +37,7 @@ dependencyResolutionManagement {
         mavenCentral()
         gradlePluginPortal()
         maven(url = "https://maven.pkg.jetbrains.space/public/p/compose/dev/")
+        mavenLocalTest()
     }
 
     versionCatalogs {

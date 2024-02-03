@@ -13,7 +13,7 @@ import com.javiersc.hubdle.project.extensions.apis.BaseHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
-import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.kotest_kotestAssertionsCore
+import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.kotest_assertions_core
 import com.javiersc.hubdle.project.extensions.kotlin._internal.forKotlinSetsDependencies
 import com.javiersc.hubdle.project.extensions.kotlin.hubdleKotlinAny
 import javax.inject.Inject
@@ -43,7 +43,7 @@ constructor(
                 TEST_INTEGRATION,
                 TEST_FIXTURES,
             ) {
-                implementation(library(kotest_kotestAssertionsCore))
+                implementation(library(kotest_assertions_core))
             }
         }
     }

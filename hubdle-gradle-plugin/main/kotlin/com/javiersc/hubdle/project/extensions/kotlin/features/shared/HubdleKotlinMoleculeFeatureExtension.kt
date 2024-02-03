@@ -12,7 +12,7 @@ import com.javiersc.hubdle.project.extensions.apis.BaseHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
-import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.cash_molecule_moleculeRuntime
+import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.cash_molecule_runtime
 import com.javiersc.hubdle.project.extensions.kotlin._internal.forKotlinSetsDependencies
 import com.javiersc.hubdle.project.extensions.kotlin.hubdleKotlinAny
 import javax.inject.Inject
@@ -49,7 +49,7 @@ constructor(
 
         configurable {
             forKotlinSetsDependencies(MAIN, COMMON_MAIN) {
-                implementation(library(cash_molecule_moleculeRuntime))
+                implementation(library(cash_molecule_runtime))
             }
         }
     }

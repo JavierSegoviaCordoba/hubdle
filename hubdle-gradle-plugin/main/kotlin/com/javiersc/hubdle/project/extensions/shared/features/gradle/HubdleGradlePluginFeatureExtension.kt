@@ -19,8 +19,8 @@ import com.javiersc.hubdle.project.extensions.config.publishing.hubdlePublishing
 import com.javiersc.hubdle.project.extensions.config.publishing.maven.hubdlePublishingMavenPom
 import com.javiersc.hubdle.project.extensions.config.publishing.tasks.CheckIsSemverTask
 import com.javiersc.hubdle.project.extensions.config.versioning.semver._internal.isTagPrefixProject
-import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.javiersc_gradle_gradleExtensions
-import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.javiersc_gradle_gradleTestExtensions
+import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.javiersc_gradle_extensions
+import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.javiersc_gradle_test_extensions
 import com.javiersc.hubdle.project.extensions.java.hubdleJava
 import com.javiersc.hubdle.project.extensions.kotlin._internal.forKotlinSetsDependencies
 import com.javiersc.hubdle.project.extensions.kotlin.jvm.hubdleKotlinJvm
@@ -31,9 +31,11 @@ import org.gradle.api.Project
 import org.gradle.api.artifacts.Configuration
 import org.gradle.api.artifacts.MinimalExternalModuleDependency
 import org.gradle.api.internal.catalog.DelegatingProjectDependency
+import org.gradle.api.internal.catalog.ExternalModuleDependencyFactory.DependencyNotationSupplier
 import org.gradle.api.provider.ListProperty
 import org.gradle.api.provider.Property
 import org.gradle.api.provider.Provider
+import org.gradle.api.provider.ProviderConvertible
 import org.gradle.api.tasks.SourceSet
 import org.gradle.api.tasks.SourceSetContainer
 import org.gradle.kotlin.dsl.dependencies
@@ -66,6 +68,8 @@ constructor(
         userConfigurable { action.execute(the()) }
     }
 
+    public val pluginUnderTestDependencies: ListProperty<String> = listProperty { emptyList() }
+
     public val pluginUnderTestExternalDependencies: ListProperty<MinimalExternalModuleDependency> =
         listProperty {
             emptyList()
@@ -73,6 +77,50 @@ constructor(
 
     public val pluginUnderTestProjects: ListProperty<DelegatingProjectDependency> = listProperty {
         emptyList()
+    }
+
+    @HubdleDslMarker
+    public fun pluginUnderTestDependencies(vararg dependencies: Any) {
+        for (dependency in dependencies) {
+            when (dependency) {
+                is String -> {
+                    pluginUnderTestDependencies.add(dependency)
+                }
+                is MinimalExternalModuleDependency -> {
+                    pluginUnderTestExternalDependencies(dependency)
+                }
+                is DelegatingProjectDependency -> {
+                    pluginUnderTestProjects(dependency)
+                }
+                is DependencyNotationSupplier -> {
+                    pluginUnderTestExternalDependencies(dependency.asProvider())
+                }
+                is Provider<*> -> {
+                    val string: String? = dependency.orNull as? String
+                    string?.let { pluginUnderTestDependencies.add(it) }
+
+                    val minimalExternalModuleDependency: MinimalExternalModuleDependency? =
+                        dependency.orNull as? MinimalExternalModuleDependency
+                    minimalExternalModuleDependency?.let { pluginUnderTestExternalDependencies(it) }
+
+                    val projectDependency: DelegatingProjectDependency? =
+                        dependency.orNull as? DelegatingProjectDependency
+                    projectDependency?.let { pluginUnderTestProjects(it) }
+                }
+                else -> {
+                    throw IllegalArgumentException("Unknown type: ${dependency::class.simpleName}")
+                }
+            }
+        }
+    }
+
+    @HubdleDslMarker
+    public fun pluginUnderTestExternalDependencies(
+        vararg dependencies: ProviderConvertible<MinimalExternalModuleDependency>
+    ) {
+        this.pluginUnderTestExternalDependencies.addAll(
+            provider { dependencies.map { it.asProvider().get() } }
+        )
     }
 
     @HubdleDslMarker
@@ -103,14 +151,14 @@ constructor(
         applicablePlugin(
             priority = Priority.P3,
             scope = Scope.CurrentProject,
-            pluginId = PluginId.JavaGradlePlugin
+            pluginId = PluginId.JavaGradlePlugin,
         )
 
         applicablePlugin(
             isEnabled = property { isFullEnabled.get() && hubdlePublishing.isFullEnabled.get() },
             priority = Priority.P3,
             scope = Scope.CurrentProject,
-            pluginId = PluginId.GradlePluginPublish
+            pluginId = PluginId.GradlePluginPublish,
         )
 
         configurable {
@@ -119,6 +167,7 @@ constructor(
                 task.dependsOn(CheckIsSemverTask.NAME)
             }
 
+            val dependencies = pluginUnderTestDependencies.get()
             val externalDependencies = pluginUnderTestExternalDependencies.get()
             val projects = pluginUnderTestProjects.get()
 
@@ -127,6 +176,9 @@ constructor(
                     configurations.create("testPluginClasspath")
 
                 dependencies {
+                    for (dependency in dependencies) {
+                        testPluginClasspath(dependency)
+                    }
                     for (dependency in externalDependencies) {
                         testPluginClasspath(dependency)
                     }
@@ -144,11 +196,11 @@ constructor(
                 forKotlinSetsDependencies(MAIN) {
                     implementation(gradleApi())
                     implementation(gradleKotlinDsl())
-                    implementation(library(javiersc_gradle_gradleExtensions))
+                    implementation(library(javiersc_gradle_extensions))
                 }
                 forKotlinSetsDependencies(TEST, TEST_FUNCTIONAL, TEST_INTEGRATION, TEST_FIXTURES) {
                     implementation(gradleTestKit())
-                    implementation(library(javiersc_gradle_gradleTestExtensions))
+                    implementation(library(javiersc_gradle_test_extensions))
                 }
             }
         }
@@ -170,7 +222,7 @@ constructor(
                     gradlePluginDevelopmentExtension.website.set(hubdlePublishingMavenPom.url)
                     gradlePluginDevelopmentExtension.vcsUrl.set(hubdlePublishingMavenPom.scmUrl)
                 }
-            }
+            },
         )
     }
 }

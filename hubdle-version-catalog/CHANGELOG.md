@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `io.kotest.extensions:kotest-extensions-wiremock -> 3.0.0`
 - `gradle -> 8.6`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.5.12`
 - `app.softwork:kotlinx-serialization-flf -> 0.0.16`

@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- accessing to `publishPlugins` when it is not registered
+
 ### Updated
 
 ## [0.6.0] - 2024-02-04

@@ -1,5 +1,6 @@
 package com.javiersc.hubdle.project.extensions.shared.features.gradle
 
+import com.gradle.publish.PublishTask
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
@@ -162,7 +163,7 @@ constructor(
         )
 
         configurable {
-            tasks.named("publishPlugins").configure { task ->
+            tasks.withType<PublishTask>().configureEach { task ->
                 task.enabled = isTagPrefixProject
                 task.dependsOn(CheckIsSemverTask.NAME)
             }

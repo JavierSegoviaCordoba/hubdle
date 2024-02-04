@@ -163,16 +163,18 @@ constructor(
 
             generateProjectDataTask.configure {
                 it.source(project.allKotlinSrcDirsWithoutBuild)
-                it.packageName.set(packageName)
-                it.projectDir.set(project.projectDir.absolutePath)
-                it.projectGroup.set(projectGroup)
-                it.projectName.set(projectName)
-                it.projectVersion.set(projectVersion)
-                it.rootDir.set(project.rootDir.absolutePath)
+                it.packageName.convention(packageName)
+                it.projectDir.convention(project.projectDir.absolutePath)
+                it.projectGroup.convention(projectGroup)
+                it.projectName.convention(projectName)
+                it.projectVersion.convention(projectVersion)
+                it.rootDir.convention(project.rootDir.absolutePath)
                 it.outputDir.convention(outputDir)
             }
             prepareKotlinIdeaImport.dependsOn(generateProjectDataTask)
-            project.kotlinSourceSetMainOrCommonMain?.kotlin?.srcDir(generateProjectDataTask)
+            project.kotlinSourceSetMainOrCommonMain?.configureEach { sourceSet ->
+                sourceSet.kotlin.srcDir(generateProjectDataTask)
+            }
             return generateProjectDataTask
         }
     }

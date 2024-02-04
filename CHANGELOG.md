@@ -14,6 +14,8 @@
 
 ### Fixed
 
+- `generateProjectData` task not being wired with the Kotlin source set
+
 ### Updated
 
 ## [0.6.1] - 2024-02-04

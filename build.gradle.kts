@@ -4,7 +4,7 @@ plugins { //
     alias(hubdle.plugins.javiersc.hubdle)
 }
 
-val isGradlePlugin = getStringProperty("semver.tagPrefix").orNull?.isBlank() == true
+val isGradlePlugin = getStringProperty("semver.tagPrefix").orNull == "p"
 
 hubdle {
     config {
@@ -14,7 +14,9 @@ hubdle {
         documentation {
             api()
             changelog()
-            readme { badges() }
+            readme { //
+                badges()
+            }
             site()
         }
         nexus()

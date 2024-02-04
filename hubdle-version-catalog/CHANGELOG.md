@@ -14,6 +14,16 @@
 
 ### Updated
 
+- `org.junit.platform:junit-platform-suite-api -> 1.10.2`
+- `org.junit.platform:junit-platform-runner -> 1.10.2`
+- `org.junit.platform:junit-platform-launcher -> 1.10.2`
+- `org.junit.platform:junit-platform-commons -> 1.10.2`
+- `org.junit.jupiter:junit-jupiter-params -> 5.10.2`
+- `org.junit.jupiter:junit-jupiter-api -> 5.10.2`
+- `org.junit.jupiter:junit-jupiter -> 5.10.2`
+- `org.junit:junit-bom -> 5.10.2`
+- `com.javiersc.gradle:gradle-test-extensions -> 1.0.0-alpha.34`
+- `com.javiersc.gradle:gradle-extensions -> 1.0.0-alpha.34`
 - `gradle -> 8.6`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.5.12`
 - `app.softwork:kotlinx-serialization-flf -> 0.0.16`

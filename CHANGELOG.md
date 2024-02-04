@@ -608,7 +608,7 @@
 
 [Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.6.1...HEAD
 
-[0.6.1]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-beta.16...0.6.1
+[0.6.0]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-beta.16...0.6.0
 
 [0.5.0-beta.16]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.5.0-beta.15...0.5.0-beta.16
 

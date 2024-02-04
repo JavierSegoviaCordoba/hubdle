@@ -14,6 +14,10 @@
 
 ### Updated
 
+## [0.2.0] - 2024-02-04
+
+### Updated
+
 - `com.javiersc.gradle:gradle-test-extensions -> 1.0.0-alpha.34`
 - `com.javiersc.gradle:gradle-extensions -> 1.0.0-alpha.34`
 - `io.kotest.extensions:kotest-extensions-wiremock -> 3.0.0`
@@ -792,7 +796,9 @@
 - `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
 - `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.13.1`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.17...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.2.1...HEAD
+
+[0.2.1]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.17...c0.2.1
 
 [0.1.17]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.16...c0.1.17
 

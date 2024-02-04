@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `com.javiersc.gradle:gradle-test-extensions -> 1.0.0-alpha.34`
+- `com.javiersc.gradle:gradle-extensions -> 1.0.0-alpha.34`
 - `gradle -> 8.6`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.5.12`
 - `app.softwork:kotlinx-serialization-flf -> 0.0.16`

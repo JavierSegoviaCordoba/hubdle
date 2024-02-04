@@ -6,17 +6,23 @@
 
 ### Changed
 
-- tag prefix to `p` for Hubdle Gradle plugin
-
 ### Deprecated
 
 ### Removed
 
 ### Fixed
 
-- `generateProjectData` task not being wired with the Kotlin source set
-
 ### Updated
+
+## [0.6.2] - 2024-02-05
+
+### Changed
+
+- tag prefix to `p` for Hubdle Gradle plugin
+
+### Fixed
+
+- `generateProjectData` task not being wired with the Kotlin source set
 
 ## [0.6.1] - 2024-02-04
 
@@ -37,7 +43,9 @@
 
 - `allTests` task
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.6.1...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.6.2...HEAD
+
+[0.6.2]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.6.1...p0.6.2
 
 [0.6.1]: https://github.com/JavierSegoviaCordoba/hubdle/compare/0.6.0...0.6.1
 

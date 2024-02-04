@@ -29,7 +29,6 @@ pluginManagement {
         if (itselfVersionFromProp != null) {
             mavenLocal()
         }
-        mavenLocal()
     }
 
     plugins { //
@@ -60,7 +59,6 @@ dependencyResolutionManagement {
         if (itselfVersion != null) {
             mavenLocal()
         }
-        mavenLocal()
     }
 
     gradle.settingsEvaluated {

@@ -14,6 +14,15 @@
 
 ### Updated
 
+- `io.kotest.extensions:kotest-extensions-wiremock -> 3.0.1`
+- `org.junit.platform:junit-platform-suite-api -> 1.10.2`
+- `org.junit.platform:junit-platform-runner -> 1.10.2`
+- `org.junit.platform:junit-platform-launcher -> 1.10.2`
+- `org.junit.platform:junit-platform-commons -> 1.10.2`
+- `org.junit.jupiter:junit-jupiter-params -> 5.10.2`
+- `org.junit.jupiter:junit-jupiter-api -> 5.10.2`
+- `org.junit.jupiter:junit-jupiter -> 5.10.2`
+- `org.junit:junit-bom -> 5.10.2`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.6.2`
 
 ## [0.2.0] - 2024-02-04

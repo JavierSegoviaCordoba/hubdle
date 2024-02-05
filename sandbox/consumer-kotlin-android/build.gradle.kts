@@ -1,5 +1,5 @@
 plugins {
-    id("com.javiersc.hubdle") version "0.3.1-SNAPSHOT"
+    id("com.javiersc.hubdle") version "0.6.0"
 }
 
 hubdle {

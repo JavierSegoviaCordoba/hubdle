@@ -6,7 +6,7 @@ pluginManagement {
 }
 
 plugins {
-    id("com.javiersc.hubdle.settings") version "0.2.1-SNAPSHOT"
+    id("com.javiersc.hubdle.settings") version "0.6.0"
 }
 
 hubdle {

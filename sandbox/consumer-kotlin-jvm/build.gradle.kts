@@ -1,5 +1,5 @@
 plugins {
-    id("com.javiersc.hubdle") version "0.5.0-SNAPSHOT"
+    alias(libs.plugins.javiersc.hubdle)
 }
 
 hubdle {

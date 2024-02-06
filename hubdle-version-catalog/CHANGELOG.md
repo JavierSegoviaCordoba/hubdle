@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.intellij:org.jetbrains.intellij.gradle.plugin -> 1.17.1`
 - `io.kotest.extensions:kotest-extensions-wiremock -> 3.0.1`
 - `org.junit.platform:junit-platform-suite-api -> 1.10.2`
 - `org.junit.platform:junit-platform-runner -> 1.10.2`

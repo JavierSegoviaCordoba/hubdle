@@ -18,14 +18,6 @@ on:
         required: false
         default: false
         type: boolean
-      publish_snapshot_tag_prefix:
-        description: 'Publish snapshot based on a custom tag prefix'
-        default: 'null'
-        required: false
-        type: choice
-        options:
-          - 'p'
-          - 'c'
       kotlin_dev_version:
         description: 'Kotlin dev version, for example `1.9.20-dev-5788`'
         default: ''
@@ -51,6 +43,7 @@ jobs:
       run_before_args: './gradlew assemble publishToMavenLocalTest ${{ github.event.inputs.gradle_args }} -P kotlinVersion=${{ github.event.inputs.kotlin_dev_version }} -P semver.tagPrefix=${{ github.event.inputs.publish_snapshot_tag_prefix }} -P semver.stage=${{ github.event.inputs.semver_stage }} -P semver.checkClean=${{ github.event.inputs.semver_checkClean }}'
       deploy-docs: ${{ github.event.inputs.deploy_docs }}
       publish-all-docs: '${{ github.event.inputs.publish_all_docs }}'
-      publish-snapshot-tag-prefix: '${{ github.event.inputs.publish_snapshot_tag_prefix }}'
+      gradle-args-publish-snapshot: '-P semver.tagPrefix=p'
+      gradle-args-publish-snapshot-tag-prefix-two: '-P semver.tagPrefix=c'
       restore-kotlin-native-cache: false
     secrets: inherit

@@ -26,7 +26,13 @@ hubdle {
             experimentalStdlibApi()
         }
         projectConfig()
-        publishing()
+        publishing {
+            maven {
+                repositories { //
+                    mavenLocalTest()
+                }
+            }
+        }
         versioning {
             semver { //
                 tagPrefix.set("p")

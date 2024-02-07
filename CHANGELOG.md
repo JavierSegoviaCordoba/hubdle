@@ -4,6 +4,9 @@
 
 ### Added
 
+- `withPlugin` function to `hubdle`
+- `withPlugins` function to `hubdle`
+
 ### Changed
 
 ### Deprecated

@@ -30,7 +30,7 @@ constructor(
     override val requiredExtensions: Set<HubdleEnableableExtension>
         get() = setOf(hubdleVersioning)
 
-    override val priority: Priority = Priority.P3
+    override val priority: Priority = Priority.P1
 
     public val tagPrefix: Property<String> = defaultTagPrefix()
 

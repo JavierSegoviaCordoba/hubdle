@@ -1,0 +1,11 @@
+name: fix-checks
+
+on:
+  workflow_dispatch:
+
+jobs:
+  fix-checks:
+    uses: JavierSegoviaCordoba/reusable-workflows/.github/workflows/fix-checks.yaml@main
+    with:
+      restore-kotlin-native-cache: false
+    secrets: inherit

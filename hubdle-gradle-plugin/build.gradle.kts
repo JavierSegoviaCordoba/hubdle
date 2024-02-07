@@ -146,7 +146,8 @@ fun GradleVersion.mapIfKotlinVersionIsProvided(kotlinVersion: String): String {
         """
             .trimMargin()
     }
-    check(isSnapshot) {
+    val isSnapshotStage = isSnapshot || getStringProperty("semver.stage").orNull?.isSnapshot == true
+    check(isSnapshotStage) {
         """ |Current version: ${this@mapIfKotlinVersionIsProvided}
             |Kotlin version: $kotlinVersion
             |Requirements to use a specific Kotlin version:  

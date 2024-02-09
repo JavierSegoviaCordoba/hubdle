@@ -14,6 +14,10 @@
 
 ### Updated
 
+## [0.2.1] - 2024-02-09
+
+### Updated
+
 - `androidx.compose.compiler:compiler -> 1.5.9`
 - `androidx.navigation:navigation-compose -> 2.7.7`
 - `androidx.compose.ui:ui-util -> 1.6.1`
@@ -832,6 +836,8 @@
 [Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.2.1...HEAD
 
 [0.2.1]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.17...c0.2.1
+
+[0.2.0]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.17...c0.2.0
 
 [0.1.17]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.16...c0.1.17
 

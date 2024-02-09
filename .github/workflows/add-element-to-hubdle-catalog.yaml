@@ -5,15 +5,24 @@ on:
     inputs:
       module:
         description: 'Library module'
+        type: string
         required: false
       plugin_id:
         description: 'Plugin ID'
+        type: string
         required: false
       version:
         description: 'Version'
+        type: string
         required: false
       version_ref:
         description: 'versionRef'
+        type: string
+        required: false
+      ignore:
+        description: 'ignore'
+        type: boolean
+        default: false
         required: false
 
 jobs:
@@ -27,17 +36,18 @@ jobs:
           token: '${{ secrets.TOKEN_GITHUB_ACTION }}'
 
       - name: Add element to Hubdle catalog
-        shell: kotlin -howtorun .main.kts {0}
-        run: kotlin .scripts/add-element-to-hubdle-catalog.kts module=${{ github.event.inputs.module }} id=${{ github.event.inputs.plugin_id }} version=${{ github.event.inputs.version }} versionRef=${{ github.event.inputs.version_ref }}
+        run: kotlin .scripts/add-element-to-hubdle-catalog.kts module=${{ github.event.inputs.module }} id=${{ github.event.inputs.plugin_id }} version=${{ github.event.inputs.version }} versionRef=${{ github.event.inputs.version_ref }} ignore=${{ github.event.inputs.ignore }}
 
       - name: Commit library
         if: ${{ github.event.inputs.module != null }}
         uses: JavierSegoviaCordoba/reusable-workflows/actions/commit@main
         with:
-          commit-message: 'Add ${{ github.event.inputs.module }} to Hubdle catalog'
+          commit-message: 'Add library ${{ github.event.inputs.module }} to Hubdle catalog'
+          push: true
 
       - name: Commit plugin
         if: ${{ github.event.inputs.plugin_id != null }}
         uses: JavierSegoviaCordoba/reusable-workflows/actions/commit@main
         with:
-          commit-message: 'Add ${{ github.event.inputs.plugin_id }} to Hubdle catalog'
+          commit-message: 'Add plugin ${{ github.event.inputs.plugin_id }} to Hubdle catalog'
+          push: true

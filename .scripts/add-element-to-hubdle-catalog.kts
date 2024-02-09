@@ -12,18 +12,38 @@ fun addLibraryOrPlugin() {
     val id = findArg("id")
     val version = findArg("version")
     val versionRef = findArg("versionRef")
+    val ignore = findArg("ignore")?.toBoolean() ?: false
 
     if (module == null && id == null) error("You must provide a module or an id")
     if (module != null && id != null) error("You must provide a module or an id, not both")
 
     if (module != null) {
-        addElement(module = module, id = null, version = version, versionRef = versionRef)
+        require(module.count { it == ':' } == 1) { "The module must be in the format group:name" }
+        addElement(
+            module = module,
+            id = null,
+            version = version,
+            versionRef = versionRef,
+            ignore = ignore,
+        )
     } else {
-        addElement(module = null, id = id, version = version, versionRef = versionRef)
+        addElement(
+            module = null,
+            id = id,
+            version = version,
+            versionRef = versionRef,
+            ignore = ignore,
+        )
     }
 }
 
-fun addElement(module: String?, id: String?, version: String?, versionRef: String?) {
+fun addElement(
+    module: String?,
+    id: String?,
+    version: String?,
+    versionRef: String?,
+    ignore: Boolean
+) {
     val isLibrary = module != null
     val isPlugin = id != null
     require(isLibrary || isPlugin) { "You must provide a module or an id" }
@@ -47,7 +67,8 @@ fun addElement(module: String?, id: String?, version: String?, versionRef: Strin
                 originalAlias = alias,
                 module = module,
                 versionRef = finalVersionRef,
-                sharedVersionRef = versionRef
+                sharedVersionRef = versionRef,
+                ignore = ignore,
             )
         }
     val catalogPlugin =
@@ -56,7 +77,8 @@ fun addElement(module: String?, id: String?, version: String?, versionRef: Strin
                 originalAlias = alias,
                 id = id,
                 versionRef = finalVersionRef,
-                sharedVersionRef = versionRef
+                sharedVersionRef = versionRef,
+                ignore = ignore,
             )
         }
     val updatedCatalog =
@@ -72,7 +94,7 @@ fun addElement(module: String?, id: String?, version: String?, versionRef: Strin
 }
 
 fun findArg(name: String): String? =
-    args.find { it.startsWith(name) }?.removePrefix("$name=").takeIf { it.isNotBlank() }
+    args.find { it.startsWith(name) }?.removePrefix("$name=").takeIf { it?.isNotBlank() == true }
 
 fun File.buildCatalog(): Catalog {
     val lines = readLines().filterNot(String::isNullOrBlank).filter { !it.startsWith("#") }
@@ -123,7 +145,8 @@ fun File.buildCatalog(): Catalog {
                     originalAlias = originalAlias,
                     module = module,
                     versionRef = versionRef,
-                    sharedVersionRef = sharedVersionRef
+                    sharedVersionRef = sharedVersionRef,
+                    ignore = sanitizedLibrary.findTemplate("ignore") != null,
                 )
             }
             .sortedBy { it.alias }
@@ -147,6 +170,7 @@ fun File.buildCatalog(): Catalog {
                     id = id,
                     versionRef = versionRef,
                     sharedVersionRef = sanitizedPlugin.findTemplate("version.ref"),
+                    ignore = sanitizedPlugin.findTemplate("ignore") != null,
                 )
             }
             .sortedBy { it.alias }
@@ -284,15 +308,21 @@ data class Library(
     val module: String,
     val versionRef: String,
     val sharedVersionRef: String?,
+    val ignore: Boolean,
 ) {
 
     val alias: String = buildLibraryAlias(module)
 
     override fun toString(): String =
-        if (sharedVersionRef != null) {
-            """$alias = { module = "$module", version.ref = "$versionRef" } # {{ version.ref = "$sharedVersionRef" }}"""
-        } else {
-            """$alias = { module = "$module", version.ref = "$versionRef" }"""
+        when {
+            ignore -> {
+                """$originalAlias = { module = "$module", version.ref = "$versionRef" }"""
+                    .appendTemplates("ignore" to ignore, "version.ref" to sharedVersionRef)
+            }
+            else -> {
+                """$alias = { module = "$module", version.ref = "$versionRef" }"""
+                    .appendTemplates("ignore" to ignore, "version.ref" to sharedVersionRef)
+            }
         }
 }
 
@@ -301,15 +331,21 @@ data class Plugin(
     val id: String,
     val versionRef: String,
     val sharedVersionRef: String?,
+    val ignore: Boolean,
 ) {
 
     val alias: String = buildPluginAlias(id)
 
     override fun toString(): String =
-        if (sharedVersionRef != null) {
-            """$alias = { id = "$id", version.ref = "$versionRef" } # {{ version.ref = "$sharedVersionRef" }}"""
-        } else {
-            """$alias = { id = "$id", version.ref = "$versionRef" }"""
+        when {
+            ignore -> {
+                """$originalAlias = { id = "$id", version.ref = "$versionRef" }"""
+                    .appendTemplates("ignore" to ignore, "version.ref" to sharedVersionRef)
+            }
+            else -> {
+                """$alias = { id = "$id", version.ref = "$versionRef" }"""
+                    .appendTemplates("ignore" to ignore, "version.ref" to sharedVersionRef)
+            }
         }
 }
 
@@ -337,10 +373,10 @@ fun buildPluginAlias(id: String): String =
         .removeConsecutiveDuplicates()
         .fixAliasUsingReservedName()
 
-private fun String.removeConsecutiveDuplicates(): String =
+fun String.removeConsecutiveDuplicates(): String =
     split("-").removeConsecutiveDuplicates().joinToString("-")
 
-private fun <T> List<T>.removeConsecutiveDuplicates(): List<T> {
+fun <T> List<T>.removeConsecutiveDuplicates(): List<T> {
     val result = mutableListOf<T>()
     for (element in this) {
         if (result.isEmpty() || result.last() != element) {
@@ -350,9 +386,27 @@ private fun <T> List<T>.removeConsecutiveDuplicates(): List<T> {
     return result
 }
 
-private fun String.fixAliasUsingReservedName(): String = replace("class", "classs")
+fun String.fixAliasUsingReservedName(): String = replace("class", "classs")
 
-private fun String.findTemplate(name: String): String? {
+fun String.appendTemplates(vararg values: Pair<String, Any?>): String {
+    val templates =
+        values
+            .mapNotNull { (name, value) ->
+                when {
+                    value == null -> null
+                    name == "ignore" && value?.toString()?.toBoolean() == false -> null
+                    else -> """{{ $name = "$value" }}"""
+                }
+            }
+            .joinToString(" ")
+    return when {
+        templates.isBlank() -> this
+        this.contains("#") -> "$this $templates"
+        else -> "$this # $templates"
+    }
+}
+
+fun String.findTemplate(name: String): String? {
     val string = this.replace(" ", "")
     val templateStartIndex = string.indexOf("{{$name")
     if (templateStartIndex == -1) return null

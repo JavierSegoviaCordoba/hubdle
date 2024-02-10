@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.squareup.okio:okio -> 3.8.0`
 - `com.github.triplet.play:com.github.triplet.play.gradle.plugin -> 3.9.0`
 
 ## [0.2.1] - 2024-02-09

@@ -6,6 +6,7 @@
 
 - `withPlugin` function to `hubdle`
 - `withPlugins` function to `hubdle`
+- `generate` lifecycle task
 
 ### Changed
 

@@ -1,14 +1,15 @@
 package com.javiersc.hubdle.project.extensions.kotlin.jvm.features.compiler
 
+import com.javiersc.gradle.project.extensions.module
 import com.javiersc.hubdle.project.extensions._internal.allKotlinSrcDirsWithoutBuild
-import com.javiersc.hubdle.project.extensions._internal.kotlinGeneratedTestSrcDirs
 import com.javiersc.hubdle.project.extensions.kotlin.shared.moduleAsString
 import com.javiersc.kotlin.stdlib.isNotNullNorBlank
-import java.io.File
 import javax.inject.Inject
 import org.gradle.api.Project
 import org.gradle.api.artifacts.MinimalExternalModuleDependency
 import org.gradle.api.artifacts.ProjectDependency
+import org.gradle.api.file.DirectoryProperty
+import org.gradle.api.file.ProjectLayout
 import org.gradle.api.file.RegularFileProperty
 import org.gradle.api.model.ObjectFactory
 import org.gradle.api.provider.ListProperty
@@ -17,7 +18,8 @@ import org.gradle.api.provider.Provider
 import org.gradle.api.provider.SetProperty
 import org.gradle.api.tasks.CacheableTask
 import org.gradle.api.tasks.Input
-import org.gradle.api.tasks.OutputFile
+import org.gradle.api.tasks.Internal
+import org.gradle.api.tasks.OutputDirectory
 import org.gradle.api.tasks.SourceTask
 import org.gradle.api.tasks.TaskAction
 import org.gradle.api.tasks.TaskProvider
@@ -31,9 +33,8 @@ public abstract class GenerateMetaRuntimeClasspathProviderTask
 @Inject
 constructor(
     objects: ObjectFactory,
+    layout: ProjectLayout,
 ) : SourceTask() {
-
-    @Input public val generatedTestSourceSetDir: Property<String> = objects.property<String>()
 
     @Input public val mainClass: Property<String> = objects.property<String>()
 
@@ -42,16 +43,30 @@ constructor(
 
     @Input public val testProjectsJarPaths: ListProperty<String> = objects.listProperty<String>()
 
-    @OutputFile
-    public val generatedContentFile: RegularFileProperty =
-        objects.fileProperty().convention {
-            val mainClassString: String = mainClass.get()
-            val mainClassPackage = mainClassString.substringBeforeLast('.')
-            val mainClassParentDir = mainClassPackage.replace('.', '/')
-            File(generatedTestSourceSetDir.get())
-                .resolve(mainClassParentDir)
-                .resolve("GeneratedMetaRuntimeClasspathProvider.kt")
-        }
+    @OutputDirectory
+    public val generatedTestDir: DirectoryProperty =
+        objects
+            .directoryProperty()
+            .convention(
+                layout.buildDirectory.dir("generated/test/kotlin/").map { kotlinDir ->
+                    val generatedPath =
+                        project.module
+                            .replace("-", "/")
+                            .replace(".", "/")
+                            .replace(":", "/")
+                            .replace("_", "/")
+                    val mainClassString: String = mainClass.get()
+                    val mainClassPackage = mainClassString.substringBeforeLast('.')
+                    val mainClassParentDir = mainClassPackage.replace('.', '/')
+                    kotlinDir.dir(generatedPath).dir(mainClassParentDir)
+                }
+            )
+
+    @Internal
+    public val outputFile: RegularFileProperty =
+        objects
+            .fileProperty()
+            .convention(generatedTestDir.file("GeneratedMetaRuntimeClasspathProvider.kt"))
 
     init {
         group = "build"
@@ -85,7 +100,7 @@ constructor(
             appendLine()
         }
 
-        generatedContentFile.orNull?.asFile?.apply {
+        outputFile.orNull?.asFile?.apply {
             parentFile.mkdirs()
             createNewFile()
             writeText(content)
@@ -101,9 +116,6 @@ constructor(
             testDependencies: SetProperty<MinimalExternalModuleDependency>,
             testProjects: SetProperty<ProjectDependency>,
         ): TaskProvider<GenerateMetaRuntimeClasspathProviderTask> {
-            val generatedTestSourceSetDir: Provider<String> =
-                project.provider { project.kotlinGeneratedTestSrcDirs.get().first().path }
-
             val testDependenciesJarPaths: Provider<List<String>> =
                 project.provider {
                     val artifacts =
@@ -148,7 +160,6 @@ constructor(
             val generateMetaRuntimeClasspathProviderTask =
                 project.tasks.register<GenerateMetaRuntimeClasspathProviderTask>(NAME)
             generateMetaRuntimeClasspathProviderTask.configure {
-                it.generatedTestSourceSetDir.convention(generatedTestSourceSetDir)
                 it.mainClass.convention(mainClass)
                 it.testDependenciesJarPaths.convention(testDependenciesJarPaths)
                 it.testProjectsJarPaths.convention(testProjectsJarPaths)

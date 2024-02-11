@@ -3,6 +3,8 @@ package com.javiersc.hubdle.project.extensions.shared.features.tasks
 import com.javiersc.hubdle.project.extensions._internal.allKotlinSrcDirsWithoutBuild
 import com.javiersc.hubdle.project.extensions._internal.isKotlinMultiplatform
 import com.javiersc.hubdle.project.extensions._internal.kotlinSourceSetMainOrCommonMain
+import com.javiersc.hubdle.project.extensions._internal.prepareKotlinIdeaImport
+import com.javiersc.hubdle.project.tasks.lifecycle.GenerateTask
 import com.javiersc.kotlin.stdlib.TransformString
 import com.javiersc.kotlin.stdlib.isNotNullNorBlank
 import java.io.File
@@ -151,7 +153,6 @@ constructor(
             val projectName = project.provider { project.name }
             val projectVersion = project.provider { "${project.version}" }
             val generateProjectDataTask = project.tasks.register<GenerateProjectDataTask>(NAME)
-            val prepareKotlinIdeaImport = project.tasks.maybeCreate("prepareKotlinIdeaImport")
 
             val outputDir: Provider<Directory> =
                 project.provider {
@@ -171,7 +172,12 @@ constructor(
                 it.rootDir.convention(project.rootDir.absolutePath)
                 it.outputDir.convention(outputDir)
             }
-            prepareKotlinIdeaImport.dependsOn(generateProjectDataTask)
+            project.prepareKotlinIdeaImport.configure { task ->
+                task.dependsOn(generateProjectDataTask)
+            }
+            project.tasks.named(GenerateTask.NAME).configure { task ->
+                task.dependsOn(generateProjectDataTask)
+            }
             project.kotlinSourceSetMainOrCommonMain?.configureEach { sourceSet ->
                 sourceSet.kotlin.srcDir(generateProjectDataTask)
             }

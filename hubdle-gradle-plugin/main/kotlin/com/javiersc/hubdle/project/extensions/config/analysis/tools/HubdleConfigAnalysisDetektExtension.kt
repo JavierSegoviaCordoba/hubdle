@@ -18,6 +18,7 @@ import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.provider.Property
+import org.gradle.api.provider.Provider
 import org.gradle.api.provider.SetProperty
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.withType
@@ -78,11 +79,13 @@ constructor(
     private fun Project.configureDetekt() {
         val hubdleDetekt = this@HubdleConfigAnalysisDetektExtension
         configure<DetektExtension> {
+            val kotlinDirs: Provider<List<File>> =
+                allKotlinSrcDirsWithoutBuild.map { files -> files.filter(File::isDirectory) }
             parallel = true
             isIgnoreFailures = hubdleDetekt.ignoreFailures.get()
             buildUponDefaultConfig = true
             basePath = projectDir.path
-            source.from(allKotlinSrcDirsWithoutBuild)
+            source.from(kotlinDirs)
         }
 
         configureDetektTask()

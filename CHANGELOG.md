@@ -10,6 +10,8 @@
 
 ### Changed
 
+- Compiler tasks dependencies
+
 ### Deprecated
 
 ### Removed

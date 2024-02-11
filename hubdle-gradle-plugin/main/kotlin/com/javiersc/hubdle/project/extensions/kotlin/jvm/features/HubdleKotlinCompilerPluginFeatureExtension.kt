@@ -6,6 +6,7 @@ import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions._internal.library
 import com.javiersc.hubdle.project.extensions._internal.libraryModule
 import com.javiersc.hubdle.project.extensions._internal.libraryPlatform
+import com.javiersc.hubdle.project.extensions._internal.prepareKotlinIdeaImport
 import com.javiersc.hubdle.project.extensions.apis.BaseHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
@@ -31,14 +32,15 @@ import com.javiersc.hubdle.project.extensions.kotlin.jvm.features.KotlinCompiler
 import com.javiersc.hubdle.project.extensions.kotlin.jvm.features.compiler.GenerateMetaRuntimeClasspathProviderTask
 import com.javiersc.hubdle.project.extensions.kotlin.jvm.hubdleKotlinJvm
 import com.javiersc.hubdle.project.extensions.shared.features.tasks.GenerateProjectDataTask
+import com.javiersc.hubdle.project.tasks.lifecycle.GenerateTask
 import com.javiersc.kotlin.stdlib.isNotNullNorBlank
 import javax.inject.Inject
 import org.gradle.api.Action
+import org.gradle.api.NamedDomainObjectProvider
 import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.artifacts.MinimalExternalModuleDependency
 import org.gradle.api.artifacts.ProjectDependency
-import org.gradle.api.plugins.BasePlugin
 import org.gradle.api.provider.Property
 import org.gradle.api.provider.Provider
 import org.gradle.api.provider.SetProperty
@@ -53,8 +55,8 @@ import org.gradle.kotlin.dsl.register
 import org.gradle.kotlin.dsl.the
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
+import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 import org.jetbrains.kotlin.gradle.plugin.LanguageSettingsBuilder
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 public open class HubdleKotlinCompilerPluginFeatureExtension
 @Inject
@@ -130,7 +132,7 @@ constructor(
     }
 
     override fun Project.defaultConfiguration() {
-        configurable {
+        configurable(priority = Priority.P4) {
             val testSourceSet = the<SourceSetContainer>().named("test")
             testSourceSet.configure { sourceSet -> sourceSet.java.srcDirs(testGenDir.get()) }
             configure<SourceSetContainer> {
@@ -140,105 +142,103 @@ constructor(
                 }
             }
 
-            configure<KotlinProjectExtension> {
-                sourceSets.configureEach { kotlinSourceSet ->
-                    kotlinSourceSet.languageSettings { optInExperimentalAPIs() }
-                }
+            the<KotlinProjectExtension>().sourceSets.configureEach { kotlinSourceSet ->
+                kotlinSourceSet.languageSettings { optInExperimentalAPIs() }
+            }
 
-                sourceSets.named("main").configure { kotlinSourceSet ->
-                    kotlinSourceSet.dependencies {
-                        compileOnly(library(jetbrains_kotlin_compiler))
-                        if (addExtensionDependencies.get()) {
-                            implementation(library(javiersc_kotlin_compiler_extensions))
-                        }
-                    }
-                }
+            val mainSet: NamedDomainObjectProvider<KotlinSourceSet> =
+                the<KotlinProjectExtension>().sourceSets.named("main")
+            val testSet: NamedDomainObjectProvider<KotlinSourceSet> =
+                the<KotlinProjectExtension>().sourceSets.named("main")
 
-                sourceSets.named("test").configure { kotlinSourceSet ->
-                    kotlinSourceSet.dependencies {
-                        if (addExtensionDependencies.get()) {
-                            implementation(library(javiersc_kotlin_compiler_test_extensions))
-                        }
-                        implementation(library(jetbrains_kotlin_compiler))
-                        implementation(library(jetbrains_kotlin_compiler_internal_test_framework))
-                        implementation(library(jetbrains_kotlin_reflect))
-                        implementation(library(jetbrains_kotlin_test_annotations_common))
-                        implementation(libraryModule(junit_jupiter_junit_jupiter))
-                        implementation(libraryModule(junit_jupiter_junit_jupiter_api))
-                        implementation(libraryModule(junit_platform_junit_platform_commons))
-                        implementation(libraryModule(junit_platform_junit_platform_launcher))
-                        implementation(libraryModule(junit_platform_junit_platform_runner))
-                        implementation(libraryModule(junit_platform_junit_platform_suite_api))
-                        implementation(platform(libraryPlatform(junit_bom)))
-                        runtimeOnly(library(jetbrains_kotlin_annotations_jvm))
-                        runtimeOnly(library(jetbrains_kotlin_script_runtime))
-                        runtimeOnly(library(jetbrains_kotlin_test))
+            mainSet.configure { kotlinSourceSet ->
+                kotlinSourceSet.dependencies {
+                    compileOnly(library(jetbrains_kotlin_compiler))
+                    if (addExtensionDependencies.get()) {
+                        implementation(library(javiersc_kotlin_compiler_extensions))
                     }
                 }
             }
 
-            tasks.apply {
-                val generateMetaRuntimeClasspathProvider:
-                    TaskProvider<GenerateMetaRuntimeClasspathProviderTask> =
-                    GenerateMetaRuntimeClasspathProviderTask.register(
-                        project,
-                        mainClass,
-                        testDependencies,
-                        testProjects,
-                    )
+            testSet.configure { kotlinSourceSet ->
+                kotlinSourceSet.dependencies {
+                    if (addExtensionDependencies.get()) {
+                        implementation(library(javiersc_kotlin_compiler_test_extensions))
+                    }
+                    implementation(library(jetbrains_kotlin_compiler))
+                    implementation(library(jetbrains_kotlin_compiler_internal_test_framework))
+                    implementation(library(jetbrains_kotlin_reflect))
+                    implementation(library(jetbrains_kotlin_test_annotations_common))
+                    implementation(libraryModule(junit_jupiter_junit_jupiter))
+                    implementation(libraryModule(junit_jupiter_junit_jupiter_api))
+                    implementation(libraryModule(junit_platform_junit_platform_commons))
+                    implementation(libraryModule(junit_platform_junit_platform_launcher))
+                    implementation(libraryModule(junit_platform_junit_platform_runner))
+                    implementation(libraryModule(junit_platform_junit_platform_suite_api))
+                    implementation(dependencies.platform(libraryPlatform(junit_bom)))
+                    runtimeOnly(library(jetbrains_kotlin_annotations_jvm))
+                    runtimeOnly(library(jetbrains_kotlin_script_runtime))
+                    runtimeOnly(library(jetbrains_kotlin_test))
+                }
+            }
 
-                val generateProjectData: TaskProvider<Task> = named(GenerateProjectDataTask.NAME)
+            val generateMetaRuntimeClasspathProvider:
+                TaskProvider<GenerateMetaRuntimeClasspathProviderTask> =
+                GenerateMetaRuntimeClasspathProviderTask.register(
+                    project,
+                    mainClass,
+                    testDependencies,
+                    testProjects,
+                )
 
-                named(BasePlugin.ASSEMBLE_TASK_NAME).configure { task ->
+            the<KotlinProjectExtension>().sourceSets.named("test").configure {
+                it.kotlin.srcDir(generateMetaRuntimeClasspathProvider)
+            }
+
+            val generateKotlinCompilerTests: TaskProvider<JavaExec> =
+                tasks.register<JavaExec>("generateKotlinCompilerTests") { group = "build" }
+            generateKotlinCompilerTests.configure { task ->
+                task.doFirst {
+                    for (testType: KotlinCompilerTestType in testTypes.get()) {
+                        projectDir.resolve("${testDataDir.get()}/${testType.dir}").mkdirs()
+                    }
+                    projectDir.resolve(testGenDir.get()).mkdirs()
+                }
+                task.isEnabled = mainClass.orNull.isNotNullNorBlank()
+                task.classpath = testSourceSet.get().runtimeClasspath
+                task.mainClass.set(mainClass)
+                task.dependsOn(generateMetaRuntimeClasspathProvider)
+                task.dependsOnTestProjects()
+            }
+
+            val generateProjectData: TaskProvider<Task> = tasks.named(GenerateProjectDataTask.NAME)
+
+            tasks.named(GenerateTask.NAME).configure { task ->
+                task.dependsOn(generateKotlinCompilerTests)
+                task.dependsOn(generateProjectData)
+            }
+
+            prepareKotlinIdeaImport.configure { task ->
+                if (mainClass.orNull.isNotNullNorBlank() && generateTestOnSync.orNull == true) {
+                    task.dependsOn(generateKotlinCompilerTests)
                     task.dependsOn(generateMetaRuntimeClasspathProvider)
                     task.dependsOn(generateProjectData)
                 }
+            }
 
-                withType<KotlinCompile>().configureEach { kotlinCompile ->
-                    kotlinCompile.dependsOn(generateMetaRuntimeClasspathProvider)
-                    kotlinCompile.dependsOn(generateProjectData)
-                }
+            tasks.named<Test>("test") {
+                testLogging { it.showStandardStreams = true }
 
-                val generateKotlinCompilerTests: TaskProvider<JavaExec> =
-                    register<JavaExec>("generateKotlinCompilerTests") { group = "build" }
-                generateKotlinCompilerTests.configure { task ->
-                    task.doFirst {
-                        for (testType: KotlinCompilerTestType in testTypes.get()) {
-                            projectDir.resolve("${testDataDir.get()}/${testType.dir}").mkdirs()
-                        }
-                        projectDir.resolve(testGenDir.get()).mkdirs()
-                    }
-                    task.isEnabled = mainClass.orNull.isNotNullNorBlank()
-                    task.classpath = testSourceSet.get().runtimeClasspath
-                    task.mainClass.set(mainClass)
-                    task.dependsOn(generateMetaRuntimeClasspathProvider)
-                    task.dependsOnTestProjects()
-                }
+                useJUnitPlatform()
 
-                named("prepareKotlinIdeaImport").configure { task ->
-                    if (mainClass.orNull.isNotNullNorBlank() && generateTestOnSync.orNull == true) {
-                        task.dependsOn(generateKotlinCompilerTests)
-                        task.dependsOn(generateMetaRuntimeClasspathProvider)
-                        task.dependsOn(generateProjectData)
+                doFirst {
+                    for ((group: String, name: String) in libraryProperties) {
+                        setLibraryProperty(propName = group, jarName = name)
                     }
                 }
 
-                tasks.withType<Jar>().configureEach { jar -> jar.dependsOn(generateProjectData) }
-
-                named<Test>("test") {
-                    testLogging { it.showStandardStreams = true }
-
-                    useJUnitPlatform()
-
-                    doFirst {
-                        for ((group: String, name: String) in libraryProperties) {
-                            setLibraryProperty(propName = group, jarName = name)
-                        }
-                    }
-
-                    dependsOn(generateKotlinCompilerTests)
-                    dependsOnTestProjects()
-                }
+                dependsOn(generateKotlinCompilerTests)
+                dependsOnTestProjects()
             }
         }
     }

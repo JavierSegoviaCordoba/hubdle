@@ -1497,10 +1497,10 @@ public final class com/javiersc/hubdle/project/extensions/kotlin/jvm/features/Ko
 public abstract class com/javiersc/hubdle/project/extensions/kotlin/jvm/features/compiler/GenerateMetaRuntimeClasspathProviderTask : org/gradle/api/tasks/SourceTask {
 	public static final field Companion Lcom/javiersc/hubdle/project/extensions/kotlin/jvm/features/compiler/GenerateMetaRuntimeClasspathProviderTask$Companion;
 	public static final field NAME Ljava/lang/String;
-	public fun <init> (Lorg/gradle/api/model/ObjectFactory;)V
-	public final fun getGeneratedContentFile ()Lorg/gradle/api/file/RegularFileProperty;
-	public final fun getGeneratedTestSourceSetDir ()Lorg/gradle/api/provider/Property;
+	public fun <init> (Lorg/gradle/api/model/ObjectFactory;Lorg/gradle/api/file/ProjectLayout;)V
+	public final fun getGeneratedTestDir ()Lorg/gradle/api/file/DirectoryProperty;
 	public final fun getMainClass ()Lorg/gradle/api/provider/Property;
+	public final fun getOutputFile ()Lorg/gradle/api/file/RegularFileProperty;
 	public final fun getTestDependenciesJarPaths ()Lorg/gradle/api/provider/ListProperty;
 	public final fun getTestProjectsJarPaths ()Lorg/gradle/api/provider/ListProperty;
 	public final fun run ()V
@@ -2412,6 +2412,15 @@ public class com/javiersc/hubdle/project/tasks/lifecycle/FixChecksTask : org/gra
 }
 
 public final class com/javiersc/hubdle/project/tasks/lifecycle/FixChecksTask$Companion {
+}
+
+public class com/javiersc/hubdle/project/tasks/lifecycle/GenerateTask : org/gradle/api/DefaultTask, com/javiersc/hubdle/project/tasks/HubdleTask {
+	public static final field Companion Lcom/javiersc/hubdle/project/tasks/lifecycle/GenerateTask$Companion;
+	public static final field NAME Ljava/lang/String;
+	public fun <init> ()V
+}
+
+public final class com/javiersc/hubdle/project/tasks/lifecycle/GenerateTask$Companion {
 }
 
 public class com/javiersc/hubdle/project/tasks/lifecycle/TestsTask : org/gradle/api/DefaultTask, com/javiersc/hubdle/project/tasks/HubdleTask {

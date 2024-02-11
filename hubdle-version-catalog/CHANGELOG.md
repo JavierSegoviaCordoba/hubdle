@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.javiersc.semver:com.javiersc.semver.gradle.plugin -> 0.5.0`
 - `com.squareup.okio:okio -> 3.8.0`
 - `com.github.triplet.play:com.github.triplet.play.gradle.plugin -> 3.9.0`
 

@@ -8,9 +8,9 @@
 
 ### Deprecated
 
-### Removed
-
 ### Fixed
+
+### Removed
 
 ### Updated
 

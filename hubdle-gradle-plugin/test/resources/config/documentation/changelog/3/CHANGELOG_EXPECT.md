@@ -14,13 +14,13 @@
 
 - new deprecated
 
-### Removed
-
-- new removed
-
 ### Fixed
 
 - new fixed
+
+### Removed
+
+- new removed
 
 ### Updated
 
@@ -43,7 +43,7 @@
     - Two
         - Three
 
-### Deleted
+### Removed
 
 - `main/AndroidManifest.xml`
 - `main/assets`

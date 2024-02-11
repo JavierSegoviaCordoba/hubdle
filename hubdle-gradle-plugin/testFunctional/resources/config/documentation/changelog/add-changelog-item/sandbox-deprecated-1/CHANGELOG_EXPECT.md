@@ -10,9 +10,9 @@
 
 - new deprecated
 
-### Removed
-
 ### Fixed
+
+### Removed
 
 ### Updated
 

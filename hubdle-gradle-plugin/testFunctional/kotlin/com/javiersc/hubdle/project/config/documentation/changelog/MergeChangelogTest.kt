@@ -46,4 +46,12 @@ internal class MergeChangelogTest : GradleTestKitTest() {
             projectDir.testChangelog()
         }
     }
+
+    @Test
+    fun `merge 6`() {
+        gradleTestKitTest("$basePath/sandbox-merge-6") {
+            gradlewArgumentFromTXT()
+            projectDir.testChangelog()
+        }
+    }
 }

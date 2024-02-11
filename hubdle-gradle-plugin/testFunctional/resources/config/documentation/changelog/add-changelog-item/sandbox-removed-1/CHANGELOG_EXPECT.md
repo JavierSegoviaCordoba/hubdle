@@ -8,11 +8,11 @@
 
 ### Deprecated
 
+### Fixed
+
 ### Removed
 
 - new removed
-
-### Fixed
 
 ### Updated
 

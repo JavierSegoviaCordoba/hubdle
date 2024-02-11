@@ -15,6 +15,8 @@
 
 ### Fixed
 
+- `MergeChangelogTask` adds the same updated dependency multiple times with different versions
+
 ### Updated
 
 ## [0.6.2] - 2024-02-05

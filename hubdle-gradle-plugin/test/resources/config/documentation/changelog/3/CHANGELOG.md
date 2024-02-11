@@ -43,7 +43,7 @@
     - Two
         - Three
 
-### Deleted
+### Removed
 
 - `main/AndroidManifest.xml`
 - `main/assets`

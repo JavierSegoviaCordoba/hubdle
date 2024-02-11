@@ -8,9 +8,9 @@
 
 ### Deprecated
 
-### Removed
-
 ### Fixed
+
+### Removed
 
 ### Updated
 
@@ -933,14 +933,14 @@
 - Changelog registers `mergeChangelog` task instead of merging automatically with `patchChangelog`
 - Dokka is automatically applied to all projects that are applying Kotlin Gradle plugin
 
-### Removed
-
-- `jcenter()`
-
 ### Fixed
 
 - module docs generated hasn't `MODULE.md` info
 - All `publish-*` plugins have using Dokka incorrectly
+
+### Removed
+
+- `jcenter()`
 
 ## [0.1.0-alpha.20] - 2021-04-27
 
@@ -959,14 +959,14 @@
 
 - Add `all-plugins` module which exposes all plugins
 
+### Fixed
+
+- Kotlin version is found by checking all the projects instead of from Version Catalog
+
 ### Removed
 
 - ktfmt uses the default Spotless ktfmt version instead of indicating the last one
 - Detekt version is not needed
-
-### Fixed
-
-- Kotlin version is found by checking all the projects instead of from Version Catalog
 
 ## [0.1.0-alpha.17] - 2021-04-26
 

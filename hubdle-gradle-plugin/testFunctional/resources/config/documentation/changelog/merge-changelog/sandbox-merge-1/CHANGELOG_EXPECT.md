@@ -8,9 +8,9 @@
 
 ### Deprecated
 
-### Removed
-
 ### Fixed
+
+### Removed
 
 ### Updated
 
@@ -30,14 +30,14 @@
 
 - new deprecated
 
-### Removed
-
-- new removed
-
 ### Fixed
 
 - new fixed
 - some fix
+
+### Removed
+
+- new removed
 
 ### Updated
 

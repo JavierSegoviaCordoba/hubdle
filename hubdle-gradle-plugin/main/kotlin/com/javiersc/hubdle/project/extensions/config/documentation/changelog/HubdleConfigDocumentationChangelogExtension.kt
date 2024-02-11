@@ -61,8 +61,8 @@ constructor(
                         "Added",
                         "Changed",
                         "Deprecated",
-                        "Removed",
                         "Fixed",
+                        "Removed",
                         "Updated",
                     )
                 )

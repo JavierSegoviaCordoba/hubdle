@@ -67,9 +67,25 @@ internal class Changelog(
                 appendLine(value)
                 appendLine()
                 for (item in items) {
-                    appendLine("$item")
+                    val isUpdated = value.contains("Updated")
+                    when {
+                        !isUpdated -> appendLine("$item")
+                        isUpdated && !containsDependencyUpdated("$item") -> appendLine("$item")
+                    }
                 }
                 if (items.isNotEmpty()) appendLine()
+            }
+
+            private val String.isDependencyUpdate: Boolean
+                get() = Item.dependencyUpdateRegex.containsMatchIn(this)
+
+            private fun StringBuilder.containsDependencyUpdated(item: String): Boolean {
+                if (!item.isDependencyUpdate) return false
+                val lines = this@containsDependencyUpdated.toString().lines()
+                val addedDependencies = lines.filter { line -> line.isDependencyUpdate }
+                fun String.isSameDependency(other: String): Boolean =
+                    this@isSameDependency.substringBefore("->") == other.substringBefore("->")
+                return addedDependencies.any { it.isSameDependency(item) }
             }
 
             internal class Item(val value: String) {
@@ -80,6 +96,10 @@ internal class Changelog(
                     const val itemPrefix: String = "-"
                     const val noChanges: String = "No changes"
                     const val unreleased: String = "Unreleased"
+                    val dependencyUpdateRegex =
+                        Regex(
+                            """^(- *)+ (`*)+([a-zA-Z0-9.-]+)+([a-zA-Z0-9.-:-]+)+( -> )+([a-zA-Z0-9.-]+)+(`)"""
+                        )
                 }
             }
         }
@@ -143,6 +163,7 @@ private fun buildGroups(lines: List<String>): List<Group> = buildList {
             }
         }
     groups.forEach { (value, items) -> add(Group(value, buildItems(items))) }
+    sortBy { it.value }
 }
 
 private fun buildReferences(lines: List<String>): List<Reference> {

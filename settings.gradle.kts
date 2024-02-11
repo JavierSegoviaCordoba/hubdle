@@ -66,10 +66,10 @@ dependencyResolutionManagement {
             removeIf { it.name == "hubdle" }
             create("hubdle") {
                 if (itselfVersion != null) {
-                    version("hubdle", itselfVersion)
+                    version("javiersc-hubdle", itselfVersion)
                 }
                 if (kotlinVersion != null) {
-                    version("kotlin") { //
+                    version("jetbrains-kotlin") { //
                         strictly(kotlinVersion)
                     }
                 }

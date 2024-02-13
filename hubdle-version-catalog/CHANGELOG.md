@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.6.3`
 - `com.javiersc.kotlin:kotlin-test-testng -> 0.1.0-alpha.16`
 - `com.javiersc.kotlin:kotlin-test-junit5 -> 0.1.0-alpha.16`
 - `com.javiersc.kotlin:kotlin-test-junit -> 0.1.0-alpha.16`

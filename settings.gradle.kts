@@ -69,9 +69,7 @@ dependencyResolutionManagement {
                     version("javiersc-hubdle", itselfVersion)
                 }
                 if (kotlinVersion != null) {
-                    version("jetbrains-kotlin") { //
-                        strictly(kotlinVersion)
-                    }
+                    version("jetbrains-kotlin", kotlinVersion)
                 }
                 from(files(rootDir.resolve("gradle/hubdle.libs.versions.toml")))
             }

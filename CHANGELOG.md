@@ -12,6 +12,7 @@
 
 - Compiler tasks dependencies
 - Android version to be not `strictly`
+- Kotlin version to be not `strictly`
 
 ### Deprecated
 

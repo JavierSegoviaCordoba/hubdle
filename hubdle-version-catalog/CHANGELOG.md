@@ -14,6 +14,11 @@
 
 ### Updated
 
+- `com.javiersc.kotlin:kotlin-test-testng -> 0.1.0-alpha.16`
+- `com.javiersc.kotlin:kotlin-test-junit5 -> 0.1.0-alpha.16`
+- `com.javiersc.kotlin:kotlin-test-junit -> 0.1.0-alpha.16`
+- `com.javiersc.kotlin:kotlin-stdlib -> 0.1.0-alpha.16`
+
 ## [0.2.2] - 2024-02-13
 
 ### Updated

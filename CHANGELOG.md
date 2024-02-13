@@ -4,6 +4,20 @@
 
 ### Added
 
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Updated
+
+## [0.6.3] - 2024-02-13
+
+### Added
+
 - `withPlugin` function to `hubdle`
 - `withPlugins` function to `hubdle`
 - `generate` lifecycle task
@@ -14,15 +28,9 @@
 - Android version to be not `strictly`
 - Kotlin version to be not `strictly`
 
-### Deprecated
-
-### Removed
-
 ### Fixed
 
 - `MergeChangelogTask` adds the same updated dependency multiple times with different versions
-
-### Updated
 
 ## [0.6.2] - 2024-02-05
 
@@ -53,7 +61,9 @@
 
 - `allTests` task
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.6.2...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.6.3...HEAD
+
+[0.6.3]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.6.2...p0.6.3
 
 [0.6.2]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.6.1...p0.6.2
 

@@ -14,6 +14,10 @@
 
 ### Updated
 
+## [0.2.2] - 2024-02-13
+
+### Updated
+
 - `com.javiersc.semver:com.javiersc.semver.gradle.plugin -> 0.5.0`
 - `com.squareup.okio:okio -> 3.8.0`
 - `com.github.triplet.play:com.github.triplet.play.gradle.plugin -> 3.9.0`
@@ -837,7 +841,9 @@
 - `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
 - `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.13.1`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.2.1...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.2.2...HEAD
+
+[0.2.2]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.2.1...c0.2.2
 
 [0.2.1]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.17...c0.2.1
 

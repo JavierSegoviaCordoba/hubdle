@@ -8,9 +8,13 @@
 
 ### Deprecated
 
+### Fixed
+
 ### Removed
 
-### Fixed
+### Updated
+
+## [0.2.3] - 2024-02-14
 
 ### Updated
 
@@ -187,7 +191,6 @@
 - `gradle -> 8.5`
 - `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.7.5`
 - `org.jetbrains:markdown -> 0.6.0`
-- `com.diffplug.spotless:spotless-plugin-gradle -> 6.23.0`
 - `androidx.compose.runtime:runtime-tracing -> 1.0.0-beta01`
 - `io.gitlab.arturbosch.detekt:detekt-gradle-plugin -> 1.23.4`
 - `app.cash.molecule:app.cash.molecule.gradle.plugin -> 1.3.1`
@@ -218,12 +221,6 @@
 - `com.russhwolf:multiplatform-settings-coroutines -> 1.1.1`
 - `com.russhwolf:multiplatform-settings -> 1.1.1`
 - `com.github.triplet.gradle:play-publisher -> 3.8.6`
-- `io.ktor:ktor-serialization-kotlinx-json -> 2.3.6`
-- `io.ktor:ktor-client-okhttp -> 2.3.6`
-- `io.ktor:ktor-client-mock -> 2.3.6`
-- `io.ktor:ktor-client-core -> 2.3.6`
-- `io.ktor:ktor-client-content-negotiation -> 2.3.6`
-- `io.ktor:ktor-client-cio -> 2.3.6`
 - `org.junit.platform:junit-platform-suite-api -> 1.10.1`
 - `org.junit.platform:junit-platform-runner -> 1.10.1`
 - `org.junit.platform:junit-platform-launcher -> 1.10.1`
@@ -232,7 +229,6 @@
 - `org.junit.jupiter:junit-jupiter-api -> 5.10.1`
 - `org.junit.jupiter:junit-jupiter -> 5.10.1`
 - `org.junit:junit-bom -> 5.10.1`
-- `org.jetbrains.kotlinx:kotlinx-serialization-core -> 1.6.1`
 - `androidx.activity:activity-ktx -> 1.8.1`
 - `androidx.activity:activity-compose -> 1.8.1`
 - `io.kotest:kotest-runner-junit5 -> 5.8.0`
@@ -715,16 +711,11 @@
 - `com.javiersc.kotlin:kotlin-test-junit -> 0.1.0-alpha.15`
 - `com.javiersc.kotlin:kotlin-stdlib -> 0.1.0-alpha.15`
 - `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.13.2`
-- `com.javiersc.kotlin:kotlin-test-testng -> 0.1.0-alpha.14`
-- `com.javiersc.kotlin:kotlin-test-junit5 -> 0.1.0-alpha.14`
-- `com.javiersc.kotlin:kotlin-test-junit -> 0.1.0-alpha.14`
-- `com.javiersc.kotlin:kotlin-stdlib -> 0.1.0-alpha.14`
 - `org.jetbrains.intellij.plugins:gradle-intellij-plugin -> 1.14.0`
 - `org.jetbrains.intellij.plugins:gradle-changelog-plugin -> 2.1.0`
 - `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.7.1`
 - `io.insert-koin:koin-logger-slf4j -> 3.4.1`
 - `io.insert-koin:koin-ktor -> 3.4.1`
-- `io.insert-koin:koin-android -> 3.4.1`
 - `org.sonarqube:org.sonarqube.gradle.plugin -> 4.2.0.3129`
 - `org.sonarsource.scanner.gradle:sonarqube-gradle-plugin -> 4.2.0.3129`
 - `io.ktor:ktor-serialization-kotlinx-json -> 2.3.1`
@@ -736,7 +727,6 @@
 - `io.insert-koin:koin-test-junit5 -> 3.4.1`
 - `io.insert-koin:koin-test-junit4 -> 3.4.1`
 - `io.insert-koin:koin-test -> 3.4.1`
-- `io.insert-koin:koin-core -> 3.4.1`
 - `io.insert-koin:koin-androidx-compose -> 3.4.5`
 - `app.cash.sqldelight:sqlite-driver -> 2.0.0-rc01`
 - `app.cash.sqldelight:native-driver -> 2.0.0-rc01`
@@ -750,12 +740,10 @@
 - `com.android.library:com.android.library.gradle.plugin -> 8.0.2`
 - `com.android.application:com.android.application.gradle.plugin -> 8.0.2`
 - `com.android.tools.build:gradle -> 8.0.2`
-- `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-alpha.22`
 - `androidx.activity:activity-ktx -> 1.7.2`
 - `androidx.activity:activity-compose -> 1.7.2`
 - `com.diffplug.spotless:spotless-plugin-gradle -> 6.19.0`
 - `io.gitlab.arturbosch.detekt:detekt-gradle-plugin -> 1.23.0`
-- `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-alpha.21`
 - `org.gradle:test-retry-gradle-plugin -> 1.5.3`
 - `com.javiersc.gradle:gradle-test-extensions -> 1.0.0-alpha.32`
 - `com.javiersc.gradle:gradle-extensions -> 1.0.0-alpha.32`
@@ -776,11 +764,6 @@
 - `io.kotest:kotest-assertions-core -> 5.6.2`
 - `androidx.core:core-ktx -> 1.10.1`
 - `com.github.triplet.gradle:play-publisher -> 3.8.3`
-- `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.13.2`
-- `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-alpha.16`
-- `org.jetbrains.kotlinx:kotlinx-coroutines-test -> 1.7.0`
-- `org.jetbrains.kotlinx:kotlinx-coroutines-core -> 1.7.0`
-- `org.jetbrains.kotlinx:kotlinx-coroutines-android -> 1.7.0`
 - `org.jetbrains.kotlin:kotlin-test-testng -> 1.8.21`
 - `org.jetbrains.kotlin:kotlin-test-junit5 -> 1.8.21`
 - `org.jetbrains.kotlin:kotlin-test-junit -> 1.8.21`
@@ -811,15 +794,7 @@
 - `androidx.compose.animation:animation-graphics -> 1.4.3`
 - `androidx.compose.animation:animation-core -> 1.4.3`
 - `androidx.compose.animation:animation -> 1.4.3`
-- `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.13.1`
-- `com.android.library:com.android.library.gradle.plugin -> 8.0.1`
-- `com.android.application:com.android.application.gradle.plugin -> 8.0.1`
-- `com.android.tools.build:gradle -> 8.0.1`
 - `com.facebook:ktfmt -> 0.44`
-- `com.javiersc.gradle:gradle-test-extensions -> 1.0.0-alpha.31`
-- `com.javiersc.gradle:gradle-extensions -> 1.0.0-alpha.31`
-- `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.5.0-alpha.12`
-- `com.github.triplet.gradle:play-publisher -> 3.8.2`
 - `org.junit.jupiter:junit-jupiter-params -> 5.9.3`
 - `org.junit.jupiter:junit-jupiter-api -> 5.9.3`
 - `io.kotest.extensions:kotest-assertions-arrow -> 1.3.3`
@@ -828,26 +803,12 @@
 - `gradle -> 8.1.1`
 - `org.jetbrains.intellij.deps:intellij-coverage-agent -> 1.0.716`
 - `androidx.core:core-splashscreen -> 1.0.1`
-- `androidx.activity:activity-ktx -> 1.7.1`
-- `androidx.activity:activity-compose -> 1.7.1`
-- `io.ktor:ktor-serialization-kotlinx-json -> 2.3.0`
-- `io.ktor:ktor-client-okhttp -> 2.3.0`
-- `io.ktor:ktor-client-mock -> 2.3.0`
-- `io.ktor:ktor-client-core -> 2.3.0`
-- `io.ktor:ktor-client-content-negotiation -> 2.3.0`
-- `io.ktor:ktor-client-cio -> 2.3.0`
-- `io.insert-koin:koin-androidx-compose -> 3.4.4`
 - `com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter -> 1.0.0`
-- `io.kotest:kotest-runner-junit5 -> 5.6.1`
-- `io.kotest:kotest-runner-junit4 -> 5.6.1`
-- `io.kotest:kotest-property -> 5.6.1`
-- `io.kotest:kotest-assertions-sql -> 5.6.1`
-- `io.kotest:kotest-assertions-json -> 5.6.1`
-- `io.kotest:kotest-assertions-core -> 5.6.1`
 - `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
-- `org.jetbrains.kotlinx:binary-compatibility-validator -> 0.13.1`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.2.2...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.2.3...HEAD
+
+[0.2.3]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.2.2...c0.2.3
 
 [0.2.2]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.2.1...c0.2.2
 

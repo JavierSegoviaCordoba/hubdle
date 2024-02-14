@@ -2,7 +2,6 @@ package com.javiersc.hubdle.project.extensions.config.documentation.api
 
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
-import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions._internal.hasKotlinGradlePlugin
@@ -27,14 +26,8 @@ constructor(
     override val requiredExtensions: Set<HubdleEnableableExtension>
         get() = setOf(hubdleDocumentation)
 
-    override val priority: Priority = Priority.P3
-
     override fun Project.defaultConfiguration() {
-        applicablePlugin(
-            priority = Priority.P4,
-            scope = Scope.CurrentProject,
-            pluginId = PluginId.JetbrainsDokka
-        )
+        applicablePlugin(scope = Scope.CurrentProject, pluginId = PluginId.JetbrainsDokka)
 
         configurable {
             if (project.hasKotlinGradlePlugin) {

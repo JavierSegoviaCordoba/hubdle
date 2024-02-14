@@ -24,7 +24,7 @@ public abstract class HubdleSourceSetConfigurableExtension<T>(
     @HubdleDslMarker
     public fun testFunctional(action: Action<T> = Action {}) {
         isTestFunctionalEnabled.set(true)
-        userConfigurable { testFunctional.configure(action) }
+        configurable { testFunctional.configure(action) }
     }
 
     public val isTestIntegrationEnabled: Property<Boolean> = property { false }
@@ -38,7 +38,7 @@ public abstract class HubdleSourceSetConfigurableExtension<T>(
     @HubdleDslMarker
     public fun testIntegration(action: Action<T> = Action {}) {
         isTestIntegrationEnabled.set(true)
-        userConfigurable { testIntegration.configure(action) }
+        configurable { testIntegration.configure(action) }
     }
 
     public val isTestFixturesEnabled: Property<Boolean> = property { false }
@@ -52,6 +52,6 @@ public abstract class HubdleSourceSetConfigurableExtension<T>(
     @HubdleDslMarker
     public fun testFixtures(action: Action<T> = Action {}) {
         isTestFixturesEnabled.set(true)
-        userConfigurable { testFixtures.configure(action) }
+        configurable { testFixtures.configure(action) }
     }
 }

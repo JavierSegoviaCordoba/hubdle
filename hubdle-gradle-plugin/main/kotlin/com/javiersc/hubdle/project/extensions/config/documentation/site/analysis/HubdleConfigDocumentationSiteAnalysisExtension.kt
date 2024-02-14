@@ -1,7 +1,6 @@
 package com.javiersc.hubdle.project.extensions.config.documentation.site.analysis
 
 import com.javiersc.gradle.properties.extensions.getStringProperty
-import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.config.analysis.HubdleConfigAnalysisExtension.Qodana
@@ -25,8 +24,6 @@ constructor(
 
     override val requiredExtensions: Set<HubdleEnableableExtension>
         get() = setOf(hubdleSite)
-
-    override val priority: Priority = Priority.P3
 
     public val qodana: Property<Boolean> = property { true }
 

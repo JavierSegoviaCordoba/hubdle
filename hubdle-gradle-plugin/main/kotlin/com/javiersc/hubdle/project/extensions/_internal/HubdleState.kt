@@ -2,8 +2,8 @@
 
 package com.javiersc.hubdle.project.extensions._internal
 
+import com.javiersc.gradle.project.extensions.withPlugins
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
-import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions.apis.BaseHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import org.gradle.api.Project
@@ -48,58 +48,41 @@ internal class HubdleState(private val project: Project) {
 
     private val _applicablePlugins: MutableList<ApplicablePlugin> = mutableListOf()
     val applicablePlugins: List<ApplicablePlugin>
-        get() = _applicablePlugins.toList().sortedBy { it.priority }
+        get() = _applicablePlugins.toList()
 
     fun applicablePlugin(
         isEnabled: Provider<Boolean>,
-        priority: Priority,
         scope: Scope,
         pluginId: PluginId,
     ) {
         val applicablePlugin =
-            ApplicablePlugin(
-                priority = priority,
-                isEnabled = isEnabled,
-                scope = scope,
-                pluginId = pluginId
-            )
+            ApplicablePlugin(isEnabled = isEnabled, scope = scope, pluginId = pluginId)
         _applicablePlugins.add(applicablePlugin)
     }
 
     private val _configurables: MutableList<Configurable> = mutableListOf()
     val configurables: List<Configurable>
-        get() = _configurables.toList().sortedBy { it.priority }
+        get() = _configurables.toList()
 
-    fun configurable(
-        name: String,
-        isEnabled: Property<Boolean>,
-        priority: Priority,
-        config: Configurable.() -> Unit
-    ) {
-        _configurables.add(Configurable(name, priority, isEnabled, config))
-    }
-
-    internal fun userConfigurable(
-        name: String,
-        isEnabled: Property<Boolean>,
-        config: Configurable.() -> Unit
-    ) {
-        configurable(name, isEnabled, Priority.P5, config)
+    fun configurable(name: String, isEnabled: Property<Boolean>, config: Configurable.() -> Unit) {
+        _configurables.add(Configurable(name, isEnabled, config))
     }
 
     fun configure() {
         for (applicablePlugin in applicablePlugins) {
             applicablePlugin.run { project.applyPlugin() }
         }
-        for (configurable in configurables) {
-            configurable.configure()
+        val ids = applicablePlugins.filter { it.isEnabled.get() }.map { it.pluginId.id }
+        project.withPlugins(*ids.toTypedArray()) {
+            for (configurable in configurables) {
+                configurable.configure()
+            }
         }
     }
 }
 
 internal interface ApplicablePlugin {
     val isEnabled: Provider<Boolean>
-    val priority: Priority
     val scope: Scope
     val pluginId: PluginId
 
@@ -116,14 +99,12 @@ internal interface ApplicablePlugin {
     companion object {
 
         operator fun invoke(
-            priority: Priority,
             isEnabled: Provider<Boolean>,
             scope: Scope,
             pluginId: PluginId,
         ): ApplicablePlugin =
             object : ApplicablePlugin {
                 override val isEnabled: Provider<Boolean> = isEnabled
-                override val priority: Priority = priority
                 override val scope: Scope = scope
                 override val pluginId: PluginId = pluginId
 
@@ -137,7 +118,7 @@ internal interface ApplicablePlugin {
                 }
 
                 override fun toString(): String =
-                    "ApplicablePlugin(pluginId=$pluginId, isEnabled=${isEnabled.get()}, priority=$priority, scope=$scope)"
+                    "ApplicablePlugin(pluginId=$pluginId, isEnabled=${isEnabled.get()}, scope=$scope)"
             }
     }
 }
@@ -147,56 +128,20 @@ internal interface Configurable {
     val name: String
         get() = "Unknown"
 
-    val priority: Priority
-
     val isEnabled: Property<Boolean>
 
     fun configure()
-
-    /** Configuration order is defined with this enum. Lower `value: Int` is higher priority. */
-    sealed class Priority(private val value: Int) : Comparable<Priority> {
-
-        /** Configuration that can affect to all configurations like versioning plugins. */
-        data object P1 : Priority(1)
-
-        /** Important configurations that affect to other configurations but not all of them. */
-        data object P2 : Priority(2)
-
-        /** Default configurations */
-        data object P3 : Priority(3)
-
-        /** Less important configurations like secondary ones that are not Kotlin or Android */
-        data object P4 : Priority(4)
-
-        /** User configurations */
-        data object P5 : Priority(5)
-
-        /**
-         * Default configurations which depends on some user ones in third-party plugin
-         * configurations that are not lazy
-         */
-        data object P6 : Priority(6)
-
-        override fun compareTo(other: Priority): Int =
-            when {
-                value > other.value -> 1
-                value == other.value -> 0
-                else -> -1
-            }
-    }
 
     companion object {
 
         operator fun invoke(
             name: String,
-            priority: Priority,
             isEnabled: Property<Boolean>,
             config: Configurable.() -> Unit,
         ): Configurable =
             object : Configurable {
                 override val name: String = name
                 override val isEnabled: Property<Boolean> = isEnabled
-                override val priority: Priority = priority
 
                 override fun configure() {
                     if (isEnabled.get()) config()

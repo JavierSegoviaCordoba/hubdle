@@ -51,9 +51,7 @@ internal fun HubdleConfigurableExtension.configurableTargetPerOs(
         if (isMinimumTargetPerOs.get()) isFullEnabled.get() && isEnabledPerOS.get()
         else isFullEnabled.get()
     }
-    configurable(isEnabled = isFullEnabled, priority = priority) {
-        block(project.extensions.getByType())
-    }
+    configurable(isEnabled = isFullEnabled) { block(project.extensions.getByType()) }
 }
 
 internal val HubdleEnableableExtension.hubdleMinimumTargetPerOs:

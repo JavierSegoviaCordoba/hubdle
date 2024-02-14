@@ -3,7 +3,6 @@ package com.javiersc.hubdle.project.extensions.config.documentation.site
 import com.javiersc.gradle.project.extensions.isRootProject
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
-import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
@@ -30,8 +29,6 @@ constructor(
     override val requiredExtensions: Set<HubdleEnableableExtension>
         get() = setOf(hubdleDocumentation)
 
-    override val priority: Priority = Priority.P3
-
     public val analysis: HubdleConfigDocumentationSiteAnalysisExtension
         get() = getHubdleExtension()
 
@@ -42,15 +39,11 @@ constructor(
 
     @HubdleDslMarker
     public fun mkdocs(action: Action<MkdocsExtension>) {
-        userConfigurable { action.execute(the()) }
+        configurable { action.execute(the()) }
     }
 
     override fun Project.defaultConfiguration() {
-        applicablePlugin(
-            priority = Priority.P4,
-            scope = Scope.CurrentProject,
-            pluginId = PluginId.VyarusMkdocsBuild
-        )
+        applicablePlugin(scope = Scope.CurrentProject, pluginId = PluginId.VyarusMkdocsBuild)
         configurable {
             check(isRootProject) {
                 """

@@ -25,8 +25,7 @@ hubdle {
         }
         versioning {
             semver {
-                val prefix = if (!isPublishToMavenLocalTest) "c" else ""
-                tagPrefix.set(prefix)
+                tagPrefix.set(if (!isPublishToMavenLocalTest) "c" else "")
                 val hasSameTagPrefix =
                     getStringProperty("semver.tagPrefix").orNull == tagPrefix.get()
                 if (kotlinVersion.isNotNullNorBlank() && hasSameTagPrefix) {
@@ -60,6 +59,7 @@ fun GradleVersion.mapIfKotlinVersionIsProvided(kotlinVersion: String): String {
     val major: Int = major
     val minor: Int = minor
     val patch: Int = patch
+
     check(kotlinVersion.isKotlinDevVersion()) {
         """ |Kotlin version: $kotlinVersion
             |Requirements to use a specific Kotlin version:  
@@ -70,7 +70,8 @@ fun GradleVersion.mapIfKotlinVersionIsProvided(kotlinVersion: String): String {
             .trimMargin()
     }
 
-    check(isSnapshot) {
+    val isSnapshotStage = isSnapshot || getStringProperty("semver.stage").orNull?.isSnapshot == true
+    check(isSnapshotStage) {
         """ |Current version: ${this@mapIfKotlinVersionIsProvided}
             |Kotlin version: $kotlinVersion
             |Requirements to use a specific Kotlin version:  

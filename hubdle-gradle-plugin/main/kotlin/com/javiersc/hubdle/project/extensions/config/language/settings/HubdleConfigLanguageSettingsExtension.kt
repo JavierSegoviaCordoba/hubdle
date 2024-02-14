@@ -1,7 +1,6 @@
 package com.javiersc.hubdle.project.extensions.config.language.settings
 
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
-import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.config.hubdleConfig
 import com.javiersc.hubdle.project.extensions.kotlin.hubdleKotlinAny
@@ -103,7 +102,7 @@ constructor(
 
     @HubdleDslMarker
     public fun optIn(annotationName: String) {
-        configurable(priority = Priority.P4) {
+        configurable {
             configure<KotlinProjectExtension> {
                 sourceSets.all { set -> set.languageSettings.optIn(annotationName) }
             }
@@ -117,7 +116,7 @@ constructor(
 
     @HubdleDslMarker
     public fun languageSettings(action: Action<LanguageSettingsBuilder> = Action {}) {
-        configurable(priority = Priority.P5) {
+        configurable {
             configure<KotlinProjectExtension> {
                 sourceSets.all { set -> set.languageSettings(action) }
             }

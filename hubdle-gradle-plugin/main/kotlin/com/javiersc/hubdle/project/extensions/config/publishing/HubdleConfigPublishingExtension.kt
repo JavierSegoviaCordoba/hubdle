@@ -3,7 +3,6 @@ package com.javiersc.hubdle.project.extensions.config.publishing
 import com.javiersc.gradle.properties.extensions.getBooleanProperty
 import com.javiersc.gradle.version.GradleVersion
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
-import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
@@ -28,8 +27,6 @@ constructor(
 
     override val requiredExtensions: Set<HubdleEnableableExtension>
         get() = setOf(hubdleConfig)
-
-    override val priority: Priority = Priority.P2
 
     public val publishNonSemver: Property<Boolean> = property {
         getBooleanProperty(Publishing.nonSemver).orElse(false).get()

@@ -1,7 +1,6 @@
 package com.javiersc.hubdle.project.extensions.config.project
 
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
-import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
@@ -27,8 +26,6 @@ constructor(
     override val requiredExtensions: Set<HubdleEnableableExtension>
         get() = setOf(hubdleConfig)
 
-    override val priority: Priority = Priority.P3
-
     public val generateProjectData: Property<Boolean> = property { true }
 
     @HubdleDslMarker
@@ -37,7 +34,7 @@ constructor(
     }
 
     override fun Project.defaultConfiguration() {
-        configurable(priority = Priority.P4) {
+        configurable {
             GenerateProjectDataTask.register(project).configure { task ->
                 task.enabled = isFullEnabled.get()
             }

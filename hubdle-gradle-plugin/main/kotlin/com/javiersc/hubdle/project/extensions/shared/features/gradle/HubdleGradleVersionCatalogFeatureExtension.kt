@@ -1,7 +1,6 @@
 package com.javiersc.hubdle.project.extensions.shared.features.gradle
 
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
-import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
@@ -24,11 +23,8 @@ constructor(
     override val oneOfExtensions: Set<HubdleEnableableExtension>
         get() = setOf(hubdleJava, hubdleKotlinJvm)
 
-    override val priority: Priority = Priority.P3
-
     override fun Project.defaultConfiguration() {
         applicablePlugin(
-            priority = Priority.P3,
             scope = Scope.CurrentProject,
             PluginId.GradleVersionCatalog,
         )

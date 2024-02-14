@@ -2,7 +2,6 @@ package com.javiersc.hubdle.project.extensions.config.documentation.readme.badge
 
 import com.javiersc.gradle.properties.extensions.getStringProperty
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
-import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.config.HubdleConfigExtension.ProjectConfig
@@ -26,8 +25,6 @@ constructor(
 
     override val requiredExtensions: Set<HubdleEnableableExtension>
         get() = setOf(hubdleReadme)
-
-    override val priority: Priority = Priority.P3
 
     public val mainProjectName: Property<String> = property {
         getStringProperty(ProjectConfig.mainProjectName).orElse(name).get()

@@ -6,7 +6,6 @@ import com.diffplug.gradle.spotless.SpotlessExtensionPredeclare
 import com.javiersc.gradle.project.extensions.isRootProject
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
-import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions._internal.libraryVersion
@@ -42,8 +41,6 @@ constructor(
     override val requiredExtensions: Set<HubdleEnableableExtension>
         get() = setOf(hubdleConfig)
 
-    override val priority: Priority = Priority.P3
-
     public val includes: SetProperty<String> = setProperty {
         includedKotlinSourceSetDirsKotlinFiles.get()
     }
@@ -71,20 +68,16 @@ constructor(
 
     @HubdleDslMarker
     public fun spotless(action: Action<SpotlessExtension>) {
-        userConfigurable { action.execute(the()) }
+        configurable { action.execute(the()) }
     }
 
     @HubdleDslMarker
     public fun spotlessPredeclare(action: Action<SpotlessExtensionPredeclare>) {
-        userConfigurable { action.execute(the()) }
+        configurable { action.execute(the()) }
     }
 
     override fun Project.defaultConfiguration() {
-        applicablePlugin(
-            priority = Priority.P4,
-            scope = Scope.CurrentProject,
-            pluginId = PluginId.DiffplugSpotless
-        )
+        applicablePlugin(scope = Scope.CurrentProject, pluginId = PluginId.DiffplugSpotless)
 
         configurable {
             val checkFormat: TaskProvider<Task> = tasks.register("checkFormat")
@@ -125,7 +118,7 @@ constructor(
             }
         }
 
-        configurable(priority = Priority.P6) {
+        configurable {
             if (isRootProject) {
                 configure<SpotlessExtensionPredeclare> {
                     kotlin { kotlin -> kotlin.ktfmt(ktfmtVersion.get()) }
@@ -150,7 +143,7 @@ constructor(
                 ?.asSequence()
                 ?.flatMap { it.kotlin.srcDirs }
                 ?.map { it.relativeTo(projectDir) }
-                ?.filterNot { it.path.startsWith(buildDir.name) }
+                ?.filterNot { it.path.startsWith(layout.buildDirectory.asFile.get().name) }
                 ?.flatMap {
                     listOf(
                         "${it.unixPath}/**/*.kt",
@@ -164,8 +157,8 @@ constructor(
     private val excludedSpecialDirs: SetProperty<String>
         get() = setProperty {
             setOf(
-                "${buildDir.name}/**/*.kt",
-                "${buildDir.name}/*.kt",
+                "${layout.buildDirectory.asFile.get().name}/**/*.kt",
+                "${layout.buildDirectory.asFile.get().name}/*.kt",
                 ".gradle/**/*.kt",
                 ".gradle/*.kt",
             )

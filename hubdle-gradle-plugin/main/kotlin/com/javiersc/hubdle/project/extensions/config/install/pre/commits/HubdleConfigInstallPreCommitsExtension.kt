@@ -1,7 +1,6 @@
 package com.javiersc.hubdle.project.extensions.config.install.pre.commits
 
 import com.javiersc.gradle.project.extensions.isRootProject
-import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.config.install.hubdleInstall
@@ -28,8 +27,6 @@ constructor(
 
     override val requiredExtensions: Set<HubdleEnableableExtension>
         get() = setOf(hubdleInstall)
-
-    override val priority: Priority = Priority.P3
 
     public val tests: Property<Boolean> = property { false }
     public val applyFormat: Property<Boolean> = property { false }

@@ -1,7 +1,6 @@
 package com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets
 
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
-import com.javiersc.hubdle.project.extensions._internal.Configurable
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.hubdleKotlinMultiplatform
 import com.javiersc.hubdle.project.extensions.kotlin.shared.HubdleKotlinMinimalSourceSetConfigurableExtension
@@ -25,8 +24,6 @@ constructor(
 
     override val requiredExtensions: Set<HubdleEnableableExtension>
         get() = setOf(hubdleKotlinMultiplatform)
-
-    override val priority: Configurable.Priority = Configurable.Priority.P4
 
     override val targetName: String = "jvmAndAndroid"
 

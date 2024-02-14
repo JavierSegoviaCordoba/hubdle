@@ -1,7 +1,6 @@
 package com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.linux
 
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
-import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.features.configurableTargetPerOs
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.hubdleKotlinMultiplatform
@@ -22,8 +21,6 @@ constructor(
         get() = super.project
 
     override val isEnabled: Property<Boolean> = property { false }
-
-    override val priority: Priority = Priority.P3
 
     public override val targetName: String = "linuxX64"
 

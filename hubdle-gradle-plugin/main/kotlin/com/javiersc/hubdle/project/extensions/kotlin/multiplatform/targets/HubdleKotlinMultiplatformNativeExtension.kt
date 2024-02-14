@@ -1,7 +1,6 @@
 package com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets
 
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
-import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.hubdleKotlinMultiplatform
 import com.javiersc.hubdle.project.extensions.kotlin.shared.HubdleKotlinMinimalSourceSetConfigurableExtension
@@ -29,8 +28,6 @@ constructor(
     override val requiredExtensions: Set<HubdleEnableableExtension>
         get() = setOf(hubdleKotlinMultiplatform)
 
-    override val priority: Priority = Priority.P3
-
     override val targetName: String = "native"
 
     public val allEnabled: Property<Boolean> = property { false }
@@ -50,7 +47,7 @@ constructor(
             }
         }
 
-        configurable(priority = Priority.P6) {
+        configurable {
             configure<KotlinMultiplatformExtension> {
                 val commonMain: KotlinSourceSet by sourceSets.getting
                 val androidNativeArm32Main: KotlinSourceSet? =

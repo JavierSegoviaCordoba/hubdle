@@ -2,7 +2,6 @@ package com.javiersc.hubdle.project.extensions.kotlin.features.shared
 
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.COMMON_MAIN
-import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions._internal.JVM_TEST
 import com.javiersc.hubdle.project.extensions._internal.MAIN
 import com.javiersc.hubdle.project.extensions._internal.TEST
@@ -43,8 +42,6 @@ constructor(
 
     override val oneOfExtensions: Set<HubdleEnableableExtension>
         get() = hubdleKotlinAny
-
-    override val priority: Priority = Priority.P4
 
     override fun Project.defaultConfiguration() {
         configurable {

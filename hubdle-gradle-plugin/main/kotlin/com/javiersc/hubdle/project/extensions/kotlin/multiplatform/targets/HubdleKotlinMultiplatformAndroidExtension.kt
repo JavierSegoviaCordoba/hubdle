@@ -3,7 +3,6 @@ package com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets
 import com.android.build.api.dsl.LibraryExtension
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
-import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
@@ -32,8 +31,6 @@ constructor(
 
     override val isEnabled: Property<Boolean> = property { false }
 
-    override val priority: Priority = Priority.P3
-
     public override val targetName: String = "android"
 
     override val requiredExtensions: Set<HubdleEnableableExtension>
@@ -54,7 +51,9 @@ constructor(
         publishLibraryVariants.addAll(names.toList())
         publishAllLibraryVariants.set(false)
         configurable {
-            configure<KotlinMultiplatformExtension> { android { publishLibraryVariants(*names) } }
+            configure<KotlinMultiplatformExtension> {
+                androidTarget { publishLibraryVariants(*names) }
+            }
         }
     }
 
@@ -64,28 +63,26 @@ constructor(
     public fun publishAllLibraryVariants() {
         publishAllLibraryVariants.set(true)
         configurable {
-            configure<KotlinMultiplatformExtension> { android { publishAllLibraryVariants() } }
+            configure<KotlinMultiplatformExtension> {
+                androidTarget { publishAllLibraryVariants() }
+            }
         }
     }
 
     @HubdleDslMarker
     public fun android(action: Action<LibraryExtension>) {
-        userConfigurable { action.execute(the()) }
+        configurable { action.execute(the()) }
     }
 
     override fun Project.defaultConfiguration() {
-        applicablePlugin(
-            priority = Priority.P3,
-            scope = Scope.CurrentProject,
-            pluginId = PluginId.AndroidLibrary
-        )
+        applicablePlugin(scope = Scope.CurrentProject, pluginId = PluginId.AndroidLibrary)
 
         configurable {
             val hubdleAndroid = this@HubdleKotlinMultiplatformAndroidExtension
             configure<KotlinMultiplatformExtension> {
                 val publishVariants = hubdleAndroid.publishLibraryVariants.get().toTypedArray()
                 val publishAllVariants = hubdleAndroid.publishAllLibraryVariants.get()
-                android {
+                androidTarget {
                     if (publishVariants.isNotEmpty() && !publishAllVariants) {
                         publishLibraryVariants(*publishVariants)
                     }

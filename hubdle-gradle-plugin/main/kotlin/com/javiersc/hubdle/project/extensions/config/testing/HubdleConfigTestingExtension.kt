@@ -4,7 +4,6 @@ import com.gradle.enterprise.gradleplugin.testretry.TestRetryExtension
 import com.gradle.enterprise.gradleplugin.testretry.retry
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
-import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
@@ -34,8 +33,6 @@ constructor(
     override val requiredExtensions: Set<HubdleEnableableExtension>
         get() = setOf(hubdleConfig)
 
-    override val priority: Priority = Priority.P3
-
     public val options: Property<Options> = property {
         if (hasAndroid.get()) Options.JUnit else Options.JUnitPlatform
     }
@@ -53,9 +50,7 @@ constructor(
 
     @HubdleDslMarker
     public fun retry(action: Action<TestRetryExtension>) {
-        userConfigurable {
-            tasks.withType<Test>().configureEach { test -> action.execute(test.retry) }
-        }
+        configurable { tasks.withType<Test>().configureEach { test -> action.execute(test.retry) } }
     }
 
     public val showStandardStreams: Property<Boolean> = property { true }
@@ -67,7 +62,7 @@ constructor(
 
     @HubdleDslMarker
     public fun test(action: Action<Test>) {
-        userConfigurable {
+        configurable {
             project.tasks.withType<Test>().configureEach { test -> action.execute(test) }
         }
     }
@@ -75,11 +70,7 @@ constructor(
     override fun Project.defaultConfiguration() {
         pluginManager.apply(BasePlugin::class)
 
-        applicablePlugin(
-            priority = Priority.P4,
-            scope = Scope.CurrentProject,
-            pluginId = PluginId.AdarshrTestLogger
-        )
+        applicablePlugin(scope = Scope.CurrentProject, pluginId = PluginId.AdarshrTestLogger)
 
         configurable {
             val testTasks: TaskCollection<Test> = tasks.withType<Test>()

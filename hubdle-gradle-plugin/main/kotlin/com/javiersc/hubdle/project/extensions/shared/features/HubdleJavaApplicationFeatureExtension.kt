@@ -2,7 +2,6 @@ package com.javiersc.hubdle.project.extensions.shared.features
 
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
-import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.BaseHubdleExtension
@@ -28,21 +27,15 @@ constructor(
     override val oneOfExtensions: Set<HubdleEnableableExtension>
         get() = setOf(hubdleJava, hubdleKotlinJvm)
 
-    override val priority: Priority = Priority.P4
-
     public val mainClass: Property<String?> = property { null }
 
     @HubdleDslMarker
     public fun application(action: Action<JavaApplication> = Action {}) {
-        userConfigurable { action.execute(the()) }
+        configurable { action.execute(the()) }
     }
 
     override fun Project.defaultConfiguration() {
-        applicablePlugin(
-            priority = Priority.P3,
-            scope = Scope.CurrentProject,
-            pluginId = PluginId.GradleApplication
-        )
+        applicablePlugin(scope = Scope.CurrentProject, pluginId = PluginId.GradleApplication)
 
         configurable { the<JavaApplication>().mainClass.set(mainClass) }
     }

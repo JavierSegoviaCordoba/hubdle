@@ -37,6 +37,7 @@ internal val Project.kotlinSrcDirs: Provider<Set<File>>
 internal val Project.kotlinGeneratedSrcDirs: Provider<Set<File>>
     get() =
         kotlinSrcDirs.map { dirs ->
+            val buildDir = layout.buildDirectory.asFile.get()
             dirs
                 .filter { file -> buildDir.resolve("generated").absolutePath in file.absolutePath }
                 .toSet()
@@ -45,7 +46,9 @@ internal val Project.kotlinGeneratedSrcDirs: Provider<Set<File>>
 internal val Project.kotlinSrcDirsWithoutBuild: Provider<Set<File>>
     get() =
         kotlinSrcDirs.map { dirs ->
-            dirs.filterNot { buildDir.absolutePath in it.absolutePath }.toSet()
+            dirs
+                .filterNot { layout.buildDirectory.asFile.get().absolutePath in it.absolutePath }
+                .toSet()
         }
 
 internal val Project.kotlinTestsSrcDirs: Provider<Set<File>>
@@ -63,6 +66,7 @@ internal val Project.kotlinTestsSrcDirs: Provider<Set<File>>
 internal val Project.kotlinGeneratedTestSrcDirs: Provider<Set<File>>
     get() =
         kotlinTestsSrcDirs.map { dirs ->
+            val buildDir = layout.buildDirectory.asFile.get()
             dirs
                 .filter { dir -> buildDir.resolve("generated").absolutePath in dir.absolutePath }
                 .toSet()
@@ -71,5 +75,6 @@ internal val Project.kotlinGeneratedTestSrcDirs: Provider<Set<File>>
 internal val Project.kotlinTestsSrcDirsWithoutBuild: Provider<Set<File>>
     get() =
         kotlinTestsSrcDirs.map { dirs ->
+            val buildDir = layout.buildDirectory.asFile.get()
             dirs.filter { dir -> buildDir.absolutePath !in dir.absolutePath }.toSet()
         }

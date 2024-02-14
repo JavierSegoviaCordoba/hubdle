@@ -4,7 +4,6 @@ import app.cash.sqldelight.gradle.SqlDelightDatabase
 import app.cash.sqldelight.gradle.SqlDelightExtension
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
-import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions._internal.hubdleCatalog
@@ -34,18 +33,16 @@ constructor(
     override val oneOfExtensions: Set<HubdleEnableableExtension>
         get() = hubdleKotlinAny
 
-    override val priority: Priority = Priority.P4
-
     @HubdleDslMarker
     public fun databases(
         action: Action<NamedDomainObjectContainer<SqlDelightDatabase>> = Action {}
     ) {
-        userConfigurable { action.invoke(the<SqlDelightExtension>().databases) }
+        configurable { action.invoke(the<SqlDelightExtension>().databases) }
     }
 
     @HubdleDslMarker
     public fun sqldelight(action: Action<SqlDelightExtension> = Action {}) {
-        userConfigurable { action.invoke(the()) }
+        configurable { action.invoke(the()) }
     }
 
     public val HSqlDialect: Provider<String> = provider {
@@ -71,11 +68,7 @@ constructor(
         }
 
     override fun Project.defaultConfiguration() {
-        applicablePlugin(
-            priority = Priority.P4,
-            scope = Scope.CurrentProject,
-            pluginId = PluginId.SqlDelight
-        )
+        applicablePlugin(scope = Scope.CurrentProject, pluginId = PluginId.SqlDelight)
         configurable {}
     }
 }

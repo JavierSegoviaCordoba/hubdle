@@ -7,7 +7,6 @@ import com.javiersc.gradle.tasks.extensions.maybeRegister
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.Configurable
-import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
@@ -57,12 +56,12 @@ constructor(
 
     @HubdleDslMarker
     public fun repositories(action: Action<RepositoryHandler> = Action {}) {
-        userConfigurable { action.execute(the<PublishingExtension>().repositories) }
+        configurable { action.execute(the<PublishingExtension>().repositories) }
     }
 
     @HubdleDslMarker
     public fun publishing(action: Action<PublishingExtension> = Action {}) {
-        userConfigurable { action.execute(the()) }
+        configurable { action.execute(the()) }
     }
 }
 
@@ -77,11 +76,10 @@ internal fun HubdleConfigurableExtension.configurableMavenPublishing(
     }
     applicablePlugin(
         isEnabled = isEnabled,
-        priority = Priority.P3,
         scope = Scope.CurrentProject,
         pluginId = PluginId.MavenPublish,
     )
-    configurable(isEnabled = isEnabled, priority = Priority.P3) {
+    configurable(isEnabled = isEnabled) {
         configurePublishingExtension()
         if (configJavaExtension) {
             configure<JavaPluginExtension> {

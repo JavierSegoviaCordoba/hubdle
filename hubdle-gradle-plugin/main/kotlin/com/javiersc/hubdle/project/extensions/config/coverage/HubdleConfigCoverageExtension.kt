@@ -2,7 +2,6 @@ package com.javiersc.hubdle.project.extensions.config.coverage
 
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
-import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
@@ -32,8 +31,6 @@ constructor(
     override val requiredExtensions: Set<HubdleEnableableExtension>
         get() = setOf(hubdleConfig)
 
-    override val priority: Priority = Priority.P3
-
     public val jacoco: Property<String?> = property { null }
 
     @HubdleDslMarker
@@ -43,20 +40,16 @@ constructor(
 
     @HubdleDslMarker
     public fun kover(action: Action<KoverProjectExtension>) {
-        userConfigurable { action.execute(the()) }
+        configurable { action.execute(the()) }
     }
 
     @HubdleDslMarker
     public fun koverReport(action: Action<KoverReportExtension>) {
-        userConfigurable { action.execute(the()) }
+        configurable { action.execute(the()) }
     }
 
     override fun Project.defaultConfiguration() {
-        applicablePlugin(
-            priority = Priority.P4,
-            scope = Scope.CurrentProject,
-            pluginId = PluginId.JetbrainsKotlinxKover
-        )
+        applicablePlugin(scope = Scope.CurrentProject, pluginId = PluginId.JetbrainsKotlinxKover)
 
         configurable {
             val kover: KoverProjectExtension = project.the()

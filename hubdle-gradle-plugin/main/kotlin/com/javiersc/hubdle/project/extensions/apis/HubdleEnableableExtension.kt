@@ -5,7 +5,6 @@ import com.javiersc.gradle.properties.extensions.property
 import com.javiersc.gradle.properties.extensions.setProperty
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin
 import com.javiersc.hubdle.project.extensions._internal.Configurable
-import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions._internal.HubdleState
 import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.hubdleState
@@ -62,35 +61,25 @@ public abstract class HubdleEnableableExtension(
 
     internal fun applicablePlugin(
         isEnabled: Provider<Boolean>,
-        priority: Priority,
         scope: ApplicablePlugin.Scope,
         pluginId: PluginId,
     ) {
-        hubdleState.applicablePlugin(isEnabled, priority, scope, pluginId)
+        hubdleState.applicablePlugin(isEnabled, scope, pluginId)
     }
 
     internal fun applicablePlugin(
-        priority: Priority,
         scope: ApplicablePlugin.Scope,
         pluginId: PluginId,
     ) {
-        applicablePlugin(isFullEnabled, priority, scope, pluginId)
+        applicablePlugin(isFullEnabled, scope, pluginId)
     }
 
-    internal fun configurable(
-        isEnabled: Property<Boolean>,
-        priority: Priority,
-        config: Configurable.() -> Unit
-    ) {
-        hubdleState.configurable(extensionName, isEnabled, priority, config)
+    internal fun configurable(isEnabled: Property<Boolean>, config: Configurable.() -> Unit) {
+        hubdleState.configurable(extensionName, isEnabled, config)
     }
 
-    internal fun configurable(priority: Priority, config: Configurable.() -> Unit) {
-        configurable(isFullEnabled, priority, config)
-    }
-
-    internal fun userConfigurable(config: Configurable.() -> Unit) {
-        hubdleState.userConfigurable(extensionName, isFullEnabled, config)
+    internal fun configurable(config: Configurable.() -> Unit) {
+        configurable(isFullEnabled, config)
     }
 
     internal inline fun <reified T> provider(crossinline block: Project.() -> T): Provider<T> =

@@ -3,7 +3,6 @@ package com.javiersc.hubdle.project.extensions.kotlin.features.shared
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.COMMON_MAIN
-import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions._internal.MAIN
 import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
@@ -34,8 +33,6 @@ constructor(
     override val oneOfExtensions: Set<HubdleEnableableExtension>
         get() = hubdleKotlinAny
 
-    override val priority: Priority = Priority.P4
-
     public val csv: Property<Boolean> = property { false }
 
     @HubdleDslMarker
@@ -59,7 +56,6 @@ constructor(
 
     override fun Project.defaultConfiguration() {
         applicablePlugin(
-            priority = Priority.P4,
             scope = Scope.CurrentProject,
             pluginId = PluginId.JetbrainsKotlinPluginSerialization
         )

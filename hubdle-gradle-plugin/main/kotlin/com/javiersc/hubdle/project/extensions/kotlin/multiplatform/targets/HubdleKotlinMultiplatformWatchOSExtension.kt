@@ -1,7 +1,6 @@
 package com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets
 
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
-import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
@@ -33,8 +32,6 @@ constructor(
         get() = super.project
 
     override val isEnabled: Property<Boolean> = property { false }
-
-    override val priority: Priority = Priority.P3
 
     override val targetName: String = "watchos"
 
@@ -108,7 +105,7 @@ constructor(
                 watchosX64()
             }
         }
-        configurable(priority = Priority.P6) {
+        configurable {
             configure<KotlinMultiplatformExtension> {
                 val commonMain: KotlinSourceSet by sourceSets.getting
                 val watchosArm32Main: KotlinSourceSet? = sourceSets.findByName("watchosArm32Main")

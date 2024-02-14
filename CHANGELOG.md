@@ -12,6 +12,8 @@
 
 ### Removed
 
+- priorities
+
 ### Updated
 
 ## [0.6.3] - 2024-02-13

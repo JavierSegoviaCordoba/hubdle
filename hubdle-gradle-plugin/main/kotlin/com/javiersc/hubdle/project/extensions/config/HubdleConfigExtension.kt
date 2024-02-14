@@ -2,7 +2,6 @@ package com.javiersc.hubdle.project.extensions.config
 
 import com.javiersc.gradle.properties.extensions.getProperty
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
-import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
@@ -37,8 +36,6 @@ constructor(
 ) : HubdleConfigurableExtension(project) {
 
     override val isEnabled: Property<Boolean> = property { true }
-
-    override val priority: Priority = Priority.P2
 
     public val analysis: HubdleConfigAnalysisExtension
         get() = getHubdleExtension()
@@ -79,7 +76,7 @@ constructor(
         val isEnabled = property {
             isFullEnabled.get() && hubdleKotlinAny.any { it.isFullEnabled.get() }
         }
-        configurable(isEnabled = isEnabled, priority = Priority.P4) {
+        configurable(isEnabled = isEnabled) {
             configure<KotlinProjectExtension> { explicitApi = explicitApiMode }
         }
     }
@@ -168,7 +165,7 @@ constructor(
     }
 
     override fun Project.defaultConfiguration() {
-        configurable(priority = Priority.P1) {
+        configurable {
             val groupOrNull: String? = this@HubdleConfigExtension.group.orNull
             if (groupOrNull != null) group = groupOrNull
         }

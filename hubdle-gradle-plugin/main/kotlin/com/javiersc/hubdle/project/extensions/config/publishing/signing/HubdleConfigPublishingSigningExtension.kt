@@ -7,7 +7,6 @@ import com.javiersc.gradle.properties.extensions.getBooleanProperty
 import com.javiersc.gradle.properties.extensions.getStringProperty
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
-import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
@@ -38,8 +37,6 @@ constructor(
     override val requiredExtensions: Set<HubdleEnableableExtension>
         get() = setOf(hubdlePublishing)
 
-    override val priority: Priority = Priority.P3
-
     public val gnupgKey: Property<String> = property {
         getStringProperty(Signing.gnupgKey).orElse("").get().replace("\\n", "\n")
     }
@@ -69,12 +66,11 @@ constructor(
 
     @HubdleDslMarker
     public fun signing(action: Action<SigningExtension> = Action {}) {
-        userConfigurable { action.execute(the()) }
+        configurable { action.execute(the()) }
     }
 
     override fun Project.defaultConfiguration() {
         applicablePlugin(
-            priority = Priority.P3,
             scope = Scope.CurrentProject,
             pluginId = PluginId.GradleSigning,
         )

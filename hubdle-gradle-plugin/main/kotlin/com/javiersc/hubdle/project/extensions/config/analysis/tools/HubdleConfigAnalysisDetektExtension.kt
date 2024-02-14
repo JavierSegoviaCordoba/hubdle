@@ -1,8 +1,7 @@
 package com.javiersc.hubdle.project.extensions.config.analysis.tools
 
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
-import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin
-import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
+import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.allKotlinSrcDirsWithoutBuild
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
@@ -30,8 +29,6 @@ constructor(
 ) : HubdleConfigurableExtension(project) {
 
     override val isEnabled: Property<Boolean> = property { true }
-
-    override val priority: Priority = Priority.P3
 
     override val requiredExtensions: Set<HubdleEnableableExtension>
         get() = setOf(hubdleAnalysis)
@@ -64,15 +61,11 @@ constructor(
 
     @HubdleDslMarker
     public fun detekt(action: Action<DetektExtension> = Action {}) {
-        userConfigurable { action.execute(the()) }
+        configurable { action.execute(the()) }
     }
 
     override fun Project.defaultConfiguration() {
-        applicablePlugin(
-            priority = Priority.P4,
-            scope = ApplicablePlugin.Scope.CurrentProject,
-            pluginId = PluginId.Detekt
-        )
+        applicablePlugin(scope = Scope.CurrentProject, pluginId = PluginId.Detekt)
         configurable { configureDetekt() }
     }
 

@@ -13,7 +13,11 @@ hubdle {
                 repositories {
                     maven {
                         name = "mavenLocalRandom"
-                        url = rootProject.buildDir.resolve("mavenLocalRandom/repository").toURI()
+                        url =
+                            rootProject.layout.buildDirectory.asFile
+                                .get()
+                                .resolve("mavenLocalRandom/repository")
+                                .toURI()
                     }
                 }
             }

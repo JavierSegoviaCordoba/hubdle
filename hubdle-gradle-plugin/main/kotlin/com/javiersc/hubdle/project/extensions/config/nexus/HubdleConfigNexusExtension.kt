@@ -3,7 +3,6 @@ package com.javiersc.hubdle.project.extensions.config.nexus
 import com.javiersc.gradle.properties.extensions.getStringProperty
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
-import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
@@ -32,8 +31,6 @@ constructor(
 
     override val requiredExtensions: Set<HubdleEnableableExtension>
         get() = setOf(hubdleConfig)
-
-    override val priority: Priority = Priority.P3
 
     public val snapshotRepositoryUrl: Property<URI?> = property {
         getStringProperty(Nexus.nexusSnapshotRepositoryUrl).orNull?.let(project::uri)
@@ -78,12 +75,11 @@ constructor(
 
     @HubdleDslMarker
     public fun nexusPublishing(action: Action<NexusPublishException> = Action {}) {
-        userConfigurable { action.execute(the()) }
+        configurable { action.execute(the()) }
     }
 
     override fun Project.defaultConfiguration() {
         applicablePlugin(
-            priority = Priority.P4,
             scope = Scope.CurrentProject,
             pluginId = PluginId.GithubGradleNexusPublishPlugin
         )

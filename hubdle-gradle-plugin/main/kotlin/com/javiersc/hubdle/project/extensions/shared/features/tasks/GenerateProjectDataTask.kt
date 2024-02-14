@@ -2,7 +2,7 @@ package com.javiersc.hubdle.project.extensions.shared.features.tasks
 
 import com.javiersc.hubdle.project.extensions._internal.allKotlinSrcDirsWithoutBuild
 import com.javiersc.hubdle.project.extensions._internal.isKotlinMultiplatform
-import com.javiersc.hubdle.project.extensions._internal.kotlinSourceSetMainOrCommonMain
+import com.javiersc.hubdle.project.extensions._internal.kotlinSourceSetMainOrCommonMainOrNull
 import com.javiersc.hubdle.project.extensions._internal.prepareKotlinIdeaImport
 import com.javiersc.hubdle.project.tasks.lifecycle.GenerateTask
 import com.javiersc.kotlin.stdlib.TransformString
@@ -178,7 +178,7 @@ constructor(
             project.tasks.named(GenerateTask.NAME).configure { task ->
                 task.dependsOn(generateProjectDataTask)
             }
-            project.kotlinSourceSetMainOrCommonMain?.configureEach { sourceSet ->
+            project.kotlinSourceSetMainOrCommonMainOrNull?.configureEach { sourceSet ->
                 sourceSet.kotlin.srcDir(generateProjectDataTask)
             }
             return generateProjectDataTask

@@ -2,7 +2,6 @@ package com.javiersc.hubdle.project.extensions.kotlin.android.features
 
 import com.javiersc.gradle.properties.extensions.getBooleanProperty
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
-import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.android._internal.configureAndroidCommonExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
@@ -30,8 +29,6 @@ constructor(
                 hubdleAndroidLibrary,
                 hubdleKotlinMultiplatformAndroid,
             )
-
-    override val priority: Priority = Priority.P4
 
     public val aidl: Property<Boolean> = property {
         getBooleanProperty(BuildFeatures.aidl).orElse(trueIfApp()).get()

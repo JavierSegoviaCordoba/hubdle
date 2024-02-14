@@ -2,7 +2,6 @@ package com.javiersc.hubdle.project.extensions.kotlin.jvm
 
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
-import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.configurableDependencies
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
@@ -40,8 +39,6 @@ constructor(
     override val requiredExtensions: Set<HubdleEnableableExtension>
         get() = setOf(hubdleKotlin)
 
-    override val priority: Priority = Priority.P3
-
     public val features: HubdleKotlinJvmFeaturesExtension
         get() = getHubdleExtension()
 
@@ -52,15 +49,11 @@ constructor(
 
     @HubdleDslMarker
     public fun kotlin(action: Action<KotlinJvmProjectExtension>) {
-        userConfigurable { action.execute(the()) }
+        configurable { action.execute(the()) }
     }
 
     override fun Project.defaultConfiguration() {
-        applicablePlugin(
-            priority = Priority.P3,
-            scope = Scope.CurrentProject,
-            pluginId = PluginId.JetbrainsKotlinJvm
-        )
+        applicablePlugin(scope = Scope.CurrentProject, pluginId = PluginId.JetbrainsKotlinJvm)
         configurableTestFixtures()
         configurableSrcDirs()
         configurableKotlinTestFunctionalSourceSets()

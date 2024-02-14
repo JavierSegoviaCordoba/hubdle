@@ -2,7 +2,6 @@ package com.javiersc.hubdle.project.extensions.java
 
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
-import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
@@ -26,8 +25,6 @@ constructor(
 
     override val isEnabled: Property<Boolean> = property { false }
 
-    override val priority: Priority = Priority.P3
-
     public val features: HubdleJavaFeaturesExtension
         get() = getHubdleExtension()
 
@@ -37,11 +34,7 @@ constructor(
     }
 
     override fun Project.defaultConfiguration() {
-        applicablePlugin(
-            priority = Priority.P3,
-            scope = Scope.CurrentProject,
-            pluginId = PluginId.GradleJava
-        )
+        applicablePlugin(scope = Scope.CurrentProject, pluginId = PluginId.GradleJava)
         configurableSourceSet()
     }
 
@@ -49,8 +42,8 @@ constructor(
         configurable {
             configure<JavaPluginExtension> {
                 sourceSets.configureEach { set ->
-                    set.java.setSrcDirs(normalAndGeneratedDirs("${set.name}/java"))
-                    set.resources.setSrcDirs(normalAndGeneratedDirs("${set.name}/resources"))
+                    set.java.srcDirs(normalAndGeneratedDirs("${set.name}/java"))
+                    set.resources.srcDirs(normalAndGeneratedDirs("${set.name}/resources"))
                 }
             }
         }

@@ -21,19 +21,19 @@ public abstract class HubdleMinimalSourceSetConfigurableExtension<T>(
 
     @HubdleDslMarker
     public fun main(action: Action<T>) {
-        userConfigurable { main.configure(action) }
+        configurable { main.configure(action) }
     }
 
     public abstract val test: NamedDomainObjectProvider<T>
 
     @HubdleDslMarker
     public fun test(action: Action<T>) {
-        userConfigurable { test.configure(action) }
+        configurable { test.configure(action) }
     }
 
     @HubdleDslMarker
     public fun sourceSet(name: String, action: Action<KotlinSourceSet>) {
-        userConfigurable {
+        configurable {
             configure<KotlinProjectExtension> { sourceSets.named(name, action::execute) }
         }
     }

@@ -4,7 +4,6 @@ import com.javiersc.gradle.properties.extensions.getBooleanProperty
 import com.javiersc.gradle.properties.extensions.getStringProperty
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
-import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.BaseHubdleExtension
@@ -48,8 +47,6 @@ constructor(
 ) : HubdleConfigurableExtension(project) {
 
     override val isEnabled: Property<Boolean> = property { false }
-
-    override val priority: Priority = Priority.P3
 
     override val oneOfExtensions: Set<HubdleEnableableExtension>
         get() = setOf(hubdleJava, hubdleKotlinJvm)
@@ -146,22 +143,22 @@ constructor(
 
     @HubdleDslMarker
     public fun intellij(action: Action<IntelliJPluginExtension> = Action {}) {
-        userConfigurable { action.execute(the()) }
+        configurable { action.execute(the()) }
     }
 
     @HubdleDslMarker
     public fun patchPluginXml(action: Action<PatchPluginXmlTask> = Action {}) {
-        userConfigurable { action.execute(the()) }
+        configurable { action.execute(the()) }
     }
 
     @HubdleDslMarker
     public fun publishPlugin(action: Action<PublishPluginTask> = Action {}) {
-        userConfigurable { action.execute(the()) }
+        configurable { action.execute(the()) }
     }
 
     @HubdleDslMarker
     public fun signPlugin(action: Action<SignPluginTask> = Action {}) {
-        userConfigurable { action.execute(the()) }
+        configurable { action.execute(the()) }
     }
 
     public object IntelliJ {
@@ -182,17 +179,9 @@ constructor(
     }
 
     override fun Project.defaultConfiguration() {
-        applicablePlugin(
-            priority = Priority.P3,
-            scope = Scope.CurrentProject,
-            pluginId = PluginId.JetbrainsKotlinJvm
-        )
+        applicablePlugin(scope = Scope.CurrentProject, pluginId = PluginId.JetbrainsKotlinJvm)
 
-        applicablePlugin(
-            priority = Priority.P3,
-            scope = Scope.CurrentProject,
-            pluginId = PluginId.JetbrainsIntellij
-        )
+        applicablePlugin(scope = Scope.CurrentProject, pluginId = PluginId.JetbrainsIntellij)
 
         configurable {
             configureIntellijPluginExtension()
@@ -202,7 +191,6 @@ constructor(
 
         configurable(
             isEnabled = property { isFullEnabled.get() && hubdlePublishing.isFullEnabled.get() },
-            priority = Priority.P3,
         ) {
             configurePublishPlugin()
             configureSignPlugin()

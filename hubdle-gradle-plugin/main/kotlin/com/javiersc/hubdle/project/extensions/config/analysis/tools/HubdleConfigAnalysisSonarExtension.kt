@@ -8,7 +8,6 @@ import com.android.build.api.dsl.LibraryExtension
 import com.android.build.api.dsl.LibraryProductFlavor
 import com.javiersc.gradle.properties.extensions.getStringProperty
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin
-import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions._internal.kotlinSrcDirsWithoutBuild
@@ -34,8 +33,6 @@ constructor(
 
     override val isEnabled: Property<Boolean> = property { true }
 
-    override val priority: Priority = Priority.P3
-
     override val requiredExtensions: Set<HubdleEnableableExtension>
         get() = setOf(hubdleAnalysis)
 
@@ -57,12 +54,11 @@ constructor(
 
     override fun Project.defaultConfiguration() {
         applicablePlugin(
-            priority = Priority.P4,
             scope = ApplicablePlugin.Scope.CurrentProject,
             pluginId = PluginId.Sonarqube
         )
 
-        configurable(priority = Priority.P4) { configureSonarqube(project) }
+        configurable { configureSonarqube(project) }
         // TODO: Remove both when project isolation is fixed in Sonar Gradle plugin as hubdle
         //       analysis.sonar.isFullEnabled.get() will be false, and the Sonar plugin shouldn't
         //       pick this project
@@ -74,15 +70,16 @@ constructor(
     private fun configureSonarqube(project: Project) {
         project.configure<SonarExtension> {
             isSkipProject = !isFullEnabled.get()
+            val buildDir = project.layout.buildDirectory.asFile.get()
             properties { properties ->
                 properties.property("sonar.projectName", projectName.get())
                 properties.property("sonar.projectKey", projectKey.get())
                 properties.property("sonar.token", token.get())
                 properties.property("sonar.host.url", hostUrl.get())
                 properties.property("sonar.organization", organization.get())
-                val detektReportPath = "${project.buildDir}/reports/detekt/detekt.xml"
+                val detektReportPath = "$buildDir/reports/detekt/detekt.xml"
                 properties.property("sonar.kotlin.detekt.reportPaths", detektReportPath)
-                val jacocoXmlReportPaths = "${project.buildDir}/reports/kover/xml/report.xml"
+                val jacocoXmlReportPaths = "$buildDir/reports/kover/xml/report.xml"
                 properties.property("sonar.coverage.jacoco.xmlReportPaths", jacocoXmlReportPaths)
 
                 project.configureAndroidLintReportPaths(properties)
@@ -114,7 +111,7 @@ constructor(
                 .toList()
 
     private fun Project.configureAndroidLintReportPaths(properties: SonarProperties) {
-        val reportsDir: File = buildDir.resolve("reports")
+        val reportsDir: File = layout.buildDirectory.asFile.get().resolve("reports")
         val sonarAndroidLintReportPaths = "sonar.androidLint.reportPaths"
         fun variants(buildTypes: List<String>, flavors: List<String>): Set<String> = buildSet {
             for (flavor in flavors) {

@@ -143,6 +143,7 @@ fun GradleVersion.mapIfKotlinVersionIsProvided(kotlinVersion: String): String {
     val major: Int = major
     val minor: Int = minor
     val patch: Int = patch
+
     check(kotlinVersion.isKotlinDevVersion()) {
         """ |Kotlin version: $kotlinVersion
             |Requirements to use a specific Kotlin version:  
@@ -152,6 +153,7 @@ fun GradleVersion.mapIfKotlinVersionIsProvided(kotlinVersion: String): String {
         """
             .trimMargin()
     }
+
     val isSnapshotStage = isSnapshot || getStringProperty("semver.stage").orNull?.isSnapshot == true
     check(isSnapshotStage) {
         """ |Current version: ${this@mapIfKotlinVersionIsProvided}

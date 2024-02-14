@@ -3,7 +3,6 @@ package com.javiersc.hubdle.project.extensions.kotlin.android.application
 import com.android.build.api.dsl.ApplicationExtension
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
-import com.javiersc.hubdle.project.extensions._internal.Configurable.Priority
 import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.configurableDependencies
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
@@ -33,8 +32,6 @@ constructor(
 
     override val isEnabled: Property<Boolean> = property { false }
 
-    override val priority: Priority = Priority.P3
-
     override val requiredExtensions: Set<HubdleEnableableExtension>
         get() = setOf(hubdleAndroid)
 
@@ -54,19 +51,17 @@ constructor(
 
     @HubdleDslMarker
     public fun android(action: Action<ApplicationExtension>) {
-        userConfigurable { action.execute(the()) }
+        configurable { action.execute(the()) }
     }
 
     override fun Project.defaultConfiguration() {
         val application = hubdleAndroidApplication
         applicablePlugin(
-            priority = Priority.P3,
             scope = Scope.CurrentProject,
             pluginId = PluginId.AndroidApplication,
         )
 
         applicablePlugin(
-            priority = Priority.P3,
             scope = Scope.CurrentProject,
             pluginId = PluginId.JetbrainsKotlinAndroid,
         )

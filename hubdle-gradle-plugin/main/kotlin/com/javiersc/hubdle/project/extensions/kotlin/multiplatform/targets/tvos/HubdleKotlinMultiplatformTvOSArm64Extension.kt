@@ -1,7 +1,6 @@
 package com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.tvos
 
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
-import com.javiersc.hubdle.project.extensions._internal.Configurable
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.features.configurableTargetPerOs
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.hubdleKotlinMultiplatform
@@ -22,8 +21,6 @@ constructor(
         get() = super.project
 
     override val isEnabled: Property<Boolean> = property { false }
-
-    override val priority: Configurable.Priority = Configurable.Priority.P3
 
     public override val targetName: String = "tvosArm64"
 

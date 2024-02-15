@@ -4,6 +4,8 @@
 
 ### Added
 
+ - `org.jetbrains.kotlinx:multik-core`
+ 
 ### Changed
 
 ### Deprecated

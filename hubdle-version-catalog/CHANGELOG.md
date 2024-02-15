@@ -6,6 +6,7 @@
 
  - `org.jetbrains.kotlinx:multik-core`
  - `org.jetbrains.kotlinx:multik-default`
+ - `org.jetbrains.kotlinx:multik-kotlin`
  
 ### Changed
 

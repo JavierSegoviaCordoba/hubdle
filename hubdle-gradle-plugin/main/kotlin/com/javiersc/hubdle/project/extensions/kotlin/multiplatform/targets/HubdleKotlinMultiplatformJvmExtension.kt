@@ -28,6 +28,6 @@ constructor(
     override val targetName: String = "jvm"
 
     override fun Project.defaultConfiguration() {
-        configurable { configure<KotlinMultiplatformExtension> { jvm() } }
+        lazyConfigurable { configure<KotlinMultiplatformExtension> { jvm() } }
     }
 }

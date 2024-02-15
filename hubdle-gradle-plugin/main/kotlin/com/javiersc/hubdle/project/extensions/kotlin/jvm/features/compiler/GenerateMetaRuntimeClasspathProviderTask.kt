@@ -1,10 +1,10 @@
 package com.javiersc.hubdle.project.extensions.kotlin.jvm.features.compiler
 
 import com.javiersc.gradle.project.extensions.module
-import com.javiersc.hubdle.project.extensions._internal.allKotlinSrcDirsWithoutBuild
 import com.javiersc.hubdle.project.extensions.kotlin.shared.moduleAsString
 import com.javiersc.kotlin.stdlib.isNotNullNorBlank
 import javax.inject.Inject
+import org.gradle.api.DefaultTask
 import org.gradle.api.Project
 import org.gradle.api.artifacts.MinimalExternalModuleDependency
 import org.gradle.api.artifacts.ProjectDependency
@@ -20,7 +20,6 @@ import org.gradle.api.tasks.CacheableTask
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.Internal
 import org.gradle.api.tasks.OutputDirectory
-import org.gradle.api.tasks.SourceTask
 import org.gradle.api.tasks.TaskAction
 import org.gradle.api.tasks.TaskProvider
 import org.gradle.kotlin.dsl.get
@@ -34,7 +33,7 @@ public abstract class GenerateMetaRuntimeClasspathProviderTask
 constructor(
     objects: ObjectFactory,
     layout: ProjectLayout,
-) : SourceTask() {
+) : DefaultTask() {
 
     @Input public val mainClass: Property<String> = objects.property<String>()
 
@@ -55,10 +54,7 @@ constructor(
                             .replace(".", "/")
                             .replace(":", "/")
                             .replace("_", "/")
-                    val mainClassString: String = mainClass.get()
-                    val mainClassPackage = mainClassString.substringBeforeLast('.')
-                    val mainClassParentDir = mainClassPackage.replace('.', '/')
-                    kotlinDir.dir(generatedPath).dir(mainClassParentDir)
+                    kotlinDir.dir(generatedPath)
                 }
             )
 
@@ -163,7 +159,6 @@ constructor(
                 it.mainClass.convention(mainClass)
                 it.testDependenciesJarPaths.convention(testDependenciesJarPaths)
                 it.testProjectsJarPaths.convention(testProjectsJarPaths)
-                it.source(project.allKotlinSrcDirsWithoutBuild)
             }
             return generateMetaRuntimeClasspathProviderTask
         }

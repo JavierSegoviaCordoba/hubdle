@@ -4,6 +4,9 @@ package com.javiersc.hubdle.project.extensions._internal
 
 import com.javiersc.gradle.project.extensions.withPlugins
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
+import com.javiersc.hubdle.project.extensions._internal.Configurable.After
+import com.javiersc.hubdle.project.extensions._internal.Configurable.Before
+import com.javiersc.hubdle.project.extensions._internal.Configurable.Lazy
 import com.javiersc.hubdle.project.extensions.apis.BaseHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import org.gradle.api.Project
@@ -64,8 +67,16 @@ internal class HubdleState(private val project: Project) {
     val configurables: List<Configurable>
         get() = _configurables.toList()
 
-    fun configurable(name: String, isEnabled: Property<Boolean>, config: Configurable.() -> Unit) {
-        _configurables.add(Configurable(name, isEnabled, config))
+    fun beforeConfigurable(name: String, isEnabled: Property<Boolean>, config: Before.() -> Unit) {
+        _configurables.add(Before(name, isEnabled, config))
+    }
+
+    fun lazyConfigurable(name: String, isEnabled: Property<Boolean>, config: Lazy.() -> Unit) {
+        _configurables.add(Lazy(name, isEnabled, config))
+    }
+
+    fun afterConfigurable(name: String, isEnabled: Property<Boolean>, config: After.() -> Unit) {
+        _configurables.add(After(name, isEnabled, config))
     }
 
     fun configure() {
@@ -74,9 +85,14 @@ internal class HubdleState(private val project: Project) {
         }
         val ids = applicablePlugins.filter { it.isEnabled.get() }.map { it.pluginId.id }
         project.withPlugins(*ids.toTypedArray()) {
-            for (configurable in configurables) {
-                configurable.configure()
-            }
+            val beforeConfigurables = configurables.filterIsInstance<Before>()
+            for (configurable in beforeConfigurables) configurable.configure()
+
+            val lazyConfigurables = configurables.filterIsInstance<Lazy>()
+            for (configurable in lazyConfigurables) configurable.configure()
+
+            val afterConfigurables = configurables.filterIsInstance<After>()
+            for (configurable in afterConfigurables) configurable.configure()
         }
     }
 }
@@ -123,7 +139,7 @@ internal interface ApplicablePlugin {
     }
 }
 
-internal interface Configurable {
+internal sealed interface Configurable {
 
     val name: String
         get() = "Unknown"
@@ -132,20 +148,36 @@ internal interface Configurable {
 
     fun configure()
 
-    companion object {
+    data class Before(
+        override val name: String,
+        override val isEnabled: Property<Boolean>,
+        private val config: Before.() -> Unit,
+    ) : Configurable {
 
-        operator fun invoke(
-            name: String,
-            isEnabled: Property<Boolean>,
-            config: Configurable.() -> Unit,
-        ): Configurable =
-            object : Configurable {
-                override val name: String = name
-                override val isEnabled: Property<Boolean> = isEnabled
+        override fun configure() {
+            if (isEnabled.get()) config()
+        }
+    }
 
-                override fun configure() {
-                    if (isEnabled.get()) config()
-                }
-            }
+    data class Lazy(
+        override val name: String,
+        override val isEnabled: Property<Boolean>,
+        private val config: Lazy.() -> Unit,
+    ) : Configurable {
+
+        override fun configure() {
+            if (isEnabled.get()) config()
+        }
+    }
+
+    data class After(
+        override val name: String,
+        override val isEnabled: Property<Boolean>,
+        private val config: After.() -> Unit,
+    ) : Configurable {
+
+        override fun configure() {
+            if (isEnabled.get()) config()
+        }
     }
 }

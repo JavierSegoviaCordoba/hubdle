@@ -70,14 +70,14 @@ constructor(
     }
 
     override fun Project.defaultConfiguration() {
-        configurable {
+        lazyConfigurable {
             if (allEnabled.get()) {
                 tvosArm64()
                 tvosSimulatorArm64()
                 tvosX64()
             }
         }
-        configurable {
+        lazyConfigurable {
             configure<KotlinMultiplatformExtension> {
                 val commonMain: KotlinSourceSet by sourceSets.getting
                 val tvosArm64Main: KotlinSourceSet? = sourceSets.findByName("tvosArm64Main")

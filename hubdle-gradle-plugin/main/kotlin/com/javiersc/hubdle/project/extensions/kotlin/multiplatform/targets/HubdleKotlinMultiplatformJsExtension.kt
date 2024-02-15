@@ -32,19 +32,19 @@ constructor(
 
     @HubdleDslMarker
     public fun browser(action: Action<KotlinJsBrowserDsl> = Action {}) {
-        configurable {
+        lazyConfigurable {
             configure<KotlinMultiplatformExtension> { js { browser { action.execute(this) } } }
         }
     }
 
     @HubdleDslMarker
     public fun nodejs(action: Action<KotlinJsNodeDsl> = Action {}) {
-        configurable {
+        lazyConfigurable {
             configure<KotlinMultiplatformExtension> { js { nodejs { action.execute(this) } } }
         }
     }
 
     override fun Project.defaultConfiguration() {
-        configurable { configure<KotlinMultiplatformExtension> { js() } }
+        lazyConfigurable { configure<KotlinMultiplatformExtension> { js() } }
     }
 }

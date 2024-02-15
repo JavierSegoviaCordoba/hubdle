@@ -43,7 +43,7 @@ constructor(
             pluginId = PluginId.Molecule
         )
 
-        configurable {
+        lazyConfigurable {
             forKotlinSetsDependencies(MAIN, COMMON_MAIN) {
                 implementation(library(cash_molecule_runtime))
             }

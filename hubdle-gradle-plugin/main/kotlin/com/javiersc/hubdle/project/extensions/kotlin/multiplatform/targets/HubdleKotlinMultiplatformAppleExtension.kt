@@ -73,7 +73,7 @@ constructor(
     }
 
     override fun Project.defaultConfiguration() {
-        configurable {
+        lazyConfigurable {
             if (allEnabled.get()) {
                 ios.allEnabled()
                 macos.allEnabled()
@@ -82,7 +82,7 @@ constructor(
             }
         }
 
-        configurable {
+        lazyConfigurable {
             configure<KotlinMultiplatformExtension> {
                 val commonMain: KotlinSourceSet by sourceSets.getting
                 val iosArm64Main: KotlinSourceSet? = sourceSets.findByName("iosArm64Main")

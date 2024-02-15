@@ -53,7 +53,7 @@ constructor(
     }
 
     override fun Project.defaultConfiguration() {
-        configurable {
+        lazyConfigurable {
             val feats = this@HubdleKotlinAndroidBuildFeaturesExtension
             configureAndroidCommonExtension {
                 buildFeatures.aidl = feats.aidl.get()

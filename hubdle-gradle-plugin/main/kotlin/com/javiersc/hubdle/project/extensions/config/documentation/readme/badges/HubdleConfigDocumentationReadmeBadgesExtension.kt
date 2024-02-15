@@ -39,7 +39,7 @@ constructor(
     public val techDebt: Property<Boolean> = property { true }
 
     override fun Project.defaultConfiguration() {
-        configurable {
+        lazyConfigurable {
             tasks.register<WriteReadmeBadgesTask>(WriteReadmeBadgesTask.NAME).configure { task ->
                 task.projectGroup.set(group.toString())
                 task.projectName.set(mainProjectName)

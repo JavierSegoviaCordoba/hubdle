@@ -34,7 +34,7 @@ constructor(
     public val sonar: Property<Boolean> = property { true }
 
     override fun Project.defaultConfiguration() {
-        configurable {
+        lazyConfigurable {
             val analysis = this@HubdleConfigDocumentationSiteAnalysisExtension
             val preBuildDocsTask: TaskProvider<PreBuildSiteTask> =
                 PreBuildSiteTask.register(project) {

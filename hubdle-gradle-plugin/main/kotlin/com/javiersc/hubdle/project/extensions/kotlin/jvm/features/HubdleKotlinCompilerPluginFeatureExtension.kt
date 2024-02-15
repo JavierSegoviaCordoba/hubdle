@@ -127,106 +127,106 @@ constructor(
         testTypes.set(values.toSet())
     }
 
-    override fun Project.defaultConfiguration() {
-        configurable {
-            val testSourceSet = the<SourceSetContainer>().named("test")
-            testSourceSet.configure { sourceSet -> sourceSet.java.srcDirs(testGenDir.get()) }
-            configure<SourceSetContainer> {
-                register("test-data").configure {
-                    val testData = objects.sourceDirectorySet("test-data", "test-data")
-                    testData.filter.include("**/*.fir.ir.txt", "**/*.fir.txt", "**/*.kt")
+    override fun Project.defaultConfiguration() = lazyConfigurable {
+        configure<SourceSetContainer> {
+            register("test-data").configure {
+                val testData = objects.sourceDirectorySet("test-data", "test-data")
+                testData.filter.include("**/*.fir.ir.txt", "**/*.fir.txt", "**/*.kt")
+            }
+        }
+
+        the<KotlinProjectExtension>().sourceSets.configureEach { kotlinSourceSet ->
+            kotlinSourceSet.languageSettings { optInExperimentalAPIs() }
+        }
+
+        kotlinSourceSetMainOrCommonMain.configureEach { kotlinSourceSet ->
+            kotlinSourceSet.dependencies {
+                compileOnly(library(jetbrains_kotlin_compiler))
+                if (addExtensionDependencies.get()) {
+                    implementation(library(javiersc_kotlin_compiler_extensions))
                 }
             }
+        }
 
-            the<KotlinProjectExtension>().sourceSets.configureEach { kotlinSourceSet ->
-                kotlinSourceSet.languageSettings { optInExperimentalAPIs() }
-            }
-
-            kotlinSourceSetMainOrCommonMain.configureEach { kotlinSourceSet ->
-                kotlinSourceSet.dependencies {
-                    compileOnly(library(jetbrains_kotlin_compiler))
-                    if (addExtensionDependencies.get()) {
-                        implementation(library(javiersc_kotlin_compiler_extensions))
-                    }
+        kotlinSourceSetTestOrCommonTest.configureEach { kotlinSourceSet ->
+            kotlinSourceSet.dependencies {
+                if (addExtensionDependencies.get()) {
+                    implementation(library(javiersc_kotlin_compiler_test_extensions))
                 }
+                implementation(library(jetbrains_kotlin_compiler))
+                implementation(library(jetbrains_kotlin_compiler_internal_test_framework))
+                implementation(library(jetbrains_kotlin_reflect))
+                implementation(library(jetbrains_kotlin_test_annotations_common))
+                implementation(libraryModule(junit_jupiter_junit_jupiter))
+                implementation(libraryModule(junit_jupiter_junit_jupiter_api))
+                implementation(libraryModule(junit_platform_junit_platform_commons))
+                implementation(libraryModule(junit_platform_junit_platform_launcher))
+                implementation(libraryModule(junit_platform_junit_platform_runner))
+                implementation(libraryModule(junit_platform_junit_platform_suite_api))
+                implementation(dependencies.platform(libraryPlatform(junit_bom)))
+                runtimeOnly(library(jetbrains_kotlin_annotations_jvm))
+                runtimeOnly(library(jetbrains_kotlin_script_runtime))
+                runtimeOnly(library(jetbrains_kotlin_test))
             }
+        }
 
-            kotlinSourceSetTestOrCommonTest.configureEach { kotlinSourceSet ->
-                kotlinSourceSet.dependencies {
-                    if (addExtensionDependencies.get()) {
-                        implementation(library(javiersc_kotlin_compiler_test_extensions))
-                    }
-                    implementation(library(jetbrains_kotlin_compiler))
-                    implementation(library(jetbrains_kotlin_compiler_internal_test_framework))
-                    implementation(library(jetbrains_kotlin_reflect))
-                    implementation(library(jetbrains_kotlin_test_annotations_common))
-                    implementation(libraryModule(junit_jupiter_junit_jupiter))
-                    implementation(libraryModule(junit_jupiter_junit_jupiter_api))
-                    implementation(libraryModule(junit_platform_junit_platform_commons))
-                    implementation(libraryModule(junit_platform_junit_platform_launcher))
-                    implementation(libraryModule(junit_platform_junit_platform_runner))
-                    implementation(libraryModule(junit_platform_junit_platform_suite_api))
-                    implementation(dependencies.platform(libraryPlatform(junit_bom)))
-                    runtimeOnly(library(jetbrains_kotlin_annotations_jvm))
-                    runtimeOnly(library(jetbrains_kotlin_script_runtime))
-                    runtimeOnly(library(jetbrains_kotlin_test))
+        val generateMetaRuntimeClasspathProvider:
+            TaskProvider<GenerateMetaRuntimeClasspathProviderTask> =
+            GenerateMetaRuntimeClasspathProviderTask.register(
+                project,
+                mainClass,
+                testDependencies,
+                testProjects,
+            )
+
+        kotlinSourceSetTestOrCommonTest.configureEach {
+            it.kotlin.srcDirs(generateMetaRuntimeClasspathProvider)
+        }
+
+        val generateKotlinCompilerTests: TaskProvider<JavaExec> =
+            tasks.register<JavaExec>("generateKotlinCompilerTests") { group = "build" }
+
+        val testSourceSet = the<SourceSetContainer>().named("test")
+        testSourceSet.configure { sourceSet -> sourceSet.java.srcDirs(testGenDir.get()) }
+
+        generateKotlinCompilerTests.configure { task ->
+            task.doFirst {
+                for (testType: KotlinCompilerTestType in testTypes.get()) {
+                    projectDir.resolve("${testDataDir.get()}/${testType.dir}").mkdirs()
                 }
+                projectDir.resolve(testGenDir.get()).mkdirs()
             }
+            task.isEnabled = mainClass.orNull.isNotNullNorBlank()
+            task.classpath = testSourceSet.get().runtimeClasspath
+            task.mainClass.set(mainClass)
+            task.dependsOn(generateMetaRuntimeClasspathProvider)
+            task.dependsOnTestProjects()
+        }
 
-            val generateMetaRuntimeClasspathProvider:
-                TaskProvider<GenerateMetaRuntimeClasspathProviderTask> =
-                GenerateMetaRuntimeClasspathProviderTask.register(
-                    project,
-                    mainClass,
-                    testDependencies,
-                    testProjects,
-                )
+        tasks.named(GenerateTask.NAME).configure { task ->
+            task.dependsOn(generateKotlinCompilerTests)
+        }
 
-            kotlinSourceSetTestOrCommonTest.configureEach {
-                it.kotlin.srcDir(generateMetaRuntimeClasspathProvider)
-            }
-
-            val generateKotlinCompilerTests: TaskProvider<JavaExec> =
-                tasks.register<JavaExec>("generateKotlinCompilerTests") { group = "build" }
-            generateKotlinCompilerTests.configure { task ->
-                task.doFirst {
-                    for (testType: KotlinCompilerTestType in testTypes.get()) {
-                        projectDir.resolve("${testDataDir.get()}/${testType.dir}").mkdirs()
-                    }
-                    projectDir.resolve(testGenDir.get()).mkdirs()
-                }
-                task.isEnabled = mainClass.orNull.isNotNullNorBlank()
-                task.classpath = testSourceSet.get().runtimeClasspath
-                task.mainClass.set(mainClass)
-                task.dependsOn(generateMetaRuntimeClasspathProvider)
-                task.dependsOnTestProjects()
-            }
-
-            tasks.named(GenerateTask.NAME).configure { task ->
+        prepareKotlinIdeaImport.configure { task ->
+            if (mainClass.orNull.isNotNullNorBlank() && generateTestOnSync.orNull == true) {
                 task.dependsOn(generateKotlinCompilerTests)
+                task.dependsOn(generateMetaRuntimeClasspathProvider)
             }
+        }
 
-            prepareKotlinIdeaImport.configure { task ->
-                if (mainClass.orNull.isNotNullNorBlank() && generateTestOnSync.orNull == true) {
-                    task.dependsOn(generateKotlinCompilerTests)
-                    task.dependsOn(generateMetaRuntimeClasspathProvider)
+        tasks.named<Test>("test") {
+            testLogging { it.showStandardStreams = true }
+
+            useJUnitPlatform()
+
+            doFirst {
+                for ((group: String, name: String) in libraryProperties) {
+                    setLibraryProperty(propName = group, jarName = name)
                 }
             }
 
-            tasks.named<Test>("test") {
-                testLogging { it.showStandardStreams = true }
-
-                useJUnitPlatform()
-
-                doFirst {
-                    for ((group: String, name: String) in libraryProperties) {
-                        setLibraryProperty(propName = group, jarName = name)
-                    }
-                }
-
-                dependsOn(generateKotlinCompilerTests)
-                dependsOnTestProjects()
-            }
+            dependsOn(generateKotlinCompilerTests)
+            dependsOnTestProjects()
         }
     }
 

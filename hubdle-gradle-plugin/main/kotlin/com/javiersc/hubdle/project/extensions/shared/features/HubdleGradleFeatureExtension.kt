@@ -43,7 +43,7 @@ constructor(
     @HubdleDslMarker
     public fun versionCatalogs(action: Action<CatalogPluginExtension> = Action {}) {
         versionCatalog.enabled(true)
-        configurable { action.execute(the()) }
+        lazyConfigurable { action.execute(the()) }
     }
 
     @HubdleDslMarker

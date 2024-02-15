@@ -50,12 +50,12 @@ constructor(
     }
 
     override fun Project.defaultConfiguration() {
-        configurable {
+        lazyConfigurable {
             if (allEnabled.get()) {
                 mingwX64()
             }
         }
-        configurable {
+        lazyConfigurable {
             configure<KotlinMultiplatformExtension> {
                 val commonMain: KotlinSourceSet by sourceSets.getting
                 val mingwX64Main: KotlinSourceSet? = sourceSets.findByName("mingwX64Main")

@@ -6,6 +6,7 @@ import com.javiersc.gradle.version.GradleVersion
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.PluginId
+import com.javiersc.hubdle.project.extensions._internal.fallbackAction
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
@@ -32,20 +33,20 @@ constructor(
     public val tagPrefix: Property<String> = defaultTagPrefix()
 
     public fun mapVersion(gradleVersion: (GradleVersion) -> String) {
-        configurable { the<SemverExtension>().mapVersion(gradleVersion) }
+        lazyConfigurable { the<SemverExtension>().mapVersion(gradleVersion) }
     }
 
     @HubdleDslMarker
-    public fun semver(action: Action<SemverExtension> = Action {}) {
-        configurable { action.execute(the()) }
-    }
+    public fun semver(action: Action<SemverExtension> = Action {}): Unit = fallbackAction(action)
 
     override fun Project.defaultConfiguration() {
         applicablePlugin(
             scope = Scope.CurrentProject,
             pluginId = PluginId.JavierscSemverGradlePlugin
         )
-        configurable { configure<SemverExtension> { tagPrefix.set(hubdleSemver.tagPrefix.get()) } }
+        lazyConfigurable {
+            configure<SemverExtension> { tagPrefix.set(hubdleSemver.tagPrefix.get()) }
+        }
     }
 
     private fun defaultTagPrefix(): Property<String> = property {

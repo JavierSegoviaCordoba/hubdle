@@ -28,7 +28,7 @@ constructor(
     override val targetName: String = "wasm"
 
     override fun Project.defaultConfiguration() {
-        configurable {
+        lazyConfigurable {
             configure<KotlinMultiplatformExtension> {
                 wasmJs {
                     browser()

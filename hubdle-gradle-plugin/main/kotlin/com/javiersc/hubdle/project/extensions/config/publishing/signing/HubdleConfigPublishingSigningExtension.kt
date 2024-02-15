@@ -8,6 +8,7 @@ import com.javiersc.gradle.properties.extensions.getStringProperty
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.PluginId
+import com.javiersc.hubdle.project.extensions._internal.fallbackAction
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.config.publishing.hubdlePublishing
@@ -65,16 +66,14 @@ constructor(
     }
 
     @HubdleDslMarker
-    public fun signing(action: Action<SigningExtension> = Action {}) {
-        configurable { action.execute(the()) }
-    }
+    public fun signing(action: Action<SigningExtension> = Action {}): Unit = fallbackAction(action)
 
     override fun Project.defaultConfiguration() {
         applicablePlugin(
             scope = Scope.CurrentProject,
             pluginId = PluginId.GradleSigning,
         )
-        configurable { configureSigningForPublishing() }
+        lazyConfigurable { configureSigningForPublishing() }
     }
 
     public object Signing {

@@ -99,7 +99,7 @@ constructor(
             ?.asMap
             ?.values
             ?.asSequence()
-            ?.flatMap { it.kotlin.srcDirs }
+            ?.flatMap { it.kotlin.sourceDirectories }
             ?.firstOrNull { it.path.endsWith("main${File.separator}kotlin") }
             ?.walkTopDown()
             ?.onEnter { parentFile ->

@@ -59,13 +59,13 @@ constructor(
     }
 
     override fun Project.defaultConfiguration() {
-        configurable {
+        lazyConfigurable {
             if (allEnabled.get()) {
                 linuxArm64()
                 linuxX64()
             }
         }
-        configurable {
+        lazyConfigurable {
             configure<KotlinMultiplatformExtension> {
                 val commonMain: KotlinSourceSet by sourceSets.getting
                 val linuxArm64Main: KotlinSourceSet? = sourceSets.findByName("linuxArm64Main")

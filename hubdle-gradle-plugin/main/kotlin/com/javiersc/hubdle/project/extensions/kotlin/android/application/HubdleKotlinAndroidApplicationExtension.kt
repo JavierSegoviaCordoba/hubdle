@@ -5,6 +5,7 @@ import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.configurableDependencies
+import com.javiersc.hubdle.project.extensions._internal.fallbackAction
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
@@ -50,9 +51,7 @@ constructor(
     public val versionName: Property<String?> = property { "0.1.0" }
 
     @HubdleDslMarker
-    public fun android(action: Action<ApplicationExtension>) {
-        configurable { action.execute(the()) }
-    }
+    public fun android(action: Action<ApplicationExtension>): Unit = fallbackAction(action)
 
     override fun Project.defaultConfiguration() {
         val application = hubdleAndroidApplication
@@ -66,7 +65,7 @@ constructor(
             pluginId = PluginId.JetbrainsKotlinAndroid,
         )
 
-        configurable {
+        lazyConfigurable {
             configure<ApplicationExtension> {
                 defaultConfig.applicationId = application.applicationId.get()
                 defaultConfig.versionCode = application.versionCode.get()

@@ -41,7 +41,7 @@ constructor(
         get() = hubdleKotlinAny
 
     override fun Project.defaultConfiguration() {
-        configurable {
+        lazyConfigurable {
             configure<KotlinProjectExtension> {
                 forKotlinSetsDependencies(MAIN, COMMON_MAIN) {
                     implementation(library(jetbrains_kotlinx_coroutines_core))
@@ -58,7 +58,7 @@ constructor(
                 }
             }
         }
-        configurable(isEnabled = isAnyAndroidFullEnabled) {
+        lazyConfigurable(isEnabled = isAnyAndroidFullEnabled) {
             forKotlinSetsDependencies(MAIN, ANDROID_MAIN) {
                 implementation(library(jetbrains_kotlinx_coroutines_android))
             }

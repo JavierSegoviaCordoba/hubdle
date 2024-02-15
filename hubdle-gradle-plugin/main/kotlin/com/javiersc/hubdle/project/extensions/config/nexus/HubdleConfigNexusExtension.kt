@@ -4,6 +4,7 @@ import com.javiersc.gradle.properties.extensions.getStringProperty
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.PluginId
+import com.javiersc.hubdle.project.extensions._internal.fallbackAction
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
@@ -74,9 +75,8 @@ constructor(
     }
 
     @HubdleDslMarker
-    public fun nexusPublishing(action: Action<NexusPublishException> = Action {}) {
-        configurable { action.execute(the()) }
-    }
+    public fun nexusPublishing(action: Action<NexusPublishException> = Action {}): Unit =
+        fallbackAction(action)
 
     override fun Project.defaultConfiguration() {
         applicablePlugin(
@@ -84,7 +84,7 @@ constructor(
             pluginId = PluginId.GithubGradleNexusPublishPlugin
         )
 
-        configurable {
+        lazyConfigurable {
             configure<NexusPublishExtension> {
                 repositoryDescription.set("${rootProject.group} - ${rootProject.version}")
 

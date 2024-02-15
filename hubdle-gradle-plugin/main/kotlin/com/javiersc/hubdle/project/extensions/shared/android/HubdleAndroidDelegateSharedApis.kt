@@ -14,7 +14,7 @@ public interface HubdleAndroidDelegateSharedApis {
 
     @HubdleDslMarker
     public fun HubdleEnableableExtension.testOptions(action: Action<TestOptions>) {
-        configurable {
+        lazyConfigurable {
             val common = project.androidCommonExtension()
             action.execute(common.testOptions)
         }
@@ -25,7 +25,7 @@ public interface HubdleAndroidDelegateSharedApis {
         name: String,
         action: Action<Configuration>
     ) {
-        configurable { project.configurations.named(name, action::execute) }
+        lazyConfigurable { project.configurations.named(name, action::execute) }
     }
 
     public val HubdleEnableableExtension.buildFeatures: HubdleKotlinAndroidBuildFeaturesExtension

@@ -42,7 +42,7 @@ internal fun HubdleSrcSetConfExt<*>.configurableTestFixtures() {
         scope = Scope.CurrentProject,
         pluginId = PluginId.JavaTestFixtures
     )
-    configurable(isEnabled = isTestFixturesFullEnabled) {
+    lazyConfigurable(isEnabled = isTestFixturesFullEnabled) {
         configure<KotlinProjectExtension> {
             targets.map { target ->
                 val testFixturesCompilation = target.testFixturesCompilation
@@ -55,8 +55,8 @@ internal fun HubdleSrcSetConfExt<*>.configurableTestFixtures() {
     }
 }
 
-internal fun HubdleSrcSetConfExt<*>.configurableTestIntegrationSourceSets() {
-    configurable(isEnabled = isTestFunctionalFullEnabled) {
+internal fun HubdleSrcSetConfExt<*>.configurableTestIntegrationSourceSets() =
+    lazyConfigurable(isEnabled = isTestFunctionalFullEnabled) {
         val testIntegrationSourceSet = the<SourceSetContainer>().maybeCreate(TEST_INTEGRATION)
 
         val integrationTestTask: TaskProvider<Test> =
@@ -77,10 +77,9 @@ internal fun HubdleSrcSetConfExt<*>.configurableTestIntegrationSourceSets() {
             }
         }
     }
-}
 
 internal fun HubdleSrcSetConfExt<KotlinSourceSet>.configurableKotlinTestIntegrationSourceSets() {
-    configurable(isEnabled = isTestIntegrationEnabled) {
+    lazyConfigurable(isEnabled = isTestIntegrationEnabled) {
         configure<KotlinProjectExtension> {
             sourceSets.maybeCreate(TEST_INTEGRATION)
             targets.forEach { target ->
@@ -99,7 +98,7 @@ internal fun HubdleSrcSetConfExt<KotlinSourceSet>.configurableKotlinTestIntegrat
 }
 
 internal fun HubdleSrcSetConfExt<*>.configurableTestFunctionalSourceSets() {
-    configurable(isEnabled = isTestFunctionalFullEnabled) {
+    lazyConfigurable(isEnabled = isTestFunctionalFullEnabled) {
         val testFunctionalSourceSet = the<SourceSetContainer>().maybeCreate(TEST_FUNCTIONAL)
 
         val functionalTestTask: TaskProvider<Test> =
@@ -123,7 +122,7 @@ internal fun HubdleSrcSetConfExt<*>.configurableTestFunctionalSourceSets() {
 }
 
 internal fun HubdleSrcSetConfExt<KotlinSourceSet>.configurableKotlinTestFunctionalSourceSets() {
-    configurable(isEnabled = isTestFunctionalFullEnabled) {
+    lazyConfigurable(isEnabled = isTestFunctionalFullEnabled) {
         configure<KotlinProjectExtension> {
             sourceSets.maybeCreate(TEST_FUNCTIONAL)
             targets.forEach { target ->
@@ -143,34 +142,32 @@ internal fun HubdleSrcSetConfExt<KotlinSourceSet>.configurableKotlinTestFunction
 
 internal fun HubdleConfigurableExtension.configurableSrcDirs(
     targets: SetProperty<String> = setProperty { emptySet() }
-) {
-    configurable {
-        project.findAndroidCommonExtension()?.sourceSets?.configureEach { set: AndroidSourceSet ->
-            val name: String = set.name.calculateKmpSourceSetDirectory(targets.get())
-            if (!hubdleKotlinMultiplatform.isFullEnabled.get()) {
-                set.assets.srcDirs(project.normalAndGeneratedDirs("$name/assets"))
-                set.java.srcDirs(project.normalAndGeneratedDirs("$name/java"))
-                set.kotlin.srcDirs(project.normalAndGeneratedDirs("$name/kotlin"))
-                set.manifest.srcFile("$name/AndroidManifest.xml")
-                set.res.srcDirs(project.normalAndGeneratedDirs("$name/res"))
-                set.resources.srcDirs(project.normalAndGeneratedDirs("$name/resources"))
-            } else {
-                set.manifest.srcFile("$name/AndroidManifest.xml")
-            }
+) = beforeConfigurable {
+    project.findAndroidCommonExtension()?.sourceSets?.configureEach { set: AndroidSourceSet ->
+        val name: String = set.name.calculateKmpSourceSetDirectory(targets.get())
+        if (!hubdleKotlinMultiplatform.isFullEnabled.get()) {
+            set.assets.setSrcDirs(project.normalAndGeneratedDirs("$name/assets"))
+            set.java.setSrcDirs(project.normalAndGeneratedDirs("$name/java"))
+            set.kotlin.setSrcDirs(project.normalAndGeneratedDirs("$name/kotlin"))
+            set.manifest.srcFile("$name/AndroidManifest.xml")
+            set.res.setSrcDirs(project.normalAndGeneratedDirs("$name/res"))
+            set.resources.setSrcDirs(project.normalAndGeneratedDirs("$name/resources"))
+        } else {
+            set.manifest.srcFile("$name/AndroidManifest.xml")
         }
+    }
 
-        project.extensions.findByType<JavaPluginExtension>()?.sourceSets?.configureEach { set ->
-            val name: String = set.name.calculateKmpSourceSetDirectory(targets.get())
-            set.java.srcDirs(project.normalAndGeneratedDirs("$name/java"))
-            set.kotlin.srcDirs(project.normalAndGeneratedDirs("$name/kotlin"))
-            set.resources.srcDirs(project.normalAndGeneratedDirs("$name/resources"))
-        }
+    project.extensions.findByType<JavaPluginExtension>()?.sourceSets?.configureEach { set ->
+        val name: String = set.name.calculateKmpSourceSetDirectory(targets.get())
+        set.java.setSrcDirs(project.normalAndGeneratedDirs("$name/java"))
+        set.kotlin.setSrcDirs(project.normalAndGeneratedDirs("$name/kotlin"))
+        set.resources.setSrcDirs(project.normalAndGeneratedDirs("$name/resources"))
+    }
 
-        project.extensions.findByType<KotlinProjectExtension>()?.sourceSets?.configureEach { set ->
-            val name: String = set.name.calculateKmpSourceSetDirectory(targets.get())
-            set.kotlin.srcDirs(project.normalAndGeneratedDirs("$name/kotlin"))
-            set.resources.srcDirs(project.normalAndGeneratedDirs("$name/resources"))
-        }
+    project.extensions.findByType<KotlinProjectExtension>()?.sourceSets?.configureEach { set ->
+        val name: String = set.name.calculateKmpSourceSetDirectory(targets.get())
+        set.kotlin.setSrcDirs(project.normalAndGeneratedDirs("$name/kotlin"))
+        set.resources.setSrcDirs(project.normalAndGeneratedDirs("$name/resources"))
     }
 }
 

@@ -26,7 +26,7 @@ constructor(
         get() = hubdleKotlinAny
 
     override fun Project.defaultConfiguration() {
-        configurable {
+        lazyConfigurable {
             tasks.withType<KotlinCompile>().configureEach { task ->
                 task.compilerOptions.freeCompilerArgs.add("-Xcontext-receivers")
             }

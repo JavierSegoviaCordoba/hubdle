@@ -39,11 +39,11 @@ constructor(
     }
 
     private fun Project.configurableSourceSet() {
-        configurable {
+        lazyConfigurable {
             configure<JavaPluginExtension> {
                 sourceSets.configureEach { set ->
-                    set.java.srcDirs(normalAndGeneratedDirs("${set.name}/java"))
-                    set.resources.srcDirs(normalAndGeneratedDirs("${set.name}/resources"))
+                    set.java.setSrcDirs(normalAndGeneratedDirs("${set.name}/java"))
+                    set.resources.setSrcDirs(normalAndGeneratedDirs("${set.name}/resources"))
                 }
             }
         }

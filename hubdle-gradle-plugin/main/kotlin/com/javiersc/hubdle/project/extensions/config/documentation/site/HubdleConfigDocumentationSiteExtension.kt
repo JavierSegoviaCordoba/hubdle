@@ -4,6 +4,7 @@ import com.javiersc.gradle.project.extensions.isRootProject
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.PluginId
+import com.javiersc.hubdle.project.extensions._internal.fallbackAction
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
@@ -38,13 +39,11 @@ constructor(
     }
 
     @HubdleDslMarker
-    public fun mkdocs(action: Action<MkdocsExtension>) {
-        configurable { action.execute(the()) }
-    }
+    public fun mkdocs(action: Action<MkdocsExtension>): Unit = fallbackAction(action)
 
     override fun Project.defaultConfiguration() {
         applicablePlugin(scope = Scope.CurrentProject, pluginId = PluginId.VyarusMkdocsBuild)
-        configurable {
+        lazyConfigurable {
             check(isRootProject) {
                 """
                     |`site` can be only used in the root project, and it is being applied in:

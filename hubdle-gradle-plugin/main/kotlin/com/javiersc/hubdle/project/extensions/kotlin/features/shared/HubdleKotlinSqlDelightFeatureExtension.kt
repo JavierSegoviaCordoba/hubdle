@@ -5,6 +5,7 @@ import app.cash.sqldelight.gradle.SqlDelightExtension
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.PluginId
+import com.javiersc.hubdle.project.extensions._internal.fallbackAction
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions._internal.hubdleCatalog
 import com.javiersc.hubdle.project.extensions.apis.BaseHubdleExtension
@@ -37,13 +38,12 @@ constructor(
     public fun databases(
         action: Action<NamedDomainObjectContainer<SqlDelightDatabase>> = Action {}
     ) {
-        configurable { action.invoke(the<SqlDelightExtension>().databases) }
+        lazyConfigurable { action.invoke(the<SqlDelightExtension>().databases) }
     }
 
     @HubdleDslMarker
-    public fun sqldelight(action: Action<SqlDelightExtension> = Action {}) {
-        configurable { action.invoke(the()) }
-    }
+    public fun sqldelight(action: Action<SqlDelightExtension> = Action {}): Unit =
+        fallbackAction(action)
 
     public val HSqlDialect: Provider<String> = provider {
         "app.cash.sqldeight:hsql-dialect:${SqldelightVersion.get()}"
@@ -69,7 +69,7 @@ constructor(
 
     override fun Project.defaultConfiguration() {
         applicablePlugin(scope = Scope.CurrentProject, pluginId = PluginId.SqlDelight)
-        configurable {}
+        lazyConfigurable {}
     }
 }
 

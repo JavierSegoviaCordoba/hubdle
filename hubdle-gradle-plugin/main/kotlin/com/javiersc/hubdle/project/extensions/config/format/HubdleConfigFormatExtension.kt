@@ -7,6 +7,7 @@ import com.javiersc.gradle.project.extensions.isRootProject
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.PluginId
+import com.javiersc.hubdle.project.extensions._internal.fallbackAction
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions._internal.libraryVersion
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
@@ -25,7 +26,6 @@ import org.gradle.api.provider.SetProperty
 import org.gradle.api.tasks.TaskProvider
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.findByType
-import org.gradle.kotlin.dsl.named
 import org.gradle.language.base.plugins.LifecycleBasePlugin.CHECK_TASK_NAME
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 
@@ -67,19 +67,16 @@ constructor(
     }
 
     @HubdleDslMarker
-    public fun spotless(action: Action<SpotlessExtension>) {
-        configurable { action.execute(the()) }
-    }
+    public fun spotless(action: Action<SpotlessExtension>): Unit = fallbackAction(action)
 
     @HubdleDslMarker
-    public fun spotlessPredeclare(action: Action<SpotlessExtensionPredeclare>) {
-        configurable { action.execute(the()) }
-    }
+    public fun spotlessPredeclare(action: Action<SpotlessExtensionPredeclare>): Unit =
+        fallbackAction(action)
 
     override fun Project.defaultConfiguration() {
         applicablePlugin(scope = Scope.CurrentProject, pluginId = PluginId.DiffplugSpotless)
 
-        configurable {
+        lazyConfigurable {
             val checkFormat: TaskProvider<Task> = tasks.register("checkFormat")
             checkFormat.configure { task ->
                 task.group = "verification"
@@ -118,7 +115,7 @@ constructor(
             }
         }
 
-        configurable {
+        lazyConfigurable {
             if (isRootProject) {
                 configure<SpotlessExtensionPredeclare> {
                     kotlin { kotlin -> kotlin.ktfmt(ktfmtVersion.get()) }
@@ -141,7 +138,7 @@ constructor(
                 .findByType<KotlinProjectExtension>()
                 ?.sourceSets
                 ?.asSequence()
-                ?.flatMap { it.kotlin.srcDirs }
+                ?.flatMap { it.kotlin.sourceDirectories }
                 ?.map { it.relativeTo(projectDir) }
                 ?.filterNot { it.path.startsWith(layout.buildDirectory.asFile.get().name) }
                 ?.flatMap {
@@ -170,7 +167,7 @@ constructor(
                 .findByType<KotlinProjectExtension>()
                 ?.sourceSets
                 ?.asSequence()
-                ?.flatMap { it.resources.srcDirs }
+                ?.flatMap { it.resources.sourceDirectories }
                 ?.map { it.relativeTo(projectDir) }
                 ?.flatMap {
                     listOf(

@@ -5,6 +5,7 @@ import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.configurableDependencies
+import com.javiersc.hubdle.project.extensions._internal.fallbackAction
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
@@ -57,14 +58,12 @@ constructor(
     // }
 
     @HubdleDslMarker
-    public fun android(action: Action<LibraryExtension>) {
-        configurable { action.execute(the()) }
-    }
+    public fun android(action: Action<LibraryExtension>): Unit = fallbackAction(action)
 
     override fun Project.defaultConfiguration() {
         applicablePlugins()
 
-        configurable {
+        lazyConfigurable {
             configure<LibraryExtension> {
                 compileSdk = hubdleAndroid.compileSdk.get()
                 defaultConfig.minSdk = hubdleAndroid.minSdk.get()

@@ -85,7 +85,7 @@ constructor(
     }
 
     override fun Project.defaultConfiguration() {
-        configurable {
+        lazyConfigurable {
             if (allEnabled.get()) {
                 androidNativeArm32()
                 androidNativeArm64()
@@ -94,7 +94,7 @@ constructor(
             }
         }
 
-        configurable {
+        lazyConfigurable {
             configure<KotlinMultiplatformExtension> {
                 val commonMain: KotlinSourceSet by sourceSets.getting
                 val androidNativeArm32Main: KotlinSourceSet? =

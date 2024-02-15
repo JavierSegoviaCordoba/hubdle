@@ -44,7 +44,7 @@ constructor(
         get() = hubdleKotlinAny
 
     override fun Project.defaultConfiguration() {
-        configurable {
+        lazyConfigurable {
             forKotlinSetsDependencies(MAIN, COMMON_MAIN) {
                 implementation(library(javiersc_kotlin_stdlib))
             }

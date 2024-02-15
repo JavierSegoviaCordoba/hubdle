@@ -8,6 +8,7 @@ import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.Configurable
 import com.javiersc.hubdle.project.extensions._internal.PluginId
+import com.javiersc.hubdle.project.extensions._internal.fallbackAction
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
@@ -56,13 +57,12 @@ constructor(
 
     @HubdleDslMarker
     public fun repositories(action: Action<RepositoryHandler> = Action {}) {
-        configurable { action.execute(the<PublishingExtension>().repositories) }
+        lazyConfigurable { action.execute(the<PublishingExtension>().repositories) }
     }
 
     @HubdleDslMarker
-    public fun publishing(action: Action<PublishingExtension> = Action {}) {
-        configurable { action.execute(the()) }
-    }
+    public fun publishing(action: Action<PublishingExtension> = Action {}): Unit =
+        fallbackAction(action)
 }
 
 internal fun HubdleConfigurableExtension.configurableMavenPublishing(
@@ -79,7 +79,7 @@ internal fun HubdleConfigurableExtension.configurableMavenPublishing(
         scope = Scope.CurrentProject,
         pluginId = PluginId.MavenPublish,
     )
-    configurable(isEnabled = isEnabled) {
+    lazyConfigurable(isEnabled = isEnabled) {
         configurePublishingExtension()
         if (configJavaExtension) {
             configure<JavaPluginExtension> {

@@ -29,7 +29,7 @@ constructor(
     override fun Project.defaultConfiguration() {
         applicablePlugin(scope = Scope.CurrentProject, pluginId = PluginId.JetbrainsDokka)
 
-        configurable {
+        lazyConfigurable {
             if (project.hasKotlinGradlePlugin) {
                 tasks.withType<DokkaTaskPartial> {
                     dokkaSourceSets.configureEach { set ->

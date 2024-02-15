@@ -6,6 +6,7 @@ import com.javiersc.gradle.tasks.extensions.maybeNamed
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.PluginId
+import com.javiersc.hubdle.project.extensions._internal.fallbackAction
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
@@ -32,9 +33,7 @@ constructor(
         get() = setOf(hubdleConfig)
 
     @HubdleDslMarker
-    public fun apiValidation(action: Action<ApiValidationExtension>) {
-        configurable { action.execute(the()) }
-    }
+    public fun apiValidation(action: Action<ApiValidationExtension>): Unit = fallbackAction(action)
 
     override fun Project.defaultConfiguration() {
         applicablePlugin(
@@ -42,7 +41,7 @@ constructor(
             pluginId = PluginId.JetbrainsKotlinxBinaryCompatibilityValidator
         )
 
-        configurable {
+        lazyConfigurable {
             // TODO: Change this configurable with 0.7.0 as it must be applied on each project
             check(isRootProject) {
                 "`binaryCompatibilityValidator` must be applied only on root project"

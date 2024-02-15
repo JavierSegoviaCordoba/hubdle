@@ -149,7 +149,7 @@ constructor(
 
     @HubdleDslMarker
     public fun kotlin(action: Action<KotlinMultiplatformExtension>) {
-        configurable { action.execute(the()) }
+        lazyConfigurable { action.execute(the()) }
     }
 
     override fun Project.defaultConfiguration() {

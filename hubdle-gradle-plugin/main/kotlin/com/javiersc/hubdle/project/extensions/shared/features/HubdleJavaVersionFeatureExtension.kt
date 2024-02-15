@@ -37,7 +37,7 @@ constructor(
     }
 
     override fun Project.defaultConfiguration() {
-        configurable {
+        lazyConfigurable {
             tasks.withType<JavaCompile>().configureEach {
                 it.sourceCompatibility = "${jvmVersion.get()}"
                 it.targetCompatibility = "${jvmVersion.get()}"

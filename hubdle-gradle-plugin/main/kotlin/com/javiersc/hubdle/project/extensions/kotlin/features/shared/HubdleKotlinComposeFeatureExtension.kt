@@ -4,6 +4,7 @@ import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.MAIN
 import com.javiersc.hubdle.project.extensions._internal.PluginId
+import com.javiersc.hubdle.project.extensions._internal.fallbackAction
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions._internal.library
 import com.javiersc.hubdle.project.extensions.android._internal.configureAndroidCommonExtension
@@ -55,14 +56,12 @@ constructor(
     }
 
     @HubdleDslMarker
-    public fun compose(action: Action<ComposeExtension> = Action {}) {
-        configurable { action.invoke(the()) }
-    }
+    public fun compose(action: Action<ComposeExtension> = Action {}): Unit = fallbackAction(action)
 
     override fun Project.defaultConfiguration() {
         applicablePlugin(scope = Scope.CurrentProject, pluginId = PluginId.JetbrainsCompose)
 
-        configurable {
+        lazyConfigurable {
             configure<ComposeExtension> { kotlinCompilerPlugin.set(compiler) }
             if (hubdleAndroidFeatures.isFullEnabled.get()) {
                 forKotlinSetsDependencies(MAIN) {

@@ -28,6 +28,6 @@ constructor(
         get() = setOf(hubdleKotlinMultiplatform.androidNative)
 
     override fun Project.defaultConfiguration() {
-        configurable { configure<KotlinMultiplatformExtension> { androidNativeArm64() } }
+        lazyConfigurable { configure<KotlinMultiplatformExtension> { androidNativeArm64() } }
     }
 }

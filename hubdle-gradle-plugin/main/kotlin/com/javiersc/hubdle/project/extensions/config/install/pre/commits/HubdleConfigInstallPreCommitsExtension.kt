@@ -37,7 +37,7 @@ constructor(
     public val dumpApi: Property<Boolean> = property { false }
 
     override fun Project.defaultConfiguration() {
-        configurable {
+        lazyConfigurable {
             check(isRootProject) { "Hubdle `install` must be configured only in the root project" }
 
             InstallPreCommitTask.register(project)

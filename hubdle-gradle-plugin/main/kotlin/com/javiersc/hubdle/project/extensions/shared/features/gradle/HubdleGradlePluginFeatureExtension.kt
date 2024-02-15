@@ -63,7 +63,7 @@ constructor(
 
     @HubdleDslMarker
     public fun gradlePlugin(action: Action<GradlePluginDevelopmentExtension>) {
-        configurable { action.execute(the()) }
+        lazyConfigurable { action.execute(the()) }
     }
 
     public val pluginUnderTestDependencies: ListProperty<String> = listProperty { emptyList() }
@@ -157,7 +157,7 @@ constructor(
             pluginId = PluginId.GradlePluginPublish,
         )
 
-        configurable {
+        lazyConfigurable {
             tasks.withType<PublishTask>().configureEach { task ->
                 task.enabled = isTagPrefixProject
                 task.dependsOn(CheckIsSemverTask.NAME)
@@ -201,7 +201,7 @@ constructor(
             }
         }
 
-        configurable {
+        lazyConfigurable {
             configure<GradlePluginDevelopmentExtension> {
                 configure<SourceSetContainer> {
                     val sets: List<SourceSet> =
@@ -211,7 +211,7 @@ constructor(
             }
         }
 
-        configurable(
+        lazyConfigurable(
             config = {
                 configure<GradlePluginDevelopmentExtension> {
                     val gradlePluginDevelopmentExtension = this

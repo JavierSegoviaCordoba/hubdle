@@ -4,6 +4,7 @@ import com.android.build.api.dsl.LibraryExtension
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.PluginId
+import com.javiersc.hubdle.project.extensions._internal.fallbackAction
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.kotlin.android._internal.configureAndroidLibraryJavaVersion
@@ -50,7 +51,7 @@ constructor(
     public fun publishLibraryVariants(vararg names: String) {
         publishLibraryVariants.addAll(names.toList())
         publishAllLibraryVariants.set(false)
-        configurable {
+        lazyConfigurable {
             configure<KotlinMultiplatformExtension> {
                 androidTarget { publishLibraryVariants(*names) }
             }
@@ -62,7 +63,7 @@ constructor(
     @HubdleDslMarker
     public fun publishAllLibraryVariants() {
         publishAllLibraryVariants.set(true)
-        configurable {
+        lazyConfigurable {
             configure<KotlinMultiplatformExtension> {
                 androidTarget { publishAllLibraryVariants() }
             }
@@ -70,14 +71,12 @@ constructor(
     }
 
     @HubdleDslMarker
-    public fun android(action: Action<LibraryExtension>) {
-        configurable { action.execute(the()) }
-    }
+    public fun android(action: Action<LibraryExtension>): Unit = fallbackAction(action)
 
     override fun Project.defaultConfiguration() {
         applicablePlugin(scope = Scope.CurrentProject, pluginId = PluginId.AndroidLibrary)
 
-        configurable {
+        lazyConfigurable {
             val hubdleAndroid = this@HubdleKotlinMultiplatformAndroidExtension
             configure<KotlinMultiplatformExtension> {
                 val publishVariants = hubdleAndroid.publishLibraryVariants.get().toTypedArray()

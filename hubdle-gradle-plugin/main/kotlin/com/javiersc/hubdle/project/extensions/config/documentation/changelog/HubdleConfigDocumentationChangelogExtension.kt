@@ -3,6 +3,7 @@ package com.javiersc.hubdle.project.extensions.config.documentation.changelog
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.PluginId
+import com.javiersc.hubdle.project.extensions._internal.fallbackAction
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
@@ -39,14 +40,12 @@ constructor(
         get() = setOf(hubdleDocumentation)
 
     @HubdleDslMarker
-    public fun changelog(action: Action<ChangelogPluginExtension>) {
-        configurable { action.execute(the()) }
-    }
+    public fun changelog(action: Action<ChangelogPluginExtension>): Unit = fallbackAction(action)
 
     override fun Project.defaultConfiguration() {
         applicablePlugin(scope = Scope.CurrentProject, pluginId = PluginId.JetbrainsChangelog)
 
-        configurable {
+        lazyConfigurable {
             configure<ChangelogPluginExtension> {
                 repositoryUrl.set(hubdlePublishingMavenPom.scmUrl)
                 groups.set(

@@ -76,7 +76,7 @@ constructor(
         val isEnabled = property {
             isFullEnabled.get() && hubdleKotlinAny.any { it.isFullEnabled.get() }
         }
-        configurable(isEnabled = isEnabled) {
+        lazyConfigurable(isEnabled = isEnabled) {
             configure<KotlinProjectExtension> { explicitApi = explicitApiMode }
         }
     }
@@ -165,7 +165,7 @@ constructor(
     }
 
     override fun Project.defaultConfiguration() {
-        configurable {
+        lazyConfigurable {
             val groupOrNull: String? = this@HubdleConfigExtension.group.orNull
             if (groupOrNull != null) group = groupOrNull
         }

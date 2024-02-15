@@ -31,13 +31,13 @@ constructor(
 
     @HubdleDslMarker
     public fun application(action: Action<JavaApplication> = Action {}) {
-        configurable { action.execute(the()) }
+        lazyConfigurable { action.execute(the()) }
     }
 
     override fun Project.defaultConfiguration() {
         applicablePlugin(scope = Scope.CurrentProject, pluginId = PluginId.GradleApplication)
 
-        configurable { the<JavaApplication>().mainClass.set(mainClass) }
+        lazyConfigurable { the<JavaApplication>().mainClass.set(mainClass) }
     }
 }
 

@@ -46,7 +46,7 @@ constructor(
     }
 
     override fun Project.defaultConfiguration() {
-        configurable {
+        lazyConfigurable {
             tasks.withType<KotlinCompile>().configureEach { task ->
                 task.compilerOptions {
                     val hubdleOptions = this@HubdleKotlinCompilerOptionsExtension

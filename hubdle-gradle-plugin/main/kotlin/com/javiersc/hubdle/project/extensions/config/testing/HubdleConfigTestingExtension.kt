@@ -50,7 +50,9 @@ constructor(
 
     @HubdleDslMarker
     public fun retry(action: Action<TestRetryExtension>) {
-        configurable { tasks.withType<Test>().configureEach { test -> action.execute(test.retry) } }
+        lazyConfigurable {
+            tasks.withType<Test>().configureEach { test -> action.execute(test.retry) }
+        }
     }
 
     public val showStandardStreams: Property<Boolean> = property { true }
@@ -62,7 +64,7 @@ constructor(
 
     @HubdleDslMarker
     public fun test(action: Action<Test>) {
-        configurable {
+        lazyConfigurable {
             project.tasks.withType<Test>().configureEach { test -> action.execute(test) }
         }
     }
@@ -72,7 +74,7 @@ constructor(
 
         applicablePlugin(scope = Scope.CurrentProject, pluginId = PluginId.AdarshrTestLogger)
 
-        configurable {
+        lazyConfigurable {
             val testTasks: TaskCollection<Test> = tasks.withType<Test>()
             testTasks.configureEach { task ->
                 task.testLogging.showStandardStreams = showStandardStreams.get()

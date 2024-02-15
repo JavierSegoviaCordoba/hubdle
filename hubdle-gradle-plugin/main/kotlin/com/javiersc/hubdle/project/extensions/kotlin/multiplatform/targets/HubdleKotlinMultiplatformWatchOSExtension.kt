@@ -96,7 +96,7 @@ constructor(
     }
 
     override fun Project.defaultConfiguration() {
-        configurable {
+        lazyConfigurable {
             if (allEnabled.get()) {
                 watchosArm32()
                 watchosArm64()
@@ -105,7 +105,7 @@ constructor(
                 watchosX64()
             }
         }
-        configurable {
+        lazyConfigurable {
             configure<KotlinMultiplatformExtension> {
                 val commonMain: KotlinSourceSet by sourceSets.getting
                 val watchosArm32Main: KotlinSourceSet? = sourceSets.findByName("watchosArm32Main")

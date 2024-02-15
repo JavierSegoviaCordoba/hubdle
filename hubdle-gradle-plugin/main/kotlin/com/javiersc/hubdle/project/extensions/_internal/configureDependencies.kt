@@ -13,7 +13,7 @@ import org.gradle.api.artifacts.MinimalExternalModuleDependency
 import org.gradle.api.provider.Provider
 
 internal fun HubdleConfigurableExtension.configurableDependencies() {
-    configurable {
+    lazyConfigurable {
         project.forKotlinSetsDependencies(
             TEST,
             COMMON_TEST,

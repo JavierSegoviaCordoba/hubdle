@@ -102,7 +102,7 @@ constructor(
 
     @HubdleDslMarker
     public fun optIn(annotationName: String) {
-        configurable {
+        lazyConfigurable {
             configure<KotlinProjectExtension> {
                 sourceSets.all { set -> set.languageSettings.optIn(annotationName) }
             }
@@ -116,7 +116,7 @@ constructor(
 
     @HubdleDslMarker
     public fun languageSettings(action: Action<LanguageSettingsBuilder> = Action {}) {
-        configurable {
+        lazyConfigurable {
             configure<KotlinProjectExtension> {
                 sourceSets.all { set -> set.languageSettings(action) }
             }

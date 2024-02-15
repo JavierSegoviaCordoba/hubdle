@@ -60,7 +60,7 @@ constructor(
             pluginId = PluginId.JetbrainsKotlinPluginSerialization
         )
 
-        configurable {
+        lazyConfigurable {
             forKotlinSetsDependencies(MAIN, COMMON_MAIN) {
                 implementation(library(jetbrains_kotlinx_serialization_core))
                 if (csv.get()) implementation(library(softwork_kotlinx_serialization_csv))

@@ -34,7 +34,7 @@ constructor(
     }
 
     override fun Project.defaultConfiguration() {
-        configurable {
+        lazyConfigurable {
             GenerateProjectDataTask.register(project).configure { task ->
                 task.enabled = isFullEnabled.get()
             }

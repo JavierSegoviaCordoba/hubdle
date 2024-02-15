@@ -32,7 +32,7 @@ constructor(
         get() = hubdleKotlinAny
 
     override fun Project.defaultConfiguration() {
-        configurable {
+        lazyConfigurable {
             forKotlinSetsDependencies(
                 TEST,
                 COMMON_TEST,

@@ -58,7 +58,7 @@ constructor(
             pluginId = PluginId.Sonarqube
         )
 
-        configurable { configureSonarqube(project) }
+        lazyConfigurable { configureSonarqube(project) }
         // TODO: Remove both when project isolation is fixed in Sonar Gradle plugin as hubdle
         //       analysis.sonar.isFullEnabled.get() will be false, and the Sonar plugin shouldn't
         //       pick this project

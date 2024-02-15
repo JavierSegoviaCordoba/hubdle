@@ -4,6 +4,7 @@ import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.allKotlinSrcDirsWithoutBuild
+import com.javiersc.hubdle.project.extensions._internal.fallbackAction
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
@@ -60,13 +61,11 @@ constructor(
     }
 
     @HubdleDslMarker
-    public fun detekt(action: Action<DetektExtension> = Action {}) {
-        configurable { action.execute(the()) }
-    }
+    public fun detekt(action: Action<DetektExtension> = Action {}): Unit = fallbackAction(action)
 
     override fun Project.defaultConfiguration() {
         applicablePlugin(scope = Scope.CurrentProject, pluginId = PluginId.Detekt)
-        configurable { configureDetekt() }
+        lazyConfigurable { configureDetekt() }
     }
 
     private fun Project.configureDetekt() {

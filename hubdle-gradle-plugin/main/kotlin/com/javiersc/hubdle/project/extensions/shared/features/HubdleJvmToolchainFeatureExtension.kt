@@ -58,11 +58,11 @@ constructor(
 
     @HubdleDslMarker
     public fun jvmToolchain(action: Action<JavaToolchainSpec> = Action {}) {
-        configurable { the<KotlinProjectExtension>().jvmToolchain(action::execute) }
+        lazyConfigurable { the<KotlinProjectExtension>().jvmToolchain(action::execute) }
     }
 
     override fun Project.defaultConfiguration() {
-        configurable {
+        lazyConfigurable {
             configure<KotlinProjectExtension> {
                 jvmToolchain { chain ->
                     chain.languageVersion.set(javaLanguageVersion)

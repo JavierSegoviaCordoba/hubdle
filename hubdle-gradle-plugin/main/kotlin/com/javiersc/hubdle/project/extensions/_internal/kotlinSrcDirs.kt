@@ -11,7 +11,7 @@ internal val Project.allKotlinSrcDirs: Provider<Set<File>>
         extensions
             .findByType<KotlinProjectExtension>()
             ?.sourceSets
-            ?.flatMap { kotlinSourceSet -> kotlinSourceSet.kotlin.srcDirs }
+            ?.flatMap { kotlinSourceSet -> kotlinSourceSet.kotlin.sourceDirectories }
             .orEmpty()
             .toSet()
     }
@@ -19,6 +19,7 @@ internal val Project.allKotlinSrcDirs: Provider<Set<File>>
 internal val Project.allKotlinSrcDirsWithoutBuild: Provider<Set<File>>
     get() =
         allKotlinSrcDirs.map { dirs ->
+            val buildDir = layout.buildDirectory.asFile.get()
             dirs.filter { dir -> buildDir.absolutePath !in dir.absolutePath }.toSet()
         }
 

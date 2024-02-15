@@ -4,7 +4,9 @@ import com.javiersc.gradle.properties.extensions.listProperty
 import com.javiersc.gradle.properties.extensions.property
 import com.javiersc.gradle.properties.extensions.setProperty
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin
-import com.javiersc.hubdle.project.extensions._internal.Configurable
+import com.javiersc.hubdle.project.extensions._internal.Configurable.After
+import com.javiersc.hubdle.project.extensions._internal.Configurable.Before
+import com.javiersc.hubdle.project.extensions._internal.Configurable.Lazy
 import com.javiersc.hubdle.project.extensions._internal.HubdleState
 import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.hubdleState
@@ -74,12 +76,28 @@ public abstract class HubdleEnableableExtension(
         applicablePlugin(isFullEnabled, scope, pluginId)
     }
 
-    internal fun configurable(isEnabled: Property<Boolean>, config: Configurable.() -> Unit) {
-        hubdleState.configurable(extensionName, isEnabled, config)
+    internal fun beforeConfigurable(isEnabled: Property<Boolean>, config: Before.() -> Unit) {
+        hubdleState.beforeConfigurable(extensionName, isEnabled, config)
     }
 
-    internal fun configurable(config: Configurable.() -> Unit) {
-        configurable(isFullEnabled, config)
+    internal fun beforeConfigurable(config: Before.() -> Unit) {
+        beforeConfigurable(isFullEnabled, config)
+    }
+
+    internal fun lazyConfigurable(isEnabled: Property<Boolean>, config: Lazy.() -> Unit) {
+        hubdleState.lazyConfigurable(extensionName, isEnabled, config)
+    }
+
+    internal fun lazyConfigurable(config: Lazy.() -> Unit) {
+        lazyConfigurable(isFullEnabled, config)
+    }
+
+    internal fun afterConfigurable(isEnabled: Property<Boolean>, config: After.() -> Unit) {
+        hubdleState.afterConfigurable(extensionName, isEnabled, config)
+    }
+
+    internal fun afterConfigurable(config: After.() -> Unit) {
+        afterConfigurable(isFullEnabled, config)
     }
 
     internal inline fun <reified T> provider(crossinline block: Project.() -> T): Provider<T> =

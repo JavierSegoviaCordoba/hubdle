@@ -143,22 +143,22 @@ constructor(
 
     @HubdleDslMarker
     public fun intellij(action: Action<IntelliJPluginExtension> = Action {}) {
-        configurable { action.execute(the()) }
+        lazyConfigurable { action.execute(the()) }
     }
 
     @HubdleDslMarker
     public fun patchPluginXml(action: Action<PatchPluginXmlTask> = Action {}) {
-        configurable { action.execute(the()) }
+        lazyConfigurable { action.execute(the()) }
     }
 
     @HubdleDslMarker
     public fun publishPlugin(action: Action<PublishPluginTask> = Action {}) {
-        configurable { action.execute(the()) }
+        lazyConfigurable { action.execute(the()) }
     }
 
     @HubdleDslMarker
     public fun signPlugin(action: Action<SignPluginTask> = Action {}) {
-        configurable { action.execute(the()) }
+        lazyConfigurable { action.execute(the()) }
     }
 
     public object IntelliJ {
@@ -183,13 +183,13 @@ constructor(
 
         applicablePlugin(scope = Scope.CurrentProject, pluginId = PluginId.JetbrainsIntellij)
 
-        configurable {
+        lazyConfigurable {
             configureIntellijPluginExtension()
             configureGeneratedChangelogHtmlDependency()
             configurePatchPluginXml()
         }
 
-        configurable(
+        lazyConfigurable(
             isEnabled = property { isFullEnabled.get() && hubdlePublishing.isFullEnabled.get() },
         ) {
             configurePublishPlugin()

@@ -61,13 +61,13 @@ constructor(
     }
 
     override fun Project.defaultConfiguration() {
-        configurable {
+        lazyConfigurable {
             if (allEnabled.get()) {
                 macosArm64()
                 macosX64()
             }
         }
-        configurable {
+        lazyConfigurable {
             configure<KotlinMultiplatformExtension> {
                 val commonMain: KotlinSourceSet by sourceSets.getting
                 val macosX64Main: KotlinSourceSet? = sourceSets.findByName("macosX64Main")

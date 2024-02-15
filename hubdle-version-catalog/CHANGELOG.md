@@ -4,22 +4,28 @@
 
 ### Added
 
- - `org.jetbrains.kotlinx:multik-core`
- - `org.jetbrains.kotlinx:multik-default`
- - `org.jetbrains.kotlinx:multik-kotlin`
- - `org.jetbrains.kotlinx:multik-openblas`
- 
 ### Changed
 
 ### Deprecated
 
 ### Fixed
 
-- Kotlin version is not overridden
-
 ### Removed
 
 ### Updated
+
+## [0.2.4] - 2024-02-15
+
+### Added
+
+- `org.jetbrains.kotlinx:multik-core`
+- `org.jetbrains.kotlinx:multik-default`
+- `org.jetbrains.kotlinx:multik-kotlin`
+- `org.jetbrains.kotlinx:multik-openblas`
+
+### Fixed
+
+- Kotlin version is not overridden
 
 ## [0.2.3] - 2024-02-14
 
@@ -813,7 +819,9 @@
 - `com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter -> 1.0.0`
 - `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.2.3...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.2.4...HEAD
+
+[0.2.4]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.2.3...c0.2.4
 
 [0.2.3]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.2.2...c0.2.3
 

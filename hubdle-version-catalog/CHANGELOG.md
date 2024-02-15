@@ -7,6 +7,7 @@
  - `org.jetbrains.kotlinx:multik-core`
  - `org.jetbrains.kotlinx:multik-default`
  - `org.jetbrains.kotlinx:multik-kotlin`
+ - `org.jetbrains.kotlinx:multik-openblas`
  
 ### Changed
 

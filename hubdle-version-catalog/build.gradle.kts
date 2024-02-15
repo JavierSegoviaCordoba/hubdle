@@ -45,7 +45,7 @@ hubdle {
                         catalog {
                             toml(rootDir.resolve("gradle/hubdle.libs.versions.toml"))
                             if (kotlinVersion.isNotNullNorBlank()) {
-                                version("kotlin") { strictly(kotlinVersion) }
+                                version("jetbrains-kotlin", kotlinVersion)
                             }
                         }
                     }

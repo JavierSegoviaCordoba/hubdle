@@ -10,6 +10,8 @@
 
 ### Fixed
 
+- Kotlin version is not overridden
+
 ### Removed
 
 ### Updated

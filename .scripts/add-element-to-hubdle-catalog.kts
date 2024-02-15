@@ -1,6 +1,7 @@
 import java.io.File
 
 val catalogFile = File("").absoluteFile.resolve("gradle/hubdle.libs.versions.toml")
+val changelogFile = File("").absoluteFile.resolve("hubdle-version-catalog/CHANGELOG.md")
 val catalog = catalogFile.buildCatalog()
 
 println("Arguments: ${args.joinToString(" | ")}")
@@ -16,6 +17,24 @@ fun addLibraryOrPlugin() {
 
     if (module == null && id == null) error("You must provide a module or an id")
     if (module != null && id != null) error("You must provide a module or an id, not both")
+
+    val changelogLines = changelogFile.readLines()
+    val addedIndex = changelogFile.readLines().indexOfFirst { it.contains("### Added") }
+    val changedIndex = changelogFile.readLines().indexOfFirst { it.contains("### Changed") }
+    val newChangelogLines = buildList {
+        addAll(changelogLines.subList(0, addedIndex + 1))
+
+        add("")
+        val addedLines =
+            listOf(" - `${id ?: module}`") +
+                changelogLines.subList(addedIndex + 1, changedIndex).filter(String::isNotBlank)
+        addAll(addedLines.sorted())
+        add(" ")
+
+        addAll(changelogLines.subList(changedIndex, changelogLines.lastIndex))
+    }
+
+    changelogFile.writeText(newChangelogLines.removeConsecutiveDuplicates().joinToString("\n"))
 
     if (module != null) {
         require(module.count { it == ':' } == 1) { "The module must be in the format group:name" }

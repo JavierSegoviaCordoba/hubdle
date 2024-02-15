@@ -4,6 +4,8 @@
 
 ### Added
 
+- `org.jetbrains.kotlin.ir.symbols.UnsafeDuringIrConstructionAPI` opt in Compiler feature 
+
 ### Changed
 
 ### Deprecated

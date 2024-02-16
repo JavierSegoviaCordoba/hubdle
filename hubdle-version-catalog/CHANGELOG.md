@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.compose.compiler:compiler -> 1.5.8.1`
 - `org.jetbrains.kotlinx:kotlinx-coroutines-test -> 1.8.0`
 - `org.jetbrains.kotlinx:kotlinx-coroutines-core -> 1.8.0`
 - `org.jetbrains.kotlinx:kotlinx-coroutines-android -> 1.8.0`

@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.7.6`
 - `org.jetbrains.kotlinx:kotlinx-serialization-json -> 1.6.3`
 - `org.jetbrains.kotlinx:kotlinx-serialization-core -> 1.6.3`
 - `org.jetbrains.compose.compiler:compiler -> 1.5.8.1`

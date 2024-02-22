@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `androidx.compose.compiler:compiler -> 1.5.10`
 - `androidx.hilt:hilt-navigation-compose -> 1.2.0`
 - `androidx.compose.ui:ui-util -> 1.6.2`
 - `androidx.compose.ui:ui-tooling-preview -> 1.6.2`

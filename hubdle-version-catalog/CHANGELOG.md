@@ -14,6 +14,24 @@
 
 ### Updated
 
+- `androidx.hilt:hilt-navigation-compose -> 1.2.0`
+- `androidx.compose.ui:ui-util -> 1.6.2`
+- `androidx.compose.ui:ui-tooling-preview -> 1.6.2`
+- `androidx.compose.ui:ui-tooling -> 1.6.2`
+- `androidx.compose.ui:ui-test-manifest -> 1.6.2`
+- `androidx.compose.ui:ui-test -> 1.6.2`
+- `androidx.compose.ui:ui -> 1.6.2`
+- `androidx.compose.runtime:runtime-saveable -> 1.6.2`
+- `androidx.compose.runtime:runtime -> 1.6.2`
+- `androidx.compose.material:material-ripple -> 1.6.2`
+- `androidx.compose.material:material-icons-extended -> 1.6.2`
+- `androidx.compose.material:material-icons-core -> 1.6.2`
+- `androidx.compose.material:material -> 1.6.2`
+- `androidx.compose.foundation:foundation-layout -> 1.6.2`
+- `androidx.compose.foundation:foundation -> 1.6.2`
+- `androidx.compose.animation:animation-graphics -> 1.6.2`
+- `androidx.compose.animation:animation-core -> 1.6.2`
+- `androidx.compose.animation:animation -> 1.6.2`
 - `org.jetbrains.intellij:org.jetbrains.intellij.gradle.plugin -> 1.17.2`
 - `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.7.6`
 - `org.jetbrains.kotlinx:kotlinx-serialization-json -> 1.6.3`

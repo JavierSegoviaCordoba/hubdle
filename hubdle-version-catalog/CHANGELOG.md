@@ -4,6 +4,8 @@
 
 ### Added
 
+- `org.jetbrains.kotlinx:atomicfu`
+
 ### Changed
 
 ### Deprecated

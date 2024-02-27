@@ -16,6 +16,7 @@
 
 ### Updated
 
+- `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.6.0`
 - `io.arrow-kt:arrow-core -> 1.2.2`
 - `androidx.compose.compiler:compiler -> 1.5.10`
 - `androidx.hilt:hilt-navigation-compose -> 1.2.0`

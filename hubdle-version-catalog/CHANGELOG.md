@@ -16,6 +16,8 @@
 
 ### Updated
 
+- `app.cash.molecule:app.cash.molecule.gradle.plugin -> 1.4.0`
+- `app.cash.molecule:molecule-runtime -> 1.4.0`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.6.0`
 - `io.arrow-kt:arrow-core -> 1.2.2`
 - `androidx.compose.compiler:compiler -> 1.5.10`

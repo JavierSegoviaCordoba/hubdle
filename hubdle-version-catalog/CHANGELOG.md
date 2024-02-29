@@ -16,6 +16,9 @@
 
 ### Updated
 
+- `com.android.library:com.android.library.gradle.plugin -> 8.3.0`
+- `com.android.application:com.android.application.gradle.plugin -> 8.3.0`
+- `com.android.tools.build:gradle -> 8.3.0`
 - `app.softwork:kotlinx-serialization-flf -> 0.0.17`
 - `app.softwork:kotlinx-serialization-csv -> 0.0.17`
 - `io.arrow-kt:arrow-core -> 1.2.3`

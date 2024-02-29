@@ -16,10 +16,10 @@
 
 ### Updated
 
+- `io.arrow-kt:arrow-core -> 1.2.3`
 - `app.cash.molecule:app.cash.molecule.gradle.plugin -> 1.4.1`
 - `app.cash.molecule:molecule-runtime -> 1.4.1`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.6.0`
-- `io.arrow-kt:arrow-core -> 1.2.2`
 - `androidx.compose.compiler:compiler -> 1.5.10`
 - `androidx.hilt:hilt-navigation-compose -> 1.2.0`
 - `androidx.compose.ui:ui-util -> 1.6.2`

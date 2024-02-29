@@ -16,6 +16,8 @@
 
 ### Updated
 
+- `app.softwork:kotlinx-serialization-flf -> 0.0.17`
+- `app.softwork:kotlinx-serialization-csv -> 0.0.17`
 - `io.arrow-kt:arrow-core -> 1.2.3`
 - `app.cash.molecule:app.cash.molecule.gradle.plugin -> 1.4.1`
 - `app.cash.molecule:molecule-runtime -> 1.4.1`

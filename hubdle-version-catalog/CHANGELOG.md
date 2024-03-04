@@ -16,6 +16,11 @@
 
 ### Updated
 
+- `io.ktor:ktor-serialization-kotlinx-json -> 2.3.9`
+- `io.ktor:ktor-client-okhttp -> 2.3.9`
+- `io.ktor:ktor-client-mock -> 2.3.9`
+- `io.ktor:ktor-client-core -> 2.3.9`
+- `io.ktor:ktor-client-cio -> 2.3.9`
 - `com.android.library:com.android.library.gradle.plugin -> 8.3.0`
 - `com.android.application:com.android.application.gradle.plugin -> 8.3.0`
 - `com.android.tools.build:gradle -> 8.3.0`

@@ -16,6 +16,7 @@
 
 ### Updated
 
+- `org.jetbrains.dokka:org.jetbrains.dokka.gradle.plugin -> 1.9.20`
 - `io.ktor:ktor-serialization-kotlinx-json -> 2.3.9`
 - `io.ktor:ktor-client-okhttp -> 2.3.9`
 - `io.ktor:ktor-client-mock -> 2.3.9`

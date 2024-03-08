@@ -16,6 +16,7 @@
 
 ### Updated
 
+- `org.eclipse.jgit:org.eclipse.jgit -> 6.9.0.202403050737-r`
 - `androidx.compose.ui:ui-util -> 1.6.3`
 - `androidx.compose.ui:ui-tooling-preview -> 1.6.3`
 - `androidx.compose.ui:ui-tooling -> 1.6.3`

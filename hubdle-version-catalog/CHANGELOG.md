@@ -16,6 +16,25 @@
 
 ### Updated
 
+- `org.jetbrains.kotlin.plugin.serialization:org.jetbrains.kotlin.plugin.serialization.gradle.plugin -> 1.9.23`
+- `org.jetbrains.kotlin.multiplatform:org.jetbrains.kotlin.multiplatform.gradle.plugin -> 1.9.23`
+- `org.jetbrains.kotlin.jvm:org.jetbrains.kotlin.jvm.gradle.plugin -> 1.9.23`
+- `org.jetbrains.kotlin.android:org.jetbrains.kotlin.android.gradle.plugin -> 1.9.23`
+- `org.jetbrains.kotlin:kotlin-test-testng -> 1.9.23`
+- `org.jetbrains.kotlin:kotlin-test-junit5 -> 1.9.23`
+- `org.jetbrains.kotlin:kotlin-test-junit -> 1.9.23`
+- `org.jetbrains.kotlin:kotlin-test-annotations-common -> 1.9.23`
+- `org.jetbrains.kotlin:kotlin-test -> 1.9.23`
+- `org.jetbrains.kotlin:kotlin-serialization -> 1.9.23`
+- `org.jetbrains.kotlin:kotlin-script-runtime -> 1.9.23`
+- `org.jetbrains.kotlin:kotlin-reflect -> 1.9.23`
+- `org.jetbrains.kotlin:kotlin-gradle-plugin-api -> 1.9.23`
+- `org.jetbrains.kotlin:kotlin-gradle-plugin -> 1.9.23`
+- `org.jetbrains.kotlin:kotlin-compiler-internal-test-framework -> 1.9.23`
+- `org.jetbrains.kotlin:kotlin-compiler-embeddable -> 1.9.23`
+- `org.jetbrains.kotlin:kotlin-compiler -> 1.9.23`
+- `org.jetbrains.kotlin:kotlin-annotations-jvm -> 1.9.23`
+- `org.jetbrains.compose.compiler:compiler -> 1.5.10`
 - `org.eclipse.jgit:org.eclipse.jgit -> 6.9.0.202403050737-r`
 - `androidx.compose.ui:ui-util -> 1.6.3`
 - `androidx.compose.ui:ui-tooling-preview -> 1.6.3`
@@ -58,7 +77,6 @@
 - `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.7.6`
 - `org.jetbrains.kotlinx:kotlinx-serialization-json -> 1.6.3`
 - `org.jetbrains.kotlinx:kotlinx-serialization-core -> 1.6.3`
-- `org.jetbrains.compose.compiler:compiler -> 1.5.8.1`
 - `org.jetbrains.kotlinx:kotlinx-coroutines-test -> 1.8.0`
 - `org.jetbrains.kotlinx:kotlinx-coroutines-core -> 1.8.0`
 - `org.jetbrains.kotlinx:kotlinx-coroutines-android -> 1.8.0`

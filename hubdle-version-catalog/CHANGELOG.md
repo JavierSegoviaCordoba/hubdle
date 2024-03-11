@@ -16,6 +16,12 @@
 
 ### Updated
 
+- `io.kotest:kotest-runner-junit5 -> 5.8.1`
+- `io.kotest:kotest-runner-junit4 -> 5.8.1`
+- `io.kotest:kotest-property -> 5.8.1`
+- `io.kotest:kotest-assertions-sql -> 5.8.1`
+- `io.kotest:kotest-assertions-json -> 5.8.1`
+- `io.kotest:kotest-assertions-core -> 5.8.1`
 - `org.jetbrains.kotlin.plugin.serialization:org.jetbrains.kotlin.plugin.serialization.gradle.plugin -> 1.9.23`
 - `org.jetbrains.kotlin.multiplatform:org.jetbrains.kotlin.multiplatform.gradle.plugin -> 1.9.23`
 - `org.jetbrains.kotlin.jvm:org.jetbrains.kotlin.jvm.gradle.plugin -> 1.9.23`

@@ -16,6 +16,7 @@
 
 ### Updated
 
+- `com.squareup.okio:okio -> 3.9.0`
 - `com.github.triplet.play:com.github.triplet.play.gradle.plugin -> 3.9.1`
 - `io.kotest:kotest-runner-junit5 -> 5.8.1`
 - `io.kotest:kotest-runner-junit4 -> 5.8.1`

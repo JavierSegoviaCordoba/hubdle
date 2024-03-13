@@ -16,6 +16,7 @@
 
 ### Updated
 
+- `org.jetbrains.compose.compiler:compiler -> 1.5.10.1`
 - `com.squareup.okio:okio -> 3.9.0`
 - `com.github.triplet.play:com.github.triplet.play.gradle.plugin -> 3.9.1`
 - `io.kotest:kotest-runner-junit5 -> 5.8.1`
@@ -42,7 +43,6 @@
 - `org.jetbrains.kotlin:kotlin-compiler-embeddable -> 1.9.23`
 - `org.jetbrains.kotlin:kotlin-compiler -> 1.9.23`
 - `org.jetbrains.kotlin:kotlin-annotations-jvm -> 1.9.23`
-- `org.jetbrains.compose.compiler:compiler -> 1.5.10`
 - `org.eclipse.jgit:org.eclipse.jgit -> 6.9.0.202403050737-r`
 - `androidx.compose.ui:ui-util -> 1.6.3`
 - `androidx.compose.ui:ui-tooling-preview -> 1.6.3`

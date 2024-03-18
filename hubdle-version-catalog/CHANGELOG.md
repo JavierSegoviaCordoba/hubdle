@@ -16,6 +16,7 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx:kotlinx-io-core -> 0.3.2`
 - `io.kotest.extensions:kotest-extensions-allure -> 1.4.0`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.6.1`
 - `org.jetbrains.compose.compiler:compiler -> 1.5.10.1`

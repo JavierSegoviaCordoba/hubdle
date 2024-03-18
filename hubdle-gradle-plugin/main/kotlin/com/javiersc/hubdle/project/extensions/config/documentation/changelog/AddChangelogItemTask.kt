@@ -4,6 +4,7 @@ import com.javiersc.hubdle.project.extensions.config.documentation.changelog._in
 import com.javiersc.hubdle.project.extensions.config.documentation.changelog._internal.changelogFile
 import com.javiersc.hubdle.project.extensions.config.documentation.changelog._internal.fromString
 import com.javiersc.kotlin.stdlib.isNotNullNorEmpty
+import com.javiersc.kotlin.stdlib.or
 import java.io.File
 import javax.inject.Inject
 import org.eclipse.jgit.api.Git
@@ -153,22 +154,19 @@ private fun AddChangelogItemTask.setupRenovate(): Unit =
 
 private fun String.addChanges(header: String, changes: List<String>): Changelog =
     buildList<String> {
-            val firstVersionIndex =
-                lines().indexOfFirst {
-                    val isUnreleased: Boolean =
-                        it.contains("## [Unreleased]", true) || it.contains("## Unreleased", true)
-                    val isNotUnreleased = !isUnreleased
-                    val isHeader = it.startsWith("## [") || it.startsWith("## ")
-
-                    isHeader && isNotUnreleased
-                }
+            val lastUnreleasedLineIndex: Int =
+                lines()
+                    .indexOfFirst { line -> line.isHeader && !line.isUnreleased }
+                    .takeIf { it != -1 }
+                    .or { lines().lastIndex }
             var shouldAddUpdate = true
             lines().onEach { line ->
                 if (line.startsWith(header) && shouldAddUpdate) {
                     shouldAddUpdate = false
                     add(line)
                     for (change in changes) {
-                        if (lines().subList(0, firstVersionIndex).none { it.contains(change) }) {
+                        val unreleasedLines = lines().subList(0, lastUnreleasedLineIndex)
+                        if (unreleasedLines.none { it.contains(change) }) {
                             add("- $change")
                         }
                     }
@@ -180,7 +178,7 @@ private fun String.addChanges(header: String, changes: List<String>): Changelog 
                 forEachIndexed { index: Int, line ->
                     val updateRegex = """(- `)(.*)( )(->)( )(.*)(`)"""
                     if (Regex(updateRegex).matches(line)) {
-                        for (j in index + 1 until firstVersionIndex) {
+                        for (j in index + 1 until lastUnreleasedLineIndex) {
                             val lineToRemove = this[j]
                             val shouldRemovePreviousUpdate =
                                 lineToRemove.module == line.module &&
@@ -264,3 +262,8 @@ private val String.module: String
             .replaceAfter("->", "")
             .replace("->", "")
             .drop(1)
+
+private val String.isHeader: Boolean
+    get() = startsWith("## [") || startsWith("## ")
+private val String.isUnreleased: Boolean
+    get() = contains("## [Unreleased]", true) || contains("## Unreleased", true)

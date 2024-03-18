@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- `AddChangelogItemTask` fails if there is no version in the changelog
+
 ### Removed
 
 - priorities

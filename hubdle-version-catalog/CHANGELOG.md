@@ -16,6 +16,8 @@
 
 ### Updated
 
+- `app.softwork:kotlinx-serialization-flf -> 0.0.18`
+- `app.softwork:kotlinx-serialization-csv -> 0.0.18`
 - `gradle -> 8.7`
 - `com.squareup.retrofit2:retrofit-mock -> 2.10.0`
 - `com.squareup.retrofit2:retrofit -> 2.10.0`
@@ -80,8 +82,6 @@
 - `io.ktor:ktor-client-mock -> 2.3.9`
 - `io.ktor:ktor-client-core -> 2.3.9`
 - `io.ktor:ktor-client-cio -> 2.3.9`
-- `app.softwork:kotlinx-serialization-flf -> 0.0.17`
-- `app.softwork:kotlinx-serialization-csv -> 0.0.17`
 - `io.arrow-kt:arrow-core -> 1.2.3`
 - `app.cash.molecule:app.cash.molecule.gradle.plugin -> 1.4.1`
 - `app.cash.molecule:molecule-runtime -> 1.4.1`

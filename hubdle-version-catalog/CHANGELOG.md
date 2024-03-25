@@ -16,6 +16,7 @@
 
 ### Updated
 
+- `io.gitlab.arturbosch.detekt:io.gitlab.arturbosch.detekt.gradle.plugin -> 1.23.6`
 - `app.softwork:kotlinx-serialization-flf -> 0.0.18`
 - `app.softwork:kotlinx-serialization-csv -> 0.0.18`
 - `gradle -> 8.7`

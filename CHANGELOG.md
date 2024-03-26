@@ -4,11 +4,21 @@
 
 ### Added
 
-- `org.jetbrains.kotlin.ir.symbols.UnsafeDuringIrConstructionAPI` opt in Compiler feature 
-
 ### Changed
 
 ### Deprecated
+
+### Fixed
+
+### Removed
+
+### Updated
+
+## [0.6.4] - 2024-03-26
+
+### Added
+
+- `org.jetbrains.kotlin.ir.symbols.UnsafeDuringIrConstructionAPI` opt in Compiler feature 
 
 ### Fixed
 
@@ -17,8 +27,6 @@
 ### Removed
 
 - priorities
-
-### Updated
 
 ## [0.6.3] - 2024-02-13
 
@@ -67,7 +75,9 @@
 
 - `allTests` task
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.6.3...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.6.4...HEAD
+
+[0.6.4]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.6.3...p0.6.4
 
 [0.6.3]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.6.2...p0.6.3
 

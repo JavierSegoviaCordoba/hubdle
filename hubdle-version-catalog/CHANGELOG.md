@@ -4,8 +4,6 @@
 
 ### Added
 
-- `org.jetbrains.kotlinx:atomicfu`
-
 ### Changed
 
 ### Deprecated
@@ -13,6 +11,14 @@
 ### Fixed
 
 ### Removed
+
+### Updated
+
+## [0.2.5] - 2024-03-26
+
+### Added
+
+- `org.jetbrains.kotlinx:atomicfu`
 
 ### Updated
 
@@ -901,7 +907,9 @@
 - `com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter -> 1.0.0`
 - `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.2.4...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.2.5...HEAD
+
+[0.2.5]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.2.4...c0.2.5
 
 [0.2.4]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.2.3...c0.2.4
 

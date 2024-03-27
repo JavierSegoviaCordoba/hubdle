@@ -14,6 +14,9 @@
 
 ### Updated
 
+- `app.cash.molecule:app.cash.molecule.gradle.plugin -> 1.4.2`
+- `app.cash.molecule:molecule-runtime -> 1.4.2`
+
 ## [0.2.5] - 2024-03-26
 
 ### Added

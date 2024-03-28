@@ -88,6 +88,7 @@ constructor(
                 //  https://github.com/detekt/detekt/issues/5896
                 properties.property("sonar.sources", project.kotlinDirs)
                 properties.property("sonar.tests", project.kotlinTestDirs)
+                properties.property("sonar.exclusions", "$buildDir/**/*")
             }
         }
     }

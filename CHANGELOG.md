@@ -4,6 +4,8 @@
 
 ### Added
 
+-  build directory to `sonar.exclusions` property
+
 ### Changed
 
 ### Deprecated

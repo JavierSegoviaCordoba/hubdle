@@ -4,8 +4,6 @@
 
 ### Added
 
--  build directory to `sonar.exclusions` property
-
 ### Changed
 
 ### Deprecated
@@ -15,6 +13,12 @@
 ### Removed
 
 ### Updated
+
+## [0.6.5] - 2024-03-28
+
+### Added
+
+- build directory to `sonar.exclusions` property
 
 ## [0.6.4] - 2024-03-26
 
@@ -77,7 +81,9 @@
 
 - `allTests` task
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.6.4...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.6.5...HEAD
+
+[0.6.5]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.6.4...p0.6.5
 
 [0.6.4]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.6.3...p0.6.4
 

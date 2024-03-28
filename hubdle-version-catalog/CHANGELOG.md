@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.6.4`
 - `app.cash.molecule:app.cash.molecule.gradle.plugin -> 1.4.2`
 - `app.cash.molecule:molecule-runtime -> 1.4.2`
 

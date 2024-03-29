@@ -14,6 +14,18 @@
 
 ### Updated
 
+- `com.squareup.retrofit2:retrofit-mock -> 2.11.0`
+- `com.squareup.retrofit2:retrofit -> 2.11.0`
+- `com.squareup.retrofit2:converter-wire -> 2.11.0`
+- `com.squareup.retrofit2:converter-simplexml -> 2.11.0`
+- `com.squareup.retrofit2:converter-scalars -> 2.11.0`
+- `com.squareup.retrofit2:converter-protobuf -> 2.11.0`
+- `com.squareup.retrofit2:converter-moshi -> 2.11.0`
+- `com.squareup.retrofit2:converter-kotlinx-serialization -> 2.11.0`
+- `com.squareup.retrofit2:converter-jaxb3 -> 2.11.0`
+- `com.squareup.retrofit2:converter-jaxb -> 2.11.0`
+- `com.squareup.retrofit2:converter-jackson -> 2.11.0`
+- `com.squareup.retrofit2:converter-gson -> 2.11.0`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.6.5`
 - `app.cash.molecule:app.cash.molecule.gradle.plugin -> 1.4.2`
 - `app.cash.molecule:molecule-runtime -> 1.4.2`

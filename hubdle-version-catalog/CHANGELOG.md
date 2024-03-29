@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.javiersc.semver:com.javiersc.semver.gradle.plugin -> 0.5.1`
 - `org.jetbrains.intellij:org.jetbrains.intellij.gradle.plugin -> 1.17.3`
 - `com.squareup.retrofit2:retrofit-mock -> 2.11.0`
 - `com.squareup.retrofit2:retrofit -> 2.11.0`

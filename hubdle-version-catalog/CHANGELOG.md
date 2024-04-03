@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.17`
+- `io.arrow-kt:arrow-core -> 1.2.4`
 - `com.javiersc.semver:com.javiersc.semver.gradle.plugin -> 0.5.1`
 - `org.jetbrains.intellij:org.jetbrains.intellij.gradle.plugin -> 1.17.3`
 - `com.squareup.retrofit2:retrofit-mock -> 2.11.0`

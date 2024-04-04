@@ -14,6 +14,23 @@
 
 ### Updated
 
+- `androidx.compose.ui:ui-util -> 1.6.5`
+- `androidx.compose.ui:ui-tooling-preview -> 1.6.5`
+- `androidx.compose.ui:ui-tooling -> 1.6.5`
+- `androidx.compose.ui:ui-test-manifest -> 1.6.5`
+- `androidx.compose.ui:ui-test -> 1.6.5`
+- `androidx.compose.ui:ui -> 1.6.5`
+- `androidx.compose.runtime:runtime-saveable -> 1.6.5`
+- `androidx.compose.runtime:runtime -> 1.6.5`
+- `androidx.compose.material:material-ripple -> 1.6.5`
+- `androidx.compose.material:material-icons-extended -> 1.6.5`
+- `androidx.compose.material:material-icons-core -> 1.6.5`
+- `androidx.compose.material:material -> 1.6.5`
+- `androidx.compose.foundation:foundation-layout -> 1.6.5`
+- `androidx.compose.foundation:foundation -> 1.6.5`
+- `androidx.compose.animation:animation-graphics -> 1.6.5`
+- `androidx.compose.animation:animation-core -> 1.6.5`
+- `androidx.compose.animation:animation -> 1.6.5`
 - `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.17`
 - `io.arrow-kt:arrow-core -> 1.2.4`
 - `com.javiersc.semver:com.javiersc.semver.gradle.plugin -> 0.5.1`

@@ -14,6 +14,14 @@
 
 ### Updated
 
+- `io.insert-koin:koin-test-junit5 -> 3.5.4`
+- `io.insert-koin:koin-test-junit4 -> 3.5.4`
+- `io.insert-koin:koin-test -> 3.5.4`
+- `io.insert-koin:koin-logger-slf4j -> 3.5.4`
+- `io.insert-koin:koin-ktor -> 3.5.4`
+- `io.insert-koin:koin-core -> 3.5.4`
+- `io.insert-koin:koin-androidx-compose -> 3.5.4`
+- `io.insert-koin:koin-android -> 3.5.4`
 - `org.jetbrains:markdown -> 0.7.0`
 - `androidx.compose.ui:ui-util -> 1.6.5`
 - `androidx.compose.ui:ui-tooling-preview -> 1.6.5`

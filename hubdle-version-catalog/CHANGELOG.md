@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains:markdown -> 0.7.0`
 - `androidx.compose.ui:ui-util -> 1.6.5`
 - `androidx.compose.ui:ui-tooling-preview -> 1.6.5`
 - `androidx.compose.ui:ui-tooling -> 1.6.5`

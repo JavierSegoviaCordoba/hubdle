@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `io.github.gradle-nexus.publish-plugin:io.github.gradle-nexus.publish-plugin.gradle.plugin -> 2.0.0`
 - `io.insert-koin:koin-test-junit5 -> 3.5.4`
 - `io.insert-koin:koin-test-junit4 -> 3.5.4`
 - `io.insert-koin:koin-test -> 3.5.4`

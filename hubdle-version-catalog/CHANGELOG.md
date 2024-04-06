@@ -14,6 +14,12 @@
 
 ### Updated
 
+- `app.cash.sqldelight:app.cash.sqldelight.gradle.plugin -> 2.0.2`
+- `app.cash.sqldelight:sqlite-driver -> 2.0.2`
+- `app.cash.sqldelight:native-driver -> 2.0.2`
+- `app.cash.sqldelight:jdbc-driver -> 2.0.2`
+- `app.cash.sqldelight:coroutines-extensions -> 2.0.2`
+- `app.cash.sqldelight:android-driver -> 2.0.2`
 - `io.insert-koin:koin-test-junit5 -> 3.5.4`
 - `io.insert-koin:koin-test-junit4 -> 3.5.4`
 - `io.insert-koin:koin-test -> 3.5.4`

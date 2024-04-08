@@ -14,6 +14,12 @@
 
 ### Updated
 
+- `io.ktor:ktor-serialization-kotlinx-json -> 2.3.10`
+- `io.ktor:ktor-client-okhttp -> 2.3.10`
+- `io.ktor:ktor-client-mock -> 2.3.10`
+- `io.ktor:ktor-client-core -> 2.3.10`
+- `io.ktor:ktor-client-content-negotiation -> 2.3.10`
+- `io.ktor:ktor-client-cio -> 2.3.10`
 - `io.github.gradle-nexus.publish-plugin:io.github.gradle-nexus.publish-plugin.gradle.plugin -> 2.0.0`
 - `io.insert-koin:koin-test-junit5 -> 3.5.4`
 - `io.insert-koin:koin-test-junit4 -> 3.5.4`

@@ -6,6 +6,8 @@
 
 ### Changed
 
+- allow publishing with non Kotlin dev versions
+
 ### Deprecated
 
 ### Fixed

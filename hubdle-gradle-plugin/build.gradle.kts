@@ -144,27 +144,16 @@ fun GradleVersion.mapIfKotlinVersionIsProvided(kotlinVersion: String): String {
     val minor: Int = minor
     val patch: Int = patch
 
-    check(kotlinVersion.isKotlinDevVersion()) {
-        """ |Kotlin version: $kotlinVersion
-            |Requirements to use a specific Kotlin version:  
-            | - It must be a dev version, for example: `1.9.20-dev-5788`
-            |Check the Kotlin dev versions on the bootstrap repository:
-            |  - https://maven.pkg.jetbrains.space/kotlin/p/kotlin/bootstrap/org/jetbrains/kotlin/ 
-        """
-            .trimMargin()
-    }
-
+    val isKotlinDevVersion = kotlinVersion.isKotlinDevVersion() || kotlinVersion.contains("dev")
     val isSnapshotStage = isSnapshot || getStringProperty("semver.stage").orNull?.isSnapshot == true
-    check(isSnapshotStage) {
-        """ |Current version: ${this@mapIfKotlinVersionIsProvided}
-            |Kotlin version: $kotlinVersion
-            |Requirements to use a specific Kotlin version:  
-            | - Use a SNAPSHOT version with `-P semver.stage=snapshot`
-            | - Clean repo or use `-P semver.checkClean=false`
-        """
-            .trimMargin()
-    }
-    return "$major.$minor.$patch+$kotlinVersion-SNAPSHOT"
+
+    val version: String =
+        if (isKotlinDevVersion || isSnapshotStage) {
+            "$major.$minor.$patch+$kotlinVersion-SNAPSHOT"
+        } else {
+            "$major.$minor.$patch+$kotlinVersion"
+        }
+    return version
 }
 
 fun String.isKotlinDevVersion(): Boolean =

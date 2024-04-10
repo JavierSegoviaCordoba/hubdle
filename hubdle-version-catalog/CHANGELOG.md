@@ -16,6 +16,9 @@
 
 ### Updated
 
+- `com.android.library:com.android.library.gradle.plugin -> 8.3.2`
+- `com.android.application:com.android.application.gradle.plugin -> 8.3.2`
+- `com.android.tools.build:gradle -> 8.3.2`
 - `com.javiersc.kotlin:kotlin-compiler-test-extensions -> 0.1.1+2.0.0-RC1`
 - `com.javiersc.kotlin:kotlin-compiler-extensions -> 0.1.1+2.0.0-RC1`
 - `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.17.1`

@@ -1,6 +1,6 @@
 package com.javiersc.hubdle.settings
 
-import com.gradle.enterprise.gradleplugin.GradleEnterpriseExtension
+import com.gradle.develocity.agent.gradle.DevelocityConfiguration
 import com.javiersc.gradle.properties.extensions.getStringProperty
 import com.javiersc.gradle.properties.extensions.provider
 import com.javiersc.hubdle.project.extensions._internal.PluginId
@@ -47,7 +47,7 @@ constructor(
 
         target.configureRootProjectName()
         target.configureRepositories()
-        target.configureGradleEnterprise()
+        target.configureGradleDevelocity()
         target.configureKoverMergeReports()
 
         target.gradle.settingsEvaluated { settings ->
@@ -175,14 +175,14 @@ private fun Settings.configureAutoInclude() {
     }
 }
 
-private fun Settings.configureGradleEnterprise() {
-    pluginManager.apply("com.gradle.enterprise")
+private fun Settings.configureGradleDevelocity() {
+    pluginManager.apply("com.gradle.develocity")
 
-    configure<GradleEnterpriseExtension> {
-        buildScan { scan ->
-            scan.publishAlwaysIf(hubdleSettings.buildScan.publishAlways.get())
-            scan.termsOfServiceUrl = "https://gradle.com/terms-of-service"
-            scan.termsOfServiceAgree = "yes"
+    configure<DevelocityConfiguration> {
+        buildScan {
+            it.publishing.onlyIf { hubdleSettings.buildScan.publishAlways.get() }
+            it.termsOfUseUrl.set("https://gradle.com/terms-of-service")
+            it.termsOfUseAgree.set("yes")
         }
     }
 }

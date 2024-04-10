@@ -179,10 +179,10 @@ private fun Settings.configureGradleDevelocity() {
     pluginManager.apply("com.gradle.develocity")
 
     configure<DevelocityConfiguration> {
-        buildScan {
-            it.publishing.onlyIf { hubdleSettings.buildScan.publishAlways.get() }
-            it.termsOfUseUrl.set("https://gradle.com/terms-of-service")
-            it.termsOfUseAgree.set("yes")
+        buildScan { scan ->
+            scan.publishing.onlyIf { hubdleSettings.buildScan.publishAlways.get() }
+            scan.termsOfUseUrl.set("https://gradle.com/terms-of-service")
+            scan.termsOfUseAgree.set("yes")
         }
     }
 }

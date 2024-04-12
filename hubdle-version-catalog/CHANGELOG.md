@@ -16,14 +16,14 @@
 
 ### Updated
 
-- `io.insert-koin:koin-test-junit5 -> 3.5.5`
-- `io.insert-koin:koin-test-junit4 -> 3.5.5`
-- `io.insert-koin:koin-test -> 3.5.5`
-- `io.insert-koin:koin-logger-slf4j -> 3.5.5`
-- `io.insert-koin:koin-ktor -> 3.5.5`
-- `io.insert-koin:koin-core -> 3.5.5`
-- `io.insert-koin:koin-androidx-compose -> 3.5.5`
-- `io.insert-koin:koin-android -> 3.5.5`
+- `io.insert-koin:koin-test-junit5 -> 3.5.6`
+- `io.insert-koin:koin-test-junit4 -> 3.5.6`
+- `io.insert-koin:koin-test -> 3.5.6`
+- `io.insert-koin:koin-logger-slf4j -> 3.5.6`
+- `io.insert-koin:koin-ktor -> 3.5.6`
+- `io.insert-koin:koin-core -> 3.5.6`
+- `io.insert-koin:koin-androidx-compose -> 3.5.6`
+- `io.insert-koin:koin-android -> 3.5.6`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.6.2`
 - `com.android.library:com.android.library.gradle.plugin -> 8.3.2`
 - `com.android.application:com.android.application.gradle.plugin -> 8.3.2`

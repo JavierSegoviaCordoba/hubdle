@@ -13,11 +13,6 @@
 ### Fixed
 
 ### Updated
-
-- `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> com.gradle:com.gradle.develocity-gradle-plugin`
-
-### Updated
-
 - `com.javiersc.gradle-plugins:all-plugins -> 0.1.0-rc.14`
 
 ## [0.1.0-rc.14] - 2021-11-25

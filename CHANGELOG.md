@@ -16,6 +16,8 @@
 
 ### Updated
 
+- `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> com.gradle:com.gradle.develocity-gradle-plugin`
+
 ## [0.6.6] - 2024-04-09
 
 ### Updated

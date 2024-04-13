@@ -6,6 +6,7 @@
 
 ### Changed
 
+- `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> com.gradle:com.gradle.develocity-gradle-plugin`
 - allow publishing with non Kotlin dev versions
 
 ### Deprecated

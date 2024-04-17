@@ -17,6 +17,11 @@
 
 ### Updated
 
+- `com.squareup.okhttp3:okhttp -> 5.0.0-alpha.13`
+- `com.squareup.okhttp3:mockwebserver3-junit5 -> 5.0.0-alpha.13`
+- `com.squareup.okhttp3:mockwebserver3-junit4 -> 5.0.0-alpha.13`
+- `com.squareup.okhttp3:mockwebserver -> 5.0.0-alpha.13`
+- `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 3.17.2`
 - `org.jetbrains.kotlinx:atomicfu -> 0.24.0`
 - `ru.vyarus.mkdocs:ru.vyarus.mkdocs.gradle.plugin -> 4.0.1`
 - `io.insert-koin:koin-test-junit5 -> 3.5.6`

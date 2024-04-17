@@ -17,6 +17,7 @@
 
 ### Updated
 
+- `androidx.compose.compiler:compiler -> 1.5.12`
 - `com.squareup.okhttp3:okhttp -> 5.0.0-alpha.13`
 - `com.squareup.okhttp3:mockwebserver3-junit5 -> 5.0.0-alpha.13`
 - `com.squareup.okhttp3:mockwebserver3-junit4 -> 5.0.0-alpha.13`
@@ -38,7 +39,6 @@
 - `com.android.tools.build:gradle -> 8.3.2`
 - `com.javiersc.kotlin:kotlin-compiler-test-extensions -> 0.1.1+2.0.0-RC1`
 - `com.javiersc.kotlin:kotlin-compiler-extensions -> 0.1.1+2.0.0-RC1`
-- `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> 3.17.1`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.6.6`
 
 ## [0.2.6] - 2024-04-09

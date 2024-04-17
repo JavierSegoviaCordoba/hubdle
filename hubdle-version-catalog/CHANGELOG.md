@@ -16,6 +16,7 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx:atomicfu -> 0.24.0`
 - `ru.vyarus.mkdocs:ru.vyarus.mkdocs.gradle.plugin -> 4.0.1`
 - `io.insert-koin:koin-test-junit5 -> 3.5.6`
 - `io.insert-koin:koin-test-junit4 -> 3.5.6`

@@ -6,14 +6,20 @@
 
 ### Changed
 
-- `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> com.gradle:com.gradle.develocity-gradle-plugin`
-- allow publishing with non Kotlin dev versions
-
 ### Deprecated
 
 ### Fixed
 
 ### Removed
+
+### Updated
+
+## [0.2.7] - 2024-04-17
+
+### Changed
+
+- `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> com.gradle:com.gradle.develocity-gradle-plugin`
+- allow publishing with non Kotlin dev versions
 
 ### Updated
 
@@ -991,7 +997,9 @@
 - `com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter -> 1.0.0`
 - `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.2.6...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.2.7...HEAD
+
+[0.2.7]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.2.6...c0.2.7
 
 [0.2.6]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.2.5...c0.2.6
 

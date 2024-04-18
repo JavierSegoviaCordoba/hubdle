@@ -6,9 +6,6 @@
 
 ### Changed
 
-- `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> com.gradle:com.gradle.develocity-gradle-plugin`
-- allow publishing with non Kotlin dev versions
-
 ### Deprecated
 
 ### Fixed
@@ -16,6 +13,13 @@
 ### Removed
 
 ### Updated
+
+## [0.6.7] - 2024-04-18
+
+### Changed
+
+- `com.gradle.enterprise:com.gradle.enterprise.gradle.plugin -> com.gradle:com.gradle.develocity-gradle-plugin`
+- allow publishing with non Kotlin dev versions
 
 ## [0.6.6] - 2024-04-09
 
@@ -90,7 +94,9 @@
 
 - `allTests` task
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.6.6...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.6.7...HEAD
+
+[0.6.7]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.6.6...p0.6.7
 
 [0.6.6]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.6.5...p0.6.6
 

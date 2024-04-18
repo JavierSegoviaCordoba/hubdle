@@ -14,6 +14,10 @@
 
 ### Updated
 
+## [0.2.8] - 2024-04-18
+
+### Updated
+
 - `com.squareup.okhttp3:okhttp -> 5.0.0-alpha.14`
 - `com.squareup.okhttp3:mockwebserver3-junit5 -> 5.0.0-alpha.14`
 - `com.squareup.okhttp3:mockwebserver3-junit4 -> 5.0.0-alpha.14`
@@ -1022,7 +1026,9 @@
 - `com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter -> 1.0.0`
 - `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.2.7...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.2.8...HEAD
+
+[0.2.8]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.2.7...c0.2.8
 
 [0.2.7]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.2.6...c0.2.7
 

@@ -14,6 +14,10 @@
 
 ### Updated
 
+- `com.squareup.okhttp3:okhttp -> 5.0.0-alpha.14`
+- `com.squareup.okhttp3:mockwebserver3-junit5 -> 5.0.0-alpha.14`
+- `com.squareup.okhttp3:mockwebserver3-junit4 -> 5.0.0-alpha.14`
+- `com.squareup.okhttp3:mockwebserver -> 5.0.0-alpha.14`
 - `androidx.core:core-ktx -> 1.13.0`
 - `androidx.compose.ui:ui-util -> 1.6.6`
 - `androidx.compose.ui:ui-tooling-preview -> 1.6.6`

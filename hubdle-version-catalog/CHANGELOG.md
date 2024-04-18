@@ -14,6 +14,27 @@
 
 ### Updated
 
+- `androidx.core:core-ktx -> 1.13.0`
+- `androidx.compose.ui:ui-util -> 1.6.6`
+- `androidx.compose.ui:ui-tooling-preview -> 1.6.6`
+- `androidx.compose.ui:ui-tooling -> 1.6.6`
+- `androidx.compose.ui:ui-test-manifest -> 1.6.6`
+- `androidx.compose.ui:ui-test -> 1.6.6`
+- `androidx.compose.ui:ui -> 1.6.6`
+- `androidx.compose.runtime:runtime-saveable -> 1.6.6`
+- `androidx.compose.runtime:runtime -> 1.6.6`
+- `androidx.compose.material:material-ripple -> 1.6.6`
+- `androidx.compose.material:material-icons-extended -> 1.6.6`
+- `androidx.compose.material:material-icons-core -> 1.6.6`
+- `androidx.compose.material:material -> 1.6.6`
+- `androidx.compose.foundation:foundation-layout -> 1.6.6`
+- `androidx.compose.foundation:foundation -> 1.6.6`
+- `androidx.compose.animation:animation-graphics -> 1.6.6`
+- `androidx.compose.animation:animation-core -> 1.6.6`
+- `androidx.compose.animation:animation -> 1.6.6`
+- `androidx.activity:activity-ktx -> 1.9.0`
+- `androidx.activity:activity-compose -> 1.9.0`
+
 ## [0.2.7] - 2024-04-17
 
 ### Changed

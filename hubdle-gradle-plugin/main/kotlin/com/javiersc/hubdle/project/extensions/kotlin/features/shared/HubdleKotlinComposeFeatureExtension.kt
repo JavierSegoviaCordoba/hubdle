@@ -13,7 +13,7 @@ import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
 import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.androidx_activity_compose
-import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.jetbrains_compose_compiler
+import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.androidx_compose_compiler
 import com.javiersc.hubdle.project.extensions.kotlin._internal.forKotlinSetsDependencies
 import com.javiersc.hubdle.project.extensions.kotlin.android.features.hubdleAndroidBuildFeatures
 import com.javiersc.hubdle.project.extensions.kotlin.android.features.hubdleAndroidFeatures
@@ -23,7 +23,6 @@ import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.provider.Property
 import org.gradle.kotlin.dsl.configure
-import org.gradle.kotlin.dsl.invoke
 import org.jetbrains.compose.ComposeExtension
 
 public open class HubdleKotlinComposeFeatureExtension
@@ -38,7 +37,7 @@ constructor(
         get() = hubdleKotlinAny
 
     public val compiler: Property<String?> = property {
-        library(jetbrains_compose_compiler).orNull?.toString()
+        library(androidx_compose_compiler).orNull?.toString()
     }
 
     @HubdleDslMarker
@@ -47,7 +46,7 @@ constructor(
     }
 
     public val compilerVersion: Property<String?> = property {
-        library(jetbrains_compose_compiler).orNull?.versionConstraint?.displayName
+        library(androidx_compose_compiler).orNull?.versionConstraint?.displayName
     }
 
     @HubdleDslMarker

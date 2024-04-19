@@ -6,6 +6,8 @@
 
 ### Changed
 
+- JetBrains compiler to Android compiler in `HubdleKotlinComposeFeatureExtension`
+
 ### Deprecated
 
 ### Fixed

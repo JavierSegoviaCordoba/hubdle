@@ -178,9 +178,10 @@ private fun Settings.configureAutoInclude() {
 private fun Settings.configureGradleDevelocity() {
     pluginManager.apply("com.gradle.develocity")
 
+    val publishAlways = hubdleSettings.buildScan.publishAlways
     configure<DevelocityConfiguration> {
         buildScan { scan ->
-            scan.publishing.onlyIf { hubdleSettings.buildScan.publishAlways.get() }
+            scan.publishing.onlyIf { publishAlways.get() }
             scan.termsOfUseUrl.set("https://gradle.com/terms-of-service")
             scan.termsOfUseAgree.set("yes")
         }

@@ -10,6 +10,8 @@
 
 ### Fixed
 
+- `buildScan::publishAlways` is incompatible with configuration cache
+
 ### Removed
 
 ### Updated

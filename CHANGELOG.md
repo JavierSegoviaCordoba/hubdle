@@ -6,17 +6,23 @@
 
 ### Changed
 
-- JetBrains compiler to Android compiler in `HubdleKotlinComposeFeatureExtension`
-
 ### Deprecated
 
 ### Fixed
 
-- `buildScan::publishAlways` is incompatible with configuration cache
-
 ### Removed
 
 ### Updated
+
+## [0.6.8] - 2024-04-19
+
+### Changed
+
+- JetBrains compiler to Android compiler in `HubdleKotlinComposeFeatureExtension`
+
+### Fixed
+
+- `buildScan::publishAlways` is incompatible with configuration cache
 
 ## [0.6.7] - 2024-04-18
 
@@ -98,7 +104,9 @@
 
 - `allTests` task
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.6.7...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.6.8...HEAD
+
+[0.6.8]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.6.7...p0.6.8
 
 [0.6.7]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.6.6...p0.6.7
 

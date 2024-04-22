@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx:kotlinx-io-core -> 0.3.3`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.6.8`
 
 ## [0.2.8] - 2024-04-18

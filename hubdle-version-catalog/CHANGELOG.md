@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.facebook:ktfmt -> 0.48`
 - `org.gradle.test-retry:org.gradle.test-retry.gradle.plugin -> 1.5.9`
 - `org.jetbrains.compose.compiler:compiler -> 1.5.10.2`
 - `org.jetbrains.kotlinx:kotlinx-io-core -> 0.3.3`

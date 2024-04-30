@@ -14,6 +14,9 @@
 
 ### Updated
 
+- `com.android.library:com.android.library.gradle.plugin -> 8.4.0`
+- `com.android.application:com.android.application.gradle.plugin -> 8.4.0`
+- `com.android.tools.build:gradle -> 8.4.0`
 - `com.facebook:ktfmt -> 0.49`
 - `org.gradle.test-retry:org.gradle.test-retry.gradle.plugin -> 1.5.9`
 - `org.jetbrains.compose.compiler:compiler -> 1.5.10.2`

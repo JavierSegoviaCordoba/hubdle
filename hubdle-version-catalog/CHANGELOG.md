@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `androidx.compose.compiler:compiler -> 1.5.13`
 - `com.android.library:com.android.library.gradle.plugin -> 8.4.0`
 - `com.android.application:com.android.application.gradle.plugin -> 8.4.0`
 - `com.android.tools.build:gradle -> 8.4.0`

@@ -14,6 +14,12 @@
 
 ### Updated
 
+- `io.ktor:ktor-serialization-kotlinx-json -> 2.3.11`
+- `io.ktor:ktor-client-okhttp -> 2.3.11`
+- `io.ktor:ktor-client-mock -> 2.3.11`
+- `io.ktor:ktor-client-core -> 2.3.11`
+- `io.ktor:ktor-client-content-negotiation -> 2.3.11`
+- `io.ktor:ktor-client-cio -> 2.3.11`
 - `androidx.core:core-ktx -> 1.13.1`
 - `androidx.compose.ui:ui-util -> 1.6.7`
 - `androidx.compose.ui:ui-tooling-preview -> 1.6.7`

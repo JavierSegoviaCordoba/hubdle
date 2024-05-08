@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains:markdown -> 0.7.1`
 - `io.ktor:ktor-serialization-kotlinx-json -> 2.3.11`
 - `io.ktor:ktor-client-okhttp -> 2.3.11`
 - `io.ktor:ktor-client-mock -> 2.3.11`

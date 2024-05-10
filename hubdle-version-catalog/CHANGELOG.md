@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 3.17.3`
 - `io.kotest:kotest-runner-junit5 -> 5.9.0`
 - `io.kotest:kotest-runner-junit4 -> 5.9.0`
 - `io.kotest:kotest-property -> 5.9.0`

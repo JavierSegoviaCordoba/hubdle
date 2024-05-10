@@ -14,6 +14,12 @@
 
 ### Updated
 
+- `io.kotest:kotest-runner-junit5 -> 5.9.0`
+- `io.kotest:kotest-runner-junit4 -> 5.9.0`
+- `io.kotest:kotest-property -> 5.9.0`
+- `io.kotest:kotest-assertions-sql -> 5.9.0`
+- `io.kotest:kotest-assertions-json -> 5.9.0`
+- `io.kotest:kotest-assertions-core -> 5.9.0`
 - `org.jetbrains:markdown -> 0.7.2`
 - `io.ktor:ktor-serialization-kotlinx-json -> 2.3.11`
 - `io.ktor:ktor-client-okhttp -> 2.3.11`

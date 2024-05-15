@@ -14,6 +14,9 @@
 
 ### Updated
 
+- `androidx.lifecycle:lifecycle-viewmodel-ktx -> 2.8.0`
+- `androidx.lifecycle:lifecycle-viewmodel-compose -> 2.8.0`
+- `androidx.lifecycle:lifecycle-viewmodel -> 2.8.0`
 - `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 3.17.3`
 - `io.kotest:kotest-runner-junit5 -> 5.9.0`
 - `io.kotest:kotest-runner-junit4 -> 5.9.0`

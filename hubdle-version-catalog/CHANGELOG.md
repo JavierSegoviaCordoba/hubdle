@@ -14,6 +14,31 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx:kotlinx-io-core -> 0.3.4`
+- `org.jetbrains.kotlinx:kotlinx-datetime -> 0.6.0`
+- `org.jetbrains.kotlinx:kotlinx-coroutines-test -> 1.8.1`
+- `org.jetbrains.kotlinx:kotlinx-coroutines-core -> 1.8.1`
+- `org.jetbrains.kotlinx:kotlinx-coroutines-android -> 1.8.1`
+- `org.jetbrains.kotlin.plugin.serialization:org.jetbrains.kotlin.plugin.serialization.gradle.plugin -> 1.9.24`
+- `org.jetbrains.kotlin.multiplatform:org.jetbrains.kotlin.multiplatform.gradle.plugin -> 1.9.24`
+- `org.jetbrains.kotlin.jvm:org.jetbrains.kotlin.jvm.gradle.plugin -> 1.9.24`
+- `org.jetbrains.kotlin.android:org.jetbrains.kotlin.android.gradle.plugin -> 1.9.24`
+- `org.jetbrains.kotlin:kotlin-test-testng -> 1.9.24`
+- `org.jetbrains.kotlin:kotlin-test-junit5 -> 1.9.24`
+- `org.jetbrains.kotlin:kotlin-test-junit -> 1.9.24`
+- `org.jetbrains.kotlin:kotlin-test-annotations-common -> 1.9.24`
+- `org.jetbrains.kotlin:kotlin-test -> 1.9.24`
+- `org.jetbrains.kotlin:kotlin-serialization -> 1.9.24`
+- `org.jetbrains.kotlin:kotlin-script-runtime -> 1.9.24`
+- `org.jetbrains.kotlin:kotlin-reflect -> 1.9.24`
+- `org.jetbrains.kotlin:kotlin-gradle-plugin-api -> 1.9.24`
+- `org.jetbrains.kotlin:kotlin-gradle-plugin -> 1.9.24`
+- `org.jetbrains.kotlin:kotlin-compiler-internal-test-framework -> 1.9.24`
+- `org.jetbrains.kotlin:kotlin-compiler-embeddable -> 1.9.24`
+- `org.jetbrains.kotlin:kotlin-compiler -> 1.9.24`
+- `org.jetbrains.kotlin:kotlin-annotations-jvm -> 1.9.24`
+- `org.jetbrains.compose.compiler:compiler -> 1.5.13.3`
+- `androidx.compose.compiler:compiler -> 1.5.14`
 - `androidx.lifecycle:lifecycle-viewmodel-ktx -> 2.8.0`
 - `androidx.lifecycle:lifecycle-viewmodel-compose -> 2.8.0`
 - `androidx.lifecycle:lifecycle-viewmodel -> 2.8.0`
@@ -49,14 +74,11 @@
 - `androidx.compose.animation:animation-graphics -> 1.6.7`
 - `androidx.compose.animation:animation-core -> 1.6.7`
 - `androidx.compose.animation:animation -> 1.6.7`
-- `androidx.compose.compiler:compiler -> 1.5.13`
 - `com.android.library:com.android.library.gradle.plugin -> 8.4.0`
 - `com.android.application:com.android.application.gradle.plugin -> 8.4.0`
 - `com.android.tools.build:gradle -> 8.4.0`
 - `com.facebook:ktfmt -> 0.49`
 - `org.gradle.test-retry:org.gradle.test-retry.gradle.plugin -> 1.5.9`
-- `org.jetbrains.compose.compiler:compiler -> 1.5.10.2`
-- `org.jetbrains.kotlinx:kotlinx-io-core -> 0.3.3`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.6.8`
 
 ## [0.2.8] - 2024-04-18

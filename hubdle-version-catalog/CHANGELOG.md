@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `app.cash.molecule:app.cash.molecule.gradle.plugin -> 1.4.3`
+- `app.cash.molecule:molecule-runtime -> 1.4.3`
 - `org.jetbrains.kotlinx:kotlinx-io-core -> 0.3.4`
 - `org.jetbrains.kotlinx:kotlinx-datetime -> 0.6.0`
 - `org.jetbrains.kotlinx:kotlinx-coroutines-test -> 1.8.1`

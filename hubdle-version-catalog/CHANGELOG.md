@@ -14,6 +14,9 @@
 
 ### Updated
 
+- `com.android.library:com.android.library.gradle.plugin -> 8.4.1`
+- `com.android.application:com.android.application.gradle.plugin -> 8.4.1`
+- `com.android.tools.build:gradle -> 8.4.1`
 - `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 3.17.4`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.6.10`
 - `app.cash.molecule:app.cash.molecule.gradle.plugin -> 1.4.3`
@@ -77,9 +80,6 @@
 - `androidx.compose.animation:animation-graphics -> 1.6.7`
 - `androidx.compose.animation:animation-core -> 1.6.7`
 - `androidx.compose.animation:animation -> 1.6.7`
-- `com.android.library:com.android.library.gradle.plugin -> 8.4.0`
-- `com.android.application:com.android.application.gradle.plugin -> 8.4.0`
-- `com.android.tools.build:gradle -> 8.4.0`
 - `com.facebook:ktfmt -> 0.49`
 - `org.gradle.test-retry:org.gradle.test-retry.gradle.plugin -> 1.5.9`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.6.8`

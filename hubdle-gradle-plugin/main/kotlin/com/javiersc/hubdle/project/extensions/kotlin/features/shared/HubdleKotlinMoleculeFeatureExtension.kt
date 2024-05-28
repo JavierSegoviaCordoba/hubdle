@@ -32,15 +32,15 @@ constructor(
         get() = hubdleKotlinAny
 
     override fun Project.defaultConfiguration() {
-        val mustApplyMoleculeGradlePlugin: Provider<Boolean> = provider {
+        val mustApplyComposeGradlePlugin: Provider<Boolean> = provider {
             val isFullEnabled = isFullEnabled.get()
             val isComposeFullEnabled = hubdleComposeFeature.isFullEnabled.get()
             isFullEnabled && !isComposeFullEnabled
         }
         applicablePlugin(
-            isEnabled = mustApplyMoleculeGradlePlugin,
+            isEnabled = mustApplyComposeGradlePlugin,
             scope = Scope.CurrentProject,
-            pluginId = PluginId.Molecule
+            pluginId = PluginId.JetbrainsKotlinPluginCompose,
         )
 
         lazyConfigurable {

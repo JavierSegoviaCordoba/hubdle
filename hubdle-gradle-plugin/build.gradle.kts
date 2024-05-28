@@ -105,7 +105,6 @@ hubdle {
                     api(hubdle.jetbrains.kotlin.serialization)
 
                     api(hubdle.plugins.adarshr.test.logger.artifact)
-                    api(hubdle.plugins.cash.molecule.artifact)
                     api(hubdle.plugins.cash.sqldelight.artifact)
                     api(hubdle.plugins.diffplug.gradle.spotless.artifact)
                     api(hubdle.plugins.github.gradle.nexus.publish.plugin.artifact)
@@ -118,6 +117,8 @@ hubdle {
                     api(hubdle.plugins.jetbrains.compose.artifact)
                     api(hubdle.plugins.jetbrains.dokka.artifact)
                     api(hubdle.plugins.jetbrains.intellij.artifact)
+                    api(hubdle.plugins.jetbrains.kotlin.plugin.compose.artifact)
+                    api(hubdle.plugins.jetbrains.kotlin.plugin.serialization.artifact)
                     api(hubdle.plugins.jetbrains.kotlinx.binary.compatibility.validator.artifact)
                     api(hubdle.plugins.jetbrains.kotlinx.kover.artifact)
                     api(hubdle.plugins.sonarqube.artifact)

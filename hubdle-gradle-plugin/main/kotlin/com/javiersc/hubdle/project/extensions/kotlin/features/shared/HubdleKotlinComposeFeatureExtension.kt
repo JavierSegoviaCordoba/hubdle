@@ -22,7 +22,6 @@ import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.provider.Property
-import org.gradle.kotlin.dsl.configure
 import org.jetbrains.compose.ComposeExtension
 
 public open class HubdleKotlinComposeFeatureExtension
@@ -59,20 +58,18 @@ constructor(
 
     override fun Project.defaultConfiguration() {
         applicablePlugin(scope = Scope.CurrentProject, pluginId = PluginId.JetbrainsCompose)
+        applicablePlugin(
+            scope = Scope.CurrentProject,
+            pluginId = PluginId.JetbrainsKotlinPluginCompose
+        )
 
         lazyConfigurable {
-            configure<ComposeExtension> { kotlinCompilerPlugin.set(compiler) }
             if (hubdleAndroidFeatures.isFullEnabled.get()) {
                 forKotlinSetsDependencies(MAIN) {
                     implementation(library(androidx_activity_compose))
                 }
                 hubdleAndroidBuildFeatures.compose.set(true)
-                configureAndroidCommonExtension {
-                    defaultConfig {
-                        buildFeatures.compose = true
-                        composeOptions.kotlinCompilerExtensionVersion = compilerVersion.get()
-                    }
-                }
+                configureAndroidCommonExtension { defaultConfig { buildFeatures.compose = true } }
             }
         }
     }

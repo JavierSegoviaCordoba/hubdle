@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `app.cash.molecule:molecule-runtime -> 2.0.0`
 - `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.8.0`
 - `org.jetbrains.kotlinx:kotlinx-io-core -> 0.3.5`
 - `org.jetbrains.compose.compiler:compiler -> 1.5.14`
@@ -46,7 +47,6 @@
 - `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 3.17.4`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.6.10`
 - `app.cash.molecule:app.cash.molecule.gradle.plugin -> 1.4.3`
-- `app.cash.molecule:molecule-runtime -> 1.4.3`
 - `org.jetbrains.kotlinx:kotlinx-datetime -> 0.6.0`
 - `org.jetbrains.kotlinx:kotlinx-coroutines-test -> 1.8.1`
 - `org.jetbrains.kotlinx:kotlinx-coroutines-core -> 1.8.1`

@@ -14,6 +14,8 @@
 
 ### Updated
 
+- Kotlin to 2.0.0
+
 ## [0.6.8] - 2024-04-19
 
 ### Changed

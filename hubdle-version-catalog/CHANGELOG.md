@@ -14,6 +14,9 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.8.0`
+- `org.jetbrains.kotlinx:kotlinx-io-core -> 0.3.5`
+- `org.jetbrains.compose.compiler:compiler -> 1.5.14`
 - `org.jetbrains:markdown -> 0.7.3`
 - `androidx.lifecycle:lifecycle-viewmodel-ktx -> 2.8.1`
 - `androidx.lifecycle:lifecycle-viewmodel-compose -> 2.8.1`
@@ -44,12 +47,10 @@
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.6.10`
 - `app.cash.molecule:app.cash.molecule.gradle.plugin -> 1.4.3`
 - `app.cash.molecule:molecule-runtime -> 1.4.3`
-- `org.jetbrains.kotlinx:kotlinx-io-core -> 0.3.4`
 - `org.jetbrains.kotlinx:kotlinx-datetime -> 0.6.0`
 - `org.jetbrains.kotlinx:kotlinx-coroutines-test -> 1.8.1`
 - `org.jetbrains.kotlinx:kotlinx-coroutines-core -> 1.8.1`
 - `org.jetbrains.kotlinx:kotlinx-coroutines-android -> 1.8.1`
-- `org.jetbrains.compose.compiler:compiler -> 1.5.13.3`
 - `androidx.compose.compiler:compiler -> 1.5.14`
 - `io.kotest:kotest-runner-junit5 -> 5.9.0`
 - `io.kotest:kotest-runner-junit4 -> 5.9.0`

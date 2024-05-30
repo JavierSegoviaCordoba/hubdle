@@ -14,6 +14,10 @@
 
 ### Updated
 
+## [0.3.0] - 2024-05-30
+
+### Updated
+
 - `app.cash.molecule:molecule-runtime -> 2.0.0`
 - `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.8.0`
 - `org.jetbrains.kotlinx:kotlinx-io-core -> 0.3.5`
@@ -1098,7 +1102,9 @@
 - `com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter -> 1.0.0`
 - `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.2.8...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.3.0...HEAD
+
+[0.3.0]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.2.8...c0.3.0
 
 [0.2.8]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.2.7...c0.2.8
 

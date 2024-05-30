@@ -14,6 +14,10 @@
 
 ### Updated
 
+## [0.7.0] - 2024-05-30
+
+### Updated
+
 - Kotlin to 2.0.0
 
 ## [0.6.8] - 2024-04-19
@@ -106,7 +110,9 @@
 
 - `allTests` task
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.6.8...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.0...HEAD
+
+[0.7.0]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.6.8...p0.7.0
 
 [0.6.8]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.6.7...p0.6.8
 

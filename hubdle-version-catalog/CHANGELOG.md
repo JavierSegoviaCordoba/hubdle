@@ -14,6 +14,11 @@
 
 ### Updated
 
+- `org.jetbrains:markdown -> 0.7.3`
+- `androidx.lifecycle:lifecycle-viewmodel-ktx -> 2.8.1`
+- `androidx.lifecycle:lifecycle-viewmodel-compose -> 2.8.1`
+- `androidx.lifecycle:lifecycle-viewmodel -> 2.8.1`
+- `androidx.appcompat:appcompat -> 1.7.0`
 - `org.jetbrains.kotlin.plugin.serialization:org.jetbrains.kotlin.plugin.serialization.gradle.plugin -> 2.0.0`
 - `org.jetbrains.kotlin.multiplatform:org.jetbrains.kotlin.multiplatform.gradle.plugin -> 2.0.0`
 - `org.jetbrains.kotlin.jvm:org.jetbrains.kotlin.jvm.gradle.plugin -> 2.0.0`
@@ -46,16 +51,12 @@
 - `org.jetbrains.kotlinx:kotlinx-coroutines-android -> 1.8.1`
 - `org.jetbrains.compose.compiler:compiler -> 1.5.13.3`
 - `androidx.compose.compiler:compiler -> 1.5.14`
-- `androidx.lifecycle:lifecycle-viewmodel-ktx -> 2.8.0`
-- `androidx.lifecycle:lifecycle-viewmodel-compose -> 2.8.0`
-- `androidx.lifecycle:lifecycle-viewmodel -> 2.8.0`
 - `io.kotest:kotest-runner-junit5 -> 5.9.0`
 - `io.kotest:kotest-runner-junit4 -> 5.9.0`
 - `io.kotest:kotest-property -> 5.9.0`
 - `io.kotest:kotest-assertions-sql -> 5.9.0`
 - `io.kotest:kotest-assertions-json -> 5.9.0`
 - `io.kotest:kotest-assertions-core -> 5.9.0`
-- `org.jetbrains:markdown -> 0.7.2`
 - `io.ktor:ktor-serialization-kotlinx-json -> 2.3.11`
 - `io.ktor:ktor-client-okhttp -> 2.3.11`
 - `io.ktor:ktor-client-mock -> 2.3.11`

@@ -11,7 +11,6 @@ import com.javiersc.hubdle.project.extensions.config.hubdleConfig
 import com.javiersc.hubdle.project.tasks.lifecycle.TestsTask
 import javax.inject.Inject
 import kotlinx.kover.gradle.plugin.dsl.KoverProjectExtension
-import kotlinx.kover.gradle.plugin.dsl.KoverReportExtension
 import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.Task
@@ -43,7 +42,7 @@ constructor(
     public fun kover(action: Action<KoverProjectExtension>): Unit = fallbackAction(action)
 
     @HubdleDslMarker
-    public fun koverReport(action: Action<KoverReportExtension>): Unit = fallbackAction(action)
+    public fun koverReport(action: Action<KoverProjectExtension>): Unit = fallbackAction(action)
 
     override fun Project.defaultConfiguration() {
         applicablePlugin(scope = Scope.CurrentProject, pluginId = PluginId.JetbrainsKotlinxKover)
@@ -54,12 +53,14 @@ constructor(
             val jacocoVersion: String? = jacoco.orNull
             if (jacocoVersion != null) kover.useJacoco(jacocoVersion)
 
-            configure<KoverReportExtension> {
+            configure<KoverProjectExtension> {
                 val buildDir: DirectoryProperty = layout.buildDirectory
-                defaults { defaults ->
-                    defaults.html { html -> html.setReportDir(buildDir.dir("reports/kover/html/")) }
-                    defaults.xml { xml ->
-                        xml.setReportFile(buildDir.file("reports/kover/xml/report.xml"))
+                reports { reports ->
+                    reports.total { total ->
+                        total.html { html -> html.htmlDir.set(buildDir.dir("reports/kover/html/")) }
+                        total.xml { xml ->
+                            xml.xmlFile.set(buildDir.file("reports/kover/xml/report.xml"))
+                        }
                     }
                 }
             }

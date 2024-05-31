@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `io.kotest.extensions:kotest-extensions-wiremock -> 3.1.0`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.7.0`
 
 ## [0.3.0] - 2024-05-30

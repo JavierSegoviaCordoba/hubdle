@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `io.kotest.extensions:kotest-extensions-spring -> 1.3.0`
 - `gradle -> 8.8`
 - `io.kotest.extensions:kotest-extensions-wiremock -> 3.1.0`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.7.0`

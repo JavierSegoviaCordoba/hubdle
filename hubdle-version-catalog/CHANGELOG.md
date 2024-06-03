@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.6.11`
 - `io.kotest.extensions:kotest-extensions-spring -> 1.3.0`
 - `gradle -> 8.8`
 - `io.kotest.extensions:kotest-extensions-wiremock -> 3.1.0`

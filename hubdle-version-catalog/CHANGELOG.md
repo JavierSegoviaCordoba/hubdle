@@ -14,6 +14,9 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx:kotlinx-serialization-json -> 1.7.0`
+- `org.jetbrains.kotlinx:kotlinx-serialization-core -> 1.7.0`
+- `org.jetbrains.kotlinx:kotlinx-io-core -> 0.4.0`
 - `io.kotest:kotest-runner-junit5 -> 5.9.1`
 - `io.kotest:kotest-runner-junit4 -> 5.9.1`
 - `io.kotest:kotest-property -> 5.9.1`

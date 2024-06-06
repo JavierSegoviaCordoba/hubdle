@@ -14,6 +14,12 @@
 
 ### Updated
 
+- `io.kotest:kotest-runner-junit5 -> 5.9.1`
+- `io.kotest:kotest-runner-junit4 -> 5.9.1`
+- `io.kotest:kotest-property -> 5.9.1`
+- `io.kotest:kotest-assertions-sql -> 5.9.1`
+- `io.kotest:kotest-assertions-json -> 5.9.1`
+- `io.kotest:kotest-assertions-core -> 5.9.1`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.6.11`
 - `io.kotest.extensions:kotest-extensions-spring -> 1.3.0`
 - `gradle -> 8.8`

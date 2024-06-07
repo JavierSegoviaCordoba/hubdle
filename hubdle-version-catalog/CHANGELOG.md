@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.facebook:ktfmt -> 0.50`
 - `org.jetbrains.kotlinx:kotlinx-serialization-json -> 1.7.0`
 - `org.jetbrains.kotlinx:kotlinx-serialization-core -> 1.7.0`
 - `org.jetbrains.kotlinx:kotlinx-io-core -> 0.4.0`

@@ -14,6 +14,9 @@
 
 ### Updated
 
+- `com.android.library:com.android.library.gradle.plugin -> 8.4.2`
+- `com.android.application:com.android.application.gradle.plugin -> 8.4.2`
+- `com.android.tools.build:gradle -> 8.4.2`
 - `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.8.1`
 - `com.facebook:ktfmt -> 0.50`
 - `org.jetbrains.kotlinx:kotlinx-serialization-json -> 1.7.0`

@@ -14,6 +14,27 @@
 
 ### Updated
 
+- `org.eclipse.jgit:org.eclipse.jgit -> 6.10.0.202406032230-r`
+- `androidx.lifecycle:lifecycle-viewmodel-ktx -> 2.8.2`
+- `androidx.lifecycle:lifecycle-viewmodel-compose -> 2.8.2`
+- `androidx.lifecycle:lifecycle-viewmodel -> 2.8.2`
+- `androidx.compose.ui:ui-util -> 1.6.8`
+- `androidx.compose.ui:ui-tooling-preview -> 1.6.8`
+- `androidx.compose.ui:ui-tooling -> 1.6.8`
+- `androidx.compose.ui:ui-test-manifest -> 1.6.8`
+- `androidx.compose.ui:ui-test -> 1.6.8`
+- `androidx.compose.ui:ui -> 1.6.8`
+- `androidx.compose.runtime:runtime-saveable -> 1.6.8`
+- `androidx.compose.runtime:runtime -> 1.6.8`
+- `androidx.compose.material:material-ripple -> 1.6.8`
+- `androidx.compose.material:material-icons-extended -> 1.6.8`
+- `androidx.compose.material:material-icons-core -> 1.6.8`
+- `androidx.compose.material:material -> 1.6.8`
+- `androidx.compose.foundation:foundation-layout -> 1.6.8`
+- `androidx.compose.foundation:foundation -> 1.6.8`
+- `androidx.compose.animation:animation-graphics -> 1.6.8`
+- `androidx.compose.animation:animation-core -> 1.6.8`
+- `androidx.compose.animation:animation -> 1.6.8`
 - `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 3.17.5`
 - `com.android.library:com.android.library.gradle.plugin -> 8.4.2`
 - `com.android.application:com.android.application.gradle.plugin -> 8.4.2`

@@ -14,6 +14,9 @@
 
 ### Updated
 
+- `com.android.library:com.android.library.gradle.plugin -> 8.5.0`
+- `com.android.application:com.android.application.gradle.plugin -> 8.5.0`
+- `com.android.tools.build:gradle -> 8.5.0`
 - `org.eclipse.jgit:org.eclipse.jgit -> 6.10.0.202406032230-r`
 - `androidx.lifecycle:lifecycle-viewmodel-ktx -> 2.8.2`
 - `androidx.lifecycle:lifecycle-viewmodel-compose -> 2.8.2`
@@ -36,9 +39,6 @@
 - `androidx.compose.animation:animation-core -> 1.6.8`
 - `androidx.compose.animation:animation -> 1.6.8`
 - `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 3.17.5`
-- `com.android.library:com.android.library.gradle.plugin -> 8.4.2`
-- `com.android.application:com.android.application.gradle.plugin -> 8.4.2`
-- `com.android.tools.build:gradle -> 8.4.2`
 - `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.8.1`
 - `com.facebook:ktfmt -> 0.50`
 - `org.jetbrains.kotlinx:kotlinx-serialization-json -> 1.7.0`

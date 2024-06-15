@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.facebook:ktfmt -> 0.51`
 - `com.android.library:com.android.library.gradle.plugin -> 8.5.0`
 - `com.android.application:com.android.application.gradle.plugin -> 8.5.0`
 - `com.android.tools.build:gradle -> 8.5.0`
@@ -40,7 +41,6 @@
 - `androidx.compose.animation:animation -> 1.6.8`
 - `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 3.17.5`
 - `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.8.1`
-- `com.facebook:ktfmt -> 0.50`
 - `org.jetbrains.kotlinx:kotlinx-serialization-json -> 1.7.0`
 - `org.jetbrains.kotlinx:kotlinx-serialization-core -> 1.7.0`
 - `org.jetbrains.kotlinx:kotlinx-io-core -> 0.4.0`

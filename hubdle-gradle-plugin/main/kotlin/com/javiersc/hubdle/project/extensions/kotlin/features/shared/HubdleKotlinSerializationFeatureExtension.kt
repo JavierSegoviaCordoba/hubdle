@@ -56,9 +56,7 @@ constructor(
 
     override fun Project.defaultConfiguration() {
         applicablePlugin(
-            scope = Scope.CurrentProject,
-            pluginId = PluginId.JetbrainsKotlinPluginSerialization
-        )
+            scope = Scope.CurrentProject, pluginId = PluginId.JetbrainsKotlinPluginSerialization)
 
         lazyConfigurable {
             forKotlinSetsDependencies(MAIN, COMMON_MAIN) {

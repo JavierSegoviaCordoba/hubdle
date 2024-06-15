@@ -257,8 +257,7 @@ private fun HubdleIntellijPluginFeatureExtension.configureGeneratedChangelogHtml
                 attributes { attributes ->
                     attributes.attribute(
                         LibraryElements.LIBRARY_ELEMENTS_ATTRIBUTE,
-                        objects.named(GENERATED_CHANGELOG_HTML_ATTRIBUTE)
-                    )
+                        objects.named(GENERATED_CHANGELOG_HTML_ATTRIBUTE))
                 }
             }
 

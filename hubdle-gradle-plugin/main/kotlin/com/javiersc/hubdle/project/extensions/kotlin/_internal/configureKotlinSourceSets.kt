@@ -40,8 +40,7 @@ internal fun HubdleSrcSetConfExt<*>.configurableTestFixtures() {
     applicablePlugin(
         isEnabled = isTestFixturesFullEnabled,
         scope = Scope.CurrentProject,
-        pluginId = PluginId.JavaTestFixtures
-    )
+        pluginId = PluginId.JavaTestFixtures)
     lazyConfigurable(isEnabled = isTestFixturesFullEnabled) {
         configure<KotlinProjectExtension> {
             targets.map { target ->

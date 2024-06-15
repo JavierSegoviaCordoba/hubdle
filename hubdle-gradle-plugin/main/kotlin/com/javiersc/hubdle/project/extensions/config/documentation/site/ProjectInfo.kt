@@ -34,8 +34,7 @@ internal val Project.projectsInfo: List<ProjectInfo>
                 ProjectInfo(project.name, project.path, mdFile)
             } else {
                 logger.lifecycle(
-                    "${project.name} hasn't a markdown file, so it won't be added to docs"
-                )
+                    "${project.name} hasn't a markdown file, so it won't be added to docs")
                 null
             }
         }

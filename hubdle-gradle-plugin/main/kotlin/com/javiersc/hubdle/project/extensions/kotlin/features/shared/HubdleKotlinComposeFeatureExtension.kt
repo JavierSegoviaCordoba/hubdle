@@ -59,9 +59,7 @@ constructor(
     override fun Project.defaultConfiguration() {
         applicablePlugin(scope = Scope.CurrentProject, pluginId = PluginId.JetbrainsCompose)
         applicablePlugin(
-            scope = Scope.CurrentProject,
-            pluginId = PluginId.JetbrainsKotlinPluginCompose
-        )
+            scope = Scope.CurrentProject, pluginId = PluginId.JetbrainsKotlinPluginCompose)
 
         lazyConfigurable {
             if (hubdleAndroidFeatures.isFullEnabled.get()) {

@@ -69,10 +69,7 @@ constructor(
     public fun run() {
         buildDotDocsDirectory(dotDocsDirectory)
         fileSystemOperations.buildBuildDotDocs(
-            rootDirectory,
-            dotDocsDirectory,
-            buildDotDocsDirectory
-        )
+            rootDirectory, dotDocsDirectory, buildDotDocsDirectory)
         buildChangelogInDocs(rootDirectory, fileSystemOperations)
         buildApiInDocs()
         buildProjectsInDocs(rootDirectory, projectsInfo.get(), fileSystemOperations)
@@ -228,8 +225,7 @@ constructor(
                 writeText(
                     readLines().joinToString("\n") { line ->
                         line.replace(".docs/docs/assets", "assets")
-                    }
-                )
+                    })
             }
         }
     }
@@ -304,8 +300,7 @@ constructor(
                     writeText(
                         readLines().joinToString("\n") { line ->
                             line.replace(".docs/docs/assets", "assets")
-                        }
-                    )
+                        })
                 }
             }
 
@@ -336,8 +331,7 @@ constructor(
                             addAll(
                                 projects.map { project ->
                                     "- $project: $path/$project.md".prependIndent("$indent  ")
-                                }
-                            )
+                                })
                         }
                     }
                     .cleanNavProjects()
@@ -391,8 +385,7 @@ constructor(
                     addAll(newNavigations)
                     add("")
                 }
-                .joinToString("\n")
-        )
+                .joinToString("\n"))
     }
 
     private fun getDocsNavigation(): DocsNavigation {
@@ -404,8 +397,7 @@ constructor(
                 content
                     .subList(navIndex + 1, content.count())
                     .takeWhile { it.replace(" ", "").startsWith("-") }
-                    .toSet()
-        )
+                    .toSet())
     }
 
     private fun List<String>.cleanNavProjects(): List<String> =

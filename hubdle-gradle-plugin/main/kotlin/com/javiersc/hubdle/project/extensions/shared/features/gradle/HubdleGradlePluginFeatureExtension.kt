@@ -117,8 +117,7 @@ constructor(
         vararg dependencies: ProviderConvertible<MinimalExternalModuleDependency>
     ) {
         this.pluginUnderTestExternalDependencies.addAll(
-            provider { dependencies.map { it.asProvider().get() } }
-        )
+            provider { dependencies.map { it.asProvider().get() } })
     }
 
     @HubdleDslMarker

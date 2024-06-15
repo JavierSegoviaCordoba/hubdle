@@ -38,8 +38,7 @@ constructor(
     override fun Project.defaultConfiguration() {
         applicablePlugin(
             scope = Scope.CurrentProject,
-            pluginId = PluginId.JetbrainsKotlinxBinaryCompatibilityValidator
-        )
+            pluginId = PluginId.JetbrainsKotlinxBinaryCompatibilityValidator)
 
         lazyConfigurable {
             // TODO: Change this configurable with 0.7.0 as it must be applied on each project

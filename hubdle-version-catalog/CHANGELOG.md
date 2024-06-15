@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.intellij:org.jetbrains.intellij.gradle.plugin -> 1.17.4`
 - `com.facebook:ktfmt -> 0.51`
 - `com.android.library:com.android.library.gradle.plugin -> 8.5.0`
 - `com.android.application:com.android.application.gradle.plugin -> 8.5.0`

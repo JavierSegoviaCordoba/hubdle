@@ -66,10 +66,7 @@ constructor(
                 addAll(buildReadmeBadges())
                 addAll(
                     content.subList(
-                        content.indexOfFirst { it.contains("# ") },
-                        content.lastIndex + 1
-                    )
-                )
+                        content.indexOfFirst { it.contains("# ") }, content.lastIndex + 1))
                 add("")
             }
 

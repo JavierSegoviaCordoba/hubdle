@@ -27,8 +27,7 @@ internal class BinaryCompatibilityStateTest : GradleTestKitTest() {
                         |	public fun <init> ()V
                         |}
                     """
-                        .trimMargin()
-                )
+                        .trimMargin())
 
             val libraryApiDir: File = projectDir.resolve("library/api")
             libraryApiDir.shouldBeADirectory()
@@ -42,8 +41,7 @@ internal class BinaryCompatibilityStateTest : GradleTestKitTest() {
                         |	public fun <init> ()V
                         |}
                     """
-                        .trimMargin()
-                )
+                        .trimMargin())
         }
     }
 }

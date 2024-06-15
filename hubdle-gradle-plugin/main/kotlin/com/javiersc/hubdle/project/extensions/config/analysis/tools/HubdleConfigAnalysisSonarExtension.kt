@@ -54,9 +54,7 @@ constructor(
 
     override fun Project.defaultConfiguration() {
         applicablePlugin(
-            scope = ApplicablePlugin.Scope.CurrentProject,
-            pluginId = PluginId.Sonarqube
-        )
+            scope = ApplicablePlugin.Scope.CurrentProject, pluginId = PluginId.Sonarqube)
 
         lazyConfigurable { configureSonarqube(project) }
         // TODO: Remove both when project isolation is fixed in Sonar Gradle plugin as hubdle

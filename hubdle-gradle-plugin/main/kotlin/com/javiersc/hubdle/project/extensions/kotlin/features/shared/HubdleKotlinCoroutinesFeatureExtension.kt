@@ -48,14 +48,9 @@ constructor(
                 }
 
                 forKotlinSetsDependencies(
-                    TEST,
-                    COMMON_TEST,
-                    TEST_FUNCTIONAL,
-                    TEST_INTEGRATION,
-                    TEST_FIXTURES
-                ) {
-                    implementation(library(jetbrains_kotlinx_coroutines_test))
-                }
+                    TEST, COMMON_TEST, TEST_FUNCTIONAL, TEST_INTEGRATION, TEST_FIXTURES) {
+                        implementation(library(jetbrains_kotlinx_coroutines_test))
+                    }
             }
         }
         lazyConfigurable(isEnabled = isAnyAndroidFullEnabled) {

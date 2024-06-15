@@ -154,9 +154,7 @@ constructor(
 
     override fun Project.defaultConfiguration() {
         applicablePlugin(
-            scope = Scope.CurrentProject,
-            pluginId = PluginId.JetbrainsKotlinMultiplatform
-        )
+            scope = Scope.CurrentProject, pluginId = PluginId.JetbrainsKotlinMultiplatform)
 
         configurableSrcDirs(multiplatformTargets())
         configurableDependencies()

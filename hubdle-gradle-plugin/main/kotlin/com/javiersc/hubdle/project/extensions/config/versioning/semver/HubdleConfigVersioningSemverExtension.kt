@@ -41,9 +41,7 @@ constructor(
 
     override fun Project.defaultConfiguration() {
         applicablePlugin(
-            scope = Scope.CurrentProject,
-            pluginId = PluginId.JavierscSemverGradlePlugin
-        )
+            scope = Scope.CurrentProject, pluginId = PluginId.JavierscSemverGradlePlugin)
         lazyConfigurable {
             configure<SemverExtension> { tagPrefix.set(hubdleSemver.tagPrefix.get()) }
         }

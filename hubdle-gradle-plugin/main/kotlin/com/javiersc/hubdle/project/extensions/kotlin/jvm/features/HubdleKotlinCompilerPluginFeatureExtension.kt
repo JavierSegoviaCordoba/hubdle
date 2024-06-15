@@ -236,8 +236,7 @@ constructor(
                 projectDependencies.map { projectDependency: ProjectDependency ->
                     projectDependency.dependencyProject.tasks.withType<Jar>()
                 }
-            }
-        )
+            })
     }
 
     private fun LanguageSettingsBuilder.optInExperimentalAPIs() {

@@ -56,8 +56,7 @@ constructor(
                         "Fixed",
                         "Removed",
                         "Updated",
-                    )
-                )
+                    ))
                 combinePreReleases.set(false)
 
                 versionPrefix.set(hubdleSemver.tagPrefix)
@@ -115,8 +114,7 @@ constructor(
             configuration.attributes { attributes ->
                 attributes.attribute(
                     LibraryElements.LIBRARY_ELEMENTS_ATTRIBUTE,
-                    project.objects.named(GENERATED_CHANGELOG_HTML_ATTRIBUTE)
-                )
+                    project.objects.named(GENERATED_CHANGELOG_HTML_ATTRIBUTE))
             }
             configuration.outgoing { publications ->
                 publications.artifact(generateChangelogHtmlTask)

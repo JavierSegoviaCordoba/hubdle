@@ -80,9 +80,7 @@ constructor(
 
     override fun Project.defaultConfiguration() {
         applicablePlugin(
-            scope = Scope.CurrentProject,
-            pluginId = PluginId.GithubGradleNexusPublishPlugin
-        )
+            scope = Scope.CurrentProject, pluginId = PluginId.GithubGradleNexusPublishPlugin)
 
         lazyConfigurable {
             configure<NexusPublishExtension> {

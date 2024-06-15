@@ -98,8 +98,7 @@ internal class Changelog(
                     const val unreleased: String = "Unreleased"
                     val dependencyUpdateRegex =
                         Regex(
-                            """^(- *)+ (`*)+([a-zA-Z0-9.-]+)+([a-zA-Z0-9.-:-]+)+( -> )+([a-zA-Z0-9.-]+)+(`)"""
-                        )
+                            """^(- *)+ (`*)+([a-zA-Z0-9.-]+)+([a-zA-Z0-9.-:-]+)+( -> )+([a-zA-Z0-9.-]+)+(`)""")
                 }
             }
         }

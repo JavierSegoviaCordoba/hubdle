@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.github.triplet.play:com.github.triplet.play.gradle.plugin -> 3.10.0`
 - `org.jetbrains.intellij:org.jetbrains.intellij.gradle.plugin -> 1.17.4`
 - `com.facebook:ktfmt -> 0.51`
 - `com.android.library:com.android.library.gradle.plugin -> 8.5.0`

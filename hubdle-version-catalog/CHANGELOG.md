@@ -14,6 +14,12 @@
 
 ### Updated
 
+- `io.ktor:ktor-serialization-kotlinx-json -> 2.3.12`
+- `io.ktor:ktor-client-okhttp -> 2.3.12`
+- `io.ktor:ktor-client-mock -> 2.3.12`
+- `io.ktor:ktor-client-core -> 2.3.12`
+- `io.ktor:ktor-client-content-negotiation -> 2.3.12`
+- `io.ktor:ktor-client-cio -> 2.3.12`
 - `com.github.triplet.play:com.github.triplet.play.gradle.plugin -> 3.10.0`
 - `org.jetbrains.intellij:org.jetbrains.intellij.gradle.plugin -> 1.17.4`
 - `com.facebook:ktfmt -> 0.51`

@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx:kotlinx-serialization-json -> 1.7.1`
+- `org.jetbrains.kotlinx:kotlinx-serialization-core -> 1.7.1`
 - `com.github.triplet.play:com.github.triplet.play.gradle.plugin -> 3.10.1`
 - `io.ktor:ktor-serialization-kotlinx-json -> 2.3.12`
 - `io.ktor:ktor-client-okhttp -> 2.3.12`
@@ -49,8 +51,6 @@
 - `androidx.compose.animation:animation -> 1.6.8`
 - `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 3.17.5`
 - `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.8.1`
-- `org.jetbrains.kotlinx:kotlinx-serialization-json -> 1.7.0`
-- `org.jetbrains.kotlinx:kotlinx-serialization-core -> 1.7.0`
 - `org.jetbrains.kotlinx:kotlinx-io-core -> 0.4.0`
 - `io.kotest:kotest-runner-junit5 -> 5.9.1`
 - `io.kotest:kotest-runner-junit4 -> 5.9.1`

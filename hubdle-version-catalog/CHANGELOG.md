@@ -14,6 +14,14 @@
 
 ### Updated
 
+- `org.junit.platform:junit-platform-suite-api -> 1.10.3`
+- `org.junit.platform:junit-platform-runner -> 1.10.3`
+- `org.junit.platform:junit-platform-launcher -> 1.10.3`
+- `org.junit.platform:junit-platform-commons -> 1.10.3`
+- `org.junit.jupiter:junit-jupiter-params -> 5.10.3`
+- `org.junit.jupiter:junit-jupiter-api -> 5.10.3`
+- `org.junit.jupiter:junit-jupiter -> 5.10.3`
+- `org.junit:junit-bom -> 5.10.3`
 - `org.jetbrains.kotlinx:kotlinx-serialization-json -> 1.7.1`
 - `org.jetbrains.kotlinx:kotlinx-serialization-core -> 1.7.1`
 - `com.github.triplet.play:com.github.triplet.play.gradle.plugin -> 3.10.1`

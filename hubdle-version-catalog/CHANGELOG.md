@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx:atomicfu -> 0.25.0`
 - `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.8.2`
 - `org.junit.platform:junit-platform-suite-api -> 1.10.3`
 - `org.junit.platform:junit-platform-runner -> 1.10.3`

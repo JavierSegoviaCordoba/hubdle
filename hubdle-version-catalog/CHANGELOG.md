@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.8.2`
 - `org.junit.platform:junit-platform-suite-api -> 1.10.3`
 - `org.junit.platform:junit-platform-runner -> 1.10.3`
 - `org.junit.platform:junit-platform-launcher -> 1.10.3`
@@ -58,7 +59,6 @@
 - `androidx.compose.animation:animation-core -> 1.6.8`
 - `androidx.compose.animation:animation -> 1.6.8`
 - `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 3.17.5`
-- `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.8.1`
 - `org.jetbrains.kotlinx:kotlinx-io-core -> 0.4.0`
 - `io.kotest:kotest-runner-junit5 -> 5.9.1`
 - `io.kotest:kotest-runner-junit4 -> 5.9.1`

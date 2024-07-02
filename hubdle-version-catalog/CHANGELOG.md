@@ -14,6 +14,9 @@
 
 ### Updated
 
+- `androidx.lifecycle:lifecycle-viewmodel-ktx -> 2.8.3`
+- `androidx.lifecycle:lifecycle-viewmodel-compose -> 2.8.3`
+- `androidx.lifecycle:lifecycle-viewmodel -> 2.8.3`
 - `org.jetbrains.kotlinx:atomicfu -> 0.25.0`
 - `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.8.2`
 - `org.junit.platform:junit-platform-suite-api -> 1.10.3`
@@ -39,9 +42,6 @@
 - `com.android.application:com.android.application.gradle.plugin -> 8.5.0`
 - `com.android.tools.build:gradle -> 8.5.0`
 - `org.eclipse.jgit:org.eclipse.jgit -> 6.10.0.202406032230-r`
-- `androidx.lifecycle:lifecycle-viewmodel-ktx -> 2.8.2`
-- `androidx.lifecycle:lifecycle-viewmodel-compose -> 2.8.2`
-- `androidx.lifecycle:lifecycle-viewmodel -> 2.8.2`
 - `androidx.compose.ui:ui-util -> 1.6.8`
 - `androidx.compose.ui:ui-tooling-preview -> 1.6.8`
 - `androidx.compose.ui:ui-tooling -> 1.6.8`

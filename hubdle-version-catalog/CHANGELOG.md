@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx.binary-compatibility-validator:org.jetbrains.kotlinx.binary-compatibility-validator.gradle.plugin -> 0.15.0`
 - `org.sonarqube:org.sonarqube.gradle.plugin -> 5.1.0.4872`
 - `androidx.lifecycle:lifecycle-viewmodel-ktx -> 2.8.3`
 - `androidx.lifecycle:lifecycle-viewmodel-compose -> 2.8.3`

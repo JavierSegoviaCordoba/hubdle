@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `gradle -> 8.9`
 - `org.jetbrains.kotlinx.binary-compatibility-validator:org.jetbrains.kotlinx.binary-compatibility-validator.gradle.plugin -> 0.15.1`
 - `org.sonarqube:org.sonarqube.gradle.plugin -> 5.1.0.4882`
 - `org.jetbrains.changelog:org.jetbrains.changelog.gradle.plugin -> 2.2.1`
@@ -72,7 +73,6 @@
 - `io.kotest:kotest-assertions-core -> 5.9.1`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.6.11`
 - `io.kotest.extensions:kotest-extensions-spring -> 1.3.0`
-- `gradle -> 8.8`
 - `io.kotest.extensions:kotest-extensions-wiremock -> 3.1.0`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.7.0`
 

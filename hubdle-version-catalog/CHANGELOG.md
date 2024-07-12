@@ -14,6 +14,9 @@
 
 ### Updated
 
+- `com.android.library:com.android.library.gradle.plugin -> 8.5.1`
+- `com.android.application:com.android.application.gradle.plugin -> 8.5.1`
+- `com.android.tools.build:gradle -> 8.5.1`
 - `gradle -> 8.9`
 - `org.jetbrains.kotlinx.binary-compatibility-validator:org.jetbrains.kotlinx.binary-compatibility-validator.gradle.plugin -> 0.15.1`
 - `org.sonarqube:org.sonarqube.gradle.plugin -> 5.1.0.4882`
@@ -42,9 +45,6 @@
 - `io.ktor:ktor-client-cio -> 2.3.12`
 - `org.jetbrains.intellij:org.jetbrains.intellij.gradle.plugin -> 1.17.4`
 - `com.facebook:ktfmt -> 0.51`
-- `com.android.library:com.android.library.gradle.plugin -> 8.5.0`
-- `com.android.application:com.android.application.gradle.plugin -> 8.5.0`
-- `com.android.tools.build:gradle -> 8.5.0`
 - `org.eclipse.jgit:org.eclipse.jgit -> 6.10.0.202406032230-r`
 - `androidx.compose.ui:ui-util -> 1.6.8`
 - `androidx.compose.ui:ui-tooling-preview -> 1.6.8`

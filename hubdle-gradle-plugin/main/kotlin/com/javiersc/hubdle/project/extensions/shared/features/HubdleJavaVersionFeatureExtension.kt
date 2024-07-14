@@ -13,6 +13,7 @@ import org.gradle.api.Project
 import org.gradle.api.provider.Property
 import org.gradle.api.tasks.compile.JavaCompile
 import org.gradle.kotlin.dsl.withType
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 public open class HubdleJavaVersionFeatureExtension
@@ -44,7 +45,7 @@ constructor(
             }
 
             tasks.withType<KotlinCompile>().configureEach {
-                it.kotlinOptions.jvmTarget = "${jvmVersion.get()}"
+                it.compilerOptions.jvmTarget.set(JvmTarget.fromTarget("${jvmVersion.get()}"))
             }
         }
     }

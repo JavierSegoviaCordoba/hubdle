@@ -33,7 +33,6 @@ import org.gradle.api.provider.Property
 import org.gradle.api.provider.SetProperty
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinTarget
-import org.jetbrains.kotlin.gradle.plugin.KotlinTargetPreset
 
 @HubdleDslMarker
 public open class HubdleKotlinMultiplatformExtension
@@ -175,7 +174,6 @@ constructor(
 
         buildSet {
             addAll(the<KotlinMultiplatformExtension>().targets.map(KotlinTarget::getName))
-            addAll(the<KotlinMultiplatformExtension>().presets.map(KotlinTargetPreset<*>::getName))
             addAll(hubdleTargets)
         }
     }

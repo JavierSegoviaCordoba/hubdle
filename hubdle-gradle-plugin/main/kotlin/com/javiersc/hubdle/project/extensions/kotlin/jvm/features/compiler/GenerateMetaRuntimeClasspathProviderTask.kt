@@ -138,7 +138,8 @@ constructor(
                             val projectName = projectDependency.dependencyProject.name
                             val projectVersion = "${projectDependency.dependencyProject.version}"
                             val jars =
-                                projectDependency.dependencyProject.buildDir
+                                projectDependency.dependencyProject.layout.buildDirectory.asFile
+                                    .get()
                                     .resolve("libs")
                                     .walkTopDown()
                                     .maxDepth(1)

@@ -11,7 +11,6 @@ import com.javiersc.hubdle.project.extensions._internal.TEST_FUNCTIONAL
 import com.javiersc.hubdle.project.extensions._internal.TEST_INTEGRATION
 import com.javiersc.hubdle.project.extensions.android._internal.findAndroidCommonExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
-import com.javiersc.hubdle.project.extensions.apis.HubdleSourceSetConfigurableExtension as HubdleSrcSetConfExt
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.hubdleKotlinMultiplatform
 import com.javiersc.hubdle.project.tasks.lifecycle.TestsTask
 import com.javiersc.kotlin.stdlib.decapitalize
@@ -30,11 +29,13 @@ import org.gradle.kotlin.dsl.findByType
 import org.gradle.kotlin.dsl.register
 import org.gradle.language.base.plugins.LifecycleBasePlugin.CHECK_TASK_NAME
 import org.jetbrains.kotlin.gradle.dsl.KotlinCommonOptions
+import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
+import org.jetbrains.kotlin.gradle.dsl.KotlinSingleTargetExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinCompilation
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 import org.jetbrains.kotlin.gradle.plugin.KotlinTarget
-import org.jetbrains.kotlin.gradle.plugin.mpp.pm20.util.targets
+import com.javiersc.hubdle.project.extensions.apis.HubdleSourceSetConfigurableExtension as HubdleSrcSetConfExt
 
 internal fun HubdleSrcSetConfExt<*>.configurableTestFixtures() {
     applicablePlugin(
@@ -220,3 +221,11 @@ private val KotlinTarget.testFixturesCompilation: KotlinCompilation<KotlinCommon
 
 private fun KotlinTarget.compilation(name: String): KotlinCompilation<*>? =
     compilations.findByName(name)
+
+private val KotlinProjectExtension.targets: Iterable<KotlinTarget>
+    get() =
+        when (this) {
+            is KotlinSingleTargetExtension<*> -> listOf(this.target)
+            is KotlinMultiplatformExtension -> targets
+            else -> error("Unexpected 'kotlin' extension $this")
+        }

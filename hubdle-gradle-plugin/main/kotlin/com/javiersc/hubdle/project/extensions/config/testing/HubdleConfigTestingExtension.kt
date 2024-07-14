@@ -1,7 +1,6 @@
 package com.javiersc.hubdle.project.extensions.config.testing
 
-import com.gradle.enterprise.gradleplugin.testretry.TestRetryExtension
-import com.gradle.enterprise.gradleplugin.testretry.retry
+import com.gradle.develocity.agent.gradle.test.TestRetryConfiguration
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.PluginId
@@ -19,6 +18,7 @@ import org.gradle.api.provider.Property
 import org.gradle.api.tasks.TaskCollection
 import org.gradle.api.tasks.testing.Test
 import org.gradle.kotlin.dsl.apply
+import org.gradle.kotlin.dsl.develocity
 import org.gradle.kotlin.dsl.withType
 
 @HubdleDslMarker
@@ -49,9 +49,11 @@ constructor(
     }
 
     @HubdleDslMarker
-    public fun retry(action: Action<TestRetryExtension>) {
+    public fun retry(action: Action<TestRetryConfiguration>) {
         lazyConfigurable {
-            tasks.withType<Test>().configureEach { test -> action.execute(test.retry) }
+            tasks.withType<Test>().configureEach { test ->
+                action.execute(test.develocity.testRetry)
+            }
         }
     }
 

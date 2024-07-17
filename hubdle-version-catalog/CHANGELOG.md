@@ -14,7 +14,7 @@
 
 ### Updated
 
-- `org.jetbrains.kotlinx:kotlinx-io-core -> 0.5.0`
+- `org.jetbrains.kotlinx:kotlinx-io-core -> 0.5.1`
 - `com.android.library:com.android.library.gradle.plugin -> 8.5.1`
 - `com.android.application:com.android.application.gradle.plugin -> 8.5.1`
 - `com.android.tools.build:gradle -> 8.5.1`

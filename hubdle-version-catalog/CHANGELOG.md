@@ -14,13 +14,13 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx.binary-compatibility-validator:org.jetbrains.kotlinx.binary-compatibility-validator.gradle.plugin -> 0.16.0`
 - `org.gradle.test-retry:org.gradle.test-retry.gradle.plugin -> 1.5.10`
 - `org.jetbrains.kotlinx:kotlinx-io-core -> 0.5.1`
 - `com.android.library:com.android.library.gradle.plugin -> 8.5.1`
 - `com.android.application:com.android.application.gradle.plugin -> 8.5.1`
 - `com.android.tools.build:gradle -> 8.5.1`
 - `gradle -> 8.9`
-- `org.jetbrains.kotlinx.binary-compatibility-validator:org.jetbrains.kotlinx.binary-compatibility-validator.gradle.plugin -> 0.15.1`
 - `org.sonarqube:org.sonarqube.gradle.plugin -> 5.1.0.4882`
 - `org.jetbrains.changelog:org.jetbrains.changelog.gradle.plugin -> 2.2.1`
 - `androidx.lifecycle:lifecycle-viewmodel-ktx -> 2.8.3`

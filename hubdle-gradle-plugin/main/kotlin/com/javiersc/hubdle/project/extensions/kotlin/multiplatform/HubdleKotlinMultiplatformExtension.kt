@@ -153,7 +153,9 @@ constructor(
 
     override fun Project.defaultConfiguration() {
         applicablePlugin(
-            scope = Scope.CurrentProject, pluginId = PluginId.JetbrainsKotlinMultiplatform)
+            scope = Scope.CurrentProject,
+            pluginId = PluginId.JetbrainsKotlinMultiplatform,
+        )
 
         configurableSrcDirs(multiplatformTargets())
         configurableDependencies()
@@ -173,7 +175,8 @@ constructor(
                 .map { target -> "$target" }
 
         buildSet {
-            addAll(the<KotlinMultiplatformExtension>().targets.map(KotlinTarget::getName))
+            val targets = the<KotlinMultiplatformExtension>().targets.map(KotlinTarget::getName)
+            addAll(targets)
             addAll(hubdleTargets)
         }
     }

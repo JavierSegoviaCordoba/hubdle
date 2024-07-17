@@ -142,7 +142,7 @@ internal fun HubdleSrcSetConfExt<KotlinSourceSet>.configurableKotlinTestFunction
 
 internal fun HubdleConfigurableExtension.configurableSrcDirs(
     targets: SetProperty<String> = setProperty { emptySet() }
-) = beforeConfigurable {
+) = lazyConfigurable {
     project.findAndroidCommonExtension()?.sourceSets?.configureEach { set: AndroidSourceSet ->
         val name: String = set.name.calculateKmpSourceSetDirectory(targets.get())
         if (!hubdleKotlinMultiplatform.isFullEnabled.get()) {

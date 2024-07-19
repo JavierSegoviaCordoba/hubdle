@@ -14,7 +14,7 @@
 
 ### Updated
 
-- `org.jetbrains.kotlinx.binary-compatibility-validator:org.jetbrains.kotlinx.binary-compatibility-validator.gradle.plugin -> 0.16.0`
+- `org.jetbrains.kotlinx.binary-compatibility-validator:org.jetbrains.kotlinx.binary-compatibility-validator.gradle.plugin -> 0.16.1`
 - `org.gradle.test-retry:org.gradle.test-retry.gradle.plugin -> 1.5.10`
 - `org.jetbrains.kotlinx:kotlinx-io-core -> 0.5.1`
 - `com.android.library:com.android.library.gradle.plugin -> 8.5.1`

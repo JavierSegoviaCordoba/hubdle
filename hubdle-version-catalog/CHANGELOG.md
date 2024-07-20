@@ -14,7 +14,8 @@
 
 ### Updated
 
-- `org.jetbrains.kotlinx.binary-compatibility-validator:org.jetbrains.kotlinx.binary-compatibility-validator.gradle.plugin -> 0.16.1`
+- `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.8.3`
+- `org.jetbrains.kotlinx.binary-compatibility-validator:org.jetbrains.kotlinx.binary-compatibility-validator.gradle.plugin -> 0.16.2`
 - `org.gradle.test-retry:org.gradle.test-retry.gradle.plugin -> 1.5.10`
 - `org.jetbrains.kotlinx:kotlinx-io-core -> 0.5.1`
 - `com.android.library:com.android.library.gradle.plugin -> 8.5.1`
@@ -27,7 +28,6 @@
 - `androidx.lifecycle:lifecycle-viewmodel-compose -> 2.8.3`
 - `androidx.lifecycle:lifecycle-viewmodel -> 2.8.3`
 - `org.jetbrains.kotlinx:atomicfu -> 0.25.0`
-- `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.8.2`
 - `org.junit.platform:junit-platform-suite-api -> 1.10.3`
 - `org.junit.platform:junit-platform-runner -> 1.10.3`
 - `org.junit.platform:junit-platform-launcher -> 1.10.3`

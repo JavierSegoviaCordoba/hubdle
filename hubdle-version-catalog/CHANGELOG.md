@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 3.17.6`
 - `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.8.3`
 - `org.jetbrains.kotlinx.binary-compatibility-validator:org.jetbrains.kotlinx.binary-compatibility-validator.gradle.plugin -> 0.16.2`
 - `org.gradle.test-retry:org.gradle.test-retry.gradle.plugin -> 1.5.10`
@@ -65,7 +66,6 @@
 - `androidx.compose.animation:animation-graphics -> 1.6.8`
 - `androidx.compose.animation:animation-core -> 1.6.8`
 - `androidx.compose.animation:animation -> 1.6.8`
-- `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 3.17.5`
 - `io.kotest:kotest-runner-junit5 -> 5.9.1`
 - `io.kotest:kotest-runner-junit4 -> 5.9.1`
 - `io.kotest:kotest-property -> 5.9.1`

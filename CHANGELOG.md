@@ -14,6 +14,10 @@
 
 ### Updated
 
+## [0.7.1] - 2024-07-25
+
+### Updated
+
 - Hubdle catalog
 
 ## [0.7.0] - 2024-05-30
@@ -112,7 +116,9 @@
 
 - `allTests` task
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.0...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.1...HEAD
+
+[0.7.1]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.0...p0.7.1
 
 [0.7.0]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.6.8...p0.7.0
 

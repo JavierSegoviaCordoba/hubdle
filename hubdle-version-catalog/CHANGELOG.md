@@ -14,6 +14,10 @@
 
 ### Updated
 
+## [0.3.1] - 2024-07-25
+
+### Updated
+
 - `androidx.lifecycle:lifecycle-viewmodel-ktx -> 2.8.4`
 - `androidx.lifecycle:lifecycle-viewmodel-compose -> 2.8.4`
 - `androidx.lifecycle:lifecycle-viewmodel -> 2.8.4`
@@ -1167,7 +1171,9 @@
 - `com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter -> 1.0.0`
 - `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.3.0...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.3.1...HEAD
+
+[0.3.1]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.3.0...c0.3.1
 
 [0.3.0]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.2.8...c0.3.0
 

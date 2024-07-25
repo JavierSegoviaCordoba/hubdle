@@ -14,6 +14,8 @@
 
 ### Updated
 
+- Hubdle catalog
+
 ## [0.7.0] - 2024-05-30
 
 ### Updated

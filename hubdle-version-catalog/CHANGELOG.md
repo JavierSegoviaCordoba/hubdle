@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx.binary-compatibility-validator:org.jetbrains.kotlinx.binary-compatibility-validator.gradle.plugin -> 0.16.3`
+
 ## [0.3.1] - 2024-07-25
 
 ### Updated

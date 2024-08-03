@@ -14,6 +14,10 @@
 
 ### Updated
 
+## [0.3.2] - 2024-08-03
+
+### Updated
+
 - `org.jetbrains.kotlinx.binary-compatibility-validator:org.jetbrains.kotlinx.binary-compatibility-validator.gradle.plugin -> 0.16.3`
 
 ## [0.3.1] - 2024-07-25
@@ -1173,7 +1177,9 @@
 - `com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter -> 1.0.0`
 - `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.3.1...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.3.2...HEAD
+
+[0.3.2]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.3.1...c0.3.2
 
 [0.3.1]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.3.0...c0.3.1
 

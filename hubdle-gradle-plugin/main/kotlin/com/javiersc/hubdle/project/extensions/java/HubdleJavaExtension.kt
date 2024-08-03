@@ -9,6 +9,7 @@ import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
 import com.javiersc.hubdle.project.extensions.java.features.HubdleJavaFeaturesExtension
 import com.javiersc.hubdle.project.extensions.kotlin._internal.normalAndGeneratedDirs
+import java.io.File
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
@@ -42,8 +43,11 @@ constructor(
         lazyConfigurable {
             configure<JavaPluginExtension> {
                 sourceSets.configureEach { set ->
-                    set.java.setSrcDirs(normalAndGeneratedDirs("${set.name}/java"))
-                    set.resources.setSrcDirs(normalAndGeneratedDirs("${set.name}/resources"))
+                    set.java.setSrcDirs(emptySet<File>())
+                    set.java.srcDirs(normalAndGeneratedDirs(provider { "${set.name}/java" }))
+                    set.resources.setSrcDirs(emptySet<File>())
+                    set.resources.srcDirs(
+                        normalAndGeneratedDirs(provider { "${set.name}/resources" }))
                 }
             }
         }

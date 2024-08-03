@@ -10,6 +10,8 @@
 
 ### Fixed
 
+- source sets configuration being too late
+
 ### Removed
 
 ### Updated

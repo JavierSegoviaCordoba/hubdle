@@ -1,7 +1,9 @@
 package com.javiersc.hubdle.project.extensions.kotlin._internal
 
+import com.android.build.api.dsl.AndroidSourceDirectorySet
 import com.android.build.api.dsl.AndroidSourceSet
 import com.android.build.gradle.internal.tasks.factory.dependsOn
+import com.javiersc.gradle.properties.extensions.setProperty
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.COMMON_MAIN
 import com.javiersc.hubdle.project.extensions._internal.MAIN
@@ -20,6 +22,7 @@ import org.gradle.api.Project
 import org.gradle.api.file.SourceDirectorySet
 import org.gradle.api.plugins.ExtensionAware
 import org.gradle.api.plugins.JavaPluginExtension
+import org.gradle.api.provider.Provider
 import org.gradle.api.provider.SetProperty
 import org.gradle.api.tasks.SourceSet
 import org.gradle.api.tasks.SourceSetContainer
@@ -142,62 +145,77 @@ internal fun HubdleSrcSetConfExt<KotlinSourceSet>.configurableKotlinTestFunction
 
 internal fun HubdleConfigurableExtension.configurableSrcDirs(
     targets: SetProperty<String> = setProperty { emptySet() }
-) = lazyConfigurable {
+) = beforeConfigurable {
+    fun AndroidSourceDirectorySet.setSrc(name: Provider<String>, dirName: String) {
+        setSrcDirs(emptySet<File>())
+        srcDirs(project.normalAndGeneratedDirs(name.map { "$it/$dirName" }))
+    }
+    fun SourceDirectorySet.setSrc(name: Provider<String>, dirName: String) {
+        setSrcDirs(emptySet<File>())
+        srcDirs(project.normalAndGeneratedDirs(name.map { "$it/$dirName" }))
+    }
+
     project.findAndroidCommonExtension()?.sourceSets?.configureEach { set: AndroidSourceSet ->
-        val name: String = set.name.calculateKmpSourceSetDirectory(targets.get())
+        val name: Provider<String> = project.calculateKmpSourceSetDirectory(set.name, targets)
         if (!hubdleKotlinMultiplatform.isFullEnabled.get()) {
-            set.assets.setSrcDirs(project.normalAndGeneratedDirs("$name/assets"))
-            set.java.setSrcDirs(project.normalAndGeneratedDirs("$name/java"))
-            set.kotlin.setSrcDirs(project.normalAndGeneratedDirs("$name/kotlin"))
+            set.assets.setSrc(name, "assets")
+            set.java.setSrc(name, "java")
+            set.kotlin.setSrc(name, "kotlin")
+            set.res.setSrc(name, "res")
+            set.resources.setSrc(name, "resources")
             set.manifest.srcFile("$name/AndroidManifest.xml")
-            set.res.setSrcDirs(project.normalAndGeneratedDirs("$name/res"))
-            set.resources.setSrcDirs(project.normalAndGeneratedDirs("$name/resources"))
         } else {
             set.manifest.srcFile("$name/AndroidManifest.xml")
         }
     }
 
     project.extensions.findByType<JavaPluginExtension>()?.sourceSets?.configureEach { set ->
-        val name: String = set.name.calculateKmpSourceSetDirectory(targets.get())
-        set.java.setSrcDirs(project.normalAndGeneratedDirs("$name/java"))
-        set.kotlin.setSrcDirs(project.normalAndGeneratedDirs("$name/kotlin"))
-        set.resources.setSrcDirs(project.normalAndGeneratedDirs("$name/resources"))
+        val name: Provider<String> = project.calculateKmpSourceSetDirectory(set.name, targets)
+        set.java.setSrc(name, "java")
+        set.kotlin.setSrc(name, "kotlin")
+        set.resources.setSrc(name, "resources")
     }
 
     project.extensions.findByType<KotlinProjectExtension>()?.sourceSets?.configureEach { set ->
-        val name: String = set.name.calculateKmpSourceSetDirectory(targets.get())
-        set.kotlin.setSrcDirs(project.normalAndGeneratedDirs("$name/kotlin"))
-        set.resources.setSrcDirs(project.normalAndGeneratedDirs("$name/resources"))
+        val name: Provider<String> = project.calculateKmpSourceSetDirectory(set.name, targets)
+        set.kotlin.setSrc(name, "kotlin")
+        set.resources.setSrc(name, "resources")
     }
 }
 
-internal fun Project.normalAndGeneratedDirs(dir: String): List<File> =
-    listOf(
-        projectDir.resolve(dir),
-        layout.buildDirectory.asFile.get().resolve("generated").resolve(dir),
-    )
+internal fun Project.normalAndGeneratedDirs(dir: Provider<String>): SetProperty<File> =
+    setProperty {
+        setOf(
+            projectDir.resolve(dir.get()),
+            layout.buildDirectory.asFile.get().resolve("generated").resolve(dir.get()),
+        )
+    }
 
-private fun String.calculateKmpSourceSetDirectory(targets: Set<String>): String {
-    val name: String = this
-    val target: String? =
-        targets
-            .filter { target -> name.startsWith(target) }
-            .maxByOrNull { target -> target.count() }
+private fun Project.calculateKmpSourceSetDirectory(
+    name: String,
+    targetsProp: SetProperty<String>
+): Provider<String> =
+    project.provider {
+        val targets: Set<String> = targetsProp.get().toSet()
+        val target: String? =
+            targets
+                .filter { target -> name.startsWith(target) }
+                .maxByOrNull { target -> target.count() }
 
-    val directory: String =
-        when {
-            name.startsWith("androidNative") && target == "android" -> {
-                val type = name.substringAfter("androidNative").decapitalize()
-                "androidNative/$type"
+        val directory: String =
+            when {
+                name.startsWith("androidNative") && target == "android" -> {
+                    val type = name.substringAfter("androidNative").decapitalize()
+                    "androidNative/$type"
+                }
+                target != null -> {
+                    val type = name.substringAfter(target).decapitalize()
+                    "$target/$type"
+                }
+                else -> name
             }
-            target != null -> {
-                val type = name.substringAfter(target).decapitalize()
-                "$target/$type"
-            }
-            else -> name
-        }
-    return directory
-}
+        directory
+    }
 
 private val SourceSet.kotlin: SourceDirectorySet
     get() = (this as ExtensionAware).extensions.getByName("kotlin") as SourceDirectorySet

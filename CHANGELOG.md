@@ -10,11 +10,15 @@
 
 ### Fixed
 
-- source sets configuration being too late
-
 ### Removed
 
 ### Updated
+
+## [0.7.2] - 2024-08-03
+
+### Fixed
+
+- source sets configuration being too late
 
 ## [0.7.1] - 2024-07-25
 
@@ -118,7 +122,9 @@
 
 - `allTests` task
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.1...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.2...HEAD
+
+[0.7.2]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.1...p0.7.2
 
 [0.7.1]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.0...p0.7.1
 

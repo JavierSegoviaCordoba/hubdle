@@ -14,6 +14,23 @@
 
 ### Updated
 
+- `org.jetbrains.kotlin.plugin.compose:org.jetbrains.kotlin.plugin.compose.gradle.plugin -> 2.0.10`
+- `org.jetbrains.kotlin.jvm:org.jetbrains.kotlin.jvm.gradle.plugin -> 2.0.10`
+- `org.jetbrains.kotlin.android:org.jetbrains.kotlin.android.gradle.plugin -> 2.0.10`
+- `org.jetbrains.kotlin:kotlin-test-testng -> 2.0.10`
+- `org.jetbrains.kotlin:kotlin-test-junit5 -> 2.0.10`
+- `org.jetbrains.kotlin:kotlin-test-junit -> 2.0.10`
+- `org.jetbrains.kotlin:kotlin-test-annotations-common -> 2.0.10`
+- `org.jetbrains.kotlin:kotlin-test -> 2.0.10`
+- `org.jetbrains.kotlin:kotlin-serialization -> 2.0.10`
+- `org.jetbrains.kotlin:kotlin-script-runtime -> 2.0.10`
+- `org.jetbrains.kotlin:kotlin-reflect -> 2.0.10`
+- `org.jetbrains.kotlin:kotlin-gradle-plugin-api -> 2.0.10`
+- `org.jetbrains.kotlin:kotlin-gradle-plugin -> 2.0.10`
+- `org.jetbrains.kotlin:kotlin-compiler-internal-test-framework -> 2.0.10`
+- `org.jetbrains.kotlin:kotlin-compiler-embeddable -> 2.0.10`
+- `org.jetbrains.kotlin:kotlin-compiler -> 2.0.10`
+- `org.jetbrains.kotlin:kotlin-annotations-jvm -> 2.0.10`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.7.2`
 
 ## [0.3.2] - 2024-08-03

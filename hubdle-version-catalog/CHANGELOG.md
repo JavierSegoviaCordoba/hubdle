@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `androidx.compose.compiler:compiler -> 1.5.15`
 - `org.jetbrains.kotlin.plugin.compose:org.jetbrains.kotlin.plugin.compose.gradle.plugin -> 2.0.10`
 - `org.jetbrains.kotlin.jvm:org.jetbrains.kotlin.jvm.gradle.plugin -> 2.0.10`
 - `org.jetbrains.kotlin.android:org.jetbrains.kotlin.android.gradle.plugin -> 2.0.10`

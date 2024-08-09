@@ -14,6 +14,9 @@
 
 ### Updated
 
+- `com.android.library:com.android.library.gradle.plugin -> 8.5.2`
+- `com.android.application:com.android.application.gradle.plugin -> 8.5.2`
+- `com.android.tools.build:gradle -> 8.5.2`
 - `androidx.compose.compiler:compiler -> 1.5.15`
 - `org.jetbrains.kotlin.plugin.compose:org.jetbrains.kotlin.plugin.compose.gradle.plugin -> 2.0.10`
 - `org.jetbrains.kotlin.jvm:org.jetbrains.kotlin.jvm.gradle.plugin -> 2.0.10`

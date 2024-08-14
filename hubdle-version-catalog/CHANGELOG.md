@@ -14,6 +14,15 @@
 
 ### Updated
 
+- `gradle -> 8.10`
+- `org.junit.platform:junit-platform-suite-api -> 1.11.0`
+- `org.junit.platform:junit-platform-runner -> 1.11.0`
+- `org.junit.platform:junit-platform-launcher -> 1.11.0`
+- `org.junit.platform:junit-platform-commons -> 1.11.0`
+- `org.junit.jupiter:junit-jupiter-params -> 5.11.0`
+- `org.junit.jupiter:junit-jupiter-api -> 5.11.0`
+- `org.junit.jupiter:junit-jupiter -> 5.11.0`
+- `org.junit:junit-bom -> 5.11.0`
 - `com.javiersc.semver:com.javiersc.semver.gradle.plugin -> 0.6.0`
 - `com.android.library:com.android.library.gradle.plugin -> 8.5.2`
 - `com.android.application:com.android.application.gradle.plugin -> 8.5.2`

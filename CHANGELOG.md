@@ -10,11 +10,15 @@
 
 ### Fixed
 
-- `mapVersion` signature 
-
 ### Removed
 
 ### Updated
+
+## [0.7.5] - 2024-08-15
+
+### Fixed
+
+- `mapVersion` signature
 
 ## [0.7.4] - 2024-08-15
 
@@ -136,7 +140,9 @@
 
 - `allTests` task
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.4...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.5...HEAD
+
+[0.7.5]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.4...p0.7.5
 
 [0.7.4]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.3...p0.7.4
 

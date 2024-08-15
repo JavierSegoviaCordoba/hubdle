@@ -14,6 +14,8 @@
 
 ### Updated
 
+- dependencies
+
 ## [0.7.3] - 2024-08-15
 
 ### Updated

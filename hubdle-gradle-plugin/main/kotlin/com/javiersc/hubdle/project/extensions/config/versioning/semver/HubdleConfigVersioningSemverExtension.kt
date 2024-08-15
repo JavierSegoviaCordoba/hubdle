@@ -2,7 +2,6 @@ package com.javiersc.hubdle.project.extensions.config.versioning.semver
 
 import com.javiersc.gradle.project.extensions.isRootProject
 import com.javiersc.gradle.properties.extensions.getStringProperty
-import com.javiersc.gradle.version.GradleVersion
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.PluginId
@@ -32,8 +31,12 @@ constructor(
 
     public val tagPrefix: Property<String> = defaultTagPrefix()
 
-    public fun mapVersion(gradleVersion: (GradleVersion) -> String) {
-        lazyConfigurable { the<SemverExtension>().mapVersion(gradleVersion) }
+    public fun mapVersion(action: SemverExtension.VersionMapper) {
+        lazyConfigurable { the<SemverExtension>().mapVersion(action) }
+    }
+
+    public fun mapVersion(action: SemverExtension.VersionAndGitMapper) {
+        lazyConfigurable { the<SemverExtension>().mapVersion(action) }
     }
 
     @HubdleDslMarker

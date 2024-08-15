@@ -10,6 +10,8 @@
 
 ### Fixed
 
+- `mapVersion` signature 
+
 ### Removed
 
 ### Updated

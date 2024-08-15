@@ -14,6 +14,9 @@
 
 ### Updated
 
+- `com.javiersc.semver:com.javiersc.semver.gradle.plugin -> 0.6.2`
+- `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.7.3`
+
 ## [0.3.3] - 2024-08-15
 
 ### Updated

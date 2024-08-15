@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx:kotlinx-io-core -> 0.5.2`
 - `com.javiersc.semver:com.javiersc.semver.gradle.plugin -> 0.6.2`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.7.3`
 

@@ -2,7 +2,6 @@ package com.javiersc.hubdle.project.extensions.shared.features
 
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
-import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.BaseHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
@@ -10,6 +9,7 @@ import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
 import com.javiersc.hubdle.project.extensions.java.hubdleJava
 import com.javiersc.hubdle.project.extensions.kotlin.jvm.hubdleKotlinJvm
+import com.javiersc.hubdle.project.extensions.shared.PluginId
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project

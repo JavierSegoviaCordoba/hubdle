@@ -3,7 +3,6 @@ package com.javiersc.hubdle.project.extensions.config.nexus
 import com.javiersc.gradle.properties.extensions.getStringProperty
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
-import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.fallbackAction
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
@@ -11,6 +10,7 @@ import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.config.hubdleConfig
 import com.javiersc.hubdle.project.extensions.config.publishing.tasks.CheckIsSemverTask
 import com.javiersc.hubdle.project.extensions.config.versioning.semver._internal.isTagPrefixProject
+import com.javiersc.hubdle.project.extensions.shared.PluginId
 import io.github.gradlenexus.publishplugin.NexusPublishException
 import io.github.gradlenexus.publishplugin.NexusPublishExtension
 import java.net.URI

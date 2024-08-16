@@ -8,8 +8,8 @@ import com.javiersc.hubdle.project.extensions._internal.Configurable.After
 import com.javiersc.hubdle.project.extensions._internal.Configurable.Before
 import com.javiersc.hubdle.project.extensions._internal.Configurable.Lazy
 import com.javiersc.hubdle.project.extensions._internal.HubdleState
-import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.hubdleState
+import com.javiersc.hubdle.project.extensions.shared.PluginId
 import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.provider.ListProperty

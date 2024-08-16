@@ -5,12 +5,12 @@ import com.javiersc.gradle.project.extensions.isRootProject
 import com.javiersc.gradle.tasks.extensions.maybeNamed
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
-import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.fallbackAction
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.config.hubdleConfig
+import com.javiersc.hubdle.project.extensions.shared.PluginId
 import com.javiersc.hubdle.project.tasks.lifecycle.FixChecksTask
 import javax.inject.Inject
 import kotlinx.validation.ApiValidationExtension

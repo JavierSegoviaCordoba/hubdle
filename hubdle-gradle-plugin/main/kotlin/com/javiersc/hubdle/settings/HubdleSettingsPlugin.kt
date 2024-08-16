@@ -3,11 +3,11 @@ package com.javiersc.hubdle.settings
 import com.gradle.develocity.agent.gradle.DevelocityConfiguration
 import com.javiersc.gradle.properties.extensions.getStringProperty
 import com.javiersc.gradle.properties.extensions.provider
-import com.javiersc.hubdle.project.extensions._internal.PluginId
-import com.javiersc.hubdle.project.extensions._internal.PluginId.JetbrainsKotlinxKover
 import com.javiersc.hubdle.project.extensions._internal.hubdleCatalog
 import com.javiersc.hubdle.project.extensions._internal.library
 import com.javiersc.hubdle.project.extensions.config.HubdleConfigExtension.ProjectConfig
+import com.javiersc.hubdle.project.extensions.shared.PluginId
+import com.javiersc.hubdle.project.extensions.shared.PluginId.JetbrainsKotlinxKover
 import com.javiersc.hubdle.settings.extensions.extractedBuildProjects
 import com.javiersc.hubdle.settings.extensions.extractedProjects
 import com.javiersc.hubdle.settings.tasks.GenerateHubdleCatalogTask

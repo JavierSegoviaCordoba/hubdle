@@ -3,7 +3,6 @@ package com.javiersc.hubdle.project.extensions.config.documentation.site
 import com.javiersc.gradle.project.extensions.isRootProject
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
-import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.fallbackAction
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
@@ -11,6 +10,7 @@ import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
 import com.javiersc.hubdle.project.extensions.config.documentation.hubdleDocumentation
 import com.javiersc.hubdle.project.extensions.config.documentation.site.analysis.HubdleConfigDocumentationSiteAnalysisExtension
+import com.javiersc.hubdle.project.extensions.shared.PluginId
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project

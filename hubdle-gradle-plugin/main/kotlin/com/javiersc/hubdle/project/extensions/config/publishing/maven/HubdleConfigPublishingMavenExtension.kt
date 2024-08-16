@@ -7,7 +7,6 @@ import com.javiersc.gradle.tasks.extensions.maybeRegister
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.Configurable
-import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.fallbackAction
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
@@ -16,6 +15,7 @@ import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
 import com.javiersc.hubdle.project.extensions.config.publishing.hubdlePublishing
 import com.javiersc.hubdle.project.extensions.config.publishing.tasks.CheckIsSemverTask
 import com.javiersc.hubdle.project.extensions.config.versioning.semver._internal.isTagPrefixProject
+import com.javiersc.hubdle.project.extensions.shared.PluginId
 import com.javiersc.hubdle.project.extensions.shared.features.gradle.hubdleGradlePluginFeature
 import javax.inject.Inject
 import org.gradle.api.Action

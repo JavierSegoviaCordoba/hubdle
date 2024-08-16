@@ -89,17 +89,20 @@ public final class com/javiersc/hubdle/project/extensions/apis/BaseHubdleEnablea
 	public static fun enabled (Lcom/javiersc/hubdle/project/extensions/apis/BaseHubdleEnableableExtension;Z)V
 	public static synthetic fun enabled$default (Lcom/javiersc/hubdle/project/extensions/apis/BaseHubdleEnableableExtension;Lorg/gradle/api/provider/Provider;ILjava/lang/Object;)V
 	public static synthetic fun enabled$default (Lcom/javiersc/hubdle/project/extensions/apis/BaseHubdleEnableableExtension;ZILjava/lang/Object;)V
+	public static fun withPlugin (Lcom/javiersc/hubdle/project/extensions/apis/BaseHubdleEnableableExtension;Lcom/javiersc/hubdle/project/extensions/shared/PluginId;Lorg/gradle/api/Action;)V
 	public static fun withPlugin (Lcom/javiersc/hubdle/project/extensions/apis/BaseHubdleEnableableExtension;Ljava/lang/String;Lorg/gradle/api/Action;)V
 	public static fun withPlugins (Lcom/javiersc/hubdle/project/extensions/apis/BaseHubdleEnableableExtension;[Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 }
 
 public abstract interface class com/javiersc/hubdle/project/extensions/apis/BaseHubdleExtension {
 	public abstract fun getProject ()Lorg/gradle/api/Project;
+	public abstract fun withPlugin (Lcom/javiersc/hubdle/project/extensions/shared/PluginId;Lorg/gradle/api/Action;)V
 	public abstract fun withPlugin (Ljava/lang/String;Lorg/gradle/api/Action;)V
 	public abstract fun withPlugins ([Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 }
 
 public final class com/javiersc/hubdle/project/extensions/apis/BaseHubdleExtension$DefaultImpls {
+	public static fun withPlugin (Lcom/javiersc/hubdle/project/extensions/apis/BaseHubdleExtension;Lcom/javiersc/hubdle/project/extensions/shared/PluginId;Lorg/gradle/api/Action;)V
 	public static fun withPlugin (Lcom/javiersc/hubdle/project/extensions/apis/BaseHubdleExtension;Ljava/lang/String;Lorg/gradle/api/Action;)V
 	public static fun withPlugins (Lcom/javiersc/hubdle/project/extensions/apis/BaseHubdleExtension;[Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 }
@@ -113,6 +116,7 @@ public abstract class com/javiersc/hubdle/project/extensions/apis/HubdleEnableab
 	public fun enabled (Lorg/gradle/api/provider/Provider;)V
 	public fun enabled (Z)V
 	public fun getProject ()Lorg/gradle/api/Project;
+	public fun withPlugin (Lcom/javiersc/hubdle/project/extensions/shared/PluginId;Lorg/gradle/api/Action;)V
 	public fun withPlugin (Ljava/lang/String;Lorg/gradle/api/Action;)V
 	public fun withPlugins ([Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 }
@@ -895,6 +899,7 @@ public final class com/javiersc/hubdle/project/extensions/java/features/HubdleJa
 	public static fun javaVersion (Lcom/javiersc/hubdle/project/extensions/java/features/HubdleJavaDelegateFeaturesExtension;Lorg/gradle/api/JavaVersion;)V
 	public static fun jvmToolchain (Lcom/javiersc/hubdle/project/extensions/java/features/HubdleJavaDelegateFeaturesExtension;Lorg/gradle/api/Action;)V
 	public static fun jvmVersion (Lcom/javiersc/hubdle/project/extensions/java/features/HubdleJavaDelegateFeaturesExtension;Lorg/gradle/api/JavaVersion;)V
+	public static fun withPlugin (Lcom/javiersc/hubdle/project/extensions/java/features/HubdleJavaDelegateFeaturesExtension;Lcom/javiersc/hubdle/project/extensions/shared/PluginId;Lorg/gradle/api/Action;)V
 	public static fun withPlugin (Lcom/javiersc/hubdle/project/extensions/java/features/HubdleJavaDelegateFeaturesExtension;Ljava/lang/String;Lorg/gradle/api/Action;)V
 	public static fun withPlugins (Lcom/javiersc/hubdle/project/extensions/java/features/HubdleJavaDelegateFeaturesExtension;[Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 }
@@ -1030,6 +1035,7 @@ public final class com/javiersc/hubdle/project/extensions/kotlin/android/applica
 	public static fun molecule (Lcom/javiersc/hubdle/project/extensions/kotlin/android/application/features/HubdleKotlinAndroidApplicationDelegateFeaturesExtension;Lorg/gradle/api/Action;)V
 	public static fun serialization (Lcom/javiersc/hubdle/project/extensions/kotlin/android/application/features/HubdleKotlinAndroidApplicationDelegateFeaturesExtension;Lorg/gradle/api/Action;)V
 	public static fun sqldelight (Lcom/javiersc/hubdle/project/extensions/kotlin/android/application/features/HubdleKotlinAndroidApplicationDelegateFeaturesExtension;Lorg/gradle/api/Action;)V
+	public static fun withPlugin (Lcom/javiersc/hubdle/project/extensions/kotlin/android/application/features/HubdleKotlinAndroidApplicationDelegateFeaturesExtension;Lcom/javiersc/hubdle/project/extensions/shared/PluginId;Lorg/gradle/api/Action;)V
 	public static fun withPlugin (Lcom/javiersc/hubdle/project/extensions/kotlin/android/application/features/HubdleKotlinAndroidApplicationDelegateFeaturesExtension;Ljava/lang/String;Lorg/gradle/api/Action;)V
 	public static fun withPlugins (Lcom/javiersc/hubdle/project/extensions/kotlin/android/application/features/HubdleKotlinAndroidApplicationDelegateFeaturesExtension;[Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 }
@@ -1128,6 +1134,7 @@ public final class com/javiersc/hubdle/project/extensions/kotlin/android/library
 	public static fun molecule (Lcom/javiersc/hubdle/project/extensions/kotlin/android/library/features/HubdleKotlinAndroidLibraryDelegateFeaturesExtension;Lorg/gradle/api/Action;)V
 	public static fun serialization (Lcom/javiersc/hubdle/project/extensions/kotlin/android/library/features/HubdleKotlinAndroidLibraryDelegateFeaturesExtension;Lorg/gradle/api/Action;)V
 	public static fun sqldelight (Lcom/javiersc/hubdle/project/extensions/kotlin/android/library/features/HubdleKotlinAndroidLibraryDelegateFeaturesExtension;Lorg/gradle/api/Action;)V
+	public static fun withPlugin (Lcom/javiersc/hubdle/project/extensions/kotlin/android/library/features/HubdleKotlinAndroidLibraryDelegateFeaturesExtension;Lcom/javiersc/hubdle/project/extensions/shared/PluginId;Lorg/gradle/api/Action;)V
 	public static fun withPlugin (Lcom/javiersc/hubdle/project/extensions/kotlin/android/library/features/HubdleKotlinAndroidLibraryDelegateFeaturesExtension;Ljava/lang/String;Lorg/gradle/api/Action;)V
 	public static fun withPlugins (Lcom/javiersc/hubdle/project/extensions/kotlin/android/library/features/HubdleKotlinAndroidLibraryDelegateFeaturesExtension;[Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 }
@@ -1181,6 +1188,7 @@ public final class com/javiersc/hubdle/project/extensions/kotlin/features/shared
 	public static fun compose (Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinComposeDelegateFeatureExtension;Lorg/gradle/api/Action;)V
 	public static synthetic fun compose$default (Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinComposeDelegateFeatureExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 	public static fun getCompose (Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinComposeDelegateFeatureExtension;)Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinComposeFeatureExtension;
+	public static fun withPlugin (Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinComposeDelegateFeatureExtension;Lcom/javiersc/hubdle/project/extensions/shared/PluginId;Lorg/gradle/api/Action;)V
 	public static fun withPlugin (Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinComposeDelegateFeatureExtension;Ljava/lang/String;Lorg/gradle/api/Action;)V
 	public static fun withPlugins (Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinComposeDelegateFeatureExtension;[Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 }
@@ -1205,6 +1213,7 @@ public final class com/javiersc/hubdle/project/extensions/kotlin/features/shared
 	public static fun contextReceivers (Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinContextReceiversDelegateFeatureExtension;Lorg/gradle/api/Action;)V
 	public static synthetic fun contextReceivers$default (Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinContextReceiversDelegateFeatureExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 	public static fun getContextReceivers (Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinContextReceiversDelegateFeatureExtension;)Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinContextReceiversFeatureExtension;
+	public static fun withPlugin (Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinContextReceiversDelegateFeatureExtension;Lcom/javiersc/hubdle/project/extensions/shared/PluginId;Lorg/gradle/api/Action;)V
 	public static fun withPlugin (Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinContextReceiversDelegateFeatureExtension;Ljava/lang/String;Lorg/gradle/api/Action;)V
 	public static fun withPlugins (Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinContextReceiversDelegateFeatureExtension;[Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 }
@@ -1223,6 +1232,7 @@ public final class com/javiersc/hubdle/project/extensions/kotlin/features/shared
 	public static fun coroutines (Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinCoroutinesDelegateFeatureExtension;Lorg/gradle/api/Action;)V
 	public static synthetic fun coroutines$default (Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinCoroutinesDelegateFeatureExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 	public static fun getCoroutines (Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinCoroutinesDelegateFeatureExtension;)Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinCoroutinesFeatureExtension;
+	public static fun withPlugin (Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinCoroutinesDelegateFeatureExtension;Lcom/javiersc/hubdle/project/extensions/shared/PluginId;Lorg/gradle/api/Action;)V
 	public static fun withPlugin (Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinCoroutinesDelegateFeatureExtension;Ljava/lang/String;Lorg/gradle/api/Action;)V
 	public static fun withPlugins (Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinCoroutinesDelegateFeatureExtension;[Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 }
@@ -1246,6 +1256,7 @@ public final class com/javiersc/hubdle/project/extensions/kotlin/features/shared
 	public static fun extendedStdlib (Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinExtendedStdlibDelegateFeatureExtension;Lorg/gradle/api/Action;)V
 	public static synthetic fun extendedStdlib$default (Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinExtendedStdlibDelegateFeatureExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 	public static fun getExtendedStdlib (Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinExtendedStdlibDelegateFeatureExtension;)Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinExtendedStdlibFeatureExtension;
+	public static fun withPlugin (Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinExtendedStdlibDelegateFeatureExtension;Lcom/javiersc/hubdle/project/extensions/shared/PluginId;Lorg/gradle/api/Action;)V
 	public static fun withPlugin (Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinExtendedStdlibDelegateFeatureExtension;Ljava/lang/String;Lorg/gradle/api/Action;)V
 	public static fun withPlugins (Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinExtendedStdlibDelegateFeatureExtension;[Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 }
@@ -1264,6 +1275,7 @@ public final class com/javiersc/hubdle/project/extensions/kotlin/features/shared
 	public static fun getKotest (Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinKotestDelegateFeatureExtension;)Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinKotestFeatureExtension;
 	public static fun kotest (Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinKotestDelegateFeatureExtension;Lorg/gradle/api/Action;)V
 	public static synthetic fun kotest$default (Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinKotestDelegateFeatureExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+	public static fun withPlugin (Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinKotestDelegateFeatureExtension;Lcom/javiersc/hubdle/project/extensions/shared/PluginId;Lorg/gradle/api/Action;)V
 	public static fun withPlugin (Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinKotestDelegateFeatureExtension;Ljava/lang/String;Lorg/gradle/api/Action;)V
 	public static fun withPlugins (Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinKotestDelegateFeatureExtension;[Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 }
@@ -1282,6 +1294,7 @@ public final class com/javiersc/hubdle/project/extensions/kotlin/features/shared
 	public static fun getMolecule (Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinMoleculeDelegateFeatureExtension;)Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinMoleculeFeatureExtension;
 	public static fun molecule (Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinMoleculeDelegateFeatureExtension;Lorg/gradle/api/Action;)V
 	public static synthetic fun molecule$default (Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinMoleculeDelegateFeatureExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+	public static fun withPlugin (Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinMoleculeDelegateFeatureExtension;Lcom/javiersc/hubdle/project/extensions/shared/PluginId;Lorg/gradle/api/Action;)V
 	public static fun withPlugin (Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinMoleculeDelegateFeatureExtension;Ljava/lang/String;Lorg/gradle/api/Action;)V
 	public static fun withPlugins (Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinMoleculeDelegateFeatureExtension;[Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 }
@@ -1300,6 +1313,7 @@ public final class com/javiersc/hubdle/project/extensions/kotlin/features/shared
 	public static fun getSerialization (Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinSerializationDelegateFeatureExtension;)Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinSerializationFeatureExtension;
 	public static fun serialization (Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinSerializationDelegateFeatureExtension;Lorg/gradle/api/Action;)V
 	public static synthetic fun serialization$default (Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinSerializationDelegateFeatureExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+	public static fun withPlugin (Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinSerializationDelegateFeatureExtension;Lcom/javiersc/hubdle/project/extensions/shared/PluginId;Lorg/gradle/api/Action;)V
 	public static fun withPlugin (Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinSerializationDelegateFeatureExtension;Ljava/lang/String;Lorg/gradle/api/Action;)V
 	public static fun withPlugins (Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinSerializationDelegateFeatureExtension;[Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 }
@@ -1327,6 +1341,7 @@ public final class com/javiersc/hubdle/project/extensions/kotlin/features/shared
 	public static fun getSqldelight (Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinSqlDelightDelegateFeatureExtension;)Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinSqlDelightFeatureExtension;
 	public static fun sqldelight (Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinSqlDelightDelegateFeatureExtension;Lorg/gradle/api/Action;)V
 	public static synthetic fun sqldelight$default (Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinSqlDelightDelegateFeatureExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+	public static fun withPlugin (Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinSqlDelightDelegateFeatureExtension;Lcom/javiersc/hubdle/project/extensions/shared/PluginId;Lorg/gradle/api/Action;)V
 	public static fun withPlugin (Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinSqlDelightDelegateFeatureExtension;Ljava/lang/String;Lorg/gradle/api/Action;)V
 	public static fun withPlugins (Lcom/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinSqlDelightDelegateFeatureExtension;[Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 }
@@ -1370,6 +1385,7 @@ public final class com/javiersc/hubdle/project/extensions/kotlin/jvm/features/Hu
 	public static fun compiler (Lcom/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKotlinCompilerPluginDelegateFeatureExtension;Lorg/gradle/api/Action;)V
 	public static synthetic fun compiler$default (Lcom/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKotlinCompilerPluginDelegateFeatureExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 	public static fun getCompiler (Lcom/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKotlinCompilerPluginDelegateFeatureExtension;)Lcom/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKotlinCompilerPluginFeatureExtension;
+	public static fun withPlugin (Lcom/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKotlinCompilerPluginDelegateFeatureExtension;Lcom/javiersc/hubdle/project/extensions/shared/PluginId;Lorg/gradle/api/Action;)V
 	public static fun withPlugin (Lcom/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKotlinCompilerPluginDelegateFeatureExtension;Ljava/lang/String;Lorg/gradle/api/Action;)V
 	public static fun withPlugins (Lcom/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKotlinCompilerPluginDelegateFeatureExtension;[Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 }
@@ -1433,6 +1449,7 @@ public final class com/javiersc/hubdle/project/extensions/kotlin/jvm/features/Hu
 	public static fun molecule (Lcom/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKotlinJvmDelegateFeaturesExtension;Lorg/gradle/api/Action;)V
 	public static fun serialization (Lcom/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKotlinJvmDelegateFeaturesExtension;Lorg/gradle/api/Action;)V
 	public static fun sqldelight (Lcom/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKotlinJvmDelegateFeaturesExtension;Lorg/gradle/api/Action;)V
+	public static fun withPlugin (Lcom/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKotlinJvmDelegateFeaturesExtension;Lcom/javiersc/hubdle/project/extensions/shared/PluginId;Lorg/gradle/api/Action;)V
 	public static fun withPlugin (Lcom/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKotlinJvmDelegateFeaturesExtension;Ljava/lang/String;Lorg/gradle/api/Action;)V
 	public static fun withPlugins (Lcom/javiersc/hubdle/project/extensions/kotlin/jvm/features/HubdleKotlinJvmDelegateFeaturesExtension;[Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 }
@@ -1562,6 +1579,7 @@ public final class com/javiersc/hubdle/project/extensions/kotlin/multiplatform/f
 	public static fun molecule (Lcom/javiersc/hubdle/project/extensions/kotlin/multiplatform/features/HubdleKotlinMultiplatformDelegateFeaturesExtension;Lorg/gradle/api/Action;)V
 	public static fun serialization (Lcom/javiersc/hubdle/project/extensions/kotlin/multiplatform/features/HubdleKotlinMultiplatformDelegateFeaturesExtension;Lorg/gradle/api/Action;)V
 	public static fun sqldelight (Lcom/javiersc/hubdle/project/extensions/kotlin/multiplatform/features/HubdleKotlinMultiplatformDelegateFeaturesExtension;Lorg/gradle/api/Action;)V
+	public static fun withPlugin (Lcom/javiersc/hubdle/project/extensions/kotlin/multiplatform/features/HubdleKotlinMultiplatformDelegateFeaturesExtension;Lcom/javiersc/hubdle/project/extensions/shared/PluginId;Lorg/gradle/api/Action;)V
 	public static fun withPlugin (Lcom/javiersc/hubdle/project/extensions/kotlin/multiplatform/features/HubdleKotlinMultiplatformDelegateFeaturesExtension;Ljava/lang/String;Lorg/gradle/api/Action;)V
 	public static fun withPlugins (Lcom/javiersc/hubdle/project/extensions/kotlin/multiplatform/features/HubdleKotlinMultiplatformDelegateFeaturesExtension;[Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 }
@@ -1602,6 +1620,7 @@ public final class com/javiersc/hubdle/project/extensions/kotlin/multiplatform/f
 	public static fun getMinimumTargetPerOs (Lcom/javiersc/hubdle/project/extensions/kotlin/multiplatform/features/HubdleKotlinMultiplatformMinimumTargetPerOsDelegateFeatureExtension;)Lcom/javiersc/hubdle/project/extensions/kotlin/multiplatform/features/HubdleKotlinMultiplatformMinimumTargetPerOsFeatureExtension;
 	public static fun minimumTargetPerOs (Lcom/javiersc/hubdle/project/extensions/kotlin/multiplatform/features/HubdleKotlinMultiplatformMinimumTargetPerOsDelegateFeatureExtension;Lorg/gradle/api/Action;)V
 	public static synthetic fun minimumTargetPerOs$default (Lcom/javiersc/hubdle/project/extensions/kotlin/multiplatform/features/HubdleKotlinMultiplatformMinimumTargetPerOsDelegateFeatureExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+	public static fun withPlugin (Lcom/javiersc/hubdle/project/extensions/kotlin/multiplatform/features/HubdleKotlinMultiplatformMinimumTargetPerOsDelegateFeatureExtension;Lcom/javiersc/hubdle/project/extensions/shared/PluginId;Lorg/gradle/api/Action;)V
 	public static fun withPlugin (Lcom/javiersc/hubdle/project/extensions/kotlin/multiplatform/features/HubdleKotlinMultiplatformMinimumTargetPerOsDelegateFeatureExtension;Ljava/lang/String;Lorg/gradle/api/Action;)V
 	public static fun withPlugins (Lcom/javiersc/hubdle/project/extensions/kotlin/multiplatform/features/HubdleKotlinMultiplatformMinimumTargetPerOsDelegateFeatureExtension;[Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 }
@@ -2121,6 +2140,44 @@ public final class com/javiersc/hubdle/project/extensions/shared/HubdleGradleDep
 	public static fun localGroovy (Lcom/javiersc/hubdle/project/extensions/shared/HubdleGradleDependencies;Lorg/gradle/api/Project;)Lorg/gradle/api/artifacts/Dependency;
 }
 
+public final class com/javiersc/hubdle/project/extensions/shared/PluginId : java/lang/Enum {
+	public static final field AdarshrTestLogger Lcom/javiersc/hubdle/project/extensions/shared/PluginId;
+	public static final field AndroidApplication Lcom/javiersc/hubdle/project/extensions/shared/PluginId;
+	public static final field AndroidLibrary Lcom/javiersc/hubdle/project/extensions/shared/PluginId;
+	public static final field Detekt Lcom/javiersc/hubdle/project/extensions/shared/PluginId;
+	public static final field DiffplugSpotless Lcom/javiersc/hubdle/project/extensions/shared/PluginId;
+	public static final field GithubGradleNexusPublishPlugin Lcom/javiersc/hubdle/project/extensions/shared/PluginId;
+	public static final field GradleApplication Lcom/javiersc/hubdle/project/extensions/shared/PluginId;
+	public static final field GradleJava Lcom/javiersc/hubdle/project/extensions/shared/PluginId;
+	public static final field GradlePluginPublish Lcom/javiersc/hubdle/project/extensions/shared/PluginId;
+	public static final field GradleSigning Lcom/javiersc/hubdle/project/extensions/shared/PluginId;
+	public static final field GradleVersionCatalog Lcom/javiersc/hubdle/project/extensions/shared/PluginId;
+	public static final field JavaGradlePlugin Lcom/javiersc/hubdle/project/extensions/shared/PluginId;
+	public static final field JavaTestFixtures Lcom/javiersc/hubdle/project/extensions/shared/PluginId;
+	public static final field JavierscHubdle Lcom/javiersc/hubdle/project/extensions/shared/PluginId;
+	public static final field JavierscSemverGradlePlugin Lcom/javiersc/hubdle/project/extensions/shared/PluginId;
+	public static final field JetbrainsChangelog Lcom/javiersc/hubdle/project/extensions/shared/PluginId;
+	public static final field JetbrainsCompose Lcom/javiersc/hubdle/project/extensions/shared/PluginId;
+	public static final field JetbrainsDokka Lcom/javiersc/hubdle/project/extensions/shared/PluginId;
+	public static final field JetbrainsIntellij Lcom/javiersc/hubdle/project/extensions/shared/PluginId;
+	public static final field JetbrainsKotlinAndroid Lcom/javiersc/hubdle/project/extensions/shared/PluginId;
+	public static final field JetbrainsKotlinJvm Lcom/javiersc/hubdle/project/extensions/shared/PluginId;
+	public static final field JetbrainsKotlinMultiplatform Lcom/javiersc/hubdle/project/extensions/shared/PluginId;
+	public static final field JetbrainsKotlinPluginCompose Lcom/javiersc/hubdle/project/extensions/shared/PluginId;
+	public static final field JetbrainsKotlinPluginSerialization Lcom/javiersc/hubdle/project/extensions/shared/PluginId;
+	public static final field JetbrainsKotlinxBinaryCompatibilityValidator Lcom/javiersc/hubdle/project/extensions/shared/PluginId;
+	public static final field JetbrainsKotlinxKover Lcom/javiersc/hubdle/project/extensions/shared/PluginId;
+	public static final field MavenPublish Lcom/javiersc/hubdle/project/extensions/shared/PluginId;
+	public static final field Sonarqube Lcom/javiersc/hubdle/project/extensions/shared/PluginId;
+	public static final field SqlDelight Lcom/javiersc/hubdle/project/extensions/shared/PluginId;
+	public static final field VyarusMkdocsBuild Lcom/javiersc/hubdle/project/extensions/shared/PluginId;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public final fun getId ()Ljava/lang/String;
+	public fun toString ()Ljava/lang/String;
+	public static fun valueOf (Ljava/lang/String;)Lcom/javiersc/hubdle/project/extensions/shared/PluginId;
+	public static fun values ()[Lcom/javiersc/hubdle/project/extensions/shared/PluginId;
+}
+
 public abstract interface class com/javiersc/hubdle/project/extensions/shared/android/HubdleAndroidDelegateSharedApis {
 	public abstract fun buildFeatures (Lcom/javiersc/hubdle/project/extensions/apis/HubdleEnableableExtension;Lorg/gradle/api/Action;)V
 	public abstract fun configuration (Lcom/javiersc/hubdle/project/extensions/apis/HubdleEnableableExtension;Ljava/lang/String;Lorg/gradle/api/Action;)V
@@ -2145,6 +2202,7 @@ public final class com/javiersc/hubdle/project/extensions/shared/features/Hubdle
 	public static fun getGradle (Lcom/javiersc/hubdle/project/extensions/shared/features/HubdleGradleDelegateFeatureExtension;)Lcom/javiersc/hubdle/project/extensions/shared/features/HubdleGradleFeatureExtension;
 	public static fun gradle (Lcom/javiersc/hubdle/project/extensions/shared/features/HubdleGradleDelegateFeatureExtension;Lorg/gradle/api/Action;)V
 	public static synthetic fun gradle$default (Lcom/javiersc/hubdle/project/extensions/shared/features/HubdleGradleDelegateFeatureExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+	public static fun withPlugin (Lcom/javiersc/hubdle/project/extensions/shared/features/HubdleGradleDelegateFeatureExtension;Lcom/javiersc/hubdle/project/extensions/shared/PluginId;Lorg/gradle/api/Action;)V
 	public static fun withPlugin (Lcom/javiersc/hubdle/project/extensions/shared/features/HubdleGradleDelegateFeatureExtension;Ljava/lang/String;Lorg/gradle/api/Action;)V
 	public static fun withPlugins (Lcom/javiersc/hubdle/project/extensions/shared/features/HubdleGradleDelegateFeatureExtension;[Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 }
@@ -2171,6 +2229,7 @@ public final class com/javiersc/hubdle/project/extensions/shared/features/Hubdle
 	public static fun getIntellij (Lcom/javiersc/hubdle/project/extensions/shared/features/HubdleIntellijDelegateFeatureExtension;)Lcom/javiersc/hubdle/project/extensions/shared/features/HubdleIntellijFeatureExtension;
 	public static fun intellij (Lcom/javiersc/hubdle/project/extensions/shared/features/HubdleIntellijDelegateFeatureExtension;Lorg/gradle/api/Action;)V
 	public static synthetic fun intellij$default (Lcom/javiersc/hubdle/project/extensions/shared/features/HubdleIntellijDelegateFeatureExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+	public static fun withPlugin (Lcom/javiersc/hubdle/project/extensions/shared/features/HubdleIntellijDelegateFeatureExtension;Lcom/javiersc/hubdle/project/extensions/shared/PluginId;Lorg/gradle/api/Action;)V
 	public static fun withPlugin (Lcom/javiersc/hubdle/project/extensions/shared/features/HubdleIntellijDelegateFeatureExtension;Ljava/lang/String;Lorg/gradle/api/Action;)V
 	public static fun withPlugins (Lcom/javiersc/hubdle/project/extensions/shared/features/HubdleIntellijDelegateFeatureExtension;[Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 }
@@ -2192,6 +2251,7 @@ public final class com/javiersc/hubdle/project/extensions/shared/features/Hubdle
 	public static fun application (Lcom/javiersc/hubdle/project/extensions/shared/features/HubdleJavaApplicationDelegateFeatureExtension;Lorg/gradle/api/Action;)V
 	public static synthetic fun application$default (Lcom/javiersc/hubdle/project/extensions/shared/features/HubdleJavaApplicationDelegateFeatureExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 	public static fun getApplication (Lcom/javiersc/hubdle/project/extensions/shared/features/HubdleJavaApplicationDelegateFeatureExtension;)Lcom/javiersc/hubdle/project/extensions/shared/features/HubdleJavaApplicationFeatureExtension;
+	public static fun withPlugin (Lcom/javiersc/hubdle/project/extensions/shared/features/HubdleJavaApplicationDelegateFeatureExtension;Lcom/javiersc/hubdle/project/extensions/shared/PluginId;Lorg/gradle/api/Action;)V
 	public static fun withPlugin (Lcom/javiersc/hubdle/project/extensions/shared/features/HubdleJavaApplicationDelegateFeatureExtension;Ljava/lang/String;Lorg/gradle/api/Action;)V
 	public static fun withPlugins (Lcom/javiersc/hubdle/project/extensions/shared/features/HubdleJavaApplicationDelegateFeatureExtension;[Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 }
@@ -2212,6 +2272,7 @@ public abstract interface class com/javiersc/hubdle/project/extensions/shared/fe
 public final class com/javiersc/hubdle/project/extensions/shared/features/HubdleJavaVersionDelegateFeatureExtension$DefaultImpls {
 	public static fun getJvmVersion (Lcom/javiersc/hubdle/project/extensions/shared/features/HubdleJavaVersionDelegateFeatureExtension;)Lcom/javiersc/hubdle/project/extensions/shared/features/HubdleJavaVersionFeatureExtension;
 	public static fun jvmVersion (Lcom/javiersc/hubdle/project/extensions/shared/features/HubdleJavaVersionDelegateFeatureExtension;Lorg/gradle/api/JavaVersion;)V
+	public static fun withPlugin (Lcom/javiersc/hubdle/project/extensions/shared/features/HubdleJavaVersionDelegateFeatureExtension;Lcom/javiersc/hubdle/project/extensions/shared/PluginId;Lorg/gradle/api/Action;)V
 	public static fun withPlugin (Lcom/javiersc/hubdle/project/extensions/shared/features/HubdleJavaVersionDelegateFeatureExtension;Ljava/lang/String;Lorg/gradle/api/Action;)V
 	public static fun withPlugins (Lcom/javiersc/hubdle/project/extensions/shared/features/HubdleJavaVersionDelegateFeatureExtension;[Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 }
@@ -2234,6 +2295,7 @@ public final class com/javiersc/hubdle/project/extensions/shared/features/Hubdle
 	public static fun javaVersion (Lcom/javiersc/hubdle/project/extensions/shared/features/HubdleJvmToolchainDelegateFeatureExtension;Lorg/gradle/api/JavaVersion;)V
 	public static fun jvmToolchain (Lcom/javiersc/hubdle/project/extensions/shared/features/HubdleJvmToolchainDelegateFeatureExtension;Lorg/gradle/api/Action;)V
 	public static synthetic fun jvmToolchain$default (Lcom/javiersc/hubdle/project/extensions/shared/features/HubdleJvmToolchainDelegateFeatureExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+	public static fun withPlugin (Lcom/javiersc/hubdle/project/extensions/shared/features/HubdleJvmToolchainDelegateFeatureExtension;Lcom/javiersc/hubdle/project/extensions/shared/PluginId;Lorg/gradle/api/Action;)V
 	public static fun withPlugin (Lcom/javiersc/hubdle/project/extensions/shared/features/HubdleJvmToolchainDelegateFeatureExtension;Ljava/lang/String;Lorg/gradle/api/Action;)V
 	public static fun withPlugins (Lcom/javiersc/hubdle/project/extensions/shared/features/HubdleJvmToolchainDelegateFeatureExtension;[Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 }
@@ -2265,6 +2327,7 @@ public final class com/javiersc/hubdle/project/extensions/shared/features/gradle
 	public static fun getPlugin (Lcom/javiersc/hubdle/project/extensions/shared/features/gradle/HubdleGradlePluginDelegateFeatureExtension;)Lcom/javiersc/hubdle/project/extensions/shared/features/gradle/HubdleGradlePluginFeatureExtension;
 	public static fun plugin (Lcom/javiersc/hubdle/project/extensions/shared/features/gradle/HubdleGradlePluginDelegateFeatureExtension;Lorg/gradle/api/Action;)V
 	public static synthetic fun plugin$default (Lcom/javiersc/hubdle/project/extensions/shared/features/gradle/HubdleGradlePluginDelegateFeatureExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+	public static fun withPlugin (Lcom/javiersc/hubdle/project/extensions/shared/features/gradle/HubdleGradlePluginDelegateFeatureExtension;Lcom/javiersc/hubdle/project/extensions/shared/PluginId;Lorg/gradle/api/Action;)V
 	public static fun withPlugin (Lcom/javiersc/hubdle/project/extensions/shared/features/gradle/HubdleGradlePluginDelegateFeatureExtension;Ljava/lang/String;Lorg/gradle/api/Action;)V
 	public static fun withPlugins (Lcom/javiersc/hubdle/project/extensions/shared/features/gradle/HubdleGradlePluginDelegateFeatureExtension;[Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 }
@@ -2308,6 +2371,7 @@ public final class com/javiersc/hubdle/project/extensions/shared/features/intell
 	public static fun getPlugin (Lcom/javiersc/hubdle/project/extensions/shared/features/intellij/HubdleIntellijPluginDelegateFeatureExtension;)Lcom/javiersc/hubdle/project/extensions/shared/features/intellij/HubdleIntellijPluginFeatureExtension;
 	public static fun plugin (Lcom/javiersc/hubdle/project/extensions/shared/features/intellij/HubdleIntellijPluginDelegateFeatureExtension;Lorg/gradle/api/Action;)V
 	public static synthetic fun plugin$default (Lcom/javiersc/hubdle/project/extensions/shared/features/intellij/HubdleIntellijPluginDelegateFeatureExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+	public static fun withPlugin (Lcom/javiersc/hubdle/project/extensions/shared/features/intellij/HubdleIntellijPluginDelegateFeatureExtension;Lcom/javiersc/hubdle/project/extensions/shared/PluginId;Lorg/gradle/api/Action;)V
 	public static fun withPlugin (Lcom/javiersc/hubdle/project/extensions/shared/features/intellij/HubdleIntellijPluginDelegateFeatureExtension;Ljava/lang/String;Lorg/gradle/api/Action;)V
 	public static fun withPlugins (Lcom/javiersc/hubdle/project/extensions/shared/features/intellij/HubdleIntellijPluginDelegateFeatureExtension;[Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 }

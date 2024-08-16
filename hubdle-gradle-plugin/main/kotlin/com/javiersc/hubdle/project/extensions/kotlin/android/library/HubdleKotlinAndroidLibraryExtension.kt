@@ -3,7 +3,6 @@ package com.javiersc.hubdle.project.extensions.kotlin.android.library
 import com.android.build.api.dsl.LibraryExtension
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
-import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.configurableDependencies
 import com.javiersc.hubdle.project.extensions._internal.fallbackAction
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
@@ -15,6 +14,7 @@ import com.javiersc.hubdle.project.extensions.kotlin.android._internal.configure
 import com.javiersc.hubdle.project.extensions.kotlin.android.hubdleAndroid
 import com.javiersc.hubdle.project.extensions.kotlin.android.library.features.HubdleKotlinAndroidLibraryFeaturesExtension
 import com.javiersc.hubdle.project.extensions.kotlin.shared.HubdleKotlinMinimalSourceSetConfigurableExtension
+import com.javiersc.hubdle.project.extensions.shared.PluginId
 import com.javiersc.hubdle.project.extensions.shared.android.HubdleAndroidDelegateSharedApis
 import javax.inject.Inject
 import org.gradle.api.Action

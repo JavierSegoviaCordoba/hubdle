@@ -2,12 +2,12 @@ package com.javiersc.hubdle.project.extensions.config.coverage
 
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
-import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.fallbackAction
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.config.hubdleConfig
+import com.javiersc.hubdle.project.extensions.shared.PluginId
 import com.javiersc.hubdle.project.tasks.lifecycle.TestsTask
 import javax.inject.Inject
 import kotlinx.kover.gradle.plugin.dsl.KoverProjectExtension

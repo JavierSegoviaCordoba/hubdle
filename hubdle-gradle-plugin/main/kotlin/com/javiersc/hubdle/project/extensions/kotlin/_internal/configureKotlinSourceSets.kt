@@ -7,7 +7,6 @@ import com.javiersc.gradle.properties.extensions.setProperty
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.COMMON_MAIN
 import com.javiersc.hubdle.project.extensions._internal.MAIN
-import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.TEST_FIXTURES
 import com.javiersc.hubdle.project.extensions._internal.TEST_FUNCTIONAL
 import com.javiersc.hubdle.project.extensions._internal.TEST_INTEGRATION
@@ -15,6 +14,7 @@ import com.javiersc.hubdle.project.extensions.android._internal.findAndroidCommo
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleSourceSetConfigurableExtension as HubdleSrcSetConfExt
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.hubdleKotlinMultiplatform
+import com.javiersc.hubdle.project.extensions.shared.PluginId
 import com.javiersc.hubdle.project.tasks.lifecycle.TestsTask
 import com.javiersc.kotlin.stdlib.decapitalize
 import java.io.File

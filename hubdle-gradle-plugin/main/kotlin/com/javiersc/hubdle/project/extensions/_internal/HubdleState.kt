@@ -9,6 +9,7 @@ import com.javiersc.hubdle.project.extensions._internal.Configurable.Before
 import com.javiersc.hubdle.project.extensions._internal.Configurable.Lazy
 import com.javiersc.hubdle.project.extensions.apis.BaseHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
+import com.javiersc.hubdle.project.extensions.shared.PluginId
 import org.gradle.api.Project
 import org.gradle.api.provider.Property
 import org.gradle.api.provider.Provider
@@ -83,7 +84,8 @@ internal class HubdleState(private val project: Project) {
         for (applicablePlugin in applicablePlugins) {
             applicablePlugin.run { project.applyPlugin() }
         }
-        val ids = applicablePlugins.filter { it.isEnabled.get() }.map { it.pluginId.id }
+        val ids: List<String> =
+            applicablePlugins.filter { it.isEnabled.get() }.map { it.pluginId.id }
         project.withPlugins(*ids.toTypedArray()) {
             val beforeConfigurables = configurables.filterIsInstance<Before>()
             for (configurable in beforeConfigurables) configurable.configure()

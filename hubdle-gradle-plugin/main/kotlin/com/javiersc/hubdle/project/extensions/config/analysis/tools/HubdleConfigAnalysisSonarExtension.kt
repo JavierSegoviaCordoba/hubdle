@@ -8,13 +8,13 @@ import com.android.build.api.dsl.LibraryExtension
 import com.android.build.api.dsl.LibraryProductFlavor
 import com.javiersc.gradle.properties.extensions.getStringProperty
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin
-import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions._internal.kotlinSrcDirsWithoutBuild
 import com.javiersc.hubdle.project.extensions._internal.kotlinTestsSrcDirsWithoutBuild
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.config.analysis.hubdleAnalysis
+import com.javiersc.hubdle.project.extensions.shared.PluginId
 import com.javiersc.kotlin.stdlib.capitalize
 import java.io.File
 import javax.inject.Inject

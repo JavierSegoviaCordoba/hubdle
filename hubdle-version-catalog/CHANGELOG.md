@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.javiersc.semver:com.javiersc.semver.gradle.plugin -> 0.7.0`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.7.5`
 - `com.javiersc.kotlin:kotlin-compiler-test-extensions -> 0.2.0+2.0.10`
 - `com.javiersc.kotlin:kotlin-compiler-extensions -> 0.2.0+2.0.10`

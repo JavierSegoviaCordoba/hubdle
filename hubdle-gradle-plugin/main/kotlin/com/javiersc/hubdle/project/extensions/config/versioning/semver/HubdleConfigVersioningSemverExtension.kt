@@ -36,10 +36,6 @@ constructor(
         withSemverPlugin { it.mapVersion(action) }
     }
 
-    public fun mapVersion(action: SemverExtension.VersionAndGitMapper) {
-        withSemverPlugin { it.mapVersion(action) }
-    }
-
     @HubdleDslMarker
     public fun semver(action: Action<SemverExtension> = Action {}): Unit = withSemverPlugin(action)
 

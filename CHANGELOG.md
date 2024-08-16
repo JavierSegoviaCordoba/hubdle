@@ -13,6 +13,8 @@
 
 ### Fixed
 
+- task with name `dokkaHtmlMultiModule` not found
+
 ### Removed
 
 ### Updated

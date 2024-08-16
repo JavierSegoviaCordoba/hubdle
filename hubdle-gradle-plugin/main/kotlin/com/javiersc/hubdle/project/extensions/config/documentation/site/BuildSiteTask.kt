@@ -1,11 +1,14 @@
 package com.javiersc.hubdle.project.extensions.config.documentation.site
 
 import com.android.build.gradle.internal.tasks.factory.dependsOn
+import com.javiersc.gradle.project.extensions.withPlugins
 import com.javiersc.hubdle.project.extensions.config.documentation.api.hubdleApi
+import com.javiersc.hubdle.project.extensions.shared.PluginId
 import java.io.File
 import javax.inject.Inject
 import org.gradle.api.DefaultTask
 import org.gradle.api.Project
+import org.gradle.api.Task
 import org.gradle.api.file.FileSystemOperations
 import org.gradle.api.file.ProjectLayout
 import org.gradle.api.tasks.Input
@@ -55,24 +58,29 @@ constructor(
             val isDokkaEnabled = project.hubdleApi.isFullEnabled.get()
             val isMkdocsEnabled = project.hubdleSite.isFullEnabled.get()
 
-            fun getDokkaTask() = project.tasks.named("dokkaHtmlMultiModule")
-            fun getMkdocsBuildTask() = project.tasks.named("mkdocsBuild")
+            fun getDokkaTask(): TaskProvider<Task> = project.tasks.named("dokkaHtmlMultiModule")
+            fun getMkdocsBuildTask(): TaskProvider<Task> = project.tasks.named("mkdocsBuild")
 
-            if (isDokkaEnabled) {
-                val dokkaHtmlMultiModuleTask = getDokkaTask()
-                buildSiteTask.dependsOn(dokkaHtmlMultiModuleTask)
+            project.pluginManager.withPlugin(PluginId.JetbrainsDokka.id) {
+                if (isDokkaEnabled) {
+                    val dokkaHtmlMultiModuleTask: TaskProvider<Task> = getDokkaTask()
+                    buildSiteTask.dependsOn(dokkaHtmlMultiModuleTask)
+                }
+            }
+            project.pluginManager.withPlugin(PluginId.VyarusMkdocsBuild.id) {
+                if (isMkdocsEnabled) {
+                    val mkdocsBuildTask: TaskProvider<Task> = getMkdocsBuildTask()
+                    mkdocsBuildTask.configure { task -> task.dependsOn(preBuildSiteTask) }
+                    buildSiteTask.dependsOn(mkdocsBuildTask)
+                }
             }
 
-            if (isMkdocsEnabled) {
-                val mkdocsBuildTask = getMkdocsBuildTask()
-                mkdocsBuildTask.configure { task -> task.dependsOn(preBuildSiteTask) }
-                buildSiteTask.dependsOn(mkdocsBuildTask)
-            }
-
-            if (isDokkaEnabled && isMkdocsEnabled) {
-                val dokkaHtmlMultiModuleTask = getDokkaTask()
-                val mkdocsBuildTask = getMkdocsBuildTask()
-                dokkaHtmlMultiModuleTask.configure { task -> task.dependsOn(mkdocsBuildTask) }
+            project.withPlugins(PluginId.JetbrainsDokka.id, PluginId.VyarusMkdocsBuild.id) {
+                if (isDokkaEnabled && isMkdocsEnabled) {
+                    val dokkaHtmlMultiModuleTask: TaskProvider<Task> = getDokkaTask()
+                    val mkdocsBuildTask: TaskProvider<Task> = getMkdocsBuildTask()
+                    dokkaHtmlMultiModuleTask.configure { task -> task.dependsOn(mkdocsBuildTask) }
+                }
             }
 
             return buildSiteTask

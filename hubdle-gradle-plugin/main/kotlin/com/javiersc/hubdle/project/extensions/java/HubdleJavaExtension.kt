@@ -2,13 +2,13 @@ package com.javiersc.hubdle.project.extensions.java
 
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
-import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
 import com.javiersc.hubdle.project.extensions.java.features.HubdleJavaFeaturesExtension
 import com.javiersc.hubdle.project.extensions.kotlin._internal.normalAndGeneratedDirs
+import com.javiersc.hubdle.project.extensions.shared.PluginId
 import java.io.File
 import javax.inject.Inject
 import org.gradle.api.Action

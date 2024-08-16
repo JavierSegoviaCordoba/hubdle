@@ -6,7 +6,6 @@ import com.diffplug.gradle.spotless.SpotlessExtensionPredeclare
 import com.javiersc.gradle.project.extensions.isRootProject
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
-import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.fallbackAction
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions._internal.libraryVersion
@@ -15,6 +14,7 @@ import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.config.hubdleConfig
 import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.facebook_ktfmt
 import com.javiersc.hubdle.project.extensions.kotlin.hubdleKotlin
+import com.javiersc.hubdle.project.extensions.shared.PluginId
 import com.javiersc.hubdle.project.tasks.lifecycle.FixChecksTask
 import java.io.File
 import javax.inject.Inject

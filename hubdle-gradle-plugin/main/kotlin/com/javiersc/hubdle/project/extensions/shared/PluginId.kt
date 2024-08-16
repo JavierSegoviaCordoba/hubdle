@@ -1,6 +1,6 @@
-package com.javiersc.hubdle.project.extensions._internal
+package com.javiersc.hubdle.project.extensions.shared
 
-internal enum class PluginId(val id: String) {
+public enum class PluginId(public val id: String) {
     AdarshrTestLogger("com.adarshr.test-logger"),
     AndroidApplication("com.android.application"),
     AndroidLibrary("com.android.library"),

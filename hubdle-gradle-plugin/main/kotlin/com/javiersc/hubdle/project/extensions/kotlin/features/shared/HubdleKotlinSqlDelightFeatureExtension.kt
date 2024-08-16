@@ -4,7 +4,6 @@ import app.cash.sqldelight.gradle.SqlDelightDatabase
 import app.cash.sqldelight.gradle.SqlDelightExtension
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
-import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.fallbackAction
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions._internal.hubdleCatalog
@@ -14,6 +13,7 @@ import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
 import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.cash_sqldelight_plugin
 import com.javiersc.hubdle.project.extensions.kotlin.hubdleKotlinAny
+import com.javiersc.hubdle.project.extensions.shared.PluginId
 import javax.inject.Inject
 import kotlin.jvm.optionals.getOrNull
 import org.gradle.api.Action

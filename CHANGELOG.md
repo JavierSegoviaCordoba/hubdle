@@ -6,9 +6,14 @@
 
 ### Changed
 
+- `PluginId` visibility to `public`
+- `Semver` implementation to use `pluginManager::withPlugin`
+
 ### Deprecated
 
 ### Fixed
+
+- task with name `dokkaHtmlMultiModule` not found
 
 ### Removed
 

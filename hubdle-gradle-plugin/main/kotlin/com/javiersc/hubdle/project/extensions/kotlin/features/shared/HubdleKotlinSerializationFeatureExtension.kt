@@ -4,7 +4,6 @@ import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.COMMON_MAIN
 import com.javiersc.hubdle.project.extensions._internal.MAIN
-import com.javiersc.hubdle.project.extensions._internal.PluginId
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions._internal.library
 import com.javiersc.hubdle.project.extensions.apis.BaseHubdleExtension
@@ -17,6 +16,7 @@ import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.sof
 import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.softwork_kotlinx_serialization_flf
 import com.javiersc.hubdle.project.extensions.kotlin._internal.forKotlinSetsDependencies
 import com.javiersc.hubdle.project.extensions.kotlin.hubdleKotlinAny
+import com.javiersc.hubdle.project.extensions.shared.PluginId
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project

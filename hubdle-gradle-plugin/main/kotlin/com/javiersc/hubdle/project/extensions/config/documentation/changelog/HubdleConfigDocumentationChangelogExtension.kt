@@ -68,39 +68,41 @@ constructor(
                 task.enabled = isTagPrefixProject
             }
 
-            val patchChangelogTask: TaskProvider<PatchChangelogTask> =
-                tasks.named<PatchChangelogTask>("patchChangelog")
+            withPlugin(PluginId.JetbrainsChangelog) {
+                val patchChangelogTask: TaskProvider<PatchChangelogTask> =
+                    tasks.named<PatchChangelogTask>("patchChangelog")
 
-            patchChangelogTask.configure { task ->
-                task.enabled = isTagPrefixProject
-                task.finalizedBy(ApplyFormatChangelogTask.NAME)
+                patchChangelogTask.configure { task ->
+                    task.enabled = isTagPrefixProject
+                    task.finalizedBy(ApplyFormatChangelogTask.NAME)
+                }
+
+                tasks.register<MergeChangelogTask>(MergeChangelogTask.NAME).configure { task ->
+                    task.enabled = isTagPrefixProject
+                    task.mustRunAfter(patchChangelogTask)
+                    task.finalizedBy(ApplyFormatChangelogTask.NAME)
+                }
+
+                tasks.register<AddChangelogItemTask>(AddChangelogItemTask.NAME).configure { task ->
+                    task.enabled = isTagPrefixProject
+                    task.finalizedBy(ApplyFormatChangelogTask.NAME)
+                }
+
+                val generateChangelogHtmlTask: TaskProvider<GenerateChangelogHtmlTask> =
+                    tasks.register<GenerateChangelogHtmlTask>(GenerateChangelogHtmlTask.NAME)
+
+                generateChangelogHtmlTask.configure { task ->
+                    task.enabled = isTagPrefixProject
+                    val changelogExt = the<ChangelogPluginExtension>()
+                    val htmlText =
+                        changelogExt.getOrNull("${project.version}")?.let { item ->
+                            changelogExt.renderItem(item, Changelog.OutputType.HTML)
+                        }
+                    task.html.set(htmlText ?: "Changelog not found")
+                }
+
+                createGeneratedChangelogHtmlConfiguration(project, generateChangelogHtmlTask)
             }
-
-            tasks.register<MergeChangelogTask>(MergeChangelogTask.NAME).configure { task ->
-                task.enabled = isTagPrefixProject
-                task.mustRunAfter(patchChangelogTask)
-                task.finalizedBy(ApplyFormatChangelogTask.NAME)
-            }
-
-            tasks.register<AddChangelogItemTask>(AddChangelogItemTask.NAME).configure { task ->
-                task.enabled = isTagPrefixProject
-                task.finalizedBy(ApplyFormatChangelogTask.NAME)
-            }
-
-            val generateChangelogHtmlTask: TaskProvider<GenerateChangelogHtmlTask> =
-                tasks.register<GenerateChangelogHtmlTask>(GenerateChangelogHtmlTask.NAME)
-
-            generateChangelogHtmlTask.configure { task ->
-                task.enabled = isTagPrefixProject
-                val changelogExt = the<ChangelogPluginExtension>()
-                val htmlText =
-                    changelogExt.getOrNull("${project.version}")?.let { item ->
-                        changelogExt.renderItem(item, Changelog.OutputType.HTML)
-                    }
-                task.html.set(htmlText ?: "Changelog not found")
-            }
-
-            createGeneratedChangelogHtmlConfiguration(project, generateChangelogHtmlTask)
         }
     }
 

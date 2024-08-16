@@ -13,6 +13,7 @@
 
 ### Fixed
 
+- task with name `patchChangelog` not found
 - task with name `dokkaHtmlMultiModule` not found
 
 ### Removed

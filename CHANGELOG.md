@@ -6,19 +6,25 @@
 
 ### Changed
 
+### Deprecated
+
+### Fixed
+
+### Removed
+
+### Updated
+
+## [0.7.6] - 2024-08-17
+
+### Changed
+
 - `PluginId` visibility to `public`
 - `Semver` implementation to use `pluginManager::withPlugin`
-
-### Deprecated
 
 ### Fixed
 
 - task with name `patchChangelog` not found
 - task with name `dokkaHtmlMultiModule` not found
-
-### Removed
-
-### Updated
 
 ## [0.7.5] - 2024-08-15
 
@@ -146,7 +152,9 @@
 
 - `allTests` task
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.5...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.6...HEAD
+
+[0.7.6]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.5...p0.7.6
 
 [0.7.5]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.4...p0.7.5
 

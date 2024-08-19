@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 3.18`
 - `com.diffplug.spotless:spotless-plugin-gradle -> 7.0.0.BETA1`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.7.6`
 

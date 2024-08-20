@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx:kotlinx-datetime -> 0.6.1`
 - `com.facebook:ktfmt -> 0.52`
 - `org.jetbrains.kotlinx:kotlinx-io-core -> 0.5.3`
 - `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 3.18`

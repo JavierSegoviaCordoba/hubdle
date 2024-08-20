@@ -15,11 +15,8 @@ import org.gradle.api.tasks.PathSensitivity
 import org.gradle.api.tasks.TaskAction
 
 @CacheableTask
-public abstract class WriteReadmeBadgesTask
-@Inject
-constructor(
-    private val layout: ProjectLayout,
-) : DefaultTask() {
+public abstract class WriteReadmeBadgesTask @Inject constructor(private val layout: ProjectLayout) :
+    DefaultTask() {
 
     init {
         group = "documentation"
@@ -66,7 +63,10 @@ constructor(
                 addAll(buildReadmeBadges())
                 addAll(
                     content.subList(
-                        content.indexOfFirst { it.contains("# ") }, content.lastIndex + 1))
+                        content.indexOfFirst { it.contains("# ") },
+                        content.lastIndex + 1,
+                    )
+                )
                 add("")
             }
 
@@ -149,7 +149,7 @@ constructor(
 
 private enum class MavenRepo {
     MavenCentral,
-    Snapshot
+    Snapshot,
 }
 
 private enum class Sonar(val label: String, val path: String) {

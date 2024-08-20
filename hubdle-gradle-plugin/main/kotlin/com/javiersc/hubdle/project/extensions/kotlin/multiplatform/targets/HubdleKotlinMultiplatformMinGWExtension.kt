@@ -18,11 +18,8 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 
 @HubdleDslMarker
-public open class HubdleKotlinMultiplatformMinGWExtension
-@Inject
-constructor(
-    project: Project,
-) : HubdleKotlinMinimalSourceSetConfigurableExtension(project) {
+public open class HubdleKotlinMultiplatformMinGWExtension @Inject constructor(project: Project) :
+    HubdleKotlinMinimalSourceSetConfigurableExtension(project) {
 
     override val project: Project
         get() = super.project
@@ -63,14 +60,8 @@ constructor(
                 val commonTest: KotlinSourceSet by sourceSets.getting
                 val mingwX64Test: KotlinSourceSet? = sourceSets.findByName("mingwX64Test")
 
-                val mingwMainSourceSets: List<KotlinSourceSet> =
-                    listOfNotNull(
-                        mingwX64Main,
-                    )
-                val mingwTestSourceSets: List<KotlinSourceSet> =
-                    listOfNotNull(
-                        mingwX64Test,
-                    )
+                val mingwMainSourceSets: List<KotlinSourceSet> = listOfNotNull(mingwX64Main)
+                val mingwTestSourceSets: List<KotlinSourceSet> = listOfNotNull(mingwX64Test)
 
                 val mingwMain = sourceSets.maybeCreate("mingwMain")
                 val mingwTest = sourceSets.maybeCreate("mingwTest")

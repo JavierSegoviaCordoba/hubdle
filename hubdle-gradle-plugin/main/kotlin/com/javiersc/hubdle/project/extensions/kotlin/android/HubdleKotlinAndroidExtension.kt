@@ -23,11 +23,8 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 
 // TODO: transform into `HubdleConfigurableExtension`
 @HubdleDslMarker
-public open class HubdleKotlinAndroidExtension
-@Inject
-constructor(
-    project: Project,
-) : HubdleEnableableExtension(project) {
+public open class HubdleKotlinAndroidExtension @Inject constructor(project: Project) :
+    HubdleEnableableExtension(project) {
 
     override val isEnabled: Property<Boolean> = property { false }
 
@@ -132,15 +129,7 @@ internal val Project.hubdleAndroid: HubdleKotlinAndroidExtension
     get() = getHubdleExtension()
 
 internal val HubdleEnableableExtension.hubdleAndroidAny: Set<HubdleConfigurableExtension>
-    get() =
-        setOf(
-            hubdleAndroidApplication,
-            hubdleAndroidLibrary,
-        )
+    get() = setOf(hubdleAndroidApplication, hubdleAndroidLibrary)
 
 internal val Project.hubdleAndroidAny: Set<HubdleConfigurableExtension>
-    get() =
-        setOf(
-            hubdleAndroidApplication,
-            hubdleAndroidLibrary,
-        )
+    get() = setOf(hubdleAndroidApplication, hubdleAndroidLibrary)

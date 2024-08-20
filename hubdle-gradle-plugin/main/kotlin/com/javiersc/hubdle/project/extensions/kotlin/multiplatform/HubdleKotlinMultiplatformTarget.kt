@@ -26,8 +26,7 @@ internal enum class HubdleKotlinMultiplatformTarget(val target: String) {
     Linux(target = "linux"),
     MinGW(target = "mingw"),
     JS(target = "js"),
-    WAsm(target = "wasm"),
-    ;
+    WAsm(target = "wasm");
 
     override fun toString(): String = target
 }

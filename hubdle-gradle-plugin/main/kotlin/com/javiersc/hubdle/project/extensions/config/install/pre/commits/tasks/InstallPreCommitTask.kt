@@ -16,11 +16,8 @@ import org.gradle.api.tasks.TaskAction
 import org.gradle.kotlin.dsl.register
 
 @CacheableTask
-public abstract class InstallPreCommitTask
-@Inject
-constructor(
-    layout: ProjectLayout,
-) : InstallTask, DefaultTask() {
+public abstract class InstallPreCommitTask @Inject constructor(layout: ProjectLayout) :
+    InstallTask, DefaultTask() {
 
     init {
         group = "install"

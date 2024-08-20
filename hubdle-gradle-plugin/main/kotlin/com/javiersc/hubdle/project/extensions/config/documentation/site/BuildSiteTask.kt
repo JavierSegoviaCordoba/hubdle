@@ -50,7 +50,7 @@ constructor(
 
         public fun register(
             project: Project,
-            preBuildSiteTask: TaskProvider<PreBuildSiteTask>
+            preBuildSiteTask: TaskProvider<PreBuildSiteTask>,
         ): TaskProvider<BuildSiteTask> {
             val buildSiteTask = project.tasks.register<BuildSiteTask>(name)
             buildSiteTask.configure { task -> task.inputs.files(preBuildSiteTask) }

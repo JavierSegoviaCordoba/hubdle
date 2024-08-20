@@ -20,11 +20,8 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 
 @HubdleDslMarker
-public open class HubdleKotlinMultiplatformTvOSExtension
-@Inject
-constructor(
-    project: Project,
-) : HubdleKotlinMinimalSourceSetConfigurableExtension(project) {
+public open class HubdleKotlinMultiplatformTvOSExtension @Inject constructor(project: Project) :
+    HubdleKotlinMinimalSourceSetConfigurableExtension(project) {
 
     override val project: Project
         get() = super.project
@@ -92,17 +89,9 @@ constructor(
                     sourceSets.findByName("tvosSimulatorArm64Test")
 
                 val tvosMainSourceSets: List<KotlinSourceSet> =
-                    listOfNotNull(
-                        tvosArm64Main,
-                        tvosX64Main,
-                        tvosSimulatorArm64Main,
-                    )
+                    listOfNotNull(tvosArm64Main, tvosX64Main, tvosSimulatorArm64Main)
                 val tvosTestSourceSets: List<KotlinSourceSet> =
-                    listOfNotNull(
-                        tvosArm64Test,
-                        tvosX64Test,
-                        tvosSimulatorArm64Test,
-                    )
+                    listOfNotNull(tvosArm64Test, tvosX64Test, tvosSimulatorArm64Test)
 
                 val tvosMain = sourceSets.maybeCreate("tvosMain")
                 val tvosTest = sourceSets.maybeCreate("tvosTest")

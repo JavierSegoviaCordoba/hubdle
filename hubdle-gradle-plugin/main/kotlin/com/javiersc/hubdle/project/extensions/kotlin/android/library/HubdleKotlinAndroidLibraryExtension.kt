@@ -23,11 +23,8 @@ import org.gradle.api.provider.Property
 import org.gradle.kotlin.dsl.configure
 
 @HubdleDslMarker
-public open class HubdleKotlinAndroidLibraryExtension
-@Inject
-constructor(
-    project: Project,
-) : HubdleKotlinMinimalSourceSetConfigurableExtension(project), HubdleAndroidDelegateSharedApis {
+public open class HubdleKotlinAndroidLibraryExtension @Inject constructor(project: Project) :
+    HubdleKotlinMinimalSourceSetConfigurableExtension(project), HubdleAndroidDelegateSharedApis {
 
     override val project: Project
         get() = super.project
@@ -78,15 +75,9 @@ constructor(
     }
 
     private fun applicablePlugins() {
-        applicablePlugin(
-            scope = Scope.CurrentProject,
-            pluginId = PluginId.AndroidLibrary,
-        )
+        applicablePlugin(scope = Scope.CurrentProject, pluginId = PluginId.AndroidLibrary)
 
-        applicablePlugin(
-            scope = Scope.CurrentProject,
-            pluginId = PluginId.JetbrainsKotlinAndroid,
-        )
+        applicablePlugin(scope = Scope.CurrentProject, pluginId = PluginId.JetbrainsKotlinAndroid)
     }
 
     private fun configurePublishing() {

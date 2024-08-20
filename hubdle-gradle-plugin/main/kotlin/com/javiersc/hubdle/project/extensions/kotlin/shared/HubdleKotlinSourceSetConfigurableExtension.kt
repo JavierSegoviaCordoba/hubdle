@@ -16,9 +16,8 @@ import org.gradle.api.provider.Provider
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 
-public abstract class HubdleKotlinSourceSetConfigurableExtension(
-    project: Project,
-) : HubdleSourceSetConfigurableExtension<KotlinSourceSet>(project) {
+public abstract class HubdleKotlinSourceSetConfigurableExtension(project: Project) :
+    HubdleSourceSetConfigurableExtension<KotlinSourceSet>(project) {
 
     override val main: NamedDomainObjectProvider<KotlinSourceSet>
         get() {

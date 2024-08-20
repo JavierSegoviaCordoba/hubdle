@@ -13,9 +13,7 @@ import org.gradle.internal.os.OperatingSystem
 @HubdleDslMarker
 public open class HubdleKotlinMultiplatformMacOSArm64Extension
 @Inject
-constructor(
-    project: Project,
-) : HubdleKotlinMinimalSourceSetConfigurableExtension(project) {
+constructor(project: Project) : HubdleKotlinMinimalSourceSetConfigurableExtension(project) {
 
     override val project: Project
         get() = super.project

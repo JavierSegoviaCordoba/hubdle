@@ -14,7 +14,7 @@ import java.io.File
 internal class Changelog(
     val header: String,
     val versions: List<Version>,
-    val references: List<Reference>
+    val references: List<Reference>,
 ) {
 
     override fun toString(): String =
@@ -98,7 +98,8 @@ internal class Changelog(
                     const val unreleased: String = "Unreleased"
                     val dependencyUpdateRegex =
                         Regex(
-                            """^(- *)+ (`*)+([a-zA-Z0-9.-]+)+([a-zA-Z0-9.-:-]+)+( -> )+([a-zA-Z0-9.-]+)+(`)""")
+                            """^(- *)+ (`*)+([a-zA-Z0-9.-]+)+([a-zA-Z0-9.-:-]+)+( -> )+([a-zA-Z0-9.-]+)+(`)"""
+                        )
                 }
             }
         }

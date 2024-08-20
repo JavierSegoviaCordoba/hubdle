@@ -26,11 +26,8 @@ import org.gradle.api.provider.Property
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 
 @HubdleDslMarker
-public open class HubdleKotlinJvmExtension
-@Inject
-constructor(
-    project: Project,
-) : HubdleKotlinSourceSetConfigurableExtension(project), HubdleGradleDependencies {
+public open class HubdleKotlinJvmExtension @Inject constructor(project: Project) :
+    HubdleKotlinSourceSetConfigurableExtension(project), HubdleGradleDependencies {
 
     override val project: Project
         get() = super.project
@@ -61,10 +58,7 @@ constructor(
         configurableTestFunctionalSourceSets()
         configurableKotlinTestFunctionalSourceSets()
         configurableDependencies()
-        configurableMavenPublishing(
-            mavenPublicationName = "java",
-            configJavaExtension = true,
-        )
+        configurableMavenPublishing(mavenPublicationName = "java", configJavaExtension = true)
     }
 }
 

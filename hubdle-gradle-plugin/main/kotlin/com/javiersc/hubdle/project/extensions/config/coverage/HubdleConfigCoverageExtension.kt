@@ -20,11 +20,8 @@ import org.gradle.api.tasks.TaskProvider
 import org.gradle.kotlin.dsl.the
 
 @HubdleDslMarker
-public open class HubdleConfigCoverageExtension
-@Inject
-constructor(
-    project: Project,
-) : HubdleConfigurableExtension(project) {
+public open class HubdleConfigCoverageExtension @Inject constructor(project: Project) :
+    HubdleConfigurableExtension(project) {
 
     override val isEnabled: Property<Boolean> = property { false }
 

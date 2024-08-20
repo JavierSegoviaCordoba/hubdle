@@ -16,9 +16,7 @@ import org.gradle.api.tasks.TaskProvider
 
 public open class HubdleConfigDocumentationSiteAnalysisExtension
 @Inject
-constructor(
-    project: Project,
-) : HubdleConfigurableExtension(project) {
+constructor(project: Project) : HubdleConfigurableExtension(project) {
 
     override val isEnabled: Property<Boolean> = property { true }
 

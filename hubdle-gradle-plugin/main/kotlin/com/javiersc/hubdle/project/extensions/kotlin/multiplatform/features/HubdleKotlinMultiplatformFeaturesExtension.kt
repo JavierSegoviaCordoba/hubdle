@@ -18,11 +18,8 @@ import org.gradle.api.Project
 import org.gradle.api.provider.Property
 
 @HubdleDslMarker
-public open class HubdleKotlinMultiplatformFeaturesExtension
-@Inject
-constructor(
-    project: Project,
-) : HubdleEnableableExtension(project), HubdleKotlinMultiplatformDelegateFeaturesExtension {
+public open class HubdleKotlinMultiplatformFeaturesExtension @Inject constructor(project: Project) :
+    HubdleEnableableExtension(project), HubdleKotlinMultiplatformDelegateFeaturesExtension {
 
     override val project: Project
         get() = super.project

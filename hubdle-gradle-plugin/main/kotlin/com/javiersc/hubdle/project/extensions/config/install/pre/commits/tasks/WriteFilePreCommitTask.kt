@@ -12,11 +12,8 @@ import org.gradle.kotlin.dsl.named
 import org.gradle.kotlin.dsl.register
 
 @CacheableTask
-public abstract class WriteFilePreCommitTask
-@Inject
-constructor(
-    layout: ProjectLayout,
-) : DefaultTask() {
+public abstract class WriteFilePreCommitTask @Inject constructor(layout: ProjectLayout) :
+    DefaultTask() {
 
     init {
         group = "install"

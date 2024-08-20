@@ -16,9 +16,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 public open class HubdleKotlinContextReceiversFeatureExtension
 @Inject
-constructor(
-    project: Project,
-) : HubdleConfigurableExtension(project) {
+constructor(project: Project) : HubdleConfigurableExtension(project) {
 
     override val isEnabled: Property<Boolean> = property { false }
 

@@ -21,11 +21,8 @@ import org.gradle.api.Project
 import org.gradle.api.provider.Property
 
 @HubdleDslMarker
-public open class HubdleKotlinExtension
-@Inject
-constructor(
-    project: Project,
-) : HubdleEnableableExtension(project) {
+public open class HubdleKotlinExtension @Inject constructor(project: Project) :
+    HubdleEnableableExtension(project) {
 
     override val isEnabled: Property<Boolean> = property { false }
 
@@ -83,9 +80,4 @@ internal val HubdleEnableableExtension.hubdleKotlinAny: Set<HubdleConfigurableEx
         )
 
 internal val HubdleEnableableExtension.hubdleAndroidAny: Set<HubdleConfigurableExtension>
-    get() =
-        setOf(
-            hubdleAndroidApplication,
-            hubdleAndroidLibrary,
-            hubdleKotlinMultiplatformAndroid,
-        )
+    get() = setOf(hubdleAndroidApplication, hubdleAndroidLibrary, hubdleKotlinMultiplatformAndroid)

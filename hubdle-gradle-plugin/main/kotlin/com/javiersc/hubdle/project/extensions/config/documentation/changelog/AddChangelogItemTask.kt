@@ -22,11 +22,8 @@ import org.gradle.api.tasks.TaskAction
 import org.gradle.api.tasks.options.Option
 import org.gradle.kotlin.dsl.property
 
-public abstract class AddChangelogItemTask
-@Inject
-constructor(
-    objects: ObjectFactory,
-) : DefaultTask() {
+public abstract class AddChangelogItemTask @Inject constructor(objects: ObjectFactory) :
+    DefaultTask() {
 
     @Input
     @Option(option = "added", description = "Add an item to the `added` section")
@@ -59,10 +56,7 @@ constructor(
     public val updated: Property<String?> = objects.property()
 
     @Input
-    @Option(
-        option = "renovate",
-        description = "Extract dependencies from the table in the PR body",
-    )
+    @Option(option = "renovate", description = "Extract dependencies from the table in the PR body")
     @Optional
     public val renovate: Property<String?> = objects.property()
 
@@ -195,7 +189,7 @@ private fun String.addChanges(header: String, changes: List<String>): Changelog 
 
 private fun Project.dependenciesFromRenovatePullRequestBody(
     body: String?,
-    path: String?
+    path: String?,
 ): List<String> {
     val renovateLines: List<String> =
         when {

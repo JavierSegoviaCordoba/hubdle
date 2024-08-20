@@ -30,8 +30,7 @@ public enum class PluginId(public val id: String) {
     MavenPublish("org.gradle.maven-publish"),
     Sonarqube("org.sonarqube"),
     SqlDelight("app.cash.sqldelight"),
-    VyarusMkdocsBuild("ru.vyarus.mkdocs-build"),
-    ;
+    VyarusMkdocsBuild("ru.vyarus.mkdocs-build");
 
     override fun toString(): String = id
 }

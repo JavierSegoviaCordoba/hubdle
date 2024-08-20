@@ -11,11 +11,8 @@ import org.gradle.api.provider.Property
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 import org.jetbrains.kotlin.gradle.plugin.LanguageSettingsBuilder
 
-public open class HubdleConfigLanguageSettingsExtension
-@Inject
-constructor(
-    project: Project,
-) : HubdleEnableableExtension(project) {
+public open class HubdleConfigLanguageSettingsExtension @Inject constructor(project: Project) :
+    HubdleEnableableExtension(project) {
 
     override val isEnabled: Property<Boolean> = property { false }
 

@@ -43,11 +43,8 @@ import org.gradle.kotlin.dsl.withType
 import org.gradle.plugin.devel.GradlePluginDevelopmentExtension
 import org.gradle.plugin.devel.tasks.PluginUnderTestMetadata
 
-public open class HubdleGradlePluginFeatureExtension
-@Inject
-constructor(
-    project: Project,
-) : HubdleConfigurableExtension(project), HubdleGradleDependencies {
+public open class HubdleGradlePluginFeatureExtension @Inject constructor(project: Project) :
+    HubdleConfigurableExtension(project), HubdleGradleDependencies {
 
     override val isEnabled: Property<Boolean> = property { false }
 
@@ -117,7 +114,8 @@ constructor(
         vararg dependencies: ProviderConvertible<MinimalExternalModuleDependency>
     ) {
         this.pluginUnderTestExternalDependencies.addAll(
-            provider { dependencies.map { it.asProvider().get() } })
+            provider { dependencies.map { it.asProvider().get() } }
+        )
     }
 
     @HubdleDslMarker
@@ -145,10 +143,7 @@ constructor(
     }
 
     override fun Project.defaultConfiguration() {
-        applicablePlugin(
-            scope = Scope.CurrentProject,
-            pluginId = PluginId.JavaGradlePlugin,
-        )
+        applicablePlugin(scope = Scope.CurrentProject, pluginId = PluginId.JavaGradlePlugin)
 
         applicablePlugin(
             isEnabled = property { isFullEnabled.get() && hubdlePublishing.isFullEnabled.get() },
@@ -217,7 +212,7 @@ constructor(
                     gradlePluginDevelopmentExtension.website.set(hubdlePublishingMavenPom.url)
                     gradlePluginDevelopmentExtension.vcsUrl.set(hubdlePublishingMavenPom.scmUrl)
                 }
-            },
+            }
         )
     }
 }

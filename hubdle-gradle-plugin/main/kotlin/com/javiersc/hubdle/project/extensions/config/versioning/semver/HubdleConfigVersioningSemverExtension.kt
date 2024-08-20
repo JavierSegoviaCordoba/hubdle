@@ -19,11 +19,8 @@ import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.the
 
 @HubdleDslMarker
-public abstract class HubdleConfigVersioningSemverExtension
-@Inject
-constructor(
-    project: Project,
-) : HubdleConfigurableExtension(project) {
+public abstract class HubdleConfigVersioningSemverExtension @Inject constructor(project: Project) :
+    HubdleConfigurableExtension(project) {
 
     override val isEnabled: Property<Boolean> = property { true }
 

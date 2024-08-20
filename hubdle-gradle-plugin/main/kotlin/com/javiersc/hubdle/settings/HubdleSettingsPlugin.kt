@@ -34,11 +34,8 @@ import org.gradle.kotlin.dsl.register
 import org.gradle.kotlin.dsl.the
 import org.gradle.language.base.plugins.LifecycleBasePlugin.ASSEMBLE_TASK_NAME
 
-public open class HubdleSettingsPlugin
-@Inject
-constructor(
-    private val objects: ObjectFactory,
-) : Plugin<Settings> {
+public open class HubdleSettingsPlugin @Inject constructor(private val objects: ObjectFactory) :
+    Plugin<Settings> {
 
     override fun apply(target: Settings) {
         target.enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")

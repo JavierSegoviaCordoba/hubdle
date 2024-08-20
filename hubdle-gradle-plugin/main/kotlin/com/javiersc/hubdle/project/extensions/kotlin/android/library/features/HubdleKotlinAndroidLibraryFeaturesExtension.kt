@@ -21,9 +21,8 @@ import org.gradle.api.provider.Property
 @HubdleDslMarker
 public open class HubdleKotlinAndroidLibraryFeaturesExtension
 @Inject
-constructor(
-    project: Project,
-) : HubdleEnableableExtension(project), HubdleKotlinAndroidLibraryDelegateFeaturesExtension {
+constructor(project: Project) :
+    HubdleEnableableExtension(project), HubdleKotlinAndroidLibraryDelegateFeaturesExtension {
 
     override val project: Project
         get() = super.project

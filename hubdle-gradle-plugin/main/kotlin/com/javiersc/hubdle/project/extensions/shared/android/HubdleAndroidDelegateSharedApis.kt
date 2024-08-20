@@ -23,7 +23,7 @@ public interface HubdleAndroidDelegateSharedApis {
     @HubdleDslMarker
     public fun HubdleEnableableExtension.configuration(
         name: String,
-        action: Action<Configuration>
+        action: Action<Configuration>,
     ) {
         lazyConfigurable { project.configurations.named(name, action::execute) }
     }

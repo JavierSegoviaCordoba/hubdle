@@ -14,10 +14,7 @@ import org.gradle.kotlin.dsl.register
 @CacheableTask
 public abstract class InstallCheckAnalysisPreCommitTask
 @Inject
-constructor(
-    objects: ObjectFactory,
-    layout: ProjectLayout,
-) : InstallPreCommitTask(layout) {
+constructor(objects: ObjectFactory, layout: ProjectLayout) : InstallPreCommitTask(layout) {
 
     init {
         group = "install"

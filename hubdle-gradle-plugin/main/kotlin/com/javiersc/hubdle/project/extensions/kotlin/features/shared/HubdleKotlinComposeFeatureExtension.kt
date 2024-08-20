@@ -24,11 +24,8 @@ import org.gradle.api.Project
 import org.gradle.api.provider.Property
 import org.jetbrains.compose.ComposeExtension
 
-public open class HubdleKotlinComposeFeatureExtension
-@Inject
-constructor(
-    project: Project,
-) : HubdleConfigurableExtension(project) {
+public open class HubdleKotlinComposeFeatureExtension @Inject constructor(project: Project) :
+    HubdleConfigurableExtension(project) {
 
     override val isEnabled: Property<Boolean> = property { false }
 
@@ -59,7 +56,9 @@ constructor(
     override fun Project.defaultConfiguration() {
         applicablePlugin(scope = Scope.CurrentProject, pluginId = PluginId.JetbrainsCompose)
         applicablePlugin(
-            scope = Scope.CurrentProject, pluginId = PluginId.JetbrainsKotlinPluginCompose)
+            scope = Scope.CurrentProject,
+            pluginId = PluginId.JetbrainsKotlinPluginCompose,
+        )
 
         lazyConfigurable {
             if (hubdleAndroidFeatures.isFullEnabled.get()) {

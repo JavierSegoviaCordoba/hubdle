@@ -15,10 +15,7 @@ import org.gradle.kotlin.dsl.mapProperty
 @CacheableTask
 public open class GenerateHubdleCatalogTask
 @Inject
-constructor(
-    objects: ObjectFactory,
-    layout: ProjectLayout,
-) : DefaultTask() {
+constructor(objects: ObjectFactory, layout: ProjectLayout) : DefaultTask() {
 
     @Input
     public val libraries: MapProperty<String, String> =

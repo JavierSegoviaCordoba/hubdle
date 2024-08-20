@@ -20,9 +20,8 @@ import org.gradle.api.tasks.TaskContainer
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.the
 
-public abstract class HubdleEnableableExtension(
-    override val project: Project,
-) : BaseHubdleEnableableExtension {
+public abstract class HubdleEnableableExtension(override val project: Project) :
+    BaseHubdleEnableableExtension {
 
     internal val tasks: TaskContainer
         get() = project.tasks
@@ -69,10 +68,7 @@ public abstract class HubdleEnableableExtension(
         hubdleState.applicablePlugin(isEnabled, scope, pluginId)
     }
 
-    internal fun applicablePlugin(
-        scope: ApplicablePlugin.Scope,
-        pluginId: PluginId,
-    ) {
+    internal fun applicablePlugin(scope: ApplicablePlugin.Scope, pluginId: PluginId) {
         applicablePlugin(isFullEnabled, scope, pluginId)
     }
 
@@ -127,7 +123,7 @@ internal fun <T : HubdleEnableableExtension> T.enableAndExecute(action: Action<T
 
 internal fun <T : HubdleEnableableExtension> T.enableAndExecute(
     enabled: Provider<Boolean> = provider { true },
-    action: Action<T>
+    action: Action<T>,
 ) {
     enabled(enabled)
     action.execute(this)

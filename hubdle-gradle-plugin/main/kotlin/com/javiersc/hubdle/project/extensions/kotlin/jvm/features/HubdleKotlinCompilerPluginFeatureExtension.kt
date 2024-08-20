@@ -56,11 +56,8 @@ import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 import org.jetbrains.kotlin.gradle.plugin.LanguageSettingsBuilder
 
-public open class HubdleKotlinCompilerPluginFeatureExtension
-@Inject
-constructor(
-    project: Project,
-) : HubdleConfigurableExtension(project) {
+public open class HubdleKotlinCompilerPluginFeatureExtension @Inject constructor(project: Project) :
+    HubdleConfigurableExtension(project) {
 
     override val isEnabled: Property<Boolean> = property { false }
 
@@ -236,7 +233,8 @@ constructor(
                 projectDependencies.map { projectDependency: ProjectDependency ->
                     projectDependency.dependencyProject.tasks.withType<Jar>()
                 }
-            })
+            }
+        )
     }
 
     private fun LanguageSettingsBuilder.optInExperimentalAPIs() {

@@ -12,10 +12,7 @@ import org.gradle.api.tasks.TaskAction
 
 public abstract class GenerateChangelogHtmlTask
 @Inject
-constructor(
-    objects: ObjectFactory,
-    layout: ProjectLayout,
-) : DefaultTask() {
+constructor(objects: ObjectFactory, layout: ProjectLayout) : DefaultTask() {
 
     @get:Input public abstract val html: Property<String?>
 

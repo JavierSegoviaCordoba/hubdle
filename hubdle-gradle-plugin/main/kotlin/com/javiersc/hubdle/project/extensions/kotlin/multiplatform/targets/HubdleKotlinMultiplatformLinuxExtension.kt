@@ -19,11 +19,8 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 
 @HubdleDslMarker
-public open class HubdleKotlinMultiplatformLinuxExtension
-@Inject
-constructor(
-    project: Project,
-) : HubdleKotlinMinimalSourceSetConfigurableExtension(project) {
+public open class HubdleKotlinMultiplatformLinuxExtension @Inject constructor(project: Project) :
+    HubdleKotlinMinimalSourceSetConfigurableExtension(project) {
 
     override val project: Project
         get() = super.project
@@ -76,16 +73,10 @@ constructor(
                 val linuxX64Test: KotlinSourceSet? = sourceSets.findByName("linuxX64Test")
 
                 val linuxMainSourceSets: List<KotlinSourceSet> =
-                    listOfNotNull(
-                        linuxArm64Main,
-                        linuxX64Main,
-                    )
+                    listOfNotNull(linuxArm64Main, linuxX64Main)
 
                 val linuxTestSourceSets: List<KotlinSourceSet> =
-                    listOfNotNull(
-                        linuxArm64Test,
-                        linuxX64Test,
-                    )
+                    listOfNotNull(linuxArm64Test, linuxX64Test)
 
                 val linuxMain = sourceSets.maybeCreate("linuxMain")
                 val linuxTest = sourceSets.maybeCreate("linuxTest")

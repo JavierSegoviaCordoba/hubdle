@@ -18,11 +18,8 @@ import org.gradle.api.initialization.dsl.VersionCatalogBuilder
 import org.gradle.api.plugins.catalog.CatalogPluginExtension
 import org.gradle.api.provider.Property
 
-public open class HubdleGradleFeatureExtension
-@Inject
-constructor(
-    project: Project,
-) : HubdleConfigurableExtension(project) {
+public open class HubdleGradleFeatureExtension @Inject constructor(project: Project) :
+    HubdleConfigurableExtension(project) {
 
     override val isEnabled: Property<Boolean> = property { false }
 

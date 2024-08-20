@@ -27,11 +27,8 @@ import org.gradle.plugins.signing.Sign
 import org.gradle.plugins.signing.SigningExtension
 
 @HubdleDslMarker
-public open class HubdleConfigPublishingSigningExtension
-@Inject
-constructor(
-    project: Project,
-) : HubdleConfigurableExtension(project) {
+public open class HubdleConfigPublishingSigningExtension @Inject constructor(project: Project) :
+    HubdleConfigurableExtension(project) {
 
     override val isEnabled: Property<Boolean> = property { true }
 
@@ -69,10 +66,7 @@ constructor(
     public fun signing(action: Action<SigningExtension> = Action {}): Unit = fallbackAction(action)
 
     override fun Project.defaultConfiguration() {
-        applicablePlugin(
-            scope = Scope.CurrentProject,
-            pluginId = PluginId.GradleSigning,
-        )
+        applicablePlugin(scope = Scope.CurrentProject, pluginId = PluginId.GradleSigning)
         lazyConfigurable { configureSigningForPublishing() }
     }
 

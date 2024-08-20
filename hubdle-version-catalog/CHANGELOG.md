@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.facebook:ktfmt -> 0.52`
 - `org.jetbrains.kotlinx:kotlinx-io-core -> 0.5.3`
 - `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 3.18`
 - `com.diffplug.spotless:spotless-plugin-gradle -> 7.0.0.BETA1`

@@ -12,11 +12,8 @@ import javax.inject.Inject
 import org.gradle.api.Project
 import org.gradle.api.provider.Property
 
-public open class HubdleGradleVersionCatalogFeatureExtension
-@Inject
-constructor(
-    project: Project,
-) : HubdleConfigurableExtension(project) {
+public open class HubdleGradleVersionCatalogFeatureExtension @Inject constructor(project: Project) :
+    HubdleConfigurableExtension(project) {
 
     override val isEnabled: Property<Boolean> = property { false }
 
@@ -24,10 +21,7 @@ constructor(
         get() = setOf(hubdleJava, hubdleKotlinJvm)
 
     override fun Project.defaultConfiguration() {
-        applicablePlugin(
-            scope = Scope.CurrentProject,
-            PluginId.GradleVersionCatalog,
-        )
+        applicablePlugin(scope = Scope.CurrentProject, PluginId.GradleVersionCatalog)
 
         configurableMavenPublishing(mavenPublicationName = "versionCatalog")
     }

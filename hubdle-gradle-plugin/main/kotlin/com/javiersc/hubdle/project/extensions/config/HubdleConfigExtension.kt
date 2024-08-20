@@ -29,11 +29,8 @@ import org.jetbrains.kotlin.gradle.dsl.ExplicitApiMode
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 
 @HubdleDslMarker
-public open class HubdleConfigExtension
-@Inject
-constructor(
-    project: Project,
-) : HubdleConfigurableExtension(project) {
+public open class HubdleConfigExtension @Inject constructor(project: Project) :
+    HubdleConfigurableExtension(project) {
 
     override val isEnabled: Property<Boolean> = property { true }
 
@@ -136,7 +133,7 @@ constructor(
     @HubdleDslMarker
     public fun publishing(
         enabled: Provider<Boolean> = provider { isTagPrefixProject },
-        action: Action<HubdleConfigPublishingExtension> = Action {}
+        action: Action<HubdleConfigPublishingExtension> = Action {},
     ) {
         publishing.enableAndExecute(enabled, action)
     }

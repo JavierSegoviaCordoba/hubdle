@@ -35,7 +35,7 @@ internal class HubdleState(private val project: Project) {
 
     internal inline fun <reified T : BaseHubdleExtension> createExtension(
         vararg constructionArguments: Any,
-        block: T.() -> Unit = {}
+        block: T.() -> Unit = {},
     ): T {
         val extensionName = "_Internal${T::class.simpleName}".substringBeforeLast("Extension")
         val extension: T = project.extensions.create(extensionName, *constructionArguments)
@@ -54,11 +54,7 @@ internal class HubdleState(private val project: Project) {
     val applicablePlugins: List<ApplicablePlugin>
         get() = _applicablePlugins.toList()
 
-    fun applicablePlugin(
-        isEnabled: Provider<Boolean>,
-        scope: Scope,
-        pluginId: PluginId,
-    ) {
+    fun applicablePlugin(isEnabled: Provider<Boolean>, scope: Scope, pluginId: PluginId) {
         val applicablePlugin =
             ApplicablePlugin(isEnabled = isEnabled, scope = scope, pluginId = pluginId)
         _applicablePlugins.add(applicablePlugin)

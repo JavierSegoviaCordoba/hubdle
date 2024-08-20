@@ -16,9 +16,7 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 public open class HubdleKotlinMultiplatformMinimumTargetPerOsFeatureExtension
 @Inject
-constructor(
-    project: Project,
-) : HubdleEnableableExtension(project) {
+constructor(project: Project) : HubdleEnableableExtension(project) {
 
     override val isEnabled: Property<Boolean> = property { false }
 
@@ -42,7 +40,7 @@ public interface HubdleKotlinMultiplatformMinimumTargetPerOsDelegateFeatureExten
 
 internal fun HubdleConfigurableExtension.configurableTargetPerOs(
     operativeSystem: Boolean,
-    block: KotlinMultiplatformExtension.() -> Unit
+    block: KotlinMultiplatformExtension.() -> Unit,
 ) {
     val isMinimumTargetPerOs: Property<Boolean> = hubdleMinimumTargetPerOs.isFullEnabled
     val isEnabledPerOS = property { isMinimumTargetPerOs.get() && operativeSystem }

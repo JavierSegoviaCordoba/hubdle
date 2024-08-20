@@ -20,11 +20,8 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 
 @HubdleDslMarker
-public open class HubdleKotlinMultiplatformIOSExtension
-@Inject
-constructor(
-    project: Project,
-) : HubdleKotlinMinimalSourceSetConfigurableExtension(project) {
+public open class HubdleKotlinMultiplatformIOSExtension @Inject constructor(project: Project) :
+    HubdleKotlinMinimalSourceSetConfigurableExtension(project) {
 
     override val project: Project
         get() = super.project
@@ -92,18 +89,10 @@ constructor(
                     sourceSets.findByName("iosSimulatorArm64Test")
 
                 val iosMainSourceSets: List<KotlinSourceSet> =
-                    listOfNotNull(
-                        iosArm64Main,
-                        iosX64Main,
-                        iosSimulatorArm64Main,
-                    )
+                    listOfNotNull(iosArm64Main, iosX64Main, iosSimulatorArm64Main)
 
                 val iosTestSourceSets: List<KotlinSourceSet> =
-                    listOfNotNull(
-                        iosArm64Test,
-                        iosX64Test,
-                        iosSimulatorArm64Test,
-                    )
+                    listOfNotNull(iosArm64Test, iosX64Test, iosSimulatorArm64Test)
 
                 val iosMain = sourceSets.maybeCreate("iosMain")
                 val iosTest = sourceSets.maybeCreate("iosTest")

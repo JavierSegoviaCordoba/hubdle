@@ -19,11 +19,8 @@ import org.gradle.kotlin.dsl.configure
 import ru.vyarus.gradle.plugin.mkdocs.MkdocsExtension
 
 @HubdleDslMarker
-public open class HubdleConfigDocumentationSiteExtension
-@Inject
-constructor(
-    project: Project,
-) : HubdleConfigurableExtension(project) {
+public open class HubdleConfigDocumentationSiteExtension @Inject constructor(project: Project) :
+    HubdleConfigurableExtension(project) {
 
     override val isEnabled: Property<Boolean> = property { false }
 

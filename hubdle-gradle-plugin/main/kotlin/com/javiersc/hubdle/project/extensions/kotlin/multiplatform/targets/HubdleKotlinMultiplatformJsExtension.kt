@@ -14,11 +14,8 @@ import org.jetbrains.kotlin.gradle.targets.js.dsl.KotlinJsBrowserDsl
 import org.jetbrains.kotlin.gradle.targets.js.dsl.KotlinJsNodeDsl
 
 @HubdleDslMarker
-public open class HubdleKotlinMultiplatformJsExtension
-@Inject
-constructor(
-    project: Project,
-) : HubdleKotlinMinimalSourceSetConfigurableExtension(project) {
+public open class HubdleKotlinMultiplatformJsExtension @Inject constructor(project: Project) :
+    HubdleKotlinMinimalSourceSetConfigurableExtension(project) {
 
     override val project: Project
         get() = super.project

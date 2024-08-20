@@ -14,10 +14,7 @@ import org.gradle.kotlin.dsl.property
 @HubdleSettingsDslMarker
 public open class HubdleSettingsExtension
 @Inject
-constructor(
-    private val objects: ObjectFactory,
-    private val providers: ProviderFactory,
-) {
+constructor(private val objects: ObjectFactory, private val providers: ProviderFactory) {
 
     public val autoInclude: HubdleAutoIncludeExtension = objects.newInstance()
 

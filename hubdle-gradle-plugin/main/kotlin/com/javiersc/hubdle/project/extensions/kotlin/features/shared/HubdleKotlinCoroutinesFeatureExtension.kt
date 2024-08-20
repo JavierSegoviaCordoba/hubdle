@@ -29,11 +29,8 @@ import org.gradle.api.provider.Property
 import org.gradle.kotlin.dsl.configure
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 
-public open class HubdleKotlinCoroutinesFeatureExtension
-@Inject
-constructor(
-    project: Project,
-) : HubdleConfigurableExtension(project) {
+public open class HubdleKotlinCoroutinesFeatureExtension @Inject constructor(project: Project) :
+    HubdleConfigurableExtension(project) {
 
     override val isEnabled: Property<Boolean> = property { false }
 
@@ -48,9 +45,14 @@ constructor(
                 }
 
                 forKotlinSetsDependencies(
-                    TEST, COMMON_TEST, TEST_FUNCTIONAL, TEST_INTEGRATION, TEST_FIXTURES) {
-                        implementation(library(jetbrains_kotlinx_coroutines_test))
-                    }
+                    TEST,
+                    COMMON_TEST,
+                    TEST_FUNCTIONAL,
+                    TEST_INTEGRATION,
+                    TEST_FIXTURES,
+                ) {
+                    implementation(library(jetbrains_kotlinx_coroutines_test))
+                }
             }
         }
         lazyConfigurable(isEnabled = isAnyAndroidFullEnabled) {

@@ -22,11 +22,8 @@ import org.gradle.api.provider.Property
 import org.gradle.kotlin.dsl.configure
 
 @HubdleDslMarker
-public open class HubdleConfigNexusExtension
-@Inject
-constructor(
-    project: Project,
-) : HubdleConfigurableExtension(project) {
+public open class HubdleConfigNexusExtension @Inject constructor(project: Project) :
+    HubdleConfigurableExtension(project) {
 
     override val isEnabled: Property<Boolean> = property { false }
 
@@ -80,7 +77,9 @@ constructor(
 
     override fun Project.defaultConfiguration() {
         applicablePlugin(
-            scope = Scope.CurrentProject, pluginId = PluginId.GithubGradleNexusPublishPlugin)
+            scope = Scope.CurrentProject,
+            pluginId = PluginId.GithubGradleNexusPublishPlugin,
+        )
 
         lazyConfigurable {
             configure<NexusPublishExtension> {

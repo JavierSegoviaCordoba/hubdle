@@ -30,10 +30,7 @@ import org.gradle.kotlin.dsl.register
 @CacheableTask
 public abstract class GenerateMetaRuntimeClasspathProviderTask
 @Inject
-constructor(
-    objects: ObjectFactory,
-    layout: ProjectLayout,
-) : DefaultTask() {
+constructor(objects: ObjectFactory, layout: ProjectLayout) : DefaultTask() {
 
     @Input public val mainClass: Property<String> = objects.property<String>()
 
@@ -55,7 +52,8 @@ constructor(
                             .replace(":", "/")
                             .replace("_", "/")
                     kotlinDir.dir(generatedPath)
-                })
+                }
+            )
 
     @Internal
     public val outputFile: RegularFileProperty =
@@ -76,7 +74,8 @@ constructor(
             appendLine("package $mainClassPackage")
             appendLine()
             appendLine(
-                "import com.javiersc.kotlin.compiler.test.services.MetaRuntimeClasspathProvider")
+                "import com.javiersc.kotlin.compiler.test.services.MetaRuntimeClasspathProvider"
+            )
             appendLine("import org.jetbrains.kotlin.test.services.TestServices")
             appendLine()
             appendLine("open class GeneratedMetaRuntimeClasspathProvider(")

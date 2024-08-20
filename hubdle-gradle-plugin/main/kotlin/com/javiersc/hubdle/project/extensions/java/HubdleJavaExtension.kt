@@ -18,11 +18,8 @@ import org.gradle.api.provider.Property
 import org.gradle.kotlin.dsl.configure
 
 @HubdleDslMarker
-public open class HubdleJavaExtension
-@Inject
-constructor(
-    project: Project,
-) : HubdleConfigurableExtension(project) {
+public open class HubdleJavaExtension @Inject constructor(project: Project) :
+    HubdleConfigurableExtension(project) {
 
     override val isEnabled: Property<Boolean> = property { false }
 
@@ -47,7 +44,8 @@ constructor(
                     set.java.srcDirs(normalAndGeneratedDirs(provider { "${set.name}/java" }))
                     set.resources.setSrcDirs(emptySet<File>())
                     set.resources.srcDirs(
-                        normalAndGeneratedDirs(provider { "${set.name}/resources" }))
+                        normalAndGeneratedDirs(provider { "${set.name}/resources" })
+                    )
                 }
             }
         }

@@ -40,11 +40,8 @@ import org.jetbrains.intellij.tasks.RunPluginVerifierTask
 import org.jetbrains.intellij.tasks.SignPluginTask
 
 @HubdleDslMarker
-public open class HubdleIntellijPluginFeatureExtension
-@Inject
-constructor(
-    project: Project,
-) : HubdleConfigurableExtension(project) {
+public open class HubdleIntellijPluginFeatureExtension @Inject constructor(project: Project) :
+    HubdleConfigurableExtension(project) {
 
     override val isEnabled: Property<Boolean> = property { false }
 
@@ -190,7 +187,7 @@ constructor(
         }
 
         lazyConfigurable(
-            isEnabled = property { isFullEnabled.get() && hubdlePublishing.isFullEnabled.get() },
+            isEnabled = property { isFullEnabled.get() && hubdlePublishing.isFullEnabled.get() }
         ) {
             configurePublishPlugin()
             configureSignPlugin()
@@ -257,7 +254,8 @@ private fun HubdleIntellijPluginFeatureExtension.configureGeneratedChangelogHtml
                 attributes { attributes ->
                     attributes.attribute(
                         LibraryElements.LIBRARY_ELEMENTS_ATTRIBUTE,
-                        objects.named(GENERATED_CHANGELOG_HTML_ATTRIBUTE))
+                        objects.named(GENERATED_CHANGELOG_HTML_ATTRIBUTE),
+                    )
                 }
             }
 

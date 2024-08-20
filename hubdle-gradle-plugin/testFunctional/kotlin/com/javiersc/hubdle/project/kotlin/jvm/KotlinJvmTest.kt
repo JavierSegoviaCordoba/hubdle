@@ -29,7 +29,8 @@ internal class KotlinJvmTest : GradleTestKitTest() {
     private val GradleRunner.mavenLocalBuildTestPath
         get() =
             projectDir.resolve(
-                "build/mavenLocalBuildTest/repository/com/kotlin/jvm/sandbox-project/")
+                "build/mavenLocalBuildTest/repository/com/kotlin/jvm/sandbox-project/"
+            )
 
     @BeforeTest
     fun `clean m2_com_kotlin before test`() {
@@ -149,10 +150,7 @@ internal class KotlinJvmTest : GradleTestKitTest() {
 }
 
 private val gpgMap =
-    mapOf(
-        "SIGNING_GNUPG_KEY" to gpgKey,
-        "SIGNING_GNUPG_PASSPHRASE" to gpgKeyPassphrase,
-    )
+    mapOf("SIGNING_GNUPG_KEY" to gpgKey, "SIGNING_GNUPG_PASSPHRASE" to gpgKeyPassphrase)
 
 private val gpgKey
     get() =

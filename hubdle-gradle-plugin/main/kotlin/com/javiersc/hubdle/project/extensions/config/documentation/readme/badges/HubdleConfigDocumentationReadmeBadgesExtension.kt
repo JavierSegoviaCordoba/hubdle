@@ -17,9 +17,7 @@ import org.jetbrains.kotlin.gradle.plugin.getKotlinPluginVersion
 @HubdleDslMarker
 public open class HubdleConfigDocumentationReadmeBadgesExtension
 @Inject
-constructor(
-    project: Project,
-) : HubdleConfigurableExtension(project) {
+constructor(project: Project) : HubdleConfigurableExtension(project) {
 
     override val isEnabled: Property<Boolean> = property { false }
 

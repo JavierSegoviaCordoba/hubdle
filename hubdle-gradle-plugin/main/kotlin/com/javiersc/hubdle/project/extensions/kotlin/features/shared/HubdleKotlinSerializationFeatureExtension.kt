@@ -22,11 +22,8 @@ import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.provider.Property
 
-public open class HubdleKotlinSerializationFeatureExtension
-@Inject
-constructor(
-    project: Project,
-) : HubdleConfigurableExtension(project) {
+public open class HubdleKotlinSerializationFeatureExtension @Inject constructor(project: Project) :
+    HubdleConfigurableExtension(project) {
 
     override val isEnabled: Property<Boolean> = property { false }
 
@@ -56,7 +53,9 @@ constructor(
 
     override fun Project.defaultConfiguration() {
         applicablePlugin(
-            scope = Scope.CurrentProject, pluginId = PluginId.JetbrainsKotlinPluginSerialization)
+            scope = Scope.CurrentProject,
+            pluginId = PluginId.JetbrainsKotlinPluginSerialization,
+        )
 
         lazyConfigurable {
             forKotlinSetsDependencies(MAIN, COMMON_MAIN) {

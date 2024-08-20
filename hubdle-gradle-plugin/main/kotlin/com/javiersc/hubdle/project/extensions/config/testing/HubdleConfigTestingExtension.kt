@@ -22,11 +22,8 @@ import org.gradle.kotlin.dsl.develocity
 import org.gradle.kotlin.dsl.withType
 
 @HubdleDslMarker
-public abstract class HubdleConfigTestingExtension
-@Inject
-constructor(
-    project: Project,
-) : HubdleConfigurableExtension(project) {
+public abstract class HubdleConfigTestingExtension @Inject constructor(project: Project) :
+    HubdleConfigurableExtension(project) {
 
     override val isEnabled: Property<Boolean> = property { true }
 

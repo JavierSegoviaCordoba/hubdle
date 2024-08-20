@@ -27,11 +27,8 @@ import org.gradle.kotlin.dsl.property
 import org.gradle.kotlin.dsl.register
 
 @CacheableTask
-public open class GenerateProjectDataTask
-@Inject
-constructor(
-    objects: ObjectFactory,
-) : DefaultTask() {
+public open class GenerateProjectDataTask @Inject constructor(objects: ObjectFactory) :
+    DefaultTask() {
 
     init {
         group = BasePlugin.BUILD_GROUP

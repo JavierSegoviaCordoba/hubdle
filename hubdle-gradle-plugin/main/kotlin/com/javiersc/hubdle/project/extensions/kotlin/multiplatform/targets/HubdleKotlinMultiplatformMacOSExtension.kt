@@ -19,11 +19,8 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 
 @HubdleDslMarker
-public open class HubdleKotlinMultiplatformMacOSExtension
-@Inject
-constructor(
-    project: Project,
-) : HubdleKotlinMinimalSourceSetConfigurableExtension(project) {
+public open class HubdleKotlinMultiplatformMacOSExtension @Inject constructor(project: Project) :
+    HubdleKotlinMinimalSourceSetConfigurableExtension(project) {
 
     override val project: Project
         get() = super.project
@@ -78,15 +75,9 @@ constructor(
                 val macosArm64Test: KotlinSourceSet? = sourceSets.findByName("macosArm64Test")
 
                 val macosMainSourceSets: List<KotlinSourceSet> =
-                    listOfNotNull(
-                        macosX64Main,
-                        macosArm64Main,
-                    )
+                    listOfNotNull(macosX64Main, macosArm64Main)
                 val macosTestSourceSets: List<KotlinSourceSet> =
-                    listOfNotNull(
-                        macosX64Test,
-                        macosArm64Test,
-                    )
+                    listOfNotNull(macosX64Test, macosArm64Test)
 
                 val macosMain = sourceSets.maybeCreate("macosMain")
                 val macosTest = sourceSets.maybeCreate("macosTest")

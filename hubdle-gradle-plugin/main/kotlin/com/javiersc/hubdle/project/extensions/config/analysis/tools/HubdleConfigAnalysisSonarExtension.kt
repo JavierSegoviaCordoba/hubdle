@@ -25,11 +25,8 @@ import org.gradle.kotlin.dsl.findByType
 import org.sonarqube.gradle.SonarExtension
 import org.sonarqube.gradle.SonarProperties
 
-public open class HubdleConfigAnalysisSonarExtension
-@Inject
-constructor(
-    project: Project,
-) : HubdleConfigurableExtension(project) {
+public open class HubdleConfigAnalysisSonarExtension @Inject constructor(project: Project) :
+    HubdleConfigurableExtension(project) {
 
     override val isEnabled: Property<Boolean> = property { true }
 
@@ -54,7 +51,9 @@ constructor(
 
     override fun Project.defaultConfiguration() {
         applicablePlugin(
-            scope = ApplicablePlugin.Scope.CurrentProject, pluginId = PluginId.Sonarqube)
+            scope = ApplicablePlugin.Scope.CurrentProject,
+            pluginId = PluginId.Sonarqube,
+        )
 
         lazyConfigurable { configureSonarqube(project) }
         // TODO: Remove both when project isolation is fixed in Sonar Gradle plugin as hubdle

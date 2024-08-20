@@ -7,7 +7,7 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
 
 internal fun Project.forKotlinSetsDependencies(
     vararg names: String,
-    action: KotlinDependencyHandler.() -> Unit
+    action: KotlinDependencyHandler.() -> Unit,
 ) {
     configure<KotlinProjectExtension> {
         sourceSets.configureEach { set -> if (set.name in names) set.dependencies(action) }

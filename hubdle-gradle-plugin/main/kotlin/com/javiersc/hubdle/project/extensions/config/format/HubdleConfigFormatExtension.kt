@@ -30,11 +30,8 @@ import org.gradle.language.base.plugins.LifecycleBasePlugin.CHECK_TASK_NAME
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 
 @HubdleDslMarker
-public open class HubdleConfigFormatExtension
-@Inject
-constructor(
-    project: Project,
-) : HubdleConfigurableExtension(project) {
+public open class HubdleConfigFormatExtension @Inject constructor(project: Project) :
+    HubdleConfigurableExtension(project) {
 
     override val isEnabled: Property<Boolean> = property { true }
 
@@ -141,12 +138,7 @@ constructor(
                 ?.flatMap { it.kotlin.sourceDirectories }
                 ?.map { it.relativeTo(projectDir) }
                 ?.filterNot { it.path.startsWith(layout.buildDirectory.asFile.get().name) }
-                ?.flatMap {
-                    listOf(
-                        "${it.unixPath}/**/*.kt",
-                        "${it.unixPath}/*.kt",
-                    )
-                }
+                ?.flatMap { listOf("${it.unixPath}/**/*.kt", "${it.unixPath}/*.kt") }
                 ?.toSet()
                 .orEmpty()
         }
@@ -169,12 +161,7 @@ constructor(
                 ?.asSequence()
                 ?.flatMap { it.resources.sourceDirectories }
                 ?.map { it.relativeTo(projectDir) }
-                ?.flatMap {
-                    listOf(
-                        "${it.unixPath}/**/*.kt",
-                        "${it.unixPath}/*.kt",
-                    )
-                }
+                ?.flatMap { listOf("${it.unixPath}/**/*.kt", "${it.unixPath}/*.kt") }
                 ?.toSet()
                 .orEmpty()
         }

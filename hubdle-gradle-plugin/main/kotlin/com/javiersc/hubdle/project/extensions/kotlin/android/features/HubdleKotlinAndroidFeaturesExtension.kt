@@ -10,11 +10,8 @@ import org.gradle.api.Project
 import org.gradle.api.provider.Property
 
 @HubdleDslMarker
-public open class HubdleKotlinAndroidFeaturesExtension
-@Inject
-constructor(
-    project: Project,
-) : HubdleEnableableExtension(project) {
+public open class HubdleKotlinAndroidFeaturesExtension @Inject constructor(project: Project) :
+    HubdleEnableableExtension(project) {
 
     override val isEnabled: Property<Boolean> = property { true }
 

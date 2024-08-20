@@ -12,11 +12,8 @@ import org.gradle.api.Project
 import org.gradle.api.provider.Property
 
 @HubdleDslMarker
-public abstract class HubdleConfigVersioningExtension
-@Inject
-constructor(
-    project: Project,
-) : HubdleEnableableExtension(project) {
+public abstract class HubdleConfigVersioningExtension @Inject constructor(project: Project) :
+    HubdleEnableableExtension(project) {
 
     override val isEnabled: Property<Boolean> = property { true }
 

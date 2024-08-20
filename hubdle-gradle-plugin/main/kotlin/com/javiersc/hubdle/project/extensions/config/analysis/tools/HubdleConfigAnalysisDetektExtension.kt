@@ -23,11 +23,8 @@ import org.gradle.api.provider.SetProperty
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.withType
 
-public open class HubdleConfigAnalysisDetektExtension
-@Inject
-constructor(
-    project: Project,
-) : HubdleConfigurableExtension(project) {
+public open class HubdleConfigAnalysisDetektExtension @Inject constructor(project: Project) :
+    HubdleConfigurableExtension(project) {
 
     override val isEnabled: Property<Boolean> = property { true }
 

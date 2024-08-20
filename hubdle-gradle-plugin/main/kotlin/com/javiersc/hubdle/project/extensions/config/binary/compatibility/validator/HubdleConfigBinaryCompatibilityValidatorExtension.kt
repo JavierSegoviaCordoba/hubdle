@@ -23,9 +23,7 @@ import org.gradle.api.tasks.TaskProvider
 @HubdleDslMarker
 public open class HubdleConfigBinaryCompatibilityValidatorExtension
 @Inject
-constructor(
-    project: Project,
-) : HubdleConfigurableExtension(project) {
+constructor(project: Project) : HubdleConfigurableExtension(project) {
 
     override val isEnabled: Property<Boolean> = property { false }
 
@@ -38,7 +36,8 @@ constructor(
     override fun Project.defaultConfiguration() {
         applicablePlugin(
             scope = Scope.CurrentProject,
-            pluginId = PluginId.JetbrainsKotlinxBinaryCompatibilityValidator)
+            pluginId = PluginId.JetbrainsKotlinxBinaryCompatibilityValidator,
+        )
 
         lazyConfigurable {
             // TODO: Change this configurable with 0.7.0 as it must be applied on each project

@@ -25,5 +25,6 @@ internal fun File.updateChangelogActualDate() {
     changelogActual.writeText(
         changelogActual
             .readText()
-            .replace("{{ PLACEHOLDER_DATE }}", SimpleDateFormat("yyyy-MM-dd").format(Date())))
+            .replace("{{ PLACEHOLDER_DATE }}", SimpleDateFormat("yyyy-MM-dd").format(Date()))
+    )
 }

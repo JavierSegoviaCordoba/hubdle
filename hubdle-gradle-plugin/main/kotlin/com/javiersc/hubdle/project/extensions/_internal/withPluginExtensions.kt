@@ -25,7 +25,7 @@ internal fun Project.withId(id: PluginId, block: () -> Unit) {
 
 internal inline fun <reified T : Any> Project.withId(
     id: PluginId,
-    crossinline block: T.() -> Unit
+    crossinline block: T.() -> Unit,
 ) {
     pluginManager.withPlugin("$id") { block(extensions.getByType()) }
 }

@@ -69,7 +69,10 @@ constructor(
     public fun run() {
         buildDotDocsDirectory(dotDocsDirectory)
         fileSystemOperations.buildBuildDotDocs(
-            rootDirectory, dotDocsDirectory, buildDotDocsDirectory)
+            rootDirectory,
+            dotDocsDirectory,
+            buildDotDocsDirectory,
+        )
         buildChangelogInDocs(rootDirectory, fileSystemOperations)
         buildApiInDocs()
         buildProjectsInDocs(rootDirectory, projectsInfo.get(), fileSystemOperations)
@@ -82,7 +85,7 @@ constructor(
 
         internal fun register(
             project: Project,
-            configure: PreBuildSiteTask.() -> Unit
+            configure: PreBuildSiteTask.() -> Unit,
         ): TaskProvider<PreBuildSiteTask> =
             project.tasks.register<PreBuildSiteTask>(NAME) { configure(this) }
     }
@@ -225,7 +228,8 @@ constructor(
                 writeText(
                     readLines().joinToString("\n") { line ->
                         line.replace(".docs/docs/assets", "assets")
-                    })
+                    }
+                )
             }
         }
     }
@@ -246,7 +250,7 @@ constructor(
 
     private fun buildChangelogInDocs(
         rootDirectory: File,
-        fileSystemOperations: FileSystemOperations
+        fileSystemOperations: FileSystemOperations,
     ) {
         with(fileSystemOperations) {
             if (File("$rootDirectory/CHANGELOG.md").exists()) {
@@ -282,7 +286,7 @@ constructor(
     private fun buildProjectsInDocs(
         rootDirectory: File,
         projectsInfo: List<ProjectInfo>,
-        fileSystemOperations: FileSystemOperations
+        fileSystemOperations: FileSystemOperations,
     ) {
         with(fileSystemOperations) {
             val projectsPath = "$rootDirectory/build/.docs/docs/projects"
@@ -300,7 +304,8 @@ constructor(
                     writeText(
                         readLines().joinToString("\n") { line ->
                             line.replace(".docs/docs/assets", "assets")
-                        })
+                        }
+                    )
                 }
             }
 
@@ -331,7 +336,8 @@ constructor(
                             addAll(
                                 projects.map { project ->
                                     "- $project: $path/$project.md".prependIndent("$indent  ")
-                                })
+                                }
+                            )
                         }
                     }
                     .cleanNavProjects()
@@ -385,7 +391,8 @@ constructor(
                     addAll(newNavigations)
                     add("")
                 }
-                .joinToString("\n"))
+                .joinToString("\n")
+        )
     }
 
     private fun getDocsNavigation(): DocsNavigation {
@@ -397,7 +404,8 @@ constructor(
                 content
                     .subList(navIndex + 1, content.count())
                     .takeWhile { it.replace(" ", "").startsWith("-") }
-                    .toSet())
+                    .toSet(),
+        )
     }
 
     private fun List<String>.cleanNavProjects(): List<String> =

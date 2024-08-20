@@ -11,11 +11,8 @@ import org.gradle.kotlin.dsl.configure
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 @HubdleDslMarker
-public open class HubdleKotlinMultiplatformJvmExtension
-@Inject
-constructor(
-    project: Project,
-) : HubdleKotlinMinimalSourceSetConfigurableExtension(project) {
+public open class HubdleKotlinMultiplatformJvmExtension @Inject constructor(project: Project) :
+    HubdleKotlinMinimalSourceSetConfigurableExtension(project) {
 
     override val project: Project
         get() = super.project

@@ -14,6 +14,25 @@
 
 ### Updated
 
+- `org.jetbrains.kotlin.plugin.serialization:org.jetbrains.kotlin.plugin.serialization.gradle.plugin -> 2.0.20`
+- `org.jetbrains.kotlin.plugin.compose:org.jetbrains.kotlin.plugin.compose.gradle.plugin -> 2.0.20`
+- `org.jetbrains.kotlin.multiplatform:org.jetbrains.kotlin.multiplatform.gradle.plugin -> 2.0.20`
+- `org.jetbrains.kotlin.jvm:org.jetbrains.kotlin.jvm.gradle.plugin -> 2.0.20`
+- `org.jetbrains.kotlin.android:org.jetbrains.kotlin.android.gradle.plugin -> 2.0.20`
+- `org.jetbrains.kotlin:kotlin-test-testng -> 2.0.20`
+- `org.jetbrains.kotlin:kotlin-test-junit5 -> 2.0.20`
+- `org.jetbrains.kotlin:kotlin-test-junit -> 2.0.20`
+- `org.jetbrains.kotlin:kotlin-test-annotations-common -> 2.0.20`
+- `org.jetbrains.kotlin:kotlin-test -> 2.0.20`
+- `org.jetbrains.kotlin:kotlin-serialization -> 2.0.20`
+- `org.jetbrains.kotlin:kotlin-script-runtime -> 2.0.20`
+- `org.jetbrains.kotlin:kotlin-reflect -> 2.0.20`
+- `org.jetbrains.kotlin:kotlin-gradle-plugin-api -> 2.0.20`
+- `org.jetbrains.kotlin:kotlin-gradle-plugin -> 2.0.20`
+- `org.jetbrains.kotlin:kotlin-compiler-internal-test-framework -> 2.0.20`
+- `org.jetbrains.kotlin:kotlin-compiler-embeddable -> 2.0.20`
+- `org.jetbrains.kotlin:kotlin-compiler -> 2.0.20`
+- `org.jetbrains.kotlin:kotlin-annotations-jvm -> 2.0.20`
 - `org.jetbrains.kotlinx:kotlinx-datetime -> 0.6.1`
 - `com.facebook:ktfmt -> 0.52`
 - `org.jetbrains.kotlinx:kotlinx-io-core -> 0.5.3`

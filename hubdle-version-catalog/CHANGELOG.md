@@ -14,6 +14,10 @@
 
 ### Updated
 
+## [0.3.6] - 2024-08-22
+
+### Updated
+
 - `org.jetbrains.kotlin.plugin.serialization:org.jetbrains.kotlin.plugin.serialization.gradle.plugin -> 2.0.20`
 - `org.jetbrains.kotlin.plugin.compose:org.jetbrains.kotlin.plugin.compose.gradle.plugin -> 2.0.20`
 - `org.jetbrains.kotlin.multiplatform:org.jetbrains.kotlin.multiplatform.gradle.plugin -> 2.0.20`
@@ -1257,7 +1261,9 @@
 - `com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter -> 1.0.0`
 - `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.3.5...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.3.6...HEAD
+
+[0.3.6]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.3.5...c0.3.6
 
 [0.3.5]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.3.4...c0.3.5
 

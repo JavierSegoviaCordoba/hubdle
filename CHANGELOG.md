@@ -4,6 +4,10 @@
 
 ### Added
 
+- Kotlin test source sets to excludes source sets in Kover setup
+- `testIntegration` to excludes source sets in Kover setup
+- `testFunctional` to excludes source sets in Kover setup
+
 ### Changed
 
 ### Deprecated

@@ -4,6 +4,8 @@ import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.fallbackAction
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
+import com.javiersc.hubdle.project.extensions._internal.kotlinTestsSrcDirs
+import com.javiersc.hubdle.project.extensions._internal.withKotlin
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.config.hubdleConfig
@@ -16,6 +18,7 @@ import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.file.DirectoryProperty
 import org.gradle.api.provider.Property
+import org.gradle.api.provider.SetProperty
 import org.gradle.api.tasks.TaskProvider
 import org.gradle.kotlin.dsl.the
 
@@ -52,6 +55,20 @@ public open class HubdleConfigCoverageExtension @Inject constructor(project: Pro
 
             configure<KoverProjectExtension> {
                 val buildDir: DirectoryProperty = layout.buildDirectory
+
+                withKotlin {
+                    val testSets: SetProperty<String?> = setProperty {
+                        val sources: List<String?> = kotlinTestsSrcDirs.get().map { it.path }
+                        (sources + "testFunctional" + "testIntegration").toSet()
+                    }
+
+                    currentProject { koverProjectConfig ->
+                        koverProjectConfig.sources { koverSources ->
+                            koverSources.excludedSourceSets.addAll(testSets)
+                        }
+                    }
+                }
+
                 reports { reports ->
                     reports.total { total ->
                         total.html { html -> html.htmlDir.set(buildDir.dir("reports/kover/html/")) }

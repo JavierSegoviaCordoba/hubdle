@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 7.0.0.BETA2`
 - `com.javiersc.kotlin:kotlin-compiler-test-extensions -> 0.3.0+2.0.20`
 - `com.javiersc.kotlin:kotlin-compiler-extensions -> 0.3.0+2.0.20`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.7.7`

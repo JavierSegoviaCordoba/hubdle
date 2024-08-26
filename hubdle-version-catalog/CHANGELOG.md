@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.github.triplet.play:com.github.triplet.play.gradle.plugin -> 3.11.0`
 - `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 7.0.0.BETA2`
 - `com.javiersc.kotlin:kotlin-compiler-test-extensions -> 0.3.0+2.0.20`
 - `com.javiersc.kotlin:kotlin-compiler-extensions -> 0.3.0+2.0.20`

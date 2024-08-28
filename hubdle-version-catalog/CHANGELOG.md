@@ -14,7 +14,7 @@
 
 ### Updated
 
-- `com.android.tools:desugar_jdk_libs -> 2.1.0`
+- `com.android.tools:desugar_jdk_libs -> 2.1.1`
 - `com.github.triplet.play:com.github.triplet.play.gradle.plugin -> 3.11.0`
 - `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 7.0.0.BETA2`
 - `com.javiersc.kotlin:kotlin-compiler-test-extensions -> 0.3.0+2.0.20`

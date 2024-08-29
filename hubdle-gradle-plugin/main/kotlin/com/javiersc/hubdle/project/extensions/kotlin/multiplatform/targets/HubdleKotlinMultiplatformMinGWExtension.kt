@@ -11,11 +11,6 @@ import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.provider.Property
-import org.gradle.kotlin.dsl.configure
-import org.gradle.kotlin.dsl.getValue
-import org.gradle.kotlin.dsl.getting
-import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
-import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 
 @HubdleDslMarker
 public open class HubdleKotlinMultiplatformMinGWExtension @Inject constructor(project: Project) :
@@ -50,31 +45,6 @@ public open class HubdleKotlinMultiplatformMinGWExtension @Inject constructor(pr
         lazyConfigurable {
             if (allEnabled.get()) {
                 mingwX64()
-            }
-        }
-        lazyConfigurable {
-            configure<KotlinMultiplatformExtension> {
-                val commonMain: KotlinSourceSet by sourceSets.getting
-                val mingwX64Main: KotlinSourceSet? = sourceSets.findByName("mingwX64Main")
-
-                val commonTest: KotlinSourceSet by sourceSets.getting
-                val mingwX64Test: KotlinSourceSet? = sourceSets.findByName("mingwX64Test")
-
-                val mingwMainSourceSets: List<KotlinSourceSet> = listOfNotNull(mingwX64Main)
-                val mingwTestSourceSets: List<KotlinSourceSet> = listOfNotNull(mingwX64Test)
-
-                val mingwMain = sourceSets.maybeCreate("mingwMain")
-                val mingwTest = sourceSets.maybeCreate("mingwTest")
-
-                mingwMain.dependsOn(commonMain)
-                for (mingwMainSourceSet in mingwMainSourceSets) {
-                    mingwMainSourceSet.dependsOn(mingwMain)
-                }
-
-                mingwTest.dependsOn(commonTest)
-                for (mingwTestSourceSet in mingwTestSourceSets) {
-                    mingwTestSourceSet.dependsOn(mingwTest)
-                }
             }
         }
     }

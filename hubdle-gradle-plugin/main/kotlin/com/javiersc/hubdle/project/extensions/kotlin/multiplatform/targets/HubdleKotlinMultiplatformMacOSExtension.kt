@@ -12,11 +12,6 @@ import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.provider.Property
-import org.gradle.kotlin.dsl.configure
-import org.gradle.kotlin.dsl.getValue
-import org.gradle.kotlin.dsl.getting
-import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
-import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 
 @HubdleDslMarker
 public open class HubdleKotlinMultiplatformMacOSExtension @Inject constructor(project: Project) :
@@ -62,35 +57,6 @@ public open class HubdleKotlinMultiplatformMacOSExtension @Inject constructor(pr
             if (allEnabled.get()) {
                 macosArm64()
                 macosX64()
-            }
-        }
-        lazyConfigurable {
-            configure<KotlinMultiplatformExtension> {
-                val commonMain: KotlinSourceSet by sourceSets.getting
-                val macosX64Main: KotlinSourceSet? = sourceSets.findByName("macosX64Main")
-                val macosArm64Main: KotlinSourceSet? = sourceSets.findByName("macosArm64Main")
-
-                val commonTest: KotlinSourceSet by sourceSets.getting
-                val macosX64Test: KotlinSourceSet? = sourceSets.findByName("macosX64Test")
-                val macosArm64Test: KotlinSourceSet? = sourceSets.findByName("macosArm64Test")
-
-                val macosMainSourceSets: List<KotlinSourceSet> =
-                    listOfNotNull(macosX64Main, macosArm64Main)
-                val macosTestSourceSets: List<KotlinSourceSet> =
-                    listOfNotNull(macosX64Test, macosArm64Test)
-
-                val macosMain = sourceSets.maybeCreate("macosMain")
-                val macosTest = sourceSets.maybeCreate("macosTest")
-
-                macosMain.dependsOn(commonMain)
-                for (macosMainSourceSet in macosMainSourceSets) {
-                    macosMainSourceSet.dependsOn(macosMain)
-                }
-
-                macosTest.dependsOn(commonTest)
-                for (macosTestSourceSet in macosTestSourceSets) {
-                    macosTestSourceSet.dependsOn(macosTest)
-                }
             }
         }
     }

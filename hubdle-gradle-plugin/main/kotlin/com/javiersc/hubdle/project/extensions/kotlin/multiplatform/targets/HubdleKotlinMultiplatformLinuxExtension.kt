@@ -12,11 +12,6 @@ import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.provider.Property
-import org.gradle.kotlin.dsl.configure
-import org.gradle.kotlin.dsl.getValue
-import org.gradle.kotlin.dsl.getting
-import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
-import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 
 @HubdleDslMarker
 public open class HubdleKotlinMultiplatformLinuxExtension @Inject constructor(project: Project) :
@@ -60,36 +55,6 @@ public open class HubdleKotlinMultiplatformLinuxExtension @Inject constructor(pr
             if (allEnabled.get()) {
                 linuxArm64()
                 linuxX64()
-            }
-        }
-        lazyConfigurable {
-            configure<KotlinMultiplatformExtension> {
-                val commonMain: KotlinSourceSet by sourceSets.getting
-                val linuxArm64Main: KotlinSourceSet? = sourceSets.findByName("linuxArm64Main")
-                val linuxX64Main: KotlinSourceSet? = sourceSets.findByName("linuxX64Main")
-
-                val commonTest: KotlinSourceSet by sourceSets.getting
-                val linuxArm64Test: KotlinSourceSet? = sourceSets.findByName("linuxArm64Test")
-                val linuxX64Test: KotlinSourceSet? = sourceSets.findByName("linuxX64Test")
-
-                val linuxMainSourceSets: List<KotlinSourceSet> =
-                    listOfNotNull(linuxArm64Main, linuxX64Main)
-
-                val linuxTestSourceSets: List<KotlinSourceSet> =
-                    listOfNotNull(linuxArm64Test, linuxX64Test)
-
-                val linuxMain = sourceSets.maybeCreate("linuxMain")
-                val linuxTest = sourceSets.maybeCreate("linuxTest")
-
-                linuxMain.dependsOn(commonMain)
-                for (linuxMainSourceSet in linuxMainSourceSets) {
-                    linuxMainSourceSet.dependsOn(linuxMain)
-                }
-
-                linuxTest.dependsOn(commonTest)
-                for (linuxTestSourceSet in linuxTestSourceSets) {
-                    linuxTestSourceSet.dependsOn(linuxTest)
-                }
             }
         }
     }

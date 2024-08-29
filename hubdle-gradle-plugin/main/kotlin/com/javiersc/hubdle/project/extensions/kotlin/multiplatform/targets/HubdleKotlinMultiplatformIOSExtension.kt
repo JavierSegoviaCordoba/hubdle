@@ -13,11 +13,6 @@ import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.provider.Property
-import org.gradle.kotlin.dsl.configure
-import org.gradle.kotlin.dsl.getValue
-import org.gradle.kotlin.dsl.getting
-import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
-import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 
 @HubdleDslMarker
 public open class HubdleKotlinMultiplatformIOSExtension @Inject constructor(project: Project) :
@@ -72,39 +67,6 @@ public open class HubdleKotlinMultiplatformIOSExtension @Inject constructor(proj
                 iosArm64()
                 iosSimulatorArm64()
                 iosX64()
-            }
-        }
-        lazyConfigurable {
-            configure<KotlinMultiplatformExtension> {
-                val commonMain: KotlinSourceSet by sourceSets.getting
-                val iosArm64Main: KotlinSourceSet? = sourceSets.findByName("iosArm64Main")
-                val iosX64Main: KotlinSourceSet? = sourceSets.findByName("iosX64Main")
-                val iosSimulatorArm64Main: KotlinSourceSet? =
-                    sourceSets.findByName("iosSimulatorArm64Main")
-
-                val commonTest: KotlinSourceSet by sourceSets.getting
-                val iosArm64Test: KotlinSourceSet? = sourceSets.findByName("iosArm64Test")
-                val iosX64Test: KotlinSourceSet? = sourceSets.findByName("iosX64Test")
-                val iosSimulatorArm64Test: KotlinSourceSet? =
-                    sourceSets.findByName("iosSimulatorArm64Test")
-
-                val iosMainSourceSets: List<KotlinSourceSet> =
-                    listOfNotNull(iosArm64Main, iosX64Main, iosSimulatorArm64Main)
-
-                val iosTestSourceSets: List<KotlinSourceSet> =
-                    listOfNotNull(iosArm64Test, iosX64Test, iosSimulatorArm64Test)
-
-                val iosMain = sourceSets.maybeCreate("iosMain")
-                val iosTest = sourceSets.maybeCreate("iosTest")
-
-                iosMain.dependsOn(commonMain)
-                for (iosMainSourceSet in iosMainSourceSets) {
-                    iosMainSourceSet.dependsOn(iosMain)
-                }
-                iosTest.dependsOn(commonTest)
-                for (iosTestSourceSet in iosTestSourceSets) {
-                    iosTestSourceSet.dependsOn(iosTest)
-                }
             }
         }
     }

@@ -15,11 +15,6 @@ import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.provider.Property
-import org.gradle.kotlin.dsl.configure
-import org.gradle.kotlin.dsl.getValue
-import org.gradle.kotlin.dsl.getting
-import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
-import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 
 @HubdleDslMarker
 public open class HubdleKotlinMultiplatformWatchOSExtension @Inject constructor(project: Project) :
@@ -100,51 +95,6 @@ public open class HubdleKotlinMultiplatformWatchOSExtension @Inject constructor(
                 watchosDeviceArm64()
                 watchosSimulatorArm64()
                 watchosX64()
-            }
-        }
-        lazyConfigurable {
-            configure<KotlinMultiplatformExtension> {
-                val commonMain: KotlinSourceSet by sourceSets.getting
-                val watchosArm32Main: KotlinSourceSet? = sourceSets.findByName("watchosArm32Main")
-                val watchosArm64Main: KotlinSourceSet? = sourceSets.findByName("watchosArm64Main")
-                val watchosSimulatorArm64Main: KotlinSourceSet? =
-                    sourceSets.findByName("watchosSimulatorArm64Main")
-                val watchosX64Main: KotlinSourceSet? = sourceSets.findByName("watchosX64Main")
-
-                val commonTest: KotlinSourceSet by sourceSets.getting
-                val watchosArm32Test: KotlinSourceSet? = sourceSets.findByName("watchosArm32Test")
-                val watchosArm64Test: KotlinSourceSet? = sourceSets.findByName("watchosArm64Test")
-                val watchosSimulatorArm64Test: KotlinSourceSet? =
-                    sourceSets.findByName("watchosSimulatorArm64Test")
-                val watchosX64Test: KotlinSourceSet? = sourceSets.findByName("watchosX64Test")
-
-                val watchosMainSourceSets: List<KotlinSourceSet> =
-                    listOfNotNull(
-                        watchosArm32Main,
-                        watchosArm64Main,
-                        watchosSimulatorArm64Main,
-                        watchosX64Main,
-                    )
-                val watchosTestSourceSets: List<KotlinSourceSet> =
-                    listOfNotNull(
-                        watchosArm32Test,
-                        watchosArm64Test,
-                        watchosSimulatorArm64Test,
-                        watchosX64Test,
-                    )
-
-                val watchosMain = sourceSets.maybeCreate("watchosMain")
-                val watchosTest = sourceSets.maybeCreate("watchosTest")
-
-                watchosMain.dependsOn(commonMain)
-                for (watchosMainSourceSet in watchosMainSourceSets) {
-                    watchosMainSourceSet.dependsOn(watchosMain)
-                }
-
-                watchosTest.dependsOn(commonTest)
-                for (watchosTestSourceSet in watchosTestSourceSets) {
-                    watchosTestSourceSet.dependsOn(watchosTest)
-                }
             }
         }
     }

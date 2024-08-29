@@ -14,11 +14,6 @@ import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.provider.Property
-import org.gradle.kotlin.dsl.configure
-import org.gradle.kotlin.dsl.getValue
-import org.gradle.kotlin.dsl.getting
-import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
-import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 
 @HubdleDslMarker
 public open class HubdleKotlinMultiplatformAndroidNativeExtension
@@ -89,59 +84,6 @@ constructor(project: Project) : HubdleKotlinMinimalSourceSetConfigurableExtensio
                 androidNativeArm64()
                 androidNativeX64()
                 androidNativeX86()
-            }
-        }
-
-        lazyConfigurable {
-            configure<KotlinMultiplatformExtension> {
-                val commonMain: KotlinSourceSet by sourceSets.getting
-                val androidNativeArm32Main: KotlinSourceSet? =
-                    sourceSets.findByName("androidNativeArm32Main")
-                val androidNativeArm64Main: KotlinSourceSet? =
-                    sourceSets.findByName("androidNativeArm64Main")
-                val androidNativeX64Main: KotlinSourceSet? =
-                    sourceSets.findByName("androidNativeX64Main")
-                val androidNativeX86Main: KotlinSourceSet? =
-                    sourceSets.findByName("androidNativeX86Main")
-
-                val commonTest: KotlinSourceSet by sourceSets.getting
-                val androidNativeArm32Test: KotlinSourceSet? =
-                    sourceSets.findByName("androidNativeArm32Test")
-                val androidNativeArm64Test: KotlinSourceSet? =
-                    sourceSets.findByName("androidNativeArm64Test")
-                val androidNativeX64Test: KotlinSourceSet? =
-                    sourceSets.findByName("androidNativeX64Test")
-                val androidNativeX86Test: KotlinSourceSet? =
-                    sourceSets.findByName("androidNativeX86Test")
-
-                val androidNativeMainSourceSets: List<KotlinSourceSet> =
-                    listOfNotNull(
-                        androidNativeArm32Main,
-                        androidNativeArm64Main,
-                        androidNativeX64Main,
-                        androidNativeX86Main,
-                    )
-
-                val androidNativeTestSourceSets: List<KotlinSourceSet> =
-                    listOfNotNull(
-                        androidNativeArm32Test,
-                        androidNativeArm64Test,
-                        androidNativeX64Test,
-                        androidNativeX86Test,
-                    )
-
-                val androidNativeMain = sourceSets.maybeCreate("androidNativeMain")
-                val androidNativeTest = sourceSets.maybeCreate("androidNativeTest")
-
-                androidNativeMain.dependsOn(commonMain)
-                for (androidNativeMainSourceSet in androidNativeMainSourceSets) {
-                    androidNativeMainSourceSet.dependsOn(androidNativeMain)
-                }
-
-                androidNativeTest.dependsOn(commonTest)
-                for (androidNativeTestSourceSet in androidNativeTestSourceSets) {
-                    androidNativeTestSourceSet.dependsOn(androidNativeTest)
-                }
             }
         }
     }

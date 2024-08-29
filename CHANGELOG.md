@@ -6,6 +6,8 @@
 
 ### Changed
 
+- Kotlin Multiplatform to use `applyDefaultHierarchyTemplate()`
+
 ### Deprecated
 
 ### Fixed

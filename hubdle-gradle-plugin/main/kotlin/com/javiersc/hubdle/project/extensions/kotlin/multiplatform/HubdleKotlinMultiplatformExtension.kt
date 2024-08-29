@@ -4,6 +4,7 @@ import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.configurableDependencies
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
+import com.javiersc.hubdle.project.extensions._internal.withKotlinMultiplatform
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
@@ -153,6 +154,10 @@ public open class HubdleKotlinMultiplatformExtension @Inject constructor(project
             scope = Scope.CurrentProject,
             pluginId = PluginId.JetbrainsKotlinMultiplatform,
         )
+
+        withKotlinMultiplatform {
+            configure<KotlinMultiplatformExtension> { applyDefaultHierarchyTemplate() }
+        }
 
         configurableSrcDirs(multiplatformTargets())
         configurableDependencies()

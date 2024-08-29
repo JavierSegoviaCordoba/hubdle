@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx:kotlinx-serialization-json -> 1.7.2`
+- `org.jetbrains.kotlinx:kotlinx-serialization-core -> 1.7.2`
 - `com.android.tools:desugar_jdk_libs -> 2.1.1`
 - `com.github.triplet.play:com.github.triplet.play.gradle.plugin -> 3.11.0`
 - `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 7.0.0.BETA2`

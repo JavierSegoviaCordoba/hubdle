@@ -16,6 +16,7 @@
 
 ### Updated
 
+- `com.gradle.plugin-publish:com.gradle.plugin-publish.gradle.plugin -> 1.2.2`
 - `org.jetbrains.kotlinx:kotlinx-serialization-json -> 1.7.2`
 - `org.jetbrains.kotlinx:kotlinx-serialization-core -> 1.7.2`
 - `com.android.tools:desugar_jdk_libs -> 2.1.1`

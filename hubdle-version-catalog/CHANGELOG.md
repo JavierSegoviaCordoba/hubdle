@@ -14,6 +14,10 @@
 
 ### Updated
 
+- `com.android.library:com.android.library.gradle.plugin -> 8.6.0`
+- `com.android.application:com.android.application.gradle.plugin -> 8.6.0`
+- `com.android.tools.build:gradle -> 8.6.0`
+
 ## [0.3.7] - 2024-08-29
 
 ### Added

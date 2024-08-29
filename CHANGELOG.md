@@ -10,6 +10,8 @@
 
 ### Fixed
 
+- coverage excluded source sets
+
 ### Removed
 
 ### Updated

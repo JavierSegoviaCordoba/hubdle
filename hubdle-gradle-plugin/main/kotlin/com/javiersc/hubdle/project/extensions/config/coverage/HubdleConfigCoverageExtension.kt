@@ -18,7 +18,7 @@ import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.file.DirectoryProperty
 import org.gradle.api.provider.Property
-import org.gradle.api.provider.SetProperty
+import org.gradle.api.provider.Provider
 import org.gradle.api.tasks.TaskProvider
 import org.gradle.kotlin.dsl.the
 
@@ -57,10 +57,8 @@ public open class HubdleConfigCoverageExtension @Inject constructor(project: Pro
                 val buildDir: DirectoryProperty = layout.buildDirectory
 
                 withKotlin {
-                    val testSets: SetProperty<String?> = setProperty {
-                        val sources: List<String?> = kotlinTestsSrcDirs.get().map { it.path }
-                        (sources + "testFunctional" + "testIntegration").toSet()
-                    }
+                    val testSets: Provider<List<String>> =
+                        kotlinTestsSrcDirs.map { it.mapNotNull { it.path } }
 
                     currentProject { koverProjectConfig ->
                         koverProjectConfig.sources { koverSources ->

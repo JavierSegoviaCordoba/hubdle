@@ -59,7 +59,9 @@ internal val Project.kotlinTestsSrcDirs: Provider<Set<File>>
                 .filter { dir ->
                     val relativePath: String = dir.relativeTo(projectDir).path
                     val relativeDirs: List<String> = relativePath.split(File.separatorChar)
-                    relativeDirs.any { it.endsWith("Test") || it == "test" }
+                    relativeDirs.any {
+                        it.startsWith("test") || it.endsWith("Test") || it == "test"
+                    }
                 }
                 .toSet()
         }

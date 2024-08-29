@@ -4,6 +4,8 @@
 
 ### Added
 
+- `org.jetbrains.kotlin.plugin.atomicfu`
+
 ### Changed
 
 ### Deprecated

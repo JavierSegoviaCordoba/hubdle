@@ -4,8 +4,6 @@
 
 ### Added
 
-- `org.jetbrains.kotlin.plugin.atomicfu`
-
 ### Changed
 
 ### Deprecated
@@ -13,6 +11,14 @@
 ### Fixed
 
 ### Removed
+
+### Updated
+
+## [0.3.7] - 2024-08-29
+
+### Added
+
+- `org.jetbrains.kotlin.plugin.atomicfu`
 
 ### Updated
 
@@ -1273,7 +1279,9 @@
 - `com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter -> 1.0.0`
 - `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.3.6...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.3.7...HEAD
+
+[0.3.7]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.3.6...c0.3.7
 
 [0.3.6]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.3.5...c0.3.6
 

@@ -4,10 +4,6 @@
 
 ### Added
 
-- Kotlin test source sets to excludes source sets in Kover setup
-- `testIntegration` to excludes source sets in Kover setup
-- `testFunctional` to excludes source sets in Kover setup
-
 ### Changed
 
 ### Deprecated
@@ -17,6 +13,14 @@
 ### Removed
 
 ### Updated
+
+## [0.7.8] - 2024-08-29
+
+### Added
+
+- Kotlin test source sets to excludes source sets in Kover setup
+- `testIntegration` to excludes source sets in Kover setup
+- `testFunctional` to excludes source sets in Kover setup
 
 ## [0.7.7] - 2024-08-22
 
@@ -162,7 +166,9 @@
 
 - `allTests` task
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.7...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.8...HEAD
+
+[0.7.8]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.7...p0.7.8
 
 [0.7.7]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.6...p0.7.7
 

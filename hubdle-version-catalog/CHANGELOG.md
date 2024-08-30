@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.7.8`
 - `com.android.library:com.android.library.gradle.plugin -> 8.6.0`
 - `com.android.application:com.android.application.gradle.plugin -> 8.6.0`
 - `com.android.tools.build:gradle -> 8.6.0`

@@ -9,6 +9,7 @@ import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotli
 import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotlinContextReceiversDelegateFeatureExtension
 import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotlinCoroutinesDelegateFeatureExtension
 import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotlinExtendedStdlibDelegateFeatureExtension
+import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotlinKopyDelegateFeatureExtension
 import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotlinKotestDelegateFeatureExtension
 import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotlinMoleculeDelegateFeatureExtension
 import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotlinSerializationDelegateFeatureExtension
@@ -37,22 +38,23 @@ public open class HubdleKotlinJvmFeaturesExtension @Inject constructor(project: 
 }
 
 public interface HubdleKotlinJvmDelegateFeaturesExtension :
-    HubdleKotlinAtomicfuDelegateFeatureExtension,
-    HubdleKotlinBuildKonfigDelegateFeatureExtension,
     HubdleGradleDelegateFeatureExtension,
     HubdleIntellijDelegateFeatureExtension,
     HubdleJavaApplicationDelegateFeatureExtension,
+    HubdleJavaVersionDelegateFeatureExtension,
+    HubdleJvmToolchainDelegateFeatureExtension,
+    HubdleKotlinAtomicfuDelegateFeatureExtension,
+    HubdleKotlinBuildKonfigDelegateFeatureExtension,
     HubdleKotlinCompilerPluginDelegateFeatureExtension,
     HubdleKotlinComposeDelegateFeatureExtension,
     HubdleKotlinContextReceiversDelegateFeatureExtension,
     HubdleKotlinCoroutinesDelegateFeatureExtension,
     HubdleKotlinExtendedStdlibDelegateFeatureExtension,
-    HubdleJavaVersionDelegateFeatureExtension,
+    HubdleKotlinKopyDelegateFeatureExtension,
     HubdleKotlinKotestDelegateFeatureExtension,
     HubdleKotlinMoleculeDelegateFeatureExtension,
     HubdleKotlinSerializationDelegateFeatureExtension,
-    HubdleKotlinSqlDelightDelegateFeatureExtension,
-    HubdleJvmToolchainDelegateFeatureExtension
+    HubdleKotlinSqlDelightDelegateFeatureExtension
 
 internal val HubdleEnableableExtension.hubdleKotlinJvmFeatures: HubdleKotlinJvmFeaturesExtension
     get() = getHubdleExtension()

@@ -9,6 +9,7 @@ import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotli
 import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotlinComposeDelegateFeatureExtension
 import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotlinCoroutinesDelegateFeatureExtension
 import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotlinExtendedStdlibDelegateFeatureExtension
+import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotlinKopyDelegateFeatureExtension
 import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotlinKotestDelegateFeatureExtension
 import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotlinMoleculeDelegateFeatureExtension
 import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotlinSerializationDelegateFeatureExtension
@@ -35,17 +36,18 @@ constructor(project: Project) :
 }
 
 public interface HubdleKotlinAndroidApplicationDelegateFeaturesExtension :
+    HubdleJavaVersionDelegateFeatureExtension,
+    HubdleJvmToolchainDelegateFeatureExtension,
     HubdleKotlinAtomicfuDelegateFeatureExtension,
     HubdleKotlinBuildKonfigDelegateFeatureExtension,
     HubdleKotlinComposeDelegateFeatureExtension,
     HubdleKotlinCoroutinesDelegateFeatureExtension,
     HubdleKotlinExtendedStdlibDelegateFeatureExtension,
-    HubdleJavaVersionDelegateFeatureExtension,
+    HubdleKotlinKopyDelegateFeatureExtension,
     HubdleKotlinKotestDelegateFeatureExtension,
     HubdleKotlinMoleculeDelegateFeatureExtension,
     HubdleKotlinSerializationDelegateFeatureExtension,
-    HubdleKotlinSqlDelightDelegateFeatureExtension,
-    HubdleJvmToolchainDelegateFeatureExtension
+    HubdleKotlinSqlDelightDelegateFeatureExtension
 
 internal val HubdleEnableableExtension.hubdleAndroidApplicationFeatures:
     HubdleKotlinAndroidApplicationFeaturesExtension

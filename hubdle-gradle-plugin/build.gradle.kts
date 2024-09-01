@@ -113,6 +113,7 @@ hubdle {
                     api(hubdle.plugins.gradle.develocity.artifact)
                     api(hubdle.plugins.gradle.plugin.publish.artifact)
                     api(hubdle.plugins.gradle.test.retry.artifact)
+                    api(hubdle.plugins.javiersc.kotlin.kopy.artifact)
                     api(hubdle.plugins.javiersc.semver.artifact)
                     api(hubdle.plugins.jetbrains.changelog.artifact)
                     api(hubdle.plugins.jetbrains.compose.artifact)

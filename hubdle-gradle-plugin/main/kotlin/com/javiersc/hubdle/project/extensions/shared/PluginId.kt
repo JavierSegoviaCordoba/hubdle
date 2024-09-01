@@ -16,6 +16,7 @@ public enum class PluginId(public val id: String) {
     JavaGradlePlugin("java-gradle-plugin"),
     JavaTestFixtures("java-test-fixtures"),
     JavierscHubdle("com.javiersc.hubdle"),
+    JavierscKotlinKopyGradlePlugin("com.javiersc.kotlin.kopy"),
     JavierscSemverGradlePlugin("com.javiersc.semver"),
     JetbrainsChangelog("org.jetbrains.changelog"),
     JetbrainsCompose("org.jetbrains.compose"),

@@ -4,6 +4,8 @@
 
 ### Added
 
+- Atomicfu feature
+
 ### Changed
 
 - Kotlin Multiplatform to use `applyDefaultHierarchyTemplate()`

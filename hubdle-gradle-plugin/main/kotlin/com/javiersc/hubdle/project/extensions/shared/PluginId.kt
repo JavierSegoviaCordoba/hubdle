@@ -24,6 +24,7 @@ public enum class PluginId(public val id: String) {
     JetbrainsKotlinJvm("org.jetbrains.kotlin.jvm"),
     JetbrainsKotlinMultiplatform("org.jetbrains.kotlin.multiplatform"),
     JetbrainsKotlinPluginCompose("org.jetbrains.kotlin.plugin.compose"),
+    JetbrainsKotlinAtomicfu("org.jetbrains.kotlin.plugin.atomicfu"),
     JetbrainsKotlinPluginSerialization("org.jetbrains.kotlin.plugin.serialization"),
     JetbrainsKotlinxBinaryCompatibilityValidator(KotlinBinaryCompatibilityValidator),
     JetbrainsKotlinxKover("org.jetbrains.kotlinx.kover"),

@@ -3,6 +3,7 @@ package com.javiersc.hubdle.project.extensions.kotlin.jvm.features
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
+import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotlinAtomicfuDelegateFeatureExtension
 import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotlinComposeDelegateFeatureExtension
 import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotlinContextReceiversDelegateFeatureExtension
 import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotlinCoroutinesDelegateFeatureExtension
@@ -35,6 +36,7 @@ public open class HubdleKotlinJvmFeaturesExtension @Inject constructor(project: 
 }
 
 public interface HubdleKotlinJvmDelegateFeaturesExtension :
+    HubdleKotlinAtomicfuDelegateFeatureExtension,
     HubdleGradleDelegateFeatureExtension,
     HubdleIntellijDelegateFeatureExtension,
     HubdleJavaApplicationDelegateFeatureExtension,

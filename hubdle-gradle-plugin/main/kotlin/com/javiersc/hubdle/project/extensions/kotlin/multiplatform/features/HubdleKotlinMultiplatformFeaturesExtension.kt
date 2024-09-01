@@ -3,6 +3,7 @@ package com.javiersc.hubdle.project.extensions.kotlin.multiplatform.features
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
+import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotlinAtomicfuDelegateFeatureExtension
 import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotlinComposeDelegateFeatureExtension
 import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotlinCoroutinesDelegateFeatureExtension
 import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotlinExtendedStdlibDelegateFeatureExtension
@@ -32,6 +33,7 @@ public open class HubdleKotlinMultiplatformFeaturesExtension @Inject constructor
 
 public interface HubdleKotlinMultiplatformDelegateFeaturesExtension :
     HubdleKotlinMultiplatformMinimumTargetPerOsDelegateFeatureExtension,
+    HubdleKotlinAtomicfuDelegateFeatureExtension,
     HubdleKotlinComposeDelegateFeatureExtension,
     HubdleKotlinCoroutinesDelegateFeatureExtension,
     HubdleKotlinExtendedStdlibDelegateFeatureExtension,

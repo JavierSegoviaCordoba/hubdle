@@ -11,6 +11,7 @@ import com.javiersc.hubdle.project.extensions.kotlin.android.library.HubdleKotli
 import com.javiersc.hubdle.project.extensions.kotlin.android.library.features.HubdleKotlinAndroidLibraryFeaturesExtension
 import com.javiersc.hubdle.project.extensions.kotlin.compiler.options.HubdleKotlinCompilerOptionsExtension
 import com.javiersc.hubdle.project.extensions.kotlin.features.HubdleKotlinFeaturesExtension
+import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotlinAtomicfuFeatureExtension
 import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotlinComposeFeatureExtension
 import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotlinContextReceiversFeatureExtension
 import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotlinCoroutinesFeatureExtension
@@ -74,6 +75,7 @@ internal fun HubdleState.createHubdleKotlinExtensions() {
 private fun HubdleState.createKotlinFeatureExtensions() {
     createExtension<HubdleKotlinFeaturesExtension> {
         createExtension<HubdleKotlinCompilerPluginFeatureExtension>()
+        createExtension<HubdleKotlinAtomicfuFeatureExtension>()
         createExtension<HubdleKotlinComposeFeatureExtension>()
         createExtension<HubdleKotlinContextReceiversFeatureExtension>()
         createExtension<HubdleKotlinCoroutinesFeatureExtension>()

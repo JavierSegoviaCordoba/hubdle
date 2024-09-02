@@ -6,6 +6,7 @@ import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.kotlin.android.application.hubdleAndroidApplication
 import com.javiersc.hubdle.project.extensions.kotlin.android.library.HubdleKotlinAndroidLibraryExtension
 import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotlinAtomicfuDelegateFeatureExtension
+import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotlinBuildKonfigDelegateFeatureExtension
 import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotlinComposeDelegateFeatureExtension
 import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotlinCoroutinesDelegateFeatureExtension
 import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotlinExtendedStdlibDelegateFeatureExtension
@@ -36,6 +37,7 @@ constructor(project: Project) :
 
 public interface HubdleKotlinAndroidLibraryDelegateFeaturesExtension :
     HubdleKotlinAtomicfuDelegateFeatureExtension,
+    HubdleKotlinBuildKonfigDelegateFeatureExtension,
     HubdleKotlinComposeDelegateFeatureExtension,
     HubdleKotlinCoroutinesDelegateFeatureExtension,
     HubdleKotlinExtendedStdlibDelegateFeatureExtension,

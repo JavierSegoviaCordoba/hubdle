@@ -4,6 +4,8 @@
 
 ### Added
 
+- generate additional data configuration
+- build konfig feature
 - Atomicfu feature
 
 ### Changed

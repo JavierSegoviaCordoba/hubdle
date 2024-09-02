@@ -4,6 +4,7 @@ public enum class PluginId(public val id: String) {
     AdarshrTestLogger("com.adarshr.test-logger"),
     AndroidApplication("com.android.application"),
     AndroidLibrary("com.android.library"),
+    CodingfelineBuildkonfig("com.codingfeline.buildkonfig"),
     Detekt("io.gitlab.arturbosch.detekt"),
     DiffplugSpotless("com.diffplug.spotless"),
     GithubGradleNexusPublishPlugin("io.github.gradle-nexus.publish-plugin"),

@@ -14,6 +14,10 @@
 
 ### Updated
 
+## [0.3.8] - 2024-09-02
+
+### Updated
+
 - `com.russhwolf:multiplatform-settings-test -> 1.2.0`
 - `com.russhwolf:multiplatform-settings-serialization -> 1.2.0`
 - `com.russhwolf:multiplatform-settings-no-arg -> 1.2.0`
@@ -1290,7 +1294,9 @@
 - `com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter -> 1.0.0`
 - `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.3.7...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.3.8...HEAD
+
+[0.3.8]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.3.7...c0.3.8
 
 [0.3.7]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.3.6...c0.3.7
 

@@ -14,6 +14,12 @@
 
 ### Updated
 
+- `com.russhwolf:multiplatform-settings-test -> 1.2.0`
+- `com.russhwolf:multiplatform-settings-serialization -> 1.2.0`
+- `com.russhwolf:multiplatform-settings-no-arg -> 1.2.0`
+- `com.russhwolf:multiplatform-settings-datastore -> 1.2.0`
+- `com.russhwolf:multiplatform-settings-coroutines -> 1.2.0`
+- `com.russhwolf:multiplatform-settings -> 1.2.0`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.7.8`
 - `com.android.library:com.android.library.gradle.plugin -> 8.6.0`
 - `com.android.application:com.android.application.gradle.plugin -> 8.6.0`

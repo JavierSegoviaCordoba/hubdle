@@ -10,6 +10,8 @@
 
 ### Fixed
 
+- sonar indexed twice the same file
+
 ### Removed
 
 ### Updated

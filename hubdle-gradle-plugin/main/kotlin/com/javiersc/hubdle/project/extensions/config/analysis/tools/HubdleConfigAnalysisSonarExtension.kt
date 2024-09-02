@@ -98,6 +98,7 @@ public open class HubdleConfigAnalysisSonarExtension @Inject constructor(project
                 .filter(File::exists)
                 .map(File::getPath)
                 .toList()
+                .minus(kotlinTestDirs)
 
     private val Project.kotlinTestDirs: List<String>
         get() =

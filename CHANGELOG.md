@@ -10,11 +10,15 @@
 
 ### Fixed
 
-- sonar indexed twice the same file
-
 ### Removed
 
 ### Updated
+
+## [0.7.10] - 2024-09-02
+
+### Fixed
+
+- sonar indexed twice the same file
 
 ## [0.7.9] - 2024-09-02
 
@@ -184,7 +188,9 @@
 
 - `allTests` task
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.9...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.10...HEAD
+
+[0.7.10]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.9...p0.7.10
 
 [0.7.9]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.8...p0.7.9
 

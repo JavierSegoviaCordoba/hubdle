@@ -14,6 +14,9 @@
 
 ### Updated
 
+- `com.javiersc.kotlin:kotlin-compiler-test-extensions -> 0.4.1+2.0.20`
+- `com.javiersc.kotlin:kotlin-compiler-extensions -> 0.4.1+2.0.20`
+
 ## [0.3.8] - 2024-09-02
 
 ### Updated

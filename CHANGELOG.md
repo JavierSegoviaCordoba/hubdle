@@ -4,6 +4,20 @@
 
 ### Added
 
+### Changed
+
+### Deprecated
+
+### Fixed
+
+### Removed
+
+### Updated
+
+## [0.7.9] - 2024-09-02
+
+### Added
+
 - generate additional data configuration
 - build konfig feature
 - Atomicfu feature
@@ -12,15 +26,9 @@
 
 - Kotlin Multiplatform to use `applyDefaultHierarchyTemplate()`
 
-### Deprecated
-
 ### Fixed
 
 - coverage excluded source sets
-
-### Removed
-
-### Updated
 
 ## [0.7.8] - 2024-08-29
 
@@ -174,7 +182,9 @@
 
 - `allTests` task
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.8...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.9...HEAD
+
+[0.7.9]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.8...p0.7.9
 
 [0.7.8]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.7...p0.7.8
 

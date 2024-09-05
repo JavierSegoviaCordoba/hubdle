@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx:kotlinx-collections-immutable -> 0.3.8`
 - `androidx.navigation:navigation-compose -> 2.8.0`
 - `androidx.lifecycle:lifecycle-viewmodel-ktx -> 2.8.5`
 - `androidx.lifecycle:lifecycle-viewmodel-compose -> 2.8.5`

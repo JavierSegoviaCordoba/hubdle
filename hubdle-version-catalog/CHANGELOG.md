@@ -14,6 +14,31 @@
 
 ### Updated
 
+- `androidx.navigation:navigation-compose -> 2.8.0`
+- `androidx.lifecycle:lifecycle-viewmodel-ktx -> 2.8.5`
+- `androidx.lifecycle:lifecycle-viewmodel-compose -> 2.8.5`
+- `androidx.lifecycle:lifecycle-viewmodel -> 2.8.5`
+- `androidx.compose.ui:ui-util -> 1.7.0`
+- `androidx.compose.ui:ui-tooling-preview -> 1.7.0`
+- `androidx.compose.ui:ui-tooling -> 1.7.0`
+- `androidx.compose.ui:ui-test-manifest -> 1.7.0`
+- `androidx.compose.ui:ui-test -> 1.7.0`
+- `androidx.compose.ui:ui -> 1.7.0`
+- `androidx.compose.runtime:runtime-saveable -> 1.7.0`
+- `androidx.compose.runtime:runtime -> 1.7.0`
+- `androidx.compose.material3:material3-window-size-class -> 1.3.0`
+- `androidx.compose.material3:material3 -> 1.3.0`
+- `androidx.compose.material:material-ripple -> 1.7.0`
+- `androidx.compose.material:material-icons-extended -> 1.7.0`
+- `androidx.compose.material:material-icons-core -> 1.7.0`
+- `androidx.compose.material:material -> 1.7.0`
+- `androidx.compose.foundation:foundation-layout -> 1.7.0`
+- `androidx.compose.foundation:foundation -> 1.7.0`
+- `androidx.compose.animation:animation-graphics -> 1.7.0`
+- `androidx.compose.animation:animation-core -> 1.7.0`
+- `androidx.compose.animation:animation -> 1.7.0`
+- `androidx.activity:activity-ktx -> 1.9.2`
+- `androidx.activity:activity-compose -> 1.9.2`
 - `com.android.tools:desugar_jdk_libs -> 2.1.2`
 - `com.javiersc.kotlin:kotlin-compiler-test-extensions -> 0.4.2+2.0.20`
 - `com.javiersc.kotlin:kotlin-compiler-extensions -> 0.4.2+2.0.20`

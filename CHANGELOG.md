@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- `project services has been closed` crash with Gradle 8.10.1
+
 ### Removed
 
 ### Updated

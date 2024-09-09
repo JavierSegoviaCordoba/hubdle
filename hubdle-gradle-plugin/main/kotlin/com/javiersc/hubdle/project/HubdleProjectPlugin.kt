@@ -1,6 +1,7 @@
 package com.javiersc.hubdle.project
 
 import com.javiersc.hubdle.project.extensions.HubdleExtension
+import com.javiersc.hubdle.project.extensions._internal.HubdleState
 import com.javiersc.hubdle.project.extensions._internal.hubdleState
 import com.javiersc.hubdle.project.extensions.config._internal.createHubdleConfigExtensions
 import com.javiersc.hubdle.project.extensions.java._internal.createHubdleJavaExtensions
@@ -11,10 +12,12 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.plugins.BasePlugin
 import org.gradle.kotlin.dsl.apply
+import org.gradle.kotlin.dsl.create
 
 public abstract class HubdleProjectPlugin : Plugin<Project> {
 
     override fun apply(target: Project) {
+        target.extensions.create<HubdleState>("_InternalHubdleState", target)
         target.pluginManager.apply(BasePlugin::class)
         target.registerHubdleLifecycleTasks()
 

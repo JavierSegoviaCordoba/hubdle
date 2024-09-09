@@ -14,18 +14,12 @@ import org.gradle.api.Project
 import org.gradle.api.provider.Property
 import org.gradle.api.provider.Provider
 import org.gradle.kotlin.dsl.create
-
-internal val hubdleStateCache: MutableMap<Project, HubdleState> = mutableMapOf()
+import org.gradle.kotlin.dsl.findByType
 
 internal val Project.hubdleState: HubdleState
-    get() {
-        if (hubdleStateCache[this] == null) hubdleStateCache[this] = HubdleState(this)
-        return checkNotNull(hubdleStateCache[this]) {
-            "HubdleState for `$displayName` doesn't exist"
-        }
-    }
+    get() = extensions.findByType<HubdleState>()!!
 
-internal class HubdleState(private val project: Project) {
+internal open class HubdleState(private val project: Project) {
 
     val name: String = project.displayName
 

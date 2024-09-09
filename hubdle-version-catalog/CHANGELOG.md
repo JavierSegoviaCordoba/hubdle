@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.7.11`
 - `com.javiersc.kotlin:kotlin-compiler-test-extensions -> 0.4.3+2.0.20`
 - `com.javiersc.kotlin:kotlin-compiler-extensions -> 0.4.3+2.0.20`
 - `io.gitlab.arturbosch.detekt:io.gitlab.arturbosch.detekt.gradle.plugin -> 1.23.7`
@@ -45,7 +46,6 @@
 - `androidx.activity:activity-compose -> 1.9.2`
 - `com.android.tools:desugar_jdk_libs -> 2.1.2`
 - `com.javiersc.kotlin:kotlin-compiler-extensions -> 0.4.2+2.0.20`
-- `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.7.10`
 
 ## [0.3.8] - 2024-09-02
 

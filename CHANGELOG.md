@@ -6,17 +6,23 @@
 
 ### Changed
 
-- Settings plugin to make it more compatible with project isolation
-
 ### Deprecated
 
 ### Fixed
 
-- `project services has been closed` crash with Gradle 8.10.1
-
 ### Removed
 
 ### Updated
+
+## [0.7.11] - 2024-09-09
+
+### Changed
+
+- Settings plugin to make it more compatible with project isolation
+
+### Fixed
+
+- `project services has been closed` crash with Gradle 8.10.1
 
 ## [0.7.10] - 2024-09-02
 
@@ -192,7 +198,9 @@
 
 - `allTests` task
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.10...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.11...HEAD
+
+[0.7.11]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.10...p0.7.11
 
 [0.7.10]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.9...p0.7.10
 

@@ -84,11 +84,11 @@ public open class HubdleSettingsPlugin @Inject constructor(private val objects: 
     }
 
     private fun Settings.configureKoverMergeReports() {
-        gradle.allprojects { allprojects ->
-            val rootProject: Project = allprojects.rootProject
+        gradle.lifecycle.beforeProject { project ->
+            val rootProject: Project = project.rootProject
             rootProject.pluginManager.withPlugin(JetbrainsKotlinxKover.id) {
-                allprojects.pluginManager.withPlugin(JetbrainsKotlinxKover.id) {
-                    rootProject.dependencies { "kover"(project(allprojects.path)) }
+                project.pluginManager.withPlugin(JetbrainsKotlinxKover.id) {
+                    rootProject.dependencies { "kover"(project(project.path)) }
                 }
             }
         }
@@ -101,8 +101,9 @@ internal val Settings.hubdleSettings: HubdleSettingsExtension
     get() = checkNotNull(extensions.findByType())
 
 private fun Settings.useHubdleOnAllProjects() {
-    gradle.beforeProject { project ->
-        if (hubdleSettings.useOnAllProjects.get()) {
+    val useOnAllProjects: Boolean = hubdleSettings.useOnAllProjects.get()
+    settings.gradle.lifecycle.beforeProject { project: Project ->
+        if (useOnAllProjects) {
             project.pluginManager.apply(PluginId.JavierscHubdle.id)
         }
     }

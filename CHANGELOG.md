@@ -6,6 +6,8 @@
 
 ### Changed
 
+- Settings plugin to make it more compatible with project isolation
+
 ### Deprecated
 
 ### Fixed

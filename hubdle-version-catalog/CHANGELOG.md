@@ -14,6 +14,9 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx:kotlinx-coroutines-test -> 1.9.0`
+- `org.jetbrains.kotlinx:kotlinx-coroutines-core -> 1.9.0`
+- `org.jetbrains.kotlinx:kotlinx-coroutines-android -> 1.9.0`
 - `org.eclipse.jgit:org.eclipse.jgit -> 7.0.0.202409031743-r`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.7.11`
 - `com.javiersc.kotlin:kotlin-compiler-test-extensions -> 0.4.3+2.0.20`

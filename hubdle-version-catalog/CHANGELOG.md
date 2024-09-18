@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx:kotlinx-io-core -> 0.5.4`
 - `io.insert-koin:koin-test-junit5 -> 4.0.0`
 - `io.insert-koin:koin-test-junit4 -> 4.0.0`
 - `io.insert-koin:koin-test -> 4.0.0`

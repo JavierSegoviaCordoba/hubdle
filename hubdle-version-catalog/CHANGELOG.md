@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx:kotlinx-serialization-json -> 1.7.3`
+- `org.jetbrains.kotlinx:kotlinx-serialization-core -> 1.7.3`
 - `org.jetbrains.kotlinx:kotlinx-io-core -> 0.5.4`
 - `io.insert-koin:koin-test-junit5 -> 4.0.0`
 - `io.insert-koin:koin-test-junit4 -> 4.0.0`

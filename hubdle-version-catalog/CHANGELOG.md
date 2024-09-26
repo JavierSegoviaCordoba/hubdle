@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `com.javiersc.semver:com.javiersc.semver.gradle.plugin -> 0.7.1`
+- `com.gradle.plugin-publish:com.gradle.plugin-publish.gradle.plugin -> 1.3.0`
 - `gradle -> 8.10.2`
 - `com.squareup.okio:okio -> 3.9.1`
 - `org.junit.platform:junit-platform-suite-api -> 1.11.1`

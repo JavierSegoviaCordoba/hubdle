@@ -10,11 +10,15 @@
 
 ### Fixed
 
-- setting incorrect `manifest` path
-
 ### Removed
 
 ### Updated
+
+## [0.7.12] - 2024-09-26
+
+### Fixed
+
+- setting incorrect `manifest` path
 
 ## [0.7.11] - 2024-09-09
 
@@ -200,7 +204,9 @@
 
 - `allTests` task
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.11...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.12...HEAD
+
+[0.7.12]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.11...p0.7.12
 
 [0.7.11]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.10...p0.7.11
 

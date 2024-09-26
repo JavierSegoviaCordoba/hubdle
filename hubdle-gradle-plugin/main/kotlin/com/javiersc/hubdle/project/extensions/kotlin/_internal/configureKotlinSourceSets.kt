@@ -158,15 +158,16 @@ internal fun HubdleConfigurableExtension.configurableSrcDirs(
 
     project.findAndroidCommonExtension()?.sourceSets?.configureEach { set: AndroidSourceSet ->
         val name: Provider<String> = project.calculateKmpSourceSetDirectory(set.name, targets)
+        val manifestPath: Provider<String> = name.map { name -> "$name/AndroidManifest.xml" }
         if (!hubdleKotlinMultiplatform.isFullEnabled.get()) {
             set.assets.setSrc(name, "assets")
             set.java.setSrc(name, "java")
             set.kotlin.setSrc(name, "kotlin")
             set.res.setSrc(name, "res")
             set.resources.setSrc(name, "resources")
-            set.manifest.srcFile("$name/AndroidManifest.xml")
+            set.manifest.srcFile(manifestPath)
         } else {
-            set.manifest.srcFile("$name/AndroidManifest.xml")
+            set.manifest.srcFile(manifestPath)
         }
     }
 

@@ -10,6 +10,8 @@
 
 ### Fixed
 
+- setting incorrect `manifest` path
+
 ### Removed
 
 ### Updated

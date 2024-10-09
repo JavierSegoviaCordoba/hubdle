@@ -14,6 +14,10 @@
 
 ### Updated
 
+## [0.3.10] - 2024-10-09
+
+### Updated
+
 - `com.javiersc.semver:com.javiersc.semver.gradle.plugin -> 0.8.0`
 - `org.junit.platform:junit-platform-suite-api -> 1.11.2`
 - `org.junit.platform:junit-platform-runner -> 1.11.2`
@@ -1395,7 +1399,9 @@
 - `com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter -> 1.0.0`
 - `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.3.9...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.3.10...HEAD
+
+[0.3.10]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.3.9...c0.3.10
 
 [0.3.9]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.3.8...c0.3.9
 

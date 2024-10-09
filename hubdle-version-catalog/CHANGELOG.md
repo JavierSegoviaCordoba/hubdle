@@ -14,6 +14,12 @@
 
 ### Updated
 
+- `io.ktor:ktor-serialization-kotlinx-json -> 3.0.0`
+- `io.ktor:ktor-client-okhttp -> 3.0.0`
+- `io.ktor:ktor-client-mock -> 3.0.0`
+- `io.ktor:ktor-client-core -> 3.0.0`
+- `io.ktor:ktor-client-content-negotiation -> 3.0.0`
+- `io.ktor:ktor-client-cio -> 3.0.0`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.7.13`
 
 ## [0.3.10] - 2024-10-09

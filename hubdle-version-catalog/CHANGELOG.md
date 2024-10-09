@@ -4,8 +4,6 @@
 
 ### Added
 
-- all missing ktor clients
-
 ### Changed
 
 ### Deprecated
@@ -13,6 +11,14 @@
 ### Fixed
 
 ### Removed
+
+### Updated
+
+## [0.3.11] - 2024-10-09
+
+### Added
+
+- all missing ktor clients
 
 ### Updated
 
@@ -1409,7 +1415,9 @@
 - `com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter -> 1.0.0`
 - `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.3.10...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.3.11...HEAD
+
+[0.3.11]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.3.10...c0.3.11
 
 [0.3.10]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.3.9...c0.3.10
 

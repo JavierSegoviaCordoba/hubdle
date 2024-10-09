@@ -4,8 +4,6 @@
 
 ### Added
 
-- `HubdleConfigPublishingGradlePortalExtension` to disable publishing to Gradle portal
-
 ### Changed
 
 ### Deprecated
@@ -13,6 +11,14 @@
 ### Fixed
 
 ### Removed
+
+### Updated
+
+## [0.7.13] - 2024-10-09
+
+### Added
+
+- `HubdleConfigPublishingGradlePortalExtension` to disable publishing to Gradle portal
 
 ### Updated
 
@@ -208,7 +214,9 @@
 
 - `allTests` task
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.12...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.13...HEAD
+
+[0.7.13]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.12...p0.7.13
 
 [0.7.12]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.11...p0.7.12
 

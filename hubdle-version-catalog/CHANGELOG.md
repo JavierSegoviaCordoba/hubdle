@@ -4,6 +4,8 @@
 
 ### Added
 
+- all missing ktor clients
+
 ### Changed
 
 ### Deprecated

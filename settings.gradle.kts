@@ -3,7 +3,7 @@ import com.javiersc.gradle.properties.extensions.getBooleanProperty
 pluginManagement {
     fun prop(name: String): String? =
         providers.gradleProperty(name).orNull?.takeIf(String::isNotBlank)
-    val itselfVersionFromProp: String? = prop("itselfVersion")
+    val itselfVersionFromProp: String? = prop("itselfVersion")?.dropWhile { it.isLetter() }
     val itselfVersion: String =
         itselfVersionFromProp
             ?: file("$rootDir/gradle/hubdle.libs.versions.toml")
@@ -51,7 +51,7 @@ hubdleSettings {
 
 fun prop(name: String): String? = providers.gradleProperty(name).orNull?.takeIf(String::isNotBlank)
 
-val itselfVersion: String? = prop("itselfVersion")
+val itselfVersion: String? = prop("itselfVersion")?.dropWhile { it.isLetter() }
 val kotlinVersion: String? = prop("kotlinVersion")
 
 dependencyResolutionManagement {

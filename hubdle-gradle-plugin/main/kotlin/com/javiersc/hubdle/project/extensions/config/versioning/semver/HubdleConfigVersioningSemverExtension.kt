@@ -11,6 +11,7 @@ import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.config.versioning.hubdleVersioning
 import com.javiersc.hubdle.project.extensions.shared.PluginId
 import com.javiersc.semver.project.gradle.plugin.SemverExtension
+import com.javiersc.semver.project.gradle.plugin.VersionMapper
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
@@ -29,7 +30,7 @@ public abstract class HubdleConfigVersioningSemverExtension @Inject constructor(
 
     public val tagPrefix: Property<String> = defaultTagPrefix()
 
-    public fun mapVersion(action: SemverExtension.VersionMapper) {
+    public fun mapVersion(action: VersionMapper) {
         withSemverPlugin { it.mapVersion(action) }
     }
 

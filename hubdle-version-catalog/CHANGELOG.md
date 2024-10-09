@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.javiersc.semver:com.javiersc.semver.gradle.plugin -> 0.8.0`
 - `org.junit.platform:junit-platform-suite-api -> 1.11.2`
 - `org.junit.platform:junit-platform-runner -> 1.11.2`
 - `org.junit.platform:junit-platform-launcher -> 1.11.2`

@@ -719,9 +719,12 @@ public final class com/javiersc/hubdle/project/extensions/config/project/HubdleP
 
 public class com/javiersc/hubdle/project/extensions/config/publishing/HubdleConfigPublishingExtension : com/javiersc/hubdle/project/extensions/apis/HubdleConfigurableExtension {
 	public fun <init> (Lorg/gradle/api/Project;)V
+	public final fun getGradlePortal ()Lcom/javiersc/hubdle/project/extensions/config/publishing/gradle/portal/HubdleConfigPublishingGradlePortalExtension;
 	public final fun getMaven ()Lcom/javiersc/hubdle/project/extensions/config/publishing/maven/HubdleConfigPublishingMavenExtension;
 	public final fun getPublishNonSemver ()Lorg/gradle/api/provider/Property;
 	public final fun getSigning ()Lcom/javiersc/hubdle/project/extensions/config/publishing/signing/HubdleConfigPublishingSigningExtension;
+	public final fun gradlePortal (Lorg/gradle/api/Action;)V
+	public static synthetic fun gradlePortal$default (Lcom/javiersc/hubdle/project/extensions/config/publishing/HubdleConfigPublishingExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 	public fun isEnabled ()Lorg/gradle/api/provider/Property;
 	public final fun maven (Lorg/gradle/api/Action;)V
 	public static synthetic fun maven$default (Lcom/javiersc/hubdle/project/extensions/config/publishing/HubdleConfigPublishingExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
@@ -734,6 +737,11 @@ public final class com/javiersc/hubdle/project/extensions/config/publishing/Hubd
 	public static final field INSTANCE Lcom/javiersc/hubdle/project/extensions/config/publishing/HubdleConfigPublishingExtension$Publishing;
 	public static final field nonSemver Ljava/lang/String;
 	public static final field sign Ljava/lang/String;
+}
+
+public class com/javiersc/hubdle/project/extensions/config/publishing/gradle/portal/HubdleConfigPublishingGradlePortalExtension : com/javiersc/hubdle/project/extensions/apis/HubdleEnableableExtension {
+	public fun <init> (Lorg/gradle/api/Project;)V
+	public fun isEnabled ()Lorg/gradle/api/provider/Property;
 }
 
 public class com/javiersc/hubdle/project/extensions/config/publishing/maven/HubdleConfigPublishingMavenExtension : com/javiersc/hubdle/project/extensions/apis/HubdleEnableableExtension {

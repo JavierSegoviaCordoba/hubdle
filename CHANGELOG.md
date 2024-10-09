@@ -4,6 +4,8 @@
 
 ### Added
 
+- `HubdleConfigPublishingGradlePortalExtension` to disable publishing to Gradle portal
+
 ### Changed
 
 ### Deprecated

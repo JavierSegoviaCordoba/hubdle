@@ -8,6 +8,7 @@ import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
 import com.javiersc.hubdle.project.extensions.config.hubdleConfig
+import com.javiersc.hubdle.project.extensions.config.publishing.gradle.portal.HubdleConfigPublishingGradlePortalExtension
 import com.javiersc.hubdle.project.extensions.config.publishing.maven.HubdleConfigPublishingMavenExtension
 import com.javiersc.hubdle.project.extensions.config.publishing.signing.HubdleConfigPublishingSigningExtension
 import com.javiersc.hubdle.project.extensions.config.publishing.tasks.CheckIsSemverTask
@@ -32,6 +33,16 @@ public open class HubdleConfigPublishingExtension @Inject constructor(project: P
     @HubdleDslMarker
     public fun publishNonSemver(value: Boolean) {
         publishNonSemver.set(value)
+    }
+
+    public val gradlePortal: HubdleConfigPublishingGradlePortalExtension
+        get() = getHubdleExtension()
+
+    @HubdleDslMarker
+    public fun gradlePortal(
+        action: Action<HubdleConfigPublishingGradlePortalExtension> = Action {}
+    ) {
+        gradlePortal.enableAndExecute(action)
     }
 
     public val maven: HubdleConfigPublishingMavenExtension

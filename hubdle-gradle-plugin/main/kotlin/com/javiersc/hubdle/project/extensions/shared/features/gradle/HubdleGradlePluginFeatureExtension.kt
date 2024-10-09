@@ -1,6 +1,5 @@
 package com.javiersc.hubdle.project.extensions.shared.features.gradle
 
-import com.gradle.publish.PublishTask
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.MAIN
@@ -14,10 +13,8 @@ import com.javiersc.hubdle.project.extensions.apis.BaseHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
-import com.javiersc.hubdle.project.extensions.config.publishing.hubdlePublishing
+import com.javiersc.hubdle.project.extensions.config.publishing.gradle.portal.configurableGradlePortalPublishing
 import com.javiersc.hubdle.project.extensions.config.publishing.maven.hubdlePublishingMavenPom
-import com.javiersc.hubdle.project.extensions.config.publishing.tasks.CheckIsSemverTask
-import com.javiersc.hubdle.project.extensions.config.versioning.semver._internal.isTagPrefixProject
 import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.javiersc_gradle_extensions
 import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.javiersc_gradle_test_extensions
 import com.javiersc.hubdle.project.extensions.java.hubdleJava
@@ -145,18 +142,7 @@ public open class HubdleGradlePluginFeatureExtension @Inject constructor(project
     override fun Project.defaultConfiguration() {
         applicablePlugin(scope = Scope.CurrentProject, pluginId = PluginId.JavaGradlePlugin)
 
-        applicablePlugin(
-            isEnabled = property { isFullEnabled.get() && hubdlePublishing.isFullEnabled.get() },
-            scope = Scope.CurrentProject,
-            pluginId = PluginId.GradlePluginPublish,
-        )
-
         lazyConfigurable {
-            tasks.withType<PublishTask>().configureEach { task ->
-                task.enabled = isTagPrefixProject
-                task.dependsOn(CheckIsSemverTask.NAME)
-            }
-
             val dependencies = pluginUnderTestDependencies.get()
             val externalDependencies = pluginUnderTestExternalDependencies.get()
             val projects = pluginUnderTestProjects.get()
@@ -214,6 +200,8 @@ public open class HubdleGradlePluginFeatureExtension @Inject constructor(project
                 }
             }
         )
+
+        configurableGradlePortalPublishing()
     }
 }
 

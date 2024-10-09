@@ -22,6 +22,7 @@ import com.javiersc.hubdle.project.extensions.config.language.settings.HubdleCon
 import com.javiersc.hubdle.project.extensions.config.nexus.HubdleConfigNexusExtension
 import com.javiersc.hubdle.project.extensions.config.project.HubdleProjectExtension
 import com.javiersc.hubdle.project.extensions.config.publishing.HubdleConfigPublishingExtension
+import com.javiersc.hubdle.project.extensions.config.publishing.gradle.portal.HubdleConfigPublishingGradlePortalExtension
 import com.javiersc.hubdle.project.extensions.config.publishing.maven.HubdleConfigPublishingMavenExtension
 import com.javiersc.hubdle.project.extensions.config.publishing.maven.HubdleConfigPublishingMavenPomExtension
 import com.javiersc.hubdle.project.extensions.config.publishing.signing.HubdleConfigPublishingSigningExtension
@@ -43,6 +44,7 @@ internal fun HubdleState.createHubdleConfigExtensions() {
         createExtension<HubdleConfigNexusExtension>()
         createExtension<HubdleProjectExtension>()
         createExtension<HubdleConfigPublishingExtension> {
+            createExtension<HubdleConfigPublishingGradlePortalExtension>()
             createExtension<HubdleConfigPublishingMavenExtension> {
                 createExtension<HubdleConfigPublishingMavenPomExtension>()
             }

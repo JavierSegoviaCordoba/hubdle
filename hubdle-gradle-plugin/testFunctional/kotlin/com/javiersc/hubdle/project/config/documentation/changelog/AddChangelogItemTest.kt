@@ -23,7 +23,7 @@ internal class AddChangelogItemTest : GradleTestKitTest() {
             withArgumentsFromTXT()
             build()
             projectDir.testChangelog()
-            testConfigurationCache(expectTaskOutcome = TaskOutcome.SUCCESS)
+            testConfigurationCache(expectTaskOutcome = TaskOutcome.UP_TO_DATE)
         }
     }
 
@@ -73,7 +73,7 @@ internal class AddChangelogItemTest : GradleTestKitTest() {
             withArgumentsFromTXT()
             build()
             projectDir.testChangelog()
-            testConfigurationCache(expectTaskOutcome = TaskOutcome.SUCCESS)
+            testConfigurationCache(expectTaskOutcome = TaskOutcome.UP_TO_DATE)
         }
     }
 

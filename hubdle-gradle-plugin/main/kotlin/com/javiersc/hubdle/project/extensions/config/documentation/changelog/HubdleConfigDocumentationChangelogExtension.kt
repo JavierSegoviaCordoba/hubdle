@@ -73,10 +73,12 @@ constructor(project: Project) : HubdleConfigurableExtension(project) {
                     task.finalizedBy(ApplyFormatChangelogTask.NAME)
                 }
 
-                tasks.register<AddChangelogItemTask>(AddChangelogItemTask.NAME).configure { task ->
-                    task.enabled = isTagPrefixProject
-                    task.finalizedBy(ApplyFormatChangelogTask.NAME)
-                }
+                tasks
+                    .register<AddChangelogItemTask>(AddChangelogItemTask.NAME, rootDir)
+                    .configure { task ->
+                        task.enabled = isTagPrefixProject
+                        task.finalizedBy(ApplyFormatChangelogTask.NAME)
+                    }
 
                 val generateChangelogHtmlTask: TaskProvider<GenerateChangelogHtmlTask> =
                     tasks.register<GenerateChangelogHtmlTask>(GenerateChangelogHtmlTask.NAME)

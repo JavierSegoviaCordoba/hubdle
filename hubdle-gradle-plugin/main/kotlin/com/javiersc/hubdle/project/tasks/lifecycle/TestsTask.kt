@@ -10,7 +10,9 @@ import org.gradle.api.tasks.testing.Test
 import org.gradle.kotlin.dsl.withType
 import org.gradle.language.base.plugins.LifecycleBasePlugin.CHECK_TASK_NAME
 import org.gradle.language.base.plugins.LifecycleBasePlugin.VERIFICATION_GROUP
+import org.gradle.work.DisableCachingByDefault
 
+@DisableCachingByDefault
 public open class TestsTask : DefaultTask(), HubdleTask {
 
     init {

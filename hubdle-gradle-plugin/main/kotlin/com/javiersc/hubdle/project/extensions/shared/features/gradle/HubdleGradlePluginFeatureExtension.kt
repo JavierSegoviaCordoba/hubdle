@@ -39,6 +39,7 @@ import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.withType
 import org.gradle.plugin.devel.GradlePluginDevelopmentExtension
 import org.gradle.plugin.devel.tasks.PluginUnderTestMetadata
+import org.gradle.plugin.devel.tasks.ValidatePlugins
 
 public open class HubdleGradlePluginFeatureExtension @Inject constructor(project: Project) :
     HubdleConfigurableExtension(project), HubdleGradleDependencies {
@@ -143,6 +144,10 @@ public open class HubdleGradlePluginFeatureExtension @Inject constructor(project
         applicablePlugin(scope = Scope.CurrentProject, pluginId = PluginId.JavaGradlePlugin)
 
         lazyConfigurable {
+            tasks.withType<ValidatePlugins>().configureEach { validatePlugins ->
+                validatePlugins.enableStricterValidation.set(true)
+            }
+
             val dependencies = pluginUnderTestDependencies.get()
             val externalDependencies = pluginUnderTestExternalDependencies.get()
             val projects = pluginUnderTestProjects.get()

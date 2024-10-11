@@ -13,17 +13,26 @@ import org.eclipse.jgit.lib.Repository
 import org.eclipse.jgit.revwalk.RevCommit
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder
 import org.gradle.api.DefaultTask
-import org.gradle.api.Project
+import org.gradle.api.file.ProjectLayout
+import org.gradle.api.file.RegularFileProperty
 import org.gradle.api.model.ObjectFactory
 import org.gradle.api.provider.Property
+import org.gradle.api.tasks.CacheableTask
 import org.gradle.api.tasks.Input
+import org.gradle.api.tasks.InputFile
+import org.gradle.api.tasks.Internal
 import org.gradle.api.tasks.Optional
+import org.gradle.api.tasks.OutputFile
+import org.gradle.api.tasks.PathSensitive
+import org.gradle.api.tasks.PathSensitivity
 import org.gradle.api.tasks.TaskAction
 import org.gradle.api.tasks.options.Option
 import org.gradle.kotlin.dsl.property
 
-public abstract class AddChangelogItemTask @Inject constructor(objects: ObjectFactory) :
-    DefaultTask() {
+@CacheableTask
+public open class AddChangelogItemTask
+@Inject
+constructor(rootDir: File, objects: ObjectFactory, layout: ProjectLayout) : DefaultTask() {
 
     @Input
     @Option(option = "added", description = "Add an item to the `added` section")
@@ -80,6 +89,18 @@ public abstract class AddChangelogItemTask @Inject constructor(objects: ObjectFa
     public val renovateCommitTable: Property<Boolean> =
         objects.property<Boolean>().convention(false)
 
+    @get:Internal
+    internal val rootDir: RegularFileProperty = objects.fileProperty().convention { rootDir }
+
+    @InputFile
+    @PathSensitive(PathSensitivity.RELATIVE)
+    public val changelogFileInput: RegularFileProperty =
+        objects.fileProperty().convention(layout.projectDirectory.file("CHANGELOG.md"))
+
+    @OutputFile
+    public val changelogFileOutput: RegularFileProperty =
+        objects.fileProperty().convention(layout.projectDirectory.file("CHANGELOG.md"))
+
     init {
         group = "changelog"
     }
@@ -101,50 +122,56 @@ public abstract class AddChangelogItemTask @Inject constructor(objects: ObjectFa
     }
 }
 
-private val Project.changelog: String
-    get() = changelogFile.readText()
-
 private fun AddChangelogItemTask.setupSection(header: String, item: String?) {
     if (item.isNotNullNorEmpty()) {
-        with(project) {
-            val updatedChangelog = changelog.addChanges(header, listOf(item))
-            changelogFile.writeText(updatedChangelog.toString())
-        }
+        val updatedChangelog: Changelog =
+            changelogFileInput.get().asFile.readText().addChanges(header, listOf(item))
+        changelogFileOutput.get().asFile.writeText(updatedChangelog.toString())
     }
 }
 
-private fun AddChangelogItemTask.setupRenovate(): Unit =
-    with(project) {
-        val dependenciesFromPullRequest: List<String> =
-            dependenciesFromRenovatePullRequestBody(renovate.orNull, renovatePath.orNull)
+private fun AddChangelogItemTask.setupRenovate() {
+    val rootDir: File = rootDir.get().asFile
 
-        val dependenciesFromCommit: List<String> =
-            if (renovateCommitTable.get()) dependenciesFromRenovateCommit() else emptyList()
+    val dependenciesFromPullRequest: List<String> =
+        dependenciesFromRenovatePullRequestBody(rootDir, renovate.orNull, renovatePath.orNull)
 
-        val updatedLabel = "### Updated"
+    val dependenciesFromCommit: List<String> =
+        if (renovateCommitTable.get()) dependenciesFromRenovateCommit(rootDir) else emptyList()
 
-        when {
-            dependenciesFromPullRequest.isNotEmpty() -> {
-                logger.lifecycle(updatedLabel)
-                for (dependencyFromPullRequest in dependenciesFromPullRequest) {
-                    logger.lifecycle("- $dependencyFromPullRequest")
-                }
+    val updatedLabel = "### Updated"
 
-                val updatedChangelog =
-                    changelog.addChanges(updatedLabel, dependenciesFromPullRequest)
-                changelogFile.writeText(updatedChangelog.toString())
+    when {
+        dependenciesFromPullRequest.isNotEmpty() -> {
+            logger.lifecycle(updatedLabel)
+            for (dependencyFromPullRequest in dependenciesFromPullRequest) {
+                logger.lifecycle("- $dependencyFromPullRequest")
             }
-            dependenciesFromCommit.isNotEmpty() -> {
-                logger.lifecycle(updatedLabel)
-                for (dependencyFromCommit in dependenciesFromCommit) {
-                    logger.lifecycle("- $dependencyFromCommit")
-                }
 
-                val updatedChangelog = changelog.addChanges(updatedLabel, dependenciesFromCommit)
-                changelogFile.writeText(updatedChangelog.toString())
+            val updatedChangelog: Changelog =
+                changelogFileInput
+                    .get()
+                    .asFile
+                    .readText()
+                    .addChanges(updatedLabel, dependenciesFromPullRequest)
+            changelogFileOutput.get().asFile.writeText(updatedChangelog.toString())
+        }
+        dependenciesFromCommit.isNotEmpty() -> {
+            logger.lifecycle(updatedLabel)
+            for (dependencyFromCommit in dependenciesFromCommit) {
+                logger.lifecycle("- $dependencyFromCommit")
             }
+
+            val updatedChangelog: Changelog =
+                changelogFileInput
+                    .get()
+                    .asFile
+                    .readText()
+                    .addChanges(updatedLabel, dependenciesFromCommit)
+            changelogFileOutput.get().asFile.writeText(updatedChangelog.toString())
         }
     }
+}
 
 private fun String.addChanges(header: String, changes: List<String>): Changelog =
     buildList<String> {
@@ -187,7 +214,8 @@ private fun String.addChanges(header: String, changes: List<String>): Changelog 
         .joinToString("\n")
         .run(Changelog.Companion::fromString)
 
-private fun Project.dependenciesFromRenovatePullRequestBody(
+private fun dependenciesFromRenovatePullRequestBody(
+    rootDir: File,
     body: String?,
     path: String?,
 ): List<String> {
@@ -219,8 +247,8 @@ private fun Project.dependenciesFromRenovatePullRequestBody(
         .toList()
 }
 
-private fun Project.dependenciesFromRenovateCommit(): List<String> {
-    val gitFolder = File("${rootProject.rootDir}").walkTopDown().first { it.name == ".git" }
+private fun dependenciesFromRenovateCommit(rootDir: File): List<String> {
+    val gitFolder = rootDir.walkTopDown().first { it.name == ".git" }
 
     val repository: Repository =
         FileRepositoryBuilder().setGitDir(gitFolder).readEnvironment().findGitDir().build()

@@ -8,10 +8,12 @@ import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.provider.Property
 import org.gradle.api.provider.Provider
+import org.gradle.api.tasks.CacheableTask
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.TaskAction
 import org.gradle.kotlin.dsl.register
 
+@CacheableTask
 public abstract class CheckIsSemverTask : DefaultTask() {
 
     @get:Input public abstract val hasPublishToMavenLocalTest: Property<Boolean>

@@ -6,7 +6,9 @@ import org.gradle.api.Project
 import org.gradle.api.tasks.TaskProvider
 import org.gradle.kotlin.dsl.register
 import org.gradle.language.base.plugins.LifecycleBasePlugin.VERIFICATION_GROUP
+import org.gradle.work.DisableCachingByDefault
 
+@DisableCachingByDefault
 public open class FixChecksTask : DefaultTask(), HubdleTask {
 
     init {

@@ -8,6 +8,8 @@
 
 ### Changed
 
+- `ValidatePlugins::enableStricterValidation` to `true`
+
 ### Deprecated
 
 ### Fixed

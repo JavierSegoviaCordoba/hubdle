@@ -316,12 +316,14 @@ public final class com/javiersc/hubdle/project/extensions/config/documentation/a
 	public final synthetic fun execute (Ljava/lang/Object;)V
 }
 
-public abstract class com/javiersc/hubdle/project/extensions/config/documentation/changelog/AddChangelogItemTask : org/gradle/api/DefaultTask {
+public class com/javiersc/hubdle/project/extensions/config/documentation/changelog/AddChangelogItemTask : org/gradle/api/DefaultTask {
 	public static final field Companion Lcom/javiersc/hubdle/project/extensions/config/documentation/changelog/AddChangelogItemTask$Companion;
 	public static final field NAME Ljava/lang/String;
-	public fun <init> (Lorg/gradle/api/model/ObjectFactory;)V
+	public fun <init> (Ljava/io/File;Lorg/gradle/api/model/ObjectFactory;Lorg/gradle/api/file/ProjectLayout;)V
 	public final fun getAdded ()Lorg/gradle/api/provider/Property;
 	public final fun getChanged ()Lorg/gradle/api/provider/Property;
+	public final fun getChangelogFileInput ()Lorg/gradle/api/file/RegularFileProperty;
+	public final fun getChangelogFileOutput ()Lorg/gradle/api/file/RegularFileProperty;
 	public final fun getDeprecated ()Lorg/gradle/api/provider/Property;
 	public final fun getFixed ()Lorg/gradle/api/provider/Property;
 	public final fun getRemoved ()Lorg/gradle/api/provider/Property;
@@ -377,8 +379,9 @@ public final class com/javiersc/hubdle/project/extensions/config/documentation/c
 public abstract class com/javiersc/hubdle/project/extensions/config/documentation/changelog/MergeChangelogTask : org/gradle/api/DefaultTask {
 	public static final field Companion Lcom/javiersc/hubdle/project/extensions/config/documentation/changelog/MergeChangelogTask$Companion;
 	public static final field NAME Ljava/lang/String;
-	public fun <init> ()V
-	public final fun getChangelogFile ()Ljava/io/File;
+	public fun <init> (Lorg/gradle/api/model/ObjectFactory;Lorg/gradle/api/file/ProjectLayout;)V
+	public final fun getChangelogFileInput ()Lorg/gradle/api/file/RegularFileProperty;
+	public final fun getChangelogFileOutput ()Lorg/gradle/api/file/RegularFileProperty;
 	public final fun run ()V
 }
 

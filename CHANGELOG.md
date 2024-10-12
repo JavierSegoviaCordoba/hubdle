@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- Sonar is missing some Kotlin directories
+
 ### Removed
 
 ### Updated

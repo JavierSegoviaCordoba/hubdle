@@ -78,14 +78,15 @@ public open class HubdleConfigAnalysisSonarExtension @Inject constructor(project
                 properties.property("sonar.kotlin.detekt.reportPaths", detektReportPath)
                 val jacocoXmlReportPaths = "$buildDir/reports/kover/xml/report.xml"
                 properties.property("sonar.coverage.jacoco.xmlReportPaths", jacocoXmlReportPaths)
-
-                project.configureAndroidLintReportPaths(properties)
-
-                // TODO: https://github.com/detekt/detekt/issues/5412
-                //  https://github.com/detekt/detekt/issues/5896
-                properties.property("sonar.sources", project.kotlinDirs)
-                properties.property("sonar.tests", project.kotlinTestDirs)
                 properties.property("sonar.exclusions", "$buildDir/**/*")
+
+                project.afterEvaluate {
+                    project.configureAndroidLintReportPaths(properties)
+                    // TODO: https://github.com/detekt/detekt/issues/5412
+                    //  https://github.com/detekt/detekt/issues/5896
+                    properties.property("sonar.sources", project.kotlinDirs)
+                    properties.property("sonar.tests", project.kotlinTestDirs)
+                }
             }
         }
     }
@@ -127,7 +128,7 @@ public open class HubdleConfigAnalysisSonarExtension @Inject constructor(project
                 }
                 .map { reportFile -> reportsDir.resolve(reportFile) }
 
-        pluginManager.withPlugin(PluginId.AndroidApplication.id) {
+        withPlugin(PluginId.AndroidApplication) {
             val android: ApplicationExtension = the()
             val buildTypes: List<String> = android.buildTypes.map(ApplicationBuildType::getName)
             val flavors: List<String> =
@@ -138,7 +139,7 @@ public open class HubdleConfigAnalysisSonarExtension @Inject constructor(project
             )
         }
 
-        pluginManager.withPlugin(PluginId.AndroidLibrary.id) {
+        withPlugin(PluginId.AndroidLibrary) {
             val android: LibraryExtension = the()
             val buildTypes: List<String> = android.buildTypes.map(LibraryBuildType::getName)
             val flavors: List<String> = android.productFlavors.map(LibraryProductFlavor::getName)

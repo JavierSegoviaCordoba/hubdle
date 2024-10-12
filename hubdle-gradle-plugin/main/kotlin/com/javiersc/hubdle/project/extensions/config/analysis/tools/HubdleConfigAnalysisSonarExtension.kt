@@ -55,7 +55,7 @@ public open class HubdleConfigAnalysisSonarExtension @Inject constructor(project
             pluginId = PluginId.Sonarqube,
         )
 
-        lazyConfigurable { configureSonarqube(project) }
+        afterConfigurable { configureSonarqube(project) }
         // TODO: Remove both when project isolation is fixed in Sonar Gradle plugin as hubdle
         //       analysis.sonar.isFullEnabled.get() will be false, and the Sonar plugin shouldn't
         //       pick this project
@@ -80,13 +80,11 @@ public open class HubdleConfigAnalysisSonarExtension @Inject constructor(project
                 properties.property("sonar.coverage.jacoco.xmlReportPaths", jacocoXmlReportPaths)
                 properties.property("sonar.exclusions", "$buildDir/**/*")
 
-                project.afterEvaluate {
-                    project.configureAndroidLintReportPaths(properties)
-                    // TODO: https://github.com/detekt/detekt/issues/5412
-                    //  https://github.com/detekt/detekt/issues/5896
-                    properties.property("sonar.sources", project.kotlinDirs)
-                    properties.property("sonar.tests", project.kotlinTestDirs)
-                }
+                project.configureAndroidLintReportPaths(properties)
+                // TODO: https://github.com/detekt/detekt/issues/5412
+                //  https://github.com/detekt/detekt/issues/5896
+                properties.property("sonar.sources", project.kotlinDirs)
+                properties.property("sonar.tests", project.kotlinTestDirs)
             }
         }
     }

@@ -10,6 +10,8 @@
 
 ### Fixed
 
+- Sonar task crashes
+
 ### Removed
 
 ### Updated

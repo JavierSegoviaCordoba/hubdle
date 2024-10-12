@@ -10,11 +10,15 @@
 
 ### Fixed
 
-- Sonar task crashes
-
 ### Removed
 
 ### Updated
+
+## [0.7.16] - 2024-10-12
+
+### Fixed
+
+- Sonar task crashes
 
 ## [0.7.15] - 2024-10-12
 
@@ -232,7 +236,9 @@
 
 - `allTests` task
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.15...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.16...HEAD
+
+[0.7.16]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.15...p0.7.16
 
 [0.7.15]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.14...p0.7.15
 

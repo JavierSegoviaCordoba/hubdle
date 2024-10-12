@@ -6,17 +6,23 @@
 
 ### Changed
 
-- `ValidatePlugins::enableStricterValidation` to `true`
-
 ### Deprecated
 
 ### Fixed
 
-- Sonar is missing some Kotlin directories
-
 ### Removed
 
 ### Updated
+
+## [0.7.15] - 2024-10-12
+
+### Changed
+
+- `ValidatePlugins::enableStricterValidation` to `true`
+
+### Fixed
+
+- Sonar is missing some Kotlin directories
 
 ## [0.7.14] - 2024-10-10
 
@@ -224,7 +230,9 @@
 
 - `allTests` task
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.14...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.15...HEAD
+
+[0.7.15]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.14...p0.7.15
 
 [0.7.14]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.13...p0.7.14
 

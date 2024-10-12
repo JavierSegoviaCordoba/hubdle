@@ -4,6 +4,8 @@
 
 ### Added
 
+- `sonar.test.exclusions` to exclude all Kotlin test directories
+
 ### Changed
 
 ### Deprecated

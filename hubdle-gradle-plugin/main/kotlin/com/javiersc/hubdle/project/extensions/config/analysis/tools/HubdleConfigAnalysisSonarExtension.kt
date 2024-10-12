@@ -86,6 +86,7 @@ public open class HubdleConfigAnalysisSonarExtension @Inject constructor(project
                 properties.property("sonar.sources", project.kotlinDirs)
                 properties.property("sonar.tests", project.kotlinTestDirs)
                 properties.property("sonar.exclusions", "$buildDir/**/*")
+                properties.property("sonar.test.exclusions", project.kotlinTestDirs)
             }
         }
     }

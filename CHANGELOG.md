@@ -10,6 +10,8 @@
 
 ### Fixed
 
+- Sonar crash `File can't be indexed twice`
+
 ### Removed
 
 ### Updated

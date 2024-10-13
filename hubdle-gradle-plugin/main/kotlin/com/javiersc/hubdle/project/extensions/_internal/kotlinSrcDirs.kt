@@ -30,7 +30,7 @@ internal val Project.kotlinSrcDirs: Provider<Set<File>>
                 .filterNot { dir ->
                     val relativePath: String = dir.relativeTo(projectDir).path
                     val relativeDirs: List<String> = relativePath.split(File.separatorChar)
-                    relativeDirs.any { it.endsWith("Test") || it == "test" }
+                    relativeDirs.any(String::isTestDir)
                 }
                 .toSet()
         }
@@ -59,11 +59,19 @@ internal val Project.kotlinTestsSrcDirs: Provider<Set<File>>
                 .filter { dir ->
                     val relativePath: String = dir.relativeTo(projectDir).path
                     val relativeDirs: List<String> = relativePath.split(File.separatorChar)
-                    relativeDirs.any {
-                        it.startsWith("test") || it.endsWith("Test") || it == "test"
-                    }
+                    relativeDirs.any(String::isTestDir)
                 }
                 .toSet()
+        }
+
+private val String.isTestDir: Boolean
+    get() =
+        when {
+            this == "test" -> true
+            this.contains("testFixtures", ignoreCase = true) -> false
+            this.startsWith("test") -> true
+            this.endsWith("Test") -> true
+            else -> false
         }
 
 internal val Project.kotlinGeneratedTestSrcDirs: Provider<Set<File>>

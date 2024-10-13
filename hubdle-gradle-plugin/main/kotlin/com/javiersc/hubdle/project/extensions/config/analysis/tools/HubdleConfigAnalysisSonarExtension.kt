@@ -97,6 +97,7 @@ public open class HubdleConfigAnalysisSonarExtension @Inject constructor(project
                 .asSequence()
                 .filter(File::exists)
                 .map(File::getPath)
+                .minus(kotlinTestDirs)
                 .toSet()
 
     private val Project.kotlinTestDirs: Set<String>

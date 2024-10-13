@@ -64,49 +64,49 @@ public open class HubdleConfigAnalysisSonarExtension @Inject constructor(project
         }
     }
 
+    // TODO: https://github.com/detekt/detekt/issues/5412
+    //  https://github.com/detekt/detekt/issues/5896
     private fun configureSonarqube(project: Project) {
         project.configure<SonarExtension> {
             isSkipProject = !isFullEnabled.get()
             val buildDir = project.layout.buildDirectory.asFile.get()
             properties { properties ->
-                properties.property("sonar.projectName", projectName.get())
-                properties.property("sonar.projectKey", projectKey.get())
-                properties.property("sonar.token", token.get())
-                properties.property("sonar.host.url", hostUrl.get())
-                properties.property("sonar.organization", organization.get())
-                val detektReportPath = "$buildDir/reports/detekt/detekt.xml"
-                properties.property("sonar.kotlin.detekt.reportPaths", detektReportPath)
-                val jacocoXmlReportPaths = "$buildDir/reports/kover/xml/report.xml"
-                properties.property("sonar.coverage.jacoco.xmlReportPaths", jacocoXmlReportPaths)
-                properties.property("sonar.exclusions", "$buildDir/**/*")
+                fun prop(key: String, value: Any) = properties.property("sonar.$key", value)
 
                 project.configureAndroidLintReportPaths(properties)
-                // TODO: https://github.com/detekt/detekt/issues/5412
-                //  https://github.com/detekt/detekt/issues/5896
-                properties.property("sonar.sources", project.kotlinDirs)
-                properties.property("sonar.tests", project.kotlinTestDirs)
+
+                prop("coverage.exclusions", KotlinGlob.allTests)
+                prop("coverage.jacoco.xmlReportPaths", "$buildDir/reports/kover/xml/report.xml")
+                prop("exclusions", "$buildDir/**/*")
+                prop("host.url", hostUrl.get())
+                prop("kotlin.detekt.reportPaths", "$buildDir/reports/detekt/detekt.xml")
+                prop("organization", organization.get())
+                prop("projectName", projectName.get())
+                prop("projectKey", projectKey.get())
+                prop("sources", project.kotlinDirs)
+                prop("tests", project.kotlinTestDirs)
+                prop("token", token.get())
             }
         }
     }
 
-    private val Project.kotlinDirs: List<String>
+    private val Project.kotlinDirs: Set<String>
         get() =
             kotlinSrcDirsWithoutBuild.orNull
                 .orEmpty()
                 .asSequence()
                 .filter(File::exists)
                 .map(File::getPath)
-                .toList()
-                .minus(kotlinTestDirs)
+                .toSet()
 
-    private val Project.kotlinTestDirs: List<String>
+    private val Project.kotlinTestDirs: Set<String>
         get() =
             kotlinTestsSrcDirsWithoutBuild.orNull
                 .orEmpty()
                 .asSequence()
                 .filter(File::exists)
                 .map(File::getPath)
-                .toList()
+                .toSet()
 
     private fun Project.configureAndroidLintReportPaths(properties: SonarProperties) {
         val reportsDir: File = layout.buildDirectory.asFile.get().resolve("reports")
@@ -154,6 +154,44 @@ public open class HubdleConfigAnalysisSonarExtension @Inject constructor(project
         public const val organization: String = "analysis.sonar.organization"
         public const val projectKey: String = "analysis.sonar.projectKey"
         public const val projectName: String = "analysis.sonar.projectName"
+    }
+
+    internal enum class KotlinGlob(val pattern: List<String>) {
+        Main(
+            listOf("main/kotlin/**", "**/main/kotlin/**", "*Main/kotlin/**", "**/*Main/kotlin/**")
+        ),
+        Test(
+            listOf("test/kotlin/**", "**/test/kotlin/**", "*Test/kotlin/**", "**/*Test/kotlin/**")
+        ),
+        TestFixtures(
+            listOf(
+                "testFixtures/kotlin/**",
+                "**/testFixtures/kotlin/**",
+                "**/*TestFixtures/kotlin/**",
+            )
+        ),
+        TestFunctional(
+            listOf(
+                "testFunctional/kotlin/**",
+                "**/testFunctional/kotlin/**",
+                "functionalTest/kotlin/**",
+                "**/functionalTest/kotlin/**",
+            )
+        ),
+        TestIntegration(
+            listOf(
+                "testIntegration/kotlin/**",
+                "**/testIntegration/kotlin/**",
+                "integrationTest/kotlin/**",
+                "**/integrationTest/kotlin/**",
+            )
+        );
+
+        companion object {
+            val allSource: List<String> = Main.pattern + TestFixtures.pattern
+            val allTests: List<String> =
+                Test.pattern + TestFunctional.pattern + TestIntegration.pattern
+        }
     }
 }
 

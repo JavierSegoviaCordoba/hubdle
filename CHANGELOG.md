@@ -10,6 +10,8 @@
 
 ### Fixed
 
+- Kotlin configuration on Sonar
+
 ### Removed
 
 ### Updated

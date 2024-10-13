@@ -10,11 +10,15 @@
 
 ### Fixed
 
-- Kotlin configuration on Sonar
-
 ### Removed
 
 ### Updated
+
+## [0.7.17] - 2024-10-13
+
+### Fixed
+
+- Kotlin configuration on Sonar
 
 ## [0.7.16] - 2024-10-12
 
@@ -238,7 +242,9 @@
 
 - `allTests` task
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.16...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.17...HEAD
+
+[0.7.17]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.16...p0.7.17
 
 [0.7.16]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.15...p0.7.16
 

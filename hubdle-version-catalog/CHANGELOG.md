@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 7.0.0.BETA3`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.7.0`
 - `com.android.library:com.android.library.gradle.plugin -> 8.7.1`
 - `com.android.application:com.android.application.gradle.plugin -> 8.7.1`

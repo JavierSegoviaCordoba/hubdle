@@ -14,6 +14,28 @@
 
 ### Updated
 
+- `app.cash.turbine:turbine -> 1.2.0`
+- `androidx.navigation:navigation-compose -> 2.8.3`
+- `androidx.compose.ui:ui-util -> 1.7.4`
+- `androidx.compose.ui:ui-tooling-preview -> 1.7.4`
+- `androidx.compose.ui:ui-tooling -> 1.7.4`
+- `androidx.compose.ui:ui-test-manifest -> 1.7.4`
+- `androidx.compose.ui:ui-test -> 1.7.4`
+- `androidx.compose.ui:ui -> 1.7.4`
+- `androidx.compose.runtime:runtime-tracing -> 1.7.4`
+- `androidx.compose.runtime:runtime-saveable -> 1.7.4`
+- `androidx.compose.runtime:runtime -> 1.7.4`
+- `androidx.compose.material:material-ripple -> 1.7.4`
+- `androidx.compose.material:material-icons-extended -> 1.7.4`
+- `androidx.compose.material:material-icons-core -> 1.7.4`
+- `androidx.compose.material:material -> 1.7.4`
+- `androidx.compose.foundation:foundation-layout -> 1.7.4`
+- `androidx.compose.foundation:foundation -> 1.7.4`
+- `androidx.compose.animation:animation-graphics -> 1.7.4`
+- `androidx.compose.animation:animation-core -> 1.7.4`
+- `androidx.compose.animation:animation -> 1.7.4`
+- `androidx.activity:activity-ktx -> 1.9.3`
+- `androidx.activity:activity-compose -> 1.9.3`
 - `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 7.0.0.BETA3`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.7.0`
 - `com.android.library:com.android.library.gradle.plugin -> 8.7.1`

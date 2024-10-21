@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx:atomicfu -> 0.26.0`
 - `org.junit.platform:junit-platform-launcher -> 1.11.3`
 - `org.junit:junit-bom -> 5.11.3`
 - `org.junit.platform:junit-platform-suite-api -> 1.11.3`

@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `org.junit.platform:junit-platform-launcher -> 1.11.3`
+- `org.junit:junit-bom -> 5.11.3`
 - `org.junit.platform:junit-platform-suite-api -> 1.11.3`
 - `org.junit.platform:junit-platform-runner -> 1.11.3`
 - `org.junit.platform:junit-platform-commons -> 1.11.3`

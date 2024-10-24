@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 7.0.0.BETA4`
 - `org.jetbrains.kotlinx:atomicfu -> 0.26.0`
 - `org.junit.platform:junit-platform-launcher -> 1.11.3`
 - `org.junit:junit-bom -> 5.11.3`
@@ -45,7 +46,6 @@
 - `androidx.compose.animation:animation -> 1.7.4`
 - `androidx.activity:activity-ktx -> 1.9.3`
 - `androidx.activity:activity-compose -> 1.9.3`
-- `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 7.0.0.BETA3`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.7.0`
 - `com.android.library:com.android.library.gradle.plugin -> 8.7.1`
 - `com.android.application:com.android.application.gradle.plugin -> 8.7.1`

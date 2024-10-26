@@ -14,6 +14,10 @@
 
 ### Updated
 
+- `com.javiersc.kotlin:kotlin-test-testng -> 0.1.0-alpha.17`
+- `com.javiersc.kotlin:kotlin-test-junit5 -> 0.1.0-alpha.17`
+- `com.javiersc.kotlin:kotlin-test-junit -> 0.1.0-alpha.17`
+- `com.javiersc.kotlin:kotlin-stdlib -> 0.1.0-alpha.17`
 - `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 7.0.0.BETA4`
 - `org.jetbrains.kotlinx:atomicfu -> 0.26.0`
 - `org.junit.platform:junit-platform-launcher -> 1.11.3`

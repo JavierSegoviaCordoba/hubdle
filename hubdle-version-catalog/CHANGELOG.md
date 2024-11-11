@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `gradle -> 8.11`
 - `com.android.tools:desugar_jdk_libs -> 2.1.3`
 - `com.android.library:com.android.library.gradle.plugin -> 8.7.2`
 - `com.android.application:com.android.application.gradle.plugin -> 8.7.2`

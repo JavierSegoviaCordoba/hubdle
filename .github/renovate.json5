@@ -1,56 +1,56 @@
 {
-  "extends": [
-    "github>JavierSegoviaCordoba/reusable-workflows//.github/renovate-reusable.json",
+  extends: [
+    'github>JavierSegoviaCordoba/reusable-workflows//.github/renovate-reusable.json',
   ],
-  "gradle": {
-    "ignorePaths": [
-      "**/test/**",
-      "**/testFixtures/**",
-      "**/testFunctional/**",
-      "**/testIntegration/**",
-      "**/*Test/**",
-      "**/test*/**",
-    ]
+  gradle: {
+    ignorePaths: [
+      '**/test/**',
+      '**/testFixtures/**',
+      '**/testFunctional/**',
+      '**/testIntegration/**',
+      '**/*Test/**',
+      '**/test*/**',
+    ],
   },
-  "packageRules": [
+  packageRules: [
     {
-      "matchUpdateTypes": [
-        "major",
-        "minor",
-        "patch",
+      matchUpdateTypes: [
+        'major',
+        'minor',
+        'patch',
       ],
-      "matchPackagePatterns": [
-        "*",
+      groupName: 'all dependencies',
+      minimumReleaseAge: '6 hours',
+      matchPackageNames: [
+        '*',
       ],
-      "groupName": "all dependencies",
-      "minimumReleaseAge": "6 hours",
     },
     {
-      "matchPackagePatterns": [
-        "app.cash.sqldelight",
+      groupName: 'Sqldelight',
+      minimumReleaseAge: '6 hours',
+      matchPackageNames: [
+        '/app.cash.sqldelight/',
       ],
-      "groupName": "Sqldelight",
-      "minimumReleaseAge": "6 hours",
     },
     {
-      "matchPackagePatterns": [
-        "androidx.compose.compiler",
-        "org.jetbrains.compose.compiler",
-        "org.jetbrains.kotlin.*",
-        "org.jetbrains.kotlin:kotlin",
-        "app.cash.molecule",
+      groupName: 'Kotlin, Compose Compiler, and molecule',
+      minimumReleaseAge: '6 hours',
+      matchPackageNames: [
+        '/androidx.compose.compiler/',
+        '/org.jetbrains.compose.compiler/',
+        '/org.jetbrains.kotlin.*/',
+        '/org.jetbrains.kotlin:kotlin/',
+        '/app.cash.molecule/',
       ],
-      "groupName": "Kotlin, Compose Compiler, and molecule",
-      "minimumReleaseAge": "6 hours",
     },
     {
-      "matchPackagePatterns": [
-        "com.javiersc.hubdle",
-        "com.javiersc.hubdle:hubdle",
+      groupName: 'Hubdle',
+      minimumReleaseAge: '6 hours',
+      matchPackageNames: [
+        '/com.javiersc.hubdle/',
+        '/com.javiersc.hubdle:hubdle/',
       ],
-      "groupName": "Hubdle",
-      "minimumReleaseAge": "6 hours",
-    }
+    },
   ],
-  "prConcurrentLimit": 2,
+  prConcurrentLimit: 2,
 }

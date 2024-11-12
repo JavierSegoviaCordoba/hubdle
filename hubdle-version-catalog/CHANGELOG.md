@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.github.triplet.play:com.github.triplet.play.gradle.plugin -> 3.12.0`
 - `gradle -> 8.11`
 - `com.android.tools:desugar_jdk_libs -> 2.1.3`
 - `com.android.library:com.android.library.gradle.plugin -> 8.7.2`

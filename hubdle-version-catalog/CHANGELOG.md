@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.7.1`
 - `com.github.triplet.play:com.github.triplet.play.gradle.plugin -> 3.12.0`
 - `gradle -> 8.11`
 - `com.android.tools:desugar_jdk_libs -> 2.1.3`
@@ -77,7 +78,6 @@
 - `androidx.navigation:navigation-compose -> 2.8.3`
 - `androidx.activity:activity-ktx -> 1.9.3`
 - `androidx.activity:activity-compose -> 1.9.3`
-- `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.7.0`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.7.18`
 
 ## [0.3.13] - 2024-10-12

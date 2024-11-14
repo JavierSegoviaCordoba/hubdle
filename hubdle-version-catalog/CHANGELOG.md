@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `androidx.navigation:navigation-compose -> 2.8.4`
 - `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 3.18.2`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.7.1`
 - `com.github.triplet.play:com.github.triplet.play.gradle.plugin -> 3.12.0`
@@ -76,7 +77,6 @@
 - `org.junit.jupiter:junit-jupiter-api -> 5.11.3`
 - `org.junit.jupiter:junit-jupiter -> 5.11.3`
 - `app.cash.turbine:turbine -> 1.2.0`
-- `androidx.navigation:navigation-compose -> 2.8.3`
 - `androidx.activity:activity-ktx -> 1.9.3`
 - `androidx.activity:activity-compose -> 1.9.3`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.7.18`

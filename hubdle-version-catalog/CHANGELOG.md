@@ -14,10 +14,10 @@
 
 ### Updated
 
+- `com.github.triplet.play:com.github.triplet.play.gradle.plugin -> 3.12.1`
 - `androidx.navigation:navigation-compose -> 2.8.4`
 - `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 3.18.2`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.7.1`
-- `com.github.triplet.play:com.github.triplet.play.gradle.plugin -> 3.12.0`
 - `gradle -> 8.11`
 - `com.android.tools:desugar_jdk_libs -> 2.1.3`
 - `com.android.library:com.android.library.gradle.plugin -> 8.7.2`

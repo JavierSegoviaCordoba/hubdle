@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx:kotlinx-io-core -> 0.6.0`
 - `org.sonarqube:org.sonarqube.gradle.plugin -> 6.0.0.5145`
 - `com.github.triplet.play:com.github.triplet.play.gradle.plugin -> 3.12.1`
 - `androidx.navigation:navigation-compose -> 2.8.4`

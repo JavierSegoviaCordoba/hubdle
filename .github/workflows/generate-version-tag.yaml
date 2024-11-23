@@ -2,7 +2,6 @@ name: generate-version-tag
 
 on:
   workflow_dispatch:
-    if: github.ref == 'refs/heads/main'
     inputs:
       publish_project:
         description: 'Project to publish'
@@ -12,6 +11,7 @@ on:
         options:
           - 'plugin'
           - 'catalog'
+          - 'declarative'
       stage:
         description: 'Stage'
         required: true
@@ -35,25 +35,46 @@ on:
           - 'auto'
 
 jobs:
-  plugin:
+  generate-version-tag-template: &generate-version-tag
+    if: github.ref == 'refs/heads/main'
     uses: JavierSegoviaCordoba/reusable-workflows/.github/workflows/generate-version-tag.yaml@main
-    if: "${{ github.event.inputs.publish_project == 'plugin' }}"
     with:
-      project-path: ':'
-      tag-prefix: 'p'
       stage: '${{ github.event.inputs.stage }}'
       scope: '${{ github.event.inputs.scope }}'
       restore-kotlin-native-cache: false
     secrets: inherit
 
-  catalog:
+  plugin:
+    if: (github.event.inputs.publish_project == 'plugin') && (github.ref == 'refs/heads/main')
     uses: JavierSegoviaCordoba/reusable-workflows/.github/workflows/generate-version-tag.yaml@main
-    if: "${{ github.event.inputs.publish_project == 'catalog' }}"
     with:
-      semver-output-field: 'SEMVER_HUBDLE_VERSION_CATALOG'
-      project-path: 'hubdle-version-catalog:'
-      tag-prefix: 'c'
-      stage: '${{ github.event.inputs.stage }}'
-      scope: '${{ github.event.inputs.scope }}'
+      project-path: ':'
       restore-kotlin-native-cache: false
+      scope: '${{ github.event.inputs.scope }}'
+      stage: '${{ github.event.inputs.stage }}'
+      tag-prefix: 'p'
+    secrets: inherit
+
+  catalog:
+    if: (github.event.inputs.publish_project == 'catalog') && (github.ref == 'refs/heads/main')
+    uses: JavierSegoviaCordoba/reusable-workflows/.github/workflows/generate-version-tag.yaml@main
+    with:
+      project-path: 'hubdle-version-catalog:'
+      restore-kotlin-native-cache: false
+      scope: '${{ github.event.inputs.scope }}'
+      semver-output-field: 'SEMVER_HUBDLE_VERSION_CATALOG'
+      stage: '${{ github.event.inputs.stage }}'
+      tag-prefix: 'c'
+    secrets: inherit
+
+  declarative:
+    if: (github.event.inputs.publish_project == 'declarative') && (github.ref == 'refs/heads/main')
+    uses: JavierSegoviaCordoba/reusable-workflows/.github/workflows/generate-version-tag.yaml@main
+    with:
+      project-path: 'hubdle-declarative-gradle:'
+      restore-kotlin-native-cache: false
+      scope: '${{ github.event.inputs.scope }}'
+      semver-output-field: 'SEMVER_HUBDLE_DECLARATIVE_GRADLE'
+      stage: '${{ github.event.inputs.stage }}'
+      tag-prefix: 'd'
     secrets: inherit

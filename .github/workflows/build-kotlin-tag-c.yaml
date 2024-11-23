@@ -1,4 +1,4 @@
-name: build-kotlin
+name: build-kotlin-tag-c
 
 on:
   push:
@@ -14,12 +14,13 @@ on:
       - '**.md'
 
 jobs:
-  build:
+  build-version-catalog:
     uses: JavierSegoviaCordoba/reusable-workflows/.github/workflows/build-kotlin.yaml@main
     with:
       allow-github-actor-bots: false
+      code-quality-check: false
+      deploy-docs: false
+      gradle-args-publish-snapshot: '-P semver.tagPrefix=c'
       run_before_args: './gradlew assemble publishToMavenLocalTest'
-      gradle-args-publish-snapshot: '-P semver.tagPrefix=p'
-      gradle-args-publish-snapshot-tag-prefix-two: '-P semver.tagPrefix=c'
       restore-kotlin-native-cache: false
     secrets: inherit

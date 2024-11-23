@@ -1,0 +1,26 @@
+name: build-kotlin-tag-d
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '**.md'
+
+  pull_request:
+    branches:
+      - main
+    paths-ignore:
+      - '**.md'
+
+jobs:
+  build-declarative:
+    uses: JavierSegoviaCordoba/reusable-workflows/.github/workflows/build-kotlin.yaml@main
+    with:
+      allow-github-actor-bots: false
+      code-quality-check: false
+      deploy-docs: false
+      gradle-args-publish-snapshot: '-P semver.tagPrefix=d'
+      run_before_args: './gradlew assemble publishToMavenLocalTest'
+      restore-kotlin-native-cache: false
+    secrets: inherit

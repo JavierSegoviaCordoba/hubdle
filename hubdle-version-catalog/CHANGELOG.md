@@ -14,6 +14,26 @@
 
 ### Updated
 
+- `org.jetbrains.kotlin:kotlin-test-testng -> 2.1.0`
+- `org.jetbrains.kotlin:kotlin-test-junit5 -> 2.1.0`
+- `org.jetbrains.kotlin:kotlin-test-junit -> 2.1.0`
+- `org.jetbrains.kotlin:kotlin-test-annotations-common -> 2.1.0`
+- `org.jetbrains.kotlin:kotlin-test -> 2.1.0`
+- `org.jetbrains.kotlin:kotlin-serialization -> 2.1.0`
+- `org.jetbrains.kotlin:kotlin-script-runtime -> 2.1.0`
+- `org.jetbrains.kotlin:kotlin-reflect -> 2.1.0`
+- `org.jetbrains.kotlin:kotlin-gradle-plugin-api -> 2.1.0`
+- `org.jetbrains.kotlin:kotlin-gradle-plugin -> 2.1.0`
+- `org.jetbrains.kotlin:kotlin-compiler-internal-test-framework -> 2.1.0`
+- `org.jetbrains.kotlin:kotlin-compiler-embeddable -> 2.1.0`
+- `org.jetbrains.kotlin:kotlin-compiler -> 2.1.0`
+- `org.jetbrains.kotlin:kotlin-annotations-jvm -> 2.1.0`
+- `app.cash.sqldelight:app.cash.sqldelight.gradle.plugin -> 2.0.2`
+- `app.cash.sqldelight:sqlite-driver -> 2.0.2`
+- `app.cash.sqldelight:native-driver -> 2.0.2`
+- `app.cash.sqldelight:jdbc-driver -> 2.0.2`
+- `app.cash.sqldelight:coroutines-extensions -> 2.0.2`
+- `app.cash.sqldelight:android-driver -> 2.0.2`
 - `gradle -> 8.11.1`
 - `org.jetbrains.kotlinx:kotlinx-io-core -> 0.6.0`
 - `org.sonarqube:org.sonarqube.gradle.plugin -> 6.0.0.5145`

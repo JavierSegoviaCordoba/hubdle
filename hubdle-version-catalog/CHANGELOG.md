@@ -14,6 +14,9 @@
 
 ### Updated
 
+- `com.javiersc.kotlin.kopy:com.javiersc.kotlin.kopy.gradle.plugin -> 0.13.0+2.1.0`
+- `com.javiersc.kotlin:kotlin-compiler-extensions -> 0.5.0+2.1.0`
+- `com.javiersc.kotlin:kotlin-compiler-test-extensions -> 0.5.0+2.1.0`
 - `org.jetbrains.kotlin.plugin.serialization:org.jetbrains.kotlin.plugin.serialization.gradle.plugin -> 2.1.0`
 - `org.jetbrains.kotlin.plugin.compose:org.jetbrains.kotlin.plugin.compose.gradle.plugin -> 2.1.0`
 - `org.jetbrains.kotlin.plugin.atomicfu:org.jetbrains.kotlin.plugin.atomicfu.gradle.plugin -> 2.1.0`

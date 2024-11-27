@@ -14,6 +14,10 @@
 
 ### Updated
 
+## [0.4.0] - 2024-11-27
+
+### Updated
+
 - `com.javiersc.kotlin.kopy:com.javiersc.kotlin.kopy.gradle.plugin -> 0.13.0+2.1.0`
 - `com.javiersc.kotlin:kotlin-compiler-extensions -> 0.5.0+2.1.0`
 - `com.javiersc.kotlin:kotlin-compiler-test-extensions -> 0.5.0+2.1.0`
@@ -1541,7 +1545,9 @@
 - `com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter -> 1.0.0`
 - `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.3.13...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.4.0...HEAD
+
+[0.4.0]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.3.13...c0.4.0
 
 [0.3.13]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.3.12...c0.3.13
 

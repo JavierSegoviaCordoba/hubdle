@@ -14,9 +14,9 @@
 
 ### Updated
 
+- `org.sonarqube:org.sonarqube.gradle.plugin -> 6.0.1.5171`
 - `gradle -> 8.11.1`
 - `org.jetbrains.kotlinx:kotlinx-io-core -> 0.6.0`
-- `org.sonarqube:org.sonarqube.gradle.plugin -> 6.0.0.5145`
 - `com.github.triplet.play:com.github.triplet.play.gradle.plugin -> 3.12.1`
 - `androidx.navigation:navigation-compose -> 2.8.4`
 - `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 3.18.2`

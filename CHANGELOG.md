@@ -6,6 +6,9 @@
 
 ### Changed
 
+- `compileSdk` to `35`
+- `targetSdk` to `35`
+
 ### Deprecated
 
 ### Fixed

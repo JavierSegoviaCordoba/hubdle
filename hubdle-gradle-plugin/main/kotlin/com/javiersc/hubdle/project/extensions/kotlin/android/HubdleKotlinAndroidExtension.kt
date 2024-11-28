@@ -35,9 +35,9 @@ public open class HubdleKotlinAndroidExtension @Inject constructor(project: Proj
 
     public val minSdk: Property<Int> = property { 23 }
 
-    public val compileSdk: Property<Int> = property { 34 }
+    public val compileSdk: Property<Int> = property { 35 }
 
-    public val targetSdk: Property<Int> = property { 34 }
+    public val targetSdk: Property<Int> = property { 35 }
 
     public val features: HubdleKotlinAndroidFeaturesExtension
         get() = getHubdleExtension()

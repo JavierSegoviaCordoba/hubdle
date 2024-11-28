@@ -6,9 +6,6 @@
 
 ### Changed
 
-- `compileSdk` to `35`
-- `targetSdk` to `35`
-
 ### Deprecated
 
 ### Fixed
@@ -16,6 +13,13 @@
 ### Removed
 
 ### Updated
+
+## [0.8.1] - 2024-11-28
+
+### Changed
+
+- `compileSdk` to `35`
+- `targetSdk` to `35`
 
 ## [0.8.0] - 2024-11-27
 
@@ -257,7 +261,9 @@
 
 - `allTests` task
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.8.0...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.8.1...HEAD
+
+[0.8.1]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.8.0...p0.8.1
 
 [0.8.0]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.7.18...p0.8.0
 

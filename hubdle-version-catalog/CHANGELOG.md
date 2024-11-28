@@ -14,6 +14,10 @@
 
 ### Updated
 
+- `com.javiersc.kotlin:kotlin-test-testng -> 0.1.0`
+- `com.javiersc.kotlin:kotlin-test-junit5 -> 0.1.0`
+- `com.javiersc.kotlin:kotlin-test-junit -> 0.1.0`
+- `com.javiersc.kotlin:kotlin-stdlib -> 0.1.0`
 - `com.javiersc.kotlin.kopy:com.javiersc.kotlin.kopy.gradle.plugin -> 0.13.1+2.1.0`
 - `com.javiersc.kotlin:kotlin-compiler-test-extensions -> 0.5.1+2.1.0`
 - `com.javiersc.kotlin:kotlin-compiler-extensions -> 0.5.1+2.1.0`

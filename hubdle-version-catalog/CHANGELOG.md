@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx:atomicfu -> 0.26.1`
+
 ## [0.4.1] - 2024-11-28
 
 ### Updated

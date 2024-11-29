@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.8.1`
 - `org.jetbrains.kotlinx:atomicfu -> 0.26.1`
 
 ## [0.4.1] - 2024-11-28

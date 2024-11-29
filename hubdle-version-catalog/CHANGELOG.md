@@ -14,6 +14,12 @@
 
 ### Updated
 
+- `com.russhwolf:multiplatform-settings-test -> 1.3.0`
+- `com.russhwolf:multiplatform-settings-serialization -> 1.3.0`
+- `com.russhwolf:multiplatform-settings-no-arg -> 1.3.0`
+- `com.russhwolf:multiplatform-settings-datastore -> 1.3.0`
+- `com.russhwolf:multiplatform-settings-coroutines -> 1.3.0`
+- `com.russhwolf:multiplatform-settings -> 1.3.0`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.8.1`
 - `org.jetbrains.kotlinx:atomicfu -> 0.26.1`
 

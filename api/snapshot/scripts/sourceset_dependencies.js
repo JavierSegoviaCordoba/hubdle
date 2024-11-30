@@ -1,1 +1,1 @@
-sourceset_dependencies = '{":hubdle-gradle-plugin:dokkaHtmlPartial/main":[],":hubdle-declarative-gradle:dokkaHtmlPartial/main":[]}'
+sourceset_dependencies = '{":plugins:config:documentation:readme-badges:dokkaHtmlPartial/main":[],":hubdle-gradle-plugin:dokkaHtmlPartial/main":[],":hubdle-declarative-gradle:dokkaHtmlPartial/main":[],":platform:dokkaHtmlPartial/main":[]}'

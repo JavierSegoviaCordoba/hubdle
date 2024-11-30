@@ -1,0 +1,93 @@
+public final class com/javiersc/hubdle/platform/PlatformProjectData {
+	public static final field Group Ljava/lang/String;
+	public static final field INSTANCE Lcom/javiersc/hubdle/platform/PlatformProjectData;
+	public static final field Library Ljava/lang/String;
+	public static final field Name Ljava/lang/String;
+	public static final field ProjectDirAbsolutePath Ljava/lang/String;
+	public static final field ProjectDirPath Ljava/lang/String;
+	public static final field RelativeDirPath Ljava/lang/String;
+	public static final field RootDirAbsolutePath Ljava/lang/String;
+	public static final field RootDirPath Ljava/lang/String;
+	public static final field Version Ljava/lang/String;
+}
+
+public abstract interface class hubdle/declarative/platform/PlatformFactory {
+	public abstract fun getCliGradleProperty (Ljava/lang/String;)Lorg/gradle/api/provider/Provider;
+	public abstract fun getEnvironmentProperty (Ljava/lang/String;)Lorg/gradle/api/provider/Provider;
+	public abstract fun getLayout ()Lorg/gradle/api/file/ProjectLayout;
+	public abstract fun getLocalProperty (Ljava/lang/String;)Lorg/gradle/api/provider/Provider;
+	public abstract fun getObjects ()Lorg/gradle/api/model/ObjectFactory;
+	public abstract fun getProperty (Ljava/lang/String;)Lorg/gradle/api/provider/Provider;
+	public abstract fun getProviders ()Lorg/gradle/api/provider/ProviderFactory;
+	public abstract fun getRootDirectory ()Ljava/io/File;
+	public abstract fun getStartParameter ()Lorg/gradle/StartParameter;
+	public abstract fun gradleProperty (Ljava/lang/String;)Lorg/gradle/api/provider/Provider;
+	public abstract fun provider (Lkotlin/jvm/functions/Function0;)Lorg/gradle/api/provider/Provider;
+	public abstract fun providers (Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
+}
+
+public final class hubdle/declarative/platform/PlatformFactory$DefaultImpls {
+	public static fun getCliGradleProperty (Lhubdle/declarative/platform/PlatformFactory;Ljava/lang/String;)Lorg/gradle/api/provider/Provider;
+	public static fun getEnvironmentProperty (Lhubdle/declarative/platform/PlatformFactory;Ljava/lang/String;)Lorg/gradle/api/provider/Provider;
+	public static fun getLocalProperty (Lhubdle/declarative/platform/PlatformFactory;Ljava/lang/String;)Lorg/gradle/api/provider/Provider;
+	public static fun getProperty (Lhubdle/declarative/platform/PlatformFactory;Ljava/lang/String;)Lorg/gradle/api/provider/Provider;
+	public static fun gradleProperty (Lhubdle/declarative/platform/PlatformFactory;Ljava/lang/String;)Lorg/gradle/api/provider/Provider;
+	public static fun provider (Lhubdle/declarative/platform/PlatformFactory;Lkotlin/jvm/functions/Function0;)Lorg/gradle/api/provider/Provider;
+	public static fun providers (Lhubdle/declarative/platform/PlatformFactory;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
+}
+
+public final class hubdle/declarative/platform/PlatformFactoryKt {
+	public static final fun platformFactory (Lorg/gradle/api/Project;Lkotlin/jvm/functions/Function1;)V
+}
+
+public final class hubdle/declarative/platform/PlatformProperties {
+	public static final field INSTANCE Lhubdle/declarative/platform/PlatformProperties;
+	public static final field ProjectGroup Ljava/lang/String;
+	public static final field ProjectName Ljava/lang/String;
+}
+
+public final class hubdle/declarative/platform/PlatformProperties$Pom {
+	public static final field INSTANCE Lhubdle/declarative/platform/PlatformProperties$Pom;
+	public static final field description Ljava/lang/String;
+	public static final field name Ljava/lang/String;
+	public static final field url Ljava/lang/String;
+}
+
+public final class hubdle/declarative/platform/PlatformProperties$Pom$Developer {
+	public static final field INSTANCE Lhubdle/declarative/platform/PlatformProperties$Pom$Developer;
+	public static final field email Ljava/lang/String;
+	public static final field id Ljava/lang/String;
+	public static final field name Ljava/lang/String;
+}
+
+public final class hubdle/declarative/platform/PlatformProperties$Pom$License {
+	public static final field INSTANCE Lhubdle/declarative/platform/PlatformProperties$Pom$License;
+	public static final field name Ljava/lang/String;
+	public static final field url Ljava/lang/String;
+}
+
+public final class hubdle/declarative/platform/PlatformProperties$Pom$Scm {
+	public static final field DeveloperConnection Ljava/lang/String;
+	public static final field INSTANCE Lhubdle/declarative/platform/PlatformProperties$Pom$Scm;
+	public static final field connection Ljava/lang/String;
+	public static final field url Ljava/lang/String;
+}
+
+public final class hubdle/declarative/platform/PluginIds : java/lang/Enum {
+	public static final field JetBrainsKotlinAndroid Lhubdle/declarative/platform/PluginIds;
+	public static final field JetBrainsKotlinJvm Lhubdle/declarative/platform/PluginIds;
+	public static final field JetBrainsKotlinMultiplatform Lhubdle/declarative/platform/PluginIds;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public final fun getId ()Ljava/lang/String;
+	public static fun valueOf (Ljava/lang/String;)Lhubdle/declarative/platform/PluginIds;
+	public static fun values ()[Lhubdle/declarative/platform/PluginIds;
+}
+
+public final class hubdle/declarative/platform/PluginIdsKt {
+	public static final fun withJetBrainsKotlinAndroidPlugin (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
+	public static final fun withJetBrainsKotlinJvmPlugin (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
+	public static final fun withJetBrainsKotlinMultiplatformPlugin (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
+	public static final fun withJetBrainsKotlinPlugin (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
+	public static final fun withPlugin (Lorg/gradle/api/Project;Lhubdle/declarative/platform/PluginIds;Lorg/gradle/api/Action;)V
+}
+

@@ -14,6 +14,9 @@
 
 ### Updated
 
+- `com.android.library:com.android.library.gradle.plugin -> 8.7.3`
+- `com.android.application:com.android.application.gradle.plugin -> 8.7.3`
+- `com.android.tools.build:gradle -> 8.7.3`
 - `com.russhwolf:multiplatform-settings-test -> 1.3.0`
 - `com.russhwolf:multiplatform-settings-serialization -> 1.3.0`
 - `com.russhwolf:multiplatform-settings-no-arg -> 1.3.0`

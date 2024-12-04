@@ -19,6 +19,7 @@ jobs:
     with:
       allow-github-actor-bots: false
       gradle-args-publish-snapshot: '-P semver.tagPrefix=p'
-      run_before_args: './gradlew assemble publishToMavenLocalTest'
       restore-kotlin-native-cache: false
+      run_before_args: './gradlew assemble publishToMavenLocalTest'
+      run-sonar-linux: false
     secrets: inherit

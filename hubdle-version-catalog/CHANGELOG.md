@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.eclipse.jgit:org.eclipse.jgit -> 7.1.0.202411261347-r`
 - `io.ktor:ktor-serialization-kotlinx-json -> 3.0.2`
 - `io.ktor:ktor-client-winhttp -> 3.0.2`
 - `io.ktor:ktor-client-okhttp -> 3.0.2`

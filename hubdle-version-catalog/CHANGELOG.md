@@ -14,6 +14,20 @@
 
 ### Updated
 
+- `io.ktor:ktor-serialization-kotlinx-json -> 3.0.2`
+- `io.ktor:ktor-client-winhttp -> 3.0.2`
+- `io.ktor:ktor-client-okhttp -> 3.0.2`
+- `io.ktor:ktor-client-mock -> 3.0.2`
+- `io.ktor:ktor-client-js -> 3.0.2`
+- `io.ktor:ktor-client-jetty -> 3.0.2`
+- `io.ktor:ktor-client-java -> 3.0.2`
+- `io.ktor:ktor-client-darwin -> 3.0.2`
+- `io.ktor:ktor-client-curl -> 3.0.2`
+- `io.ktor:ktor-client-core -> 3.0.2`
+- `io.ktor:ktor-client-content-negotiation -> 3.0.2`
+- `io.ktor:ktor-client-cio -> 3.0.2`
+- `io.ktor:ktor-client-apache5 -> 3.0.2`
+- `io.ktor:ktor-client-android -> 3.0.2`
 - `com.android.library:com.android.library.gradle.plugin -> 8.7.3`
 - `com.android.application:com.android.application.gradle.plugin -> 8.7.3`
 - `com.android.tools.build:gradle -> 8.7.3`

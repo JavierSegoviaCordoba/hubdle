@@ -4,6 +4,8 @@
 
 ### Added
 
+- Kotlin Power Assert feature
+
 ### Changed
 
 ### Deprecated

@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.squareup.moshi:moshi -> 1.15.2`
 - `io.arrow-kt:arrow-core -> 2.0.0`
 - `org.eclipse.jgit:org.eclipse.jgit -> 7.1.0.202411261347-r`
 - `io.ktor:ktor-serialization-kotlinx-json -> 3.0.2`

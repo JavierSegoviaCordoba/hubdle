@@ -12,6 +12,7 @@ import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotli
 import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotlinKopyDelegateFeatureExtension
 import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotlinKotestDelegateFeatureExtension
 import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotlinMoleculeDelegateFeatureExtension
+import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotlinPowerDelegateAssertFeatureExtension
 import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotlinSerializationDelegateFeatureExtension
 import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotlinSqlDelightDelegateFeatureExtension
 import com.javiersc.hubdle.project.extensions.kotlin.jvm.hubdleKotlinJvm
@@ -53,6 +54,7 @@ public interface HubdleKotlinJvmDelegateFeaturesExtension :
     HubdleKotlinKopyDelegateFeatureExtension,
     HubdleKotlinKotestDelegateFeatureExtension,
     HubdleKotlinMoleculeDelegateFeatureExtension,
+    HubdleKotlinPowerDelegateAssertFeatureExtension,
     HubdleKotlinSerializationDelegateFeatureExtension,
     HubdleKotlinSqlDelightDelegateFeatureExtension
 

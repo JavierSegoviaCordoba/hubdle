@@ -121,6 +121,7 @@ hubdle {
                     api(hubdle.plugins.jetbrains.intellij.artifact)
                     api(hubdle.plugins.jetbrains.kotlin.plugin.atomicfu.artifact)
                     api(hubdle.plugins.jetbrains.kotlin.plugin.compose.artifact)
+                    api(hubdle.plugins.jetbrains.kotlin.plugin.powerAssert.artifact)
                     api(hubdle.plugins.jetbrains.kotlin.plugin.serialization.artifact)
                     api(hubdle.plugins.jetbrains.kotlinx.binary.compatibility.validator.artifact)
                     api(hubdle.plugins.jetbrains.kotlinx.kover.artifact)

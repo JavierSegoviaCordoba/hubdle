@@ -14,6 +14,25 @@
 
 ### Updated
 
+- `androidx.navigation:navigation-compose -> 2.8.5`
+- `androidx.compose.ui:ui-util -> 1.7.6`
+- `androidx.compose.ui:ui-tooling-preview -> 1.7.6`
+- `androidx.compose.ui:ui-tooling -> 1.7.6`
+- `androidx.compose.ui:ui-test-manifest -> 1.7.6`
+- `androidx.compose.ui:ui-test -> 1.7.6`
+- `androidx.compose.ui:ui -> 1.7.6`
+- `androidx.compose.runtime:runtime-tracing -> 1.7.6`
+- `androidx.compose.runtime:runtime-saveable -> 1.7.6`
+- `androidx.compose.runtime:runtime -> 1.7.6`
+- `androidx.compose.material:material-ripple -> 1.7.6`
+- `androidx.compose.material:material-icons-extended -> 1.7.6`
+- `androidx.compose.material:material-icons-core -> 1.7.6`
+- `androidx.compose.material:material -> 1.7.6`
+- `androidx.compose.foundation:foundation-layout -> 1.7.6`
+- `androidx.compose.foundation:foundation -> 1.7.6`
+- `androidx.compose.animation:animation-graphics -> 1.7.6`
+- `androidx.compose.animation:animation-core -> 1.7.6`
+- `androidx.compose.animation:animation -> 1.7.6`
 - `io.kotest.extensions:kotest-assertions-konform -> 1.3.0`
 - `com.squareup.moshi:moshi -> 1.15.2`
 - `io.arrow-kt:arrow-core -> 2.0.0`

@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.9.0`
 - `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 3.19`
 - `androidx.navigation:navigation-compose -> 2.8.5`
 - `androidx.compose.ui:ui-util -> 1.7.6`

@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 3.19`
 - `androidx.navigation:navigation-compose -> 2.8.5`
 - `androidx.compose.ui:ui-util -> 1.7.6`
 - `androidx.compose.ui:ui-tooling-preview -> 1.7.6`

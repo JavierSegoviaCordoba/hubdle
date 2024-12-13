@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `app.softwork:kotlinx-serialization-flf -> 0.0.19`
+- `app.softwork:kotlinx-serialization-csv -> 0.0.19`
 - `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.9.0`
 - `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 3.19`
 - `androidx.navigation:navigation-compose -> 2.8.5`

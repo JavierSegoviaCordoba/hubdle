@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.dokka:org.jetbrains.dokka.gradle.plugin -> 2.0.0`
 - `app.softwork:kotlinx-serialization-flf -> 0.0.19`
 - `app.softwork:kotlinx-serialization-csv -> 0.0.19`
 - `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.9.0`

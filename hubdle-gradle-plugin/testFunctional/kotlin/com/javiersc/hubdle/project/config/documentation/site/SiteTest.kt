@@ -9,35 +9,43 @@ import kotlin.test.Test
 
 internal class SiteTest : GradleTestKitTest() {
 
+    private val siteDir: File = File("config/documentation/site")
+
     @Test
-    fun `site docs`() {
-        val rootDir: File = resourceFile("config")
-        val readmeDir: File = resourceFile("config/documentation/site")
-        val sandboxDirs: List<File> = readmeDir.listFiles().orEmpty().toList()
+    fun `site docs snapshot 1`() {
+        testSite(siteDir.resolve("snapshot-1"))
+    }
 
-        for (sandbox in sandboxDirs) {
-            gradleTestKitTest(sandboxPath = sandbox.relativeTo(rootDir.parentFile).path) {
-                withArgumentsFromTXT()
-                build()
+    @Test
+    fun `site docs snapshot 2`() {
+        testSite(siteDir.resolve("snapshot-2"))
+    }
 
-                val expect: File = projectDir.resolve(".docs.expect")
-                val actual: File = projectDir.resolve("build/.docs/")
+    private fun testSite(sandbox: File) {
+        gradleTestKitTest(sandboxPath = sandbox.path) {
+            gradlew(
+                "buildSite",
+                "--no-scan",
+                "-Porg.jetbrains.dokka.experimental.gradle.pluginMode=V2Enabled",
+            )
 
-                expect shouldHaveSameStructureAndContentAs actual
+            val expect: File = projectDir.resolve(".docs.expect")
+            val actual: File = projectDir.resolve("build/.docs/")
 
-                projectDir.resolve("build/.docs/").shouldBeADirectory()
-                projectDir.resolve("build/docs/").shouldBeADirectory()
+            expect shouldHaveSameStructureAndContentAs actual
 
-                val siteDir = projectDir.resolve("build/docs/_site/")
+            projectDir.resolve("build/.docs/").shouldBeADirectory()
+            projectDir.resolve("build/docs/").shouldBeADirectory()
 
-                siteDir.resolve("index.html").shouldBeAFile()
-                siteDir.resolve("api/").shouldBeADirectory()
+            val siteDir = projectDir.resolve("build/docs/_site/")
 
-                if (sandbox.name.contains("snapshot")) {
-                    siteDir.resolve("api/snapshot/").shouldBeADirectory()
-                } else {
-                    siteDir.resolve("api/versions/").shouldBeADirectory()
-                }
+            siteDir.resolve("index.html").shouldBeAFile()
+            siteDir.resolve("api/").shouldBeADirectory()
+
+            if (sandbox.name.contains("snapshot")) {
+                siteDir.resolve("api/snapshot/").shouldBeADirectory()
+            } else {
+                siteDir.resolve("api/versions/").shouldBeADirectory()
             }
         }
     }

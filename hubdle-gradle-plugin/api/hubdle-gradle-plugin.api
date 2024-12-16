@@ -311,11 +311,6 @@ public class com/javiersc/hubdle/project/extensions/config/documentation/api/Hub
 	public fun isEnabled ()Lorg/gradle/api/provider/Property;
 }
 
-public final class com/javiersc/hubdle/project/extensions/config/documentation/api/HubdleConfigDocumentationApiExtension$inlined$sam$i$org_gradle_api_Action$0 : org/gradle/api/Action {
-	public fun <init> (Lkotlin/jvm/functions/Function1;)V
-	public final synthetic fun execute (Ljava/lang/Object;)V
-}
-
 public class com/javiersc/hubdle/project/extensions/config/documentation/changelog/AddChangelogItemTask : org/gradle/api/DefaultTask {
 	public static final field Companion Lcom/javiersc/hubdle/project/extensions/config/documentation/changelog/AddChangelogItemTask$Companion;
 	public static final field NAME Ljava/lang/String;
@@ -436,11 +431,11 @@ public final class com/javiersc/hubdle/project/extensions/config/documentation/r
 public abstract class com/javiersc/hubdle/project/extensions/config/documentation/site/BuildSiteTask : org/gradle/api/DefaultTask {
 	public static final field Companion Lcom/javiersc/hubdle/project/extensions/config/documentation/site/BuildSiteTask$Companion;
 	public static final field name Ljava/lang/String;
-	public fun <init> (Lorg/gradle/api/file/ProjectLayout;Lorg/gradle/api/file/FileSystemOperations;)V
+	public fun <init> (Lorg/gradle/api/file/ProjectLayout;Lorg/gradle/api/model/ObjectFactory;Lorg/gradle/api/file/FileSystemOperations;)V
 	public final fun buildDocs ()V
-	public final fun getApiDir ()Ljava/io/File;
-	public final fun getDokkaOutputDir ()Ljava/io/File;
-	public final fun getProjectVersion ()Ljava/lang/String;
+	public final fun getApiDir ()Lorg/gradle/api/provider/Provider;
+	public final fun getDokkaHtml ()Lorg/gradle/api/provider/Provider;
+	public final fun getProjectVersion ()Lorg/gradle/api/provider/Property;
 }
 
 public final class com/javiersc/hubdle/project/extensions/config/documentation/site/BuildSiteTask$Companion {

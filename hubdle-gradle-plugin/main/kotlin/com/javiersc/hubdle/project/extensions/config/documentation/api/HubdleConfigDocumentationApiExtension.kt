@@ -3,7 +3,6 @@ package com.javiersc.hubdle.project.extensions.config.documentation.api
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
-import com.javiersc.hubdle.project.extensions._internal.hasKotlinGradlePlugin
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.config.documentation.hubdleDocumentation
@@ -11,8 +10,7 @@ import com.javiersc.hubdle.project.extensions.shared.PluginId
 import javax.inject.Inject
 import org.gradle.api.Project
 import org.gradle.api.provider.Property
-import org.gradle.kotlin.dsl.withType
-import org.jetbrains.dokka.gradle.DokkaTaskPartial
+import org.jetbrains.dokka.gradle.DokkaExtension
 
 @HubdleDslMarker
 public open class HubdleConfigDocumentationApiExtension @Inject constructor(project: Project) :
@@ -27,8 +25,8 @@ public open class HubdleConfigDocumentationApiExtension @Inject constructor(proj
         applicablePlugin(scope = Scope.CurrentProject, pluginId = PluginId.JetbrainsDokka)
 
         lazyConfigurable {
-            if (project.hasKotlinGradlePlugin) {
-                tasks.withType<DokkaTaskPartial> {
+            withPlugin(pluginId = PluginId.JetbrainsDokka) {
+                configure<DokkaExtension> {
                     dokkaSourceSets.configureEach { set ->
                         val includes: List<String> = buildList {
                             if (projectDir.resolve("MODULE.md").exists()) add("MODULE.md")

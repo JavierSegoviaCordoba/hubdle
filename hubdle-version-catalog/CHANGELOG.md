@@ -14,6 +14,14 @@
 
 ### Updated
 
+- `org.junit.platform:junit-platform-suite-api -> 1.11.4`
+- `org.junit.platform:junit-platform-runner -> 1.11.4`
+- `org.junit.platform:junit-platform-launcher -> 1.11.4`
+- `org.junit.platform:junit-platform-commons -> 1.11.4`
+- `org.junit.jupiter:junit-jupiter-params -> 5.11.4`
+- `org.junit.jupiter:junit-jupiter-api -> 5.11.4`
+- `org.junit.jupiter:junit-jupiter -> 5.11.4`
+- `org.junit:junit-bom -> 5.11.4`
 - `org.jetbrains.dokka:org.jetbrains.dokka.gradle.plugin -> 2.0.0`
 - `app.softwork:kotlinx-serialization-flf -> 0.0.19`
 - `app.softwork:kotlinx-serialization-csv -> 0.0.19`

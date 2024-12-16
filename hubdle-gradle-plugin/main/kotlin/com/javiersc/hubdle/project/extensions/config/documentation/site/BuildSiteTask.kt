@@ -9,20 +9,29 @@ import javax.inject.Inject
 import org.gradle.api.DefaultTask
 import org.gradle.api.Project
 import org.gradle.api.Task
+import org.gradle.api.file.Directory
 import org.gradle.api.file.FileSystemOperations
 import org.gradle.api.file.ProjectLayout
+import org.gradle.api.model.ObjectFactory
+import org.gradle.api.provider.Property
+import org.gradle.api.provider.Provider
 import org.gradle.api.tasks.CacheableTask
 import org.gradle.api.tasks.Input
+import org.gradle.api.tasks.InputDirectory
 import org.gradle.api.tasks.OutputDirectory
+import org.gradle.api.tasks.PathSensitive
+import org.gradle.api.tasks.PathSensitivity
 import org.gradle.api.tasks.TaskAction
 import org.gradle.api.tasks.TaskProvider
+import org.gradle.kotlin.dsl.property
 import org.gradle.kotlin.dsl.register
 
 @CacheableTask
 public abstract class BuildSiteTask
 @Inject
 constructor(
-    private val layout: ProjectLayout,
+    layout: ProjectLayout,
+    objects: ObjectFactory,
     private val fileSystemOperations: FileSystemOperations,
 ) : DefaultTask() {
 
@@ -30,17 +39,14 @@ constructor(
         group = "documentation"
     }
 
-    @get:Input
-    public val projectVersion: String
-        get() = project.version.toString()
+    @get:Input public val projectVersion: Property<String> = objects.property<String>()
+
+    @get:InputDirectory
+    @get:PathSensitive(PathSensitivity.RELATIVE)
+    public val dokkaHtml: Provider<Directory> = layout.buildDirectory.dir("dokka/html/")
 
     @get:OutputDirectory
-    public val dokkaOutputDir: File
-        get() = File("${layout.projectDirectory.asFile}/build/dokka/htmlMultiModule/")
-
-    @get:OutputDirectory
-    public val apiDir: File
-        get() = File("${layout.projectDirectory.asFile}/build/docs/_site/api/").apply(File::mkdirs)
+    public val apiDir: Provider<Directory> = layout.buildDirectory.dir("docs/_site/api/")
 
     @TaskAction
     public fun buildDocs() {
@@ -55,18 +61,21 @@ constructor(
             preBuildSiteTask: TaskProvider<PreBuildSiteTask>,
         ): TaskProvider<BuildSiteTask> {
             val buildSiteTask = project.tasks.register<BuildSiteTask>(name)
-            buildSiteTask.configure { task -> task.inputs.files(preBuildSiteTask) }
+            buildSiteTask.configure { task ->
+                task.projectVersion.set(project.provider { project.version.toString() })
+                task.inputs.files(preBuildSiteTask)
+            }
 
             val isDokkaEnabled = project.hubdleApi.isFullEnabled.get()
             val isMkdocsEnabled = project.hubdleSite.isFullEnabled.get()
 
-            fun getDokkaTask(): TaskProvider<Task> = project.tasks.named("dokkaHtmlMultiModule")
+            fun getDokkaTask(): TaskProvider<Task> = project.tasks.named("dokkaGenerate")
             fun getMkdocsBuildTask(): TaskProvider<Task> = project.tasks.named("mkdocsBuild")
 
             project.pluginManager.withPlugin(PluginId.JetbrainsDokka.id) {
                 if (isDokkaEnabled) {
-                    val dokkaHtmlMultiModuleTask: TaskProvider<Task> = getDokkaTask()
-                    buildSiteTask.dependsOn(dokkaHtmlMultiModuleTask)
+                    val dokkaGenerateTask: TaskProvider<Task> = getDokkaTask()
+                    buildSiteTask.dependsOn(dokkaGenerateTask)
                 }
             }
             project.pluginManager.withPlugin(PluginId.VyarusMkdocsBuild.id) {
@@ -79,9 +88,9 @@ constructor(
 
             project.withPlugins(PluginId.JetbrainsDokka.id, PluginId.VyarusMkdocsBuild.id) {
                 if (isDokkaEnabled && isMkdocsEnabled) {
-                    val dokkaHtmlMultiModuleTask: TaskProvider<Task> = getDokkaTask()
+                    val dokkaGenerateTask: TaskProvider<Task> = getDokkaTask()
                     val mkdocsBuildTask: TaskProvider<Task> = getMkdocsBuildTask()
-                    dokkaHtmlMultiModuleTask.configure { task -> task.dependsOn(mkdocsBuildTask) }
+                    dokkaGenerateTask.configure { task -> task.dependsOn(mkdocsBuildTask) }
                 }
             }
 
@@ -91,19 +100,21 @@ constructor(
 
     private fun moveApiDocsInToDocs() {
         with(fileSystemOperations) {
-            if (projectVersion.endsWith("-SNAPSHOT")) {
+            val dokkaHtmlPath: String = dokkaHtml.get().asFile.apply(File::mkdirs).path
+            val apiDirPath: File = apiDir.get().asFile
+            if (projectVersion.get().endsWith("-SNAPSHOT")) {
                 copy { copy ->
-                    copy.from(dokkaOutputDir.path)
-                    copy.into(File("$apiDir/snapshot").path)
+                    copy.from(dokkaHtmlPath)
+                    copy.into(apiDirPath.resolve("snapshot").path)
                 }
             } else {
-                File("$apiDir/index.html").apply {
+                apiDirPath.resolve("index.html").apply {
                     createNewFile()
                     writeText(apiIndexHtmlContent)
                 }
                 copy { copy ->
-                    copy.from(dokkaOutputDir.path)
-                    copy.into(File("$apiDir/versions/$projectVersion").path)
+                    copy.from(dokkaHtmlPath)
+                    copy.into(apiDirPath.resolve("versions/$projectVersion").path)
                 }
             }
         }

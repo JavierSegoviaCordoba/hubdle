@@ -7,6 +7,7 @@ import com.javiersc.hubdle.project.extensions._internal.hubdleCatalog
 import com.javiersc.hubdle.project.extensions._internal.library
 import com.javiersc.hubdle.project.extensions.config.HubdleConfigExtension.ProjectConfig
 import com.javiersc.hubdle.project.extensions.shared.PluginId
+import com.javiersc.hubdle.project.extensions.shared.PluginId.JetbrainsDokka
 import com.javiersc.hubdle.project.extensions.shared.PluginId.JetbrainsKotlinxKover
 import com.javiersc.hubdle.settings.extensions.extractedBuildProjects
 import com.javiersc.hubdle.settings.extensions.extractedProjects
@@ -46,6 +47,7 @@ public open class HubdleSettingsPlugin @Inject constructor(private val objects: 
         target.configureRepositories()
         target.configureGradleDevelocity()
         target.configureKoverMergeReports()
+        target.configureDokkaMerge()
 
         target.gradle.settingsEvaluated { settings ->
             target.createHubdleVersionCatalog()
@@ -89,6 +91,17 @@ public open class HubdleSettingsPlugin @Inject constructor(private val objects: 
             rootProject.pluginManager.withPlugin(JetbrainsKotlinxKover.id) {
                 project.pluginManager.withPlugin(JetbrainsKotlinxKover.id) {
                     rootProject.dependencies { "kover"(project(project.path)) }
+                }
+            }
+        }
+    }
+
+    private fun Settings.configureDokkaMerge() {
+        gradle.lifecycle.beforeProject { project ->
+            val rootProject: Project = project.rootProject
+            rootProject.pluginManager.withPlugin(JetbrainsDokka.id) {
+                project.pluginManager.withPlugin(JetbrainsDokka.id) {
+                    rootProject.dependencies { "dokka"(project(project.path)) }
                 }
             }
         }

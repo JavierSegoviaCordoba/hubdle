@@ -14,6 +14,10 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx:kotlinx-coroutines-test -> 1.10.0`
+- `org.jetbrains.kotlinx:kotlinx-coroutines-core -> 1.10.0`
+- `org.jetbrains.kotlinx:kotlinx-coroutines-android -> 1.10.0`
+- `org.jetbrains.kotlinx.binary-compatibility-validator:org.jetbrains.kotlinx.binary-compatibility-validator.gradle.plugin -> 0.17.0`
 - `io.ktor:ktor-serialization-kotlinx-json -> 3.0.3`
 - `io.ktor:ktor-client-winhttp -> 3.0.3`
 - `io.ktor:ktor-client-okhttp -> 3.0.3`

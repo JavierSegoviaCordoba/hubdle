@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.7.3`
 - `org.jetbrains.kotlinx:kotlinx-coroutines-test -> 1.10.0`
 - `org.jetbrains.kotlinx:kotlinx-coroutines-core -> 1.10.0`
 - `org.jetbrains.kotlinx:kotlinx-coroutines-android -> 1.10.0`

@@ -14,11 +14,12 @@
 
 ### Updated
 
+- `gradle -> 8.12`
+- `org.jetbrains.kotlinx:kotlinx-coroutines-test -> 1.10.1`
+- `org.jetbrains.kotlinx:kotlinx-coroutines-core -> 1.10.1`
+- `org.jetbrains.kotlinx:kotlinx-coroutines-android -> 1.10.1`
 - `com.android.tools:desugar_jdk_libs -> 2.1.4`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.7.3`
-- `org.jetbrains.kotlinx:kotlinx-coroutines-test -> 1.10.0`
-- `org.jetbrains.kotlinx:kotlinx-coroutines-core -> 1.10.0`
-- `org.jetbrains.kotlinx:kotlinx-coroutines-android -> 1.10.0`
 - `org.jetbrains.kotlinx.binary-compatibility-validator:org.jetbrains.kotlinx.binary-compatibility-validator.gradle.plugin -> 0.17.0`
 - `io.ktor:ktor-serialization-kotlinx-json -> 3.0.3`
 - `io.ktor:ktor-client-winhttp -> 3.0.3`

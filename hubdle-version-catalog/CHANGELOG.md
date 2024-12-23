@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `io.kotest.extensions:kotest-assertions-arrow -> 2.0.0`
 - `gradle -> 8.12`
 - `org.jetbrains.kotlinx:kotlinx-coroutines-test -> 1.10.1`
 - `org.jetbrains.kotlinx:kotlinx-coroutines-core -> 1.10.1`

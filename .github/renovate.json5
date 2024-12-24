@@ -1,17 +1,7 @@
 {
   extends: [
-    'github>JavierSegoviaCordoba/reusable-workflows//.github/renovate-reusable.json',
+    'github>JavierSegoviaCordoba/renovate//renovate.json5',
   ],
-  gradle: {
-    ignorePaths: [
-      '**/test/**',
-      '**/testFixtures/**',
-      '**/testFunctional/**',
-      '**/testIntegration/**',
-      '**/*Test/**',
-      '**/test*/**',
-    ],
-  },
   packageRules: [
     {
       matchUpdateTypes: [
@@ -43,7 +33,9 @@
       minimumReleaseAge: '6 hours',
       matchPackageNames: [
         'com.javiersc.hubdle',
+        'com.javiersc.hubdle.*',
         'com.javiersc.hubdle:hubdle',
+        'com.javiersc.hubdle:hubdle.*',
       ],
     },
     {

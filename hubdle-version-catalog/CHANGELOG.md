@@ -14,6 +14,14 @@
 
 ### Updated
 
+- `io.insert-koin:koin-test-junit5 -> 4.0.1`
+- `io.insert-koin:koin-test-junit4 -> 4.0.1`
+- `io.insert-koin:koin-test -> 4.0.1`
+- `io.insert-koin:koin-logger-slf4j -> 4.0.1`
+- `io.insert-koin:koin-ktor -> 4.0.1`
+- `io.insert-koin:koin-core -> 4.0.1`
+- `io.insert-koin:koin-androidx-compose -> 4.0.1`
+- `io.insert-koin:koin-android -> 4.0.1`
 - `io.kotest.extensions:kotest-assertions-arrow -> 2.0.0`
 - `gradle -> 8.12`
 - `org.jetbrains.kotlinx:kotlinx-coroutines-test -> 1.10.1`

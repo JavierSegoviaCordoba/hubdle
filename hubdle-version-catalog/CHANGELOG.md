@@ -14,10 +14,10 @@
 
 ### Updated
 
-- `com.squareup.okio:okio -> 3.10.0`
+- `com.squareup.okio:okio -> 3.10.1`
+- `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 7.0.1`
 - `org.jetbrains.kotlinx:kotlinx-serialization-json -> 1.8.0`
 - `org.jetbrains.kotlinx:kotlinx-serialization-core -> 1.8.0`
-- `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 7.0.0`
 - `io.insert-koin:koin-test-junit5 -> 4.0.1`
 - `io.insert-koin:koin-test-junit4 -> 4.0.1`
 - `io.insert-koin:koin-test -> 4.0.1`

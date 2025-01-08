@@ -14,7 +14,8 @@
 
 ### Updated
 
-- `com.squareup.okio:okio -> 3.10.1`
+- `com.squareup.okio:okio -> 3.10.2`
+- `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.9.1`
 - `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 7.0.1`
 - `org.jetbrains.kotlinx:kotlinx-serialization-json -> 1.8.0`
 - `org.jetbrains.kotlinx:kotlinx-serialization-core -> 1.8.0`
@@ -59,7 +60,6 @@
 - `org.jetbrains.dokka:org.jetbrains.dokka.gradle.plugin -> 2.0.0`
 - `app.softwork:kotlinx-serialization-flf -> 0.0.19`
 - `app.softwork:kotlinx-serialization-csv -> 0.0.19`
-- `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.9.0`
 - `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 3.19`
 - `androidx.navigation:navigation-compose -> 2.8.5`
 - `androidx.compose.ui:ui-util -> 1.7.6`

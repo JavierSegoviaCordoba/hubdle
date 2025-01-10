@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx:atomicfu -> 0.27.0`
 - `com.javiersc.kotlin:kotlin-test-testng -> 0.2.1`
 - `com.javiersc.kotlin:kotlin-test-junit5 -> 0.2.1`
 - `com.javiersc.kotlin:kotlin-test-junit -> 0.2.1`
@@ -98,7 +99,6 @@
 - `com.russhwolf:multiplatform-settings-coroutines -> 1.3.0`
 - `com.russhwolf:multiplatform-settings -> 1.3.0`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.8.1`
-- `org.jetbrains.kotlinx:atomicfu -> 0.26.1`
 
 ## [0.4.1] - 2024-11-28
 

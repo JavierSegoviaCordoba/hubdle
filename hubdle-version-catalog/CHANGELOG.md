@@ -14,6 +14,9 @@
 
 ### Updated
 
+- `com.android.library:com.android.library.gradle.plugin -> 8.8.0`
+- `com.android.application:com.android.application.gradle.plugin -> 8.8.0`
+- `com.android.tools.build:gradle -> 8.8.0`
 - `com.squareup.okio:okio -> 3.10.2`
 - `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.9.1`
 - `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 7.0.1`
@@ -84,9 +87,6 @@
 - `com.squareup.moshi:moshi -> 1.15.2`
 - `io.arrow-kt:arrow-core -> 2.0.0`
 - `org.eclipse.jgit:org.eclipse.jgit -> 7.1.0.202411261347-r`
-- `com.android.library:com.android.library.gradle.plugin -> 8.7.3`
-- `com.android.application:com.android.application.gradle.plugin -> 8.7.3`
-- `com.android.tools.build:gradle -> 8.7.3`
 - `com.russhwolf:multiplatform-settings-test -> 1.3.0`
 - `com.russhwolf:multiplatform-settings-serialization -> 1.3.0`
 - `com.russhwolf:multiplatform-settings-no-arg -> 1.3.0`

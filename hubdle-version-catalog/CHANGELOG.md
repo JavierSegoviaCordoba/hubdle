@@ -14,6 +14,10 @@
 
 ### Updated
 
+- `com.javiersc.kotlin:kotlin-test-testng -> 0.2.0`
+- `com.javiersc.kotlin:kotlin-test-junit5 -> 0.2.0`
+- `com.javiersc.kotlin:kotlin-test-junit -> 0.2.0`
+- `com.javiersc.kotlin:kotlin-stdlib -> 0.2.0`
 - `com.android.library:com.android.library.gradle.plugin -> 8.8.0`
 - `com.android.application:com.android.application.gradle.plugin -> 8.8.0`
 - `com.android.tools.build:gradle -> 8.8.0`

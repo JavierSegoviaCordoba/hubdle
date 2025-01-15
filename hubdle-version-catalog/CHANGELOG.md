@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 7.0.2`
 - `com.javiersc.kotlin:kotlin-test-testng -> 0.3.0`
 - `com.javiersc.kotlin:kotlin-test-junit5 -> 0.3.0`
 - `com.javiersc.kotlin:kotlin-test-junit -> 0.3.0`
@@ -24,7 +25,6 @@
 - `com.android.tools.build:gradle -> 8.8.0`
 - `com.squareup.okio:okio -> 3.10.2`
 - `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.9.1`
-- `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 7.0.1`
 - `org.jetbrains.kotlinx:kotlinx-serialization-json -> 1.8.0`
 - `org.jetbrains.kotlinx:kotlinx-serialization-core -> 1.8.0`
 - `io.insert-koin:koin-test-junit5 -> 4.0.1`

@@ -14,6 +14,9 @@
 
 ### Updated
 
+- `com.facebook:ktfmt -> 0.54`
+- `androidx.activity:activity-ktx -> 1.10.0`
+- `androidx.activity:activity-compose -> 1.10.0`
 - `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 7.0.2`
 - `com.javiersc.kotlin:kotlin-test-testng -> 0.3.0`
 - `com.javiersc.kotlin:kotlin-test-junit5 -> 0.3.0`

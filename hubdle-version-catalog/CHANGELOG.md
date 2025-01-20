@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.gradle.test-retry:org.gradle.test-retry.gradle.plugin -> 1.6.1`
 - `com.facebook:ktfmt -> 0.54`
 - `androidx.activity:activity-ktx -> 1.10.0`
 - `androidx.activity:activity-compose -> 1.10.0`

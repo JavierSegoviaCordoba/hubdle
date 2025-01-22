@@ -14,6 +14,14 @@
 
 ### Updated
 
+- `io.insert-koin:koin-test-junit5 -> 4.0.2`
+- `io.insert-koin:koin-test-junit4 -> 4.0.2`
+- `io.insert-koin:koin-test -> 4.0.2`
+- `io.insert-koin:koin-logger-slf4j -> 4.0.2`
+- `io.insert-koin:koin-ktor -> 4.0.2`
+- `io.insert-koin:koin-core -> 4.0.2`
+- `io.insert-koin:koin-androidx-compose -> 4.0.2`
+- `io.insert-koin:koin-android -> 4.0.2`
 - `org.gradle.test-retry:org.gradle.test-retry.gradle.plugin -> 1.6.1`
 - `com.facebook:ktfmt -> 0.54`
 - `androidx.activity:activity-ktx -> 1.10.0`
@@ -31,14 +39,6 @@
 - `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.9.1`
 - `org.jetbrains.kotlinx:kotlinx-serialization-json -> 1.8.0`
 - `org.jetbrains.kotlinx:kotlinx-serialization-core -> 1.8.0`
-- `io.insert-koin:koin-test-junit5 -> 4.0.1`
-- `io.insert-koin:koin-test-junit4 -> 4.0.1`
-- `io.insert-koin:koin-test -> 4.0.1`
-- `io.insert-koin:koin-logger-slf4j -> 4.0.1`
-- `io.insert-koin:koin-ktor -> 4.0.1`
-- `io.insert-koin:koin-core -> 4.0.1`
-- `io.insert-koin:koin-androidx-compose -> 4.0.1`
-- `io.insert-koin:koin-android -> 4.0.1`
 - `io.kotest.extensions:kotest-assertions-arrow -> 2.0.0`
 - `gradle -> 8.12`
 - `org.jetbrains.kotlinx:kotlinx-coroutines-test -> 1.10.1`

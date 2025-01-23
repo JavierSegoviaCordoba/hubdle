@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 3.19.1`
 - `io.insert-koin:koin-test-junit5 -> 4.0.2`
 - `io.insert-koin:koin-test-junit4 -> 4.0.2`
 - `io.insert-koin:koin-test -> 4.0.2`
@@ -72,7 +73,6 @@
 - `org.jetbrains.dokka:org.jetbrains.dokka.gradle.plugin -> 2.0.0`
 - `app.softwork:kotlinx-serialization-flf -> 0.0.19`
 - `app.softwork:kotlinx-serialization-csv -> 0.0.19`
-- `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 3.19`
 - `androidx.navigation:navigation-compose -> 2.8.5`
 - `androidx.compose.ui:ui-util -> 1.7.6`
 - `androidx.compose.ui:ui-tooling-preview -> 1.7.6`

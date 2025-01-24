@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `io.arrow-kt:arrow-core -> 2.0.1`
 - `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 3.19.1`
 - `io.insert-koin:koin-test-junit5 -> 4.0.2`
 - `io.insert-koin:koin-test-junit4 -> 4.0.2`
@@ -94,7 +95,6 @@
 - `androidx.compose.animation:animation -> 1.7.6`
 - `io.kotest.extensions:kotest-assertions-konform -> 1.3.0`
 - `com.squareup.moshi:moshi -> 1.15.2`
-- `io.arrow-kt:arrow-core -> 2.0.0`
 - `org.eclipse.jgit:org.eclipse.jgit -> 7.1.0.202411261347-r`
 - `com.russhwolf:multiplatform-settings-test -> 1.3.0`
 - `com.russhwolf:multiplatform-settings-serialization -> 1.3.0`

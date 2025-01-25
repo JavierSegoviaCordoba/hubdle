@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `gradle -> 8.12.1`
 - `io.arrow-kt:arrow-core -> 2.0.1`
 - `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 3.19.1`
 - `io.insert-koin:koin-test-junit5 -> 4.0.2`
@@ -42,7 +43,6 @@
 - `org.jetbrains.kotlinx:kotlinx-serialization-json -> 1.8.0`
 - `org.jetbrains.kotlinx:kotlinx-serialization-core -> 1.8.0`
 - `io.kotest.extensions:kotest-assertions-arrow -> 2.0.0`
-- `gradle -> 8.12`
 - `org.jetbrains.kotlinx:kotlinx-coroutines-test -> 1.10.1`
 - `org.jetbrains.kotlinx:kotlinx-coroutines-core -> 1.10.1`
 - `org.jetbrains.kotlinx:kotlinx-coroutines-android -> 1.10.1`

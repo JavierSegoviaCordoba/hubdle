@@ -4,8 +4,6 @@
 
 ### Added
 
-- Kotlin Power Assert feature
-
 ### Changed
 
 ### Deprecated
@@ -15,6 +13,12 @@
 ### Removed
 
 ### Updated
+
+## [0.8.2] - 2025-01-27
+
+### Added
+
+- Kotlin Power Assert feature
 
 ## [0.8.1] - 2024-11-28
 
@@ -263,7 +267,9 @@
 
 - `allTests` task
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.8.1...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.8.2...HEAD
+
+[0.8.2]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.8.1...p0.8.2
 
 [0.8.1]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.8.0...p0.8.1
 

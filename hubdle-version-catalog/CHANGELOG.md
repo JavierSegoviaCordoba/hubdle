@@ -14,6 +14,9 @@
 
 ### Updated
 
+- `com.javiersc.kotlin.kopy:com.javiersc.kotlin.kopy.gradle.plugin -> 0.14.0+2.1.10`
+- `com.javiersc.kotlin:kotlin-compiler-test-extensions -> 0.5.2+2.1.10`
+- `com.javiersc.kotlin:kotlin-compiler-extensions -> 0.5.2+2.1.10`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.8.2`
 
 ## [0.4.2] - 2025-01-27

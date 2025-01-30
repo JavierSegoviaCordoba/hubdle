@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.gradle.plugin-publish:com.gradle.plugin-publish.gradle.plugin -> 1.3.1`
 - `androidx.navigation:navigation-compose -> 2.8.6`
 - `androidx.compose.ui:ui-util -> 1.7.7`
 - `androidx.compose.ui:ui-tooling-preview -> 1.7.7`

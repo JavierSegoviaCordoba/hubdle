@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx:kotlinx-datetime -> 0.6.2`
 - `org.gradle.test-retry:org.gradle.test-retry.gradle.plugin -> 1.6.2`
 - `com.gradle.plugin-publish:com.gradle.plugin-publish.gradle.plugin -> 1.3.1`
 - `androidx.navigation:navigation-compose -> 2.8.6`

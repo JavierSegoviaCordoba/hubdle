@@ -7,6 +7,7 @@ import com.javiersc.hubdle.project.extensions.apis.BaseHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
+import com.javiersc.hubdle.project.extensions.kotlin._internal.isKotlinTest
 import com.javiersc.hubdle.project.extensions.kotlin.hubdleKotlinAny
 import com.javiersc.hubdle.project.extensions.shared.PluginId
 import javax.inject.Inject
@@ -14,6 +15,7 @@ import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.provider.ListProperty
 import org.gradle.api.provider.Property
+import org.gradle.kotlin.dsl.findByType
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 import org.jetbrains.kotlin.powerassert.gradle.PowerAssertGradleExtension
@@ -53,8 +55,9 @@ public open class HubdleKotlinPowerAssertFeatureExtension @Inject constructor(pr
 
     public val includedSourceSets: ListProperty<KotlinSourceSet> = listProperty {
         project.extensions
-            .findByType(KotlinProjectExtension::class.java)
+            .findByType<KotlinProjectExtension>()
             ?.sourceSets
+            ?.filter { kotlinSourceSet -> kotlinSourceSet.isKotlinTest }
             ?.toList()
             .orEmpty()
     }

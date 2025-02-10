@@ -10,6 +10,8 @@
 
 ### Fixed
 
+- Power Assert adding non-test source sets
+
 ### Removed
 
 ### Updated

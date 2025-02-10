@@ -4,7 +4,14 @@
 
 ### Added
 
+- `WAsm > JS > browser` target
+- `WAsm > JS > d8` target
+- `WAsm > JS > nodejs` target
+- `WAsm > WAsi > nodejs` target
+
 ### Changed
+
+- `wasm` extension now has `js` and `wasi` extensions
 
 ### Deprecated
 
@@ -13,6 +20,8 @@
 - Power Assert adding non-test source sets
 
 ### Removed
+
+- Top level `wasmJs` extension inside `multiplatform` extension
 
 ### Updated
 

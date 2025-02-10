@@ -240,6 +240,7 @@ internal class KotlinMultiplatformTest : GradleTestKitTest() {
                 "sandbox-project-linuxx64",
                 // "sandbox-project-mingwx64",
                 "sandbox-project-wasm-js",
+                "sandbox-project-wasm-wasi",
                 "sandbox-project",
             )
             .sorted()
@@ -266,6 +267,7 @@ internal class KotlinMultiplatformTest : GradleTestKitTest() {
                 "sandbox-project-tvossimulatorarm64",
                 "sandbox-project-tvosx64",
                 "sandbox-project-wasm-js",
+                "sandbox-project-wasm-wasi",
                 "sandbox-project-watchosarm32",
                 "sandbox-project-watchosarm64",
                 "sandbox-project-watchosdevicearm64",
@@ -289,6 +291,7 @@ internal class KotlinMultiplatformTest : GradleTestKitTest() {
                 // "sandbox-project-linuxx64",
                 "sandbox-project-mingwx64",
                 "sandbox-project-wasm-js",
+                "sandbox-project-wasm-wasi",
                 "sandbox-project",
             )
             .sorted()

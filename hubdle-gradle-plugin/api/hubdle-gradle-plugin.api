@@ -1695,7 +1695,7 @@ public class com/javiersc/hubdle/project/extensions/kotlin/multiplatform/HubdleK
 	public final fun getLinux ()Lcom/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformLinuxExtension;
 	public final fun getMingw ()Lcom/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformMinGWExtension;
 	public final fun getNative ()Lcom/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformNativeExtension;
-	public final fun getWasmJs ()Lcom/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformWAsmJsExtension;
+	public final fun getWasm ()Lcom/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformWAsmExtension;
 	public fun isEnabled ()Lorg/gradle/api/provider/Property;
 	public final fun js (Lorg/gradle/api/Action;)V
 	public static synthetic fun js$default (Lcom/javiersc/hubdle/project/extensions/kotlin/multiplatform/HubdleKotlinMultiplatformExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
@@ -1710,8 +1710,8 @@ public class com/javiersc/hubdle/project/extensions/kotlin/multiplatform/HubdleK
 	public static synthetic fun mingw$default (Lcom/javiersc/hubdle/project/extensions/kotlin/multiplatform/HubdleKotlinMultiplatformExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 	public final fun native (Lorg/gradle/api/Action;)V
 	public static synthetic fun native$default (Lcom/javiersc/hubdle/project/extensions/kotlin/multiplatform/HubdleKotlinMultiplatformExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
-	public final fun wasmJs (Lorg/gradle/api/Action;)V
-	public static synthetic fun wasmJs$default (Lcom/javiersc/hubdle/project/extensions/kotlin/multiplatform/HubdleKotlinMultiplatformExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+	public final fun wasm (Lorg/gradle/api/Action;)V
+	public static synthetic fun wasm$default (Lcom/javiersc/hubdle/project/extensions/kotlin/multiplatform/HubdleKotlinMultiplatformExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 }
 
 public abstract interface class com/javiersc/hubdle/project/extensions/kotlin/multiplatform/features/HubdleKotlinMultiplatformDelegateFeaturesExtension : com/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinAtomicfuDelegateFeatureExtension, com/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinBuildKonfigDelegateFeatureExtension, com/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinComposeDelegateFeatureExtension, com/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinCoroutinesDelegateFeatureExtension, com/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinExtendedStdlibDelegateFeatureExtension, com/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinKopyDelegateFeatureExtension, com/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinKotestDelegateFeatureExtension, com/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinMoleculeDelegateFeatureExtension, com/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinPowerDelegateAssertFeatureExtension, com/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinSerializationDelegateFeatureExtension, com/javiersc/hubdle/project/extensions/kotlin/features/shared/HubdleKotlinSqlDelightDelegateFeatureExtension, com/javiersc/hubdle/project/extensions/kotlin/multiplatform/features/HubdleKotlinMultiplatformMinimumTargetPerOsDelegateFeatureExtension, com/javiersc/hubdle/project/extensions/shared/features/HubdleJavaVersionDelegateFeatureExtension, com/javiersc/hubdle/project/extensions/shared/features/HubdleJvmToolchainDelegateFeatureExtension {
@@ -2008,15 +2008,16 @@ public class com/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets
 	public static synthetic fun tvosX64$default (Lcom/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformTvOSExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 }
 
-public class com/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformWAsmJsExtension : com/javiersc/hubdle/project/extensions/kotlin/shared/HubdleKotlinMinimalSourceSetConfigurableExtension {
+public class com/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformWAsmExtension : com/javiersc/hubdle/project/extensions/kotlin/shared/HubdleKotlinMinimalSourceSetConfigurableExtension {
 	public fun <init> (Lorg/gradle/api/Project;)V
+	public final fun getJs ()Lcom/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/wasm/HubdleKotlinMultiplatformWAsmJsExtension;
 	public fun getProject ()Lorg/gradle/api/Project;
+	public final fun getWasi ()Lcom/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/wasm/HubdleKotlinMultiplatformWAsmWAsiExtension;
 	public fun isEnabled ()Lorg/gradle/api/provider/Property;
-}
-
-public final class com/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformWAsmJsExtension$inlined$sam$i$org_gradle_api_Action$0 : org/gradle/api/Action {
-	public fun <init> (Lkotlin/jvm/functions/Function1;)V
-	public final synthetic fun execute (Ljava/lang/Object;)V
+	public final fun js (Lorg/gradle/api/Action;)V
+	public static synthetic fun js$default (Lcom/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformWAsmExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+	public final fun wasi (Lorg/gradle/api/Action;)V
+	public static synthetic fun wasi$default (Lcom/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformWAsmExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
 }
 
 public class com/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/HubdleKotlinMultiplatformWatchOSExtension : com/javiersc/hubdle/project/extensions/kotlin/shared/HubdleKotlinMinimalSourceSetConfigurableExtension {
@@ -2181,6 +2182,36 @@ public class com/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets
 	public fun getTargetName ()Ljava/lang/String;
 	public synthetic fun getTargetName$hubdle_gradle_plugin ()Ljava/lang/String;
 	public fun isEnabled ()Lorg/gradle/api/provider/Property;
+}
+
+public class com/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/wasm/HubdleKotlinMultiplatformWAsmJsExtension : com/javiersc/hubdle/project/extensions/kotlin/shared/HubdleKotlinMinimalSourceSetConfigurableExtension {
+	public fun <init> (Lorg/gradle/api/Project;)V
+	public final fun browser (Lorg/gradle/api/Action;)V
+	public static synthetic fun browser$default (Lcom/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/wasm/HubdleKotlinMultiplatformWAsmJsExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+	public final fun d8 (Lorg/gradle/api/Action;)V
+	public static synthetic fun d8$default (Lcom/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/wasm/HubdleKotlinMultiplatformWAsmJsExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+	public fun getProject ()Lorg/gradle/api/Project;
+	public fun isEnabled ()Lorg/gradle/api/provider/Property;
+	public final fun nodejs (Lorg/gradle/api/Action;)V
+	public static synthetic fun nodejs$default (Lcom/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/wasm/HubdleKotlinMultiplatformWAsmJsExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+}
+
+public final class com/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/wasm/HubdleKotlinMultiplatformWAsmJsExtension$inlined$sam$i$org_gradle_api_Action$0 : org/gradle/api/Action {
+	public fun <init> (Lkotlin/jvm/functions/Function1;)V
+	public final synthetic fun execute (Ljava/lang/Object;)V
+}
+
+public class com/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/wasm/HubdleKotlinMultiplatformWAsmWAsiExtension : com/javiersc/hubdle/project/extensions/kotlin/shared/HubdleKotlinMinimalSourceSetConfigurableExtension {
+	public fun <init> (Lorg/gradle/api/Project;)V
+	public fun getProject ()Lorg/gradle/api/Project;
+	public fun isEnabled ()Lorg/gradle/api/provider/Property;
+	public final fun nodejs (Lorg/gradle/api/Action;)V
+	public static synthetic fun nodejs$default (Lcom/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/wasm/HubdleKotlinMultiplatformWAsmWAsiExtension;Lorg/gradle/api/Action;ILjava/lang/Object;)V
+}
+
+public final class com/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/wasm/HubdleKotlinMultiplatformWAsmWAsiExtension$inlined$sam$i$org_gradle_api_Action$0 : org/gradle/api/Action {
+	public fun <init> (Lkotlin/jvm/functions/Function1;)V
+	public final synthetic fun execute (Ljava/lang/Object;)V
 }
 
 public class com/javiersc/hubdle/project/extensions/kotlin/multiplatform/targets/watchos/HubdleKotlinMultiplatformWatchOSArm32Extension : com/javiersc/hubdle/project/extensions/kotlin/shared/HubdleKotlinMinimalSourceSetConfigurableExtension {

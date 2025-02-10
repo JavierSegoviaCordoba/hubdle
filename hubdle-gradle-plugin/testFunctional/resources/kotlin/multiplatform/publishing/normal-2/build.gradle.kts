@@ -77,7 +77,16 @@ hubdle {
                 mingwX64()
             }
             native()
-            wasmJs()
+            wasm {
+                js {
+                    browser()
+                    d8()
+                    nodejs()
+                }
+                wasi {
+                    nodejs()
+                }
+            }
         }
     }
 }

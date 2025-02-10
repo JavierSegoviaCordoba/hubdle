@@ -25,7 +25,7 @@ import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.Hubdl
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformLinuxExtension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformMinGWExtension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformNativeExtension
-import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformWAsmJsExtension
+import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformWAsmExtension
 import com.javiersc.hubdle.project.extensions.shared.PluginId
 import javax.inject.Inject
 import org.gradle.api.Action
@@ -136,12 +136,12 @@ public open class HubdleKotlinMultiplatformExtension @Inject constructor(project
         native.enableAndExecute(action)
     }
 
-    public val wasmJs: HubdleKotlinMultiplatformWAsmJsExtension
+    public val wasm: HubdleKotlinMultiplatformWAsmExtension
         get() = getHubdleExtension()
 
     @HubdleDslMarker
-    public fun wasmJs(action: Action<HubdleKotlinMultiplatformWAsmJsExtension> = Action {}) {
-        wasmJs.enableAndExecute(action)
+    public fun wasm(action: Action<HubdleKotlinMultiplatformWAsmExtension> = Action {}) {
+        wasm.enableAndExecute(action)
     }
 
     @HubdleDslMarker
@@ -177,7 +177,8 @@ public open class HubdleKotlinMultiplatformExtension @Inject constructor(project
                 .map { target -> "$target" }
 
         buildSet {
-            val targets = the<KotlinMultiplatformExtension>().targets.map(KotlinTarget::getName)
+            val targets: List<String> =
+                the<KotlinMultiplatformExtension>().targets.map(KotlinTarget::getName)
             addAll(targets)
             addAll(hubdleTargets)
         }

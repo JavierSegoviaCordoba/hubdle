@@ -4,6 +4,20 @@
 
 ### Added
 
+### Changed
+
+### Deprecated
+
+### Fixed
+
+### Removed
+
+### Updated
+
+## [0.8.3] - 2025-02-11
+
+### Added
+
 - `WAsm > JS > browser` target
 - `WAsm > JS > d8` target
 - `WAsm > JS > nodejs` target
@@ -13,8 +27,6 @@
 
 - `wasm` extension now has `js` and `wasi` extensions
 
-### Deprecated
-
 ### Fixed
 
 - Power Assert adding non-test source sets
@@ -22,8 +34,6 @@
 ### Removed
 
 - Top level `wasmJs` extension inside `multiplatform` extension
-
-### Updated
 
 ## [0.8.2] - 2025-01-27
 
@@ -278,7 +288,9 @@
 
 - `allTests` task
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.8.2...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.8.3...HEAD
+
+[0.8.3]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.8.2...p0.8.3
 
 [0.8.2]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.8.1...p0.8.2
 

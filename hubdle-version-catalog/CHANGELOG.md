@@ -14,6 +14,10 @@
 
 ### Updated
 
+## [0.4.4] - 2025-02-11
+
+### Updated
+
 - `io.ktor:ktor-serialization-kotlinx-json -> 3.1.0`
 - `io.ktor:ktor-client-winhttp -> 3.1.0`
 - `io.ktor:ktor-client-okhttp -> 3.1.0`
@@ -1723,7 +1727,9 @@
 - `com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter -> 1.0.0`
 - `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.4.3...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.4.4...HEAD
+
+[0.4.4]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.4.3...c0.4.4
 
 [0.4.3]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.4.2...c0.4.3
 

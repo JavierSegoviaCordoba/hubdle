@@ -14,6 +14,10 @@
 
 ### Updated
 
+- `com.javiersc.kotlin:kotlin-test-testng -> 0.4.0`
+- `com.javiersc.kotlin:kotlin-test-junit5 -> 0.4.0`
+- `com.javiersc.kotlin:kotlin-test-junit -> 0.4.0`
+- `com.javiersc.kotlin:kotlin-stdlib -> 0.4.0`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.8.3`
 
 ## [0.4.3] - 2025-02-10

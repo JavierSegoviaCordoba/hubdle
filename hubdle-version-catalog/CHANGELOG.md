@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.codingfeline.buildkonfig:com.codingfeline.buildkonfig.gradle.plugin -> 0.16.0`
 - `androidx.navigation:navigation-compose -> 2.8.7`
 - `androidx.compose.ui:ui-util -> 1.7.8`
 - `androidx.compose.ui:ui-tooling-preview -> 1.7.8`

@@ -23,7 +23,7 @@ import org.gradle.api.provider.Property
 public open class HubdleKotlinKotestFeatureExtension @Inject constructor(project: Project) :
     HubdleConfigurableExtension(project) {
 
-    override val isEnabled: Property<Boolean> = property { true }
+    override val isEnabled: Property<Boolean> = property { false }
 
     override val oneOfExtensions: Set<HubdleEnableableExtension>
         get() = hubdleKotlinAny

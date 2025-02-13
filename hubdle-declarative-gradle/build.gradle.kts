@@ -110,6 +110,7 @@ hubdle {
                         )
                     }
                 }
+                kotest.enabled(true)
             }
 
             main {

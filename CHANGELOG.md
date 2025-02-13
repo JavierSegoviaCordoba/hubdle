@@ -6,6 +6,8 @@
 
 ### Changed
 
+- Kotest disabled by default
+
 ### Deprecated
 
 ### Fixed

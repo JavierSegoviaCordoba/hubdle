@@ -6,17 +6,23 @@
 
 ### Changed
 
-- Kotest disabled by default
-
 ### Deprecated
 
 ### Fixed
 
-- `kotlin` source set in `JavaPluginExtension` with Kotlin 2.1.20-RC+ 
-
 ### Removed
 
 ### Updated
+
+## [0.8.4] - 2025-02-19
+
+### Changed
+
+- Kotest disabled by default
+
+### Fixed
+
+- `kotlin` source set in `JavaPluginExtension` with Kotlin 2.1.20-RC+
 
 ## [0.8.3] - 2025-02-11
 
@@ -292,7 +298,9 @@
 
 - `allTests` task
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.8.3...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.8.4...HEAD
+
+[0.8.4]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.8.3...p0.8.4
 
 [0.8.3]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.8.2...p0.8.3
 

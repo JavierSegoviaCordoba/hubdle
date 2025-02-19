@@ -12,6 +12,8 @@
 
 ### Fixed
 
+- `kotlin` source set in `JavaPluginExtension` with Kotlin 2.1.20-RC+ 
+
 ### Removed
 
 ### Updated

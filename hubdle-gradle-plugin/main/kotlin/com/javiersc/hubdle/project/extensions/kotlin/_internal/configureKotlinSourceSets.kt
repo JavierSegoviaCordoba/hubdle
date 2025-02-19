@@ -32,7 +32,6 @@ import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.findByType
 import org.gradle.kotlin.dsl.register
 import org.gradle.language.base.plugins.LifecycleBasePlugin.CHECK_TASK_NAME
-import org.jetbrains.kotlin.gradle.dsl.KotlinCommonOptions
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinSingleTargetExtension
@@ -174,7 +173,7 @@ internal fun HubdleConfigurableExtension.configurableSrcDirs(
     project.extensions.findByType<JavaPluginExtension>()?.sourceSets?.configureEach { set ->
         val name: Provider<String> = project.calculateKmpSourceSetDirectory(set.name, targets)
         set.java.setSrc(name, "java")
-        set.kotlin.setSrc(name, "kotlin")
+        set.kotlin?.setSrc(name, "kotlin")
         set.resources.setSrc(name, "resources")
     }
 
@@ -219,8 +218,8 @@ private fun Project.calculateKmpSourceSetDirectory(
         directory
     }
 
-private val SourceSet.kotlin: SourceDirectorySet
-    get() = (this as ExtensionAware).extensions.getByName("kotlin") as SourceDirectorySet
+private val SourceSet.kotlin: SourceDirectorySet?
+    get() = (this as ExtensionAware).extensions.findByName("kotlin") as? SourceDirectorySet
 
 private fun KotlinTarget.configureAdditionalTestCompilations(name: String) {
     val additionalTestCompilation = compilation(name)
@@ -233,10 +232,10 @@ private fun KotlinTarget.configureAdditionalTestCompilations(name: String) {
     }
 }
 
-private val KotlinTarget.mainCompilation: KotlinCompilation<KotlinCommonOptions>?
+private val KotlinTarget.mainCompilation: KotlinCompilation<*>?
     get() = compilation(COMMON_MAIN) ?: compilation(MAIN)
 
-private val KotlinTarget.testFixturesCompilation: KotlinCompilation<KotlinCommonOptions>?
+private val KotlinTarget.testFixturesCompilation: KotlinCompilation<*>?
     get() = compilation(TEST_FIXTURES)
 
 private fun KotlinTarget.compilation(name: String): KotlinCompilation<*>? =

@@ -14,6 +14,10 @@
 
 ### Updated
 
+## [0.4.5] - 2025-02-19
+
+### Updated
+
 - `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 3.19.2`
 - `com.android.library:com.android.library.gradle.plugin -> 8.8.1`
 - `com.android.application:com.android.application.gradle.plugin -> 8.8.1`
@@ -1752,7 +1756,9 @@
 - `com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter -> 1.0.0`
 - `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.4.4...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.4.5...HEAD
+
+[0.4.5]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.4.4...c0.4.5
 
 [0.4.4]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.4.3...c0.4.4
 

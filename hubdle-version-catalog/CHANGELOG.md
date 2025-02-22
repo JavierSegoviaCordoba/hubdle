@@ -14,6 +14,17 @@
 
 ### Updated
 
+- `app.softwork:kotlinx-serialization-flf -> 0.0.20`
+- `app.softwork:kotlinx-serialization-csv -> 0.0.20`
+- `org.junit.platform:junit-platform-suite-api -> 1.12.0`
+- `org.junit.platform:junit-platform-runner -> 1.12.0`
+- `org.junit.platform:junit-platform-launcher -> 1.12.0`
+- `org.junit.platform:junit-platform-commons -> 1.12.0`
+- `org.junit.jupiter:junit-jupiter-params -> 5.12.0`
+- `org.junit.jupiter:junit-jupiter-api -> 5.12.0`
+- `org.junit.jupiter:junit-jupiter -> 5.12.0`
+- `org.junit:junit-bom -> 5.12.0`
+- `io.gitlab.arturbosch.detekt:io.gitlab.arturbosch.detekt.gradle.plugin -> 1.23.8`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.8.4`
 
 ## [0.4.5] - 2025-02-19

@@ -14,6 +14,10 @@
 
 ### Updated
 
+- `com.javiersc.kotlin:kotlin-test-testng -> 0.5.0`
+- `com.javiersc.kotlin:kotlin-test-junit5 -> 0.5.0`
+- `com.javiersc.kotlin:kotlin-test-junit -> 0.5.0`
+- `com.javiersc.kotlin:kotlin-stdlib -> 0.5.0`
 - `app.softwork:kotlinx-serialization-flf -> 0.0.20`
 - `app.softwork:kotlinx-serialization-csv -> 0.0.20`
 - `org.junit.platform:junit-platform-suite-api -> 1.12.0`

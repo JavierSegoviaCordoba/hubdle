@@ -4,8 +4,6 @@
 
 ### Added
 
-- `com.javiersc.kotlin:kotlin-test` dependency
-
 ### Changed
 
 ### Deprecated
@@ -15,6 +13,12 @@
 ### Removed
 
 ### Updated
+
+## [0.8.5] - 2025-02-22
+
+### Added
+
+- `com.javiersc.kotlin:kotlin-test` dependency
 
 ## [0.8.4] - 2025-02-19
 
@@ -300,7 +304,9 @@
 
 - `allTests` task
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.8.4...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.8.5...HEAD
+
+[0.8.5]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.8.4...p0.8.5
 
 [0.8.4]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.8.3...p0.8.4
 

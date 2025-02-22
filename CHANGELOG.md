@@ -4,6 +4,8 @@
 
 ### Added
 
+- `com.javiersc.kotlin:kotlin-test` dependency
+
 ### Changed
 
 ### Deprecated

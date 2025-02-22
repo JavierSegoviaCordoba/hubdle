@@ -15,6 +15,7 @@ import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
 import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.javiersc_kotlin_stdlib
+import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.javiersc_kotlin_test
 import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.javiersc_kotlin_test_junit
 import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.javiersc_kotlin_test_junit5
 import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.javiersc_kotlin_test_testng
@@ -53,6 +54,7 @@ public open class HubdleKotlinExtendedStdlibFeatureExtension @Inject constructor
                 TEST_INTEGRATION,
                 TEST_FIXTURES,
             ) {
+                implementation(library(javiersc_kotlin_test))
                 implementation(calculateJavierScKotlinTestJvmDependency())
             }
         }

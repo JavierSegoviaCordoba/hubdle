@@ -5,6 +5,11 @@
 ### Added
 
 - `com.javiersc.kotlin:kotlin-test` assertions to Kotlin Power Assert
+- `hubdle.repositories.jetbrains.compose.dev` boolean properties
+- `hubdle.repositories.jetbrains.kotlin.bootstrap` boolean properties
+- `hubdle.repositories.jetbrains.kotlin.dev` boolean properties
+- `hubdle.repositories.sonatype.snapshots` boolean properties
+- `hubdle.repositories.mavenLocal` boolean properties
 
 ### Changed
 

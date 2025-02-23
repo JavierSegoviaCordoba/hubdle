@@ -1,6 +1,11 @@
 package com.javiersc.hubdle.settings
 
+import JetBrainsComposeDevRepo
+import JetBrainsKotlinBootstrapRepo
+import JetBrainsKotlinDevRepo
+import SonatypeSnapshotsRepo
 import com.gradle.develocity.agent.gradle.DevelocityConfiguration
+import com.javiersc.gradle.properties.extensions.getBooleanProperty
 import com.javiersc.gradle.properties.extensions.getStringProperty
 import com.javiersc.gradle.properties.extensions.provider
 import com.javiersc.hubdle.project.extensions._internal.hubdleCatalog
@@ -14,12 +19,11 @@ import com.javiersc.hubdle.settings.extensions.extractedProjects
 import com.javiersc.hubdle.settings.tasks.GenerateHubdleCatalogTask
 import java.io.File
 import javax.inject.Inject
-import jetbrainsComposeDev
-import jetbrainsKotlinBootstrap
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.MinimalExternalModuleDependency
 import org.gradle.api.artifacts.ModuleIdentifier
+import org.gradle.api.artifacts.dsl.RepositoryHandler
 import org.gradle.api.initialization.Settings
 import org.gradle.api.model.ObjectFactory
 import org.gradle.api.plugins.BasePlugin
@@ -30,6 +34,7 @@ import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.create
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.findByType
+import org.gradle.kotlin.dsl.maven
 import org.gradle.kotlin.dsl.project
 import org.gradle.kotlin.dsl.register
 import org.gradle.kotlin.dsl.the
@@ -134,10 +139,9 @@ private fun Settings.configureRepositories() {
             }
             repository.mavenCentral()
             repository.gradlePluginPortal()
-            repository.jetbrainsKotlinBootstrap()
-            repository.jetbrainsComposeDev()
         }
     }
+    addRepositoriesBasedOnProperties()
 }
 
 private fun Settings.configureHubdleCatalogTask() {
@@ -238,3 +242,25 @@ private fun Set<File>.getCatalogs(): Map<String, File> =
 
 private val File.isCatalog: Boolean
     get() = name.endsWith("libs.versions.toml")
+
+private fun Settings.addRepositoriesBasedOnProperties() {
+    fun getPropOrFalse(prop: String): Boolean =
+        getBooleanProperty("hubdle.repositories.$prop").getOrElse(false)
+
+    val shouldUseComposeDeb: Boolean = getPropOrFalse("jetbrains.compose.dev")
+    val shouldUseKotlinBootstrap: Boolean = getPropOrFalse("jetbrains.kotlin.bootstrap")
+    val shouldUseKotlinDev: Boolean = getPropOrFalse("jetbrains.kotlin.dev")
+    val shouldUseSonatypeSnapshot: Boolean = getPropOrFalse("sonatype.snapshots")
+    val shouldUseMavenLocal: Boolean = getPropOrFalse("mavenLocal")
+
+    fun RepositoryHandler.configure() {
+        if (shouldUseComposeDeb) maven(url = JetBrainsComposeDevRepo)
+        if (shouldUseKotlinBootstrap) maven(url = JetBrainsKotlinBootstrapRepo)
+        if (shouldUseKotlinDev) maven(url = JetBrainsKotlinDevRepo)
+        if (shouldUseSonatypeSnapshot) maven(url = SonatypeSnapshotsRepo)
+        if (shouldUseMavenLocal) mavenLocal()
+    }
+
+    pluginManagement.repositories(RepositoryHandler::configure)
+    dependencyResolutionManagement.repositories(RepositoryHandler::configure)
+}

@@ -11,7 +11,6 @@ pluginManagement {
         }
         mavenCentral()
         gradlePluginPortal()
-        maven(url = "https://maven.pkg.jetbrains.space/public/p/compose/dev/")
     }
 }
 
@@ -36,7 +35,6 @@ dependencyResolutionManagement {
         }
         mavenCentral()
         gradlePluginPortal()
-        maven(url = "https://maven.pkg.jetbrains.space/public/p/compose/dev/")
         mavenLocalTest()
     }
 

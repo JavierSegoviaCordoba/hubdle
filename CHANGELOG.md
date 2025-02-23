@@ -4,6 +4,20 @@
 
 ### Added
 
+### Changed
+
+### Deprecated
+
+### Fixed
+
+### Removed
+
+### Updated
+
+## [0.8.6] - 2025-02-23
+
+### Added
+
 - `com.javiersc.kotlin:kotlin-test` assertions to Kotlin Power Assert
 - `hubdle.repositories.jetbrains.compose.dev` boolean properties
 - `hubdle.repositories.jetbrains.kotlin.bootstrap` boolean properties
@@ -11,17 +25,9 @@
 - `hubdle.repositories.sonatype.snapshots` boolean properties
 - `hubdle.repositories.mavenLocal` boolean properties
 
-### Changed
-
-### Deprecated
-
 ### Fixed
 
 - `kotlin-test` not added to Test Fixtures source set
-
-### Removed
-
-### Updated
 
 ## [0.8.5] - 2025-02-22
 
@@ -313,7 +319,9 @@
 
 - `allTests` task
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.8.5...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.8.6...HEAD
+
+[0.8.6]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.8.5...p0.8.6
 
 [0.8.5]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.8.4...p0.8.5
 

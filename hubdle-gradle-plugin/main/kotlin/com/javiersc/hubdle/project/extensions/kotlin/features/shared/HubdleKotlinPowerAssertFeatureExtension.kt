@@ -30,6 +30,17 @@ public open class HubdleKotlinPowerAssertFeatureExtension @Inject constructor(pr
 
     public val functions: ListProperty<String> = listProperty {
         listOf(
+            "com.javiersc.kotlin.test.assertContains",
+            "com.javiersc.kotlin.test.assertCount",
+            "com.javiersc.kotlin.test.assertDirectory",
+            "com.javiersc.kotlin.test.assertGreaterThan",
+            "com.javiersc.kotlin.test.assertFile",
+            "com.javiersc.kotlin.test.assertIs",
+            "com.javiersc.kotlin.test.assertIsNot",
+            "com.javiersc.kotlin.test.assertLessThan",
+            "com.javiersc.kotlin.test.assertNotBlank",
+            "com.javiersc.kotlin.test.assertNotEmpty",
+            "com.javiersc.kotlin.test.assertSize",
             "kotlin.assert",
             "kotlin.check",
             "kotlin.checkNotNull",

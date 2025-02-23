@@ -4,11 +4,15 @@
 
 ### Added
 
+- `com.javiersc.kotlin:kotlin-test` assertions to Kotlin Power Assert
+
 ### Changed
 
 ### Deprecated
 
 ### Fixed
+
+- `kotlin-test` not added to Test Fixtures source set
 
 ### Removed
 

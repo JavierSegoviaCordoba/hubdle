@@ -2,7 +2,7 @@ package com.javiersc.hubdle.project.extensions.kotlin.features.shared
 
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.COMMON_MAIN
-import com.javiersc.hubdle.project.extensions._internal.JVM_TEST
+import com.javiersc.hubdle.project.extensions._internal.COMMON_TEST
 import com.javiersc.hubdle.project.extensions._internal.MAIN
 import com.javiersc.hubdle.project.extensions._internal.TEST
 import com.javiersc.hubdle.project.extensions._internal.TEST_FIXTURES
@@ -43,20 +43,24 @@ public open class HubdleKotlinExtendedStdlibFeatureExtension @Inject constructor
 
     override fun Project.defaultConfiguration() {
         lazyConfigurable {
-            forKotlinSetsDependencies(MAIN, COMMON_MAIN) {
+            forKotlinSetsDependencies(
+                COMMON_MAIN,
+                COMMON_TEST,
+                MAIN,
+                TEST,
+                TEST_FIXTURES,
+                TEST_FUNCTIONAL,
+                TEST_INTEGRATION,
+            ) {
                 implementation(library(javiersc_kotlin_stdlib))
             }
 
-            forKotlinSetsDependencies(
-                TEST,
-                JVM_TEST,
-                TEST_FUNCTIONAL,
-                TEST_INTEGRATION,
-                TEST_FIXTURES,
-            ) {
+            forKotlinSetsDependencies(TEST, TEST_FIXTURES, TEST_FUNCTIONAL, TEST_INTEGRATION) {
                 implementation(library(javiersc_kotlin_test))
                 implementation(calculateJavierScKotlinTestJvmDependency())
             }
+
+            forKotlinSetsDependencies(COMMON_TEST) { implementation(library(javiersc_kotlin_test)) }
         }
     }
 }

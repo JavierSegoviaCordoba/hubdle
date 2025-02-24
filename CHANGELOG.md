@@ -10,6 +10,8 @@
 
 ### Fixed
 
+- JetBrains Kotlin test jvm dependencies added to non jvm source sets
+
 ### Removed
 
 ### Updated

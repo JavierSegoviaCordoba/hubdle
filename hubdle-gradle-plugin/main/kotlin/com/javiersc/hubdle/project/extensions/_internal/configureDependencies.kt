@@ -23,6 +23,15 @@ internal fun HubdleConfigurableExtension.configurableDependencies() {
         ) {
             implementation(library(jetbrains_kotlin_test))
             implementation(library(jetbrains_kotlin_test_annotations_common))
+        }
+
+        project.forKotlinSetsDependencies(
+            TEST,
+            JVM_TEST,
+            TEST_FIXTURES,
+            TEST_FUNCTIONAL,
+            TEST_INTEGRATION,
+        ) {
             if (hubdleTesting.isFullEnabled.get()) {
                 val testModuleFramework: Provider<MinimalExternalModuleDependency?> = provider {
                     when (hubdleTesting.options.get()) {

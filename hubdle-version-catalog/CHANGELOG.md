@@ -14,6 +14,20 @@
 
 ### Updated
 
+- `io.ktor:ktor-serialization-kotlinx-json -> 3.1.1`
+- `io.ktor:ktor-client-winhttp -> 3.1.1`
+- `io.ktor:ktor-client-okhttp -> 3.1.1`
+- `io.ktor:ktor-client-mock -> 3.1.1`
+- `io.ktor:ktor-client-js -> 3.1.1`
+- `io.ktor:ktor-client-jetty -> 3.1.1`
+- `io.ktor:ktor-client-java -> 3.1.1`
+- `io.ktor:ktor-client-darwin -> 3.1.1`
+- `io.ktor:ktor-client-curl -> 3.1.1`
+- `io.ktor:ktor-client-core -> 3.1.1`
+- `io.ktor:ktor-client-content-negotiation -> 3.1.1`
+- `io.ktor:ktor-client-cio -> 3.1.1`
+- `io.ktor:ktor-client-apache5 -> 3.1.1`
+- `io.ktor:ktor-client-android -> 3.1.1`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.8.7`
 
 ## [0.4.7] - 2025-02-23

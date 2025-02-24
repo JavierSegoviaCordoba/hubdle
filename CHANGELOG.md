@@ -10,11 +10,15 @@
 
 ### Fixed
 
-- JetBrains Kotlin test jvm dependencies added to non jvm source sets
-
 ### Removed
 
 ### Updated
+
+## [0.8.7] - 2025-02-24
+
+### Fixed
+
+- JetBrains Kotlin test jvm dependencies added to non jvm source sets
 
 ## [0.8.6] - 2025-02-23
 
@@ -321,7 +325,9 @@
 
 - `allTests` task
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.8.6...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.8.7...HEAD
+
+[0.8.7]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.8.6...p0.8.7
 
 [0.8.6]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.8.5...p0.8.6
 

@@ -14,6 +14,9 @@
 
 ### Updated
 
+- `gradle -> 8.13`
+- `com.codingfeline.buildkonfig:com.codingfeline.buildkonfig.gradle.plugin -> 0.17.0`
+- `com.android.tools:desugar_jdk_libs -> 2.1.5`
 - `io.ktor:ktor-serialization-kotlinx-json -> 3.1.1`
 - `io.ktor:ktor-client-winhttp -> 3.1.1`
 - `io.ktor:ktor-client-okhttp -> 3.1.1`

@@ -14,6 +14,14 @@
 
 ### Updated
 
+- `org.junit.platform:junit-platform-suite-api -> 1.12.1`
+- `org.junit.platform:junit-platform-runner -> 1.12.1`
+- `org.junit.platform:junit-platform-launcher -> 1.12.1`
+- `org.junit.platform:junit-platform-commons -> 1.12.1`
+- `org.junit.jupiter:junit-jupiter-params -> 5.12.1`
+- `org.junit.jupiter:junit-jupiter-api -> 5.12.1`
+- `org.junit.jupiter:junit-jupiter -> 5.12.1`
+- `org.junit:junit-bom -> 5.12.1`
 - `androidx.navigation:navigation-compose -> 2.8.9`
 - `com.android.library:com.android.library.gradle.plugin -> 8.9.0`
 - `com.android.application:com.android.application.gradle.plugin -> 8.9.0`

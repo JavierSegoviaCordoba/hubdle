@@ -14,11 +14,11 @@
 
 ### Updated
 
+- `androidx.navigation:navigation-compose -> 2.8.9`
 - `com.android.library:com.android.library.gradle.plugin -> 8.9.0`
 - `com.android.application:com.android.application.gradle.plugin -> 8.9.0`
 - `com.android.tools.build:gradle -> 8.9.0`
 - `org.jetbrains.kotlinx:kotlinx-io-core -> 0.7.0`
-- `androidx.navigation:navigation-compose -> 2.8.8`
 - `androidx.activity:activity-ktx -> 1.10.1`
 - `androidx.activity:activity-compose -> 1.10.1`
 - `gradle -> 8.13`

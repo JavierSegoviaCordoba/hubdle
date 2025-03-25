@@ -14,6 +14,9 @@
 
 ### Updated
 
+- `com.android.library:com.android.library.gradle.plugin -> 8.9.1`
+- `com.android.application:com.android.application.gradle.plugin -> 8.9.1`
+- `com.android.tools.build:gradle -> 8.9.1`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.9.0`
 - `org.eclipse.jgit:org.eclipse.jgit -> 7.2.0.202503040940-r`
 

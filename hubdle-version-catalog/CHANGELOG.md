@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.sonarqube:org.sonarqube.gradle.plugin -> 6.1.0.5360`
 - `com.android.library:com.android.library.gradle.plugin -> 8.9.1`
 - `com.android.application:com.android.application.gradle.plugin -> 8.9.1`
 - `com.android.tools.build:gradle -> 8.9.1`

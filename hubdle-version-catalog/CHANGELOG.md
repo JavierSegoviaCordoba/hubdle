@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `io.insert-koin:koin-core -> 4.0.3`
 - `io.insert-koin:koin-test-junit5 -> 4.0.3`
 - `io.insert-koin:koin-test-junit4 -> 4.0.3`
 - `io.insert-koin:koin-test -> 4.0.3`

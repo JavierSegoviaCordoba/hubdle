@@ -14,6 +14,14 @@
 
 ### Updated
 
+- `io.insert-koin:koin-test-junit5 -> 4.0.4`
+- `io.insert-koin:koin-test-junit4 -> 4.0.4`
+- `io.insert-koin:koin-test -> 4.0.4`
+- `io.insert-koin:koin-logger-slf4j -> 4.0.4`
+- `io.insert-koin:koin-ktor -> 4.0.4`
+- `io.insert-koin:koin-core -> 4.0.4`
+- `io.insert-koin:koin-androidx-compose -> 4.0.4`
+- `io.insert-koin:koin-android -> 4.0.4`
 - `io.ktor:ktor-serialization-kotlinx-json -> 3.1.2`
 - `io.ktor:ktor-client-winhttp -> 3.1.2`
 - `io.ktor:ktor-client-okhttp -> 3.1.2`
@@ -27,14 +35,6 @@
 - `io.ktor:ktor-client-cio -> 3.1.2`
 - `io.ktor:ktor-client-apache5 -> 3.1.2`
 - `io.ktor:ktor-client-android -> 3.1.2`
-- `io.insert-koin:koin-core -> 4.0.3`
-- `io.insert-koin:koin-test-junit5 -> 4.0.3`
-- `io.insert-koin:koin-test-junit4 -> 4.0.3`
-- `io.insert-koin:koin-test -> 4.0.3`
-- `io.insert-koin:koin-logger-slf4j -> 4.0.3`
-- `io.insert-koin:koin-ktor -> 4.0.3`
-- `io.insert-koin:koin-androidx-compose -> 4.0.3`
-- `io.insert-koin:koin-android -> 4.0.3`
 - `org.sonarqube:org.sonarqube.gradle.plugin -> 6.1.0.5360`
 - `com.android.library:com.android.library.gradle.plugin -> 8.9.1`
 - `com.android.application:com.android.application.gradle.plugin -> 8.9.1`

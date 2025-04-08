@@ -14,6 +14,9 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx:kotlinx-coroutines-test -> 1.10.2`
+- `org.jetbrains.kotlinx:kotlinx-coroutines-core -> 1.10.2`
+- `org.jetbrains.kotlinx:kotlinx-coroutines-android -> 1.10.2`
 - `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 7.0.3`
 - `org.jetbrains.kotlinx:kotlinx-serialization-json -> 1.8.1`
 - `org.jetbrains.kotlinx:kotlinx-serialization-core -> 1.8.1`

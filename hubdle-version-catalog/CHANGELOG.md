@@ -14,6 +14,9 @@
 
 ### Updated
 
+- `androidx.core:core-ktx -> 1.16.0`
+- `androidx.compose.material3:material3-window-size-class -> 1.3.2`
+- `androidx.compose.material3:material3 -> 1.3.2`
 - `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 4.0`
 - `org.jetbrains.kotlinx:kotlinx-coroutines-test -> 1.10.2`
 - `org.jetbrains.kotlinx:kotlinx-coroutines-core -> 1.10.2`

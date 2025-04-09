@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 4.0`
 - `org.jetbrains.kotlinx:kotlinx-coroutines-test -> 1.10.2`
 - `org.jetbrains.kotlinx:kotlinx-coroutines-core -> 1.10.2`
 - `org.jetbrains.kotlinx:kotlinx-coroutines-android -> 1.10.2`

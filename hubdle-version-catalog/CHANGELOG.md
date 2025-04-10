@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.squareup.okio:okio -> 3.11.0`
 - `androidx.core:core-ktx -> 1.16.0`
 - `androidx.compose.material3:material3-window-size-class -> 1.3.2`
 - `androidx.compose.material3:material3 -> 1.3.2`

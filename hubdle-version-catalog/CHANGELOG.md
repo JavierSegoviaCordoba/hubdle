@@ -14,6 +14,14 @@
 
 ### Updated
 
+- `org.junit.platform:junit-platform-suite-api -> 1.12.2`
+- `org.junit.platform:junit-platform-runner -> 1.12.2`
+- `org.junit.platform:junit-platform-launcher -> 1.12.2`
+- `org.junit.platform:junit-platform-commons -> 1.12.2`
+- `org.junit.jupiter:junit-jupiter-params -> 5.12.2`
+- `org.junit.jupiter:junit-jupiter-api -> 5.12.2`
+- `org.junit.jupiter:junit-jupiter -> 5.12.2`
+- `org.junit:junit-bom -> 5.12.2`
 - `com.squareup.okio:okio -> 3.11.0`
 - `androidx.core:core-ktx -> 1.16.0`
 - `androidx.compose.material3:material3-window-size-class -> 1.3.2`

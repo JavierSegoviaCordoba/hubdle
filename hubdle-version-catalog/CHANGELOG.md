@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `app.cash.molecule:molecule-runtime -> 2.1.0`
 - `org.junit.platform:junit-platform-suite-api -> 1.12.2`
 - `org.junit.platform:junit-platform-runner -> 1.12.2`
 - `org.junit.platform:junit-platform-launcher -> 1.12.2`

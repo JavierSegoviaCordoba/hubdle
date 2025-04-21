@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `io.arrow-kt:arrow-core -> 2.1.0`
 - `com.codingfeline.buildkonfig:com.codingfeline.buildkonfig.gradle.plugin -> 0.17.1`
 - `app.cash.molecule:molecule-runtime -> 2.1.0`
 - `org.junit.platform:junit-platform-suite-api -> 1.12.2`

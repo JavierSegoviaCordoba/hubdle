@@ -14,6 +14,9 @@
 
 ### Updated
 
+- `com.android.library:com.android.library.gradle.plugin -> 8.9.2`
+- `com.android.application:com.android.application.gradle.plugin -> 8.9.2`
+- `com.android.tools.build:gradle -> 8.9.2`
 - `io.arrow-kt:arrow-core -> 2.1.0`
 - `com.codingfeline.buildkonfig:com.codingfeline.buildkonfig.gradle.plugin -> 0.17.1`
 - `app.cash.molecule:molecule-runtime -> 2.1.0`
@@ -58,9 +61,6 @@
 - `io.ktor:ktor-client-apache5 -> 3.1.2`
 - `io.ktor:ktor-client-android -> 3.1.2`
 - `org.sonarqube:org.sonarqube.gradle.plugin -> 6.1.0.5360`
-- `com.android.library:com.android.library.gradle.plugin -> 8.9.1`
-- `com.android.application:com.android.application.gradle.plugin -> 8.9.1`
-- `com.android.tools.build:gradle -> 8.9.1`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.9.0`
 - `org.eclipse.jgit:org.eclipse.jgit -> 7.2.0.202503040940-r`
 

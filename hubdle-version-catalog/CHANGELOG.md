@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `gradle -> 8.14`
 - `androidx.compose.ui:ui-util -> 1.8.0`
 - `androidx.compose.ui:ui-tooling-preview -> 1.8.0`
 - `androidx.compose.ui:ui-tooling -> 1.8.0`

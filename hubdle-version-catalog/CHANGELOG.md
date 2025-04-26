@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 4.0.1`
 - `gradle -> 8.14`
 - `androidx.compose.ui:ui-util -> 1.8.0`
 - `androidx.compose.ui:ui-tooling-preview -> 1.8.0`
@@ -49,7 +50,6 @@
 - `androidx.core:core-ktx -> 1.16.0`
 - `androidx.compose.material3:material3-window-size-class -> 1.3.2`
 - `androidx.compose.material3:material3 -> 1.3.2`
-- `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 4.0`
 - `org.jetbrains.kotlinx:kotlinx-coroutines-test -> 1.10.2`
 - `org.jetbrains.kotlinx:kotlinx-coroutines-core -> 1.10.2`
 - `org.jetbrains.kotlinx:kotlinx-coroutines-android -> 1.10.2`

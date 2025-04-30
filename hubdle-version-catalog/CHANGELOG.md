@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `io.arrow-kt:arrow-core -> 2.1.1`
 - `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 4.0.1`
 - `gradle -> 8.14`
 - `androidx.compose.ui:ui-util -> 1.8.0`
@@ -35,7 +36,6 @@
 - `com.android.library:com.android.library.gradle.plugin -> 8.9.2`
 - `com.android.application:com.android.application.gradle.plugin -> 8.9.2`
 - `com.android.tools.build:gradle -> 8.9.2`
-- `io.arrow-kt:arrow-core -> 2.1.0`
 - `com.codingfeline.buildkonfig:com.codingfeline.buildkonfig.gradle.plugin -> 0.17.1`
 - `app.cash.molecule:molecule-runtime -> 2.1.0`
 - `org.junit.platform:junit-platform-suite-api -> 1.12.2`

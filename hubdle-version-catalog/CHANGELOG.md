@@ -14,6 +14,12 @@
 
 ### Updated
 
+- `app.cash.sqldelight:app.cash.sqldelight.gradle.plugin -> 2.1.0`
+- `app.cash.sqldelight:sqlite-driver -> 2.1.0`
+- `app.cash.sqldelight:native-driver -> 2.1.0`
+- `app.cash.sqldelight:jdbc-driver -> 2.1.0`
+- `app.cash.sqldelight:coroutines-extensions -> 2.1.0`
+- `app.cash.sqldelight:android-driver -> 2.1.0`
 - `org.jetbrains.kotlin:kotlin-test-testng -> 2.1.21`
 - `org.jetbrains.kotlin:kotlin-test-junit5 -> 2.1.21`
 - `org.jetbrains.kotlin:kotlin-test-junit -> 2.1.21`

@@ -17,6 +17,7 @@ hubdle {
         multiplatform {
             features {
                 compose()
+                jvmVersion(JavaVersion.VERSION_11)
             }
 
             common {

@@ -14,6 +14,10 @@
 
 ### Updated
 
+- `org.sonarqube:org.sonarqube.gradle.plugin -> 6.2.0.5505`
+- `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.8.1`
+- `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 4.0.2`
+- `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 7.0.4`
 - `com.squareup.retrofit2:retrofit-mock -> 3.0.0`
 - `com.squareup.retrofit2:retrofit -> 3.0.0`
 - `com.squareup.retrofit2:converter-wire -> 3.0.0`
@@ -109,7 +113,6 @@
 - `org.jetbrains.kotlin:kotlin-annotations-jvm -> 2.1.21`
 - `com.javiersc.kotlin:kotlin-compiler-test-extensions -> 0.6.0+2.1.20`
 - `com.javiersc.kotlin:kotlin-compiler-extensions -> 0.6.0+2.1.20`
-- `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 4.0.1`
 - `com.codingfeline.buildkonfig:com.codingfeline.buildkonfig.gradle.plugin -> 0.17.1`
 - `app.cash.molecule:molecule-runtime -> 2.1.0`
 - `androidx.core:core-ktx -> 1.16.0`
@@ -118,10 +121,8 @@
 - `org.jetbrains.kotlinx:kotlinx-coroutines-test -> 1.10.2`
 - `org.jetbrains.kotlinx:kotlinx-coroutines-core -> 1.10.2`
 - `org.jetbrains.kotlinx:kotlinx-coroutines-android -> 1.10.2`
-- `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 7.0.3`
 - `org.jetbrains.kotlinx:kotlinx-serialization-json -> 1.8.1`
 - `org.jetbrains.kotlinx:kotlinx-serialization-core -> 1.8.1`
-- `org.sonarqube:org.sonarqube.gradle.plugin -> 6.1.0.5360`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.9.0`
 
 ## [0.5.0] - 2025-03-20

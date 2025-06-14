@@ -14,19 +14,19 @@
 
 ### Updated
 
+- `com.squareup.retrofit2:retrofit-mock -> 3.0.0`
+- `com.squareup.retrofit2:retrofit -> 3.0.0`
+- `com.squareup.retrofit2:converter-wire -> 3.0.0`
+- `com.squareup.retrofit2:converter-simplexml -> 3.0.0`
+- `com.squareup.retrofit2:converter-scalars -> 3.0.0`
+- `com.squareup.retrofit2:converter-protobuf -> 3.0.0`
+- `com.squareup.retrofit2:converter-moshi -> 3.0.0`
+- `com.squareup.retrofit2:converter-kotlinx-serialization -> 3.0.0`
+- `com.squareup.retrofit2:converter-jaxb3 -> 3.0.0`
+- `com.squareup.retrofit2:converter-jaxb -> 3.0.0`
+- `com.squareup.retrofit2:converter-jackson -> 3.0.0`
+- `com.squareup.retrofit2:converter-gson -> 3.0.0`
 - `gradle -> 8.14.2`
-- `com.squareup.retrofit2:retrofit-mock -> 2.12.0`
-- `com.squareup.retrofit2:retrofit -> 2.12.0`
-- `com.squareup.retrofit2:converter-wire -> 2.12.0`
-- `com.squareup.retrofit2:converter-simplexml -> 2.12.0`
-- `com.squareup.retrofit2:converter-scalars -> 2.12.0`
-- `com.squareup.retrofit2:converter-protobuf -> 2.12.0`
-- `com.squareup.retrofit2:converter-moshi -> 2.12.0`
-- `com.squareup.retrofit2:converter-kotlinx-serialization -> 2.12.0`
-- `com.squareup.retrofit2:converter-jaxb3 -> 2.12.0`
-- `com.squareup.retrofit2:converter-jaxb -> 2.12.0`
-- `com.squareup.retrofit2:converter-jackson -> 2.12.0`
-- `com.squareup.retrofit2:converter-gson -> 2.12.0`
 - `com.squareup.okio:okio -> 3.13.0`
 - `com.squareup.okhttp3:okhttp -> 5.0.0-alpha.16`
 - `com.squareup.okhttp3:mockwebserver3-junit5 -> 5.0.0-alpha.16`

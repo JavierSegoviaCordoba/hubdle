@@ -14,6 +14,22 @@
 
 ### Updated
 
+- `org.jetbrains.kotlin:kotlin-test-testng -> 2.1.21`
+- `org.jetbrains.kotlin:kotlin-test-junit5 -> 2.1.21`
+- `org.jetbrains.kotlin:kotlin-test-junit -> 2.1.21`
+- `org.jetbrains.kotlin:kotlin-test-annotations-common -> 2.1.21`
+- `org.jetbrains.kotlin:kotlin-test -> 2.1.21`
+- `org.jetbrains.kotlin:kotlin-serialization -> 2.1.21`
+- `org.jetbrains.kotlin:kotlin-script-runtime -> 2.1.21`
+- `org.jetbrains.kotlin:kotlin-reflect -> 2.1.21`
+- `org.jetbrains.kotlin:kotlin-gradle-plugin-api -> 2.1.21`
+- `org.jetbrains.kotlin:kotlin-gradle-plugin -> 2.1.21`
+- `org.jetbrains.kotlin:kotlin-compiler-internal-test-framework -> 2.1.21`
+- `org.jetbrains.kotlin:kotlin-compiler-embeddable -> 2.1.21`
+- `org.jetbrains.kotlin:kotlin-compiler -> 2.1.21`
+- `org.jetbrains.kotlin:kotlin-annotations-jvm -> 2.1.21`
+- `com.javiersc.kotlin:kotlin-compiler-test-extensions -> 0.6.0+2.1.20`
+- `com.javiersc.kotlin:kotlin-compiler-extensions -> 0.6.0+2.1.20`
 - `io.ktor:ktor-serialization-kotlinx-json -> 3.1.3`
 - `io.ktor:ktor-client-winhttp -> 3.1.3`
 - `io.ktor:ktor-client-okhttp -> 3.1.3`

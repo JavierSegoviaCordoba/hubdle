@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.javiersc.kotlin.kopy:com.javiersc.kotlin.kopy.gradle.plugin -> 0.15.0+2.1.20`
 - `org.sonarqube:org.sonarqube.gradle.plugin -> 6.2.0.5505`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.8.1`
 - `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 4.0.2`

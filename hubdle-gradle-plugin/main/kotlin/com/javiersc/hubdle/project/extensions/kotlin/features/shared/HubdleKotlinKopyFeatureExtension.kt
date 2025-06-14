@@ -10,12 +10,13 @@ import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
 import com.javiersc.hubdle.project.extensions.kotlin.hubdleKotlinAny
 import com.javiersc.hubdle.project.extensions.shared.PluginId
-import com.javiersc.kotlin.kopy.args.KopyFunctions
+import com.javiersc.kotlin.kopy.args.KopyCopyFunctions
 import com.javiersc.kotlin.kopy.args.KopyVisibility
 import com.javiersc.kotlin.kopy.gradle.plugin.KopyExtension
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
+import org.gradle.api.provider.ListProperty
 import org.gradle.api.provider.Property
 
 public open class HubdleKotlinKopyFeatureExtension @Inject constructor(project: Project) :
@@ -26,11 +27,14 @@ public open class HubdleKotlinKopyFeatureExtension @Inject constructor(project: 
     override val oneOfExtensions: Set<HubdleEnableableExtension>
         get() = hubdleKotlinAny
 
-    public val functions: Property<KopyFunctions> = property { KopyFunctions.All }
+    private val allFunctions: List<KopyCopyFunctions> =
+        listOf(KopyCopyFunctions.Copy, KopyCopyFunctions.Invoke)
+
+    public val functions: ListProperty<KopyCopyFunctions> = listProperty { allFunctions }
 
     @HubdleDslMarker
-    public fun functions(functions: KopyFunctions = KopyFunctions.All) {
-        this.functions.set(functions)
+    public fun functions(vararg functions: KopyCopyFunctions = allFunctions.toTypedArray()) {
+        this.functions.set(functions.toList())
     }
 
     public val visibility: Property<KopyVisibility> = property { KopyVisibility.Auto }

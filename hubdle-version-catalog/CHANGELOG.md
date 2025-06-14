@@ -14,6 +14,10 @@
 
 ### Updated
 
+## [0.5.1] - 2025-06-14
+
+### Updated
+
 - `com.javiersc.kotlin.kopy:com.javiersc.kotlin.kopy.gradle.plugin -> 0.15.0+2.1.20`
 - `org.sonarqube:org.sonarqube.gradle.plugin -> 6.2.0.5505`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.8.1`
@@ -1959,7 +1963,9 @@
 - `com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter -> 1.0.0`
 - `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.1...HEAD
+
+[0.5.1]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0...c0.5.1
 
 [0.5.0]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.4.7...c0.5.0
 

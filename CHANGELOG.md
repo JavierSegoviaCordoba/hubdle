@@ -6,6 +6,8 @@
 
 ### Changed
 
+- Nexus extension to use the new Maven Central urls by default
+
 ### Deprecated
 
 ### Fixed

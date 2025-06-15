@@ -11,7 +11,6 @@ import com.javiersc.hubdle.project.extensions.config.hubdleConfig
 import com.javiersc.hubdle.project.extensions.config.publishing.tasks.CheckIsSemverTask
 import com.javiersc.hubdle.project.extensions.config.versioning.semver._internal.isTagPrefixProject
 import com.javiersc.hubdle.project.extensions.shared.PluginId
-import io.github.gradlenexus.publishplugin.NexusPublishException
 import io.github.gradlenexus.publishplugin.NexusPublishExtension
 import java.net.URI
 import java.time.Duration
@@ -30,8 +29,11 @@ public open class HubdleConfigNexusExtension @Inject constructor(project: Projec
     override val requiredExtensions: Set<HubdleEnableableExtension>
         get() = setOf(hubdleConfig)
 
-    public val snapshotRepositoryUrl: Property<URI?> = property {
-        getStringProperty(Nexus.nexusSnapshotRepositoryUrl).orNull?.let(project::uri)
+    public val snapshotRepositoryUrl: Property<URI> = property {
+        val url: String =
+            getStringProperty(Nexus.nexusSnapshotRepositoryUrl).orNull
+                ?: DEFAULT_NEXUS_SNAPSHOT_REPOSITORY_URL
+        project.uri(url)
     }
 
     @HubdleDslMarker
@@ -55,8 +57,9 @@ public open class HubdleConfigNexusExtension @Inject constructor(project: Projec
         token.set(value)
     }
 
-    public val url: Property<URI?> = property {
-        getStringProperty(Nexus.nexusUrl).orNull?.let(project::uri)
+    public val url: Property<URI> = property {
+        val url: String = getStringProperty(Nexus.nexusUrl).orNull ?: DEFAULT_NEXUS_URL
+        project.uri(url)
     }
 
     @HubdleDslMarker
@@ -72,7 +75,7 @@ public open class HubdleConfigNexusExtension @Inject constructor(project: Projec
     }
 
     @HubdleDslMarker
-    public fun nexusPublishing(action: Action<NexusPublishException> = Action {}): Unit =
+    public fun nexusPublishing(action: Action<NexusPublishExtension> = Action {}): Unit =
         fallbackAction(action)
 
     override fun Project.defaultConfiguration() {
@@ -87,10 +90,8 @@ public open class HubdleConfigNexusExtension @Inject constructor(project: Projec
 
                 repositories { container ->
                     container.sonatype { nexusRepository ->
-                        if (url.orNull != null && snapshotRepositoryUrl.orNull != null) {
-                            nexusRepository.nexusUrl.set(url)
-                            nexusRepository.snapshotRepositoryUrl.set(snapshotRepositoryUrl)
-                        }
+                        nexusRepository.nexusUrl.set(url)
+                        nexusRepository.snapshotRepositoryUrl.set(snapshotRepositoryUrl)
                         nexusRepository.username.set(user)
                         nexusRepository.password.set(token)
                         nexusRepository.stagingProfileId.set(stagingProfileId)
@@ -122,6 +123,10 @@ public open class HubdleConfigNexusExtension @Inject constructor(project: Projec
     }
 
     internal companion object {
+        private const val DEFAULT_NEXUS_URL =
+            "https://ossrh-staging-api.central.sonatype.com/service/local/"
+        private const val DEFAULT_NEXUS_SNAPSHOT_REPOSITORY_URL =
+            "https://central.sonatype.com/repository/maven-snapshots/"
         private const val DEFAULT_CONNECT_TIMEOUT = 30L
         private const val DEFAULT_CLIENT_TIMEOUT = 30L
         private const val DEFAULT_MAX_RETRIES = 200

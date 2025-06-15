@@ -6,8 +6,6 @@
 
 ### Changed
 
-- Nexus extension to use the new Maven Central urls by default
-
 ### Deprecated
 
 ### Fixed
@@ -15,6 +13,12 @@
 ### Removed
 
 ### Updated
+
+## [0.10.0] - 2025-06-15
+
+### Changed
+
+- Nexus extension to use the new Maven Central urls by default
 
 ## [0.9.1] - 2025-06-14
 
@@ -339,7 +343,9 @@
 
 - `allTests` task
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.9.1...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.10.0...HEAD
+
+[0.10.0]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.9.1...p0.10.0
 
 [0.9.1]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.9.0...p0.9.1
 

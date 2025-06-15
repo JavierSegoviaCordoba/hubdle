@@ -18,6 +18,8 @@
 
 ### Updated
 
+- dependencies
+
 ## [0.10.0] - 2025-06-15
 
 ### Changed

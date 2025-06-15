@@ -4,13 +4,21 @@
 
 ### Added
 
-- `hubdle::config::languageSettings::enableLanguageFeatures`
-
 ### Changed
 
 ### Deprecated
 
 ### Fixed
+
+### Removed
+
+### Updated
+
+## [0.11.0] - 2025-06-15
+
+### Added
+
+- `hubdle::config::languageSettings::enableLanguageFeatures`
 
 ### Removed
 
@@ -349,7 +357,9 @@
 
 - `allTests` task
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.10.0...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.11.0...HEAD
+
+[0.11.0]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.10.0...p0.11.0
 
 [0.10.0]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.9.1...p0.10.0
 

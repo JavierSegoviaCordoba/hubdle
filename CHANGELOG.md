@@ -14,6 +14,8 @@
 
 ### Removed
 
+- `kotlin::*::features::contextReceivers`
+
 ### Updated
 
 ## [0.10.0] - 2025-06-15

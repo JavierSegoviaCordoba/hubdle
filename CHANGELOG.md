@@ -4,6 +4,8 @@
 
 ### Added
 
+- `hubdle::config::languageSettings::enableLanguageFeatures`
+
 ### Changed
 
 ### Deprecated

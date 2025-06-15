@@ -9,6 +9,7 @@ import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.provider.Property
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
+import org.jetbrains.kotlin.gradle.internal.config.LanguageFeature
 import org.jetbrains.kotlin.gradle.plugin.LanguageSettingsBuilder
 
 public open class HubdleConfigLanguageSettingsExtension @Inject constructor(project: Project) :
@@ -116,6 +117,19 @@ public open class HubdleConfigLanguageSettingsExtension @Inject constructor(proj
         lazyConfigurable {
             configure<KotlinProjectExtension> {
                 sourceSets.all { set -> set.languageSettings(action) }
+            }
+        }
+    }
+
+    @HubdleDslMarker
+    public fun enableLanguageFeatures(vararg languageFeature: LanguageFeature) {
+        lazyConfigurable {
+            configure<KotlinProjectExtension> {
+                sourceSets.all { set ->
+                    for (feature in languageFeature) {
+                        set.languageSettings.enableLanguageFeature(feature.name)
+                    }
+                }
             }
         }
     }

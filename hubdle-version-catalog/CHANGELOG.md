@@ -4,6 +4,8 @@
 
 ### Added
 
+- `org.jacoco:jacoco`
+
 ### Changed
 
 ### Deprecated

@@ -4,8 +4,6 @@
 
 ### Added
 
-- Vanniktech Maven Publish Gradle plugin
-
 ### Changed
 
 ### Deprecated
@@ -14,9 +12,17 @@
 
 ### Removed
 
-- Nexus plugin
-
 ### Updated
+
+## [0.12.0] - 2025-06-18
+
+### Added
+
+- Vanniktech Maven Publish Gradle plugin
+
+### Removed
+
+- Nexus plugin
 
 ## [0.11.0] - 2025-06-15
 
@@ -361,7 +367,9 @@
 
 - `allTests` task
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.11.0...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.12.0...HEAD
+
+[0.12.0]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.11.0...p0.12.0
 
 [0.11.0]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.10.0...p0.11.0
 

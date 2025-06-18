@@ -144,7 +144,9 @@ internal class KotlinJvmTest : GradleTestKitTest() {
         gradleTestKitTest("$basePath/publishing/gradle-plugin-1", name = projectName) {
             withEnvironment(gpgMap)
             withArgumentsFromTXT()
-            build().output.shouldContain("Publications: [pluginMaven, sandboxPluginMarkerMaven]")
+            build()
+                .output
+                .shouldContain("Publications: [maven, pluginMaven, sandboxPluginMarkerMaven]")
         }
     }
 }

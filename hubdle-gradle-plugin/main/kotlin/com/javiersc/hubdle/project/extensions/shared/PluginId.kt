@@ -7,7 +7,6 @@ public enum class PluginId(public val id: String) {
     CodingfelineBuildkonfig("com.codingfeline.buildkonfig"),
     Detekt("io.gitlab.arturbosch.detekt"),
     DiffplugSpotless("com.diffplug.spotless"),
-    GithubGradleNexusPublishPlugin("io.github.gradle-nexus.publish-plugin"),
     GradleApplication("org.gradle.application"),
     GradleJava("org.gradle.java"),
     GradlePluginPublish("com.gradle.plugin-publish"),
@@ -34,6 +33,7 @@ public enum class PluginId(public val id: String) {
     MavenPublish("org.gradle.maven-publish"),
     Sonarqube("org.sonarqube"),
     SqlDelight("app.cash.sqldelight"),
+    VanniktechMavenPublish("com.vanniktech.maven.publish"),
     VyarusMkdocsBuild("ru.vyarus.mkdocs-build");
 
     override fun toString(): String = id

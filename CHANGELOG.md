@@ -4,6 +4,8 @@
 
 ### Added
 
+- Vanniktech Maven Publish Gradle plugin
+
 ### Changed
 
 ### Deprecated
@@ -11,6 +13,8 @@
 ### Fixed
 
 ### Removed
+
+- Nexus plugin
 
 ### Updated
 

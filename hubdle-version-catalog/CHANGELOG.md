@@ -4,8 +4,6 @@
 
 ### Added
 
-- `org.jacoco:jacoco`
-
 ### Changed
 
 ### Deprecated
@@ -13,6 +11,14 @@
 ### Fixed
 
 ### Removed
+
+### Updated
+
+## [0.5.2] - 2025-06-18
+
+### Added
+
+- `org.jacoco:jacoco`
 
 ### Updated
 
@@ -1970,7 +1976,9 @@
 - `com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter -> 1.0.0`
 - `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.1...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.2...HEAD
+
+[0.5.2]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.1...c0.5.2
 
 [0.5.1]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.0...c0.5.1
 

@@ -16,6 +16,7 @@ import com.javiersc.hubdle.project.extensions.kotlin.android.library.features.Hu
 import com.javiersc.hubdle.project.extensions.kotlin.shared.HubdleKotlinMinimalSourceSetConfigurableExtension
 import com.javiersc.hubdle.project.extensions.shared.PluginId
 import com.javiersc.hubdle.project.extensions.shared.android.HubdleAndroidDelegateSharedApis
+import com.vanniktech.maven.publish.AndroidSingleVariantLibrary
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
@@ -71,27 +72,21 @@ public open class HubdleKotlinAndroidLibraryExtension @Inject constructor(projec
 
         configurableSrcDirs()
         configurableDependencies()
-        configurePublishing()
+        configurableMavenPublishing {
+            it.configure(
+                AndroidSingleVariantLibrary(
+                    variant = "release",
+                    sourcesJar = true,
+                    publishJavadocJar = true,
+                )
+            )
+        }
     }
 
     private fun applicablePlugins() {
         applicablePlugin(scope = Scope.CurrentProject, pluginId = PluginId.AndroidLibrary)
 
         applicablePlugin(scope = Scope.CurrentProject, pluginId = PluginId.JetbrainsKotlinAndroid)
-    }
-
-    private fun configurePublishing() {
-        configurableMavenPublishing(mavenPublicationName = "release") {
-            configure<LibraryExtension> {
-                publishing {
-                    multipleVariants {
-                        withSourcesJar()
-                        withJavadocJar()
-                        allVariants()
-                    }
-                }
-            }
-        }
     }
 }
 

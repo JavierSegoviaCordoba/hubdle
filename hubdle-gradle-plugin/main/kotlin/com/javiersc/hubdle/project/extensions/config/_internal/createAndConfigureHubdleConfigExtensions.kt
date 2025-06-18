@@ -19,7 +19,6 @@ import com.javiersc.hubdle.project.extensions.config.format.HubdleConfigFormatEx
 import com.javiersc.hubdle.project.extensions.config.install.HubdleConfigInstallExtension
 import com.javiersc.hubdle.project.extensions.config.install.pre.commits.HubdleConfigInstallPreCommitsExtension
 import com.javiersc.hubdle.project.extensions.config.language.settings.HubdleConfigLanguageSettingsExtension
-import com.javiersc.hubdle.project.extensions.config.nexus.HubdleConfigNexusExtension
 import com.javiersc.hubdle.project.extensions.config.project.HubdleProjectExtension
 import com.javiersc.hubdle.project.extensions.config.publishing.HubdleConfigPublishingExtension
 import com.javiersc.hubdle.project.extensions.config.publishing.gradle.portal.HubdleConfigPublishingGradlePortalExtension
@@ -41,7 +40,6 @@ internal fun HubdleState.createHubdleConfigExtensions() {
             createExtension<HubdleConfigInstallPreCommitsExtension>()
         }
         createExtension<HubdleConfigLanguageSettingsExtension>()
-        createExtension<HubdleConfigNexusExtension>()
         createExtension<HubdleProjectExtension>()
         createExtension<HubdleConfigPublishingExtension> {
             createExtension<HubdleConfigPublishingGradlePortalExtension>()

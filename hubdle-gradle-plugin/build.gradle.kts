@@ -109,7 +109,6 @@ hubdle {
                     api(hubdle.plugins.cash.sqldelight.artifact)
                     api(hubdle.plugins.codingfeline.buildkonfig.artifact)
                     api(hubdle.plugins.diffplug.gradle.spotless.artifact)
-                    api(hubdle.plugins.github.gradle.nexus.publish.plugin.artifact)
                     api(hubdle.plugins.gitlab.arturbosch.detekt.artifact)
                     api(hubdle.plugins.gradle.develocity.artifact)
                     api(hubdle.plugins.gradle.plugin.publish.artifact)
@@ -127,6 +126,7 @@ hubdle {
                     api(hubdle.plugins.jetbrains.kotlinx.binary.compatibility.validator.artifact)
                     api(hubdle.plugins.jetbrains.kotlinx.kover.artifact)
                     api(hubdle.plugins.sonarqube.artifact)
+                    api(hubdle.plugins.vanniktech.maven.publish.artifact)
                     api(hubdle.plugins.vyarus.mkdocs.artifact)
 
                     compileOnly(hubdle.jetbrains.kotlin.compiler.internal.test.framework)

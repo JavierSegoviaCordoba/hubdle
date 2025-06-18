@@ -8,6 +8,7 @@ import com.javiersc.hubdle.project.extensions.config.publishing.maven.configurab
 import com.javiersc.hubdle.project.extensions.java.hubdleJava
 import com.javiersc.hubdle.project.extensions.kotlin.jvm.hubdleKotlinJvm
 import com.javiersc.hubdle.project.extensions.shared.PluginId
+import com.vanniktech.maven.publish.VersionCatalog
 import javax.inject.Inject
 import org.gradle.api.Project
 import org.gradle.api.provider.Property
@@ -23,7 +24,7 @@ public open class HubdleGradleVersionCatalogFeatureExtension @Inject constructor
     override fun Project.defaultConfiguration() {
         applicablePlugin(scope = Scope.CurrentProject, PluginId.GradleVersionCatalog)
 
-        configurableMavenPublishing(mavenPublicationName = "versionCatalog")
+        configurableMavenPublishing { it.configure(VersionCatalog()) }
     }
 }
 

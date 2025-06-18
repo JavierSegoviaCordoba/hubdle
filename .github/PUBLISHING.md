@@ -3,7 +3,7 @@
 ## Prerequisites
 
 > Both methods can be mixed because if a variable is not found, it will try to get it using the
-> another method.
+> other method.
 
 Add all POM properties:
 
@@ -21,7 +21,7 @@ pom.scm.connection=...
 pom.scm.developerConnection=...
 ```
 
-### Nexus and signing properties using Gradle project properties
+### MavenCentral and signing properties using Gradle project properties
 
 > It is recommended to set the next properties in the `$home/.gradle/gradle.properties` file instead
 > of using the project `gradle.properties`.
@@ -33,30 +33,24 @@ pom.scm.developerConnection=...
 2. Check key name: `gpg --list-signatures`
 3. Upload to server: `gpg --keyserver hkps://keys.openpgp.org --send-keys [keyName]`
 4. Show the private key: `gpg --armor --export-secret-keys [keyName]`
-5. Add Nexus user: `nexus.user=[user]`
-6. Add Nexus token: `nexus.token=[token]`
-7. Add Nexus profileId: `nexus.stagingProfileId=[stagingProfileId]`
-    1. Visit this [link](https://oss.sonatype.org/#stagingProfiles), select your profile and copy
-       `SOME_NUMBER` from the url `https://oss.sonatype.org/#stagingProfiles;SOME_NUMBERS`
-8. Add the secret key (replace line breaks with `\n`): `signing.gnupg.key=[key]`
-9. Add the passphrase: `signing.gnupg.passphrase=[passphrase]`
-10. Add KeyId (optional): `signing.keyId=[keyId]`
+5. Add Nexus user: `mavenCentralUsername=[user]`
+6. Add Nexus token: `mavenCentralPassword=[token]`
+7. Add the secret key (replace line breaks with `\n`): `signing.gnupg.key=[key]`
+8. Add the passphrase: `signing.gnupg.passphrase=[passphrase]`
+9. Add KeyId (optional): `signing.keyId=[keyId]`
 
-### Nexus and signing properties using environment variables
+### MavenCentral and signing properties using environment variables
 
 1. Generate key: `gpg --full-generate-key`
 2. Check key name: `gpg --list-signatures`
 3. Upload to server: `gpg --keyserver hkps://keys.openpgp.org --send-keys [keyName]`
 4. Show the private key: `gpg --armor --export-secret-keys [keyName]`
-5. Add Nexus user: `NEXUS_USER=[user]`
-6. Add Nexus token: `NEXUS_TOKEN=[token]`
-7. Add Nexus profileId: `NEXUX_STAGING_PROFILE_ID=[stagingProfileId]`
-    - Visit this [link](https://oss.sonatype.org/#stagingProfiles), select your profile and copy
-       `SOME_NUMBER` from the url `https://oss.sonatype.org/#stagingProfiles;SOME_NUMBERS`
-8. Add the secret key (replace line breaks with `\n`): `SIGNING_GNUPG_KEY=[key]`
-   - The line break substitution may be unnecessary in some CI servers like GitHub Actions
-9. Add the passphrase: `SIGNING_GNUPG_PASSPHRASE=[passphrase]`
-10. Add KeyId (optional): `SIGNING_KEY_ID=[keyId]`
+5. Add Nexus user: `ORG_GRADLE_PROJECT_mavenCentralUsername=[user]`
+6. Add Nexus token: `ORG_GRADLE_PROJECT_mavenCentralPassword=[token]`
+7. Add the secret key (replace line breaks with `\n`): `SIGNING_GNUPG_KEY=[key]`
+    - The line break substitution may be unnecessary in some CI servers like GitHub Actions
+8. Add the passphrase: `SIGNING_GNUPG_PASSPHRASE=[passphrase]`
+9. Add KeyId (optional): `SIGNING_KEY_ID=[keyId]`
 
 > You can use these utilities:
 > - Kleopatra, GUI for Windows
@@ -69,11 +63,11 @@ pom.scm.developerConnection=...
 The version should end with `-SNAPSHOT`
 
 ```
-./gradlew publishToSonatype "-Psemver.stage=snapshot"
+./gradlew publishToMavenCentral "-Psemver.stage=snapshot"
 ```
 
 ### Release
 
 ```
-./gradlew publishToSonatype "-Psemver.stage=[stage]" "-Psemver.scope=[scope]"
+./gradlew publishToMavenCentral "-Psemver.stage=[stage]" "-Psemver.scope=[scope]"
 ```

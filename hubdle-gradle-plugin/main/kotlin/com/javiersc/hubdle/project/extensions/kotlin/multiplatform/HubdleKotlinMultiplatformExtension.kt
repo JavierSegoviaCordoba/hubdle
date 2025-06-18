@@ -27,6 +27,8 @@ import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.Hubdl
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformNativeExtension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.HubdleKotlinMultiplatformWAsmExtension
 import com.javiersc.hubdle.project.extensions.shared.PluginId
+import com.vanniktech.maven.publish.JavadocJar
+import com.vanniktech.maven.publish.KotlinMultiplatform
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
@@ -161,7 +163,15 @@ public open class HubdleKotlinMultiplatformExtension @Inject constructor(project
 
         configurableSrcDirs(multiplatformTargets())
         configurableDependencies()
-        configurableMavenPublishing(configEmptyJavaDocs = true)
+        configurableMavenPublishing {
+            it.configure(
+                KotlinMultiplatform(
+                    javadocJar = JavadocJar.Empty(),
+                    sourcesJar = true,
+                    androidVariantsToPublish = listOf("debug", "release"),
+                )
+            )
+        }
     }
 
     private fun multiplatformTargets(): SetProperty<String> = setProperty {

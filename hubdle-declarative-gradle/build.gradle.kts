@@ -127,7 +127,6 @@ hubdle {
                     api(hubdle.plugins.cash.sqldelight.artifact)
                     api(hubdle.plugins.codingfeline.buildkonfig.artifact)
                     api(hubdle.plugins.diffplug.gradle.spotless.artifact)
-                    api(hubdle.plugins.github.gradle.nexus.publish.plugin.artifact)
                     api(hubdle.plugins.gitlab.arturbosch.detekt.artifact)
                     api(hubdle.plugins.gradle.develocity.artifact)
                     api(hubdle.plugins.gradle.plugin.publish.artifact)

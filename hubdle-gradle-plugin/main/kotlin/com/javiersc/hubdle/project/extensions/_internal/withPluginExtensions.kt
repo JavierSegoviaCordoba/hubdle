@@ -10,6 +10,7 @@ import io.gitlab.arturbosch.detekt.extensions.DetektExtension
 import kotlinx.validation.ApiValidationExtension
 import org.gradle.api.Project
 import org.gradle.api.plugins.JavaApplication
+import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.api.publish.PublishingExtension as GradlePublishingExtension
 import org.gradle.kotlin.dsl.getByType
 import org.gradle.plugin.devel.GradlePluginDevelopmentExtension
@@ -47,6 +48,9 @@ internal fun Project.withGradleApplication(block: JavaApplication.() -> Unit) =
 
 internal fun Project.withGradlePlugin(block: GradlePluginDevelopmentExtension.() -> Unit) =
     withId(id = PluginId.JavaGradlePlugin, block = block)
+
+internal fun Project.withJava(block: JavaPluginExtension.() -> Unit) =
+    withId(id = PluginId.Java, block = block)
 
 internal fun Project.withKotlin(block: KotlinProjectExtension.() -> Unit) {
     withKotlinAndroid(block)

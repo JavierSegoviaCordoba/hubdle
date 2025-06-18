@@ -10,6 +10,8 @@
 
 ### Fixed
 
+- issues setting the `JvmTarget`
+
 ### Removed
 
 ### Updated

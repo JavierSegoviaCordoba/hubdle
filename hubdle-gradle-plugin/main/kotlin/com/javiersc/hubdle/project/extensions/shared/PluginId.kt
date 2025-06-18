@@ -12,6 +12,7 @@ public enum class PluginId(public val id: String) {
     GradlePluginPublish("com.gradle.plugin-publish"),
     GradleSigning("org.gradle.signing"),
     GradleVersionCatalog("org.gradle.version-catalog"),
+    Java("java"),
     JavaGradlePlugin("java-gradle-plugin"),
     JavaTestFixtures("java-test-fixtures"),
     JavierscHubdle("com.javiersc.hubdle"),

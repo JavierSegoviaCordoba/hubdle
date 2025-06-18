@@ -2,6 +2,12 @@ package com.javiersc.hubdle.project.extensions.shared.features
 
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
+import com.javiersc.hubdle.project.extensions._internal.withAndroidApplication
+import com.javiersc.hubdle.project.extensions._internal.withAndroidLibrary
+import com.javiersc.hubdle.project.extensions._internal.withJava
+import com.javiersc.hubdle.project.extensions._internal.withKotlinAndroid
+import com.javiersc.hubdle.project.extensions._internal.withKotlinJvm
+import com.javiersc.hubdle.project.extensions._internal.withKotlinMultiplatform
 import com.javiersc.hubdle.project.extensions.apis.BaseHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
@@ -11,10 +17,10 @@ import javax.inject.Inject
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.api.provider.Property
-import org.gradle.api.tasks.compile.JavaCompile
+import org.gradle.api.provider.Provider
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jetbrains.kotlin.gradle.targets.jvm.KotlinJvmTarget
 
 public open class HubdleJavaVersionFeatureExtension @Inject constructor(project: Project) :
     HubdleConfigurableExtension(project) {
@@ -35,14 +41,35 @@ public open class HubdleJavaVersionFeatureExtension @Inject constructor(project:
     }
 
     override fun Project.defaultConfiguration() {
-        lazyConfigurable {
-            tasks.withType<JavaCompile>().configureEach {
-                it.sourceCompatibility = "${jvmVersion.get()}"
-                it.targetCompatibility = "${jvmVersion.get()}"
-            }
+        fun getJvmTarget(): Provider<JvmTarget> =
+            jvmVersion.map { version -> JvmTarget.fromTarget("$version") }
 
-            tasks.withType<KotlinCompile>().configureEach {
-                it.compilerOptions.jvmTarget.set(JvmTarget.fromTarget("${jvmVersion.get()}"))
+        withAndroidApplication {
+            compileOptions {
+                sourceCompatibility = jvmVersion.get()
+                targetCompatibility = jvmVersion.get()
+            }
+        }
+
+        withAndroidLibrary {
+            compileOptions {
+                sourceCompatibility = jvmVersion.get()
+                targetCompatibility = jvmVersion.get()
+            }
+        }
+
+        withJava {
+            sourceCompatibility = jvmVersion.get()
+            targetCompatibility = jvmVersion.get()
+        }
+
+        withKotlinAndroid { compilerOptions.jvmTarget.set(getJvmTarget()) }
+
+        withKotlinJvm { compilerOptions.jvmTarget.set(getJvmTarget()) }
+
+        withKotlinMultiplatform {
+            targets.withType<KotlinJvmTarget>().configureEach {
+                it.compilerOptions.jvmTarget.set(getJvmTarget())
             }
         }
     }

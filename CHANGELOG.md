@@ -10,11 +10,15 @@
 
 ### Fixed
 
-- issues setting the `JvmTarget`
-
 ### Removed
 
 ### Updated
+
+## [0.13.0] - 2025-06-19
+
+### Fixed
+
+- issues setting the `JvmTarget`
 
 ## [0.12.0] - 2025-06-18
 
@@ -369,7 +373,9 @@
 
 - `allTests` task
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.12.0...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.13.0...HEAD
+
+[0.13.0]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.12.0...p0.13.0
 
 [0.12.0]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.11.0...p0.12.0
 

@@ -14,6 +14,9 @@
 
 ### Updated
 
+- `androidx.compose.ui:ui-tooling-preview -> 1.8.3`
+- `androidx.compose.ui:ui-test-manifest -> 1.8.3`
+- `androidx.compose.foundation:foundation -> 1.8.3`
 - `com.javiersc.kotlin:kotlin-compiler-test-extensions -> 0.6.2+2.1.21`
 - `com.javiersc.kotlin:kotlin-compiler-extensions -> 0.6.2+2.1.21`
 - `androidx.compose.ui:ui-util -> 1.8.3`

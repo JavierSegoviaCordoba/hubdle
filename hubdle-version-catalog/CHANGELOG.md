@@ -14,6 +14,20 @@
 
 ### Updated
 
+- `androidx.compose.ui:ui-util -> 1.8.3`
+- `androidx.compose.ui:ui-tooling -> 1.8.3`
+- `androidx.compose.ui:ui-test -> 1.8.3`
+- `androidx.compose.ui:ui -> 1.8.3`
+- `androidx.compose.runtime:runtime-tracing -> 1.8.3`
+- `androidx.compose.runtime:runtime-saveable -> 1.8.3`
+- `androidx.compose.runtime:runtime -> 1.8.3`
+- `androidx.compose.material:material-ripple -> 1.8.3`
+- `androidx.compose.material:material -> 1.8.3`
+- `androidx.compose.foundation:foundation-layout -> 1.8.3`
+- `androidx.compose.animation:animation-graphics -> 1.8.3`
+- `androidx.compose.animation:animation-core -> 1.8.3`
+- `androidx.compose.animation:animation -> 1.8.3`
+
 ## [0.5.2] - 2025-06-18
 
 ### Added

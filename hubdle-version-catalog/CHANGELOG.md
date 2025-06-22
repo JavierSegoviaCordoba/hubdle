@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.vanniktech.maven.publish:com.vanniktech.maven.publish.gradle.plugin -> 0.33.0`
 - `androidx.compose.ui:ui-tooling-preview -> 1.8.3`
 - `androidx.compose.ui:ui-test-manifest -> 1.8.3`
 - `androidx.compose.foundation:foundation -> 1.8.3`

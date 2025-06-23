@@ -14,6 +14,19 @@
 
 ### Updated
 
+- `org.jetbrains.kotlin:kotlin-test-testng -> 2.2.0`
+- `org.jetbrains.kotlin:kotlin-test-junit5 -> 2.2.0`
+- `org.jetbrains.kotlin:kotlin-test-junit -> 2.2.0`
+- `org.jetbrains.kotlin:kotlin-test-annotations-common -> 2.2.0`
+- `org.jetbrains.kotlin:kotlin-test -> 2.2.0`
+- `org.jetbrains.kotlin:kotlin-script-runtime -> 2.2.0`
+- `org.jetbrains.kotlin:kotlin-reflect -> 2.2.0`
+- `org.jetbrains.kotlin:kotlin-gradle-plugin-api -> 2.2.0`
+- `org.jetbrains.kotlin:kotlin-gradle-plugin -> 2.2.0`
+- `org.jetbrains.kotlin:kotlin-compiler-internal-test-framework -> 2.2.0`
+- `org.jetbrains.kotlin:kotlin-compiler-embeddable -> 2.2.0`
+- `org.jetbrains.kotlin:kotlin-compiler -> 2.2.0`
+- `org.jetbrains.kotlin:kotlin-annotations-jvm -> 2.2.0`
 - `com.vanniktech.maven.publish:com.vanniktech.maven.publish.gradle.plugin -> 0.33.0`
 - `androidx.compose.ui:ui-tooling-preview -> 1.8.3`
 - `androidx.compose.ui:ui-test-manifest -> 1.8.3`

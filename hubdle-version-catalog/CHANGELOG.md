@@ -14,6 +14,14 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx:kotlinx-io-core -> 0.8.0`
+- `org.jetbrains.kotlinx:kotlinx-datetime -> 0.7.0-0.6.x-compat`
+- `org.jetbrains.kotlinx.binary-compatibility-validator:org.jetbrains.kotlinx.binary-compatibility-validator.gradle.plugin -> 0.18.0`
+- `org.jetbrains.kotlinx:atomicfu -> 0.29.0`
+- `com.facebook:ktfmt -> 0.56`
+- `com.android.library:com.android.library.gradle.plugin -> 8.11.0`
+- `com.android.application:com.android.application.gradle.plugin -> 8.11.0`
+- `com.android.tools.build:gradle -> 8.11.0`
 - `org.junit.platform:junit-platform-suite-api -> 1.13.2`
 - `org.junit.platform:junit-platform-runner -> 1.13.2`
 - `org.junit.platform:junit-platform-launcher -> 1.13.2`

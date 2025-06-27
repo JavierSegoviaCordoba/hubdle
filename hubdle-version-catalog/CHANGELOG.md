@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx:kotlinx-serialization-json -> 1.9.0`
+- `org.jetbrains.kotlinx:kotlinx-serialization-core -> 1.9.0`
 - `org.jetbrains.kotlinx:kotlinx-io-core -> 0.8.0`
 - `org.jetbrains.kotlinx:kotlinx-datetime -> 0.7.0-0.6.x-compat`
 - `org.jetbrains.kotlinx.binary-compatibility-validator:org.jetbrains.kotlinx.binary-compatibility-validator.gradle.plugin -> 0.18.0`

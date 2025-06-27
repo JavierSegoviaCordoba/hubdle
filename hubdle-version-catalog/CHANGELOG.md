@@ -14,6 +14,14 @@
 
 ### Updated
 
+- `org.junit.platform:junit-platform-suite-api -> 1.13.2`
+- `org.junit.platform:junit-platform-runner -> 1.13.2`
+- `org.junit.platform:junit-platform-launcher -> 1.13.2`
+- `org.junit.platform:junit-platform-commons -> 1.13.2`
+- `org.junit.jupiter:junit-jupiter-params -> 5.13.2`
+- `org.junit.jupiter:junit-jupiter-api -> 5.13.2`
+- `org.junit.jupiter:junit-jupiter -> 5.13.2`
+- `org.junit:junit-bom -> 5.13.2`
 - `com.vanniktech.maven.publish:com.vanniktech.maven.publish.gradle.plugin -> 0.33.0`
 - `androidx.compose.ui:ui-tooling-preview -> 1.8.3`
 - `androidx.compose.ui:ui-test-manifest -> 1.8.3`

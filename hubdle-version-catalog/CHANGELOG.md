@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.squareup.okio:okio -> 3.14.0`
 - `org.jetbrains.kotlinx:kotlinx-serialization-json -> 1.9.0`
 - `org.jetbrains.kotlinx:kotlinx-serialization-core -> 1.9.0`
 - `org.jetbrains.kotlinx:kotlinx-io-core -> 0.8.0`

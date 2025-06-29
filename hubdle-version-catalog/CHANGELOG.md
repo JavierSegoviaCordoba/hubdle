@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `app.softwork:kotlinx-serialization-flf -> 0.0.22`
+- `app.softwork:kotlinx-serialization-csv -> 0.0.22`
 - `com.squareup.okio:okio -> 3.14.0`
 - `org.jetbrains.kotlinx:kotlinx-serialization-json -> 1.9.0`
 - `org.jetbrains.kotlinx:kotlinx-serialization-core -> 1.9.0`

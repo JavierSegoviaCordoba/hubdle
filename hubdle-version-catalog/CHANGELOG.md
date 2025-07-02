@@ -14,6 +14,10 @@
 
 ### Updated
 
+- `com.squareup.okhttp3:okhttp -> 5.0.0-alpha.17`
+- `com.squareup.okhttp3:mockwebserver3-junit5 -> 5.0.0-alpha.17`
+- `com.squareup.okhttp3:mockwebserver3-junit4 -> 5.0.0-alpha.17`
+- `com.squareup.okhttp3:mockwebserver -> 5.0.0-alpha.17`
 - `app.softwork:kotlinx-serialization-flf -> 0.0.22`
 - `app.softwork:kotlinx-serialization-csv -> 0.0.22`
 - `com.squareup.okio:okio -> 3.14.0`

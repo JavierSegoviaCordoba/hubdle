@@ -75,12 +75,11 @@ private fun HubdleConfigurableExtension.configurePublishingExtension(
     block: Action<MavenPublishBaseExtension>
 ) {
     configure<MavenPublishBaseExtension> {
-        publishToMavenCentral()
+        runCatching { publishToMavenCentral() }
         configurePom(extension = this)
         block.execute(this)
     }
     configureRepositories()
-
     configurePublishOnlySemver()
 }
 

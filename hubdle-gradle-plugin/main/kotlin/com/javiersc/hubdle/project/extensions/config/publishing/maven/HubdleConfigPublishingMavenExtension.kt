@@ -15,7 +15,6 @@ import com.javiersc.hubdle.project.extensions.config.publishing.tasks.CheckIsSem
 import com.javiersc.hubdle.project.extensions.config.versioning.semver._internal.isTagPrefixProject
 import com.javiersc.hubdle.project.extensions.shared.PluginId
 import com.vanniktech.maven.publish.MavenPublishBaseExtension
-import com.vanniktech.maven.publish.SonatypeHost
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
@@ -76,7 +75,7 @@ private fun HubdleConfigurableExtension.configurePublishingExtension(
     block: Action<MavenPublishBaseExtension>
 ) {
     configure<MavenPublishBaseExtension> {
-        publishToMavenCentral(host = SonatypeHost.CENTRAL_PORTAL)
+        publishToMavenCentral()
         configurePom(extension = this)
         block.execute(this)
     }

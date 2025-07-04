@@ -145,6 +145,7 @@ public open class HubdleGradlePluginFeatureExtension @Inject constructor(project
 
     override fun Project.defaultConfiguration() {
         applicablePlugin(scope = Scope.CurrentProject, pluginId = PluginId.JavaGradlePlugin)
+        applicablePlugin(scope = Scope.CurrentProject, pluginId = PluginId.MavenPublish)
 
         lazyConfigurable {
             tasks.withType<ValidatePlugins>().configureEach { validatePlugins ->
@@ -206,9 +207,10 @@ public open class HubdleGradlePluginFeatureExtension @Inject constructor(project
                     gradlePluginDevelopmentExtension.website.set(hubdlePublishingMavenPom.url)
                     gradlePluginDevelopmentExtension.vcsUrl.set(hubdlePublishingMavenPom.scmUrl)
                 }
-                removeDuplicatedPublications()
             }
         )
+
+        afterConfigurable { removeDuplicatedPublications() }
 
         configurableGradlePortalPublishing()
     }

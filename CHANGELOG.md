@@ -10,6 +10,8 @@
 
 ### Fixed
 
+- Gradle plugin feature crashing due to missing `maven-publish` plugin
+
 ### Removed
 
 ### Updated

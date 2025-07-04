@@ -46,70 +46,71 @@ hubdle {
         }
     }
 
+
+    gradle {
+        plugin {
+            gradlePlugin {
+                plugins {
+                    val baseId = "com.javiersc.hubdle.declarative"
+
+                    create("hubdle-declarative") {
+                        id = baseId
+                        displayName = "Hubdle Declarative"
+                        description = "Conventions using Gradle Declarative"
+                        implementationClass = "$baseId.HubdleDeclarativePlugin"
+                        tags.set(
+                            listOf(
+                                "hubdle",
+                                "settings",
+                                "project",
+                                "declarative",
+                                "Gradle Declarative",
+                            ),
+                        )
+                    }
+                    create("hubdle-declarative-project") {
+                        id = "$baseId.project"
+                        displayName = "Hubdle Declarative Project"
+                        description = "Conventions using Gradle Declarative"
+                        implementationClass = "$baseId.HubdleDeclarativeProjectPlugin"
+                        tags.set(
+                            listOf(
+                                "hubdle",
+                                "project",
+                                "declarative",
+                                "Gradle Declarative",
+                            ),
+                        )
+                    }
+                    create("hubdle-declarative-settings") {
+                        id = "$baseId.settings"
+                        displayName = "Hubdle Declarative Settings"
+                        description = "Conventions using Gradle Declarative"
+                        implementationClass = "$baseId.HubdleDeclarativeSettingsPlugin"
+                        tags.set(
+                            listOf(
+                                "hubdle",
+                                "settings",
+                                "declarative",
+                                "Gradle Declarative",
+                            ),
+                        )
+                    }
+                }
+            }
+
+            // TODO: Fix when fixed
+            pluginUnderTestExternalDependencies(
+                hubdle.android.tools.build.gradle,
+                hubdle.jetbrains.kotlin.gradle.plugin.asProvider(),
+            )
+        }
+    }
+
     kotlin {
         jvm {
             features {
                 jvmVersion(JavaVersion.VERSION_11)
-
-                gradle {
-                    plugin {
-                        gradlePlugin {
-                            plugins {
-                                val baseId = "com.javiersc.hubdle.declarative"
-
-                                create("hubdle-declarative") {
-                                    id = baseId
-                                    displayName = "Hubdle Declarative"
-                                    description = "Conventions using Gradle Declarative"
-                                    implementationClass = "$baseId.HubdleDeclarativePlugin"
-                                    tags.set(
-                                        listOf(
-                                            "hubdle",
-                                            "settings",
-                                            "project",
-                                            "declarative",
-                                            "Gradle Declarative",
-                                        ),
-                                    )
-                                }
-                                create("hubdle-declarative-project") {
-                                    id = "$baseId.project"
-                                    displayName = "Hubdle Declarative Project"
-                                    description = "Conventions using Gradle Declarative"
-                                    implementationClass = "$baseId.HubdleDeclarativeProjectPlugin"
-                                    tags.set(
-                                        listOf(
-                                            "hubdle",
-                                            "project",
-                                            "declarative",
-                                            "Gradle Declarative",
-                                        ),
-                                    )
-                                }
-                                create("hubdle-declarative-settings") {
-                                    id = "$baseId.settings"
-                                    displayName = "Hubdle Declarative Settings"
-                                    description = "Conventions using Gradle Declarative"
-                                    implementationClass = "$baseId.HubdleDeclarativeSettingsPlugin"
-                                    tags.set(
-                                        listOf(
-                                            "hubdle",
-                                            "settings",
-                                            "declarative",
-                                            "Gradle Declarative",
-                                        ),
-                                    )
-                                }
-                            }
-                        }
-
-                        // TODO: Fix when fixed
-                        pluginUnderTestExternalDependencies(
-                            hubdle.android.tools.build.gradle,
-                            hubdle.jetbrains.kotlin.gradle.plugin.asProvider(),
-                        )
-                    }
-                }
                 kotest.enabled(true)
             }
 

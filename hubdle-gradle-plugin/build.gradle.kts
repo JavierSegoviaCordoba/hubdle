@@ -50,48 +50,48 @@ hubdle {
         }
     }
 
+    gradle {
+        plugin {
+            gradlePlugin {
+                plugins {
+                    create("hubdle") {
+                        id = "com.javiersc.hubdle"
+                        displayName = "Hubdle"
+                        description = "Easy setup for projects or settings"
+                        implementationClass = "com.javiersc.hubdle.HubdlePlugin"
+                        tags.set(listOf("hubdle"))
+                    }
+                    create("hubdle project") {
+                        id = "com.javiersc.hubdle.project"
+                        displayName = "Hubdle project"
+                        description = "Easy setup for each kind of project"
+                        implementationClass =
+                            "com.javiersc.hubdle.project.HubdleProjectPlugin"
+                        tags.set(listOf("hubdle project"))
+                    }
+                    create("hubdle settings") {
+                        id = "com.javiersc.hubdle.settings"
+                        displayName = "Hubdle settings"
+                        description = "Easy settings setup"
+                        implementationClass =
+                            "com.javiersc.hubdle.settings.HubdleSettingsPlugin"
+                        tags.set(listOf("hubdle settings"))
+                    }
+                }
+            }
+
+            // TODO: Fix when fixed
+            pluginUnderTestExternalDependencies(
+                hubdle.android.tools.build.gradle,
+                hubdle.jetbrains.kotlin.gradle.plugin.asProvider(),
+            )
+        }
+    }
+
     kotlin {
         jvm {
             features {
                 jvmVersion(JavaVersion.VERSION_11)
-
-                gradle {
-                    plugin {
-                        gradlePlugin {
-                            plugins {
-                                create("hubdle") {
-                                    id = "com.javiersc.hubdle"
-                                    displayName = "Hubdle"
-                                    description = "Easy setup for projects or settings"
-                                    implementationClass = "com.javiersc.hubdle.HubdlePlugin"
-                                    tags.set(listOf("hubdle"))
-                                }
-                                create("hubdle project") {
-                                    id = "com.javiersc.hubdle.project"
-                                    displayName = "Hubdle project"
-                                    description = "Easy setup for each kind of project"
-                                    implementationClass =
-                                        "com.javiersc.hubdle.project.HubdleProjectPlugin"
-                                    tags.set(listOf("hubdle project"))
-                                }
-                                create("hubdle settings") {
-                                    id = "com.javiersc.hubdle.settings"
-                                    displayName = "Hubdle settings"
-                                    description = "Easy settings setup"
-                                    implementationClass =
-                                        "com.javiersc.hubdle.settings.HubdleSettingsPlugin"
-                                    tags.set(listOf("hubdle settings"))
-                                }
-                            }
-                        }
-
-                        // TODO: Fix when fixed
-                        pluginUnderTestExternalDependencies(
-                            hubdle.android.tools.build.gradle,
-                            hubdle.jetbrains.kotlin.gradle.plugin.asProvider(),
-                        )
-                    }
-                }
                 kotest.enabled(true)
             }
 

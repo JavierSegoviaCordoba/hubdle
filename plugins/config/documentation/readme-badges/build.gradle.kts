@@ -42,23 +42,23 @@ hubdle {
         }
     }
 
+    gradle {
+        plugin {
+            gradlePlugin {
+                plugins {
+                    createGradlePlugin(
+                        pluginDeclarationName = "config-documentation-readme-badges",
+                        pluginName = "ReadmeBadges",
+                    )
+                }
+            }
+        }
+    }
+
     kotlin {
         jvm {
             features {
                 jvmVersion(JavaVersion.VERSION_11)
-
-                gradle {
-                    plugin {
-                        gradlePlugin {
-                            plugins {
-                                createGradlePlugin(
-                                    pluginDeclarationName = "config-documentation-readme-badges",
-                                    pluginName = "ReadmeBadges",
-                                )
-                            }
-                        }
-                    }
-                }
                 kotest.enabled(true)
             }
 

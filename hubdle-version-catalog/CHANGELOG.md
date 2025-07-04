@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.14.0-alpha.1`
 - `com.squareup.okhttp3:okhttp -> 5.0.0-alpha.17`
 - `com.squareup.okhttp3:mockwebserver3-junit5 -> 5.0.0-alpha.17`
 - `com.squareup.okhttp3:mockwebserver3-junit4 -> 5.0.0-alpha.17`

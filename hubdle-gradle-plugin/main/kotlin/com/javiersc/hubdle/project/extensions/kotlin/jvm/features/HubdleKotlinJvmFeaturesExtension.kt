@@ -15,7 +15,6 @@ import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotli
 import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotlinSerializationDelegateFeatureExtension
 import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotlinSqlDelightDelegateFeatureExtension
 import com.javiersc.hubdle.project.extensions.kotlin.jvm.hubdleKotlinJvm
-import com.javiersc.hubdle.project.extensions.shared.features.HubdleGradleDelegateFeatureExtension
 import com.javiersc.hubdle.project.extensions.shared.features.HubdleIntellijDelegateFeatureExtension
 import com.javiersc.hubdle.project.extensions.shared.features.HubdleJavaApplicationDelegateFeatureExtension
 import com.javiersc.hubdle.project.extensions.shared.features.HubdleJavaVersionDelegateFeatureExtension
@@ -38,7 +37,6 @@ public open class HubdleKotlinJvmFeaturesExtension @Inject constructor(project: 
 }
 
 public interface HubdleKotlinJvmDelegateFeaturesExtension :
-    HubdleGradleDelegateFeatureExtension,
     HubdleIntellijDelegateFeatureExtension,
     HubdleJavaApplicationDelegateFeatureExtension,
     HubdleJavaVersionDelegateFeatureExtension,

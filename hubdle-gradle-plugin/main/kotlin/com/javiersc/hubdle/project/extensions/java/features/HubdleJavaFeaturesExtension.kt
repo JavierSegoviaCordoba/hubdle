@@ -4,7 +4,6 @@ import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.java.hubdleJava
-import com.javiersc.hubdle.project.extensions.shared.features.HubdleGradleDelegateFeatureExtension
 import com.javiersc.hubdle.project.extensions.shared.features.HubdleIntellijDelegateFeatureExtension
 import com.javiersc.hubdle.project.extensions.shared.features.HubdleJavaApplicationDelegateFeatureExtension
 import com.javiersc.hubdle.project.extensions.shared.features.HubdleJavaVersionDelegateFeatureExtension
@@ -30,7 +29,6 @@ internal val HubdleEnableableExtension.hubdleJavaFeatures: HubdleJavaFeaturesExt
     get() = getHubdleExtension()
 
 public interface HubdleJavaDelegateFeaturesExtension :
-    HubdleGradleDelegateFeatureExtension,
     HubdleIntellijDelegateFeatureExtension,
     HubdleJavaApplicationDelegateFeatureExtension,
     HubdleJavaVersionDelegateFeatureExtension,

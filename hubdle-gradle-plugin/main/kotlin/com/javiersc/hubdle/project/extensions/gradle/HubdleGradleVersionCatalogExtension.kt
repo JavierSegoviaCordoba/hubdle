@@ -1,25 +1,23 @@
-package com.javiersc.hubdle.project.extensions.shared.features.gradle
+package com.javiersc.hubdle.project.extensions.gradle
 
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.config.publishing.maven.configurableMavenPublishing
-import com.javiersc.hubdle.project.extensions.java.hubdleJava
-import com.javiersc.hubdle.project.extensions.kotlin.jvm.hubdleKotlinJvm
 import com.javiersc.hubdle.project.extensions.shared.PluginId
 import com.vanniktech.maven.publish.VersionCatalog
 import javax.inject.Inject
 import org.gradle.api.Project
 import org.gradle.api.provider.Property
 
-public open class HubdleGradleVersionCatalogFeatureExtension @Inject constructor(project: Project) :
+public open class HubdleGradleVersionCatalogExtension @Inject constructor(project: Project) :
     HubdleConfigurableExtension(project) {
 
     override val isEnabled: Property<Boolean> = property { false }
 
     override val oneOfExtensions: Set<HubdleEnableableExtension>
-        get() = setOf(hubdleJava, hubdleKotlinJvm)
+        get() = emptySet()
 
     override fun Project.defaultConfiguration() {
         applicablePlugin(scope = Scope.CurrentProject, PluginId.GradleVersionCatalog)
@@ -29,5 +27,5 @@ public open class HubdleGradleVersionCatalogFeatureExtension @Inject constructor
 }
 
 internal val HubdleEnableableExtension.hubdleGradleVersionCatalog:
-    HubdleGradleVersionCatalogFeatureExtension
+    HubdleGradleVersionCatalogExtension
     get() = getHubdleExtension()

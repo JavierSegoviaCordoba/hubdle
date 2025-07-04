@@ -1,40 +1,36 @@
-package com.javiersc.hubdle.project.extensions.shared.features
+package com.javiersc.hubdle.project.extensions.gradle
 
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
-import com.javiersc.hubdle.project.extensions.apis.BaseHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
-import com.javiersc.hubdle.project.extensions.java.hubdleJava
-import com.javiersc.hubdle.project.extensions.kotlin.jvm.hubdleKotlinJvm
-import com.javiersc.hubdle.project.extensions.shared.features.gradle.HubdleGradlePluginFeatureExtension
-import com.javiersc.hubdle.project.extensions.shared.features.gradle.HubdleGradleVersionCatalogFeatureExtension
 import java.io.File
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
+import org.gradle.api.file.RegularFile
 import org.gradle.api.initialization.dsl.VersionCatalogBuilder
 import org.gradle.api.plugins.catalog.CatalogPluginExtension
 import org.gradle.api.provider.Property
 
-public open class HubdleGradleFeatureExtension @Inject constructor(project: Project) :
+public open class HubdleGradleExtension @Inject constructor(project: Project) :
     HubdleConfigurableExtension(project) {
 
     override val isEnabled: Property<Boolean> = property { false }
 
     override val oneOfExtensions: Set<HubdleEnableableExtension>
-        get() = setOf(hubdleJava, hubdleKotlinJvm)
+        get() = emptySet()
 
-    public val plugin: HubdleGradlePluginFeatureExtension
+    public val plugin: HubdleGradlePluginExtension
         get() = getHubdleExtension()
 
     @HubdleDslMarker
-    public fun plugin(action: Action<HubdleGradlePluginFeatureExtension> = Action {}) {
+    public fun plugin(action: Action<HubdleGradlePluginExtension> = Action {}) {
         plugin.enableAndExecute(action)
     }
 
-    private val versionCatalog: HubdleGradleVersionCatalogFeatureExtension
+    private val versionCatalog: HubdleGradleVersionCatalogExtension
         get() = getHubdleExtension()
 
     @HubdleDslMarker
@@ -53,16 +49,10 @@ public open class HubdleGradleFeatureExtension @Inject constructor(project: Proj
         from(project.files(toml))
     }
 
-    override fun Project.defaultConfiguration() {}
-}
-
-public interface HubdleGradleDelegateFeatureExtension : BaseHubdleExtension {
-
-    public val gradle: HubdleGradleFeatureExtension
-        get() = project.getHubdleExtension()
-
     @HubdleDslMarker
-    public fun gradle(action: Action<HubdleGradleFeatureExtension> = Action {}) {
-        gradle.enableAndExecute(action)
+    public fun VersionCatalogBuilder.toml(toml: RegularFile) {
+        from(project.files(toml))
     }
+
+    override fun Project.defaultConfiguration() {}
 }

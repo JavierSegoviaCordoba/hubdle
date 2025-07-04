@@ -6,6 +6,8 @@
 
 ### Changed
 
+- Gradle feature to its own `gradle` dsl outside of `kotlin` or `java`
+
 ### Deprecated
 
 ### Fixed

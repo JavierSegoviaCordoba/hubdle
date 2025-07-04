@@ -1,4 +1,4 @@
-package com.javiersc.hubdle.project.extensions.shared.features.gradle
+package com.javiersc.hubdle.project.extensions.gradle
 
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
@@ -44,7 +44,7 @@ import org.gradle.plugin.devel.GradlePluginDevelopmentExtension
 import org.gradle.plugin.devel.tasks.PluginUnderTestMetadata
 import org.gradle.plugin.devel.tasks.ValidatePlugins
 
-public open class HubdleGradlePluginFeatureExtension @Inject constructor(project: Project) :
+public open class HubdleGradlePluginExtension @Inject constructor(project: Project) :
     HubdleConfigurableExtension(project), HubdleGradleDependencies {
 
     override val isEnabled: Property<Boolean> = property { false }
@@ -231,14 +231,14 @@ public open class HubdleGradlePluginFeatureExtension @Inject constructor(project
 
 public interface HubdleGradlePluginDelegateFeatureExtension : BaseHubdleExtension {
 
-    public val plugin: HubdleGradlePluginFeatureExtension
+    public val plugin: HubdleGradlePluginExtension
         get() = project.getHubdleExtension()
 
     @HubdleDslMarker
-    public fun plugin(action: Action<HubdleGradlePluginFeatureExtension> = Action {}) {
+    public fun plugin(action: Action<HubdleGradlePluginExtension> = Action {}) {
         plugin.enableAndExecute(action)
     }
 }
 
-internal val HubdleEnableableExtension.hubdleGradlePluginFeature: HubdleGradlePluginFeatureExtension
+internal val HubdleEnableableExtension.hubdleGradlePluginFeature: HubdleGradlePluginExtension
     get() = getHubdleExtension()

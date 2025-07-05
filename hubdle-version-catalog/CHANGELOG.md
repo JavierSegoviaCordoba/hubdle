@@ -14,6 +14,10 @@
 
 ### Updated
 
+## [0.6.1] - 2025-07-05
+
+### Updated
+
 - `gradle -> 8.14.3`
 - `com.squareup.okio:okio -> 3.15.0`
 - `com.squareup.okhttp3:okhttp -> 5.0.0`
@@ -2057,7 +2061,9 @@
 - `com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter -> 1.0.0`
 - `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.6.0...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.6.1...HEAD
+
+[0.6.1]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.6.0...c0.6.1
 
 [0.6.0]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.5.2...c0.6.0
 

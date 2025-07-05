@@ -14,6 +14,37 @@
 
 ### Updated
 
+- `gradle -> 8.14.3`
+- `com.squareup.okio:okio -> 3.15.0`
+- `com.squareup.okhttp3:okhttp -> 5.0.0`
+- `com.squareup.okhttp3:mockwebserver3-junit5 -> 5.0.0`
+- `com.squareup.okhttp3:mockwebserver3-junit4 -> 5.0.0`
+- `com.squareup.okhttp3:mockwebserver -> 5.0.0`
+- `io.ktor:ktor-serialization-kotlinx-json -> 3.2.1`
+- `io.ktor:ktor-client-winhttp -> 3.2.1`
+- `io.ktor:ktor-client-okhttp -> 3.2.1`
+- `io.ktor:ktor-client-mock -> 3.2.1`
+- `io.ktor:ktor-client-js -> 3.2.1`
+- `io.ktor:ktor-client-jetty -> 3.2.1`
+- `io.ktor:ktor-client-java -> 3.2.1`
+- `io.ktor:ktor-client-darwin -> 3.2.1`
+- `io.ktor:ktor-client-curl -> 3.2.1`
+- `io.ktor:ktor-client-core -> 3.2.1`
+- `io.ktor:ktor-client-content-negotiation -> 3.2.1`
+- `io.ktor:ktor-client-cio -> 3.2.1`
+- `io.ktor:ktor-client-apache5 -> 3.2.1`
+- `io.ktor:ktor-client-android -> 3.2.1`
+- `org.junit.platform:junit-platform-suite-api -> 1.13.3`
+- `org.junit.platform:junit-platform-runner -> 1.13.3`
+- `org.junit.platform:junit-platform-launcher -> 1.13.3`
+- `org.junit.platform:junit-platform-commons -> 1.13.3`
+- `org.junit.jupiter:junit-jupiter-params -> 5.13.3`
+- `org.junit.jupiter:junit-jupiter-api -> 5.13.3`
+- `org.junit.jupiter:junit-jupiter -> 5.13.3`
+- `org.junit:junit-bom -> 5.13.3`
+- `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.8.2`
+- `androidx.navigation:navigation-compose -> 2.9.1`
+
 ## [0.6.0] - 2025-07-05
 
 ### Updated

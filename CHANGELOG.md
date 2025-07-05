@@ -6,15 +6,23 @@
 
 ### Changed
 
-- Gradle feature to its own `gradle` dsl outside of `kotlin` or `java`
-
 ### Deprecated
 
 ### Fixed
 
-- Gradle plugin feature crashing due to missing `maven-publish` plugin
-
 ### Removed
+
+### Updated
+
+## [0.14.0] - 2025-07-05
+
+### Changed
+
+- Gradle feature to its own `gradle` dsl outside of `kotlin` or `java`
+
+### Fixed
+
+- Gradle plugin feature crashing due to missing `maven-publish` plugin
 
 ### Updated
 
@@ -379,7 +387,9 @@
 
 - `allTests` task
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.13.0...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.14.0...HEAD
+
+[0.14.0]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.13.0...p0.14.0
 
 [0.13.0]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.12.0...p0.13.0
 

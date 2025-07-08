@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx:kotlinx-datetime -> 0.7.1-0.6.x-compat`
 - `org.jetbrains.kotlin.plugin.serialization:org.jetbrains.kotlin.plugin.serialization.gradle.plugin -> 2.2.0`
 - `org.jetbrains.kotlin.plugin.power-assert:org.jetbrains.kotlin.plugin.power-assert.gradle.plugin -> 2.2.0`
 - `org.jetbrains.kotlin.plugin.compose:org.jetbrains.kotlin.plugin.compose.gradle.plugin -> 2.2.0`

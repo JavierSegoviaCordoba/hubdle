@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx.binary-compatibility-validator:org.jetbrains.kotlinx.binary-compatibility-validator.gradle.plugin -> 0.18.1`
 - `com.squareup.okhttp3:okhttp -> 5.1.0`
 - `com.squareup.okhttp3:mockwebserver3-junit5 -> 5.1.0`
 - `com.squareup.okhttp3:mockwebserver3-junit4 -> 5.1.0`

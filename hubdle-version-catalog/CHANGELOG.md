@@ -14,6 +14,9 @@
 
 ### Updated
 
+- `com.android.library:com.android.library.gradle.plugin -> 8.11.1`
+- `com.android.application:com.android.application.gradle.plugin -> 8.11.1`
+- `com.android.tools.build:gradle -> 8.11.1`
 - `org.jetbrains.kotlinx.binary-compatibility-validator:org.jetbrains.kotlinx.binary-compatibility-validator.gradle.plugin -> 0.18.1`
 - `com.squareup.okhttp3:okhttp -> 5.1.0`
 - `com.squareup.okhttp3:mockwebserver3-junit5 -> 5.1.0`

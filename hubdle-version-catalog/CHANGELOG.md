@@ -14,6 +14,21 @@
 
 ### Updated
 
+- `com.vanniktech.maven.publish:com.vanniktech.maven.publish.gradle.plugin -> 0.34.0`
+- `io.ktor:ktor-serialization-kotlinx-json -> 3.2.2`
+- `io.ktor:ktor-client-winhttp -> 3.2.2`
+- `io.ktor:ktor-client-okhttp -> 3.2.2`
+- `io.ktor:ktor-client-mock -> 3.2.2`
+- `io.ktor:ktor-client-js -> 3.2.2`
+- `io.ktor:ktor-client-jetty -> 3.2.2`
+- `io.ktor:ktor-client-java -> 3.2.2`
+- `io.ktor:ktor-client-darwin -> 3.2.2`
+- `io.ktor:ktor-client-curl -> 3.2.2`
+- `io.ktor:ktor-client-core -> 3.2.2`
+- `io.ktor:ktor-client-content-negotiation -> 3.2.2`
+- `io.ktor:ktor-client-cio -> 3.2.2`
+- `io.ktor:ktor-client-apache5 -> 3.2.2`
+- `io.ktor:ktor-client-android -> 3.2.2`
 - `com.android.library:com.android.library.gradle.plugin -> 8.11.1`
 - `com.android.application:com.android.application.gradle.plugin -> 8.11.1`
 - `com.android.tools.build:gradle -> 8.11.1`

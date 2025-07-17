@@ -14,6 +14,10 @@
 
 ### Updated
 
+- `androidx.navigation:navigation-compose -> 2.9.2`
+- `androidx.lifecycle:lifecycle-viewmodel-ktx -> 2.9.2`
+- `androidx.lifecycle:lifecycle-viewmodel-compose -> 2.9.2`
+- `androidx.lifecycle:lifecycle-viewmodel -> 2.9.2`
 - `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 4.1`
 - `com.vanniktech.maven.publish:com.vanniktech.maven.publish.gradle.plugin -> 0.34.0`
 - `io.ktor:ktor-serialization-kotlinx-json -> 3.2.2`

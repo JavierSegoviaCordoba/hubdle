@@ -14,6 +14,14 @@
 
 ### Updated
 
+- `org.junit.platform:junit-platform-suite-api -> 1.13.4`
+- `org.junit.platform:junit-platform-runner -> 1.13.4`
+- `org.junit.platform:junit-platform-launcher -> 1.13.4`
+- `org.junit.platform:junit-platform-commons -> 1.13.4`
+- `org.junit.jupiter:junit-jupiter-params -> 5.13.4`
+- `org.junit.jupiter:junit-jupiter-api -> 5.13.4`
+- `org.junit.jupiter:junit-jupiter -> 5.13.4`
+- `org.junit:junit-bom -> 5.13.4`
 - `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 7.2.0`
 - `androidx.navigation:navigation-compose -> 2.9.2`
 - `androidx.lifecycle:lifecycle-viewmodel-ktx -> 2.9.2`

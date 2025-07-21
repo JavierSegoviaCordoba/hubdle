@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 7.2.0`
 - `androidx.navigation:navigation-compose -> 2.9.2`
 - `androidx.lifecycle:lifecycle-viewmodel-ktx -> 2.9.2`
 - `androidx.lifecycle:lifecycle-viewmodel-compose -> 2.9.2`
@@ -42,7 +43,6 @@
 - `com.squareup.okhttp3:mockwebserver3-junit5 -> 5.1.0`
 - `com.squareup.okhttp3:mockwebserver3-junit4 -> 5.1.0`
 - `com.squareup.okhttp3:mockwebserver -> 5.1.0`
-- `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 7.1.0`
 - `org.jetbrains.kotlinx:kotlinx-datetime -> 0.7.1-0.6.x-compat`
 - `org.jetbrains.kotlin.plugin.serialization:org.jetbrains.kotlin.plugin.serialization.gradle.plugin -> 2.2.0`
 - `org.jetbrains.kotlin.plugin.power-assert:org.jetbrains.kotlin.plugin.power-assert.gradle.plugin -> 2.2.0`

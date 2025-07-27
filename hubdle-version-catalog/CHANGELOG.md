@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.changelog:org.jetbrains.changelog.gradle.plugin -> 2.3.0`
 - `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 7.2.1`
 - `org.junit.platform:junit-platform-suite-api -> 1.13.4`
 - `org.junit.platform:junit-platform-runner -> 1.13.4`

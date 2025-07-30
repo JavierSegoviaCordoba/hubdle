@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.squareup.okio:okio -> 3.16.0`
 - `io.ktor:ktor-serialization-kotlinx-json -> 3.2.3`
 - `io.ktor:ktor-client-winhttp -> 3.2.3`
 - `io.ktor:ktor-client-okhttp -> 3.2.3`

@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `androidx.navigation:navigation-compose -> 2.9.3`
 - `com.squareup.okio:okio -> 3.16.0`
 - `io.ktor:ktor-serialization-kotlinx-json -> 3.2.3`
 - `io.ktor:ktor-client-winhttp -> 3.2.3`
@@ -39,7 +40,6 @@
 - `org.junit.jupiter:junit-jupiter-api -> 5.13.4`
 - `org.junit.jupiter:junit-jupiter -> 5.13.4`
 - `org.junit:junit-bom -> 5.13.4`
-- `androidx.navigation:navigation-compose -> 2.9.2`
 - `androidx.lifecycle:lifecycle-viewmodel-ktx -> 2.9.2`
 - `androidx.lifecycle:lifecycle-viewmodel-compose -> 2.9.2`
 - `androidx.lifecycle:lifecycle-viewmodel -> 2.9.2`

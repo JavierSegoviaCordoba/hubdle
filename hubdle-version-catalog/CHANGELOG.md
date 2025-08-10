@@ -14,6 +14,9 @@
 
 ### Updated
 
+- `app.softwork:kotlinx-serialization-flf -> 0.0.23`
+- `app.softwork:kotlinx-serialization-csv -> 0.0.23`
+- `org.jetbrains.changelog:org.jetbrains.changelog.gradle.plugin -> 2.4.0`
 - `com.android.library:com.android.library.gradle.plugin -> 8.12.0`
 - `com.android.application:com.android.application.gradle.plugin -> 8.12.0`
 - `com.android.tools.build:gradle -> 8.12.0`
@@ -33,7 +36,6 @@
 - `io.ktor:ktor-client-cio -> 3.2.3`
 - `io.ktor:ktor-client-apache5 -> 3.2.3`
 - `io.ktor:ktor-client-android -> 3.2.3`
-- `org.jetbrains.changelog:org.jetbrains.changelog.gradle.plugin -> 2.3.0`
 - `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 7.2.1`
 - `org.junit.platform:junit-platform-suite-api -> 1.13.4`
 - `org.junit.platform:junit-platform-runner -> 1.13.4`

@@ -5,6 +5,7 @@ import com.javiersc.hubdle.project.extensions._internal.getHubdleExtension
 import com.javiersc.hubdle.project.extensions._internal.withAndroidApplication
 import com.javiersc.hubdle.project.extensions._internal.withAndroidLibrary
 import com.javiersc.hubdle.project.extensions._internal.withJava
+import com.javiersc.hubdle.project.extensions._internal.withKotlin
 import com.javiersc.hubdle.project.extensions._internal.withKotlinAndroid
 import com.javiersc.hubdle.project.extensions._internal.withKotlinJvm
 import com.javiersc.hubdle.project.extensions._internal.withKotlinMultiplatform
@@ -21,6 +22,7 @@ import org.gradle.api.provider.Provider
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.targets.jvm.KotlinJvmTarget
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 public open class HubdleJavaVersionFeatureExtension @Inject constructor(project: Project) :
     HubdleConfigurableExtension(project) {
@@ -61,6 +63,12 @@ public open class HubdleJavaVersionFeatureExtension @Inject constructor(project:
         withJava {
             sourceCompatibility = jvmVersion.get()
             targetCompatibility = jvmVersion.get()
+        }
+
+        withKotlin {
+            tasks.withType<KotlinCompile>().configureEach { kotlinCompile: KotlinCompile ->
+                kotlinCompile.compilerOptions.jvmTarget.set(getJvmTarget())
+            }
         }
 
         withKotlinAndroid { compilerOptions.jvmTarget.set(getJvmTarget()) }

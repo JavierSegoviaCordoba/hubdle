@@ -10,6 +10,8 @@
 
 ### Fixed
 
+- JVM version not applied totally via `jvmVersion`
+
 ### Removed
 
 ### Updated

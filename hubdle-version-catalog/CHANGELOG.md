@@ -14,6 +14,10 @@
 
 ### Updated
 
+## [0.7.0] - 2025-08-13
+
+### Updated
+
 - `app.softwork:kotlinx-serialization-flf -> 0.0.23`
 - `app.softwork:kotlinx-serialization-csv -> 0.0.23`
 - `org.jetbrains.changelog:org.jetbrains.changelog.gradle.plugin -> 2.4.0`
@@ -2129,7 +2133,9 @@
 - `com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter -> 1.0.0`
 - `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.6.1...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.7.0...HEAD
+
+[0.7.0]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.6.1...c0.7.0
 
 [0.6.1]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.6.0...c0.6.1
 

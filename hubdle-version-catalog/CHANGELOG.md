@@ -14,6 +14,20 @@
 
 ### Updated
 
+- `org.jetbrains.kotlin:kotlin-test-testng -> 2.2.10`
+- `org.jetbrains.kotlin:kotlin-test-junit5 -> 2.2.10`
+- `org.jetbrains.kotlin:kotlin-test-junit -> 2.2.10`
+- `org.jetbrains.kotlin:kotlin-test-annotations-common -> 2.2.10`
+- `org.jetbrains.kotlin:kotlin-test -> 2.2.10`
+- `org.jetbrains.kotlin:kotlin-serialization -> 2.2.10`
+- `org.jetbrains.kotlin:kotlin-script-runtime -> 2.2.10`
+- `org.jetbrains.kotlin:kotlin-reflect -> 2.2.10`
+- `org.jetbrains.kotlin:kotlin-gradle-plugin-api -> 2.2.10`
+- `org.jetbrains.kotlin:kotlin-gradle-plugin -> 2.2.10`
+- `org.jetbrains.kotlin:kotlin-compiler-internal-test-framework -> 2.2.10`
+- `org.jetbrains.kotlin:kotlin-compiler-embeddable -> 2.2.10`
+- `org.jetbrains.kotlin:kotlin-compiler -> 2.2.10`
+- `org.jetbrains.kotlin:kotlin-annotations-jvm -> 2.2.10`
 - `androidx.core:core-ktx -> 1.17.0`
 - `androidx.compose.ui:ui-util -> 1.9.0`
 - `androidx.compose.ui:ui-tooling-preview -> 1.9.0`

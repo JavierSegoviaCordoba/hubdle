@@ -10,6 +10,7 @@
 
 ### Fixed
 
+- `functionalTest` and `integrationTest` configurations
 - JVM version not applied totally via `jvmVersion`
 
 ### Removed

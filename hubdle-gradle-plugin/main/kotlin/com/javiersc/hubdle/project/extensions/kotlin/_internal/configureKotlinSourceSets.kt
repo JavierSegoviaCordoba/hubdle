@@ -9,7 +9,9 @@ import com.javiersc.hubdle.project.extensions._internal.COMMON_MAIN
 import com.javiersc.hubdle.project.extensions._internal.MAIN
 import com.javiersc.hubdle.project.extensions._internal.TEST_FIXTURES
 import com.javiersc.hubdle.project.extensions._internal.TEST_FUNCTIONAL
+import com.javiersc.hubdle.project.extensions._internal.TEST_FUNCTIONAL_IMPLEMENTATION
 import com.javiersc.hubdle.project.extensions._internal.TEST_INTEGRATION
+import com.javiersc.hubdle.project.extensions._internal.TEST_INTEGRATION_IMPLEMENTATION
 import com.javiersc.hubdle.project.extensions.android._internal.findAndroidCommonExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleSourceSetConfigurableExtension as HubdleSrcSetConfExt
@@ -74,9 +76,9 @@ internal fun HubdleSrcSetConfExt<*>.configurableTestIntegrationSourceSets() =
         tasks.named(TestsTask.NAME).dependsOn(integrationTestTask)
 
         project.dependencies {
-            "testIntegrationImplementation"(project)
+            add(TEST_INTEGRATION_IMPLEMENTATION, project)
             if (isTestFixturesFullEnabled.get()) {
-                "testIntegrationImplementation"(project.dependencies.testFixtures(project))
+                add(TEST_INTEGRATION_IMPLEMENTATION, project.dependencies.testFixtures(project))
             }
         }
     }
@@ -116,9 +118,9 @@ internal fun HubdleSrcSetConfExt<*>.configurableTestFunctionalSourceSets() {
         tasks.named(TestsTask.NAME).dependsOn(functionalTestTask)
 
         project.dependencies {
-            "testFunctionalImplementation"(project)
+            add(TEST_FUNCTIONAL_IMPLEMENTATION, project)
             if (isTestFixturesFullEnabled.get()) {
-                "testFunctionalImplementation"(project.dependencies.testFixtures(project))
+                add(TEST_FUNCTIONAL_IMPLEMENTATION, project.dependencies.testFixtures(project))
             }
         }
     }

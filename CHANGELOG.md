@@ -10,6 +10,8 @@
 
 ### Fixed
 
+- crash when mutating a configuration to remove duplicated artifacts in a publication
+
 ### Removed
 
 ### Updated

@@ -217,7 +217,7 @@ public open class HubdleGradlePluginExtension @Inject constructor(project: Proje
 
     private fun removeDuplicatedPublications() {
         configure<PublishingExtension> {
-            publications.withType<MavenPublication>().configureEach { publication ->
+            publications.withType<MavenPublication>().whenObjectAdded { publication ->
                 if (publication.name == "maven") {
                     val distinctArtifacts: List<MavenArtifact> =
                         publication.artifacts.distinctBy { artifact -> artifact.classifier }

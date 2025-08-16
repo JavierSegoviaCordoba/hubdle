@@ -3,7 +3,6 @@ package com.javiersc.hubdle.project.extensions.config.format
 import com.android.build.gradle.internal.tasks.factory.dependsOn
 import com.diffplug.gradle.spotless.SpotlessExtension
 import com.diffplug.gradle.spotless.SpotlessExtensionPredeclare
-import com.javiersc.gradle.project.extensions.isRootProject
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.fallbackAction
@@ -89,9 +88,9 @@ public open class HubdleConfigFormatExtension @Inject constructor(project: Proje
             }
             tasks.named(FixChecksTask.NAME).dependsOn(applyFormat)
 
-            if (isRootProject) {
-                configure<SpotlessExtension> { predeclareDepsFromBuildscript() }
-            }
+            // if (isRootProject) {
+            //     configure<SpotlessExtension> { predeclareDepsFromBuildscript() }
+            // }
 
             if (hubdleKotlin.isFullEnabled.get()) {
                 val checkKotlinFormat: TaskProvider<Task> = tasks.register("checkKotlinFormat")
@@ -113,11 +112,11 @@ public open class HubdleConfigFormatExtension @Inject constructor(project: Proje
         }
 
         lazyConfigurable {
-            if (isRootProject) {
-                configure<SpotlessExtensionPredeclare> {
-                    kotlin { kotlin -> kotlin.ktfmt(ktfmtVersion.get()) }
-                }
-            }
+            // if (isRootProject) {
+            //     configure<SpotlessExtensionPredeclare> {
+            //         kotlin { kotlin -> kotlin.ktfmt(ktfmtVersion.get()) }
+            //     }
+            // }
 
             configure<SpotlessExtension> {
                 kotlin { kotlin ->

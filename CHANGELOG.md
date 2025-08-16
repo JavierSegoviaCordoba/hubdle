@@ -14,6 +14,8 @@
 
 ### Removed
 
+- Spotless using predeclared dependencies 
+
 ### Updated
 
 ## [0.14.1] - 2025-08-16

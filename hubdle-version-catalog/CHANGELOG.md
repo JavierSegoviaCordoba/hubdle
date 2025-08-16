@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.javiersc.kotlin.kopy:com.javiersc.kotlin.kopy.gradle.plugin -> 0.17.0+2.2.0`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.14.1`
 
 ## [0.7.1] - 2025-08-14

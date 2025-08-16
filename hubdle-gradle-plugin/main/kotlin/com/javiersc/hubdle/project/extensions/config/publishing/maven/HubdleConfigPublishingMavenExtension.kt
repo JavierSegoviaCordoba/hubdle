@@ -53,7 +53,7 @@ public open class HubdleConfigPublishingMavenExtension @Inject constructor(proje
 }
 
 internal fun HubdleConfigurableExtension.configurableMavenPublishing(
-    block: Action<MavenPublishBaseExtension>
+    block: Action<MavenPublishBaseExtension> = Action {}
 ) {
     val isEnabled: Property<Boolean> = property {
         isEnabled.get() && hubdlePublishingMaven.isFullEnabled.get()

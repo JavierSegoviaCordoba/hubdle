@@ -35,7 +35,7 @@ internal class GradleTest : GradleTestKitTest() {
             gradlew("publishToMavenLocal")
                 .output
                 .shouldContain("BUILD SUCCESSFUL")
-                .shouldContain("Publications: [maven, pluginMaven, sandboxPluginMarkerMaven]")
+                .shouldContain("Publications: [pluginMaven, sandboxPluginMarkerMaven]")
         }
     }
 

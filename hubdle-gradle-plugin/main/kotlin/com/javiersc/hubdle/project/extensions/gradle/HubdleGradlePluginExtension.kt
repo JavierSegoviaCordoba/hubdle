@@ -33,9 +33,6 @@ import org.gradle.api.provider.ListProperty
 import org.gradle.api.provider.Property
 import org.gradle.api.provider.Provider
 import org.gradle.api.provider.ProviderConvertible
-import org.gradle.api.publish.PublishingExtension
-import org.gradle.api.publish.maven.MavenArtifact
-import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.api.tasks.SourceSet
 import org.gradle.api.tasks.SourceSetContainer
 import org.gradle.kotlin.dsl.dependencies
@@ -210,22 +207,7 @@ public open class HubdleGradlePluginExtension @Inject constructor(project: Proje
             }
         )
 
-        afterConfigurable { removeDuplicatedPublications() }
-
         configurableGradlePortalPublishing()
-    }
-
-    private fun removeDuplicatedPublications() {
-        configure<PublishingExtension> {
-            publications.withType<MavenPublication>().whenObjectAdded { publication ->
-                if (publication.name == "maven") {
-                    val distinctArtifacts: List<MavenArtifact> =
-                        publication.artifacts.distinctBy { artifact -> artifact.classifier }
-                    publication.artifacts.clear()
-                    publication.artifacts.addAll(distinctArtifacts)
-                }
-            }
-        }
     }
 }
 
@@ -240,5 +222,5 @@ public interface HubdleGradlePluginDelegateFeatureExtension : BaseHubdleExtensio
     }
 }
 
-internal val HubdleEnableableExtension.hubdleGradlePluginFeature: HubdleGradlePluginExtension
+internal val HubdleEnableableExtension.hubdleGradlePlugin: HubdleGradlePluginExtension
     get() = getHubdleExtension()

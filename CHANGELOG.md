@@ -10,12 +10,16 @@
 
 ### Fixed
 
-- `functionalTest` and `integrationTest` configurations
-- JVM version not applied totally via `jvmVersion`
-
 ### Removed
 
 ### Updated
+
+## [0.14.1] - 2025-08-16
+
+### Fixed
+
+- `functionalTest` and `integrationTest` configurations
+- JVM version not applied totally via `jvmVersion`
 
 ## [0.14.0] - 2025-07-05
 
@@ -390,7 +394,9 @@
 
 - `allTests` task
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.14.0...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.14.1...HEAD
+
+[0.14.1]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.14.0...p0.14.1
 
 [0.14.0]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.13.0...p0.14.0
 

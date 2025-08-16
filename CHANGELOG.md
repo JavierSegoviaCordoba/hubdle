@@ -10,14 +10,20 @@
 
 ### Fixed
 
+### Removed
+
+### Updated
+
+## [0.14.2] - 2025-08-16
+
+### Fixed
+
 - crash when mutating a configuration to remove duplicated artifacts in a publication
 
 ### Removed
 
 - removing duplicated artifacts when publicating a Gradle plugin
-- Spotless using predeclared dependencies 
-
-### Updated
+- Spotless using predeclared dependencies
 
 ## [0.14.1] - 2025-08-16
 
@@ -399,7 +405,9 @@
 
 - `allTests` task
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.14.1...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.14.2...HEAD
+
+[0.14.2]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.14.1...p0.14.2
 
 [0.14.1]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.14.0...p0.14.1
 

@@ -19,8 +19,6 @@ import com.javiersc.hubdle.project.extensions.kotlin.jvm.features.HubdleKotlinJv
 import com.javiersc.hubdle.project.extensions.kotlin.shared.HubdleKotlinSourceSetConfigurableExtension
 import com.javiersc.hubdle.project.extensions.shared.HubdleGradleDependencies
 import com.javiersc.hubdle.project.extensions.shared.PluginId
-import com.vanniktech.maven.publish.JavadocJar
-import com.vanniktech.maven.publish.KotlinJvm
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
@@ -59,9 +57,7 @@ public open class HubdleKotlinJvmExtension @Inject constructor(project: Project)
         configurableTestFunctionalSourceSets()
         configurableKotlinTestFunctionalSourceSets()
         configurableDependencies()
-        configurableMavenPublishing {
-            it.configure(KotlinJvm(javadocJar = JavadocJar.Empty(), sourcesJar = true))
-        }
+        configurableMavenPublishing()
     }
 }
 

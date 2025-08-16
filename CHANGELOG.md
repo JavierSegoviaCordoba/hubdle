@@ -14,6 +14,7 @@
 
 ### Removed
 
+- removing duplicated artifacts when publicating a Gradle plugin
 - Spotless using predeclared dependencies 
 
 ### Updated

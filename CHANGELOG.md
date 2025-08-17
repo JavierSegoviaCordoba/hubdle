@@ -4,6 +4,8 @@
 
 ### Added
 
+- Gradle 9.0 support
+
 ### Changed
 
 ### Deprecated
@@ -13,6 +15,8 @@
 ### Removed
 
 ### Updated
+
+- dependencies
 
 ## [0.14.2] - 2025-08-16
 

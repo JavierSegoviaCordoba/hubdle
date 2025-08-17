@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `gradle -> 9.0.0`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.14.2`
 - `com.javiersc.kotlin.kopy:com.javiersc.kotlin.kopy.gradle.plugin -> 0.17.0+2.2.0`
 

@@ -16,7 +16,7 @@ public abstract class GenerateChangelogHtmlTask
 @Inject
 constructor(objects: ObjectFactory, layout: ProjectLayout) : DefaultTask() {
 
-    @get:Input public abstract val html: Property<String?>
+    @get:Input public abstract val html: Property<String>
 
     @OutputFile
     public val htmlFile: RegularFileProperty =

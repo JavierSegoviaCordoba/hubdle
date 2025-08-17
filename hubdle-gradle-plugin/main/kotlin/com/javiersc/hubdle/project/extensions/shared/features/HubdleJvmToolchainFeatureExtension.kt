@@ -39,14 +39,14 @@ public open class HubdleJvmToolchainFeatureExtension @Inject constructor(project
         this.javaVersion.set(version)
     }
 
-    public val vendor: Property<JvmVendorSpec?> = property { null }
+    public val vendor: Property<JvmVendorSpec> = propertyOptional()
 
     @HubdleDslMarker
     public fun vendor(vendor: JvmVendorSpec) {
         this.vendor.set(vendor)
     }
 
-    public val implementation: Property<JvmImplementation?> = property { null }
+    public val implementation: Property<JvmImplementation> = propertyOptional()
 
     @HubdleDslMarker
     public fun implementation(implementation: JvmImplementation) {

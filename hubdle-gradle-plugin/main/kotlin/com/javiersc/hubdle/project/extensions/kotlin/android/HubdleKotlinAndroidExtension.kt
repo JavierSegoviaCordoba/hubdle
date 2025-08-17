@@ -18,6 +18,7 @@ import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.provider.Property
+import org.gradle.api.provider.Provider
 import org.gradle.kotlin.dsl.findByType
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 
@@ -31,7 +32,7 @@ public open class HubdleKotlinAndroidExtension @Inject constructor(project: Proj
     override val requiredExtensions: Set<HubdleEnableableExtension>
         get() = setOf(hubdleKotlin)
 
-    public val namespace: Property<String?> = property { project.calculateAndroidNamespace() }
+    public val namespace: Property<String> = convention { project.calculateAndroidNamespace() }
 
     public val minSdk: Property<Int> = property { 23 }
 
@@ -69,7 +70,7 @@ public open class HubdleKotlinAndroidExtension @Inject constructor(project: Proj
         public const val namespaceUseKotlinFile: String = "android.namespace.use.kotlinFile"
     }
 
-    private fun Project.calculateAndroidNamespace(): String? =
+    private fun Project.calculateAndroidNamespace(): Provider<String> =
         when {
             getBooleanProperty(Android.namespaceUseProject).orNull == true -> {
                 calculateAndroidNamespaceWithProject()
@@ -80,16 +81,16 @@ public open class HubdleKotlinAndroidExtension @Inject constructor(project: Proj
             else -> calculateAndroidNamespaceWithProject()
         }
 
-    private fun Project.calculateAndroidNamespaceWithProject(): String {
+    private fun Project.calculateAndroidNamespaceWithProject(): Provider<String> = provider {
         val sanitizedProjectGroup = group.toString().sanitize()
         val sanitizedProjectName = name.sanitize()
         val splitByDot = "$sanitizedProjectGroup.$sanitizedProjectName".split(".")
-        return splitByDot.reduce { acc, current ->
+        splitByDot.reduce { acc, current ->
             if (acc.split(".").lastOrNull() == current) acc else "$acc.$current"
         }
     }
 
-    private fun Project.calculateAndroidNamespaceWithKotlinFile(): String? =
+    private fun Project.calculateAndroidNamespaceWithKotlinFile(): Provider<String> = provider {
         extensions
             .findByType<KotlinProjectExtension>()
             ?.sourceSets
@@ -109,6 +110,7 @@ public open class HubdleKotlinAndroidExtension @Inject constructor(project: Proj
             ?.readLines()
             ?.firstOrNull { it.startsWith("package ") }
             ?.remove("package ")
+    }
 
     private fun String.sanitize(): String =
         replace(Regex("""\d+"""), "")

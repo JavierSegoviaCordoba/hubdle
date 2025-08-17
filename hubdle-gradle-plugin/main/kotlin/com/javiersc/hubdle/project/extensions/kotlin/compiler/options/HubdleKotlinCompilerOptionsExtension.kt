@@ -23,7 +23,7 @@ public open class HubdleKotlinCompilerOptionsExtension @Inject constructor(proje
     override val requiredExtensions: Set<HubdleEnableableExtension>
         get() = setOf(hubdleKotlin)
 
-    public val apiVersion: Property<KotlinVersion?> = property { null }
+    public val apiVersion: Property<KotlinVersion> = propertyOptional()
 
     @HubdleDslMarker
     public fun apiVersion(value: KotlinVersion) {
@@ -35,7 +35,7 @@ public open class HubdleKotlinCompilerOptionsExtension @Inject constructor(proje
         tasks.withType<KotlinCompile>().configureEach { task -> task.compilerOptions(action) }
     }
 
-    public val languageVersion: Property<KotlinVersion?> = property { null }
+    public val languageVersion: Property<KotlinVersion> = propertyOptional()
 
     @HubdleDslMarker
     public fun languageVersion(value: KotlinVersion) {

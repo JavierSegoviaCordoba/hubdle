@@ -31,7 +31,7 @@ public open class HubdleConfigCoverageExtension @Inject constructor(project: Pro
     override val requiredExtensions: Set<HubdleEnableableExtension>
         get() = setOf(hubdleConfig)
 
-    public val jacoco: Property<String?> = property { null }
+    public val jacoco: Property<String> = propertyOptional()
 
     @HubdleDslMarker
     public fun jacoco(version: String?) {
@@ -49,7 +49,7 @@ public open class HubdleConfigCoverageExtension @Inject constructor(project: Pro
 
         lazyConfigurable {
             val kover: KoverProjectExtension = project.the()
-            val jacoco: Property<String?> = this@HubdleConfigCoverageExtension.jacoco
+            val jacoco: Property<String> = this@HubdleConfigCoverageExtension.jacoco
             val jacocoVersion: String? = jacoco.orNull
             if (jacocoVersion != null) kover.useJacoco(jacocoVersion)
 

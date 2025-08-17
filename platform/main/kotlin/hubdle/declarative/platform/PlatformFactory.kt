@@ -26,7 +26,7 @@ public interface PlatformFactory {
 
     public fun <T> providers(action: ProviderFactory.() -> T): T = action(providers)
 
-    public fun <T> provider(value: () -> T): Provider<T> = providers.provider(value)
+    public fun <T : Any> provider(value: () -> T): Provider<T> = providers.provider(value)
 
     public fun getProperty(key: String): Provider<String> =
         getCliGradleProperty(key)
@@ -65,10 +65,10 @@ public interface PlatformFactory {
     }
 }
 
-public inline fun <reified T> PlatformFactory.property(value: () -> T): Property<T> =
+public inline fun <reified T : Any> PlatformFactory.property(value: () -> T): Property<T> =
     objects.property<T>().convention(value())
 
-public inline fun <reified T> PlatformFactory.property(value: Provider<T>): Property<T> =
+public inline fun <reified T : Any> PlatformFactory.property(value: Provider<T>): Property<T> =
     objects.property<T>().convention(value)
 
 internal fun String.toSnakeCase(): String =

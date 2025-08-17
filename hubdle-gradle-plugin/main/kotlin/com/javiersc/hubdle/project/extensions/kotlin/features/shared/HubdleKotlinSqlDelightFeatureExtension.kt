@@ -54,14 +54,13 @@ public open class HubdleKotlinSqlDelightFeatureExtension @Inject constructor(pro
         "app.cash.sqldeight:postgres-dialect:${SqldelightVersion.get()}"
     }
 
-    public val SqldelightVersion: Provider<String?>
+    public val SqldelightVersion: Provider<String>
         get() = provider {
             project.hubdleCatalog
                 ?.findPlugin(cash_sqldelight_plugin)
                 ?.getOrNull()
+                ?.map { it.version.displayName }
                 ?.orNull
-                ?.version
-                ?.displayName
         }
 
     override fun Project.defaultConfiguration() {

@@ -31,7 +31,7 @@ internal class GradleTest : GradleTestKitTest() {
     fun `build and publish gradle plugin-1`() {
         gradleTestKitTest("$basePath/plugin", name = projectName) {
             withEnvironment(gpgMap)
-            gradlew("build").output.shouldContain("BUILD SUCCESSFUL")
+            gradlew("build", "--stacktrace").output.shouldContain("BUILD SUCCESSFUL")
             gradlew("publishToMavenLocal")
                 .output
                 .shouldContain("BUILD SUCCESSFUL")

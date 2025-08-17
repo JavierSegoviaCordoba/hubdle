@@ -18,6 +18,7 @@ import org.gradle.api.provider.Provider
 import org.gradle.api.provider.SetProperty
 import org.gradle.api.tasks.TaskContainer
 import org.gradle.kotlin.dsl.configure
+import org.gradle.kotlin.dsl.property
 import org.gradle.kotlin.dsl.the
 
 public abstract class HubdleEnableableExtension(override val project: Project) :
@@ -96,21 +97,30 @@ public abstract class HubdleEnableableExtension(override val project: Project) :
         afterConfigurable(isFullEnabled, config)
     }
 
-    internal inline fun <reified T> provider(crossinline block: Project.() -> T): Provider<T> =
-        project.provider { block(project) }
+    internal inline fun <reified T : Any> provider(
+        crossinline block: Project.() -> T?
+    ): Provider<T> = project.provider { block(project) }
 
-    internal inline fun <reified T> property(crossinline block: Project.() -> T): Property<T> =
-        project.property { block(this) }
+    internal inline fun <reified T : Any> property(
+        crossinline block: Project.() -> T
+    ): Property<T> = project.property { block(this) }
 
-    internal inline fun <reified T> listProperty(
+    internal inline fun <reified T : Any> propertyOptional(): Property<T> =
+        project.objects.property<T>()
+
+    internal inline fun <reified T : Any> convention(
+        crossinline block: Project.() -> Provider<T>
+    ): Property<T> = project.objects.property<T>().convention(block(project))
+
+    internal inline fun <reified T : Any> listProperty(
         crossinline block: Project.() -> List<T>
     ): ListProperty<T> = project.listProperty { block(this) }
 
-    internal inline fun <reified T> setProperty(
+    internal inline fun <reified T : Any> setProperty(
         crossinline block: Project.() -> Set<T>
     ): SetProperty<T> = project.setProperty { block(this) }
 
-    internal inline fun <reified T> the(): T = project.the()
+    internal inline fun <reified T : Any> the(): T = project.the()
 
     internal inline fun <reified T : Any> configure(crossinline block: T.() -> Unit): Unit =
         project.configure<T> { block(this) }

@@ -32,8 +32,8 @@ public open class HubdleKotlinComposeFeatureExtension @Inject constructor(projec
     override val oneOfExtensions: Set<HubdleEnableableExtension>
         get() = hubdleKotlinAny
 
-    public val compiler: Property<String?> = property {
-        library(androidx_compose_compiler).orNull?.toString()
+    public val compiler: Property<String> = convention {
+        library(androidx_compose_compiler).map { it.toString() }
     }
 
     @HubdleDslMarker
@@ -41,8 +41,8 @@ public open class HubdleKotlinComposeFeatureExtension @Inject constructor(projec
         compiler.set(dependencyNotation)
     }
 
-    public val compilerVersion: Property<String?> = property {
-        library(androidx_compose_compiler).orNull?.versionConstraint?.displayName
+    public val compilerVersion: Property<String> = convention {
+        library(androidx_compose_compiler).map { it.versionConstraint.displayName }
     }
 
     @HubdleDslMarker

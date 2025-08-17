@@ -151,7 +151,7 @@ private fun Settings.configureHubdleCatalogTask() {
         val generateHubdleCatalogTask: TaskProvider<GenerateHubdleCatalogTask> =
             project.tasks.register<GenerateHubdleCatalogTask>("generateHubdleCatalog")
 
-        val hubdleAliasToLibraries: Provider<Map<String, String?>> =
+        val hubdleAliasToLibraries: Provider<Map<String, String>> =
             project.provider {
                 project.hubdleCatalog?.libraryAliases.orEmpty().associateWith { alias ->
                     val library: MinimalExternalModuleDependency? = project.library(alias).orNull
@@ -160,7 +160,7 @@ private fun Settings.configureHubdleCatalogTask() {
                     when {
                         module != null && version != null -> "$module:$version"
                         module != null && version == null -> "$module"
-                        else -> null
+                        else -> ""
                     }
                 }
             }

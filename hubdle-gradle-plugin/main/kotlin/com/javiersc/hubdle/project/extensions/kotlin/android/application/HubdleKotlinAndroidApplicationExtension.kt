@@ -41,11 +41,11 @@ public open class HubdleKotlinAndroidApplicationExtension @Inject constructor(pr
         features.enableAndExecute(action)
     }
 
-    public val applicationId: Property<String?> = property { hubdleAndroid.namespace.get() }
+    public val applicationId: Property<String> = property { hubdleAndroid.namespace.get() }
 
     public val versionCode: Property<Int> = property { 1 }
 
-    public val versionName: Property<String?> = property { "0.1.0" }
+    public val versionName: Property<String> = property { "0.1.0" }
 
     @HubdleDslMarker
     public fun android(action: Action<ApplicationExtension>): Unit = fallbackAction(action)

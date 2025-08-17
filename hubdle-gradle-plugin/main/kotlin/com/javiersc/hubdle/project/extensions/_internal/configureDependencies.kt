@@ -33,7 +33,7 @@ internal fun HubdleConfigurableExtension.configurableDependencies() {
             TEST_INTEGRATION,
         ) {
             if (hubdleTesting.isFullEnabled.get()) {
-                val testModuleFramework: Provider<MinimalExternalModuleDependency?> = provider {
+                val testModuleFramework: Provider<MinimalExternalModuleDependency> = provider {
                     when (hubdleTesting.options.get()) {
                         Options.JUnit -> library(jetbrains_kotlin_test_junit)
                         Options.JUnitPlatform -> library(jetbrains_kotlin_test_junit5)

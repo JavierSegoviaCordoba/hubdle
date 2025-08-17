@@ -34,7 +34,7 @@ public open class HubdleKotlinMultiplatformAndroidExtension @Inject constructor(
     override val requiredExtensions: Set<HubdleEnableableExtension>
         get() = setOf(hubdleKotlinMultiplatform)
 
-    public val namespace: Property<String?> = property { hubdleAndroid.namespace.orNull }
+    public val namespace: Property<String> = convention { hubdleAndroid.namespace }
 
     public val minSdk: Property<Int> = property { hubdleAndroid.minSdk.get() }
 

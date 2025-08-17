@@ -37,37 +37,37 @@ constructor(rootDir: File, objects: ObjectFactory, layout: ProjectLayout) : Defa
     @Input
     @Option(option = "added", description = "Add an item to the `added` section")
     @Optional
-    public val added: Property<String?> = objects.property()
+    public val added: Property<String> = objects.property()
 
     @Input
     @Option(option = "changed", description = "Add an item to the `changed` section")
     @Optional
-    public val changed: Property<String?> = objects.property()
+    public val changed: Property<String> = objects.property()
 
     @Input
     @Option(option = "deprecated", description = "Add an item to the `deprecated` section")
     @Optional
-    public val deprecated: Property<String?> = objects.property()
+    public val deprecated: Property<String> = objects.property()
 
     @Input
     @Option(option = "removed", description = "Add an item to the `removed` section")
     @Optional
-    public val removed: Property<String?> = objects.property()
+    public val removed: Property<String> = objects.property()
 
     @Input
     @Option(option = "fixed", description = "Add an item to the `fixed` section")
     @Optional
-    public val fixed: Property<String?> = objects.property()
+    public val fixed: Property<String> = objects.property()
 
     @Input
     @Option(option = "updated", description = "Add an item to the `updated` section")
     @Optional
-    public val updated: Property<String?> = objects.property()
+    public val updated: Property<String> = objects.property()
 
     @Input
     @Option(option = "renovate", description = "Extract dependencies from the table in the PR body")
     @Optional
-    public val renovate: Property<String?> = objects.property()
+    public val renovate: Property<String> = objects.property()
 
     @Input
     @Option(
@@ -75,7 +75,7 @@ constructor(rootDir: File, objects: ObjectFactory, layout: ProjectLayout) : Defa
         description = "Extract dependencies from the table in the PR body from a file",
     )
     @Optional
-    public val renovatePath: Property<String?> = objects.property()
+    public val renovatePath: Property<String> = objects.property()
 
     @Input
     @Option(

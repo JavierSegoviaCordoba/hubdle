@@ -41,6 +41,6 @@ constructor(private val objects: ObjectFactory, private val providers: ProviderF
 
     public val useOnAllProjects: Property<Boolean> = objects.property<Boolean>().convention(true)
 
-    private inline fun <reified T> property(crossinline value: () -> T?): Property<T> =
+    private inline fun <reified T : Any> property(crossinline value: () -> T?): Property<T> =
         objects.property<T>().convention(providers.provider { value() })
 }

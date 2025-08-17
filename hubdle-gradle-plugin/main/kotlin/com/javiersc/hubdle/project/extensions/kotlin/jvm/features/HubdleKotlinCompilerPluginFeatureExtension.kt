@@ -231,7 +231,7 @@ public open class HubdleKotlinCompilerPluginFeatureExtension @Inject constructor
         dependsOn(
             testProjects.map { projectDependencies ->
                 projectDependencies.map { projectDependency: ProjectDependency ->
-                    projectDependency.dependencyProject.tasks.withType<Jar>()
+                    project.project(projectDependency.path).tasks.withType<Jar>()
                 }
             }
         )

@@ -10,14 +10,12 @@ import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.api.provider.Provider
 import org.gradle.kotlin.dsl.findByType
 
-internal fun HubdleEnableableExtension.libraryVersion(alias: String): String? =
-    project.hubdleCatalog?.findLibrary(alias)?.get()?.get()?.version
+internal fun HubdleEnableableExtension.libraryVersion(alias: String): Provider<String> =
+    library(alias).map { it.version }
 
 internal fun HubdleEnableableExtension.library(
     alias: String
-): Provider<MinimalExternalModuleDependency?> = provider {
-    project.hubdleCatalog?.findLibrary(alias)?.get()?.orNull
-}
+): Provider<MinimalExternalModuleDependency> = project.library(alias)
 
 internal fun Project.libraryPlatform(alias: String): String =
     provider {
@@ -27,11 +25,11 @@ internal fun Project.libraryPlatform(alias: String): String =
         }
         .get()
 
-internal fun Project.library(alias: String): Provider<MinimalExternalModuleDependency?> = provider {
+internal fun Project.library(alias: String): Provider<MinimalExternalModuleDependency> = provider {
     hubdleCatalog?.findLibrary(alias)?.getOrNull()?.orNull
 }
 
-internal fun Project.libraryModule(alias: String): Provider<String?> = provider {
+internal fun Project.libraryModule(alias: String): Provider<String> = provider {
     hubdleCatalog?.findLibrary(alias)?.getOrNull()?.orNull?.module?.toString()
 }
 

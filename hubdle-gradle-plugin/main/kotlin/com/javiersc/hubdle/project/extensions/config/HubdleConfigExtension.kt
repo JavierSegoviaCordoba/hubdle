@@ -85,9 +85,7 @@ public open class HubdleConfigExtension @Inject constructor(project: Project) :
         format.enableAndExecute(action)
     }
 
-    public val group: Property<String?> = property {
-        project.getProperty(ProjectConfig.group).orNull
-    }
+    public val group: Property<String> = convention { project.getProperty(ProjectConfig.group) }
 
     @HubdleDslMarker
     public fun group(group: String) {

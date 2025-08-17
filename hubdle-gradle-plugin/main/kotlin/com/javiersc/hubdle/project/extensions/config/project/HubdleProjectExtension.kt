@@ -32,7 +32,7 @@ public open class HubdleProjectExtension @Inject constructor(project: Project) :
         projectData.set(value)
     }
 
-    public val additionalData: Property<String?> = property { null }
+    public val additionalData: Property<String> = propertyOptional()
 
     @HubdleDslMarker
     public fun generateAdditionalData(data: AdditionalDataBuilder.() -> Unit) {

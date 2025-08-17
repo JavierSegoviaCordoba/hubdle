@@ -55,7 +55,7 @@ public open class HubdleConfigFormatExtension @Inject constructor(project: Proje
         this.excludes.addAll(excludes.toList())
     }
 
-    public val ktfmtVersion: Property<String?> = property { libraryVersion(facebook_ktfmt) }
+    public val ktfmtVersion: Property<String> = convention { libraryVersion(facebook_ktfmt) }
 
     @HubdleDslMarker
     public fun ktfmtVersion(version: String) {

@@ -68,7 +68,7 @@ internal fun HubdleSrcSetConfExt<*>.configurableTestIntegrationSourceSets() =
             tasks.register<Test>("integrationTest") {
                 testClassesDirs = testIntegrationSourceSet.output.classesDirs
                 classpath = testIntegrationSourceSet.runtimeClasspath
-                mustRunAfter(tasks.findByName("test"))
+                mustRunAfter(tasks.named { it == "test" })
             }
 
         tasks.named(CHECK_TASK_NAME).dependsOn(integrationTestTask)
@@ -110,7 +110,7 @@ internal fun HubdleSrcSetConfExt<*>.configurableTestFunctionalSourceSets() {
             tasks.register<Test>("functionalTest") {
                 testClassesDirs = testFunctionalSourceSet.output.classesDirs
                 classpath = testFunctionalSourceSet.runtimeClasspath
-                mustRunAfter(tasks.findByName("test"))
+                mustRunAfter(tasks.named { it == "test" })
             }
 
         tasks.named(CHECK_TASK_NAME).dependsOn(functionalTestTask)

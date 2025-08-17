@@ -68,7 +68,7 @@ public open class GenerateAdditionalDataTask @Inject constructor(objects: Object
             }
             appendLine("public object ${objectName.get()} {")
             appendLine()
-            for (line in additionalData.get().lines()) {
+            for (line in additionalData.orNull.orEmpty().lines()) {
                 appendLine(line.prependIndent())
             }
             appendLine("}")
@@ -88,11 +88,11 @@ public open class GenerateAdditionalDataTask @Inject constructor(objects: Object
 
         internal fun register(
             project: Project,
-            additionalData: Property<String?>,
+            additionalData: Property<String>,
         ): TaskProvider<GenerateAdditionalDataTask> {
             val packageName: Provider<String> =
                 project.provider { "${project.group}.${project.name }".replace("-", ".") }
-            val projectName = project.provider { project.name }
+            val projectName: Provider<String> = project.provider { project.name }
             val generateAdditionalDataTask: TaskProvider<GenerateAdditionalDataTask> =
                 project.tasks.register<GenerateAdditionalDataTask>(NAME)
 

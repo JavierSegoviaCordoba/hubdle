@@ -25,8 +25,8 @@ constructor(project: Project) : HubdleConfigurableExtension(project) {
 
     public val qodana: Property<Boolean> = property { true }
 
-    public val qodanaProjectKey: Property<String?> = property {
-        getStringProperty(Qodana.projectKey).orNull
+    public val qodanaProjectKey: Property<String> = convention {
+        getStringProperty(Qodana.projectKey)
     }
 
     public val sonar: Property<Boolean> = property { true }

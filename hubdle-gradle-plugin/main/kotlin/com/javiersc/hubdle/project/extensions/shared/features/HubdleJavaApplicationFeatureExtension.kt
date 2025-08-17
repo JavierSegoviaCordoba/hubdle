@@ -24,7 +24,7 @@ public open class HubdleJavaApplicationFeatureExtension @Inject constructor(proj
     override val oneOfExtensions: Set<HubdleEnableableExtension>
         get() = setOf(hubdleJava, hubdleKotlinJvm)
 
-    public val mainClass: Property<String?> = property { null }
+    public val mainClass: Property<String> = propertyOptional()
 
     @HubdleDslMarker
     public fun application(action: Action<JavaApplication> = Action {}) {

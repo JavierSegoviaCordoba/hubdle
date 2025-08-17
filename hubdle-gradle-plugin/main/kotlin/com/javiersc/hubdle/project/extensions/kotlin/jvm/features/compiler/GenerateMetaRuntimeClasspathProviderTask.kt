@@ -134,10 +134,11 @@ constructor(objects: ObjectFactory, layout: ProjectLayout) : DefaultTask() {
                     testProjects
                         .get()
                         .flatMap { projectDependency ->
-                            val projectName = projectDependency.dependencyProject.name
-                            val projectVersion = "${projectDependency.dependencyProject.version}"
-                            val jars =
-                                projectDependency.dependencyProject.layout.buildDirectory.asFile
+                            val dependencyProject: Project = project.project(projectDependency.path)
+                            val projectName = dependencyProject.name
+                            val projectVersion = "${dependencyProject.version}"
+                            val jars: FileTreeWalk =
+                                dependencyProject.layout.buildDirectory.asFile
                                     .get()
                                     .resolve("libs")
                                     .walkTopDown()

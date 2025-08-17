@@ -6,7 +6,7 @@ import org.gradle.api.NamedDomainObjectProvider
 import org.gradle.api.Project
 import org.gradle.api.provider.Property
 
-public abstract class HubdleSourceSetConfigurableExtension<T>(project: Project) :
+public abstract class HubdleSourceSetConfigurableExtension<T : Any>(project: Project) :
     HubdleMinimalSourceSetConfigurableExtension<T>(project) {
 
     override val project: Project

@@ -20,68 +20,71 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 
-internal fun Project.withId(id: PluginId, block: () -> Unit) {
-    pluginManager.withPlugin("$id") { block() }
-}
+internal inline fun Project.withAndroidApplication(
+    crossinline block: ApplicationExtension.() -> Unit
+) = pluginManager.withPlugin(PluginId.AndroidApplication.id) { block(extensions.getByType()) }
 
-internal inline fun <reified T : Any> Project.withId(
-    id: PluginId,
-    crossinline block: T.() -> Unit,
-) {
-    pluginManager.withPlugin("$id") { block(extensions.getByType()) }
-}
+internal inline fun Project.withAndroidLibrary(crossinline block: LibraryExtension.() -> Unit) =
+    pluginManager.withPlugin(PluginId.AndroidLibrary.id) { block(extensions.getByType()) }
 
-internal fun Project.withAndroidApplication(block: ApplicationExtension.() -> Unit) =
-    withId(id = PluginId.AndroidApplication, block = block)
+internal inline fun Project.withCompose(crossinline block: Unit.() -> Unit) =
+    pluginManager.withPlugin(PluginId.JetbrainsCompose.id) { block(extensions.getByType()) }
 
-internal fun Project.withAndroidLibrary(block: LibraryExtension.() -> Unit) =
-    withId(id = PluginId.AndroidLibrary, block = block)
+internal inline fun Project.withDetekt(crossinline block: DetektExtension.() -> Unit) =
+    pluginManager.withPlugin(PluginId.Detekt.id) { block(extensions.getByType()) }
 
-internal fun Project.withCompose(block: () -> Unit) =
-    withId(id = PluginId.JetbrainsCompose, block = block)
+internal inline fun Project.withGradleApplication(crossinline block: JavaApplication.() -> Unit) =
+    pluginManager.withPlugin(PluginId.GradleApplication.id) { block(extensions.getByType()) }
 
-internal fun Project.withDetekt(block: DetektExtension.() -> Unit) =
-    withId(id = PluginId.Detekt, block = block)
+internal inline fun Project.withGradlePlugin(
+    crossinline block: GradlePluginDevelopmentExtension.() -> Unit
+) = pluginManager.withPlugin(PluginId.JavaGradlePlugin.id) { block(extensions.getByType()) }
 
-internal fun Project.withGradleApplication(block: JavaApplication.() -> Unit) =
-    withId(id = PluginId.GradleApplication, block = block)
+internal inline fun Project.withJava(crossinline block: JavaPluginExtension.() -> Unit) =
+    pluginManager.withPlugin(PluginId.Java.id) { block(extensions.getByType()) }
 
-internal fun Project.withGradlePlugin(block: GradlePluginDevelopmentExtension.() -> Unit) =
-    withId(id = PluginId.JavaGradlePlugin, block = block)
-
-internal fun Project.withJava(block: JavaPluginExtension.() -> Unit) =
-    withId(id = PluginId.Java, block = block)
-
-internal fun Project.withKotlin(block: KotlinProjectExtension.() -> Unit) {
+internal inline fun Project.withKotlin(crossinline block: KotlinProjectExtension.() -> Unit) {
     withKotlinAndroid(block)
     withKotlinJvm(block)
     withKotlinMultiplatform(block)
 }
 
-internal fun Project.withKotlinAndroid(block: KotlinAndroidProjectExtension.() -> Unit) =
-    withId(id = PluginId.JetbrainsKotlinAndroid, block = block)
+internal inline fun Project.withKotlinAndroid(
+    crossinline block: KotlinAndroidProjectExtension.() -> Unit
+) = pluginManager.withPlugin(PluginId.JetbrainsKotlinAndroid.id) { block(extensions.getByType()) }
 
-internal fun Project.withKotlinJvm(block: KotlinJvmProjectExtension.() -> Unit) =
-    withId(id = PluginId.JetbrainsKotlinJvm, block = block)
+internal inline fun Project.withKotlinJvm(crossinline block: KotlinJvmProjectExtension.() -> Unit) =
+    pluginManager.withPlugin(PluginId.JetbrainsKotlinJvm.id) { block(extensions.getByType()) }
 
-internal fun Project.withKotlinMultiplatform(block: KotlinMultiplatformExtension.() -> Unit) =
-    withId(id = PluginId.JetbrainsKotlinMultiplatform, block = block)
+internal inline fun Project.withKotlinMultiplatform(
+    crossinline block: KotlinMultiplatformExtension.() -> Unit
+) =
+    pluginManager.withPlugin(PluginId.JetbrainsKotlinMultiplatform.id) {
+        block(extensions.getByType())
+    }
 
-internal fun Project.withKotlinBinaryCompatibilityValidator(
-    block: ApiValidationExtension.() -> Unit
-) = withId(id = PluginId.JetbrainsKotlinxBinaryCompatibilityValidator, block = block)
+internal inline fun Project.withKotlinBinaryCompatibilityValidator(
+    crossinline block: ApiValidationExtension.() -> Unit
+) =
+    pluginManager.withPlugin(PluginId.JetbrainsKotlinxBinaryCompatibilityValidator.id) {
+        block(extensions.getByType())
+    }
 
-internal fun Project.withPublishing(block: GradlePublishingExtension.() -> Unit) =
-    withId(id = PluginId.MavenPublish, block = block)
+internal inline fun Project.withPublishing(
+    crossinline block: GradlePublishingExtension.() -> Unit
+) = pluginManager.withPlugin(PluginId.MavenPublish.id) { block(extensions.getByType()) }
 
-internal fun Project.withSemver(block: SemverExtension.() -> Unit) =
-    withId(id = PluginId.JavierscSemverGradlePlugin, block = block)
+internal inline fun Project.withSemver(crossinline block: SemverExtension.() -> Unit) =
+    pluginManager.withPlugin(PluginId.JavierscSemverGradlePlugin.id) {
+        block(extensions.getByType())
+    }
 
-internal fun Project.withSigning(block: SigningExtension.() -> Unit) =
-    withId(id = PluginId.GradleSigning, block = block)
+internal inline fun Project.withSigning(crossinline block: SigningExtension.() -> Unit) =
+    pluginManager.withPlugin(PluginId.GradleSigning.id) { block(extensions.getByType()) }
 
-internal fun Project.withSpotless(block: SpotlessExtension.() -> Unit) =
-    withId(id = PluginId.DiffplugSpotless, block = block)
+internal inline fun Project.withSpotless(crossinline block: SpotlessExtension.() -> Unit) =
+    pluginManager.withPlugin(PluginId.DiffplugSpotless.id) { block(extensions.getByType()) }
 
-internal fun Project.withSpotlessPredeclare(block: SpotlessExtensionPredeclare.() -> Unit) =
-    withId(id = PluginId.DiffplugSpotless, block = block)
+internal inline fun Project.withSpotlessPredeclare(
+    crossinline block: SpotlessExtensionPredeclare.() -> Unit
+) = pluginManager.withPlugin(PluginId.DiffplugSpotless.id) { block(extensions.getByType()) }

@@ -4,6 +4,8 @@
 
 ### Added
 
+ - `com.javiersc.kotlin:kotlin-compiler-gradle-extensions`
+ 
 ### Changed
 
 ### Deprecated

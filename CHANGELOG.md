@@ -4,8 +4,6 @@
 
 ### Added
 
-- Gradle 9.0 support
-
 ### Changed
 
 ### Deprecated
@@ -13,6 +11,14 @@
 ### Fixed
 
 ### Removed
+
+### Updated
+
+## [0.15.0] - 2025-08-17
+
+### Added
+
+- Gradle 9.0 support
 
 ### Updated
 
@@ -409,7 +415,9 @@
 
 - `allTests` task
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.14.2...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.15.0...HEAD
+
+[0.15.0]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.14.2...p0.15.0
 
 [0.14.2]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.14.1...p0.14.2
 

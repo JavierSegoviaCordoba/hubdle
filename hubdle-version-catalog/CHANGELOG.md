@@ -5,7 +5,7 @@
 ### Added
 
  - `com.javiersc.kotlin:kotlin-compiler-gradle-extensions`
- 
+
 ### Changed
 
 ### Deprecated
@@ -16,11 +16,11 @@
 
 ### Updated
 
+- `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.15.0`
 - `com.javiersc.kotlin:kotlin-compiler-test-extensions -> 0.8.1+2.2.10`
 - `com.javiersc.kotlin:kotlin-compiler-extensions -> 0.8.1+2.2.10`
 - `com.javiersc.semver:com.javiersc.semver.gradle.plugin -> 0.9.0`
 - `gradle -> 9.0.0`
-- `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.14.2`
 - `com.javiersc.kotlin.kopy:com.javiersc.kotlin.kopy.gradle.plugin -> 0.17.0+2.2.0`
 
 ## [0.7.1] - 2025-08-14
@@ -2287,5 +2287,3 @@
 [0.1.3]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.2...c0.1.3
 
 [0.1.2]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.1...c0.1.2
-
-[0.1.1]: https://github.com/JavierSegoviaCordoba/hubdle/commits/c0.1.1

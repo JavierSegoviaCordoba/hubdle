@@ -16,6 +16,11 @@
 
 ### Updated
 
+- `io.kotest:kotest-runner-junit5 -> 6.0.0`
+- `io.kotest:kotest-runner-junit4 -> 6.0.0`
+- `io.kotest:kotest-property -> 6.0.0`
+- `io.kotest:kotest-assertions-json -> 6.0.0`
+- `io.kotest:kotest-assertions-core -> 6.0.0`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.15.0`
 - `com.javiersc.kotlin:kotlin-compiler-test-extensions -> 0.8.1+2.2.10`
 - `com.javiersc.kotlin:kotlin-compiler-extensions -> 0.8.1+2.2.10`

@@ -16,6 +16,9 @@
 
 ### Updated
 
+- `com.android.library:com.android.library.gradle.plugin -> 8.12.1`
+- `com.android.application:com.android.application.gradle.plugin -> 8.12.1`
+- `com.android.tools.build:gradle -> 8.12.1`
 - `io.kotest:kotest-runner-junit5 -> 6.0.0`
 - `io.kotest:kotest-runner-junit4 -> 6.0.0`
 - `io.kotest:kotest-property -> 6.0.0`

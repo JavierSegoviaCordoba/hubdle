@@ -28,9 +28,9 @@ public abstract class CheckIsSemverTask : DefaultTask() {
     public fun run() {
         val isPublishException: Boolean = publishNonSemver.get() || hasPublishToMavenLocalTest.get()
         check(versionIsSignificant.get() || isPublishException) {
-            """|Only semantic versions can be published (current: ${version.get()})
-               |Use `"-Ppublishing.nonSemver=true"` to force the publication 
             """
+            |Only semantic versions can be published (current: ${version.get()})
+            |Use `"-Ppublishing.nonSemver=true"` to force the publication """
                 .trimMargin()
         }
     }

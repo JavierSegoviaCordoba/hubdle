@@ -29,15 +29,15 @@ private fun Project.checkOnlyOneKotlinApplied() {
     val hasOnlyOneOrZeroKotlinEnabled = enabled.count { it } <= 1
 
     check(hasOnlyOneOrZeroKotlinEnabled) {
-        """ 
-            |There is more than one `kotlin` project enabled:
-            |  - Android(isEnabled = $isAndroidEnabled)
-            |    - Application(isEnabled = $isAndroidApplicationEnabled)
-            |    - Library(isEnabled = $isAndroidLibraryEnabled)
-            |  - Jvm(isEnabled = $isJvmEnabled)
-            |  - Multiplatform(isEnabled = $isMultiplatformEnabled)
-            |
         """
+        | 
+        |There is more than one `kotlin` project enabled:
+        |  - Android(isEnabled = $isAndroidEnabled)
+        |    - Application(isEnabled = $isAndroidApplicationEnabled)
+        |    - Library(isEnabled = $isAndroidLibraryEnabled)
+        |  - Jvm(isEnabled = $isJvmEnabled)
+        |  - Multiplatform(isEnabled = $isMultiplatformEnabled)
+        |"""
             .trimMargin()
     }
 }

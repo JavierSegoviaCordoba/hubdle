@@ -43,9 +43,8 @@ public open class HubdleConfigDocumentationSiteExtension @Inject constructor(pro
         lazyConfigurable {
             check(isRootProject) {
                 """
-                    |`site` can be only used in the root project, and it is being applied in:
-                    |  - `${displayName}`
-                """
+                |`site` can be only used in the root project, and it is being applied in:
+                |  - `${displayName}`"""
                     .trimMargin()
             }
             configure<MkdocsExtension> {

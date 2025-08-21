@@ -12,14 +12,14 @@ class CheckCompatibilityTest : GradleTestKitTest() {
             withArguments("build", "--no-scan")
 
             val expectOutput =
-                """ 
-                    |There is more than one `kotlin` project enabled:
-                    |  - Android(isEnabled = true)
-                    |    - Application(isEnabled = false)
-                    |    - Library(isEnabled = true)
-                    |  - Jvm(isEnabled = true)
-                    |  - Multiplatform(isEnabled = false)
                 """
+                | 
+                |There is more than one `kotlin` project enabled:
+                |  - Android(isEnabled = true)
+                |    - Application(isEnabled = false)
+                |    - Library(isEnabled = true)
+                |  - Jvm(isEnabled = true)
+                |  - Multiplatform(isEnabled = false)"""
                     .trimMargin()
 
             buildAndFail().output.shouldContain(expectOutput)

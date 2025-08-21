@@ -16,6 +16,7 @@
 
 ### Updated
 
+- `com.facebook:ktfmt -> 0.57`
 - `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 4.1.1`
 - `com.android.library:com.android.library.gradle.plugin -> 8.12.1`
 - `com.android.application:com.android.application.gradle.plugin -> 8.12.1`

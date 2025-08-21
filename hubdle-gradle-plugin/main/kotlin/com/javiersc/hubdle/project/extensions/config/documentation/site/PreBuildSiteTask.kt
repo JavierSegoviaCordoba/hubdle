@@ -114,97 +114,97 @@ constructor(
 
     private val defaultMkdocsYaml: String
         get() =
-            """ |# TODO: Change all necessary properties
-                |site_name: NAME # TODO
-                |site_description: DESCRIPTION # TODO
-                |site_author: AUTHOR # TODO
-                |remote_branch: gh-pages
-                |
-                |repo_name: REPO NAME # TODO
-                |repo_url: https://github.com/USER/REPO-NAME # TODO
-                |
-                |copyright: 'Copyright &copy; 2021 AUTHOR' # TODO
-                |
-                |theme:
-                |  name: 'material'
-                |  language: 'en'
-                |  # TODO favicon: 'assets/favicon.png'
-                |  # TODO logo: 'assets/logo.svg'
-                |  font:
-                |    text: 'Fira Sans'
-                |    code: 'JetBrains Mono'
-                |  palette:
-                |    - media: "(prefers-color-scheme: light)"
-                |      scheme: default
-                |      primary: 'white'
-                |      accent: 'white'
-                |      toggle:
-                |        icon: material/weather-sunny
-                |        name: Switch to dark mode
-                |    - media: "(prefers-color-scheme: dark)"
-                |      primary: 'indigo'
-                |      accent: 'light blue'
-                |      scheme: slate
-                |      toggle:
-                |        icon: material/weather-night
-                |        name: Switch to light mode
-                |
-                |nav:
-                |  - Overview: index.md
-                |
-                |plugins:
-                |  - search
-                |
-                |markdown_extensions:
-                |  - admonition
-                |  - smarty
-                |  - codehilite:
-                |      guess_lang: false
-                |      linenums: True
-                |  - footnotes
-                |  - meta
-                |  - toc:
-                |      permalink: true
-                |  - pymdownx.betterem:
-                |      smart_enable: all
-                |  - pymdownx.caret
-                |  - pymdownx.details
-                |  - pymdownx.inlinehilite
-                |  - pymdownx.magiclink
-                |  - pymdownx.smartsymbols
-                |  - pymdownx.superfences
-                |  - tables
-                |
-                |extra:
-                |  social:
-                |    - icon: fontawesome/brands/github
-                |      link: https://github.com/USER # TODO
-                |    - icon: fontawesome/brands/twitter
-                |      link: https://twitter.com/USER # TODO
-                |
-                |extra_css:
-                |  - css/all.css
-                |
             """
+            |# TODO: Change all necessary properties
+            |site_name: NAME # TODO
+            |site_description: DESCRIPTION # TODO
+            |site_author: AUTHOR # TODO
+            |remote_branch: gh-pages
+            |
+            |repo_name: REPO NAME # TODO
+            |repo_url: https://github.com/USER/REPO-NAME # TODO
+            |
+            |copyright: 'Copyright &copy; 2021 AUTHOR' # TODO
+            |
+            |theme:
+            |  name: 'material'
+            |  language: 'en'
+            |  # TODO favicon: 'assets/favicon.png'
+            |  # TODO logo: 'assets/logo.svg'
+            |  font:
+            |    text: 'Fira Sans'
+            |    code: 'JetBrains Mono'
+            |  palette:
+            |    - media: "(prefers-color-scheme: light)"
+            |      scheme: default
+            |      primary: 'white'
+            |      accent: 'white'
+            |      toggle:
+            |        icon: material/weather-sunny
+            |        name: Switch to dark mode
+            |    - media: "(prefers-color-scheme: dark)"
+            |      primary: 'indigo'
+            |      accent: 'light blue'
+            |      scheme: slate
+            |      toggle:
+            |        icon: material/weather-night
+            |        name: Switch to light mode
+            |
+            |nav:
+            |  - Overview: index.md
+            |
+            |plugins:
+            |  - search
+            |
+            |markdown_extensions:
+            |  - admonition
+            |  - smarty
+            |  - codehilite:
+            |      guess_lang: false
+            |      linenums: True
+            |  - footnotes
+            |  - meta
+            |  - toc:
+            |      permalink: true
+            |  - pymdownx.betterem:
+            |      smart_enable: all
+            |  - pymdownx.caret
+            |  - pymdownx.details
+            |  - pymdownx.inlinehilite
+            |  - pymdownx.magiclink
+            |  - pymdownx.smartsymbols
+            |  - pymdownx.superfences
+            |  - tables
+            |
+            |extra:
+            |  social:
+            |    - icon: fontawesome/brands/github
+            |      link: https://github.com/USER # TODO
+            |    - icon: fontawesome/brands/twitter
+            |      link: https://twitter.com/USER # TODO
+            |
+            |extra_css:
+            |  - css/all.css
+            |"""
                 .trimMargin()
 
     private val defaultAllCss: String
         get() =
-            """ |code {
-                |    font-weight: 600;
-                |}
-                |
-                |@media screen and (min-width: 76.1875em) {
-                |    .md-nav--primary .md-nav__title {
-                |        display: none;
-                |    }
-                |}
-                |
-                |.md-nav__link--active {
-                |    font-weight: bold;
-                |}
-                |
             """
+            |code {
+            |    font-weight: 600;
+            |}
+            |
+            |@media screen and (min-width: 76.1875em) {
+            |    .md-nav--primary .md-nav__title {
+            |        display: none;
+            |    }
+            |}
+            |
+            |.md-nav__link--active {
+            |    font-weight: bold;
+            |}
+            |"""
                 .trimMargin()
 
     private fun FileSystemOperations.buildBuildDotDocs(
@@ -241,8 +241,7 @@ constructor(
                 """
                 |  - API docs:
                 |    - Latest: api/
-                |    - Snapshot: api/snapshot/
-            """
+                |    - Snapshot: api/snapshot/"""
                     .trimMargin()
 
         writeNavigation(navsPlusApiDocs)

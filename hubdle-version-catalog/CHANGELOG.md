@@ -16,16 +16,16 @@
 
 ### Updated
 
+- `io.kotest:kotest-runner-junit5 -> 6.0.1`
+- `io.kotest:kotest-runner-junit4 -> 6.0.1`
+- `io.kotest:kotest-property -> 6.0.1`
+- `io.kotest:kotest-assertions-json -> 6.0.1`
+- `io.kotest:kotest-assertions-core -> 6.0.1`
 - `com.facebook:ktfmt -> 0.57`
 - `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 4.1.1`
 - `com.android.library:com.android.library.gradle.plugin -> 8.12.1`
 - `com.android.application:com.android.application.gradle.plugin -> 8.12.1`
 - `com.android.tools.build:gradle -> 8.12.1`
-- `io.kotest:kotest-runner-junit5 -> 6.0.0`
-- `io.kotest:kotest-runner-junit4 -> 6.0.0`
-- `io.kotest:kotest-property -> 6.0.0`
-- `io.kotest:kotest-assertions-json -> 6.0.0`
-- `io.kotest:kotest-assertions-core -> 6.0.0`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.15.0`
 - `com.javiersc.kotlin:kotlin-compiler-test-extensions -> 0.8.1+2.2.10`
 - `com.javiersc.kotlin:kotlin-compiler-extensions -> 0.8.1+2.2.10`

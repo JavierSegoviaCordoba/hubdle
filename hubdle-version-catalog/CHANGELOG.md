@@ -16,6 +16,7 @@
 
 ### Updated
 
+- `org.sonarqube:org.sonarqube.gradle.plugin -> 6.3.0.5676`
 - `io.kotest:kotest-runner-junit5 -> 6.0.1`
 - `io.kotest:kotest-runner-junit4 -> 6.0.1`
 - `io.kotest:kotest-property -> 6.0.1`

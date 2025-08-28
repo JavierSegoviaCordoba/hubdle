@@ -16,6 +16,9 @@
 
 ### Updated
 
+- `androidx.lifecycle:lifecycle-viewmodel-ktx -> 2.9.3`
+- `androidx.lifecycle:lifecycle-viewmodel-compose -> 2.9.3`
+- `androidx.lifecycle:lifecycle-viewmodel -> 2.9.3`
 - `org.sonarqube:org.sonarqube.gradle.plugin -> 6.3.1.5724`
 - `io.kotest:kotest-runner-junit5 -> 6.0.1`
 - `io.kotest:kotest-runner-junit4 -> 6.0.1`

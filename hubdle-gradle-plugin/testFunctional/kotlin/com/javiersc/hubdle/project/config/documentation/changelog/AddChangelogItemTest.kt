@@ -144,10 +144,10 @@ internal class AddChangelogItemTest : GradleTestKitTest() {
             projectDir.commitAndCheckout(
                 message =
                     """
-                    | datasource | package                                                   | from  | to    |
-                    | ---------- | --------------------------------------------------------- | ----- | ----- |
-                    | maven      | com.javiersc.mokoki:mokoki-core                           | 1.0.0 | 1.0.1 |
-                """
+                        | datasource | package                                                   | from  | to    |
+                        | ---------- | --------------------------------------------------------- | ----- | ----- |
+                        | maven      | com.javiersc.mokoki:mokoki-core                           | 1.0.0 | 1.0.1 |
+                    """
                         .trimIndent()
             )
             gradlewArgumentFromTXT()
@@ -199,7 +199,8 @@ internal class AddChangelogItemTest : GradleTestKitTest() {
         gradleTestKitTest("$basePath/sandbox-renovate-9") {
             projectDir.commitAndCheckout(
                 message =
-                    """ 
+                    """
+                     
                         | datasource | package                                               | from                           | to                             |
                         | ---------- | ----------------------------------------------------- | ------------------------------ | ------------------------------ |
                         | maven      | com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin | 0.6.4+2.0.0-dev-17175-SNAPSHOT | 0.6.4+2.0.0-dev-18803-SNAPSHOT |

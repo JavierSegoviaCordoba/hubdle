@@ -16,19 +16,27 @@
 
 ### Updated
 
+- `io.kotest:kotest-runner-junit5 -> 6.0.2`
+- `io.kotest:kotest-runner-junit4 -> 6.0.2`
+- `io.kotest:kotest-property -> 6.0.2`
+- `io.kotest:kotest-assertions-json -> 6.0.2`
+- `io.kotest:kotest-assertions-core -> 6.0.2`
+- `io.insert-koin:koin-test-junit5 -> 4.1.1`
+- `io.insert-koin:koin-test-junit4 -> 4.1.1`
+- `io.insert-koin:koin-test -> 4.1.1`
+- `io.insert-koin:koin-logger-slf4j -> 4.1.1`
+- `io.insert-koin:koin-ktor -> 4.1.1`
+- `io.insert-koin:koin-core -> 4.1.1`
+- `io.insert-koin:koin-androidx-compose -> 4.1.1`
+- `io.insert-koin:koin-android -> 4.1.1`
+- `com.android.library:com.android.library.gradle.plugin -> 8.13.0`
+- `com.android.application:com.android.application.gradle.plugin -> 8.13.0`
+- `com.android.tools.build:gradle -> 8.13.0`
 - `com.facebook:ktfmt -> 0.58`
-- `com.android.library:com.android.library.gradle.plugin -> 8.12.2`
-- `com.android.application:com.android.application.gradle.plugin -> 8.12.2`
-- `com.android.tools.build:gradle -> 8.12.2`
 - `androidx.lifecycle:lifecycle-viewmodel-ktx -> 2.9.3`
 - `androidx.lifecycle:lifecycle-viewmodel-compose -> 2.9.3`
 - `androidx.lifecycle:lifecycle-viewmodel -> 2.9.3`
 - `org.sonarqube:org.sonarqube.gradle.plugin -> 6.3.1.5724`
-- `io.kotest:kotest-runner-junit5 -> 6.0.1`
-- `io.kotest:kotest-runner-junit4 -> 6.0.1`
-- `io.kotest:kotest-property -> 6.0.1`
-- `io.kotest:kotest-assertions-json -> 6.0.1`
-- `io.kotest:kotest-assertions-core -> 6.0.1`
 - `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 4.1.1`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.15.0`
 - `com.javiersc.kotlin:kotlin-compiler-test-extensions -> 0.8.1+2.2.10`

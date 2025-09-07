@@ -16,6 +16,7 @@
 
 ### Updated
 
+- `com.gradle.plugin-publish:com.gradle.plugin-publish.gradle.plugin -> 2.0.0`
 - `io.kotest:kotest-runner-junit5 -> 6.0.2`
 - `io.kotest:kotest-runner-junit4 -> 6.0.2`
 - `io.kotest:kotest-property -> 6.0.2`

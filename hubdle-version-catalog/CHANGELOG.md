@@ -16,12 +16,12 @@
 
 ### Updated
 
+- `io.kotest:kotest-runner-junit5 -> 6.0.3`
+- `io.kotest:kotest-runner-junit4 -> 6.0.3`
+- `io.kotest:kotest-property -> 6.0.3`
+- `io.kotest:kotest-assertions-json -> 6.0.3`
+- `io.kotest:kotest-assertions-core -> 6.0.3`
 - `com.gradle.plugin-publish:com.gradle.plugin-publish.gradle.plugin -> 2.0.0`
-- `io.kotest:kotest-runner-junit5 -> 6.0.2`
-- `io.kotest:kotest-runner-junit4 -> 6.0.2`
-- `io.kotest:kotest-property -> 6.0.2`
-- `io.kotest:kotest-assertions-json -> 6.0.2`
-- `io.kotest:kotest-assertions-core -> 6.0.2`
 - `io.insert-koin:koin-test-junit5 -> 4.1.1`
 - `io.insert-koin:koin-test-junit4 -> 4.1.1`
 - `io.insert-koin:koin-test -> 4.1.1`

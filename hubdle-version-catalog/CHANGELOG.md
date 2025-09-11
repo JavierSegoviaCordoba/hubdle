@@ -16,6 +16,26 @@
 
 ### Updated
 
+- `androidx.navigation:navigation-compose -> 2.9.4`
+- `androidx.hilt:hilt-navigation-compose -> 1.3.0`
+- `androidx.compose.ui:ui-util -> 1.9.1`
+- `androidx.compose.ui:ui-tooling-preview -> 1.9.1`
+- `androidx.compose.ui:ui-tooling -> 1.9.1`
+- `androidx.compose.ui:ui-test-manifest -> 1.9.1`
+- `androidx.compose.ui:ui-test -> 1.9.1`
+- `androidx.compose.ui:ui -> 1.9.1`
+- `androidx.compose.runtime:runtime-tracing -> 1.9.1`
+- `androidx.compose.runtime:runtime-saveable -> 1.9.1`
+- `androidx.compose.runtime:runtime -> 1.9.1`
+- `androidx.compose.material:material-ripple -> 1.9.1`
+- `androidx.compose.material:material -> 1.9.1`
+- `androidx.compose.foundation:foundation-layout -> 1.9.1`
+- `androidx.compose.foundation:foundation -> 1.9.1`
+- `androidx.compose.animation:animation-graphics -> 1.9.1`
+- `androidx.compose.animation:animation-core -> 1.9.1`
+- `androidx.compose.animation:animation -> 1.9.1`
+- `androidx.activity:activity-ktx -> 1.11.0`
+- `androidx.activity:activity-compose -> 1.11.0`
 - `io.kotest:kotest-runner-junit5 -> 6.0.3`
 - `io.kotest:kotest-runner-junit4 -> 6.0.3`
 - `io.kotest:kotest-property -> 6.0.3`

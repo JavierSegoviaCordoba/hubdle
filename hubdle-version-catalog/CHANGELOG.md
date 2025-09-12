@@ -16,6 +16,20 @@
 
 ### Updated
 
+- `io.ktor:ktor-serialization-kotlinx-json -> 3.3.0`
+- `io.ktor:ktor-client-winhttp -> 3.3.0`
+- `io.ktor:ktor-client-okhttp -> 3.3.0`
+- `io.ktor:ktor-client-mock -> 3.3.0`
+- `io.ktor:ktor-client-js -> 3.3.0`
+- `io.ktor:ktor-client-jetty -> 3.3.0`
+- `io.ktor:ktor-client-java -> 3.3.0`
+- `io.ktor:ktor-client-darwin -> 3.3.0`
+- `io.ktor:ktor-client-curl -> 3.3.0`
+- `io.ktor:ktor-client-core -> 3.3.0`
+- `io.ktor:ktor-client-content-negotiation -> 3.3.0`
+- `io.ktor:ktor-client-cio -> 3.3.0`
+- `io.ktor:ktor-client-apache5 -> 3.3.0`
+- `io.ktor:ktor-client-android -> 3.3.0`
 - `androidx.navigation:navigation-compose -> 2.9.4`
 - `androidx.hilt:hilt-navigation-compose -> 1.3.0`
 - `androidx.compose.ui:ui-util -> 1.9.1`

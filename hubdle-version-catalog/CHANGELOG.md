@@ -16,6 +16,8 @@
 
 ### Updated
 
+- `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.9.0`
+- `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 4.2`
 - `io.ktor:ktor-serialization-kotlinx-json -> 3.3.0`
 - `io.ktor:ktor-client-winhttp -> 3.3.0`
 - `io.ktor:ktor-client-okhttp -> 3.3.0`
@@ -72,7 +74,6 @@
 - `androidx.lifecycle:lifecycle-viewmodel-compose -> 2.9.3`
 - `androidx.lifecycle:lifecycle-viewmodel -> 2.9.3`
 - `org.sonarqube:org.sonarqube.gradle.plugin -> 6.3.1.5724`
-- `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 4.1.1`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.15.0`
 - `com.javiersc.kotlin:kotlin-compiler-test-extensions -> 0.8.1+2.2.10`
 - `com.javiersc.kotlin:kotlin-compiler-extensions -> 0.8.1+2.2.10`

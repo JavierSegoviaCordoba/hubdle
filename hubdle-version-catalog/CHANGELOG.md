@@ -16,6 +16,7 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.9.2`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.9.0`
 - `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 4.2`
 - `io.ktor:ktor-serialization-kotlinx-json -> 3.3.0`

@@ -16,6 +16,9 @@
 
 ### Updated
 
+- `androidx.lifecycle:lifecycle-viewmodel-ktx -> 2.9.4`
+- `androidx.lifecycle:lifecycle-viewmodel-compose -> 2.9.4`
+- `androidx.lifecycle:lifecycle-viewmodel -> 2.9.4`
 - `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.9.2`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.9.0`
 - `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 4.2`
@@ -71,9 +74,6 @@
 - `com.android.application:com.android.application.gradle.plugin -> 8.13.0`
 - `com.android.tools.build:gradle -> 8.13.0`
 - `com.facebook:ktfmt -> 0.58`
-- `androidx.lifecycle:lifecycle-viewmodel-ktx -> 2.9.3`
-- `androidx.lifecycle:lifecycle-viewmodel-compose -> 2.9.3`
-- `androidx.lifecycle:lifecycle-viewmodel -> 2.9.3`
 - `org.sonarqube:org.sonarqube.gradle.plugin -> 6.3.1.5724`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.15.0`
 - `com.javiersc.kotlin:kotlin-compiler-test-extensions -> 0.8.1+2.2.10`

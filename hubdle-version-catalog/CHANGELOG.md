@@ -16,6 +16,7 @@
 
 ### Updated
 
+- `gradle -> 9.1.0`
 - `androidx.lifecycle:lifecycle-viewmodel-ktx -> 2.9.4`
 - `androidx.lifecycle:lifecycle-viewmodel-compose -> 2.9.4`
 - `androidx.lifecycle:lifecycle-viewmodel -> 2.9.4`
@@ -79,7 +80,6 @@
 - `com.javiersc.kotlin:kotlin-compiler-test-extensions -> 0.8.1+2.2.10`
 - `com.javiersc.kotlin:kotlin-compiler-extensions -> 0.8.1+2.2.10`
 - `com.javiersc.semver:com.javiersc.semver.gradle.plugin -> 0.9.0`
-- `gradle -> 9.0.0`
 - `com.javiersc.kotlin.kopy:com.javiersc.kotlin.kopy.gradle.plugin -> 0.17.0+2.2.0`
 
 ## [0.7.1] - 2025-08-14

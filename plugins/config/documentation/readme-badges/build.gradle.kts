@@ -58,7 +58,7 @@ hubdle {
     kotlin {
         jvm {
             features {
-                jvmVersion(JavaVersion.VERSION_11)
+                jvmVersion(JavaVersion.VERSION_17)
                 kotest.enabled(true)
             }
 

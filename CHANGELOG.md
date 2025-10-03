@@ -4,6 +4,8 @@
 
 ### Added
 
+- `deleteCompilerTextTestFiles` task to Compiler plugin feature
+
 ### Changed
 
 ### Deprecated

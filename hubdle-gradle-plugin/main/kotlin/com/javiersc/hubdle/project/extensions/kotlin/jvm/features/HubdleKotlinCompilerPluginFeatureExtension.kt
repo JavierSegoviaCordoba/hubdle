@@ -30,6 +30,7 @@ import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.jun
 import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.junit_platform_junit_platform_suite_api
 import com.javiersc.hubdle.project.extensions.kotlin.jvm.features.KotlinCompilerTestType.Box
 import com.javiersc.hubdle.project.extensions.kotlin.jvm.features.KotlinCompilerTestType.Diagnostics
+import com.javiersc.hubdle.project.extensions.kotlin.jvm.features.compiler.DeleteCompilerTextTestFiles
 import com.javiersc.hubdle.project.extensions.kotlin.jvm.features.compiler.GenerateMetaRuntimeClasspathProviderTask
 import com.javiersc.hubdle.project.extensions.kotlin.jvm.hubdleKotlinJvm
 import com.javiersc.hubdle.project.tasks.lifecycle.GenerateTask
@@ -210,6 +211,8 @@ public open class HubdleKotlinCompilerPluginFeatureExtension @Inject constructor
                 task.dependsOn(generateMetaRuntimeClasspathProvider)
             }
         }
+
+        tasks.register<DeleteCompilerTextTestFiles>(DeleteCompilerTextTestFiles.NAME)
 
         tasks.named<Test>("test") {
             testLogging { it.showStandardStreams = true }

@@ -16,6 +16,14 @@
 
 ### Updated
 
+- `org.junit.platform:junit-platform-suite-api -> 6.0.0`
+- `org.junit.platform:junit-platform-launcher -> 6.0.0`
+- `org.junit.platform:junit-platform-commons -> 6.0.0`
+- `org.junit.jupiter:junit-jupiter-params -> 6.0.0`
+- `org.junit.jupiter:junit-jupiter-api -> 6.0.0`
+- `org.junit.jupiter:junit-jupiter -> 6.0.0`
+- `org.junit:junit-bom -> 6.0.0`
+- `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 8.0.0`
 - `org.jetbrains.kotlin.plugin.serialization:org.jetbrains.kotlin.plugin.serialization.gradle.plugin -> 2.2.20`
 - `org.jetbrains.kotlin.plugin.power-assert:org.jetbrains.kotlin.plugin.power-assert.gradle.plugin -> 2.2.20`
 - `org.jetbrains.kotlin.plugin.compose:org.jetbrains.kotlin.plugin.compose.gradle.plugin -> 2.2.20`

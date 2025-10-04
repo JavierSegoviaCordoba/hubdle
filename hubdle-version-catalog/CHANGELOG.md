@@ -4,8 +4,6 @@
 
 ### Added
 
- - `com.javiersc.kotlin:kotlin-compiler-gradle-extensions`
-
 ### Changed
 
 ### Deprecated
@@ -13,6 +11,14 @@
 ### Fixed
 
 ### Removed
+
+### Updated
+
+## [0.8.0] - 2025-10-04
+
+### Added
+
+- `com.javiersc.kotlin:kotlin-compiler-gradle-extensions`
 
 ### Updated
 
@@ -2274,7 +2280,9 @@
 - `com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter -> 1.0.0`
 - `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.7.1...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.8.0...HEAD
+
+[0.8.0]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.7.1...c0.8.0
 
 [0.7.1]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.7.0...c0.7.1
 
@@ -2383,3 +2391,5 @@
 [0.1.3]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.2...c0.1.3
 
 [0.1.2]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.1.1...c0.1.2
+
+[0.1.1]: https://github.com/JavierSegoviaCordoba/hubdle/commits/c0.1.1

@@ -8,6 +8,8 @@
 
 ### Changed
 
+- Java version upgraded to 17
+
 ### Deprecated
 
 ### Fixed

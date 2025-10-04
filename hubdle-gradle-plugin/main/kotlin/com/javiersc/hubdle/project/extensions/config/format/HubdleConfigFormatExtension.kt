@@ -3,6 +3,7 @@ package com.javiersc.hubdle.project.extensions.config.format
 import com.android.build.gradle.internal.tasks.factory.dependsOn
 import com.diffplug.gradle.spotless.SpotlessExtension
 import com.diffplug.gradle.spotless.SpotlessExtensionPredeclare
+import com.diffplug.spotless.kotlin.KtfmtStep.TrailingCommaManagementStrategy.ONLY_ADD
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
 import com.javiersc.hubdle.project.extensions._internal.fallbackAction
@@ -122,7 +123,10 @@ public open class HubdleConfigFormatExtension @Inject constructor(project: Proje
                 kotlin { kotlin ->
                     kotlin.target(includes.get())
                     kotlin.targetExclude(excludes.get())
-                    kotlin.ktfmt(ktfmtVersion.get()).kotlinlangStyle()
+                    kotlin.ktfmt(ktfmtVersion.get()).kotlinlangStyle().configure {
+                        it.setRemoveUnusedImports(true)
+                        it.setTrailingCommaManagementStrategy(ONLY_ADD)
+                    }
                 }
             }
         }

@@ -19,6 +19,7 @@ hubdle {
                 }
                 compose()
                 coroutines()
+                jvmVersion(JavaVersion.VERSION_17)
                 molecule()
             }
         }

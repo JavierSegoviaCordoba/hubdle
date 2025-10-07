@@ -14,6 +14,10 @@
 
 ### Updated
 
+- `com.squareup.okhttp3:okhttp -> 5.2.0`
+- `com.squareup.okhttp3:mockwebserver3-junit5 -> 5.2.0`
+- `com.squareup.okhttp3:mockwebserver3-junit4 -> 5.2.0`
+- `com.squareup.okhttp3:mockwebserver -> 5.2.0`
 - `org.eclipse.jgit:org.eclipse.jgit -> 7.4.0.202509020913-r`
 
 ## [0.8.0] - 2025-10-04

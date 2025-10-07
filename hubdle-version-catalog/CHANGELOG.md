@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `org.eclipse.jgit:org.eclipse.jgit -> 7.4.0.202509020913-r`
+
 ## [0.8.0] - 2025-10-04
 
 ### Added

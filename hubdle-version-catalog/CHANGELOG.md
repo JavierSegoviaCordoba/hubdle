@@ -14,6 +14,20 @@
 
 ### Updated
 
+- `io.ktor:ktor-serialization-kotlinx-json -> 3.3.1`
+- `io.ktor:ktor-client-winhttp -> 3.3.1`
+- `io.ktor:ktor-client-okhttp -> 3.3.1`
+- `io.ktor:ktor-client-mock -> 3.3.1`
+- `io.ktor:ktor-client-js -> 3.3.1`
+- `io.ktor:ktor-client-jetty -> 3.3.1`
+- `io.ktor:ktor-client-java -> 3.3.1`
+- `io.ktor:ktor-client-darwin -> 3.3.1`
+- `io.ktor:ktor-client-curl -> 3.3.1`
+- `io.ktor:ktor-client-core -> 3.3.1`
+- `io.ktor:ktor-client-content-negotiation -> 3.3.1`
+- `io.ktor:ktor-client-cio -> 3.3.1`
+- `io.ktor:ktor-client-apache5 -> 3.3.1`
+- `io.ktor:ktor-client-android -> 3.3.1`
 - `com.squareup.okhttp3:okhttp -> 5.2.0`
 - `com.squareup.okhttp3:mockwebserver3-junit5 -> 5.2.0`
 - `com.squareup.okhttp3:mockwebserver3-junit4 -> 5.2.0`

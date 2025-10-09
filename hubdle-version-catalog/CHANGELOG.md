@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `androidx.compose.material:material -> 1.9.3`
 - `androidx.compose.ui:ui-util -> 1.9.3`
 - `androidx.compose.ui:ui-tooling-preview -> 1.9.3`
 - `androidx.compose.ui:ui-tooling -> 1.9.3`

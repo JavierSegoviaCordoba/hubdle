@@ -14,6 +14,11 @@
 
 ### Updated
 
+- `com.squareup.okio:okio -> 3.16.1`
+- `com.squareup.okhttp3:okhttp -> 5.2.1`
+- `com.squareup.okhttp3:mockwebserver3-junit5 -> 5.2.1`
+- `com.squareup.okhttp3:mockwebserver3-junit4 -> 5.2.1`
+- `com.squareup.okhttp3:mockwebserver -> 5.2.1`
 - `org.gradle.test-retry:org.gradle.test-retry.gradle.plugin -> 1.6.4`
 - `androidx.compose.material:material -> 1.9.3`
 - `androidx.compose.ui:ui-util -> 1.9.3`
@@ -45,10 +50,6 @@
 - `io.ktor:ktor-client-cio -> 3.3.1`
 - `io.ktor:ktor-client-apache5 -> 3.3.1`
 - `io.ktor:ktor-client-android -> 3.3.1`
-- `com.squareup.okhttp3:okhttp -> 5.2.0`
-- `com.squareup.okhttp3:mockwebserver3-junit5 -> 5.2.0`
-- `com.squareup.okhttp3:mockwebserver3-junit4 -> 5.2.0`
-- `com.squareup.okhttp3:mockwebserver -> 5.2.0`
 - `org.eclipse.jgit:org.eclipse.jgit -> 7.4.0.202509020913-r`
 
 ## [0.8.0] - 2025-10-04

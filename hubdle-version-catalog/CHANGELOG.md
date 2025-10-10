@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.gradle.test-retry:org.gradle.test-retry.gradle.plugin -> 1.6.4`
 - `androidx.compose.material:material -> 1.9.3`
 - `androidx.compose.ui:ui-util -> 1.9.3`
 - `androidx.compose.ui:ui-tooling-preview -> 1.9.3`

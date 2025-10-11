@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jacoco:jacoco -> 0.8.14`
 - `com.squareup.okio:okio -> 3.16.1`
 - `com.squareup.okhttp3:okhttp -> 5.2.1`
 - `com.squareup.okhttp3:mockwebserver3-junit5 -> 5.2.1`

@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 4.2.2`
 - `org.jacoco:jacoco -> 0.8.14`
 - `com.squareup.okio:okio -> 3.16.1`
 - `com.squareup.okhttp3:okhttp -> 5.2.1`

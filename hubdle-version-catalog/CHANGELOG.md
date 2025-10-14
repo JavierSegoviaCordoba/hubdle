@@ -14,9 +14,10 @@
 
 ### Updated
 
+- `com.squareup.okio:okio -> 3.16.2`
+- `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.9.1`
 - `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 4.2.2`
 - `org.jacoco:jacoco -> 0.8.14`
-- `com.squareup.okio:okio -> 3.16.1`
 - `com.squareup.okhttp3:okhttp -> 5.2.1`
 - `com.squareup.okhttp3:mockwebserver3-junit5 -> 5.2.1`
 - `com.squareup.okhttp3:mockwebserver3-junit4 -> 5.2.1`

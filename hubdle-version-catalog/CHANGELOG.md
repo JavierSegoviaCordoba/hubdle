@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.sonarqube:org.sonarqube.gradle.plugin -> 7.0.0.6105`
 - `com.facebook:ktfmt -> 0.59`
 - `com.squareup.okio:okio -> 3.16.2`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.9.1`

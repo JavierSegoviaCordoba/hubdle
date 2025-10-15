@@ -14,6 +14,11 @@
 
 ### Updated
 
+- `io.kotest:kotest-runner-junit5 -> 6.0.4`
+- `io.kotest:kotest-runner-junit4 -> 6.0.4`
+- `io.kotest:kotest-property -> 6.0.4`
+- `io.kotest:kotest-assertions-json -> 6.0.4`
+- `io.kotest:kotest-assertions-core -> 6.0.4`
 - `org.sonarqube:org.sonarqube.gradle.plugin -> 7.0.0.6105`
 - `com.facebook:ktfmt -> 0.59`
 - `com.squareup.okio:okio -> 3.16.2`

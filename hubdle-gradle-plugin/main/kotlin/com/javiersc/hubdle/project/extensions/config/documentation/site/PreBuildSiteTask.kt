@@ -241,7 +241,8 @@ constructor(
                 """
                 |  - API docs:
                 |    - Latest: api/
-                |    - Snapshot: api/snapshot/"""
+                |    - Snapshot: api/snapshot/
+                """
                     .trimMargin()
 
         writeNavigation(navsPlusApiDocs)

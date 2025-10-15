@@ -25,7 +25,8 @@ internal class BinaryCompatibilityStateTest : GradleTestKitTest() {
                     """
                     |public final class com/kotlin/jvm/sandbox/project/Main {
                     |	public fun <init> ()V
-                    |}"""
+                    |}
+                    """
                         .trimMargin()
                 )
 
@@ -39,7 +40,8 @@ internal class BinaryCompatibilityStateTest : GradleTestKitTest() {
                     """
                     |public final class com/kotlin/jvm/sandbox/project/library/Main {
                     |	public fun <init> ()V
-                    |}"""
+                    |}
+                    """
                         .trimMargin()
                 )
         }

@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.facebook:ktfmt -> 0.59`
 - `com.squareup.okio:okio -> 3.16.2`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.9.1`
 - `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 4.2.2`

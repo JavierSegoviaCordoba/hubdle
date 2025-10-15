@@ -107,9 +107,9 @@ internal class AddChangelogItemTest : GradleTestKitTest() {
             projectDir.commitAndCheckout(
                 message =
                     """
-                        | datasource | package                                                   | from  | to  |
-                        | ---------- | --------------------------------------------------------- | ----- | --- |
-                        | maven      | com.gradle.enterprise:com.gradle.enterprise.gradle.plugin | 3.6.4 | 3.7 |
+                    | datasource | package                                                   | from  | to  |
+                    | ---------- | --------------------------------------------------------- | ----- | --- |
+                    | maven      | com.gradle.enterprise:com.gradle.enterprise.gradle.plugin | 3.6.4 | 3.7 |
                     """
                         .trimIndent()
             )
@@ -124,12 +124,12 @@ internal class AddChangelogItemTest : GradleTestKitTest() {
             projectDir.commitAndCheckout(
                 message =
                     """
-                        | datasource | package                                                   | from  | to    |
-                        | ---------- | --------------------------------------------------------- | ----- | ----- |
-                        | maven      | com.gradle.enterprise:com.gradle.enterprise.gradle.plugin | 3.6.4 | 3.7   |
-                        | maven      | com.javiersc.mokoki:mokoki-core                           | 1.0.0 | 1.0.1 |
-                        | maven      | com.javiersc.either:either-core                           | 2.0.1 | 2.0.2 |
-                        | maven      | com.javiersc.either:either-core                           | 2.0.1 | 2.0.2 |
+                    | datasource | package                                                   | from  | to    |
+                    | ---------- | --------------------------------------------------------- | ----- | ----- |
+                    | maven      | com.gradle.enterprise:com.gradle.enterprise.gradle.plugin | 3.6.4 | 3.7   |
+                    | maven      | com.javiersc.mokoki:mokoki-core                           | 1.0.0 | 1.0.1 |
+                    | maven      | com.javiersc.either:either-core                           | 2.0.1 | 2.0.2 |
+                    | maven      | com.javiersc.either:either-core                           | 2.0.1 | 2.0.2 |
                     """
                         .trimIndent()
             )
@@ -144,9 +144,9 @@ internal class AddChangelogItemTest : GradleTestKitTest() {
             projectDir.commitAndCheckout(
                 message =
                     """
-                        | datasource | package                                                   | from  | to    |
-                        | ---------- | --------------------------------------------------------- | ----- | ----- |
-                        | maven      | com.javiersc.mokoki:mokoki-core                           | 1.0.0 | 1.0.1 |
+                    | datasource | package                                                   | from  | to    |
+                    | ---------- | --------------------------------------------------------- | ----- | ----- |
+                    | maven      | com.javiersc.mokoki:mokoki-core                           | 1.0.0 | 1.0.1 |
                     """
                         .trimIndent()
             )
@@ -161,14 +161,14 @@ internal class AddChangelogItemTest : GradleTestKitTest() {
             projectDir.commitAndCheckout(
                 message =
                     """
-                        | datasource  | package       | from   | to     |
-                        | ----------- | ------------- | ------ | ------ |
-                        | github-tags | actions/cache | v2.1.6 | v2.1.7 |
-                        | github-tags | actions/cache | v2.1.6 | v2.1.7 |
-                        | github-tags | actions/cache | v2.1.6 | v2.1.7 |
-                        | github-tags | actions/cache | v2.1.6 | v2.1.7 |
-                        | github-tags | actions/cache | v2.1.6 | v2.1.7 |
-                        | github-tags | actions/cache | v2.1.6 | v2.1.7 |
+                    | datasource  | package       | from   | to     |
+                    | ----------- | ------------- | ------ | ------ |
+                    | github-tags | actions/cache | v2.1.6 | v2.1.7 |
+                    | github-tags | actions/cache | v2.1.6 | v2.1.7 |
+                    | github-tags | actions/cache | v2.1.6 | v2.1.7 |
+                    | github-tags | actions/cache | v2.1.6 | v2.1.7 |
+                    | github-tags | actions/cache | v2.1.6 | v2.1.7 |
+                    | github-tags | actions/cache | v2.1.6 | v2.1.7 |
                     """
                         .trimIndent()
             )
@@ -183,9 +183,9 @@ internal class AddChangelogItemTest : GradleTestKitTest() {
             projectDir.commitAndCheckout(
                 message =
                     """
-                        | datasource     | package | from  | to  |
-                        | -------------- | ------- | ----- | --- |
-                        | gradle-version | gradle  | 7.3.3 | 7.4 |
+                    | datasource     | package | from  | to  |
+                    | -------------- | ------- | ----- | --- |
+                    | gradle-version | gradle  | 7.3.3 | 7.4 |
                     """
                         .trimIndent()
             )
@@ -200,10 +200,10 @@ internal class AddChangelogItemTest : GradleTestKitTest() {
             projectDir.commitAndCheckout(
                 message =
                     """
-                     
-                        | datasource | package                                               | from                           | to                             |
-                        | ---------- | ----------------------------------------------------- | ------------------------------ | ------------------------------ |
-                        | maven      | com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin | 0.6.4+2.0.0-dev-17175-SNAPSHOT | 0.6.4+2.0.0-dev-18803-SNAPSHOT |
+
+                    | datasource | package                                               | from                           | to                             |
+                    | ---------- | ----------------------------------------------------- | ------------------------------ | ------------------------------ |
+                    | maven      | com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin | 0.6.4+2.0.0-dev-17175-SNAPSHOT | 0.6.4+2.0.0-dev-18803-SNAPSHOT |
                     """
                         .trimIndent()
             )

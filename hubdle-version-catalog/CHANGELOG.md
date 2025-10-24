@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.sonarqube:org.sonarqube.gradle.plugin -> 7.0.1.6134`
 - `org.jetbrains.kotlin:kotlin-test-testng -> 2.2.21`
 - `org.jetbrains.kotlin:kotlin-test-junit5 -> 2.2.21`
 - `org.jetbrains.kotlin:kotlin-test-junit -> 2.2.21`
@@ -51,7 +52,6 @@
 - `io.kotest:kotest-property -> 6.0.4`
 - `io.kotest:kotest-assertions-json -> 6.0.4`
 - `io.kotest:kotest-assertions-core -> 6.0.4`
-- `org.sonarqube:org.sonarqube.gradle.plugin -> 7.0.0.6105`
 - `com.facebook:ktfmt -> 0.59`
 - `com.squareup.okio:okio -> 3.16.2`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.9.1`

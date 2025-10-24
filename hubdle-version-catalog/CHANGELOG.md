@@ -6,6 +6,14 @@
 
 ### Changed
 
+- `org.junit:junit-bom -> 5.14.0`
+- `org.junit.jupiter:junit-jupiter -> 5.14.0`
+- `org.junit.jupiter:junit-jupiter-api -> 5.14.0`
+- `org.junit.jupiter:junit-jupiter-params -> 5.14.0`
+- `org.junit.platform:junit-platform-commons -> 1.14.0`
+- `org.junit.platform:junit-platform-launcher -> 1.14.0`
+- `org.junit.platform:junit-platform-suite-api -> 1.14.0`
+
 ### Deprecated
 
 ### Fixed

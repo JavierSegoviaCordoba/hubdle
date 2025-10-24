@@ -6,6 +6,18 @@
 
 ### Changed
 
+### Deprecated
+
+### Fixed
+
+### Removed
+
+### Updated
+
+## [0.9.0] - 2025-10-24
+
+### Changed
+
 - `org.junit:junit-bom -> 5.14.0`
 - `org.junit.jupiter:junit-jupiter -> 5.14.0`
 - `org.junit.jupiter:junit-jupiter-api -> 5.14.0`
@@ -13,12 +25,6 @@
 - `org.junit.platform:junit-platform-commons -> 1.14.0`
 - `org.junit.platform:junit-platform-launcher -> 1.14.0`
 - `org.junit.platform:junit-platform-suite-api -> 1.14.0`
-
-### Deprecated
-
-### Fixed
-
-### Removed
 
 ### Updated
 
@@ -2352,7 +2358,9 @@
 - `com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter -> 1.0.0`
 - `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.8.0...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.9.0...HEAD
+
+[0.9.0]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.8.0...c0.9.0
 
 [0.8.0]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.7.1...c0.8.0
 

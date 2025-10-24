@@ -22,6 +22,12 @@
 
 ### Updated
 
+- `org.junit.platform:junit-platform-suite-api -> 6.0.0`
+- `org.junit.platform:junit-platform-launcher -> 6.0.0`
+- `org.junit.platform:junit-platform-commons -> 6.0.0`
+- `org.junit.jupiter:junit-jupiter-params -> 6.0.0`
+- `org.junit.jupiter:junit-jupiter-api -> 6.0.0`
+- `org.junit.jupiter:junit-jupiter -> 6.0.0`
 - `org.sonarqube:org.sonarqube.gradle.plugin -> 7.0.1.6134`
 - `org.jetbrains.kotlin:kotlin-test-testng -> 2.2.21`
 - `org.jetbrains.kotlin:kotlin-test-junit5 -> 2.2.21`

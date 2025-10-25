@@ -14,6 +14,10 @@
 
 ### Updated
 
+## [0.10.0] - 2025-10-25
+
+### Updated
+
 - `com.javiersc.kotlin.kopy:com.javiersc.kotlin.kopy.gradle.plugin -> 0.20.0+2.2.21`
 - `app.cash.sqldelight:app.cash.sqldelight.gradle.plugin -> 2.1.0`
 - `app.cash.sqldelight:sqlite-driver -> 2.1.0`
@@ -2369,7 +2373,9 @@
 - `com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter -> 1.0.0`
 - `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.9.0...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.10.0...HEAD
+
+[0.10.0]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.9.0...c0.10.0
 
 [0.9.0]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.8.0...c0.9.0
 

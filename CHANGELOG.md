@@ -4,11 +4,7 @@
 
 ### Added
 
-- `deleteCompilerTextTestFiles` task to Compiler plugin feature
-
 ### Changed
-
-- Java version upgraded to 17
 
 ### Deprecated
 
@@ -17,6 +13,16 @@
 ### Removed
 
 ### Updated
+
+## [0.16.0] - 2025-10-25
+
+### Added
+
+- `deleteCompilerTextTestFiles` task to Compiler plugin feature
+
+### Changed
+
+- Java version upgraded to 17
 
 ## [0.15.0] - 2025-08-17
 
@@ -419,7 +425,9 @@
 
 - `allTests` task
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.15.0...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.16.0...HEAD
+
+[0.16.0]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.15.0...p0.16.0
 
 [0.15.0]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.14.2...p0.15.0
 

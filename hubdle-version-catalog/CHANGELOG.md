@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `gradle -> 9.2.0`
+- `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.9.2`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.16.0`
 
 ## [0.10.0] - 2025-10-25

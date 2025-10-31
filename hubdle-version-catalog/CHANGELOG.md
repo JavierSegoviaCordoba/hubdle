@@ -14,6 +14,10 @@
 
 ### Updated
 
+- `com.squareup.okhttp3:okhttp -> 5.3.0`
+- `com.squareup.okhttp3:mockwebserver3-junit5 -> 5.3.0`
+- `com.squareup.okhttp3:mockwebserver3-junit4 -> 5.3.0`
+- `com.squareup.okhttp3:mockwebserver -> 5.3.0`
 - `gradle -> 9.2.0`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.9.2`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.16.0`

@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `io.arrow-kt:arrow-core -> 2.2.0`
 - `com.squareup.okhttp3:okhttp -> 5.3.0`
 - `com.squareup.okhttp3:mockwebserver3-junit5 -> 5.3.0`
 - `com.squareup.okhttp3:mockwebserver3-junit4 -> 5.3.0`

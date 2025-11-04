@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.github.triplet.play:com.github.triplet.play.gradle.plugin -> 3.12.2`
 - `io.arrow-kt:arrow-core -> 2.2.0`
 - `com.squareup.okhttp3:okhttp -> 5.3.0`
 - `com.squareup.okhttp3:mockwebserver3-junit5 -> 5.3.0`

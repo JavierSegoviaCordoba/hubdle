@@ -14,6 +14,20 @@
 
 ### Updated
 
+- `io.ktor:ktor-serialization-kotlinx-json -> 3.3.2`
+- `io.ktor:ktor-client-winhttp -> 3.3.2`
+- `io.ktor:ktor-client-okhttp -> 3.3.2`
+- `io.ktor:ktor-client-mock -> 3.3.2`
+- `io.ktor:ktor-client-js -> 3.3.2`
+- `io.ktor:ktor-client-jetty -> 3.3.2`
+- `io.ktor:ktor-client-java -> 3.3.2`
+- `io.ktor:ktor-client-darwin -> 3.3.2`
+- `io.ktor:ktor-client-curl -> 3.3.2`
+- `io.ktor:ktor-client-core -> 3.3.2`
+- `io.ktor:ktor-client-content-negotiation -> 3.3.2`
+- `io.ktor:ktor-client-cio -> 3.3.2`
+- `io.ktor:ktor-client-apache5 -> 3.3.2`
+- `io.ktor:ktor-client-android -> 3.3.2`
 - `com.javiersc.kotlin.kopy:com.javiersc.kotlin.kopy.gradle.plugin -> 0.20.1+2.2.21`
 - `com.github.triplet.play:com.github.triplet.play.gradle.plugin -> 3.12.2`
 - `io.arrow-kt:arrow-core -> 2.2.0`

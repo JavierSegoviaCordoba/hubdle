@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `androidx.navigation:navigation-compose -> 2.9.6`
+- `androidx.core:core-splashscreen -> 1.2.0`
 - `io.ktor:ktor-serialization-kotlinx-json -> 3.3.2`
 - `io.ktor:ktor-client-winhttp -> 3.3.2`
 - `io.ktor:ktor-client-okhttp -> 3.3.2`

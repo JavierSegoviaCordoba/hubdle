@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.javiersc.kotlin.kopy:com.javiersc.kotlin.kopy.gradle.plugin -> 0.20.2+2.2.21`
 - `androidx.navigation:navigation-compose -> 2.9.6`
 - `androidx.core:core-splashscreen -> 1.2.0`
 - `io.ktor:ktor-serialization-kotlinx-json -> 3.3.2`
@@ -30,7 +31,6 @@
 - `io.ktor:ktor-client-cio -> 3.3.2`
 - `io.ktor:ktor-client-apache5 -> 3.3.2`
 - `io.ktor:ktor-client-android -> 3.3.2`
-- `com.javiersc.kotlin.kopy:com.javiersc.kotlin.kopy.gradle.plugin -> 0.20.1+2.2.21`
 - `com.github.triplet.play:com.github.triplet.play.gradle.plugin -> 3.12.2`
 - `io.arrow-kt:arrow-core -> 2.2.0`
 - `com.squareup.okhttp3:okhttp -> 5.3.0`

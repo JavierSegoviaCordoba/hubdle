@@ -14,11 +14,12 @@
 
 ### Updated
 
+- `gradle -> 9.2.1`
+- `com.squareup.okio:okio -> 3.16.4`
 - `com.squareup.okhttp3:okhttp -> 5.3.1`
 - `com.squareup.okhttp3:mockwebserver3-junit5 -> 5.3.1`
 - `com.squareup.okhttp3:mockwebserver3-junit4 -> 5.3.1`
 - `com.squareup.okhttp3:mockwebserver -> 5.3.1`
-- `com.squareup.okio:okio -> 3.16.3`
 - `app.cash.sqldelight:app.cash.sqldelight.gradle.plugin -> 2.2.1`
 - `app.cash.sqldelight:sqlite-driver -> 2.2.1`
 - `app.cash.sqldelight:native-driver -> 2.2.1`
@@ -49,7 +50,6 @@
 - `io.ktor:ktor-client-android -> 3.3.2`
 - `com.github.triplet.play:com.github.triplet.play.gradle.plugin -> 3.12.2`
 - `io.arrow-kt:arrow-core -> 2.2.0`
-- `gradle -> 9.2.0`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.16.0`
 
 ## [0.10.0] - 2025-10-25

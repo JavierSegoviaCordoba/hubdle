@@ -14,6 +14,11 @@
 
 ### Updated
 
+- `com.squareup.okhttp3:okhttp -> 5.3.2`
+- `com.squareup.okhttp3:mockwebserver3-junit5 -> 5.3.2`
+- `com.squareup.okhttp3:mockwebserver3-junit4 -> 5.3.2`
+- `com.squareup.okhttp3:mockwebserver -> 5.3.2`
+- `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 8.1.0`
 - `io.kotest:kotest-runner-junit5 -> 6.0.5`
 - `io.kotest:kotest-runner-junit4 -> 6.0.5`
 - `io.kotest:kotest-property -> 6.0.5`
@@ -21,10 +26,6 @@
 - `io.kotest:kotest-assertions-core -> 6.0.5`
 - `gradle -> 9.2.1`
 - `com.squareup.okio:okio -> 3.16.4`
-- `com.squareup.okhttp3:okhttp -> 5.3.1`
-- `com.squareup.okhttp3:mockwebserver3-junit5 -> 5.3.1`
-- `com.squareup.okhttp3:mockwebserver3-junit4 -> 5.3.1`
-- `com.squareup.okhttp3:mockwebserver -> 5.3.1`
 - `app.cash.sqldelight:app.cash.sqldelight.gradle.plugin -> 2.2.1`
 - `app.cash.sqldelight:sqlite-driver -> 2.2.1`
 - `app.cash.sqldelight:native-driver -> 2.2.1`

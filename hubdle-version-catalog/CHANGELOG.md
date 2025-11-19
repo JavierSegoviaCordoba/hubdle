@@ -14,6 +14,11 @@
 
 ### Updated
 
+- `io.kotest:kotest-runner-junit5 -> 6.0.5`
+- `io.kotest:kotest-runner-junit4 -> 6.0.5`
+- `io.kotest:kotest-property -> 6.0.5`
+- `io.kotest:kotest-assertions-json -> 6.0.5`
+- `io.kotest:kotest-assertions-core -> 6.0.5`
 - `gradle -> 9.2.1`
 - `com.squareup.okio:okio -> 3.16.4`
 - `com.squareup.okhttp3:okhttp -> 5.3.1`

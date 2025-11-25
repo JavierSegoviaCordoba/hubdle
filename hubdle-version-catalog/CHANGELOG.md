@@ -14,7 +14,7 @@
 
 ### Updated
 
-- `org.jetbrains.kotlinx:kotlinx-io-core -> 0.8.1`
+- `org.jetbrains.kotlinx:kotlinx-io-core -> 0.8.2`
 - `org.sonarqube:org.sonarqube.gradle.plugin -> 7.1.0.6387`
 - `androidx.lifecycle:lifecycle-viewmodel-ktx -> 2.10.0`
 - `androidx.lifecycle:lifecycle-viewmodel-compose -> 2.10.0`

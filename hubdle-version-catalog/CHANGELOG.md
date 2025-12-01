@@ -14,6 +14,11 @@
 
 ### Updated
 
+- `io.kotest:kotest-runner-junit5 -> 6.0.6`
+- `io.kotest:kotest-runner-junit4 -> 6.0.6`
+- `io.kotest:kotest-property -> 6.0.6`
+- `io.kotest:kotest-assertions-json -> 6.0.6`
+- `io.kotest:kotest-assertions-core -> 6.0.6`
 - `io.ktor:ktor-serialization-kotlinx-json -> 3.3.3`
 - `io.ktor:ktor-client-winhttp -> 3.3.3`
 - `io.ktor:ktor-client-okhttp -> 3.3.3`
@@ -57,11 +62,6 @@
 - `com.squareup.okhttp3:mockwebserver3-junit4 -> 5.3.2`
 - `com.squareup.okhttp3:mockwebserver -> 5.3.2`
 - `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 8.1.0`
-- `io.kotest:kotest-runner-junit5 -> 6.0.5`
-- `io.kotest:kotest-runner-junit4 -> 6.0.5`
-- `io.kotest:kotest-property -> 6.0.5`
-- `io.kotest:kotest-assertions-json -> 6.0.5`
-- `io.kotest:kotest-assertions-core -> 6.0.5`
 - `gradle -> 9.2.1`
 - `com.squareup.okio:okio -> 3.16.4`
 - `app.cash.sqldelight:app.cash.sqldelight.gradle.plugin -> 2.2.1`

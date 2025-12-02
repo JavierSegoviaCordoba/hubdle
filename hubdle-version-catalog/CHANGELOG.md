@@ -14,11 +14,11 @@
 
 ### Updated
 
-- `io.kotest:kotest-runner-junit5 -> 6.0.6`
-- `io.kotest:kotest-runner-junit4 -> 6.0.6`
-- `io.kotest:kotest-property -> 6.0.6`
-- `io.kotest:kotest-assertions-json -> 6.0.6`
-- `io.kotest:kotest-assertions-core -> 6.0.6`
+- `io.kotest:kotest-runner-junit5 -> 6.0.7`
+- `io.kotest:kotest-runner-junit4 -> 6.0.7`
+- `io.kotest:kotest-property -> 6.0.7`
+- `io.kotest:kotest-assertions-json -> 6.0.7`
+- `io.kotest:kotest-assertions-core -> 6.0.7`
 - `io.ktor:ktor-serialization-kotlinx-json -> 3.3.3`
 - `io.ktor:ktor-client-winhttp -> 3.3.3`
 - `io.ktor:ktor-client-okhttp -> 3.3.3`

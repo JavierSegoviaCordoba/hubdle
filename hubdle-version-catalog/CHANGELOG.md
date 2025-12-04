@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.sonarqube:org.sonarqube.gradle.plugin -> 7.2.0.6526`
 - `androidx.compose.ui:ui-util -> 1.10.0`
 - `androidx.compose.ui:ui-tooling-preview -> 1.10.0`
 - `androidx.compose.ui:ui-tooling -> 1.10.0`
@@ -53,7 +54,6 @@
 - `io.ktor:ktor-client-android -> 3.3.3`
 - `org.jetbrains.changelog:org.jetbrains.changelog.gradle.plugin -> 2.5.0`
 - `org.jetbrains.kotlinx:kotlinx-io-core -> 0.8.2`
-- `org.sonarqube:org.sonarqube.gradle.plugin -> 7.1.0.6387`
 - `androidx.lifecycle:lifecycle-viewmodel-ktx -> 2.10.0`
 - `androidx.lifecycle:lifecycle-viewmodel-compose -> 2.10.0`
 - `androidx.lifecycle:lifecycle-viewmodel -> 2.10.0`

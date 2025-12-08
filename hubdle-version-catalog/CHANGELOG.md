@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.github.triplet.play:com.github.triplet.play.gradle.plugin -> 3.13.0`
 - `org.sonarqube:org.sonarqube.gradle.plugin -> 7.2.0.6526`
 - `androidx.compose.ui:ui-util -> 1.10.0`
 - `androidx.compose.ui:ui-tooling-preview -> 1.10.0`
@@ -78,7 +79,6 @@
 - `com.javiersc.kotlin.kopy:com.javiersc.kotlin.kopy.gradle.plugin -> 0.20.2+2.2.21`
 - `androidx.navigation:navigation-compose -> 2.9.6`
 - `androidx.core:core-splashscreen -> 1.2.0`
-- `com.github.triplet.play:com.github.triplet.play.gradle.plugin -> 3.12.2`
 - `io.arrow-kt:arrow-core -> 2.2.0`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.16.0`
 

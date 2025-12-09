@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `dev.detekt:dev.detekt.gradle.plugin -> 2.0.0-alpha.1`
 - `org.jetbrains.intellij:org.jetbrains.intellij.gradle.plugin -> 2.10.5`
 - `com.github.triplet.play:com.github.triplet.play.gradle.plugin -> 3.13.0`
 - `org.sonarqube:org.sonarqube.gradle.plugin -> 7.2.0.6526`

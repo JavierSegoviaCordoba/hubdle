@@ -11,8 +11,8 @@ import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
 import com.javiersc.hubdle.project.extensions.config.analysis.hubdleAnalysis
 import com.javiersc.hubdle.project.extensions.config.analysis.reports.HubdleConfigAnalysisReportsExtension
 import com.javiersc.hubdle.project.extensions.shared.PluginId
-import io.gitlab.arturbosch.detekt.Detekt
-import io.gitlab.arturbosch.detekt.extensions.DetektExtension
+import dev.detekt.gradle.Detekt
+import dev.detekt.gradle.extensions.DetektExtension
 import java.io.File
 import javax.inject.Inject
 import org.gradle.api.Action
@@ -70,10 +70,10 @@ public open class HubdleConfigAnalysisDetektExtension @Inject constructor(projec
         configure<DetektExtension> {
             val kotlinDirs: Provider<List<File>> =
                 allKotlinSrcDirsWithoutBuild.map { files -> files.filter(File::isDirectory) }
-            parallel = true
-            isIgnoreFailures = hubdleDetekt.ignoreFailures.get()
-            buildUponDefaultConfig = true
-            basePath = projectDir.path
+            parallel.set(true)
+            ignoreFailures.set(hubdleDetekt.ignoreFailures)
+            buildUponDefaultConfig.set(true)
+            basePath.set(projectDir)
             source.from(kotlinDirs)
         }
 
@@ -86,11 +86,9 @@ public open class HubdleConfigAnalysisDetektExtension @Inject constructor(projec
             detekt.exclude(excludes.get())
 
             detekt.reports { detektReports ->
-                detektReports.md.required.set(reports.md)
+                detektReports.markdown.required.set(reports.md)
                 detektReports.html.required.set(reports.html)
                 detektReports.sarif.required.set(reports.sarif)
-                detektReports.txt.required.set(reports.txt)
-                detektReports.xml.required.set(reports.xml)
             }
         }
     }

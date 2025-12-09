@@ -5,7 +5,7 @@ public enum class PluginId(public val id: String) {
     AndroidApplication("com.android.application"),
     AndroidLibrary("com.android.library"),
     CodingfelineBuildkonfig("com.codingfeline.buildkonfig"),
-    Detekt("io.gitlab.arturbosch.detekt"),
+    Detekt("dev.detekt"),
     DiffplugSpotless("com.diffplug.spotless"),
     GradleApplication("org.gradle.application"),
     GradleJava("org.gradle.java"),

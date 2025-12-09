@@ -6,6 +6,7 @@
 
 ### Changed
 
+- Detekt configuration to support version 2
 - IntelliJ plugin configuration to support version 2
 
 ### Deprecated

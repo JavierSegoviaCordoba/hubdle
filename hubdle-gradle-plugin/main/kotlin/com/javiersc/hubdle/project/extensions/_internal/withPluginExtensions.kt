@@ -6,7 +6,7 @@ import com.diffplug.gradle.spotless.SpotlessExtension
 import com.diffplug.gradle.spotless.SpotlessExtensionPredeclare
 import com.javiersc.hubdle.project.extensions.shared.PluginId
 import com.javiersc.semver.project.gradle.plugin.SemverExtension
-import io.gitlab.arturbosch.detekt.extensions.DetektExtension
+import dev.detekt.gradle.extensions.DetektExtension
 import kotlinx.validation.ApiValidationExtension
 import org.gradle.api.Project
 import org.gradle.api.plugins.JavaApplication

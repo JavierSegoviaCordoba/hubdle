@@ -10,11 +10,15 @@
 
 ### Fixed
 
-- IntelliJ plugin signing configuration
-
 ### Removed
 
 ### Updated
+
+## [0.17.1] - 2025-12-09
+
+### Fixed
+
+- IntelliJ plugin signing configuration
 
 ## [0.17.0] - 2025-12-09
 
@@ -434,7 +438,9 @@
 
 - `allTests` task
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.17.0...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.17.1...HEAD
+
+[0.17.1]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.17.0...p0.17.1
 
 [0.17.0]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.16.0...p0.17.0
 

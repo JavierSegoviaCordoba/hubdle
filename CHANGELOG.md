@@ -6,6 +6,8 @@
 
 ### Changed
 
+- IntelliJ plugin configuration to support version 2
+
 ### Deprecated
 
 ### Fixed

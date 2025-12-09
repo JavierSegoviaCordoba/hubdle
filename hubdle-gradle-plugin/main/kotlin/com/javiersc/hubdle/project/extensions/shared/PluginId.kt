@@ -21,7 +21,7 @@ public enum class PluginId(public val id: String) {
     JetbrainsChangelog("org.jetbrains.changelog"),
     JetbrainsCompose("org.jetbrains.compose"),
     JetbrainsDokka("org.jetbrains.dokka"),
-    JetbrainsIntellij("org.jetbrains.intellij"),
+    JetbrainsIntellij("org.jetbrains.intellij.platform"),
     JetbrainsKotlinAndroid("org.jetbrains.kotlin.android"),
     JetbrainsKotlinJvm("org.jetbrains.kotlin.jvm"),
     JetbrainsKotlinMultiplatform("org.jetbrains.kotlin.multiplatform"),

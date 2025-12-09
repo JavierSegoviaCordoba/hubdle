@@ -1,6 +1,6 @@
 package com.javiersc.hubdle.project.extensions.shared.features.intellij
 
-import com.javiersc.gradle.properties.extensions.getBooleanProperty
+import com.javiersc.gradle.project.extensions.invoke
 import com.javiersc.gradle.properties.extensions.getStringProperty
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
@@ -27,17 +27,24 @@ import org.gradle.api.provider.Property
 import org.gradle.api.provider.Provider
 import org.gradle.api.tasks.Copy
 import org.gradle.api.tasks.TaskCollection
+import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
+import org.gradle.kotlin.dsl.mavenCentral
 import org.gradle.kotlin.dsl.named
 import org.gradle.kotlin.dsl.project
 import org.gradle.kotlin.dsl.register
+import org.gradle.kotlin.dsl.repositories
 import org.gradle.kotlin.dsl.withType
 import org.gradle.language.base.plugins.LifecycleBasePlugin.CHECK_TASK_NAME
-import org.jetbrains.intellij.IntelliJPluginExtension
-import org.jetbrains.intellij.tasks.PatchPluginXmlTask
-import org.jetbrains.intellij.tasks.PublishPluginTask
-import org.jetbrains.intellij.tasks.RunPluginVerifierTask
-import org.jetbrains.intellij.tasks.SignPluginTask
+import org.jetbrains.intellij.platform.gradle.TestFrameworkType
+import org.jetbrains.intellij.platform.gradle.extensions.IntelliJPlatformDependenciesExtension
+import org.jetbrains.intellij.platform.gradle.extensions.IntelliJPlatformExtension
+import org.jetbrains.intellij.platform.gradle.extensions.IntelliJPlatformRepositoriesExtension
+import org.jetbrains.intellij.platform.gradle.extensions.intellijPlatform
+import org.jetbrains.intellij.platform.gradle.plugins.project.RunPluginVerifierTask
+import org.jetbrains.intellij.platform.gradle.tasks.PatchPluginXmlTask
+import org.jetbrains.intellij.platform.gradle.tasks.PublishPluginTask
+import org.jetbrains.intellij.platform.gradle.tasks.SignPluginTask
 
 @HubdleDslMarker
 public open class HubdleIntellijPluginFeatureExtension @Inject constructor(project: Project) :
@@ -47,15 +54,6 @@ public open class HubdleIntellijPluginFeatureExtension @Inject constructor(proje
 
     override val oneOfExtensions: Set<HubdleEnableableExtension>
         get() = setOf(hubdleJava, hubdleKotlinJvm)
-
-    public val downloadSources: Property<Boolean> = property {
-        getBooleanProperty(IntelliJ.downloadSources).orElse(true).get()
-    }
-
-    @HubdleDslMarker
-    public fun downloadSources(value: Boolean) {
-        downloadSources.set(value)
-    }
 
     public val sinceBuild: Property<String> = property {
         getStringProperty(IntelliJ.sinceBuild).orElse("").get()
@@ -82,24 +80,6 @@ public open class HubdleIntellijPluginFeatureExtension @Inject constructor(proje
     @HubdleDslMarker
     public fun token(value: String) {
         token.set(value)
-    }
-
-    public val type: Property<String> = property {
-        getStringProperty(IntelliJ.type).orElse("").get()
-    }
-
-    @HubdleDslMarker
-    public fun type(value: String) {
-        type.set(value)
-    }
-
-    public val updateSinceUntilBuild: Property<Boolean> = property {
-        getBooleanProperty(IntelliJ.updateSinceUntilBuild).orElse(true).get()
-    }
-
-    @HubdleDslMarker
-    public fun updateSinceUntilBuild(value: Boolean) {
-        updateSinceUntilBuild.set(value)
     }
 
     public val version: Property<String> = property {
@@ -139,7 +119,7 @@ public open class HubdleIntellijPluginFeatureExtension @Inject constructor(proje
     }
 
     @HubdleDslMarker
-    public fun intellij(action: Action<IntelliJPluginExtension> = Action {}) {
+    public fun intellij(action: Action<IntelliJPlatformExtension> = Action {}) {
         lazyConfigurable { action.execute(the()) }
     }
 
@@ -159,12 +139,9 @@ public open class HubdleIntellijPluginFeatureExtension @Inject constructor(proje
     }
 
     public object IntelliJ {
-        public const val downloadSources: String = "intellij.downloadSources"
         public const val token: String = "intellij.token"
-        public const val type: String = "intellij.type"
         public const val sinceBuild: String = "intellij.sinceBuild"
         public const val untilBuild: String = "intellij.untilBuild"
-        public const val updateSinceUntilBuild: String = "intellij.updateSinceUntilBuild"
         public const val version: String = "intellij.version"
     }
 
@@ -199,12 +176,20 @@ private fun HubdleIntellijPluginFeatureExtension.configureIntellijPluginExtensio
     with(project) {
         val hubdleIntellij = this@configureIntellijPluginExtension
 
-        configure<IntelliJPluginExtension> {
-            pluginName.set(hubdlePublishingMavenPom.name)
-            downloadSources.set(hubdleIntellij.downloadSources)
-            type.set(hubdleIntellij.type)
-            version.set(hubdleIntellij.version)
-            updateSinceUntilBuild.set(hubdleIntellij.updateSinceUntilBuild)
+        repositories {
+            mavenCentral()
+            intellijPlatform(IntelliJPlatformRepositoriesExtension::defaultRepositories)
+        }
+        dependencies.configure<IntelliJPlatformDependenciesExtension> {
+            intellijIdea(hubdleIntellij.version)
+            testFramework(TestFrameworkType.Platform)
+        }
+
+        configure<IntelliJPlatformExtension> {
+            pluginConfiguration.name.set(hubdlePublishingMavenPom.name)
+            pluginConfiguration.version.set(provider { project.version.toString() })
+            pluginConfiguration.ideaVersion.sinceBuild.set(hubdleIntellij.sinceBuild)
+            pluginConfiguration.ideaVersion.untilBuild.set(hubdleIntellij.untilBuild)
         }
 
         val runPluginVerifierTask: TaskCollection<RunPluginVerifierTask> = tasks.withType()
@@ -216,7 +201,7 @@ private fun HubdleIntellijPluginFeatureExtension.configurePatchPluginXml() =
         tasks.withType<PatchPluginXmlTask>().configureEach { task ->
             task.dependsOn(tasks.named("copyGeneratedChangelogHtml"))
 
-            task.version.set("$version")
+            task.pluginVersion.set("$version")
             task.sinceBuild.set(sinceBuild)
             task.untilBuild.set(untilBuild)
 

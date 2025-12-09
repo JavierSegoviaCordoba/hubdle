@@ -1,6 +1,5 @@
 package com.javiersc.hubdle.project.extensions.shared.features.intellij
 
-import com.javiersc.gradle.project.extensions.invoke
 import com.javiersc.gradle.properties.extensions.getStringProperty
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
 import com.javiersc.hubdle.project.extensions._internal.ApplicablePlugin.Scope
@@ -29,7 +28,6 @@ import org.gradle.api.tasks.Copy
 import org.gradle.api.tasks.TaskCollection
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
-import org.gradle.kotlin.dsl.mavenCentral
 import org.gradle.kotlin.dsl.named
 import org.gradle.kotlin.dsl.project
 import org.gradle.kotlin.dsl.register
@@ -43,8 +41,6 @@ import org.jetbrains.intellij.platform.gradle.extensions.IntelliJPlatformReposit
 import org.jetbrains.intellij.platform.gradle.extensions.intellijPlatform
 import org.jetbrains.intellij.platform.gradle.plugins.project.RunPluginVerifierTask
 import org.jetbrains.intellij.platform.gradle.tasks.PatchPluginXmlTask
-import org.jetbrains.intellij.platform.gradle.tasks.PublishPluginTask
-import org.jetbrains.intellij.platform.gradle.tasks.SignPluginTask
 
 @HubdleDslMarker
 public open class HubdleIntellijPluginFeatureExtension @Inject constructor(project: Project) :
@@ -62,15 +58,6 @@ public open class HubdleIntellijPluginFeatureExtension @Inject constructor(proje
     @HubdleDslMarker
     public fun sinceBuild(value: String) {
         sinceBuild.set(value)
-    }
-
-    public val untilBuild: Property<String> = property {
-        getStringProperty(IntelliJ.untilBuild).orElse("").get()
-    }
-
-    @HubdleDslMarker
-    public fun untilBuild(value: String) {
-        untilBuild.set(value)
     }
 
     public val token: Property<String> = property {
@@ -128,20 +115,9 @@ public open class HubdleIntellijPluginFeatureExtension @Inject constructor(proje
         lazyConfigurable { action.execute(the()) }
     }
 
-    @HubdleDslMarker
-    public fun publishPlugin(action: Action<PublishPluginTask> = Action {}) {
-        lazyConfigurable { action.execute(the()) }
-    }
-
-    @HubdleDslMarker
-    public fun signPlugin(action: Action<SignPluginTask> = Action {}) {
-        lazyConfigurable { action.execute(the()) }
-    }
-
     public object IntelliJ {
         public const val token: String = "intellij.token"
         public const val sinceBuild: String = "intellij.sinceBuild"
-        public const val untilBuild: String = "intellij.untilBuild"
         public const val version: String = "intellij.version"
     }
 
@@ -189,7 +165,6 @@ private fun HubdleIntellijPluginFeatureExtension.configureIntellijPluginExtensio
             pluginConfiguration.name.set(hubdlePublishingMavenPom.name)
             pluginConfiguration.version.set(provider { project.version.toString() })
             pluginConfiguration.ideaVersion.sinceBuild.set(hubdleIntellij.sinceBuild)
-            pluginConfiguration.ideaVersion.untilBuild.set(hubdleIntellij.untilBuild)
         }
 
         val runPluginVerifierTask: TaskCollection<RunPluginVerifierTask> = tasks.withType()
@@ -203,7 +178,6 @@ private fun HubdleIntellijPluginFeatureExtension.configurePatchPluginXml() =
 
             task.pluginVersion.set("$version")
             task.sinceBuild.set(sinceBuild)
-            task.untilBuild.set(untilBuild)
 
             val changelogFile: Provider<RegularFile> =
                 layout.buildDirectory.file(GENERATED_CHANGELOG_HTML_FILE_PATH)
@@ -217,16 +191,18 @@ private fun HubdleIntellijPluginFeatureExtension.configurePatchPluginXml() =
     }
 
 private fun HubdleIntellijPluginFeatureExtension.configurePublishPlugin() =
-    with(project) {
-        tasks.withType<PublishPluginTask>().configureEach { task -> task.token.set(token) }
+    configure<IntelliJPlatformExtension> {
+        publishing { //
+            it.token.set(token)
+        }
     }
 
 private fun HubdleIntellijPluginFeatureExtension.configureSignPlugin() =
-    with(project) {
-        tasks.withType<SignPluginTask>().configureEach { task ->
-            task.certificateChain.set(jetbrainsMarketplaceCertificateChain)
-            task.privateKey.set(jetbrainsMarketplaceKey)
-            task.password.set(jetbrainsMarketplaceKeyPassphrase)
+    configure<IntelliJPlatformExtension> {
+        signing {
+            it.certificateChain.set(jetbrainsMarketplaceCertificateChain)
+            it.privateKey.set(jetbrainsMarketplaceKey)
+            it.password.set(jetbrainsMarketplaceKeyPassphrase)
         }
     }
 

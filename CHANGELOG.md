@@ -10,6 +10,8 @@
 
 ### Fixed
 
+- IntelliJ plugin signing configuration
+
 ### Removed
 
 ### Updated

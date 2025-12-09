@@ -14,6 +14,10 @@
 
 ### Updated
 
+## [0.11.0] - 2025-12-09
+
+### Updated
+
 - `dev.detekt:dev.detekt.gradle.plugin -> 2.0.0-alpha.1`
 - `org.jetbrains.intellij:org.jetbrains.intellij.gradle.plugin -> 2.10.5`
 - `com.github.triplet.play:com.github.triplet.play.gradle.plugin -> 3.13.0`
@@ -2443,7 +2447,9 @@
 - `com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter -> 1.0.0`
 - `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.10.0...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.11.0...HEAD
+
+[0.11.0]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.10.0...c0.11.0
 
 [0.10.0]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.9.0...c0.10.0
 

@@ -6,9 +6,6 @@
 
 ### Changed
 
-- Detekt configuration to support version 2
-- IntelliJ plugin configuration to support version 2
-
 ### Deprecated
 
 ### Fixed
@@ -16,6 +13,13 @@
 ### Removed
 
 ### Updated
+
+## [0.17.0] - 2025-12-09
+
+### Changed
+
+- Detekt configuration to support version 2
+- IntelliJ plugin configuration to support version 2
 
 ## [0.16.0] - 2025-10-25
 
@@ -428,7 +432,9 @@
 
 - `allTests` task
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.16.0...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.17.0...HEAD
+
+[0.17.0]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.16.0...p0.17.0
 
 [0.16.0]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.15.0...p0.16.0
 

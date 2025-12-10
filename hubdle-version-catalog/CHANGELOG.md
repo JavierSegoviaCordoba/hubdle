@@ -14,6 +14,9 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.9.4`
+- `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.17.0`
+
 ## [0.11.0] - 2025-12-09
 
 ### Updated

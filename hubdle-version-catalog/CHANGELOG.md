@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 4.3`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.17.1`
 - `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.9.4`
 

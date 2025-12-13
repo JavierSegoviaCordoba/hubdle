@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.eclipse.jgit:org.eclipse.jgit -> 7.5.0.202512021534-r`
 - `org.sonarqube:org.sonarqube.gradle.plugin -> 7.2.1.6560`
 - `com.android.tools.build:gradle -> 8.13.2`
 - `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 4.3`

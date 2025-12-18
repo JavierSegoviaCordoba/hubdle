@@ -14,6 +14,10 @@
 
 ### Updated
 
+- `com.facebook:ktfmt -> 0.60`
+- `io.arrow-kt:arrow-core -> 2.2.1.1`
+- `androidx.activity:activity-ktx -> 1.12.2`
+- `androidx.activity:activity-compose -> 1.12.2`
 - `com.javiersc.kotlin.kopy:com.javiersc.kotlin.kopy.gradle.plugin -> 0.21.0+2.3.0`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.18.0`
 - `com.javiersc.kotlin:kotlin-compiler-test-extensions -> 0.11.0+2.3.0`

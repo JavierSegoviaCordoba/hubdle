@@ -14,8 +14,8 @@
 
 ### Updated
 
+- `com.facebook:ktfmt -> 0.61`
 - `org.sonarqube:org.sonarqube.gradle.plugin -> 7.2.2.6593`
-- `com.facebook:ktfmt -> 0.60`
 - `io.arrow-kt:arrow-core -> 2.2.1.1`
 - `androidx.activity:activity-ktx -> 1.12.2`
 - `androidx.activity:activity-compose -> 1.12.2`

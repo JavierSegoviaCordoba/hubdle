@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.10.0`
 - `com.facebook:ktfmt -> 0.61`
 - `org.sonarqube:org.sonarqube.gradle.plugin -> 7.2.2.6593`
 - `io.arrow-kt:arrow-core -> 2.2.1.1`

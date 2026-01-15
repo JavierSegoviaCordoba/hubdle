@@ -14,6 +14,21 @@
 
 ### Updated
 
+- `androidx.compose.ui:ui-util -> 1.10.1`
+- `androidx.compose.ui:ui-tooling-preview -> 1.10.1`
+- `androidx.compose.ui:ui-tooling -> 1.10.1`
+- `androidx.compose.ui:ui-test-manifest -> 1.10.1`
+- `androidx.compose.ui:ui-test -> 1.10.1`
+- `androidx.compose.ui:ui -> 1.10.1`
+- `androidx.compose.runtime:runtime-tracing -> 1.10.1`
+- `androidx.compose.runtime:runtime-saveable -> 1.10.1`
+- `androidx.compose.runtime:runtime -> 1.10.1`
+- `androidx.compose.material:material-ripple -> 1.10.1`
+- `androidx.compose.material:material -> 1.10.1`
+- `androidx.compose.foundation:foundation-layout -> 1.10.1`
+- `androidx.compose.foundation:foundation -> 1.10.1`
+- `androidx.compose.animation:animation-graphics -> 1.10.1`
+- `androidx.compose.animation:animation -> 1.10.1`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.10.0`
 - `com.facebook:ktfmt -> 0.61`
 - `org.sonarqube:org.sonarqube.gradle.plugin -> 7.2.2.6593`

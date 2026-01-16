@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `gradle -> 9.3.0`
 - `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 4.3.1`
 - `androidx.compose.animation:animation-core -> 1.10.1`
 - `androidx.compose.ui:ui-util -> 1.10.1`

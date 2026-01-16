@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `androidx.compose.animation:animation-core -> 1.10.1`
 - `androidx.compose.ui:ui-util -> 1.10.1`
 - `androidx.compose.ui:ui-tooling-preview -> 1.10.1`
 - `androidx.compose.ui:ui-tooling -> 1.10.1`

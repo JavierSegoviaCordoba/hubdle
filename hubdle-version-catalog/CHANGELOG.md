@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.vanniktech.maven.publish:com.vanniktech.maven.publish.gradle.plugin -> 0.36.0`
 - `gradle -> 9.3.0`
 - `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 4.3.1`
 - `androidx.compose.animation:animation-core -> 1.10.1`

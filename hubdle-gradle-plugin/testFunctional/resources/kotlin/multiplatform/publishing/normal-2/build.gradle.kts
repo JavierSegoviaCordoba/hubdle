@@ -1,6 +1,5 @@
 @file:Suppress("PackageDirectoryMismatch")
 
-import com.android.build.api.dsl.LibraryExtension
 import org.gradle.kotlin.dsl.the
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
@@ -90,8 +89,6 @@ hubdle {
         }
     }
 }
-
-println("RawConfig compileSdk: ${the<LibraryExtension>().compileSdk}")
 
 val kmpSourceSets = the<KotlinMultiplatformExtension>().sourceSets
 

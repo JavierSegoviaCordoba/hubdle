@@ -66,7 +66,7 @@ public open class HubdleKotlinComposeFeatureExtension @Inject constructor(projec
                     implementation(library(androidx_activity_compose))
                 }
                 hubdleAndroidBuildFeatures.compose.set(true)
-                configureAndroidCommonExtension { defaultConfig { buildFeatures.compose = true } }
+                configureAndroidCommonExtension { buildFeatures.compose = true }
             }
         }
     }

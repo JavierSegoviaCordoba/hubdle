@@ -43,7 +43,6 @@ internal class KotlinMultiplatformTest : GradleTestKitTest() {
         val multiplatformDir = repositoryPath.resolve("com/kotlin/normal-one")
         val sandboxProjectDir = multiplatformDir.resolve(projectName)
         val androidDir = multiplatformDir.resolve("sandbox-project-android")
-        val androidDebugDir = multiplatformDir.resolve("sandbox-project-android-debug")
         val jvmDir = multiplatformDir.resolve("sandbox-project-jvm")
 
         fun File.versionDir(): File = resolve("9.8.3-alpha.4")
@@ -73,19 +72,6 @@ internal class KotlinMultiplatformTest : GradleTestKitTest() {
             androidDir.versionDir().resolve("${library("android")}.module").shouldBeAFile()
             androidDir.versionDir().resolve("${library("android")}.pom").shouldBeAFile()
             androidDir.versionDir().resolve("${library("android")}-sources.jar").shouldBeAFile()
-
-            androidDebugDir.resolve("maven-metadata-local.xml").shouldBeAFile()
-            androidDebugDir.versionDir().shouldBeADirectory()
-            androidDebugDir.versionDir().resolve("${library("android-debug")}.aar").shouldBeAFile()
-            androidDebugDir
-                .versionDir()
-                .resolve("${library("android-debug")}.module")
-                .shouldBeAFile()
-            androidDebugDir.versionDir().resolve("${library("android-debug")}.pom").shouldBeAFile()
-            androidDebugDir
-                .versionDir()
-                .resolve("${library("android-debug")}-sources.jar")
-                .shouldBeAFile()
 
             jvmDir.resolve("maven-metadata-local.xml").shouldBeAFile()
             jvmDir.versionDir().shouldBeADirectory()
@@ -164,12 +150,11 @@ internal class KotlinMultiplatformTest : GradleTestKitTest() {
     }
 
     @Test
-    @EnabledOnOs(value = [OS.LINUX, OS.MAC])
+    @EnabledOnOs(value = [OS.LINUX, OS.MAC, OS.WINDOWS])
     fun `publish snapshot 1`() {
         val multiplatformDir = repositoryPath.resolve("com/kotlin/snapshot-one")
         val sandboxProjectDir = multiplatformDir.resolve("sandbox-project")
         val androidDir = multiplatformDir.resolve("sandbox-project-android")
-        val androidDebugDir = multiplatformDir.resolve("sandbox-project-android-debug")
         val jvmDir = multiplatformDir.resolve("sandbox-project-jvm")
 
         fun File.versionDir(): File = resolve("3.6.7-SNAPSHOT")
@@ -202,20 +187,6 @@ internal class KotlinMultiplatformTest : GradleTestKitTest() {
             androidDir.versionDir().resolve("${library("android")}.pom").shouldBeAFile()
             androidDir.versionDir().resolve("${library("android")}-sources.jar").shouldBeAFile()
 
-            androidDebugDir.resolve("maven-metadata-local.xml").shouldBeAFile()
-            androidDebugDir.versionDir().shouldBeADirectory()
-            androidDebugDir.versionDir().resolve("maven-metadata-local.xml").shouldBeAFile()
-            androidDebugDir.versionDir().resolve("${library("android-debug")}.aar").shouldBeAFile()
-            androidDebugDir
-                .versionDir()
-                .resolve("${library("android-debug")}.module")
-                .shouldBeAFile()
-            androidDebugDir.versionDir().resolve("${library("android-debug")}.pom").shouldBeAFile()
-            androidDebugDir
-                .versionDir()
-                .resolve("${library("android-debug")}-sources.jar")
-                .shouldBeAFile()
-
             jvmDir.resolve("maven-metadata-local.xml").shouldBeAFile()
             jvmDir.versionDir().shouldBeADirectory()
             jvmDir.versionDir().resolve("maven-metadata-local.xml").shouldBeAFile()
@@ -229,7 +200,6 @@ internal class KotlinMultiplatformTest : GradleTestKitTest() {
     private val allLinuxCompatibleBinaries =
         setOf(
                 "sandbox-project-android",
-                "sandbox-project-android-debug",
                 "sandbox-project-androidnativearm32",
                 "sandbox-project-androidnativearm64",
                 "sandbox-project-androidnativex64",
@@ -248,7 +218,6 @@ internal class KotlinMultiplatformTest : GradleTestKitTest() {
     private val allMacCompatibleBinaries =
         setOf(
                 "sandbox-project-android",
-                "sandbox-project-android-debug",
                 "sandbox-project-androidnativearm32",
                 "sandbox-project-androidnativearm64",
                 "sandbox-project-androidnativex64",
@@ -280,7 +249,6 @@ internal class KotlinMultiplatformTest : GradleTestKitTest() {
     private val allWindowsCompatibleBinaries =
         setOf(
                 "sandbox-project-android",
-                "sandbox-project-android-debug",
                 "sandbox-project-androidnativearm32",
                 "sandbox-project-androidnativearm64",
                 "sandbox-project-androidnativex64",

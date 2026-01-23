@@ -8,7 +8,6 @@ import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.kotlin.android.application.hubdleAndroidApplication
 import com.javiersc.hubdle.project.extensions.kotlin.android.library.hubdleAndroidLibrary
-import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.targets.hubdleKotlinMultiplatformAndroid
 import javax.inject.Inject
 import org.gradle.api.Project
 import org.gradle.api.provider.Property
@@ -20,8 +19,7 @@ public open class HubdleKotlinAndroidBuildFeaturesExtension @Inject constructor(
     override val isEnabled: Property<Boolean> = property { true }
 
     override val oneOfExtensions: Set<HubdleEnableableExtension>
-        get() =
-            setOf(hubdleAndroidApplication, hubdleAndroidLibrary, hubdleKotlinMultiplatformAndroid)
+        get() = setOf(hubdleAndroidApplication, hubdleAndroidLibrary)
 
     public val aidl: Property<Boolean> = property {
         getBooleanProperty(BuildFeatures.aidl).orElse(trueIfApp()).get()

@@ -14,6 +14,29 @@
 
 ### Updated
 
+- `io.ktor:ktor-serialization-kotlinx-json -> 3.4.0`
+- `io.ktor:ktor-client-winhttp -> 3.4.0`
+- `io.ktor:ktor-client-okhttp -> 3.4.0`
+- `io.ktor:ktor-client-mock -> 3.4.0`
+- `io.ktor:ktor-client-js -> 3.4.0`
+- `io.ktor:ktor-client-jetty -> 3.4.0`
+- `io.ktor:ktor-client-java -> 3.4.0`
+- `io.ktor:ktor-client-darwin -> 3.4.0`
+- `io.ktor:ktor-client-curl -> 3.4.0`
+- `io.ktor:ktor-client-core -> 3.4.0`
+- `io.ktor:ktor-client-content-negotiation -> 3.4.0`
+- `io.ktor:ktor-client-cio -> 3.4.0`
+- `io.ktor:ktor-client-apache5 -> 3.4.0`
+- `io.ktor:ktor-client-android -> 3.4.0`
+- `io.kotest:kotest-runner-junit5 -> 6.1.1`
+- `io.kotest:kotest-runner-junit4 -> 6.1.1`
+- `io.kotest:kotest-property -> 6.1.1`
+- `io.kotest:kotest-assertions-json -> 6.1.1`
+- `io.kotest:kotest-assertions-core -> 6.1.1`
+- `org.jetbrains.kotlinx:kotlinx-serialization-json -> 1.10.0`
+- `org.jetbrains.kotlinx:kotlinx-serialization-core -> 1.10.0`
+- `org.jetbrains.kotlinx:atomicfu -> 0.31.0`
+- `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 8.2.0`
 - `com.vanniktech.maven.publish:com.vanniktech.maven.publish.gradle.plugin -> 0.36.0`
 - `gradle -> 9.3.0`
 - `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 4.3.1`

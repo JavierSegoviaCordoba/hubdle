@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.github.triplet.play:com.github.triplet.play.gradle.plugin -> 4.0.0`
 - `io.ktor:ktor-serialization-kotlinx-json -> 3.4.0`
 - `io.ktor:ktor-client-winhttp -> 3.4.0`
 - `io.ktor:ktor-client-okhttp -> 3.4.0`

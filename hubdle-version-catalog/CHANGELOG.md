@@ -14,6 +14,11 @@
 
 ### Updated
 
+- `io.kotest:kotest-runner-junit5 -> 6.1.2`
+- `io.kotest:kotest-runner-junit4 -> 6.1.2`
+- `io.kotest:kotest-property -> 6.1.2`
+- `io.kotest:kotest-assertions-json -> 6.1.2`
+- `io.kotest:kotest-assertions-core -> 6.1.2`
 - `dev.detekt:dev.detekt.gradle.plugin -> 2.0.0-alpha.2`
 - `org.jetbrains.intellij.platform:org.jetbrains.intellij.platform.gradle.plugin -> 2.11.0`
 - `com.github.triplet.play:com.github.triplet.play.gradle.plugin -> 4.0.0`
@@ -31,11 +36,6 @@
 - `io.ktor:ktor-client-cio -> 3.4.0`
 - `io.ktor:ktor-client-apache5 -> 3.4.0`
 - `io.ktor:ktor-client-android -> 3.4.0`
-- `io.kotest:kotest-runner-junit5 -> 6.1.1`
-- `io.kotest:kotest-runner-junit4 -> 6.1.1`
-- `io.kotest:kotest-property -> 6.1.1`
-- `io.kotest:kotest-assertions-json -> 6.1.1`
-- `io.kotest:kotest-assertions-core -> 6.1.1`
 - `org.jetbrains.kotlinx:kotlinx-serialization-json -> 1.10.0`
 - `org.jetbrains.kotlinx:kotlinx-serialization-core -> 1.10.0`
 - `org.jetbrains.kotlinx:atomicfu -> 0.31.0`

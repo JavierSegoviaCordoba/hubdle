@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `dev.detekt:dev.detekt.gradle.plugin -> 2.0.0-alpha.2`
 - `org.jetbrains.intellij.platform:org.jetbrains.intellij.platform.gradle.plugin -> 2.11.0`
 - `com.github.triplet.play:com.github.triplet.play.gradle.plugin -> 4.0.0`
 - `io.ktor:ktor-serialization-kotlinx-json -> 3.4.0`

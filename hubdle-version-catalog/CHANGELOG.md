@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 8.2.1`
 - `io.kotest:kotest-runner-junit5 -> 6.1.2`
 - `io.kotest:kotest-runner-junit4 -> 6.1.2`
 - `io.kotest:kotest-property -> 6.1.2`
@@ -39,7 +40,6 @@
 - `org.jetbrains.kotlinx:kotlinx-serialization-json -> 1.10.0`
 - `org.jetbrains.kotlinx:kotlinx-serialization-core -> 1.10.0`
 - `org.jetbrains.kotlinx:atomicfu -> 0.31.0`
-- `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 8.2.0`
 - `com.vanniktech.maven.publish:com.vanniktech.maven.publish.gradle.plugin -> 0.36.0`
 - `gradle -> 9.3.0`
 - `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 4.3.1`

@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `gradle -> 9.3.1`
 - `androidx.navigation:navigation-compose -> 2.9.7`
 - `androidx.compose.ui:ui-util -> 1.10.2`
 - `androidx.compose.ui:ui-tooling-preview -> 1.10.2`
@@ -60,7 +61,6 @@
 - `org.jetbrains.kotlinx:kotlinx-serialization-core -> 1.10.0`
 - `org.jetbrains.kotlinx:atomicfu -> 0.31.0`
 - `com.vanniktech.maven.publish:com.vanniktech.maven.publish.gradle.plugin -> 0.36.0`
-- `gradle -> 9.3.0`
 - `com.android.library:com.android.library.gradle.plugin -> 9.0.0`
 - `com.android.application:com.android.application.gradle.plugin -> 9.0.0`
 - `com.android.tools.build:gradle -> 9.0.0`

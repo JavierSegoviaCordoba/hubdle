@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `androidx.activity:activity-compose -> 1.12.3`
 - `gradle -> 9.3.1`
 - `androidx.navigation:navigation-compose -> 2.9.7`
 - `androidx.compose.ui:ui-util -> 1.10.2`
@@ -68,7 +69,6 @@
 - `com.facebook:ktfmt -> 0.61`
 - `org.sonarqube:org.sonarqube.gradle.plugin -> 7.2.2.6593`
 - `io.arrow-kt:arrow-core -> 2.2.1.1`
-- `androidx.activity:activity-compose -> 1.12.2`
 - `com.javiersc.kotlin.kopy:com.javiersc.kotlin.kopy.gradle.plugin -> 0.21.0+2.3.0`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.18.0`
 - `com.javiersc.kotlin:kotlin-compiler-test-extensions -> 0.11.0+2.3.0`

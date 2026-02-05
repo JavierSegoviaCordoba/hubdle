@@ -14,6 +14,11 @@
 
 ### Updated
 
+- `io.kotest:kotest-runner-junit5 -> 6.1.3`
+- `io.kotest:kotest-runner-junit4 -> 6.1.3`
+- `io.kotest:kotest-property -> 6.1.3`
+- `io.kotest:kotest-assertions-json -> 6.1.3`
+- `io.kotest:kotest-assertions-core -> 6.1.3`
 - `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.9.6`
 - `androidx.activity:activity-compose -> 1.12.3`
 - `gradle -> 9.3.1`
@@ -37,11 +42,6 @@
 - `androidx.activity:activity-ktx -> 1.12.3`
 - `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 4.3.2`
 - `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 8.2.1`
-- `io.kotest:kotest-runner-junit5 -> 6.1.2`
-- `io.kotest:kotest-runner-junit4 -> 6.1.2`
-- `io.kotest:kotest-property -> 6.1.2`
-- `io.kotest:kotest-assertions-json -> 6.1.2`
-- `io.kotest:kotest-assertions-core -> 6.1.2`
 - `dev.detekt:dev.detekt.gradle.plugin -> 2.0.0-alpha.2`
 - `org.jetbrains.intellij.platform:org.jetbrains.intellij.platform.gradle.plugin -> 2.11.0`
 - `com.github.triplet.play:com.github.triplet.play.gradle.plugin -> 4.0.0`

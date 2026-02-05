@@ -14,7 +14,7 @@
 
 ### Updated
 
-- `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.9.5`
+- `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.9.6`
 - `androidx.activity:activity-compose -> 1.12.3`
 - `gradle -> 9.3.1`
 - `androidx.navigation:navigation-compose -> 2.9.7`

@@ -14,6 +14,10 @@
 
 ### Updated
 
+- `com.javiersc.kotlin:kotlin-compiler-test-extensions -> 0.12.0+2.3.10`
+- `com.javiersc.kotlin:kotlin-compiler-gradle-extensions -> 0.12.0+2.3.10`
+- `com.javiersc.kotlin:kotlin-compiler-extensions -> 0.12.0+2.3.10`
+
 ## [0.13.0] - 2026-02-06
 
 ### Updated

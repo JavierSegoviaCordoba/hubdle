@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.10.1`
 - `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.9.7`
 - `com.javiersc.kotlin.kopy:com.javiersc.kotlin.kopy.gradle.plugin -> 0.22.0+2.3.10`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.18.1`

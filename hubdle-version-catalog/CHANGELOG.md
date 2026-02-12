@@ -14,6 +14,24 @@
 
 ### Updated
 
+- `androidx.compose.ui:ui-util -> 1.10.3`
+- `androidx.compose.ui:ui-tooling-preview -> 1.10.3`
+- `androidx.compose.ui:ui-tooling -> 1.10.3`
+- `androidx.compose.ui:ui-test-manifest -> 1.10.3`
+- `androidx.compose.ui:ui-test -> 1.10.3`
+- `androidx.compose.ui:ui -> 1.10.3`
+- `androidx.compose.runtime:runtime-tracing -> 1.10.3`
+- `androidx.compose.runtime:runtime-saveable -> 1.10.3`
+- `androidx.compose.runtime:runtime -> 1.10.3`
+- `androidx.compose.material:material-ripple -> 1.10.3`
+- `androidx.compose.material:material -> 1.10.3`
+- `androidx.compose.foundation:foundation-layout -> 1.10.3`
+- `androidx.compose.foundation:foundation -> 1.10.3`
+- `androidx.compose.animation:animation-graphics -> 1.10.3`
+- `androidx.compose.animation:animation-core -> 1.10.3`
+- `androidx.compose.animation:animation -> 1.10.3`
+- `androidx.activity:activity-ktx -> 1.12.4`
+- `androidx.activity:activity-compose -> 1.12.4`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.10.1`
 - `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.9.7`
 - `com.javiersc.kotlin.kopy:com.javiersc.kotlin.kopy.gradle.plugin -> 0.22.0+2.3.10`

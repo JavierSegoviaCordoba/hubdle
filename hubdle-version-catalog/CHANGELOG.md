@@ -14,6 +14,9 @@
 
 ### Updated
 
+- `com.android.library:com.android.library.gradle.plugin -> 9.0.1`
+- `com.android.application:com.android.application.gradle.plugin -> 9.0.1`
+- `com.android.tools.build:gradle -> 9.0.1`
 - `androidx.compose.ui:ui-util -> 1.10.3`
 - `androidx.compose.ui:ui-tooling-preview -> 1.10.3`
 - `androidx.compose.ui:ui-tooling -> 1.10.3`

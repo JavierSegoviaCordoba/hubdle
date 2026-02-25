@@ -14,6 +14,11 @@
 
 ### Updated
 
+- `io.kotest:kotest-runner-junit5 -> 6.1.4`
+- `io.kotest:kotest-runner-junit4 -> 6.1.4`
+- `io.kotest:kotest-property -> 6.1.4`
+- `io.kotest:kotest-assertions-json -> 6.1.4`
+- `io.kotest:kotest-assertions-core -> 6.1.4`
 - `org.jetbrains.kotlinx:kotlinx-io-core -> 0.9.0`
 - `com.android.library:com.android.library.gradle.plugin -> 9.0.1`
 - `com.android.application:com.android.application.gradle.plugin -> 9.0.1`

@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `androidx.compose.ui:ui -> 1.10.4`
+- `androidx.compose.animation:animation-core -> 1.10.4`
 - `androidx.compose.ui:ui-util -> 1.10.4`
 - `androidx.compose.ui:ui-tooling-preview -> 1.10.4`
 - `androidx.compose.ui:ui-tooling -> 1.10.4`
@@ -37,8 +39,6 @@
 - `com.android.library:com.android.library.gradle.plugin -> 9.0.1`
 - `com.android.application:com.android.application.gradle.plugin -> 9.0.1`
 - `com.android.tools.build:gradle -> 9.0.1`
-- `androidx.compose.ui:ui -> 1.10.3`
-- `androidx.compose.animation:animation-core -> 1.10.3`
 - `androidx.activity:activity-ktx -> 1.12.4`
 - `androidx.activity:activity-compose -> 1.12.4`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.10.1`

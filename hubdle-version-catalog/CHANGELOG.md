@@ -14,6 +14,20 @@
 
 ### Updated
 
+- `io.ktor:ktor-serialization-kotlinx-json -> 3.4.1`
+- `io.ktor:ktor-client-winhttp -> 3.4.1`
+- `io.ktor:ktor-client-okhttp -> 3.4.1`
+- `io.ktor:ktor-client-mock -> 3.4.1`
+- `io.ktor:ktor-client-js -> 3.4.1`
+- `io.ktor:ktor-client-jetty -> 3.4.1`
+- `io.ktor:ktor-client-java -> 3.4.1`
+- `io.ktor:ktor-client-darwin -> 3.4.1`
+- `io.ktor:ktor-client-curl -> 3.4.1`
+- `io.ktor:ktor-client-core -> 3.4.1`
+- `io.ktor:ktor-client-content-negotiation -> 3.4.1`
+- `io.ktor:ktor-client-cio -> 3.4.1`
+- `io.ktor:ktor-client-apache5 -> 3.4.1`
+- `io.ktor:ktor-client-android -> 3.4.1`
 - `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 8.3.0`
 - `androidx.compose.ui:ui -> 1.10.4`
 - `androidx.compose.animation:animation-core -> 1.10.4`

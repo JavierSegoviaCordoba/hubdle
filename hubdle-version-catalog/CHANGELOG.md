@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 8.3.0`
 - `androidx.compose.ui:ui -> 1.10.4`
 - `androidx.compose.animation:animation-core -> 1.10.4`
 - `androidx.compose.ui:ui-util -> 1.10.4`

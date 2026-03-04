@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `io.arrow-kt:arrow-core -> 2.2.2`
 - `com.android.library:com.android.library.gradle.plugin -> 9.1.0`
 - `com.android.application:com.android.application.gradle.plugin -> 9.1.0`
 - `com.android.tools.build:gradle -> 9.1.0`

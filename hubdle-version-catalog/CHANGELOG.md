@@ -14,6 +14,9 @@
 
 ### Updated
 
+- `com.android.library:com.android.library.gradle.plugin -> 9.1.0`
+- `com.android.application:com.android.application.gradle.plugin -> 9.1.0`
+- `com.android.tools.build:gradle -> 9.1.0`
 - `io.ktor:ktor-serialization-kotlinx-json -> 3.4.1`
 - `io.ktor:ktor-client-winhttp -> 3.4.1`
 - `io.ktor:ktor-client-okhttp -> 3.4.1`
@@ -51,9 +54,6 @@
 - `io.kotest:kotest-assertions-json -> 6.1.4`
 - `io.kotest:kotest-assertions-core -> 6.1.4`
 - `org.jetbrains.kotlinx:kotlinx-io-core -> 0.9.0`
-- `com.android.library:com.android.library.gradle.plugin -> 9.0.1`
-- `com.android.application:com.android.application.gradle.plugin -> 9.0.1`
-- `com.android.tools.build:gradle -> 9.0.1`
 - `androidx.activity:activity-ktx -> 1.12.4`
 - `androidx.activity:activity-compose -> 1.12.4`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.10.1`

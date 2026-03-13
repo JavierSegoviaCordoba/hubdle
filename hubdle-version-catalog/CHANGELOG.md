@@ -14,6 +14,12 @@
 
 ### Updated
 
+- `app.cash.sqldelight:app.cash.sqldelight.gradle.plugin -> 2.3.1`
+- `app.cash.sqldelight:sqlite-driver -> 2.3.1`
+- `app.cash.sqldelight:native-driver -> 2.3.1`
+- `app.cash.sqldelight:jdbc-driver -> 2.3.1`
+- `app.cash.sqldelight:coroutines-extensions -> 2.3.1`
+- `app.cash.sqldelight:android-driver -> 2.3.1`
 - `io.arrow-kt:arrow-core -> 2.2.2`
 - `com.android.library:com.android.library.gradle.plugin -> 9.1.0`
 - `com.android.application:com.android.application.gradle.plugin -> 9.1.0`

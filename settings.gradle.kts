@@ -45,6 +45,8 @@ hubdleSettings {
     autoInclude {
         val sandboxEnabled = getBooleanProperty("sandbox.enabled").orNull == true
         if (!sandboxEnabled) excludedBuilds("sandbox")
+        excludes(":hubdle-declarative-gradle")
+        excludes(":plugins:config:documentation:readme-badges")
     }
     catalog.isEnabled.set(false)
 }

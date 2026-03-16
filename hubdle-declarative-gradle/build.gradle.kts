@@ -131,6 +131,7 @@ hubdle {
                     api(hubdle.plugins.diffplug.gradle.spotless.artifact)
                     api(hubdle.plugins.gradle.develocity.artifact)
                     api(hubdle.plugins.gradle.plugin.publish.artifact)
+                    api(hubdle.plugins.gradle.experimental.pluginEcosystem.artifact)
                     api(hubdle.plugins.gradle.test.retry.artifact)
                     api(hubdle.plugins.javiersc.kotlin.kopy.artifact)
                     api(hubdle.plugins.javiersc.semver.artifact)

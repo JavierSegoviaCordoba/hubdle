@@ -39,8 +39,8 @@ import org.jetbrains.intellij.platform.gradle.extensions.IntelliJPlatformDepende
 import org.jetbrains.intellij.platform.gradle.extensions.IntelliJPlatformExtension
 import org.jetbrains.intellij.platform.gradle.extensions.IntelliJPlatformRepositoriesExtension
 import org.jetbrains.intellij.platform.gradle.extensions.intellijPlatform
-import org.jetbrains.intellij.platform.gradle.plugins.project.RunPluginVerifierTask
 import org.jetbrains.intellij.platform.gradle.tasks.PatchPluginXmlTask
+import org.jetbrains.intellij.platform.gradle.tasks.VerifyPluginTask
 
 @HubdleDslMarker
 public open class HubdleIntellijPluginFeatureExtension @Inject constructor(project: Project) :
@@ -140,7 +140,7 @@ public open class HubdleIntellijPluginFeatureExtension @Inject constructor(proje
         }
 
         lazyConfigurable(
-            isEnabled = property { isFullEnabled.get() && hubdlePublishing.isFullEnabled.get() }
+            isEnabled = property { isFullEnabled.get() && hubdlePublishing.isFullEnabled.get() },
         ) {
             configurePublishPlugin()
             configureSignPlugin()
@@ -167,7 +167,7 @@ private fun HubdleIntellijPluginFeatureExtension.configureIntellijPluginExtensio
             pluginConfiguration.ideaVersion.sinceBuild.set(hubdleIntellij.sinceBuild)
         }
 
-        val runPluginVerifierTask: TaskCollection<RunPluginVerifierTask> = tasks.withType()
+        val runPluginVerifierTask: TaskCollection<VerifyPluginTask> = tasks.withType()
         tasks.named(CHECK_TASK_NAME).configure { it.dependsOn(runPluginVerifierTask) }
     }
 

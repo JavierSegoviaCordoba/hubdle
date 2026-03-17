@@ -14,6 +14,10 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx:multik-openblas -> 0.3.0`
+- `org.jetbrains.kotlinx:multik-kotlin -> 0.3.0`
+- `org.jetbrains.kotlinx:multik-default -> 0.3.0`
+- `org.jetbrains.kotlinx:multik-core -> 0.3.0`
 - `com.facebook:ktfmt -> 0.62`
 - `app.cash.sqldelight:app.cash.sqldelight.gradle.plugin -> 2.3.2`
 - `app.cash.sqldelight:sqlite-driver -> 2.3.2`

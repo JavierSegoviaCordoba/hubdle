@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.facebook:ktfmt -> 0.62`
 - `app.cash.sqldelight:app.cash.sqldelight.gradle.plugin -> 2.3.2`
 - `app.cash.sqldelight:sqlite-driver -> 2.3.2`
 - `app.cash.sqldelight:native-driver -> 2.3.2`
@@ -98,7 +99,6 @@
 - `org.jetbrains.kotlinx:kotlinx-io-core -> 0.9.0`
 - `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.9.7`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.18.1`
-- `com.javiersc.kotlin:kotlin-compiler-gradle-extensions -> 0.12.0+2.3.10`
 - `com.javiersc.kotlin:kotlin-compiler-extensions -> 0.12.0+2.3.10`
 
 ## [0.13.0] - 2026-02-06

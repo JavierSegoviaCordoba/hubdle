@@ -181,11 +181,10 @@ private fun HubdleIntellijPluginFeatureExtension.configurePatchPluginXml() =
 
             val changelogFile: Provider<RegularFile> =
                 layout.buildDirectory.file(GENERATED_CHANGELOG_HTML_FILE_PATH)
-            val notes: Provider<String> =
-                changelogFile.flatMap {
-                    val file: File = it.asFile
-                    provider { if (file.exists()) file.readText() else "No changelog found" }
-                }
+            val notes: Provider<String> = changelogFile.flatMap {
+                val file: File = it.asFile
+                provider { if (file.exists()) file.readText() else "No changelog found" }
+            }
             task.changeNotes.set(notes)
         }
     }

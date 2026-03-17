@@ -81,14 +81,13 @@ public open class HubdleConfigPublishingSigningExtension @Inject constructor(pro
             val allTasks: List<String> =
                 project.gradle.startParameter.taskRequests.flatMap { it.args }
             val hasPublishTask: Boolean = allTasks.any { it.startsWith("publish") }
-            val hasPublishToMavenLocalTasks: Boolean =
-                allTasks.any { task ->
-                    task == "publishToMavenLocal" ||
-                        task == PUBLISH_TO_MAVEN_LOCAL_TEST ||
-                        task == "publishToMavenLocalBuildTest" ||
-                        task == PUBLISH_ALL_TO_MAVEN_LOCAL_TEST ||
-                        task == "publishAllPublicationsToMavenLocalBuildTestRepository"
-                }
+            val hasPublishToMavenLocalTasks: Boolean = allTasks.any { task ->
+                task == "publishToMavenLocal" ||
+                    task == PUBLISH_TO_MAVEN_LOCAL_TEST ||
+                    task == "publishToMavenLocalBuildTest" ||
+                    task == PUBLISH_ALL_TO_MAVEN_LOCAL_TEST ||
+                    task == "publishAllPublicationsToMavenLocalBuildTestRepository"
+            }
 
             val hasTaskCondition: Boolean = (hasPublishTask && !hasPublishToMavenLocalTasks)
             val hasSemverCondition: Boolean =

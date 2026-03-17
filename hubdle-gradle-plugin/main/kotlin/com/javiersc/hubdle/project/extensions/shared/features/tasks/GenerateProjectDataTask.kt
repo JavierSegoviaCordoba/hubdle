@@ -47,8 +47,9 @@ public open class GenerateProjectDataTask @Inject constructor(objects: ObjectFac
     @Input public val rootDir: Property<String> = objects.property<String>()
 
     @Internal
-    public val objectName: Provider<String> =
-        projectName.map { "${it.TransformString()}ProjectData" }
+    public val objectName: Provider<String> = projectName.map {
+        "${it.TransformString()}ProjectData"
+    }
 
     @OutputDirectory public val outputDir: DirectoryProperty = objects.directoryProperty()
 
@@ -129,20 +130,20 @@ public open class GenerateProjectDataTask @Inject constructor(objects: ObjectFac
         public const val NAME: String = "generateProjectData"
 
         internal fun register(project: Project): TaskProvider<GenerateProjectDataTask> {
-            val packageName: Provider<String> =
-                project.provider { "${project.group}.${project.name }".replace("-", ".") }
+            val packageName: Provider<String> = project.provider {
+                "${project.group}.${project.name }".replace("-", ".")
+            }
             val projectGroup = project.provider { "${project.group}" }
             val projectName = project.provider { project.name }
             val projectVersion = project.provider { "${project.version}" }
             val generateProjectDataTask = project.tasks.register<GenerateProjectDataTask>(NAME)
 
-            val outputDir: Provider<Directory> =
-                project.provider {
-                    val setName = if (project.isKotlinMultiplatform) "commonMain" else "main"
-                    val kotlinGeneratedDir = "generated/${setName}/kotlin"
-                    val packageNameToDir = packageName.get().replace(".", "/")
-                    project.layout.buildDirectory.dir("$kotlinGeneratedDir/$packageNameToDir").get()
-                }
+            val outputDir: Provider<Directory> = project.provider {
+                val setName = if (project.isKotlinMultiplatform) "commonMain" else "main"
+                val kotlinGeneratedDir = "generated/${setName}/kotlin"
+                val packageNameToDir = packageName.get().replace(".", "/")
+                project.layout.buildDirectory.dir("$kotlinGeneratedDir/$packageNameToDir").get()
+            }
 
             generateProjectDataTask.configure {
                 it.packageName.convention(packageName)

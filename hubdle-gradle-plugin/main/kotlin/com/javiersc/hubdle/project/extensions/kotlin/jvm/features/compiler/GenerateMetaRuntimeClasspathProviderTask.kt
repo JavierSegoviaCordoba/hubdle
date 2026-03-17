@@ -109,48 +109,46 @@ constructor(objects: ObjectFactory, layout: ProjectLayout) : DefaultTask() {
             testDependencies: SetProperty<MinimalExternalModuleDependency>,
             testProjects: SetProperty<ProjectDependency>,
         ): TaskProvider<GenerateMetaRuntimeClasspathProviderTask> {
-            val testDependenciesJarPaths: Provider<List<String>> =
-                project.provider {
-                    val artifacts =
-                        project.configurations["runtimeClasspath"]
-                            .resolvedConfiguration
-                            .resolvedArtifacts
-                    val modules = testDependencies.get().map { it.moduleAsString() }
-                    // find Kotlin Multiplatform modules
-                    val modulesJvmSuffix = modules.map { "$it-jvm" }
-                    artifacts
-                        .filter { artifact ->
-                            val module: String =
-                                "${artifact.moduleVersion}"
-                                    .dropLastWhile { char -> char != ':' }
-                                    .dropLast(1)
-                            (module in modules || module in modulesJvmSuffix)
-                        }
-                        .map { it.file.path }
-                }
+            val testDependenciesJarPaths: Provider<List<String>> = project.provider {
+                val artifacts =
+                    project.configurations["runtimeClasspath"]
+                        .resolvedConfiguration
+                        .resolvedArtifacts
+                val modules = testDependencies.get().map { it.moduleAsString() }
+                // find Kotlin Multiplatform modules
+                val modulesJvmSuffix = modules.map { "$it-jvm" }
+                artifacts
+                    .filter { artifact ->
+                        val module: String =
+                            "${artifact.moduleVersion}"
+                                .dropLastWhile { char -> char != ':' }
+                                .dropLast(1)
+                        (module in modules || module in modulesJvmSuffix)
+                    }
+                    .map { it.file.path }
+            }
 
-            val testProjectsJarPaths: Provider<List<String>> =
-                project.provider {
-                    testProjects
-                        .get()
-                        .flatMap { projectDependency ->
-                            val dependencyProject: Project = project.project(projectDependency.path)
-                            val projectName = dependencyProject.name
-                            val projectVersion = "${dependencyProject.version}"
-                            val jars: FileTreeWalk =
-                                dependencyProject.layout.buildDirectory.asFile
-                                    .get()
-                                    .resolve("libs")
-                                    .walkTopDown()
-                                    .maxDepth(1)
-                            jars.filter { jar ->
-                                val hasVersion = jar.name.contains(projectVersion)
-                                val isNotMetadata = !jar.name.startsWith("$projectName-metadata")
-                                hasVersion && isNotMetadata
-                            }
+            val testProjectsJarPaths: Provider<List<String>> = project.provider {
+                testProjects
+                    .get()
+                    .flatMap { projectDependency ->
+                        val dependencyProject: Project = project.project(projectDependency.path)
+                        val projectName = dependencyProject.name
+                        val projectVersion = "${dependencyProject.version}"
+                        val jars: FileTreeWalk =
+                            dependencyProject.layout.buildDirectory.asFile
+                                .get()
+                                .resolve("libs")
+                                .walkTopDown()
+                                .maxDepth(1)
+                        jars.filter { jar ->
+                            val hasVersion = jar.name.contains(projectVersion)
+                            val isNotMetadata = !jar.name.startsWith("$projectName-metadata")
+                            hasVersion && isNotMetadata
                         }
-                        .map { it.path }
-                }
+                    }
+                    .map { it.path }
+            }
 
             val generateMetaRuntimeClasspathProviderTask =
                 project.tasks.register<GenerateMetaRuntimeClasspathProviderTask>(NAME)

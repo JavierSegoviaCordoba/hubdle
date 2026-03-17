@@ -197,28 +197,27 @@ internal fun Project.normalAndGeneratedDirs(dir: Provider<String>): SetProperty<
 private fun Project.calculateKmpSourceSetDirectory(
     name: String,
     targetsProp: SetProperty<String>,
-): Provider<String> =
-    project.provider {
-        val targets: Set<String> = targetsProp.get().toSet()
-        val target: String? =
-            targets
-                .filter { target -> name.startsWith(target) }
-                .maxByOrNull { target -> target.count() }
+): Provider<String> = project.provider {
+    val targets: Set<String> = targetsProp.get().toSet()
+    val target: String? =
+        targets
+            .filter { target -> name.startsWith(target) }
+            .maxByOrNull { target -> target.count() }
 
-        val directory: String =
-            when {
-                name.startsWith("androidNative") && target == "android" -> {
-                    val type = name.substringAfter("androidNative").decapitalize()
-                    "androidNative/$type"
-                }
-                target != null -> {
-                    val type = name.substringAfter(target).decapitalize()
-                    "$target/$type"
-                }
-                else -> name
+    val directory: String =
+        when {
+            name.startsWith("androidNative") && target == "android" -> {
+                val type = name.substringAfter("androidNative").decapitalize()
+                "androidNative/$type"
             }
-        directory
-    }
+            target != null -> {
+                val type = name.substringAfter(target).decapitalize()
+                "$target/$type"
+            }
+            else -> name
+        }
+    directory
+}
 
 private val SourceSet.kotlin: SourceDirectorySet?
     get() = (this as ExtensionAware).extensions.findByName("kotlin") as? SourceDirectorySet

@@ -68,8 +68,9 @@ public open class HubdleConfigAnalysisDetektExtension @Inject constructor(projec
     private fun Project.configureDetekt() {
         val hubdleDetekt = this@HubdleConfigAnalysisDetektExtension
         configure<DetektExtension> {
-            val kotlinDirs: Provider<List<File>> =
-                allKotlinSrcDirsWithoutBuild.map { files -> files.filter(File::isDirectory) }
+            val kotlinDirs: Provider<List<File>> = allKotlinSrcDirsWithoutBuild.map { files ->
+                files.filter(File::isDirectory)
+            }
             parallel.set(true)
             ignoreFailures.set(hubdleDetekt.ignoreFailures)
             buildUponDefaultConfig.set(true)

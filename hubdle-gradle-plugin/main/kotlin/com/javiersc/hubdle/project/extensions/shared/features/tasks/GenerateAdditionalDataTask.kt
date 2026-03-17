@@ -44,8 +44,9 @@ public open class GenerateAdditionalDataTask @Inject constructor(objects: Object
     @Input public val additionalData: Property<String> = objects.property<String>()
 
     @Internal
-    public val objectName: Provider<String> =
-        projectName.map { "${it.TransformString()}AdditionalData" }
+    public val objectName: Provider<String> = projectName.map {
+        "${it.TransformString()}AdditionalData"
+    }
 
     @OutputDirectory public val outputDir: DirectoryProperty = objects.directoryProperty()
 
@@ -90,19 +91,19 @@ public open class GenerateAdditionalDataTask @Inject constructor(objects: Object
             project: Project,
             additionalData: Property<String>,
         ): TaskProvider<GenerateAdditionalDataTask> {
-            val packageName: Provider<String> =
-                project.provider { "${project.group}.${project.name }".replace("-", ".") }
+            val packageName: Provider<String> = project.provider {
+                "${project.group}.${project.name }".replace("-", ".")
+            }
             val projectName: Provider<String> = project.provider { project.name }
             val generateAdditionalDataTask: TaskProvider<GenerateAdditionalDataTask> =
                 project.tasks.register<GenerateAdditionalDataTask>(NAME)
 
-            val outputDir: Provider<Directory> =
-                project.provider {
-                    val setName = if (project.isKotlinMultiplatform) "commonMain" else "main"
-                    val kotlinGeneratedDir = "generated/${setName}/kotlin"
-                    val packageNameToDir = packageName.get().replace(".", "/")
-                    project.layout.buildDirectory.dir("$kotlinGeneratedDir/$packageNameToDir").get()
-                }
+            val outputDir: Provider<Directory> = project.provider {
+                val setName = if (project.isKotlinMultiplatform) "commonMain" else "main"
+                val kotlinGeneratedDir = "generated/${setName}/kotlin"
+                val packageNameToDir = packageName.get().replace(".", "/")
+                project.layout.buildDirectory.dir("$kotlinGeneratedDir/$packageNameToDir").get()
+            }
 
             generateAdditionalDataTask.configure {
                 it.packageName.convention(packageName)

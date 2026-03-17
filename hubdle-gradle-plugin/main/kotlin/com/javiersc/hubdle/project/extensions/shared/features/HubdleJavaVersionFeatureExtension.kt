@@ -43,8 +43,9 @@ public open class HubdleJavaVersionFeatureExtension @Inject constructor(project:
     }
 
     override fun Project.defaultConfiguration() {
-        fun getJvmTarget(): Provider<JvmTarget> =
-            jvmVersion.map { version -> JvmTarget.fromTarget("$version") }
+        fun getJvmTarget(): Provider<JvmTarget> = jvmVersion.map { version ->
+            JvmTarget.fromTarget("$version")
+        }
 
         withAndroidApplication {
             compileOptions {

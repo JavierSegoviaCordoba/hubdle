@@ -57,8 +57,9 @@ public open class HubdleConfigCoverageExtension @Inject constructor(project: Pro
                 val buildDir: DirectoryProperty = layout.buildDirectory
 
                 withKotlin {
-                    val testSets: Provider<List<String>> =
-                        kotlinTestsSrcDirs.map { it.mapNotNull { it.path } }
+                    val testSets: Provider<List<String>> = kotlinTestsSrcDirs.map {
+                        it.mapNotNull { it.path }
+                    }
 
                     currentProject { koverProjectConfig ->
                         koverProjectConfig.sources { koverSources ->

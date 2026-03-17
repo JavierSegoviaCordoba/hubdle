@@ -42,13 +42,13 @@ public abstract class CheckIsSemverTask : DefaultTask() {
         internal fun register(publishing: HubdleConfigPublishingExtension) {
             val project: Project = publishing.project
             project.tasks.register<CheckIsSemverTask>(NAME).configure { task ->
-                val taskGraphNames: Provider<List<String>> =
-                    project.provider { project.gradle.taskGraph.allTasks.map(Task::getName) }
+                val taskGraphNames: Provider<List<String>> = project.provider {
+                    project.gradle.taskGraph.allTasks.map(Task::getName)
+                }
 
-                val hasPublishToMavenLocalTest: Provider<Boolean> =
-                    project.provider {
-                        taskGraphNames.get().any { it == PUBLISH_TO_MAVEN_LOCAL_TEST }
-                    }
+                val hasPublishToMavenLocalTest: Provider<Boolean> = project.provider {
+                    taskGraphNames.get().any { it == PUBLISH_TO_MAVEN_LOCAL_TEST }
+                }
 
                 task.hasPublishToMavenLocalTest.set(hasPublishToMavenLocalTest)
                 task.publishNonSemver.set(publishing.publishNonSemver)

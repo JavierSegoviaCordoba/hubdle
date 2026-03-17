@@ -31,8 +31,9 @@ public open class HubdleJvmToolchainFeatureExtension @Inject constructor(project
 
     public val javaVersion: Property<JavaVersion> = property { JavaVersion.VERSION_1_8 }
 
-    private val javaLanguageVersion: Provider<JavaLanguageVersion> =
-        javaVersion.map { JavaLanguageVersion.of(it.majorVersion) }
+    private val javaLanguageVersion: Provider<JavaLanguageVersion> = javaVersion.map {
+        JavaLanguageVersion.of(it.majorVersion)
+    }
 
     @HubdleDslMarker
     public fun javaVersion(version: JavaVersion) {

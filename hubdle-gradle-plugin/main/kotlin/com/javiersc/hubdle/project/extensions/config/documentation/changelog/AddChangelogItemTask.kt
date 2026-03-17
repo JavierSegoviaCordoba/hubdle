@@ -258,12 +258,11 @@ private fun dependenciesFromRenovateCommit(rootDir: File): List<String> {
     val commits: List<RevCommit> =
         Git(repository).log().add(repository.resolve(head)).call().toList()
 
-    val latestCommit: RevCommit =
-        commits.first { commit ->
-            listOf("datasource", "package", "from", "to").all { keyword ->
-                keyword in commit.fullMessage
-            }
+    val latestCommit: RevCommit = commits.first { commit ->
+        listOf("datasource", "package", "from", "to").all { keyword ->
+            keyword in commit.fullMessage
         }
+    }
 
     return latestCommit.fullMessage
         .lines()

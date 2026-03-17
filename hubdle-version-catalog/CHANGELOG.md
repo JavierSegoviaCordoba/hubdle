@@ -14,6 +14,14 @@
 
 ### Updated
 
+- `io.insert-koin:koin-test-junit5 -> 4.2.0`
+- `io.insert-koin:koin-test-junit4 -> 4.2.0`
+- `io.insert-koin:koin-test -> 4.2.0`
+- `io.insert-koin:koin-logger-slf4j -> 4.2.0`
+- `io.insert-koin:koin-ktor -> 4.2.0`
+- `io.insert-koin:koin-core -> 4.2.0`
+- `io.insert-koin:koin-androidx-compose -> 4.2.0`
+- `io.insert-koin:koin-android -> 4.2.0`
 - `org.jetbrains.kotlinx:multik-openblas -> 0.3.0`
 - `org.jetbrains.kotlinx:multik-kotlin -> 0.3.0`
 - `org.jetbrains.kotlinx:multik-default -> 0.3.0`

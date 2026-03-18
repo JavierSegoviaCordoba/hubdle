@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `io.arrow-kt:arrow-core -> 2.2.2.1`
 - `io.insert-koin:koin-test-junit5 -> 4.2.0`
 - `io.insert-koin:koin-test-junit4 -> 4.2.0`
 - `io.insert-koin:koin-test -> 4.2.0`
@@ -89,7 +90,6 @@
 - `org.jetbrains.kotlin:kotlin-compiler-embeddable -> 2.3.20`
 - `org.jetbrains.kotlin:kotlin-compiler -> 2.3.20`
 - `org.jetbrains.kotlin:kotlin-annotations-jvm -> 2.3.20`
-- `io.arrow-kt:arrow-core -> 2.2.2`
 - `com.android.library:com.android.library.gradle.plugin -> 9.1.0`
 - `com.android.application:com.android.application.gradle.plugin -> 9.1.0`
 - `com.android.tools.build:gradle -> 9.1.0`

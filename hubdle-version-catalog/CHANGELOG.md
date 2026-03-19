@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 8.4.0`
 - `io.arrow-kt:arrow-core -> 2.2.2.1`
 - `io.insert-koin:koin-test-junit5 -> 4.2.0`
 - `io.insert-koin:koin-test-junit4 -> 4.2.0`
@@ -107,7 +108,6 @@
 - `io.ktor:ktor-client-cio -> 3.4.1`
 - `io.ktor:ktor-client-apache5 -> 3.4.1`
 - `io.ktor:ktor-client-android -> 3.4.1`
-- `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 8.3.0`
 - `org.jetbrains.kotlinx:kotlinx-io-core -> 0.9.0`
 - `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.9.7`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.18.1`

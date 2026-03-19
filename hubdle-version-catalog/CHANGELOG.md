@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `gradle -> 9.4.1`
 - `org.gradle.experimental.plugin-ecosystem:org.gradle.experimental.plugin-ecosystem.gradle.plugin -> 0.1.55`
 - `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 8.4.0`
 - `io.arrow-kt:arrow-core -> 2.2.2.1`
@@ -37,7 +38,6 @@
 - `app.cash.sqldelight:coroutines-extensions -> 2.3.2`
 - `app.cash.sqldelight:android-driver -> 2.3.2`
 - `com.javiersc.kotlin.kopy:com.javiersc.kotlin.kopy.gradle.plugin -> 0.23.0+2.3.20`
-- `gradle -> 9.4.0`
 - `com.squareup.okio:okio -> 3.17.0`
 - `org.sonarqube:org.sonarqube.gradle.plugin -> 7.2.3.7755`
 - `io.kotest:kotest-runner-junit5 -> 6.1.7`

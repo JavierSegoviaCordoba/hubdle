@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.gradle.experimental.plugin-ecosystem:org.gradle.experimental.plugin-ecosystem.gradle.plugin -> 0.1.55`
 - `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 8.4.0`
 - `io.arrow-kt:arrow-core -> 2.2.2.1`
 - `io.insert-koin:koin-test-junit5 -> 4.2.0`
@@ -111,7 +112,6 @@
 - `org.jetbrains.kotlinx:kotlinx-io-core -> 0.9.0`
 - `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.9.7`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.18.1`
-- `com.javiersc.kotlin:kotlin-compiler-extensions -> 0.12.0+2.3.10`
 
 ## [0.13.0] - 2026-02-06
 

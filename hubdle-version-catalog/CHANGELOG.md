@@ -14,8 +14,10 @@
 
 ### Updated
 
+- `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.10.3`
+- `org.gradle.experimental.plugin-ecosystem:org.gradle.experimental.plugin-ecosystem.gradle.plugin -> 0.1.57`
+- `com.gradle.plugin-publish:com.gradle.plugin-publish.gradle.plugin -> 2.1.1`
 - `gradle -> 9.4.1`
-- `org.gradle.experimental.plugin-ecosystem:org.gradle.experimental.plugin-ecosystem.gradle.plugin -> 0.1.55`
 - `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 8.4.0`
 - `io.arrow-kt:arrow-core -> 2.2.2.1`
 - `io.insert-koin:koin-test-junit5 -> 4.2.0`
@@ -46,8 +48,6 @@
 - `io.kotest:kotest-assertions-json -> 6.1.7`
 - `io.kotest:kotest-assertions-core -> 6.1.7`
 - `org.jetbrains.intellij.platform:org.jetbrains.intellij.platform.gradle.plugin -> 2.13.1`
-- `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.10.2`
-- `com.gradle.plugin-publish:com.gradle.plugin-publish.gradle.plugin -> 2.1.0`
 - `org.eclipse.jgit:org.eclipse.jgit -> 7.6.0.202603022253-r`
 - `androidx.core:core-ktx -> 1.18.0`
 - `androidx.compose.ui:ui-util -> 1.10.5`

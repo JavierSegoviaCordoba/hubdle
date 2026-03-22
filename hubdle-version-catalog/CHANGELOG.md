@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx:atomicfu -> 0.32.0`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.10.3`
 - `org.gradle.experimental.plugin-ecosystem:org.gradle.experimental.plugin-ecosystem.gradle.plugin -> 0.1.57`
 - `com.gradle.plugin-publish:com.gradle.plugin-publish.gradle.plugin -> 2.1.1`

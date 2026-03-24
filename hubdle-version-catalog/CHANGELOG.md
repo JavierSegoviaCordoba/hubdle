@@ -14,6 +14,11 @@
 
 ### Updated
 
+- `io.kotest:kotest-runner-junit5 -> 6.1.8`
+- `io.kotest:kotest-runner-junit4 -> 6.1.8`
+- `io.kotest:kotest-property -> 6.1.8`
+- `io.kotest:kotest-assertions-json -> 6.1.8`
+- `io.kotest:kotest-assertions-core -> 6.1.8`
 - `org.jetbrains.kotlinx:atomicfu -> 0.32.1`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.10.3`
 - `org.gradle.experimental.plugin-ecosystem:org.gradle.experimental.plugin-ecosystem.gradle.plugin -> 0.1.57`
@@ -43,11 +48,6 @@
 - `com.javiersc.kotlin.kopy:com.javiersc.kotlin.kopy.gradle.plugin -> 0.23.0+2.3.20`
 - `com.squareup.okio:okio -> 3.17.0`
 - `org.sonarqube:org.sonarqube.gradle.plugin -> 7.2.3.7755`
-- `io.kotest:kotest-runner-junit5 -> 6.1.7`
-- `io.kotest:kotest-runner-junit4 -> 6.1.7`
-- `io.kotest:kotest-property -> 6.1.7`
-- `io.kotest:kotest-assertions-json -> 6.1.7`
-- `io.kotest:kotest-assertions-core -> 6.1.7`
 - `org.jetbrains.intellij.platform:org.jetbrains.intellij.platform.gradle.plugin -> 2.13.1`
 - `org.eclipse.jgit:org.eclipse.jgit -> 7.6.0.202603022253-r`
 - `androidx.core:core-ktx -> 1.18.0`

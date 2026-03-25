@@ -14,11 +14,11 @@
 
 ### Updated
 
-- `io.kotest:kotest-runner-junit5 -> 6.1.8`
-- `io.kotest:kotest-runner-junit4 -> 6.1.8`
-- `io.kotest:kotest-property -> 6.1.8`
-- `io.kotest:kotest-assertions-json -> 6.1.8`
-- `io.kotest:kotest-assertions-core -> 6.1.8`
+- `io.kotest:kotest-runner-junit5 -> 6.1.9`
+- `io.kotest:kotest-runner-junit4 -> 6.1.9`
+- `io.kotest:kotest-property -> 6.1.9`
+- `io.kotest:kotest-assertions-json -> 6.1.9`
+- `io.kotest:kotest-assertions-core -> 6.1.9`
 - `org.jetbrains.kotlinx:atomicfu -> 0.32.1`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.10.3`
 - `org.gradle.experimental.plugin-ecosystem:org.gradle.experimental.plugin-ecosystem.gradle.plugin -> 0.1.57`

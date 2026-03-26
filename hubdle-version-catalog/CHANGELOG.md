@@ -14,8 +14,9 @@
 
 ### Updated
 
+- `org.jetbrains.dokka:org.jetbrains.dokka.gradle.plugin -> 2.2.0`
+- `androidx.compose.animation:animation-core -> 1.10.6`
 - `androidx.compose.ui:ui -> 1.10.4`
-- `androidx.compose.animation:animation-core -> 1.10.4`
 - `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.9.8`
 - `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 4.4.0`
 - `androidx.compose.ui:ui-util -> 1.10.6`

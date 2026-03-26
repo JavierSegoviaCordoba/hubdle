@@ -37,7 +37,7 @@ on:
 jobs:
   plugin:
     if: (github.event.inputs.publish_project == 'plugin') && (github.ref == 'refs/heads/main')
-    uses: JavierSegoviaCordoba/reusable-workflows/.github/workflows/generate-version-tag.yaml@main
+    uses: JavierSegoviaCordoba/reusable-workflows/.github/workflows/generate-version-tag.yaml@34fd38844e1c27ceddc6f62d257f50a690843c22 # main
     with:
       project-path: ':'
       restore-kotlin-native-cache: false
@@ -48,7 +48,7 @@ jobs:
 
   catalog:
     if: (github.event.inputs.publish_project == 'catalog') && (github.ref == 'refs/heads/main')
-    uses: JavierSegoviaCordoba/reusable-workflows/.github/workflows/generate-version-tag.yaml@main
+    uses: JavierSegoviaCordoba/reusable-workflows/.github/workflows/generate-version-tag.yaml@34fd38844e1c27ceddc6f62d257f50a690843c22 # main
     with:
       project-path: 'hubdle-version-catalog:'
       restore-kotlin-native-cache: false
@@ -60,7 +60,7 @@ jobs:
 
   declarative:
     if: (github.event.inputs.publish_project == 'declarative') && (github.ref == 'refs/heads/main')
-    uses: JavierSegoviaCordoba/reusable-workflows/.github/workflows/generate-version-tag.yaml@main
+    uses: JavierSegoviaCordoba/reusable-workflows/.github/workflows/generate-version-tag.yaml@34fd38844e1c27ceddc6f62d257f50a690843c22 # main
     with:
       project-path: 'hubdle-declarative-gradle:'
       restore-kotlin-native-cache: false

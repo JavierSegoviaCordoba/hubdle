@@ -31,7 +31,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: JavierSegoviaCordoba/actions/git/checkout@main
+        uses: JavierSegoviaCordoba/actions/git/checkout@1091ece2d79a429b9dbc5d5a1ac2ea8a0a53b50c # main
         with:
           token: '${{ secrets.TOKEN_GITHUB_ACTION }}'
 
@@ -40,14 +40,14 @@ jobs:
 
       - name: Commit library
         if: ${{ github.event.inputs.module != null }}
-        uses: JavierSegoviaCordoba/actions/git/commit@main
+        uses: JavierSegoviaCordoba/actions/git/commit@1091ece2d79a429b9dbc5d5a1ac2ea8a0a53b50c # main
         with:
           message: 'Add library ${{ github.event.inputs.module }} to Hubdle catalog'
           push: true
 
       - name: Commit plugin
         if: ${{ github.event.inputs.plugin_id != null }}
-        uses: JavierSegoviaCordoba/actions/git/commit@main
+        uses: JavierSegoviaCordoba/actions/git/commit@1091ece2d79a429b9dbc5d5a1ac2ea8a0a53b50c # main
         with:
           message: 'Add plugin ${{ github.event.inputs.plugin_id }} to Hubdle catalog'
           push: true

@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `androidx.compose.ui:ui -> 1.10.4`
+- `androidx.compose.animation:animation-core -> 1.10.4`
 - `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.9.8`
 - `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 4.4.0`
 - `androidx.compose.ui:ui-util -> 1.10.6`
@@ -21,7 +23,6 @@
 - `androidx.compose.ui:ui-tooling -> 1.10.6`
 - `androidx.compose.ui:ui-test-manifest -> 1.10.6`
 - `androidx.compose.ui:ui-test -> 1.10.6`
-- `androidx.compose.ui:ui -> 1.10.6`
 - `androidx.compose.runtime:runtime-tracing -> 1.10.6`
 - `androidx.compose.runtime:runtime-saveable -> 1.10.6`
 - `androidx.compose.runtime:runtime -> 1.10.6`
@@ -68,7 +69,6 @@
 - `org.jetbrains.intellij.platform:org.jetbrains.intellij.platform.gradle.plugin -> 2.13.1`
 - `org.eclipse.jgit:org.eclipse.jgit -> 7.6.0.202603022253-r`
 - `androidx.core:core-ktx -> 1.18.0`
-- `androidx.compose.animation:animation-core -> 1.10.5`
 - `androidx.activity:activity-ktx -> 1.13.0`
 - `androidx.activity:activity-compose -> 1.13.0`
 - `com.javiersc.kotlin:kotlin-compiler-test-extensions -> 0.13.0+2.3.20`

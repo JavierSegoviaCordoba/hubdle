@@ -14,6 +14,10 @@
 
 ### Updated
 
+## [0.18.2] - 2026-05-01
+
+### Updated
+
 - dependencies
 
 ## [0.18.1] - 2026-02-06
@@ -452,7 +456,9 @@
 
 - `allTests` task
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.18.1...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.18.2...HEAD
+
+[0.18.2]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.18.1...p0.18.2
 
 [0.18.1]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.18.0...p0.18.1
 

@@ -14,6 +14,10 @@
 
 ### Updated
 
+## [0.13.1] - 2026-05-01
+
+### Updated
+
 - `gradle -> 9.5.0`
 - `org.sonarqube:org.sonarqube.gradle.plugin -> 7.3.0.8198`
 - `io.ktor:ktor-serialization-kotlinx-json -> 3.4.3`
@@ -2673,7 +2677,9 @@
 - `com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter -> 1.0.0`
 - `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.13.0...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.13.1...HEAD
+
+[0.13.1]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.13.0...c0.13.1
 
 [0.13.0]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.12.0...c0.13.0
 

@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.18.2`
 - `org.jetbrains.intellij.platform:org.jetbrains.intellij.platform.gradle.plugin -> 2.16.0`
 
 ## [0.13.1] - 2026-05-01

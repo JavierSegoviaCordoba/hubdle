@@ -5,6 +5,7 @@ package hubdle.declarative
 import hubdle.declarative.config.HubdleConfigFeature
 import hubdle.declarative.config.analysis.HubdleConfigAnalysisFeature
 import hubdle.declarative.config.analysis.sonar.HubdleConfigAnalysisSonarFeature
+import hubdle.declarative.config.documentation.HubdleConfigDocumentationFeature
 import org.gradle.api.Plugin
 import org.gradle.api.initialization.Settings
 import org.gradle.features.annotations.RegistersProjectFeatures
@@ -14,6 +15,7 @@ import org.gradle.features.annotations.RegistersProjectFeatures
     HubdleConfigFeature::class,
     HubdleConfigAnalysisFeature::class,
     HubdleConfigAnalysisSonarFeature::class,
+    HubdleConfigDocumentationFeature::class,
 )
 public open class HubdleDeclarativePlugin : Plugin<Settings> {
 

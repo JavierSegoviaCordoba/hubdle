@@ -5,7 +5,7 @@
 ## Usage
 
 ```kotlin
-// settings.gradle.kts
+// settings.gradle.dcl
 plugins {
     id("com.javiersc.hubdle.declarative") version "$version"
 }

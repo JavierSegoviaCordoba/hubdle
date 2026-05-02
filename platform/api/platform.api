@@ -11,6 +11,10 @@ public final class com/javiersc/hubdle/platform/PlatformProjectData {
 	public static final field Version Ljava/lang/String;
 }
 
+public abstract interface class hubdle/platform/HubdleBuildModel {
+	public abstract fun getEffectiveEnabled ()Lorg/gradle/api/provider/Property;
+}
+
 public abstract interface class hubdle/platform/HubdleDefinition {
 	public abstract fun getEnabled ()Lorg/gradle/api/provider/Property;
 	public abstract fun getFeatureName ()Ljava/lang/String;
@@ -24,6 +28,10 @@ public final class hubdle/platform/HubdleProperties {
 public final class hubdle/platform/HubdleProperties$Logging {
 	public static final field Enabled Ljava/lang/String;
 	public static final field INSTANCE Lhubdle/platform/HubdleProperties$Logging;
+}
+
+public abstract interface class hubdle/platform/HubdleRootBuildModel : hubdle/platform/HubdleBuildModel, org/gradle/features/binding/BuildModel {
+	public abstract fun getEffectiveEnabled ()Lorg/gradle/api/provider/Property;
 }
 
 public abstract interface class hubdle/platform/HubdleRootDefinition : hubdle/platform/HubdleDefinition, org/gradle/features/binding/Definition {
@@ -42,6 +50,10 @@ public abstract interface class hubdle/platform/HubdleServices {
 
 public final class hubdle/platform/HubdleServices$DefaultImpls {
 	public static fun logLifecycle (Lhubdle/platform/HubdleServices;Lhubdle/platform/HubdleDefinition;Lkotlin/jvm/functions/Function0;)V
+}
+
+public final class hubdle/platform/tasks/ComputeHubdleEffectiveEnabledKt {
+	public static final fun computeHubdleEffectiveEnabled (Lorg/gradle/features/binding/ProjectFeatureApplicationContext;Lorg/gradle/features/binding/Definition;Lorg/gradle/features/binding/Definition;Z)Lorg/gradle/api/provider/Provider;
 }
 
 public abstract interface class hubdle/platform/tasks/HubdleTask {

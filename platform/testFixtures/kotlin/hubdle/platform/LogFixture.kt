@@ -6,8 +6,8 @@ import com.javiersc.kotlin.stdlib.ansiColor
 
 object LogFixture {
 
-    fun lifecycle(message: () -> String): String {
-        val label = "[Hubdle]".ansiColor(Cyan)
+    fun lifecycle(featureName: String, message: () -> String): String {
+        val label = "[HUBDLE|$featureName]".ansiColor(Cyan)
         val content = message().ansiColor(Yellow)
         return "$label $content"
     }

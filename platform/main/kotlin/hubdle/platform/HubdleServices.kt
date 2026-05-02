@@ -27,7 +27,7 @@ public interface HubdleServices {
 
         val loggingEnabled: Provider<Boolean> = loggingEnabled.orElse(hubdleLoggingEnabled)
         if (loggingEnabled.get()) {
-            val label = "[Hubdle]".ansiColor(Cyan)
+            val label = "[HUBDLE|$featureName]".ansiColor(Cyan)
             val content = message().ansiColor(Yellow)
             logger.log(LIFECYCLE, "$label $content")
         }

@@ -2,7 +2,7 @@ package hubdle.declarative
 
 import com.javiersc.gradle.testkit.test.extensions.GradleTestKitTest
 import hubdle.platform.HubdleProperties
-import hubdle.platform.LogFixture
+import hubdle.platform.LogFixture.lifecycle
 import io.kotest.matchers.string.shouldContainInOrder
 import kotlin.test.Test
 
@@ -14,11 +14,11 @@ internal class HubdleDeclarativeTest : GradleTestKitTest() {
             gradlew("build", "-P", "${HubdleProperties.Logging.Enabled}=true", "--no-scan")
                 .output
                 .shouldContainInOrder(
-                    LogFixture.lifecycle { "Feature 'hubdle' enabled on ':'" },
-                    LogFixture.lifecycle { "Registering 'fixChecks' task" },
-                    LogFixture.lifecycle { "Registering 'generate' task" },
-                    LogFixture.lifecycle { "Registering 'tests' task" },
-                    LogFixture.lifecycle { "Registering 'prepareKotlinIdeaImport' task" },
+                    lifecycle("hubdle") { "Feature 'hubdle' enabled on ':'" },
+                    lifecycle("hubdle") { "Registering 'fixChecks' task" },
+                    lifecycle("hubdle") { "Registering 'generate' task" },
+                    lifecycle("hubdle") { "Registering 'tests' task" },
+                    lifecycle("hubdle") { "Registering 'prepareKotlinIdeaImport' task" },
                 )
         }
     }

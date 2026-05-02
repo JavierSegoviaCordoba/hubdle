@@ -1,0 +1,5 @@
+hubdle {
+    kotlin {
+        enabled = true
+    }
+}

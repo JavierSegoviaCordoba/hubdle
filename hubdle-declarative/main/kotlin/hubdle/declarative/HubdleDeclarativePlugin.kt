@@ -8,6 +8,7 @@ import hubdle.declarative.config.analysis.sonar.HubdleConfigAnalysisSonarFeature
 import hubdle.declarative.config.documentation.HubdleConfigDocumentationFeature
 import hubdle.declarative.config.documentation.readme.HubdleConfigDocumentationReadmeFeature
 import hubdle.declarative.config.documentation.readme.badges.HubdleConfigDocumentationReadmeBadgesFeature
+import hubdle.declarative.kotlin.HubdleKotlinFeature
 import org.gradle.api.Plugin
 import org.gradle.api.initialization.Settings
 import org.gradle.features.annotations.RegistersProjectFeatures
@@ -20,6 +21,7 @@ import org.gradle.features.annotations.RegistersProjectFeatures
     HubdleConfigDocumentationFeature::class,
     HubdleConfigDocumentationReadmeFeature::class,
     HubdleConfigDocumentationReadmeBadgesFeature::class,
+    HubdleKotlinFeature::class,
 )
 public open class HubdleDeclarativePlugin : Plugin<Settings> {
 

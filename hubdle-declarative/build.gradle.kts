@@ -50,13 +50,11 @@ hubdle {
         plugin {
             gradlePlugin {
                 plugins {
-                    val baseId = "com.javiersc.hubdle.declarative"
-
                     create("hubdle-declarative") {
-                        id = baseId
+                        id = "com.javiersc.hubdle.declarative"
                         displayName = "Hubdle Declarative"
                         description = "Conventions using Gradle Declarative"
-                        implementationClass = "$baseId.HubdleDeclarativePlugin"
+                        implementationClass = "hubdle.declarative.HubdleDeclarativePlugin"
                         tags.set(
                             listOf(
                                 "hubdle",
@@ -92,6 +90,7 @@ hubdle {
                     implementation(hubdle.javiersc.gradle.test.extensions)
 
                     api(projects.platform)
+                    api(projects.hubdleDeclarativeFeatures.hubdleDeclarativeConfig)
 
                     api(hubdle.android.tools.build.gradle)
                     api(hubdle.jetbrains.kotlin.gradle.plugin)

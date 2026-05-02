@@ -1,4 +1,4 @@
-package com.javiersc.hubdle.declarative
+package hubdle.declarative
 
 import com.javiersc.gradle.testkit.test.extensions.GradleTestKitTest
 import hubdle.platform.HubdleProperties
@@ -6,11 +6,11 @@ import hubdle.platform.LogFixture
 import io.kotest.matchers.string.shouldContainInOrder
 import kotlin.test.Test
 
-class HubdleDeclarativeTest : GradleTestKitTest() {
+internal class HubdleDeclarativeTest : GradleTestKitTest() {
 
     @Test
     fun `GIVEN a project WHEN hubdle is applied AND logging is enabled THEN hubdle declarative logs are printed`() {
-        gradleTestKitTest("hubdle") {
+        gradleTestKitTest("main-hubdle") {
             gradlew("build", "-P", "${HubdleProperties.Logging.Enabled}=true", "--no-scan")
                 .output
                 .shouldContainInOrder(

@@ -1,8 +1,9 @@
 @file:Suppress("UnstableApiUsage")
 
-package com.javiersc.hubdle.declarative
+package hubdle.declarative
 
 import com.android.build.gradle.BasePlugin
+import hubdle.platform.HubdleRootDefinition
 import hubdle.platform.HubdleServices
 import hubdle.platform.tasks.kotlin.prepareKotlinIdeaImport
 import hubdle.platform.tasks.lifecycle.FixChecksTask
@@ -14,11 +15,11 @@ import org.gradle.features.binding.ProjectTypeApplyAction
 import org.gradle.kotlin.dsl.apply
 
 internal abstract class HubdleApplyAction :
-    ProjectTypeApplyAction<MainHubdleDefinition, BuildModel.None>, HubdleServices {
+    ProjectTypeApplyAction<HubdleRootDefinition, BuildModel.None>, HubdleServices {
 
     override fun apply(
         context: ProjectFeatureApplicationContext,
-        definition: MainHubdleDefinition,
+        definition: HubdleRootDefinition,
         buildModel: BuildModel.None,
     ) = definition.run {
         val isEnabled: Boolean = enabled.orElse(true).get()
@@ -31,7 +32,7 @@ internal abstract class HubdleApplyAction :
         }
     }
 
-    private fun MainHubdleDefinition.logHubdleStatus() {
+    private fun HubdleRootDefinition.logHubdleStatus() {
         logLifecycle { "Feature '$featureName' enabled on '${project.path}'" }
     }
 
@@ -39,17 +40,17 @@ internal abstract class HubdleApplyAction :
         services.pluginManager.apply(BasePlugin::class)
     }
 
-    private fun MainHubdleDefinition.registerHubdleLifecycleTasks(services: HubdleServices) {
+    private fun HubdleRootDefinition.registerHubdleLifecycleTasks(services: HubdleServices) {
         FixChecksTask.register(services.project).also { logRegisteringTask(FixChecksTask.NAME) }
         GenerateTask.register(services.project).also { logRegisteringTask(GenerateTask.NAME) }
         TestsTask.register(services.project).also { logRegisteringTask(TestsTask.NAME) }
     }
 
-    private fun MainHubdleDefinition.registerPrepareKotlinIdeaImportTask(services: HubdleServices) {
+    private fun HubdleRootDefinition.registerPrepareKotlinIdeaImportTask(services: HubdleServices) {
         services.prepareKotlinIdeaImport.also { logRegisteringTask(it.name) }
     }
 
-    private fun MainHubdleDefinition.logRegisteringTask(taskName: String) {
+    private fun HubdleRootDefinition.logRegisteringTask(taskName: String) {
         logLifecycle { "Registering '$taskName' task" }
     }
 

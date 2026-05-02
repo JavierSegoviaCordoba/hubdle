@@ -13,21 +13,21 @@ capabilities as project features.
 
 Use this repository module split during migration:
 
-- `hubdle-declarative-gradle`: owns the declarative plugin entrypoint and the `hubdle {}` project
+- `hubdle-declarative`: owns the declarative plugin entrypoint and the `hubdle {}` project
   type registration.
 - `hubdle-declarative-features`: owns Hubdle declarative features, organized as a multi-module tree
   with one module per feature and per sub-feature.
 
 Current baseline already implemented in this repo:
 
-- `com.javiersc.hubdle.declarative.HubdleDeclarativePlugin` is the settings plugin and registers
+- `hubdle.declarative.HubdleDeclarativePlugin` is the settings plugin and registers
   `HubdleProjectType`.
-- `com.javiersc.hubdle.declarative.HubdleProjectType` binds `hubdle`.
-- `com.javiersc.hubdle.declarative.MainHubdleDefinition` extends shared
+- `hubdle.declarative.HubdleProjectType` binds `hubdle`.
+- `hubdle.declarative.MainHubdleDefinition` extends shared
   `hubdle.platform.HubdleDefinition`.
 - `HubdleApplyAction` uses `HubdleServices`, applies the base plugin, and registers lifecycle tasks.
 - Functional smoke test exists at
-  `hubdle-declarative-gradle/testFunctional/kotlin/com/javiersc/hubdle/declarative/HubdleDeclarativeTest.kt`.
+  `hubdle-declarative/testFunctional/kotlin/hubdle/declarative/HubdleDeclarativeTest.kt`.
 
 Target shape:
 
@@ -81,9 +81,9 @@ Kotlin DSL or replace them with explicit typed options.
 
 1. Locate the current DSL entrypoint. For Hubdle this is `HubdleExtension` and
    `HubdleProjectPlugin`.
-2. In `hubdle-declarative-gradle`, keep `HubdleDeclarativePlugin` as `Plugin<Settings>` and register
+2. In `hubdle-declarative`, keep `HubdleDeclarativePlugin` as `Plugin<Settings>` and register
    project types/features there.
-3. In `hubdle-declarative-gradle`, keep `HubdleProjectType` bound to `hubdle`.
+3. In `hubdle-declarative`, keep `HubdleProjectType` bound to `hubdle`.
 4. In `hubdle-declarative-features`, convert each direct child of `hubdle {}` into a
    `ProjectFeature` module.
 5. For nested blocks, keep splitting into sub-feature modules (one module per sub-feature) under

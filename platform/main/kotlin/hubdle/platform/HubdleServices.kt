@@ -10,6 +10,7 @@ import org.gradle.api.logging.Logger
 import org.gradle.api.logging.Logging
 import org.gradle.api.plugins.PluginManager
 import org.gradle.api.provider.Provider
+import org.gradle.kotlin.dsl.configure
 
 public interface HubdleServices {
     @get:Inject public val pluginManager: PluginManager
@@ -32,4 +33,8 @@ public interface HubdleServices {
             logger.log(LIFECYCLE, "$label $content")
         }
     }
+}
+
+public inline fun <reified T : Any> HubdleServices.configure(noinline action: T.() -> Unit) {
+    project.configure<T>(action)
 }

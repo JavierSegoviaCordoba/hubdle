@@ -91,6 +91,7 @@ hubdle {
 
                     api(projects.platform)
                     api(projects.hubdleDeclarativeFeatures.hubdleDeclarativeConfigAnalysis)
+                    api(projects.hubdleDeclarativeFeatures.hubdleDeclarativeConfigAnalysisSonar)
                     api(projects.hubdleDeclarativeFeatures.hubdleDeclarativeConfig)
 
                     api(hubdle.android.tools.build.gradle)

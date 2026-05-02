@@ -68,34 +68,6 @@ hubdle {
                             ),
                         )
                     }
-                    create("hubdle-declarative-project") {
-                        id = "$baseId.project"
-                        displayName = "Hubdle Declarative Project"
-                        description = "Conventions using Gradle Declarative"
-                        implementationClass = "$baseId.HubdleDeclarativeProjectPlugin"
-                        tags.set(
-                            listOf(
-                                "hubdle",
-                                "project",
-                                "declarative",
-                                "Gradle Declarative",
-                            ),
-                        )
-                    }
-                    create("hubdle-declarative-settings") {
-                        id = "$baseId.settings"
-                        displayName = "Hubdle Declarative Settings"
-                        description = "Conventions using Gradle Declarative"
-                        implementationClass = "$baseId.HubdleDeclarativeSettingsPlugin"
-                        tags.set(
-                            listOf(
-                                "hubdle",
-                                "settings",
-                                "declarative",
-                                "Gradle Declarative",
-                            ),
-                        )
-                    }
                 }
             }
 
@@ -119,6 +91,8 @@ hubdle {
                     // TODO: REMOVE WHEN FIXED
                     implementation(hubdle.javiersc.gradle.extensions)
                     implementation(hubdle.javiersc.gradle.test.extensions)
+
+                    api(projects.platform)
 
                     api(hubdle.android.tools.build.gradle)
                     api(hubdle.jetbrains.kotlin.gradle.plugin)

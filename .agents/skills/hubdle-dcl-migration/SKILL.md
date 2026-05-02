@@ -14,6 +14,14 @@ Use this repository module split during migration:
 - `hubdle-declarative-gradle`: owns the declarative plugin entrypoint and the `hubdle {}` project type registration.
 - `hubdle-declarative-features`: owns Hubdle declarative features, organized as a multi-module tree with one module per feature and per sub-feature.
 
+Current baseline already implemented in this repo:
+
+- `com.javiersc.hubdle.declarative.HubdleDeclarativePlugin` is the settings plugin and registers `HubdleProjectType`.
+- `com.javiersc.hubdle.declarative.HubdleProjectType` binds `hubdle`.
+- `HubdleDefinition` extends shared `hubdle.declarative.platform.HubdleFeatureEnabled`.
+- `HubdleApplyAction` uses `HubdleServices` and `enabled.orElse(true)` as read-side default.
+- Functional smoke test exists at `hubdle-declarative-gradle/testFunctional/kotlin/com/javiersc/hubdle/declarative/HubdleDeclarativeTest.kt`.
+
 Target shape:
 
 ```gradle
@@ -63,8 +71,8 @@ Only migrate declarative data to DCL. Keep imperative callbacks, lambdas, and ar
 ## Migration Workflow
 
 1. Locate the current DSL entrypoint. For Hubdle this is `HubdleExtension` and `HubdleProjectPlugin`.
-2. In `hubdle-declarative-gradle`, create the DCL settings plugin that registers all project types/features.
-3. In `hubdle-declarative-gradle`, create `HubdleProjectType` bound to `hubdle`.
+2. In `hubdle-declarative-gradle`, keep `HubdleDeclarativePlugin` as `Plugin<Settings>` and register project types/features there.
+3. In `hubdle-declarative-gradle`, keep `HubdleProjectType` bound to `hubdle`.
 4. In `hubdle-declarative-features`, convert each direct child of `hubdle {}` into a `ProjectFeature` module.
 5. For nested blocks, keep splitting into sub-feature modules (one module per sub-feature) under `hubdle-declarative-features`.
 6. Convert each extension class property to a DCL-safe `Definition` property.
@@ -344,12 +352,7 @@ If a Gradle core type uses wildcards, `Any`, or unsupported generic shapes, crea
 The plugin applied in `settings.gradle.dcl` must be `Plugin<Settings>`.
 
 ```kotlin
-@RegistersProjectFeatures(
-    HubdleProjectType::class,
-    HubdleConfigFeature::class,
-    HubdleVersioningFeature::class,
-    HubdleSemverFeature::class,
-)
+@RegistersProjectFeatures(HubdleProjectType::class)
 public abstract class HubdleDeclarativePlugin : Plugin<Settings> {
     override fun apply(target: Settings) = Unit
 }
@@ -377,6 +380,7 @@ Follow these rules strictly:
 - Keep DCL binding internals `internal` by default: project types, features, definitions, apply actions, and build model implementations.
 - Make only plugin marker implementation classes `public` unless Gradle or a real external API need forces wider visibility.
 - Use `enabled: Property<Boolean>`, not `isEnabled: Property<Boolean>`, because `isEnabled(): Property<Boolean>` is not a valid managed Boolean getter shape.
+- Reuse `hubdle.declarative.platform.HubdleFeatureEnabled` for shared flags (`enabled`, `loggingEnabled`) instead of duplicating those properties in each definition.
 - Do not call `definition.someProperty.convention(...)` in apply actions if DCL may have finalized the definition. Use `definition.someProperty.orElse(default)` instead.
 - Use `@get:Nested` for nested definition objects and managed containers.
 - Avoid arbitrary methods such as `fun semver(action: Action<SemverExtension>)` in definitions. DCL definitions should expose typed properties and nested managed objects.
@@ -521,13 +525,8 @@ org.gradle.kotlin.dsl.dcl=true
 
 ```gradle
 hubdle {
-    config {
-        versioning {
-            semver {
-                tagPrefix = "v"
-            }
-        }
-    }
+    enabled = true
+    loggingEnabled = true
 }
 ```
 

@@ -3,6 +3,7 @@
 package hubdle.declarative.config
 
 import com.javiersc.kotlin.stdlib.isNotNullNorBlank
+import hubdle.platform.HubdleProperties
 import hubdle.platform.HubdleRootDefinition
 import hubdle.platform.HubdleServices
 import hubdle.platform.tasks.computeHubdleEffectiveEnabled
@@ -37,7 +38,8 @@ internal abstract class HubdleConfigApplyAction :
     }
 
     private fun HubdleConfigDefinition.setProjectGroup() {
-        val group: String? = group.orNull
+        val groupFromProp: Provider<String> = gradleProperty(HubdleProperties.Project.Group)
+        val group: String? = group.orElse(groupFromProp).orNull
         if (group.isNotNullNorBlank()) {
             project.group = group
             logLifecycle { "Project '${project.path}' has changed the group to '${project.group}'" }

@@ -30,6 +30,44 @@ public final class hubdle/platform/HubdleProperties$Logging {
 	public static final field INSTANCE Lhubdle/platform/HubdleProperties$Logging;
 }
 
+public final class hubdle/platform/HubdleProperties$Pom {
+	public static final field Description Ljava/lang/String;
+	public static final field INSTANCE Lhubdle/platform/HubdleProperties$Pom;
+	public static final field Name Ljava/lang/String;
+	public static final field Url Ljava/lang/String;
+}
+
+public final class hubdle/platform/HubdleProperties$Pom$Developer {
+	public static final field Email Ljava/lang/String;
+	public static final field INSTANCE Lhubdle/platform/HubdleProperties$Pom$Developer;
+	public static final field Id Ljava/lang/String;
+	public static final field Name Ljava/lang/String;
+}
+
+public final class hubdle/platform/HubdleProperties$Pom$License {
+	public static final field INSTANCE Lhubdle/platform/HubdleProperties$Pom$License;
+	public static final field Name Ljava/lang/String;
+	public static final field Url Ljava/lang/String;
+}
+
+public final class hubdle/platform/HubdleProperties$Pom$Scm {
+	public static final field Connection Ljava/lang/String;
+	public static final field DeveloperConnection Ljava/lang/String;
+	public static final field INSTANCE Lhubdle/platform/HubdleProperties$Pom$Scm;
+	public static final field Url Ljava/lang/String;
+}
+
+public final class hubdle/platform/HubdleProperties$Project {
+	public static final field Group Ljava/lang/String;
+	public static final field INSTANCE Lhubdle/platform/HubdleProperties$Project;
+	public static final field Name Ljava/lang/String;
+}
+
+public final class hubdle/platform/HubdleProperties$Sonar {
+	public static final field INSTANCE Lhubdle/platform/HubdleProperties$Sonar;
+	public static final field ProjectKey Ljava/lang/String;
+}
+
 public abstract interface class hubdle/platform/HubdleRootBuildModel : hubdle/platform/HubdleBuildModel, org/gradle/features/binding/BuildModel {
 	public abstract fun getEffectiveEnabled ()Lorg/gradle/api/provider/Property;
 }
@@ -43,12 +81,16 @@ public final class hubdle/platform/HubdleRootDefinition$DefaultImpls {
 }
 
 public abstract interface class hubdle/platform/HubdleServices {
+	public abstract fun getObjects ()Lorg/gradle/api/model/ObjectFactory;
 	public abstract fun getPluginManager ()Lorg/gradle/api/plugins/PluginManager;
 	public abstract fun getProject ()Lorg/gradle/api/Project;
+	public abstract fun getProviders ()Lorg/gradle/api/provider/ProviderFactory;
+	public fun gradleProperty (Lhubdle/platform/HubdleServices;Ljava/lang/String;)Lorg/gradle/api/provider/Provider;
 	public fun logLifecycle (Lhubdle/platform/HubdleDefinition;Lkotlin/jvm/functions/Function0;)V
 }
 
 public final class hubdle/platform/HubdleServices$DefaultImpls {
+	public static fun gradleProperty (Lhubdle/platform/HubdleServices;Lhubdle/platform/HubdleServices;Ljava/lang/String;)Lorg/gradle/api/provider/Provider;
 	public static fun logLifecycle (Lhubdle/platform/HubdleServices;Lhubdle/platform/HubdleDefinition;Lkotlin/jvm/functions/Function0;)V
 }
 

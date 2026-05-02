@@ -1,9 +1,9 @@
 package com.javiersc.hubdle.project.tasks._internal
 
 import com.javiersc.hubdle.project.extensions._internal.createPrepareKotlinIdeaImport
-import com.javiersc.hubdle.project.tasks.lifecycle.FixChecksTask
-import com.javiersc.hubdle.project.tasks.lifecycle.GenerateTask
-import com.javiersc.hubdle.project.tasks.lifecycle.TestsTask
+import hubdle.platform.tasks.lifecycle.FixChecksTask
+import hubdle.platform.tasks.lifecycle.GenerateTask
+import hubdle.platform.tasks.lifecycle.TestsTask
 import org.gradle.api.Project
 
 internal fun Project.registerHubdleLifecycleTasks() {

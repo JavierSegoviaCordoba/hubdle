@@ -65,16 +65,14 @@ hubdle {
                         id = "com.javiersc.hubdle.project"
                         displayName = "Hubdle project"
                         description = "Easy setup for each kind of project"
-                        implementationClass =
-                            "com.javiersc.hubdle.project.HubdleProjectPlugin"
+                        implementationClass = "com.javiersc.hubdle.project.HubdleProjectPlugin"
                         tags.set(listOf("hubdle project"))
                     }
                     create("hubdle settings") {
                         id = "com.javiersc.hubdle.settings"
                         displayName = "Hubdle settings"
                         description = "Easy settings setup"
-                        implementationClass =
-                            "com.javiersc.hubdle.settings.HubdleSettingsPlugin"
+                        implementationClass = "com.javiersc.hubdle.settings.HubdleSettingsPlugin"
                         tags.set(listOf("hubdle settings"))
                     }
                 }
@@ -97,6 +95,7 @@ hubdle {
 
             main {
                 dependencies {
+                    implementation(projects.platform)
                     // TODO: REMOVE WHEN FIXED
                     implementation(hubdle.javiersc.gradle.extensions)
                     implementation(hubdle.javiersc.gradle.test.extensions)

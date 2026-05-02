@@ -7,20 +7,27 @@ description: Migrate Hubdle or Hubdle-like Gradle plugin DSLs from normal impera
 
 ## Goal
 
-Migrate Hubdle's normal Gradle DSL to a Declarative Gradle surface while keeping existing implementation logic reusable. Treat `hubdle {}` as the project identity and nested Hubdle capabilities as project features.
+Migrate Hubdle's normal Gradle DSL to a Declarative Gradle surface while keeping existing
+implementation logic reusable. Treat `hubdle {}` as the project identity and nested Hubdle
+capabilities as project features.
 
 Use this repository module split during migration:
 
-- `hubdle-declarative-gradle`: owns the declarative plugin entrypoint and the `hubdle {}` project type registration.
-- `hubdle-declarative-features`: owns Hubdle declarative features, organized as a multi-module tree with one module per feature and per sub-feature.
+- `hubdle-declarative-gradle`: owns the declarative plugin entrypoint and the `hubdle {}` project
+  type registration.
+- `hubdle-declarative-features`: owns Hubdle declarative features, organized as a multi-module tree
+  with one module per feature and per sub-feature.
 
 Current baseline already implemented in this repo:
 
-- `com.javiersc.hubdle.declarative.HubdleDeclarativePlugin` is the settings plugin and registers `HubdleProjectType`.
+- `com.javiersc.hubdle.declarative.HubdleDeclarativePlugin` is the settings plugin and registers
+  `HubdleProjectType`.
 - `com.javiersc.hubdle.declarative.HubdleProjectType` binds `hubdle`.
-- `HubdleDefinition` extends shared `hubdle.declarative.platform.HubdleFeatureEnabled`.
-- `HubdleApplyAction` uses `HubdleServices` and `enabled.orElse(true)` as read-side default.
-- Functional smoke test exists at `hubdle-declarative-gradle/testFunctional/kotlin/com/javiersc/hubdle/declarative/HubdleDeclarativeTest.kt`.
+- `com.javiersc.hubdle.declarative.MainHubdleDefinition` extends shared
+  `hubdle.platform.HubdleDefinition`.
+- `HubdleApplyAction` uses `HubdleServices`, applies the base plugin, and registers lifecycle tasks.
+- Functional smoke test exists at
+  `hubdle-declarative-gradle/testFunctional/kotlin/com/javiersc/hubdle/declarative/HubdleDeclarativeTest.kt`.
 
 Target shape:
 
@@ -54,7 +61,8 @@ Existing task/plugin logic  -> ApplyAction or shared configurer called by ApplyA
 Settings plugin             -> Plugin<Settings> with @RegistersProjectFeatures(...)
 ```
 
-Do not translate Kotlin DSL action functions directly. DCL needs managed model definitions, not arbitrary `Action<T>` methods.
+Do not translate Kotlin DSL action functions directly. DCL needs managed model definitions, not
+arbitrary `Action<T>` methods.
 
 ## Review Before Editing
 
@@ -66,23 +74,32 @@ Before modifying files, inspect:
 - Whether the DSL operation is declarative data or imperative behavior.
 - Whether the feature needs parent-derived state or only its own user input.
 
-Only migrate declarative data to DCL. Keep imperative callbacks, lambdas, and arbitrary actions in Kotlin DSL or replace them with explicit typed options.
+Only migrate declarative data to DCL. Keep imperative callbacks, lambdas, and arbitrary actions in
+Kotlin DSL or replace them with explicit typed options.
 
 ## Migration Workflow
 
-1. Locate the current DSL entrypoint. For Hubdle this is `HubdleExtension` and `HubdleProjectPlugin`.
-2. In `hubdle-declarative-gradle`, keep `HubdleDeclarativePlugin` as `Plugin<Settings>` and register project types/features there.
+1. Locate the current DSL entrypoint. For Hubdle this is `HubdleExtension` and
+   `HubdleProjectPlugin`.
+2. In `hubdle-declarative-gradle`, keep `HubdleDeclarativePlugin` as `Plugin<Settings>` and register
+   project types/features there.
 3. In `hubdle-declarative-gradle`, keep `HubdleProjectType` bound to `hubdle`.
-4. In `hubdle-declarative-features`, convert each direct child of `hubdle {}` into a `ProjectFeature` module.
-5. For nested blocks, keep splitting into sub-feature modules (one module per sub-feature) under `hubdle-declarative-features`.
+4. In `hubdle-declarative-features`, convert each direct child of `hubdle {}` into a
+   `ProjectFeature` module.
+5. For nested blocks, keep splitting into sub-feature modules (one module per sub-feature) under
+   `hubdle-declarative-features`.
 6. Convert each extension class property to a DCL-safe `Definition` property.
-7. Move default values to read-side providers with `orElse(...)`, settings `defaults {}`, or internal build model. Do not mutate finalized definitions from apply actions.
-8. Keep Hubdle's existing logic behind shared configurer functions so Kotlin DSL and DCL can coexist during migration.
-9. Add functional tests with `settings.gradle.dcl`, `build.gradle.dcl`, `gradle.properties`, and Gradle version/flags known to support DCL.
+7. Move default values to read-side providers with `orElse(...)`, settings `defaults {}`, or
+   internal build model. Do not mutate finalized definitions from apply actions.
+8. Keep Hubdle's existing logic behind shared configurer functions so Kotlin DSL and DCL can coexist
+   during migration.
+9. Add functional tests with `settings.gradle.dcl`, `build.gradle.dcl`, `gradle.properties`, and
+   Gradle version/flags known to support DCL.
 
 ## Coexistence Strategy
 
-Keep the current Kotlin DSL plugin and add a separate DCL registration plugin. Do not point both plugin IDs to the same class.
+Keep the current Kotlin DSL plugin and add a separate DCL registration plugin. Do not point both
+plugin IDs to the same class.
 
 ```kotlin
 gradlePlugin {
@@ -153,7 +170,8 @@ object HubdleSemverConfigurer {
 }
 ```
 
-Hubdle-owned shared configurers should accept plain Gradle providers/values, not DCL `Definition` types or Kotlin DSL extension types. Keep those in adapters only.
+Hubdle-owned shared configurers should accept plain Gradle providers/values, not DCL `Definition`
+types or Kotlin DSL extension types. Keep those in adapters only.
 
 ```kotlin
 // Kotlin DSL adapter
@@ -253,19 +271,25 @@ public interface HubdleConfigDefinition : Definition<BuildModel.None> {
 }
 ```
 
-If a feature must attach to a specific parent build model, bind it to that model instead of using only parent definition. Prefer explicit build models when features need data produced by the parent.
+If a feature must attach to a specific parent build model, bind it to that model instead of using
+only parent definition. Prefer explicit build models when features need data produced by the parent.
 
-`withUnsafeDefinition()` and `withUnsafeApplyAction()` are temporary DCL/incubating API escape hatches used by current Gradle Declarative examples. Keep them while required by the current Gradle version; remove them only when the stable API supports the same binding without unsafe calls.
+`withUnsafeDefinition()` and `withUnsafeApplyAction()` are temporary DCL/incubating API escape
+hatches used by current Gradle Declarative examples. Keep them while required by the current Gradle
+version; remove them only when the stable API supports the same binding without unsafe calls.
 
 ## Lifecycle And Ordering
 
-Do not rely on incidental feature apply order unless Gradle's binding contract explicitly provides it for that relationship. Model dependencies through parent definitions, build models, required plugins, task dependencies, and provider wiring.
+Do not rely on incidental feature apply order unless Gradle's binding contract explicitly provides
+it for that relationship. Model dependencies through parent definitions, build models, required
+plugins, task dependencies, and provider wiring.
 
 - Put data needed by children into the parent `BuildModel`.
 - Make features idempotent; applying them twice or in a different order should not corrupt state.
 - Use `pluginManager.apply(...)` and `plugins.withId(...)` for plugin-dependent configuration.
 - Use task providers and `dependsOn` instead of assuming tasks already exist.
-- If one feature truly requires another feature, express it in the model shape or combine them under one parent feature instead of depending on execution order.
+- If one feature truly requires another feature, express it in the model shape or combine them under
+  one parent feature instead of depending on execution order.
 
 ```kotlin
 // Assumes versioning feature already ran and configured a global mutable variable.
@@ -296,7 +320,8 @@ If the feature only reacts to an optional third-party plugin, skip `pluginManage
 
 ## Managed Containers
 
-Use managed containers for repeated child elements such as source sets, publications, targets, environments, or named tool configurations.
+Use managed containers for repeated child elements such as source sets, publications, targets,
+environments, or named tool configurations.
 
 ```kotlin
 public interface HubdleTestingDefinition : Definition<BuildModel.None> {
@@ -345,7 +370,8 @@ definition.suites.all {
 }
 ```
 
-If a Gradle core type uses wildcards, `Any`, or unsupported generic shapes, create a DCL-specific interface and map it manually in the apply action.
+If a Gradle core type uses wildcards, `Any`, or unsupported generic shapes, create a DCL-specific
+interface and map it manually in the apply action.
 
 ## Settings Registration
 
@@ -375,16 +401,24 @@ Follow these rules strictly:
 
 - Use `@BindsProjectType` for top-level `hubdle {}`.
 - Use `@BindsProjectFeature` for nested blocks inside `hubdle {}`.
-- Do not model a standalone plugin's `ProjectType` as nested under Hubdle. To nest it, expose or recreate a feature surface.
+- Do not model a standalone plugin's `ProjectType` as nested under Hubdle. To nest it, expose or
+  recreate a feature surface.
 - Duplicating DCL surface is acceptable; duplicating Hubdle implementation logic is not.
-- Keep DCL binding internals `internal` by default: project types, features, definitions, apply actions, and build model implementations.
-- Make only plugin marker implementation classes `public` unless Gradle or a real external API need forces wider visibility.
-- Use `enabled: Property<Boolean>`, not `isEnabled: Property<Boolean>`, because `isEnabled(): Property<Boolean>` is not a valid managed Boolean getter shape.
-- Reuse `hubdle.declarative.platform.HubdleFeatureEnabled` for shared flags (`enabled`, `loggingEnabled`) instead of duplicating those properties in each definition.
-- Do not call `definition.someProperty.convention(...)` in apply actions if DCL may have finalized the definition. Use `definition.someProperty.orElse(default)` instead.
+- Keep DCL binding internals `internal` by default: project types, features, definitions, apply
+  actions, and build model implementations.
+- Make only plugin marker implementation classes `public` unless Gradle or a real external API need
+  forces wider visibility.
+- Use `enabled: Property<Boolean>`, not `isEnabled: Property<Boolean>`, because
+  `isEnabled(): Property<Boolean>` is not a valid managed Boolean getter shape.
+- Reuse `hubdle.platform.HubdleDefinition` for shared flags (`enabled`, `loggingEnabled`,
+  `featureName`) instead of duplicating those properties in each definition.
+- Do not call `definition.someProperty.convention(...)` in apply actions if DCL may have finalized
+  the definition. Use `definition.someProperty.orElse(default)` instead.
 - Use `@get:Nested` for nested definition objects and managed containers.
-- Avoid arbitrary methods such as `fun semver(action: Action<SemverExtension>)` in definitions. DCL definitions should expose typed properties and nested managed objects.
-- Avoid `Any`, wildcard-heavy Gradle API types, and Kotlin function types in DCL definitions. Create DCL-specific interfaces when Gradle core types are not schema-friendly.
+- Avoid arbitrary methods such as `fun semver(action: Action<SemverExtension>)` in definitions. DCL
+  definitions should expose typed properties and nested managed objects.
+- Avoid `Any`, wildcard-heavy Gradle API types, and Kotlin function types in DCL definitions. Create
+  DCL-specific interfaces when Gradle core types are not schema-friendly.
 
 ## Converting Existing Hubdle Extensions
 
@@ -418,7 +452,8 @@ HubdleSemverConfigurer.configure(
 )
 ```
 
-Do not expose `mapVersion(VersionMapper)` in DCL unless it can be represented declaratively. If not, keep it Kotlin DSL-only or replace it with typed declarative options.
+Do not expose `mapVersion(VersionMapper)` in DCL unless it can be represented declaratively. If not,
+keep it Kotlin DSL-only or replace it with typed declarative options.
 
 ## Feature Ownership
 
@@ -440,7 +475,9 @@ This can coexist with an external standalone plugin:
 semver {}
 ```
 
-But that standalone `semver {}` is a different DCL entrypoint. Hubdle must not depend on another plugin's internal DCL `ProjectType`, `Definition`, `ApplyAction`, or `BuildModel`; those are usually internal and specific to that plugin's top-level surface.
+But that standalone `semver {}` is a different DCL entrypoint. Hubdle must not depend on another
+plugin's internal DCL `ProjectType`, `Definition`, `ApplyAction`, or `BuildModel`; those are usually
+internal and specific to that plugin's top-level surface.
 
 ```text
 semver-declarative
@@ -454,7 +491,9 @@ hubdle-declarative
   HubdleSemverFeature -> hubdle { config { versioning { semver {} } } }
 ```
 
-When integrating an external plugin such as SemVer, treat it as a black box unless it intentionally exposes a normal public Gradle API. The Hubdle feature owns its DCL definition and maps it to the external plugin by applying the plugin and configuring whatever public extension/task API exists.
+When integrating an external plugin such as SemVer, treat it as a black box unless it intentionally
+exposes a normal public Gradle API. The Hubdle feature owns its DCL definition and maps it to the
+external plugin by applying the plugin and configuring whatever public extension/task API exists.
 
 ```kotlin
 internal interface HubdleSemverDefinition : Definition<BuildModel.None> {
@@ -486,7 +525,8 @@ internal abstract class HubdleSemverApplyAction :
 }
 ```
 
-Use `BuildModel.None` for Hubdle features that do not expose derived state to child features. Introduce a real `BuildModel` only when a parent feature must pass providers/data to subfeatures.
+Use `BuildModel.None` for Hubdle features that do not expose derived state to child features.
+Introduce a real `BuildModel` only when a parent feature must pass providers/data to subfeatures.
 
 ## Testing Checklist
 
@@ -532,8 +572,39 @@ hubdle {
 
 Verify these failures explicitly:
 
-- `unresolved function call signature for 'hubdle'` means the settings plugin did not register/apply the project type or Gradle is using the wrong version/flags.
-- `Unexpected plugin type` means the plugin id applied in settings points to a `Plugin<Project>` instead of `Plugin<Settings>`.
-- `does not expose a project feature` means a registered class lacks `@BindsProjectType` or `@BindsProjectFeature`.
-- `Cannot have abstract method ... isEnabled(): Property<Boolean>` means a definition used `isEnabled`; rename to `enabled`.
-- `property ... is final and cannot be changed` means an apply action tried to mutate a finalized definition; consume with `orElse`.
+- `unresolved function call signature for 'hubdle'` means the settings plugin did not register/apply
+  the project type or Gradle is using the wrong version/flags.
+- `Unexpected plugin type` means the plugin id applied in settings points to a `Plugin<Project>`
+  instead of `Plugin<Settings>`.
+- `does not expose a project feature` means a registered class lacks `@BindsProjectType` or
+  `@BindsProjectFeature`.
+- `Cannot have abstract method ... isEnabled(): Property<Boolean>` means a definition used
+  `isEnabled`; rename to `enabled`.
+- `property ... is final and cannot be changed` means an apply action tried to mutate a finalized
+  definition; consume with `orElse`.
+
+## Functional Tests And Test Fixtures
+
+Use this repository pattern for declarative modules:
+
+- Keep functional tests focused on behavior, not helper/formatting duplication.
+- Reuse existing `testFixtures` first (currently platform fixtures such as logging helpers).
+- Create new fixtures only when existing ones cannot express the scenario cleanly.
+- If a declarative module needs shared fixtures, wire them in its `testFunctional` source set
+  dependencies.
+
+Current wiring pattern:
+
+```kotlin
+testFunctional {
+    dependencies {
+        implementation(testFixtures(projects.platform))
+    }
+}
+```
+
+Feature/sub-feature modules under `hubdle-declarative-features` should follow the same approach:
+
+- add fixtures dependency in `testFunctional` the same way,
+- prefer shared fixtures from platform (or other shared fixture modules),
+- keep feature-local fixtures only for genuinely feature-specific helpers.

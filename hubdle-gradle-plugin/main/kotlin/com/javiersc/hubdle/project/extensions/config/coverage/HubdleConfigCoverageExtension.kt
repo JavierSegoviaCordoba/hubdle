@@ -10,7 +10,7 @@ import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.config.hubdleConfig
 import com.javiersc.hubdle.project.extensions.shared.PluginId
-import com.javiersc.hubdle.project.tasks.lifecycle.TestsTask
+import hubdle.platform.tasks.lifecycle.TestsTask
 import javax.inject.Inject
 import kotlinx.kover.gradle.plugin.dsl.KoverProjectExtension
 import org.gradle.api.Action

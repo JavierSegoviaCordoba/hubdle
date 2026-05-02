@@ -15,7 +15,7 @@ import com.javiersc.hubdle.project.extensions.config.hubdleConfig
 import com.javiersc.hubdle.project.extensions.dependencies._internal.aliases.facebook_ktfmt
 import com.javiersc.hubdle.project.extensions.kotlin.hubdleKotlin
 import com.javiersc.hubdle.project.extensions.shared.PluginId
-import com.javiersc.hubdle.project.tasks.lifecycle.FixChecksTask
+import hubdle.platform.tasks.lifecycle.FixChecksTask
 import java.io.File
 import javax.inject.Inject
 import org.gradle.api.Action

@@ -3,9 +3,9 @@ package com.javiersc.hubdle.project.extensions.shared.features.tasks
 import com.javiersc.hubdle.project.extensions._internal.isKotlinMultiplatform
 import com.javiersc.hubdle.project.extensions._internal.kotlinSourceSetMainOrCommonMainOrNull
 import com.javiersc.hubdle.project.extensions._internal.prepareKotlinIdeaImport
-import com.javiersc.hubdle.project.tasks.lifecycle.GenerateTask
 import com.javiersc.kotlin.stdlib.TransformString
 import com.javiersc.kotlin.stdlib.isNotNullNorBlank
+import hubdle.platform.tasks.lifecycle.GenerateTask
 import java.io.File
 import javax.inject.Inject
 import org.gradle.api.DefaultTask

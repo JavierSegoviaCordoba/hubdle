@@ -1,7 +1,6 @@
-package com.javiersc.hubdle.project.tasks.lifecycle
+package hubdle.platform.tasks.lifecycle
 
-import com.android.build.gradle.internal.tasks.factory.dependsOn
-import com.javiersc.hubdle.project.tasks.HubdleTask
+import hubdle.platform.tasks.HubdleTask
 import org.gradle.api.DefaultTask
 import org.gradle.api.Project
 import org.gradle.api.Task
@@ -23,10 +22,14 @@ public open class TestsTask : DefaultTask(), HubdleTask {
 
         public const val NAME: String = "tests"
 
-        internal fun register(project: Project) {
+        public fun register(project: Project) {
             val testsTask: TaskProvider<Task> = project.tasks.register(NAME)
-            project.tasks.named(CHECK_TASK_NAME).dependsOn(testsTask)
+
             testsTask.configure { task -> task.dependsOn(project.tasks.withType<Test>()) }
+
+            project.tasks
+                .named { name -> name == CHECK_TASK_NAME }
+                .configureEach { task -> task.dependsOn(testsTask) }
         }
     }
 }

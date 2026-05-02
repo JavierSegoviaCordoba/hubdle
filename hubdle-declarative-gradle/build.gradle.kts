@@ -46,7 +46,6 @@ hubdle {
         }
     }
 
-
     gradle {
         plugin {
             gradlePlugin {
@@ -65,7 +64,7 @@ hubdle {
                                 "project",
                                 "declarative",
                                 "Gradle Declarative",
-                            ),
+                            )
                         )
                     }
                 }
@@ -130,7 +129,11 @@ hubdle {
             }
 
             testFixtures()
-            testFunctional()
+            testFunctional {
+                dependencies { //
+                    implementation(testFixtures(projects.platform))
+                }
+            }
             testIntegration()
         }
     }

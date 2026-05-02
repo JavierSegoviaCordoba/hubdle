@@ -1,10 +1,8 @@
-package com.javiersc.hubdle.project.tasks.lifecycle
+package hubdle.platform.tasks.lifecycle
 
-import com.javiersc.hubdle.project.tasks.HubdleTask
+import hubdle.platform.tasks.HubdleTask
 import org.gradle.api.DefaultTask
 import org.gradle.api.Project
-import org.gradle.api.tasks.TaskProvider
-import org.gradle.kotlin.dsl.register
 import org.gradle.language.base.plugins.LifecycleBasePlugin.VERIFICATION_GROUP
 import org.gradle.work.DisableCachingByDefault
 
@@ -19,7 +17,8 @@ public open class FixChecksTask : DefaultTask(), HubdleTask {
 
         public const val NAME: String = "fixChecks"
 
-        internal fun register(project: Project): TaskProvider<FixChecksTask> =
-            project.tasks.register<FixChecksTask>(NAME)
+        public fun register(project: Project) {
+            project.tasks.register(NAME)
+        }
     }
 }

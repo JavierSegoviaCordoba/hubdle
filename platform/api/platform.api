@@ -11,27 +11,65 @@ public final class com/javiersc/hubdle/platform/PlatformProjectData {
 	public static final field Version Ljava/lang/String;
 }
 
-public abstract interface class hubdle/declarative/platform/HubdleFeatureEnabled {
+public abstract interface class hubdle/platform/HubdleDefinition {
 	public abstract fun getEnabled ()Lorg/gradle/api/provider/Property;
+	public abstract fun getFeatureName ()Ljava/lang/String;
 	public abstract fun getLoggingEnabled ()Lorg/gradle/api/provider/Property;
 }
 
-public final class hubdle/declarative/platform/HubdleProperties {
-	public static final field INSTANCE Lhubdle/declarative/platform/HubdleProperties;
+public final class hubdle/platform/HubdleProperties {
+	public static final field INSTANCE Lhubdle/platform/HubdleProperties;
 }
 
-public final class hubdle/declarative/platform/HubdleProperties$Logging {
+public final class hubdle/platform/HubdleProperties$Logging {
 	public static final field Enabled Ljava/lang/String;
-	public static final field INSTANCE Lhubdle/declarative/platform/HubdleProperties$Logging;
+	public static final field INSTANCE Lhubdle/platform/HubdleProperties$Logging;
 }
 
-public abstract interface class hubdle/declarative/platform/HubdleServices {
+public abstract interface class hubdle/platform/HubdleServices {
 	public abstract fun getPluginManager ()Lorg/gradle/api/plugins/PluginManager;
 	public abstract fun getProject ()Lorg/gradle/api/Project;
-	public fun logLifecycle (Lhubdle/declarative/platform/HubdleFeatureEnabled;Lkotlin/jvm/functions/Function0;)V
+	public fun logLifecycle (Lhubdle/platform/HubdleDefinition;Lkotlin/jvm/functions/Function0;)V
 }
 
-public final class hubdle/declarative/platform/HubdleServices$DefaultImpls {
-	public static fun logLifecycle (Lhubdle/declarative/platform/HubdleServices;Lhubdle/declarative/platform/HubdleFeatureEnabled;Lkotlin/jvm/functions/Function0;)V
+public final class hubdle/platform/HubdleServices$DefaultImpls {
+	public static fun logLifecycle (Lhubdle/platform/HubdleServices;Lhubdle/platform/HubdleDefinition;Lkotlin/jvm/functions/Function0;)V
+}
+
+public abstract interface class hubdle/platform/tasks/HubdleTask {
+}
+
+public final class hubdle/platform/tasks/kotlin/PrepareKotlinIdeaImportKt {
+	public static final fun getPrepareKotlinIdeaImport (Lhubdle/platform/HubdleServices;)Lorg/gradle/api/Task;
+}
+
+public class hubdle/platform/tasks/lifecycle/FixChecksTask : org/gradle/api/DefaultTask, hubdle/platform/tasks/HubdleTask {
+	public static final field Companion Lhubdle/platform/tasks/lifecycle/FixChecksTask$Companion;
+	public static final field NAME Ljava/lang/String;
+	public fun <init> ()V
+}
+
+public final class hubdle/platform/tasks/lifecycle/FixChecksTask$Companion {
+	public final fun register (Lorg/gradle/api/Project;)V
+}
+
+public class hubdle/platform/tasks/lifecycle/GenerateTask : org/gradle/api/DefaultTask, hubdle/platform/tasks/HubdleTask {
+	public static final field Companion Lhubdle/platform/tasks/lifecycle/GenerateTask$Companion;
+	public static final field NAME Ljava/lang/String;
+	public fun <init> ()V
+}
+
+public final class hubdle/platform/tasks/lifecycle/GenerateTask$Companion {
+	public final fun register (Lorg/gradle/api/Project;)V
+}
+
+public class hubdle/platform/tasks/lifecycle/TestsTask : org/gradle/api/DefaultTask, hubdle/platform/tasks/HubdleTask {
+	public static final field Companion Lhubdle/platform/tasks/lifecycle/TestsTask$Companion;
+	public static final field NAME Ljava/lang/String;
+	public fun <init> ()V
+}
+
+public final class hubdle/platform/tasks/lifecycle/TestsTask$Companion {
+	public final fun register (Lorg/gradle/api/Project;)V
 }
 

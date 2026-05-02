@@ -11,7 +11,7 @@ import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.config.hubdleConfig
 import com.javiersc.hubdle.project.extensions.shared.PluginId
-import com.javiersc.hubdle.project.tasks.lifecycle.FixChecksTask
+import hubdle.platform.tasks.lifecycle.FixChecksTask
 import javax.inject.Inject
 import kotlinx.validation.ApiValidationExtension
 import org.gradle.api.Action

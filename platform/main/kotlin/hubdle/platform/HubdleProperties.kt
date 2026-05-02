@@ -1,6 +1,6 @@
 @file:Suppress("ConstPropertyName")
 
-package hubdle.declarative.platform
+package hubdle.platform
 
 public object HubdleProperties {
 

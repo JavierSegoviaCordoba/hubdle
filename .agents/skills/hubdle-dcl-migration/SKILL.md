@@ -195,6 +195,171 @@ Rules:
 - Do not add arbitrary action/lambda methods.
 - Do not use `isEnabled: Property<Boolean>` in DCL definitions.
 
+#### Factory Functions
+
+Use factory functions when the DSL needs to assign a declarative object value without a named
+container or configuration block.
+
+Example DSL:
+
+```kotlin
+hubdle {
+    config {
+        foo = foo("foo", 42)
+    }
+}
+```
+
+Factory functions are value expressions. They must be used where their returned value is consumed,
+for example on the right side of an assignment:
+
+```kotlin
+foo = foo("foo", 42)
+```
+
+or inside a collection that is assigned to a property:
+
+```kotlin
+foos = listOf(
+    foo("main", 1),
+    foo("test", 2)
+)
+```
+
+Do not call them as standalone statements:
+
+```kotlin
+foo("foo", 42) // invalid for this pattern
+```
+
+Standalone calls require an explicit adding function shape; that is a different DSL pattern from
+these simple value factories.
+
+Definition pattern:
+
+```kotlin
+@file:Suppress("UnstableApiUsage")
+
+package hubdle.declarative.config
+
+import hubdle.platform.HubdleDefinition
+import javax.inject.Inject
+import org.gradle.api.model.ObjectFactory
+import org.gradle.api.provider.Property
+import org.gradle.declarative.dsl.model.annotations.HiddenInDefinition
+import org.gradle.features.binding.Definition
+import org.gradle.kotlin.dsl.newInstance
+
+public interface HubdleConfigDefinition : HubdleDefinition, Definition<HubdleConfigBuildModel> {
+    override val featureName: String
+        get() = "config"
+
+    public val foo: Property<HubdleConfigFooDefinition>
+
+    @get:Inject
+    @get:HiddenInDefinition
+    public val objects: ObjectFactory
+
+    public fun foo(name: String, number: Int): HubdleConfigFooDefinition =
+        objects.newInstance<HubdleConfigFooDefinition>().also { foo ->
+            foo.name.set(name)
+            foo.number.set(number)
+        }
+}
+
+public interface HubdleConfigFooDefinition {
+    public val name: Property<String>
+    public val number: Property<Int>
+}
+```
+
+For multiple values, expose a collection property and assign a list of factory-created objects:
+
+```kotlin
+public val foos: ListProperty<HubdleConfigFooDefinition>
+```
+
+```kotlin
+foos = listOf(
+    foo("main", 1),
+    foo("test", 2)
+)
+```
+
+Rules:
+
+- Create returned objects with `ObjectFactory.newInstance<T>()`.
+- Inject `ObjectFactory` in the definition with `@get:Inject`.
+- Hide injected services from the DCL schema with `@get:HiddenInDefinition`.
+- Do not use `HiddenInDeclarativeDsl`; it is deprecated.
+- Keep factory functions declarative: set properties on a model object and return it.
+- Use factory functions only as consumed expressions: assignment RHS or inside an assigned
+  collection.
+- Do not call factory functions as standalone statements; DCL rejects pure value calls whose result
+  is unused.
+- Do not apply plugins, register tasks, mutate the project, or run imperative build logic in factory
+  functions.
+- Prefer factory functions for small value objects with simple constructor-like arguments.
+- Prefer project features, nested definitions, or managed containers when elements need their own
+  configuration blocks or apply behavior.
+
+#### Adding Functions
+
+Use `@Adding` when the DSL needs a standalone function call:
+
+```kotlin
+hubdle {
+    config {
+        bar()
+        bar("name", 42)
+    }
+}
+```
+
+Definition pattern:
+
+```kotlin
+@file:Suppress("UnstableApiUsage")
+
+package hubdle.declarative.config
+
+import hubdle.platform.HubdleDefinition
+import org.gradle.declarative.dsl.model.annotations.Adding
+import org.gradle.features.binding.Definition
+
+public interface HubdleConfigDefinition : HubdleDefinition, Definition<HubdleConfigBuildModel> {
+    override val featureName: String
+        get() = "config"
+
+    @Adding
+    public fun bar() {
+        // Mutate declarative model state here, or intentionally trigger an adding operation.
+    }
+
+    @Adding
+    public fun bar(name: String, number: Int) {
+        // Parameters are supported for standalone adding calls.
+    }
+}
+```
+
+Rules:
+
+- Add `@Adding` to functions that must be callable as standalone DCL statements.
+- `@Adding` functions may have parameters, for example `bar("name", 42)`.
+- A plain function call such as `bar()` is not valid unless the function has DCL-recognized
+  semantics such as `@Adding`.
+- Keep `@Adding` functions model-oriented. They may update managed declarative properties or add
+  model elements, but should not apply plugins, register tasks, mutate `Project`, or run build logic.
+- Use a pure factory function when the result should be assigned:
+  `foo = foo("foo", 42)`.
+- Use an `@Adding` function when the call itself is the DSL operation:
+  `bar()`.
+- A `Unit` returning `@Adding` function works for standalone calls without a configuration block.
+- Gradle's DCL schema builder rejects a `Unit` returning `@Adding` function when its last parameter
+  is treated as a configuration lambda. If an element needs a block, validate the exact return type
+  and lambda shape with a functional test before documenting it as supported.
+
 ### 7. Implement `BuildModel`
 
 Pattern:

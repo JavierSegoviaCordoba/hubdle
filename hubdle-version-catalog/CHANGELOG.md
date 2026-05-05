@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.codingfeline.buildkonfig:com.codingfeline.buildkonfig.gradle.plugin -> 0.19.0`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.18.2`
 - `org.jetbrains.intellij.platform:org.jetbrains.intellij.platform.gradle.plugin -> 2.16.0`
 

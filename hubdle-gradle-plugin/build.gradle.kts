@@ -95,7 +95,6 @@ hubdle {
 
             main {
                 dependencies {
-                    implementation(projects.platform)
                     // TODO: REMOVE WHEN FIXED
                     implementation(hubdle.javiersc.gradle.extensions)
                     implementation(hubdle.javiersc.gradle.test.extensions)

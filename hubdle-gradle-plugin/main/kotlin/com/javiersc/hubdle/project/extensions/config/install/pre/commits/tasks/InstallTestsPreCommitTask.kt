@@ -1,6 +1,6 @@
 package com.javiersc.hubdle.project.extensions.config.install.pre.commits.tasks
 
-import hubdle.platform.tasks.lifecycle.TestsTask
+import com.javiersc.hubdle.project.tasks._internal.lifecycle.TestsTask
 import javax.inject.Inject
 import org.gradle.api.Project
 import org.gradle.api.file.ProjectLayout

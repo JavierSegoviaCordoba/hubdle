@@ -33,8 +33,8 @@ import com.javiersc.hubdle.project.extensions.kotlin.jvm.features.KotlinCompiler
 import com.javiersc.hubdle.project.extensions.kotlin.jvm.features.compiler.DeleteCompilerTextTestFiles
 import com.javiersc.hubdle.project.extensions.kotlin.jvm.features.compiler.GenerateMetaRuntimeClasspathProviderTask
 import com.javiersc.hubdle.project.extensions.kotlin.jvm.hubdleKotlinJvm
+import com.javiersc.hubdle.project.tasks._internal.lifecycle.GenerateTask
 import com.javiersc.kotlin.stdlib.isNotNullNorBlank
-import hubdle.platform.tasks.lifecycle.GenerateTask
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project

@@ -45,7 +45,7 @@ internal abstract class HubdleDocumentationReadmeBadgesApplyAction :
         fun prop(name: String) = providers.gradleProperty(name)
 
         tasks.register<WriteReadmeBadgesTask>(WriteReadmeBadgesTask.NAME).configure { task ->
-            task.projectGroup.set(group.toString())
+            task.projectGroup.set(prop(Project.Group).orElse(group.toString()))
             task.projectName.set(mainProjectName.orElse(prop(Project.Name).orElse(name)))
             task.repoUrl.set(prop(Pom.Scm.Url).orElse(""))
             task.kotlinVersion.set(prop("kotlinVersion").orElse("unknown"))

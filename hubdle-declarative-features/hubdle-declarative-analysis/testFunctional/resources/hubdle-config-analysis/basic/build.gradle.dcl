@@ -1,5 +1,3 @@
 hubdle {
-    analysis {
-        enabled = true
-    }
+    analysis {}
 }

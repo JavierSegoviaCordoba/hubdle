@@ -36,6 +36,12 @@ Module boundaries:
   they represent shared behavior reused by several features.
 - Shared behavior from the legacy DSL should be extracted to its own declarative feature module
   when it is reused across feature families.
+- When adapting Kotlin root, keep shared Kotlin features under the Kotlin owner
+  (`hubdle { kotlin { features { ... } } }`) and let concrete targets such as `jvm`,
+  `multiplatform`, and `android` contribute target-specific source sets, dependencies, test tasks,
+  publishing inputs, and plugin application separately. Do not duplicate Kotlin operational blocks
+  such as shared `features`, `analysis`, `format`, `coverage`, `documentation`, or generic
+  `testing` under each concrete target.
 
 ## Before Editing
 
@@ -47,10 +53,14 @@ Inspect the current feature or DSL block first:
 4. Reuse existing Hubdle implementation logic through provider/value based configurers when
    possible.
 5. Use `hubdle-declarative-config` as the concrete implementation reference.
-6. Reuse platform-owned constants for plugin IDs and Gradle property names before adding literals
+6. Map every new DCL property, nested block, and `@Adding` function to an existing legacy DSL
+   property/function or to a specific issue requirement before implementing it. Do not invent
+   generic model words such as `capability`, `classifier`, `participant`, `artifact`, or `fact`
+   unless they already exist in the legacy DSL or the issue explicitly asks for that exact model.
+7. Reuse platform-owned constants for plugin IDs and Gradle property names before adding literals
    to feature apply actions. Add missing shared constants to `platform` instead of keeping local
    `private const val` copies.
-7. Insert new constants, enum entries, dependencies, registrations, and similar lists in
+8. Insert new constants, enum entries, dependencies, registrations, and similar lists in
    alphabetical order unless the surrounding file uses a different explicit ordering.
 
 Platform naming:

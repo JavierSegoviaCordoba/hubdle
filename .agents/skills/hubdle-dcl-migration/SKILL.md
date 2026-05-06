@@ -47,6 +47,27 @@ Inspect the current feature or DSL block first:
 4. Reuse existing Hubdle implementation logic through provider/value based configurers when
    possible.
 5. Use `hubdle-declarative-config` as the concrete implementation reference.
+6. Reuse platform-owned constants for plugin IDs and Gradle property names before adding literals
+   to feature apply actions. Add missing shared constants to `platform` instead of keeping local
+   `private const val` copies.
+7. Insert new constants, enum entries, dependencies, registrations, and similar lists in
+   alphabetical order unless the surrounding file uses a different explicit ordering.
+
+Platform naming:
+
+- Add plugin IDs to `platform/main/kotlin/hubdle/platform/PluginIds.kt`.
+- Name plugin enum entries from the complete plugin ID after dropping only the top-level domain
+  prefix such as `com.`, `org.`, `io.`, `dev.`, or `app.`.
+- Preserve the remaining namespace so provider/project identity is not lost. Examples:
+  `com.javiersc.semver` becomes `JavierscSemver`, and `org.sonarqube` becomes `Sonarqube`.
+- Add Gradle property names to `platform/main/kotlin/hubdle/platform/HubdleProperties.kt`.
+- Group properties by their domain namespace as nested objects, named in PascalCase. For example,
+  `semver.tagPrefix` belongs in `HubdleProperties.Semver.TagPrefix`.
+- Property constant names are the remaining property path segments after the domain object, also in
+  PascalCase. For example, `hubdle.logging.enabled` is
+  `HubdleProperties.Logging.Enabled`.
+- Keep both plugin enum entries and property domain objects/properties alphabetically sorted unless
+  the file already has a clearer explicit order.
 
 ## Reference Map
 
@@ -97,5 +118,6 @@ This keeps formatting and API dumps current before verification.
 - Do not edit `settings.gradle.kts` unless the user explicitly asks for it.
 - In functional test `settings.gradle.dcl` fixtures, always set `rootProject.name` following the
   repository's fixture naming pattern.
-- Keep each issue in a separate commit. If the user asks to delay committing until review, wait for
-  their confirmation before creating the issue commit.
+- Keep each issue in a separate commit, but never create commits without explicit user permission in
+  the current turn. If the user asks to delay committing until review, wait for their confirmation
+  before creating the issue commit.

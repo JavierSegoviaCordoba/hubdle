@@ -10,6 +10,7 @@ import hubdle.declarative.documentation.readme.badges.HubdleDocumentationReadmeB
 import hubdle.declarative.kotlin.HubdleKotlinFeature
 import hubdle.declarative.projectConfig.HubdleProjectConfigFeature
 import hubdle.declarative.versioning.HubdleVersioningFeature
+import hubdle.declarative.versioning.semver.HubdleVersioningSemverFeature
 import org.gradle.api.Plugin
 import org.gradle.api.initialization.Settings
 import org.gradle.features.annotations.RegistersProjectFeatures
@@ -24,6 +25,7 @@ import org.gradle.features.annotations.RegistersProjectFeatures
     HubdleDocumentationReadmeBadgesFeature::class,
     HubdleKotlinFeature::class,
     HubdleVersioningFeature::class,
+    HubdleVersioningSemverFeature::class,
 )
 public open class HubdleDeclarativePlugin : Plugin<Settings> {
 

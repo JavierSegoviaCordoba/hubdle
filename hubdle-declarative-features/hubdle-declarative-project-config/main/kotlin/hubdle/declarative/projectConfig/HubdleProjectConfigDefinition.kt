@@ -12,6 +12,5 @@ public interface HubdleProjectConfigDefinition :
     override val featureName: String
         get() = "projectConfig"
 
-    @get:HasDefaultValue
-    public val group: Property<String>
+    @get:HasDefaultValue public val group: Property<String>
 }

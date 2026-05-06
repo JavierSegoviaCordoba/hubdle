@@ -36,6 +36,10 @@ public object HubdleProperties {
         public const val Name: String = "hubdle.project.name"
     }
 
+    public object Semver {
+        public const val TagPrefix: String = "semver.tagPrefix"
+    }
+
     public object Sonar {
         public const val ProjectKey: String = "hubdle.sonar.projectKey"
     }

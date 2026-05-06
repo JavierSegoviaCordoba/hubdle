@@ -1,0 +1,5 @@
+hubdle {
+    analysis {
+        enabled = true
+    }
+}

@@ -1,0 +1,5 @@
+hubdle {
+    documentation {
+        enabled = true
+    }
+}

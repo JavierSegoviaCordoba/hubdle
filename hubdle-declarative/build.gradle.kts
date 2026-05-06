@@ -97,6 +97,7 @@ hubdle {
                     api(projects.hubdleDeclarativeFeatures.hubdleDeclarativeDocumentationReadmeBadges)
                     api(projects.hubdleDeclarativeFeatures.hubdleDeclarativeProjectConfig)
                     api(projects.hubdleDeclarativeFeatures.hubdleDeclarativeKotlin)
+                    api(projects.hubdleDeclarativeFeatures.hubdleDeclarativeVersioning)
 
                     api(hubdle.android.tools.build.gradle)
                     api(hubdle.jetbrains.kotlin.gradle.plugin)

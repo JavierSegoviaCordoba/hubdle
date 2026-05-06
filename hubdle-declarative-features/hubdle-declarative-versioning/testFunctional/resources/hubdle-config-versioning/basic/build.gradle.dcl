@@ -1,5 +1,3 @@
 hubdle {
-    versioning {
-        enabled = true
-    }
+    versioning {}
 }

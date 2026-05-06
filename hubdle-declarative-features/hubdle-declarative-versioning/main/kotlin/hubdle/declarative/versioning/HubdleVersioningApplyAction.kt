@@ -26,7 +26,7 @@ internal abstract class HubdleVersioningApplyAction :
             context.computeHubdleEffectiveEnabled(
                 featureDefinition = definition,
                 parentDefinition = parentDefinition,
-                defaultEnabled = false,
+                defaultEnabled = true,
             )
 
         if (featureEffectiveEnabled.get()) {

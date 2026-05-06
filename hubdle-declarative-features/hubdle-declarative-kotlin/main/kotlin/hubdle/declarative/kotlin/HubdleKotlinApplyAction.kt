@@ -26,7 +26,7 @@ internal abstract class HubdleKotlinApplyAction :
             context.computeHubdleEffectiveEnabled(
                 featureDefinition = definition,
                 parentDefinition = parentDefinition,
-                defaultEnabled = false,
+                defaultEnabled = true,
             )
 
         if (featureEffectiveEnabled.get()) {

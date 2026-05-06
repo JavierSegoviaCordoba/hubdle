@@ -26,7 +26,7 @@ internal abstract class HubdleAnalysisApplyAction :
             context.computeHubdleEffectiveEnabled(
                 featureDefinition = definition,
                 parentDefinition = parentDefinition,
-                defaultEnabled = false,
+                defaultEnabled = true,
             )
 
         if (featureEffectiveEnabled.get()) {

@@ -23,6 +23,20 @@ Current shape:
 - `hubdle {}` is the root project type.
 - Nested blocks such as `hubdle { config {} }` are project features.
 
+Module boundaries:
+
+- Default to one Gradle module per project feature, including intermediate namespaces that can
+  contain multiple feature types.
+- Create a module for a namespace feature and separate modules for each non-terminal child feature.
+  For example, `versioning` is its own module because it can later contain `semver`, `calver`, and
+  other strategies, and `semver` must also live in its own module.
+- Apply the same rule to technology families: `kotlin` is a module, and concrete Kotlin feature
+  types such as `jvm`, `multiplatform`, and `android` are separate modules.
+- Nested blocks inside a terminal concrete feature may live in that concrete feature module unless
+  they represent shared behavior reused by several features.
+- Shared behavior from the legacy DSL should be extracted to its own declarative feature module
+  when it is reused across feature families.
+
 ## Before Editing
 
 Inspect the current feature or DSL block first:
@@ -63,6 +77,14 @@ For a new or migrated Hubdle DCL feature:
 5. If Gradle DCL schema/evaluation fails, read
    [`references/troubleshooting.md`](references/troubleshooting.md).
 
+Before compiling or running tests, always run:
+
+```shell
+./gradlew fixChecks
+```
+
+This keeps formatting and API dumps current before verification.
+
 ## Core Rules
 
 - Use `@BindsProjectType` only for root `hubdle {}`.
@@ -72,3 +94,8 @@ For a new or migrated Hubdle DCL feature:
 - Do not expose imperative Gradle actions/lambdas directly in DCL definitions.
 - Do not use deprecated DCL annotations.
 - Add or update a `.gradle.dcl` functional fixture for every new DSL shape.
+- Do not edit `settings.gradle.kts` unless the user explicitly asks for it.
+- In functional test `settings.gradle.dcl` fixtures, always set `rootProject.name` following the
+  repository's fixture naming pattern.
+- Keep each issue in a separate commit. If the user asks to delay committing until review, wait for
+  their confirmation before creating the issue commit.

@@ -36,8 +36,19 @@ Create fixtures:
 ```text
 testFunctional/resources/<fixture-group>/basic/settings.gradle.dcl
 testFunctional/resources/<fixture-group>/basic/build.gradle.dcl
+testFunctional/resources/<fixture-group>/basic/gradle.properties
 testFunctional/resources/<fixture-group>/hubdle-disabled/settings.gradle.dcl
 testFunctional/resources/<fixture-group>/hubdle-disabled/build.gradle.dcl
+testFunctional/resources/<fixture-group>/hubdle-disabled/gradle.properties
+```
+
+Use this exact `gradle.properties` content in each functional fixture directory:
+
+```properties
+org.gradle.caching=true
+org.gradle.configuration-cache=true
+org.gradle.parallel=true
+org.gradle.unsafe.isolated-projects=true
 ```
 
 `settings.gradle.dcl`:

@@ -125,6 +125,9 @@ This keeps formatting and API dumps current before verification.
 - Do not expose imperative Gradle actions/lambdas directly in DCL definitions.
 - Do not use deprecated DCL annotations.
 - Add or update a `.gradle.dcl` functional fixture for every new DSL shape.
+- Every functional test fixture directory must include a `gradle.properties` file with:
+  `org.gradle.caching=true`, `org.gradle.configuration-cache=true`,
+  `org.gradle.parallel=true`, and `org.gradle.unsafe.isolated-projects=true`.
 - Do not edit `settings.gradle.kts` unless the user explicitly asks for it.
 - In functional test `settings.gradle.dcl` fixtures, always set `rootProject.name` following the
   repository's fixture naming pattern.

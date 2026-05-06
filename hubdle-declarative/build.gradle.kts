@@ -98,6 +98,7 @@ hubdle {
                     api(projects.hubdleDeclarativeFeatures.hubdleDeclarativeProjectConfig)
                     api(projects.hubdleDeclarativeFeatures.hubdleDeclarativeKotlin)
                     api(projects.hubdleDeclarativeFeatures.hubdleDeclarativeVersioning)
+                    api(projects.hubdleDeclarativeFeatures.hubdleDeclarativeVersioningSemver)
 
                     api(hubdle.android.tools.build.gradle)
                     api(hubdle.jetbrains.kotlin.gradle.plugin)

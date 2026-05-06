@@ -14,6 +14,9 @@
 
 ### Updated
 
+- `com.android.library:com.android.library.gradle.plugin -> 9.2.1`
+- `com.android.application:com.android.application.gradle.plugin -> 9.2.1`
+- `com.android.tools.build:gradle -> 9.2.1`
 - `com.codingfeline.buildkonfig:com.codingfeline.buildkonfig.gradle.plugin -> 0.20.0`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.18.2`
 - `org.jetbrains.intellij.platform:org.jetbrains.intellij.platform.gradle.plugin -> 2.16.0`

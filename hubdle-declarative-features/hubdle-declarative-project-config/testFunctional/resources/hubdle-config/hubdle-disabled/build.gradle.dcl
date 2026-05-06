@@ -1,0 +1,6 @@
+hubdle {
+    enabled = false
+
+    projectConfig {
+    }
+}

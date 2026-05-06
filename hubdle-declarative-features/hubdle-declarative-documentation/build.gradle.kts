@@ -48,25 +48,7 @@ hubdle {
 
     gradle {
         plugin {
-            gradlePlugin {
-                plugins {
-                    create("hubdle-declarative") {
-                        id = "com.javiersc.hubdle.declarative"
-                        displayName = "Hubdle Declarative"
-                        description = "Conventions using Gradle Declarative"
-                        implementationClass = "hubdle.declarative.HubdleDeclarativePlugin"
-                        tags.set(
-                            listOf(
-                                "hubdle",
-                                "settings",
-                                "project",
-                                "declarative",
-                                "Gradle Declarative",
-                            )
-                        )
-                    }
-                }
-            }
+            pluginUnderTestProjects(projects.hubdleDeclarative)
 
             // TODO: Fix when fixed
             pluginUnderTestExternalDependencies(
@@ -90,13 +72,7 @@ hubdle {
                     implementation(hubdle.javiersc.gradle.test.extensions)
 
                     api(projects.platform)
-                    api(projects.hubdleDeclarativeFeatures.hubdleDeclarativeAnalysis)
-                    api(projects.hubdleDeclarativeFeatures.hubdleDeclarativeAnalysisSonar)
-                    api(projects.hubdleDeclarativeFeatures.hubdleDeclarativeDocumentation)
-                    api(projects.hubdleDeclarativeFeatures.hubdleDeclarativeDocumentationReadme)
-                    api(projects.hubdleDeclarativeFeatures.hubdleDeclarativeDocumentationReadmeBadges)
                     api(projects.hubdleDeclarativeFeatures.hubdleDeclarativeProjectConfig)
-                    api(projects.hubdleDeclarativeFeatures.hubdleDeclarativeKotlin)
 
                     api(hubdle.android.tools.build.gradle)
                     api(hubdle.jetbrains.kotlin.gradle.plugin)
@@ -136,6 +112,7 @@ hubdle {
             testFixtures()
             testFunctional {
                 dependencies { //
+                    implementation(projects.hubdleDeclarative)
                     implementation(testFixtures(projects.platform))
                 }
             }

@@ -1,6 +1,0 @@
-hubdle {
-    enabled = false
-
-    config {
-    }
-}

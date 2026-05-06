@@ -2,25 +2,25 @@
 
 package hubdle.declarative
 
-import hubdle.declarative.config.HubdleConfigFeature
-import hubdle.declarative.config.analysis.HubdleConfigAnalysisFeature
-import hubdle.declarative.config.analysis.sonar.HubdleConfigAnalysisSonarFeature
-import hubdle.declarative.config.documentation.HubdleConfigDocumentationFeature
-import hubdle.declarative.config.documentation.readme.HubdleConfigDocumentationReadmeFeature
-import hubdle.declarative.config.documentation.readme.badges.HubdleConfigDocumentationReadmeBadgesFeature
+import hubdle.declarative.analysis.HubdleAnalysisFeature
+import hubdle.declarative.analysis.sonar.HubdleAnalysisSonarFeature
+import hubdle.declarative.documentation.HubdleDocumentationFeature
+import hubdle.declarative.documentation.readme.HubdleDocumentationReadmeFeature
+import hubdle.declarative.documentation.readme.badges.HubdleDocumentationReadmeBadgesFeature
 import hubdle.declarative.kotlin.HubdleKotlinFeature
+import hubdle.declarative.projectConfig.HubdleProjectConfigFeature
 import org.gradle.api.Plugin
 import org.gradle.api.initialization.Settings
 import org.gradle.features.annotations.RegistersProjectFeatures
 
 @RegistersProjectFeatures(
     HubdleProjectType::class,
-    HubdleConfigFeature::class,
-    HubdleConfigAnalysisFeature::class,
-    HubdleConfigAnalysisSonarFeature::class,
-    HubdleConfigDocumentationFeature::class,
-    HubdleConfigDocumentationReadmeFeature::class,
-    HubdleConfigDocumentationReadmeBadgesFeature::class,
+    HubdleProjectConfigFeature::class,
+    HubdleAnalysisFeature::class,
+    HubdleAnalysisSonarFeature::class,
+    HubdleDocumentationFeature::class,
+    HubdleDocumentationReadmeFeature::class,
+    HubdleDocumentationReadmeBadgesFeature::class,
     HubdleKotlinFeature::class,
 )
 public open class HubdleDeclarativePlugin : Plugin<Settings> {

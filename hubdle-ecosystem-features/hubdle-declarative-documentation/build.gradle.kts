@@ -48,25 +48,7 @@ hubdle {
 
     gradle {
         plugin {
-            gradlePlugin {
-                plugins {
-                    create("hubdle-ecosystem") {
-                        id = "com.javiersc.hubdle.ecosystem"
-                        displayName = "Hubdle Ecosystem"
-                        description = "Conventions using Gradle Declarative"
-                        implementationClass = "hubdle.ecosystem.HubdleEcosystemPlugin"
-                        tags.set(
-                            listOf(
-                                "hubdle",
-                                "settings",
-                                "project",
-                                "ecosystem",
-                                "Gradle Declarative",
-                            )
-                        )
-                    }
-                }
-            }
+            pluginUnderTestProjects(projects.hubdleEcosystem)
 
             // TODO: Fix when fixed
             pluginUnderTestExternalDependencies(
@@ -90,15 +72,7 @@ hubdle {
                     implementation(hubdle.javiersc.gradle.test.extensions)
 
                     api(projects.platform)
-                    api(projects.hubdleEcosystemFeatures.hubdleDeclarativeAnalysis)
-                    api(projects.hubdleEcosystemFeatures.hubdleDeclarativeAnalysisSonar)
-                    api(projects.hubdleEcosystemFeatures.hubdleDeclarativeDocumentation)
-                    api(projects.hubdleEcosystemFeatures.hubdleDeclarativeDocumentationReadme)
-                    api(projects.hubdleEcosystemFeatures.hubdleDeclarativeDocumentationReadmeBadges)
                     api(projects.hubdleEcosystemFeatures.hubdleEcosystemFeatureProjectConfig)
-                    api(projects.hubdleEcosystemFeatures.hubdleDeclarativeKotlin)
-                    api(projects.hubdleEcosystemFeatures.hubdleDeclarativeVersioning)
-                    api(projects.hubdleEcosystemFeatures.hubdleDeclarativeVersioningSemver)
 
                     api(hubdle.android.tools.build.gradle)
                     api(hubdle.jetbrains.kotlin.gradle.plugin)
@@ -138,6 +112,7 @@ hubdle {
             testFixtures()
             testFunctional {
                 dependencies { //
+                    implementation(projects.hubdleEcosystem)
                     implementation(testFixtures(projects.platform))
                 }
             }

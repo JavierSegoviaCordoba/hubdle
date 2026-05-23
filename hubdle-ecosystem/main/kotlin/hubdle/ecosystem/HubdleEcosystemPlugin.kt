@@ -8,9 +8,9 @@ import hubdle.declarative.documentation.HubdleDocumentationFeature
 import hubdle.declarative.documentation.readme.HubdleDocumentationReadmeFeature
 import hubdle.declarative.documentation.readme.badges.HubdleDocumentationReadmeBadgesFeature
 import hubdle.declarative.kotlin.HubdleKotlinFeature
-import hubdle.declarative.projectConfig.HubdleProjectConfigFeature
 import hubdle.declarative.versioning.HubdleVersioningFeature
 import hubdle.declarative.versioning.semver.HubdleVersioningSemverFeature
+import hubdle.ecosystem.feature.projectConfig.HubdleProjectConfigFeature
 import org.gradle.api.Plugin
 import org.gradle.api.initialization.Settings
 import org.gradle.features.annotations.RegistersProjectFeatures

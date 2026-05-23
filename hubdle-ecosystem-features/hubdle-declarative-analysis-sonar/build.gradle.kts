@@ -65,7 +65,7 @@ hubdle {
                     implementation(hubdle.javiersc.gradle.test.extensions)
 
                     api(projects.platform)
-                    api(projects.hubdleEcosystemFeatures.hubdleDeclarativeAnalysis)
+                    api(projects.hubdleEcosystemFeatures.hubdleEcosystemFeatureAnalysis)
 
                     api(hubdle.plugins.sonarqube.artifact)
                 }

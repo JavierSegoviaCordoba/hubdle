@@ -1,4 +1,4 @@
-package hubdle.declarative.analysis
+package hubdle.ecosystem.feature.analysis
 
 import com.javiersc.gradle.testkit.test.extensions.GradleTestKitTest
 import hubdle.platform.HubdleProperties
@@ -7,11 +7,11 @@ import io.kotest.matchers.string.shouldContainInOrder
 import io.kotest.matchers.string.shouldNotContain
 import kotlin.test.Test
 
-class HubdleDeclarativeAnalysisTest : GradleTestKitTest() {
+class HubdleEcosystemFeatureAnalysisTest : GradleTestKitTest() {
 
     @Test
     fun `GIVEN a project WHEN hubdle analysis is enabled THEN analysis feature is applied`() {
-        gradleTestKitTest("hubdle-config-analysis/basic") {
+        gradleTestKitTest("hubdle-feature-analysis/basic") {
             gradlew("build", "-P", "${HubdleProperties.Logging.Enabled}=true", "--no-scan")
                 .output
                 .shouldContainInOrder(
@@ -23,7 +23,7 @@ class HubdleDeclarativeAnalysisTest : GradleTestKitTest() {
 
     @Test
     fun `GIVEN a project WHEN hubdle analysis is enabled and hubdle disabled THEN analysis feature is not applied`() {
-        gradleTestKitTest("hubdle-config-analysis/hubdle-disabled") {
+        gradleTestKitTest("hubdle-feature-analysis/hubdle-disabled") {
             gradlew("build", "-P", "${HubdleProperties.Logging.Enabled}=true", "--no-scan")
                 .output
                 .shouldNotContain(lifecycle("hubdle") { "Feature 'hubdle' enabled on ':'" })

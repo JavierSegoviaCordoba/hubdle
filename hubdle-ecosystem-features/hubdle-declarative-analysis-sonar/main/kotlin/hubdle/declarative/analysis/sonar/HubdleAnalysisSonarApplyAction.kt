@@ -2,7 +2,7 @@
 
 package hubdle.declarative.analysis.sonar
 
-import hubdle.declarative.analysis.HubdleAnalysisDefinition
+import hubdle.ecosystem.feature.analysis.HubdleAnalysisDefinition
 import hubdle.platform.HubdleServices
 import hubdle.platform.PluginIds
 import hubdle.platform.applyPlugin

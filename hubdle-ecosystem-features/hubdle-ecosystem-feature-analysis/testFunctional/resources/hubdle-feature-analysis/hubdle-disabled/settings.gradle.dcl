@@ -2,5 +2,5 @@ plugins {
     id("com.javiersc.hubdle.ecosystem")
 }
 
-rootProject.name = "hubdle-config-analysis-disabled"
+rootProject.name = "hubdle-feature-analysis-disabled"
 

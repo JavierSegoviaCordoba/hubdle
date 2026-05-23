@@ -1,6 +1,6 @@
 @file:Suppress("UnstableApiUsage")
 
-package hubdle.declarative.analysis
+package hubdle.ecosystem.feature.analysis
 
 import hubdle.platform.HubdleEcosystemDefinition
 import hubdle.platform.HubdleServices

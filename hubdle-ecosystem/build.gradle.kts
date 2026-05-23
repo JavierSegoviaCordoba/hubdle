@@ -90,7 +90,7 @@ hubdle {
                     implementation(hubdle.javiersc.gradle.test.extensions)
 
                     api(projects.platform)
-                    api(projects.hubdleEcosystemFeatures.hubdleDeclarativeAnalysis)
+                    api(projects.hubdleEcosystemFeatures.hubdleEcosystemFeatureAnalysis)
                     api(projects.hubdleEcosystemFeatures.hubdleDeclarativeAnalysisSonar)
                     api(projects.hubdleEcosystemFeatures.hubdleDeclarativeDocumentation)
                     api(projects.hubdleEcosystemFeatures.hubdleDeclarativeDocumentationReadme)

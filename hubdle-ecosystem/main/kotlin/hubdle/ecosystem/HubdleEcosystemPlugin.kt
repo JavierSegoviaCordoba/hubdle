@@ -2,7 +2,7 @@
 
 package hubdle.ecosystem
 
-import hubdle.declarative.analysis.HubdleAnalysisFeature
+import hubdle.ecosystem.feature.analysis.HubdleAnalysisFeature
 import hubdle.declarative.analysis.sonar.HubdleAnalysisSonarFeature
 import hubdle.declarative.documentation.HubdleDocumentationFeature
 import hubdle.declarative.documentation.readme.HubdleDocumentationReadmeFeature

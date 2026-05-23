@@ -4,7 +4,7 @@ package hubdle.ecosystem
 
 import hubdle.ecosystem.feature.analysis.HubdleAnalysisFeature
 import hubdle.ecosystem.feature.analysis.sonar.HubdleAnalysisSonarFeature
-import hubdle.declarative.documentation.HubdleDocumentationFeature
+import hubdle.ecosystem.feature.documentation.HubdleDocumentationFeature
 import hubdle.declarative.documentation.readme.HubdleDocumentationReadmeFeature
 import hubdle.declarative.documentation.readme.badges.HubdleDocumentationReadmeBadgesFeature
 import hubdle.declarative.kotlin.HubdleKotlinFeature

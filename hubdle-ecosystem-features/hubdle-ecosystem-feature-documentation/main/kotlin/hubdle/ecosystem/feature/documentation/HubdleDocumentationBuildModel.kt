@@ -1,6 +1,6 @@
 @file:Suppress("UnstableApiUsage")
 
-package hubdle.declarative.documentation
+package hubdle.ecosystem.feature.documentation
 
 import hubdle.platform.HubdleBuildModel
 import org.gradle.api.provider.Property

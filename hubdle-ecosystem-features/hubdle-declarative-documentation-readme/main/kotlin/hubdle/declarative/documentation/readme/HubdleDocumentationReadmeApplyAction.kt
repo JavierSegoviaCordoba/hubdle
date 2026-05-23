@@ -2,7 +2,7 @@
 
 package hubdle.declarative.documentation.readme
 
-import hubdle.declarative.documentation.HubdleDocumentationDefinition
+import hubdle.ecosystem.feature.documentation.HubdleDocumentationDefinition
 import hubdle.platform.HubdleServices
 import hubdle.platform.tasks.computeHubdleEffectiveEnabled
 import org.gradle.features.binding.ProjectFeatureApplicationContext

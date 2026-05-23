@@ -8,7 +8,7 @@ fun NamedDomainObjectContainer<PluginDeclaration>.createGradlePlugin(
     pluginDeclarationName: String,
     pluginName: String,
 ) {
-    val baseId = "com.javiersc.hubdle.declarative"
+    val baseId = "com.javiersc.hubdle.ecosystem"
     val basePackage: String = baseId.substringAfter("com.javiersc.")
     val realId = "$baseId.${pluginDeclarationName.replace("-", ".")}"
     val realPackage = "$basePackage.${pluginDeclarationName.replace("-", ".")}"

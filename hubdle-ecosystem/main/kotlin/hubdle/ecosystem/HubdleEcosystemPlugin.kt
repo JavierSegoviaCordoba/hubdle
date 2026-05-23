@@ -1,6 +1,6 @@
 @file:Suppress("UnstableApiUsage")
 
-package hubdle.declarative
+package hubdle.ecosystem
 
 import hubdle.declarative.analysis.HubdleAnalysisFeature
 import hubdle.declarative.analysis.sonar.HubdleAnalysisSonarFeature
@@ -27,7 +27,7 @@ import org.gradle.features.annotations.RegistersProjectFeatures
     HubdleVersioningFeature::class,
     HubdleVersioningSemverFeature::class,
 )
-public open class HubdleDeclarativePlugin : Plugin<Settings> {
+public open class HubdleEcosystemPlugin : Plugin<Settings> {
 
     override fun apply(target: Settings) {
         // NO-OP

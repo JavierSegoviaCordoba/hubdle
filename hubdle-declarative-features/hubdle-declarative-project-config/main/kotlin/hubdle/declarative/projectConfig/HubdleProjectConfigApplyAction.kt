@@ -3,8 +3,8 @@
 package hubdle.declarative.projectConfig
 
 import com.javiersc.kotlin.stdlib.isNotNullNorBlank
+import hubdle.platform.HubdleEcosystemDefinition
 import hubdle.platform.HubdleProperties
-import hubdle.platform.HubdleRootDefinition
 import hubdle.platform.HubdleServices
 import hubdle.platform.tasks.computeHubdleEffectiveEnabled
 import org.gradle.api.provider.Provider
@@ -15,7 +15,7 @@ internal abstract class HubdleProjectConfigApplyAction :
     ProjectFeatureApplyAction<
         HubdleProjectConfigDefinition,
         HubdleProjectConfigBuildModel,
-        HubdleRootDefinition,
+        HubdleEcosystemDefinition,
     >,
     HubdleServices {
 
@@ -23,7 +23,7 @@ internal abstract class HubdleProjectConfigApplyAction :
         context: ProjectFeatureApplicationContext,
         definition: HubdleProjectConfigDefinition,
         buildModel: HubdleProjectConfigBuildModel,
-        parentDefinition: HubdleRootDefinition,
+        parentDefinition: HubdleEcosystemDefinition,
     ) = definition.run {
         val featureEffectiveEnabled: Provider<Boolean> =
             context.computeHubdleEffectiveEnabled(

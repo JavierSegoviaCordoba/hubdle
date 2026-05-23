@@ -1,5 +1,5 @@
 plugins {
-    id("com.javiersc.hubdle.declarative")
+    id("com.javiersc.hubdle.ecosystem")
 }
 
 rootProject.name = "hubdle-config-versioning-hubdle-disabled"

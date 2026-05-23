@@ -2,7 +2,7 @@
 
 package hubdle.declarative.kotlin
 
-import hubdle.platform.HubdleRootDefinition
+import hubdle.platform.HubdleEcosystemDefinition
 import hubdle.platform.HubdleServices
 import hubdle.platform.tasks.computeHubdleEffectiveEnabled
 import org.gradle.features.binding.ProjectFeatureApplicationContext
@@ -12,7 +12,7 @@ internal abstract class HubdleKotlinApplyAction :
     ProjectFeatureApplyAction<
         HubdleKotlinDefinition,
         HubdleKotlinBuildModel,
-        HubdleRootDefinition,
+        HubdleEcosystemDefinition,
     >,
     HubdleServices {
 
@@ -20,7 +20,7 @@ internal abstract class HubdleKotlinApplyAction :
         context: ProjectFeatureApplicationContext,
         definition: HubdleKotlinDefinition,
         buildModel: HubdleKotlinBuildModel,
-        parentDefinition: HubdleRootDefinition,
+        parentDefinition: HubdleEcosystemDefinition,
     ) = definition.run {
         val featureEffectiveEnabled =
             context.computeHubdleEffectiveEnabled(

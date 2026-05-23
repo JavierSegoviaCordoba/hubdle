@@ -50,17 +50,17 @@ hubdle {
         plugin {
             gradlePlugin {
                 plugins {
-                    create("hubdle-declarative") {
-                        id = "com.javiersc.hubdle.declarative"
-                        displayName = "Hubdle Declarative"
+                    create("hubdle-ecosystem") {
+                        id = "com.javiersc.hubdle.ecosystem"
+                        displayName = "Hubdle Ecosystem"
                         description = "Conventions using Gradle Declarative"
-                        implementationClass = "hubdle.declarative.HubdleDeclarativePlugin"
+                        implementationClass = "hubdle.ecosystem.HubdleEcosystemPlugin"
                         tags.set(
                             listOf(
                                 "hubdle",
                                 "settings",
                                 "project",
-                                "declarative",
+                                "ecosystem",
                                 "Gradle Declarative",
                             )
                         )

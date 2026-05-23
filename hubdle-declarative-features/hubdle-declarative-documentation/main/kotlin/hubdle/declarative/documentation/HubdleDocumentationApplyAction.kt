@@ -2,7 +2,7 @@
 
 package hubdle.declarative.documentation
 
-import hubdle.platform.HubdleRootDefinition
+import hubdle.platform.HubdleEcosystemDefinition
 import hubdle.platform.HubdleServices
 import hubdle.platform.tasks.computeHubdleEffectiveEnabled
 import org.gradle.features.binding.ProjectFeatureApplicationContext
@@ -12,7 +12,7 @@ internal abstract class HubdleDocumentationApplyAction :
     ProjectFeatureApplyAction<
         HubdleDocumentationDefinition,
         HubdleDocumentationBuildModel,
-        HubdleRootDefinition,
+        HubdleEcosystemDefinition,
     >,
     HubdleServices {
 
@@ -20,7 +20,7 @@ internal abstract class HubdleDocumentationApplyAction :
         context: ProjectFeatureApplicationContext,
         definition: HubdleDocumentationDefinition,
         buildModel: HubdleDocumentationBuildModel,
-        parentDefinition: HubdleRootDefinition,
+        parentDefinition: HubdleEcosystemDefinition,
     ) = definition.run {
         val featureEffectiveEnabled =
             context.computeHubdleEffectiveEnabled(

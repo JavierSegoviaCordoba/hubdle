@@ -48,7 +48,7 @@ hubdle {
 
     gradle {
         plugin {
-            pluginUnderTestProjects(projects.hubdleDeclarative)
+            pluginUnderTestProjects(projects.hubdleEcosystem)
         }
     }
 
@@ -74,7 +74,7 @@ hubdle {
             testFixtures()
             testFunctional {
                 dependencies { //
-                    implementation(projects.hubdleDeclarative)
+                    implementation(projects.hubdleEcosystem)
                     implementation(testFixtures(projects.platform))
                 }
             }

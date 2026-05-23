@@ -2,7 +2,7 @@
 
 package hubdle.declarative.versioning
 
-import hubdle.platform.HubdleRootDefinition
+import hubdle.platform.HubdleEcosystemDefinition
 import hubdle.platform.HubdleServices
 import hubdle.platform.tasks.computeHubdleEffectiveEnabled
 import org.gradle.features.binding.ProjectFeatureApplicationContext
@@ -12,7 +12,7 @@ internal abstract class HubdleVersioningApplyAction :
     ProjectFeatureApplyAction<
         HubdleVersioningDefinition,
         HubdleVersioningBuildModel,
-        HubdleRootDefinition,
+        HubdleEcosystemDefinition,
     >,
     HubdleServices {
 
@@ -20,7 +20,7 @@ internal abstract class HubdleVersioningApplyAction :
         context: ProjectFeatureApplicationContext,
         definition: HubdleVersioningDefinition,
         buildModel: HubdleVersioningBuildModel,
-        parentDefinition: HubdleRootDefinition,
+        parentDefinition: HubdleEcosystemDefinition,
     ) = definition.run {
         val featureEffectiveEnabled =
             context.computeHubdleEffectiveEnabled(

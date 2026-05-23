@@ -21,6 +21,14 @@ public abstract interface class hubdle/platform/HubdleDefinition {
 	public abstract fun getLoggingEnabled ()Lorg/gradle/api/provider/Property;
 }
 
+public abstract interface class hubdle/platform/HubdleEcosystemDefinition : hubdle/platform/HubdleDefinition, org/gradle/features/binding/Definition {
+	public fun getFeatureName ()Ljava/lang/String;
+}
+
+public final class hubdle/platform/HubdleEcosystemDefinition$DefaultImpls {
+	public static fun getFeatureName (Lhubdle/platform/HubdleEcosystemDefinition;)Ljava/lang/String;
+}
+
 public final class hubdle/platform/HubdleProperties {
 	public static final field INSTANCE Lhubdle/platform/HubdleProperties;
 }
@@ -75,14 +83,6 @@ public final class hubdle/platform/HubdleProperties$Sonar {
 
 public abstract interface class hubdle/platform/HubdleRootBuildModel : hubdle/platform/HubdleBuildModel, org/gradle/features/binding/BuildModel {
 	public abstract fun getEffectiveEnabled ()Lorg/gradle/api/provider/Property;
-}
-
-public abstract interface class hubdle/platform/HubdleRootDefinition : hubdle/platform/HubdleDefinition, org/gradle/features/binding/Definition {
-	public fun getFeatureName ()Ljava/lang/String;
-}
-
-public final class hubdle/platform/HubdleRootDefinition$DefaultImpls {
-	public static fun getFeatureName (Lhubdle/platform/HubdleRootDefinition;)Ljava/lang/String;
 }
 
 public abstract interface class hubdle/platform/HubdleServices {

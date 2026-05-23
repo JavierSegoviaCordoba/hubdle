@@ -91,7 +91,7 @@ hubdle {
 
                     api(projects.platform)
                     api(projects.hubdleEcosystemFeatures.hubdleEcosystemFeatureAnalysis)
-                    api(projects.hubdleEcosystemFeatures.hubdleDeclarativeAnalysisSonar)
+                    api(projects.hubdleEcosystemFeatures.hubdleEcosystemFeatureAnalysisSonar)
                     api(projects.hubdleEcosystemFeatures.hubdleDeclarativeDocumentation)
                     api(projects.hubdleEcosystemFeatures.hubdleDeclarativeDocumentationReadme)
                     api(projects.hubdleEcosystemFeatures.hubdleDeclarativeDocumentationReadmeBadges)

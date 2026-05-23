@@ -1,6 +1,6 @@
 @file:Suppress("UnstableApiUsage", "ConstPropertyName")
 
-package hubdle.declarative.analysis.sonar
+package hubdle.ecosystem.feature.analysis.sonar
 
 import hubdle.ecosystem.feature.analysis.HubdleAnalysisDefinition
 import hubdle.platform.HubdleServices

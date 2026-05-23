@@ -1,4 +1,4 @@
-package hubdle.declarative.analysis.sonar
+package hubdle.ecosystem.feature.analysis.sonar
 
 import com.javiersc.gradle.testkit.test.extensions.GradleTestKitTest
 import hubdle.platform.HubdleProperties
@@ -7,11 +7,11 @@ import io.kotest.matchers.string.shouldContainInOrder
 import io.kotest.matchers.string.shouldNotContain
 import kotlin.test.Test
 
-class HubdleDeclarativeAnalysisSonarTest : GradleTestKitTest() {
+class HubdleEcosystemFeatureAnalysisSonarTest : GradleTestKitTest() {
 
     @Test
     fun `GIVEN a project WHEN hubdle analysis sonar is enabled THEN sonar feature is applied`() {
-        gradleTestKitTest("hubdle-config-analysis-sonar/basic", debug = true) {
+        gradleTestKitTest("hubdle-feature-analysis-sonar/basic", debug = true) {
             gradlew(
                     "buildEnvironment",
                     "-P",
@@ -29,7 +29,7 @@ class HubdleDeclarativeAnalysisSonarTest : GradleTestKitTest() {
 
     @Test
     fun `GIVEN a project WHEN hubdle disabled THEN sonar feature is not applied`() {
-        gradleTestKitTest("hubdle-config-analysis-sonar/hubdle-disabled") {
+        gradleTestKitTest("hubdle-feature-analysis-sonar/hubdle-disabled") {
             gradlew(
                     "buildEnvironment",
                     "-P",

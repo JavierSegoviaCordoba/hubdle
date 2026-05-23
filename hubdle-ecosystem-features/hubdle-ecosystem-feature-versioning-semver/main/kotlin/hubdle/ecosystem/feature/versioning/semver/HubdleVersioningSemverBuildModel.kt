@@ -1,6 +1,6 @@
 @file:Suppress("UnstableApiUsage")
 
-package hubdle.declarative.versioning.semver
+package hubdle.ecosystem.feature.versioning.semver
 
 import hubdle.platform.HubdleBuildModel
 import org.gradle.api.provider.Property

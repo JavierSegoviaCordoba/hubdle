@@ -98,7 +98,7 @@ hubdle {
                     api(projects.hubdleEcosystemFeatures.hubdleEcosystemFeatureProjectConfig)
                     api(projects.hubdleEcosystemFeatures.hubdleEcosystemFeatureKotlin)
                     api(projects.hubdleEcosystemFeatures.hubdleEcosystemFeatureVersioning)
-                    api(projects.hubdleEcosystemFeatures.hubdleDeclarativeVersioningSemver)
+                    api(projects.hubdleEcosystemFeatures.hubdleEcosystemFeatureVersioningSemver)
 
                     api(hubdle.android.tools.build.gradle)
                     api(hubdle.jetbrains.kotlin.gradle.plugin)

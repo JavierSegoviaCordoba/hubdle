@@ -1,4 +1,4 @@
-package hubdle.declarative.versioning.semver
+package hubdle.ecosystem.feature.versioning.semver
 
 import com.javiersc.gradle.testkit.test.extensions.GradleTestKitTest
 import hubdle.platform.HubdleProperties
@@ -10,11 +10,11 @@ import io.kotest.matchers.string.shouldContainInOrder
 import io.kotest.matchers.string.shouldNotContain
 import kotlin.test.Test
 
-class HubdleDeclarativeVersioningSemverTest : GradleTestKitTest() {
+class HubdleEcosystemFeatureVersioningSemverTest : GradleTestKitTest() {
 
     @Test
     fun `GIVEN a project WHEN hubdle versioning semver is enabled THEN semver configures project versioning`() {
-        gradleTestKitTest("hubdle-versioning-semver/basic") {
+        gradleTestKitTest("hubdle-feature-versioning-semver/basic") {
             gradlew("build", "-P", "${HubdleProperties.Logging.Enabled}=true", "--no-scan")
                 .output
                 .shouldContainInOrder(
@@ -33,7 +33,7 @@ class HubdleDeclarativeVersioningSemverTest : GradleTestKitTest() {
 
     @Test
     fun `GIVEN a project WHEN hubdle disabled THEN semver feature is not applied`() {
-        gradleTestKitTest("hubdle-versioning-semver/hubdle-disabled") {
+        gradleTestKitTest("hubdle-feature-versioning-semver/hubdle-disabled") {
             gradlew("build", "-P", "${HubdleProperties.Logging.Enabled}=true", "--no-scan")
                 .output
                 .shouldNotContain(lifecycle("hubdle") { "Feature 'hubdle' enabled on ':'" })

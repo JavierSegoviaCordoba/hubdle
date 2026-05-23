@@ -9,7 +9,7 @@ import hubdle.ecosystem.feature.documentation.readme.HubdleDocumentationReadmeFe
 import hubdle.ecosystem.feature.documentation.readme.badges.HubdleDocumentationReadmeBadgesFeature
 import hubdle.ecosystem.feature.kotlin.HubdleKotlinFeature
 import hubdle.ecosystem.feature.versioning.HubdleVersioningFeature
-import hubdle.declarative.versioning.semver.HubdleVersioningSemverFeature
+import hubdle.ecosystem.feature.versioning.semver.HubdleVersioningSemverFeature
 import hubdle.ecosystem.feature.projectConfig.HubdleProjectConfigFeature
 import org.gradle.api.Plugin
 import org.gradle.api.initialization.Settings

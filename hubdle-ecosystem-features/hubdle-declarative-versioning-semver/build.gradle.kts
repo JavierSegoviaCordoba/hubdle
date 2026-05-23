@@ -65,7 +65,7 @@ hubdle {
                     implementation(hubdle.javiersc.gradle.test.extensions)
 
                     api(projects.platform)
-                    api(projects.hubdleEcosystemFeatures.hubdleDeclarativeVersioning)
+                    api(projects.hubdleEcosystemFeatures.hubdleEcosystemFeatureVersioning)
 
                     api(hubdle.plugins.javiersc.semver.artifact)
                 }

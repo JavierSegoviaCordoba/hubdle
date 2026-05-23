@@ -1,4 +1,4 @@
-package hubdle.declarative.versioning
+package hubdle.ecosystem.feature.versioning
 
 import com.javiersc.gradle.testkit.test.extensions.GradleTestKitTest
 import hubdle.platform.HubdleProperties
@@ -7,11 +7,11 @@ import io.kotest.matchers.string.shouldContainInOrder
 import io.kotest.matchers.string.shouldNotContain
 import kotlin.test.Test
 
-class HubdleDeclarativeVersioningTest : GradleTestKitTest() {
+class HubdleEcosystemFeatureVersioningTest : GradleTestKitTest() {
 
     @Test
     fun `GIVEN a project WHEN hubdle versioning is enabled THEN versioning namespace is applied`() {
-        gradleTestKitTest("hubdle-config-versioning/basic") {
+        gradleTestKitTest("hubdle-feature-versioning/basic") {
             gradlew("build", "-P", "${HubdleProperties.Logging.Enabled}=true", "--no-scan")
                 .output
                 .shouldContainInOrder(
@@ -23,7 +23,7 @@ class HubdleDeclarativeVersioningTest : GradleTestKitTest() {
 
     @Test
     fun `GIVEN a project WHEN hubdle versioning is enabled and hubdle disabled THEN versioning namespace is not applied`() {
-        gradleTestKitTest("hubdle-config-versioning/hubdle-disabled") {
+        gradleTestKitTest("hubdle-feature-versioning/hubdle-disabled") {
             gradlew("build", "-P", "${HubdleProperties.Logging.Enabled}=true", "--no-scan")
                 .output
                 .shouldNotContain(lifecycle("hubdle") { "Feature 'hubdle' enabled on ':'" })

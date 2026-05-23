@@ -1,6 +1,6 @@
 @file:Suppress("UnstableApiUsage")
 
-package hubdle.declarative.versioning
+package hubdle.ecosystem.feature.versioning
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project

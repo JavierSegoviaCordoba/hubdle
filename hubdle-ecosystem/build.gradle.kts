@@ -97,7 +97,7 @@ hubdle {
                     api(projects.hubdleEcosystemFeatures.hubdleEcosystemFeatureDocumentationReadmeBadges)
                     api(projects.hubdleEcosystemFeatures.hubdleEcosystemFeatureProjectConfig)
                     api(projects.hubdleEcosystemFeatures.hubdleEcosystemFeatureKotlin)
-                    api(projects.hubdleEcosystemFeatures.hubdleDeclarativeVersioning)
+                    api(projects.hubdleEcosystemFeatures.hubdleEcosystemFeatureVersioning)
                     api(projects.hubdleEcosystemFeatures.hubdleDeclarativeVersioningSemver)
 
                     api(hubdle.android.tools.build.gradle)

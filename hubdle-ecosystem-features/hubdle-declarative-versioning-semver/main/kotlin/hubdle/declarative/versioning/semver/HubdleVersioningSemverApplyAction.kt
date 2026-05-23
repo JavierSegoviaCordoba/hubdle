@@ -3,7 +3,7 @@
 package hubdle.declarative.versioning.semver
 
 import com.javiersc.semver.project.gradle.plugin.SemverExtension
-import hubdle.declarative.versioning.HubdleVersioningDefinition
+import hubdle.ecosystem.feature.versioning.HubdleVersioningDefinition
 import hubdle.platform.HubdleProperties
 import hubdle.platform.HubdleServices
 import hubdle.platform.PluginIds

@@ -96,7 +96,7 @@ hubdle {
                     api(projects.hubdleEcosystemFeatures.hubdleEcosystemFeatureDocumentationReadme)
                     api(projects.hubdleEcosystemFeatures.hubdleEcosystemFeatureDocumentationReadmeBadges)
                     api(projects.hubdleEcosystemFeatures.hubdleEcosystemFeatureProjectConfig)
-                    api(projects.hubdleEcosystemFeatures.hubdleDeclarativeKotlin)
+                    api(projects.hubdleEcosystemFeatures.hubdleEcosystemFeatureKotlin)
                     api(projects.hubdleEcosystemFeatures.hubdleDeclarativeVersioning)
                     api(projects.hubdleEcosystemFeatures.hubdleDeclarativeVersioningSemver)
 

@@ -1,0 +1,210 @@
+public final class com/javiersc/hubdle/hubdle/ecosystem/feature/kotlin/HubdleEcosystemFeatureKotlinProjectData {
+	public static final field Group Ljava/lang/String;
+	public static final field INSTANCE Lcom/javiersc/hubdle/hubdle/ecosystem/feature/kotlin/HubdleEcosystemFeatureKotlinProjectData;
+	public static final field Library Ljava/lang/String;
+	public static final field Name Ljava/lang/String;
+	public static final field ProjectDirAbsolutePath Ljava/lang/String;
+	public static final field ProjectDirPath Ljava/lang/String;
+	public static final field RelativeDirPath Ljava/lang/String;
+	public static final field RootDirAbsolutePath Ljava/lang/String;
+	public static final field RootDirPath Ljava/lang/String;
+	public static final field Version Ljava/lang/String;
+}
+
+public abstract interface class hubdle/ecosystem/feature/kotlin/HubdleKotlinAnalysisDefinition : hubdle/ecosystem/feature/kotlin/HubdleKotlinEnableableDefinition {
+}
+
+public abstract interface class hubdle/ecosystem/feature/kotlin/HubdleKotlinAtomicfuFeatureDefinition : hubdle/ecosystem/feature/kotlin/HubdleKotlinEnableableDefinition {
+	public abstract fun getJsIrTransformationEnabled ()Lorg/gradle/api/provider/Property;
+	public abstract fun getJvmIrTransformationEnabled ()Lorg/gradle/api/provider/Property;
+	public abstract fun getNativeIrTransformationEnabled ()Lorg/gradle/api/provider/Property;
+}
+
+public abstract interface class hubdle/ecosystem/feature/kotlin/HubdleKotlinBuildKonfigFeatureDefinition : hubdle/ecosystem/feature/kotlin/HubdleKotlinEnableableDefinition {
+}
+
+public abstract interface class hubdle/ecosystem/feature/kotlin/HubdleKotlinBuildModel : hubdle/platform/HubdleBuildModel, org/gradle/features/binding/BuildModel {
+	public abstract fun getEffectiveEnabled ()Lorg/gradle/api/provider/Property;
+}
+
+public abstract interface class hubdle/ecosystem/feature/kotlin/HubdleKotlinCompilerOptionsDefinition {
+	public abstract fun getApiVersion ()Lorg/gradle/api/provider/Property;
+	public abstract fun getLanguageVersion ()Lorg/gradle/api/provider/Property;
+}
+
+public abstract interface class hubdle/ecosystem/feature/kotlin/HubdleKotlinComposeFeatureDefinition : hubdle/ecosystem/feature/kotlin/HubdleKotlinEnableableDefinition {
+	public abstract fun getCompiler ()Lorg/gradle/api/provider/Property;
+	public abstract fun getCompilerVersion ()Lorg/gradle/api/provider/Property;
+}
+
+public abstract interface class hubdle/ecosystem/feature/kotlin/HubdleKotlinCoroutinesFeatureDefinition : hubdle/ecosystem/feature/kotlin/HubdleKotlinEnableableDefinition {
+}
+
+public abstract interface class hubdle/ecosystem/feature/kotlin/HubdleKotlinCoverageDefinition : hubdle/ecosystem/feature/kotlin/HubdleKotlinEnableableDefinition {
+	public abstract fun getJacoco ()Lorg/gradle/api/provider/Property;
+}
+
+public abstract interface class hubdle/ecosystem/feature/kotlin/HubdleKotlinDefinition : hubdle/platform/HubdleDefinition, org/gradle/features/binding/Definition {
+	public abstract fun getAnalysis ()Lhubdle/ecosystem/feature/kotlin/HubdleKotlinAnalysisDefinition;
+	public abstract fun getCompilerOptions ()Lhubdle/ecosystem/feature/kotlin/HubdleKotlinCompilerOptionsDefinition;
+	public abstract fun getCoverage ()Lhubdle/ecosystem/feature/kotlin/HubdleKotlinCoverageDefinition;
+	public abstract fun getDocumentation ()Lhubdle/ecosystem/feature/kotlin/HubdleKotlinDocumentationDefinition;
+	public abstract fun getExplicitApi ()Lhubdle/ecosystem/feature/kotlin/HubdleKotlinExplicitApiDefinition;
+	public fun getFeatureName ()Ljava/lang/String;
+	public abstract fun getFeatures ()Lhubdle/ecosystem/feature/kotlin/HubdleKotlinFeaturesDefinition;
+	public abstract fun getFormat ()Lhubdle/ecosystem/feature/kotlin/HubdleKotlinFormatDefinition;
+	public abstract fun getLanguageSettings ()Lhubdle/ecosystem/feature/kotlin/HubdleKotlinLanguageSettingsDefinition;
+	public abstract fun getTesting ()Lhubdle/ecosystem/feature/kotlin/HubdleKotlinTestingDefinition;
+}
+
+public final class hubdle/ecosystem/feature/kotlin/HubdleKotlinDefinition$DefaultImpls {
+	public static fun getFeatureName (Lhubdle/ecosystem/feature/kotlin/HubdleKotlinDefinition;)Ljava/lang/String;
+}
+
+public abstract interface class hubdle/ecosystem/feature/kotlin/HubdleKotlinDocumentationDefinition : hubdle/ecosystem/feature/kotlin/HubdleKotlinEnableableDefinition {
+}
+
+public abstract interface class hubdle/ecosystem/feature/kotlin/HubdleKotlinEnableableDefinition {
+	public abstract fun getEnabled ()Lorg/gradle/api/provider/Property;
+}
+
+public abstract interface class hubdle/ecosystem/feature/kotlin/HubdleKotlinExplicitApiDefinition : hubdle/ecosystem/feature/kotlin/HubdleKotlinEnableableDefinition {
+	public abstract fun getMode ()Lorg/gradle/api/provider/Property;
+}
+
+public abstract interface class hubdle/ecosystem/feature/kotlin/HubdleKotlinExtendedStdlibFeatureDefinition : hubdle/ecosystem/feature/kotlin/HubdleKotlinEnableableDefinition {
+}
+
+public class hubdle/ecosystem/feature/kotlin/HubdleKotlinFeature : org/gradle/api/Plugin, org/gradle/features/binding/ProjectFeatureBinding {
+	public fun <init> ()V
+	public synthetic fun apply (Ljava/lang/Object;)V
+	public fun apply (Lorg/gradle/api/Project;)V
+	public fun bind (Lorg/gradle/features/binding/ProjectFeatureBindingBuilder;)V
+}
+
+public abstract interface class hubdle/ecosystem/feature/kotlin/HubdleKotlinFeaturesDefinition : hubdle/ecosystem/feature/kotlin/HubdleKotlinEnableableDefinition {
+	public fun atomicfu (Z)V
+	public static synthetic fun atomicfu$default (Lhubdle/ecosystem/feature/kotlin/HubdleKotlinFeaturesDefinition;ZILjava/lang/Object;)V
+	public fun buildKonfig (Z)V
+	public static synthetic fun buildKonfig$default (Lhubdle/ecosystem/feature/kotlin/HubdleKotlinFeaturesDefinition;ZILjava/lang/Object;)V
+	public fun compose (Z)V
+	public static synthetic fun compose$default (Lhubdle/ecosystem/feature/kotlin/HubdleKotlinFeaturesDefinition;ZILjava/lang/Object;)V
+	public fun coroutines (Z)V
+	public static synthetic fun coroutines$default (Lhubdle/ecosystem/feature/kotlin/HubdleKotlinFeaturesDefinition;ZILjava/lang/Object;)V
+	public fun extendedStdlib (Z)V
+	public static synthetic fun extendedStdlib$default (Lhubdle/ecosystem/feature/kotlin/HubdleKotlinFeaturesDefinition;ZILjava/lang/Object;)V
+	public abstract fun getAtomicfu ()Lhubdle/ecosystem/feature/kotlin/HubdleKotlinAtomicfuFeatureDefinition;
+	public abstract fun getBuildKonfig ()Lhubdle/ecosystem/feature/kotlin/HubdleKotlinBuildKonfigFeatureDefinition;
+	public abstract fun getCompose ()Lhubdle/ecosystem/feature/kotlin/HubdleKotlinComposeFeatureDefinition;
+	public abstract fun getCoroutines ()Lhubdle/ecosystem/feature/kotlin/HubdleKotlinCoroutinesFeatureDefinition;
+	public abstract fun getExtendedStdlib ()Lhubdle/ecosystem/feature/kotlin/HubdleKotlinExtendedStdlibFeatureDefinition;
+	public abstract fun getKopy ()Lhubdle/ecosystem/feature/kotlin/HubdleKotlinKopyFeatureDefinition;
+	public abstract fun getKotest ()Lhubdle/ecosystem/feature/kotlin/HubdleKotlinKotestFeatureDefinition;
+	public abstract fun getMolecule ()Lhubdle/ecosystem/feature/kotlin/HubdleKotlinMoleculeFeatureDefinition;
+	public abstract fun getPowerAssert ()Lhubdle/ecosystem/feature/kotlin/HubdleKotlinPowerAssertFeatureDefinition;
+	public abstract fun getSerialization ()Lhubdle/ecosystem/feature/kotlin/HubdleKotlinSerializationFeatureDefinition;
+	public abstract fun getSqlDelight ()Lhubdle/ecosystem/feature/kotlin/HubdleKotlinSqlDelightFeatureDefinition;
+	public fun kopy (Z)V
+	public static synthetic fun kopy$default (Lhubdle/ecosystem/feature/kotlin/HubdleKotlinFeaturesDefinition;ZILjava/lang/Object;)V
+	public fun kotest (Z)V
+	public static synthetic fun kotest$default (Lhubdle/ecosystem/feature/kotlin/HubdleKotlinFeaturesDefinition;ZILjava/lang/Object;)V
+	public fun molecule (Z)V
+	public static synthetic fun molecule$default (Lhubdle/ecosystem/feature/kotlin/HubdleKotlinFeaturesDefinition;ZILjava/lang/Object;)V
+	public fun powerAssert (Z)V
+	public static synthetic fun powerAssert$default (Lhubdle/ecosystem/feature/kotlin/HubdleKotlinFeaturesDefinition;ZILjava/lang/Object;)V
+	public fun serialization (Z)V
+	public static synthetic fun serialization$default (Lhubdle/ecosystem/feature/kotlin/HubdleKotlinFeaturesDefinition;ZILjava/lang/Object;)V
+	public fun sqlDelight (Z)V
+	public static synthetic fun sqlDelight$default (Lhubdle/ecosystem/feature/kotlin/HubdleKotlinFeaturesDefinition;ZILjava/lang/Object;)V
+}
+
+public final class hubdle/ecosystem/feature/kotlin/HubdleKotlinFeaturesDefinition$DefaultImpls {
+	public static fun atomicfu (Lhubdle/ecosystem/feature/kotlin/HubdleKotlinFeaturesDefinition;Z)V
+	public static synthetic fun atomicfu$default (Lhubdle/ecosystem/feature/kotlin/HubdleKotlinFeaturesDefinition;ZILjava/lang/Object;)V
+	public static fun buildKonfig (Lhubdle/ecosystem/feature/kotlin/HubdleKotlinFeaturesDefinition;Z)V
+	public static synthetic fun buildKonfig$default (Lhubdle/ecosystem/feature/kotlin/HubdleKotlinFeaturesDefinition;ZILjava/lang/Object;)V
+	public static fun compose (Lhubdle/ecosystem/feature/kotlin/HubdleKotlinFeaturesDefinition;Z)V
+	public static synthetic fun compose$default (Lhubdle/ecosystem/feature/kotlin/HubdleKotlinFeaturesDefinition;ZILjava/lang/Object;)V
+	public static fun coroutines (Lhubdle/ecosystem/feature/kotlin/HubdleKotlinFeaturesDefinition;Z)V
+	public static synthetic fun coroutines$default (Lhubdle/ecosystem/feature/kotlin/HubdleKotlinFeaturesDefinition;ZILjava/lang/Object;)V
+	public static fun extendedStdlib (Lhubdle/ecosystem/feature/kotlin/HubdleKotlinFeaturesDefinition;Z)V
+	public static synthetic fun extendedStdlib$default (Lhubdle/ecosystem/feature/kotlin/HubdleKotlinFeaturesDefinition;ZILjava/lang/Object;)V
+	public static fun kopy (Lhubdle/ecosystem/feature/kotlin/HubdleKotlinFeaturesDefinition;Z)V
+	public static synthetic fun kopy$default (Lhubdle/ecosystem/feature/kotlin/HubdleKotlinFeaturesDefinition;ZILjava/lang/Object;)V
+	public static fun kotest (Lhubdle/ecosystem/feature/kotlin/HubdleKotlinFeaturesDefinition;Z)V
+	public static synthetic fun kotest$default (Lhubdle/ecosystem/feature/kotlin/HubdleKotlinFeaturesDefinition;ZILjava/lang/Object;)V
+	public static fun molecule (Lhubdle/ecosystem/feature/kotlin/HubdleKotlinFeaturesDefinition;Z)V
+	public static synthetic fun molecule$default (Lhubdle/ecosystem/feature/kotlin/HubdleKotlinFeaturesDefinition;ZILjava/lang/Object;)V
+	public static fun powerAssert (Lhubdle/ecosystem/feature/kotlin/HubdleKotlinFeaturesDefinition;Z)V
+	public static synthetic fun powerAssert$default (Lhubdle/ecosystem/feature/kotlin/HubdleKotlinFeaturesDefinition;ZILjava/lang/Object;)V
+	public static fun serialization (Lhubdle/ecosystem/feature/kotlin/HubdleKotlinFeaturesDefinition;Z)V
+	public static synthetic fun serialization$default (Lhubdle/ecosystem/feature/kotlin/HubdleKotlinFeaturesDefinition;ZILjava/lang/Object;)V
+	public static fun sqlDelight (Lhubdle/ecosystem/feature/kotlin/HubdleKotlinFeaturesDefinition;Z)V
+	public static synthetic fun sqlDelight$default (Lhubdle/ecosystem/feature/kotlin/HubdleKotlinFeaturesDefinition;ZILjava/lang/Object;)V
+}
+
+public abstract interface class hubdle/ecosystem/feature/kotlin/HubdleKotlinFormatDefinition : hubdle/ecosystem/feature/kotlin/HubdleKotlinEnableableDefinition {
+	public fun exclude (Ljava/lang/String;)V
+	public abstract fun getExcludes ()Lorg/gradle/api/provider/ListProperty;
+	public abstract fun getIncludes ()Lorg/gradle/api/provider/ListProperty;
+	public abstract fun getKtfmtVersion ()Lorg/gradle/api/provider/Property;
+	public fun include (Ljava/lang/String;)V
+}
+
+public final class hubdle/ecosystem/feature/kotlin/HubdleKotlinFormatDefinition$DefaultImpls {
+	public static fun exclude (Lhubdle/ecosystem/feature/kotlin/HubdleKotlinFormatDefinition;Ljava/lang/String;)V
+	public static fun include (Lhubdle/ecosystem/feature/kotlin/HubdleKotlinFormatDefinition;Ljava/lang/String;)V
+}
+
+public abstract interface class hubdle/ecosystem/feature/kotlin/HubdleKotlinKopyFeatureDefinition : hubdle/ecosystem/feature/kotlin/HubdleKotlinEnableableDefinition {
+	public fun function (Ljava/lang/String;)V
+	public abstract fun getFunctions ()Lorg/gradle/api/provider/ListProperty;
+	public abstract fun getVisibility ()Lorg/gradle/api/provider/Property;
+}
+
+public final class hubdle/ecosystem/feature/kotlin/HubdleKotlinKopyFeatureDefinition$DefaultImpls {
+	public static fun function (Lhubdle/ecosystem/feature/kotlin/HubdleKotlinKopyFeatureDefinition;Ljava/lang/String;)V
+}
+
+public abstract interface class hubdle/ecosystem/feature/kotlin/HubdleKotlinKotestFeatureDefinition : hubdle/ecosystem/feature/kotlin/HubdleKotlinEnableableDefinition {
+}
+
+public abstract interface class hubdle/ecosystem/feature/kotlin/HubdleKotlinLanguageSettingsDefinition {
+	public fun enableLanguageFeature (Ljava/lang/String;)V
+	public abstract fun getEnabledLanguageFeatures ()Lorg/gradle/api/provider/ListProperty;
+	public abstract fun getOptIns ()Lorg/gradle/api/provider/ListProperty;
+	public fun optIn (Ljava/lang/String;)V
+}
+
+public final class hubdle/ecosystem/feature/kotlin/HubdleKotlinLanguageSettingsDefinition$DefaultImpls {
+	public static fun enableLanguageFeature (Lhubdle/ecosystem/feature/kotlin/HubdleKotlinLanguageSettingsDefinition;Ljava/lang/String;)V
+	public static fun optIn (Lhubdle/ecosystem/feature/kotlin/HubdleKotlinLanguageSettingsDefinition;Ljava/lang/String;)V
+}
+
+public abstract interface class hubdle/ecosystem/feature/kotlin/HubdleKotlinMoleculeFeatureDefinition : hubdle/ecosystem/feature/kotlin/HubdleKotlinEnableableDefinition {
+}
+
+public abstract interface class hubdle/ecosystem/feature/kotlin/HubdleKotlinPowerAssertFeatureDefinition : hubdle/ecosystem/feature/kotlin/HubdleKotlinEnableableDefinition {
+	public fun function (Ljava/lang/String;)V
+	public abstract fun getFunctions ()Lorg/gradle/api/provider/ListProperty;
+}
+
+public final class hubdle/ecosystem/feature/kotlin/HubdleKotlinPowerAssertFeatureDefinition$DefaultImpls {
+	public static fun function (Lhubdle/ecosystem/feature/kotlin/HubdleKotlinPowerAssertFeatureDefinition;Ljava/lang/String;)V
+}
+
+public abstract interface class hubdle/ecosystem/feature/kotlin/HubdleKotlinSerializationFeatureDefinition : hubdle/ecosystem/feature/kotlin/HubdleKotlinEnableableDefinition {
+	public abstract fun getCsv ()Lorg/gradle/api/provider/Property;
+	public abstract fun getFlf ()Lorg/gradle/api/provider/Property;
+	public abstract fun getJson ()Lorg/gradle/api/provider/Property;
+}
+
+public abstract interface class hubdle/ecosystem/feature/kotlin/HubdleKotlinSqlDelightFeatureDefinition : hubdle/ecosystem/feature/kotlin/HubdleKotlinEnableableDefinition {
+}
+
+public abstract interface class hubdle/ecosystem/feature/kotlin/HubdleKotlinTestingDefinition : hubdle/ecosystem/feature/kotlin/HubdleKotlinEnableableDefinition {
+	public abstract fun getMaxParallelForks ()Lorg/gradle/api/provider/Property;
+	public abstract fun getOptions ()Lorg/gradle/api/provider/Property;
+	public abstract fun getShowStandardStreams ()Lorg/gradle/api/provider/Property;
+}
+

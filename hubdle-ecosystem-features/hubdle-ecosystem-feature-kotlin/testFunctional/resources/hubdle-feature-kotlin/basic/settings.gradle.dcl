@@ -2,4 +2,4 @@ plugins {
     id("com.javiersc.hubdle.ecosystem")
 }
 
-rootProject.name = "hubdle-kotlin-sandbox"
+rootProject.name = "hubdle-feature-kotlin-sandbox"

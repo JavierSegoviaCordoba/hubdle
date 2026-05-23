@@ -1,6 +1,6 @@
 @file:Suppress("UnstableApiUsage")
 
-package hubdle.declarative.documentation.readme.badges
+package hubdle.ecosystem.feature.documentation.readme.badges
 
 import hubdle.ecosystem.feature.documentation.readme.HubdleDocumentationReadmeDefinition
 import hubdle.platform.HubdleProperties.Pom

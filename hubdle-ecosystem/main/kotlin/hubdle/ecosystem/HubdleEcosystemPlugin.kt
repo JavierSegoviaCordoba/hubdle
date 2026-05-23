@@ -6,7 +6,7 @@ import hubdle.ecosystem.feature.analysis.HubdleAnalysisFeature
 import hubdle.ecosystem.feature.analysis.sonar.HubdleAnalysisSonarFeature
 import hubdle.ecosystem.feature.documentation.HubdleDocumentationFeature
 import hubdle.ecosystem.feature.documentation.readme.HubdleDocumentationReadmeFeature
-import hubdle.declarative.documentation.readme.badges.HubdleDocumentationReadmeBadgesFeature
+import hubdle.ecosystem.feature.documentation.readme.badges.HubdleDocumentationReadmeBadgesFeature
 import hubdle.declarative.kotlin.HubdleKotlinFeature
 import hubdle.declarative.versioning.HubdleVersioningFeature
 import hubdle.declarative.versioning.semver.HubdleVersioningSemverFeature

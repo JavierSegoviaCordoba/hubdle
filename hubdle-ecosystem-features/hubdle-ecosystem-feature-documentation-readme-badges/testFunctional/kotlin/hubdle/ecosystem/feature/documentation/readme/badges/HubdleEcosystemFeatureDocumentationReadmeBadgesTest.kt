@@ -1,4 +1,4 @@
-package hubdle.declarative.documentation.readme.badges
+package hubdle.ecosystem.feature.documentation.readme.badges
 
 import com.javiersc.gradle.testkit.test.extensions.GradleTestKitTest
 import com.javiersc.kotlin.stdlib.resource
@@ -15,11 +15,11 @@ import kotlin.test.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 
-class HubdleDeclarativeDocumentationReadmeBadgesTest : GradleTestKitTest() {
+class HubdleEcosystemFeatureDocumentationReadmeBadgesTest : GradleTestKitTest() {
 
     @Test
     fun `GIVEN a project WHEN hubdle documentation readme badges is enabled THEN badges feature is applied`() {
-        gradleTestKitTest("hubdle-config-documentation-readme-badges/basic") {
+        gradleTestKitTest("hubdle-feature-documentation-readme-badges/basic") {
             gradlew("build", "-P", "${HubdleProperties.Logging.Enabled}=true", "--no-scan")
                 .output
                 .shouldContainInOrder(
@@ -33,7 +33,7 @@ class HubdleDeclarativeDocumentationReadmeBadgesTest : GradleTestKitTest() {
 
     @Test
     fun `GIVEN a project WHEN hubdle disabled THEN badges feature is not applied`() {
-        gradleTestKitTest("hubdle-config-documentation-readme-badges/hubdle-disabled") {
+        gradleTestKitTest("hubdle-feature-documentation-readme-badges/hubdle-disabled") {
             gradlew("build", "-P", "${HubdleProperties.Logging.Enabled}=true", "--no-scan")
                 .output
                 .shouldNotContain(lifecycle("hubdle") { "Feature 'hubdle' enabled on ':'" })
@@ -50,7 +50,7 @@ class HubdleDeclarativeDocumentationReadmeBadgesTest : GradleTestKitTest() {
     fun `GIVEN readme badges snapshot WHEN writeReadmeBadges THEN readme is created`(
         snapshot: String
     ) {
-        val sandboxPath = "hubdle-config-documentation-readme-badges/snapshots/$snapshot"
+        val sandboxPath = "hubdle-feature-documentation-readme-badges/snapshots/$snapshot"
         gradleTestKitTest(sandboxPath = sandboxPath, debug = true) {
             withArgumentsFromTXT()
             build()
@@ -73,7 +73,7 @@ class HubdleDeclarativeDocumentationReadmeBadgesTest : GradleTestKitTest() {
 
         @JvmStatic
         fun provideReadmeBadgeSnapshots(): Stream<String> {
-            val snapshotsFile = resource("hubdle-config-documentation-readme-badges/snapshots")
+            val snapshotsFile = resource("hubdle-feature-documentation-readme-badges/snapshots")
             val snapshotsPath = Paths.get(snapshotsFile.toURI())
             val snapshots =
                 Files.list(snapshotsPath)

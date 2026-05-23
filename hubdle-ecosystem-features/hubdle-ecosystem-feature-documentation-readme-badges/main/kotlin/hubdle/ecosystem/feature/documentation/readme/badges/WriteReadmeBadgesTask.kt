@@ -1,4 +1,4 @@
-package hubdle.declarative.documentation.readme.badges
+package hubdle.ecosystem.feature.documentation.readme.badges
 
 import com.javiersc.kotlin.stdlib.removeDuplicateEmptyLines
 import java.io.File

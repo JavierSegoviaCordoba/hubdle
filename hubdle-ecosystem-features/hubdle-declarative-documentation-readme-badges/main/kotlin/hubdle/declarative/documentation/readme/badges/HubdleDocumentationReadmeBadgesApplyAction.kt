@@ -2,7 +2,7 @@
 
 package hubdle.declarative.documentation.readme.badges
 
-import hubdle.declarative.documentation.readme.HubdleDocumentationReadmeDefinition
+import hubdle.ecosystem.feature.documentation.readme.HubdleDocumentationReadmeDefinition
 import hubdle.platform.HubdleProperties.Pom
 import hubdle.platform.HubdleProperties.Project
 import hubdle.platform.HubdleProperties.Sonar

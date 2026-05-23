@@ -1,4 +1,4 @@
-package hubdle.declarative.documentation.readme
+package hubdle.ecosystem.feature.documentation.readme
 
 import com.javiersc.gradle.testkit.test.extensions.GradleTestKitTest
 import hubdle.platform.HubdleProperties
@@ -7,11 +7,11 @@ import io.kotest.matchers.string.shouldContainInOrder
 import io.kotest.matchers.string.shouldNotContain
 import kotlin.test.Test
 
-class HubdleDeclarativeDocumentationReadmeTest : GradleTestKitTest() {
+class HubdleEcosystemFeatureDocumentationReadmeTest : GradleTestKitTest() {
 
     @Test
     fun `GIVEN a project WHEN hubdle documentation readme is enabled THEN readme feature is applied`() {
-        gradleTestKitTest("hubdle-config-documentation-readme/basic") {
+        gradleTestKitTest("hubdle-feature-documentation-readme/basic") {
             gradlew("build", "-P", "${HubdleProperties.Logging.Enabled}=true", "--no-scan")
                 .output
                 .shouldContainInOrder(
@@ -24,7 +24,7 @@ class HubdleDeclarativeDocumentationReadmeTest : GradleTestKitTest() {
 
     @Test
     fun `GIVEN a project WHEN hubdle disabled THEN readme feature is not applied`() {
-        gradleTestKitTest("hubdle-config-documentation-readme/hubdle-disabled") {
+        gradleTestKitTest("hubdle-feature-documentation-readme/hubdle-disabled") {
             gradlew("build", "-P", "${HubdleProperties.Logging.Enabled}=true", "--no-scan")
                 .output
                 .shouldNotContain(lifecycle("hubdle") { "Feature 'hubdle' enabled on ':'" })

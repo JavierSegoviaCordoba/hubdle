@@ -65,7 +65,7 @@ hubdle {
                     implementation(hubdle.javiersc.gradle.test.extensions)
 
                     api(projects.platform)
-                    api(projects.hubdleEcosystemFeatures.hubdleDeclarativeDocumentationReadme)
+                    api(projects.hubdleEcosystemFeatures.hubdleEcosystemFeatureDocumentationReadme)
                 }
 
                 resources.srcDirs(file(rootDir.resolve("gradle/hubdle")))

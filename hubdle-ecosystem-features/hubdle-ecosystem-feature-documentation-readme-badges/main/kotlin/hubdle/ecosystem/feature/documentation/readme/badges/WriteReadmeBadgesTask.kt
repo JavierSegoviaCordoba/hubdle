@@ -85,7 +85,8 @@ public abstract class WriteReadmeBadgesTask @Inject constructor(private val layo
 
         return if (label.contains("snapshot", ignoreCase = true)) {
             "[![$label]" +
-                "($shieldsIoUrl/nexus/s/${projectGroup.get()}/$namePath?server=https%3A%2F%2Foss.sonatype.org%2F&label=$labelPath)]" +
+                "($shieldsIoUrl/nexus/s/${projectGroup.get()}/$namePath?" +
+                "server=https%3A%2F%2Foss.sonatype.org%2F&label=$labelPath)]" +
                 "(https://oss.sonatype.org/content/repositories/snapshots/$groupPath/$namePath/)"
         } else {
             "[![$label]" +
@@ -96,12 +97,15 @@ public abstract class WriteReadmeBadgesTask @Inject constructor(private val layo
 
     private fun buildBuildBadge(): String =
         "[![Build]" +
-            "($shieldsIoUrl/github/actions/workflow/status/$repoWithoutUrlPrefix/build-kotlin.yaml?label=Build&logo=GitHub)]" +
+            "($shieldsIoUrl/github/actions/workflow/status/" +
+            "$repoWithoutUrlPrefix/build-kotlin.yaml?label=Build&logo=GitHub)]" +
             "(${repoUrl.get()}/tree/main)"
 
     private fun buildAnalysisBadge(sonar: Sonar): String =
         "[![${sonar.label}]" +
-            "($shieldsIoUrl/sonar/${sonar.path}/${projectKey.get()}?label=${sonar.label.replace(" ", "%20")}&logo=SonarCloud&logoColor=white&server=https%3A%2F%2Fsonarcloud.io)]" +
+            "($shieldsIoUrl/sonar/${sonar.path}/${projectKey.get()}?" +
+            "label=${sonar.label.replace(" ", "%20")}&logo=SonarCloud" +
+            "&logoColor=white&server=https%3A%2F%2Fsonarcloud.io)]" +
             "(https://sonarcloud.io/dashboard?id=${projectKey.get()})"
 
     private fun buildReadmeBadges(): List<String> =

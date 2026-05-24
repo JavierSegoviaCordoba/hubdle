@@ -11,31 +11,16 @@ public final class com/javiersc/hubdle/hubdle/ecosystem/feature/documentation/re
 	public static final field Version Ljava/lang/String;
 }
 
-public abstract interface class hubdle/ecosystem/feature/documentation/readme/badges/HubdleDocumentationReadmeBadgesBuildModel : hubdle/platform/HubdleBuildModel, org/gradle/features/binding/BuildModel {
-	public abstract fun getEffectiveEnabled ()Lorg/gradle/api/provider/Property;
-}
-
-public abstract interface class hubdle/ecosystem/feature/documentation/readme/badges/HubdleDocumentationReadmeBadgesDefinition : hubdle/platform/HubdleDefinition, org/gradle/features/binding/Definition {
+public abstract interface class hubdle/ecosystem/feature/documentation/readme/badges/HubdleDocumentationReadmeBadgesDefinition {
 	public abstract fun getBuild ()Lorg/gradle/api/provider/Property;
 	public abstract fun getCoverage ()Lorg/gradle/api/provider/Property;
-	public fun getFeatureName ()Ljava/lang/String;
+	public abstract fun getEnabled ()Lorg/gradle/api/provider/Property;
 	public abstract fun getKotlin ()Lorg/gradle/api/provider/Property;
 	public abstract fun getMainProjectName ()Lorg/gradle/api/provider/Property;
 	public abstract fun getMavenCentral ()Lorg/gradle/api/provider/Property;
 	public abstract fun getQuality ()Lorg/gradle/api/provider/Property;
 	public abstract fun getSnapshots ()Lorg/gradle/api/provider/Property;
 	public abstract fun getTechDebt ()Lorg/gradle/api/provider/Property;
-}
-
-public final class hubdle/ecosystem/feature/documentation/readme/badges/HubdleDocumentationReadmeBadgesDefinition$DefaultImpls {
-	public static fun getFeatureName (Lhubdle/ecosystem/feature/documentation/readme/badges/HubdleDocumentationReadmeBadgesDefinition;)Ljava/lang/String;
-}
-
-public class hubdle/ecosystem/feature/documentation/readme/badges/HubdleDocumentationReadmeBadgesFeature : org/gradle/api/Plugin, org/gradle/features/binding/ProjectFeatureBinding {
-	public fun <init> ()V
-	public synthetic fun apply (Ljava/lang/Object;)V
-	public fun apply (Lorg/gradle/api/Project;)V
-	public fun bind (Lorg/gradle/features/binding/ProjectFeatureBindingBuilder;)V
 }
 
 public abstract class hubdle/ecosystem/feature/documentation/readme/badges/WriteReadmeBadgesTask : org/gradle/api/DefaultTask {

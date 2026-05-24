@@ -2,6 +2,7 @@ hubdle {
     documentation {
         enabled = true
         readme {
+            enabled = true
             badges {
                 kotlin = false
                 mavenCentral = false

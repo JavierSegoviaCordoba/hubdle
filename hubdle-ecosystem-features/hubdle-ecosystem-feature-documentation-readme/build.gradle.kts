@@ -67,6 +67,7 @@ hubdle {
 
                     api(projects.hubdleEcosystemApi)
                     api(projects.hubdleEcosystemFeatures.hubdleEcosystemFeatureDocumentation)
+                    api(projects.hubdleEcosystemFeatures.hubdleEcosystemFeatureDocumentationReadmeBadges)
                 }
 
                 resources.srcDirs(file(rootDir.resolve("gradle/hubdle")))

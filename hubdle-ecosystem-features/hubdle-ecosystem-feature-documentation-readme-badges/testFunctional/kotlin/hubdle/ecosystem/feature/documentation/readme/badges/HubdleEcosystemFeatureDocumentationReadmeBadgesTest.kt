@@ -26,7 +26,6 @@ class HubdleEcosystemFeatureDocumentationReadmeBadgesTest : GradleTestKitTest() 
                     lifecycle("hubdle") { "Feature 'hubdle' enabled on ':'" },
                     lifecycle("documentation") { "Feature 'documentation' enabled on ':'" },
                     lifecycle("readme") { "Feature 'readme' enabled on ':'" },
-                    lifecycle("badges") { "Feature 'badges' enabled on ':'" },
                 )
         }
     }
@@ -41,7 +40,6 @@ class HubdleEcosystemFeatureDocumentationReadmeBadgesTest : GradleTestKitTest() 
                     lifecycle("documentation") { "Feature 'documentation' enabled on ':'" }
                 )
                 .shouldNotContain(lifecycle("readme") { "Feature 'readme' enabled on ':'" })
-                .shouldNotContain(lifecycle("badges") { "Feature 'badges' enabled on ':'" })
         }
     }
 

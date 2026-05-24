@@ -110,6 +110,13 @@ the DCL target. Do not port a subset unless the issue explicitly narrows scope.
   every fixture is still executed and checked.
 - If legacy tests miss behavior needed by the migrated DCL feature, add extra DCL tests instead of
   assuming legacy coverage is complete.
+- Map legacy functional coverage by current DCL module ownership, not by old legacy feature labels.
+  If a legacy test asserted behavior that now lives in a dedicated DCL subfeature/module, port it
+  there. Do not force old tests into a broader parent module just because the legacy path was
+  grouped there.
+- For each migrated DCL module, copy legacy tests only for behavior the module now owns. Smoke tests
+  for feature enable/disable stay in the owning feature module; behavior-specific functional tests
+  move to the concrete DCL module that implements that behavior.
 - DCL fixtures must use current DCL Gradle property names. Do not preserve legacy property names as
   fallback behavior in production code unless the issue explicitly requires compatibility.
 - DCL cannot assign root project version with `version = "..."` in `build.gradle.dcl`; put fixture

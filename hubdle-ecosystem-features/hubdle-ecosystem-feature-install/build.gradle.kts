@@ -66,9 +66,6 @@ hubdle {
                     implementation(hubdle.javiersc.gradle.test.extensions)
 
                     api(projects.hubdleEcosystemApi)
-                    api(projects.hubdleEcosystemFeatures.hubdleEcosystemFeatureAnalysis)
-
-                    api(hubdle.plugins.sonarqube.artifact)
                 }
 
                 resources.srcDirs(file(rootDir.resolve("gradle/hubdle")))

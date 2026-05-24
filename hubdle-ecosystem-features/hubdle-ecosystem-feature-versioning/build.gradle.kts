@@ -49,6 +49,7 @@ hubdle {
     gradle {
         plugin {
             pluginUnderTestProjects(projects.hubdleEcosystem)
+            pluginUnderTestDependencies(hubdle.plugins.javiersc.semverFeatures.artifact)
         }
     }
 

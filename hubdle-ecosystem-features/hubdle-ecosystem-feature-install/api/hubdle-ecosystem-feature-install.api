@@ -1,0 +1,179 @@
+public final class com/javiersc/hubdle/hubdle/ecosystem/feature/install/HubdleEcosystemFeatureInstallProjectData {
+	public static final field Group Ljava/lang/String;
+	public static final field INSTANCE Lcom/javiersc/hubdle/hubdle/ecosystem/feature/install/HubdleEcosystemFeatureInstallProjectData;
+	public static final field Library Ljava/lang/String;
+	public static final field Name Ljava/lang/String;
+	public static final field ProjectDirAbsolutePath Ljava/lang/String;
+	public static final field ProjectDirPath Ljava/lang/String;
+	public static final field RelativeDirPath Ljava/lang/String;
+	public static final field RootDirAbsolutePath Ljava/lang/String;
+	public static final field RootDirPath Ljava/lang/String;
+	public static final field Version Ljava/lang/String;
+}
+
+public abstract interface class hubdle/ecosystem/feature/install/HubdleInstallBuildModel : hubdle/platform/HubdleBuildModel, org/gradle/features/binding/BuildModel {
+	public abstract fun getEffectiveEnabled ()Lorg/gradle/api/provider/Property;
+}
+
+public abstract interface class hubdle/ecosystem/feature/install/HubdleInstallDefinition : hubdle/platform/HubdleDefinition, org/gradle/features/binding/Definition {
+	public fun getFeatureName ()Ljava/lang/String;
+	public abstract fun getPreCommits ()Lhubdle/ecosystem/feature/install/HubdleInstallPreCommitsDefinition;
+	public fun preCommits (Z)V
+	public static synthetic fun preCommits$default (Lhubdle/ecosystem/feature/install/HubdleInstallDefinition;ZILjava/lang/Object;)V
+}
+
+public final class hubdle/ecosystem/feature/install/HubdleInstallDefinition$DefaultImpls {
+	public static fun getFeatureName (Lhubdle/ecosystem/feature/install/HubdleInstallDefinition;)Ljava/lang/String;
+	public static fun preCommits (Lhubdle/ecosystem/feature/install/HubdleInstallDefinition;Z)V
+	public static synthetic fun preCommits$default (Lhubdle/ecosystem/feature/install/HubdleInstallDefinition;ZILjava/lang/Object;)V
+}
+
+public class hubdle/ecosystem/feature/install/HubdleInstallFeature : org/gradle/api/Plugin, org/gradle/features/binding/ProjectFeatureBinding {
+	public fun <init> ()V
+	public synthetic fun apply (Ljava/lang/Object;)V
+	public fun apply (Lorg/gradle/api/Project;)V
+	public fun bind (Lorg/gradle/features/binding/ProjectFeatureBindingBuilder;)V
+}
+
+public abstract interface class hubdle/ecosystem/feature/install/HubdleInstallPreCommitsDefinition {
+	public fun applyFormat (Z)V
+	public static synthetic fun applyFormat$default (Lhubdle/ecosystem/feature/install/HubdleInstallPreCommitsDefinition;ZILjava/lang/Object;)V
+	public fun assemble (Z)V
+	public static synthetic fun assemble$default (Lhubdle/ecosystem/feature/install/HubdleInstallPreCommitsDefinition;ZILjava/lang/Object;)V
+	public fun checkAnalysis (Z)V
+	public static synthetic fun checkAnalysis$default (Lhubdle/ecosystem/feature/install/HubdleInstallPreCommitsDefinition;ZILjava/lang/Object;)V
+	public fun checkApi (Z)V
+	public static synthetic fun checkApi$default (Lhubdle/ecosystem/feature/install/HubdleInstallPreCommitsDefinition;ZILjava/lang/Object;)V
+	public fun checkFormat (Z)V
+	public static synthetic fun checkFormat$default (Lhubdle/ecosystem/feature/install/HubdleInstallPreCommitsDefinition;ZILjava/lang/Object;)V
+	public fun dumpApi (Z)V
+	public static synthetic fun dumpApi$default (Lhubdle/ecosystem/feature/install/HubdleInstallPreCommitsDefinition;ZILjava/lang/Object;)V
+	public abstract fun getApplyFormat ()Lorg/gradle/api/provider/Property;
+	public abstract fun getAssemble ()Lorg/gradle/api/provider/Property;
+	public abstract fun getCheckAnalysis ()Lorg/gradle/api/provider/Property;
+	public abstract fun getCheckApi ()Lorg/gradle/api/provider/Property;
+	public abstract fun getCheckFormat ()Lorg/gradle/api/provider/Property;
+	public abstract fun getDumpApi ()Lorg/gradle/api/provider/Property;
+	public abstract fun getEnabled ()Lorg/gradle/api/provider/Property;
+	public abstract fun getTests ()Lorg/gradle/api/provider/Property;
+	public fun tests (Z)V
+	public static synthetic fun tests$default (Lhubdle/ecosystem/feature/install/HubdleInstallPreCommitsDefinition;ZILjava/lang/Object;)V
+}
+
+public final class hubdle/ecosystem/feature/install/HubdleInstallPreCommitsDefinition$DefaultImpls {
+	public static fun applyFormat (Lhubdle/ecosystem/feature/install/HubdleInstallPreCommitsDefinition;Z)V
+	public static synthetic fun applyFormat$default (Lhubdle/ecosystem/feature/install/HubdleInstallPreCommitsDefinition;ZILjava/lang/Object;)V
+	public static fun assemble (Lhubdle/ecosystem/feature/install/HubdleInstallPreCommitsDefinition;Z)V
+	public static synthetic fun assemble$default (Lhubdle/ecosystem/feature/install/HubdleInstallPreCommitsDefinition;ZILjava/lang/Object;)V
+	public static fun checkAnalysis (Lhubdle/ecosystem/feature/install/HubdleInstallPreCommitsDefinition;Z)V
+	public static synthetic fun checkAnalysis$default (Lhubdle/ecosystem/feature/install/HubdleInstallPreCommitsDefinition;ZILjava/lang/Object;)V
+	public static fun checkApi (Lhubdle/ecosystem/feature/install/HubdleInstallPreCommitsDefinition;Z)V
+	public static synthetic fun checkApi$default (Lhubdle/ecosystem/feature/install/HubdleInstallPreCommitsDefinition;ZILjava/lang/Object;)V
+	public static fun checkFormat (Lhubdle/ecosystem/feature/install/HubdleInstallPreCommitsDefinition;Z)V
+	public static synthetic fun checkFormat$default (Lhubdle/ecosystem/feature/install/HubdleInstallPreCommitsDefinition;ZILjava/lang/Object;)V
+	public static fun dumpApi (Lhubdle/ecosystem/feature/install/HubdleInstallPreCommitsDefinition;Z)V
+	public static synthetic fun dumpApi$default (Lhubdle/ecosystem/feature/install/HubdleInstallPreCommitsDefinition;ZILjava/lang/Object;)V
+	public static fun tests (Lhubdle/ecosystem/feature/install/HubdleInstallPreCommitsDefinition;Z)V
+	public static synthetic fun tests$default (Lhubdle/ecosystem/feature/install/HubdleInstallPreCommitsDefinition;ZILjava/lang/Object;)V
+}
+
+public abstract class hubdle/ecosystem/feature/install/tasks/InstallApplyFormatPreCommitTask : hubdle/ecosystem/feature/install/tasks/InstallPreCommitTask {
+	public static final field Companion Lhubdle/ecosystem/feature/install/tasks/InstallApplyFormatPreCommitTask$Companion;
+	public static final field NAME Ljava/lang/String;
+	public fun <init> (Lorg/gradle/api/model/ObjectFactory;Lorg/gradle/api/file/ProjectLayout;)V
+	public fun install ()V
+}
+
+public final class hubdle/ecosystem/feature/install/tasks/InstallApplyFormatPreCommitTask$Companion {
+}
+
+public abstract class hubdle/ecosystem/feature/install/tasks/InstallAssemblePreCommitTask : hubdle/ecosystem/feature/install/tasks/InstallPreCommitTask {
+	public static final field Companion Lhubdle/ecosystem/feature/install/tasks/InstallAssemblePreCommitTask$Companion;
+	public static final field NAME Ljava/lang/String;
+	public fun <init> (Lorg/gradle/api/model/ObjectFactory;Lorg/gradle/api/file/ProjectLayout;)V
+	public fun install ()V
+}
+
+public final class hubdle/ecosystem/feature/install/tasks/InstallAssemblePreCommitTask$Companion {
+}
+
+public abstract class hubdle/ecosystem/feature/install/tasks/InstallCheckAnalysisPreCommitTask : hubdle/ecosystem/feature/install/tasks/InstallPreCommitTask {
+	public static final field Companion Lhubdle/ecosystem/feature/install/tasks/InstallCheckAnalysisPreCommitTask$Companion;
+	public static final field NAME Ljava/lang/String;
+	public fun <init> (Lorg/gradle/api/model/ObjectFactory;Lorg/gradle/api/file/ProjectLayout;)V
+	public fun install ()V
+}
+
+public final class hubdle/ecosystem/feature/install/tasks/InstallCheckAnalysisPreCommitTask$Companion {
+}
+
+public abstract class hubdle/ecosystem/feature/install/tasks/InstallCheckApiPreCommitTask : hubdle/ecosystem/feature/install/tasks/InstallPreCommitTask {
+	public static final field Companion Lhubdle/ecosystem/feature/install/tasks/InstallCheckApiPreCommitTask$Companion;
+	public static final field NAME Ljava/lang/String;
+	public fun <init> (Lorg/gradle/api/model/ObjectFactory;Lorg/gradle/api/file/ProjectLayout;)V
+	public fun install ()V
+}
+
+public final class hubdle/ecosystem/feature/install/tasks/InstallCheckApiPreCommitTask$Companion {
+}
+
+public abstract class hubdle/ecosystem/feature/install/tasks/InstallCheckFormatPreCommitTask : hubdle/ecosystem/feature/install/tasks/InstallPreCommitTask {
+	public static final field Companion Lhubdle/ecosystem/feature/install/tasks/InstallCheckFormatPreCommitTask$Companion;
+	public static final field NAME Ljava/lang/String;
+	public fun <init> (Lorg/gradle/api/model/ObjectFactory;Lorg/gradle/api/file/ProjectLayout;)V
+	public fun install ()V
+}
+
+public final class hubdle/ecosystem/feature/install/tasks/InstallCheckFormatPreCommitTask$Companion {
+}
+
+public abstract class hubdle/ecosystem/feature/install/tasks/InstallDumpApiPreCommitTask : hubdle/ecosystem/feature/install/tasks/InstallPreCommitTask {
+	public static final field Companion Lhubdle/ecosystem/feature/install/tasks/InstallDumpApiPreCommitTask$Companion;
+	public static final field NAME Ljava/lang/String;
+	public fun <init> (Lorg/gradle/api/model/ObjectFactory;Lorg/gradle/api/file/ProjectLayout;)V
+	public fun install ()V
+}
+
+public final class hubdle/ecosystem/feature/install/tasks/InstallDumpApiPreCommitTask$Companion {
+}
+
+public abstract class hubdle/ecosystem/feature/install/tasks/InstallPreCommitTask : org/gradle/api/DefaultTask, hubdle/ecosystem/feature/install/tasks/InstallTask {
+	public static final field Companion Lhubdle/ecosystem/feature/install/tasks/InstallPreCommitTask$Companion;
+	public static final field NAME Ljava/lang/String;
+	public fun <init> (Lorg/gradle/api/file/ProjectLayout;Lorg/gradle/api/model/ObjectFactory;)V
+	public abstract fun getPreCommitName ()Lorg/gradle/api/provider/Property;
+	public final fun getPreCommitOutputDir ()Lorg/gradle/api/file/DirectoryProperty;
+	public final fun getPreCommitOutputFile ()Lorg/gradle/api/file/RegularFileProperty;
+	public fun install ()V
+}
+
+public final class hubdle/ecosystem/feature/install/tasks/InstallPreCommitTask$Companion {
+}
+
+public abstract interface class hubdle/ecosystem/feature/install/tasks/InstallTask {
+	public abstract fun install ()V
+}
+
+public abstract class hubdle/ecosystem/feature/install/tasks/InstallTestsPreCommitTask : hubdle/ecosystem/feature/install/tasks/InstallPreCommitTask {
+	public static final field Companion Lhubdle/ecosystem/feature/install/tasks/InstallTestsPreCommitTask$Companion;
+	public static final field NAME Ljava/lang/String;
+	public fun <init> (Lorg/gradle/api/model/ObjectFactory;Lorg/gradle/api/file/ProjectLayout;)V
+	public fun install ()V
+}
+
+public final class hubdle/ecosystem/feature/install/tasks/InstallTestsPreCommitTask$Companion {
+}
+
+public abstract class hubdle/ecosystem/feature/install/tasks/WriteFilePreCommitTask : org/gradle/api/DefaultTask {
+	public static final field Companion Lhubdle/ecosystem/feature/install/tasks/WriteFilePreCommitTask$Companion;
+	public static final field NAME Ljava/lang/String;
+	public fun <init> (Lorg/gradle/api/file/ProjectLayout;Lorg/gradle/api/model/ObjectFactory;)V
+	public final fun getInstallPreCommitsDir ()Lorg/gradle/api/file/DirectoryProperty;
+	public final fun getPreCommitFile ()Lorg/gradle/api/file/RegularFileProperty;
+	public final fun getPreCommitHubdleFile ()Lorg/gradle/api/file/RegularFileProperty;
+	public final fun writeFile ()V
+}
+
+public final class hubdle/ecosystem/feature/install/tasks/WriteFilePreCommitTask$Companion {
+}
+

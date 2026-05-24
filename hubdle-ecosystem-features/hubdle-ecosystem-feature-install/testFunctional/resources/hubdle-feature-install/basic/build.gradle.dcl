@@ -1,0 +1,4 @@
+hubdle {
+    install {
+    }
+}

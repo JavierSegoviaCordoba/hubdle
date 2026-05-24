@@ -49,6 +49,7 @@ hubdle {
     gradle {
         plugin {
             pluginUnderTestProjects(projects.hubdleEcosystem)
+            pluginUnderTestDependencies(hubdle.plugins.javiersc.semverFeatures.artifact)
         }
     }
 
@@ -102,4 +103,3 @@ fun GradleVersion.mapIfKotlinVersionIsProvided(kotlinVersion: String): String {
 
 fun String.isKotlinDevVersion(): Boolean =
     matches(Regex("""(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)-dev-(0|[1-9]\d*)"""))
-

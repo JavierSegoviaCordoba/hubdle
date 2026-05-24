@@ -41,11 +41,30 @@ class HubdleEcosystemFeatureInstallTest : GradleTestKitTest() {
                 )
 
             this.preCommitFileLines.shouldContain("  .git/hooks/.hubdle/pre-commit")
+            this.preCommitFileLines.shouldContain("if [ -f .git/hooks/.hubdle/pre-commit ]; then")
+            this.preCommitFileLines.shouldContain("fi")
             this.preCommitHubdleFileLines.shouldContain("./gradlew tests")
             this.preCommitHubdleFileLines.shouldContain("./gradlew applyFormat")
             this.preCommitHubdleFileLines.shouldContain("./gradlew assemble")
             this.preCommitHubdleFileLines.shouldContain("./gradlew checkAnalysis")
             this.preCommitHubdleFileLines.shouldNotContain("./gradlew checkApi")
+            this.preCommitHubdleFileLines.shouldContain("./gradlew checkFormat")
+            this.preCommitHubdleFileLines.shouldContain("./gradlew dumpApi")
+        }
+    }
+
+    @Test
+    fun `GIVEN a project WHEN hubdle install preCommits all are enabled THEN checkApi is present`() {
+        gradleTestKitTest("hubdle-feature-install/pre-commits-all-enabled") {
+            gradlew("installPreCommit", "--no-scan")
+            this.preCommitFileLines.shouldContain("  .git/hooks/.hubdle/pre-commit")
+            this.preCommitFileLines.shouldContain("if [ -f .git/hooks/.hubdle/pre-commit ]; then")
+            this.preCommitFileLines.shouldContain("fi")
+            this.preCommitHubdleFileLines.shouldContain("./gradlew tests")
+            this.preCommitHubdleFileLines.shouldContain("./gradlew applyFormat")
+            this.preCommitHubdleFileLines.shouldContain("./gradlew assemble")
+            this.preCommitHubdleFileLines.shouldContain("./gradlew checkAnalysis")
+            this.preCommitHubdleFileLines.shouldContain("./gradlew checkApi")
             this.preCommitHubdleFileLines.shouldContain("./gradlew checkFormat")
             this.preCommitHubdleFileLines.shouldContain("./gradlew dumpApi")
         }

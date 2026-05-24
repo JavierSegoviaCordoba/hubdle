@@ -13,13 +13,15 @@ state and imperative Gradle behavior.
 Primary reference implementation:
 
 ```text
-hubdle-declarative-features/hubdle-declarative-config
+hubdle-ecosystem-features/hubdle-ecosystem-feature-project-config
 ```
 
 Current shape:
 
-- `hubdle-declarative` owns the settings plugin and root `hubdle {}` project type.
-- `hubdle-declarative-features` owns feature modules.
+- `hubdle-ecosystem` owns the settings plugin and root `hubdle {}` project type.
+- `hubdle-ecosystem-api` owns shared DCL API, definitions, build models, services, lifecycle tasks,
+  plugin IDs, and Gradle property constants.
+- `hubdle-ecosystem-features` owns feature modules.
 - `hubdle {}` is the root project type.
 - Nested blocks such as `hubdle { config {} }` are project features.
 
@@ -52,25 +54,26 @@ Inspect the current feature or DSL block first:
 3. Keep imperative lambdas/actions out of DCL unless they can become typed declarative options.
 4. Reuse existing Hubdle implementation logic through provider/value based configurers when
    possible.
-5. Use `hubdle-declarative-config` as the concrete implementation reference.
+5. Use `hubdle-ecosystem-feature-project-config` as the concrete implementation reference.
 6. Map every new DCL property, nested block, and `@Adding` function to an existing legacy DSL
    property/function or to a specific issue requirement before implementing it. Do not invent
    generic model words such as `capability`, `classifier`, `participant`, `artifact`, or `fact`
    unless they already exist in the legacy DSL or the issue explicitly asks for that exact model.
-7. Reuse platform-owned constants for plugin IDs and Gradle property names before adding literals
-   to feature apply actions. Add missing shared constants to `platform` instead of keeping local
-   `private const val` copies.
+7. Reuse `hubdle-ecosystem-api` owned constants for plugin IDs and Gradle property names before
+   adding literals to feature apply actions. Add missing shared constants there instead of keeping
+   local `private const val` copies.
 8. Insert new constants, enum entries, dependencies, registrations, and similar lists in
    alphabetical order unless the surrounding file uses a different explicit ordering.
 
-Platform naming:
+Ecosystem API naming:
 
-- Add plugin IDs to `platform/main/kotlin/hubdle/platform/PluginIds.kt`.
+- Add plugin IDs to `hubdle-ecosystem-api/main/kotlin/hubdle/platform/PluginIds.kt`.
 - Name plugin enum entries from the complete plugin ID after dropping only the top-level domain
   prefix such as `com.`, `org.`, `io.`, `dev.`, or `app.`.
 - Preserve the remaining namespace so provider/project identity is not lost. Examples:
   `com.javiersc.semver` becomes `JavierscSemver`, and `org.sonarqube` becomes `Sonarqube`.
-- Add Gradle property names to `platform/main/kotlin/hubdle/platform/HubdleProperties.kt`.
+- Add Gradle property names to
+  `hubdle-ecosystem-api/main/kotlin/hubdle/platform/HubdleProperties.kt`.
 - Group properties by their domain namespace as nested objects, named in PascalCase. For example,
   `semver.tagPrefix` belongs in `HubdleProperties.Semver.TagPrefix`.
 - Property constant names are the remaining property path segments after the domain object, also in
@@ -116,6 +119,14 @@ Before compiling or running tests, always run:
 
 This keeps formatting and API dumps current before verification.
 
+Then run the build for the affected module, for example:
+
+```shell
+./gradlew :hubdle-ecosystem-features:hubdle-ecosystem-feature-versioning:build
+```
+
+Run a root build only when the change crosses module boundaries or a published integration needs it.
+
 ## Core Rules
 
 - Use `@BindsProjectType` only for root `hubdle {}`.
@@ -129,8 +140,27 @@ This keeps formatting and API dumps current before verification.
   `org.gradle.caching=true`, `org.gradle.configuration-cache=true`,
   `org.gradle.parallel=true`, and `org.gradle.unsafe.isolated-projects=true`.
 - Do not edit `settings.gradle.kts` unless the user explicitly asks for it.
+- When a test/plugin classpath consumes snapshot artifacts from both Semver and Hubdle, Central
+  Portal snapshots repository filters must include both `com\\.javiersc\\.semver.*` and
+  `com\\.javiersc\\.hubdle.*` in `pluginManagement.repositories` and
+  `dependencyResolutionManagement.repositories`.
 - In functional test `settings.gradle.dcl` fixtures, always set `rootProject.name` following the
   repository's fixture naming pattern.
 - Keep each issue in a separate commit, but never create commits without explicit user permission in
   the current turn. If the user asks to delay committing until review, wait for their confirmation
   before creating the issue commit.
+
+## Semver Integration Rule
+
+- Hubdle must not implement Semver DCL internals inside Hubdle modules.
+- Hubdle ecosystem applies the external Semver features plugin by ID:
+  `com.javiersc.semver.features`.
+- Hubdle tests may add the Semver features plugin as a plugin-under-test dependency, but Hubdle main
+  variants should not publish Semver implementation artifacts unless the feature explicitly owns
+  them.
+- Semver owns the `hubdle { versioning { semver { ... } } }` feature bridge through its own
+  integration module.
+- Avoid circular dependencies: Semver integrations depend on
+  `com.javiersc.hubdle:hubdle-ecosystem-api` and concrete feature API modules such as
+  `com.javiersc.hubdle:hubdle-ecosystem-feature-versioning`, not on the Hubdle ecosystem Gradle
+  plugin marker.

@@ -30,3 +30,13 @@ Follow these strictly:
   `enabled`.
 - `property ... is final and cannot be changed`: apply action mutated a finalized DCL definition;
   consume it with `orElse(...)`.
+- `Could not find com.javiersc.hubdle:hubdle-ecosystem-api` or a Hubdle feature artifact while
+  resolving a Semver plugin classpath: the snapshots repository content filter is missing
+  `includeGroupByRegex("com\\.javiersc\\.hubdle.*")`.
+- `Could not find com.javiersc.hubdle.ecosystem:com.javiersc.hubdle.ecosystem.gradle.plugin`
+  through Semver: the published Semver snapshot still depends on the Hubdle ecosystem plugin marker.
+  Publish a Semver snapshot where the Hubdle integration depends on `hubdle-ecosystem-api` and the
+  required feature modules instead.
+- `:hubdle-ecosystem:pluginUnderTestMetadata` failures involving Semver usually come from the
+  plugin-under-test classpath, not from Hubdle main compilation. Inspect `testPluginClasspath` and
+  snapshot timestamps before changing production dependencies.

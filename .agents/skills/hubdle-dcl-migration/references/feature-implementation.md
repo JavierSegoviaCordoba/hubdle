@@ -9,7 +9,7 @@ Pattern:
 ```kotlin
 @file:Suppress("UnstableApiUsage")
 
-package hubdle.declarative.config
+package hubdle.ecosystem.feature.projectConfig
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -108,21 +108,21 @@ Pattern:
 
 package hubdle.declarative.config
 
-import hubdle.platform.HubdleRootDefinition
+import hubdle.platform.HubdleEcosystemDefinition
 import hubdle.platform.HubdleServices
 import hubdle.platform.tasks.computeHubdleEffectiveEnabled
 import org.gradle.features.binding.ProjectFeatureApplicationContext
 import org.gradle.features.binding.ProjectFeatureApplyAction
 
 internal abstract class HubdleConfigApplyAction :
-    ProjectFeatureApplyAction<HubdleConfigDefinition, HubdleConfigBuildModel, HubdleRootDefinition>,
+    ProjectFeatureApplyAction<HubdleConfigDefinition, HubdleConfigBuildModel, HubdleEcosystemDefinition>,
     HubdleServices {
 
     override fun apply(
         context: ProjectFeatureApplicationContext,
         definition: HubdleConfigDefinition,
         buildModel: HubdleConfigBuildModel,
-        parentDefinition: HubdleRootDefinition,
+        parentDefinition: HubdleEcosystemDefinition,
     ) = definition.run {
         val featureEffectiveEnabled =
             context.computeHubdleEffectiveEnabled(
@@ -145,7 +145,7 @@ internal abstract class HubdleConfigApplyAction :
 
 Rules:
 
-- Direct children of `hubdle {}` use `HubdleRootDefinition` as parent.
+- Direct children of `hubdle {}` use `HubdleEcosystemDefinition` as parent.
 - Nested features use the immediate parent definition.
 - Compute `featureEffectiveEnabled` first.
 - Do nothing when disabled.

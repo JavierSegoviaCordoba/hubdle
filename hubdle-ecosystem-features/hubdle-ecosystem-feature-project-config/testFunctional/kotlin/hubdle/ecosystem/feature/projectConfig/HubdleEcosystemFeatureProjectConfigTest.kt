@@ -3,6 +3,7 @@ package hubdle.ecosystem.feature.projectConfig
 import com.javiersc.gradle.testkit.test.extensions.GradleTestKitTest
 import hubdle.platform.HubdleProperties
 import hubdle.platform.LogFixture.lifecycle
+import io.kotest.matchers.string.shouldContain
 import io.kotest.matchers.string.shouldContainInOrder
 import io.kotest.matchers.string.shouldNotContain
 import kotlin.test.Test
@@ -25,6 +26,12 @@ class HubdleEcosystemFeatureProjectConfigTest : GradleTestKitTest() {
                         "Project ':' has changed the group to 'foo-some'"
                     },
                 )
+            gradlew("tasks", "--all", "--no-scan")
+                .output
+                .shouldContain("fixChecks")
+                .shouldContain("generate")
+                .shouldContain("tests")
+                .shouldContain("prepareKotlinIdeaImport")
         }
     }
 

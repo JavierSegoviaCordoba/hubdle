@@ -26,6 +26,7 @@ pluginManagement {
         maven(url = "https://central.sonatype.com/repository/maven-snapshots/") {
             mavenContent { snapshotsOnly() }
             content {
+                includeGroupByRegex("com\\.javiersc\\.hubdle.*")
                 includeGroupByRegex("com\\.javiersc\\.semver.*")
             }
         }
@@ -65,6 +66,7 @@ dependencyResolutionManagement {
         maven(url = "https://central.sonatype.com/repository/maven-snapshots/") {
             mavenContent { snapshotsOnly() }
             content {
+                includeGroupByRegex("com\\.javiersc\\.hubdle.*")
                 includeGroupByRegex("com\\.javiersc\\.semver.*")
             }
         }

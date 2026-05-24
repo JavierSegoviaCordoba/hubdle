@@ -97,6 +97,37 @@ Read only the reference needed for the current task:
 - DCL rules and common failure diagnosis:
   [`references/troubleshooting.md`](references/troubleshooting.md).
 
+## Migration Safety Checks
+
+Before editing any feature migration, compare the selected legacy implementation and tests against
+the DCL target. Do not port a subset unless the issue explicitly narrows scope.
+
+- Inspect every legacy functional fixture for the selected feature and create a DCL equivalent for
+  each one. Keep a count of legacy fixture directories and DCL fixture directories, and verify they
+  match before finishing.
+- Inspect legacy test methods and helper behavior, not only fixture files. Port every asserted
+  behavior to DCL tests. Grouping several legacy fixtures in one DCL test is acceptable only when
+  every fixture is still executed and checked.
+- If legacy tests miss behavior needed by the migrated DCL feature, add extra DCL tests instead of
+  assuming legacy coverage is complete.
+- DCL fixtures must use current DCL Gradle property names. Do not preserve legacy property names as
+  fallback behavior in production code unless the issue explicitly requires compatibility.
+- DCL cannot assign root project version with `version = "..."` in `build.gradle.dcl`; put fixture
+  versions in `gradle.properties`.
+- Preserve package names exactly when moving legacy internals. If the legacy package segment is
+  `_internal`, create `_internal`, not `internal`.
+- Keep Gradle configuration lazy. Do not call `Provider.get()`, `Property.get()`, or
+  `ListProperty.get()` while configuring plugins or tasks unless the value is required at execution
+  time or an existing Gradle API has no provider-based alternative. Prefer `map`, `flatMap`,
+  `orElse`, `zip`, `convention`, and provider-backed `set`.
+- When defaulting list properties, preserve laziness and empty-list semantics with provider
+  transforms, for example `listProperty.map { it.ifEmpty { defaults } }.orElse(defaults)`.
+- If the user explicitly says to ignore Detekt failures, keep implementing and verify affected
+  builds with `-x detekt`. Report that Detekt was skipped; do not rename packages, tests, or DCL
+  shapes only to satisfy Detekt.
+- After moving or renaming files, check `git status --short` and remove stale indexed paths from
+  mistakes made during the migration. Do not revert unrelated user changes.
+
 ## Default Workflow
 
 For a new or migrated Hubdle DCL feature:
@@ -107,7 +138,8 @@ For a new or migrated Hubdle DCL feature:
    the four core files.
 3. If the definition needs factories, standalone functions, containers, hidden services, defaults,
    or receiver constraints, read [`references/dcl-annotations.md`](references/dcl-annotations.md).
-4. Read [`references/testing.md`](references/testing.md) and add focused functional fixtures.
+4. Read [`references/testing.md`](references/testing.md), port all legacy functional fixtures for
+   the selected feature, and add focused DCL-only fixtures for any behavior legacy did not cover.
 5. If Gradle DCL schema/evaluation fails, read
    [`references/troubleshooting.md`](references/troubleshooting.md).
 
@@ -136,6 +168,8 @@ Run a root build only when the change crosses module boundaries or a published i
 - Do not expose imperative Gradle actions/lambdas directly in DCL definitions.
 - Do not use deprecated DCL annotations.
 - Add or update a `.gradle.dcl` functional fixture for every new DSL shape.
+- When migrating a legacy feature, add or update DCL functional fixtures for every legacy fixture
+  belonging to that feature. Verify the fixture count and names before final response.
 - Every functional test fixture directory must include a `gradle.properties` file with:
   `org.gradle.caching=true`, `org.gradle.configuration-cache=true`,
   `org.gradle.parallel=true`, and `org.gradle.unsafe.isolated-projects=true`.

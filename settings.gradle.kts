@@ -23,6 +23,12 @@ pluginManagement {
             }
         }
         mavenCentral()
+        maven(url = "https://central.sonatype.com/repository/maven-snapshots/") {
+            mavenContent { snapshotsOnly() }
+            content {
+                includeGroupByRegex("com\\.javiersc\\.semver.*")
+            }
+        }
         gradlePluginPortal()
         maven(url = "https://maven.pkg.jetbrains.space/kotlin/p/kotlin/bootstrap")
 
@@ -56,6 +62,12 @@ val kotlinVersion: String? = prop("kotlinVersion")
 
 dependencyResolutionManagement {
     repositories {
+        maven(url = "https://central.sonatype.com/repository/maven-snapshots/") {
+            mavenContent { snapshotsOnly() }
+            content {
+                includeGroupByRegex("com\\.javiersc\\.semver.*")
+            }
+        }
         if (itselfVersion != null) {
             mavenLocal()
         }

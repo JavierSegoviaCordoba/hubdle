@@ -64,7 +64,7 @@ hubdle {
                     implementation(hubdle.javiersc.gradle.extensions)
                     implementation(hubdle.javiersc.gradle.test.extensions)
 
-                    api(projects.platform)
+                    api(projects.hubdleEcosystemApi)
                     api(projects.hubdleEcosystemFeatures.hubdleEcosystemFeatureAnalysis)
 
                     api(hubdle.plugins.sonarqube.artifact)
@@ -77,7 +77,7 @@ hubdle {
             testFunctional {
                 dependencies { //
                     implementation(projects.hubdleEcosystem)
-                    implementation(testFixtures(projects.platform))
+                    implementation(testFixtures(projects.hubdleEcosystemApi))
                 }
             }
             testIntegration()

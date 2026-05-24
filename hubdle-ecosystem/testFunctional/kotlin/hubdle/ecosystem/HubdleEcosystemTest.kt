@@ -9,7 +9,7 @@ import kotlin.test.Test
 internal class HubdleEcosystemTest : GradleTestKitTest() {
 
     @Test
-    fun `GIVEN a project WHEN hubdle is applied AND logging is enabled THEN hubdle ecosystem logs are printed`() {
+    fun givenProjectWhenHubdleIsAppliedAndLoggingIsEnabledThenHubdleEcosystemLogsArePrinted() {
         gradleTestKitTest("main-hubdle") {
             gradlew("build", "-P", "${HubdleProperties.Logging.Enabled}=true", "--no-scan")
                 .output
@@ -20,6 +20,15 @@ internal class HubdleEcosystemTest : GradleTestKitTest() {
                     lifecycle("hubdle") { "Registering 'tests' task" },
                     lifecycle("hubdle") { "Registering 'prepareKotlinIdeaImport' task" },
                 )
+        }
+    }
+
+    @Test
+    fun givenProjectWhenHubdleVersioningSemverIsEnabledThenPrintSemverWorks() {
+        gradleTestKitTest("versioning-semver") {
+            gradlew("printSemver", "--stacktrace", "--no-scan")
+                .output
+                .shouldContainInOrder("semver for hubdle-versioning-semver")
         }
     }
 }

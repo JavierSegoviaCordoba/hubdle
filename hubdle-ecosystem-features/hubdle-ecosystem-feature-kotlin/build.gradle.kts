@@ -71,7 +71,7 @@ hubdle {
                     implementation(hubdle.javiersc.gradle.extensions)
                     implementation(hubdle.javiersc.gradle.test.extensions)
 
-                    api(projects.platform)
+                    api(projects.hubdleEcosystemApi)
 
                     api(hubdle.android.tools.build.gradle)
                     api(hubdle.jetbrains.kotlin.gradle.plugin)
@@ -112,7 +112,7 @@ hubdle {
             testFunctional {
                 dependencies { //
                     implementation(projects.hubdleEcosystem)
-                    implementation(testFixtures(projects.platform))
+                    implementation(testFixtures(projects.hubdleEcosystemApi))
                 }
             }
             testIntegration()

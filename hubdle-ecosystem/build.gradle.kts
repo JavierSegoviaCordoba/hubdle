@@ -73,6 +73,7 @@ hubdle {
                 hubdle.android.tools.build.gradle,
                 hubdle.jetbrains.kotlin.gradle.plugin.asProvider(),
             )
+            pluginUnderTestDependencies(hubdle.plugins.javiersc.semverFeatures.artifact)
         }
     }
 
@@ -89,7 +90,7 @@ hubdle {
                     implementation(hubdle.javiersc.gradle.extensions)
                     implementation(hubdle.javiersc.gradle.test.extensions)
 
-                    api(projects.platform)
+                    api(projects.hubdleEcosystemApi)
                     api(projects.hubdleEcosystemFeatures.hubdleEcosystemFeatureAnalysis)
                     api(projects.hubdleEcosystemFeatures.hubdleEcosystemFeatureAnalysisSonar)
                     api(projects.hubdleEcosystemFeatures.hubdleEcosystemFeatureDocumentation)
@@ -98,7 +99,6 @@ hubdle {
                     api(projects.hubdleEcosystemFeatures.hubdleEcosystemFeatureProjectConfig)
                     api(projects.hubdleEcosystemFeatures.hubdleEcosystemFeatureKotlin)
                     api(projects.hubdleEcosystemFeatures.hubdleEcosystemFeatureVersioning)
-                    api(projects.hubdleEcosystemFeatures.hubdleEcosystemFeatureVersioningSemver)
 
                     api(hubdle.android.tools.build.gradle)
                     api(hubdle.jetbrains.kotlin.gradle.plugin)
@@ -138,7 +138,7 @@ hubdle {
             testFixtures()
             testFunctional {
                 dependencies { //
-                    implementation(testFixtures(projects.platform))
+                    implementation(testFixtures(projects.hubdleEcosystemApi))
                 }
             }
             testIntegration()

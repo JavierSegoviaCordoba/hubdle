@@ -1,5 +1,0 @@
-plugins {
-    id("com.javiersc.hubdle.ecosystem")
-}
-
-rootProject.name = "hubdle-feature-versioning-semver-basic"

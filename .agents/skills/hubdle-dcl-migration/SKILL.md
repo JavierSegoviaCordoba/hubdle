@@ -108,6 +108,10 @@ the DCL target. Do not port a subset unless the issue explicitly narrows scope.
 - Inspect legacy test methods and helper behavior, not only fixture files. Port every asserted
   behavior to DCL tests. Grouping several legacy fixtures in one DCL test is acceptable only when
   every fixture is still executed and checked.
+- Before and after migrating each feature, review and update the DCL parity tracking issue
+  (`https://github.com/JavierSegoviaCordoba/hubdle/issues/1430`) with: current owner module,
+  exact legacy tests, exact DCL tests, missing tests, and explicit blocked reasons. Keep entries
+  current feature-by-feature so later migrations can resume from the tracker without re-discovery.
 - If legacy tests miss behavior needed by the migrated DCL feature, add extra DCL tests instead of
   assuming legacy coverage is complete.
 - Map legacy functional coverage by current DCL module ownership, not by old legacy feature labels.
@@ -177,6 +181,8 @@ Run a root build only when the change crosses module boundaries or a published i
 - Add or update a `.gradle.dcl` functional fixture for every new DSL shape.
 - When migrating a legacy feature, add or update DCL functional fixtures for every legacy fixture
   belonging to that feature. Verify the fixture count and names before final response.
+- After each feature migration step, sync the parity tracker issue body (not comments) with final
+  status (`done`, `blocked`, or `intentional non-parity`) and precise missing-test list.
 - Every functional test fixture directory must include a `gradle.properties` file with:
   `org.gradle.caching=true`, `org.gradle.configuration-cache=true`,
   `org.gradle.parallel=true`, and `org.gradle.unsafe.isolated-projects=true`.

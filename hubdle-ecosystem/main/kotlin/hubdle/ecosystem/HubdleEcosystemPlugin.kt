@@ -5,6 +5,7 @@ package hubdle.ecosystem
 import hubdle.ecosystem.feature.analysis.HubdleAnalysisFeature
 import hubdle.ecosystem.feature.analysis.sonar.HubdleAnalysisSonarFeature
 import hubdle.ecosystem.feature.documentation.HubdleDocumentationFeature
+import hubdle.ecosystem.feature.documentation.changelog.HubdleDocumentationChangelogFeature
 import hubdle.ecosystem.feature.documentation.readme.HubdleDocumentationReadmeFeature
 import hubdle.ecosystem.feature.install.HubdleInstallFeature
 import hubdle.ecosystem.feature.kotlin.HubdleKotlinFeature
@@ -20,6 +21,7 @@ import org.gradle.features.annotations.RegistersProjectFeatures
     HubdleAnalysisFeature::class,
     HubdleAnalysisSonarFeature::class,
     HubdleDocumentationFeature::class,
+    HubdleDocumentationChangelogFeature::class,
     HubdleDocumentationReadmeFeature::class,
     HubdleInstallFeature::class,
     HubdleKotlinFeature::class,

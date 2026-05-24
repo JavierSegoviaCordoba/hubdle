@@ -94,6 +94,7 @@ hubdle {
                     api(projects.hubdleEcosystemFeatures.hubdleEcosystemFeatureAnalysis)
                     api(projects.hubdleEcosystemFeatures.hubdleEcosystemFeatureAnalysisSonar)
                     api(projects.hubdleEcosystemFeatures.hubdleEcosystemFeatureDocumentation)
+                    api(projects.hubdleEcosystemFeatures.hubdleEcosystemFeatureDocumentationChangelog)
                     api(projects.hubdleEcosystemFeatures.hubdleEcosystemFeatureDocumentationReadme)
                     api(projects.hubdleEcosystemFeatures.hubdleEcosystemFeatureInstall)
                     api(projects.hubdleEcosystemFeatures.hubdleEcosystemFeatureProjectConfig)

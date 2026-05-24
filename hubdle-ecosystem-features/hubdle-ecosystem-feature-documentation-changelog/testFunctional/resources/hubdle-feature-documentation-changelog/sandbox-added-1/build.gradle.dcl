@@ -1,0 +1,6 @@
+hubdle {
+    documentation {
+        changelog {
+        }
+    }
+}

@@ -1,0 +1,93 @@
+public final class com/javiersc/hubdle/hubdle/ecosystem/feature/documentation/changelog/HubdleEcosystemFeatureDocumentationChangelogProjectData {
+	public static final field Group Ljava/lang/String;
+	public static final field INSTANCE Lcom/javiersc/hubdle/hubdle/ecosystem/feature/documentation/changelog/HubdleEcosystemFeatureDocumentationChangelogProjectData;
+	public static final field Library Ljava/lang/String;
+	public static final field Name Ljava/lang/String;
+	public static final field ProjectDirAbsolutePath Ljava/lang/String;
+	public static final field ProjectDirPath Ljava/lang/String;
+	public static final field RelativeDirPath Ljava/lang/String;
+	public static final field RootDirAbsolutePath Ljava/lang/String;
+	public static final field RootDirPath Ljava/lang/String;
+	public static final field Version Ljava/lang/String;
+}
+
+public class hubdle/ecosystem/feature/documentation/changelog/AddChangelogItemTask : org/gradle/api/DefaultTask {
+	public static final field Companion Lhubdle/ecosystem/feature/documentation/changelog/AddChangelogItemTask$Companion;
+	public static final field NAME Ljava/lang/String;
+	public fun <init> (Ljava/io/File;Lorg/gradle/api/model/ObjectFactory;Lorg/gradle/api/file/ProjectLayout;)V
+	public final fun getAdded ()Lorg/gradle/api/provider/Property;
+	public final fun getChanged ()Lorg/gradle/api/provider/Property;
+	public final fun getChangelogFileInput ()Lorg/gradle/api/file/RegularFileProperty;
+	public final fun getChangelogFileOutput ()Lorg/gradle/api/file/RegularFileProperty;
+	public final fun getDeprecated ()Lorg/gradle/api/provider/Property;
+	public final fun getFixed ()Lorg/gradle/api/provider/Property;
+	public final fun getRemoved ()Lorg/gradle/api/provider/Property;
+	public final fun getRenovate ()Lorg/gradle/api/provider/Property;
+	public final fun getRenovateCommitTable ()Lorg/gradle/api/provider/Property;
+	public final fun getRenovatePath ()Lorg/gradle/api/provider/Property;
+	public final fun getUpdated ()Lorg/gradle/api/provider/Property;
+	public final fun run ()V
+}
+
+public final class hubdle/ecosystem/feature/documentation/changelog/AddChangelogItemTask$Companion {
+}
+
+public abstract class hubdle/ecosystem/feature/documentation/changelog/ApplyFormatChangelogTask : org/gradle/api/DefaultTask {
+	public static final field Companion Lhubdle/ecosystem/feature/documentation/changelog/ApplyFormatChangelogTask$Companion;
+	public static final field NAME Ljava/lang/String;
+	public fun <init> ()V
+	public final fun getInputFile ()Ljava/io/File;
+	public final fun getOutputFile ()Ljava/io/File;
+	public final fun run ()V
+}
+
+public final class hubdle/ecosystem/feature/documentation/changelog/ApplyFormatChangelogTask$Companion {
+}
+
+public abstract class hubdle/ecosystem/feature/documentation/changelog/GenerateChangelogHtmlTask : org/gradle/api/DefaultTask {
+	public static final field Companion Lhubdle/ecosystem/feature/documentation/changelog/GenerateChangelogHtmlTask$Companion;
+	public static final field NAME Ljava/lang/String;
+	public fun <init> (Lorg/gradle/api/model/ObjectFactory;Lorg/gradle/api/file/ProjectLayout;)V
+	public abstract fun getHtml ()Lorg/gradle/api/provider/Property;
+	public final fun getHtmlFile ()Lorg/gradle/api/file/RegularFileProperty;
+	public final fun run ()V
+}
+
+public final class hubdle/ecosystem/feature/documentation/changelog/GenerateChangelogHtmlTask$Companion {
+}
+
+public abstract interface class hubdle/ecosystem/feature/documentation/changelog/HubdleDocumentationChangelogBuildModel : hubdle/platform/HubdleBuildModel, org/gradle/features/binding/BuildModel {
+	public abstract fun getEffectiveEnabled ()Lorg/gradle/api/provider/Property;
+}
+
+public abstract interface class hubdle/ecosystem/feature/documentation/changelog/HubdleDocumentationChangelogDefinition : hubdle/platform/HubdleDefinition, org/gradle/features/binding/Definition {
+	public abstract fun getCombinePreReleases ()Lorg/gradle/api/provider/Property;
+	public fun getFeatureName ()Ljava/lang/String;
+	public abstract fun getGroups ()Lorg/gradle/api/provider/ListProperty;
+	public abstract fun getRepositoryUrl ()Lorg/gradle/api/provider/Property;
+	public abstract fun getVersionPrefix ()Lorg/gradle/api/provider/Property;
+}
+
+public final class hubdle/ecosystem/feature/documentation/changelog/HubdleDocumentationChangelogDefinition$DefaultImpls {
+	public static fun getFeatureName (Lhubdle/ecosystem/feature/documentation/changelog/HubdleDocumentationChangelogDefinition;)Ljava/lang/String;
+}
+
+public class hubdle/ecosystem/feature/documentation/changelog/HubdleDocumentationChangelogFeature : org/gradle/api/Plugin, org/gradle/features/binding/ProjectFeatureBinding {
+	public fun <init> ()V
+	public synthetic fun apply (Ljava/lang/Object;)V
+	public fun apply (Lorg/gradle/api/Project;)V
+	public fun bind (Lorg/gradle/features/binding/ProjectFeatureBindingBuilder;)V
+}
+
+public abstract class hubdle/ecosystem/feature/documentation/changelog/MergeChangelogTask : org/gradle/api/DefaultTask {
+	public static final field Companion Lhubdle/ecosystem/feature/documentation/changelog/MergeChangelogTask$Companion;
+	public static final field NAME Ljava/lang/String;
+	public fun <init> (Lorg/gradle/api/model/ObjectFactory;Lorg/gradle/api/file/ProjectLayout;)V
+	public final fun getChangelogFileInput ()Lorg/gradle/api/file/RegularFileProperty;
+	public final fun getChangelogFileOutput ()Lorg/gradle/api/file/RegularFileProperty;
+	public final fun run ()V
+}
+
+public final class hubdle/ecosystem/feature/documentation/changelog/MergeChangelogTask$Companion {
+}
+

@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 4.4.2`
 - `org.gradle.test-retry:org.gradle.test-retry.gradle.plugin -> 1.6.5`
 - `com.codingfeline.buildkonfig:com.codingfeline.buildkonfig.gradle.plugin -> 0.21.2`
 - `androidx.compose.ui:ui-util -> 1.11.2`

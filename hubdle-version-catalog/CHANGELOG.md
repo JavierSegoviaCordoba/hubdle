@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 8.6.0`
 - `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 4.4.2`
 - `org.gradle.test-retry:org.gradle.test-retry.gradle.plugin -> 1.6.5`
 - `com.codingfeline.buildkonfig:com.codingfeline.buildkonfig.gradle.plugin -> 0.21.2`
@@ -54,7 +55,6 @@
 - `org.jetbrains.kotlinx:kotlinx-coroutines-android -> 1.11.0`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.11.0`
 - `org.gradle.experimental.plugin-ecosystem:org.gradle.experimental.plugin-ecosystem.gradle.plugin -> 0.1.62`
-- `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 8.5.1`
 - `com.android.library:com.android.library.gradle.plugin -> 9.2.1`
 - `com.android.application:com.android.application.gradle.plugin -> 9.2.1`
 - `com.android.tools.build:gradle -> 9.2.1`

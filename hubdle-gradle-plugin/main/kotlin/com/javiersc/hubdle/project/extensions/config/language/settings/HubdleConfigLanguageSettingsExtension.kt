@@ -132,7 +132,7 @@ public open class HubdleConfigLanguageSettingsExtension @Inject constructor(proj
 
     private fun Project.enableLanguageFeature(name: String) {
         tasks.withType<KotlinCompilationTask<*>>().configureEach { task ->
-            task.compilerOptions.freeCompilerArgs.addAll(listOf("-XXLanguage:+$name"))
+            task.compilerOptions.freeCompilerArgs.add("-XXLanguage:+$name")
         }
     }
 }

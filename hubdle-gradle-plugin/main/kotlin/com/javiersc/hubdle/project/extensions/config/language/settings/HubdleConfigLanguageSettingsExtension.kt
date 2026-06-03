@@ -8,9 +8,11 @@ import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.provider.Property
+import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 import org.jetbrains.kotlin.gradle.internal.config.LanguageFeature
 import org.jetbrains.kotlin.gradle.plugin.LanguageSettingsBuilder
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
 
 public open class HubdleConfigLanguageSettingsExtension @Inject constructor(project: Project) :
     HubdleEnableableExtension(project) {
@@ -124,13 +126,13 @@ public open class HubdleConfigLanguageSettingsExtension @Inject constructor(proj
     @HubdleDslMarker
     public fun enableLanguageFeatures(vararg languageFeature: LanguageFeature) {
         lazyConfigurable {
-            configure<KotlinProjectExtension> {
-                sourceSets.all { set ->
-                    for (feature in languageFeature) {
-                        set.languageSettings.enableLanguageFeature(feature.name)
-                    }
-                }
-            }
+            for (feature in languageFeature) enableLanguageFeature(feature.name)
+        }
+    }
+
+    private fun Project.enableLanguageFeature(name: String) {
+        tasks.withType<KotlinCompilationTask<*>>().configureEach { task ->
+            task.compilerOptions.freeCompilerArgs.add("-XXLanguage:+$name")
         }
     }
 }

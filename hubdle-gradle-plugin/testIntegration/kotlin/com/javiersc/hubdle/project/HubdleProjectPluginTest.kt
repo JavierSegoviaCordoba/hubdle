@@ -4,9 +4,11 @@ package com.javiersc.hubdle.project
 
 import com.javiersc.gradle.project.test.extensions.GradleProjectTest
 import com.javiersc.hubdle.project.extensions.config.publishing.maven.HubdleConfigPublishingMavenPomExtension
+import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.shouldBe
 import kotlin.test.Test
 import org.gradle.kotlin.dsl.the
+import org.jetbrains.kotlin.gradle.internal.config.LanguageFeature
 import org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_1_7
 import org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_1_9
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
@@ -37,6 +39,27 @@ class HubdleProjectPluginTest : GradleProjectTest() {
                 val kotlinCompile = tasks.findByName("compileKotlin") as KotlinCompile
                 kotlinCompile.compilerOptions.apiVersion.get() shouldBe KOTLIN_1_7
                 kotlinCompile.compilerOptions.languageVersion.get() shouldBe KOTLIN_1_9
+            },
+        )
+    }
+
+    @Test
+    fun `given project with language feature, when project has been evaluated, then compiler args contain it`() {
+        val languageFeature: LanguageFeature = LanguageFeature.entries.first()
+
+        hubdle(
+            config = {
+                it.kotlin { it.jvm() }
+                it.config {
+                    it.languageSettings {
+                        it.enableLanguageFeatures(languageFeature)
+                    }
+                }
+            },
+            test = {
+                val kotlinCompile = tasks.findByName("compileKotlin") as KotlinCompile
+                kotlinCompile.compilerOptions.freeCompilerArgs.get() shouldContain
+                    "-XXLanguage:+${languageFeature.name}"
             },
         )
     }

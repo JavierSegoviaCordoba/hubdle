@@ -14,6 +14,8 @@
 
 ### Updated
 
+- dependencies
+
 ## [0.18.2] - 2026-05-01
 
 ### Updated

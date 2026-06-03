@@ -18,6 +18,7 @@ public open class HubdleConfigLanguageSettingsExtension @Inject constructor(proj
     HubdleEnableableExtension(project) {
 
     override val isEnabled: Property<Boolean> = property { false }
+    private val enabledLanguageFeatures: MutableSet<String> = mutableSetOf()
 
     override val oneOfExtensions: Set<HubdleEnableableExtension>
         get() = hubdleKotlinAny
@@ -126,7 +127,9 @@ public open class HubdleConfigLanguageSettingsExtension @Inject constructor(proj
     @HubdleDslMarker
     public fun enableLanguageFeatures(vararg languageFeature: LanguageFeature) {
         lazyConfigurable {
-            for (feature in languageFeature) enableLanguageFeature(feature.name)
+            for (feature in languageFeature) {
+                if (enabledLanguageFeatures.add(feature.name)) enableLanguageFeature(feature.name)
+            }
         }
     }
 

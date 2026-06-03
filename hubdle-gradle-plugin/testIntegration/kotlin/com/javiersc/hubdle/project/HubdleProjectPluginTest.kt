@@ -45,21 +45,24 @@ class HubdleProjectPluginTest : GradleProjectTest() {
 
     @Test
     fun `given project with language feature, when project has been evaluated, then compiler args contain it`() {
-        val languageFeature: LanguageFeature = LanguageFeature.InlineClasses
+        val languageFeatures: List<LanguageFeature> =
+            listOf(LanguageFeature.InlineClasses, LanguageFeature.MultiPlatformProjects)
 
         hubdle(
             config = {
                 it.kotlin { it.jvm() }
                 it.config {
                     it.languageSettings {
-                        it.enableLanguageFeatures(languageFeature)
+                        it.enableLanguageFeatures(*languageFeatures.toTypedArray())
                     }
                 }
             },
             test = {
                 val kotlinCompile = tasks.findByName("compileKotlin") as KotlinCompile
-                kotlinCompile.compilerOptions.freeCompilerArgs.get() shouldContain
-                    "-XXLanguage:+${languageFeature.name}"
+                languageFeatures.forEach { feature ->
+                    kotlinCompile.compilerOptions.freeCompilerArgs.get() shouldContain
+                        "-XXLanguage:+${feature.name}"
+                }
             },
         )
     }

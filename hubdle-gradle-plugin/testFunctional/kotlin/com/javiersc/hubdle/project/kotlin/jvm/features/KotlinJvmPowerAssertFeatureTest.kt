@@ -29,9 +29,9 @@ internal class KotlinJvmPowerAssertFeatureTest : GradleTestKitTest() {
             withArguments("tests", "--no-scan").buildAndFail().output.apply {
                 shouldContain("assertTrue(foo == bar)")
                 shouldContain("            |   |  |")
-                shouldContain("            |   |  BAR")
+                shouldContain("            |   |  \"BAR\"")
                 shouldContain("            |   false")
-                shouldContain("            FOO")
+                shouldContain("            \"FOO\"")
             }
         }
     }

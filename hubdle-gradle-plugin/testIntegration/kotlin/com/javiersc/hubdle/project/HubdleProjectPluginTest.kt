@@ -45,7 +45,7 @@ class HubdleProjectPluginTest : GradleProjectTest() {
 
     @Test
     fun `given project with language feature, when project has been evaluated, then compiler args contain it`() {
-        val languageFeature: LanguageFeature = LanguageFeature.entries.first()
+        val languageFeature: LanguageFeature = LanguageFeature.InlineClasses
 
         hubdle(
             config = {

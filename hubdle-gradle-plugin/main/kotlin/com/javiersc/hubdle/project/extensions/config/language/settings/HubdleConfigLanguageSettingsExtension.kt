@@ -1,6 +1,7 @@
 package com.javiersc.hubdle.project.extensions.config.language.settings
 
 import com.javiersc.hubdle.project.extensions.HubdleDslMarker
+import com.javiersc.hubdle.project.extensions._internal.withKotlin
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.config.hubdleConfig
 import com.javiersc.hubdle.project.extensions.kotlin.hubdleKotlinAny
@@ -8,6 +9,10 @@ import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.provider.Property
+import org.gradle.kotlin.dsl.findByType
+import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidExtension
+import org.jetbrains.kotlin.gradle.dsl.KotlinJvmExtension
+import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 import org.jetbrains.kotlin.gradle.internal.config.LanguageFeature
 import org.jetbrains.kotlin.gradle.plugin.LanguageSettingsBuilder
@@ -124,14 +129,22 @@ public open class HubdleConfigLanguageSettingsExtension @Inject constructor(proj
     @HubdleDslMarker
     public fun enableLanguageFeatures(vararg languageFeature: LanguageFeature) {
         lazyConfigurable {
-            configure<KotlinProjectExtension> {
-                sourceSets.all { set ->
-                    for (feature in languageFeature) {
-                        set.languageSettings.enableLanguageFeature(feature.name)
-                    }
-                }
+            for (feature in languageFeature) {
+                project.enableLanguageFeature(feature.freeCompilerArgName)
             }
         }
+    }
+}
+
+private val LanguageFeature.freeCompilerArgName: String
+    get() = this.presentableName.replace(" ", "-")
+
+private fun Project.enableLanguageFeature(name: String) {
+    withKotlin {
+        (extensions.findByType<KotlinAndroidExtension>()?.compilerOptions
+                ?: extensions.findByType<KotlinJvmExtension>()?.compilerOptions
+                ?: extensions.findByType<KotlinMultiplatformExtension>()?.compilerOptions)
+            ?.apply { freeCompilerArgs.add("-X$name") }
     }
 }
 

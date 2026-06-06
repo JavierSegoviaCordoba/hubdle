@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.javiersc.kotlin.kopy:com.javiersc.kotlin.kopy.gradle.plugin -> 0.24.0+2.4.0`
 - `com.javiersc.kotlin:kotlin-compiler-test-extensions -> 0.15.0+2.4.0`
 - `com.javiersc.kotlin:kotlin-compiler-gradle-extensions -> 0.15.0+2.4.0`
 - `com.javiersc.kotlin:kotlin-compiler-extensions -> 0.15.0+2.4.0`

@@ -14,6 +14,34 @@
 
 ### Updated
 
+- `com.squareup.okhttp3:okhttp -> 5.4.0`
+- `com.squareup.okhttp3:mockwebserver3-junit5 -> 5.4.0`
+- `com.squareup.okhttp3:mockwebserver3-junit4 -> 5.4.0`
+- `com.squareup.okhttp3:mockwebserver -> 5.4.0`
+- `org.sonarqube:org.sonarqube.gradle.plugin -> 7.3.1.8318`
+- `io.kotest:kotest-runner-junit5 -> 6.2.0`
+- `io.kotest:kotest-runner-junit4 -> 6.2.0`
+- `io.kotest:kotest-property -> 6.2.0`
+- `io.kotest:kotest-assertions-json -> 6.2.0`
+- `io.kotest:kotest-assertions-core -> 6.2.0`
+- `org.jetbrains:markdown -> 0.7.5`
+- `org.jetbrains.kotlinx:kotlinx-collections-immutable -> 0.5.0`
+- `org.jetbrains.kotlinx:atomicfu -> 0.33.0`
+- `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.11.1`
+- `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.19.1`
+- `org.jacoco:jacoco -> 0.8.15`
+- `io.insert-koin:koin-test-junit5 -> 4.2.2`
+- `io.insert-koin:koin-test-junit4 -> 4.2.2`
+- `io.insert-koin:koin-test -> 4.2.2`
+- `io.insert-koin:koin-logger-slf4j -> 4.2.2`
+- `io.insert-koin:koin-ktor -> 4.2.2`
+- `io.insert-koin:koin-core -> 4.2.2`
+- `io.insert-koin:koin-androidx-compose -> 4.2.2`
+- `io.insert-koin:koin-android -> 4.2.2`
+- `com.facebook:ktfmt -> 0.63`
+- `org.eclipse.jgit:org.eclipse.jgit -> 7.7.0.202606012155-r`
+- `io.arrow-kt:arrow-core -> 2.2.3`
+- `androidx.core:core-ktx -> 1.19.0`
 - `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 8.7.0`
 - `com.javiersc.kotlin.kopy:com.javiersc.kotlin.kopy.gradle.plugin -> 0.24.0+2.4.0`
 - `com.javiersc.kotlin:kotlin-compiler-test-extensions -> 0.15.0+2.4.0`

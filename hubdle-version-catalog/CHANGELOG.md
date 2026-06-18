@@ -14,6 +14,12 @@
 
 ### Updated
 
+- `io.kotest:kotest-runner-junit5 -> 6.2.1`
+- `io.kotest:kotest-runner-junit4 -> 6.2.1`
+- `io.kotest:kotest-property -> 6.2.1`
+- `io.kotest:kotest-assertions-json -> 6.2.1`
+- `io.kotest:kotest-assertions-core -> 6.2.1`
+
 ## [0.14.1] - 2026-06-18
 
 ### Updated

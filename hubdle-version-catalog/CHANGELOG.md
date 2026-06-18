@@ -14,6 +14,27 @@
 
 ### Updated
 
+- `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 4.4.3`
+- `dev.detekt:dev.detekt.gradle.plugin -> 2.0.0-alpha.5`
+- `androidx.lifecycle:lifecycle-viewmodel-ktx -> 2.11.0`
+- `androidx.lifecycle:lifecycle-viewmodel-compose -> 2.11.0`
+- `androidx.lifecycle:lifecycle-viewmodel -> 2.11.0`
+- `androidx.compose.ui:ui-util -> 1.11.3`
+- `androidx.compose.ui:ui-tooling-preview -> 1.11.3`
+- `androidx.compose.ui:ui-tooling -> 1.11.3`
+- `androidx.compose.ui:ui-test-manifest -> 1.11.3`
+- `androidx.compose.ui:ui-test -> 1.11.3`
+- `androidx.compose.ui:ui -> 1.11.3`
+- `androidx.compose.runtime:runtime-tracing -> 1.11.3`
+- `androidx.compose.runtime:runtime-saveable -> 1.11.3`
+- `androidx.compose.runtime:runtime -> 1.11.3`
+- `androidx.compose.material:material-ripple -> 1.11.3`
+- `androidx.compose.material:material -> 1.11.3`
+- `androidx.compose.foundation:foundation-layout -> 1.11.3`
+- `androidx.compose.foundation:foundation -> 1.11.3`
+- `androidx.compose.animation:animation-graphics -> 1.11.3`
+- `androidx.compose.animation:animation-core -> 1.11.3`
+- `androidx.compose.animation:animation -> 1.11.3`
 - `com.squareup.okhttp3:okhttp -> 5.4.0`
 - `com.squareup.okhttp3:mockwebserver3-junit5 -> 5.4.0`
 - `com.squareup.okhttp3:mockwebserver3-junit4 -> 5.4.0`

@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `gradle -> 9.6.0`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.19.2`
 - `io.kotest:kotest-runner-junit5 -> 6.2.1`
 - `io.kotest:kotest-runner-junit4 -> 6.2.1`

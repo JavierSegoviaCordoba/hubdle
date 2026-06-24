@@ -17,13 +17,12 @@ internal fun HubdleEnableableExtension.library(
     alias: String
 ): Provider<MinimalExternalModuleDependency> = project.library(alias)
 
-internal fun Project.libraryPlatform(alias: String): String =
-    provider {
-            val bom = hubdleCatalog?.findLibrary(alias)?.getOrNull()?.orNull
-            checkNotNull(bom) { "bom dependency not found" }
-            "${bom.module}:${bom.version}"
-        }
-        .get()
+internal fun Project.libraryPlatform(alias: String): String = provider {
+    val bom = hubdleCatalog?.findLibrary(alias)?.getOrNull()?.orNull
+    checkNotNull(bom) { "bom dependency not found" }
+    "${bom.module}:${bom.version}"
+}
+    .get()
 
 internal fun Project.library(alias: String): Provider<MinimalExternalModuleDependency> = provider {
     hubdleCatalog?.findLibrary(alias)?.getOrNull()?.orNull

@@ -175,16 +175,15 @@ public open class HubdleKotlinMultiplatformExtension @Inject constructor(project
     }
 
     private fun multiplatformTargets(): SetProperty<String> = setProperty {
-        val hubdleTargets: List<String> =
-            buildSet {
-                    add(Common)
-                    addAll(hubdleJvmTargets)
-                    addAll(hubdleAppleTargets)
-                    addAll(nativeTargets)
-                    add(JS)
-                    add(WAsm)
-                }
-                .map { target -> "$target" }
+        val hubdleTargets: List<String> = buildSet {
+            add(Common)
+            addAll(hubdleJvmTargets)
+            addAll(hubdleAppleTargets)
+            addAll(nativeTargets)
+            add(JS)
+            add(WAsm)
+        }
+            .map { target -> "$target" }
 
         buildSet {
             val targets: List<String> =

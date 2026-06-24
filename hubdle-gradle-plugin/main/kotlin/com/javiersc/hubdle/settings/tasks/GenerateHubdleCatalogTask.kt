@@ -29,15 +29,14 @@ constructor(objects: ObjectFactory, layout: ProjectLayout) : DefaultTask() {
 
     @TaskAction
     public fun run() {
-        val content =
-            buildList {
-                    add("[libraries]")
-                    for ((alias, groupArtifactVersion) in libraries.get()) {
-                        add("""$alias = "$groupArtifactVersion"""")
-                    }
-                    add("")
-                }
-                .joinToString("\n")
+        val content = buildList {
+            add("[libraries]")
+            for ((alias, groupArtifactVersion) in libraries.get()) {
+                add("""$alias = "$groupArtifactVersion"""")
+            }
+            add("")
+        }
+            .joinToString("\n")
         catalog.get().asFile.apply {
             parentFile.mkdirs()
             createNewFile()

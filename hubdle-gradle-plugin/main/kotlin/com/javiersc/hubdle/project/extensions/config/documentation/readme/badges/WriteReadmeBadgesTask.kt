@@ -126,25 +126,24 @@ public abstract class WriteReadmeBadgesTask @Inject constructor(private val layo
             "&logoColor=white&server=https%3A%2F%2Fsonarcloud.io)]" +
             "(https://sonarcloud.io/dashboard?id=${projectKey.get()})"
 
-    private fun buildReadmeBadges(): List<String> =
-        buildList {
-                if (kotlinBadge.get()) add(buildKotlinVersionBadge)
+    private fun buildReadmeBadges(): List<String> = buildList {
+        if (kotlinBadge.get()) add(buildKotlinVersionBadge)
 
-                if (mavenCentralBadge.get()) add(buildMavenRepoBadge(MavenRepo.MavenCentral))
+        if (mavenCentralBadge.get()) add(buildMavenRepoBadge(MavenRepo.MavenCentral))
 
-                if (snapshotsBadge.get()) add(buildMavenRepoBadge(MavenRepo.Snapshot))
+        if (snapshotsBadge.get()) add(buildMavenRepoBadge(MavenRepo.Snapshot))
 
-                add("")
-                if (buildBadge.get()) add(buildBuildBadge())
-                if (coverageBadge.get()) add(buildAnalysisBadge(Sonar.Coverage))
-                if (qualityBadge.get()) add(buildAnalysisBadge(Sonar.Quality))
-                if (techDebtBadge.get()) add(buildAnalysisBadge(Sonar.TechDebt))
-                add("")
-            }
-            .removeDuplicateEmptyLines()
-            .lines()
-            .dropWhile(String::isBlank)
-            .run { if (any(String::isNotBlank)) this else emptyList() }
+        add("")
+        if (buildBadge.get()) add(buildBuildBadge())
+        if (coverageBadge.get()) add(buildAnalysisBadge(Sonar.Coverage))
+        if (qualityBadge.get()) add(buildAnalysisBadge(Sonar.Quality))
+        if (techDebtBadge.get()) add(buildAnalysisBadge(Sonar.TechDebt))
+        add("")
+    }
+        .removeDuplicateEmptyLines()
+        .lines()
+        .dropWhile(String::isBlank)
+        .run { if (any(String::isNotBlank)) this else emptyList() }
 }
 
 private enum class MavenRepo {

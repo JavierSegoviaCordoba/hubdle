@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.codingfeline.buildkonfig:com.codingfeline.buildkonfig.gradle.plugin -> 0.22.0`
 - `com.facebook:ktfmt -> 0.64`
 - `com.vanniktech.maven.publish:com.vanniktech.maven.publish.gradle.plugin -> 0.37.0`
 - `gradle -> 9.6.0`

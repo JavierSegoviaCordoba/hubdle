@@ -119,13 +119,12 @@ public open class HubdleConfigAnalysisSonarExtension @Inject constructor(project
         }
         val defaultLintFile = "lint-results.xml"
         fun lintFile(name: String): String = "lint-results-$name.xml"
-        fun reportPaths(buildTypes: List<String>, variants: Set<String>): List<File> =
-            buildSet {
-                    add(defaultLintFile)
-                    addAll(buildTypes.map(::lintFile))
-                    addAll(variants.map(::lintFile))
-                }
-                .map { reportFile -> reportsDir.resolve(reportFile) }
+        fun reportPaths(buildTypes: List<String>, variants: Set<String>): List<File> = buildSet {
+            add(defaultLintFile)
+            addAll(buildTypes.map(::lintFile))
+            addAll(variants.map(::lintFile))
+        }
+            .map { reportFile -> reportsDir.resolve(reportFile) }
 
         withPlugin(PluginId.AndroidApplication) {
             val android: ApplicationExtension = the()

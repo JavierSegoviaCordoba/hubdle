@@ -222,22 +222,23 @@ private val Settings.tomlFileInGradleDirs: Set<File>
             .filter { it.extension == "toml" }
             .toSet()
 
-private fun Set<File>.getCatalogs(): Map<String, File> =
-    mapNotNull { file -> if (file.isCatalog) file else null }
-        .mapNotNull { catalog ->
-            val catalogName =
-                when {
-                    catalog.name.contains("-libs") -> catalog.name.substringBefore("-")
-                    catalog.name.contains(".libs") -> catalog.name.substringBefore(".")
-                    else -> null
-                }
+private fun Set<File>.getCatalogs(): Map<String, File> = mapNotNull { file ->
+    if (file.isCatalog) file else null
+}
+    .mapNotNull { catalog ->
+        val catalogName =
             when {
-                catalog.name == "libs.versions.catalog" -> null
-                catalogName?.isNotBlank() == true -> "${catalogName}Libs" to catalog
+                catalog.name.contains("-libs") -> catalog.name.substringBefore("-")
+                catalog.name.contains(".libs") -> catalog.name.substringBefore(".")
                 else -> null
             }
+        when {
+            catalog.name == "libs.versions.catalog" -> null
+            catalogName?.isNotBlank() == true -> "${catalogName}Libs" to catalog
+            else -> null
         }
-        .toMap()
+    }
+    .toMap()
 
 private val File.isCatalog: Boolean
     get() = name.endsWith("libs.versions.toml")

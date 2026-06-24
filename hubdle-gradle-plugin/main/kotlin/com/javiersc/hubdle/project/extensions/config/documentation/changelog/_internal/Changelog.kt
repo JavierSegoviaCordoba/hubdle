@@ -17,24 +17,23 @@ internal class Changelog(
     val references: List<Reference>,
 ) {
 
-    override fun toString(): String =
-        buildString {
-                appendLine(header)
-                appendLine()
-                for (version in versions) {
-                    append("$version")
-                }
-                if (versions.isNotEmpty()) appendLine()
-                for (reference in references) {
-                    appendLine(reference)
-                    appendLine()
-                }
-            }
-            .lines()
-            .dropLastWhile(String::isBlank)
-            .joinToString("\n")
-            .removeDuplicateEmptyLines()
-            .endWithNewLine()
+    override fun toString(): String = buildString {
+        appendLine(header)
+        appendLine()
+        for (version in versions) {
+            append("$version")
+        }
+        if (versions.isNotEmpty()) appendLine()
+        for (reference in references) {
+            appendLine(reference)
+            appendLine()
+        }
+    }
+        .lines()
+        .dropLastWhile(String::isBlank)
+        .joinToString("\n")
+        .removeDuplicateEmptyLines()
+        .endWithNewLine()
 
     internal class Version(val value: String, val groups: List<Group>) {
 

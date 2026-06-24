@@ -356,13 +356,12 @@ constructor(
         val qodanaUrlProjects = "https://qodana.cloud/projects"
         val sonarUrlId = "https://sonarcloud.io/project/overview?id"
         val newTab = """" target="_blank"""
-        val navReports: String =
-            buildList {
-                    if (qodana || sonar) add("  - Analysis:")
-                    if (qodana) add("    - Qodana: $qodanaUrlProjects/$qodanaProjectKey$newTab")
-                    if (sonar) add("    - Sonar: $sonarUrlId=$sonarProjectId$newTab")
-                }
-                .joinToString("\n")
+        val navReports: String = buildList {
+            if (qodana || sonar) add("  - Analysis:")
+            if (qodana) add("    - Qodana: $qodanaUrlProjects/$qodanaProjectKey$newTab")
+            if (sonar) add("    - Sonar: $sonarUrlId=$sonarProjectId$newTab")
+        }
+            .joinToString("\n")
 
         val docsNavigation = getDocsNavigation()
 
@@ -408,42 +407,40 @@ constructor(
         )
     }
 
-    private fun List<String>.cleanNavProjects(): List<String> =
-        buildList {
-                val lines = this@cleanNavProjects
+    private fun List<String>.cleanNavProjects(): List<String> = buildList {
+        val lines = this@cleanNavProjects
 
-                fun String.isReference() =
-                    filterNot(Char::isWhitespace).replaceBefore(":", "").drop(1).isEmpty()
+        fun String.isReference() =
+            filterNot(Char::isWhitespace).replaceBefore(":", "").drop(1).isEmpty()
 
-                fun String.isReferenceOf(reference: String) =
-                    trimIndent().takeWhile { it != ':' } ==
-                        reference.trimIndent().takeWhile { it != ':' }
+        fun String.isReferenceOf(reference: String) =
+            trimIndent().takeWhile { it != ':' } == reference.trimIndent().takeWhile { it != ':' }
 
-                if (lines.isNotEmpty()) {
-                    lines.reduce { previous, line ->
-                        when {
-                            previous == line -> {
-                                removeLast()
-                                add(line)
-                                line
-                            }
-                            previous.isReference() && line.isReferenceOf(previous) -> {
-                                add(previous.takeWhile(Char::isWhitespace) + line.trimIndent())
-                                line
-                            }
-                            line.isReferenceOf(previous) && line.isReference() -> {
-                                add(previous)
-                                previous
-                            }
-                            else -> {
-                                add(previous)
-                                line
-                            }
-                        }
+        if (lines.isNotEmpty()) {
+            lines.reduce { previous, line ->
+                when {
+                    previous == line -> {
+                        removeLast()
+                        add(line)
+                        line
+                    }
+                    previous.isReference() && line.isReferenceOf(previous) -> {
+                        add(previous.takeWhile(Char::isWhitespace) + line.trimIndent())
+                        line
+                    }
+                    line.isReferenceOf(previous) && line.isReference() -> {
+                        add(previous)
+                        previous
+                    }
+                    else -> {
+                        add(previous)
+                        line
                     }
                 }
             }
-            .distinctBy(String::trimIndent)
+        }
+    }
+        .distinctBy(String::trimIndent)
 
     private fun sanitizeMkDocsFile() {
         val content = mkDocsBuildFile.readLines().removeDuplicateEmptyLines().endWithNewLine()

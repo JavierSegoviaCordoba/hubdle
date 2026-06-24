@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.facebook:ktfmt -> 0.64`
 - `com.vanniktech.maven.publish:com.vanniktech.maven.publish.gradle.plugin -> 0.37.0`
 - `gradle -> 9.6.0`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.19.2`

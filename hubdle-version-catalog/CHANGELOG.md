@@ -14,6 +14,20 @@
 
 ### Updated
 
+- `io.ktor:ktor-serialization-kotlinx-json -> 3.5.1`
+- `io.ktor:ktor-client-winhttp -> 3.5.1`
+- `io.ktor:ktor-client-okhttp -> 3.5.1`
+- `io.ktor:ktor-client-mock -> 3.5.1`
+- `io.ktor:ktor-client-js -> 3.5.1`
+- `io.ktor:ktor-client-jetty -> 3.5.1`
+- `io.ktor:ktor-client-java -> 3.5.1`
+- `io.ktor:ktor-client-darwin -> 3.5.1`
+- `io.ktor:ktor-client-curl -> 3.5.1`
+- `io.ktor:ktor-client-core -> 3.5.1`
+- `io.ktor:ktor-client-content-negotiation -> 3.5.1`
+- `io.ktor:ktor-client-cio -> 3.5.1`
+- `io.ktor:ktor-client-apache5 -> 3.5.1`
+- `io.ktor:ktor-client-android -> 3.5.1`
 - `com.codingfeline.buildkonfig:com.codingfeline.buildkonfig.gradle.plugin -> 0.22.0`
 - `com.facebook:ktfmt -> 0.64`
 - `com.vanniktech.maven.publish:com.vanniktech.maven.publish.gradle.plugin -> 0.37.0`

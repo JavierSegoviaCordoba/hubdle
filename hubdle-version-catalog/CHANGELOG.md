@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `gradle -> 9.6.1`
 - `io.ktor:ktor-serialization-kotlinx-json -> 3.5.1`
 - `io.ktor:ktor-client-winhttp -> 3.5.1`
 - `io.ktor:ktor-client-okhttp -> 3.5.1`
@@ -31,7 +32,6 @@
 - `com.codingfeline.buildkonfig:com.codingfeline.buildkonfig.gradle.plugin -> 0.22.0`
 - `com.facebook:ktfmt -> 0.64`
 - `com.vanniktech.maven.publish:com.vanniktech.maven.publish.gradle.plugin -> 0.37.0`
-- `gradle -> 9.6.0`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.19.2`
 - `io.kotest:kotest-runner-junit5 -> 6.2.1`
 - `io.kotest:kotest-runner-junit4 -> 6.2.1`

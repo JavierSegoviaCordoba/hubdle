@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx:kotlinx-io-core -> 0.9.1`
+- `org.jetbrains.intellij.platform:org.jetbrains.intellij.platform.gradle.plugin -> 2.17.0`
 - `gradle -> 9.6.1`
 - `io.ktor:ktor-serialization-kotlinx-json -> 3.5.1`
 - `io.ktor:ktor-client-winhttp -> 3.5.1`

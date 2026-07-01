@@ -14,6 +14,8 @@
 
 ### Updated
 
+- `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 4.5.0`
+- `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 8.8.0`
 - `org.jetbrains.kotlinx:kotlinx-io-core -> 0.9.1`
 - `org.jetbrains.intellij.platform:org.jetbrains.intellij.platform.gradle.plugin -> 2.17.0`
 - `gradle -> 9.6.1`

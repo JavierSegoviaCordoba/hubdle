@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains:markdown -> 0.7.6`
 - `org.jetbrains.kotlinx:kotlinx-collections-immutable -> 0.5.1`
 - `androidx.hilt:hilt-navigation-compose -> 1.4.0`
 - `androidx.compose.ui:ui-util -> 1.11.4`

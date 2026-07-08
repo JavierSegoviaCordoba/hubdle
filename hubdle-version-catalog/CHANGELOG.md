@@ -14,6 +14,11 @@
 
 ### Updated
 
+- `io.kotest:kotest-runner-junit5 -> 6.2.2`
+- `io.kotest:kotest-runner-junit4 -> 6.2.2`
+- `io.kotest:kotest-property -> 6.2.2`
+- `io.kotest:kotest-assertions-json -> 6.2.2`
+- `io.kotest:kotest-assertions-core -> 6.2.2`
 - `org.jetbrains:markdown -> 0.7.6`
 - `org.jetbrains.kotlinx:kotlinx-collections-immutable -> 0.5.1`
 - `androidx.hilt:hilt-navigation-compose -> 1.4.0`
@@ -56,11 +61,6 @@
 - `com.facebook:ktfmt -> 0.64`
 - `com.vanniktech.maven.publish:com.vanniktech.maven.publish.gradle.plugin -> 0.37.0`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.19.2`
-- `io.kotest:kotest-runner-junit5 -> 6.2.1`
-- `io.kotest:kotest-runner-junit4 -> 6.2.1`
-- `io.kotest:kotest-property -> 6.2.1`
-- `io.kotest:kotest-assertions-json -> 6.2.1`
-- `io.kotest:kotest-assertions-core -> 6.2.1`
 
 ## [0.14.1] - 2026-06-18
 

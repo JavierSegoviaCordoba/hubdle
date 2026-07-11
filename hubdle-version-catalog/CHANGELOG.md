@@ -14,13 +14,13 @@
 
 ### Updated
 
-- `org.jetbrains.intellij.platform:org.jetbrains.intellij.platform.gradle.plugin -> 2.18.0`
+- `org.jetbrains:markdown -> 0.7.7`
+- `org.jetbrains.intellij.platform:org.jetbrains.intellij.platform.gradle.plugin -> 2.18.1`
 - `io.kotest:kotest-runner-junit5 -> 6.2.2`
 - `io.kotest:kotest-runner-junit4 -> 6.2.2`
 - `io.kotest:kotest-property -> 6.2.2`
 - `io.kotest:kotest-assertions-json -> 6.2.2`
 - `io.kotest:kotest-assertions-core -> 6.2.2`
-- `org.jetbrains:markdown -> 0.7.6`
 - `org.jetbrains.kotlinx:kotlinx-collections-immutable -> 0.5.1`
 - `androidx.hilt:hilt-navigation-compose -> 1.4.0`
 - `androidx.compose.ui:ui-util -> 1.11.4`

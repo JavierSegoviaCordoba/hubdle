@@ -14,6 +14,27 @@
 
 ### Updated
 
+- `org.jetbrains.kotlin.plugin.serialization:org.jetbrains.kotlin.plugin.serialization.gradle.plugin -> 2.4.10`
+- `org.jetbrains.kotlin.plugin.power-assert:org.jetbrains.kotlin.plugin.power-assert.gradle.plugin -> 2.4.10`
+- `org.jetbrains.kotlin.plugin.compose:org.jetbrains.kotlin.plugin.compose.gradle.plugin -> 2.4.10`
+- `org.jetbrains.kotlin.plugin.atomicfu:org.jetbrains.kotlin.plugin.atomicfu.gradle.plugin -> 2.4.10`
+- `org.jetbrains.kotlin.multiplatform:org.jetbrains.kotlin.multiplatform.gradle.plugin -> 2.4.10`
+- `org.jetbrains.kotlin.jvm:org.jetbrains.kotlin.jvm.gradle.plugin -> 2.4.10`
+- `org.jetbrains.kotlin.android:org.jetbrains.kotlin.android.gradle.plugin -> 2.4.10`
+- `org.jetbrains.kotlin:kotlin-test-testng -> 2.4.10`
+- `org.jetbrains.kotlin:kotlin-test-junit5 -> 2.4.10`
+- `org.jetbrains.kotlin:kotlin-test-junit -> 2.4.10`
+- `org.jetbrains.kotlin:kotlin-test-annotations-common -> 2.4.10`
+- `org.jetbrains.kotlin:kotlin-test -> 2.4.10`
+- `org.jetbrains.kotlin:kotlin-serialization -> 2.4.10`
+- `org.jetbrains.kotlin:kotlin-script-runtime -> 2.4.10`
+- `org.jetbrains.kotlin:kotlin-reflect -> 2.4.10`
+- `org.jetbrains.kotlin:kotlin-gradle-plugin-api -> 2.4.10`
+- `org.jetbrains.kotlin:kotlin-gradle-plugin -> 2.4.10`
+- `org.jetbrains.kotlin:kotlin-compiler-internal-test-framework -> 2.4.10`
+- `org.jetbrains.kotlin:kotlin-compiler-embeddable -> 2.4.10`
+- `org.jetbrains.kotlin:kotlin-compiler -> 2.4.10`
+- `org.jetbrains.kotlin:kotlin-annotations-jvm -> 2.4.10`
 - `org.jetbrains:markdown -> 0.7.7`
 - `org.jetbrains.intellij.platform:org.jetbrains.intellij.platform.gradle.plugin -> 2.18.1`
 - `io.kotest:kotest-runner-junit5 -> 6.2.2`

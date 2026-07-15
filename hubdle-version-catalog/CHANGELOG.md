@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.javiersc.kotlin.kopy:com.javiersc.kotlin.kopy.gradle.plugin -> 0.25.0+2.4.10`
 - `com.android.library:com.android.library.gradle.plugin -> 9.3.0`
 - `com.android.application:com.android.application.gradle.plugin -> 9.3.0`
 - `com.android.tools.build:gradle -> 9.3.0`

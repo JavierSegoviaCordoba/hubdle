@@ -14,11 +14,18 @@
 
 ### Updated
 
+- `com.squareup.okio:okio -> 3.18.0`
+- `io.kotest:kotest-runner-junit5 -> 6.2.3`
+- `io.kotest:kotest-runner-junit4 -> 6.2.3`
+- `io.kotest:kotest-property -> 6.2.3`
+- `io.kotest:kotest-assertions-json -> 6.2.3`
+- `io.kotest:kotest-assertions-core -> 6.2.3`
+- `org.eclipse.jgit:org.eclipse.jgit -> 7.7.1.202607240634-r`
+- `com.android.library:com.android.library.gradle.plugin -> 9.3.1`
+- `com.android.application:com.android.application.gradle.plugin -> 9.3.1`
+- `com.android.tools.build:gradle -> 9.3.1`
 - `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.9.9`
 - `com.javiersc.kotlin.kopy:com.javiersc.kotlin.kopy.gradle.plugin -> 0.25.0+2.4.10`
-- `com.android.library:com.android.library.gradle.plugin -> 9.3.0`
-- `com.android.application:com.android.application.gradle.plugin -> 9.3.0`
-- `com.android.tools.build:gradle -> 9.3.0`
 - `org.jetbrains.kotlin.plugin.serialization:org.jetbrains.kotlin.plugin.serialization.gradle.plugin -> 2.4.10`
 - `org.jetbrains.kotlin.plugin.power-assert:org.jetbrains.kotlin.plugin.power-assert.gradle.plugin -> 2.4.10`
 - `org.jetbrains.kotlin.plugin.compose:org.jetbrains.kotlin.plugin.compose.gradle.plugin -> 2.4.10`
@@ -42,11 +49,6 @@
 - `org.jetbrains.kotlin:kotlin-annotations-jvm -> 2.4.10`
 - `org.jetbrains:markdown -> 0.7.7`
 - `org.jetbrains.intellij.platform:org.jetbrains.intellij.platform.gradle.plugin -> 2.18.1`
-- `io.kotest:kotest-runner-junit5 -> 6.2.2`
-- `io.kotest:kotest-runner-junit4 -> 6.2.2`
-- `io.kotest:kotest-property -> 6.2.2`
-- `io.kotest:kotest-assertions-json -> 6.2.2`
-- `io.kotest:kotest-assertions-core -> 6.2.2`
 - `org.jetbrains.kotlinx:kotlinx-collections-immutable -> 0.5.1`
 - `androidx.hilt:hilt-navigation-compose -> 1.4.0`
 - `androidx.compose.ui:ui-util -> 1.11.4`

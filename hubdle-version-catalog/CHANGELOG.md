@@ -14,7 +14,9 @@
 
 ### Updated
 
-- `com.squareup.okio:okio -> 3.18.0`
+- `com.squareup.okio:okio -> 3.18.1`
+- `org.jetbrains:markdown -> 0.7.8`
+- `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 8.9.0`
 - `io.kotest:kotest-runner-junit5 -> 6.2.3`
 - `io.kotest:kotest-runner-junit4 -> 6.2.3`
 - `io.kotest:kotest-property -> 6.2.3`
@@ -47,7 +49,6 @@
 - `org.jetbrains.kotlin:kotlin-compiler-embeddable -> 2.4.10`
 - `org.jetbrains.kotlin:kotlin-compiler -> 2.4.10`
 - `org.jetbrains.kotlin:kotlin-annotations-jvm -> 2.4.10`
-- `org.jetbrains:markdown -> 0.7.7`
 - `org.jetbrains.intellij.platform:org.jetbrains.intellij.platform.gradle.plugin -> 2.18.1`
 - `org.jetbrains.kotlinx:kotlinx-collections-immutable -> 0.5.1`
 - `androidx.hilt:hilt-navigation-compose -> 1.4.0`
@@ -68,7 +69,6 @@
 - `androidx.compose.animation:animation-core -> 1.11.4`
 - `androidx.compose.animation:animation -> 1.11.4`
 - `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 4.5.0`
-- `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 8.8.0`
 - `org.jetbrains.kotlinx:kotlinx-io-core -> 0.9.1`
 - `gradle -> 9.6.1`
 - `io.ktor:ktor-serialization-kotlinx-json -> 3.5.1`

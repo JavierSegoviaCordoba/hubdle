@@ -14,6 +14,9 @@
 
 ### Updated
 
+- `gradle -> 9.7.0`
+- `org.sonarqube:org.sonarqube.gradle.plugin -> 7.4.0.8496`
+- `dev.detekt:dev.detekt.gradle.plugin -> 2.0.0-alpha.6`
 - `io.ktor:ktor-serialization-kotlinx-json -> 3.5.2`
 - `io.ktor:ktor-client-winhttp -> 3.5.2`
 - `io.ktor:ktor-client-okhttp -> 3.5.2`
@@ -84,7 +87,6 @@
 - `androidx.compose.animation:animation -> 1.11.4`
 - `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 4.5.0`
 - `org.jetbrains.kotlinx:kotlinx-io-core -> 0.9.1`
-- `gradle -> 9.6.1`
 - `com.codingfeline.buildkonfig:com.codingfeline.buildkonfig.gradle.plugin -> 0.22.0`
 - `com.facebook:ktfmt -> 0.64`
 - `com.vanniktech.maven.publish:com.vanniktech.maven.publish.gradle.plugin -> 0.37.0`

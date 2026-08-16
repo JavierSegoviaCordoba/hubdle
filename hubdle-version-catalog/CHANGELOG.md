@@ -14,6 +14,10 @@
 
 ### Updated
 
+- `com.squareup.okhttp3:okhttp -> 5.5.0`
+- `com.squareup.okhttp3:mockwebserver3-junit5 -> 5.5.0`
+- `com.squareup.okhttp3:mockwebserver3-junit4 -> 5.5.0`
+- `com.squareup.okhttp3:mockwebserver -> 5.5.0`
 - `io.kotest:kotest-runner-junit5 -> 6.2.4`
 - `io.kotest:kotest-runner-junit4 -> 6.2.4`
 - `io.kotest:kotest-property -> 6.2.4`

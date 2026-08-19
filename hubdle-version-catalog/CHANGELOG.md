@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains:markdown -> 0.7.9`
 - `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 8.10.0`
 - `com.squareup.okhttp3:okhttp -> 5.5.0`
 - `com.squareup.okhttp3:mockwebserver3-junit5 -> 5.5.0`
@@ -60,7 +61,6 @@
 - `io.ktor:ktor-client-apache5 -> 3.5.2`
 - `io.ktor:ktor-client-android -> 3.5.2`
 - `com.squareup.okio:okio -> 3.18.1`
-- `org.jetbrains:markdown -> 0.7.8`
 - `org.eclipse.jgit:org.eclipse.jgit -> 7.7.1.202607240634-r`
 - `com.android.library:com.android.library.gradle.plugin -> 9.3.1`
 - `com.android.application:com.android.application.gradle.plugin -> 9.3.1`

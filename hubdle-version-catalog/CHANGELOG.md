@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `gradle -> 9.7.1`
 - `org.jetbrains:markdown -> 0.7.9`
 - `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 8.10.0`
 - `com.squareup.okhttp3:okhttp -> 5.5.0`
@@ -43,7 +44,6 @@
 - `androidx.compose.animation:animation-core -> 1.12.0`
 - `androidx.compose.animation:animation -> 1.12.0`
 - `androidx.appcompat:appcompat -> 1.8.0`
-- `gradle -> 9.7.0`
 - `org.sonarqube:org.sonarqube.gradle.plugin -> 7.4.0.8496`
 - `dev.detekt:dev.detekt.gradle.plugin -> 2.0.0-alpha.6`
 - `io.ktor:ktor-serialization-kotlinx-json -> 3.5.2`

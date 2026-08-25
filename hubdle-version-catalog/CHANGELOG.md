@@ -14,6 +14,9 @@
 
 ### Updated
 
+- `com.android.library:com.android.library.gradle.plugin -> 9.3.2`
+- `com.android.application:com.android.application.gradle.plugin -> 9.3.2`
+- `com.android.tools.build:gradle -> 9.3.2`
 - `gradle -> 9.7.1`
 - `org.jetbrains:markdown -> 0.7.9`
 - `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 8.10.0`
@@ -62,9 +65,6 @@
 - `io.ktor:ktor-client-android -> 3.5.2`
 - `com.squareup.okio:okio -> 3.18.1`
 - `org.eclipse.jgit:org.eclipse.jgit -> 7.7.1.202607240634-r`
-- `com.android.library:com.android.library.gradle.plugin -> 9.3.1`
-- `com.android.application:com.android.application.gradle.plugin -> 9.3.1`
-- `com.android.tools.build:gradle -> 9.3.1`
 - `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.9.9`
 - `com.javiersc.kotlin.kopy:com.javiersc.kotlin.kopy.gradle.plugin -> 0.25.0+2.4.10`
 - `org.jetbrains.kotlin.plugin.serialization:org.jetbrains.kotlin.plugin.serialization.gradle.plugin -> 2.4.10`

@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.12.0`
 - `com.android.library:com.android.library.gradle.plugin -> 9.3.2`
 - `com.android.application:com.android.application.gradle.plugin -> 9.3.2`
 - `com.android.tools.build:gradle -> 9.3.2`

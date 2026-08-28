@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 8.10.1`
 - `androidx.navigation:navigation-compose -> 2.10.0`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.12.0`
 - `com.android.library:com.android.library.gradle.plugin -> 9.3.2`
@@ -21,7 +22,6 @@
 - `com.android.tools.build:gradle -> 9.3.2`
 - `gradle -> 9.7.1`
 - `org.jetbrains:markdown -> 0.7.9`
-- `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 8.10.0`
 - `com.squareup.okhttp3:okhttp -> 5.5.0`
 - `com.squareup.okhttp3:mockwebserver3-junit5 -> 5.5.0`
 - `com.squareup.okhttp3:mockwebserver3-junit4 -> 5.5.0`

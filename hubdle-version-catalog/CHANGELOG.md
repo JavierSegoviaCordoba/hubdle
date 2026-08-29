@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx:kotlinx-collections-immutable -> 0.5.2`
 - `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 8.10.1`
 - `androidx.navigation:navigation-compose -> 2.10.0`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.12.0`
@@ -91,7 +92,6 @@
 - `org.jetbrains.kotlin:kotlin-compiler -> 2.4.10`
 - `org.jetbrains.kotlin:kotlin-annotations-jvm -> 2.4.10`
 - `org.jetbrains.intellij.platform:org.jetbrains.intellij.platform.gradle.plugin -> 2.18.1`
-- `org.jetbrains.kotlinx:kotlinx-collections-immutable -> 0.5.1`
 - `androidx.hilt:hilt-navigation-compose -> 1.4.0`
 - `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 4.5.0`
 - `org.jetbrains.kotlinx:kotlinx-io-core -> 0.9.1`

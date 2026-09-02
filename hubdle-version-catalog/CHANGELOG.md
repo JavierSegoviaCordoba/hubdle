@@ -14,6 +14,9 @@
 
 ### Updated
 
+- `org.sonarqube:org.sonarqube.gradle.plugin -> 7.5.0.8588`
+- `org.jetbrains:markdown -> 0.7.10`
+- `org.jetbrains.kotlinx.binary-compatibility-validator:org.jetbrains.kotlinx.binary-compatibility-validator.gradle.plugin -> 0.18.2`
 - `com.android.library:com.android.library.gradle.plugin -> 9.4.0`
 - `com.android.tools.build:gradle -> 9.4.0`
 - `org.jetbrains.kotlinx:kotlinx-collections-immutable -> 0.5.2`
@@ -22,7 +25,6 @@
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.12.0`
 - `com.android.application:com.android.application.gradle.plugin -> 9.3.2`
 - `gradle -> 9.7.1`
-- `org.jetbrains:markdown -> 0.7.9`
 - `com.squareup.okhttp3:okhttp -> 5.5.0`
 - `com.squareup.okhttp3:mockwebserver3-junit5 -> 5.5.0`
 - `com.squareup.okhttp3:mockwebserver3-junit4 -> 5.5.0`
@@ -50,7 +52,6 @@
 - `androidx.compose.animation:animation-core -> 1.12.0`
 - `androidx.compose.animation:animation -> 1.12.0`
 - `androidx.appcompat:appcompat -> 1.8.0`
-- `org.sonarqube:org.sonarqube.gradle.plugin -> 7.4.0.8496`
 - `dev.detekt:dev.detekt.gradle.plugin -> 2.0.0-alpha.6`
 - `io.ktor:ktor-serialization-kotlinx-json -> 3.5.2`
 - `io.ktor:ktor-client-winhttp -> 3.5.2`

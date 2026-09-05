@@ -14,13 +14,13 @@
 
 ### Updated
 
+- `org.jetbrains:markdown -> 0.7.11`
+- `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 8.10.2`
 - `org.sonarqube:org.sonarqube.gradle.plugin -> 7.5.0.8588`
-- `org.jetbrains:markdown -> 0.7.10`
 - `org.jetbrains.kotlinx.binary-compatibility-validator:org.jetbrains.kotlinx.binary-compatibility-validator.gradle.plugin -> 0.18.2`
 - `com.android.library:com.android.library.gradle.plugin -> 9.4.0`
 - `com.android.tools.build:gradle -> 9.4.0`
 - `org.jetbrains.kotlinx:kotlinx-collections-immutable -> 0.5.2`
-- `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 8.10.1`
 - `androidx.navigation:navigation-compose -> 2.10.0`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.12.0`
 - `com.android.application:com.android.application.gradle.plugin -> 9.3.2`

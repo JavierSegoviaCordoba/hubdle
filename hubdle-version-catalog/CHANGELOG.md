@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `com.squareup.okio:okio -> 3.18.2`
 - `org.jetbrains:markdown -> 0.7.11`
 - `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 8.10.2`
 - `org.sonarqube:org.sonarqube.gradle.plugin -> 7.5.0.8588`
@@ -67,7 +68,6 @@
 - `io.ktor:ktor-client-cio -> 3.5.2`
 - `io.ktor:ktor-client-apache5 -> 3.5.2`
 - `io.ktor:ktor-client-android -> 3.5.2`
-- `com.squareup.okio:okio -> 3.18.1`
 - `org.eclipse.jgit:org.eclipse.jgit -> 7.7.1.202607240634-r`
 - `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.9.9`
 - `com.javiersc.kotlin.kopy:com.javiersc.kotlin.kopy.gradle.plugin -> 0.25.0+2.4.10`

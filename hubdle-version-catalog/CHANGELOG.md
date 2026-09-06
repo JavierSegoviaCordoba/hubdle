@@ -14,8 +14,8 @@
 
 ### Updated
 
+- `org.jetbrains:markdown -> 0.7.12`
 - `com.squareup.okio:okio -> 3.18.2`
-- `org.jetbrains:markdown -> 0.7.11`
 - `com.diffplug.gradle.spotless:com.diffplug.gradle.spotless.gradle.plugin -> 8.10.2`
 - `org.sonarqube:org.sonarqube.gradle.plugin -> 7.5.0.8588`
 - `org.jetbrains.kotlinx.binary-compatibility-validator:org.jetbrains.kotlinx.binary-compatibility-validator.gradle.plugin -> 0.18.2`

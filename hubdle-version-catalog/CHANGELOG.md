@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.gradle.test-retry:org.gradle.test-retry.gradle.plugin -> 1.6.6`
 - `org.jetbrains.kotlin.plugin.serialization:org.jetbrains.kotlin.plugin.serialization.gradle.plugin -> 2.4.20`
 - `org.jetbrains.kotlin.plugin.power-assert:org.jetbrains.kotlin.plugin.power-assert.gradle.plugin -> 2.4.20`
 - `org.jetbrains.kotlin.plugin.compose:org.jetbrains.kotlin.plugin.compose.gradle.plugin -> 2.4.20`

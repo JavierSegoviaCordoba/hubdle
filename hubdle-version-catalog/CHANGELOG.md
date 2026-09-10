@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.eclipse.jgit:org.eclipse.jgit -> 7.8.0.202609011348-r`
 - `org.gradle.test-retry:org.gradle.test-retry.gradle.plugin -> 1.6.6`
 - `org.jetbrains.kotlin.plugin.serialization:org.jetbrains.kotlin.plugin.serialization.gradle.plugin -> 2.4.20`
 - `org.jetbrains.kotlin.plugin.power-assert:org.jetbrains.kotlin.plugin.power-assert.gradle.plugin -> 2.4.20`
@@ -88,7 +89,6 @@
 - `io.ktor:ktor-client-cio -> 3.5.2`
 - `io.ktor:ktor-client-apache5 -> 3.5.2`
 - `io.ktor:ktor-client-android -> 3.5.2`
-- `org.eclipse.jgit:org.eclipse.jgit -> 7.7.1.202607240634-r`
 - `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.9.9`
 - `com.javiersc.kotlin.kopy:com.javiersc.kotlin.kopy.gradle.plugin -> 0.25.0+2.4.10`
 - `org.jetbrains.kotlin.plugin.atomicfu:org.jetbrains.kotlin.plugin.atomicfu.gradle.plugin -> 2.4.10`

@@ -4,8 +4,6 @@
 
 ### Added
 
-- `kotlin-reflect` dependency to Kotlin Compiler plugin feature
-
 ### Changed
 
 ### Deprecated
@@ -15,6 +13,12 @@
 ### Removed
 
 ### Updated
+
+## [0.20.0] - 2026-09-13
+
+### Added
+
+- `kotlin-reflect` dependency to Kotlin Compiler plugin feature
 
 ## [0.19.2] - 2026-06-18
 
@@ -476,7 +480,9 @@
 
 - `allTests` task
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.19.2...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.20.0...HEAD
+
+[0.20.0]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.19.2...p0.20.0
 
 [0.19.2]: https://github.com/JavierSegoviaCordoba/hubdle/compare/p0.19.1...p0.19.2
 

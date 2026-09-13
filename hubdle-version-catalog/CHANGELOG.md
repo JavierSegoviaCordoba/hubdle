@@ -14,6 +14,11 @@
 
 ### Updated
 
+- `io.kotest:kotest-runner-junit5 -> 6.2.5`
+- `io.kotest:kotest-runner-junit4 -> 6.2.5`
+- `io.kotest:kotest-property -> 6.2.5`
+- `io.kotest:kotest-assertions-json -> 6.2.5`
+- `io.kotest:kotest-assertions-core -> 6.2.5`
 - `com.gradle.plugin-publish:com.gradle.plugin-publish.gradle.plugin -> 2.2.1`
 - `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 4.5.1`
 - `androidx.navigation:navigation-compose -> 2.10.1`
@@ -69,11 +74,6 @@
 - `com.squareup.okhttp3:mockwebserver3-junit5 -> 5.5.0`
 - `com.squareup.okhttp3:mockwebserver3-junit4 -> 5.5.0`
 - `com.squareup.okhttp3:mockwebserver -> 5.5.0`
-- `io.kotest:kotest-runner-junit5 -> 6.2.4`
-- `io.kotest:kotest-runner-junit4 -> 6.2.4`
-- `io.kotest:kotest-property -> 6.2.4`
-- `io.kotest:kotest-assertions-json -> 6.2.4`
-- `io.kotest:kotest-assertions-core -> 6.2.4`
 - `com.github.triplet.play:com.github.triplet.play.gradle.plugin -> 4.1.1`
 - `androidx.appcompat:appcompat -> 1.8.0`
 - `dev.detekt:dev.detekt.gradle.plugin -> 2.0.0-alpha.6`

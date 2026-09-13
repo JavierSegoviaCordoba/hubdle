@@ -254,11 +254,12 @@ public open class HubdleKotlinCompilerPluginFeatureExtension @Inject constructor
 
     private val libraryProperties: Map<String, String> =
         mapOf(
+            "org.jetbrains.kotlin.test.kotlin-annotations-jvm" to "kotlin-annotations-jvm",
+            "org.jetbrains.kotlin.test.kotlin-reflect" to "kotlin-reflect",
+            "org.jetbrains.kotlin.test.kotlin-script-runtime" to "kotlin-script-runtime",
             "org.jetbrains.kotlin.test.kotlin-stdlib" to "kotlin-stdlib",
             "org.jetbrains.kotlin.test.kotlin-stdlib-jdk8" to "kotlin-stdlib-jdk8",
             "org.jetbrains.kotlin.test.kotlin-test" to "kotlin-test",
-            "org.jetbrains.kotlin.test.kotlin-script-runtime" to "kotlin-script-runtime",
-            "org.jetbrains.kotlin.test.kotlin-annotations-jvm" to "kotlin-annotations-jvm",
         )
 
     private fun Test.setLibraryProperty(propName: String, jarName: String) {

@@ -4,6 +4,8 @@
 
 ### Added
 
+- `kotlin-reflect` dependency to Kotlin Compiler plugin feature
+
 ### Changed
 
 ### Deprecated

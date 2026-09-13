@@ -14,6 +14,10 @@
 
 ### Updated
 
+## [0.15.0] - 2026-09-13
+
+### Updated
+
 - `io.kotest:kotest-runner-junit5 -> 6.2.5`
 - `io.kotest:kotest-runner-junit4 -> 6.2.5`
 - `io.kotest:kotest-property -> 6.2.5`
@@ -2897,7 +2901,9 @@
 - `com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter -> 1.0.0`
 - `io.kotest.extensions:kotest-assertions-konform -> 1.0.2`
 
-[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.14.1...HEAD
+[Unreleased]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.15.0...HEAD
+
+[0.15.0]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.14.1...c0.15.0
 
 [0.14.1]: https://github.com/JavierSegoviaCordoba/hubdle/compare/c0.14.0...c0.14.1
 

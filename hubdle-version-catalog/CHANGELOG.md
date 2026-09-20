@@ -14,6 +14,28 @@
 
 ### Updated
 
+- `io.ktor:ktor-serialization-kotlinx-json -> 3.6.0`
+- `io.ktor:ktor-client-winhttp -> 3.6.0`
+- `io.ktor:ktor-client-okhttp -> 3.6.0`
+- `io.ktor:ktor-client-mock -> 3.6.0`
+- `io.ktor:ktor-client-js -> 3.6.0`
+- `io.ktor:ktor-client-jetty -> 3.6.0`
+- `io.ktor:ktor-client-java -> 3.6.0`
+- `io.ktor:ktor-client-darwin -> 3.6.0`
+- `io.ktor:ktor-client-curl -> 3.6.0`
+- `io.ktor:ktor-client-core -> 3.6.0`
+- `io.ktor:ktor-client-content-negotiation -> 3.6.0`
+- `io.ktor:ktor-client-cio -> 3.6.0`
+- `io.ktor:ktor-client-apache5 -> 3.6.0`
+- `io.ktor:ktor-client-android -> 3.6.0`
+- `org.jetbrains:markdown -> 0.7.14`
+- `org.jetbrains.intellij.platform:org.jetbrains.intellij.platform.gradle.plugin -> 2.19.0`
+- `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.20.0`
+- `com.codingfeline.buildkonfig:com.codingfeline.buildkonfig.gradle.plugin -> 0.23.0`
+- `com.android.library:com.android.library.gradle.plugin -> 9.4.1`
+- `com.android.application:com.android.application.gradle.plugin -> 9.4.1`
+- `com.android.tools.build:gradle -> 9.4.1`
+
 ## [0.15.0] - 2026-09-13
 
 ### Updated

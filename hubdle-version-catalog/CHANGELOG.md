@@ -14,6 +14,10 @@
 
 ### Updated
 
+- `com.javiersc.kotlin.kopy:com.javiersc.kotlin.kopy.gradle.plugin -> 0.26.0+2.4.20`
+- `com.javiersc.kotlin:kotlin-compiler-test-extensions -> 0.17.0+2.4.20`
+- `com.javiersc.kotlin:kotlin-compiler-gradle-extensions -> 0.17.0+2.4.20`
+- `com.javiersc.kotlin:kotlin-compiler-extensions -> 0.17.0+2.4.20`
 - `io.ktor:ktor-serialization-kotlinx-json -> 3.6.0`
 - `io.ktor:ktor-client-winhttp -> 3.6.0`
 - `io.ktor:ktor-client-okhttp -> 3.6.0`

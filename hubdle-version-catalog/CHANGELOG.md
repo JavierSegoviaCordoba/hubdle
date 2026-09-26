@@ -14,6 +14,12 @@
 
 ### Updated
 
+- `app.cash.sqldelight:app.cash.sqldelight.gradle.plugin -> 2.4.0`
+- `app.cash.sqldelight:sqlite-driver -> 2.4.0`
+- `app.cash.sqldelight:native-driver -> 2.4.0`
+- `app.cash.sqldelight:jdbc-driver -> 2.4.0`
+- `app.cash.sqldelight:coroutines-extensions -> 2.4.0`
+- `app.cash.sqldelight:android-driver -> 2.4.0`
 - `com.javiersc.kotlin.kopy:com.javiersc.kotlin.kopy.gradle.plugin -> 0.26.0+2.4.20`
 - `com.javiersc.kotlin:kotlin-compiler-test-extensions -> 0.17.0+2.4.20`
 - `com.javiersc.kotlin:kotlin-compiler-gradle-extensions -> 0.17.0+2.4.20`

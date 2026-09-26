@@ -14,6 +14,11 @@
 
 ### Updated
 
+- `gradle -> 9.8.0`
+- `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.12.1`
+- `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 4.6.0`
+- `androidx.navigation:navigation-compose -> 2.10.2`
+- `androidx.core:core-ktx -> 1.19.1`
 - `app.cash.sqldelight:app.cash.sqldelight.gradle.plugin -> 2.4.0`
 - `app.cash.sqldelight:sqlite-driver -> 2.4.0`
 - `app.cash.sqldelight:native-driver -> 2.4.0`

@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains:markdown -> 0.7.15`
 - `gradle -> 9.8.0`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.12.1`
 - `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 4.6.0`
@@ -43,7 +44,6 @@
 - `io.ktor:ktor-client-cio -> 3.6.0`
 - `io.ktor:ktor-client-apache5 -> 3.6.0`
 - `io.ktor:ktor-client-android -> 3.6.0`
-- `org.jetbrains:markdown -> 0.7.14`
 - `org.jetbrains.intellij.platform:org.jetbrains.intellij.platform.gradle.plugin -> 2.19.0`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.20.0`
 - `com.codingfeline.buildkonfig:com.codingfeline.buildkonfig.gradle.plugin -> 0.23.0`

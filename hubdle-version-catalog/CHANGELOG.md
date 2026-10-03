@@ -14,7 +14,8 @@
 
 ### Updated
 
-- `org.jetbrains:markdown -> 0.7.15`
+- `org.jetbrains:markdown -> 0.7.16`
+- `org.jetbrains.kotlinx.kover:org.jetbrains.kotlinx.kover.gradle.plugin -> 0.9.11`
 - `gradle -> 9.8.0`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.12.1`
 - `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 4.6.0`

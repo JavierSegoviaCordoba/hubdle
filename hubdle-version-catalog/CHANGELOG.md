@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `org.jetbrains.kotlinx:kotlinx-io-core -> 0.9.2`
 - `gradle -> 9.8.2`
 - `com.squareup.okhttp3:okhttp -> 5.5.1`
 - `com.squareup.okhttp3:mockwebserver3-junit5 -> 5.5.1`

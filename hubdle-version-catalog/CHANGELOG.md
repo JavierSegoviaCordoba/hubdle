@@ -14,8 +14,14 @@
 
 ### Updated
 
+- `gradle -> 9.9.0`
+- `org.jetbrains.intellij.platform:org.jetbrains.intellij.platform.gradle.plugin -> 2.20.0`
+- `org.jetbrains.dokka:org.jetbrains.dokka.gradle.plugin -> 2.3.0`
+- `org.eclipse.jgit:org.eclipse.jgit -> 7.8.1.202611041320-r`
+- `com.android.library:com.android.library.gradle.plugin -> 9.5.1`
+- `com.android.application:com.android.application.gradle.plugin -> 9.5.1`
+- `com.android.tools.build:gradle -> 9.5.1`
 - `org.jetbrains.kotlinx:kotlinx-io-core -> 0.9.2`
-- `gradle -> 9.8.2`
 - `com.squareup.okhttp3:okhttp -> 5.5.1`
 - `com.squareup.okhttp3:mockwebserver3-junit5 -> 5.5.1`
 - `com.squareup.okhttp3:mockwebserver3-junit4 -> 5.5.1`
@@ -39,9 +45,6 @@
 - `org.jacoco:jacoco -> 0.8.16`
 - `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 4.6.1`
 - `io.arrow-kt:arrow-core -> 2.3.0`
-- `com.android.library:com.android.library.gradle.plugin -> 9.5.0`
-- `com.android.application:com.android.application.gradle.plugin -> 9.5.0`
-- `com.android.tools.build:gradle -> 9.5.0`
 - `io.kotest:kotest-runner-junit5 -> 6.2.6`
 - `io.kotest:kotest-runner-junit4 -> 6.2.6`
 - `io.kotest:kotest-property -> 6.2.6`
@@ -83,7 +86,6 @@
 - `com.javiersc.kotlin:kotlin-compiler-test-extensions -> 0.17.0+2.4.20`
 - `com.javiersc.kotlin:kotlin-compiler-gradle-extensions -> 0.17.0+2.4.20`
 - `com.javiersc.kotlin:kotlin-compiler-extensions -> 0.17.0+2.4.20`
-- `org.jetbrains.intellij.platform:org.jetbrains.intellij.platform.gradle.plugin -> 2.19.0`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.20.0`
 - `com.codingfeline.buildkonfig:com.codingfeline.buildkonfig.gradle.plugin -> 0.23.0`
 

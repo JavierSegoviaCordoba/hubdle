@@ -14,8 +14,8 @@
 
 ### Updated
 
-- `gradle -> 9.9.0`
-- `org.jetbrains.intellij.platform:org.jetbrains.intellij.platform.gradle.plugin -> 2.20.0`
+- `gradle -> 9.9.1`
+- `org.jetbrains.intellij.platform:org.jetbrains.intellij.platform.gradle.plugin -> 2.20.1`
 - `org.jetbrains.dokka:org.jetbrains.dokka.gradle.plugin -> 2.3.0`
 - `org.eclipse.jgit:org.eclipse.jgit -> 7.8.1.202611041320-r`
 - `com.android.library:com.android.library.gradle.plugin -> 9.5.1`

@@ -14,6 +14,28 @@
 
 ### Updated
 
+- `gradle -> 9.9.2`
+- `androidx.lifecycle:lifecycle-viewmodel-ktx -> 2.11.1`
+- `androidx.lifecycle:lifecycle-viewmodel-compose -> 2.11.1`
+- `androidx.lifecycle:lifecycle-viewmodel -> 2.11.1`
+- `androidx.compose.ui:ui-util -> 1.13.0`
+- `androidx.compose.ui:ui-tooling-preview -> 1.13.0`
+- `androidx.compose.ui:ui-tooling -> 1.13.0`
+- `androidx.compose.ui:ui-test-manifest -> 1.13.0`
+- `androidx.compose.ui:ui-test -> 1.13.0`
+- `androidx.compose.ui:ui -> 1.13.0`
+- `androidx.compose.runtime:runtime-tracing -> 1.13.0`
+- `androidx.compose.runtime:runtime-saveable -> 1.13.0`
+- `androidx.compose.runtime:runtime -> 1.13.0`
+- `androidx.compose.material3:material3-window-size-class -> 1.5.0`
+- `androidx.compose.material3:material3 -> 1.5.0`
+- `androidx.compose.material:material-ripple -> 1.13.0`
+- `androidx.compose.material:material -> 1.13.0`
+- `androidx.compose.foundation:foundation-layout -> 1.13.0`
+- `androidx.compose.foundation:foundation -> 1.13.0`
+- `androidx.compose.animation:animation-graphics -> 1.13.0`
+- `androidx.compose.animation:animation-core -> 1.13.0`
+- `androidx.compose.animation:animation -> 1.13.0`
 - `org.sonarqube:org.sonarqube.gradle.plugin -> 7.6.0.18749`
 - `io.kotest:kotest-runner-junit5 -> 6.2.7`
 - `io.kotest:kotest-runner-junit4 -> 6.2.7`
@@ -24,7 +46,6 @@
 - `org.jetbrains.kotlinx:kotlinx-serialization-core -> 1.13.0`
 - `org.jetbrains.kotlinx:kotlinx-io-core -> 0.9.3`
 - `com.github.triplet.play:com.github.triplet.play.gradle.plugin -> 4.1.2`
-- `gradle -> 9.9.1`
 - `org.jetbrains.intellij.platform:org.jetbrains.intellij.platform.gradle.plugin -> 2.20.1`
 - `org.jetbrains.dokka:org.jetbrains.dokka.gradle.plugin -> 2.3.0`
 - `org.eclipse.jgit:org.eclipse.jgit -> 7.8.1.202611041320-r`

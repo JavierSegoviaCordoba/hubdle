@@ -14,6 +14,10 @@
 
 ### Updated
 
+- `com.codingfeline.buildkonfig:com.codingfeline.buildkonfig.gradle.plugin -> 0.24.1`
+- `com.android.library:com.android.library.gradle.plugin -> 9.5.2`
+- `com.android.application:com.android.application.gradle.plugin -> 9.5.2`
+- `com.android.tools.build:gradle -> 9.5.2`
 - `gradle -> 9.9.2`
 - `androidx.lifecycle:lifecycle-viewmodel-ktx -> 2.11.1`
 - `androidx.lifecycle:lifecycle-viewmodel-compose -> 2.11.1`
@@ -49,9 +53,6 @@
 - `org.jetbrains.intellij.platform:org.jetbrains.intellij.platform.gradle.plugin -> 2.20.1`
 - `org.jetbrains.dokka:org.jetbrains.dokka.gradle.plugin -> 2.3.0`
 - `org.eclipse.jgit:org.eclipse.jgit -> 7.8.1.202611041320-r`
-- `com.android.library:com.android.library.gradle.plugin -> 9.5.1`
-- `com.android.application:com.android.application.gradle.plugin -> 9.5.1`
-- `com.android.tools.build:gradle -> 9.5.1`
 - `com.squareup.okhttp3:okhttp -> 5.5.1`
 - `com.squareup.okhttp3:mockwebserver3-junit5 -> 5.5.1`
 - `com.squareup.okhttp3:mockwebserver3-junit4 -> 5.5.1`
@@ -110,7 +111,6 @@
 - `com.javiersc.kotlin:kotlin-compiler-gradle-extensions -> 0.17.0+2.4.20`
 - `com.javiersc.kotlin:kotlin-compiler-extensions -> 0.17.0+2.4.20`
 - `com.javiersc.hubdle:com.javiersc.hubdle.gradle.plugin -> 0.20.0`
-- `com.codingfeline.buildkonfig:com.codingfeline.buildkonfig.gradle.plugin -> 0.23.0`
 
 ## [0.15.0] - 2026-09-13
 

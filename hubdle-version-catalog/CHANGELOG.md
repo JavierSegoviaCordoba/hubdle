@@ -14,6 +14,7 @@
 
 ### Updated
 
+- `io.arrow-kt:arrow-core -> 2.3.0.1`
 - `com.codingfeline.buildkonfig:com.codingfeline.buildkonfig.gradle.plugin -> 0.24.1`
 - `com.android.library:com.android.library.gradle.plugin -> 9.5.2`
 - `com.android.application:com.android.application.gradle.plugin -> 9.5.2`
@@ -73,7 +74,6 @@
 - `io.ktor:ktor-client-android -> 3.6.1`
 - `org.jacoco:jacoco -> 0.8.16`
 - `com.gradle.develocity:com.gradle.develocity.gradle.plugin -> 4.6.1`
-- `io.arrow-kt:arrow-core -> 2.3.0`
 - `org.jetbrains:markdown -> 0.7.18`
 - `org.jetbrains.compose:org.jetbrains.compose.gradle.plugin -> 1.12.2`
 - `app.cash.sqldelight:app.cash.sqldelight.gradle.plugin -> 2.4.1`

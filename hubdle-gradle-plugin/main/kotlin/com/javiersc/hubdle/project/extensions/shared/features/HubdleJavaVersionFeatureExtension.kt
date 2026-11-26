@@ -12,6 +12,7 @@ import com.javiersc.hubdle.project.extensions._internal.withKotlinMultiplatform
 import com.javiersc.hubdle.project.extensions.apis.BaseHubdleExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
+import com.javiersc.hubdle.project.extensions.gradle.hubdleGradlePluginDevKit
 import com.javiersc.hubdle.project.extensions.java.hubdleJava
 import com.javiersc.hubdle.project.extensions.kotlin.hubdleKotlinAny
 import javax.inject.Inject
@@ -35,7 +36,15 @@ public open class HubdleJavaVersionFeatureExtension @Inject constructor(project:
     override val noneOfExtensions: Set<HubdleEnableableExtension>
         get() = setOf(hubdleJvmToolchainFeature)
 
-    public val jvmVersion: Property<JavaVersion> = property { JavaVersion.VERSION_1_8 }
+    /**
+     * The JVM version, Java 8 by default. A Gradle plugin built with the Kotlin Compiler Plugin
+     * DevKit (`gradle { plugin { compilerPluginDevKit() } }`) defaults to Java 17, the version that
+     * the DevKit runtime needs.
+     */
+    public val jvmVersion: Property<JavaVersion> = property {
+        if (hubdleGradlePluginDevKit.isFullEnabled.get()) JavaVersion.VERSION_17
+        else JavaVersion.VERSION_1_8
+    }
 
     @HubdleDslMarker
     public fun jvmVersion(version: JavaVersion) {

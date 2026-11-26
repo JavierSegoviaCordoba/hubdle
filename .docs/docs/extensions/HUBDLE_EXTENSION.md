@@ -22,5 +22,7 @@
             - `isEnabled: Property<Boolean>` // true
             - `enabled(value: Boolean = true)`
         - `android`
+        - `compilerLibrary`
+        - `compilerPlugin`
         - `jvm`
         - `multiplatform`

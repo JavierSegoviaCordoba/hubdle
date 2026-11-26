@@ -5,6 +5,7 @@ import com.javiersc.hubdle.project.extensions._internal.withKotlin
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.config.hubdleConfig
 import com.javiersc.hubdle.project.extensions.kotlin.hubdleKotlinAny
+import com.javiersc.hubdle.project.extensions.kotlin.hubdleKotlinCompilerDevKitAny
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
@@ -23,7 +24,7 @@ public open class HubdleConfigLanguageSettingsExtension @Inject constructor(proj
     override val isEnabled: Property<Boolean> = property { false }
 
     override val oneOfExtensions: Set<HubdleEnableableExtension>
-        get() = hubdleKotlinAny
+        get() = hubdleKotlinAny + hubdleKotlinCompilerDevKitAny
 
     override val requiredExtensions: Set<HubdleEnableableExtension>
         get() = setOf(hubdleConfig)

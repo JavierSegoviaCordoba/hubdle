@@ -9,6 +9,8 @@ import com.javiersc.hubdle.project.extensions.kotlin.android.features.HubdleKotl
 import com.javiersc.hubdle.project.extensions.kotlin.android.features.HubdleKotlinAndroidFeaturesExtension
 import com.javiersc.hubdle.project.extensions.kotlin.android.library.HubdleKotlinAndroidLibraryExtension
 import com.javiersc.hubdle.project.extensions.kotlin.android.library.features.HubdleKotlinAndroidLibraryFeaturesExtension
+import com.javiersc.hubdle.project.extensions.kotlin.compiler.devkit.HubdleKotlinCompilerLibraryExtension
+import com.javiersc.hubdle.project.extensions.kotlin.compiler.devkit.HubdleKotlinCompilerPluginExtension
 import com.javiersc.hubdle.project.extensions.kotlin.compiler.options.HubdleKotlinCompilerOptionsExtension
 import com.javiersc.hubdle.project.extensions.kotlin.features.HubdleKotlinFeaturesExtension
 import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotlinAtomicfuFeatureExtension
@@ -23,7 +25,6 @@ import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotli
 import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotlinSerializationFeatureExtension
 import com.javiersc.hubdle.project.extensions.kotlin.features.shared.HubdleKotlinSqlDelightFeatureExtension
 import com.javiersc.hubdle.project.extensions.kotlin.jvm.HubdleKotlinJvmExtension
-import com.javiersc.hubdle.project.extensions.kotlin.jvm.features.HubdleKotlinCompilerPluginFeatureExtension
 import com.javiersc.hubdle.project.extensions.kotlin.jvm.features.HubdleKotlinJvmFeaturesExtension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.HubdleKotlinMultiplatformExtension
 import com.javiersc.hubdle.project.extensions.kotlin.multiplatform.features.HubdleKotlinMultiplatformFeaturesExtension
@@ -71,6 +72,8 @@ internal fun HubdleState.createHubdleKotlinExtensions() {
         createKotlinFeatureExtensions()
         createKotlinAndroidExtensions()
         createExtension<HubdleKotlinCompilerOptionsExtension>()
+        createExtension<HubdleKotlinCompilerLibraryExtension>()
+        createExtension<HubdleKotlinCompilerPluginExtension>()
         createKotlinJvmExtensions()
         createKotlinMultiplatformAndroidExtensions()
     }
@@ -78,7 +81,6 @@ internal fun HubdleState.createHubdleKotlinExtensions() {
 
 private fun HubdleState.createKotlinFeatureExtensions() {
     createExtension<HubdleKotlinFeaturesExtension> {
-        createExtension<HubdleKotlinCompilerPluginFeatureExtension>()
         createExtension<HubdleKotlinAtomicfuFeatureExtension>()
         createExtension<HubdleKotlinBuildKonfigFeatureExtension>()
         createExtension<HubdleKotlinComposeFeatureExtension>()

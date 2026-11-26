@@ -56,6 +56,18 @@ public open class HubdleGradlePluginExtension @Inject constructor(project: Proje
         this.extendedGradle.set(extendedGradle)
     }
 
+    public val compilerPluginDevKit: HubdleGradlePluginDevKitExtension
+        get() = getHubdleExtension()
+
+    /**
+     * Builds this Gradle plugin, the one that applies a Kotlin compiler plugin, with the Kotlin
+     * Compiler Plugin DevKit.
+     */
+    @HubdleDslMarker
+    public fun compilerPluginDevKit(action: Action<HubdleGradlePluginDevKitExtension> = Action {}) {
+        compilerPluginDevKit.enableAndExecute(action)
+    }
+
     @HubdleDslMarker
     public fun gradlePlugin(action: Action<GradlePluginDevelopmentExtension>) {
         lazyConfigurable { action.execute(the()) }
@@ -180,7 +192,13 @@ public open class HubdleGradlePluginExtension @Inject constructor(project: Proje
                     implementation(gradleKotlinDsl())
                     implementation(library(javiersc_gradle_extensions))
                 }
-                forKotlinSetsDependencies(TEST, TEST_FUNCTIONAL, TEST_INTEGRATION, TEST_FIXTURES) {
+                forKotlinSetsDependencies(
+                    TEST,
+                    TEST_FUNCTIONAL,
+                    TEST_INTEGRATION,
+                    TEST_FIXTURES,
+                    DevKitFunctionalTest,
+                ) {
                     implementation(gradleTestKit())
                     implementation(library(javiersc_gradle_test_extensions))
                 }

@@ -6,6 +6,7 @@ import com.javiersc.hubdle.project.extensions.apis.HubdleConfigurableExtension
 import com.javiersc.hubdle.project.extensions.apis.HubdleEnableableExtension
 import com.javiersc.hubdle.project.extensions.config.hubdleConfig
 import com.javiersc.hubdle.project.extensions.kotlin.hubdleKotlinAny
+import com.javiersc.hubdle.project.extensions.kotlin.hubdleKotlinCompilerDevKitAny
 import com.javiersc.hubdle.project.extensions.shared.features.tasks.GenerateAdditionalDataTask
 import com.javiersc.hubdle.project.extensions.shared.features.tasks.GenerateProjectDataTask
 import com.javiersc.kotlin.stdlib.isNotNullNorBlank
@@ -20,7 +21,7 @@ public open class HubdleProjectExtension @Inject constructor(project: Project) :
     override val isEnabled: Property<Boolean> = property { false }
 
     override val oneOfExtensions: Set<HubdleEnableableExtension>
-        get() = hubdleKotlinAny
+        get() = hubdleKotlinAny + hubdleKotlinCompilerDevKitAny
 
     override val requiredExtensions: Set<HubdleEnableableExtension>
         get() = setOf(hubdleConfig)

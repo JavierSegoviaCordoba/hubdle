@@ -8,6 +8,10 @@ import com.javiersc.hubdle.project.extensions.apis.enableAndExecute
 import com.javiersc.hubdle.project.extensions.kotlin.android.HubdleKotlinAndroidExtension
 import com.javiersc.hubdle.project.extensions.kotlin.android.application.hubdleAndroidApplication
 import com.javiersc.hubdle.project.extensions.kotlin.android.library.hubdleAndroidLibrary
+import com.javiersc.hubdle.project.extensions.kotlin.compiler.devkit.HubdleKotlinCompilerLibraryExtension
+import com.javiersc.hubdle.project.extensions.kotlin.compiler.devkit.HubdleKotlinCompilerPluginExtension
+import com.javiersc.hubdle.project.extensions.kotlin.compiler.devkit.hubdleKotlinCompilerLibrary
+import com.javiersc.hubdle.project.extensions.kotlin.compiler.devkit.hubdleKotlinCompilerPlugin
 import com.javiersc.hubdle.project.extensions.kotlin.compiler.options.HubdleKotlinCompilerOptionsExtension
 import com.javiersc.hubdle.project.extensions.kotlin.features.HubdleKotlinFeaturesExtension
 import com.javiersc.hubdle.project.extensions.kotlin.jvm.HubdleKotlinJvmExtension
@@ -40,6 +44,22 @@ public open class HubdleKotlinExtension @Inject constructor(project: Project) :
     @HubdleDslMarker
     public fun android(action: Action<HubdleKotlinAndroidExtension> = Action {}) {
         android.enableAndExecute(action)
+    }
+
+    public val compilerLibrary: HubdleKotlinCompilerLibraryExtension
+        get() = getHubdleExtension()
+
+    @HubdleDslMarker
+    public fun compilerLibrary(action: Action<HubdleKotlinCompilerLibraryExtension> = Action {}) {
+        compilerLibrary.enableAndExecute(action)
+    }
+
+    public val compilerPlugin: HubdleKotlinCompilerPluginExtension
+        get() = getHubdleExtension()
+
+    @HubdleDslMarker
+    public fun compilerPlugin(action: Action<HubdleKotlinCompilerPluginExtension> = Action {}) {
+        compilerPlugin.enableAndExecute(action)
     }
 
     public val compilerOptions: HubdleKotlinCompilerOptionsExtension
@@ -78,6 +98,15 @@ internal val HubdleEnableableExtension.hubdleKotlinAny: Set<HubdleConfigurableEx
             hubdleKotlinJvm,
             hubdleKotlinMultiplatform,
         )
+
+/**
+ * The Kotlin projects built with the Kotlin Compiler Plugin DevKit. They are not part of
+ * [hubdleKotlinAny], so the shared Kotlin features that are enabled by default (for example the
+ * extended stdlib) don't apply to them.
+ */
+internal val HubdleEnableableExtension.hubdleKotlinCompilerDevKitAny:
+    Set<HubdleConfigurableExtension>
+    get() = setOf(hubdleKotlinCompilerLibrary, hubdleKotlinCompilerPlugin)
 
 internal val HubdleEnableableExtension.hubdleAndroidAny: Set<HubdleConfigurableExtension>
     get() = setOf(hubdleAndroidApplication, hubdleAndroidLibrary, hubdleKotlinMultiplatformAndroid)

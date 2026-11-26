@@ -24,6 +24,16 @@ public enum class PluginId(public val id: String) {
     JetbrainsDokka("org.jetbrains.dokka"),
     JetbrainsIntellij("org.jetbrains.intellij.platform"),
     JetbrainsKotlinAndroid("org.jetbrains.kotlin.android"),
+    JetbrainsKotlinCompilerPluginDevKit("org.jetbrains.kotlin.compiler.plugin.devkit"),
+    JetbrainsKotlinCompilerPluginDevKitCompilerLibrary(
+        "org.jetbrains.kotlin.compiler.plugin.devkit.compiler-library"
+    ),
+    JetbrainsKotlinCompilerPluginDevKitCompilerPlugin(
+        "org.jetbrains.kotlin.compiler.plugin.devkit.compiler-plugin"
+    ),
+    JetbrainsKotlinCompilerPluginDevKitGradlePlugin(
+        "org.jetbrains.kotlin.compiler.plugin.devkit.gradle-plugin"
+    ),
     JetbrainsKotlinJvm("org.jetbrains.kotlin.jvm"),
     JetbrainsKotlinMultiplatform("org.jetbrains.kotlin.multiplatform"),
     JetbrainsKotlinPluginCompose("org.jetbrains.kotlin.plugin.compose"),

@@ -19,6 +19,7 @@ import com.javiersc.hubdle.project.extensions.config.testing.HubdleConfigTesting
 import com.javiersc.hubdle.project.extensions.config.versioning.HubdleConfigVersioningExtension
 import com.javiersc.hubdle.project.extensions.config.versioning.semver._internal.isTagPrefixProject
 import com.javiersc.hubdle.project.extensions.kotlin.hubdleKotlinAny
+import com.javiersc.hubdle.project.extensions.kotlin.hubdleKotlinCompilerDevKitAny
 import javax.inject.Inject
 import org.gradle.api.Action
 import org.gradle.api.Project
@@ -70,7 +71,8 @@ public open class HubdleConfigExtension @Inject constructor(project: Project) :
     @HubdleDslMarker
     public fun explicitApi(explicitApiMode: ExplicitApiMode = ExplicitApiMode.Strict) {
         val isEnabled = property {
-            isFullEnabled.get() && hubdleKotlinAny.any { it.isFullEnabled.get() }
+            val kotlinExtensions = hubdleKotlinAny + hubdleKotlinCompilerDevKitAny
+            isFullEnabled.get() && kotlinExtensions.any { it.isFullEnabled.get() }
         }
         lazyConfigurable(isEnabled = isEnabled) {
             configure<KotlinProjectExtension> { explicitApi = explicitApiMode }

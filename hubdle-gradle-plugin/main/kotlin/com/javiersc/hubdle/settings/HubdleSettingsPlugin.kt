@@ -50,6 +50,7 @@ public open class HubdleSettingsPlugin @Inject constructor(private val objects: 
 
         target.configureRootProjectName()
         target.configureRepositories()
+        target.configureCompilerPluginDevKit()
         target.configureGradleDevelocity()
         target.configureKoverMergeReports()
         target.configureDokkaMerge()
@@ -142,6 +143,22 @@ private fun Settings.configureRepositories() {
         }
     }
     addRepositoriesBasedOnProperties()
+}
+
+/**
+ * Applies the Kotlin Compiler Plugin DevKit settings plugin
+ * (`org.jetbrains.kotlin.compiler.plugin.devkit`) if the Gradle property
+ * `hubdle.kotlin.compiler.plugin.devkit` is `true`. The `compilerLibrary` and `compilerPlugin`
+ * Kotlin projects need it.
+ *
+ * It is a Gradle property, as the `hubdle.repositories.*` ones, and not a `hubdleSettings` option,
+ * because the DevKit settings plugin must be applied before the settings are evaluated: it adds its
+ * repositories in `settingsEvaluated`.
+ */
+private fun Settings.configureCompilerPluginDevKit() {
+    val isEnabled: Boolean =
+        getBooleanProperty("hubdle.kotlin.compiler.plugin.devkit").getOrElse(false)
+    if (isEnabled) pluginManager.apply(PluginId.JetbrainsKotlinCompilerPluginDevKit.id)
 }
 
 private fun Settings.configureHubdleCatalogTask() {

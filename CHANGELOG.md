@@ -4,6 +4,15 @@
 
 ### Added
 
+- `kotlin { compilerLibrary { } }` and `kotlin { compilerPlugin { } }`, built with the Kotlin
+  Compiler Plugin DevKit, with the DevKit source sets mapped to Hubdle's layout
+- `gradle { plugin { compilerPluginDevKit { } } }`, to build the Gradle plugin of a Kotlin compiler
+  plugin with the Kotlin Compiler Plugin DevKit, with the functional tests in `testFunctional/kotlin`
+- `deleteCompilerTextTestFiles` task to `compilerLibrary` and `compilerPlugin`, which deletes the
+  dumps, classified ones included, of every DevKit test data directory
+- `hubdle.kotlin.compiler.plugin.devkit` Gradle property to apply the Kotlin Compiler Plugin DevKit
+  settings plugin
+
 ### Changed
 
 ### Deprecated
@@ -11,6 +20,9 @@
 ### Fixed
 
 ### Removed
+
+- Kotlin JVM `compiler` feature (`kotlin { jvm { features { compiler { } } } }`), replaced by
+  `kotlin { compilerPlugin { } }` and `kotlin { compilerLibrary { } }`
 
 ### Updated
 

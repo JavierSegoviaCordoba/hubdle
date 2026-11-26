@@ -43,7 +43,6 @@ public interface HubdleKotlinJvmDelegateFeaturesExtension :
     HubdleJvmToolchainDelegateFeatureExtension,
     HubdleKotlinAtomicfuDelegateFeatureExtension,
     HubdleKotlinBuildKonfigDelegateFeatureExtension,
-    HubdleKotlinCompilerPluginDelegateFeatureExtension,
     HubdleKotlinComposeDelegateFeatureExtension,
     HubdleKotlinCoroutinesDelegateFeatureExtension,
     HubdleKotlinExtendedStdlibDelegateFeatureExtension,
